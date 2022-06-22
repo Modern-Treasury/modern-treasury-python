@@ -1,0 +1,231 @@
+# File generated from our OpenAPI spec by Stainless.
+
+from typing import Dict, List, Optional
+from typing_extensions import Literal
+
+from .._models import BaseModel
+
+__all__ = [
+    "PartyAddress",
+    "AccountDetails",
+    "RoutingDetailsBankAddress",
+    "RoutingDetails",
+    "ContactDetails",
+    "ExternalAccount",
+]
+
+
+class PartyAddress(BaseModel):
+    country: Optional[str]
+    """Country code conforms to [ISO 3166-1 alpha-2]"""
+
+    created_at: str
+
+    id: str
+
+    line1: Optional[str]
+
+    line2: Optional[str]
+
+    live_mode: bool
+    """
+    This field will be true if this object exists in the live environment or false
+    if it exists in the test environment.
+    """
+
+    locality: Optional[str]
+    """Locality or City."""
+
+    object: str
+
+    postal_code: Optional[str]
+    """The postal code of the address."""
+
+    region: Optional[str]
+    """Region or State."""
+
+    updated_at: str
+
+
+class AccountDetails(BaseModel):
+    account_number: str
+
+    account_number_type: Literal["iban", "clabe", "wallet_address", "pan", "other"]
+    """
+    Supports iban and clabe, otherwise other if the bank account number is in a
+    generic format.
+    """
+
+    created_at: str
+
+    discarded_at: Optional[str]
+
+    id: str
+
+    live_mode: bool
+    """
+    This field will be true if this object exists in the live environment or false
+    if it exists in the test environment.
+    """
+
+    object: str
+
+    updated_at: str
+
+
+class RoutingDetailsBankAddress(BaseModel):
+    country: Optional[str]
+    """Country code conforms to [ISO 3166-1 alpha-2]"""
+
+    created_at: str
+
+    id: str
+
+    line1: Optional[str]
+
+    line2: Optional[str]
+
+    live_mode: bool
+    """
+    This field will be true if this object exists in the live environment or false
+    if it exists in the test environment.
+    """
+
+    locality: Optional[str]
+    """Locality or City."""
+
+    object: str
+
+    postal_code: Optional[str]
+    """The postal code of the address."""
+
+    region: Optional[str]
+    """Region or State."""
+
+    updated_at: str
+
+
+class RoutingDetails(BaseModel):
+    bank_address: Optional[RoutingDetailsBankAddress]
+
+    bank_name: str
+
+    created_at: str
+
+    discarded_at: Optional[str]
+
+    id: str
+
+    live_mode: bool
+    """
+    This field will be true if this object exists in the live environment or false
+    if it exists in the test environment.
+    """
+
+    object: str
+
+    payment_type: Optional[
+        Literal[
+            "ach",
+            "au_becs",
+            "bacs",
+            "book",
+            "card",
+            "check",
+            "eft",
+            "interac",
+            "provxchange",
+            "rtp",
+            "sen",
+            "sepa",
+            "signet",
+            "wire",
+        ]
+    ]
+    """
+    If the routing detail is to be used for a specific payment type this field will
+    be populated, otherwise null.
+    """
+
+    routing_number: str
+    """The routing number of the bank."""
+
+    routing_number_type: Literal[
+        "aba", "swift", "au_bsb", "ca_cpa", "cnaps", "gb_sort_code", "in_ifsc", "my_branch_code", "br_codigo"
+    ]
+
+    updated_at: str
+
+
+class ContactDetails(BaseModel):
+    contact_identifier: str
+
+    contact_identifier_type: Literal["email", "phone_number"]
+
+    created_at: str
+
+    discarded_at: Optional[str]
+
+    id: str
+
+    live_mode: bool
+    """
+    This field will be true if this object exists in the live environment or false
+    if it exists in the test environment.
+    """
+
+    object: str
+
+    updated_at: str
+
+
+class ExternalAccount(BaseModel):
+    account_details: List[AccountDetails]
+
+    account_type: Literal["checking", "other", "savings"]
+    """Can be `checking`, `savings` or `other`."""
+
+    contact_details: List[ContactDetails]
+
+    counterparty_id: Optional[str]
+
+    created_at: str
+
+    discarded_at: Optional[str]
+
+    id: str
+
+    live_mode: bool
+    """
+    This field will be true if this object exists in the live environment or false
+    if it exists in the test environment.
+    """
+
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
+
+    name: Optional[str]
+    """A nickname for the external account.
+
+    This is only for internal usage and won't affect any payments
+    """
+
+    object: str
+
+    party_address: Optional[PartyAddress]
+    """The address associated with the owner or `null`."""
+
+    party_name: str
+    """The legal name of the entity which owns the account."""
+
+    party_type: Optional[Literal["business", "individual"]]
+    """Either `individual` or `business`."""
+
+    routing_details: List[RoutingDetails]
+
+    updated_at: str
+
+    verification_status: Literal["pending_verification", "unverified", "verified"]
