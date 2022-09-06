@@ -78,6 +78,13 @@ class ModernTreasury(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
+        """Construct a new synchronous Modern Treasury client instance.
+
+        This automatically infers the following arguments from their corresponding environment variables if they are not provided:
+        - `api_key` from `MODERN_TREASURY_API_KEY`
+        - `organization_id` from `MODERN_TREASURY_ORGANIZATION_ID`
+        - `webhook_key` from `MODERN_TREASURY_WEBHOOK_KEY`
+        """
         api_key = api_key or os.environ.get("MODERN_TREASURY_API_KEY", "")
         if not api_key:
             raise Exception("No API key provided")
@@ -190,6 +197,13 @@ class AsyncModernTreasury(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
+        """Construct a new async Modern Treasury client instance.
+
+        This automatically infers the following arguments from their corresponding environment variables if they are not provided:
+        - `api_key` from `MODERN_TREASURY_API_KEY`
+        - `organization_id` from `MODERN_TREASURY_ORGANIZATION_ID`
+        - `webhook_key` from `MODERN_TREASURY_WEBHOOK_KEY`
+        """
         api_key = api_key or os.environ.get("MODERN_TREASURY_API_KEY", "")
         if not api_key:
             raise Exception("No API key provided")
