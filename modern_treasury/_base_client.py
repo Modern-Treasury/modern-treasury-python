@@ -385,6 +385,10 @@ class BaseClient:
         return Querystring()
 
     @property
+    def custom_auth(self) -> httpx.Auth | None:
+        return None
+
+    @property
     def auth_headers(self) -> Dict[str, str]:
         return {}
 
@@ -511,7 +515,7 @@ class SyncAPIClient(BaseClient):
         request = self.build_request(options)
 
         try:
-            response = self._client.send(request)
+            response = self._client.send(request, auth=self.custom_auth)
             response.raise_for_status()
         except httpx.HTTPStatusError as err:  # thrown on 4xx and 5xx status code
             if retries > 0 and self.should_retry(err.response):
@@ -667,7 +671,7 @@ class AsyncAPIClient(BaseClient):
         request = self.build_request(options)
 
         try:
-            response = await self._client.send(request)
+            response = await self._client.send(request, auth=self.custom_auth)
             response.raise_for_status()
         except httpx.HTTPStatusError as err:  # thrown on 4xx and 5xx status code
             if retries > 0 and self.should_retry(err.response):
