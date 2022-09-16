@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import TypedDict
 
 __all__ = ["PaperItemListParams"]
 
 
 class PaperItemListParams(TypedDict, total=False):
-    after_cursor: str
+    after_cursor: Optional[str]
 
     deposit_date_end: str
     """Specify an inclusive end date (YYYY-MM-DD) when filtering by deposit_date"""

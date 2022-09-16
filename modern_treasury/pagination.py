@@ -15,7 +15,7 @@ _BaseModelT = TypeVar("_BaseModelT", bound=BaseModel)
 
 
 class PageParams(TypedDict, total=False):
-    after_cursor: str
+    after_cursor: Optional[str]
 
     per_page: int
 

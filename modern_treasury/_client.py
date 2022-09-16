@@ -47,6 +47,11 @@ class ModernTreasury(SyncAPIClient):
     incoming_payment_details: resources.IncomingPaymentDetails
     documents: resources.Documents
     internal_accounts: resources.InternalAccounts
+    ledgers: resources.Ledgers
+    ledger_account_categories: resources.LedgerAccountCategories
+    ledger_accounts: resources.LedgerAccounts
+    ledger_entries: resources.LedgerEntries
+    ledger_transactions: resources.LedgerTransactions
     line_items: resources.LineItems
     payment_orders: resources.PaymentOrders
     returns: resources.Returns
@@ -120,6 +125,11 @@ class ModernTreasury(SyncAPIClient):
         self.incoming_payment_details = resources.IncomingPaymentDetails(self)
         self.documents = resources.Documents(self)
         self.internal_accounts = resources.InternalAccounts(self)
+        self.ledgers = resources.Ledgers(self)
+        self.ledger_account_categories = resources.LedgerAccountCategories(self)
+        self.ledger_accounts = resources.LedgerAccounts(self)
+        self.ledger_entries = resources.LedgerEntries(self)
+        self.ledger_transactions = resources.LedgerTransactions(self)
         self.line_items = resources.LineItems(self)
         self.payment_orders = resources.PaymentOrders(self)
         self.returns = resources.Returns(self)
@@ -166,6 +176,11 @@ class AsyncModernTreasury(AsyncAPIClient):
     incoming_payment_details: resources.AsyncIncomingPaymentDetails
     documents: resources.AsyncDocuments
     internal_accounts: resources.AsyncInternalAccounts
+    ledgers: resources.AsyncLedgers
+    ledger_account_categories: resources.AsyncLedgerAccountCategories
+    ledger_accounts: resources.AsyncLedgerAccounts
+    ledger_entries: resources.AsyncLedgerEntries
+    ledger_transactions: resources.AsyncLedgerTransactions
     line_items: resources.AsyncLineItems
     payment_orders: resources.AsyncPaymentOrders
     returns: resources.AsyncReturns
@@ -239,6 +254,11 @@ class AsyncModernTreasury(AsyncAPIClient):
         self.incoming_payment_details = resources.AsyncIncomingPaymentDetails(self)
         self.documents = resources.AsyncDocuments(self)
         self.internal_accounts = resources.AsyncInternalAccounts(self)
+        self.ledgers = resources.AsyncLedgers(self)
+        self.ledger_account_categories = resources.AsyncLedgerAccountCategories(self)
+        self.ledger_accounts = resources.AsyncLedgerAccounts(self)
+        self.ledger_entries = resources.AsyncLedgerEntries(self)
+        self.ledger_transactions = resources.AsyncLedgerTransactions(self)
         self.line_items = resources.AsyncLineItems(self)
         self.payment_orders = resources.AsyncPaymentOrders(self)
         self.returns = resources.AsyncReturns(self)

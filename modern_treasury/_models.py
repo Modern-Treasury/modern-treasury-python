@@ -4,7 +4,7 @@ from typing import Any, Type, Union, cast
 
 import pydantic
 import pydantic.generics
-from pydantic.typing import is_literal_type
+from pydantic.typing import get_origin, is_literal_type
 
 from ._types import Query, ModelT, Headers, Timeout, NotGiven, RequestFiles
 

@@ -44,6 +44,13 @@ class RoutingNumberLookupRequest(BaseModel):
     respectively.
     """
 
+    sanctions: Optional[object]
+    """
+    An object containing key-value pairs, each with a sanctions list as the key and
+    a boolean value representing whether the bank is on that particular sanctions
+    list. Currently, this includes eu_con, uk_hmt, us_ofac, and un sanctions lists.
+    """
+
     supported_payment_types: Optional[
         List[
             Literal[

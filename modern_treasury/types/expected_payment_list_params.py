@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Optional
 from typing_extensions import Literal, TypedDict
 
 __all__ = ["ExpectedPaymentListParams"]
 
 
 class ExpectedPaymentListParams(TypedDict, total=False):
-    after_cursor: str
+    after_cursor: Optional[str]
 
     counterparty_id: str
     """Specify counterparty_id to see expected_payments for a specific account."""

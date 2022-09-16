@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Literal, TypedDict
 
 __all__ = ["ReturnListParams"]
 
 
 class ReturnListParams(TypedDict, total=False):
-    after_cursor: str
+    after_cursor: Optional[str]
 
     counterparty_id: str
     """
