@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import TypedDict
 
 __all__ = ["EventListParams"]
 
 
 class EventListParams(TypedDict, total=False):
-    after_cursor: str
+    after_cursor: Optional[str]
 
     entity_id: str
 

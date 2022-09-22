@@ -5,13 +5,13 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import TypedDict
 
-__all__ = ["ExternalAccountListParams"]
+__all__ = ["LedgerAccountCategoryListParams"]
 
 
-class ExternalAccountListParams(TypedDict, total=False):
+class LedgerAccountCategoryListParams(TypedDict, total=False):
     after_cursor: Optional[str]
 
-    counterparty_id: str
+    ledger_id: str
 
     metadata: Dict[str, str]
     """
@@ -20,7 +20,9 @@ class ExternalAccountListParams(TypedDict, total=False):
     parameters.
     """
 
-    party_name: str
-    """Searches the ExternalAccount's party_name AND the Counterparty's party_name"""
+    name: str
+
+    parent_ledger_account_category_id: str
+    """Query categories that are nested underneath a parent category"""
 
     per_page: int

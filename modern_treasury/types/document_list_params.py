@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import TypedDict
 
 __all__ = ["DocumentListParams"]
 
 
 class DocumentListParams(TypedDict, total=False):
-    after_cursor: str
+    after_cursor: Optional[str]
 
     per_page: int

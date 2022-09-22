@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Optional
 from typing_extensions import Literal, TypedDict
 
 __all__ = ["IncomingPaymentDetailListParams"]
 
 
 class IncomingPaymentDetailListParams(TypedDict, total=False):
-    after_cursor: str
+    after_cursor: Optional[str]
 
     as_of_date_end: str
     """

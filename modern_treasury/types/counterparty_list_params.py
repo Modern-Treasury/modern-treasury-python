@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Optional
 from typing_extensions import TypedDict
 
 __all__ = ["CounterpartyListParams"]
 
 
 class CounterpartyListParams(TypedDict, total=False):
-    after_cursor: str
+    after_cursor: Optional[str]
 
     created_at_lower_bound: str
     """Used to return counterparties created after some datetime."""
