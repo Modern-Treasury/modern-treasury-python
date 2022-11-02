@@ -6,6 +6,8 @@ The Modern Treasury Python library provides convenient access to the Modern Trea
 application. It includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
+![GIF showcasing modern_treasury usage](./showcase.gif)
+
 ## Documentation
 
 The API documentation can be found [here](https://docs.moderntreasury.com).
@@ -27,15 +29,15 @@ modern_treasury = ModernTreasury(
     organization_id="my-organization-ID",
 )
 
-counterparty = modern_treasury.counterparties.create({
-    "name": "my first counterparty",
+external_account = modern_treasury.external_accounts.create({
+    "counterparty_id": "123",
+    "name": "my bank",
 })
-
-print(counterparty.id)
+print(external_account.id)
 ```
 
 While you can provide an `api_key` keyword argument, we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-and adding `MODERN_TREASURY_API_KEY="my api key"` to your `.env` file so that your API keys are not stored in source control.
+and adding `MODERN_TREASURY_API_KEY="my api key"` to your `.env` file so that your API Key is not stored in source control.
 
 ## Async Usage
 
@@ -51,10 +53,11 @@ modern_treasury = AsyncModernTreasury(
 )
 
 async def main():
-    counterparty = await modern_treasury.counterparties.create({
-        "name": "my first counterparty",
+    external_account = await modern_treasury.external_accounts.create({
+        "counterparty_id": "123",
+        "name": "my bank",
     })
-    print(counterparty.id)
+    print(external_account.id)
 
 asyncio.run(main())
 ```
@@ -74,7 +77,6 @@ List methods in the Modern Treasury API are paginated.
 This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
 
 ```py
-from typing import List
 import modern_treasury
 
 modern_treasury = ModernTreasury(
@@ -93,7 +95,6 @@ Or, asynchronously:
 
 ```python
 import asyncio
-from typing import List
 import modern_treasury
 
 modern_treasury = AsyncModernTreasury(
@@ -105,7 +106,7 @@ async def main() -> None:
     # Iterate through items across all pages, issuing requests as needed.
     async for external_account in modern_treasury.external_accounts.list():
         all_external_accounts.append(external_account)
-    return all_external_accounts
+    print(all_external_accounts)
 
 asyncio.run(main())
 ```
@@ -114,11 +115,11 @@ Alternatively, you can use the `.has_next_page()`, `.next_page_params()`,
 or `.get_next_page()` methods for more granular control working with pages:
 
 ```python
-first_page = await client.cards.list({"page_size": 2})
+first_page = await modern_treasury.external_accounts.list()
 if first_page.has_next_page():
-    print("will fetch next page, with params", first_page.next_page_params())
+    print(f"will fetch next page using these details: {first_page.next_page_info()}")
     next_page = await first_page.get_next_page()
-    print(f"number of items we just fetched: {len(next_page.data)}")
+    print(f"number of items we just fetched: {len(next_page.items)}")
 
 # Remove `await` for non-async usage.
 ```
@@ -126,13 +127,31 @@ if first_page.has_next_page():
 Or just work directly with the returned data:
 
 ```python
-first_page = await client.cards.list()
+first_page = await modern_treasury.external_accounts.list()
 
-print(f"page number: {first_page.page}") # => "page number: 1"
-for card in first_page.data:
-    print(card.token)
+print(f"next page cursor: {first_page.after_cursor}") # => "next page cursor: ..."
+for external_account in first_page.items:
+    print(external_account.id)
 
 # Remove `await` for non-async usage.
+```
+
+## Nested params
+
+Nested parameters are dictionaries, typed using `TypedDict`, for example:
+
+```py
+from modern_treasury import ModernTreasury
+
+modern_treasury = ModernTreasury(
+    organization_id="my-organization-ID",
+)
+
+modern_treasury.external_accounts.create({
+    "foo": {
+        "bar": True
+    },
+})
 ```
 
 ## Handling errors
@@ -153,7 +172,7 @@ modern_treasury = ModernTreasury(
 
 try:
     modern_treasury.external_accounts.create({
-        "counterparty_id": "missing"
+        "counterparty_id": "missing",
     })
 except modern_treasury.APIConnectionError as e:
     print("The server could not be reached")
@@ -198,7 +217,7 @@ modern_treasury = ModernTreasury(
 )
 
 # Or, configure per-request:
-modern_treasury.external_accounts.list({}, max_retries=5);
+modern_treasury.external_accounts.list(max_retries=5);
 ```
 
 ### Timeouts
@@ -224,7 +243,7 @@ modern_treasury = ModernTreasury(
 
 # Override per-request:
 modern_treasury.external_accounts.list({
-    "party_name": "my bank"
+    "party_name": "my bank",
 }, timeout=5 * 1000)
 ```
 

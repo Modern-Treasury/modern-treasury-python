@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Union, Optional
 
 from .._types import NOT_GIVEN, Query, Headers, Timeout, NoneType, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -34,7 +35,7 @@ class LedgerAccountCategories(SyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return self._post(
             "/api/ledger_account_categories",
-            body=body,
+            body=maybe_transform(body, LedgerAccountCategoryCreateParams),
             options=options,
             cast_to=LedgerAccountCategory,
         )
@@ -70,7 +71,7 @@ class LedgerAccountCategories(SyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return self._patch(
             f"/api/ledger_account_categories/{id}",
-            body=body,
+            body=maybe_transform(body, LedgerAccountCategoryUpdateParams),
             options=options,
             cast_to=LedgerAccountCategory,
         )
@@ -84,7 +85,9 @@ class LedgerAccountCategories(SyncAPIResource):
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
     ) -> SyncPage[LedgerAccountCategory]:
         """Get a list of ledger account categories."""
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(
+            headers, max_retries, timeout, maybe_transform(query, LedgerAccountCategoryListParams)
+        )
         return self._get_api_list(
             "/api/ledger_account_categories",
             page=SyncPage[LedgerAccountCategory],
@@ -200,7 +203,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return await self._post(
             "/api/ledger_account_categories",
-            body=body,
+            body=maybe_transform(body, LedgerAccountCategoryCreateParams),
             options=options,
             cast_to=LedgerAccountCategory,
         )
@@ -236,7 +239,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return await self._patch(
             f"/api/ledger_account_categories/{id}",
-            body=body,
+            body=maybe_transform(body, LedgerAccountCategoryUpdateParams),
             options=options,
             cast_to=LedgerAccountCategory,
         )
@@ -250,7 +253,9 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
     ) -> AsyncPaginator[LedgerAccountCategory, AsyncPage[LedgerAccountCategory]]:
         """Get a list of ledger account categories."""
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(
+            headers, max_retries, timeout, maybe_transform(query, LedgerAccountCategoryListParams)
+        )
         return self._get_api_list(
             "/api/ledger_account_categories",
             page=AsyncPage[LedgerAccountCategory],

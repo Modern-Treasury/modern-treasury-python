@@ -4,6 +4,7 @@ import json
 import time
 import uuid
 import platform
+import warnings
 from random import random
 from typing import (
     Any,
@@ -19,6 +20,7 @@ from typing import (
     Generator,
     AsyncIterator,
     cast,
+    overload,
 )
 from functools import lru_cache
 from typing_extensions import Literal
@@ -33,6 +35,7 @@ from pydantic import PrivateAttr
 from . import _base_exceptions as exceptions
 from ._qs import Querystring
 from ._types import (
+    NOT_GIVEN,
     Omit,
     Query,
     ModelT,
@@ -44,6 +47,7 @@ from ._types import (
     ProxiesTypes,
     RequestFiles,
     RequestOptions,
+    UnknownResponse,
     ModelBuilderProtocol,
 )
 from ._utils import is_dict
@@ -61,13 +65,51 @@ AsyncPageT = TypeVar("AsyncPageT", bound="BaseAsyncPage[Any]")
 
 
 PageParamsT = TypeVar("PageParamsT", bound=Query)
-ResponseT = TypeVar("ResponseT", bound=Union[BaseModel, ModelBuilderProtocol, str, None, httpx.Response])
+ResponseT = TypeVar(
+    "ResponseT",
+    bound=Union[BaseModel, ModelBuilderProtocol, str, None, httpx.Response, UnknownResponse],
+)
 
 _T = TypeVar("_T")
 _T_co = TypeVar("_T_co", covariant=True)
 
 DEFAULT_TIMEOUT = Timeout(timeout=60.0, connect=5.0)
 DEFAULT_MAX_RETRIES = 2
+
+
+class PageInfo:
+    """Stores the necesary information to build the request to retrieve the next page.
+
+    Either `url` or `params` must be set.
+    """
+
+    url: URL | NotGiven
+    params: Query | NotGiven
+
+    @overload
+    def __init__(
+        self,
+        *,
+        url: URL,
+    ) -> None:
+        ...
+
+    @overload
+    def __init__(
+        self,
+        *,
+        params: Query,
+    ) -> None:
+        ...
+
+    def __init__(
+        self,
+        *,
+        url: URL | NotGiven = NOT_GIVEN,
+        params: Query | NotGiven = NOT_GIVEN,
+    ) -> None:
+        self.url = url
+        self.params = params
 
 
 class BasePage(GenericModel, Generic[ModelT, PageParamsT]):
@@ -78,13 +120,51 @@ class BasePage(GenericModel, Generic[ModelT, PageParamsT]):
         items = self._get_page_items()
         if not items:
             return False
-        return self.next_page_params() is not None
+        return self.next_page_info() is not None
+
+    def next_page_info(self) -> Optional[PageInfo]:
+        ...
 
     def next_page_params(self) -> Optional[PageParamsT]:
-        ...
+        warnings.warn(
+            "The `next_page_params()` method is deprecated, please use `next_page_info()` instead",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        info = self.next_page_info()
+        if info is None:
+            return None
+
+        if not isinstance(info.params, NotGiven):
+            return cast(Optional[PageParamsT], info.params)
+
+        if not isinstance(info.url, NotGiven):
+            return cast(PageParamsT, self._params_from_url(info.url))
+
+        raise ValueError("Unexpected PageInfo state")
 
     def _get_page_items(self) -> Iterable[ModelT]:
         ...
+
+    def _params_from_url(self, url: URL) -> httpx.QueryParams:
+        # TODO: do we have to preprocess params here?
+        return httpx.QueryParams(cast(Any, self._options.params)).merge(url.params)
+
+    def _info_to_options(self, info: PageInfo) -> FinalRequestOptions:
+        options = self._options.copy()
+
+        if not isinstance(info.params, NotGiven):
+            options.params = {**options.params, **info.params}
+            return options
+
+        if not isinstance(info.url, NotGiven):
+            params = self._params_from_url(info.url)
+            url = info.url.copy_with(params=params)
+            options.params = dict(url.params)
+            options.url = str(url)
+            return options
+
+        raise ValueError("Unexpected PageInfo state")
 
 
 class BaseSyncPage(BasePage[ModelT, Query], Generic[ModelT]):
@@ -123,15 +203,13 @@ class BaseSyncPage(BasePage[ModelT, Query], Generic[ModelT]):
                 return
 
     def get_next_page(self: SyncPageT) -> SyncPageT:
-        next_params = self.next_page_params()
-        if not next_params:
+        info = self.next_page_info()
+        if not info:
             raise RuntimeError(
                 "No next page expected; please check `.has_next_page()` before calling `.get_next_page()`."
             )
 
-        options = self._options.copy()
-        options.params = {**options.params, **next_params}
-
+        options = self._info_to_options(info)
         return self._client.request_api_list(self._model, page=self.__class__, options=options)
 
 
@@ -198,21 +276,19 @@ class BaseAsyncPage(BasePage[ModelT, Query], Generic[ModelT]):
                 return
 
     async def get_next_page(self: AsyncPageT) -> AsyncPageT:
-        next_params = self.next_page_params()
-        if not next_params:
+        info = self.next_page_info()
+        if not info:
             raise RuntimeError(
                 "No next page expected; please check `.has_next_page()` before calling `.get_next_page()`."
             )
 
-        options = self._options.copy()
-        options.params = {**options.params, **next_params}
+        options = self._info_to_options(info)
         return await self._client.request_api_list(self._model, page=self.__class__, options=options)
 
 
 class BaseClient:
     _client: httpx.Client | httpx.AsyncClient
     _version: str
-    api_key: str
     max_retries: int
     timeout: Union[float, Timeout, None]
     _strict_response_validation: bool
@@ -221,15 +297,17 @@ class BaseClient:
     def __init__(
         self,
         version: str,
-        api_key: str,
         _strict_response_validation: bool,
         max_retries: int = DEFAULT_MAX_RETRIES,
-        timeout: Union[float, Timeout, None] = DEFAULT_TIMEOUT,
+        timeout: float | Timeout | None = DEFAULT_TIMEOUT,
+        custom_headers: Mapping[str, str] | None = None,
+        custom_query: Mapping[str, object] | None = None,
     ) -> None:
         self._version = version
-        self.api_key = api_key
         self.max_retries = max_retries
         self.timeout = timeout
+        self._custom_headers = custom_headers or {}
+        self._custom_query = custom_query or {}
         self._strict_response_validation = _strict_response_validation
         self._idempotency_header = None
 
@@ -279,6 +357,7 @@ class BaseClient:
             headers[self._idempotency_header] = options.idempotency_key
 
         kwargs: dict[str, Any] = {}
+        params = _merge_mappings(self._custom_query, options.params)
 
         # If the given Content-Type header is multipart/form-data then it
         # has to be removed so that httpx can generate the header with
@@ -307,7 +386,7 @@ class BaseClient:
             # `Params` type as it needs to be typed as `Mapping[str, object]`
             # so that passing a `TypedDict` doesn't cause an error.
             # https://github.com/microsoft/pyright/issues/3526#event-6715453066
-            params=self.qs.stringify(cast(Mapping[str, Any], options.params)) if options.params else None,
+            params=self.qs.stringify(cast(Mapping[str, Any], params)) if params else None,
             json=options.json_data,
             files=options.files,
             **kwargs,
@@ -358,10 +437,8 @@ class BaseClient:
         # to be safe as we have handled all the types that could be bound to the
         # `ResponseT` TypeVar, however if that TypeVar is ever updated in the future, then
         # this function would become unsafe but a type checker would not report an error.
-        if not issubclass(cast_to, BaseModel):
+        if cast_to is not UnknownResponse and not issubclass(cast_to, BaseModel):
             raise RuntimeError(f"Invalid state, expected {cast_to} to be a subclass type of {BaseModel}.")
-
-        model_cls = cast(Type[BaseModel], cast_to)
 
         # split is required to handle cases where additional information is included
         # in the response, e.g. application/json; charset=utf-8
@@ -372,9 +449,17 @@ class BaseClient:
             )
 
         data = response.json()
+
+        if data is None:
+            return cast(ResponseT, None)
+
+        if cast_to is UnknownResponse:
+            return cast(ResponseT, data)
+
         if issubclass(cast_to, ModelBuilderProtocol):
             return cast(ResponseT, cast_to.build(response=response, data=data))
 
+        model_cls = cast(Type[BaseModel], cast_to)
         if self._strict_response_validation:
             return cast(ResponseT, model_cls(**data))
 
@@ -399,6 +484,7 @@ class BaseClient:
             "User-Agent": self.user_agent,
             **self.platform_headers(),
             **self.auth_headers,
+            **self._custom_headers,
         }
 
     @property
@@ -489,14 +575,22 @@ class SyncAPIClient(BaseClient):
         *,
         version: str,
         base_url: str,
-        api_key: str,
         max_retries: int = DEFAULT_MAX_RETRIES,
         timeout: Union[float, Timeout, None] = DEFAULT_TIMEOUT,
         transport: Optional[Transport] = None,
         proxies: Optional[ProxiesTypes] = None,
+        custom_headers: Mapping[str, str] | None = None,
+        custom_query: Mapping[str, object] | None = None,
         _strict_response_validation: bool,
     ) -> None:
-        super().__init__(version, api_key, _strict_response_validation, max_retries, timeout)
+        super().__init__(
+            version=version,
+            timeout=timeout,
+            max_retries=max_retries,
+            custom_query=custom_query,
+            custom_headers=custom_headers,
+            _strict_response_validation=_strict_response_validation,
+        )
         self._client = httpx.Client(
             base_url=base_url,
             timeout=timeout,
@@ -632,8 +726,9 @@ class SyncAPIClient(BaseClient):
         model: Type[ModelT],
         page: Type[SyncPageT],
         options: RequestOptions = {},
+        method: str = "get",
     ) -> SyncPageT:
-        opts = FinalRequestOptions.construct(method="get", url=path, **options)
+        opts = FinalRequestOptions.construct(method=method, url=path, **options)
         return self.request_api_list(model, page, opts)
 
 
@@ -645,14 +740,22 @@ class AsyncAPIClient(BaseClient):
         *,
         version: str,
         base_url: str,
-        api_key: str,
         _strict_response_validation: bool,
         max_retries: int = DEFAULT_MAX_RETRIES,
         timeout: Union[float, Timeout, None] = DEFAULT_TIMEOUT,
         transport: Optional[Transport] = None,
         proxies: Optional[ProxiesTypes] = None,
+        custom_headers: Mapping[str, str] | None = None,
+        custom_query: Mapping[str, object] | None = None,
     ) -> None:
-        super().__init__(version, api_key, _strict_response_validation, max_retries, timeout)
+        super().__init__(
+            version=version,
+            timeout=timeout,
+            max_retries=max_retries,
+            custom_query=custom_query,
+            custom_headers=custom_headers,
+            _strict_response_validation=_strict_response_validation,
+        )
         self._client = httpx.AsyncClient(
             base_url=base_url,
             timeout=timeout,
@@ -792,8 +895,9 @@ class AsyncAPIClient(BaseClient):
         model: Type[ModelT],
         page: Type[AsyncPageT],
         options: RequestOptions = {},
+        method: str = "get",
     ) -> AsyncPaginator[ModelT, AsyncPageT]:
-        opts = FinalRequestOptions.construct(method="get", url=path, **options)
+        opts = FinalRequestOptions.construct(method=method, url=path, **options)
         return self.request_api_list(model, page, opts)
 
 
