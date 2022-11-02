@@ -6,6 +6,7 @@ from typing import Union, Optional
 from typing_extensions import Literal
 
 from .._types import NOT_GIVEN, Query, Headers, Timeout, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -51,7 +52,7 @@ class LineItems(SyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return self._patch(
             f"/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
-            body=body,
+            body=maybe_transform(body, LineItemUpdateParams),
             options=options,
             cast_to=LineItem,
         )
@@ -67,7 +68,7 @@ class LineItems(SyncAPIResource):
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
     ) -> SyncPage[LineItem]:
         """Get a list of line items"""
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(headers, max_retries, timeout, maybe_transform(query, LineItemListParams))
         return self._get_api_list(
             f"/api/{itemizable_type}/{itemizable_id}/line_items",
             page=SyncPage[LineItem],
@@ -111,7 +112,7 @@ class AsyncLineItems(AsyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return await self._patch(
             f"/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
-            body=body,
+            body=maybe_transform(body, LineItemUpdateParams),
             options=options,
             cast_to=LineItem,
         )
@@ -127,7 +128,7 @@ class AsyncLineItems(AsyncAPIResource):
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
     ) -> AsyncPaginator[LineItem, AsyncPage[LineItem]]:
         """Get a list of line items"""
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(headers, max_retries, timeout, maybe_transform(query, LineItemListParams))
         return self._get_api_list(
             f"/api/{itemizable_type}/{itemizable_id}/line_items",
             page=AsyncPage[LineItem],

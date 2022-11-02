@@ -6,6 +6,7 @@ from typing import Union
 from typing_extensions import Literal
 
 from .._types import NOT_GIVEN, Headers, Timeout, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -36,7 +37,7 @@ class Documents(SyncAPIResource):
         max_retries: Union[int, NotGiven] = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
     ) -> SyncPage[Document]:
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(headers, max_retries, timeout, maybe_transform(query, DocumentListParams))
         return self._get_api_list(
             f"/api/{documentable_type}/{documentable_id}/documents",
             page=SyncPage[Document],
@@ -66,7 +67,7 @@ class AsyncDocuments(AsyncAPIResource):
         max_retries: Union[int, NotGiven] = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
     ) -> AsyncPaginator[Document, AsyncPage[Document]]:
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(headers, max_retries, timeout, maybe_transform(query, DocumentListParams))
         return self._get_api_list(
             f"/api/{documentable_type}/{documentable_id}/documents",
             page=AsyncPage[Document],
