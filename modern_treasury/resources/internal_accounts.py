@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Union, Optional
 
 from .._types import NOT_GIVEN, Query, Headers, Timeout, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -29,7 +30,7 @@ class InternalAccounts(SyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return self._post(
             "/api/internal_accounts",
-            body=body,
+            body=maybe_transform(body, InternalAccountCreateParams),
             options=options,
             cast_to=InternalAccount,
         )
@@ -63,7 +64,7 @@ class InternalAccounts(SyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return self._patch(
             f"/api/internal_accounts/{id}",
-            body=body,
+            body=maybe_transform(body, InternalAccountUpdateParams),
             options=options,
             cast_to=InternalAccount,
         )
@@ -76,7 +77,7 @@ class InternalAccounts(SyncAPIResource):
         max_retries: Union[int, NotGiven] = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
     ) -> SyncPage[InternalAccount]:
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(headers, max_retries, timeout, maybe_transform(query, InternalAccountListParams))
         return self._get_api_list(
             "/api/internal_accounts",
             page=SyncPage[InternalAccount],
@@ -98,7 +99,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return await self._post(
             "/api/internal_accounts",
-            body=body,
+            body=maybe_transform(body, InternalAccountCreateParams),
             options=options,
             cast_to=InternalAccount,
         )
@@ -132,7 +133,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return await self._patch(
             f"/api/internal_accounts/{id}",
-            body=body,
+            body=maybe_transform(body, InternalAccountUpdateParams),
             options=options,
             cast_to=InternalAccount,
         )
@@ -145,7 +146,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         max_retries: Union[int, NotGiven] = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
     ) -> AsyncPaginator[InternalAccount, AsyncPage[InternalAccount]]:
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(headers, max_retries, timeout, maybe_transform(query, InternalAccountListParams))
         return self._get_api_list(
             "/api/internal_accounts",
             page=AsyncPage[InternalAccount],

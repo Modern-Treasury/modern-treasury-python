@@ -48,7 +48,7 @@ RequestFiles = Union[Mapping[str, FileTypes], Sequence[Tuple[str, FileTypes]]]
 # This unfortunately means that you will either have
 # to import this type and pass it explicitly:
 #
-# from modern-treasury import NoneType
+# from modern_treasury import NoneType
 # client.get('/foo', cast_to=NoneType)
 #
 # or build it yourself:
@@ -63,8 +63,13 @@ else:
 class RequestOptions(TypedDict, total=False):
     headers: Headers
     max_retries: int
-    timeout: Union[float, Timeout, None]
+    timeout: float | Timeout | None
     params: Query
+
+
+# Sentinel class used when the response type is an object with an unknown schema
+class UnknownResponse:
+    ...
 
 
 # Sentinel class used until PEP 0661 is accepted

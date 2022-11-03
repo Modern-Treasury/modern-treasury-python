@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Union, Optional
 
 from .._types import NOT_GIVEN, Query, Headers, Timeout, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -29,7 +30,7 @@ class ExpectedPayments(SyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return self._post(
             "/api/expected_payments",
-            body=body,
+            body=maybe_transform(body, ExpectedPaymentCreateParams),
             options=options,
             cast_to=ExpectedPayment,
         )
@@ -63,7 +64,7 @@ class ExpectedPayments(SyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return self._patch(
             f"/api/expected_payments/{id}",
-            body=body,
+            body=maybe_transform(body, ExpectedPaymentUpdateParams),
             options=options,
             cast_to=ExpectedPayment,
         )
@@ -76,7 +77,7 @@ class ExpectedPayments(SyncAPIResource):
         max_retries: Union[int, NotGiven] = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
     ) -> SyncPage[ExpectedPayment]:
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(headers, max_retries, timeout, maybe_transform(query, ExpectedPaymentListParams))
         return self._get_api_list(
             "/api/expected_payments",
             page=SyncPage[ExpectedPayment],
@@ -114,7 +115,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return await self._post(
             "/api/expected_payments",
-            body=body,
+            body=maybe_transform(body, ExpectedPaymentCreateParams),
             options=options,
             cast_to=ExpectedPayment,
         )
@@ -148,7 +149,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return await self._patch(
             f"/api/expected_payments/{id}",
-            body=body,
+            body=maybe_transform(body, ExpectedPaymentUpdateParams),
             options=options,
             cast_to=ExpectedPayment,
         )
@@ -161,7 +162,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
         max_retries: Union[int, NotGiven] = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
     ) -> AsyncPaginator[ExpectedPayment, AsyncPage[ExpectedPayment]]:
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(headers, max_retries, timeout, maybe_transform(query, ExpectedPaymentListParams))
         return self._get_api_list(
             "/api/expected_payments",
             page=AsyncPage[ExpectedPayment],

@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Union, Optional
 
 from .._types import NOT_GIVEN, Query, Headers, Timeout, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -31,7 +32,7 @@ class LedgerAccounts(SyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return self._post(
             "/api/ledger_accounts",
-            body=body,
+            body=maybe_transform(body, LedgerAccountCreateParams),
             options=options,
             cast_to=LedgerAccount,
         )
@@ -46,7 +47,9 @@ class LedgerAccounts(SyncAPIResource):
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
     ) -> LedgerAccount:
         """Get details on a single ledger account."""
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(
+            headers, max_retries, timeout, maybe_transform(query, LedgerAccountRetrieveParams)
+        )
         return self._get(
             f"/api/ledger_accounts/{id}",
             options=options,
@@ -67,7 +70,7 @@ class LedgerAccounts(SyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return self._patch(
             f"/api/ledger_accounts/{id}",
-            body=body,
+            body=maybe_transform(body, LedgerAccountUpdateParams),
             options=options,
             cast_to=LedgerAccount,
         )
@@ -81,7 +84,7 @@ class LedgerAccounts(SyncAPIResource):
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
     ) -> SyncPage[LedgerAccount]:
         """Get a list of ledger accounts."""
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(headers, max_retries, timeout, maybe_transform(query, LedgerAccountListParams))
         return self._get_api_list(
             "/api/ledger_accounts",
             page=SyncPage[LedgerAccount],
@@ -121,7 +124,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return await self._post(
             "/api/ledger_accounts",
-            body=body,
+            body=maybe_transform(body, LedgerAccountCreateParams),
             options=options,
             cast_to=LedgerAccount,
         )
@@ -136,7 +139,9 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
     ) -> LedgerAccount:
         """Get details on a single ledger account."""
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(
+            headers, max_retries, timeout, maybe_transform(query, LedgerAccountRetrieveParams)
+        )
         return await self._get(
             f"/api/ledger_accounts/{id}",
             options=options,
@@ -157,7 +162,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return await self._patch(
             f"/api/ledger_accounts/{id}",
-            body=body,
+            body=maybe_transform(body, LedgerAccountUpdateParams),
             options=options,
             cast_to=LedgerAccount,
         )
@@ -171,7 +176,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
     ) -> AsyncPaginator[LedgerAccount, AsyncPage[LedgerAccount]]:
         """Get a list of ledger accounts."""
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(headers, max_retries, timeout, maybe_transform(query, LedgerAccountListParams))
         return self._get_api_list(
             "/api/ledger_accounts",
             page=AsyncPage[LedgerAccount],

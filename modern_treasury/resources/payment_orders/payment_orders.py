@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Union, Optional
 
 from ..._types import NOT_GIVEN, Query, Headers, Timeout, NoneType, NotGiven
-from ..._utils import extract_files
+from ..._utils import extract_files, maybe_transform, deepcopy_minimal
 from .reversals import Reversals, AsyncReversals
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ...pagination import SyncPage, AsyncPage
@@ -41,7 +41,7 @@ class PaymentOrders(SyncAPIResource):
         """Create a new Payment Order"""
         # Make a copy of the input so that our internal mutations (extracting files)
         # don't incidentally mutate the user's dictionary.
-        body = body.copy()
+        body = deepcopy_minimal(body)
         files = extract_files(body, paths=[["documents", "<array>", "file"]])
         if files:
             # It should be noted that the actual Content-Type header that will be
@@ -52,7 +52,7 @@ class PaymentOrders(SyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return self._post(
             "/api/payment_orders",
-            body=body,
+            body=maybe_transform(body, PaymentOrderCreateParams),
             files=files,
             options=options,
             cast_to=PaymentOrder,
@@ -89,7 +89,7 @@ class PaymentOrders(SyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return self._patch(
             f"/api/payment_orders/{id}",
-            body=body,
+            body=maybe_transform(body, PaymentOrderUpdateParams),
             options=options,
             cast_to=PaymentOrder,
         )
@@ -103,7 +103,7 @@ class PaymentOrders(SyncAPIResource):
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
     ) -> SyncPage[PaymentOrder]:
         """Get a list of all payment orders"""
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(headers, max_retries, timeout, maybe_transform(query, PaymentOrderListParams))
         return self._get_api_list(
             "/api/payment_orders",
             page=SyncPage[PaymentOrder],
@@ -125,7 +125,7 @@ class PaymentOrders(SyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return self._post(
             "/api/payment_orders/create_async",
-            body=body,
+            body=maybe_transform(body, PaymentOrderCreateAsyncParams),
             options=options,
             cast_to=NoneType,
         )
@@ -150,7 +150,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         """Create a new Payment Order"""
         # Make a copy of the input so that our internal mutations (extracting files)
         # don't incidentally mutate the user's dictionary.
-        body = body.copy()
+        body = deepcopy_minimal(body)
         files = extract_files(body, paths=[["documents", "<array>", "file"]])
         if files:
             # It should be noted that the actual Content-Type header that will be
@@ -161,7 +161,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return await self._post(
             "/api/payment_orders",
-            body=body,
+            body=maybe_transform(body, PaymentOrderCreateParams),
             files=files,
             options=options,
             cast_to=PaymentOrder,
@@ -198,7 +198,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return await self._patch(
             f"/api/payment_orders/{id}",
-            body=body,
+            body=maybe_transform(body, PaymentOrderUpdateParams),
             options=options,
             cast_to=PaymentOrder,
         )
@@ -212,7 +212,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
     ) -> AsyncPaginator[PaymentOrder, AsyncPage[PaymentOrder]]:
         """Get a list of all payment orders"""
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(headers, max_retries, timeout, maybe_transform(query, PaymentOrderListParams))
         return self._get_api_list(
             "/api/payment_orders",
             page=AsyncPage[PaymentOrder],
@@ -234,7 +234,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return await self._post(
             "/api/payment_orders/create_async",
-            body=body,
+            body=maybe_transform(body, PaymentOrderCreateAsyncParams),
             options=options,
             cast_to=NoneType,
         )

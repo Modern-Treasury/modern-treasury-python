@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Union
 
 from .._types import NOT_GIVEN, Headers, Timeout, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._base_client import make_request_options
 from ..types.routing_number_lookup_request import RoutingNumberLookupRequest
@@ -28,7 +29,9 @@ class Validations(SyncAPIResource):
         Validates the routing number information supplied without creating a routing
         detail
         """
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(
+            headers, max_retries, timeout, maybe_transform(query, ValidationValidateRoutingNumberParams)
+        )
         return self._get(
             "/api/validations/routing_numbers",
             options=options,
@@ -49,7 +52,9 @@ class AsyncValidations(AsyncAPIResource):
         Validates the routing number information supplied without creating a routing
         detail
         """
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(
+            headers, max_retries, timeout, maybe_transform(query, ValidationValidateRoutingNumberParams)
+        )
         return await self._get(
             "/api/validations/routing_numbers",
             options=options,

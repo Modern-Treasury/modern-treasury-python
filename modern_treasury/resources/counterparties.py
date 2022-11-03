@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Union, Optional
 
 from .._types import NOT_GIVEN, Query, Headers, Timeout, NoneType, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -34,7 +35,7 @@ class Counterparties(SyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return self._post(
             "/api/counterparties",
-            body=body,
+            body=maybe_transform(body, CounterpartyCreateParams),
             options=options,
             cast_to=Counterparty,
         )
@@ -70,7 +71,7 @@ class Counterparties(SyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return self._patch(
             f"/api/counterparties/{id}",
-            body=body,
+            body=maybe_transform(body, CounterpartyUpdateParams),
             options=options,
             cast_to=Counterparty,
         )
@@ -84,7 +85,7 @@ class Counterparties(SyncAPIResource):
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
     ) -> SyncPage[Counterparty]:
         """Get a paginated list of all counterparties."""
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(headers, max_retries, timeout, maybe_transform(query, CounterpartyListParams))
         return self._get_api_list(
             "/api/counterparties",
             page=SyncPage[Counterparty],
@@ -124,7 +125,7 @@ class Counterparties(SyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return self._post(
             f"/api/counterparties/{id}/collect_account",
-            body=body,
+            body=maybe_transform(body, CounterpartyCollectAccountParams),
             options=options,
             cast_to=CounterpartyCollectAccountResponse,
         )
@@ -144,7 +145,7 @@ class AsyncCounterparties(AsyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return await self._post(
             "/api/counterparties",
-            body=body,
+            body=maybe_transform(body, CounterpartyCreateParams),
             options=options,
             cast_to=Counterparty,
         )
@@ -180,7 +181,7 @@ class AsyncCounterparties(AsyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return await self._patch(
             f"/api/counterparties/{id}",
-            body=body,
+            body=maybe_transform(body, CounterpartyUpdateParams),
             options=options,
             cast_to=Counterparty,
         )
@@ -194,7 +195,7 @@ class AsyncCounterparties(AsyncAPIResource):
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
     ) -> AsyncPaginator[Counterparty, AsyncPage[Counterparty]]:
         """Get a paginated list of all counterparties."""
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(headers, max_retries, timeout, maybe_transform(query, CounterpartyListParams))
         return self._get_api_list(
             "/api/counterparties",
             page=AsyncPage[Counterparty],
@@ -234,7 +235,7 @@ class AsyncCounterparties(AsyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return await self._post(
             f"/api/counterparties/{id}/collect_account",
-            body=body,
+            body=maybe_transform(body, CounterpartyCollectAccountParams),
             options=options,
             cast_to=CounterpartyCollectAccountResponse,
         )

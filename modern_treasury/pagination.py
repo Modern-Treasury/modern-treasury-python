@@ -4,10 +4,10 @@ from typing import List, Type, Generic, Mapping, TypeVar, Optional
 from typing_extensions import TypedDict
 
 from httpx import Response
-from pydantic import BaseModel
 
 from ._types import ModelT
-from ._base_client import BasePage, BaseSyncPage, BaseAsyncPage
+from ._models import BaseModel
+from ._base_client import BasePage, PageInfo, BaseSyncPage, BaseAsyncPage
 
 __all__ = ["PageParams", "SyncPage", "AsyncPage"]
 
@@ -28,17 +28,17 @@ class SyncPage(BaseSyncPage[ModelT], BasePage[ModelT, PageParams], Generic[Model
     def _get_page_items(self) -> List[ModelT]:
         return self.items
 
-    def next_page_params(self) -> Optional[PageParams]:
+    def next_page_info(self) -> Optional[PageInfo]:
         cursor = self.after_cursor
         if not cursor:
             return None
 
-        return {"after_cursor": cursor}
+        return PageInfo(params={"after_cursor": cursor})
 
     @classmethod
     def build(cls: Type[_BaseModelT], *, response: Response, data: object) -> _BaseModelT:
-        return cls.parse_obj(
-            {
+        return cls.construct(
+            **{
                 **(data if isinstance(data, Mapping) else {"items": data}),
                 "per_page": response.headers.get("X-Per-Page"),
                 "after_cursor": response.headers.get("X-After-Cursor"),
@@ -54,17 +54,17 @@ class AsyncPage(BaseAsyncPage[ModelT], BasePage[ModelT, PageParams], Generic[Mod
     def _get_page_items(self) -> List[ModelT]:
         return self.items
 
-    def next_page_params(self) -> Optional[PageParams]:
+    def next_page_info(self) -> Optional[PageInfo]:
         cursor = self.after_cursor
         if not cursor:
             return None
 
-        return {"after_cursor": cursor}
+        return PageInfo(params={"after_cursor": cursor})
 
     @classmethod
     def build(cls: Type[_BaseModelT], *, response: Response, data: object) -> _BaseModelT:
-        return cls.parse_obj(
-            {
+        return cls.construct(
+            **{
                 **(data if isinstance(data, Mapping) else {"items": data}),
                 "per_page": response.headers.get("X-Per-Page"),
                 "after_cursor": response.headers.get("X-After-Cursor"),

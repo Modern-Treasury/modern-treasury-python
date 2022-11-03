@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Union, Optional
 
 from .._types import NOT_GIVEN, Query, Headers, Timeout, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -47,7 +48,7 @@ class Transactions(SyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return self._patch(
             f"/api/transactions/{id}",
-            body=body,
+            body=maybe_transform(body, TransactionUpdateParams),
             options=options,
             cast_to=Transaction,
         )
@@ -61,7 +62,7 @@ class Transactions(SyncAPIResource):
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
     ) -> SyncPage[Transaction]:
         """Get a list of all transactions."""
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(headers, max_retries, timeout, maybe_transform(query, TransactionListParams))
         return self._get_api_list(
             "/api/transactions",
             page=SyncPage[Transaction],
@@ -102,7 +103,7 @@ class AsyncTransactions(AsyncAPIResource):
         options = make_request_options(headers, max_retries, timeout, query)
         return await self._patch(
             f"/api/transactions/{id}",
-            body=body,
+            body=maybe_transform(body, TransactionUpdateParams),
             options=options,
             cast_to=Transaction,
         )
@@ -116,7 +117,7 @@ class AsyncTransactions(AsyncAPIResource):
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
     ) -> AsyncPaginator[Transaction, AsyncPage[Transaction]]:
         """Get a list of all transactions."""
-        options = make_request_options(headers, max_retries, timeout, query)
+        options = make_request_options(headers, max_retries, timeout, maybe_transform(query, TransactionListParams))
         return self._get_api_list(
             "/api/transactions",
             page=AsyncPage[Transaction],
