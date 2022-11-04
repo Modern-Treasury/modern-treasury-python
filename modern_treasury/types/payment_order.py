@@ -3,10 +3,27 @@
 from typing import Dict, List, Optional
 from typing_extensions import Literal
 
-from ..types import return_object
+from ..types import shared, return_object
 from .._models import BaseModel
 
-__all__ = ["ReferenceNumbers", "PaymentOrder"]
+__all__ = ["Accounting", "ReferenceNumbers", "PaymentOrder"]
+
+
+class Accounting(BaseModel):
+    account_id: Optional[str]
+    """The ID of one of your accounting categories.
+
+    Note that these will only be accessible if your accounting system has been
+    connected.
+    """
+
+    class_id: Optional[str]
+    """The ID of one of the class objects in your accounting system.
+
+    Class objects track segments of your business independent of client or project.
+    Note that these will only be accessible if your accounting system has been
+    connected.
+    """
 
 
 class ReferenceNumbers(BaseModel):
@@ -80,6 +97,8 @@ class ReferenceNumbers(BaseModel):
 
 
 class PaymentOrder(BaseModel):
+    accounting: Accounting
+
     accounting_category_id: Optional[str]
     """The ID of one of your accounting categories.
 
@@ -116,197 +135,7 @@ class PaymentOrder(BaseModel):
 
     created_at: str
 
-    currency: Literal[
-        "AED",
-        "AFN",
-        "ALL",
-        "AMD",
-        "ANG",
-        "AOA",
-        "ARS",
-        "AUD",
-        "AWG",
-        "AZN",
-        "BAM",
-        "BBD",
-        "BCH",
-        "BDT",
-        "BGN",
-        "BHD",
-        "BIF",
-        "BMD",
-        "BND",
-        "BOB",
-        "BRL",
-        "BSD",
-        "BTC",
-        "BTN",
-        "BWP",
-        "BYN",
-        "BYR",
-        "BZD",
-        "CAD",
-        "CDF",
-        "CHF",
-        "CLF",
-        "CLP",
-        "CNH",
-        "CNY",
-        "COP",
-        "CRC",
-        "CUC",
-        "CUP",
-        "CVE",
-        "CZK",
-        "DJF",
-        "DKK",
-        "DOP",
-        "DZD",
-        "EEK",
-        "EGP",
-        "ERN",
-        "ETB",
-        "EUR",
-        "FJD",
-        "FKP",
-        "GBP",
-        "GBX",
-        "GEL",
-        "GGP",
-        "GHS",
-        "GIP",
-        "GMD",
-        "GNF",
-        "GTQ",
-        "GYD",
-        "HKD",
-        "HNL",
-        "HRK",
-        "HTG",
-        "HUF",
-        "IDR",
-        "ILS",
-        "IMP",
-        "INR",
-        "IQD",
-        "IRR",
-        "ISK",
-        "JEP",
-        "JMD",
-        "JOD",
-        "JPY",
-        "KES",
-        "KGS",
-        "KHR",
-        "KMF",
-        "KPW",
-        "KRW",
-        "KWD",
-        "KYD",
-        "KZT",
-        "LAK",
-        "LBP",
-        "LKR",
-        "LRD",
-        "LSL",
-        "LTL",
-        "LVL",
-        "LYD",
-        "MAD",
-        "MDL",
-        "MGA",
-        "MKD",
-        "MMK",
-        "MNT",
-        "MOP",
-        "MRO",
-        "MRU",
-        "MTL",
-        "MUR",
-        "MVR",
-        "MWK",
-        "MXN",
-        "MYR",
-        "MZN",
-        "NAD",
-        "NGN",
-        "NIO",
-        "NOK",
-        "NPR",
-        "NZD",
-        "OMR",
-        "PAB",
-        "PEN",
-        "PGK",
-        "PHP",
-        "PKR",
-        "PLN",
-        "PYG",
-        "QAR",
-        "RON",
-        "RSD",
-        "RUB",
-        "RWF",
-        "SAR",
-        "SBD",
-        "SCR",
-        "SDG",
-        "SEK",
-        "SGD",
-        "SHP",
-        "SKK",
-        "SLL",
-        "SOS",
-        "SRD",
-        "SSP",
-        "STD",
-        "SVC",
-        "SYP",
-        "SZL",
-        "THB",
-        "TJS",
-        "TMM",
-        "TMT",
-        "TND",
-        "TOP",
-        "TRY",
-        "TTD",
-        "TWD",
-        "TZS",
-        "UAH",
-        "UGX",
-        "USD",
-        "UYU",
-        "UZS",
-        "VEF",
-        "VES",
-        "VND",
-        "VUV",
-        "WST",
-        "XAF",
-        "XAG",
-        "XAU",
-        "XBA",
-        "XBB",
-        "XBC",
-        "XBD",
-        "XCD",
-        "XDR",
-        "XFU",
-        "XOF",
-        "XPD",
-        "XPF",
-        "XPT",
-        "XTS",
-        "YER",
-        "ZAR",
-        "ZMK",
-        "ZMW",
-        "ZWD",
-        "ZWL",
-        "ZWN",
-        "ZWR",
-    ]
+    currency: Optional[shared.Currency]
     """Defaults to the currency of the originating account."""
 
     current_return: Optional[return_object.ReturnObject]
@@ -481,6 +310,7 @@ class PaymentOrder(BaseModel):
         "card",
         "check",
         "eft",
+        "global_pay",
         "interac",
         "provxchange",
         "rtp",

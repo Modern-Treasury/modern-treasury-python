@@ -11,6 +11,7 @@ __all__ = [
     "AccountsRoutingDetails",
     "AccountsContactDetails",
     "Accounts",
+    "Accounting",
     "CounterpartyCreateParams",
 ]
 
@@ -54,6 +55,7 @@ class AccountsRoutingDetails(TypedDict, total=False):
         "card",
         "check",
         "eft",
+        "global_pay",
         "interac",
         "provxchange",
         "rtp",
@@ -112,9 +114,19 @@ class Accounts(TypedDict, total=False):
     routing_details: List[AccountsRoutingDetails]
 
 
+class Accounting(TypedDict, total=False):
+    type: Literal["customer", "vendor"]
+    """An optional type to auto-sync the counterparty to your ledger.
+
+    Either `customer` or `vendor`.
+    """
+
+
 class CounterpartyCreateParams(TypedDict, total=False):
     name: Required[str]
     """A human friendly name for this counterparty."""
+
+    accounting: Accounting
 
     accounts: List[Accounts]
     """The accounts for this counterparty."""

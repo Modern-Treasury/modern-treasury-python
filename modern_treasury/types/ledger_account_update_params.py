@@ -18,8 +18,8 @@ class LedgerAccountUpdateParams(TypedDict, total=False):
     Both the key and value must be strings.
     """
 
-    name: Optional[str]
+    name: str
     """The name of the ledger account."""
 
-    normal_balance: Optional[Literal["credit", "debit"]]
+    normal_balance: Literal["credit", "debit"]
     """The normal balance of the ledger account."""

@@ -2,8 +2,12 @@
 
 from .event import Event as Event
 from .ledger import Ledger as Ledger
+from .shared import Currency as Currency
+from .shared import AccountDetail as AccountDetail
+from .shared import RoutingDetail as RoutingDetail
 from .document import Document as Document
 from .line_item import LineItem as LineItem
+from .connection import Connection as Connection
 from .paper_item import PaperItem as PaperItem
 from .transaction import Transaction as Transaction
 from .counterparty import Counterparty as Counterparty
@@ -23,6 +27,8 @@ from .ledger_create_params import LedgerCreateParams as LedgerCreateParams
 from .ledger_update_params import LedgerUpdateParams as LedgerUpdateParams
 from .return_create_params import ReturnCreateParams as ReturnCreateParams
 from .line_item_list_params import LineItemListParams as LineItemListParams
+from .connection_list_params import ConnectionListParams as ConnectionListParams
+from .document_create_params import DocumentCreateParams as DocumentCreateParams
 from .paper_item_list_params import PaperItemListParams as PaperItemListParams
 from .incoming_payment_detail import IncomingPaymentDetail as IncomingPaymentDetail
 from .ledger_account_category import LedgerAccountCategory as LedgerAccountCategory
@@ -34,6 +40,9 @@ from .payment_order_list_params import PaymentOrderListParams as PaymentOrderLis
 from .transaction_update_params import (
     TransactionUpdateParams as TransactionUpdateParams,
 )
+from .account_detail_list_params import (
+    AccountDetailListParams as AccountDetailListParams,
+)
 from .counterparty_create_params import (
     CounterpartyCreateParams as CounterpartyCreateParams,
 )
@@ -43,11 +52,17 @@ from .counterparty_update_params import (
 from .ledger_account_list_params import (
     LedgerAccountListParams as LedgerAccountListParams,
 )
+from .routing_detail_list_params import (
+    RoutingDetailListParams as RoutingDetailListParams,
+)
 from .payment_order_create_params import (
     PaymentOrderCreateParams as PaymentOrderCreateParams,
 )
 from .payment_order_update_params import (
     PaymentOrderUpdateParams as PaymentOrderUpdateParams,
+)
+from .account_detail_create_params import (
+    AccountDetailCreateParams as AccountDetailCreateParams,
 )
 from .expected_payment_list_params import (
     ExpectedPaymentListParams as ExpectedPaymentListParams,
@@ -63,6 +78,9 @@ from .ledger_account_create_params import (
 )
 from .ledger_account_update_params import (
     LedgerAccountUpdateParams as LedgerAccountUpdateParams,
+)
+from .routing_detail_create_params import (
+    RoutingDetailCreateParams as RoutingDetailCreateParams,
 )
 from .routing_number_lookup_request import (
     RoutingNumberLookupRequest as RoutingNumberLookupRequest,
@@ -126,6 +144,9 @@ from .ledger_account_category_update_params import (
 )
 from .validation_validate_routing_number_params import (
     ValidationValidateRoutingNumberParams as ValidationValidateRoutingNumberParams,
+)
+from .incoming_payment_detail_create_async_params import (
+    IncomingPaymentDetailCreateAsyncParams as IncomingPaymentDetailCreateAsyncParams,
 )
 from .external_account_complete_verification_params import (
     ExternalAccountCompleteVerificationParams as ExternalAccountCompleteVerificationParams,

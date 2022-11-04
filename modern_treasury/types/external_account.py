@@ -3,16 +3,10 @@
 from typing import Dict, List, Optional
 from typing_extensions import Literal
 
+from ..types import shared
 from .._models import BaseModel
 
-__all__ = [
-    "PartyAddress",
-    "AccountDetails",
-    "RoutingDetailsBankAddress",
-    "RoutingDetails",
-    "ContactDetails",
-    "ExternalAccount",
-]
+__all__ = ["PartyAddress", "ContactDetails", "ExternalAccount"]
 
 
 class PartyAddress(BaseModel):
@@ -47,116 +41,6 @@ class PartyAddress(BaseModel):
     updated_at: str
 
 
-class AccountDetails(BaseModel):
-    account_number: str
-
-    account_number_type: Literal["iban", "clabe", "wallet_address", "pan", "other"]
-    """
-    Supports iban and clabe, otherwise other if the bank account number is in a
-    generic format.
-    """
-
-    created_at: str
-
-    discarded_at: Optional[str]
-
-    id: str
-
-    live_mode: bool
-    """
-    This field will be true if this object exists in the live environment or false
-    if it exists in the test environment.
-    """
-
-    object: str
-
-    updated_at: str
-
-
-class RoutingDetailsBankAddress(BaseModel):
-    country: Optional[str]
-    """Country code conforms to [ISO 3166-1 alpha-2]"""
-
-    created_at: str
-
-    id: str
-
-    line1: Optional[str]
-
-    line2: Optional[str]
-
-    live_mode: bool
-    """
-    This field will be true if this object exists in the live environment or false
-    if it exists in the test environment.
-    """
-
-    locality: Optional[str]
-    """Locality or City."""
-
-    object: str
-
-    postal_code: Optional[str]
-    """The postal code of the address."""
-
-    region: Optional[str]
-    """Region or State."""
-
-    updated_at: str
-
-
-class RoutingDetails(BaseModel):
-    bank_address: Optional[RoutingDetailsBankAddress]
-
-    bank_name: str
-
-    created_at: str
-
-    discarded_at: Optional[str]
-
-    id: str
-
-    live_mode: bool
-    """
-    This field will be true if this object exists in the live environment or false
-    if it exists in the test environment.
-    """
-
-    object: str
-
-    payment_type: Optional[
-        Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "card",
-            "check",
-            "eft",
-            "interac",
-            "provxchange",
-            "rtp",
-            "sen",
-            "sepa",
-            "signet",
-            "wire",
-        ]
-    ]
-    """
-    If the routing detail is to be used for a specific payment type this field will
-    be populated, otherwise null.
-    """
-
-    routing_number: str
-    """The routing number of the bank."""
-
-    routing_number_type: Literal[
-        "aba", "swift", "au_bsb", "ca_cpa", "cnaps", "gb_sort_code", "in_ifsc", "my_branch_code", "br_codigo"
-    ]
-
-    updated_at: str
-
-
 class ContactDetails(BaseModel):
     contact_identifier: str
 
@@ -180,7 +64,7 @@ class ContactDetails(BaseModel):
 
 
 class ExternalAccount(BaseModel):
-    account_details: List[AccountDetails]
+    account_details: List[shared.AccountDetail]
 
     account_type: Literal["checking", "other", "savings"]
     """Can be `checking`, `savings` or `other`."""
@@ -224,7 +108,7 @@ class ExternalAccount(BaseModel):
     party_type: Optional[Literal["business", "individual"]]
     """Either `individual` or `business`."""
 
-    routing_details: List[RoutingDetails]
+    routing_details: List[shared.RoutingDetail]
 
     updated_at: str
 

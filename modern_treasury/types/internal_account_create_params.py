@@ -23,6 +23,9 @@ class InternalAccountCreateParams(TypedDict, total=False):
     party_name: Required[str]
     """The legal name of the entity which owns the account."""
 
+    counterparty_id: str
+    """The Counterparty associated to this account."""
+
     entity_id: str
     """The identifier of the entity at Increase which owns the account."""
 

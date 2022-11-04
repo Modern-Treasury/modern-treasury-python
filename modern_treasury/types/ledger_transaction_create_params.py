@@ -70,7 +70,7 @@ class LedgerTransactionCreateParams(TypedDict, total=False):
     ledger_entries: Required[List[LedgerEntries]]
     """An array of ledger entry objects."""
 
-    description: str
+    description: Optional[str]
     """An optional description for internal use."""
 
     external_id: str

@@ -2,22 +2,32 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import TYPE_CHECKING, Union, Optional
 
-from .._types import NOT_GIVEN, Query, Headers, Timeout, NotGiven
-from .._utils import maybe_transform
-from .._resource import SyncAPIResource, AsyncAPIResource
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.ledger_transaction import LedgerTransaction
-from ..types.ledger_transaction_list_params import LedgerTransactionListParams
-from ..types.ledger_transaction_create_params import LedgerTransactionCreateParams
-from ..types.ledger_transaction_update_params import LedgerTransactionUpdateParams
+from ..._types import NOT_GIVEN, Query, Headers, Timeout, NotGiven
+from ..._utils import maybe_transform
+from .versions import Versions, AsyncVersions
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...pagination import SyncPage, AsyncPage
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.ledger_transaction import LedgerTransaction
+from ...types.ledger_transaction_list_params import LedgerTransactionListParams
+from ...types.ledger_transaction_create_params import LedgerTransactionCreateParams
+from ...types.ledger_transaction_update_params import LedgerTransactionUpdateParams
+
+if TYPE_CHECKING:
+    from ..._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["LedgerTransactions", "AsyncLedgerTransactions"]
 
 
 class LedgerTransactions(SyncAPIResource):
+    versions: Versions
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.versions = Versions(client)
+
     def create(
         self,
         body: LedgerTransactionCreateParams,
@@ -93,6 +103,12 @@ class LedgerTransactions(SyncAPIResource):
 
 
 class AsyncLedgerTransactions(AsyncAPIResource):
+    versions: AsyncVersions
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.versions = AsyncVersions(client)
+
     async def create(
         self,
         body: LedgerTransactionCreateParams,
