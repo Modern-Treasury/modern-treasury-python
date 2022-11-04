@@ -32,6 +32,14 @@ class PaymentOrderListParams(TypedDict, total=False):
 
     per_page: int
 
+    priority: Literal["high", "normal"]
+    """Either `normal` or `high`.
+
+    For ACH and EFT payments, `high` represents a same-day ACH or EFT transfer,
+    respectively. For check payments, `high` can mean an overnight check rather than
+    standard mail.
+    """
+
     reference_number: str
     """Query for records with the provided reference number"""
 
@@ -60,6 +68,7 @@ class PaymentOrderListParams(TypedDict, total=False):
         "card",
         "check",
         "eft",
+        "global_pay",
         "interac",
         "provxchange",
         "rtp",

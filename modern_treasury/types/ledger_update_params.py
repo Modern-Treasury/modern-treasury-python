@@ -18,5 +18,5 @@ class LedgerUpdateParams(TypedDict, total=False):
     Both the key and value must be strings.
     """
 
-    name: Optional[str]
+    name: str
     """The name of the ledger."""

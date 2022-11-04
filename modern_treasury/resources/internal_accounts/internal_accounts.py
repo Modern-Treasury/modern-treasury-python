@@ -2,22 +2,32 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import TYPE_CHECKING, Union, Optional
 
-from .._types import NOT_GIVEN, Query, Headers, Timeout, NotGiven
-from .._utils import maybe_transform
-from .._resource import SyncAPIResource, AsyncAPIResource
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.internal_account import InternalAccount
-from ..types.internal_account_list_params import InternalAccountListParams
-from ..types.internal_account_create_params import InternalAccountCreateParams
-from ..types.internal_account_update_params import InternalAccountUpdateParams
+from ..._types import NOT_GIVEN, Query, Headers, Timeout, NotGiven
+from ..._utils import maybe_transform
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...pagination import SyncPage, AsyncPage
+from ..._base_client import AsyncPaginator, make_request_options
+from .balance_reports import BalanceReports, AsyncBalanceReports
+from ...types.internal_account import InternalAccount
+from ...types.internal_account_list_params import InternalAccountListParams
+from ...types.internal_account_create_params import InternalAccountCreateParams
+from ...types.internal_account_update_params import InternalAccountUpdateParams
+
+if TYPE_CHECKING:
+    from ..._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["InternalAccounts", "AsyncInternalAccounts"]
 
 
 class InternalAccounts(SyncAPIResource):
+    balance_reports: BalanceReports
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.balance_reports = BalanceReports(client)
+
     def create(
         self,
         body: InternalAccountCreateParams,
@@ -87,6 +97,12 @@ class InternalAccounts(SyncAPIResource):
 
 
 class AsyncInternalAccounts(AsyncAPIResource):
+    balance_reports: AsyncBalanceReports
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.balance_reports = AsyncBalanceReports(client)
+
     async def create(
         self,
         body: InternalAccountCreateParams,

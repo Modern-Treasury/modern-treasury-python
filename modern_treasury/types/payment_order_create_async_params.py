@@ -5,7 +5,10 @@ from __future__ import annotations
 from typing import Dict, List, Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from ..types import shared_params
+
 __all__ = [
+    "Accounting",
     "ReceivingAccountPartyAddress",
     "ReceivingAccountAccountDetails",
     "ReceivingAccountRoutingDetails",
@@ -16,6 +19,23 @@ __all__ = [
     "LineItems",
     "PaymentOrderCreateAsyncParams",
 ]
+
+
+class Accounting(TypedDict, total=False):
+    account_id: Optional[str]
+    """The ID of one of your accounting categories.
+
+    Note that these will only be accessible if your accounting system has been
+    connected.
+    """
+
+    class_id: Optional[str]
+    """The ID of one of the class objects in your accounting system.
+
+    Class objects track segments of your business independent of client or project.
+    Note that these will only be accessible if your accounting system has been
+    connected.
+    """
 
 
 class ReceivingAccountPartyAddress(TypedDict, total=False):
@@ -57,6 +77,7 @@ class ReceivingAccountRoutingDetails(TypedDict, total=False):
         "card",
         "check",
         "eft",
+        "global_pay",
         "interac",
         "provxchange",
         "rtp",
@@ -177,7 +198,7 @@ class LedgerTransaction(TypedDict, total=False):
     ledger_entries: Required[List[LedgerTransactionLedgerEntries]]
     """An array of ledger entry objects."""
 
-    description: str
+    description: Optional[str]
     """An optional description for internal use."""
 
     external_id: str
@@ -273,6 +294,7 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
             "card",
             "check",
             "eft",
+            "global_pay",
             "interac",
             "provxchange",
             "rtp",
@@ -286,6 +308,8 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
     One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
     `au_becs`, `interac`, `signet`, `provexchange`.
     """
+
+    accounting: Accounting
 
     accounting_category_id: Optional[str]
     """The ID of one of your accounting categories.
@@ -308,197 +332,7 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
     which correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
     """
 
-    currency: Literal[
-        "AED",
-        "AFN",
-        "ALL",
-        "AMD",
-        "ANG",
-        "AOA",
-        "ARS",
-        "AUD",
-        "AWG",
-        "AZN",
-        "BAM",
-        "BBD",
-        "BCH",
-        "BDT",
-        "BGN",
-        "BHD",
-        "BIF",
-        "BMD",
-        "BND",
-        "BOB",
-        "BRL",
-        "BSD",
-        "BTC",
-        "BTN",
-        "BWP",
-        "BYN",
-        "BYR",
-        "BZD",
-        "CAD",
-        "CDF",
-        "CHF",
-        "CLF",
-        "CLP",
-        "CNH",
-        "CNY",
-        "COP",
-        "CRC",
-        "CUC",
-        "CUP",
-        "CVE",
-        "CZK",
-        "DJF",
-        "DKK",
-        "DOP",
-        "DZD",
-        "EEK",
-        "EGP",
-        "ERN",
-        "ETB",
-        "EUR",
-        "FJD",
-        "FKP",
-        "GBP",
-        "GBX",
-        "GEL",
-        "GGP",
-        "GHS",
-        "GIP",
-        "GMD",
-        "GNF",
-        "GTQ",
-        "GYD",
-        "HKD",
-        "HNL",
-        "HRK",
-        "HTG",
-        "HUF",
-        "IDR",
-        "ILS",
-        "IMP",
-        "INR",
-        "IQD",
-        "IRR",
-        "ISK",
-        "JEP",
-        "JMD",
-        "JOD",
-        "JPY",
-        "KES",
-        "KGS",
-        "KHR",
-        "KMF",
-        "KPW",
-        "KRW",
-        "KWD",
-        "KYD",
-        "KZT",
-        "LAK",
-        "LBP",
-        "LKR",
-        "LRD",
-        "LSL",
-        "LTL",
-        "LVL",
-        "LYD",
-        "MAD",
-        "MDL",
-        "MGA",
-        "MKD",
-        "MMK",
-        "MNT",
-        "MOP",
-        "MRO",
-        "MRU",
-        "MTL",
-        "MUR",
-        "MVR",
-        "MWK",
-        "MXN",
-        "MYR",
-        "MZN",
-        "NAD",
-        "NGN",
-        "NIO",
-        "NOK",
-        "NPR",
-        "NZD",
-        "OMR",
-        "PAB",
-        "PEN",
-        "PGK",
-        "PHP",
-        "PKR",
-        "PLN",
-        "PYG",
-        "QAR",
-        "RON",
-        "RSD",
-        "RUB",
-        "RWF",
-        "SAR",
-        "SBD",
-        "SCR",
-        "SDG",
-        "SEK",
-        "SGD",
-        "SHP",
-        "SKK",
-        "SLL",
-        "SOS",
-        "SRD",
-        "SSP",
-        "STD",
-        "SVC",
-        "SYP",
-        "SZL",
-        "THB",
-        "TJS",
-        "TMM",
-        "TMT",
-        "TND",
-        "TOP",
-        "TRY",
-        "TTD",
-        "TWD",
-        "TZS",
-        "UAH",
-        "UGX",
-        "USD",
-        "UYU",
-        "UZS",
-        "VEF",
-        "VES",
-        "VND",
-        "VUV",
-        "WST",
-        "XAF",
-        "XAG",
-        "XAU",
-        "XBA",
-        "XBB",
-        "XBC",
-        "XBD",
-        "XCD",
-        "XDR",
-        "XFU",
-        "XOF",
-        "XPD",
-        "XPF",
-        "XPT",
-        "XTS",
-        "YER",
-        "ZAR",
-        "ZMK",
-        "ZMW",
-        "ZWD",
-        "ZWL",
-        "ZWN",
-        "ZWR",
-    ]
+    currency: shared_params.Currency
     """Defaults to the currency of the originating account."""
 
     description: Optional[str]

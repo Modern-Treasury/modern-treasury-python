@@ -66,6 +66,26 @@ class TestIncomingPaymentDetails:
         )
         assert isinstance(resource, SyncPage)
 
+    @parametrize
+    def test_method_create_async(self, client: ModernTreasury) -> None:
+        resource = client.incoming_payment_details.create_async()
+        assert resource is None
+
+    @parametrize
+    def test_method_create_async_with_optional_params(self, client: ModernTreasury) -> None:
+        resource = client.incoming_payment_details.create_async(
+            {
+                "type": "ach",
+                "direction": "credit",
+                "amount": 0,
+                "currency": "AED",
+                "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "virtual_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "as_of_date": "2019-12-27",
+            },
+        )
+        assert resource is None
+
 
 class TestAsyncIncomingPaymentDetails:
     strict_client = AsyncModernTreasury(
@@ -119,3 +139,23 @@ class TestAsyncIncomingPaymentDetails:
             },
         )
         assert isinstance(resource, AsyncPage)
+
+    @parametrize
+    async def test_method_create_async(self, client: AsyncModernTreasury) -> None:
+        resource = await client.incoming_payment_details.create_async()
+        assert resource is None
+
+    @parametrize
+    async def test_method_create_async_with_optional_params(self, client: AsyncModernTreasury) -> None:
+        resource = await client.incoming_payment_details.create_async(
+            {
+                "type": "ach",
+                "direction": "credit",
+                "amount": 0,
+                "currency": "AED",
+                "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "virtual_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "as_of_date": "2019-12-27",
+            },
+        )
+        assert resource is None

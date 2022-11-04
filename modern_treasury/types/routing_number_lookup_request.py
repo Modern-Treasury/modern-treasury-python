@@ -61,6 +61,7 @@ class RoutingNumberLookupRequest(BaseModel):
                 "card",
                 "check",
                 "eft",
+                "global_pay",
                 "interac",
                 "provxchange",
                 "rtp",
