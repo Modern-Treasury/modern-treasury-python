@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Union, Optional
 
-from .._types import NOT_GIVEN, Query, Headers, Timeout, NotGiven
+from .._types import NOT_GIVEN, Query, Headers, Timeout, NoneType, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
@@ -13,6 +13,9 @@ from ..types.incoming_payment_detail import IncomingPaymentDetail
 from ..types.incoming_payment_detail_list_params import IncomingPaymentDetailListParams
 from ..types.incoming_payment_detail_update_params import (
     IncomingPaymentDetailUpdateParams,
+)
+from ..types.incoming_payment_detail_create_async_params import (
+    IncomingPaymentDetailCreateAsyncParams,
 )
 
 __all__ = ["IncomingPaymentDetails", "AsyncIncomingPaymentDetails"]
@@ -74,6 +77,25 @@ class IncomingPaymentDetails(SyncAPIResource):
             model=IncomingPaymentDetail,
         )
 
+    def create_async(
+        self,
+        body: IncomingPaymentDetailCreateAsyncParams = {},
+        *,
+        headers: Union[Headers, NotGiven] = NOT_GIVEN,
+        max_retries: Union[int, NotGiven] = NOT_GIVEN,
+        timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
+        query: Optional[Query] = None,
+    ) -> None:
+        """Simulate Incoming Payment Detail"""
+        headers = {"Accept": "*/*", **(headers or {})}
+        options = make_request_options(headers, max_retries, timeout, query)
+        return self._post(
+            "/api/simulations/incoming_payment_details/create_async",
+            body=maybe_transform(body, IncomingPaymentDetailCreateAsyncParams),
+            options=options,
+            cast_to=NoneType,
+        )
+
 
 class AsyncIncomingPaymentDetails(AsyncAPIResource):
     async def retrieve(
@@ -129,4 +151,23 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
             page=AsyncPage[IncomingPaymentDetail],
             options=options,
             model=IncomingPaymentDetail,
+        )
+
+    async def create_async(
+        self,
+        body: IncomingPaymentDetailCreateAsyncParams = {},
+        *,
+        headers: Union[Headers, NotGiven] = NOT_GIVEN,
+        max_retries: Union[int, NotGiven] = NOT_GIVEN,
+        timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
+        query: Optional[Query] = None,
+    ) -> None:
+        """Simulate Incoming Payment Detail"""
+        headers = {"Accept": "*/*", **(headers or {})}
+        options = make_request_options(headers, max_retries, timeout, query)
+        return await self._post(
+            "/api/simulations/incoming_payment_details/create_async",
+            body=maybe_transform(body, IncomingPaymentDetailCreateAsyncParams),
+            options=options,
+            cast_to=NoneType,
         )

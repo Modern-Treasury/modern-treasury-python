@@ -28,7 +28,7 @@ class TestModernTreasury:
     )
 
     def test_raw_response(self) -> None:
-        response = self.client.get("/api/counterparties", cast_to=httpx.Response)
+        response = self.client.get("/api/connections", cast_to=httpx.Response)
         assert response.status_code == 200
         assert isinstance(response, httpx.Response)
 
@@ -208,7 +208,7 @@ class TestAsyncModernTreasury:
     )
 
     async def test_raw_response(self) -> None:
-        response = await self.client.get("/api/counterparties", cast_to=httpx.Response)
+        response = await self.client.get("/api/connections", cast_to=httpx.Response)
         assert response.status_code == 200
         assert isinstance(response, httpx.Response)
 

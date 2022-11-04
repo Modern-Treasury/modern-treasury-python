@@ -44,6 +44,7 @@ class TestInternalAccounts:
                 "currency": "USD",
                 "entity_id": "string",
                 "parent_account_id": "string",
+                "counterparty_id": "string",
             },
         )
         assert isinstance(resource, InternalAccount)
@@ -70,6 +71,7 @@ class TestInternalAccounts:
                 "name": "string",
                 "metadata": {"foo": "string"},
                 "parent_account_id": "string",
+                "counterparty_id": "string",
             },
         )
         assert isinstance(resource, InternalAccount)
@@ -124,6 +126,7 @@ class TestAsyncInternalAccounts:
                 "currency": "USD",
                 "entity_id": "string",
                 "parent_account_id": "string",
+                "counterparty_id": "string",
             },
         )
         assert isinstance(resource, InternalAccount)
@@ -150,6 +153,7 @@ class TestAsyncInternalAccounts:
                 "name": "string",
                 "metadata": {"foo": "string"},
                 "parent_account_id": "string",
+                "counterparty_id": "string",
             },
         )
         assert isinstance(resource, InternalAccount)

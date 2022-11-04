@@ -6,13 +6,16 @@ from .returns import Returns, AsyncReturns
 from .webhooks import Webhooks, AsyncWebhooks
 from .documents import Documents, AsyncDocuments
 from .line_items import LineItems, AsyncLineItems
+from .connections import Connections, AsyncConnections
 from .paper_items import PaperItems, AsyncPaperItems
 from .validations import Validations, AsyncValidations
 from .transactions import Transactions, AsyncTransactions
 from .counterparties import Counterparties, AsyncCounterparties
 from .ledger_entries import LedgerEntries, AsyncLedgerEntries
 from .payment_orders import PaymentOrders, AsyncPaymentOrders
+from .account_details import AccountDetails, AsyncAccountDetails
 from .ledger_accounts import LedgerAccounts, AsyncLedgerAccounts
+from .routing_details import RoutingDetails, AsyncRoutingDetails
 from .expected_payments import ExpectedPayments, AsyncExpectedPayments
 from .external_accounts import ExternalAccounts, AsyncExternalAccounts
 from .internal_accounts import InternalAccounts, AsyncInternalAccounts
@@ -27,6 +30,8 @@ from .ledger_account_categories import (
 )
 
 __all__ = [
+    "Connections",
+    "AsyncConnections",
     "Counterparties",
     "AsyncCounterparties",
     "Events",
@@ -39,6 +44,10 @@ __all__ = [
     "AsyncIncomingPaymentDetails",
     "Documents",
     "AsyncDocuments",
+    "AccountDetails",
+    "AsyncAccountDetails",
+    "RoutingDetails",
+    "AsyncRoutingDetails",
     "InternalAccounts",
     "AsyncInternalAccounts",
     "Ledgers",

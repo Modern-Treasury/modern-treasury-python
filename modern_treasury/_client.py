@@ -42,12 +42,15 @@ __all__ = [
 
 
 class ModernTreasury(SyncAPIClient):
+    connections: resources.Connections
     counterparties: resources.Counterparties
     events: resources.Events
     expected_payments: resources.ExpectedPayments
     external_accounts: resources.ExternalAccounts
     incoming_payment_details: resources.IncomingPaymentDetails
     documents: resources.Documents
+    account_details: resources.AccountDetails
+    routing_details: resources.RoutingDetails
     internal_accounts: resources.InternalAccounts
     ledgers: resources.Ledgers
     ledger_account_categories: resources.LedgerAccountCategories
@@ -64,7 +67,7 @@ class ModernTreasury(SyncAPIClient):
 
     # client options
     api_key: str
-    organization_id: str | None
+    organization_id: str
     webhook_key: str | None
 
     def __init__(
@@ -120,18 +123,27 @@ class ModernTreasury(SyncAPIClient):
 
         self.api_key = api_key
 
-        self.organization_id = organization_id or os.environ.get("MODERN_TREASURY_ORGANIZATION_ID")
+        organization_id = organization_id or os.environ.get("MODERN_TREASURY_ORGANIZATION_ID")
+
+        if organization_id is None:
+            raise ValueError(
+                "The organization_id client option must be set either by passing organization_id to the client or by setting the MODERN_TREASURY_ORGANIZATION_ID environment variable"
+            )
+        self.organization_id = organization_id
 
         self.webhook_key = webhook_key or os.environ.get("MODERN_TREASURY_WEBHOOK_KEY")
 
         self._idempotency_header = "Idempotency-Key"
 
+        self.connections = resources.Connections(self)
         self.counterparties = resources.Counterparties(self)
         self.events = resources.Events(self)
         self.expected_payments = resources.ExpectedPayments(self)
         self.external_accounts = resources.ExternalAccounts(self)
         self.incoming_payment_details = resources.IncomingPaymentDetails(self)
         self.documents = resources.Documents(self)
+        self.account_details = resources.AccountDetails(self)
+        self.routing_details = resources.RoutingDetails(self)
         self.internal_accounts = resources.InternalAccounts(self)
         self.ledgers = resources.Ledgers(self)
         self.ledger_account_categories = resources.LedgerAccountCategories(self)
@@ -231,12 +243,15 @@ class ModernTreasury(SyncAPIClient):
 
 
 class AsyncModernTreasury(AsyncAPIClient):
+    connections: resources.AsyncConnections
     counterparties: resources.AsyncCounterparties
     events: resources.AsyncEvents
     expected_payments: resources.AsyncExpectedPayments
     external_accounts: resources.AsyncExternalAccounts
     incoming_payment_details: resources.AsyncIncomingPaymentDetails
     documents: resources.AsyncDocuments
+    account_details: resources.AsyncAccountDetails
+    routing_details: resources.AsyncRoutingDetails
     internal_accounts: resources.AsyncInternalAccounts
     ledgers: resources.AsyncLedgers
     ledger_account_categories: resources.AsyncLedgerAccountCategories
@@ -253,7 +268,7 @@ class AsyncModernTreasury(AsyncAPIClient):
 
     # client options
     api_key: str
-    organization_id: str | None
+    organization_id: str
     webhook_key: str | None
 
     def __init__(
@@ -309,18 +324,27 @@ class AsyncModernTreasury(AsyncAPIClient):
 
         self.api_key = api_key
 
-        self.organization_id = organization_id or os.environ.get("MODERN_TREASURY_ORGANIZATION_ID")
+        organization_id = organization_id or os.environ.get("MODERN_TREASURY_ORGANIZATION_ID")
+
+        if organization_id is None:
+            raise ValueError(
+                "The organization_id client option must be set either by passing organization_id to the client or by setting the MODERN_TREASURY_ORGANIZATION_ID environment variable"
+            )
+        self.organization_id = organization_id
 
         self.webhook_key = webhook_key or os.environ.get("MODERN_TREASURY_WEBHOOK_KEY")
 
         self._idempotency_header = "Idempotency-Key"
 
+        self.connections = resources.AsyncConnections(self)
         self.counterparties = resources.AsyncCounterparties(self)
         self.events = resources.AsyncEvents(self)
         self.expected_payments = resources.AsyncExpectedPayments(self)
         self.external_accounts = resources.AsyncExternalAccounts(self)
         self.incoming_payment_details = resources.AsyncIncomingPaymentDetails(self)
         self.documents = resources.AsyncDocuments(self)
+        self.account_details = resources.AsyncAccountDetails(self)
+        self.routing_details = resources.AsyncRoutingDetails(self)
         self.internal_accounts = resources.AsyncInternalAccounts(self)
         self.ledgers = resources.AsyncLedgers(self)
         self.ledger_account_categories = resources.AsyncLedgerAccountCategories(self)
