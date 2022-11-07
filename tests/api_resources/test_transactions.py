@@ -37,10 +37,10 @@ class TestTransactions:
         assert isinstance(resource, Transaction)
 
     @parametrize
-    def test_method_update_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.transactions.update(
             "string",
-            {"metadata": {"foo": "string"}},
+            metadata={"foo": "string"},
         )
         assert isinstance(resource, Transaction)
 
@@ -50,23 +50,21 @@ class TestTransactions:
         assert isinstance(resource, SyncPage)
 
     @parametrize
-    def test_method_list_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.transactions.list(
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "virtual_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "posted": True,
-                "as_of_date_start": "2019-12-27",
-                "as_of_date_end": "2019-12-27",
-                "direction": "string",
-                "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "payment_type": "string",
-                "transactable_type": "string",
-                "description": "string",
-                "metadata": {"foo": "string"},
-            },
+            after_cursor="string",
+            per_page=0,
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            posted=True,
+            as_of_date_start="2019-12-27",
+            as_of_date_end="2019-12-27",
+            direction="string",
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            payment_type="string",
+            transactable_type="string",
+            description="string",
+            metadata={"foo": "string"},
         )
         assert isinstance(resource, SyncPage)
 
@@ -95,10 +93,10 @@ class TestAsyncTransactions:
         assert isinstance(resource, Transaction)
 
     @parametrize
-    async def test_method_update_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.transactions.update(
             "string",
-            {"metadata": {"foo": "string"}},
+            metadata={"foo": "string"},
         )
         assert isinstance(resource, Transaction)
 
@@ -108,22 +106,20 @@ class TestAsyncTransactions:
         assert isinstance(resource, AsyncPage)
 
     @parametrize
-    async def test_method_list_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.transactions.list(
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "virtual_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "posted": True,
-                "as_of_date_start": "2019-12-27",
-                "as_of_date_end": "2019-12-27",
-                "direction": "string",
-                "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "payment_type": "string",
-                "transactable_type": "string",
-                "description": "string",
-                "metadata": {"foo": "string"},
-            },
+            after_cursor="string",
+            per_page=0,
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            posted=True,
+            as_of_date_start="2019-12-27",
+            as_of_date_end="2019-12-27",
+            direction="string",
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            payment_type="string",
+            transactable_type="string",
+            description="string",
+            metadata={"foo": "string"},
         )
         assert isinstance(resource, AsyncPage)

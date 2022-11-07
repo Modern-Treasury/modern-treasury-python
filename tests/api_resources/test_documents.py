@@ -28,20 +28,18 @@ class TestDocuments:
         resource = client.documents.create(
             "cases",
             "string",
-            {"file": b"raw file contents"},
+            file=b"raw file contents",
         )
         assert isinstance(resource, Document)
 
     @pytest.mark.skip(reason="file upload tests are broken on the Prism mock server")
     @parametrize
-    def test_method_create_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.documents.create(
             "cases",
             "string",
-            {
-                "document_type": "string",
-                "file": b"raw file contents",
-            },
+            document_type="string",
+            file=b"raw file contents",
         )
         assert isinstance(resource, Document)
 
@@ -63,14 +61,12 @@ class TestDocuments:
         assert isinstance(resource, SyncPage)
 
     @parametrize
-    def test_method_list_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.documents.list(
             "cases",
             "string",
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-            },
+            after_cursor="string",
+            per_page=0,
         )
         assert isinstance(resource, SyncPage)
 
@@ -90,20 +86,18 @@ class TestAsyncDocuments:
         resource = await client.documents.create(
             "cases",
             "string",
-            {"file": b"raw file contents"},
+            file=b"raw file contents",
         )
         assert isinstance(resource, Document)
 
     @pytest.mark.skip(reason="file upload tests are broken on the Prism mock server")
     @parametrize
-    async def test_method_create_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.documents.create(
             "cases",
             "string",
-            {
-                "document_type": "string",
-                "file": b"raw file contents",
-            },
+            document_type="string",
+            file=b"raw file contents",
         )
         assert isinstance(resource, Document)
 
@@ -125,13 +119,11 @@ class TestAsyncDocuments:
         assert isinstance(resource, AsyncPage)
 
     @parametrize
-    async def test_method_list_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.documents.list(
             "cases",
             "string",
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-            },
+            after_cursor="string",
+            per_page=0,
         )
         assert isinstance(resource, AsyncPage)

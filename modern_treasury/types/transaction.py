@@ -101,8 +101,8 @@ class Transaction(BaseModel):
     updated_at: str
 
     vendor_code: Optional[str]
-    """
-    When applicable, the bank-given code that determines the transaction's category.
+    """When applicable, the bank-given code that determines the transaction's category.
+
     For most banks this is the BAI2/BTRS transaction code.
     """
 

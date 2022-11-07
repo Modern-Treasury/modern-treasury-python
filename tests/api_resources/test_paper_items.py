@@ -35,15 +35,13 @@ class TestPaperItems:
         assert isinstance(resource, SyncPage)
 
     @parametrize
-    def test_method_list_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.paper_items.list(
-            {
-                "lockbox_number": "string",
-                "deposit_date_start": "2019-12-27",
-                "deposit_date_end": "2019-12-27",
-                "after_cursor": "string",
-                "per_page": 0,
-            },
+            lockbox_number="string",
+            deposit_date_start="2019-12-27",
+            deposit_date_end="2019-12-27",
+            after_cursor="string",
+            per_page=0,
         )
         assert isinstance(resource, SyncPage)
 
@@ -70,14 +68,12 @@ class TestAsyncPaperItems:
         assert isinstance(resource, AsyncPage)
 
     @parametrize
-    async def test_method_list_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.paper_items.list(
-            {
-                "lockbox_number": "string",
-                "deposit_date_start": "2019-12-27",
-                "deposit_date_end": "2019-12-27",
-                "after_cursor": "string",
-                "per_page": 0,
-            },
+            lockbox_number="string",
+            deposit_date_start="2019-12-27",
+            deposit_date_end="2019-12-27",
+            after_cursor="string",
+            per_page=0,
         )
         assert isinstance(resource, AsyncPage)
