@@ -25,80 +25,78 @@ class TestExternalAccounts:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         resource = client.external_accounts.create(
-            {"counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert isinstance(resource, ExternalAccount)
 
     @parametrize
-    def test_method_create_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.external_accounts.create(
-            {
-                "account_type": "checking",
-                "party_type": "business",
-                "party_address": {
-                    "line1": "string",
-                    "line2": "string",
-                    "locality": "string",
-                    "region": "string",
-                    "postal_code": "string",
-                    "country": "string",
-                },
-                "name": "string",
-                "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "account_details": [
-                    {
-                        "account_number": "string",
-                        "account_number_type": "iban",
-                    },
-                    {
-                        "account_number": "string",
-                        "account_number_type": "iban",
-                    },
-                    {
-                        "account_number": "string",
-                        "account_number_type": "iban",
-                    },
-                ],
-                "routing_details": [
-                    {
-                        "routing_number": "string",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "string",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "string",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                ],
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
-                },
-                "party_name": "string",
-                "party_identifier": "string",
-                "plaid_processor_token": "string",
-                "contact_details": [
-                    {
-                        "contact_identifier": "string",
-                        "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "string",
-                        "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "string",
-                        "contact_identifier_type": "email",
-                    },
-                ],
+            account_type="checking",
+            party_type="business",
+            party_address={
+                "line1": "string",
+                "line2": "string",
+                "locality": "string",
+                "region": "string",
+                "postal_code": "string",
+                "country": "string",
             },
+            name="string",
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_details=[
+                {
+                    "account_number": "string",
+                    "account_number_type": "iban",
+                },
+                {
+                    "account_number": "string",
+                    "account_number_type": "iban",
+                },
+                {
+                    "account_number": "string",
+                    "account_number_type": "iban",
+                },
+            ],
+            routing_details=[
+                {
+                    "routing_number": "string",
+                    "routing_number_type": "aba",
+                    "payment_type": "ach",
+                },
+                {
+                    "routing_number": "string",
+                    "routing_number_type": "aba",
+                    "payment_type": "ach",
+                },
+                {
+                    "routing_number": "string",
+                    "routing_number_type": "aba",
+                    "payment_type": "ach",
+                },
+            ],
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
+            party_name="string",
+            party_identifier="string",
+            plaid_processor_token="string",
+            contact_details=[
+                {
+                    "contact_identifier": "string",
+                    "contact_identifier_type": "email",
+                },
+                {
+                    "contact_identifier": "string",
+                    "contact_identifier_type": "email",
+                },
+                {
+                    "contact_identifier": "string",
+                    "contact_identifier_type": "email",
+                },
+            ],
         )
         assert isinstance(resource, ExternalAccount)
 
@@ -117,25 +115,23 @@ class TestExternalAccounts:
         assert isinstance(resource, ExternalAccount)
 
     @parametrize
-    def test_method_update_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.external_accounts.update(
             "string",
-            {
-                "party_type": "business",
-                "account_type": "checking",
-                "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "name": "string",
-                "party_name": "string",
-                "party_address": {
-                    "line1": "string",
-                    "line2": "string",
-                    "locality": "string",
-                    "region": "string",
-                    "postal_code": "string",
-                    "country": "string",
-                },
-                "metadata": {"foo": "string"},
+            party_type="business",
+            account_type="checking",
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="string",
+            party_name="string",
+            party_address={
+                "line1": "string",
+                "line2": "string",
+                "locality": "string",
+                "region": "string",
+                "postal_code": "string",
+                "country": "string",
             },
+            metadata={"foo": "string"},
         )
         assert isinstance(resource, ExternalAccount)
 
@@ -145,15 +141,13 @@ class TestExternalAccounts:
         assert isinstance(resource, SyncPage)
 
     @parametrize
-    def test_method_list_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.external_accounts.list(
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "party_name": "string",
-                "counterparty_id": "string",
-                "metadata": {"foo": "string"},
-            },
+            after_cursor="string",
+            per_page=0,
+            party_name="string",
+            counterparty_id="string",
+            metadata={"foo": "string"},
         )
         assert isinstance(resource, SyncPage)
 
@@ -172,10 +166,10 @@ class TestExternalAccounts:
         assert isinstance(resource, ExternalAccount)
 
     @parametrize
-    def test_method_complete_verification_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_complete_verification_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.external_accounts.complete_verification(
             "string",
-            {"amounts": [0, 0]},
+            amounts=[0, 0],
         )
         assert isinstance(resource, ExternalAccount)
 
@@ -183,22 +177,18 @@ class TestExternalAccounts:
     def test_method_verify(self, client: ModernTreasury) -> None:
         resource = client.external_accounts.verify(
             "string",
-            {
-                "originating_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "payment_type": "ach",
-            },
+            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            payment_type="ach",
         )
         assert isinstance(resource, ExternalAccount)
 
     @parametrize
-    def test_method_verify_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_verify_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.external_accounts.verify(
             "string",
-            {
-                "originating_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "payment_type": "ach",
-                "currency": "AED",
-            },
+            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            payment_type="ach",
+            currency="AED",
         )
         assert isinstance(resource, ExternalAccount)
 
@@ -215,80 +205,78 @@ class TestAsyncExternalAccounts:
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         resource = await client.external_accounts.create(
-            {"counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert isinstance(resource, ExternalAccount)
 
     @parametrize
-    async def test_method_create_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.external_accounts.create(
-            {
-                "account_type": "checking",
-                "party_type": "business",
-                "party_address": {
-                    "line1": "string",
-                    "line2": "string",
-                    "locality": "string",
-                    "region": "string",
-                    "postal_code": "string",
-                    "country": "string",
-                },
-                "name": "string",
-                "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "account_details": [
-                    {
-                        "account_number": "string",
-                        "account_number_type": "iban",
-                    },
-                    {
-                        "account_number": "string",
-                        "account_number_type": "iban",
-                    },
-                    {
-                        "account_number": "string",
-                        "account_number_type": "iban",
-                    },
-                ],
-                "routing_details": [
-                    {
-                        "routing_number": "string",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "string",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "string",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                ],
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
-                },
-                "party_name": "string",
-                "party_identifier": "string",
-                "plaid_processor_token": "string",
-                "contact_details": [
-                    {
-                        "contact_identifier": "string",
-                        "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "string",
-                        "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "string",
-                        "contact_identifier_type": "email",
-                    },
-                ],
+            account_type="checking",
+            party_type="business",
+            party_address={
+                "line1": "string",
+                "line2": "string",
+                "locality": "string",
+                "region": "string",
+                "postal_code": "string",
+                "country": "string",
             },
+            name="string",
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_details=[
+                {
+                    "account_number": "string",
+                    "account_number_type": "iban",
+                },
+                {
+                    "account_number": "string",
+                    "account_number_type": "iban",
+                },
+                {
+                    "account_number": "string",
+                    "account_number_type": "iban",
+                },
+            ],
+            routing_details=[
+                {
+                    "routing_number": "string",
+                    "routing_number_type": "aba",
+                    "payment_type": "ach",
+                },
+                {
+                    "routing_number": "string",
+                    "routing_number_type": "aba",
+                    "payment_type": "ach",
+                },
+                {
+                    "routing_number": "string",
+                    "routing_number_type": "aba",
+                    "payment_type": "ach",
+                },
+            ],
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
+            party_name="string",
+            party_identifier="string",
+            plaid_processor_token="string",
+            contact_details=[
+                {
+                    "contact_identifier": "string",
+                    "contact_identifier_type": "email",
+                },
+                {
+                    "contact_identifier": "string",
+                    "contact_identifier_type": "email",
+                },
+                {
+                    "contact_identifier": "string",
+                    "contact_identifier_type": "email",
+                },
+            ],
         )
         assert isinstance(resource, ExternalAccount)
 
@@ -307,25 +295,23 @@ class TestAsyncExternalAccounts:
         assert isinstance(resource, ExternalAccount)
 
     @parametrize
-    async def test_method_update_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.external_accounts.update(
             "string",
-            {
-                "party_type": "business",
-                "account_type": "checking",
-                "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "name": "string",
-                "party_name": "string",
-                "party_address": {
-                    "line1": "string",
-                    "line2": "string",
-                    "locality": "string",
-                    "region": "string",
-                    "postal_code": "string",
-                    "country": "string",
-                },
-                "metadata": {"foo": "string"},
+            party_type="business",
+            account_type="checking",
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="string",
+            party_name="string",
+            party_address={
+                "line1": "string",
+                "line2": "string",
+                "locality": "string",
+                "region": "string",
+                "postal_code": "string",
+                "country": "string",
             },
+            metadata={"foo": "string"},
         )
         assert isinstance(resource, ExternalAccount)
 
@@ -335,15 +321,13 @@ class TestAsyncExternalAccounts:
         assert isinstance(resource, AsyncPage)
 
     @parametrize
-    async def test_method_list_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.external_accounts.list(
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "party_name": "string",
-                "counterparty_id": "string",
-                "metadata": {"foo": "string"},
-            },
+            after_cursor="string",
+            per_page=0,
+            party_name="string",
+            counterparty_id="string",
+            metadata={"foo": "string"},
         )
         assert isinstance(resource, AsyncPage)
 
@@ -362,10 +346,10 @@ class TestAsyncExternalAccounts:
         assert isinstance(resource, ExternalAccount)
 
     @parametrize
-    async def test_method_complete_verification_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_complete_verification_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.external_accounts.complete_verification(
             "string",
-            {"amounts": [0, 0]},
+            amounts=[0, 0],
         )
         assert isinstance(resource, ExternalAccount)
 
@@ -373,21 +357,17 @@ class TestAsyncExternalAccounts:
     async def test_method_verify(self, client: AsyncModernTreasury) -> None:
         resource = await client.external_accounts.verify(
             "string",
-            {
-                "originating_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "payment_type": "ach",
-            },
+            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            payment_type="ach",
         )
         assert isinstance(resource, ExternalAccount)
 
     @parametrize
-    async def test_method_verify_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_verify_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.external_accounts.verify(
             "string",
-            {
-                "originating_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "payment_type": "ach",
-                "currency": "AED",
-            },
+            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            payment_type="ach",
+            currency="AED",
         )
         assert isinstance(resource, ExternalAccount)

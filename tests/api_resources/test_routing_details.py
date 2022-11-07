@@ -27,23 +27,19 @@ class TestRoutingDetails:
         resource = client.routing_details.create(
             "external_accounts",
             "string",
-            {
-                "routing_number": "string",
-                "routing_number_type": "aba",
-            },
+            routing_number="string",
+            routing_number_type="aba",
         )
         assert isinstance(resource, RoutingDetail)
 
     @parametrize
-    def test_method_create_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.routing_details.create(
             "external_accounts",
             "string",
-            {
-                "routing_number": "string",
-                "routing_number_type": "aba",
-                "payment_type": "ach",
-            },
+            routing_number="string",
+            routing_number_type="aba",
+            payment_type="ach",
         )
         assert isinstance(resource, RoutingDetail)
 
@@ -65,14 +61,12 @@ class TestRoutingDetails:
         assert isinstance(resource, SyncPage)
 
     @parametrize
-    def test_method_list_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.routing_details.list(
             "external_accounts",
             "string",
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-            },
+            after_cursor="string",
+            per_page=0,
         )
         assert isinstance(resource, SyncPage)
 
@@ -100,23 +94,19 @@ class TestAsyncRoutingDetails:
         resource = await client.routing_details.create(
             "external_accounts",
             "string",
-            {
-                "routing_number": "string",
-                "routing_number_type": "aba",
-            },
+            routing_number="string",
+            routing_number_type="aba",
         )
         assert isinstance(resource, RoutingDetail)
 
     @parametrize
-    async def test_method_create_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.routing_details.create(
             "external_accounts",
             "string",
-            {
-                "routing_number": "string",
-                "routing_number_type": "aba",
-                "payment_type": "ach",
-            },
+            routing_number="string",
+            routing_number_type="aba",
+            payment_type="ach",
         )
         assert isinstance(resource, RoutingDetail)
 
@@ -138,14 +128,12 @@ class TestAsyncRoutingDetails:
         assert isinstance(resource, AsyncPage)
 
     @parametrize
-    async def test_method_list_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.routing_details.list(
             "external_accounts",
             "string",
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-            },
+            after_cursor="string",
+            per_page=0,
         )
         assert isinstance(resource, AsyncPage)
 

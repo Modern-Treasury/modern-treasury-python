@@ -41,17 +41,15 @@ class TestLineItems:
         assert isinstance(resource, LineItem)
 
     @parametrize
-    def test_method_update_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.line_items.update(
             "expected_payments",
             "string",
             "string",
-            {
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
-                }
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
             },
         )
         assert isinstance(resource, LineItem)
@@ -65,14 +63,12 @@ class TestLineItems:
         assert isinstance(resource, SyncPage)
 
     @parametrize
-    def test_method_list_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.line_items.list(
             "expected_payments",
             "string",
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-            },
+            after_cursor="string",
+            per_page=0,
         )
         assert isinstance(resource, SyncPage)
 
@@ -105,17 +101,15 @@ class TestAsyncLineItems:
         assert isinstance(resource, LineItem)
 
     @parametrize
-    async def test_method_update_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.line_items.update(
             "expected_payments",
             "string",
             "string",
-            {
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
-                }
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
             },
         )
         assert isinstance(resource, LineItem)
@@ -129,13 +123,11 @@ class TestAsyncLineItems:
         assert isinstance(resource, AsyncPage)
 
     @parametrize
-    async def test_method_list_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.line_items.list(
             "expected_payments",
             "string",
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-            },
+            after_cursor="string",
+            per_page=0,
         )
         assert isinstance(resource, AsyncPage)
