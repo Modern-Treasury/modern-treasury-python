@@ -38,15 +38,13 @@ class TestBalanceReports:
         assert isinstance(resource, SyncPage)
 
     @parametrize
-    def test_method_list_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.internal_accounts.balance_reports.list(
             "string",
-            {
-                "as_of_date": "2019-12-27",
-                "balance_report_type": "intraday",
-                "after_cursor": "string",
-                "per_page": 0,
-            },
+            as_of_date="2019-12-27",
+            balance_report_type="intraday",
+            after_cursor="string",
+            per_page=0,
         )
         assert isinstance(resource, SyncPage)
 
@@ -76,14 +74,12 @@ class TestAsyncBalanceReports:
         assert isinstance(resource, AsyncPage)
 
     @parametrize
-    async def test_method_list_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.internal_accounts.balance_reports.list(
             "string",
-            {
-                "as_of_date": "2019-12-27",
-                "balance_report_type": "intraday",
-                "after_cursor": "string",
-                "per_page": 0,
-            },
+            as_of_date="2019-12-27",
+            balance_report_type="intraday",
+            after_cursor="string",
+            per_page=0,
         )
         assert isinstance(resource, AsyncPage)

@@ -25,24 +25,20 @@ class TestReturns:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         resource = client.returns.create(
-            {
-                "returnable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "returnable_type": "incoming_payment_detail",
-            },
+            returnable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            returnable_type="incoming_payment_detail",
         )
         assert isinstance(resource, ReturnObject)
 
     @parametrize
-    def test_method_create_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.returns.create(
-            {
-                "returnable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "code": "901",
-                "reason": "string",
-                "date_of_death": "2019-12-27",
-                "additional_information": "string",
-                "returnable_type": "incoming_payment_detail",
-            },
+            returnable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            code="901",
+            reason="string",
+            date_of_death="2019-12-27",
+            additional_information="string",
+            returnable_type="incoming_payment_detail",
         )
         assert isinstance(resource, ReturnObject)
 
@@ -59,16 +55,14 @@ class TestReturns:
         assert isinstance(resource, SyncPage)
 
     @parametrize
-    def test_method_list_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.returns.list(
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "internal_account_id": "string",
-                "counterparty_id": "string",
-                "returnable_id": "string",
-                "returnable_type": "incoming_payment_detail",
-            },
+            after_cursor="string",
+            per_page=0,
+            internal_account_id="string",
+            counterparty_id="string",
+            returnable_id="string",
+            returnable_type="incoming_payment_detail",
         )
         assert isinstance(resource, SyncPage)
 
@@ -85,24 +79,20 @@ class TestAsyncReturns:
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         resource = await client.returns.create(
-            {
-                "returnable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "returnable_type": "incoming_payment_detail",
-            },
+            returnable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            returnable_type="incoming_payment_detail",
         )
         assert isinstance(resource, ReturnObject)
 
     @parametrize
-    async def test_method_create_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.returns.create(
-            {
-                "returnable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "code": "901",
-                "reason": "string",
-                "date_of_death": "2019-12-27",
-                "additional_information": "string",
-                "returnable_type": "incoming_payment_detail",
-            },
+            returnable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            code="901",
+            reason="string",
+            date_of_death="2019-12-27",
+            additional_information="string",
+            returnable_type="incoming_payment_detail",
         )
         assert isinstance(resource, ReturnObject)
 
@@ -119,15 +109,13 @@ class TestAsyncReturns:
         assert isinstance(resource, AsyncPage)
 
     @parametrize
-    async def test_method_list_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.returns.list(
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "internal_account_id": "string",
-                "counterparty_id": "string",
-                "returnable_id": "string",
-                "returnable_type": "incoming_payment_detail",
-            },
+            after_cursor="string",
+            per_page=0,
+            internal_account_id="string",
+            counterparty_id="string",
+            returnable_id="string",
+            returnable_type="incoming_payment_detail",
         )
         assert isinstance(resource, AsyncPage)

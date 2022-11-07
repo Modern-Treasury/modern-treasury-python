@@ -25,21 +25,19 @@ class TestLedgers:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         resource = client.ledgers.create(
-            {"name": "string"},
+            name="string",
         )
         assert isinstance(resource, Ledger)
 
     @parametrize
-    def test_method_create_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.ledgers.create(
-            {
-                "name": "string",
-                "description": "string",
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
-                },
+            name="string",
+            description="string",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
             },
         )
         assert isinstance(resource, Ledger)
@@ -59,17 +57,15 @@ class TestLedgers:
         assert isinstance(resource, Ledger)
 
     @parametrize
-    def test_method_update_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.ledgers.update(
             "string",
-            {
-                "name": "string",
-                "description": "string",
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
-                },
+            name="string",
+            description="string",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
             },
         )
         assert isinstance(resource, Ledger)
@@ -80,14 +76,12 @@ class TestLedgers:
         assert isinstance(resource, SyncPage)
 
     @parametrize
-    def test_method_list_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.ledgers.list(
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "metadata": {"foo": "string"},
-                "updated_at": {"foo": "2019-12-27T18:11:19.117Z"},
-            },
+            after_cursor="string",
+            per_page=0,
+            metadata={"foo": "string"},
+            updated_at={"foo": "2019-12-27T18:11:19.117Z"},
         )
         assert isinstance(resource, SyncPage)
 
@@ -111,21 +105,19 @@ class TestAsyncLedgers:
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         resource = await client.ledgers.create(
-            {"name": "string"},
+            name="string",
         )
         assert isinstance(resource, Ledger)
 
     @parametrize
-    async def test_method_create_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.ledgers.create(
-            {
-                "name": "string",
-                "description": "string",
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
-                },
+            name="string",
+            description="string",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
             },
         )
         assert isinstance(resource, Ledger)
@@ -145,17 +137,15 @@ class TestAsyncLedgers:
         assert isinstance(resource, Ledger)
 
     @parametrize
-    async def test_method_update_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.ledgers.update(
             "string",
-            {
-                "name": "string",
-                "description": "string",
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
-                },
+            name="string",
+            description="string",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
             },
         )
         assert isinstance(resource, Ledger)
@@ -166,14 +156,12 @@ class TestAsyncLedgers:
         assert isinstance(resource, AsyncPage)
 
     @parametrize
-    async def test_method_list_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.ledgers.list(
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "metadata": {"foo": "string"},
-                "updated_at": {"foo": "2019-12-27T18:11:19.117Z"},
-            },
+            after_cursor="string",
+            per_page=0,
+            metadata={"foo": "string"},
+            updated_at={"foo": "2019-12-27T18:11:19.117Z"},
         )
         assert isinstance(resource, AsyncPage)
 

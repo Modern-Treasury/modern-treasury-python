@@ -35,20 +35,18 @@ class TestLedgerEntries:
         assert isinstance(resource, SyncPage)
 
     @parametrize
-    def test_method_list_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.ledger_entries.list(
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "ledger_account_id": "string",
-                "ledger_transaction_id": "string",
-                "effective_date": {"foo": "2019-12-27"},
-                "updated_at": {"foo": "2019-12-27T18:11:19.117Z"},
-                "ledger_account_lock_version": {"foo": 0},
-                "ledger_account_category_id": "string",
-                "show_deleted": True,
-                "direction": "credit",
-            },
+            after_cursor="string",
+            per_page=0,
+            ledger_account_id="string",
+            ledger_transaction_id="string",
+            effective_date={"foo": "2019-12-27"},
+            updated_at={"foo": "2019-12-27T18:11:19.117Z"},
+            ledger_account_lock_version={"foo": 0},
+            ledger_account_category_id="string",
+            show_deleted=True,
+            direction="credit",
         )
         assert isinstance(resource, SyncPage)
 
@@ -75,19 +73,17 @@ class TestAsyncLedgerEntries:
         assert isinstance(resource, AsyncPage)
 
     @parametrize
-    async def test_method_list_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.ledger_entries.list(
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "ledger_account_id": "string",
-                "ledger_transaction_id": "string",
-                "effective_date": {"foo": "2019-12-27"},
-                "updated_at": {"foo": "2019-12-27T18:11:19.117Z"},
-                "ledger_account_lock_version": {"foo": 0},
-                "ledger_account_category_id": "string",
-                "show_deleted": True,
-                "direction": "credit",
-            },
+            after_cursor="string",
+            per_page=0,
+            ledger_account_id="string",
+            ledger_transaction_id="string",
+            effective_date={"foo": "2019-12-27"},
+            updated_at={"foo": "2019-12-27T18:11:19.117Z"},
+            ledger_account_lock_version={"foo": 0},
+            ledger_account_category_id="string",
+            show_deleted=True,
+            direction="credit",
         )
         assert isinstance(resource, AsyncPage)

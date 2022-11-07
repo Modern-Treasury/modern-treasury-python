@@ -29,7 +29,7 @@ class ReturnListParams(TypedDict, total=False):
     """The ID of a valid returnable. Must be accompanied by `returnable_type`."""
 
     returnable_type: Literal["incoming_payment_detail", "paper_item", "payment_order", "reversal"]
-    """
-    One of `payment_order`, `paper_item`, `reversal`, or `incoming_payment_detail`.
+    """One of `payment_order`, `paper_item`, `reversal`, or `incoming_payment_detail`.
+
     Must be accompanied by `returnable_id`.
     """

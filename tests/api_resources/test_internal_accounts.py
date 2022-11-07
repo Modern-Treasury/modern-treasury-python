@@ -25,27 +25,23 @@ class TestInternalAccounts:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         resource = client.internal_accounts.create(
-            {
-                "connection_id": "string",
-                "name": "string",
-                "party_name": "string",
-                "currency": "USD",
-            },
+            connection_id="string",
+            name="string",
+            party_name="string",
+            currency="USD",
         )
         assert isinstance(resource, InternalAccount)
 
     @parametrize
-    def test_method_create_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.internal_accounts.create(
-            {
-                "connection_id": "string",
-                "name": "string",
-                "party_name": "string",
-                "currency": "USD",
-                "entity_id": "string",
-                "parent_account_id": "string",
-                "counterparty_id": "string",
-            },
+            connection_id="string",
+            name="string",
+            party_name="string",
+            currency="USD",
+            entity_id="string",
+            parent_account_id="string",
+            counterparty_id="string",
         )
         assert isinstance(resource, InternalAccount)
 
@@ -64,15 +60,13 @@ class TestInternalAccounts:
         assert isinstance(resource, InternalAccount)
 
     @parametrize
-    def test_method_update_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.internal_accounts.update(
             "string",
-            {
-                "name": "string",
-                "metadata": {"foo": "string"},
-                "parent_account_id": "string",
-                "counterparty_id": "string",
-            },
+            name="string",
+            metadata={"foo": "string"},
+            parent_account_id="string",
+            counterparty_id="string",
         )
         assert isinstance(resource, InternalAccount)
 
@@ -82,15 +76,13 @@ class TestInternalAccounts:
         assert isinstance(resource, SyncPage)
 
     @parametrize
-    def test_method_list_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.internal_accounts.list(
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "currency": "AED",
-                "payment_type": "ach",
-                "payment_direction": "credit",
-            },
+            after_cursor="string",
+            per_page=0,
+            currency="AED",
+            payment_type="ach",
+            payment_direction="credit",
         )
         assert isinstance(resource, SyncPage)
 
@@ -107,27 +99,23 @@ class TestAsyncInternalAccounts:
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         resource = await client.internal_accounts.create(
-            {
-                "connection_id": "string",
-                "name": "string",
-                "party_name": "string",
-                "currency": "USD",
-            },
+            connection_id="string",
+            name="string",
+            party_name="string",
+            currency="USD",
         )
         assert isinstance(resource, InternalAccount)
 
     @parametrize
-    async def test_method_create_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.internal_accounts.create(
-            {
-                "connection_id": "string",
-                "name": "string",
-                "party_name": "string",
-                "currency": "USD",
-                "entity_id": "string",
-                "parent_account_id": "string",
-                "counterparty_id": "string",
-            },
+            connection_id="string",
+            name="string",
+            party_name="string",
+            currency="USD",
+            entity_id="string",
+            parent_account_id="string",
+            counterparty_id="string",
         )
         assert isinstance(resource, InternalAccount)
 
@@ -146,15 +134,13 @@ class TestAsyncInternalAccounts:
         assert isinstance(resource, InternalAccount)
 
     @parametrize
-    async def test_method_update_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.internal_accounts.update(
             "string",
-            {
-                "name": "string",
-                "metadata": {"foo": "string"},
-                "parent_account_id": "string",
-                "counterparty_id": "string",
-            },
+            name="string",
+            metadata={"foo": "string"},
+            parent_account_id="string",
+            counterparty_id="string",
         )
         assert isinstance(resource, InternalAccount)
 
@@ -164,14 +150,12 @@ class TestAsyncInternalAccounts:
         assert isinstance(resource, AsyncPage)
 
     @parametrize
-    async def test_method_list_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.internal_accounts.list(
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "currency": "AED",
-                "payment_type": "ach",
-                "payment_direction": "credit",
-            },
+            after_cursor="string",
+            per_page=0,
+            currency="AED",
+            payment_type="ach",
+            payment_direction="credit",
         )
         assert isinstance(resource, AsyncPage)

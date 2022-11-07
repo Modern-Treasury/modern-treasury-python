@@ -25,31 +25,27 @@ class TestLedgerAccountCategories:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         resource = client.ledger_account_categories.create(
-            {
-                "name": "string",
-                "currency": "string",
-                "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "normal_balance": "credit",
-            },
+            name="string",
+            currency="string",
+            ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            normal_balance="credit",
         )
         assert isinstance(resource, LedgerAccountCategory)
 
     @parametrize
-    def test_method_create_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.ledger_account_categories.create(
-            {
-                "name": "string",
-                "description": "string",
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
-                },
-                "currency": "string",
-                "currency_exponent": 0,
-                "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "normal_balance": "credit",
+            name="string",
+            description="string",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
             },
+            currency="string",
+            currency_exponent=0,
+            ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            normal_balance="credit",
         )
         assert isinstance(resource, LedgerAccountCategory)
 
@@ -68,17 +64,15 @@ class TestLedgerAccountCategories:
         assert isinstance(resource, LedgerAccountCategory)
 
     @parametrize
-    def test_method_update_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.ledger_account_categories.update(
             "string",
-            {
-                "name": "string",
-                "description": "string",
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
-                },
+            name="string",
+            description="string",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
             },
         )
         assert isinstance(resource, LedgerAccountCategory)
@@ -89,16 +83,14 @@ class TestLedgerAccountCategories:
         assert isinstance(resource, SyncPage)
 
     @parametrize
-    def test_method_list_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.ledger_account_categories.list(
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "metadata": {"foo": "string"},
-                "name": "string",
-                "ledger_id": "string",
-                "parent_ledger_account_category_id": "string",
-            },
+            after_cursor="string",
+            per_page=0,
+            metadata={"foo": "string"},
+            name="string",
+            ledger_id="string",
+            parent_ledger_account_category_id="string",
         )
         assert isinstance(resource, SyncPage)
 
@@ -154,31 +146,27 @@ class TestAsyncLedgerAccountCategories:
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         resource = await client.ledger_account_categories.create(
-            {
-                "name": "string",
-                "currency": "string",
-                "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "normal_balance": "credit",
-            },
+            name="string",
+            currency="string",
+            ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            normal_balance="credit",
         )
         assert isinstance(resource, LedgerAccountCategory)
 
     @parametrize
-    async def test_method_create_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.ledger_account_categories.create(
-            {
-                "name": "string",
-                "description": "string",
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
-                },
-                "currency": "string",
-                "currency_exponent": 0,
-                "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "normal_balance": "credit",
+            name="string",
+            description="string",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
             },
+            currency="string",
+            currency_exponent=0,
+            ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            normal_balance="credit",
         )
         assert isinstance(resource, LedgerAccountCategory)
 
@@ -197,17 +185,15 @@ class TestAsyncLedgerAccountCategories:
         assert isinstance(resource, LedgerAccountCategory)
 
     @parametrize
-    async def test_method_update_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.ledger_account_categories.update(
             "string",
-            {
-                "name": "string",
-                "description": "string",
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
-                },
+            name="string",
+            description="string",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
             },
         )
         assert isinstance(resource, LedgerAccountCategory)
@@ -218,16 +204,14 @@ class TestAsyncLedgerAccountCategories:
         assert isinstance(resource, AsyncPage)
 
     @parametrize
-    async def test_method_list_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.ledger_account_categories.list(
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "metadata": {"foo": "string"},
-                "name": "string",
-                "ledger_id": "string",
-                "parent_ledger_account_category_id": "string",
-            },
+            after_cursor="string",
+            per_page=0,
+            metadata={"foo": "string"},
+            name="string",
+            ledger_id="string",
+            parent_ledger_account_category_id="string",
         )
         assert isinstance(resource, AsyncPage)
 
