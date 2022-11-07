@@ -12,7 +12,12 @@ __all__ = ["Webhooks", "AsyncWebhooks"]
 
 
 class Webhooks(SyncAPIResource):
-    def get_signature(self, payload: str, *, key: str | None = None) -> str:
+    def get_signature(
+        self,
+        payload: str,
+        *,
+        key: str | None = None,
+    ) -> str:
         """
         To verify that a webhook was actually sent by Modern Treasury, every payload is
         signed with a signature that is passed through the `X-Signature` HTTP header.
@@ -42,7 +47,13 @@ class Webhooks(SyncAPIResource):
         )
         return mac.hexdigest()
 
-    def validate_signature(self, payload: str, headers: HeadersLike, *, key: str | None = None) -> bool:
+    def validate_signature(
+        self,
+        payload: str,
+        headers: HeadersLike,
+        *,
+        key: str | None = None,
+    ) -> bool:
         """Returns whether or not the webhook payload was sent by Modern Treasury."""
         signature = self.get_signature(payload, key=key)
         expected_signature = headers.get("X-Signature") or headers.get("x-signature")
@@ -53,7 +64,12 @@ class Webhooks(SyncAPIResource):
 
 
 class AsyncWebhooks(AsyncAPIResource):
-    def get_signature(self, payload: str, *, key: str | None = None) -> str:
+    def get_signature(
+        self,
+        payload: str,
+        *,
+        key: str | None = None,
+    ) -> str:
         """
         To verify that a webhook was actually sent by Modern Treasury, every payload is
         signed with a signature that is passed through the `X-Signature` HTTP header.
@@ -83,7 +99,13 @@ class AsyncWebhooks(AsyncAPIResource):
         )
         return mac.hexdigest()
 
-    def validate_signature(self, payload: str, headers: HeadersLike, *, key: str | None = None) -> bool:
+    def validate_signature(
+        self,
+        payload: str,
+        headers: HeadersLike,
+        *,
+        key: str | None = None,
+    ) -> bool:
         """Returns whether or not the webhook payload was sent by Modern Treasury."""
         signature = self.get_signature(payload, key=key)
         expected_signature = headers.get("X-Signature") or headers.get("x-signature")

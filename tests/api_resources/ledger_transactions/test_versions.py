@@ -29,15 +29,13 @@ class TestVersions:
         assert isinstance(resource, SyncPage)
 
     @parametrize
-    def test_method_versions_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_versions_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.ledger_transactions.versions.versions(
             "string",
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "created_at": {"foo": "2019-12-27T18:11:19.117Z"},
-                "version": {"foo": 0},
-            },
+            after_cursor="string",
+            per_page=0,
+            created_at={"foo": "2019-12-27T18:11:19.117Z"},
+            version={"foo": 0},
         )
         assert isinstance(resource, SyncPage)
 
@@ -59,14 +57,12 @@ class TestAsyncVersions:
         assert isinstance(resource, AsyncPage)
 
     @parametrize
-    async def test_method_versions_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_versions_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.ledger_transactions.versions.versions(
             "string",
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "created_at": {"foo": "2019-12-27T18:11:19.117Z"},
-                "version": {"foo": 0},
-            },
+            after_cursor="string",
+            per_page=0,
+            created_at={"foo": "2019-12-27T18:11:19.117Z"},
+            version={"foo": 0},
         )
         assert isinstance(resource, AsyncPage)

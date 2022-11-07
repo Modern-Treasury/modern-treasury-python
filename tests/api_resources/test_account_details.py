@@ -6,8 +6,8 @@ import os
 import pytest
 
 from modern_treasury import ModernTreasury, AsyncModernTreasury
+from modern_treasury.types import shared
 from modern_treasury.pagination import SyncPage, AsyncPage
-from modern_treasury.types.shared import AccountDetail
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
 api_key = os.environ.get("API_KEY", "something1234")
@@ -27,21 +27,19 @@ class TestAccountDetails:
         resource = client.account_details.create(
             "external_accounts",
             "string",
-            {"account_number": "string"},
+            account_number="string",
         )
-        assert isinstance(resource, AccountDetail)
+        assert isinstance(resource, shared.AccountDetail)
 
     @parametrize
-    def test_method_create_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.account_details.create(
             "external_accounts",
             "string",
-            {
-                "account_number": "string",
-                "account_number_type": "clabe",
-            },
+            account_number="string",
+            account_number_type="clabe",
         )
-        assert isinstance(resource, AccountDetail)
+        assert isinstance(resource, shared.AccountDetail)
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
@@ -50,7 +48,7 @@ class TestAccountDetails:
             "string",
             "string",
         )
-        assert isinstance(resource, AccountDetail)
+        assert isinstance(resource, shared.AccountDetail)
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -61,14 +59,12 @@ class TestAccountDetails:
         assert isinstance(resource, SyncPage)
 
     @parametrize
-    def test_method_list_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.account_details.list(
             "external_accounts",
             "string",
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-            },
+            after_cursor="string",
+            per_page=0,
         )
         assert isinstance(resource, SyncPage)
 
@@ -96,21 +92,19 @@ class TestAsyncAccountDetails:
         resource = await client.account_details.create(
             "external_accounts",
             "string",
-            {"account_number": "string"},
+            account_number="string",
         )
-        assert isinstance(resource, AccountDetail)
+        assert isinstance(resource, shared.AccountDetail)
 
     @parametrize
-    async def test_method_create_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.account_details.create(
             "external_accounts",
             "string",
-            {
-                "account_number": "string",
-                "account_number_type": "clabe",
-            },
+            account_number="string",
+            account_number_type="clabe",
         )
-        assert isinstance(resource, AccountDetail)
+        assert isinstance(resource, shared.AccountDetail)
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
@@ -119,7 +113,7 @@ class TestAsyncAccountDetails:
             "string",
             "string",
         )
-        assert isinstance(resource, AccountDetail)
+        assert isinstance(resource, shared.AccountDetail)
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -130,14 +124,12 @@ class TestAsyncAccountDetails:
         assert isinstance(resource, AsyncPage)
 
     @parametrize
-    async def test_method_list_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.account_details.list(
             "external_accounts",
             "string",
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-            },
+            after_cursor="string",
+            per_page=0,
         )
         assert isinstance(resource, AsyncPage)
 
