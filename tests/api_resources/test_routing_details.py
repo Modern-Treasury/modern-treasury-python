@@ -25,8 +25,8 @@ class TestRoutingDetails:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         resource = client.routing_details.create(
-            "external_accounts",
             "string",
+            accounts_type="external_accounts",
             routing_number="string",
             routing_number_type="aba",
         )
@@ -35,8 +35,8 @@ class TestRoutingDetails:
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.routing_details.create(
-            "external_accounts",
             "string",
+            accounts_type="external_accounts",
             routing_number="string",
             routing_number_type="aba",
             payment_type="ach",
@@ -46,25 +46,25 @@ class TestRoutingDetails:
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         resource = client.routing_details.retrieve(
-            "external_accounts",
             "string",
-            "string",
+            accounts_type="external_accounts",
+            account_id="string",
         )
         assert isinstance(resource, shared.RoutingDetail)
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         resource = client.routing_details.list(
-            "external_accounts",
             "string",
+            accounts_type="external_accounts",
         )
         assert isinstance(resource, SyncPage)
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.routing_details.list(
-            "external_accounts",
             "string",
+            accounts_type="external_accounts",
             after_cursor="string",
             per_page=0,
         )
@@ -73,9 +73,9 @@ class TestRoutingDetails:
     @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
         resource = client.routing_details.delete(
-            "external_accounts",
             "string",
-            "string",
+            accounts_type="external_accounts",
+            account_id="string",
         )
         assert resource is None
 
@@ -92,8 +92,8 @@ class TestAsyncRoutingDetails:
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         resource = await client.routing_details.create(
-            "external_accounts",
             "string",
+            accounts_type="external_accounts",
             routing_number="string",
             routing_number_type="aba",
         )
@@ -102,8 +102,8 @@ class TestAsyncRoutingDetails:
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.routing_details.create(
-            "external_accounts",
             "string",
+            accounts_type="external_accounts",
             routing_number="string",
             routing_number_type="aba",
             payment_type="ach",
@@ -113,25 +113,25 @@ class TestAsyncRoutingDetails:
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         resource = await client.routing_details.retrieve(
-            "external_accounts",
             "string",
-            "string",
+            accounts_type="external_accounts",
+            account_id="string",
         )
         assert isinstance(resource, shared.RoutingDetail)
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
         resource = await client.routing_details.list(
-            "external_accounts",
             "string",
+            accounts_type="external_accounts",
         )
         assert isinstance(resource, AsyncPage)
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.routing_details.list(
-            "external_accounts",
             "string",
+            accounts_type="external_accounts",
             after_cursor="string",
             per_page=0,
         )
@@ -140,8 +140,8 @@ class TestAsyncRoutingDetails:
     @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
         resource = await client.routing_details.delete(
-            "external_accounts",
             "string",
-            "string",
+            accounts_type="external_accounts",
+            account_id="string",
         )
         assert resource is None
