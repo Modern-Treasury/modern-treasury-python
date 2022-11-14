@@ -35,17 +35,15 @@ class TestEvents:
         assert isinstance(resource, SyncPage)
 
     @parametrize
-    def test_method_list_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.events.list(
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "event_time_start": "2019-12-27T18:11:19.117Z",
-                "event_time_end": "2019-12-27T18:11:19.117Z",
-                "resource": "string",
-                "entity_id": "string",
-                "event_name": "string",
-            },
+            after_cursor="string",
+            per_page=0,
+            event_time_start="2019-12-27T18:11:19.117Z",
+            event_time_end="2019-12-27T18:11:19.117Z",
+            resource="string",
+            entity_id="string",
+            event_name="string",
         )
         assert isinstance(resource, SyncPage)
 
@@ -72,16 +70,14 @@ class TestAsyncEvents:
         assert isinstance(resource, AsyncPage)
 
     @parametrize
-    async def test_method_list_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.events.list(
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "event_time_start": "2019-12-27T18:11:19.117Z",
-                "event_time_end": "2019-12-27T18:11:19.117Z",
-                "resource": "string",
-                "entity_id": "string",
-                "event_name": "string",
-            },
+            after_cursor="string",
+            per_page=0,
+            event_time_start="2019-12-27T18:11:19.117Z",
+            event_time_end="2019-12-27T18:11:19.117Z",
+            resource="string",
+            entity_id="string",
+            event_name="string",
         )
         assert isinstance(resource, AsyncPage)

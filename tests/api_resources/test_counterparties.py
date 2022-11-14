@@ -28,226 +28,224 @@ class TestCounterparties:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         resource = client.counterparties.create(
-            {"name": "string"},
+            name="string",
         )
         assert isinstance(resource, Counterparty)
 
     @parametrize
-    def test_method_create_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.counterparties.create(
-            {
-                "name": "string",
-                "accounts": [
-                    {
-                        "account_type": "checking",
-                        "party_type": "business",
-                        "party_address": {
-                            "line1": "string",
-                            "line2": "string",
-                            "locality": "string",
-                            "region": "string",
-                            "postal_code": "string",
-                            "country": "string",
-                        },
-                        "name": "string",
-                        "account_details": [
-                            {
-                                "account_number": "string",
-                                "account_number_type": "iban",
-                            },
-                            {
-                                "account_number": "string",
-                                "account_number_type": "iban",
-                            },
-                            {
-                                "account_number": "string",
-                                "account_number_type": "iban",
-                            },
-                        ],
-                        "routing_details": [
-                            {
-                                "routing_number": "string",
-                                "routing_number_type": "aba",
-                                "payment_type": "ach",
-                            },
-                            {
-                                "routing_number": "string",
-                                "routing_number_type": "aba",
-                                "payment_type": "ach",
-                            },
-                            {
-                                "routing_number": "string",
-                                "routing_number_type": "aba",
-                                "payment_type": "ach",
-                            },
-                        ],
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
-                        },
-                        "party_name": "string",
-                        "party_identifier": "string",
-                        "plaid_processor_token": "string",
-                        "contact_details": [
-                            {
-                                "contact_identifier": "string",
-                                "contact_identifier_type": "email",
-                            },
-                            {
-                                "contact_identifier": "string",
-                                "contact_identifier_type": "email",
-                            },
-                            {
-                                "contact_identifier": "string",
-                                "contact_identifier_type": "email",
-                            },
-                        ],
+            name="string",
+            accounts=[
+                {
+                    "account_type": "checking",
+                    "party_type": "business",
+                    "party_address": {
+                        "line1": "string",
+                        "line2": "string",
+                        "locality": "string",
+                        "region": "string",
+                        "postal_code": "string",
+                        "country": "string",
                     },
-                    {
-                        "account_type": "checking",
-                        "party_type": "business",
-                        "party_address": {
-                            "line1": "string",
-                            "line2": "string",
-                            "locality": "string",
-                            "region": "string",
-                            "postal_code": "string",
-                            "country": "string",
+                    "name": "string",
+                    "account_details": [
+                        {
+                            "account_number": "string",
+                            "account_number_type": "iban",
                         },
-                        "name": "string",
-                        "account_details": [
-                            {
-                                "account_number": "string",
-                                "account_number_type": "iban",
-                            },
-                            {
-                                "account_number": "string",
-                                "account_number_type": "iban",
-                            },
-                            {
-                                "account_number": "string",
-                                "account_number_type": "iban",
-                            },
-                        ],
-                        "routing_details": [
-                            {
-                                "routing_number": "string",
-                                "routing_number_type": "aba",
-                                "payment_type": "ach",
-                            },
-                            {
-                                "routing_number": "string",
-                                "routing_number_type": "aba",
-                                "payment_type": "ach",
-                            },
-                            {
-                                "routing_number": "string",
-                                "routing_number_type": "aba",
-                                "payment_type": "ach",
-                            },
-                        ],
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
+                        {
+                            "account_number": "string",
+                            "account_number_type": "iban",
                         },
-                        "party_name": "string",
-                        "party_identifier": "string",
-                        "plaid_processor_token": "string",
-                        "contact_details": [
-                            {
-                                "contact_identifier": "string",
-                                "contact_identifier_type": "email",
-                            },
-                            {
-                                "contact_identifier": "string",
-                                "contact_identifier_type": "email",
-                            },
-                            {
-                                "contact_identifier": "string",
-                                "contact_identifier_type": "email",
-                            },
-                        ],
+                        {
+                            "account_number": "string",
+                            "account_number_type": "iban",
+                        },
+                    ],
+                    "routing_details": [
+                        {
+                            "routing_number": "string",
+                            "routing_number_type": "aba",
+                            "payment_type": "ach",
+                        },
+                        {
+                            "routing_number": "string",
+                            "routing_number_type": "aba",
+                            "payment_type": "ach",
+                        },
+                        {
+                            "routing_number": "string",
+                            "routing_number_type": "aba",
+                            "payment_type": "ach",
+                        },
+                    ],
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
                     },
-                    {
-                        "account_type": "checking",
-                        "party_type": "business",
-                        "party_address": {
-                            "line1": "string",
-                            "line2": "string",
-                            "locality": "string",
-                            "region": "string",
-                            "postal_code": "string",
-                            "country": "string",
+                    "party_name": "string",
+                    "party_identifier": "string",
+                    "plaid_processor_token": "string",
+                    "contact_details": [
+                        {
+                            "contact_identifier": "string",
+                            "contact_identifier_type": "email",
                         },
-                        "name": "string",
-                        "account_details": [
-                            {
-                                "account_number": "string",
-                                "account_number_type": "iban",
-                            },
-                            {
-                                "account_number": "string",
-                                "account_number_type": "iban",
-                            },
-                            {
-                                "account_number": "string",
-                                "account_number_type": "iban",
-                            },
-                        ],
-                        "routing_details": [
-                            {
-                                "routing_number": "string",
-                                "routing_number_type": "aba",
-                                "payment_type": "ach",
-                            },
-                            {
-                                "routing_number": "string",
-                                "routing_number_type": "aba",
-                                "payment_type": "ach",
-                            },
-                            {
-                                "routing_number": "string",
-                                "routing_number_type": "aba",
-                                "payment_type": "ach",
-                            },
-                        ],
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
+                        {
+                            "contact_identifier": "string",
+                            "contact_identifier_type": "email",
                         },
-                        "party_name": "string",
-                        "party_identifier": "string",
-                        "plaid_processor_token": "string",
-                        "contact_details": [
-                            {
-                                "contact_identifier": "string",
-                                "contact_identifier_type": "email",
-                            },
-                            {
-                                "contact_identifier": "string",
-                                "contact_identifier_type": "email",
-                            },
-                            {
-                                "contact_identifier": "string",
-                                "contact_identifier_type": "email",
-                            },
-                        ],
-                    },
-                ],
-                "email": "dev@stainlessapi.com",
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
+                        {
+                            "contact_identifier": "string",
+                            "contact_identifier_type": "email",
+                        },
+                    ],
                 },
-                "send_remittance_advice": True,
-                "accounting": {"type": "customer"},
-                "ledger_type": "customer",
-                "taxpayer_identifier": "string",
+                {
+                    "account_type": "checking",
+                    "party_type": "business",
+                    "party_address": {
+                        "line1": "string",
+                        "line2": "string",
+                        "locality": "string",
+                        "region": "string",
+                        "postal_code": "string",
+                        "country": "string",
+                    },
+                    "name": "string",
+                    "account_details": [
+                        {
+                            "account_number": "string",
+                            "account_number_type": "iban",
+                        },
+                        {
+                            "account_number": "string",
+                            "account_number_type": "iban",
+                        },
+                        {
+                            "account_number": "string",
+                            "account_number_type": "iban",
+                        },
+                    ],
+                    "routing_details": [
+                        {
+                            "routing_number": "string",
+                            "routing_number_type": "aba",
+                            "payment_type": "ach",
+                        },
+                        {
+                            "routing_number": "string",
+                            "routing_number_type": "aba",
+                            "payment_type": "ach",
+                        },
+                        {
+                            "routing_number": "string",
+                            "routing_number_type": "aba",
+                            "payment_type": "ach",
+                        },
+                    ],
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
+                    "party_name": "string",
+                    "party_identifier": "string",
+                    "plaid_processor_token": "string",
+                    "contact_details": [
+                        {
+                            "contact_identifier": "string",
+                            "contact_identifier_type": "email",
+                        },
+                        {
+                            "contact_identifier": "string",
+                            "contact_identifier_type": "email",
+                        },
+                        {
+                            "contact_identifier": "string",
+                            "contact_identifier_type": "email",
+                        },
+                    ],
+                },
+                {
+                    "account_type": "checking",
+                    "party_type": "business",
+                    "party_address": {
+                        "line1": "string",
+                        "line2": "string",
+                        "locality": "string",
+                        "region": "string",
+                        "postal_code": "string",
+                        "country": "string",
+                    },
+                    "name": "string",
+                    "account_details": [
+                        {
+                            "account_number": "string",
+                            "account_number_type": "iban",
+                        },
+                        {
+                            "account_number": "string",
+                            "account_number_type": "iban",
+                        },
+                        {
+                            "account_number": "string",
+                            "account_number_type": "iban",
+                        },
+                    ],
+                    "routing_details": [
+                        {
+                            "routing_number": "string",
+                            "routing_number_type": "aba",
+                            "payment_type": "ach",
+                        },
+                        {
+                            "routing_number": "string",
+                            "routing_number_type": "aba",
+                            "payment_type": "ach",
+                        },
+                        {
+                            "routing_number": "string",
+                            "routing_number_type": "aba",
+                            "payment_type": "ach",
+                        },
+                    ],
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
+                    "party_name": "string",
+                    "party_identifier": "string",
+                    "plaid_processor_token": "string",
+                    "contact_details": [
+                        {
+                            "contact_identifier": "string",
+                            "contact_identifier_type": "email",
+                        },
+                        {
+                            "contact_identifier": "string",
+                            "contact_identifier_type": "email",
+                        },
+                        {
+                            "contact_identifier": "string",
+                            "contact_identifier_type": "email",
+                        },
+                    ],
+                },
+            ],
+            email="dev@stainlessapi.com",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
             },
+            send_remittance_advice=True,
+            accounting={"type": "customer"},
+            ledger_type="customer",
+            taxpayer_identifier="string",
         )
         assert isinstance(resource, Counterparty)
 
@@ -266,16 +264,14 @@ class TestCounterparties:
         assert isinstance(resource, Counterparty)
 
     @parametrize
-    def test_method_update_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.counterparties.update(
             "string",
-            {
-                "name": "string",
-                "email": "dev@stainlessapi.com",
-                "metadata": {"foo": "string"},
-                "send_remittance_advice": True,
-                "taxpayer_identifier": "string",
-            },
+            name="string",
+            email="dev@stainlessapi.com",
+            metadata={"foo": "string"},
+            send_remittance_advice=True,
+            taxpayer_identifier="string",
         )
         assert isinstance(resource, Counterparty)
 
@@ -285,17 +281,15 @@ class TestCounterparties:
         assert isinstance(resource, SyncPage)
 
     @parametrize
-    def test_method_list_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.counterparties.list(
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "name": "string",
-                "email": "dev@stainlessapi.com",
-                "metadata": {"foo": "string"},
-                "created_at_lower_bound": "2019-12-27T18:11:19.117Z",
-                "created_at_upper_bound": "2019-12-27T18:11:19.117Z",
-            },
+            after_cursor="string",
+            per_page=0,
+            name="string",
+            email="dev@stainlessapi.com",
+            metadata={"foo": "string"},
+            created_at_lower_bound="2019-12-27T18:11:19.117Z",
+            created_at_upper_bound="2019-12-27T18:11:19.117Z",
         )
         assert isinstance(resource, SyncPage)
 
@@ -310,20 +304,18 @@ class TestCounterparties:
     def test_method_collect_account(self, client: ModernTreasury) -> None:
         resource = client.counterparties.collect_account(
             "string",
-            {"direction": "credit"},
+            direction="credit",
         )
         assert isinstance(resource, CounterpartyCollectAccountResponse)
 
     @parametrize
-    def test_method_collect_account_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_collect_account_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.counterparties.collect_account(
             "string",
-            {
-                "direction": "credit",
-                "send_email": True,
-                "fields": ["name", "name", "name"],
-                "custom_redirect": "https://example.com",
-            },
+            direction="credit",
+            send_email=True,
+            fields=["name", "name", "name"],
+            custom_redirect="https://example.com",
         )
         assert isinstance(resource, CounterpartyCollectAccountResponse)
 
@@ -340,226 +332,224 @@ class TestAsyncCounterparties:
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         resource = await client.counterparties.create(
-            {"name": "string"},
+            name="string",
         )
         assert isinstance(resource, Counterparty)
 
     @parametrize
-    async def test_method_create_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.counterparties.create(
-            {
-                "name": "string",
-                "accounts": [
-                    {
-                        "account_type": "checking",
-                        "party_type": "business",
-                        "party_address": {
-                            "line1": "string",
-                            "line2": "string",
-                            "locality": "string",
-                            "region": "string",
-                            "postal_code": "string",
-                            "country": "string",
-                        },
-                        "name": "string",
-                        "account_details": [
-                            {
-                                "account_number": "string",
-                                "account_number_type": "iban",
-                            },
-                            {
-                                "account_number": "string",
-                                "account_number_type": "iban",
-                            },
-                            {
-                                "account_number": "string",
-                                "account_number_type": "iban",
-                            },
-                        ],
-                        "routing_details": [
-                            {
-                                "routing_number": "string",
-                                "routing_number_type": "aba",
-                                "payment_type": "ach",
-                            },
-                            {
-                                "routing_number": "string",
-                                "routing_number_type": "aba",
-                                "payment_type": "ach",
-                            },
-                            {
-                                "routing_number": "string",
-                                "routing_number_type": "aba",
-                                "payment_type": "ach",
-                            },
-                        ],
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
-                        },
-                        "party_name": "string",
-                        "party_identifier": "string",
-                        "plaid_processor_token": "string",
-                        "contact_details": [
-                            {
-                                "contact_identifier": "string",
-                                "contact_identifier_type": "email",
-                            },
-                            {
-                                "contact_identifier": "string",
-                                "contact_identifier_type": "email",
-                            },
-                            {
-                                "contact_identifier": "string",
-                                "contact_identifier_type": "email",
-                            },
-                        ],
+            name="string",
+            accounts=[
+                {
+                    "account_type": "checking",
+                    "party_type": "business",
+                    "party_address": {
+                        "line1": "string",
+                        "line2": "string",
+                        "locality": "string",
+                        "region": "string",
+                        "postal_code": "string",
+                        "country": "string",
                     },
-                    {
-                        "account_type": "checking",
-                        "party_type": "business",
-                        "party_address": {
-                            "line1": "string",
-                            "line2": "string",
-                            "locality": "string",
-                            "region": "string",
-                            "postal_code": "string",
-                            "country": "string",
+                    "name": "string",
+                    "account_details": [
+                        {
+                            "account_number": "string",
+                            "account_number_type": "iban",
                         },
-                        "name": "string",
-                        "account_details": [
-                            {
-                                "account_number": "string",
-                                "account_number_type": "iban",
-                            },
-                            {
-                                "account_number": "string",
-                                "account_number_type": "iban",
-                            },
-                            {
-                                "account_number": "string",
-                                "account_number_type": "iban",
-                            },
-                        ],
-                        "routing_details": [
-                            {
-                                "routing_number": "string",
-                                "routing_number_type": "aba",
-                                "payment_type": "ach",
-                            },
-                            {
-                                "routing_number": "string",
-                                "routing_number_type": "aba",
-                                "payment_type": "ach",
-                            },
-                            {
-                                "routing_number": "string",
-                                "routing_number_type": "aba",
-                                "payment_type": "ach",
-                            },
-                        ],
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
+                        {
+                            "account_number": "string",
+                            "account_number_type": "iban",
                         },
-                        "party_name": "string",
-                        "party_identifier": "string",
-                        "plaid_processor_token": "string",
-                        "contact_details": [
-                            {
-                                "contact_identifier": "string",
-                                "contact_identifier_type": "email",
-                            },
-                            {
-                                "contact_identifier": "string",
-                                "contact_identifier_type": "email",
-                            },
-                            {
-                                "contact_identifier": "string",
-                                "contact_identifier_type": "email",
-                            },
-                        ],
+                        {
+                            "account_number": "string",
+                            "account_number_type": "iban",
+                        },
+                    ],
+                    "routing_details": [
+                        {
+                            "routing_number": "string",
+                            "routing_number_type": "aba",
+                            "payment_type": "ach",
+                        },
+                        {
+                            "routing_number": "string",
+                            "routing_number_type": "aba",
+                            "payment_type": "ach",
+                        },
+                        {
+                            "routing_number": "string",
+                            "routing_number_type": "aba",
+                            "payment_type": "ach",
+                        },
+                    ],
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
                     },
-                    {
-                        "account_type": "checking",
-                        "party_type": "business",
-                        "party_address": {
-                            "line1": "string",
-                            "line2": "string",
-                            "locality": "string",
-                            "region": "string",
-                            "postal_code": "string",
-                            "country": "string",
+                    "party_name": "string",
+                    "party_identifier": "string",
+                    "plaid_processor_token": "string",
+                    "contact_details": [
+                        {
+                            "contact_identifier": "string",
+                            "contact_identifier_type": "email",
                         },
-                        "name": "string",
-                        "account_details": [
-                            {
-                                "account_number": "string",
-                                "account_number_type": "iban",
-                            },
-                            {
-                                "account_number": "string",
-                                "account_number_type": "iban",
-                            },
-                            {
-                                "account_number": "string",
-                                "account_number_type": "iban",
-                            },
-                        ],
-                        "routing_details": [
-                            {
-                                "routing_number": "string",
-                                "routing_number_type": "aba",
-                                "payment_type": "ach",
-                            },
-                            {
-                                "routing_number": "string",
-                                "routing_number_type": "aba",
-                                "payment_type": "ach",
-                            },
-                            {
-                                "routing_number": "string",
-                                "routing_number_type": "aba",
-                                "payment_type": "ach",
-                            },
-                        ],
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
+                        {
+                            "contact_identifier": "string",
+                            "contact_identifier_type": "email",
                         },
-                        "party_name": "string",
-                        "party_identifier": "string",
-                        "plaid_processor_token": "string",
-                        "contact_details": [
-                            {
-                                "contact_identifier": "string",
-                                "contact_identifier_type": "email",
-                            },
-                            {
-                                "contact_identifier": "string",
-                                "contact_identifier_type": "email",
-                            },
-                            {
-                                "contact_identifier": "string",
-                                "contact_identifier_type": "email",
-                            },
-                        ],
-                    },
-                ],
-                "email": "dev@stainlessapi.com",
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
+                        {
+                            "contact_identifier": "string",
+                            "contact_identifier_type": "email",
+                        },
+                    ],
                 },
-                "send_remittance_advice": True,
-                "accounting": {"type": "customer"},
-                "ledger_type": "customer",
-                "taxpayer_identifier": "string",
+                {
+                    "account_type": "checking",
+                    "party_type": "business",
+                    "party_address": {
+                        "line1": "string",
+                        "line2": "string",
+                        "locality": "string",
+                        "region": "string",
+                        "postal_code": "string",
+                        "country": "string",
+                    },
+                    "name": "string",
+                    "account_details": [
+                        {
+                            "account_number": "string",
+                            "account_number_type": "iban",
+                        },
+                        {
+                            "account_number": "string",
+                            "account_number_type": "iban",
+                        },
+                        {
+                            "account_number": "string",
+                            "account_number_type": "iban",
+                        },
+                    ],
+                    "routing_details": [
+                        {
+                            "routing_number": "string",
+                            "routing_number_type": "aba",
+                            "payment_type": "ach",
+                        },
+                        {
+                            "routing_number": "string",
+                            "routing_number_type": "aba",
+                            "payment_type": "ach",
+                        },
+                        {
+                            "routing_number": "string",
+                            "routing_number_type": "aba",
+                            "payment_type": "ach",
+                        },
+                    ],
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
+                    "party_name": "string",
+                    "party_identifier": "string",
+                    "plaid_processor_token": "string",
+                    "contact_details": [
+                        {
+                            "contact_identifier": "string",
+                            "contact_identifier_type": "email",
+                        },
+                        {
+                            "contact_identifier": "string",
+                            "contact_identifier_type": "email",
+                        },
+                        {
+                            "contact_identifier": "string",
+                            "contact_identifier_type": "email",
+                        },
+                    ],
+                },
+                {
+                    "account_type": "checking",
+                    "party_type": "business",
+                    "party_address": {
+                        "line1": "string",
+                        "line2": "string",
+                        "locality": "string",
+                        "region": "string",
+                        "postal_code": "string",
+                        "country": "string",
+                    },
+                    "name": "string",
+                    "account_details": [
+                        {
+                            "account_number": "string",
+                            "account_number_type": "iban",
+                        },
+                        {
+                            "account_number": "string",
+                            "account_number_type": "iban",
+                        },
+                        {
+                            "account_number": "string",
+                            "account_number_type": "iban",
+                        },
+                    ],
+                    "routing_details": [
+                        {
+                            "routing_number": "string",
+                            "routing_number_type": "aba",
+                            "payment_type": "ach",
+                        },
+                        {
+                            "routing_number": "string",
+                            "routing_number_type": "aba",
+                            "payment_type": "ach",
+                        },
+                        {
+                            "routing_number": "string",
+                            "routing_number_type": "aba",
+                            "payment_type": "ach",
+                        },
+                    ],
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
+                    "party_name": "string",
+                    "party_identifier": "string",
+                    "plaid_processor_token": "string",
+                    "contact_details": [
+                        {
+                            "contact_identifier": "string",
+                            "contact_identifier_type": "email",
+                        },
+                        {
+                            "contact_identifier": "string",
+                            "contact_identifier_type": "email",
+                        },
+                        {
+                            "contact_identifier": "string",
+                            "contact_identifier_type": "email",
+                        },
+                    ],
+                },
+            ],
+            email="dev@stainlessapi.com",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
             },
+            send_remittance_advice=True,
+            accounting={"type": "customer"},
+            ledger_type="customer",
+            taxpayer_identifier="string",
         )
         assert isinstance(resource, Counterparty)
 
@@ -578,16 +568,14 @@ class TestAsyncCounterparties:
         assert isinstance(resource, Counterparty)
 
     @parametrize
-    async def test_method_update_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.counterparties.update(
             "string",
-            {
-                "name": "string",
-                "email": "dev@stainlessapi.com",
-                "metadata": {"foo": "string"},
-                "send_remittance_advice": True,
-                "taxpayer_identifier": "string",
-            },
+            name="string",
+            email="dev@stainlessapi.com",
+            metadata={"foo": "string"},
+            send_remittance_advice=True,
+            taxpayer_identifier="string",
         )
         assert isinstance(resource, Counterparty)
 
@@ -597,17 +585,15 @@ class TestAsyncCounterparties:
         assert isinstance(resource, AsyncPage)
 
     @parametrize
-    async def test_method_list_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.counterparties.list(
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "name": "string",
-                "email": "dev@stainlessapi.com",
-                "metadata": {"foo": "string"},
-                "created_at_lower_bound": "2019-12-27T18:11:19.117Z",
-                "created_at_upper_bound": "2019-12-27T18:11:19.117Z",
-            },
+            after_cursor="string",
+            per_page=0,
+            name="string",
+            email="dev@stainlessapi.com",
+            metadata={"foo": "string"},
+            created_at_lower_bound="2019-12-27T18:11:19.117Z",
+            created_at_upper_bound="2019-12-27T18:11:19.117Z",
         )
         assert isinstance(resource, AsyncPage)
 
@@ -622,19 +608,17 @@ class TestAsyncCounterparties:
     async def test_method_collect_account(self, client: AsyncModernTreasury) -> None:
         resource = await client.counterparties.collect_account(
             "string",
-            {"direction": "credit"},
+            direction="credit",
         )
         assert isinstance(resource, CounterpartyCollectAccountResponse)
 
     @parametrize
-    async def test_method_collect_account_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_collect_account_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.counterparties.collect_account(
             "string",
-            {
-                "direction": "credit",
-                "send_email": True,
-                "fields": ["name", "name", "name"],
-                "custom_redirect": "https://example.com",
-            },
+            direction="credit",
+            send_email=True,
+            fields=["name", "name", "name"],
+            custom_redirect="https://example.com",
         )
         assert isinstance(resource, CounterpartyCollectAccountResponse)

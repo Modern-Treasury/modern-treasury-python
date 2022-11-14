@@ -123,7 +123,7 @@ class Accounting(TypedDict, total=False):
 
 
 class CounterpartyCreateParams(TypedDict, total=False):
-    name: Required[str]
+    name: Required[Optional[str]]
     """A human friendly name for this counterparty."""
 
     accounting: Accounting
