@@ -47,7 +47,7 @@ class RoutingDetails(TypedDict, total=False):
         "card",
         "check",
         "eft",
-        "global_pay",
+        "cross_border",
         "interac",
         "provxchange",
         "rtp",
