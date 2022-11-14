@@ -1,7 +1,6 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import List, Type, Generic, Mapping, TypeVar, Optional
-from typing_extensions import TypedDict
 
 from httpx import Response
 
@@ -9,18 +8,12 @@ from ._types import ModelT
 from ._models import BaseModel
 from ._base_client import BasePage, PageInfo, BaseSyncPage, BaseAsyncPage
 
-__all__ = ["PageParams", "SyncPage", "AsyncPage"]
+__all__ = ["SyncPage", "AsyncPage"]
 
 _BaseModelT = TypeVar("_BaseModelT", bound=BaseModel)
 
 
-class PageParams(TypedDict, total=False):
-    after_cursor: Optional[str]
-
-    per_page: int
-
-
-class SyncPage(BaseSyncPage[ModelT], BasePage[ModelT, PageParams], Generic[ModelT]):
+class SyncPage(BaseSyncPage[ModelT], BasePage[ModelT], Generic[ModelT]):
     items: List[ModelT]
     per_page: Optional[int]
     after_cursor: Optional[str]
@@ -46,7 +39,7 @@ class SyncPage(BaseSyncPage[ModelT], BasePage[ModelT, PageParams], Generic[Model
         )
 
 
-class AsyncPage(BaseAsyncPage[ModelT], BasePage[ModelT, PageParams], Generic[ModelT]):
+class AsyncPage(BaseAsyncPage[ModelT], BasePage[ModelT], Generic[ModelT]):
     items: List[ModelT]
     per_page: Optional[int]
     after_cursor: Optional[str]

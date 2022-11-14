@@ -89,7 +89,7 @@ class TestReversals:
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         resource = client.payment_orders.reversals.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            payment_order_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert isinstance(resource, Reversal)
 
@@ -186,7 +186,7 @@ class TestAsyncReversals:
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         resource = await client.payment_orders.reversals.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            payment_order_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert isinstance(resource, Reversal)
 

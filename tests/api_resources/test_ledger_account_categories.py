@@ -105,7 +105,7 @@ class TestLedgerAccountCategories:
     def test_method_add_ledger_account(self, client: ModernTreasury) -> None:
         resource = client.ledger_account_categories.add_ledger_account(
             "string",
-            "string",
+            id="string",
         )
         assert resource is None
 
@@ -113,7 +113,7 @@ class TestLedgerAccountCategories:
     def test_method_add_nested_category(self, client: ModernTreasury) -> None:
         resource = client.ledger_account_categories.add_nested_category(
             "string",
-            "string",
+            id="string",
         )
         assert resource is None
 
@@ -121,7 +121,7 @@ class TestLedgerAccountCategories:
     def test_method_remove_ledger_account(self, client: ModernTreasury) -> None:
         resource = client.ledger_account_categories.remove_ledger_account(
             "string",
-            "string",
+            id="string",
         )
         assert resource is None
 
@@ -129,7 +129,7 @@ class TestLedgerAccountCategories:
     def test_method_remove_nested_category(self, client: ModernTreasury) -> None:
         resource = client.ledger_account_categories.remove_nested_category(
             "string",
-            "string",
+            id="string",
         )
         assert resource is None
 
@@ -226,7 +226,7 @@ class TestAsyncLedgerAccountCategories:
     async def test_method_add_ledger_account(self, client: AsyncModernTreasury) -> None:
         resource = await client.ledger_account_categories.add_ledger_account(
             "string",
-            "string",
+            id="string",
         )
         assert resource is None
 
@@ -234,7 +234,7 @@ class TestAsyncLedgerAccountCategories:
     async def test_method_add_nested_category(self, client: AsyncModernTreasury) -> None:
         resource = await client.ledger_account_categories.add_nested_category(
             "string",
-            "string",
+            id="string",
         )
         assert resource is None
 
@@ -242,7 +242,7 @@ class TestAsyncLedgerAccountCategories:
     async def test_method_remove_ledger_account(self, client: AsyncModernTreasury) -> None:
         resource = await client.ledger_account_categories.remove_ledger_account(
             "string",
-            "string",
+            id="string",
         )
         assert resource is None
 
@@ -250,6 +250,6 @@ class TestAsyncLedgerAccountCategories:
     async def test_method_remove_nested_category(self, client: AsyncModernTreasury) -> None:
         resource = await client.ledger_account_categories.remove_nested_category(
             "string",
-            "string",
+            id="string",
         )
         assert resource is None

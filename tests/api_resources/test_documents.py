@@ -26,8 +26,8 @@ class TestDocuments:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         resource = client.documents.create(
-            "cases",
             "string",
+            documentable_type="cases",
             file=b"raw file contents",
         )
         assert isinstance(resource, Document)
@@ -36,8 +36,8 @@ class TestDocuments:
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.documents.create(
-            "cases",
             "string",
+            documentable_type="cases",
             document_type="string",
             file=b"raw file contents",
         )
@@ -46,25 +46,25 @@ class TestDocuments:
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         resource = client.documents.retrieve(
-            "cases",
-            "string",
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            documentable_type="cases",
+            documentable_id="string",
         )
         assert isinstance(resource, Document)
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         resource = client.documents.list(
-            "cases",
             "string",
+            documentable_type="cases",
         )
         assert isinstance(resource, SyncPage)
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.documents.list(
-            "cases",
             "string",
+            documentable_type="cases",
             after_cursor="string",
             per_page=0,
         )
@@ -84,8 +84,8 @@ class TestAsyncDocuments:
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         resource = await client.documents.create(
-            "cases",
             "string",
+            documentable_type="cases",
             file=b"raw file contents",
         )
         assert isinstance(resource, Document)
@@ -94,8 +94,8 @@ class TestAsyncDocuments:
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.documents.create(
-            "cases",
             "string",
+            documentable_type="cases",
             document_type="string",
             file=b"raw file contents",
         )
@@ -104,25 +104,25 @@ class TestAsyncDocuments:
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         resource = await client.documents.retrieve(
-            "cases",
-            "string",
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            documentable_type="cases",
+            documentable_id="string",
         )
         assert isinstance(resource, Document)
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
         resource = await client.documents.list(
-            "cases",
             "string",
+            documentable_type="cases",
         )
         assert isinstance(resource, AsyncPage)
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.documents.list(
-            "cases",
             "string",
+            documentable_type="cases",
             after_cursor="string",
             per_page=0,
         )

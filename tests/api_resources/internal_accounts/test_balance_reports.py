@@ -26,7 +26,7 @@ class TestBalanceReports:
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         resource = client.internal_accounts.balance_reports.retrieve(
             "string",
-            "string",
+            internal_account_id="string",
         )
         assert isinstance(resource, BalanceReport)
 
@@ -62,7 +62,7 @@ class TestAsyncBalanceReports:
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         resource = await client.internal_accounts.balance_reports.retrieve(
             "string",
-            "string",
+            internal_account_id="string",
         )
         assert isinstance(resource, BalanceReport)
 
