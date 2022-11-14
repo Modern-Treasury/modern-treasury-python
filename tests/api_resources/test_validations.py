@@ -26,20 +26,16 @@ class TestValidations:
     @parametrize
     def test_method_validate_routing_number(self, client: ModernTreasury) -> None:
         resource = client.validations.validate_routing_number(
-            {
-                "routing_number": "string",
-                "routing_number_type": "aba",
-            },
+            routing_number="string",
+            routing_number_type="aba",
         )
         assert isinstance(resource, RoutingNumberLookupRequest)
 
     @parametrize
-    def test_method_validate_routing_number_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_validate_routing_number_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.validations.validate_routing_number(
-            {
-                "routing_number": "string",
-                "routing_number_type": "aba",
-            },
+            routing_number="string",
+            routing_number_type="aba",
         )
         assert isinstance(resource, RoutingNumberLookupRequest)
 
@@ -56,19 +52,15 @@ class TestAsyncValidations:
     @parametrize
     async def test_method_validate_routing_number(self, client: AsyncModernTreasury) -> None:
         resource = await client.validations.validate_routing_number(
-            {
-                "routing_number": "string",
-                "routing_number_type": "aba",
-            },
+            routing_number="string",
+            routing_number_type="aba",
         )
         assert isinstance(resource, RoutingNumberLookupRequest)
 
     @parametrize
-    async def test_method_validate_routing_number_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_validate_routing_number_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.validations.validate_routing_number(
-            {
-                "routing_number": "string",
-                "routing_number_type": "aba",
-            },
+            routing_number="string",
+            routing_number_type="aba",
         )
         assert isinstance(resource, RoutingNumberLookupRequest)

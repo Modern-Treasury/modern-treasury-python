@@ -4,12 +4,14 @@ from __future__ import annotations
 
 import os
 import base64
+import warnings
 from typing import Dict, Union, Mapping, Optional
 
 from . import resources
 from ._qs import Querystring
 from ._types import (
     NOT_GIVEN,
+    Body,
     Query,
     Headers,
     Timeout,
@@ -104,7 +106,9 @@ class ModernTreasury(SyncAPIClient):
         """
         api_key = api_key or os.environ.get("MODERN_TREASURY_API_KEY", "")
         if not api_key:
-            raise Exception("No api_key argument provided")
+            raise Exception(
+                "The api_key client option must be set either by passing api_key to the client or by setting the MODERN_TREASURY_API_KEY environment variable"
+            )
 
         if base_url is None:
             base_url = "https://app.moderntreasury.com"
@@ -225,6 +229,12 @@ class ModernTreasury(SyncAPIClient):
     def ping(
         self,
         *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        # deprecated options params
         headers: Union[Headers, NotGiven] = NOT_GIVEN,
         max_retries: Union[int, NotGiven] = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
@@ -234,10 +244,24 @@ class ModernTreasury(SyncAPIClient):
         A test endpoint often used to confirm credentials and headers are being passed
         in correctly.
         """
-        options = make_request_options(headers, max_retries, timeout, query)
+        if query is not None:
+            warnings.warn(
+                "The `query` argument is deprecated. Please use `extra_query` instead",
+                DeprecationWarning,
+                stacklevel=3,
+            )
+
         return self.get(
             "/api/ping",
-            options=options,
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                headers=headers,
+                max_retries=max_retries,
+                timeout=timeout,
+                query=query,
+            ),
             cast_to=PingResponse,
         )
 
@@ -305,7 +329,9 @@ class AsyncModernTreasury(AsyncAPIClient):
         """
         api_key = api_key or os.environ.get("MODERN_TREASURY_API_KEY", "")
         if not api_key:
-            raise Exception("No api_key argument provided")
+            raise Exception(
+                "The api_key client option must be set either by passing api_key to the client or by setting the MODERN_TREASURY_API_KEY environment variable"
+            )
 
         if base_url is None:
             base_url = "https://app.moderntreasury.com"
@@ -426,6 +452,12 @@ class AsyncModernTreasury(AsyncAPIClient):
     async def ping(
         self,
         *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        # deprecated options params
         headers: Union[Headers, NotGiven] = NOT_GIVEN,
         max_retries: Union[int, NotGiven] = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
@@ -435,10 +467,24 @@ class AsyncModernTreasury(AsyncAPIClient):
         A test endpoint often used to confirm credentials and headers are being passed
         in correctly.
         """
-        options = make_request_options(headers, max_retries, timeout, query)
+        if query is not None:
+            warnings.warn(
+                "The `query` argument is deprecated. Please use `extra_query` instead",
+                DeprecationWarning,
+                stacklevel=3,
+            )
+
         return await self.get(
             "/api/ping",
-            options=options,
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                headers=headers,
+                max_retries=max_retries,
+                timeout=timeout,
+                query=query,
+            ),
             cast_to=PingResponse,
         )
 

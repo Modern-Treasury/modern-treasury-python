@@ -169,6 +169,9 @@ class PaymentOrder(BaseModel):
     is a bank holiday or weekend. Format: yyyy-mm-dd.
     """
 
+    expires_at: Optional[str]
+    """RFP payments require an expires_at. This value must be past the effective_date."""
+
     foreign_exchange_contract: Optional[str]
     """
     If present, indicates a specific foreign exchange contract number that has been

@@ -52,6 +52,9 @@ class ExpectedPayment(BaseModel):
     internal_account_id: str
     """The ID of the Internal Account for the expected payment."""
 
+    ledger_transaction_id: Optional[str]
+    """The ID of the ledger transaction linked to the expected payment."""
+
     live_mode: bool
     """
     This field will be true if this object exists in the live environment or false

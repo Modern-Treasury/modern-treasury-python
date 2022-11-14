@@ -138,7 +138,7 @@ class Counterparty(BaseModel):
     Both the key and value must be strings.
     """
 
-    name: str
+    name: Optional[str]
     """A human friendly name for this counterparty."""
 
     object: str

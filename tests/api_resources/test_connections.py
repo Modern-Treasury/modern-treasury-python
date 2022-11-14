@@ -27,14 +27,12 @@ class TestConnections:
         assert isinstance(resource, SyncPage)
 
     @parametrize
-    def test_method_list_with_optional_params(self, client: ModernTreasury) -> None:
+    def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.connections.list(
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "vendor_customer_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "entity": "string",
-            },
+            after_cursor="string",
+            per_page=0,
+            vendor_customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            entity="string",
         )
         assert isinstance(resource, SyncPage)
 
@@ -54,13 +52,11 @@ class TestAsyncConnections:
         assert isinstance(resource, AsyncPage)
 
     @parametrize
-    async def test_method_list_with_optional_params(self, client: AsyncModernTreasury) -> None:
+    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.connections.list(
-            {
-                "after_cursor": "string",
-                "per_page": 0,
-                "vendor_customer_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "entity": "string",
-            },
+            after_cursor="string",
+            per_page=0,
+            vendor_customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            entity="string",
         )
         assert isinstance(resource, AsyncPage)

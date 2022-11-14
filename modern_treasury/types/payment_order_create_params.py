@@ -361,6 +361,9 @@ class PaymentOrderCreateParams(TypedDict, total=False):
     is a bank holiday or weekend. Format: yyyy-mm-dd.
     """
 
+    expires_at: Optional[str]
+    """RFP payments require an expires_at. This value must be past the effective_date."""
+
     fallback_type: Literal["ach"]
     """
     A payment type to fallback to if the original type is not valid for the
