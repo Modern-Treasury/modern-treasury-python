@@ -3,7 +3,7 @@
 from typing import Dict, List, Optional
 from typing_extensions import Literal
 
-from ..types import shared, connection
+from ..types import shared, connection, account_detail, routing_detail
 from .._models import BaseModel
 
 __all__ = ["PartyAddress", "InternalAccount"]
@@ -42,7 +42,7 @@ class PartyAddress(BaseModel):
 
 
 class InternalAccount(BaseModel):
-    account_details: List[shared.AccountDetail]
+    account_details: List[account_detail.AccountDetail]
     """An array of account detail objects."""
 
     account_type: Optional[Literal["checking", "other", "savings"]]
@@ -90,7 +90,7 @@ class InternalAccount(BaseModel):
     party_type: Optional[Literal["business", "individual"]]
     """Either individual or business."""
 
-    routing_details: List[shared.RoutingDetail]
+    routing_details: List[routing_detail.RoutingDetail]
     """An array of routing detail objects."""
 
     updated_at: str
