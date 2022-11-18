@@ -5,11 +5,11 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal
 
-from ..types import shared
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
+from ..types.routing_detail import RoutingDetail
 
 __all__ = ["RoutingDetails", "AsyncRoutingDetails"]
 
@@ -49,7 +49,7 @@ class RoutingDetails(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> shared.RoutingDetail:
+    ) -> RoutingDetail:
         """
         Create a routing detail for a single external account.
 
@@ -75,7 +75,7 @@ class RoutingDetails(SyncAPIResource):
                 "payment_type": payment_type,
             },
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
-            cast_to=shared.RoutingDetail,
+            cast_to=RoutingDetail,
         )
 
     def retrieve(
@@ -89,12 +89,12 @@ class RoutingDetails(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> shared.RoutingDetail:
+    ) -> RoutingDetail:
         """Get a single routing detail for a single internal or external account."""
         return self._get(
             f"/api/{accounts_type}/{account_id}/routing_details/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
-            cast_to=shared.RoutingDetail,
+            cast_to=RoutingDetail,
         )
 
     def list(
@@ -109,7 +109,7 @@ class RoutingDetails(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> SyncPage[shared.RoutingDetail]:
+    ) -> SyncPage[RoutingDetail]:
         """
         Get a list of routing details for a single internal or external account.
 
@@ -122,7 +122,7 @@ class RoutingDetails(SyncAPIResource):
         """
         return self._get_api_list(
             f"/api/{accounts_type}/{account_id}/routing_details",
-            page=SyncPage[shared.RoutingDetail],
+            page=SyncPage[RoutingDetail],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -132,7 +132,7 @@ class RoutingDetails(SyncAPIResource):
                     "per_page": per_page,
                 },
             ),
-            model=shared.RoutingDetail,
+            model=RoutingDetail,
         )
 
     def delete(
@@ -191,7 +191,7 @@ class AsyncRoutingDetails(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> shared.RoutingDetail:
+    ) -> RoutingDetail:
         """
         Create a routing detail for a single external account.
 
@@ -217,7 +217,7 @@ class AsyncRoutingDetails(AsyncAPIResource):
                 "payment_type": payment_type,
             },
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
-            cast_to=shared.RoutingDetail,
+            cast_to=RoutingDetail,
         )
 
     async def retrieve(
@@ -231,12 +231,12 @@ class AsyncRoutingDetails(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> shared.RoutingDetail:
+    ) -> RoutingDetail:
         """Get a single routing detail for a single internal or external account."""
         return await self._get(
             f"/api/{accounts_type}/{account_id}/routing_details/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
-            cast_to=shared.RoutingDetail,
+            cast_to=RoutingDetail,
         )
 
     def list(
@@ -251,7 +251,7 @@ class AsyncRoutingDetails(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> AsyncPaginator[shared.RoutingDetail, AsyncPage[shared.RoutingDetail]]:
+    ) -> AsyncPaginator[RoutingDetail, AsyncPage[RoutingDetail]]:
         """
         Get a list of routing details for a single internal or external account.
 
@@ -264,7 +264,7 @@ class AsyncRoutingDetails(AsyncAPIResource):
         """
         return self._get_api_list(
             f"/api/{accounts_type}/{account_id}/routing_details",
-            page=AsyncPage[shared.RoutingDetail],
+            page=AsyncPage[RoutingDetail],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -274,7 +274,7 @@ class AsyncRoutingDetails(AsyncAPIResource):
                     "per_page": per_page,
                 },
             ),
-            model=shared.RoutingDetail,
+            model=RoutingDetail,
         )
 
     async def delete(

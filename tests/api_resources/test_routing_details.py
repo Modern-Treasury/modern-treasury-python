@@ -6,8 +6,8 @@ import os
 import pytest
 
 from modern_treasury import ModernTreasury, AsyncModernTreasury
-from modern_treasury.types import shared
 from modern_treasury.pagination import SyncPage, AsyncPage
+from modern_treasury.types.routing_detail import RoutingDetail
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
 api_key = os.environ.get("API_KEY", "something1234")
@@ -30,7 +30,7 @@ class TestRoutingDetails:
             routing_number="string",
             routing_number_type="aba",
         )
-        assert isinstance(resource, shared.RoutingDetail)
+        assert isinstance(resource, RoutingDetail)
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
@@ -41,7 +41,7 @@ class TestRoutingDetails:
             routing_number_type="aba",
             payment_type="ach",
         )
-        assert isinstance(resource, shared.RoutingDetail)
+        assert isinstance(resource, RoutingDetail)
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
@@ -50,7 +50,7 @@ class TestRoutingDetails:
             accounts_type="external_accounts",
             account_id="string",
         )
-        assert isinstance(resource, shared.RoutingDetail)
+        assert isinstance(resource, RoutingDetail)
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -97,7 +97,7 @@ class TestAsyncRoutingDetails:
             routing_number="string",
             routing_number_type="aba",
         )
-        assert isinstance(resource, shared.RoutingDetail)
+        assert isinstance(resource, RoutingDetail)
 
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
@@ -108,7 +108,7 @@ class TestAsyncRoutingDetails:
             routing_number_type="aba",
             payment_type="ach",
         )
-        assert isinstance(resource, shared.RoutingDetail)
+        assert isinstance(resource, RoutingDetail)
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
@@ -117,7 +117,7 @@ class TestAsyncRoutingDetails:
             accounts_type="external_accounts",
             account_id="string",
         )
-        assert isinstance(resource, shared.RoutingDetail)
+        assert isinstance(resource, RoutingDetail)
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:

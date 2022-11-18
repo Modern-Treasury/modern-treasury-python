@@ -5,11 +5,11 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal
 
-from ..types import shared
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
+from ..types.account_detail import AccountDetail
 
 __all__ = ["AccountDetails", "AsyncAccountDetails"]
 
@@ -27,7 +27,7 @@ class AccountDetails(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> shared.AccountDetail:
+    ) -> AccountDetail:
         """
         Create an account detail for an external account.
 
@@ -50,7 +50,7 @@ class AccountDetails(SyncAPIResource):
                 "account_number_type": account_number_type,
             },
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
-            cast_to=shared.AccountDetail,
+            cast_to=AccountDetail,
         )
 
     def retrieve(
@@ -64,12 +64,12 @@ class AccountDetails(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> shared.AccountDetail:
+    ) -> AccountDetail:
         """Get a single account detail for a single internal or external account."""
         return self._get(
             f"/api/{accounts_type}/{account_id}/account_details/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
-            cast_to=shared.AccountDetail,
+            cast_to=AccountDetail,
         )
 
     def list(
@@ -84,7 +84,7 @@ class AccountDetails(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> SyncPage[shared.AccountDetail]:
+    ) -> SyncPage[AccountDetail]:
         """
         Get a list of account details for a single internal or external account.
 
@@ -97,7 +97,7 @@ class AccountDetails(SyncAPIResource):
         """
         return self._get_api_list(
             f"/api/{accounts_type}/{account_id}/account_details",
-            page=SyncPage[shared.AccountDetail],
+            page=SyncPage[AccountDetail],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -107,7 +107,7 @@ class AccountDetails(SyncAPIResource):
                     "per_page": per_page,
                 },
             ),
-            model=shared.AccountDetail,
+            model=AccountDetail,
         )
 
     def delete(
@@ -144,7 +144,7 @@ class AsyncAccountDetails(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> shared.AccountDetail:
+    ) -> AccountDetail:
         """
         Create an account detail for an external account.
 
@@ -167,7 +167,7 @@ class AsyncAccountDetails(AsyncAPIResource):
                 "account_number_type": account_number_type,
             },
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
-            cast_to=shared.AccountDetail,
+            cast_to=AccountDetail,
         )
 
     async def retrieve(
@@ -181,12 +181,12 @@ class AsyncAccountDetails(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> shared.AccountDetail:
+    ) -> AccountDetail:
         """Get a single account detail for a single internal or external account."""
         return await self._get(
             f"/api/{accounts_type}/{account_id}/account_details/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
-            cast_to=shared.AccountDetail,
+            cast_to=AccountDetail,
         )
 
     def list(
@@ -201,7 +201,7 @@ class AsyncAccountDetails(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> AsyncPaginator[shared.AccountDetail, AsyncPage[shared.AccountDetail]]:
+    ) -> AsyncPaginator[AccountDetail, AsyncPage[AccountDetail]]:
         """
         Get a list of account details for a single internal or external account.
 
@@ -214,7 +214,7 @@ class AsyncAccountDetails(AsyncAPIResource):
         """
         return self._get_api_list(
             f"/api/{accounts_type}/{account_id}/account_details",
-            page=AsyncPage[shared.AccountDetail],
+            page=AsyncPage[AccountDetail],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -224,7 +224,7 @@ class AsyncAccountDetails(AsyncAPIResource):
                     "per_page": per_page,
                 },
             ),
-            model=shared.AccountDetail,
+            model=AccountDetail,
         )
 
     async def delete(
