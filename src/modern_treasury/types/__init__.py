@@ -3,8 +3,6 @@
 from .event import Event as Event
 from .ledger import Ledger as Ledger
 from .shared import Currency as Currency
-from .shared import AccountDetail as AccountDetail
-from .shared import RoutingDetail as RoutingDetail
 from .document import Document as Document
 from .line_item import LineItem as LineItem
 from .connection import Connection as Connection
@@ -14,7 +12,9 @@ from .counterparty import Counterparty as Counterparty
 from .ledger_entry import LedgerEntry as LedgerEntry
 from .payment_order import PaymentOrder as PaymentOrder
 from .return_object import ReturnObject as ReturnObject
+from .account_detail import AccountDetail as AccountDetail
 from .ledger_account import LedgerAccount as LedgerAccount
+from .routing_detail import RoutingDetail as RoutingDetail
 from .expected_payment import ExpectedPayment as ExpectedPayment
 from .external_account import ExternalAccount as ExternalAccount
 from .internal_account import InternalAccount as InternalAccount

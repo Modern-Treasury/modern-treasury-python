@@ -3,14 +3,14 @@
 from typing import Dict, List, Optional
 from typing_extensions import Literal
 
-from ..types import shared
+from ..types import shared, account_detail, routing_detail
 from .._models import BaseModel
 
 __all__ = ["VirtualAccount", "IncomingPaymentDetail"]
 
 
 class VirtualAccount(BaseModel):
-    account_details: List[shared.AccountDetail]
+    account_details: List[account_detail.AccountDetail]
     """An array of account detail objects."""
 
     counterparty_id: Optional[str]
@@ -59,7 +59,7 @@ class VirtualAccount(BaseModel):
 
     object: str
 
-    routing_details: List[shared.RoutingDetail]
+    routing_details: List[routing_detail.RoutingDetail]
     """An array of routing detail objects.
 
     These will be the routing details of the internal account.

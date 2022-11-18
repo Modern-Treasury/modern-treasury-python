@@ -6,8 +6,8 @@ import os
 import pytest
 
 from modern_treasury import ModernTreasury, AsyncModernTreasury
-from modern_treasury.types import shared
 from modern_treasury.pagination import SyncPage, AsyncPage
+from modern_treasury.types.account_detail import AccountDetail
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
 api_key = os.environ.get("API_KEY", "something1234")
@@ -29,7 +29,7 @@ class TestAccountDetails:
             accounts_type="external_accounts",
             account_number="string",
         )
-        assert isinstance(resource, shared.AccountDetail)
+        assert isinstance(resource, AccountDetail)
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
@@ -39,7 +39,7 @@ class TestAccountDetails:
             account_number="string",
             account_number_type="clabe",
         )
-        assert isinstance(resource, shared.AccountDetail)
+        assert isinstance(resource, AccountDetail)
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
@@ -48,7 +48,7 @@ class TestAccountDetails:
             accounts_type="external_accounts",
             account_id="string",
         )
-        assert isinstance(resource, shared.AccountDetail)
+        assert isinstance(resource, AccountDetail)
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -94,7 +94,7 @@ class TestAsyncAccountDetails:
             accounts_type="external_accounts",
             account_number="string",
         )
-        assert isinstance(resource, shared.AccountDetail)
+        assert isinstance(resource, AccountDetail)
 
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
@@ -104,7 +104,7 @@ class TestAsyncAccountDetails:
             account_number="string",
             account_number_type="clabe",
         )
-        assert isinstance(resource, shared.AccountDetail)
+        assert isinstance(resource, AccountDetail)
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
@@ -113,7 +113,7 @@ class TestAsyncAccountDetails:
             accounts_type="external_accounts",
             account_id="string",
         )
-        assert isinstance(resource, shared.AccountDetail)
+        assert isinstance(resource, AccountDetail)
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
