@@ -66,7 +66,7 @@ class AccountsContactDetails(BaseModel):
 class Accounts(BaseModel):
     account_details: Optional[List[account_detail.AccountDetail]]
 
-    account_type: Optional[Literal["checking", "other", "savings"]]
+    account_type: Optional[Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]]
     """Can be `checking`, `savings` or `other`."""
 
     contact_details: Optional[List[AccountsContactDetails]]

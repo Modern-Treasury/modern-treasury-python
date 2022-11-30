@@ -152,6 +152,12 @@ class ReturnObject(BaseModel):
     passed away.
     """
 
+    failure_reason: Optional[str]
+    """
+    If an originating return failed to be processed by the bank, a description of
+    the failure reason will be available.
+    """
+
     id: str
 
     internal_account_id: Optional[str]

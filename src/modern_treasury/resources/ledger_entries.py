@@ -40,6 +40,7 @@ class LedgerEntries(SyncAPIResource):
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         effective_date: Dict[str, str] | NotGiven = NOT_GIVEN,
+        effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
         updated_at: Dict[str, str] | NotGiven = NOT_GIVEN,
         ledger_account_lock_version: Dict[str, int] | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
@@ -55,14 +56,17 @@ class LedgerEntries(SyncAPIResource):
         Get a list of all ledger entries.
 
         Args:
-          effective_date: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+          effective_date: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               transaction's effective date. Format YYYY-MM-DD
 
-          updated_at: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+          effective_at: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+              transaction's effective time. Format ISO8601
+
+          updated_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
               updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
 
-          ledger_account_lock_version: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+          ledger_account_lock_version: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               lock_version of a ledger account. For example, for all entries created at or
               before before lock_version 1000 of a ledger account, use
               ledger_account_lock_version%5Blte%5D=1000
@@ -97,6 +101,7 @@ class LedgerEntries(SyncAPIResource):
                     "ledger_account_id": ledger_account_id,
                     "ledger_transaction_id": ledger_transaction_id,
                     "effective_date": effective_date,
+                    "effective_at": effective_at,
                     "updated_at": updated_at,
                     "ledger_account_lock_version": ledger_account_lock_version,
                     "ledger_account_category_id": ledger_account_category_id,
@@ -134,6 +139,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         effective_date: Dict[str, str] | NotGiven = NOT_GIVEN,
+        effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
         updated_at: Dict[str, str] | NotGiven = NOT_GIVEN,
         ledger_account_lock_version: Dict[str, int] | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
@@ -149,14 +155,17 @@ class AsyncLedgerEntries(AsyncAPIResource):
         Get a list of all ledger entries.
 
         Args:
-          effective_date: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+          effective_date: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               transaction's effective date. Format YYYY-MM-DD
 
-          updated_at: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+          effective_at: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+              transaction's effective time. Format ISO8601
+
+          updated_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
               updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
 
-          ledger_account_lock_version: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+          ledger_account_lock_version: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               lock_version of a ledger account. For example, for all entries created at or
               before before lock_version 1000 of a ledger account, use
               ledger_account_lock_version%5Blte%5D=1000
@@ -191,6 +200,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
                     "ledger_account_id": ledger_account_id,
                     "ledger_transaction_id": ledger_transaction_id,
                     "effective_date": effective_date,
+                    "effective_at": effective_at,
                     "updated_at": updated_at,
                     "ledger_account_lock_version": ledger_account_lock_version,
                     "ledger_account_category_id": ledger_account_category_id,

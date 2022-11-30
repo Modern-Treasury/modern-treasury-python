@@ -32,7 +32,7 @@ class LedgerTransactionLedgerEntries(TypedDict, total=False):
 
     available_balance_amount: Optional[Dict[str, int]]
     """
-    Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
     account’s available balance. If any of these conditions would be false after the
     transaction is created, the entire call will fail with error code 422.
     """
@@ -47,14 +47,14 @@ class LedgerTransactionLedgerEntries(TypedDict, total=False):
 
     pending_balance_amount: Optional[Dict[str, int]]
     """
-    Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
     account’s pending balance. If any of these conditions would be false after the
     transaction is created, the entire call will fail with error code 422.
     """
 
     posted_balance_amount: Optional[Dict[str, int]]
     """
-    Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
     account’s posted balance. If any of these conditions would be false after the
     transaction is created, the entire call will fail with error code 422.
     """

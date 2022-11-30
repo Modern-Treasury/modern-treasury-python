@@ -38,7 +38,7 @@ class TestCounterparties:
             name="string",
             accounts=[
                 {
-                    "account_type": "checking",
+                    "account_type": "cash",
                     "party_type": "business",
                     "party_address": {
                         "line1": "string",
@@ -104,7 +104,7 @@ class TestCounterparties:
                     ],
                 },
                 {
-                    "account_type": "checking",
+                    "account_type": "cash",
                     "party_type": "business",
                     "party_address": {
                         "line1": "string",
@@ -170,7 +170,7 @@ class TestCounterparties:
                     ],
                 },
                 {
-                    "account_type": "checking",
+                    "account_type": "cash",
                     "party_type": "business",
                     "party_address": {
                         "line1": "string",
@@ -342,7 +342,7 @@ class TestAsyncCounterparties:
             name="string",
             accounts=[
                 {
-                    "account_type": "checking",
+                    "account_type": "cash",
                     "party_type": "business",
                     "party_address": {
                         "line1": "string",
@@ -408,7 +408,7 @@ class TestAsyncCounterparties:
                     ],
                 },
                 {
-                    "account_type": "checking",
+                    "account_type": "cash",
                     "party_type": "business",
                     "party_address": {
                         "line1": "string",
@@ -474,7 +474,7 @@ class TestAsyncCounterparties:
                     ],
                 },
                 {
-                    "account_type": "checking",
+                    "account_type": "cash",
                     "party_type": "business",
                     "party_address": {
                         "line1": "string",

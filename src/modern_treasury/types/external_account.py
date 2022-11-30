@@ -66,7 +66,7 @@ class ContactDetails(BaseModel):
 class ExternalAccount(BaseModel):
     account_details: List[account_detail.AccountDetail]
 
-    account_type: Literal["checking", "other", "savings"]
+    account_type: Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]
     """Can be `checking`, `savings` or `other`."""
 
     contact_details: List[ContactDetails]

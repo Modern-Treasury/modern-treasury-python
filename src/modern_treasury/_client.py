@@ -65,6 +65,7 @@ class ModernTreasury(SyncAPIClient):
     validations: resources.Validations
     paper_items: resources.PaperItems
     webhooks: resources.Webhooks
+    virtual_accounts: resources.VirtualAccounts
 
     # client options
     api_key: str
@@ -160,6 +161,7 @@ class ModernTreasury(SyncAPIClient):
         self.validations = resources.Validations(self)
         self.paper_items = resources.PaperItems(self)
         self.webhooks = resources.Webhooks(self)
+        self.virtual_accounts = resources.VirtualAccounts(self)
 
     @property
     def qs(self) -> Querystring:
@@ -268,6 +270,7 @@ class AsyncModernTreasury(AsyncAPIClient):
     validations: resources.AsyncValidations
     paper_items: resources.AsyncPaperItems
     webhooks: resources.AsyncWebhooks
+    virtual_accounts: resources.AsyncVirtualAccounts
 
     # client options
     api_key: str
@@ -363,6 +366,7 @@ class AsyncModernTreasury(AsyncAPIClient):
         self.validations = resources.AsyncValidations(self)
         self.paper_items = resources.AsyncPaperItems(self)
         self.webhooks = resources.AsyncWebhooks(self)
+        self.virtual_accounts = resources.AsyncVirtualAccounts(self)
 
     @property
     def qs(self) -> Querystring:
