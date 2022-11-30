@@ -97,7 +97,7 @@ class ReceivingAccountContactDetails(TypedDict, total=False):
 class ReceivingAccount(TypedDict, total=False):
     account_details: List[ReceivingAccountAccountDetails]
 
-    account_type: Literal["checking", "other", "savings"]
+    account_type: Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]
     """Can be `checking`, `savings` or `other`."""
 
     contact_details: List[ReceivingAccountContactDetails]
@@ -160,7 +160,7 @@ class LedgerTransactionLedgerEntries(TypedDict, total=False):
 
     available_balance_amount: Optional[Dict[str, int]]
     """
-    Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
     account’s available balance. If any of these conditions would be false after the
     transaction is created, the entire call will fail with error code 422.
     """
@@ -175,14 +175,14 @@ class LedgerTransactionLedgerEntries(TypedDict, total=False):
 
     pending_balance_amount: Optional[Dict[str, int]]
     """
-    Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
     account’s pending balance. If any of these conditions would be false after the
     transaction is created, the entire call will fail with error code 422.
     """
 
     posted_balance_amount: Optional[Dict[str, int]]
     """
-    Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to lock on the
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
     account’s posted balance. If any of these conditions would be false after the
     transaction is created, the entire call will fail with error code 422.
     """
@@ -453,7 +453,7 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
     characters.
     """
 
-    subtype: Optional[Literal["CCD", "CIE", "CTX", "IAT", "PPD", "TEL", "WEB"]]
+    subtype: Optional[Literal["CCD", "CIE", "CTX", "IAT", "PPD", "TEL", "WEB", "neft"]]
     """
     An additional layer of classification for the type of payment order you are
     doing. This field is only used for `ach` payment orders currently. For `ach`

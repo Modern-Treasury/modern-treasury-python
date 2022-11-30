@@ -34,11 +34,11 @@ class Versions(SyncAPIResource):
         Get a list of ledger transaction versions.
 
         Args:
-          created_at: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+          created_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               created_at timestamp. For example, for all dates after Jan 1 2000 12:00 UTC, use
               created_at%5Bgt%5D=2000-01-01T12:00:00Z.
 
-          version: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+          version: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               version. For example, for all versions after 2, use version%5Bgt%5D=2.
 
           extra_headers: Send extra headers
@@ -84,11 +84,11 @@ class AsyncVersions(AsyncAPIResource):
         Get a list of ledger transaction versions.
 
         Args:
-          created_at: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+          created_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               created_at timestamp. For example, for all dates after Jan 1 2000 12:00 UTC, use
               created_at%5Bgt%5D=2000-01-01T12:00:00Z.
 
-          version: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+          version: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               version. For example, for all versions after 2, use version%5Bgt%5D=2.
 
           extra_headers: Send extra headers

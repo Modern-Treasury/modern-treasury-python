@@ -13,7 +13,7 @@ class VersionVersionsParams(TypedDict, total=False):
 
     created_at: Dict[str, str]
     """
-    Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
     created_at timestamp. For example, for all dates after Jan 1 2000 12:00 UTC, use
     created_at%5Bgt%5D=2000-01-01T12:00:00Z.
     """
@@ -22,6 +22,6 @@ class VersionVersionsParams(TypedDict, total=False):
 
     version: Dict[str, int]
     """
-    Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
     version. For example, for all versions after 2, use version%5Bgt%5D=2.
     """

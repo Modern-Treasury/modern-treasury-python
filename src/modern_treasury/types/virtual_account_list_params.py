@@ -5,11 +5,15 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import TypedDict
 
-__all__ = ["LedgerListParams"]
+__all__ = ["VirtualAccountListParams"]
 
 
-class LedgerListParams(TypedDict, total=False):
+class VirtualAccountListParams(TypedDict, total=False):
     after_cursor: Optional[str]
+
+    counterparty_id: str
+
+    internal_account_id: str
 
     metadata: Dict[str, str]
     """
@@ -19,10 +23,3 @@ class LedgerListParams(TypedDict, total=False):
     """
 
     per_page: int
-
-    updated_at: Dict[str, str]
-    """
-    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
-    posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
-    updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
-    """
