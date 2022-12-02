@@ -16,6 +16,7 @@ from .payment_orders import PaymentOrders, AsyncPaymentOrders
 from .account_details import AccountDetails, AsyncAccountDetails
 from .ledger_accounts import LedgerAccounts, AsyncLedgerAccounts
 from .routing_details import RoutingDetails, AsyncRoutingDetails
+from .virtual_accounts import VirtualAccounts, AsyncVirtualAccounts
 from .expected_payments import ExpectedPayments, AsyncExpectedPayments
 from .external_accounts import ExternalAccounts, AsyncExternalAccounts
 from .internal_accounts import InternalAccounts, AsyncInternalAccounts
@@ -74,4 +75,6 @@ __all__ = [
     "AsyncPaperItems",
     "Webhooks",
     "AsyncWebhooks",
+    "VirtualAccounts",
+    "AsyncVirtualAccounts",
 ]

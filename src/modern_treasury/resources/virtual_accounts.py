@@ -2,51 +2,58 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-from typing_extensions import Literal
+from typing import Dict, List, Optional
 
-from ..types import ledger_account_list_params, ledger_account_retrieve_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..types import virtual_account_create_params
+from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.ledger_account import LedgerAccount
+from ..types.virtual_account import VirtualAccount
 
-__all__ = ["LedgerAccounts", "AsyncLedgerAccounts"]
+__all__ = ["VirtualAccounts", "AsyncVirtualAccounts"]
 
 
-class LedgerAccounts(SyncAPIResource):
+class VirtualAccounts(SyncAPIResource):
     def create(
         self,
         *,
         name: str,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        normal_balance: Literal["credit", "debit"],
-        ledger_id: str,
-        currency: str,
-        currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        counterparty_id: str | NotGiven = NOT_GIVEN,
+        internal_account_id: str,
+        account_details: List[virtual_account_create_params.AccountDetails] | NotGiven = NOT_GIVEN,
+        routing_details: List[virtual_account_create_params.RoutingDetails] | NotGiven = NOT_GIVEN,
+        debit_ledger_account_id: str | NotGiven = NOT_GIVEN,
+        credit_ledger_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> LedgerAccount:
+    ) -> VirtualAccount:
         """
-        Create a ledger account.
-
         Args:
-          name: The name of the ledger account.
+          name: The name of the virtual account.
 
-          description: The description of the ledger account.
+          description: An optional description for internal use.
 
-          normal_balance: The normal balance of the ledger account.
+          counterparty_id: The ID of the counterparty that the virtual account belongs to.
 
-          ledger_id: The id of the ledger that this account belongs to.
+          internal_account_id: The ID of the internal account that this virtual account is associated with.
 
-          currency: The currency of the ledger account.
+          account_details: An array of account detail objects.
 
-          currency_exponent: The currency exponent of the ledger account.
+          routing_details: An array of routing detail objects.
+
+          debit_ledger_account_id: The ID of a debit normal ledger account. When money enters the virtual account,
+              this ledger account will be debited. Must be accompanied by a
+              credit_ledger_account_id if present.
+
+          credit_ledger_account_id: The ID of a credit normal ledger account. When money leaves the virtual account,
+              this ledger account will be credited. Must be accompanied by a
+              debit_ledger_account_id if present.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -58,84 +65,54 @@ class LedgerAccounts(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
         """
         return self._post(
-            "/api/ledger_accounts",
+            "/api/virtual_accounts",
             body={
                 "name": name,
                 "description": description,
-                "normal_balance": normal_balance,
-                "ledger_id": ledger_id,
-                "currency": currency,
-                "currency_exponent": currency_exponent,
+                "counterparty_id": counterparty_id,
+                "internal_account_id": internal_account_id,
+                "account_details": account_details,
+                "routing_details": routing_details,
+                "debit_ledger_account_id": debit_ledger_account_id,
+                "credit_ledger_account_id": credit_ledger_account_id,
                 "metadata": metadata,
             },
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
-            cast_to=LedgerAccount,
+            cast_to=VirtualAccount,
         )
 
     def retrieve(
         self,
         id: str,
         *,
-        balances: ledger_account_retrieve_params.Balances | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> LedgerAccount:
-        """
-        Get details on a single ledger account.
-
-        Args:
-          balances: For example, if you want the balances as of a particular effective date
-              (YYYY-MM-DD), the encoded query string would be
-              balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are inclusive of
-              entries with that exact date.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-        """
+    ) -> None:
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._get(
-            f"/api/ledger_accounts/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                query={"balances": balances},
-            ),
-            cast_to=LedgerAccount,
+            f"/api/virtual_accounts/{id}",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            cast_to=NoneType,
         )
 
     def update(
         self,
         id: str,
         *,
-        name: str | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        normal_balance: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | NotGiven = NOT_GIVEN,
+        counterparty_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> LedgerAccount:
+    ) -> VirtualAccount:
         """
-        Update the details of a ledger account.
-
         Args:
-          name: The name of the ledger account.
-
-          description: The description of the ledger account.
-
-          normal_balance: The normal balance of the ledger account.
-
-          metadata: Additional data represented as key-value pairs. Both the key and value must be
-              strings.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -143,15 +120,14 @@ class LedgerAccounts(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
         """
         return self._patch(
-            f"/api/ledger_accounts/{id}",
+            f"/api/virtual_accounts/{id}",
             body={
                 "name": name,
-                "description": description,
-                "normal_balance": normal_balance,
+                "counterparty_id": counterparty_id,
                 "metadata": metadata,
             },
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
-            cast_to=LedgerAccount,
+            cast_to=VirtualAccount,
         )
 
     def list(
@@ -159,35 +135,22 @@ class LedgerAccounts(SyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        internal_account_id: str | NotGiven = NOT_GIVEN,
+        counterparty_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        ledger_id: str | NotGiven = NOT_GIVEN,
-        balances: ledger_account_list_params.Balances | NotGiven = NOT_GIVEN,
-        updated_at: Dict[str, str] | NotGiven = NOT_GIVEN,
-        ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> SyncPage[LedgerAccount]:
+    ) -> SyncPage[VirtualAccount]:
         """
-        Get a list of ledger accounts.
+        Get a list of virtual accounts.
 
         Args:
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
-
-          balances: For example, if you want the balances as of a particular effective date
-              (YYYY-MM-DD), the encoded query string would be
-              balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are inclusive of
-              entries with that exact date.
-
-          updated_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
-              posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
-              updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
 
           extra_headers: Send extra headers
 
@@ -196,8 +159,8 @@ class LedgerAccounts(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
         """
         return self._get_api_list(
-            "/api/ledger_accounts",
-            page=SyncPage[LedgerAccount],
+            "/api/virtual_accounts",
+            page=SyncPage[VirtualAccount],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -205,16 +168,12 @@ class LedgerAccounts(SyncAPIResource):
                 query={
                     "after_cursor": after_cursor,
                     "per_page": per_page,
+                    "internal_account_id": internal_account_id,
+                    "counterparty_id": counterparty_id,
                     "metadata": metadata,
-                    "id": id,
-                    "name": name,
-                    "ledger_id": ledger_id,
-                    "balances": balances,
-                    "updated_at": updated_at,
-                    "ledger_account_category_id": ledger_account_category_id,
                 },
             ),
-            model=LedgerAccount,
+            model=VirtualAccount,
         )
 
     def delete(
@@ -226,47 +185,54 @@ class LedgerAccounts(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> LedgerAccount:
-        """Delete a ledger account."""
+    ) -> VirtualAccount:
         return self._delete(
-            f"/api/ledger_accounts/{id}",
+            f"/api/virtual_accounts/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
-            cast_to=LedgerAccount,
+            cast_to=VirtualAccount,
         )
 
 
-class AsyncLedgerAccounts(AsyncAPIResource):
+class AsyncVirtualAccounts(AsyncAPIResource):
     async def create(
         self,
         *,
         name: str,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        normal_balance: Literal["credit", "debit"],
-        ledger_id: str,
-        currency: str,
-        currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        counterparty_id: str | NotGiven = NOT_GIVEN,
+        internal_account_id: str,
+        account_details: List[virtual_account_create_params.AccountDetails] | NotGiven = NOT_GIVEN,
+        routing_details: List[virtual_account_create_params.RoutingDetails] | NotGiven = NOT_GIVEN,
+        debit_ledger_account_id: str | NotGiven = NOT_GIVEN,
+        credit_ledger_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> LedgerAccount:
+    ) -> VirtualAccount:
         """
-        Create a ledger account.
-
         Args:
-          name: The name of the ledger account.
+          name: The name of the virtual account.
 
-          description: The description of the ledger account.
+          description: An optional description for internal use.
 
-          normal_balance: The normal balance of the ledger account.
+          counterparty_id: The ID of the counterparty that the virtual account belongs to.
 
-          ledger_id: The id of the ledger that this account belongs to.
+          internal_account_id: The ID of the internal account that this virtual account is associated with.
 
-          currency: The currency of the ledger account.
+          account_details: An array of account detail objects.
 
-          currency_exponent: The currency exponent of the ledger account.
+          routing_details: An array of routing detail objects.
+
+          debit_ledger_account_id: The ID of a debit normal ledger account. When money enters the virtual account,
+              this ledger account will be debited. Must be accompanied by a
+              credit_ledger_account_id if present.
+
+          credit_ledger_account_id: The ID of a credit normal ledger account. When money leaves the virtual account,
+              this ledger account will be credited. Must be accompanied by a
+              debit_ledger_account_id if present.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -278,84 +244,54 @@ class AsyncLedgerAccounts(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
         """
         return await self._post(
-            "/api/ledger_accounts",
+            "/api/virtual_accounts",
             body={
                 "name": name,
                 "description": description,
-                "normal_balance": normal_balance,
-                "ledger_id": ledger_id,
-                "currency": currency,
-                "currency_exponent": currency_exponent,
+                "counterparty_id": counterparty_id,
+                "internal_account_id": internal_account_id,
+                "account_details": account_details,
+                "routing_details": routing_details,
+                "debit_ledger_account_id": debit_ledger_account_id,
+                "credit_ledger_account_id": credit_ledger_account_id,
                 "metadata": metadata,
             },
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
-            cast_to=LedgerAccount,
+            cast_to=VirtualAccount,
         )
 
     async def retrieve(
         self,
         id: str,
         *,
-        balances: ledger_account_retrieve_params.Balances | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> LedgerAccount:
-        """
-        Get details on a single ledger account.
-
-        Args:
-          balances: For example, if you want the balances as of a particular effective date
-              (YYYY-MM-DD), the encoded query string would be
-              balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are inclusive of
-              entries with that exact date.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-        """
+    ) -> None:
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._get(
-            f"/api/ledger_accounts/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                query={"balances": balances},
-            ),
-            cast_to=LedgerAccount,
+            f"/api/virtual_accounts/{id}",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            cast_to=NoneType,
         )
 
     async def update(
         self,
         id: str,
         *,
-        name: str | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        normal_balance: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | NotGiven = NOT_GIVEN,
+        counterparty_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> LedgerAccount:
+    ) -> VirtualAccount:
         """
-        Update the details of a ledger account.
-
         Args:
-          name: The name of the ledger account.
-
-          description: The description of the ledger account.
-
-          normal_balance: The normal balance of the ledger account.
-
-          metadata: Additional data represented as key-value pairs. Both the key and value must be
-              strings.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -363,15 +299,14 @@ class AsyncLedgerAccounts(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
         """
         return await self._patch(
-            f"/api/ledger_accounts/{id}",
+            f"/api/virtual_accounts/{id}",
             body={
                 "name": name,
-                "description": description,
-                "normal_balance": normal_balance,
+                "counterparty_id": counterparty_id,
                 "metadata": metadata,
             },
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
-            cast_to=LedgerAccount,
+            cast_to=VirtualAccount,
         )
 
     def list(
@@ -379,35 +314,22 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        internal_account_id: str | NotGiven = NOT_GIVEN,
+        counterparty_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        ledger_id: str | NotGiven = NOT_GIVEN,
-        balances: ledger_account_list_params.Balances | NotGiven = NOT_GIVEN,
-        updated_at: Dict[str, str] | NotGiven = NOT_GIVEN,
-        ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> AsyncPaginator[LedgerAccount, AsyncPage[LedgerAccount]]:
+    ) -> AsyncPaginator[VirtualAccount, AsyncPage[VirtualAccount]]:
         """
-        Get a list of ledger accounts.
+        Get a list of virtual accounts.
 
         Args:
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
-
-          balances: For example, if you want the balances as of a particular effective date
-              (YYYY-MM-DD), the encoded query string would be
-              balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are inclusive of
-              entries with that exact date.
-
-          updated_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
-              posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
-              updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
 
           extra_headers: Send extra headers
 
@@ -416,8 +338,8 @@ class AsyncLedgerAccounts(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
         """
         return self._get_api_list(
-            "/api/ledger_accounts",
-            page=AsyncPage[LedgerAccount],
+            "/api/virtual_accounts",
+            page=AsyncPage[VirtualAccount],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -425,16 +347,12 @@ class AsyncLedgerAccounts(AsyncAPIResource):
                 query={
                     "after_cursor": after_cursor,
                     "per_page": per_page,
+                    "internal_account_id": internal_account_id,
+                    "counterparty_id": counterparty_id,
                     "metadata": metadata,
-                    "id": id,
-                    "name": name,
-                    "ledger_id": ledger_id,
-                    "balances": balances,
-                    "updated_at": updated_at,
-                    "ledger_account_category_id": ledger_account_category_id,
                 },
             ),
-            model=LedgerAccount,
+            model=VirtualAccount,
         )
 
     async def delete(
@@ -446,10 +364,9 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> LedgerAccount:
-        """Delete a ledger account."""
+    ) -> VirtualAccount:
         return await self._delete(
-            f"/api/ledger_accounts/{id}",
+            f"/api/virtual_accounts/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
-            cast_to=LedgerAccount,
+            cast_to=VirtualAccount,
         )

@@ -32,7 +32,7 @@ class TestExternalAccounts:
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         resource = client.external_accounts.create(
-            account_type="checking",
+            account_type="cash",
             party_type="business",
             party_address={
                 "line1": "string",
@@ -119,7 +119,7 @@ class TestExternalAccounts:
         resource = client.external_accounts.update(
             "string",
             party_type="business",
-            account_type="checking",
+            account_type="cash",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             name="string",
             party_name="string",
@@ -212,7 +212,7 @@ class TestAsyncExternalAccounts:
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         resource = await client.external_accounts.create(
-            account_type="checking",
+            account_type="cash",
             party_type="business",
             party_address={
                 "line1": "string",
@@ -299,7 +299,7 @@ class TestAsyncExternalAccounts:
         resource = await client.external_accounts.update(
             "string",
             party_type="business",
-            account_type="checking",
+            account_type="cash",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             name="string",
             party_name="string",

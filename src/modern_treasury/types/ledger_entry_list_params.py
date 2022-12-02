@@ -18,9 +18,15 @@ class LedgerEntryListParams(TypedDict, total=False):
     previous entries are deleted.
     """
 
-    effective_date: Dict[str, str]
+    effective_at: Dict[str, str]
     """
     Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+    transaction's effective time. Format ISO8601
+    """
+
+    effective_date: Dict[str, str]
+    """
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
     transaction's effective date. Format YYYY-MM-DD
     """
 
@@ -34,7 +40,7 @@ class LedgerEntryListParams(TypedDict, total=False):
 
     ledger_account_lock_version: Dict[str, int]
     """
-    Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
     lock_version of a ledger account. For example, for all entries created at or
     before before lock_version 1000 of a ledger account, use
     ledger_account_lock_version%5Blte%5D=1000
@@ -53,7 +59,7 @@ class LedgerEntryListParams(TypedDict, total=False):
 
     updated_at: Dict[str, str]
     """
-    Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
     posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
     updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
     """

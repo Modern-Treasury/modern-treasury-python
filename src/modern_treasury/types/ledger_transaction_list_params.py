@@ -11,9 +11,16 @@ __all__ = ["LedgerTransactionListParams"]
 class LedgerTransactionListParams(TypedDict, total=False):
     after_cursor: Optional[str]
 
-    effective_date: Dict[str, str]
+    effective_at: Dict[str, str]
     """
     Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by
+    effective at. For example, for all transactions after Jan 1 2000, use
+    effective_at%5Bgt%5D=2000-01-01T00:00:00:00.000Z.
+    """
+
+    effective_date: Dict[str, str]
+    """
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by
     effective date. For example, for all dates after Jan 1 2000, use
     effective_date%5Bgt%5D=2000-01-01.
     """
@@ -37,7 +44,7 @@ class LedgerTransactionListParams(TypedDict, total=False):
 
     posted_at: Dict[str, str]
     """
-    Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
     posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
     posted_at%5Bgt%5D=2000-01-01T12:00:00Z.
     """
@@ -46,7 +53,7 @@ class LedgerTransactionListParams(TypedDict, total=False):
 
     updated_at: Dict[str, str]
     """
-    Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
     posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
     updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
     """

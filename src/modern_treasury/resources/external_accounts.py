@@ -19,7 +19,8 @@ class ExternalAccounts(SyncAPIResource):
     def create(
         self,
         *,
-        account_type: Literal["checking", "other", "savings"] | NotGiven = NOT_GIVEN,
+        account_type: Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]
+        | NotGiven = NOT_GIVEN,
         party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
         party_address: external_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -103,7 +104,8 @@ class ExternalAccounts(SyncAPIResource):
         id: str,
         *,
         party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
-        account_type: Literal["checking", "other", "savings"] | NotGiven = NOT_GIVEN,
+        account_type: Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]
+        | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         party_name: str | NotGiven = NOT_GIVEN,
@@ -492,7 +494,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_type: Literal["checking", "other", "savings"] | NotGiven = NOT_GIVEN,
+        account_type: Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]
+        | NotGiven = NOT_GIVEN,
         party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
         party_address: external_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -576,7 +579,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
         id: str,
         *,
         party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
-        account_type: Literal["checking", "other", "savings"] | NotGiven = NOT_GIVEN,
+        account_type: Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]
+        | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         party_name: str | NotGiven = NOT_GIVEN,

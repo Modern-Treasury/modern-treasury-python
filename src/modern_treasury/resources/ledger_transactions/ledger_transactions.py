@@ -173,6 +173,7 @@ class LedgerTransactions(SyncAPIResource):
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
+        effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
         effective_date: Dict[str, str] | NotGiven = NOT_GIVEN,
         posted_at: Dict[str, str] | NotGiven = NOT_GIVEN,
         updated_at: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -193,15 +194,19 @@ class LedgerTransactions(SyncAPIResource):
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
 
-          effective_date: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by
+          effective_at: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by
+              effective at. For example, for all transactions after Jan 1 2000, use
+              effective_at%5Bgt%5D=2000-01-01T00:00:00:00.000Z.
+
+          effective_date: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by
               effective date. For example, for all dates after Jan 1 2000, use
               effective_date%5Bgt%5D=2000-01-01.
 
-          posted_at: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+          posted_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
               posted_at%5Bgt%5D=2000-01-01T12:00:00Z.
 
-          updated_at: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+          updated_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
               updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
 
@@ -224,6 +229,7 @@ class LedgerTransactions(SyncAPIResource):
                     "metadata": metadata,
                     "ledger_id": ledger_id,
                     "ledger_account_id": ledger_account_id,
+                    "effective_at": effective_at,
                     "effective_date": effective_date,
                     "posted_at": posted_at,
                     "updated_at": updated_at,
@@ -390,6 +396,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
+        effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
         effective_date: Dict[str, str] | NotGiven = NOT_GIVEN,
         posted_at: Dict[str, str] | NotGiven = NOT_GIVEN,
         updated_at: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -410,15 +417,19 @@ class AsyncLedgerTransactions(AsyncAPIResource):
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
 
-          effective_date: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by
+          effective_at: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by
+              effective at. For example, for all transactions after Jan 1 2000, use
+              effective_at%5Bgt%5D=2000-01-01T00:00:00:00.000Z.
+
+          effective_date: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by
               effective date. For example, for all dates after Jan 1 2000, use
               effective_date%5Bgt%5D=2000-01-01.
 
-          posted_at: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+          posted_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
               posted_at%5Bgt%5D=2000-01-01T12:00:00Z.
 
-          updated_at: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+          updated_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
               updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
 
@@ -441,6 +452,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
                     "metadata": metadata,
                     "ledger_id": ledger_id,
                     "ledger_account_id": ledger_account_id,
+                    "effective_at": effective_at,
                     "effective_date": effective_date,
                     "posted_at": posted_at,
                     "updated_at": updated_at,

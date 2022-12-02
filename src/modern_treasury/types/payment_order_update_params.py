@@ -95,7 +95,7 @@ class ReceivingAccountContactDetails(TypedDict, total=False):
 class ReceivingAccount(TypedDict, total=False):
     account_details: List[ReceivingAccountAccountDetails]
 
-    account_type: Literal["checking", "other", "savings"]
+    account_type: Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]
     """Can be `checking`, `savings` or `other`."""
 
     contact_details: List[ReceivingAccountContactDetails]
@@ -336,7 +336,7 @@ class PaymentOrderUpdateParams(TypedDict, total=False):
     denied or approved payment order, use `needs_approval`.
     """
 
-    subtype: Optional[Literal["CCD", "CIE", "CTX", "IAT", "PPD", "TEL", "WEB"]]
+    subtype: Optional[Literal["CCD", "CIE", "CTX", "IAT", "PPD", "TEL", "WEB", "neft"]]
     """
     An additional layer of classification for the type of payment order you are
     doing. This field is only used for `ach` payment orders currently. For `ach`

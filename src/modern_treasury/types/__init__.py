@@ -15,6 +15,7 @@ from .return_object import ReturnObject as ReturnObject
 from .account_detail import AccountDetail as AccountDetail
 from .ledger_account import LedgerAccount as LedgerAccount
 from .routing_detail import RoutingDetail as RoutingDetail
+from .virtual_account import VirtualAccount as VirtualAccount
 from .expected_payment import ExpectedPayment as ExpectedPayment
 from .external_account import ExternalAccount as ExternalAccount
 from .internal_account import InternalAccount as InternalAccount
@@ -61,6 +62,9 @@ from .payment_order_create_params import (
 from .payment_order_update_params import (
     PaymentOrderUpdateParams as PaymentOrderUpdateParams,
 )
+from .virtual_account_list_params import (
+    VirtualAccountListParams as VirtualAccountListParams,
+)
 from .account_detail_create_params import (
     AccountDetailCreateParams as AccountDetailCreateParams,
 )
@@ -84,6 +88,12 @@ from .routing_detail_create_params import (
 )
 from .routing_number_lookup_request import (
     RoutingNumberLookupRequest as RoutingNumberLookupRequest,
+)
+from .virtual_account_create_params import (
+    VirtualAccountCreateParams as VirtualAccountCreateParams,
+)
+from .virtual_account_update_params import (
+    VirtualAccountUpdateParams as VirtualAccountUpdateParams,
 )
 from .expected_payment_create_params import (
     ExpectedPaymentCreateParams as ExpectedPaymentCreateParams,
