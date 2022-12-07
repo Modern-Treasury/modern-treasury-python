@@ -49,6 +49,8 @@ class RoutingDetails(TypedDict, total=False):
         "eft",
         "cross_border",
         "interac",
+        "masav",
+        "neft",
         "provxchange",
         "rtp",
         "sen",

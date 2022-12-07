@@ -46,6 +46,7 @@ class LedgerEntries(SyncAPIResource):
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         show_deleted: bool | NotGiven = NOT_GIVEN,
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
+        status: Literal["pending", "posted", "archived"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -82,6 +83,9 @@ class LedgerEntries(SyncAPIResource):
               a ledger transaction to specify a new set of entries, the previous entries are
               deleted.
 
+          status: Get all ledger entries that match the status specified. One of `pending`,
+              `posted`, or `archived`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -107,6 +111,7 @@ class LedgerEntries(SyncAPIResource):
                     "ledger_account_category_id": ledger_account_category_id,
                     "show_deleted": show_deleted,
                     "direction": direction,
+                    "status": status,
                 },
             ),
             model=LedgerEntry,
@@ -145,6 +150,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         show_deleted: bool | NotGiven = NOT_GIVEN,
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
+        status: Literal["pending", "posted", "archived"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -181,6 +187,9 @@ class AsyncLedgerEntries(AsyncAPIResource):
               a ledger transaction to specify a new set of entries, the previous entries are
               deleted.
 
+          status: Get all ledger entries that match the status specified. One of `pending`,
+              `posted`, or `archived`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -206,6 +215,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
                     "ledger_account_category_id": ledger_account_category_id,
                     "show_deleted": show_deleted,
                     "direction": direction,
+                    "status": status,
                 },
             ),
             model=LedgerEntry,

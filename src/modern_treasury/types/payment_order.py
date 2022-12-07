@@ -283,7 +283,7 @@ class PaymentOrder(BaseModel):
     ]
     """The current status of the payment order."""
 
-    subtype: Optional[Literal["CCD", "CIE", "CTX", "IAT", "PPD", "TEL", "WEB", "neft"]]
+    subtype: Optional[Literal["CCD", "CIE", "CTX", "IAT", "PPD", "TEL", "WEB"]]
     """
     An additional layer of classification for the type of payment order you are
     doing. This field is only used for `ach` payment orders currently. For `ach`
@@ -315,6 +315,8 @@ class PaymentOrder(BaseModel):
         "cross_border",
         "eft",
         "interac",
+        "masav",
+        "neft",
         "provxchange",
         "rtp",
         "sen",

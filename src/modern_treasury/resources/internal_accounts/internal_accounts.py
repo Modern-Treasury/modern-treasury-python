@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Dict, Optional
 from typing_extensions import Literal
 
+from ...types import internal_account_create_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ...pagination import SyncPage, AsyncPage
@@ -31,6 +32,7 @@ class InternalAccounts(SyncAPIResource):
         connection_id: str,
         name: str,
         party_name: str,
+        party_address: internal_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
         currency: Literal["USD", "CAD"],
         entity_id: str | NotGiven = NOT_GIVEN,
         parent_account_id: str | NotGiven = NOT_GIVEN,
@@ -48,6 +50,8 @@ class InternalAccounts(SyncAPIResource):
           name: The nickname of the account.
 
           party_name: The legal name of the entity which owns the account.
+
+          party_address: The address associated with the owner or null.
 
           currency: Either "USD" or "CAD". Internal accounts created at Increase only supports
               "USD".
@@ -70,6 +74,7 @@ class InternalAccounts(SyncAPIResource):
                 "connection_id": connection_id,
                 "name": name,
                 "party_name": party_name,
+                "party_address": party_address,
                 "currency": currency,
                 "entity_id": entity_id,
                 "parent_account_id": parent_account_id,
@@ -347,6 +352,8 @@ class InternalAccounts(SyncAPIResource):
             "cross_border",
             "eft",
             "interac",
+            "masav",
+            "neft",
             "provxchange",
             "rtp",
             "sen",
@@ -408,6 +415,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         connection_id: str,
         name: str,
         party_name: str,
+        party_address: internal_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
         currency: Literal["USD", "CAD"],
         entity_id: str | NotGiven = NOT_GIVEN,
         parent_account_id: str | NotGiven = NOT_GIVEN,
@@ -425,6 +433,8 @@ class AsyncInternalAccounts(AsyncAPIResource):
           name: The nickname of the account.
 
           party_name: The legal name of the entity which owns the account.
+
+          party_address: The address associated with the owner or null.
 
           currency: Either "USD" or "CAD". Internal accounts created at Increase only supports
               "USD".
@@ -447,6 +457,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                 "connection_id": connection_id,
                 "name": name,
                 "party_name": party_name,
+                "party_address": party_address,
                 "currency": currency,
                 "entity_id": entity_id,
                 "parent_account_id": parent_account_id,
@@ -724,6 +735,8 @@ class AsyncInternalAccounts(AsyncAPIResource):
             "cross_border",
             "eft",
             "interac",
+            "masav",
+            "neft",
             "provxchange",
             "rtp",
             "sen",

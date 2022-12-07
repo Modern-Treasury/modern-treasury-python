@@ -79,6 +79,8 @@ class ReceivingAccountRoutingDetails(TypedDict, total=False):
         "eft",
         "cross_border",
         "interac",
+        "masav",
+        "neft",
         "provxchange",
         "rtp",
         "sen",
@@ -138,12 +140,9 @@ class ReceivingAccount(TypedDict, total=False):
 
 class LedgerTransactionLedgerEntries(TypedDict, total=False):
     amount: Required[int]
-    """One of `credit`, `debit`.
+    """Value in specified currency's smallest unit.
 
-    Describes the direction money is flowing in the transaction. A `credit` moves
-    money from your account to someone else's. A `debit` pulls money from someone
-    else's account to your own. Note that wire, rtp, and check payments will always
-    be `credit`.
+    e.g. $10 would be represented as 1000. Can be any integer up to 36 digits.
     """
 
     direction: Required[Literal["credit", "debit"]]
@@ -185,6 +184,12 @@ class LedgerTransactionLedgerEntries(TypedDict, total=False):
     Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
     account’s posted balance. If any of these conditions would be false after the
     transaction is created, the entire call will fail with error code 422.
+    """
+
+    show_resulting_ledger_account_balances: Optional[bool]
+    """
+    If true, response will include the balance of the associated ledger account for
+    the entry.
     """
 
 
@@ -296,6 +301,8 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
             "cross_border",
             "eft",
             "interac",
+            "masav",
+            "neft",
             "provxchange",
             "rtp",
             "sen",
@@ -453,7 +460,7 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
     characters.
     """
 
-    subtype: Optional[Literal["CCD", "CIE", "CTX", "IAT", "PPD", "TEL", "WEB", "neft"]]
+    subtype: Optional[Literal["CCD", "CIE", "CTX", "IAT", "PPD", "TEL", "WEB"]]
     """
     An additional layer of classification for the type of payment order you are
     doing. This field is only used for `ach` payment orders currently. For `ach`

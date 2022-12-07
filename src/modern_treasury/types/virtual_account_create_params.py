@@ -12,6 +12,9 @@ class AccountDetails(TypedDict, total=False):
     account_number: Required[str]
     """The account number for the bank account."""
 
+    account_number_safe: Required[str]
+    """The last 4 digits of the account_number."""
+
     account_number_type: Required[Literal["clabe", "iban", "other", "pan", "wallet_address"]]
     """One of `iban`, `clabe`, `wallet_address`, or `other`.
 
@@ -99,6 +102,8 @@ class RoutingDetails(TypedDict, total=False):
                 "cross_border",
                 "eft",
                 "interac",
+                "masav",
+                "neft",
                 "provxchange",
                 "rtp",
                 "sen",
