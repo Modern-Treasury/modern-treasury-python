@@ -4,7 +4,25 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["InternalAccountCreateParams"]
+__all__ = ["PartyAddress", "InternalAccountCreateParams"]
+
+
+class PartyAddress(TypedDict, total=False):
+    country: Required[str]
+    """Country code conforms to [ISO 3166-1 alpha-2]"""
+
+    line1: Required[str]
+
+    locality: Required[str]
+    """Locality or City."""
+
+    postal_code: Required[str]
+    """The postal code of the address."""
+
+    region: Required[str]
+    """Region or State."""
+
+    line2: str
 
 
 class InternalAccountCreateParams(TypedDict, total=False):
@@ -31,3 +49,6 @@ class InternalAccountCreateParams(TypedDict, total=False):
 
     parent_account_id: str
     """The parent internal account of this new account."""
+
+    party_address: PartyAddress
+    """The address associated with the owner or null."""

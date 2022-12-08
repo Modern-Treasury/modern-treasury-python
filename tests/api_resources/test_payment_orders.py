@@ -157,6 +157,7 @@ class TestPaymentOrders:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "available_balance_amount": {"foo": 0},
+                        "show_resulting_ledger_account_balances": True,
                     },
                     {
                         "amount": 0,
@@ -166,6 +167,7 @@ class TestPaymentOrders:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "available_balance_amount": {"foo": 0},
+                        "show_resulting_ledger_account_balances": True,
                     },
                     {
                         "amount": 0,
@@ -175,6 +177,7 @@ class TestPaymentOrders:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "available_balance_amount": {"foo": 0},
+                        "show_resulting_ledger_account_balances": True,
                     },
                 ],
                 "external_id": "string",
@@ -545,6 +548,7 @@ class TestPaymentOrders:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "available_balance_amount": {"foo": 0},
+                        "show_resulting_ledger_account_balances": True,
                     },
                     {
                         "amount": 0,
@@ -554,6 +558,7 @@ class TestPaymentOrders:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "available_balance_amount": {"foo": 0},
+                        "show_resulting_ledger_account_balances": True,
                     },
                     {
                         "amount": 0,
@@ -563,6 +568,7 @@ class TestPaymentOrders:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "available_balance_amount": {"foo": 0},
+                        "show_resulting_ledger_account_balances": True,
                     },
                 ],
                 "external_id": "string",
@@ -750,6 +756,7 @@ class TestAsyncPaymentOrders:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "available_balance_amount": {"foo": 0},
+                        "show_resulting_ledger_account_balances": True,
                     },
                     {
                         "amount": 0,
@@ -759,6 +766,7 @@ class TestAsyncPaymentOrders:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "available_balance_amount": {"foo": 0},
+                        "show_resulting_ledger_account_balances": True,
                     },
                     {
                         "amount": 0,
@@ -768,6 +776,7 @@ class TestAsyncPaymentOrders:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "available_balance_amount": {"foo": 0},
+                        "show_resulting_ledger_account_balances": True,
                     },
                 ],
                 "external_id": "string",
@@ -1138,6 +1147,7 @@ class TestAsyncPaymentOrders:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "available_balance_amount": {"foo": 0},
+                        "show_resulting_ledger_account_balances": True,
                     },
                     {
                         "amount": 0,
@@ -1147,6 +1157,7 @@ class TestAsyncPaymentOrders:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "available_balance_amount": {"foo": 0},
+                        "show_resulting_ledger_account_balances": True,
                     },
                     {
                         "amount": 0,
@@ -1156,6 +1167,7 @@ class TestAsyncPaymentOrders:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "available_balance_amount": {"foo": 0},
+                        "show_resulting_ledger_account_balances": True,
                     },
                 ],
                 "external_id": "string",

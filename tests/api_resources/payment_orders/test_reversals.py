@@ -58,6 +58,7 @@ class TestReversals:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "available_balance_amount": {"foo": 0},
+                        "show_resulting_ledger_account_balances": True,
                     },
                     {
                         "amount": 0,
@@ -67,6 +68,7 @@ class TestReversals:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "available_balance_amount": {"foo": 0},
+                        "show_resulting_ledger_account_balances": True,
                     },
                     {
                         "amount": 0,
@@ -76,6 +78,7 @@ class TestReversals:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "available_balance_amount": {"foo": 0},
+                        "show_resulting_ledger_account_balances": True,
                     },
                 ],
                 "external_id": "string",
@@ -155,6 +158,7 @@ class TestAsyncReversals:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "available_balance_amount": {"foo": 0},
+                        "show_resulting_ledger_account_balances": True,
                     },
                     {
                         "amount": 0,
@@ -164,6 +168,7 @@ class TestAsyncReversals:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "available_balance_amount": {"foo": 0},
+                        "show_resulting_ledger_account_balances": True,
                     },
                     {
                         "amount": 0,
@@ -173,6 +178,7 @@ class TestAsyncReversals:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "available_balance_amount": {"foo": 0},
+                        "show_resulting_ledger_account_balances": True,
                     },
                 ],
                 "external_id": "string",

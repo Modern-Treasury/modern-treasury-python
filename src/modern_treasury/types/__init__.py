@@ -22,12 +22,16 @@ from .internal_account import InternalAccount as InternalAccount
 from .event_list_params import EventListParams as EventListParams
 from .ledger_list_params import LedgerListParams as LedgerListParams
 from .ledger_transaction import LedgerTransaction as LedgerTransaction
+from .payment_order_type import PaymentOrderType as PaymentOrderType
 from .return_list_params import ReturnListParams as ReturnListParams
 from .document_list_params import DocumentListParams as DocumentListParams
 from .ledger_create_params import LedgerCreateParams as LedgerCreateParams
 from .ledger_update_params import LedgerUpdateParams as LedgerUpdateParams
 from .return_create_params import ReturnCreateParams as ReturnCreateParams
+from .expected_payment_type import ExpectedPaymentType as ExpectedPaymentType
+from .external_account_type import ExternalAccountType as ExternalAccountType
 from .line_item_list_params import LineItemListParams as LineItemListParams
+from .payment_order_subtype import PaymentOrderSubtype as PaymentOrderSubtype
 from .connection_list_params import ConnectionListParams as ConnectionListParams
 from .document_create_params import DocumentCreateParams as DocumentCreateParams
 from .paper_item_list_params import PaperItemListParams as PaperItemListParams

@@ -48,6 +48,7 @@ class TestLedgerEntries:
             ledger_account_category_id="string",
             show_deleted=True,
             direction="credit",
+            status="pending",
         )
         assert isinstance(resource, SyncPage)
 
@@ -87,5 +88,6 @@ class TestAsyncLedgerEntries:
             ledger_account_category_id="string",
             show_deleted=True,
             direction="credit",
+            status="pending",
         )
         assert isinstance(resource, AsyncPage)

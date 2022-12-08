@@ -3,7 +3,7 @@
 from typing import Dict, List, Optional
 from typing_extensions import Literal
 
-from ..types import shared, return_object
+from ..types import shared, return_object, payment_order_type, payment_order_subtype
 from .._models import BaseModel
 
 __all__ = ["Accounting", "ReferenceNumbers", "PaymentOrder"]
@@ -283,7 +283,7 @@ class PaymentOrder(BaseModel):
     ]
     """The current status of the payment order."""
 
-    subtype: Optional[Literal["CCD", "CIE", "CTX", "IAT", "PPD", "TEL", "WEB", "neft"]]
+    subtype: Optional[payment_order_subtype.PaymentOrderSubtype]
     """
     An additional layer of classification for the type of payment order you are
     doing. This field is only used for `ach` payment orders currently. For `ach`
@@ -305,23 +305,7 @@ class PaymentOrder(BaseModel):
     monitoring.
     """
 
-    type: Literal[
-        "ach",
-        "au_becs",
-        "bacs",
-        "book",
-        "card",
-        "check",
-        "cross_border",
-        "eft",
-        "interac",
-        "provxchange",
-        "rtp",
-        "sen",
-        "sepa",
-        "signet",
-        "wire",
-    ]
+    type: payment_order_type.PaymentOrderType
     """
     One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
     `au_becs`, `interac`, `signet`, `provexchange`.

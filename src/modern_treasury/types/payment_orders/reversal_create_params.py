@@ -10,12 +10,9 @@ __all__ = ["LedgerTransactionLedgerEntries", "LedgerTransaction", "ReversalCreat
 
 class LedgerTransactionLedgerEntries(TypedDict, total=False):
     amount: Required[int]
-    """One of `credit`, `debit`.
+    """Value in specified currency's smallest unit.
 
-    Describes the direction money is flowing in the transaction. A `credit` moves
-    money from your account to someone else's. A `debit` pulls money from someone
-    else's account to your own. Note that wire, rtp, and check payments will always
-    be `credit`.
+    e.g. $10 would be represented as 1000. Can be any integer up to 36 digits.
     """
 
     direction: Required[Literal["credit", "debit"]]
@@ -57,6 +54,12 @@ class LedgerTransactionLedgerEntries(TypedDict, total=False):
     Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
     account’s posted balance. If any of these conditions would be false after the
     transaction is created, the entire call will fail with error code 422.
+    """
+
+    show_resulting_ledger_account_balances: Optional[bool]
+    """
+    If true, response will include the balance of the associated ledger account for
+    the entry.
     """
 
 

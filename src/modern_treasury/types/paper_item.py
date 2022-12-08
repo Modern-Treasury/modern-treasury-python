@@ -13,6 +13,9 @@ class PaperItem(BaseModel):
     account_number: Optional[str]
     """The account number on the paper item."""
 
+    account_number_safe: Optional[str]
+    """The last 4 digits of the account_number."""
+
     amount: int
     """The amount of the paper item."""
 
