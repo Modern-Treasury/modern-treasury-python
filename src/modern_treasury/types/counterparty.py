@@ -3,7 +3,7 @@
 from typing import Dict, List, Optional
 from typing_extensions import Literal
 
-from ..types import account_detail, routing_detail
+from ..types import account_detail, routing_detail, external_account_type
 from .._models import BaseModel
 
 __all__ = ["AccountsPartyAddress", "AccountsContactDetails", "Accounts", "Counterparty"]
@@ -66,7 +66,7 @@ class AccountsContactDetails(BaseModel):
 class Accounts(BaseModel):
     account_details: Optional[List[account_detail.AccountDetail]]
 
-    account_type: Optional[Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]]
+    account_type: Optional[external_account_type.ExternalAccountType]
     """Can be `checking`, `savings` or `other`."""
 
     contact_details: Optional[List[AccountsContactDetails]]

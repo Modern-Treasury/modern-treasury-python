@@ -5,14 +5,78 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["LedgerEntry"]
+__all__ = [
+    "ResultingLedgerAccountBalancesPendingBalance",
+    "ResultingLedgerAccountBalancesPostedBalance",
+    "ResultingLedgerAccountBalancesAvailableBalance",
+    "ResultingLedgerAccountBalances",
+    "LedgerEntry",
+]
+
+
+class ResultingLedgerAccountBalancesPendingBalance(BaseModel):
+    amount: int
+
+    credits: int
+
+    currency: str
+    """The currency of the ledger account."""
+
+    currency_exponent: int
+    """The currency exponent of the ledger account."""
+
+    debits: int
+
+
+class ResultingLedgerAccountBalancesPostedBalance(BaseModel):
+    amount: int
+
+    credits: int
+
+    currency: str
+    """The currency of the ledger account."""
+
+    currency_exponent: int
+    """The currency exponent of the ledger account."""
+
+    debits: int
+
+
+class ResultingLedgerAccountBalancesAvailableBalance(BaseModel):
+    amount: int
+
+    credits: int
+
+    currency: str
+    """The currency of the ledger account."""
+
+    currency_exponent: int
+    """The currency exponent of the ledger account."""
+
+    debits: int
+
+
+class ResultingLedgerAccountBalances(BaseModel):
+    available_balance: ResultingLedgerAccountBalancesAvailableBalance
+    """
+    The available_balance is the sum of all posted inbound entries and pending
+    outbound entries. For credit normal, available_amount = posted_credits -
+    pending_debits; for debit normal, available_amount = posted_debits -
+    pending_credits.
+    """
+
+    pending_balance: ResultingLedgerAccountBalancesPendingBalance
+    """The pending_balance is the sum of all pending and posted entries."""
+
+    posted_balance: ResultingLedgerAccountBalancesPostedBalance
+    """The posted_balance is the sum of all posted entries."""
 
 
 class LedgerEntry(BaseModel):
     amount: int
     """Value in specified currency's smallest unit.
 
-    e.g. $10 would be represented as 1000. Can be any integer up to 30 digits.
+    e.g. $10 would be represented as 1000. Can be any integer up to 36 digits.
     """
 
     created_at: str
@@ -57,5 +121,22 @@ class LedgerEntry(BaseModel):
     """
 
     object: str
+
+    resulting_ledger_account_balances: Optional[ResultingLedgerAccountBalances]
+    """
+    The pending, posted, and available balances for this ledger entry's ledger
+    account. The posted balance is the sum of all posted entries on the account. The
+    pending balance is the sum of all pending and posted entries on the account. The
+    available balance is the posted incoming entries minus the sum of the pending
+    and posted outgoing amounts. Please see
+    https://docs.moderntreasury.com/docs/transaction-status-and-balances for more
+    details.
+    """
+
+    status: Literal["archived", "pending", "posted"]
+    """Equal to the state of the ledger transaction when the ledger entry was created.
+
+    One of `pending`, `posted`, or `archived`.
+    """
 
     updated_at: str

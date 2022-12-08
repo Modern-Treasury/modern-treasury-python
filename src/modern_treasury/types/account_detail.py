@@ -12,6 +12,9 @@ class AccountDetail(BaseModel):
     account_number: str
     """The account number for the bank account."""
 
+    account_number_safe: str
+    """The last 4 digits of the account_number."""
+
     account_number_type: Literal["clabe", "iban", "other", "pan", "wallet_address"]
     """One of `iban`, `clabe`, `wallet_address`, or `other`.
 

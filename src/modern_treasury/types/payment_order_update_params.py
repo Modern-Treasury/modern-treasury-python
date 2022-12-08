@@ -77,6 +77,8 @@ class ReceivingAccountRoutingDetails(TypedDict, total=False):
         "eft",
         "cross_border",
         "interac",
+        "masav",
+        "neft",
         "provxchange",
         "rtp",
         "sen",
@@ -336,7 +338,7 @@ class PaymentOrderUpdateParams(TypedDict, total=False):
     denied or approved payment order, use `needs_approval`.
     """
 
-    subtype: Optional[Literal["CCD", "CIE", "CTX", "IAT", "PPD", "TEL", "WEB", "neft"]]
+    subtype: Optional[Literal["CCD", "CIE", "CTX", "IAT", "PPD", "TEL", "WEB"]]
     """
     An additional layer of classification for the type of payment order you are
     doing. This field is only used for `ach` payment orders currently. For `ach`
@@ -354,6 +356,8 @@ class PaymentOrderUpdateParams(TypedDict, total=False):
         "cross_border",
         "eft",
         "interac",
+        "masav",
+        "neft",
         "provxchange",
         "rtp",
         "sen",

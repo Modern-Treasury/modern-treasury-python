@@ -28,6 +28,8 @@ class RoutingDetailCreateParams(TypedDict, total=False):
             "cross_border",
             "eft",
             "interac",
+            "masav",
+            "neft",
             "provxchange",
             "rtp",
             "sen",

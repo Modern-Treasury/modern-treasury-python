@@ -47,6 +47,7 @@ class TestVirtualAccounts:
                     "discarded_at": "2019-12-27T18:11:19.117Z",
                     "account_number": "string",
                     "account_number_type": "clabe",
+                    "account_number_safe": "string",
                 },
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -57,6 +58,7 @@ class TestVirtualAccounts:
                     "discarded_at": "2019-12-27T18:11:19.117Z",
                     "account_number": "string",
                     "account_number_type": "clabe",
+                    "account_number_safe": "string",
                 },
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -67,6 +69,7 @@ class TestVirtualAccounts:
                     "discarded_at": "2019-12-27T18:11:19.117Z",
                     "account_number": "string",
                     "account_number_type": "clabe",
+                    "account_number_safe": "string",
                 },
             ],
             routing_details=[
@@ -234,6 +237,7 @@ class TestAsyncVirtualAccounts:
                     "discarded_at": "2019-12-27T18:11:19.117Z",
                     "account_number": "string",
                     "account_number_type": "clabe",
+                    "account_number_safe": "string",
                 },
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -244,6 +248,7 @@ class TestAsyncVirtualAccounts:
                     "discarded_at": "2019-12-27T18:11:19.117Z",
                     "account_number": "string",
                     "account_number_type": "clabe",
+                    "account_number_safe": "string",
                 },
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -254,6 +259,7 @@ class TestAsyncVirtualAccounts:
                     "discarded_at": "2019-12-27T18:11:19.117Z",
                     "account_number": "string",
                     "account_number_type": "clabe",
+                    "account_number_safe": "string",
                 },
             ],
             routing_details=[

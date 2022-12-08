@@ -57,6 +57,12 @@ class LedgerEntryListParams(TypedDict, total=False):
     previous entries are deleted.
     """
 
+    status: Literal["pending", "posted", "archived"]
+    """Get all ledger entries that match the status specified.
+
+    One of `pending`, `posted`, or `archived`.
+    """
+
     updated_at: Dict[str, str]
     """
     Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the

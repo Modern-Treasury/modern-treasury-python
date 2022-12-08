@@ -3,7 +3,7 @@
 from typing import Dict, Optional
 from typing_extensions import Literal
 
-from ..types import shared
+from ..types import shared, expected_payment_type
 from .._models import BaseModel
 
 __all__ = ["ExpectedPayment"]
@@ -100,25 +100,7 @@ class ExpectedPayment(BaseModel):
     transaction_line_item_id: Optional[str]
     """The ID of the Transaction Line Item this expected payment has been matched to."""
 
-    type: Optional[
-        Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "card",
-            "check",
-            "cross_border",
-            "eft",
-            "interac",
-            "provxchange",
-            "rtp",
-            "sen",
-            "sepa",
-            "signet",
-            "wire",
-        ]
-    ]
+    type: Optional[expected_payment_type.ExpectedPaymentType]
     """
     One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
     sepa, signet, wire.

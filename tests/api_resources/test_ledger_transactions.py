@@ -66,6 +66,7 @@ class TestLedgerTransactions:
                     "pending_balance_amount": {"foo": 0},
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
+                    "show_resulting_ledger_account_balances": True,
                 },
                 {
                     "amount": 0,
@@ -75,6 +76,7 @@ class TestLedgerTransactions:
                     "pending_balance_amount": {"foo": 0},
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
+                    "show_resulting_ledger_account_balances": True,
                 },
                 {
                     "amount": 0,
@@ -84,6 +86,7 @@ class TestLedgerTransactions:
                     "pending_balance_amount": {"foo": 0},
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
+                    "show_resulting_ledger_account_balances": True,
                 },
             ],
             external_id="string",
@@ -126,6 +129,7 @@ class TestLedgerTransactions:
                     "pending_balance_amount": {"foo": 0},
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
+                    "show_resulting_ledger_account_balances": True,
                 },
                 {
                     "amount": 0,
@@ -135,6 +139,7 @@ class TestLedgerTransactions:
                     "pending_balance_amount": {"foo": 0},
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
+                    "show_resulting_ledger_account_balances": True,
                 },
                 {
                     "amount": 0,
@@ -144,6 +149,7 @@ class TestLedgerTransactions:
                     "pending_balance_amount": {"foo": 0},
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
+                    "show_resulting_ledger_account_balances": True,
                 },
             ],
         )
@@ -226,6 +232,7 @@ class TestAsyncLedgerTransactions:
                     "pending_balance_amount": {"foo": 0},
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
+                    "show_resulting_ledger_account_balances": True,
                 },
                 {
                     "amount": 0,
@@ -235,6 +242,7 @@ class TestAsyncLedgerTransactions:
                     "pending_balance_amount": {"foo": 0},
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
+                    "show_resulting_ledger_account_balances": True,
                 },
                 {
                     "amount": 0,
@@ -244,6 +252,7 @@ class TestAsyncLedgerTransactions:
                     "pending_balance_amount": {"foo": 0},
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
+                    "show_resulting_ledger_account_balances": True,
                 },
             ],
             external_id="string",
@@ -286,6 +295,7 @@ class TestAsyncLedgerTransactions:
                     "pending_balance_amount": {"foo": 0},
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
+                    "show_resulting_ledger_account_balances": True,
                 },
                 {
                     "amount": 0,
@@ -295,6 +305,7 @@ class TestAsyncLedgerTransactions:
                     "pending_balance_amount": {"foo": 0},
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
+                    "show_resulting_ledger_account_balances": True,
                 },
                 {
                     "amount": 0,
@@ -304,6 +315,7 @@ class TestAsyncLedgerTransactions:
                     "pending_balance_amount": {"foo": 0},
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
+                    "show_resulting_ledger_account_balances": True,
                 },
             ],
         )
