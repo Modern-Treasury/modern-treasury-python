@@ -1,5 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
+from __future__ import annotations
+
 from .event import Event as Event
 from .ledger import Ledger as Ledger
 from .shared import Currency as Currency
