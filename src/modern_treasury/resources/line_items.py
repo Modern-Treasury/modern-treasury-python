@@ -47,10 +47,11 @@ class LineItems(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LineItem:
-        """Args:
-          metadata: Additional data represented as key-value pairs.
+        """
+        update line item
 
-        Both the key and value must be
+        Args:
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
           extra_headers: Send extra headers
@@ -138,10 +139,11 @@ class AsyncLineItems(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LineItem:
-        """Args:
-          metadata: Additional data represented as key-value pairs.
+        """
+        update line item
 
-        Both the key and value must be
+        Args:
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
           extra_headers: Send extra headers

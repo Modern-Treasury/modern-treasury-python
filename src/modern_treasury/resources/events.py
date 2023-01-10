@@ -24,6 +24,7 @@ class Events(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> Event:
+        """get event"""
         return self._get(
             f"/api/events/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
@@ -47,6 +48,8 @@ class Events(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> SyncPage[Event]:
         """
+        list events
+
         Args:
           event_time_start: An inclusive lower bound for when the event occurred
 
@@ -90,6 +93,7 @@ class AsyncEvents(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> Event:
+        """get event"""
         return await self._get(
             f"/api/events/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
@@ -113,6 +117,8 @@ class AsyncEvents(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> AsyncPaginator[Event, AsyncPage[Event]]:
         """
+        list events
+
         Args:
           event_time_start: An inclusive lower bound for when the event occurred
 

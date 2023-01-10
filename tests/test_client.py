@@ -201,6 +201,22 @@ class TestModernTreasury:
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
+    def test_validate_headers(self) -> None:
+        client = ModernTreasury(
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
+        )
+        request = client.build_request(FinalRequestOptions(method="get", url="/foo"))
+        assert "Basic" in request.headers.get("Authorization")
+
+        with pytest.raises(
+            Exception,
+            match="The api_key client option must be set either by passing api_key to the client or by setting the MODERN_TREASURY_API_KEY environment variable",
+        ):
+            client2 = ModernTreasury(
+                base_url=base_url, api_key=None, _strict_response_validation=True, organization_id="my-organization-ID"
+            )
+            client2.build_request(FinalRequestOptions(method="get", url="/foo"))
+
     def test_default_query_option(self) -> None:
         client = ModernTreasury(
             base_url=base_url,
@@ -477,6 +493,22 @@ class TestAsyncModernTreasury:
         request = client2.build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
+
+    def test_validate_headers(self) -> None:
+        client = AsyncModernTreasury(
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
+        )
+        request = client.build_request(FinalRequestOptions(method="get", url="/foo"))
+        assert "Basic" in request.headers.get("Authorization")
+
+        with pytest.raises(
+            Exception,
+            match="The api_key client option must be set either by passing api_key to the client or by setting the MODERN_TREASURY_API_KEY environment variable",
+        ):
+            client2 = AsyncModernTreasury(
+                base_url=base_url, api_key=None, _strict_response_validation=True, organization_id="my-organization-ID"
+            )
+            client2.build_request(FinalRequestOptions(method="get", url="/foo"))
 
     def test_default_query_option(self) -> None:
         client = AsyncModernTreasury(
