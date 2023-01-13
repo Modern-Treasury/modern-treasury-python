@@ -43,6 +43,8 @@ class ExternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> ExternalAccount:
         """
+        create external account
+
         Args:
           account_type: Can be `checking`, `savings` or `other`.
 
@@ -97,6 +99,7 @@ class ExternalAccounts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> ExternalAccount:
+        """show external account"""
         return self._get(
             f"/api/external_accounts/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
@@ -121,6 +124,8 @@ class ExternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> ExternalAccount:
         """
+        update external account
+
         Args:
           party_type: Either `individual` or `business`.
 
@@ -170,6 +175,8 @@ class ExternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> SyncPage[ExternalAccount]:
         """
+        list external accounts
+
         Args:
           party_name: Searches the ExternalAccount's party_name AND the Counterparty's party_name
 
@@ -211,6 +218,7 @@ class ExternalAccounts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> None:
+        """delete external account"""
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/api/external_accounts/{id}",
@@ -230,6 +238,8 @@ class ExternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> ExternalAccount:
         """
+        complete verification of external account
+
         Args:
           extra_headers: Send extra headers
 
@@ -276,6 +286,8 @@ class ExternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> ExternalAccount:
         """
+        verify external account
+
         Args:
           originating_account_id: The ID of the internal account where the micro-deposits originate from. Both
               credit and debit capabilities must be enabled.
@@ -325,6 +337,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> ExternalAccount:
         """
+        create external account
+
         Args:
           account_type: Can be `checking`, `savings` or `other`.
 
@@ -379,6 +393,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> ExternalAccount:
+        """show external account"""
         return await self._get(
             f"/api/external_accounts/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
@@ -403,6 +418,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> ExternalAccount:
         """
+        update external account
+
         Args:
           party_type: Either `individual` or `business`.
 
@@ -452,6 +469,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> AsyncPaginator[ExternalAccount, AsyncPage[ExternalAccount]]:
         """
+        list external accounts
+
         Args:
           party_name: Searches the ExternalAccount's party_name AND the Counterparty's party_name
 
@@ -493,6 +512,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> None:
+        """delete external account"""
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/api/external_accounts/{id}",
@@ -512,6 +532,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> ExternalAccount:
         """
+        complete verification of external account
+
         Args:
           extra_headers: Send extra headers
 
@@ -558,6 +580,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> ExternalAccount:
         """
+        verify external account
+
         Args:
           originating_account_id: The ID of the internal account where the micro-deposits originate from. Both
               credit and debit capabilities must be enabled.

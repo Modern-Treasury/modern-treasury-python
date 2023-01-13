@@ -44,6 +44,8 @@ class InternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> InternalAccount:
         """
+        create internal account
+
         Args:
           connection_id: The identifier of the financial institution the account belongs to.
 
@@ -94,6 +96,7 @@ class InternalAccounts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> InternalAccount:
+        """get internal account"""
         return self._get(
             f"/api/internal_accounts/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
@@ -115,6 +118,8 @@ class InternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> InternalAccount:
         """
+        update internal account
+
         Args:
           name: The nickname for the internal account.
 
@@ -177,6 +182,8 @@ class InternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> SyncPage[InternalAccount]:
         """
+        list internal accounts
+
         Args:
           currency: The currency associated with the internal account.
 
@@ -234,6 +241,8 @@ class AsyncInternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> InternalAccount:
         """
+        create internal account
+
         Args:
           connection_id: The identifier of the financial institution the account belongs to.
 
@@ -284,6 +293,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> InternalAccount:
+        """get internal account"""
         return await self._get(
             f"/api/internal_accounts/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
@@ -305,6 +315,8 @@ class AsyncInternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> InternalAccount:
         """
+        update internal account
+
         Args:
           name: The nickname for the internal account.
 
@@ -367,6 +379,8 @@ class AsyncInternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> AsyncPaginator[InternalAccount, AsyncPage[InternalAccount]]:
         """
+        list internal accounts
+
         Args:
           currency: The currency associated with the internal account.
 
