@@ -9,7 +9,7 @@ from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.internal_accounts.balance_report import BalanceReport
+from ...types.internal_accounts import BalanceReport
 
 __all__ = ["BalanceReports", "AsyncBalanceReports"]
 
