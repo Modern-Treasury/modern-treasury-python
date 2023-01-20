@@ -8,6 +8,7 @@ from typing import Dict, Union, Mapping, Optional
 
 from . import resources
 from ._qs import Querystring
+from .types import PingResponse
 from ._types import (
     NOT_GIVEN,
     Body,
@@ -27,18 +28,17 @@ from ._base_client import (
     AsyncAPIClient,
     make_request_options,
 )
-from .types.ping_response import PingResponse
 
 __all__ = [
-    "ModernTreasury",
-    "AsyncModernTreasury",
-    "Client",
-    "AsyncClient",
     "Timeout",
     "Transport",
     "ProxiesTypes",
     "RequestOptions",
     "resources",
+    "ModernTreasury",
+    "AsyncModernTreasury",
+    "Client",
+    "AsyncClient",
 ]
 
 
@@ -127,15 +127,16 @@ class ModernTreasury(SyncAPIClient):
 
         self.api_key = api_key
 
-        organization_id = organization_id or os.environ.get("MODERN_TREASURY_ORGANIZATION_ID")
-
+        organization_id_envvar = os.environ.get("MODERN_TREASURY_ORGANIZATION_ID", None)
+        organization_id = organization_id or organization_id_envvar or None
         if organization_id is None:
             raise ValueError(
                 "The organization_id client option must be set either by passing organization_id to the client or by setting the MODERN_TREASURY_ORGANIZATION_ID environment variable"
             )
         self.organization_id = organization_id
 
-        self.webhook_key = webhook_key or os.environ.get("MODERN_TREASURY_WEBHOOK_KEY")
+        webhook_key_envvar = os.environ.get("MODERN_TREASURY_WEBHOOK_KEY", None)
+        self.webhook_key = webhook_key or webhook_key_envvar or None
 
         self._idempotency_header = "Idempotency-Key"
 
@@ -332,15 +333,16 @@ class AsyncModernTreasury(AsyncAPIClient):
 
         self.api_key = api_key
 
-        organization_id = organization_id or os.environ.get("MODERN_TREASURY_ORGANIZATION_ID")
-
+        organization_id_envvar = os.environ.get("MODERN_TREASURY_ORGANIZATION_ID", None)
+        organization_id = organization_id or organization_id_envvar or None
         if organization_id is None:
             raise ValueError(
                 "The organization_id client option must be set either by passing organization_id to the client or by setting the MODERN_TREASURY_ORGANIZATION_ID environment variable"
             )
         self.organization_id = organization_id
 
-        self.webhook_key = webhook_key or os.environ.get("MODERN_TREASURY_WEBHOOK_KEY")
+        webhook_key_envvar = os.environ.get("MODERN_TREASURY_WEBHOOK_KEY", None)
+        self.webhook_key = webhook_key or webhook_key_envvar or None
 
         self._idempotency_header = "Idempotency-Key"
 
