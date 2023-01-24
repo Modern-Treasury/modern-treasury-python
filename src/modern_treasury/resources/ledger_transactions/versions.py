@@ -8,9 +8,7 @@ from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.ledger_transactions.ledger_transaction_version import (
-    LedgerTransactionVersion,
-)
+from ...types.ledger_transactions import LedgerTransactionVersion
 
 __all__ = ["Versions", "AsyncVersions"]
 
