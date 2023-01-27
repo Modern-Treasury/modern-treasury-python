@@ -5,12 +5,11 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import Literal
 
-from ..types import shared_params
+from ..types import IncomingPaymentDetail, shared_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.incoming_payment_detail import IncomingPaymentDetail
 
 __all__ = ["IncomingPaymentDetails", "AsyncIncomingPaymentDetails"]
 
