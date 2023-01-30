@@ -73,7 +73,7 @@ async def main():
 asyncio.run(main())
 ```
 
-Functionality between the synchronous and asynchronous clients are otherwise identical.
+Functionality between the synchronous and asynchronous clients is otherwise identical.
 
 ## Using Types
 
@@ -99,7 +99,7 @@ all_external_accounts = []
 for external_account in modern_treasury.external_accounts.list():
     # Do something with external_account here
     all_external_accounts.append(external_account)
-return all_external_accounts
+print(all_external_accounts)
 ```
 
 Or, asynchronously:
