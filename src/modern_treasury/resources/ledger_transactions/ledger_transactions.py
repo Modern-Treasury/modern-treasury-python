@@ -5,13 +5,16 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Dict, List, Optional
 from typing_extensions import Literal
 
-from ...types import ledger_transaction_create_params, ledger_transaction_update_params
+from ...types import (
+    LedgerTransaction,
+    ledger_transaction_create_params,
+    ledger_transaction_update_params,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .versions import Versions, AsyncVersions
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.ledger_transaction import LedgerTransaction
 
 if TYPE_CHECKING:
     from ..._client import ModernTreasury, AsyncModernTreasury
