@@ -6,6 +6,9 @@ from typing import TYPE_CHECKING, Dict, List, Mapping, Optional, cast
 from typing_extensions import Literal
 
 from ...types import (
+    PaymentOrder,
+    PaymentOrderType,
+    PaymentOrderSubtype,
     shared_params,
     payment_order_create_params,
     payment_order_update_params,
@@ -17,9 +20,6 @@ from .reversals import Reversals, AsyncReversals
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.payment_order import PaymentOrder
-from ...types.payment_order_type import PaymentOrderType
-from ...types.payment_order_subtype import PaymentOrderSubtype
 
 if TYPE_CHECKING:
     from ..._client import ModernTreasury, AsyncModernTreasury
