@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal
 
+from ..types import RoutingNumberLookupRequest
 from .._types import Body, Query, Headers
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._base_client import make_request_options
-from ..types.routing_number_lookup_request import RoutingNumberLookupRequest
 
 __all__ = ["Validations", "AsyncValidations"]
 

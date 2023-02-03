@@ -9,8 +9,7 @@ from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.payment_orders import reversal_create_params
-from ...types.payment_orders.reversal import Reversal
+from ...types.payment_orders import Reversal, reversal_create_params
 
 __all__ = ["Reversals", "AsyncReversals"]
 

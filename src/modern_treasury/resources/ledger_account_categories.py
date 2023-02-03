@@ -5,11 +5,11 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import Literal
 
+from ..types import LedgerAccountCategory
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.ledger_account_category import LedgerAccountCategory
 
 __all__ = ["LedgerAccountCategories", "AsyncLedgerAccountCategories"]
 
