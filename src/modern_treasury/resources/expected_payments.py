@@ -5,13 +5,16 @@ from __future__ import annotations
 from typing import Dict, List, Optional
 from typing_extensions import Literal
 
-from ..types import shared_params, expected_payment_create_params
+from ..types import (
+    ExpectedPayment,
+    ExpectedPaymentType,
+    shared_params,
+    expected_payment_create_params,
+)
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.expected_payment import ExpectedPayment
-from ..types.expected_payment_type import ExpectedPaymentType
 
 __all__ = ["ExpectedPayments", "AsyncExpectedPayments"]
 
@@ -41,6 +44,8 @@ class ExpectedPayments(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> ExpectedPayment:
         """
+        create expected payment
+
         Args:
           amount_upper_bound: The highest amount this expected payment may be equal to. Value in specified
               currency's smallest unit. e.g. $10 would be represented as 1000.
@@ -116,6 +121,7 @@ class ExpectedPayments(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> ExpectedPayment:
+        """get expected payment"""
         return self._get(
             f"/api/expected_payments/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
@@ -146,6 +152,8 @@ class ExpectedPayments(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> ExpectedPayment:
         """
+        update expected payment
+
         Args:
           amount_upper_bound: The highest amount this expected payment may be equal to. Value in specified
               currency's smallest unit. e.g. $10 would be represented as 1000.
@@ -249,6 +257,8 @@ class ExpectedPayments(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> SyncPage[ExpectedPayment]:
         """
+        list expected_payments
+
         Args:
           status: One of unreconciled, reconciled, or archived.
 
@@ -308,6 +318,7 @@ class ExpectedPayments(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> ExpectedPayment:
+        """delete expected payment"""
         return self._delete(
             f"/api/expected_payments/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
@@ -340,6 +351,8 @@ class AsyncExpectedPayments(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> ExpectedPayment:
         """
+        create expected payment
+
         Args:
           amount_upper_bound: The highest amount this expected payment may be equal to. Value in specified
               currency's smallest unit. e.g. $10 would be represented as 1000.
@@ -415,6 +428,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> ExpectedPayment:
+        """get expected payment"""
         return await self._get(
             f"/api/expected_payments/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
@@ -445,6 +459,8 @@ class AsyncExpectedPayments(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> ExpectedPayment:
         """
+        update expected payment
+
         Args:
           amount_upper_bound: The highest amount this expected payment may be equal to. Value in specified
               currency's smallest unit. e.g. $10 would be represented as 1000.
@@ -548,6 +564,8 @@ class AsyncExpectedPayments(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> AsyncPaginator[ExpectedPayment, AsyncPage[ExpectedPayment]]:
         """
+        list expected_payments
+
         Args:
           status: One of unreconciled, reconciled, or archived.
 
@@ -607,6 +625,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> ExpectedPayment:
+        """delete expected payment"""
         return await self._delete(
             f"/api/expected_payments/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),

@@ -323,21 +323,26 @@ class BaseClient:
     ) -> int:
         return remaining_retries if remaining_retries is not None else options.get_max_retries(self.max_retries)
 
-    def build_request(
-        self,
-        options: FinalRequestOptions,
-    ) -> httpx.Request:
-        headers = _merge_mappings(
-            self.default_headers,
-            {} if isinstance(options.headers, NotGiven) else options.headers,
-        )
+    def _build_headers(self, options: FinalRequestOptions) -> dict[str, str]:
+        custom_headers = options.headers or {}
+        headers = _merge_mappings(self.default_headers, custom_headers)
+        self._validate_headers(headers, custom_headers)
+
         if self._idempotency_header and options.method.lower() != "get":
             if not options.idempotency_key:
                 options.idempotency_key = self._idempotency_key()
             headers[self._idempotency_header] = options.idempotency_key
 
+        return headers
+
+    def build_request(
+        self,
+        options: FinalRequestOptions,
+    ) -> httpx.Request:
+        headers = self._build_headers(options)
+
         kwargs: dict[str, Any] = {}
-        json_data = strip_not_given(options.json_data)
+        json_data = options.json_data
         if options.extra_json is not None:
             if json_data is None:
                 json_data = options.extra_json
@@ -346,7 +351,7 @@ class BaseClient:
             else:
                 raise RuntimeError(f"Unexpected JSON data type, {type(json_data)}, cannot merge with `extra_body`")
 
-        params = _merge_mappings(self._custom_query, strip_not_given(options.params))
+        params = _merge_mappings(self._custom_query, options.params)
 
         # If the given Content-Type header is multipart/form-data then it
         # has to be removed so that httpx can generate the header with
@@ -475,6 +480,13 @@ class BaseClient:
             **self.auth_headers,
             **self._custom_headers,
         }
+
+    def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
+        """Validate the given default headers and custom headers.
+
+        Does nothing by default.
+        """
+        return
 
     @property
     def user_agent(self) -> str:
@@ -714,10 +726,11 @@ class SyncAPIClient(BaseClient):
         *,
         model: Type[ModelT],
         page: Type[SyncPageT],
+        body: Query | None = None,
         options: RequestOptions = {},
         method: str = "get",
     ) -> SyncPageT:
-        opts = FinalRequestOptions.construct(method=method, url=path, **options)
+        opts = FinalRequestOptions.construct(method=method, url=path, json_data=body, **options)
         return self.request_api_list(model, page, opts)
 
 
@@ -825,7 +838,6 @@ class AsyncAPIClient(BaseClient):
         path: str,
         *,
         cast_to: Type[ResponseT],
-        query: Query = {},
         options: RequestOptions = {},
     ) -> ResponseT:
         opts = FinalRequestOptions.construct(method="get", url=path, **options)
@@ -883,10 +895,11 @@ class AsyncAPIClient(BaseClient):
         # TODO: support paginating `str`
         model: Type[ModelT],
         page: Type[AsyncPageT],
+        body: Query | None = None,
         options: RequestOptions = {},
         method: str = "get",
     ) -> AsyncPaginator[ModelT, AsyncPageT]:
-        opts = FinalRequestOptions.construct(method=method, url=path, **options)
+        opts = FinalRequestOptions.construct(method=method, url=path, json_data=body, **options)
         return self.request_api_list(model, page, opts)
 
 
@@ -1019,31 +1032,3 @@ def _merge_mappings(
     """
     merged = {**obj1, **obj2}
     return {key: value for key, value in merged.items() if not isinstance(value, Omit)}
-
-
-_K = TypeVar("_K")
-_V = TypeVar("_V")
-
-
-@overload
-def strip_not_given(obj: None) -> None:
-    ...
-
-
-@overload
-def strip_not_given(obj: Mapping[_K, _V | NotGiven]) -> dict[_K, _V]:
-    ...
-
-
-@overload
-def strip_not_given(obj: object) -> object:
-    ...
-
-
-def strip_not_given(obj: object | None) -> object:
-    """Remove all top-level keys where their values are instances of `NotGiven`"""
-    if obj is None:
-        return None
-    if not is_mapping(obj):
-        return obj
-    return {key: value for key, value in obj.items() if not isinstance(value, NotGiven)}

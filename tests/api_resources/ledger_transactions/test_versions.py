@@ -1,4 +1,5 @@
 # File generated from our OpenAPI spec by Stainless.
+
 from __future__ import annotations
 
 import os
@@ -20,6 +21,24 @@ class TestVersions:
         base_url=base_url, api_key=api_key, _strict_response_validation=False, organization_id="my-organization-ID"
     )
     parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
+
+    @parametrize
+    def test_method_list(self, client: ModernTreasury) -> None:
+        resource = client.ledger_transactions.versions.list(
+            "string",
+        )
+        assert isinstance(resource, SyncPage)
+
+    @parametrize
+    def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
+        resource = client.ledger_transactions.versions.list(
+            "string",
+            after_cursor="string",
+            per_page=0,
+            created_at={"foo": "2019-12-27T18:11:19.117Z"},
+            version={"foo": 0},
+        )
+        assert isinstance(resource, SyncPage)
 
     @parametrize
     def test_method_versions(self, client: ModernTreasury) -> None:
@@ -48,6 +67,24 @@ class TestAsyncVersions:
         base_url=base_url, api_key=api_key, _strict_response_validation=False, organization_id="my-organization-ID"
     )
     parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
+
+    @parametrize
+    async def test_method_list(self, client: AsyncModernTreasury) -> None:
+        resource = await client.ledger_transactions.versions.list(
+            "string",
+        )
+        assert isinstance(resource, AsyncPage)
+
+    @parametrize
+    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
+        resource = await client.ledger_transactions.versions.list(
+            "string",
+            after_cursor="string",
+            per_page=0,
+            created_at={"foo": "2019-12-27T18:11:19.117Z"},
+            version={"foo": 0},
+        )
+        assert isinstance(resource, AsyncPage)
 
     @parametrize
     async def test_method_versions(self, client: AsyncModernTreasury) -> None:
