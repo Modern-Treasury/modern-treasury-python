@@ -9,9 +9,6 @@ __all__ = ["AccountDetail"]
 
 
 class AccountDetail(BaseModel):
-    account_number: str
-    """The account number for the bank account."""
-
     account_number_safe: str
     """The last 4 digits of the account_number."""
 
@@ -36,3 +33,6 @@ class AccountDetail(BaseModel):
     object: str
 
     updated_at: str
+
+    account_number: Optional[str]
+    """The account number for the bank account."""

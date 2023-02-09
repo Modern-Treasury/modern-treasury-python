@@ -5,11 +5,11 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal
 
+from ..types import ReturnObject
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.return_object import ReturnObject
 
 __all__ = ["Returns", "AsyncReturns"]
 
@@ -142,7 +142,7 @@ class Returns(SyncAPIResource):
         internal_account_id: str | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
         returnable_id: str | NotGiven = NOT_GIVEN,
-        returnable_type: Literal["incoming_payment_detail", "paper_item", "payment_order", "reversal"]
+        returnable_type: Literal["incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -319,7 +319,7 @@ class AsyncReturns(AsyncAPIResource):
         internal_account_id: str | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
         returnable_id: str | NotGiven = NOT_GIVEN,
-        returnable_type: Literal["incoming_payment_detail", "paper_item", "payment_order", "reversal"]
+        returnable_type: Literal["incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

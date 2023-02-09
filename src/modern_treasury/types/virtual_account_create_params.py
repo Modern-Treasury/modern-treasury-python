@@ -9,9 +9,6 @@ __all__ = ["AccountDetails", "RoutingDetailsBankAddress", "RoutingDetails", "Vir
 
 
 class AccountDetails(TypedDict, total=False):
-    account_number: Required[str]
-    """The account number for the bank account."""
-
     account_number_safe: Required[str]
     """The last 4 digits of the account_number."""
 
@@ -36,6 +33,9 @@ class AccountDetails(TypedDict, total=False):
     object: Required[str]
 
     updated_at: Required[str]
+
+    account_number: str
+    """The account number for the bank account."""
 
 
 class RoutingDetailsBankAddress(TypedDict, total=False):

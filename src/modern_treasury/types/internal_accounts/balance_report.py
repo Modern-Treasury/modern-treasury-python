@@ -60,6 +60,7 @@ class Balances(BaseModel):
             "currencycloud",
             "dc_bank",
             "dwolla",
+            "evolve",
             "goldman_sachs",
             "iso20022",
             "jpmc",

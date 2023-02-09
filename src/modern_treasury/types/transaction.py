@@ -118,6 +118,7 @@ class Transaction(BaseModel):
             "currencycloud",
             "dc_bank",
             "dwolla",
+            "evolve",
             "goldman_sachs",
             "iso20022",
             "jpmc",
@@ -128,9 +129,11 @@ class Transaction(BaseModel):
             "us_bank",
         ]
     ]
-    """The type of vendor_code being reported.
+    """The type of `vendor_code` being reported.
 
-    Can be one of `bai2`, `swift`, `cleartouch`, or `silvergate`.
+    Can be one of `bai2`, `bankprov`, `bnk_dev`, `cleartouch`, `currencycloud`,
+    `cross_river`, `dc_bank`, `dwolla`, `evolve`, `goldman_sachs`, `iso20022`,
+    `jpmc`, `mx`, `signet`, `silvergate`, `swift`, or `us_bank`.
     """
 
     vendor_customer_id: Optional[str]

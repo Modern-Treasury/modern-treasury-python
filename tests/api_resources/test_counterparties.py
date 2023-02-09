@@ -1,4 +1,5 @@
 # File generated from our OpenAPI spec by Stainless.
+
 from __future__ import annotations
 
 import os
@@ -6,11 +7,8 @@ import os
 import pytest
 
 from modern_treasury import ModernTreasury, AsyncModernTreasury
+from modern_treasury.types import Counterparty, CounterpartyCollectAccountResponse
 from modern_treasury.pagination import SyncPage, AsyncPage
-from modern_treasury.types.counterparty import Counterparty
-from modern_treasury.types.counterparty_collect_account_response import (
-    CounterpartyCollectAccountResponse,
-)
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
 api_key = os.environ.get("API_KEY", "something1234")

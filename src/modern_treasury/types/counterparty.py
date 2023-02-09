@@ -44,7 +44,7 @@ class AccountsPartyAddress(BaseModel):
 class AccountsContactDetails(BaseModel):
     contact_identifier: str
 
-    contact_identifier_type: Literal["email", "phone_number"]
+    contact_identifier_type: Literal["email", "phone_number", "website"]
 
     created_at: str
 

@@ -45,6 +45,7 @@ class ReferenceNumbers(BaseModel):
     reference_number_type: Literal[
         "ach_original_trace_number",
         "ach_trace_number",
+        "bankprov_payment_activity_date",
         "bankprov_payment_id",
         "bnk_dev_prenotification_id",
         "bnk_dev_transfer_id",
@@ -68,6 +69,7 @@ class ReferenceNumbers(BaseModel):
         "goldman_sachs_unique_payment_id",
         "interac_message_id",
         "jpmc_ccn",
+        "jpmc_customer_reference_id",
         "jpmc_end_to_end_id",
         "jpmc_firm_root_id",
         "jpmc_p3_id",

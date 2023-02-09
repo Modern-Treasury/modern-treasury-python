@@ -95,7 +95,7 @@ class ReceivingAccountRoutingDetails(TypedDict, total=False):
 class ReceivingAccountContactDetails(TypedDict, total=False):
     contact_identifier: str
 
-    contact_identifier_type: Literal["email", "phone_number"]
+    contact_identifier_type: Literal["email", "phone_number", "website"]
 
 
 class ReceivingAccount(TypedDict, total=False):

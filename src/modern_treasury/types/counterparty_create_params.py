@@ -71,7 +71,7 @@ class AccountsRoutingDetails(TypedDict, total=False):
 class AccountsContactDetails(TypedDict, total=False):
     contact_identifier: str
 
-    contact_identifier_type: Literal["email", "phone_number"]
+    contact_identifier_type: Literal["email", "phone_number", "website"]
 
 
 class Accounts(TypedDict, total=False):

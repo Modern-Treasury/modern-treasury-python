@@ -11,6 +11,8 @@ __all__ = ["Balances", "LedgerAccountListParams"]
 class Balances(TypedDict, total=False):
     as_of_date: str
 
+    effective_at: str
+
 
 class LedgerAccountListParams(TypedDict, total=False):
     after_cursor: Optional[str]
