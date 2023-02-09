@@ -5,11 +5,11 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import Literal
 
+from ..types import LineItem
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.line_item import LineItem
 
 __all__ = ["LineItems", "AsyncLineItems"]
 
@@ -47,10 +47,11 @@ class LineItems(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LineItem:
-        """Args:
-          metadata: Additional data represented as key-value pairs.
+        """
+        update line item
 
-        Both the key and value must be
+        Args:
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
           extra_headers: Send extra headers
@@ -138,10 +139,11 @@ class AsyncLineItems(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LineItem:
-        """Args:
-          metadata: Additional data represented as key-value pairs.
+        """
+        update line item
 
-        Both the key and value must be
+        Args:
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
           extra_headers: Send extra headers

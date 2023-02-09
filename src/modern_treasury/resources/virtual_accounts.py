@@ -4,12 +4,11 @@ from __future__ import annotations
 
 from typing import Dict, List, Optional
 
-from ..types import virtual_account_create_params
+from ..types import VirtualAccount, virtual_account_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.virtual_account import VirtualAccount
 
 __all__ = ["VirtualAccounts", "AsyncVirtualAccounts"]
 
@@ -34,6 +33,8 @@ class VirtualAccounts(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> VirtualAccount:
         """
+        create virtual_account
+
         Args:
           name: The name of the virtual account.
 
@@ -91,6 +92,7 @@ class VirtualAccounts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> None:
+        """get virtual_account"""
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._get(
             f"/api/virtual_accounts/{id}",
@@ -112,6 +114,8 @@ class VirtualAccounts(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> VirtualAccount:
         """
+        update virtual_account
+
         Args:
           extra_headers: Send extra headers
 
@@ -186,6 +190,7 @@ class VirtualAccounts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> VirtualAccount:
+        """delete virtual_account"""
         return self._delete(
             f"/api/virtual_accounts/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
@@ -213,6 +218,8 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> VirtualAccount:
         """
+        create virtual_account
+
         Args:
           name: The name of the virtual account.
 
@@ -270,6 +277,7 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> None:
+        """get virtual_account"""
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._get(
             f"/api/virtual_accounts/{id}",
@@ -291,6 +299,8 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> VirtualAccount:
         """
+        update virtual_account
+
         Args:
           extra_headers: Send extra headers
 
@@ -365,6 +375,7 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> VirtualAccount:
+        """delete virtual_account"""
         return await self._delete(
             f"/api/virtual_accounts/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
