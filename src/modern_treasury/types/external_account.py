@@ -6,7 +6,7 @@ from typing_extensions import Literal
 from ..types import account_detail, routing_detail, external_account_type
 from .._models import BaseModel
 
-__all__ = ["PartyAddress", "ContactDetails", "ExternalAccount"]
+__all__ = ["ExternalAccount", "PartyAddress", "ContactDetail"]
 
 
 class PartyAddress(BaseModel):
@@ -41,10 +41,10 @@ class PartyAddress(BaseModel):
     updated_at: str
 
 
-class ContactDetails(BaseModel):
+class ContactDetail(BaseModel):
     contact_identifier: str
 
-    contact_identifier_type: Literal["email", "phone_number"]
+    contact_identifier_type: Literal["email", "phone_number", "website"]
 
     created_at: str
 
@@ -69,7 +69,7 @@ class ExternalAccount(BaseModel):
     account_type: external_account_type.ExternalAccountType
     """Can be `checking`, `savings` or `other`."""
 
-    contact_details: List[ContactDetails]
+    contact_details: List[ContactDetail]
 
     counterparty_id: Optional[str]
 

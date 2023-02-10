@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["PartyAddress", "InternalAccountCreateParams"]
+__all__ = ["InternalAccountCreateParams", "PartyAddress"]
 
 
 class PartyAddress(TypedDict, total=False):

@@ -6,17 +6,17 @@ from typing import Dict, List, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = [
-    "AccountsPartyAddress",
-    "AccountsAccountDetails",
-    "AccountsRoutingDetails",
-    "AccountsContactDetails",
-    "Accounts",
-    "Accounting",
     "CounterpartyCreateParams",
+    "Account",
+    "AccountPartyAddress",
+    "AccountAccountDetail",
+    "AccountRoutingDetail",
+    "AccountContactDetail",
+    "Accounting",
 ]
 
 
-class AccountsPartyAddress(TypedDict, total=False):
+class AccountPartyAddress(TypedDict, total=False):
     country: Optional[str]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
@@ -34,13 +34,13 @@ class AccountsPartyAddress(TypedDict, total=False):
     """Region or State."""
 
 
-class AccountsAccountDetails(TypedDict, total=False):
+class AccountAccountDetail(TypedDict, total=False):
     account_number: Required[str]
 
     account_number_type: Literal["iban", "clabe", "wallet_address", "pan", "other"]
 
 
-class AccountsRoutingDetails(TypedDict, total=False):
+class AccountRoutingDetail(TypedDict, total=False):
     routing_number: Required[str]
 
     routing_number_type: Required[
@@ -68,19 +68,19 @@ class AccountsRoutingDetails(TypedDict, total=False):
     ]
 
 
-class AccountsContactDetails(TypedDict, total=False):
+class AccountContactDetail(TypedDict, total=False):
     contact_identifier: str
 
-    contact_identifier_type: Literal["email", "phone_number"]
+    contact_identifier_type: Literal["email", "phone_number", "website"]
 
 
-class Accounts(TypedDict, total=False):
-    account_details: List[AccountsAccountDetails]
+class Account(TypedDict, total=False):
+    account_details: List[AccountAccountDetail]
 
     account_type: Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]
     """Can be `checking`, `savings` or `other`."""
 
-    contact_details: List[AccountsContactDetails]
+    contact_details: List[AccountContactDetail]
 
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.
@@ -94,7 +94,7 @@ class Accounts(TypedDict, total=False):
     This is only for internal usage and won't affect any payments
     """
 
-    party_address: AccountsPartyAddress
+    party_address: AccountPartyAddress
     """Required if receiving wire payments."""
 
     party_identifier: str
@@ -113,7 +113,7 @@ class Accounts(TypedDict, total=False):
     you can pass the processor token in this field.
     """
 
-    routing_details: List[AccountsRoutingDetails]
+    routing_details: List[AccountRoutingDetail]
 
 
 class Accounting(TypedDict, total=False):
@@ -130,7 +130,7 @@ class CounterpartyCreateParams(TypedDict, total=False):
 
     accounting: Accounting
 
-    accounts: List[Accounts]
+    accounts: List[Account]
     """The accounts for this counterparty."""
 
     email: Optional[str]

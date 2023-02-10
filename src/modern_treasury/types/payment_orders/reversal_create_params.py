@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Dict, List, Optional
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["LedgerTransactionLedgerEntries", "LedgerTransaction", "ReversalCreateParams"]
+__all__ = ["ReversalCreateParams", "LedgerTransaction", "LedgerTransactionLedgerEntry"]
 
 
-class LedgerTransactionLedgerEntries(TypedDict, total=False):
+class LedgerTransactionLedgerEntry(TypedDict, total=False):
     amount: Required[int]
     """Value in specified currency's smallest unit.
 
@@ -70,7 +70,7 @@ class LedgerTransaction(TypedDict, total=False):
     purposes.
     """
 
-    ledger_entries: Required[List[LedgerTransactionLedgerEntries]]
+    ledger_entries: Required[List[LedgerTransactionLedgerEntry]]
     """An array of ledger entry objects."""
 
     description: Optional[str]

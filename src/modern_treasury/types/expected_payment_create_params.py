@@ -7,10 +7,10 @@ from typing_extensions import Literal, Required, TypedDict
 
 from ..types import shared_params
 
-__all__ = ["LineItems", "ExpectedPaymentCreateParams"]
+__all__ = ["ExpectedPaymentCreateParams", "LineItem"]
 
 
-class LineItems(TypedDict, total=False):
+class LineItem(TypedDict, total=False):
     amount: Required[int]
     """Value in specified currency's smallest unit.
 
@@ -73,7 +73,7 @@ class ExpectedPaymentCreateParams(TypedDict, total=False):
     description: Optional[str]
     """An optional description for internal use."""
 
-    line_items: List[LineItems]
+    line_items: List[LineItem]
 
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.

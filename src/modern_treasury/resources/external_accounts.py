@@ -6,6 +6,8 @@ from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 from ..types import (
+    ExternalAccount,
+    ExternalAccountType,
     shared_params,
     external_account_create_params,
     external_account_update_params,
@@ -14,8 +16,6 @@ from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.external_account import ExternalAccount
-from ..types.external_account_type import ExternalAccountType
 
 __all__ = ["ExternalAccounts", "AsyncExternalAccounts"]
 
@@ -29,13 +29,13 @@ class ExternalAccounts(SyncAPIResource):
         party_address: external_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str],
-        account_details: List[external_account_create_params.AccountDetails] | NotGiven = NOT_GIVEN,
-        routing_details: List[external_account_create_params.RoutingDetails] | NotGiven = NOT_GIVEN,
+        account_details: List[external_account_create_params.AccountDetail] | NotGiven = NOT_GIVEN,
+        routing_details: List[external_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         party_name: str | NotGiven = NOT_GIVEN,
         party_identifier: str | NotGiven = NOT_GIVEN,
         plaid_processor_token: str | NotGiven = NOT_GIVEN,
-        contact_details: List[external_account_create_params.ContactDetails] | NotGiven = NOT_GIVEN,
+        contact_details: List[external_account_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -43,6 +43,8 @@ class ExternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> ExternalAccount:
         """
+        create external account
+
         Args:
           account_type: Can be `checking`, `savings` or `other`.
 
@@ -97,6 +99,7 @@ class ExternalAccounts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> ExternalAccount:
+        """show external account"""
         return self._get(
             f"/api/external_accounts/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
@@ -121,6 +124,8 @@ class ExternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> ExternalAccount:
         """
+        update external account
+
         Args:
           party_type: Either `individual` or `business`.
 
@@ -170,6 +175,8 @@ class ExternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> SyncPage[ExternalAccount]:
         """
+        list external accounts
+
         Args:
           party_name: Searches the ExternalAccount's party_name AND the Counterparty's party_name
 
@@ -211,6 +218,7 @@ class ExternalAccounts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> None:
+        """delete external account"""
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/api/external_accounts/{id}",
@@ -230,6 +238,8 @@ class ExternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> ExternalAccount:
         """
+        complete verification of external account
+
         Args:
           extra_headers: Send extra headers
 
@@ -276,6 +286,8 @@ class ExternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> ExternalAccount:
         """
+        verify external account
+
         Args:
           originating_account_id: The ID of the internal account where the micro-deposits originate from. Both
               credit and debit capabilities must be enabled.
@@ -311,13 +323,13 @@ class AsyncExternalAccounts(AsyncAPIResource):
         party_address: external_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str],
-        account_details: List[external_account_create_params.AccountDetails] | NotGiven = NOT_GIVEN,
-        routing_details: List[external_account_create_params.RoutingDetails] | NotGiven = NOT_GIVEN,
+        account_details: List[external_account_create_params.AccountDetail] | NotGiven = NOT_GIVEN,
+        routing_details: List[external_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         party_name: str | NotGiven = NOT_GIVEN,
         party_identifier: str | NotGiven = NOT_GIVEN,
         plaid_processor_token: str | NotGiven = NOT_GIVEN,
-        contact_details: List[external_account_create_params.ContactDetails] | NotGiven = NOT_GIVEN,
+        contact_details: List[external_account_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -325,6 +337,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> ExternalAccount:
         """
+        create external account
+
         Args:
           account_type: Can be `checking`, `savings` or `other`.
 
@@ -379,6 +393,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> ExternalAccount:
+        """show external account"""
         return await self._get(
             f"/api/external_accounts/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
@@ -403,6 +418,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> ExternalAccount:
         """
+        update external account
+
         Args:
           party_type: Either `individual` or `business`.
 
@@ -452,6 +469,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> AsyncPaginator[ExternalAccount, AsyncPage[ExternalAccount]]:
         """
+        list external accounts
+
         Args:
           party_name: Searches the ExternalAccount's party_name AND the Counterparty's party_name
 
@@ -493,6 +512,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> None:
+        """delete external account"""
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/api/external_accounts/{id}",
@@ -512,6 +532,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> ExternalAccount:
         """
+        complete verification of external account
+
         Args:
           extra_headers: Send extra headers
 
@@ -558,6 +580,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> ExternalAccount:
         """
+        verify external account
+
         Args:
           originating_account_id: The ID of the internal account where the micro-deposits originate from. Both
               credit and debit capabilities must be enabled.

@@ -5,11 +5,13 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import TypedDict
 
-__all__ = ["Balances", "LedgerAccountListParams"]
+__all__ = ["LedgerAccountListParams", "Balances"]
 
 
 class Balances(TypedDict, total=False):
     as_of_date: str
+
+    effective_at: str
 
 
 class LedgerAccountListParams(TypedDict, total=False):

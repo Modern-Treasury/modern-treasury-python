@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["PartyAddress", "ExternalAccountUpdateParams"]
+__all__ = ["ExternalAccountUpdateParams", "PartyAddress"]
 
 
 class PartyAddress(TypedDict, total=False):

@@ -6,10 +6,10 @@ from typing_extensions import Literal
 from ...types import shared
 from ..._models import BaseModel
 
-__all__ = ["Balances", "BalanceReport"]
+__all__ = ["BalanceReport", "Balance"]
 
 
-class Balances(BaseModel):
+class Balance(BaseModel):
     amount: int
     """The balance amount."""
 
@@ -60,6 +60,7 @@ class Balances(BaseModel):
             "currencycloud",
             "dc_bank",
             "dwolla",
+            "evolve",
             "goldman_sachs",
             "iso20022",
             "jpmc",
@@ -86,7 +87,7 @@ class BalanceReport(BaseModel):
     One of `intraday`, `previous_day`, `real_time`, or `other`.
     """
 
-    balances: List[Balances]
+    balances: List[Balance]
     """An array of `Balance` objects."""
 
     created_at: str

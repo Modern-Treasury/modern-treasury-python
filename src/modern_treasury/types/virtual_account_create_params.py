@@ -5,13 +5,10 @@ from __future__ import annotations
 from typing import Dict, List, Optional
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["AccountDetails", "RoutingDetailsBankAddress", "RoutingDetails", "VirtualAccountCreateParams"]
+__all__ = ["VirtualAccountCreateParams", "AccountDetail", "RoutingDetail", "RoutingDetailBankAddress"]
 
 
-class AccountDetails(TypedDict, total=False):
-    account_number: Required[str]
-    """The account number for the bank account."""
-
+class AccountDetail(TypedDict, total=False):
     account_number_safe: Required[str]
     """The last 4 digits of the account_number."""
 
@@ -37,8 +34,11 @@ class AccountDetails(TypedDict, total=False):
 
     updated_at: Required[str]
 
+    account_number: str
+    """The account number for the bank account."""
 
-class RoutingDetailsBankAddress(TypedDict, total=False):
+
+class RoutingDetailBankAddress(TypedDict, total=False):
     country: Required[Optional[str]]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
@@ -70,8 +70,8 @@ class RoutingDetailsBankAddress(TypedDict, total=False):
     updated_at: Required[str]
 
 
-class RoutingDetails(TypedDict, total=False):
-    bank_address: Required[Optional[RoutingDetailsBankAddress]]
+class RoutingDetail(TypedDict, total=False):
+    bank_address: Required[Optional[RoutingDetailBankAddress]]
 
     bank_name: Required[str]
     """The name of the bank."""
@@ -136,7 +136,7 @@ class VirtualAccountCreateParams(TypedDict, total=False):
     name: Required[str]
     """The name of the virtual account."""
 
-    account_details: List[AccountDetails]
+    account_details: List[AccountDetail]
     """An array of account detail objects."""
 
     counterparty_id: str
@@ -165,5 +165,5 @@ class VirtualAccountCreateParams(TypedDict, total=False):
     Both the key and value must be strings.
     """
 
-    routing_details: List[RoutingDetails]
+    routing_details: List[RoutingDetail]
     """An array of routing detail objects."""

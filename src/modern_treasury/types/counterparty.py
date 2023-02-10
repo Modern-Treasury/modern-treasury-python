@@ -6,10 +6,10 @@ from typing_extensions import Literal
 from ..types import account_detail, routing_detail, external_account_type
 from .._models import BaseModel
 
-__all__ = ["AccountsPartyAddress", "AccountsContactDetails", "Accounts", "Counterparty"]
+__all__ = ["Counterparty", "Account", "AccountPartyAddress", "AccountContactDetail"]
 
 
-class AccountsPartyAddress(BaseModel):
+class AccountPartyAddress(BaseModel):
     country: Optional[str]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
@@ -41,10 +41,10 @@ class AccountsPartyAddress(BaseModel):
     updated_at: str
 
 
-class AccountsContactDetails(BaseModel):
+class AccountContactDetail(BaseModel):
     contact_identifier: str
 
-    contact_identifier_type: Literal["email", "phone_number"]
+    contact_identifier_type: Literal["email", "phone_number", "website"]
 
     created_at: str
 
@@ -63,13 +63,13 @@ class AccountsContactDetails(BaseModel):
     updated_at: str
 
 
-class Accounts(BaseModel):
+class Account(BaseModel):
     account_details: Optional[List[account_detail.AccountDetail]]
 
     account_type: Optional[external_account_type.ExternalAccountType]
     """Can be `checking`, `savings` or `other`."""
 
-    contact_details: Optional[List[AccountsContactDetails]]
+    contact_details: Optional[List[AccountContactDetail]]
 
     created_at: Optional[str]
 
@@ -97,7 +97,7 @@ class Accounts(BaseModel):
 
     object: Optional[str]
 
-    party_address: Optional[AccountsPartyAddress]
+    party_address: Optional[AccountPartyAddress]
     """The address associated with the owner or `null`."""
 
     party_name: Optional[str]
@@ -114,7 +114,7 @@ class Accounts(BaseModel):
 
 
 class Counterparty(BaseModel):
-    accounts: List[Accounts]
+    accounts: List[Account]
     """The accounts for this counterparty."""
 
     created_at: str
