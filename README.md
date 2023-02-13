@@ -1,6 +1,5 @@
 # Modern Treasury Python API Library
 
-
 > **Migration Guide**
 >
 > We've made some major improvements to how you pass arguments to methods which will require migrating your existing code.
