@@ -8,6 +8,7 @@ from typing import Dict, Union, Mapping, Optional
 
 from . import resources
 from ._qs import Querystring
+from .types import PingResponse
 from ._types import (
     NOT_GIVEN,
     Body,
@@ -27,18 +28,17 @@ from ._base_client import (
     AsyncAPIClient,
     make_request_options,
 )
-from .types.ping_response import PingResponse
 
 __all__ = [
-    "ModernTreasury",
-    "AsyncModernTreasury",
-    "Client",
-    "AsyncClient",
     "Timeout",
     "Transport",
     "ProxiesTypes",
     "RequestOptions",
     "resources",
+    "ModernTreasury",
+    "AsyncModernTreasury",
+    "Client",
+    "AsyncClient",
 ]
 
 
@@ -56,10 +56,12 @@ class ModernTreasury(SyncAPIClient):
     ledgers: resources.Ledgers
     ledger_account_categories: resources.LedgerAccountCategories
     ledger_accounts: resources.LedgerAccounts
+    ledger_account_payouts: resources.LedgerAccountPayouts
     ledger_entries: resources.LedgerEntries
     ledger_transactions: resources.LedgerTransactions
     line_items: resources.LineItems
     payment_orders: resources.PaymentOrders
+    payment_references: resources.PaymentReferences
     returns: resources.Returns
     transactions: resources.Transactions
     validations: resources.Validations
@@ -100,9 +102,9 @@ class ModernTreasury(SyncAPIClient):
         """Construct a new synchronous Modern Treasury client instance.
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
-        - `api_key` from `MODERN_TREASURY_API_KEY`
         - `organization_id` from `MODERN_TREASURY_ORGANIZATION_ID`
         - `webhook_key` from `MODERN_TREASURY_WEBHOOK_KEY`
+        - `api_key` from `MODERN_TREASURY_API_KEY`
         """
         api_key = api_key or os.environ.get("MODERN_TREASURY_API_KEY", "")
         if not api_key:
@@ -127,15 +129,16 @@ class ModernTreasury(SyncAPIClient):
 
         self.api_key = api_key
 
-        organization_id = organization_id or os.environ.get("MODERN_TREASURY_ORGANIZATION_ID")
-
+        organization_id_envvar = os.environ.get("MODERN_TREASURY_ORGANIZATION_ID", None)
+        organization_id = organization_id or organization_id_envvar or None
         if organization_id is None:
             raise ValueError(
                 "The organization_id client option must be set either by passing organization_id to the client or by setting the MODERN_TREASURY_ORGANIZATION_ID environment variable"
             )
         self.organization_id = organization_id
 
-        self.webhook_key = webhook_key or os.environ.get("MODERN_TREASURY_WEBHOOK_KEY")
+        webhook_key_envvar = os.environ.get("MODERN_TREASURY_WEBHOOK_KEY", None)
+        self.webhook_key = webhook_key or webhook_key_envvar or None
 
         self._idempotency_header = "Idempotency-Key"
 
@@ -152,10 +155,12 @@ class ModernTreasury(SyncAPIClient):
         self.ledgers = resources.Ledgers(self)
         self.ledger_account_categories = resources.LedgerAccountCategories(self)
         self.ledger_accounts = resources.LedgerAccounts(self)
+        self.ledger_account_payouts = resources.LedgerAccountPayouts(self)
         self.ledger_entries = resources.LedgerEntries(self)
         self.ledger_transactions = resources.LedgerTransactions(self)
         self.line_items = resources.LineItems(self)
         self.payment_orders = resources.PaymentOrders(self)
+        self.payment_references = resources.PaymentReferences(self)
         self.returns = resources.Returns(self)
         self.transactions = resources.Transactions(self)
         self.validations = resources.Validations(self)
@@ -261,10 +266,12 @@ class AsyncModernTreasury(AsyncAPIClient):
     ledgers: resources.AsyncLedgers
     ledger_account_categories: resources.AsyncLedgerAccountCategories
     ledger_accounts: resources.AsyncLedgerAccounts
+    ledger_account_payouts: resources.AsyncLedgerAccountPayouts
     ledger_entries: resources.AsyncLedgerEntries
     ledger_transactions: resources.AsyncLedgerTransactions
     line_items: resources.AsyncLineItems
     payment_orders: resources.AsyncPaymentOrders
+    payment_references: resources.AsyncPaymentReferences
     returns: resources.AsyncReturns
     transactions: resources.AsyncTransactions
     validations: resources.AsyncValidations
@@ -305,9 +312,9 @@ class AsyncModernTreasury(AsyncAPIClient):
         """Construct a new async Modern Treasury client instance.
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
-        - `api_key` from `MODERN_TREASURY_API_KEY`
         - `organization_id` from `MODERN_TREASURY_ORGANIZATION_ID`
         - `webhook_key` from `MODERN_TREASURY_WEBHOOK_KEY`
+        - `api_key` from `MODERN_TREASURY_API_KEY`
         """
         api_key = api_key or os.environ.get("MODERN_TREASURY_API_KEY", "")
         if not api_key:
@@ -332,15 +339,16 @@ class AsyncModernTreasury(AsyncAPIClient):
 
         self.api_key = api_key
 
-        organization_id = organization_id or os.environ.get("MODERN_TREASURY_ORGANIZATION_ID")
-
+        organization_id_envvar = os.environ.get("MODERN_TREASURY_ORGANIZATION_ID", None)
+        organization_id = organization_id or organization_id_envvar or None
         if organization_id is None:
             raise ValueError(
                 "The organization_id client option must be set either by passing organization_id to the client or by setting the MODERN_TREASURY_ORGANIZATION_ID environment variable"
             )
         self.organization_id = organization_id
 
-        self.webhook_key = webhook_key or os.environ.get("MODERN_TREASURY_WEBHOOK_KEY")
+        webhook_key_envvar = os.environ.get("MODERN_TREASURY_WEBHOOK_KEY", None)
+        self.webhook_key = webhook_key or webhook_key_envvar or None
 
         self._idempotency_header = "Idempotency-Key"
 
@@ -357,10 +365,12 @@ class AsyncModernTreasury(AsyncAPIClient):
         self.ledgers = resources.AsyncLedgers(self)
         self.ledger_account_categories = resources.AsyncLedgerAccountCategories(self)
         self.ledger_accounts = resources.AsyncLedgerAccounts(self)
+        self.ledger_account_payouts = resources.AsyncLedgerAccountPayouts(self)
         self.ledger_entries = resources.AsyncLedgerEntries(self)
         self.ledger_transactions = resources.AsyncLedgerTransactions(self)
         self.line_items = resources.AsyncLineItems(self)
         self.payment_orders = resources.AsyncPaymentOrders(self)
+        self.payment_references = resources.AsyncPaymentReferences(self)
         self.returns = resources.AsyncReturns(self)
         self.transactions = resources.AsyncTransactions(self)
         self.validations = resources.AsyncValidations(self)

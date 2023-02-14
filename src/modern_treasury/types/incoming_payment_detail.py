@@ -65,7 +65,10 @@ class IncomingPaymentDetail(BaseModel):
     """The ID of the reconciled Transaction Line Item or `null`."""
 
     type: Literal["ach", "book", "check", "eft", "interac", "rtp", "sepa", "signet", "wire"]
-    """One of: `ach`, `wire`, `check`, `rtp`, `sepa`, `signet`."""
+    """
+    One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
+    `wire`.
+    """
 
     updated_at: str
 

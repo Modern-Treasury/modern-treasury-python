@@ -9,17 +9,23 @@ from ..types import shared_params
 from .._types import FileTypes
 
 __all__ = [
+    "PaymentOrderCreateParams",
     "Accounting",
+    "ReceivingAccount",
     "ReceivingAccountPartyAddress",
     "ReceivingAccountAccountDetails",
+    "ReceivingAccountAccountDetail",
     "ReceivingAccountRoutingDetails",
+    "ReceivingAccountRoutingDetail",
     "ReceivingAccountContactDetails",
-    "ReceivingAccount",
-    "LedgerTransactionLedgerEntries",
+    "ReceivingAccountContactDetail",
     "LedgerTransaction",
+    "LedgerTransactionLedgerEntries",
+    "LedgerTransactionLedgerEntry",
     "LineItems",
+    "LineItem",
     "Documents",
-    "PaymentOrderCreateParams",
+    "Document",
 ]
 
 
@@ -58,13 +64,20 @@ class ReceivingAccountPartyAddress(TypedDict, total=False):
     """Region or State."""
 
 
-class ReceivingAccountAccountDetails(TypedDict, total=False):
+class ReceivingAccountAccountDetail(TypedDict, total=False):
     account_number: Required[str]
 
     account_number_type: Literal["iban", "clabe", "wallet_address", "pan", "other"]
 
 
-class ReceivingAccountRoutingDetails(TypedDict, total=False):
+ReceivingAccountAccountDetails = ReceivingAccountAccountDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use ReceivingAccountAccountDetail instead.
+"""
+
+
+class ReceivingAccountRoutingDetail(TypedDict, total=False):
     routing_number: Required[str]
 
     routing_number_type: Required[
@@ -92,19 +105,33 @@ class ReceivingAccountRoutingDetails(TypedDict, total=False):
     ]
 
 
-class ReceivingAccountContactDetails(TypedDict, total=False):
+ReceivingAccountRoutingDetails = ReceivingAccountRoutingDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use ReceivingAccountRoutingDetail instead.
+"""
+
+
+class ReceivingAccountContactDetail(TypedDict, total=False):
     contact_identifier: str
 
-    contact_identifier_type: Literal["email", "phone_number"]
+    contact_identifier_type: Literal["email", "phone_number", "website"]
+
+
+ReceivingAccountContactDetails = ReceivingAccountContactDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use ReceivingAccountContactDetail instead.
+"""
 
 
 class ReceivingAccount(TypedDict, total=False):
-    account_details: List[ReceivingAccountAccountDetails]
+    account_details: List[ReceivingAccountAccountDetail]
 
     account_type: Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]
     """Can be `checking`, `savings` or `other`."""
 
-    contact_details: List[ReceivingAccountContactDetails]
+    contact_details: List[ReceivingAccountContactDetail]
 
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.
@@ -137,10 +164,10 @@ class ReceivingAccount(TypedDict, total=False):
     you can pass the processor token in this field.
     """
 
-    routing_details: List[ReceivingAccountRoutingDetails]
+    routing_details: List[ReceivingAccountRoutingDetail]
 
 
-class LedgerTransactionLedgerEntries(TypedDict, total=False):
+class LedgerTransactionLedgerEntry(TypedDict, total=False):
     amount: Required[int]
     """Value in specified currency's smallest unit.
 
@@ -195,6 +222,13 @@ class LedgerTransactionLedgerEntries(TypedDict, total=False):
     """
 
 
+LedgerTransactionLedgerEntries = LedgerTransactionLedgerEntry
+"""This type is deprecated and will be removed in a future release.
+
+Please use LedgerTransactionLedgerEntry instead.
+"""
+
+
 class LedgerTransaction(TypedDict, total=False):
     effective_date: Required[str]
     """
@@ -202,7 +236,7 @@ class LedgerTransaction(TypedDict, total=False):
     purposes.
     """
 
-    ledger_entries: Required[List[LedgerTransactionLedgerEntries]]
+    ledger_entries: Required[List[LedgerTransactionLedgerEntry]]
     """An array of ledger entry objects."""
 
     description: Optional[str]
@@ -248,7 +282,7 @@ class LedgerTransaction(TypedDict, total=False):
     """To post a ledger transaction at creation, use `posted`."""
 
 
-class LineItems(TypedDict, total=False):
+class LineItem(TypedDict, total=False):
     amount: Required[int]
     """Value in specified currency's smallest unit.
 
@@ -272,11 +306,25 @@ class LineItems(TypedDict, total=False):
     """
 
 
-class Documents(TypedDict, total=False):
+LineItems = LineItem
+"""This type is deprecated and will be removed in a future release.
+
+Please use LineItem instead.
+"""
+
+
+class Document(TypedDict, total=False):
     file: Required[FileTypes]
 
     document_type: str
     """A category given to the document, can be `null`."""
+
+
+Documents = Document
+"""This type is deprecated and will be removed in a future release.
+
+Please use Document instead.
+"""
 
 
 class PaymentOrderCreateParams(TypedDict, total=False):
@@ -354,7 +402,7 @@ class PaymentOrderCreateParams(TypedDict, total=False):
     description: Optional[str]
     """An optional description for internal use."""
 
-    documents: List[Documents]
+    documents: List[Document]
     """An array of documents to be attached to the payment order.
 
     Note that if you attach documents, the request's content type must be
@@ -399,7 +447,7 @@ class PaymentOrderCreateParams(TypedDict, total=False):
     the payment order.
     """
 
-    line_items: List[LineItems]
+    line_items: List[LineItem]
     """An array of line items that must sum up to the amount of the payment order."""
 
     metadata: Dict[str, str]
