@@ -5,15 +5,15 @@ from __future__ import annotations
 from typing import Dict, List, Optional
 from typing_extensions import Literal
 
-from ..types import counterparty_create_params
+from ..types import (
+    Counterparty,
+    CounterpartyCollectAccountResponse,
+    counterparty_create_params,
+)
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.counterparty import Counterparty
-from ..types.counterparty_collect_account_response import (
-    CounterpartyCollectAccountResponse,
-)
 
 __all__ = ["Counterparties", "AsyncCounterparties"]
 
@@ -23,7 +23,7 @@ class Counterparties(SyncAPIResource):
         self,
         *,
         name: Optional[str],
-        accounts: List[counterparty_create_params.Accounts] | NotGiven = NOT_GIVEN,
+        accounts: List[counterparty_create_params.Account] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         send_remittance_advice: bool | NotGiven = NOT_GIVEN,
@@ -310,7 +310,7 @@ class AsyncCounterparties(AsyncAPIResource):
         self,
         *,
         name: Optional[str],
-        accounts: List[counterparty_create_params.Accounts] | NotGiven = NOT_GIVEN,
+        accounts: List[counterparty_create_params.Account] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         send_remittance_advice: bool | NotGiven = NOT_GIVEN,

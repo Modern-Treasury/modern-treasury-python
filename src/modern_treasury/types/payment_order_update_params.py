@@ -8,14 +8,18 @@ from typing_extensions import Literal, Required, TypedDict
 from ..types import shared_params
 
 __all__ = [
+    "PaymentOrderUpdateParams",
     "Accounting",
+    "ReceivingAccount",
     "ReceivingAccountPartyAddress",
     "ReceivingAccountAccountDetails",
+    "ReceivingAccountAccountDetail",
     "ReceivingAccountRoutingDetails",
+    "ReceivingAccountRoutingDetail",
     "ReceivingAccountContactDetails",
-    "ReceivingAccount",
+    "ReceivingAccountContactDetail",
     "LineItems",
-    "PaymentOrderUpdateParams",
+    "LineItem",
 ]
 
 
@@ -54,13 +58,20 @@ class ReceivingAccountPartyAddress(TypedDict, total=False):
     """Region or State."""
 
 
-class ReceivingAccountAccountDetails(TypedDict, total=False):
+class ReceivingAccountAccountDetail(TypedDict, total=False):
     account_number: Required[str]
 
     account_number_type: Literal["iban", "clabe", "wallet_address", "pan", "other"]
 
 
-class ReceivingAccountRoutingDetails(TypedDict, total=False):
+ReceivingAccountAccountDetails = ReceivingAccountAccountDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use ReceivingAccountAccountDetail instead.
+"""
+
+
+class ReceivingAccountRoutingDetail(TypedDict, total=False):
     routing_number: Required[str]
 
     routing_number_type: Required[
@@ -88,19 +99,33 @@ class ReceivingAccountRoutingDetails(TypedDict, total=False):
     ]
 
 
-class ReceivingAccountContactDetails(TypedDict, total=False):
+ReceivingAccountRoutingDetails = ReceivingAccountRoutingDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use ReceivingAccountRoutingDetail instead.
+"""
+
+
+class ReceivingAccountContactDetail(TypedDict, total=False):
     contact_identifier: str
 
-    contact_identifier_type: Literal["email", "phone_number"]
+    contact_identifier_type: Literal["email", "phone_number", "website"]
+
+
+ReceivingAccountContactDetails = ReceivingAccountContactDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use ReceivingAccountContactDetail instead.
+"""
 
 
 class ReceivingAccount(TypedDict, total=False):
-    account_details: List[ReceivingAccountAccountDetails]
+    account_details: List[ReceivingAccountAccountDetail]
 
     account_type: Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]
     """Can be `checking`, `savings` or `other`."""
 
-    contact_details: List[ReceivingAccountContactDetails]
+    contact_details: List[ReceivingAccountContactDetail]
 
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.
@@ -133,10 +158,10 @@ class ReceivingAccount(TypedDict, total=False):
     you can pass the processor token in this field.
     """
 
-    routing_details: List[ReceivingAccountRoutingDetails]
+    routing_details: List[ReceivingAccountRoutingDetail]
 
 
-class LineItems(TypedDict, total=False):
+class LineItem(TypedDict, total=False):
     amount: Required[int]
     """Value in specified currency's smallest unit.
 
@@ -158,6 +183,13 @@ class LineItems(TypedDict, total=False):
 
     Both the key and value must be strings.
     """
+
+
+LineItems = LineItem
+"""This type is deprecated and will be removed in a future release.
+
+Please use LineItem instead.
+"""
 
 
 class PaymentOrderUpdateParams(TypedDict, total=False):
@@ -239,7 +271,7 @@ class PaymentOrderUpdateParams(TypedDict, total=False):
     currency matches the originating account currency.
     """
 
-    line_items: List[LineItems]
+    line_items: List[LineItem]
     """An array of line items that must sum up to the amount of the payment order."""
 
     metadata: Dict[str, str]

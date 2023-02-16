@@ -6,6 +6,9 @@ from typing import TYPE_CHECKING, Dict, List, Mapping, Optional, cast
 from typing_extensions import Literal
 
 from ...types import (
+    PaymentOrder,
+    PaymentOrderType,
+    PaymentOrderSubtype,
     shared_params,
     payment_order_create_params,
     payment_order_update_params,
@@ -17,9 +20,6 @@ from .reversals import Reversals, AsyncReversals
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.payment_order import PaymentOrder
-from ...types.payment_order_type import PaymentOrderType
-from ...types.payment_order_subtype import PaymentOrderSubtype
 
 if TYPE_CHECKING:
     from ..._client import ModernTreasury, AsyncModernTreasury
@@ -68,9 +68,9 @@ class PaymentOrders(SyncAPIResource):
         fallback_type: Literal["ach"] | NotGiven = NOT_GIVEN,
         receiving_account: payment_order_create_params.ReceivingAccount | NotGiven = NOT_GIVEN,
         ledger_transaction: payment_order_create_params.LedgerTransaction | NotGiven = NOT_GIVEN,
-        line_items: List[payment_order_create_params.LineItems] | NotGiven = NOT_GIVEN,
+        line_items: List[payment_order_create_params.LineItem] | NotGiven = NOT_GIVEN,
         transaction_monitoring_enabled: bool | NotGiven = NOT_GIVEN,
-        documents: List[payment_order_create_params.Documents] | NotGiven = NOT_GIVEN,
+        documents: List[payment_order_create_params.Document] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -318,7 +318,7 @@ class PaymentOrders(SyncAPIResource):
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
         fallback_type: Literal["ach"] | NotGiven = NOT_GIVEN,
         receiving_account: payment_order_update_params.ReceivingAccount | NotGiven = NOT_GIVEN,
-        line_items: List[payment_order_update_params.LineItems] | NotGiven = NOT_GIVEN,
+        line_items: List[payment_order_update_params.LineItem] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -632,7 +632,7 @@ class PaymentOrders(SyncAPIResource):
         fallback_type: Literal["ach"] | NotGiven = NOT_GIVEN,
         receiving_account: payment_order_create_async_params.ReceivingAccount | NotGiven = NOT_GIVEN,
         ledger_transaction: payment_order_create_async_params.LedgerTransaction | NotGiven = NOT_GIVEN,
-        line_items: List[payment_order_create_async_params.LineItems] | NotGiven = NOT_GIVEN,
+        line_items: List[payment_order_create_async_params.LineItem] | NotGiven = NOT_GIVEN,
         transaction_monitoring_enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -843,9 +843,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
         fallback_type: Literal["ach"] | NotGiven = NOT_GIVEN,
         receiving_account: payment_order_create_params.ReceivingAccount | NotGiven = NOT_GIVEN,
         ledger_transaction: payment_order_create_params.LedgerTransaction | NotGiven = NOT_GIVEN,
-        line_items: List[payment_order_create_params.LineItems] | NotGiven = NOT_GIVEN,
+        line_items: List[payment_order_create_params.LineItem] | NotGiven = NOT_GIVEN,
         transaction_monitoring_enabled: bool | NotGiven = NOT_GIVEN,
-        documents: List[payment_order_create_params.Documents] | NotGiven = NOT_GIVEN,
+        documents: List[payment_order_create_params.Document] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1093,7 +1093,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
         fallback_type: Literal["ach"] | NotGiven = NOT_GIVEN,
         receiving_account: payment_order_update_params.ReceivingAccount | NotGiven = NOT_GIVEN,
-        line_items: List[payment_order_update_params.LineItems] | NotGiven = NOT_GIVEN,
+        line_items: List[payment_order_update_params.LineItem] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1407,7 +1407,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         fallback_type: Literal["ach"] | NotGiven = NOT_GIVEN,
         receiving_account: payment_order_create_async_params.ReceivingAccount | NotGiven = NOT_GIVEN,
         ledger_transaction: payment_order_create_async_params.LedgerTransaction | NotGiven = NOT_GIVEN,
-        line_items: List[payment_order_create_async_params.LineItems] | NotGiven = NOT_GIVEN,
+        line_items: List[payment_order_create_async_params.LineItem] | NotGiven = NOT_GIVEN,
         transaction_monitoring_enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

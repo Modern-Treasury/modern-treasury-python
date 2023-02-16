@@ -20,7 +20,9 @@ from .virtual_accounts import VirtualAccounts, AsyncVirtualAccounts
 from .expected_payments import ExpectedPayments, AsyncExpectedPayments
 from .external_accounts import ExternalAccounts, AsyncExternalAccounts
 from .internal_accounts import InternalAccounts, AsyncInternalAccounts
+from .payment_references import PaymentReferences, AsyncPaymentReferences
 from .ledger_transactions import LedgerTransactions, AsyncLedgerTransactions
+from .ledger_account_payouts import LedgerAccountPayouts, AsyncLedgerAccountPayouts
 from .incoming_payment_details import (
     IncomingPaymentDetails,
     AsyncIncomingPaymentDetails,
@@ -57,6 +59,8 @@ __all__ = [
     "AsyncLedgerAccountCategories",
     "LedgerAccounts",
     "AsyncLedgerAccounts",
+    "LedgerAccountPayouts",
+    "AsyncLedgerAccountPayouts",
     "LedgerEntries",
     "AsyncLedgerEntries",
     "LedgerTransactions",
@@ -65,6 +69,8 @@ __all__ = [
     "AsyncLineItems",
     "PaymentOrders",
     "AsyncPaymentOrders",
+    "PaymentReferences",
+    "AsyncPaymentReferences",
     "Returns",
     "AsyncReturns",
     "Transactions",

@@ -6,10 +6,10 @@ from typing_extensions import Literal
 from ..types import shared
 from .._models import BaseModel
 
-__all__ = ["ReferenceNumbers", "ReturnObject"]
+__all__ = ["ReturnObject", "ReferenceNumbers", "ReferenceNumber"]
 
 
-class ReferenceNumbers(BaseModel):
+class ReferenceNumber(BaseModel):
     created_at: str
 
     id: str
@@ -28,6 +28,7 @@ class ReferenceNumbers(BaseModel):
     reference_number_type: Literal[
         "ach_original_trace_number",
         "ach_trace_number",
+        "bankprov_payment_activity_date",
         "bankprov_payment_id",
         "bnk_dev_prenotification_id",
         "bnk_dev_transfer_id",
@@ -51,6 +52,7 @@ class ReferenceNumbers(BaseModel):
         "goldman_sachs_unique_payment_id",
         "interac_message_id",
         "jpmc_ccn",
+        "jpmc_customer_reference_id",
         "jpmc_end_to_end_id",
         "jpmc_firm_root_id",
         "jpmc_p3_id",
@@ -77,6 +79,13 @@ class ReferenceNumbers(BaseModel):
     """The type of the reference number. Referring to the vendor payment id."""
 
     updated_at: str
+
+
+ReferenceNumbers = ReferenceNumber
+"""This type is deprecated and will be removed in a future release.
+
+Please use ReferenceNumber instead.
+"""
 
 
 class ReturnObject(BaseModel):
@@ -180,19 +189,19 @@ class ReturnObject(BaseModel):
     human readable string.
     """
 
-    reference_numbers: List[ReferenceNumbers]
+    reference_numbers: List[ReferenceNumber]
     """An array of Payment Reference objects."""
 
     returnable_id: Optional[str]
     """The ID of the object being returned or `null`."""
 
-    returnable_type: Optional[Literal["incoming_payment_detail", "paper_item", "payment_order", "reversal"]]
+    returnable_type: Optional[Literal["incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"]]
     """The type of object being returned or `null`."""
 
     role: Literal["originating", "receiving"]
     """The role of the return, can be `originating` or `receiving`."""
 
-    status: Literal["completed", "failed", "pending", "processing", "sent"]
+    status: Literal["completed", "failed", "pending", "processing", "returned", "sent"]
     """The current status of the return."""
 
     transaction_id: Optional[str]
@@ -201,7 +210,7 @@ class ReturnObject(BaseModel):
     transaction_line_item_id: Optional[str]
     """The ID of the relevant Transaction Line Item or `null`."""
 
-    type: Literal["ach", "ach_noc", "au_becs", "bacs", "eft", "interac", "manual", "paper_item", "sepa", "wire"]
+    type: Literal["ach", "ach_noc", "au_becs", "bacs", "book", "eft", "interac", "manual", "paper_item", "sepa", "wire"]
     """The type of return.
 
     Can be one of: `ach`, `ach_noc`, `au_becs`, `bacs`, `eft`, `interac`, `manual`,

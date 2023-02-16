@@ -1,4 +1,5 @@
 # File generated from our OpenAPI spec by Stainless.
+
 from __future__ import annotations
 
 import os
@@ -6,8 +7,8 @@ import os
 import pytest
 
 from modern_treasury import ModernTreasury, AsyncModernTreasury
+from modern_treasury.types import LedgerAccountCategory
 from modern_treasury.pagination import SyncPage, AsyncPage
-from modern_treasury.types.ledger_account_category import LedgerAccountCategory
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
 api_key = os.environ.get("API_KEY", "something1234")
@@ -53,6 +54,17 @@ class TestLedgerAccountCategories:
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         resource = client.ledger_account_categories.retrieve(
             "string",
+        )
+        assert isinstance(resource, LedgerAccountCategory)
+
+    @parametrize
+    def test_method_retrieve_with_all_params(self, client: ModernTreasury) -> None:
+        resource = client.ledger_account_categories.retrieve(
+            "string",
+            balances={
+                "as_of_date": "2019-12-27",
+                "effective_at": "2019-12-27T18:11:19.117Z",
+            },
         )
         assert isinstance(resource, LedgerAccountCategory)
 
@@ -174,6 +186,17 @@ class TestAsyncLedgerAccountCategories:
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         resource = await client.ledger_account_categories.retrieve(
             "string",
+        )
+        assert isinstance(resource, LedgerAccountCategory)
+
+    @parametrize
+    async def test_method_retrieve_with_all_params(self, client: AsyncModernTreasury) -> None:
+        resource = await client.ledger_account_categories.retrieve(
+            "string",
+            balances={
+                "as_of_date": "2019-12-27",
+                "effective_at": "2019-12-27T18:11:19.117Z",
+            },
         )
         assert isinstance(resource, LedgerAccountCategory)
 

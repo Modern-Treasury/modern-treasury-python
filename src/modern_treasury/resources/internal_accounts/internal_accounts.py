@@ -5,13 +5,12 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Dict, Optional
 from typing_extensions import Literal
 
-from ...types import shared_params, internal_account_create_params
+from ...types import InternalAccount, shared_params, internal_account_create_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
 from .balance_reports import BalanceReports, AsyncBalanceReports
-from ...types.internal_account import InternalAccount
 
 if TYPE_CHECKING:
     from ..._client import ModernTreasury, AsyncModernTreasury
@@ -44,6 +43,8 @@ class InternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> InternalAccount:
         """
+        create internal account
+
         Args:
           connection_id: The identifier of the financial institution the account belongs to.
 
@@ -94,6 +95,7 @@ class InternalAccounts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> InternalAccount:
+        """get internal account"""
         return self._get(
             f"/api/internal_accounts/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
@@ -115,6 +117,8 @@ class InternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> InternalAccount:
         """
+        update internal account
+
         Args:
           name: The nickname for the internal account.
 
@@ -170,6 +174,7 @@ class InternalAccounts(SyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         payment_direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -177,12 +182,18 @@ class InternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
     ) -> SyncPage[InternalAccount]:
         """
+        list internal accounts
+
         Args:
           currency: The currency associated with the internal account.
 
           payment_type: The type of payment that can be made by the internal account.
 
           payment_direction: The direction of payments that can be made by internal account.
+
+          metadata: For example, if you want to query for records with metadata key `Type` and value
+              `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+              parameters.
 
           extra_headers: Send extra headers
 
@@ -203,6 +214,7 @@ class InternalAccounts(SyncAPIResource):
                     "currency": currency,
                     "payment_type": payment_type,
                     "payment_direction": payment_direction,
+                    "metadata": metadata,
                 },
             ),
             model=InternalAccount,
@@ -234,6 +246,8 @@ class AsyncInternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> InternalAccount:
         """
+        create internal account
+
         Args:
           connection_id: The identifier of the financial institution the account belongs to.
 
@@ -284,6 +298,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> InternalAccount:
+        """get internal account"""
         return await self._get(
             f"/api/internal_accounts/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
@@ -305,6 +320,8 @@ class AsyncInternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> InternalAccount:
         """
+        update internal account
+
         Args:
           name: The nickname for the internal account.
 
@@ -360,6 +377,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         payment_direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -367,12 +385,18 @@ class AsyncInternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
     ) -> AsyncPaginator[InternalAccount, AsyncPage[InternalAccount]]:
         """
+        list internal accounts
+
         Args:
           currency: The currency associated with the internal account.
 
           payment_type: The type of payment that can be made by the internal account.
 
           payment_direction: The direction of payments that can be made by internal account.
+
+          metadata: For example, if you want to query for records with metadata key `Type` and value
+              `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+              parameters.
 
           extra_headers: Send extra headers
 
@@ -393,6 +417,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                     "currency": currency,
                     "payment_type": payment_type,
                     "payment_direction": payment_direction,
+                    "metadata": metadata,
                 },
             ),
             model=InternalAccount,

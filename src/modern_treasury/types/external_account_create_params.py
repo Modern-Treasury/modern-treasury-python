@@ -5,7 +5,16 @@ from __future__ import annotations
 from typing import Dict, List, Optional
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["PartyAddress", "AccountDetails", "RoutingDetails", "ContactDetails", "ExternalAccountCreateParams"]
+__all__ = [
+    "ExternalAccountCreateParams",
+    "PartyAddress",
+    "AccountDetails",
+    "AccountDetail",
+    "RoutingDetails",
+    "RoutingDetail",
+    "ContactDetails",
+    "ContactDetail",
+]
 
 
 class PartyAddress(TypedDict, total=False):
@@ -26,13 +35,20 @@ class PartyAddress(TypedDict, total=False):
     """Region or State."""
 
 
-class AccountDetails(TypedDict, total=False):
+class AccountDetail(TypedDict, total=False):
     account_number: Required[str]
 
     account_number_type: Literal["iban", "clabe", "wallet_address", "pan", "other"]
 
 
-class RoutingDetails(TypedDict, total=False):
+AccountDetails = AccountDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use AccountDetail instead.
+"""
+
+
+class RoutingDetail(TypedDict, total=False):
     routing_number: Required[str]
 
     routing_number_type: Required[
@@ -60,21 +76,35 @@ class RoutingDetails(TypedDict, total=False):
     ]
 
 
-class ContactDetails(TypedDict, total=False):
+RoutingDetails = RoutingDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use RoutingDetail instead.
+"""
+
+
+class ContactDetail(TypedDict, total=False):
     contact_identifier: str
 
-    contact_identifier_type: Literal["email", "phone_number"]
+    contact_identifier_type: Literal["email", "phone_number", "website"]
+
+
+ContactDetails = ContactDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use ContactDetail instead.
+"""
 
 
 class ExternalAccountCreateParams(TypedDict, total=False):
     counterparty_id: Required[Optional[str]]
 
-    account_details: List[AccountDetails]
+    account_details: List[AccountDetail]
 
     account_type: Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]
     """Can be `checking`, `savings` or `other`."""
 
-    contact_details: List[ContactDetails]
+    contact_details: List[ContactDetail]
 
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.
@@ -107,4 +137,4 @@ class ExternalAccountCreateParams(TypedDict, total=False):
     you can pass the processor token in this field.
     """
 
-    routing_details: List[RoutingDetails]
+    routing_details: List[RoutingDetail]

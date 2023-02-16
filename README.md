@@ -15,7 +15,7 @@ The Modern Treasury Python library provides convenient access to the Modern Trea
 application. It includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
-![GIF showcasing modern_treasury usage](./showcase.gif)
+https://user-images.githubusercontent.com/704302/216504942-09ed8dd7-7f44-40a6-a580-3764e91f11b4.mov
 
 ## Documentation
 
@@ -73,7 +73,7 @@ async def main():
 asyncio.run(main())
 ```
 
-Functionality between the synchronous and asynchronous clients are otherwise identical.
+Functionality between the synchronous and asynchronous clients is otherwise identical.
 
 ## Using Types
 
@@ -99,7 +99,7 @@ all_external_accounts = []
 for external_account in modern_treasury.external_accounts.list():
     # Do something with external_account here
     all_external_accounts.append(external_account)
-return all_external_accounts
+print(all_external_accounts)
 ```
 
 Or, asynchronously:

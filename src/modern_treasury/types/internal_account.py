@@ -6,7 +6,7 @@ from typing_extensions import Literal
 from ..types import shared, connection, account_detail, routing_detail
 from .._models import BaseModel
 
-__all__ = ["PartyAddress", "InternalAccount"]
+__all__ = ["InternalAccount", "PartyAddress"]
 
 
 class PartyAddress(BaseModel):
