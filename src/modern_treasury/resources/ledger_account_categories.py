@@ -5,11 +5,11 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import Literal
 
+from ..types import LedgerAccountCategory, ledger_account_category_retrieve_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.ledger_account_category import LedgerAccountCategory
 
 __all__ = ["LedgerAccountCategories", "AsyncLedgerAccountCategories"]
 
@@ -75,16 +75,36 @@ class LedgerAccountCategories(SyncAPIResource):
         self,
         id: str,
         *,
+        balances: ledger_account_category_retrieve_params.Balances | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LedgerAccountCategory:
-        """Get the details on a single ledger account category."""
+        """
+        Get the details on a single ledger account category.
+
+        Args:
+          balances: For example, if you want the balances as of a particular effective date
+              (YYYY-MM-DD), the encoded query string would be
+              balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are inclusive of
+              entries with that exact date.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+        """
         return self._get(
             f"/api/ledger_account_categories/{id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                query={"balances": balances},
+            ),
             cast_to=LedgerAccountCategory,
         )
 
@@ -334,16 +354,36 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         self,
         id: str,
         *,
+        balances: ledger_account_category_retrieve_params.Balances | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
     ) -> LedgerAccountCategory:
-        """Get the details on a single ledger account category."""
+        """
+        Get the details on a single ledger account category.
+
+        Args:
+          balances: For example, if you want the balances as of a particular effective date
+              (YYYY-MM-DD), the encoded query string would be
+              balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are inclusive of
+              entries with that exact date.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+        """
         return await self._get(
             f"/api/ledger_account_categories/{id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                query={"balances": balances},
+            ),
             cast_to=LedgerAccountCategory,
         )
 
