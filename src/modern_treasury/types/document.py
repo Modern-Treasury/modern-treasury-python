@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["File", "Document"]
+__all__ = ["Document", "File"]
 
 
 class File(BaseModel):

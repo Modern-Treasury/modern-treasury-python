@@ -22,7 +22,7 @@ from typing import (
     overload,
 )
 from functools import lru_cache
-from typing_extensions import Literal
+from typing_extensions import Literal, get_args, get_origin
 
 import anyio
 import httpx
@@ -293,28 +293,31 @@ class BaseClient:
 
     def _make_status_error(self, request: httpx.Request, response: httpx.Response) -> APIStatusError:
         err_text = response.text.strip()
+        body = err_text
+
         try:
-            err_msg = json.loads(err_text)
-        except:
-            err_msg = err_text or "Unknown"
+            body = json.loads(err_text)
+            err_msg = f"Error code: {response.status_code}"
+        except Exception:
+            err_msg = err_text or f"Error code: {response.status_code}"
 
         if response.status_code == 400:
-            return exceptions.BadRequestError(err_msg, request, response)
+            return exceptions.BadRequestError(err_msg, request=request, response=response, body=body)
         if response.status_code == 401:
-            return exceptions.AuthenticationError(err_msg, request, response)
+            return exceptions.AuthenticationError(err_msg, request=request, response=response, body=body)
         if response.status_code == 403:
-            return exceptions.PermissionDeniedError(err_msg, request, response)
+            return exceptions.PermissionDeniedError(err_msg, request=request, response=response, body=body)
         if response.status_code == 404:
-            return exceptions.NotFoundError(err_msg, request, response)
+            return exceptions.NotFoundError(err_msg, request=request, response=response, body=body)
         if response.status_code == 409:
-            return exceptions.ConflictError(err_msg, request, response)
+            return exceptions.ConflictError(err_msg, request=request, response=response, body=body)
         if response.status_code == 422:
-            return exceptions.UnprocessableEntityError(err_msg, request, response)
+            return exceptions.UnprocessableEntityError(err_msg, request=request, response=response, body=body)
         if response.status_code == 429:
-            return exceptions.RateLimitError(err_msg, request, response)
+            return exceptions.RateLimitError(err_msg, request=request, response=response, body=body)
         if response.status_code >= 500:
-            return exceptions.InternalServerError(err_msg, request, response)
-        return APIStatusError(err_msg, request, response)
+            return exceptions.InternalServerError(err_msg, request=request, response=response, body=body)
+        return APIStatusError(err_msg, request=request, response=response, body=body)
 
     def remaining_retries(
         self,
@@ -323,21 +326,26 @@ class BaseClient:
     ) -> int:
         return remaining_retries if remaining_retries is not None else options.get_max_retries(self.max_retries)
 
-    def build_request(
-        self,
-        options: FinalRequestOptions,
-    ) -> httpx.Request:
-        headers = _merge_mappings(
-            self.default_headers,
-            {} if isinstance(options.headers, NotGiven) else options.headers,
-        )
+    def _build_headers(self, options: FinalRequestOptions) -> dict[str, str]:
+        custom_headers = options.headers or {}
+        headers = _merge_mappings(self.default_headers, custom_headers)
+        self._validate_headers(headers, custom_headers)
+
         if self._idempotency_header and options.method.lower() != "get":
             if not options.idempotency_key:
                 options.idempotency_key = self._idempotency_key()
             headers[self._idempotency_header] = options.idempotency_key
 
+        return headers
+
+    def build_request(
+        self,
+        options: FinalRequestOptions,
+    ) -> httpx.Request:
+        headers = self._build_headers(options)
+
         kwargs: dict[str, Any] = {}
-        json_data = strip_not_given(options.json_data)
+        json_data = options.json_data
         if options.extra_json is not None:
             if json_data is None:
                 json_data = options.extra_json
@@ -346,7 +354,7 @@ class BaseClient:
             else:
                 raise RuntimeError(f"Unexpected JSON data type, {type(json_data)}, cannot merge with `extra_body`")
 
-        params = _merge_mappings(self._custom_query, strip_not_given(options.params))
+        params = _merge_mappings(self._custom_query, options.params)
 
         # If the given Content-Type header is multipart/form-data then it
         # has to be removed so that httpx can generate the header with
@@ -401,12 +409,32 @@ class BaseClient:
         cast_to: Type[ResponseT],
         options: FinalRequestOptions,
         response: httpx.Response,
+        _strict: bool = False,
     ) -> ResponseT:
         if cast_to is NoneType:
             return cast(ResponseT, None)
 
         if cast_to == str:
             return cast(ResponseT, response.text)
+
+        # TODO: try to handle Unions better…
+        if get_origin(cast_to) is Union:
+            members = get_args(cast_to)
+            for member in members:
+                try:
+                    return cast(
+                        ResponseT,
+                        self.process_response(cast_to=member, options=options, response=response, _strict=True),
+                    )
+                except:
+                    continue
+            # If nobody matches exactly, try again loosely.
+            for member in members:
+                try:
+                    return cast(ResponseT, self.process_response(cast_to=member, options=options, response=response))
+                except:
+                    continue
+            raise ValueError(f"Response did not match any type in union {members}")
 
         if issubclass(cast_to, httpx.Response):
             # Because of the invariance of our ResponseT TypeVar, users can subclass httpx.Response
@@ -449,7 +477,7 @@ class BaseClient:
             return cast(ResponseT, cast_to.build(response=response, data=data))
 
         model_cls = cast(Type[BaseModel], cast_to)
-        if self._strict_response_validation:
+        if _strict or self._strict_response_validation:
             return cast(ResponseT, model_cls(**data))
 
         return cast(ResponseT, model_cls.construct(**data))
@@ -475,6 +503,13 @@ class BaseClient:
             **self.auth_headers,
             **self._custom_headers,
         }
+
+    def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
+        """Validate the given default headers and custom headers.
+
+        Does nothing by default.
+        """
+        return
 
     @property
     def user_agent(self) -> str:
@@ -714,10 +749,11 @@ class SyncAPIClient(BaseClient):
         *,
         model: Type[ModelT],
         page: Type[SyncPageT],
+        body: Query | None = None,
         options: RequestOptions = {},
         method: str = "get",
     ) -> SyncPageT:
-        opts = FinalRequestOptions.construct(method=method, url=path, **options)
+        opts = FinalRequestOptions.construct(method=method, url=path, json_data=body, **options)
         return self.request_api_list(model, page, opts)
 
 
@@ -825,7 +861,6 @@ class AsyncAPIClient(BaseClient):
         path: str,
         *,
         cast_to: Type[ResponseT],
-        query: Query = {},
         options: RequestOptions = {},
     ) -> ResponseT:
         opts = FinalRequestOptions.construct(method="get", url=path, **options)
@@ -883,10 +918,11 @@ class AsyncAPIClient(BaseClient):
         # TODO: support paginating `str`
         model: Type[ModelT],
         page: Type[AsyncPageT],
+        body: Query | None = None,
         options: RequestOptions = {},
         method: str = "get",
     ) -> AsyncPaginator[ModelT, AsyncPageT]:
-        opts = FinalRequestOptions.construct(method=method, url=path, **options)
+        opts = FinalRequestOptions.construct(method=method, url=path, json_data=body, **options)
         return self.request_api_list(model, page, opts)
 
 
@@ -1019,31 +1055,3 @@ def _merge_mappings(
     """
     merged = {**obj1, **obj2}
     return {key: value for key, value in merged.items() if not isinstance(value, Omit)}
-
-
-_K = TypeVar("_K")
-_V = TypeVar("_V")
-
-
-@overload
-def strip_not_given(obj: None) -> None:
-    ...
-
-
-@overload
-def strip_not_given(obj: Mapping[_K, _V | NotGiven]) -> dict[_K, _V]:
-    ...
-
-
-@overload
-def strip_not_given(obj: object) -> object:
-    ...
-
-
-def strip_not_given(obj: object | None) -> object:
-    """Remove all top-level keys where their values are instances of `NotGiven`"""
-    if obj is None:
-        return None
-    if not is_mapping(obj):
-        return obj
-    return {key: value for key, value in obj.items() if not isinstance(value, NotGiven)}

@@ -42,7 +42,10 @@ class IncomingPaymentDetailListParams(TypedDict, total=False):
     """
 
     type: Literal["ach", "book", "check", "eft", "interac", "rtp", "sepa", "signet", "wire"]
-    """One of: `ach`, `wire`, `check`, `rtp`, `sepa`, `signet`."""
+    """
+    One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
+    `wire`.
+    """
 
     virtual_account_id: str
     """

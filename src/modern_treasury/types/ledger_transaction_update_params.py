@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Dict, List, Optional
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["LedgerEntries", "LedgerTransactionUpdateParams"]
+__all__ = ["LedgerTransactionUpdateParams", "LedgerEntries", "LedgerEntry"]
 
 
-class LedgerEntries(TypedDict, total=False):
+class LedgerEntry(TypedDict, total=False):
     amount: Required[int]
     """Value in specified currency's smallest unit.
 
@@ -63,11 +63,18 @@ class LedgerEntries(TypedDict, total=False):
     """
 
 
+LedgerEntries = LedgerEntry
+"""This type is deprecated and will be removed in a future release.
+
+Please use LedgerEntry instead.
+"""
+
+
 class LedgerTransactionUpdateParams(TypedDict, total=False):
     description: Optional[str]
     """An optional description for internal use."""
 
-    ledger_entries: List[LedgerEntries]
+    ledger_entries: List[LedgerEntry]
     """An array of ledger entry objects."""
 
     metadata: Dict[str, str]

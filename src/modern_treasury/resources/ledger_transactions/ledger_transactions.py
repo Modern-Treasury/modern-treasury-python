@@ -5,13 +5,16 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Dict, List, Optional
 from typing_extensions import Literal
 
-from ...types import ledger_transaction_create_params, ledger_transaction_update_params
+from ...types import (
+    LedgerTransaction,
+    ledger_transaction_create_params,
+    ledger_transaction_update_params,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .versions import Versions, AsyncVersions
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.ledger_transaction import LedgerTransaction
 
 if TYPE_CHECKING:
     from ..._client import ModernTreasury, AsyncModernTreasury
@@ -33,7 +36,7 @@ class LedgerTransactions(SyncAPIResource):
         status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         effective_date: str,
-        ledger_entries: List[ledger_transaction_create_params.LedgerEntries],
+        ledger_entries: List[ledger_transaction_create_params.LedgerEntry],
         external_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
             "counterparty",
@@ -127,7 +130,7 @@ class LedgerTransactions(SyncAPIResource):
         description: Optional[str] | NotGiven = NOT_GIVEN,
         status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        ledger_entries: List[ledger_transaction_update_params.LedgerEntries] | NotGiven = NOT_GIVEN,
+        ledger_entries: List[ledger_transaction_update_params.LedgerEntry] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -256,7 +259,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         effective_date: str,
-        ledger_entries: List[ledger_transaction_create_params.LedgerEntries],
+        ledger_entries: List[ledger_transaction_create_params.LedgerEntry],
         external_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
             "counterparty",
@@ -350,7 +353,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         description: Optional[str] | NotGiven = NOT_GIVEN,
         status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        ledger_entries: List[ledger_transaction_update_params.LedgerEntries] | NotGiven = NOT_GIVEN,
+        ledger_entries: List[ledger_transaction_update_params.LedgerEntry] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

@@ -5,12 +5,11 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import Literal
 
-from ..types import shared_params
+from ..types import IncomingPaymentDetail, shared_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.incoming_payment_detail import IncomingPaymentDetail
 
 __all__ = ["IncomingPaymentDetails", "AsyncIncomingPaymentDetails"]
 
@@ -91,7 +90,8 @@ class IncomingPaymentDetails(SyncAPIResource):
           status: The current status of the incoming payment order. One of `pending`, `completed`,
               or `returned`.
 
-          type: One of: `ach`, `wire`, `check`, `rtp`, `sepa`, `signet`.
+          type: One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
+              `wire`.
 
           as_of_date_start: Filters incoming payment details with an as_of_date starting on or after the
               specified date (YYYY-MM-DD).
@@ -269,7 +269,8 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
           status: The current status of the incoming payment order. One of `pending`, `completed`,
               or `returned`.
 
-          type: One of: `ach`, `wire`, `check`, `rtp`, `sepa`, `signet`.
+          type: One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
+              `wire`.
 
           as_of_date_start: Filters incoming payment details with an as_of_date starting on or after the
               specified date (YYYY-MM-DD).
