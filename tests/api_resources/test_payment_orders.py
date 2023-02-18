@@ -7,7 +7,7 @@ import os
 import pytest
 
 from modern_treasury import ModernTreasury, AsyncModernTreasury
-from modern_treasury.types import PaymentOrder
+from modern_treasury.types import PaymentOrder, IncomingPaymentDetailCreateAsyncResponse
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
@@ -424,7 +424,7 @@ class TestPaymentOrders:
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert resource is None
+        assert isinstance(resource, IncomingPaymentDetailCreateAsyncResponse)
 
     @parametrize
     def test_method_create_async_with_all_params(self, client: ModernTreasury) -> None:
@@ -610,7 +610,7 @@ class TestPaymentOrders:
             ],
             transaction_monitoring_enabled=True,
         )
-        assert resource is None
+        assert isinstance(resource, IncomingPaymentDetailCreateAsyncResponse)
 
 
 class TestAsyncPaymentOrders:
@@ -1023,7 +1023,7 @@ class TestAsyncPaymentOrders:
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert resource is None
+        assert isinstance(resource, IncomingPaymentDetailCreateAsyncResponse)
 
     @parametrize
     async def test_method_create_async_with_all_params(self, client: AsyncModernTreasury) -> None:
@@ -1209,4 +1209,4 @@ class TestAsyncPaymentOrders:
             ],
             transaction_monitoring_enabled=True,
         )
-        assert resource is None
+        assert isinstance(resource, IncomingPaymentDetailCreateAsyncResponse)

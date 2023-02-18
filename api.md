@@ -97,7 +97,10 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import IncomingPaymentDetail
+from modern_treasury.types import (
+    IncomingPaymentDetail,
+    IncomingPaymentDetailCreateAsyncResponse,
+)
 ```
 
 Methods:
@@ -105,7 +108,7 @@ Methods:
 - <code title="get /api/incoming_payment_details/{id}">client.incoming_payment_details.<a href="./src/modern_treasury/resources/incoming_payment_details.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/incoming_payment_detail.py">IncomingPaymentDetail</a></code>
 - <code title="patch /api/incoming_payment_details/{id}">client.incoming_payment_details.<a href="./src/modern_treasury/resources/incoming_payment_details.py">update</a>(id, \*\*<a href="src/modern_treasury/types/incoming_payment_detail_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/incoming_payment_detail.py">IncomingPaymentDetail</a></code>
 - <code title="get /api/incoming_payment_details">client.incoming_payment_details.<a href="./src/modern_treasury/resources/incoming_payment_details.py">list</a>(\*\*<a href="src/modern_treasury/types/incoming_payment_detail_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/incoming_payment_detail.py">SyncPage[IncomingPaymentDetail]</a></code>
-- <code title="post /api/simulations/incoming_payment_details/create_async">client.incoming_payment_details.<a href="./src/modern_treasury/resources/incoming_payment_details.py">create_async</a>(\*\*<a href="src/modern_treasury/types/incoming_payment_detail_create_async_params.py">params</a>) -> None</code>
+- <code title="post /api/simulations/incoming_payment_details/create_async">client.incoming_payment_details.<a href="./src/modern_treasury/resources/incoming_payment_details.py">create_async</a>(\*\*<a href="src/modern_treasury/types/incoming_payment_detail_create_async_params.py">params</a>) -> <a href="./src/modern_treasury/types/incoming_payment_detail_create_async_response.py">IncomingPaymentDetailCreateAsyncResponse</a></code>
 
 # Documents
 
@@ -305,7 +308,12 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import PaymentOrder, PaymentOrderSubtype, PaymentOrderType
+from modern_treasury.types import (
+    PaymentOrder,
+    PaymentOrderSubtype,
+    PaymentOrderType,
+    IncomingPaymentDetailCreateAsyncResponse,
+)
 ```
 
 Methods:
@@ -314,7 +322,7 @@ Methods:
 - <code title="get /api/payment_orders/{id}">client.payment_orders.<a href="./src/modern_treasury/resources/payment_orders/payment_orders.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/payment_order.py">PaymentOrder</a></code>
 - <code title="patch /api/payment_orders/{id}">client.payment_orders.<a href="./src/modern_treasury/resources/payment_orders/payment_orders.py">update</a>(id, \*\*<a href="src/modern_treasury/types/payment_order_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/payment_order.py">PaymentOrder</a></code>
 - <code title="get /api/payment_orders">client.payment_orders.<a href="./src/modern_treasury/resources/payment_orders/payment_orders.py">list</a>(\*\*<a href="src/modern_treasury/types/payment_order_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/payment_order.py">SyncPage[PaymentOrder]</a></code>
-- <code title="post /api/payment_orders/create_async">client.payment_orders.<a href="./src/modern_treasury/resources/payment_orders/payment_orders.py">create_async</a>(\*\*<a href="src/modern_treasury/types/payment_order_create_async_params.py">params</a>) -> None</code>
+- <code title="post /api/payment_orders/create_async">client.payment_orders.<a href="./src/modern_treasury/resources/payment_orders/payment_orders.py">create_async</a>(\*\*<a href="src/modern_treasury/types/payment_order_create_async_params.py">params</a>) -> <a href="./src/modern_treasury/types/incoming_payment_detail_create_async_response.py">IncomingPaymentDetailCreateAsyncResponse</a></code>
 
 ## Reversals
 

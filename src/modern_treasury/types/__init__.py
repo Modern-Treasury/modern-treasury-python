@@ -186,3 +186,6 @@ from .incoming_payment_detail_create_async_params import (
 from .external_account_complete_verification_params import (
     ExternalAccountCompleteVerificationParams as ExternalAccountCompleteVerificationParams,
 )
+from .incoming_payment_detail_create_async_response import (
+    IncomingPaymentDetailCreateAsyncResponse as IncomingPaymentDetailCreateAsyncResponse,
+)
