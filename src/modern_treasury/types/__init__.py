@@ -6,6 +6,7 @@ from .event import Event as Event
 from .ledger import Ledger as Ledger
 from .shared import Currency as Currency
 from .shared import AccountsType as AccountsType
+from .shared import AsyncResponse as AsyncResponse
 from .document import Document as Document
 from .line_item import LineItem as LineItem
 from .connection import Connection as Connection
