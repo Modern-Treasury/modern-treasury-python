@@ -492,6 +492,39 @@ account = await client.external_accounts.create(
 # https://app.moderntreasury.com/api/external_accounts?special_param=bar
 ```
 
+## Array items type name improvements
+
+In `v1.5.0` we improved the names for types that come from arrays so that they always us a singular name, e.g. `LedgerEntries` -> `LedgerEntry`.
+
+We've added aliases for the old type names so you can continue to use them without any breaking changes but they will be removed in the future.
+
+Full list of all changed type names:
+
+- `Accounts` -> `Account`
+- `Balances` -> `Balance`
+- `Documents` -> `Document`
+- `LineItems` -> `LineItem`
+- `LedgerEntries` -> `LedgerEntry`
+- `AccountDetail` -> `AccountDetail`
+- `RoutingDetail` -> `RoutingDetail`
+- `AccountDetails` -> `AccountDetail`
+- `ContactDetails` -> `ContactDetail`
+- `RoutingDetails` -> `RoutingDetail`
+- `ReferenceNumbers` -> `ReferenceNumber`
+- `AccountsPartyAddress` -> `AccountPartyAddress`
+- `AccountsAccountDetails` -> `AccountAccountDetail`
+- `AccountsContactDetails` -> `AccountContactDetail`
+- `AccountsRoutingDetails` -> `AccountRoutingDetail`
+- `RoutingDetailBankAddress` -> `RoutingDetailBankAddress`
+- `LedgerTransactionLedgerEntries` -> `LedgerTransactionLedgerEntry`
+- `ReceivingAccountAccountDetails` -> `ReceivingAccountAccountDetail`
+- `ReceivingAccountContactDetails` -> `ReceivingAccountContactDetail`
+- `ReceivingAccountRoutingDetails` -> `ReceivingAccountRoutingDetail`
+- `LedgerEntriesResultingLedgerAccountBalances` -> `LedgerEntryResultingLedgerAccountBalances`
+- `LedgerEntriesResultingLedgerAccountBalancesPostedBalance` -> `LedgerEntryResultingLedgerAccountBalancesPostedBalance`
+- `LedgerEntriesResultingLedgerAccountBalancesPendingBalance` -> `LedgerEntryResultingLedgerAccountBalancesPendingBalance`
+- `LedgerEntriesResultingLedgerAccountBalancesAvailableBalance` -> `LedgerEntryResultingLedgerAccountBalancesAvailableBalance`
+
 ## Status
 
 This package is in beta. Its internals and interfaces are not stable and subject to change without a major semver bump;

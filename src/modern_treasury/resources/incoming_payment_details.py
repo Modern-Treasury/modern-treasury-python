@@ -5,8 +5,8 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import Literal
 
-from ..types import IncomingPaymentDetail, shared_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..types import IncomingPaymentDetail, shared, shared_params
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -149,7 +149,7 @@ class IncomingPaymentDetails(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> None:
+    ) -> shared.AsyncResponse:
         """
         Simulate Incoming Payment Detail
 
@@ -176,7 +176,6 @@ class IncomingPaymentDetails(SyncAPIResource):
 
           extra_body: Add additional JSON properties to the request
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
             "/api/simulations/incoming_payment_details/create_async",
             body={
@@ -189,7 +188,7 @@ class IncomingPaymentDetails(SyncAPIResource):
                 "as_of_date": as_of_date,
             },
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
-            cast_to=NoneType,
+            cast_to=shared.AsyncResponse,
         )
 
 
@@ -328,7 +327,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> None:
+    ) -> shared.AsyncResponse:
         """
         Simulate Incoming Payment Detail
 
@@ -355,7 +354,6 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
 
           extra_body: Add additional JSON properties to the request
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
             "/api/simulations/incoming_payment_details/create_async",
             body={
@@ -368,5 +366,5 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
                 "as_of_date": as_of_date,
             },
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
-            cast_to=NoneType,
+            cast_to=shared.AsyncResponse,
         )

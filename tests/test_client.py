@@ -5,14 +5,15 @@ from __future__ import annotations
 import os
 import json
 import inspect
-from typing import Dict, cast
+from typing import Any, Dict, Union, cast
 
 import httpx
 import pytest
+from respx import MockRouter
 
 from modern_treasury import ModernTreasury, AsyncModernTreasury
-from modern_treasury._types import Query, Headers
-from modern_treasury._models import FinalRequestOptions
+from modern_treasury._types import Body, Query, Headers
+from modern_treasury._models import BaseModel, FinalRequestOptions
 from modern_treasury._base_client import BaseClient, RequestOptions
 from modern_treasury._base_client import make_request_options as _make_request_options
 
@@ -34,7 +35,7 @@ def make_request_options(
     *,
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
-    extra_body: Query | None = None,
+    extra_body: Body | None = None,
 ) -> RequestOptions:
     return _make_request_options(
         query=query,
@@ -336,6 +337,42 @@ class TestModernTreasury:
         params = cast(Dict[str, str], dict(request.url.params))
         assert params == {"foo": "2"}
 
+    @pytest.mark.respx(base_url=base_url)
+    def test_basic_union_response(self, respx_mock: MockRouter) -> None:
+        class Model1(BaseModel):
+            name: str
+
+        class Model2(BaseModel):
+            foo: str
+
+        respx_mock.get("/foo").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+
+        response = self.client.get("/foo", cast_to=cast(Any, Union[Model1, Model2]))
+        assert isinstance(response, Model2)
+        assert response.foo == "bar"
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_union_response_different_types(self, respx_mock: MockRouter) -> None:
+        """Union of objects with the same field name using a different type"""
+
+        class Model1(BaseModel):
+            foo: int
+
+        class Model2(BaseModel):
+            foo: str
+
+        respx_mock.get("/foo").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+
+        response = self.client.get("/foo", cast_to=cast(Any, Union[Model1, Model2]))
+        assert isinstance(response, Model2)
+        assert response.foo == "bar"
+
+        respx_mock.get("/foo").mock(return_value=httpx.Response(200, json={"foo": 1}))
+
+        response = self.client.get("/foo", cast_to=cast(Any, Union[Model1, Model2]))
+        assert isinstance(response, Model1)
+        assert response.foo == 1
+
 
 class TestAsyncModernTreasury:
     client = AsyncModernTreasury(
@@ -628,3 +665,39 @@ class TestAsyncModernTreasury:
         )
         params = cast(Dict[str, str], dict(request.url.params))
         assert params == {"foo": "2"}
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_basic_union_response(self, respx_mock: MockRouter) -> None:
+        class Model1(BaseModel):
+            name: str
+
+        class Model2(BaseModel):
+            foo: str
+
+        respx_mock.get("/foo").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+
+        response = await self.client.get("/foo", cast_to=cast(Any, Union[Model1, Model2]))
+        assert isinstance(response, Model2)
+        assert response.foo == "bar"
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_union_response_different_types(self, respx_mock: MockRouter) -> None:
+        """Union of objects with the same field name using a different type"""
+
+        class Model1(BaseModel):
+            foo: int
+
+        class Model2(BaseModel):
+            foo: str
+
+        respx_mock.get("/foo").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+
+        response = await self.client.get("/foo", cast_to=cast(Any, Union[Model1, Model2]))
+        assert isinstance(response, Model2)
+        assert response.foo == "bar"
+
+        respx_mock.get("/foo").mock(return_value=httpx.Response(200, json={"foo": 1}))
+
+        response = await self.client.get("/foo", cast_to=cast(Any, Union[Model1, Model2]))
+        assert isinstance(response, Model1)
+        assert response.foo == 1
