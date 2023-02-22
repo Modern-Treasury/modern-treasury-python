@@ -7,7 +7,7 @@ import os
 import pytest
 
 from modern_treasury import ModernTreasury, AsyncModernTreasury
-from modern_treasury.types import IncomingPaymentDetail
+from modern_treasury.types import IncomingPaymentDetail, shared
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
@@ -68,7 +68,7 @@ class TestIncomingPaymentDetails:
     @parametrize
     def test_method_create_async(self, client: ModernTreasury) -> None:
         resource = client.incoming_payment_details.create_async()
-        assert resource is None
+        assert isinstance(resource, shared.AsyncResponse)
 
     @parametrize
     def test_method_create_async_with_all_params(self, client: ModernTreasury) -> None:
@@ -81,7 +81,7 @@ class TestIncomingPaymentDetails:
             virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             as_of_date="2019-12-27",
         )
-        assert resource is None
+        assert isinstance(resource, shared.AsyncResponse)
 
 
 class TestAsyncIncomingPaymentDetails:
@@ -138,7 +138,7 @@ class TestAsyncIncomingPaymentDetails:
     @parametrize
     async def test_method_create_async(self, client: AsyncModernTreasury) -> None:
         resource = await client.incoming_payment_details.create_async()
-        assert resource is None
+        assert isinstance(resource, shared.AsyncResponse)
 
     @parametrize
     async def test_method_create_async_with_all_params(self, client: AsyncModernTreasury) -> None:
@@ -151,4 +151,4 @@ class TestAsyncIncomingPaymentDetails:
             virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             as_of_date="2019-12-27",
         )
-        assert resource is None
+        assert isinstance(resource, shared.AsyncResponse)

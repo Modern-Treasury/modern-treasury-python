@@ -136,6 +136,12 @@ class PaymentOrder(BaseModel):
     which correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
     """
 
+    compliance_rule_metadata: Optional[Dict[str, object]]
+    """Custom key-value pair for usage in compliance rules.
+
+    Please contact support before making changes to this field.
+    """
+
     counterparty_id: Optional[str]
     """
     If the payment order is tied to a specific Counterparty, their id will appear,
