@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "modern-treasury"
-version = "1.5.0"
+version = "1.6.0"
 description = "Client library for the Modern Treasury API"
 readme = "README.md"
 authors = ["Modern Treasury <sdk-feedback@moderntreasury.com>"]
@@ -24,9 +24,10 @@ black = "^22.1.0"
 respx = "^0.19.2"
 pytest = "^7.1.1"
 pytest-asyncio = "^0.18.3"
-pyright = "^1.1.277"
+pyright = "== 1.1.277"
 ruff = "^0.0.239"
 isort = "5.10.1"
+time-machine = "^2.9.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -70,6 +71,8 @@ target-version = "py37"
 select = [
   # remove unused imports
   "F401",
+  # bare except statements
+  "E722",
 ]
 ignore-init-module-imports = true
 

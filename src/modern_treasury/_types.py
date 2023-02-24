@@ -19,7 +19,8 @@ from httpx import Proxy, Timeout, Response, BaseTransport
 
 Transport = BaseTransport
 Query = Mapping[str, object]
-Body = Mapping[str, object]
+Body = object
+AnyMapping = Mapping[str, object]
 ModelT = TypeVar("ModelT", bound=pydantic.BaseModel)
 _T = TypeVar("_T")
 
@@ -66,7 +67,7 @@ class RequestOptions(TypedDict, total=False):
     max_retries: int
     timeout: float | Timeout | None
     params: Query
-    extra_json: Query
+    extra_json: AnyMapping
 
 
 # Sentinel class used when the response type is an object with an unknown schema
@@ -115,6 +116,9 @@ class Omit:
     client.post(..., headers={'Content-Type': Omit()})
     ```
     """
+
+    def __bool__(self) -> Literal[False]:
+        return False
 
 
 @runtime_checkable

@@ -1,11 +1,40 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["Document", "File"]
+__all__ = ["Document", "DocumentDetails", "DocumentDetail", "File"]
+
+
+class DocumentDetail(BaseModel):
+    created_at: str
+
+    discarded_at: Optional[str]
+
+    document_identifier: str
+
+    document_identifier_type: str
+
+    id: str
+
+    live_mode: bool
+    """
+    This field will be true if this object exists in the live environment or false
+    if it exists in the test environment.
+    """
+
+    object: str
+
+    updated_at: str
+
+
+DocumentDetails = DocumentDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use DocumentDetail instead.
+"""
 
 
 class File(BaseModel):
@@ -23,6 +52,8 @@ class Document(BaseModel):
     created_at: str
 
     discarded_at: Optional[str]
+
+    document_details: List[DocumentDetail]
 
     document_type: Optional[str]
     """A category given to the document, can be `null`."""
