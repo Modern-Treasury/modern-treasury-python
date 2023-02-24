@@ -116,6 +116,9 @@ class Omit:
     ```
     """
 
+    def __bool__(self) -> Literal[False]:
+        return False
+
 
 @runtime_checkable
 class ModelBuilderProtocol(Protocol):
