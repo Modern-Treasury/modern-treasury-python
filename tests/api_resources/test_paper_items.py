@@ -6,6 +6,7 @@ import os
 
 import pytest
 
+from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import PaperItem
 from modern_treasury.pagination import SyncPage, AsyncPage
@@ -25,26 +26,26 @@ class TestPaperItems:
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
-        resource = client.paper_items.retrieve(
+        paper_item = client.paper_items.retrieve(
             "string",
         )
-        assert isinstance(resource, PaperItem)
+        assert_matches_type(PaperItem, paper_item, path=["response"])
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
-        resource = client.paper_items.list()
-        assert isinstance(resource, SyncPage)
+        paper_item = client.paper_items.list()
+        assert_matches_type(SyncPage[PaperItem], paper_item, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.paper_items.list(
+        paper_item = client.paper_items.list(
             lockbox_number="string",
             deposit_date_start="2019-12-27",
             deposit_date_end="2019-12-27",
             after_cursor="string",
             per_page=0,
         )
-        assert isinstance(resource, SyncPage)
+        assert_matches_type(SyncPage[PaperItem], paper_item, path=["response"])
 
 
 class TestAsyncPaperItems:
@@ -58,23 +59,23 @@ class TestAsyncPaperItems:
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
-        resource = await client.paper_items.retrieve(
+        paper_item = await client.paper_items.retrieve(
             "string",
         )
-        assert isinstance(resource, PaperItem)
+        assert_matches_type(PaperItem, paper_item, path=["response"])
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        resource = await client.paper_items.list()
-        assert isinstance(resource, AsyncPage)
+        paper_item = await client.paper_items.list()
+        assert_matches_type(AsyncPage[PaperItem], paper_item, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.paper_items.list(
+        paper_item = await client.paper_items.list(
             lockbox_number="string",
             deposit_date_start="2019-12-27",
             deposit_date_end="2019-12-27",
             after_cursor="string",
             per_page=0,
         )
-        assert isinstance(resource, AsyncPage)
+        assert_matches_type(AsyncPage[PaperItem], paper_item, path=["response"])

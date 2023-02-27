@@ -6,6 +6,7 @@ import os
 
 import pytest
 
+from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import LedgerAccount
 from modern_treasury.pagination import SyncPage, AsyncPage
@@ -25,17 +26,17 @@ class TestLedgerAccounts:
 
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
-        resource = client.ledger_accounts.create(
+        ledger_account = client.ledger_accounts.create(
             name="string",
             normal_balance="credit",
             ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="string",
         )
-        assert isinstance(resource, LedgerAccount)
+        assert_matches_type(LedgerAccount, ledger_account, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.ledger_accounts.create(
+        ledger_account = client.ledger_accounts.create(
             name="string",
             description="string",
             normal_balance="credit",
@@ -48,33 +49,33 @@ class TestLedgerAccounts:
                 "modern": "treasury",
             },
         )
-        assert isinstance(resource, LedgerAccount)
+        assert_matches_type(LedgerAccount, ledger_account, path=["response"])
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
-        resource = client.ledger_accounts.retrieve(
+        ledger_account = client.ledger_accounts.retrieve(
             "string",
         )
-        assert isinstance(resource, LedgerAccount)
+        assert_matches_type(LedgerAccount, ledger_account, path=["response"])
 
     @parametrize
     def test_method_retrieve_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.ledger_accounts.retrieve(
+        ledger_account = client.ledger_accounts.retrieve(
             "string",
             balances={"as_of_date": "2019-12-27"},
         )
-        assert isinstance(resource, LedgerAccount)
+        assert_matches_type(LedgerAccount, ledger_account, path=["response"])
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
-        resource = client.ledger_accounts.update(
+        ledger_account = client.ledger_accounts.update(
             "string",
         )
-        assert isinstance(resource, LedgerAccount)
+        assert_matches_type(LedgerAccount, ledger_account, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.ledger_accounts.update(
+        ledger_account = client.ledger_accounts.update(
             "string",
             name="string",
             description="string",
@@ -85,16 +86,16 @@ class TestLedgerAccounts:
                 "modern": "treasury",
             },
         )
-        assert isinstance(resource, LedgerAccount)
+        assert_matches_type(LedgerAccount, ledger_account, path=["response"])
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
-        resource = client.ledger_accounts.list()
-        assert isinstance(resource, SyncPage)
+        ledger_account = client.ledger_accounts.list()
+        assert_matches_type(SyncPage[LedgerAccount], ledger_account, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.ledger_accounts.list(
+        ledger_account = client.ledger_accounts.list(
             after_cursor="string",
             per_page=0,
             metadata={"foo": "string"},
@@ -108,14 +109,14 @@ class TestLedgerAccounts:
             updated_at={"foo": "2019-12-27T18:11:19.117Z"},
             ledger_account_category_id="string",
         )
-        assert isinstance(resource, SyncPage)
+        assert_matches_type(SyncPage[LedgerAccount], ledger_account, path=["response"])
 
     @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
-        resource = client.ledger_accounts.delete(
+        ledger_account = client.ledger_accounts.delete(
             "string",
         )
-        assert isinstance(resource, LedgerAccount)
+        assert_matches_type(LedgerAccount, ledger_account, path=["response"])
 
 
 class TestAsyncLedgerAccounts:
@@ -129,17 +130,17 @@ class TestAsyncLedgerAccounts:
 
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_accounts.create(
+        ledger_account = await client.ledger_accounts.create(
             name="string",
             normal_balance="credit",
             ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="string",
         )
-        assert isinstance(resource, LedgerAccount)
+        assert_matches_type(LedgerAccount, ledger_account, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_accounts.create(
+        ledger_account = await client.ledger_accounts.create(
             name="string",
             description="string",
             normal_balance="credit",
@@ -152,33 +153,33 @@ class TestAsyncLedgerAccounts:
                 "modern": "treasury",
             },
         )
-        assert isinstance(resource, LedgerAccount)
+        assert_matches_type(LedgerAccount, ledger_account, path=["response"])
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_accounts.retrieve(
+        ledger_account = await client.ledger_accounts.retrieve(
             "string",
         )
-        assert isinstance(resource, LedgerAccount)
+        assert_matches_type(LedgerAccount, ledger_account, path=["response"])
 
     @parametrize
     async def test_method_retrieve_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_accounts.retrieve(
+        ledger_account = await client.ledger_accounts.retrieve(
             "string",
             balances={"as_of_date": "2019-12-27"},
         )
-        assert isinstance(resource, LedgerAccount)
+        assert_matches_type(LedgerAccount, ledger_account, path=["response"])
 
     @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_accounts.update(
+        ledger_account = await client.ledger_accounts.update(
             "string",
         )
-        assert isinstance(resource, LedgerAccount)
+        assert_matches_type(LedgerAccount, ledger_account, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_accounts.update(
+        ledger_account = await client.ledger_accounts.update(
             "string",
             name="string",
             description="string",
@@ -189,16 +190,16 @@ class TestAsyncLedgerAccounts:
                 "modern": "treasury",
             },
         )
-        assert isinstance(resource, LedgerAccount)
+        assert_matches_type(LedgerAccount, ledger_account, path=["response"])
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_accounts.list()
-        assert isinstance(resource, AsyncPage)
+        ledger_account = await client.ledger_accounts.list()
+        assert_matches_type(AsyncPage[LedgerAccount], ledger_account, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_accounts.list(
+        ledger_account = await client.ledger_accounts.list(
             after_cursor="string",
             per_page=0,
             metadata={"foo": "string"},
@@ -212,11 +213,11 @@ class TestAsyncLedgerAccounts:
             updated_at={"foo": "2019-12-27T18:11:19.117Z"},
             ledger_account_category_id="string",
         )
-        assert isinstance(resource, AsyncPage)
+        assert_matches_type(AsyncPage[LedgerAccount], ledger_account, path=["response"])
 
     @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_accounts.delete(
+        ledger_account = await client.ledger_accounts.delete(
             "string",
         )
-        assert isinstance(resource, LedgerAccount)
+        assert_matches_type(LedgerAccount, ledger_account, path=["response"])

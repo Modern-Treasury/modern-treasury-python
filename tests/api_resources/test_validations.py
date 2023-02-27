@@ -6,6 +6,7 @@ import os
 
 import pytest
 
+from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import RoutingNumberLookupRequest
 
@@ -24,11 +25,11 @@ class TestValidations:
 
     @parametrize
     def test_method_validate_routing_number(self, client: ModernTreasury) -> None:
-        resource = client.validations.validate_routing_number(
+        validation = client.validations.validate_routing_number(
             routing_number="string",
             routing_number_type="aba",
         )
-        assert isinstance(resource, RoutingNumberLookupRequest)
+        assert_matches_type(RoutingNumberLookupRequest, validation, path=["response"])
 
 
 class TestAsyncValidations:
@@ -42,8 +43,8 @@ class TestAsyncValidations:
 
     @parametrize
     async def test_method_validate_routing_number(self, client: AsyncModernTreasury) -> None:
-        resource = await client.validations.validate_routing_number(
+        validation = await client.validations.validate_routing_number(
             routing_number="string",
             routing_number_type="aba",
         )
-        assert isinstance(resource, RoutingNumberLookupRequest)
+        assert_matches_type(RoutingNumberLookupRequest, validation, path=["response"])

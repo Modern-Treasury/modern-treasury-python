@@ -6,6 +6,7 @@ import os
 
 import pytest
 
+from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import IncomingPaymentDetail, shared
 from modern_treasury.pagination import SyncPage, AsyncPage
@@ -25,34 +26,34 @@ class TestIncomingPaymentDetails:
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
-        resource = client.incoming_payment_details.retrieve(
+        incoming_payment_detail = client.incoming_payment_details.retrieve(
             "string",
         )
-        assert isinstance(resource, IncomingPaymentDetail)
+        assert_matches_type(IncomingPaymentDetail, incoming_payment_detail, path=["response"])
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
-        resource = client.incoming_payment_details.update(
+        incoming_payment_detail = client.incoming_payment_details.update(
             "string",
         )
-        assert isinstance(resource, IncomingPaymentDetail)
+        assert_matches_type(IncomingPaymentDetail, incoming_payment_detail, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.incoming_payment_details.update(
+        incoming_payment_detail = client.incoming_payment_details.update(
             "string",
             metadata={"foo": "string"},
         )
-        assert isinstance(resource, IncomingPaymentDetail)
+        assert_matches_type(IncomingPaymentDetail, incoming_payment_detail, path=["response"])
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
-        resource = client.incoming_payment_details.list()
-        assert isinstance(resource, SyncPage)
+        incoming_payment_detail = client.incoming_payment_details.list()
+        assert_matches_type(SyncPage[IncomingPaymentDetail], incoming_payment_detail, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.incoming_payment_details.list(
+        incoming_payment_detail = client.incoming_payment_details.list(
             after_cursor="string",
             per_page=0,
             direction="credit",
@@ -63,16 +64,16 @@ class TestIncomingPaymentDetails:
             metadata={"foo": "string"},
             virtual_account_id="string",
         )
-        assert isinstance(resource, SyncPage)
+        assert_matches_type(SyncPage[IncomingPaymentDetail], incoming_payment_detail, path=["response"])
 
     @parametrize
     def test_method_create_async(self, client: ModernTreasury) -> None:
-        resource = client.incoming_payment_details.create_async()
-        assert isinstance(resource, shared.AsyncResponse)
+        incoming_payment_detail = client.incoming_payment_details.create_async()
+        assert_matches_type(shared.AsyncResponse, incoming_payment_detail, path=["response"])
 
     @parametrize
     def test_method_create_async_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.incoming_payment_details.create_async(
+        incoming_payment_detail = client.incoming_payment_details.create_async(
             type="ach",
             direction="credit",
             amount=0,
@@ -81,7 +82,7 @@ class TestIncomingPaymentDetails:
             virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             as_of_date="2019-12-27",
         )
-        assert isinstance(resource, shared.AsyncResponse)
+        assert_matches_type(shared.AsyncResponse, incoming_payment_detail, path=["response"])
 
 
 class TestAsyncIncomingPaymentDetails:
@@ -95,34 +96,34 @@ class TestAsyncIncomingPaymentDetails:
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
-        resource = await client.incoming_payment_details.retrieve(
+        incoming_payment_detail = await client.incoming_payment_details.retrieve(
             "string",
         )
-        assert isinstance(resource, IncomingPaymentDetail)
+        assert_matches_type(IncomingPaymentDetail, incoming_payment_detail, path=["response"])
 
     @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
-        resource = await client.incoming_payment_details.update(
+        incoming_payment_detail = await client.incoming_payment_details.update(
             "string",
         )
-        assert isinstance(resource, IncomingPaymentDetail)
+        assert_matches_type(IncomingPaymentDetail, incoming_payment_detail, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.incoming_payment_details.update(
+        incoming_payment_detail = await client.incoming_payment_details.update(
             "string",
             metadata={"foo": "string"},
         )
-        assert isinstance(resource, IncomingPaymentDetail)
+        assert_matches_type(IncomingPaymentDetail, incoming_payment_detail, path=["response"])
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        resource = await client.incoming_payment_details.list()
-        assert isinstance(resource, AsyncPage)
+        incoming_payment_detail = await client.incoming_payment_details.list()
+        assert_matches_type(AsyncPage[IncomingPaymentDetail], incoming_payment_detail, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.incoming_payment_details.list(
+        incoming_payment_detail = await client.incoming_payment_details.list(
             after_cursor="string",
             per_page=0,
             direction="credit",
@@ -133,16 +134,16 @@ class TestAsyncIncomingPaymentDetails:
             metadata={"foo": "string"},
             virtual_account_id="string",
         )
-        assert isinstance(resource, AsyncPage)
+        assert_matches_type(AsyncPage[IncomingPaymentDetail], incoming_payment_detail, path=["response"])
 
     @parametrize
     async def test_method_create_async(self, client: AsyncModernTreasury) -> None:
-        resource = await client.incoming_payment_details.create_async()
-        assert isinstance(resource, shared.AsyncResponse)
+        incoming_payment_detail = await client.incoming_payment_details.create_async()
+        assert_matches_type(shared.AsyncResponse, incoming_payment_detail, path=["response"])
 
     @parametrize
     async def test_method_create_async_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.incoming_payment_details.create_async(
+        incoming_payment_detail = await client.incoming_payment_details.create_async(
             type="ach",
             direction="credit",
             amount=0,
@@ -151,4 +152,4 @@ class TestAsyncIncomingPaymentDetails:
             virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             as_of_date="2019-12-27",
         )
-        assert isinstance(resource, shared.AsyncResponse)
+        assert_matches_type(shared.AsyncResponse, incoming_payment_detail, path=["response"])

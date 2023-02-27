@@ -6,6 +6,7 @@ import os
 
 import pytest
 
+from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import Document
 from modern_treasury.pagination import SyncPage, AsyncPage
@@ -26,50 +27,50 @@ class TestDocuments:
     @pytest.mark.skip(reason="file upload tests are broken on the Prism mock server")
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
-        resource = client.documents.create(
+        document = client.documents.create(
             "string",
             documentable_type="cases",
             file=b"raw file contents",
         )
-        assert isinstance(resource, Document)
+        assert_matches_type(Document, document, path=["response"])
 
     @pytest.mark.skip(reason="file upload tests are broken on the Prism mock server")
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.documents.create(
+        document = client.documents.create(
             "string",
             documentable_type="cases",
             document_type="string",
             file=b"raw file contents",
         )
-        assert isinstance(resource, Document)
+        assert_matches_type(Document, document, path=["response"])
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
-        resource = client.documents.retrieve(
+        document = client.documents.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             documentable_type="cases",
             documentable_id="string",
         )
-        assert isinstance(resource, Document)
+        assert_matches_type(Document, document, path=["response"])
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
-        resource = client.documents.list(
+        document = client.documents.list(
             "string",
             documentable_type="cases",
         )
-        assert isinstance(resource, SyncPage)
+        assert_matches_type(SyncPage[Document], document, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.documents.list(
+        document = client.documents.list(
             "string",
             documentable_type="cases",
             after_cursor="string",
             per_page=0,
         )
-        assert isinstance(resource, SyncPage)
+        assert_matches_type(SyncPage[Document], document, path=["response"])
 
 
 class TestAsyncDocuments:
@@ -84,47 +85,47 @@ class TestAsyncDocuments:
     @pytest.mark.skip(reason="file upload tests are broken on the Prism mock server")
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
-        resource = await client.documents.create(
+        document = await client.documents.create(
             "string",
             documentable_type="cases",
             file=b"raw file contents",
         )
-        assert isinstance(resource, Document)
+        assert_matches_type(Document, document, path=["response"])
 
     @pytest.mark.skip(reason="file upload tests are broken on the Prism mock server")
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.documents.create(
+        document = await client.documents.create(
             "string",
             documentable_type="cases",
             document_type="string",
             file=b"raw file contents",
         )
-        assert isinstance(resource, Document)
+        assert_matches_type(Document, document, path=["response"])
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
-        resource = await client.documents.retrieve(
+        document = await client.documents.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             documentable_type="cases",
             documentable_id="string",
         )
-        assert isinstance(resource, Document)
+        assert_matches_type(Document, document, path=["response"])
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        resource = await client.documents.list(
+        document = await client.documents.list(
             "string",
             documentable_type="cases",
         )
-        assert isinstance(resource, AsyncPage)
+        assert_matches_type(AsyncPage[Document], document, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.documents.list(
+        document = await client.documents.list(
             "string",
             documentable_type="cases",
             after_cursor="string",
             per_page=0,
         )
-        assert isinstance(resource, AsyncPage)
+        assert_matches_type(AsyncPage[Document], document, path=["response"])

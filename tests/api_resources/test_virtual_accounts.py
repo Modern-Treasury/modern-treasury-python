@@ -6,6 +6,7 @@ import os
 
 import pytest
 
+from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import VirtualAccount
 from modern_treasury.pagination import SyncPage, AsyncPage
@@ -25,15 +26,15 @@ class TestVirtualAccounts:
 
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
-        resource = client.virtual_accounts.create(
+        virtual_account = client.virtual_accounts.create(
             name="string",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert isinstance(resource, VirtualAccount)
+        assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.virtual_accounts.create(
+        virtual_account = client.virtual_accounts.create(
             name="string",
             description="string",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -154,54 +155,54 @@ class TestVirtualAccounts:
             credit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
         )
-        assert isinstance(resource, VirtualAccount)
+        assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
-        resource = client.virtual_accounts.retrieve(
+        virtual_account = client.virtual_accounts.retrieve(
             "string",
         )
-        assert resource is None
+        assert virtual_account is None
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
-        resource = client.virtual_accounts.update(
+        virtual_account = client.virtual_accounts.update(
             "string",
         )
-        assert isinstance(resource, VirtualAccount)
+        assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.virtual_accounts.update(
+        virtual_account = client.virtual_accounts.update(
             "string",
             name="string",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
         )
-        assert isinstance(resource, VirtualAccount)
+        assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
-        resource = client.virtual_accounts.list()
-        assert isinstance(resource, SyncPage)
+        virtual_account = client.virtual_accounts.list()
+        assert_matches_type(SyncPage[VirtualAccount], virtual_account, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.virtual_accounts.list(
+        virtual_account = client.virtual_accounts.list(
             after_cursor="string",
             per_page=0,
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
         )
-        assert isinstance(resource, SyncPage)
+        assert_matches_type(SyncPage[VirtualAccount], virtual_account, path=["response"])
 
     @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
-        resource = client.virtual_accounts.delete(
+        virtual_account = client.virtual_accounts.delete(
             "string",
         )
-        assert isinstance(resource, VirtualAccount)
+        assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
 
 class TestAsyncVirtualAccounts:
@@ -215,15 +216,15 @@ class TestAsyncVirtualAccounts:
 
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
-        resource = await client.virtual_accounts.create(
+        virtual_account = await client.virtual_accounts.create(
             name="string",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert isinstance(resource, VirtualAccount)
+        assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.virtual_accounts.create(
+        virtual_account = await client.virtual_accounts.create(
             name="string",
             description="string",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -344,51 +345,51 @@ class TestAsyncVirtualAccounts:
             credit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
         )
-        assert isinstance(resource, VirtualAccount)
+        assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
-        resource = await client.virtual_accounts.retrieve(
+        virtual_account = await client.virtual_accounts.retrieve(
             "string",
         )
-        assert resource is None
+        assert virtual_account is None
 
     @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
-        resource = await client.virtual_accounts.update(
+        virtual_account = await client.virtual_accounts.update(
             "string",
         )
-        assert isinstance(resource, VirtualAccount)
+        assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.virtual_accounts.update(
+        virtual_account = await client.virtual_accounts.update(
             "string",
             name="string",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
         )
-        assert isinstance(resource, VirtualAccount)
+        assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        resource = await client.virtual_accounts.list()
-        assert isinstance(resource, AsyncPage)
+        virtual_account = await client.virtual_accounts.list()
+        assert_matches_type(AsyncPage[VirtualAccount], virtual_account, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.virtual_accounts.list(
+        virtual_account = await client.virtual_accounts.list(
             after_cursor="string",
             per_page=0,
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
         )
-        assert isinstance(resource, AsyncPage)
+        assert_matches_type(AsyncPage[VirtualAccount], virtual_account, path=["response"])
 
     @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
-        resource = await client.virtual_accounts.delete(
+        virtual_account = await client.virtual_accounts.delete(
             "string",
         )
-        assert isinstance(resource, VirtualAccount)
+        assert_matches_type(VirtualAccount, virtual_account, path=["response"])

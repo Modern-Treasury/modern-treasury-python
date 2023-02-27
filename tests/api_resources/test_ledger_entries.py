@@ -6,6 +6,7 @@ import os
 
 import pytest
 
+from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import LedgerEntry
 from modern_treasury.pagination import SyncPage, AsyncPage
@@ -25,19 +26,19 @@ class TestLedgerEntries:
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
-        resource = client.ledger_entries.retrieve(
+        ledger_entry = client.ledger_entries.retrieve(
             "string",
         )
-        assert isinstance(resource, LedgerEntry)
+        assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
-        resource = client.ledger_entries.list()
-        assert isinstance(resource, SyncPage)
+        ledger_entry = client.ledger_entries.list()
+        assert_matches_type(SyncPage[LedgerEntry], ledger_entry, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.ledger_entries.list(
+        ledger_entry = client.ledger_entries.list(
             after_cursor="string",
             per_page=0,
             ledger_account_id="string",
@@ -51,7 +52,7 @@ class TestLedgerEntries:
             direction="credit",
             status="pending",
         )
-        assert isinstance(resource, SyncPage)
+        assert_matches_type(SyncPage[LedgerEntry], ledger_entry, path=["response"])
 
 
 class TestAsyncLedgerEntries:
@@ -65,19 +66,19 @@ class TestAsyncLedgerEntries:
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_entries.retrieve(
+        ledger_entry = await client.ledger_entries.retrieve(
             "string",
         )
-        assert isinstance(resource, LedgerEntry)
+        assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_entries.list()
-        assert isinstance(resource, AsyncPage)
+        ledger_entry = await client.ledger_entries.list()
+        assert_matches_type(AsyncPage[LedgerEntry], ledger_entry, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_entries.list(
+        ledger_entry = await client.ledger_entries.list(
             after_cursor="string",
             per_page=0,
             ledger_account_id="string",
@@ -91,4 +92,4 @@ class TestAsyncLedgerEntries:
             direction="credit",
             status="pending",
         )
-        assert isinstance(resource, AsyncPage)
+        assert_matches_type(AsyncPage[LedgerEntry], ledger_entry, path=["response"])

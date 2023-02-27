@@ -6,6 +6,7 @@ import os
 
 import pytest
 
+from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import ReturnObject
 from modern_treasury.pagination import SyncPage, AsyncPage
@@ -25,15 +26,15 @@ class TestReturns:
 
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
-        resource = client.returns.create(
+        return_ = client.returns.create(
             returnable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             returnable_type="incoming_payment_detail",
         )
-        assert isinstance(resource, ReturnObject)
+        assert_matches_type(ReturnObject, return_, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.returns.create(
+        return_ = client.returns.create(
             returnable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             code="901",
             reason="string",
@@ -41,23 +42,23 @@ class TestReturns:
             additional_information="string",
             returnable_type="incoming_payment_detail",
         )
-        assert isinstance(resource, ReturnObject)
+        assert_matches_type(ReturnObject, return_, path=["response"])
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
-        resource = client.returns.retrieve(
+        return_ = client.returns.retrieve(
             "string",
         )
-        assert isinstance(resource, ReturnObject)
+        assert_matches_type(ReturnObject, return_, path=["response"])
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
-        resource = client.returns.list()
-        assert isinstance(resource, SyncPage)
+        return_ = client.returns.list()
+        assert_matches_type(SyncPage[ReturnObject], return_, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.returns.list(
+        return_ = client.returns.list(
             after_cursor="string",
             per_page=0,
             internal_account_id="string",
@@ -65,7 +66,7 @@ class TestReturns:
             returnable_id="string",
             returnable_type="incoming_payment_detail",
         )
-        assert isinstance(resource, SyncPage)
+        assert_matches_type(SyncPage[ReturnObject], return_, path=["response"])
 
 
 class TestAsyncReturns:
@@ -79,15 +80,15 @@ class TestAsyncReturns:
 
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
-        resource = await client.returns.create(
+        return_ = await client.returns.create(
             returnable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             returnable_type="incoming_payment_detail",
         )
-        assert isinstance(resource, ReturnObject)
+        assert_matches_type(ReturnObject, return_, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.returns.create(
+        return_ = await client.returns.create(
             returnable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             code="901",
             reason="string",
@@ -95,23 +96,23 @@ class TestAsyncReturns:
             additional_information="string",
             returnable_type="incoming_payment_detail",
         )
-        assert isinstance(resource, ReturnObject)
+        assert_matches_type(ReturnObject, return_, path=["response"])
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
-        resource = await client.returns.retrieve(
+        return_ = await client.returns.retrieve(
             "string",
         )
-        assert isinstance(resource, ReturnObject)
+        assert_matches_type(ReturnObject, return_, path=["response"])
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        resource = await client.returns.list()
-        assert isinstance(resource, AsyncPage)
+        return_ = await client.returns.list()
+        assert_matches_type(AsyncPage[ReturnObject], return_, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.returns.list(
+        return_ = await client.returns.list(
             after_cursor="string",
             per_page=0,
             internal_account_id="string",
@@ -119,4 +120,4 @@ class TestAsyncReturns:
             returnable_id="string",
             returnable_type="incoming_payment_detail",
         )
-        assert isinstance(resource, AsyncPage)
+        assert_matches_type(AsyncPage[ReturnObject], return_, path=["response"])
