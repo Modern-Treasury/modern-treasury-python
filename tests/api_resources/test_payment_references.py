@@ -6,6 +6,7 @@ import os
 
 import pytest
 
+from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import PaymentReference
 from modern_treasury.pagination import SyncPage, AsyncPage
@@ -25,26 +26,26 @@ class TestPaymentReferences:
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
-        resource = client.payment_references.list()
-        assert isinstance(resource, SyncPage)
+        payment_reference = client.payment_references.list()
+        assert_matches_type(SyncPage[PaymentReference], payment_reference, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.payment_references.list(
+        payment_reference = client.payment_references.list(
             after_cursor="string",
             per_page=0,
             referenceable_id="string",
             referenceable_type="payment_order",
             reference_number="string",
         )
-        assert isinstance(resource, SyncPage)
+        assert_matches_type(SyncPage[PaymentReference], payment_reference, path=["response"])
 
     @parametrize
     def test_method_retireve(self, client: ModernTreasury) -> None:
-        resource = client.payment_references.retireve(
+        payment_reference = client.payment_references.retireve(
             "string",
         )
-        assert isinstance(resource, PaymentReference)
+        assert_matches_type(PaymentReference, payment_reference, path=["response"])
 
 
 class TestAsyncPaymentReferences:
@@ -58,23 +59,23 @@ class TestAsyncPaymentReferences:
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        resource = await client.payment_references.list()
-        assert isinstance(resource, AsyncPage)
+        payment_reference = await client.payment_references.list()
+        assert_matches_type(AsyncPage[PaymentReference], payment_reference, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.payment_references.list(
+        payment_reference = await client.payment_references.list(
             after_cursor="string",
             per_page=0,
             referenceable_id="string",
             referenceable_type="payment_order",
             reference_number="string",
         )
-        assert isinstance(resource, AsyncPage)
+        assert_matches_type(AsyncPage[PaymentReference], payment_reference, path=["response"])
 
     @parametrize
     async def test_method_retireve(self, client: AsyncModernTreasury) -> None:
-        resource = await client.payment_references.retireve(
+        payment_reference = await client.payment_references.retireve(
             "string",
         )
-        assert isinstance(resource, PaymentReference)
+        assert_matches_type(PaymentReference, payment_reference, path=["response"])

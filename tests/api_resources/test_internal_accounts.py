@@ -6,6 +6,7 @@ import os
 
 import pytest
 
+from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import InternalAccount
 from modern_treasury.pagination import SyncPage, AsyncPage
@@ -25,17 +26,17 @@ class TestInternalAccounts:
 
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
-        resource = client.internal_accounts.create(
+        internal_account = client.internal_accounts.create(
             connection_id="string",
             name="string",
             party_name="string",
             currency="USD",
         )
-        assert isinstance(resource, InternalAccount)
+        assert_matches_type(InternalAccount, internal_account, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.internal_accounts.create(
+        internal_account = client.internal_accounts.create(
             connection_id="string",
             name="string",
             party_name="string",
@@ -52,41 +53,41 @@ class TestInternalAccounts:
             parent_account_id="string",
             counterparty_id="string",
         )
-        assert isinstance(resource, InternalAccount)
+        assert_matches_type(InternalAccount, internal_account, path=["response"])
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
-        resource = client.internal_accounts.retrieve(
+        internal_account = client.internal_accounts.retrieve(
             "string",
         )
-        assert isinstance(resource, InternalAccount)
+        assert_matches_type(InternalAccount, internal_account, path=["response"])
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
-        resource = client.internal_accounts.update(
+        internal_account = client.internal_accounts.update(
             "string",
         )
-        assert isinstance(resource, InternalAccount)
+        assert_matches_type(InternalAccount, internal_account, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.internal_accounts.update(
+        internal_account = client.internal_accounts.update(
             "string",
             name="string",
             metadata={"foo": "string"},
             parent_account_id="string",
             counterparty_id="string",
         )
-        assert isinstance(resource, InternalAccount)
+        assert_matches_type(InternalAccount, internal_account, path=["response"])
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
-        resource = client.internal_accounts.list()
-        assert isinstance(resource, SyncPage)
+        internal_account = client.internal_accounts.list()
+        assert_matches_type(SyncPage[InternalAccount], internal_account, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.internal_accounts.list(
+        internal_account = client.internal_accounts.list(
             after_cursor="string",
             per_page=0,
             currency="AED",
@@ -94,7 +95,7 @@ class TestInternalAccounts:
             payment_direction="credit",
             metadata={"foo": "string"},
         )
-        assert isinstance(resource, SyncPage)
+        assert_matches_type(SyncPage[InternalAccount], internal_account, path=["response"])
 
 
 class TestAsyncInternalAccounts:
@@ -108,17 +109,17 @@ class TestAsyncInternalAccounts:
 
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
-        resource = await client.internal_accounts.create(
+        internal_account = await client.internal_accounts.create(
             connection_id="string",
             name="string",
             party_name="string",
             currency="USD",
         )
-        assert isinstance(resource, InternalAccount)
+        assert_matches_type(InternalAccount, internal_account, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.internal_accounts.create(
+        internal_account = await client.internal_accounts.create(
             connection_id="string",
             name="string",
             party_name="string",
@@ -135,41 +136,41 @@ class TestAsyncInternalAccounts:
             parent_account_id="string",
             counterparty_id="string",
         )
-        assert isinstance(resource, InternalAccount)
+        assert_matches_type(InternalAccount, internal_account, path=["response"])
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
-        resource = await client.internal_accounts.retrieve(
+        internal_account = await client.internal_accounts.retrieve(
             "string",
         )
-        assert isinstance(resource, InternalAccount)
+        assert_matches_type(InternalAccount, internal_account, path=["response"])
 
     @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
-        resource = await client.internal_accounts.update(
+        internal_account = await client.internal_accounts.update(
             "string",
         )
-        assert isinstance(resource, InternalAccount)
+        assert_matches_type(InternalAccount, internal_account, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.internal_accounts.update(
+        internal_account = await client.internal_accounts.update(
             "string",
             name="string",
             metadata={"foo": "string"},
             parent_account_id="string",
             counterparty_id="string",
         )
-        assert isinstance(resource, InternalAccount)
+        assert_matches_type(InternalAccount, internal_account, path=["response"])
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        resource = await client.internal_accounts.list()
-        assert isinstance(resource, AsyncPage)
+        internal_account = await client.internal_accounts.list()
+        assert_matches_type(AsyncPage[InternalAccount], internal_account, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.internal_accounts.list(
+        internal_account = await client.internal_accounts.list(
             after_cursor="string",
             per_page=0,
             currency="AED",
@@ -177,4 +178,4 @@ class TestAsyncInternalAccounts:
             payment_direction="credit",
             metadata={"foo": "string"},
         )
-        assert isinstance(resource, AsyncPage)
+        assert_matches_type(AsyncPage[InternalAccount], internal_account, path=["response"])

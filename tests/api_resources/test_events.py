@@ -6,6 +6,7 @@ import os
 
 import pytest
 
+from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import Event
 from modern_treasury.pagination import SyncPage, AsyncPage
@@ -25,19 +26,19 @@ class TestEvents:
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
-        resource = client.events.retrieve(
+        event = client.events.retrieve(
             "string",
         )
-        assert isinstance(resource, Event)
+        assert_matches_type(Event, event, path=["response"])
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
-        resource = client.events.list()
-        assert isinstance(resource, SyncPage)
+        event = client.events.list()
+        assert_matches_type(SyncPage[Event], event, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.events.list(
+        event = client.events.list(
             after_cursor="string",
             per_page=0,
             event_time_start="2019-12-27T18:11:19.117Z",
@@ -46,7 +47,7 @@ class TestEvents:
             entity_id="string",
             event_name="string",
         )
-        assert isinstance(resource, SyncPage)
+        assert_matches_type(SyncPage[Event], event, path=["response"])
 
 
 class TestAsyncEvents:
@@ -60,19 +61,19 @@ class TestAsyncEvents:
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
-        resource = await client.events.retrieve(
+        event = await client.events.retrieve(
             "string",
         )
-        assert isinstance(resource, Event)
+        assert_matches_type(Event, event, path=["response"])
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        resource = await client.events.list()
-        assert isinstance(resource, AsyncPage)
+        event = await client.events.list()
+        assert_matches_type(AsyncPage[Event], event, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.events.list(
+        event = await client.events.list(
             after_cursor="string",
             per_page=0,
             event_time_start="2019-12-27T18:11:19.117Z",
@@ -81,4 +82,4 @@ class TestAsyncEvents:
             entity_id="string",
             event_name="string",
         )
-        assert isinstance(resource, AsyncPage)
+        assert_matches_type(AsyncPage[Event], event, path=["response"])

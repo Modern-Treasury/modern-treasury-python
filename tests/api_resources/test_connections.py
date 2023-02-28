@@ -6,7 +6,9 @@ import os
 
 import pytest
 
+from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
+from modern_treasury.types import Connection
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
@@ -24,18 +26,18 @@ class TestConnections:
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
-        resource = client.connections.list()
-        assert isinstance(resource, SyncPage)
+        connection = client.connections.list()
+        assert_matches_type(SyncPage[Connection], connection, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.connections.list(
+        connection = client.connections.list(
             after_cursor="string",
             per_page=0,
             vendor_customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             entity="string",
         )
-        assert isinstance(resource, SyncPage)
+        assert_matches_type(SyncPage[Connection], connection, path=["response"])
 
 
 class TestAsyncConnections:
@@ -49,15 +51,15 @@ class TestAsyncConnections:
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        resource = await client.connections.list()
-        assert isinstance(resource, AsyncPage)
+        connection = await client.connections.list()
+        assert_matches_type(AsyncPage[Connection], connection, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.connections.list(
+        connection = await client.connections.list(
             after_cursor="string",
             per_page=0,
             vendor_customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             entity="string",
         )
-        assert isinstance(resource, AsyncPage)
+        assert_matches_type(AsyncPage[Connection], connection, path=["response"])

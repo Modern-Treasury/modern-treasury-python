@@ -6,6 +6,7 @@ import os
 
 import pytest
 
+from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import Transaction
 from modern_treasury.pagination import SyncPage, AsyncPage
@@ -25,34 +26,34 @@ class TestTransactions:
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
-        resource = client.transactions.retrieve(
+        transaction = client.transactions.retrieve(
             "string",
         )
-        assert isinstance(resource, Transaction)
+        assert_matches_type(Transaction, transaction, path=["response"])
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
-        resource = client.transactions.update(
+        transaction = client.transactions.update(
             "string",
         )
-        assert isinstance(resource, Transaction)
+        assert_matches_type(Transaction, transaction, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.transactions.update(
+        transaction = client.transactions.update(
             "string",
             metadata={"foo": "string"},
         )
-        assert isinstance(resource, Transaction)
+        assert_matches_type(Transaction, transaction, path=["response"])
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
-        resource = client.transactions.list()
-        assert isinstance(resource, SyncPage)
+        transaction = client.transactions.list()
+        assert_matches_type(SyncPage[Transaction], transaction, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.transactions.list(
+        transaction = client.transactions.list(
             after_cursor="string",
             per_page=0,
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -67,7 +68,7 @@ class TestTransactions:
             description="string",
             metadata={"foo": "string"},
         )
-        assert isinstance(resource, SyncPage)
+        assert_matches_type(SyncPage[Transaction], transaction, path=["response"])
 
 
 class TestAsyncTransactions:
@@ -81,34 +82,34 @@ class TestAsyncTransactions:
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
-        resource = await client.transactions.retrieve(
+        transaction = await client.transactions.retrieve(
             "string",
         )
-        assert isinstance(resource, Transaction)
+        assert_matches_type(Transaction, transaction, path=["response"])
 
     @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
-        resource = await client.transactions.update(
+        transaction = await client.transactions.update(
             "string",
         )
-        assert isinstance(resource, Transaction)
+        assert_matches_type(Transaction, transaction, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.transactions.update(
+        transaction = await client.transactions.update(
             "string",
             metadata={"foo": "string"},
         )
-        assert isinstance(resource, Transaction)
+        assert_matches_type(Transaction, transaction, path=["response"])
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        resource = await client.transactions.list()
-        assert isinstance(resource, AsyncPage)
+        transaction = await client.transactions.list()
+        assert_matches_type(AsyncPage[Transaction], transaction, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.transactions.list(
+        transaction = await client.transactions.list(
             after_cursor="string",
             per_page=0,
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -123,4 +124,4 @@ class TestAsyncTransactions:
             description="string",
             metadata={"foo": "string"},
         )
-        assert isinstance(resource, AsyncPage)
+        assert_matches_type(AsyncPage[Transaction], transaction, path=["response"])

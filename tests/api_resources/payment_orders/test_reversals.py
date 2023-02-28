@@ -6,6 +6,7 @@ import os
 
 import pytest
 
+from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 from modern_treasury.types.payment_orders import Reversal
@@ -25,15 +26,15 @@ class TestReversals:
 
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
-        resource = client.payment_orders.reversals.create(
+        reversal = client.payment_orders.reversals.create(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             reason="duplicate",
         )
-        assert isinstance(resource, Reversal)
+        assert_matches_type(Reversal, reversal, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.payment_orders.reversals.create(
+        reversal = client.payment_orders.reversals.create(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             reason="duplicate",
             metadata={
@@ -87,31 +88,31 @@ class TestReversals:
                 "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             },
         )
-        assert isinstance(resource, Reversal)
+        assert_matches_type(Reversal, reversal, path=["response"])
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
-        resource = client.payment_orders.reversals.retrieve(
+        reversal = client.payment_orders.reversals.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payment_order_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert isinstance(resource, Reversal)
+        assert_matches_type(Reversal, reversal, path=["response"])
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
-        resource = client.payment_orders.reversals.list(
+        reversal = client.payment_orders.reversals.list(
             "string",
         )
-        assert isinstance(resource, SyncPage)
+        assert_matches_type(SyncPage[Reversal], reversal, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.payment_orders.reversals.list(
+        reversal = client.payment_orders.reversals.list(
             "string",
             after_cursor="string",
             per_page=0,
         )
-        assert isinstance(resource, SyncPage)
+        assert_matches_type(SyncPage[Reversal], reversal, path=["response"])
 
 
 class TestAsyncReversals:
@@ -125,15 +126,15 @@ class TestAsyncReversals:
 
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
-        resource = await client.payment_orders.reversals.create(
+        reversal = await client.payment_orders.reversals.create(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             reason="duplicate",
         )
-        assert isinstance(resource, Reversal)
+        assert_matches_type(Reversal, reversal, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.payment_orders.reversals.create(
+        reversal = await client.payment_orders.reversals.create(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             reason="duplicate",
             metadata={
@@ -187,28 +188,28 @@ class TestAsyncReversals:
                 "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             },
         )
-        assert isinstance(resource, Reversal)
+        assert_matches_type(Reversal, reversal, path=["response"])
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
-        resource = await client.payment_orders.reversals.retrieve(
+        reversal = await client.payment_orders.reversals.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payment_order_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert isinstance(resource, Reversal)
+        assert_matches_type(Reversal, reversal, path=["response"])
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        resource = await client.payment_orders.reversals.list(
+        reversal = await client.payment_orders.reversals.list(
             "string",
         )
-        assert isinstance(resource, AsyncPage)
+        assert_matches_type(AsyncPage[Reversal], reversal, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.payment_orders.reversals.list(
+        reversal = await client.payment_orders.reversals.list(
             "string",
             after_cursor="string",
             per_page=0,
         )
-        assert isinstance(resource, AsyncPage)
+        assert_matches_type(AsyncPage[Reversal], reversal, path=["response"])

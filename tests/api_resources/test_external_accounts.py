@@ -6,6 +6,7 @@ import os
 
 import pytest
 
+from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import ExternalAccount
 from modern_treasury.pagination import SyncPage, AsyncPage
@@ -25,14 +26,14 @@ class TestExternalAccounts:
 
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
-        resource = client.external_accounts.create(
+        external_account = client.external_accounts.create(
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert isinstance(resource, ExternalAccount)
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.external_accounts.create(
+        external_account = client.external_accounts.create(
             account_type="cash",
             party_type="business",
             party_address={
@@ -99,25 +100,25 @@ class TestExternalAccounts:
                 },
             ],
         )
-        assert isinstance(resource, ExternalAccount)
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
-        resource = client.external_accounts.retrieve(
+        external_account = client.external_accounts.retrieve(
             "string",
         )
-        assert isinstance(resource, ExternalAccount)
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
-        resource = client.external_accounts.update(
+        external_account = client.external_accounts.update(
             "string",
         )
-        assert isinstance(resource, ExternalAccount)
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.external_accounts.update(
+        external_account = client.external_accounts.update(
             "string",
             party_type="business",
             account_type="cash",
@@ -134,64 +135,64 @@ class TestExternalAccounts:
             },
             metadata={"foo": "string"},
         )
-        assert isinstance(resource, ExternalAccount)
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
-        resource = client.external_accounts.list()
-        assert isinstance(resource, SyncPage)
+        external_account = client.external_accounts.list()
+        assert_matches_type(SyncPage[ExternalAccount], external_account, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.external_accounts.list(
+        external_account = client.external_accounts.list(
             after_cursor="string",
             per_page=0,
             party_name="string",
             counterparty_id="string",
             metadata={"foo": "string"},
         )
-        assert isinstance(resource, SyncPage)
+        assert_matches_type(SyncPage[ExternalAccount], external_account, path=["response"])
 
     @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
-        resource = client.external_accounts.delete(
+        external_account = client.external_accounts.delete(
             "string",
         )
-        assert resource is None
+        assert external_account is None
 
     @parametrize
     def test_method_complete_verification(self, client: ModernTreasury) -> None:
-        resource = client.external_accounts.complete_verification(
+        external_account = client.external_accounts.complete_verification(
             "string",
         )
-        assert isinstance(resource, ExternalAccount)
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     def test_method_complete_verification_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.external_accounts.complete_verification(
+        external_account = client.external_accounts.complete_verification(
             "string",
             amounts=[0, 0],
         )
-        assert isinstance(resource, ExternalAccount)
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     def test_method_verify(self, client: ModernTreasury) -> None:
-        resource = client.external_accounts.verify(
+        external_account = client.external_accounts.verify(
             "string",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payment_type="ach",
         )
-        assert isinstance(resource, ExternalAccount)
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     def test_method_verify_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.external_accounts.verify(
+        external_account = client.external_accounts.verify(
             "string",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payment_type="ach",
             currency="AED",
         )
-        assert isinstance(resource, ExternalAccount)
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
 
 
 class TestAsyncExternalAccounts:
@@ -205,14 +206,14 @@ class TestAsyncExternalAccounts:
 
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
-        resource = await client.external_accounts.create(
+        external_account = await client.external_accounts.create(
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert isinstance(resource, ExternalAccount)
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.external_accounts.create(
+        external_account = await client.external_accounts.create(
             account_type="cash",
             party_type="business",
             party_address={
@@ -279,25 +280,25 @@ class TestAsyncExternalAccounts:
                 },
             ],
         )
-        assert isinstance(resource, ExternalAccount)
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
-        resource = await client.external_accounts.retrieve(
+        external_account = await client.external_accounts.retrieve(
             "string",
         )
-        assert isinstance(resource, ExternalAccount)
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
-        resource = await client.external_accounts.update(
+        external_account = await client.external_accounts.update(
             "string",
         )
-        assert isinstance(resource, ExternalAccount)
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.external_accounts.update(
+        external_account = await client.external_accounts.update(
             "string",
             party_type="business",
             account_type="cash",
@@ -314,61 +315,61 @@ class TestAsyncExternalAccounts:
             },
             metadata={"foo": "string"},
         )
-        assert isinstance(resource, ExternalAccount)
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        resource = await client.external_accounts.list()
-        assert isinstance(resource, AsyncPage)
+        external_account = await client.external_accounts.list()
+        assert_matches_type(AsyncPage[ExternalAccount], external_account, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.external_accounts.list(
+        external_account = await client.external_accounts.list(
             after_cursor="string",
             per_page=0,
             party_name="string",
             counterparty_id="string",
             metadata={"foo": "string"},
         )
-        assert isinstance(resource, AsyncPage)
+        assert_matches_type(AsyncPage[ExternalAccount], external_account, path=["response"])
 
     @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
-        resource = await client.external_accounts.delete(
+        external_account = await client.external_accounts.delete(
             "string",
         )
-        assert resource is None
+        assert external_account is None
 
     @parametrize
     async def test_method_complete_verification(self, client: AsyncModernTreasury) -> None:
-        resource = await client.external_accounts.complete_verification(
+        external_account = await client.external_accounts.complete_verification(
             "string",
         )
-        assert isinstance(resource, ExternalAccount)
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     async def test_method_complete_verification_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.external_accounts.complete_verification(
+        external_account = await client.external_accounts.complete_verification(
             "string",
             amounts=[0, 0],
         )
-        assert isinstance(resource, ExternalAccount)
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     async def test_method_verify(self, client: AsyncModernTreasury) -> None:
-        resource = await client.external_accounts.verify(
+        external_account = await client.external_accounts.verify(
             "string",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payment_type="ach",
         )
-        assert isinstance(resource, ExternalAccount)
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     async def test_method_verify_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.external_accounts.verify(
+        external_account = await client.external_accounts.verify(
             "string",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payment_type="ach",
             currency="AED",
         )
-        assert isinstance(resource, ExternalAccount)
+        assert_matches_type(ExternalAccount, external_account, path=["response"])

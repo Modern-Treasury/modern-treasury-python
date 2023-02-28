@@ -6,6 +6,7 @@ import os
 
 import pytest
 
+from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import LedgerAccountCategory
 from modern_treasury.pagination import SyncPage, AsyncPage
@@ -25,17 +26,17 @@ class TestLedgerAccountCategories:
 
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
-        resource = client.ledger_account_categories.create(
+        ledger_account_category = client.ledger_account_categories.create(
             name="string",
             currency="string",
             ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             normal_balance="credit",
         )
-        assert isinstance(resource, LedgerAccountCategory)
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.ledger_account_categories.create(
+        ledger_account_category = client.ledger_account_categories.create(
             name="string",
             description="string",
             metadata={
@@ -48,36 +49,36 @@ class TestLedgerAccountCategories:
             ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             normal_balance="credit",
         )
-        assert isinstance(resource, LedgerAccountCategory)
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
-        resource = client.ledger_account_categories.retrieve(
+        ledger_account_category = client.ledger_account_categories.retrieve(
             "string",
         )
-        assert isinstance(resource, LedgerAccountCategory)
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
     def test_method_retrieve_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.ledger_account_categories.retrieve(
+        ledger_account_category = client.ledger_account_categories.retrieve(
             "string",
             balances={
                 "as_of_date": "2019-12-27",
                 "effective_at": "2019-12-27T18:11:19.117Z",
             },
         )
-        assert isinstance(resource, LedgerAccountCategory)
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
-        resource = client.ledger_account_categories.update(
+        ledger_account_category = client.ledger_account_categories.update(
             "string",
         )
-        assert isinstance(resource, LedgerAccountCategory)
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.ledger_account_categories.update(
+        ledger_account_category = client.ledger_account_categories.update(
             "string",
             name="string",
             description="string",
@@ -87,16 +88,16 @@ class TestLedgerAccountCategories:
                 "modern": "treasury",
             },
         )
-        assert isinstance(resource, LedgerAccountCategory)
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
-        resource = client.ledger_account_categories.list()
-        assert isinstance(resource, SyncPage)
+        ledger_account_category = client.ledger_account_categories.list()
+        assert_matches_type(SyncPage[LedgerAccountCategory], ledger_account_category, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.ledger_account_categories.list(
+        ledger_account_category = client.ledger_account_categories.list(
             after_cursor="string",
             per_page=0,
             metadata={"foo": "string"},
@@ -104,46 +105,46 @@ class TestLedgerAccountCategories:
             ledger_id="string",
             parent_ledger_account_category_id="string",
         )
-        assert isinstance(resource, SyncPage)
+        assert_matches_type(SyncPage[LedgerAccountCategory], ledger_account_category, path=["response"])
 
     @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
-        resource = client.ledger_account_categories.delete(
+        ledger_account_category = client.ledger_account_categories.delete(
             "string",
         )
-        assert isinstance(resource, LedgerAccountCategory)
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
     def test_method_add_ledger_account(self, client: ModernTreasury) -> None:
-        resource = client.ledger_account_categories.add_ledger_account(
+        ledger_account_category = client.ledger_account_categories.add_ledger_account(
             "string",
             id="string",
         )
-        assert resource is None
+        assert ledger_account_category is None
 
     @parametrize
     def test_method_add_nested_category(self, client: ModernTreasury) -> None:
-        resource = client.ledger_account_categories.add_nested_category(
+        ledger_account_category = client.ledger_account_categories.add_nested_category(
             "string",
             id="string",
         )
-        assert resource is None
+        assert ledger_account_category is None
 
     @parametrize
     def test_method_remove_ledger_account(self, client: ModernTreasury) -> None:
-        resource = client.ledger_account_categories.remove_ledger_account(
+        ledger_account_category = client.ledger_account_categories.remove_ledger_account(
             "string",
             id="string",
         )
-        assert resource is None
+        assert ledger_account_category is None
 
     @parametrize
     def test_method_remove_nested_category(self, client: ModernTreasury) -> None:
-        resource = client.ledger_account_categories.remove_nested_category(
+        ledger_account_category = client.ledger_account_categories.remove_nested_category(
             "string",
             id="string",
         )
-        assert resource is None
+        assert ledger_account_category is None
 
 
 class TestAsyncLedgerAccountCategories:
@@ -157,17 +158,17 @@ class TestAsyncLedgerAccountCategories:
 
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_account_categories.create(
+        ledger_account_category = await client.ledger_account_categories.create(
             name="string",
             currency="string",
             ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             normal_balance="credit",
         )
-        assert isinstance(resource, LedgerAccountCategory)
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_account_categories.create(
+        ledger_account_category = await client.ledger_account_categories.create(
             name="string",
             description="string",
             metadata={
@@ -180,36 +181,36 @@ class TestAsyncLedgerAccountCategories:
             ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             normal_balance="credit",
         )
-        assert isinstance(resource, LedgerAccountCategory)
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_account_categories.retrieve(
+        ledger_account_category = await client.ledger_account_categories.retrieve(
             "string",
         )
-        assert isinstance(resource, LedgerAccountCategory)
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
     async def test_method_retrieve_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_account_categories.retrieve(
+        ledger_account_category = await client.ledger_account_categories.retrieve(
             "string",
             balances={
                 "as_of_date": "2019-12-27",
                 "effective_at": "2019-12-27T18:11:19.117Z",
             },
         )
-        assert isinstance(resource, LedgerAccountCategory)
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_account_categories.update(
+        ledger_account_category = await client.ledger_account_categories.update(
             "string",
         )
-        assert isinstance(resource, LedgerAccountCategory)
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_account_categories.update(
+        ledger_account_category = await client.ledger_account_categories.update(
             "string",
             name="string",
             description="string",
@@ -219,16 +220,16 @@ class TestAsyncLedgerAccountCategories:
                 "modern": "treasury",
             },
         )
-        assert isinstance(resource, LedgerAccountCategory)
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_account_categories.list()
-        assert isinstance(resource, AsyncPage)
+        ledger_account_category = await client.ledger_account_categories.list()
+        assert_matches_type(AsyncPage[LedgerAccountCategory], ledger_account_category, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_account_categories.list(
+        ledger_account_category = await client.ledger_account_categories.list(
             after_cursor="string",
             per_page=0,
             metadata={"foo": "string"},
@@ -236,43 +237,43 @@ class TestAsyncLedgerAccountCategories:
             ledger_id="string",
             parent_ledger_account_category_id="string",
         )
-        assert isinstance(resource, AsyncPage)
+        assert_matches_type(AsyncPage[LedgerAccountCategory], ledger_account_category, path=["response"])
 
     @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_account_categories.delete(
+        ledger_account_category = await client.ledger_account_categories.delete(
             "string",
         )
-        assert isinstance(resource, LedgerAccountCategory)
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
     async def test_method_add_ledger_account(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_account_categories.add_ledger_account(
+        ledger_account_category = await client.ledger_account_categories.add_ledger_account(
             "string",
             id="string",
         )
-        assert resource is None
+        assert ledger_account_category is None
 
     @parametrize
     async def test_method_add_nested_category(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_account_categories.add_nested_category(
+        ledger_account_category = await client.ledger_account_categories.add_nested_category(
             "string",
             id="string",
         )
-        assert resource is None
+        assert ledger_account_category is None
 
     @parametrize
     async def test_method_remove_ledger_account(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_account_categories.remove_ledger_account(
+        ledger_account_category = await client.ledger_account_categories.remove_ledger_account(
             "string",
             id="string",
         )
-        assert resource is None
+        assert ledger_account_category is None
 
     @parametrize
     async def test_method_remove_nested_category(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ledger_account_categories.remove_nested_category(
+        ledger_account_category = await client.ledger_account_categories.remove_nested_category(
             "string",
             id="string",
         )
-        assert resource is None
+        assert ledger_account_category is None

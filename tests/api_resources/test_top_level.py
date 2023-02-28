@@ -6,6 +6,7 @@ import os
 
 import pytest
 
+from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import PingResponse
 
@@ -24,8 +25,8 @@ class TestTopLevel:
 
     @parametrize
     def test_method_ping(self, client: ModernTreasury) -> None:
-        resource = client.ping()
-        assert isinstance(resource, PingResponse)
+        top_level = client.ping()
+        assert_matches_type(PingResponse, top_level, path=["response"])
 
 
 class TestAsyncTopLevel:
@@ -39,5 +40,5 @@ class TestAsyncTopLevel:
 
     @parametrize
     async def test_method_ping(self, client: AsyncModernTreasury) -> None:
-        resource = await client.ping()
-        assert isinstance(resource, PingResponse)
+        top_level = await client.ping()
+        assert_matches_type(PingResponse, top_level, path=["response"])

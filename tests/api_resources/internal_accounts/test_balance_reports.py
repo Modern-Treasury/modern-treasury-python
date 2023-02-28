@@ -6,6 +6,7 @@ import os
 
 import pytest
 
+from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 from modern_treasury.types.internal_accounts import BalanceReport
@@ -25,29 +26,29 @@ class TestBalanceReports:
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
-        resource = client.internal_accounts.balance_reports.retrieve(
+        balance_report = client.internal_accounts.balance_reports.retrieve(
             "string",
             internal_account_id="string",
         )
-        assert isinstance(resource, BalanceReport)
+        assert_matches_type(BalanceReport, balance_report, path=["response"])
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
-        resource = client.internal_accounts.balance_reports.list(
+        balance_report = client.internal_accounts.balance_reports.list(
             "string",
         )
-        assert isinstance(resource, SyncPage)
+        assert_matches_type(SyncPage[BalanceReport], balance_report, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.internal_accounts.balance_reports.list(
+        balance_report = client.internal_accounts.balance_reports.list(
             "string",
             as_of_date="2019-12-27",
             balance_report_type="intraday",
             after_cursor="string",
             per_page=0,
         )
-        assert isinstance(resource, SyncPage)
+        assert_matches_type(SyncPage[BalanceReport], balance_report, path=["response"])
 
 
 class TestAsyncBalanceReports:
@@ -61,26 +62,26 @@ class TestAsyncBalanceReports:
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
-        resource = await client.internal_accounts.balance_reports.retrieve(
+        balance_report = await client.internal_accounts.balance_reports.retrieve(
             "string",
             internal_account_id="string",
         )
-        assert isinstance(resource, BalanceReport)
+        assert_matches_type(BalanceReport, balance_report, path=["response"])
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        resource = await client.internal_accounts.balance_reports.list(
+        balance_report = await client.internal_accounts.balance_reports.list(
             "string",
         )
-        assert isinstance(resource, AsyncPage)
+        assert_matches_type(AsyncPage[BalanceReport], balance_report, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.internal_accounts.balance_reports.list(
+        balance_report = await client.internal_accounts.balance_reports.list(
             "string",
             as_of_date="2019-12-27",
             balance_report_type="intraday",
             after_cursor="string",
             per_page=0,
         )
-        assert isinstance(resource, AsyncPage)
+        assert_matches_type(AsyncPage[BalanceReport], balance_report, path=["response"])

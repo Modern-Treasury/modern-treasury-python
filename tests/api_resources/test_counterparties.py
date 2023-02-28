@@ -6,6 +6,7 @@ import os
 
 import pytest
 
+from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import Counterparty, CounterpartyCollectAccountResponse
 from modern_treasury.pagination import SyncPage, AsyncPage
@@ -25,14 +26,14 @@ class TestCounterparties:
 
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
-        resource = client.counterparties.create(
+        counterparty = client.counterparties.create(
             name="string",
         )
-        assert isinstance(resource, Counterparty)
+        assert_matches_type(Counterparty, counterparty, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.counterparties.create(
+        counterparty = client.counterparties.create(
             name="string",
             accounts=[
                 {
@@ -245,25 +246,25 @@ class TestCounterparties:
             ledger_type="customer",
             taxpayer_identifier="string",
         )
-        assert isinstance(resource, Counterparty)
+        assert_matches_type(Counterparty, counterparty, path=["response"])
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
-        resource = client.counterparties.retrieve(
+        counterparty = client.counterparties.retrieve(
             "string",
         )
-        assert isinstance(resource, Counterparty)
+        assert_matches_type(Counterparty, counterparty, path=["response"])
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
-        resource = client.counterparties.update(
+        counterparty = client.counterparties.update(
             "string",
         )
-        assert isinstance(resource, Counterparty)
+        assert_matches_type(Counterparty, counterparty, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.counterparties.update(
+        counterparty = client.counterparties.update(
             "string",
             name="string",
             email="dev@stainlessapi.com",
@@ -271,16 +272,16 @@ class TestCounterparties:
             send_remittance_advice=True,
             taxpayer_identifier="string",
         )
-        assert isinstance(resource, Counterparty)
+        assert_matches_type(Counterparty, counterparty, path=["response"])
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
-        resource = client.counterparties.list()
-        assert isinstance(resource, SyncPage)
+        counterparty = client.counterparties.list()
+        assert_matches_type(SyncPage[Counterparty], counterparty, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.counterparties.list(
+        counterparty = client.counterparties.list(
             after_cursor="string",
             per_page=0,
             name="string",
@@ -289,33 +290,33 @@ class TestCounterparties:
             created_at_lower_bound="2019-12-27T18:11:19.117Z",
             created_at_upper_bound="2019-12-27T18:11:19.117Z",
         )
-        assert isinstance(resource, SyncPage)
+        assert_matches_type(SyncPage[Counterparty], counterparty, path=["response"])
 
     @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
-        resource = client.counterparties.delete(
+        counterparty = client.counterparties.delete(
             "string",
         )
-        assert resource is None
+        assert counterparty is None
 
     @parametrize
     def test_method_collect_account(self, client: ModernTreasury) -> None:
-        resource = client.counterparties.collect_account(
+        counterparty = client.counterparties.collect_account(
             "string",
             direction="credit",
         )
-        assert isinstance(resource, CounterpartyCollectAccountResponse)
+        assert_matches_type(CounterpartyCollectAccountResponse, counterparty, path=["response"])
 
     @parametrize
     def test_method_collect_account_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.counterparties.collect_account(
+        counterparty = client.counterparties.collect_account(
             "string",
             direction="credit",
             send_email=True,
             fields=["name", "name", "name"],
             custom_redirect="https://example.com",
         )
-        assert isinstance(resource, CounterpartyCollectAccountResponse)
+        assert_matches_type(CounterpartyCollectAccountResponse, counterparty, path=["response"])
 
 
 class TestAsyncCounterparties:
@@ -329,14 +330,14 @@ class TestAsyncCounterparties:
 
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
-        resource = await client.counterparties.create(
+        counterparty = await client.counterparties.create(
             name="string",
         )
-        assert isinstance(resource, Counterparty)
+        assert_matches_type(Counterparty, counterparty, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.counterparties.create(
+        counterparty = await client.counterparties.create(
             name="string",
             accounts=[
                 {
@@ -549,25 +550,25 @@ class TestAsyncCounterparties:
             ledger_type="customer",
             taxpayer_identifier="string",
         )
-        assert isinstance(resource, Counterparty)
+        assert_matches_type(Counterparty, counterparty, path=["response"])
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
-        resource = await client.counterparties.retrieve(
+        counterparty = await client.counterparties.retrieve(
             "string",
         )
-        assert isinstance(resource, Counterparty)
+        assert_matches_type(Counterparty, counterparty, path=["response"])
 
     @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
-        resource = await client.counterparties.update(
+        counterparty = await client.counterparties.update(
             "string",
         )
-        assert isinstance(resource, Counterparty)
+        assert_matches_type(Counterparty, counterparty, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.counterparties.update(
+        counterparty = await client.counterparties.update(
             "string",
             name="string",
             email="dev@stainlessapi.com",
@@ -575,16 +576,16 @@ class TestAsyncCounterparties:
             send_remittance_advice=True,
             taxpayer_identifier="string",
         )
-        assert isinstance(resource, Counterparty)
+        assert_matches_type(Counterparty, counterparty, path=["response"])
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        resource = await client.counterparties.list()
-        assert isinstance(resource, AsyncPage)
+        counterparty = await client.counterparties.list()
+        assert_matches_type(AsyncPage[Counterparty], counterparty, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.counterparties.list(
+        counterparty = await client.counterparties.list(
             after_cursor="string",
             per_page=0,
             name="string",
@@ -593,30 +594,30 @@ class TestAsyncCounterparties:
             created_at_lower_bound="2019-12-27T18:11:19.117Z",
             created_at_upper_bound="2019-12-27T18:11:19.117Z",
         )
-        assert isinstance(resource, AsyncPage)
+        assert_matches_type(AsyncPage[Counterparty], counterparty, path=["response"])
 
     @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
-        resource = await client.counterparties.delete(
+        counterparty = await client.counterparties.delete(
             "string",
         )
-        assert resource is None
+        assert counterparty is None
 
     @parametrize
     async def test_method_collect_account(self, client: AsyncModernTreasury) -> None:
-        resource = await client.counterparties.collect_account(
+        counterparty = await client.counterparties.collect_account(
             "string",
             direction="credit",
         )
-        assert isinstance(resource, CounterpartyCollectAccountResponse)
+        assert_matches_type(CounterpartyCollectAccountResponse, counterparty, path=["response"])
 
     @parametrize
     async def test_method_collect_account_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.counterparties.collect_account(
+        counterparty = await client.counterparties.collect_account(
             "string",
             direction="credit",
             send_email=True,
             fields=["name", "name", "name"],
             custom_redirect="https://example.com",
         )
-        assert isinstance(resource, CounterpartyCollectAccountResponse)
+        assert_matches_type(CounterpartyCollectAccountResponse, counterparty, path=["response"])

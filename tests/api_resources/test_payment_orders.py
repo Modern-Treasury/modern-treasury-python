@@ -6,6 +6,7 @@ import os
 
 import pytest
 
+from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import PaymentOrder, shared
 from modern_treasury.pagination import SyncPage, AsyncPage
@@ -26,18 +27,18 @@ class TestPaymentOrders:
     @pytest.mark.skip(reason="file upload tests are broken on the Prism mock server")
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
-        resource = client.payment_orders.create(
+        payment_order = client.payment_orders.create(
             type="ach",
             amount=0,
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert isinstance(resource, PaymentOrder)
+        assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @pytest.mark.skip(reason="file upload tests are broken on the Prism mock server")
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.payment_orders.create(
+        payment_order = client.payment_orders.create(
             type="ach",
             subtype="CCD",
             amount=0,
@@ -233,25 +234,25 @@ class TestPaymentOrders:
                 },
             ],
         )
-        assert isinstance(resource, PaymentOrder)
+        assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
-        resource = client.payment_orders.retrieve(
+        payment_order = client.payment_orders.retrieve(
             "string",
         )
-        assert isinstance(resource, PaymentOrder)
+        assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
-        resource = client.payment_orders.update(
+        payment_order = client.payment_orders.update(
             "string",
         )
-        assert isinstance(resource, PaymentOrder)
+        assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.payment_orders.update(
+        payment_order = client.payment_orders.update(
             "string",
             type="ach",
             subtype="CCD",
@@ -390,16 +391,16 @@ class TestPaymentOrders:
                 },
             ],
         )
-        assert isinstance(resource, PaymentOrder)
+        assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
-        resource = client.payment_orders.list()
-        assert isinstance(resource, SyncPage)
+        payment_order = client.payment_orders.list()
+        assert_matches_type(SyncPage[PaymentOrder], payment_order, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.payment_orders.list(
+        payment_order = client.payment_orders.list(
             after_cursor="string",
             per_page=0,
             type="ach",
@@ -414,21 +415,21 @@ class TestPaymentOrders:
             effective_date_end="2019-12-27",
             metadata={"foo": "string"},
         )
-        assert isinstance(resource, SyncPage)
+        assert_matches_type(SyncPage[PaymentOrder], payment_order, path=["response"])
 
     @parametrize
     def test_method_create_async(self, client: ModernTreasury) -> None:
-        resource = client.payment_orders.create_async(
+        payment_order = client.payment_orders.create_async(
             type="ach",
             amount=0,
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert isinstance(resource, shared.AsyncResponse)
+        assert_matches_type(shared.AsyncResponse, payment_order, path=["response"])
 
     @parametrize
     def test_method_create_async_with_all_params(self, client: ModernTreasury) -> None:
-        resource = client.payment_orders.create_async(
+        payment_order = client.payment_orders.create_async(
             type="ach",
             subtype="CCD",
             amount=0,
@@ -610,7 +611,7 @@ class TestPaymentOrders:
             ],
             transaction_monitoring_enabled=True,
         )
-        assert isinstance(resource, shared.AsyncResponse)
+        assert_matches_type(shared.AsyncResponse, payment_order, path=["response"])
 
 
 class TestAsyncPaymentOrders:
@@ -625,18 +626,18 @@ class TestAsyncPaymentOrders:
     @pytest.mark.skip(reason="file upload tests are broken on the Prism mock server")
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
-        resource = await client.payment_orders.create(
+        payment_order = await client.payment_orders.create(
             type="ach",
             amount=0,
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert isinstance(resource, PaymentOrder)
+        assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @pytest.mark.skip(reason="file upload tests are broken on the Prism mock server")
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.payment_orders.create(
+        payment_order = await client.payment_orders.create(
             type="ach",
             subtype="CCD",
             amount=0,
@@ -832,25 +833,25 @@ class TestAsyncPaymentOrders:
                 },
             ],
         )
-        assert isinstance(resource, PaymentOrder)
+        assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
-        resource = await client.payment_orders.retrieve(
+        payment_order = await client.payment_orders.retrieve(
             "string",
         )
-        assert isinstance(resource, PaymentOrder)
+        assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
-        resource = await client.payment_orders.update(
+        payment_order = await client.payment_orders.update(
             "string",
         )
-        assert isinstance(resource, PaymentOrder)
+        assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.payment_orders.update(
+        payment_order = await client.payment_orders.update(
             "string",
             type="ach",
             subtype="CCD",
@@ -989,16 +990,16 @@ class TestAsyncPaymentOrders:
                 },
             ],
         )
-        assert isinstance(resource, PaymentOrder)
+        assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        resource = await client.payment_orders.list()
-        assert isinstance(resource, AsyncPage)
+        payment_order = await client.payment_orders.list()
+        assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.payment_orders.list(
+        payment_order = await client.payment_orders.list(
             after_cursor="string",
             per_page=0,
             type="ach",
@@ -1013,21 +1014,21 @@ class TestAsyncPaymentOrders:
             effective_date_end="2019-12-27",
             metadata={"foo": "string"},
         )
-        assert isinstance(resource, AsyncPage)
+        assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=["response"])
 
     @parametrize
     async def test_method_create_async(self, client: AsyncModernTreasury) -> None:
-        resource = await client.payment_orders.create_async(
+        payment_order = await client.payment_orders.create_async(
             type="ach",
             amount=0,
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert isinstance(resource, shared.AsyncResponse)
+        assert_matches_type(shared.AsyncResponse, payment_order, path=["response"])
 
     @parametrize
     async def test_method_create_async_with_all_params(self, client: AsyncModernTreasury) -> None:
-        resource = await client.payment_orders.create_async(
+        payment_order = await client.payment_orders.create_async(
             type="ach",
             subtype="CCD",
             amount=0,
@@ -1209,4 +1210,4 @@ class TestAsyncPaymentOrders:
             ],
             transaction_monitoring_enabled=True,
         )
-        assert isinstance(resource, shared.AsyncResponse)
+        assert_matches_type(shared.AsyncResponse, payment_order, path=["response"])
