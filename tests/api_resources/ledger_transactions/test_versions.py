@@ -8,6 +8,7 @@ import pytest
 
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
+from modern_treasury._utils import parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
 from modern_treasury.types.ledger_transactions import LedgerTransactionVersion
 
@@ -37,7 +38,7 @@ class TestVersions:
             "string",
             after_cursor="string",
             per_page=0,
-            created_at={"foo": "2019-12-27T18:11:19.117Z"},
+            created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             version={"foo": 0},
         )
         assert_matches_type(SyncPage[LedgerTransactionVersion], version, path=["response"])
@@ -55,7 +56,7 @@ class TestVersions:
             "string",
             after_cursor="string",
             per_page=0,
-            created_at={"foo": "2019-12-27T18:11:19.117Z"},
+            created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             version={"foo": 0},
         )
         assert_matches_type(SyncPage[LedgerTransactionVersion], version, path=["response"])
@@ -83,7 +84,7 @@ class TestAsyncVersions:
             "string",
             after_cursor="string",
             per_page=0,
-            created_at={"foo": "2019-12-27T18:11:19.117Z"},
+            created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             version={"foo": 0},
         )
         assert_matches_type(AsyncPage[LedgerTransactionVersion], version, path=["response"])
@@ -101,7 +102,7 @@ class TestAsyncVersions:
             "string",
             after_cursor="string",
             per_page=0,
-            created_at={"foo": "2019-12-27T18:11:19.117Z"},
+            created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             version={"foo": 0},
         )
         assert_matches_type(AsyncPage[LedgerTransactionVersion], version, path=["response"])

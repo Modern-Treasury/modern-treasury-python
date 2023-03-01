@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Dict, List, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from ..types import shared, connection, account_detail, routing_detail
@@ -13,7 +14,7 @@ class PartyAddress(BaseModel):
     country: Optional[str]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
-    created_at: str
+    created_at: datetime
 
     id: str
 
@@ -38,7 +39,7 @@ class PartyAddress(BaseModel):
     region: Optional[str]
     """Region or State."""
 
-    updated_at: str
+    updated_at: datetime
 
 
 class InternalAccount(BaseModel):
@@ -54,7 +55,7 @@ class InternalAccount(BaseModel):
     counterparty_id: Optional[str]
     """The Counterparty associated to this account."""
 
-    created_at: str
+    created_at: datetime
 
     currency: Optional[shared.Currency]
     """The currency of the account."""
@@ -93,4 +94,4 @@ class InternalAccount(BaseModel):
     routing_details: List[routing_detail.RoutingDetail]
     """An array of routing detail objects."""
 
-    updated_at: str
+    updated_at: datetime

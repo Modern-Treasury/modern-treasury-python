@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Dict, List, Optional
+from datetime import date, datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -113,7 +114,7 @@ class LedgerEntry(BaseModel):
     e.g. $10 would be represented as 1000. Can be any integer up to 36 digits.
     """
 
-    created_at: str
+    created_at: datetime
 
     direction: Literal["credit", "debit"]
     """One of `credit`, `debit`.
@@ -180,12 +181,12 @@ Please use LedgerEntry instead.
 
 
 class LedgerTransactionVersion(BaseModel):
-    created_at: str
+    created_at: datetime
 
     description: Optional[str]
     """An optional description for internal use."""
 
-    effective_date: str
+    effective_date: date
     """
     The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
     purposes.

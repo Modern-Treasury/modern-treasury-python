@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Union, Optional
+from datetime import datetime
 
-from ..types import Event
+from ..types import Event, event_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -36,8 +38,8 @@ class Events(SyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        event_time_start: str | NotGiven = NOT_GIVEN,
-        event_time_end: str | NotGiven = NOT_GIVEN,
+        event_time_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        event_time_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
         resource: str | NotGiven = NOT_GIVEN,
         entity_id: str | NotGiven = NOT_GIVEN,
         event_name: str | NotGiven = NOT_GIVEN,
@@ -68,15 +70,18 @@ class Events(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "event_time_start": event_time_start,
-                    "event_time_end": event_time_end,
-                    "resource": resource,
-                    "entity_id": entity_id,
-                    "event_name": event_name,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "event_time_start": event_time_start,
+                        "event_time_end": event_time_end,
+                        "resource": resource,
+                        "entity_id": entity_id,
+                        "event_name": event_name,
+                    },
+                    event_list_params.EventListParams,
+                ),
             ),
             model=Event,
         )
@@ -105,8 +110,8 @@ class AsyncEvents(AsyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        event_time_start: str | NotGiven = NOT_GIVEN,
-        event_time_end: str | NotGiven = NOT_GIVEN,
+        event_time_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        event_time_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
         resource: str | NotGiven = NOT_GIVEN,
         entity_id: str | NotGiven = NOT_GIVEN,
         event_name: str | NotGiven = NOT_GIVEN,
@@ -137,15 +142,18 @@ class AsyncEvents(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "event_time_start": event_time_start,
-                    "event_time_end": event_time_end,
-                    "resource": resource,
-                    "entity_id": entity_id,
-                    "event_name": event_name,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "event_time_start": event_time_start,
+                        "event_time_end": event_time_end,
+                        "resource": resource,
+                        "entity_id": entity_id,
+                        "event_name": event_name,
+                    },
+                    event_list_params.EventListParams,
+                ),
             ),
             model=Event,
         )

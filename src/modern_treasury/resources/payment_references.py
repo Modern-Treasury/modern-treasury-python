@@ -5,8 +5,9 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal
 
-from ..types import PaymentReference
+from ..types import PaymentReference, payment_reference_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -54,13 +55,16 @@ class PaymentReferences(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "referenceable_id": referenceable_id,
-                    "referenceable_type": referenceable_type,
-                    "reference_number": reference_number,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "referenceable_id": referenceable_id,
+                        "referenceable_type": referenceable_type,
+                        "reference_number": reference_number,
+                    },
+                    payment_reference_list_params.PaymentReferenceListParams,
+                ),
             ),
             model=PaymentReference,
         )
@@ -123,13 +127,16 @@ class AsyncPaymentReferences(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "referenceable_id": referenceable_id,
-                    "referenceable_type": referenceable_type,
-                    "reference_number": reference_number,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "referenceable_id": referenceable_id,
+                        "referenceable_type": referenceable_type,
+                        "reference_number": reference_number,
+                    },
+                    payment_reference_list_params.PaymentReferenceListParams,
+                ),
             ),
             model=PaymentReference,
         )

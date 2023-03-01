@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Dict, Optional
+from datetime import date, datetime
 from typing_extensions import Literal
 
 from ..types import shared, virtual_account
@@ -16,10 +17,10 @@ class IncomingPaymentDetail(BaseModel):
     e.g. $10 would be represented as 1000.
     """
 
-    as_of_date: str
+    as_of_date: date
     """The date on which the corresponding transaction will occur."""
 
-    created_at: str
+    created_at: datetime
 
     currency: Optional[shared.Currency]
     """The currency of the incoming payment detail."""
@@ -70,7 +71,7 @@ class IncomingPaymentDetail(BaseModel):
     `wire`.
     """
 
-    updated_at: str
+    updated_at: datetime
 
     vendor_id: Optional[str]
     """The identifier of the vendor bank."""

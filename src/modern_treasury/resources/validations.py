@@ -4,8 +4,12 @@ from __future__ import annotations
 
 from typing_extensions import Literal
 
-from ..types import RoutingNumberLookupRequest
+from ..types import (
+    RoutingNumberLookupRequest,
+    validation_validate_routing_number_params,
+)
 from .._types import Body, Query, Headers
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._base_client import make_request_options
 
@@ -50,10 +54,13 @@ class Validations(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "routing_number": routing_number,
-                    "routing_number_type": routing_number_type,
-                },
+                query=maybe_transform(
+                    {
+                        "routing_number": routing_number,
+                        "routing_number_type": routing_number_type,
+                    },
+                    validation_validate_routing_number_params.ValidationValidateRoutingNumberParams,
+                ),
             ),
             cast_to=RoutingNumberLookupRequest,
         )
@@ -97,10 +104,13 @@ class AsyncValidations(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "routing_number": routing_number,
-                    "routing_number_type": routing_number_type,
-                },
+                query=maybe_transform(
+                    {
+                        "routing_number": routing_number,
+                        "routing_number_type": routing_number_type,
+                    },
+                    validation_validate_routing_number_params.ValidationValidateRoutingNumberParams,
+                ),
             ),
             cast_to=RoutingNumberLookupRequest,
         )

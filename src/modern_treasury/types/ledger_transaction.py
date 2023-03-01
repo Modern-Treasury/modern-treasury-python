@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Dict, List, Optional
+from datetime import date, datetime
 from typing_extensions import Literal
 
 from ..types import ledger_entry
@@ -10,18 +11,18 @@ __all__ = ["LedgerTransaction"]
 
 
 class LedgerTransaction(BaseModel):
-    created_at: str
+    created_at: datetime
 
     description: Optional[str]
     """An optional description for internal use."""
 
-    effective_at: str
+    effective_at: date
     """
     The timestamp (ISO8601 format) at which the ledger transaction happened for
     reporting purposes.
     """
 
-    effective_date: str
+    effective_date: date
     """
     The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
     purposes.
@@ -90,4 +91,4 @@ class LedgerTransaction(BaseModel):
     status: Literal["archived", "pending", "posted"]
     """To post a ledger transaction at creation, use `posted`."""
 
-    updated_at: str
+    updated_at: datetime

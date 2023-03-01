@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
@@ -79,7 +80,7 @@ class LedgerEntry(BaseModel):
     e.g. $10 would be represented as 1000. Can be any integer up to 36 digits.
     """
 
-    created_at: str
+    created_at: datetime
 
     direction: Literal["credit", "debit"]
     """One of `credit`, `debit`.
@@ -90,7 +91,7 @@ class LedgerEntry(BaseModel):
     be `credit`.
     """
 
-    discarded_at: Optional[str]
+    discarded_at: Optional[datetime]
 
     id: str
 
@@ -139,4 +140,4 @@ class LedgerEntry(BaseModel):
     One of `pending`, `posted`, or `archived`.
     """
 
-    updated_at: str
+    updated_at: datetime

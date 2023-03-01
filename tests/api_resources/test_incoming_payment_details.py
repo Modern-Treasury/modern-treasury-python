@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import IncomingPaymentDetail, shared
+from modern_treasury._utils import parse_date
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
@@ -59,8 +60,8 @@ class TestIncomingPaymentDetails:
             direction="credit",
             status="completed",
             type="ach",
-            as_of_date_start="2019-12-27",
-            as_of_date_end="2019-12-27",
+            as_of_date_start=parse_date("2019-12-27"),
+            as_of_date_end=parse_date("2019-12-27"),
             metadata={"foo": "string"},
             virtual_account_id="string",
         )
@@ -80,7 +81,7 @@ class TestIncomingPaymentDetails:
             currency="AED",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            as_of_date="2019-12-27",
+            as_of_date=parse_date("2019-12-27"),
         )
         assert_matches_type(shared.AsyncResponse, incoming_payment_detail, path=["response"])
 
@@ -129,8 +130,8 @@ class TestAsyncIncomingPaymentDetails:
             direction="credit",
             status="completed",
             type="ach",
-            as_of_date_start="2019-12-27",
-            as_of_date_end="2019-12-27",
+            as_of_date_start=parse_date("2019-12-27"),
+            as_of_date_end=parse_date("2019-12-27"),
             metadata={"foo": "string"},
             virtual_account_id="string",
         )
@@ -150,6 +151,6 @@ class TestAsyncIncomingPaymentDetails:
             currency="AED",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            as_of_date="2019-12-27",
+            as_of_date=parse_date("2019-12-27"),
         )
         assert_matches_type(shared.AsyncResponse, incoming_payment_detail, path=["response"])

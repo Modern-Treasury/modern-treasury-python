@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Dict, List, Optional
+from datetime import date, datetime
 from typing_extensions import Literal
 
 from ..types import shared, return_object, payment_order_type, payment_order_subtype
@@ -27,7 +28,7 @@ class Accounting(BaseModel):
 
 
 class ReferenceNumber(BaseModel):
-    created_at: str
+    created_at: datetime
 
     id: str
 
@@ -95,7 +96,7 @@ class ReferenceNumber(BaseModel):
     ]
     """The type of the reference number. Referring to the vendor payment id."""
 
-    updated_at: str
+    updated_at: datetime
 
 
 ReferenceNumbers = ReferenceNumber
@@ -148,7 +149,7 @@ class PaymentOrder(BaseModel):
     otherwise `null`.
     """
 
-    created_at: str
+    created_at: datetime
 
     currency: Optional[shared.Currency]
     """Defaults to the currency of the originating account."""
@@ -177,14 +178,14 @@ class PaymentOrder(BaseModel):
     be `credit`.
     """
 
-    effective_date: str
+    effective_date: date
     """Date transactions are to be posted to the participants' account.
 
     Defaults to the current business day or the next business day if the current day
     is a bank holiday or weekend. Format: yyyy-mm-dd.
     """
 
-    expires_at: Optional[str]
+    expires_at: Optional[datetime]
     """RFP payments require an expires_at. This value must be past the effective_date."""
 
     foreign_exchange_contract: Optional[str]
@@ -336,7 +337,7 @@ class PaymentOrder(BaseModel):
 
     ultimate_receiving_party_name: Optional[str]
 
-    updated_at: str
+    updated_at: datetime
 
     vendor_failure_reason: Optional[str]
     """This field will be populated if a vendor (e.g.

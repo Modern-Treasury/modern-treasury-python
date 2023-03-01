@@ -2,15 +2,20 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Union, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from ..types import (
     Counterparty,
     CounterpartyCollectAccountResponse,
+    counterparty_list_params,
     counterparty_create_params,
+    counterparty_update_params,
+    counterparty_collect_account_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -65,16 +70,19 @@ class Counterparties(SyncAPIResource):
         """
         return self._post(
             "/api/counterparties",
-            body={
-                "name": name,
-                "accounts": accounts,
-                "email": email,
-                "metadata": metadata,
-                "send_remittance_advice": send_remittance_advice,
-                "accounting": accounting,
-                "ledger_type": ledger_type,
-                "taxpayer_identifier": taxpayer_identifier,
-            },
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "accounts": accounts,
+                    "email": email,
+                    "metadata": metadata,
+                    "send_remittance_advice": send_remittance_advice,
+                    "accounting": accounting,
+                    "ledger_type": ledger_type,
+                    "taxpayer_identifier": taxpayer_identifier,
+                },
+                counterparty_create_params.CounterpartyCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=Counterparty,
         )
@@ -135,13 +143,16 @@ class Counterparties(SyncAPIResource):
         """
         return self._patch(
             f"/api/counterparties/{id}",
-            body={
-                "name": name,
-                "email": email,
-                "metadata": metadata,
-                "send_remittance_advice": send_remittance_advice,
-                "taxpayer_identifier": taxpayer_identifier,
-            },
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "email": email,
+                    "metadata": metadata,
+                    "send_remittance_advice": send_remittance_advice,
+                    "taxpayer_identifier": taxpayer_identifier,
+                },
+                counterparty_update_params.CounterpartyUpdateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=Counterparty,
         )
@@ -154,8 +165,8 @@ class Counterparties(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         email: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        created_at_lower_bound: str | NotGiven = NOT_GIVEN,
-        created_at_upper_bound: str | NotGiven = NOT_GIVEN,
+        created_at_lower_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        created_at_upper_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -193,15 +204,18 @@ class Counterparties(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "name": name,
-                    "email": email,
-                    "metadata": metadata,
-                    "created_at_lower_bound": created_at_lower_bound,
-                    "created_at_upper_bound": created_at_upper_bound,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "name": name,
+                        "email": email,
+                        "metadata": metadata,
+                        "created_at_lower_bound": created_at_lower_bound,
+                        "created_at_upper_bound": created_at_upper_bound,
+                    },
+                    counterparty_list_params.CounterpartyListParams,
+                ),
             ),
             model=Counterparty,
         )
@@ -294,12 +308,15 @@ class Counterparties(SyncAPIResource):
         """
         return self._post(
             f"/api/counterparties/{id}/collect_account",
-            body={
-                "direction": direction,
-                "send_email": send_email,
-                "fields": fields,
-                "custom_redirect": custom_redirect,
-            },
+            body=maybe_transform(
+                {
+                    "direction": direction,
+                    "send_email": send_email,
+                    "fields": fields,
+                    "custom_redirect": custom_redirect,
+                },
+                counterparty_collect_account_params.CounterpartyCollectAccountParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=CounterpartyCollectAccountResponse,
         )
@@ -352,16 +369,19 @@ class AsyncCounterparties(AsyncAPIResource):
         """
         return await self._post(
             "/api/counterparties",
-            body={
-                "name": name,
-                "accounts": accounts,
-                "email": email,
-                "metadata": metadata,
-                "send_remittance_advice": send_remittance_advice,
-                "accounting": accounting,
-                "ledger_type": ledger_type,
-                "taxpayer_identifier": taxpayer_identifier,
-            },
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "accounts": accounts,
+                    "email": email,
+                    "metadata": metadata,
+                    "send_remittance_advice": send_remittance_advice,
+                    "accounting": accounting,
+                    "ledger_type": ledger_type,
+                    "taxpayer_identifier": taxpayer_identifier,
+                },
+                counterparty_create_params.CounterpartyCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=Counterparty,
         )
@@ -422,13 +442,16 @@ class AsyncCounterparties(AsyncAPIResource):
         """
         return await self._patch(
             f"/api/counterparties/{id}",
-            body={
-                "name": name,
-                "email": email,
-                "metadata": metadata,
-                "send_remittance_advice": send_remittance_advice,
-                "taxpayer_identifier": taxpayer_identifier,
-            },
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "email": email,
+                    "metadata": metadata,
+                    "send_remittance_advice": send_remittance_advice,
+                    "taxpayer_identifier": taxpayer_identifier,
+                },
+                counterparty_update_params.CounterpartyUpdateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=Counterparty,
         )
@@ -441,8 +464,8 @@ class AsyncCounterparties(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         email: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        created_at_lower_bound: str | NotGiven = NOT_GIVEN,
-        created_at_upper_bound: str | NotGiven = NOT_GIVEN,
+        created_at_lower_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        created_at_upper_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -480,15 +503,18 @@ class AsyncCounterparties(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "name": name,
-                    "email": email,
-                    "metadata": metadata,
-                    "created_at_lower_bound": created_at_lower_bound,
-                    "created_at_upper_bound": created_at_upper_bound,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "name": name,
+                        "email": email,
+                        "metadata": metadata,
+                        "created_at_lower_bound": created_at_lower_bound,
+                        "created_at_upper_bound": created_at_upper_bound,
+                    },
+                    counterparty_list_params.CounterpartyListParams,
+                ),
             ),
             model=Counterparty,
         )
@@ -581,12 +607,15 @@ class AsyncCounterparties(AsyncAPIResource):
         """
         return await self._post(
             f"/api/counterparties/{id}/collect_account",
-            body={
-                "direction": direction,
-                "send_email": send_email,
-                "fields": fields,
-                "custom_redirect": custom_redirect,
-            },
+            body=maybe_transform(
+                {
+                    "direction": direction,
+                    "send_email": send_email,
+                    "fields": fields,
+                    "custom_redirect": custom_redirect,
+                },
+                counterparty_collect_account_params.CounterpartyCollectAccountParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=CounterpartyCollectAccountResponse,
         )

@@ -5,8 +5,14 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import Literal
 
-from ..types import LedgerAccountPayout
+from ..types import (
+    LedgerAccountPayout,
+    ledger_account_payout_list_params,
+    ledger_account_payout_create_params,
+    ledger_account_payout_update_params,
+)
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -60,14 +66,17 @@ class LedgerAccountPayouts(SyncAPIResource):
         """
         return self._post(
             "/api/ledger_account_payouts",
-            body={
-                "description": description,
-                "status": status,
-                "payout_ledger_account_id": payout_ledger_account_id,
-                "funding_ledger_account_id": funding_ledger_account_id,
-                "effective_at_upper_bound": effective_at_upper_bound,
-                "metadata": metadata,
-            },
+            body=maybe_transform(
+                {
+                    "description": description,
+                    "status": status,
+                    "payout_ledger_account_id": payout_ledger_account_id,
+                    "funding_ledger_account_id": funding_ledger_account_id,
+                    "effective_at_upper_bound": effective_at_upper_bound,
+                    "metadata": metadata,
+                },
+                ledger_account_payout_create_params.LedgerAccountPayoutCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=LedgerAccountPayout,
         )
@@ -105,11 +114,14 @@ class LedgerAccountPayouts(SyncAPIResource):
         """
         return self._patch(
             f"/api/ledger_account_payouts/{id}",
-            body={
-                "description": description,
-                "status": status,
-                "metadata": metadata,
-            },
+            body=maybe_transform(
+                {
+                    "description": description,
+                    "status": status,
+                    "metadata": metadata,
+                },
+                ledger_account_payout_update_params.LedgerAccountPayoutUpdateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=LedgerAccountPayout,
         )
@@ -143,11 +155,14 @@ class LedgerAccountPayouts(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "payout_ledger_account_id": payout_ledger_account_id,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "payout_ledger_account_id": payout_ledger_account_id,
+                    },
+                    ledger_account_payout_list_params.LedgerAccountPayoutListParams,
+                ),
             ),
             model=LedgerAccountPayout,
         )
@@ -216,14 +231,17 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
         """
         return await self._post(
             "/api/ledger_account_payouts",
-            body={
-                "description": description,
-                "status": status,
-                "payout_ledger_account_id": payout_ledger_account_id,
-                "funding_ledger_account_id": funding_ledger_account_id,
-                "effective_at_upper_bound": effective_at_upper_bound,
-                "metadata": metadata,
-            },
+            body=maybe_transform(
+                {
+                    "description": description,
+                    "status": status,
+                    "payout_ledger_account_id": payout_ledger_account_id,
+                    "funding_ledger_account_id": funding_ledger_account_id,
+                    "effective_at_upper_bound": effective_at_upper_bound,
+                    "metadata": metadata,
+                },
+                ledger_account_payout_create_params.LedgerAccountPayoutCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=LedgerAccountPayout,
         )
@@ -261,11 +279,14 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
         """
         return await self._patch(
             f"/api/ledger_account_payouts/{id}",
-            body={
-                "description": description,
-                "status": status,
-                "metadata": metadata,
-            },
+            body=maybe_transform(
+                {
+                    "description": description,
+                    "status": status,
+                    "metadata": metadata,
+                },
+                ledger_account_payout_update_params.LedgerAccountPayoutUpdateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=LedgerAccountPayout,
         )
@@ -299,11 +320,14 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "payout_ledger_account_id": payout_ledger_account_id,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "payout_ledger_account_id": payout_ledger_account_id,
+                    },
+                    ledger_account_payout_list_params.LedgerAccountPayoutListParams,
+                ),
             ),
             model=LedgerAccountPayout,
         )

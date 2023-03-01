@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Dict, List, Optional
+from datetime import datetime
 
 from ..types import account_detail, routing_detail
 from .._models import BaseModel
@@ -15,7 +16,7 @@ class VirtualAccount(BaseModel):
     counterparty_id: Optional[str]
     """The ID of a counterparty that the virtual account belongs to. Optional."""
 
-    created_at: str
+    created_at: datetime
 
     credit_ledger_account_id: Optional[str]
     """The ID of a credit normal ledger account.
@@ -34,7 +35,7 @@ class VirtualAccount(BaseModel):
     description: Optional[str]
     """An optional free-form description for internal use."""
 
-    discarded_at: Optional[str]
+    discarded_at: Optional[datetime]
 
     id: str
 
@@ -64,4 +65,4 @@ class VirtualAccount(BaseModel):
     These will be the routing details of the internal account.
     """
 
-    updated_at: str
+    updated_at: datetime

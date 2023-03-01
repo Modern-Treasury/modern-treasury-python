@@ -2,14 +2,16 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Union, Optional
+from datetime import date
 from typing_extensions import Literal
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.internal_accounts import BalanceReport
+from ...types.internal_accounts import BalanceReport, balance_report_list_params
 
 __all__ = ["BalanceReports", "AsyncBalanceReports"]
 
@@ -37,7 +39,7 @@ class BalanceReports(SyncAPIResource):
         self,
         internal_account_id: str,
         *,
-        as_of_date: str | NotGiven = NOT_GIVEN,
+        as_of_date: Union[str, date] | NotGiven = NOT_GIVEN,
         balance_report_type: Literal["intraday", "other", "previous_day", "real_time"] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
@@ -69,12 +71,15 @@ class BalanceReports(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "as_of_date": as_of_date,
-                    "balance_report_type": balance_report_type,
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                },
+                query=maybe_transform(
+                    {
+                        "as_of_date": as_of_date,
+                        "balance_report_type": balance_report_type,
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                    },
+                    balance_report_list_params.BalanceReportListParams,
+                ),
             ),
             model=BalanceReport,
         )
@@ -103,7 +108,7 @@ class AsyncBalanceReports(AsyncAPIResource):
         self,
         internal_account_id: str,
         *,
-        as_of_date: str | NotGiven = NOT_GIVEN,
+        as_of_date: Union[str, date] | NotGiven = NOT_GIVEN,
         balance_report_type: Literal["intraday", "other", "previous_day", "real_time"] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
@@ -135,12 +140,15 @@ class AsyncBalanceReports(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "as_of_date": as_of_date,
-                    "balance_report_type": balance_report_type,
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                },
+                query=maybe_transform(
+                    {
+                        "as_of_date": as_of_date,
+                        "balance_report_type": balance_report_type,
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                    },
+                    balance_report_list_params.BalanceReportListParams,
+                ),
             ),
             model=BalanceReport,
         )

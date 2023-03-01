@@ -5,9 +5,9 @@ from __future__ import annotations
 from typing import Mapping, Optional, cast
 from typing_extensions import Literal
 
-from ..types import Document
+from ..types import Document, document_list_params, document_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
-from .._utils import extract_files, deepcopy_minimal
+from .._utils import extract_files, maybe_transform, deepcopy_minimal
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -66,7 +66,7 @@ class Documents(SyncAPIResource):
 
         return self._post(
             f"/api/{documentable_type}/{documentable_id}/documents",
-            body=body,
+            body=maybe_transform(body, document_create_params.DocumentCreateParams),
             files=files,
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=Document,
@@ -141,10 +141,13 @@ class Documents(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                    },
+                    document_list_params.DocumentListParams,
+                ),
             ),
             model=Document,
         )
@@ -201,7 +204,7 @@ class AsyncDocuments(AsyncAPIResource):
 
         return await self._post(
             f"/api/{documentable_type}/{documentable_id}/documents",
-            body=body,
+            body=maybe_transform(body, document_create_params.DocumentCreateParams),
             files=files,
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=Document,
@@ -276,10 +279,13 @@ class AsyncDocuments(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                    },
+                    document_list_params.DocumentListParams,
+                ),
             ),
             model=Document,
         )

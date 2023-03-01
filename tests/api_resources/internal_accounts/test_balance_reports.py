@@ -8,6 +8,7 @@ import pytest
 
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
+from modern_treasury._utils import parse_date
 from modern_treasury.pagination import SyncPage, AsyncPage
 from modern_treasury.types.internal_accounts import BalanceReport
 
@@ -43,7 +44,7 @@ class TestBalanceReports:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         balance_report = client.internal_accounts.balance_reports.list(
             "string",
-            as_of_date="2019-12-27",
+            as_of_date=parse_date("2019-12-27"),
             balance_report_type="intraday",
             after_cursor="string",
             per_page=0,
@@ -79,7 +80,7 @@ class TestAsyncBalanceReports:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         balance_report = await client.internal_accounts.balance_reports.list(
             "string",
-            as_of_date="2019-12-27",
+            as_of_date=parse_date("2019-12-27"),
             balance_report_type="intraday",
             after_cursor="string",
             per_page=0,

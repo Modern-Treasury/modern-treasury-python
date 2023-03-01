@@ -4,8 +4,14 @@ from __future__ import annotations
 
 from typing import Dict, List, Optional
 
-from ..types import VirtualAccount, virtual_account_create_params
+from ..types import (
+    VirtualAccount,
+    virtual_account_list_params,
+    virtual_account_create_params,
+    virtual_account_update_params,
+)
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -67,17 +73,20 @@ class VirtualAccounts(SyncAPIResource):
         """
         return self._post(
             "/api/virtual_accounts",
-            body={
-                "name": name,
-                "description": description,
-                "counterparty_id": counterparty_id,
-                "internal_account_id": internal_account_id,
-                "account_details": account_details,
-                "routing_details": routing_details,
-                "debit_ledger_account_id": debit_ledger_account_id,
-                "credit_ledger_account_id": credit_ledger_account_id,
-                "metadata": metadata,
-            },
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "description": description,
+                    "counterparty_id": counterparty_id,
+                    "internal_account_id": internal_account_id,
+                    "account_details": account_details,
+                    "routing_details": routing_details,
+                    "debit_ledger_account_id": debit_ledger_account_id,
+                    "credit_ledger_account_id": credit_ledger_account_id,
+                    "metadata": metadata,
+                },
+                virtual_account_create_params.VirtualAccountCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=VirtualAccount,
         )
@@ -125,11 +134,14 @@ class VirtualAccounts(SyncAPIResource):
         """
         return self._patch(
             f"/api/virtual_accounts/{id}",
-            body={
-                "name": name,
-                "counterparty_id": counterparty_id,
-                "metadata": metadata,
-            },
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "counterparty_id": counterparty_id,
+                    "metadata": metadata,
+                },
+                virtual_account_update_params.VirtualAccountUpdateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=VirtualAccount,
         )
@@ -169,13 +181,16 @@ class VirtualAccounts(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "internal_account_id": internal_account_id,
-                    "counterparty_id": counterparty_id,
-                    "metadata": metadata,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "internal_account_id": internal_account_id,
+                        "counterparty_id": counterparty_id,
+                        "metadata": metadata,
+                    },
+                    virtual_account_list_params.VirtualAccountListParams,
+                ),
             ),
             model=VirtualAccount,
         )
@@ -252,17 +267,20 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         """
         return await self._post(
             "/api/virtual_accounts",
-            body={
-                "name": name,
-                "description": description,
-                "counterparty_id": counterparty_id,
-                "internal_account_id": internal_account_id,
-                "account_details": account_details,
-                "routing_details": routing_details,
-                "debit_ledger_account_id": debit_ledger_account_id,
-                "credit_ledger_account_id": credit_ledger_account_id,
-                "metadata": metadata,
-            },
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "description": description,
+                    "counterparty_id": counterparty_id,
+                    "internal_account_id": internal_account_id,
+                    "account_details": account_details,
+                    "routing_details": routing_details,
+                    "debit_ledger_account_id": debit_ledger_account_id,
+                    "credit_ledger_account_id": credit_ledger_account_id,
+                    "metadata": metadata,
+                },
+                virtual_account_create_params.VirtualAccountCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=VirtualAccount,
         )
@@ -310,11 +328,14 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         """
         return await self._patch(
             f"/api/virtual_accounts/{id}",
-            body={
-                "name": name,
-                "counterparty_id": counterparty_id,
-                "metadata": metadata,
-            },
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "counterparty_id": counterparty_id,
+                    "metadata": metadata,
+                },
+                virtual_account_update_params.VirtualAccountUpdateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=VirtualAccount,
         )
@@ -354,13 +375,16 @@ class AsyncVirtualAccounts(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "internal_account_id": internal_account_id,
-                    "counterparty_id": counterparty_id,
-                    "metadata": metadata,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "internal_account_id": internal_account_id,
+                        "counterparty_id": counterparty_id,
+                        "metadata": metadata,
+                    },
+                    virtual_account_list_params.VirtualAccountListParams,
+                ),
             ),
             model=VirtualAccount,
         )

@@ -2,11 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, Union, Optional
+from datetime import date, datetime
 from typing_extensions import Literal
 
-from ..types import LedgerEntry
+from ..types import LedgerEntry, ledger_entry_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -39,9 +41,9 @@ class LedgerEntries(SyncAPIResource):
         per_page: int | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
-        effective_date: Dict[str, str] | NotGiven = NOT_GIVEN,
+        effective_date: Dict[str, Union[str, date]] | NotGiven = NOT_GIVEN,
         effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
-        updated_at: Dict[str, str] | NotGiven = NOT_GIVEN,
+        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         ledger_account_lock_version: Dict[str, int] | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         show_deleted: bool | NotGiven = NOT_GIVEN,
@@ -99,20 +101,23 @@ class LedgerEntries(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "ledger_account_id": ledger_account_id,
-                    "ledger_transaction_id": ledger_transaction_id,
-                    "effective_date": effective_date,
-                    "effective_at": effective_at,
-                    "updated_at": updated_at,
-                    "ledger_account_lock_version": ledger_account_lock_version,
-                    "ledger_account_category_id": ledger_account_category_id,
-                    "show_deleted": show_deleted,
-                    "direction": direction,
-                    "status": status,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "ledger_account_id": ledger_account_id,
+                        "ledger_transaction_id": ledger_transaction_id,
+                        "effective_date": effective_date,
+                        "effective_at": effective_at,
+                        "updated_at": updated_at,
+                        "ledger_account_lock_version": ledger_account_lock_version,
+                        "ledger_account_category_id": ledger_account_category_id,
+                        "show_deleted": show_deleted,
+                        "direction": direction,
+                        "status": status,
+                    },
+                    ledger_entry_list_params.LedgerEntryListParams,
+                ),
             ),
             model=LedgerEntry,
         )
@@ -143,9 +148,9 @@ class AsyncLedgerEntries(AsyncAPIResource):
         per_page: int | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
-        effective_date: Dict[str, str] | NotGiven = NOT_GIVEN,
+        effective_date: Dict[str, Union[str, date]] | NotGiven = NOT_GIVEN,
         effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
-        updated_at: Dict[str, str] | NotGiven = NOT_GIVEN,
+        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         ledger_account_lock_version: Dict[str, int] | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         show_deleted: bool | NotGiven = NOT_GIVEN,
@@ -203,20 +208,23 @@ class AsyncLedgerEntries(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "ledger_account_id": ledger_account_id,
-                    "ledger_transaction_id": ledger_transaction_id,
-                    "effective_date": effective_date,
-                    "effective_at": effective_at,
-                    "updated_at": updated_at,
-                    "ledger_account_lock_version": ledger_account_lock_version,
-                    "ledger_account_category_id": ledger_account_category_id,
-                    "show_deleted": show_deleted,
-                    "direction": direction,
-                    "status": status,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "ledger_account_id": ledger_account_id,
+                        "ledger_transaction_id": ledger_transaction_id,
+                        "effective_date": effective_date,
+                        "effective_at": effective_at,
+                        "updated_at": updated_at,
+                        "ledger_account_lock_version": ledger_account_lock_version,
+                        "ledger_account_category_id": ledger_account_category_id,
+                        "show_deleted": show_deleted,
+                        "direction": direction,
+                        "status": status,
+                    },
+                    ledger_entry_list_params.LedgerEntryListParams,
+                ),
             ),
             model=LedgerEntry,
         )

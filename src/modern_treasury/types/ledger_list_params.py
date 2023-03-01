@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, Union, Optional
+from datetime import datetime
 from typing_extensions import TypedDict
 
 __all__ = ["LedgerListParams"]
@@ -20,7 +21,7 @@ class LedgerListParams(TypedDict, total=False):
 
     per_page: int
 
-    updated_at: Dict[str, str]
+    updated_at: Dict[str, Union[str, datetime]]
     """
     Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
     posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use

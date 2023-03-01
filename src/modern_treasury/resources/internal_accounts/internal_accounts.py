@@ -5,8 +5,15 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Dict, Optional
 from typing_extensions import Literal
 
-from ...types import InternalAccount, shared_params, internal_account_create_params
+from ...types import (
+    InternalAccount,
+    shared_params,
+    internal_account_list_params,
+    internal_account_create_params,
+    internal_account_update_params,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
@@ -71,16 +78,19 @@ class InternalAccounts(SyncAPIResource):
         """
         return self._post(
             "/api/internal_accounts",
-            body={
-                "connection_id": connection_id,
-                "name": name,
-                "party_name": party_name,
-                "party_address": party_address,
-                "currency": currency,
-                "entity_id": entity_id,
-                "parent_account_id": parent_account_id,
-                "counterparty_id": counterparty_id,
-            },
+            body=maybe_transform(
+                {
+                    "connection_id": connection_id,
+                    "name": name,
+                    "party_name": party_name,
+                    "party_address": party_address,
+                    "currency": currency,
+                    "entity_id": entity_id,
+                    "parent_account_id": parent_account_id,
+                    "counterparty_id": counterparty_id,
+                },
+                internal_account_create_params.InternalAccountCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=InternalAccount,
         )
@@ -137,12 +147,15 @@ class InternalAccounts(SyncAPIResource):
         """
         return self._patch(
             f"/api/internal_accounts/{id}",
-            body={
-                "name": name,
-                "metadata": metadata,
-                "parent_account_id": parent_account_id,
-                "counterparty_id": counterparty_id,
-            },
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "metadata": metadata,
+                    "parent_account_id": parent_account_id,
+                    "counterparty_id": counterparty_id,
+                },
+                internal_account_update_params.InternalAccountUpdateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=InternalAccount,
         )
@@ -208,14 +221,17 @@ class InternalAccounts(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "currency": currency,
-                    "payment_type": payment_type,
-                    "payment_direction": payment_direction,
-                    "metadata": metadata,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "currency": currency,
+                        "payment_type": payment_type,
+                        "payment_direction": payment_direction,
+                        "metadata": metadata,
+                    },
+                    internal_account_list_params.InternalAccountListParams,
+                ),
             ),
             model=InternalAccount,
         )
@@ -274,16 +290,19 @@ class AsyncInternalAccounts(AsyncAPIResource):
         """
         return await self._post(
             "/api/internal_accounts",
-            body={
-                "connection_id": connection_id,
-                "name": name,
-                "party_name": party_name,
-                "party_address": party_address,
-                "currency": currency,
-                "entity_id": entity_id,
-                "parent_account_id": parent_account_id,
-                "counterparty_id": counterparty_id,
-            },
+            body=maybe_transform(
+                {
+                    "connection_id": connection_id,
+                    "name": name,
+                    "party_name": party_name,
+                    "party_address": party_address,
+                    "currency": currency,
+                    "entity_id": entity_id,
+                    "parent_account_id": parent_account_id,
+                    "counterparty_id": counterparty_id,
+                },
+                internal_account_create_params.InternalAccountCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=InternalAccount,
         )
@@ -340,12 +359,15 @@ class AsyncInternalAccounts(AsyncAPIResource):
         """
         return await self._patch(
             f"/api/internal_accounts/{id}",
-            body={
-                "name": name,
-                "metadata": metadata,
-                "parent_account_id": parent_account_id,
-                "counterparty_id": counterparty_id,
-            },
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "metadata": metadata,
+                    "parent_account_id": parent_account_id,
+                    "counterparty_id": counterparty_id,
+                },
+                internal_account_update_params.InternalAccountUpdateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=InternalAccount,
         )
@@ -411,14 +433,17 @@ class AsyncInternalAccounts(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "currency": currency,
-                    "payment_type": payment_type,
-                    "payment_direction": payment_direction,
-                    "metadata": metadata,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "currency": currency,
+                        "payment_type": payment_type,
+                        "payment_direction": payment_direction,
+                        "metadata": metadata,
+                    },
+                    internal_account_list_params.InternalAccountListParams,
+                ),
             ),
             model=InternalAccount,
         )

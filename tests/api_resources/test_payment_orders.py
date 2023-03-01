@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import PaymentOrder, shared
+from modern_treasury._utils import parse_date, parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
@@ -53,7 +54,7 @@ class TestPaymentOrders:
             accounting_category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="AED",
-            effective_date="2019-12-27",
+            effective_date=parse_date("2019-12-27"),
             description="string",
             statement_descriptor="string",
             remittance_information="string",
@@ -73,7 +74,7 @@ class TestPaymentOrders:
             ultimate_receiving_party_name="string",
             ultimate_receiving_party_identifier="string",
             send_remittance_advice=True,
-            expires_at="2019-12-27T18:11:19.117Z",
+            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             fallback_type="ach",
             receiving_account={
                 "account_type": "cash",
@@ -149,7 +150,7 @@ class TestPaymentOrders:
                     "foo": "bar",
                     "modern": "treasury",
                 },
-                "effective_date": "2019-12-27",
+                "effective_date": parse_date("2019-12-27"),
                 "ledger_entries": [
                     {
                         "amount": 0,
@@ -268,7 +269,7 @@ class TestPaymentOrders:
             accounting_category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="AED",
-            effective_date="2019-12-27",
+            effective_date=parse_date("2019-12-27"),
             description="string",
             statement_descriptor="string",
             remittance_information="string",
@@ -288,7 +289,7 @@ class TestPaymentOrders:
             ultimate_receiving_party_name="string",
             ultimate_receiving_party_identifier="string",
             send_remittance_advice=True,
-            expires_at="2019-12-27T18:11:19.117Z",
+            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             status="approved",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             fallback_type="ach",
@@ -411,8 +412,8 @@ class TestPaymentOrders:
             status="approved",
             direction="credit",
             reference_number="string",
-            effective_date_start="2019-12-27",
-            effective_date_end="2019-12-27",
+            effective_date_start=parse_date("2019-12-27"),
+            effective_date_end=parse_date("2019-12-27"),
             metadata={"foo": "string"},
         )
         assert_matches_type(SyncPage[PaymentOrder], payment_order, path=["response"])
@@ -444,7 +445,7 @@ class TestPaymentOrders:
             accounting_category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="AED",
-            effective_date="2019-12-27",
+            effective_date=parse_date("2019-12-27"),
             description="string",
             statement_descriptor="string",
             remittance_information="string",
@@ -464,7 +465,7 @@ class TestPaymentOrders:
             ultimate_receiving_party_name="string",
             ultimate_receiving_party_identifier="string",
             send_remittance_advice=True,
-            expires_at="2019-12-27T18:11:19.117Z",
+            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             fallback_type="ach",
             receiving_account={
                 "account_type": "cash",
@@ -540,7 +541,7 @@ class TestPaymentOrders:
                     "foo": "bar",
                     "modern": "treasury",
                 },
-                "effective_date": "2019-12-27",
+                "effective_date": parse_date("2019-12-27"),
                 "ledger_entries": [
                     {
                         "amount": 0,
@@ -652,7 +653,7 @@ class TestAsyncPaymentOrders:
             accounting_category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="AED",
-            effective_date="2019-12-27",
+            effective_date=parse_date("2019-12-27"),
             description="string",
             statement_descriptor="string",
             remittance_information="string",
@@ -672,7 +673,7 @@ class TestAsyncPaymentOrders:
             ultimate_receiving_party_name="string",
             ultimate_receiving_party_identifier="string",
             send_remittance_advice=True,
-            expires_at="2019-12-27T18:11:19.117Z",
+            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             fallback_type="ach",
             receiving_account={
                 "account_type": "cash",
@@ -748,7 +749,7 @@ class TestAsyncPaymentOrders:
                     "foo": "bar",
                     "modern": "treasury",
                 },
-                "effective_date": "2019-12-27",
+                "effective_date": parse_date("2019-12-27"),
                 "ledger_entries": [
                     {
                         "amount": 0,
@@ -867,7 +868,7 @@ class TestAsyncPaymentOrders:
             accounting_category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="AED",
-            effective_date="2019-12-27",
+            effective_date=parse_date("2019-12-27"),
             description="string",
             statement_descriptor="string",
             remittance_information="string",
@@ -887,7 +888,7 @@ class TestAsyncPaymentOrders:
             ultimate_receiving_party_name="string",
             ultimate_receiving_party_identifier="string",
             send_remittance_advice=True,
-            expires_at="2019-12-27T18:11:19.117Z",
+            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             status="approved",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             fallback_type="ach",
@@ -1010,8 +1011,8 @@ class TestAsyncPaymentOrders:
             status="approved",
             direction="credit",
             reference_number="string",
-            effective_date_start="2019-12-27",
-            effective_date_end="2019-12-27",
+            effective_date_start=parse_date("2019-12-27"),
+            effective_date_end=parse_date("2019-12-27"),
             metadata={"foo": "string"},
         )
         assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=["response"])
@@ -1043,7 +1044,7 @@ class TestAsyncPaymentOrders:
             accounting_category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="AED",
-            effective_date="2019-12-27",
+            effective_date=parse_date("2019-12-27"),
             description="string",
             statement_descriptor="string",
             remittance_information="string",
@@ -1063,7 +1064,7 @@ class TestAsyncPaymentOrders:
             ultimate_receiving_party_name="string",
             ultimate_receiving_party_identifier="string",
             send_remittance_advice=True,
-            expires_at="2019-12-27T18:11:19.117Z",
+            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             fallback_type="ach",
             receiving_account={
                 "account_type": "cash",
@@ -1139,7 +1140,7 @@ class TestAsyncPaymentOrders:
                     "foo": "bar",
                     "modern": "treasury",
                 },
-                "effective_date": "2019-12-27",
+                "effective_date": parse_date("2019-12-27"),
                 "ledger_entries": [
                     {
                         "amount": 0,

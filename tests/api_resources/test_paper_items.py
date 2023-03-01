@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import PaperItem
+from modern_treasury._utils import parse_date
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
@@ -40,8 +41,8 @@ class TestPaperItems:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         paper_item = client.paper_items.list(
             lockbox_number="string",
-            deposit_date_start="2019-12-27",
-            deposit_date_end="2019-12-27",
+            deposit_date_start=parse_date("2019-12-27"),
+            deposit_date_end=parse_date("2019-12-27"),
             after_cursor="string",
             per_page=0,
         )
@@ -73,8 +74,8 @@ class TestAsyncPaperItems:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         paper_item = await client.paper_items.list(
             lockbox_number="string",
-            deposit_date_start="2019-12-27",
-            deposit_date_end="2019-12-27",
+            deposit_date_start=parse_date("2019-12-27"),
+            deposit_date_end=parse_date("2019-12-27"),
             after_cursor="string",
             per_page=0,
         )

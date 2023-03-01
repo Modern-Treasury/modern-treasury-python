@@ -3,13 +3,15 @@
 from __future__ import annotations
 
 import warnings
-from typing import Dict, Optional
+from typing import Dict, Union, Optional
+from datetime import datetime
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.ledger_transactions import LedgerTransactionVersion
+from ...types.ledger_transactions import LedgerTransactionVersion, version_list_params
 
 __all__ = ["Versions", "AsyncVersions"]
 
@@ -21,7 +23,7 @@ class Versions(SyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        created_at: Dict[str, str] | NotGiven = NOT_GIVEN,
+        created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         version: Dict[str, int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -53,12 +55,15 @@ class Versions(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "created_at": created_at,
-                    "version": version,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "created_at": created_at,
+                        "version": version,
+                    },
+                    version_list_params.VersionListParams,
+                ),
             ),
             model=LedgerTransactionVersion,
         )
@@ -69,7 +74,7 @@ class Versions(SyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        created_at: Dict[str, str] | NotGiven = NOT_GIVEN,
+        created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         version: Dict[str, int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -114,7 +119,7 @@ class AsyncVersions(AsyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        created_at: Dict[str, str] | NotGiven = NOT_GIVEN,
+        created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         version: Dict[str, int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -146,12 +151,15 @@ class AsyncVersions(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "created_at": created_at,
-                    "version": version,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "created_at": created_at,
+                        "version": version,
+                    },
+                    version_list_params.VersionListParams,
+                ),
             ),
             model=LedgerTransactionVersion,
         )
@@ -162,7 +170,7 @@ class AsyncVersions(AsyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        created_at: Dict[str, str] | NotGiven = NOT_GIVEN,
+        created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         version: Dict[str, int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

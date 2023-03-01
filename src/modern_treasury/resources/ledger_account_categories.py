@@ -5,8 +5,15 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import Literal
 
-from ..types import LedgerAccountCategory, ledger_account_category_retrieve_params
+from ..types import (
+    LedgerAccountCategory,
+    ledger_account_category_list_params,
+    ledger_account_category_create_params,
+    ledger_account_category_update_params,
+    ledger_account_category_retrieve_params,
+)
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -58,15 +65,18 @@ class LedgerAccountCategories(SyncAPIResource):
         """
         return self._post(
             "/api/ledger_account_categories",
-            body={
-                "name": name,
-                "description": description,
-                "metadata": metadata,
-                "currency": currency,
-                "currency_exponent": currency_exponent,
-                "ledger_id": ledger_id,
-                "normal_balance": normal_balance,
-            },
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "description": description,
+                    "metadata": metadata,
+                    "currency": currency,
+                    "currency_exponent": currency_exponent,
+                    "ledger_id": ledger_id,
+                    "normal_balance": normal_balance,
+                },
+                ledger_account_category_create_params.LedgerAccountCategoryCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=LedgerAccountCategory,
         )
@@ -103,7 +113,9 @@ class LedgerAccountCategories(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={"balances": balances},
+                query=maybe_transform(
+                    {"balances": balances}, ledger_account_category_retrieve_params.LedgerAccountCategoryRetrieveParams
+                ),
             ),
             cast_to=LedgerAccountCategory,
         )
@@ -140,11 +152,14 @@ class LedgerAccountCategories(SyncAPIResource):
         """
         return self._patch(
             f"/api/ledger_account_categories/{id}",
-            body={
-                "name": name,
-                "description": description,
-                "metadata": metadata,
-            },
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "description": description,
+                    "metadata": metadata,
+                },
+                ledger_account_category_update_params.LedgerAccountCategoryUpdateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=LedgerAccountCategory,
         )
@@ -187,14 +202,17 @@ class LedgerAccountCategories(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "metadata": metadata,
-                    "name": name,
-                    "ledger_id": ledger_id,
-                    "parent_ledger_account_category_id": parent_ledger_account_category_id,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "metadata": metadata,
+                        "name": name,
+                        "ledger_id": ledger_id,
+                        "parent_ledger_account_category_id": parent_ledger_account_category_id,
+                    },
+                    ledger_account_category_list_params.LedgerAccountCategoryListParams,
+                ),
             ),
             model=LedgerAccountCategory,
         )
@@ -337,15 +355,18 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         """
         return await self._post(
             "/api/ledger_account_categories",
-            body={
-                "name": name,
-                "description": description,
-                "metadata": metadata,
-                "currency": currency,
-                "currency_exponent": currency_exponent,
-                "ledger_id": ledger_id,
-                "normal_balance": normal_balance,
-            },
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "description": description,
+                    "metadata": metadata,
+                    "currency": currency,
+                    "currency_exponent": currency_exponent,
+                    "ledger_id": ledger_id,
+                    "normal_balance": normal_balance,
+                },
+                ledger_account_category_create_params.LedgerAccountCategoryCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=LedgerAccountCategory,
         )
@@ -382,7 +403,9 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={"balances": balances},
+                query=maybe_transform(
+                    {"balances": balances}, ledger_account_category_retrieve_params.LedgerAccountCategoryRetrieveParams
+                ),
             ),
             cast_to=LedgerAccountCategory,
         )
@@ -419,11 +442,14 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         """
         return await self._patch(
             f"/api/ledger_account_categories/{id}",
-            body={
-                "name": name,
-                "description": description,
-                "metadata": metadata,
-            },
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "description": description,
+                    "metadata": metadata,
+                },
+                ledger_account_category_update_params.LedgerAccountCategoryUpdateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=LedgerAccountCategory,
         )
@@ -466,14 +492,17 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "metadata": metadata,
-                    "name": name,
-                    "ledger_id": ledger_id,
-                    "parent_ledger_account_category_id": parent_ledger_account_category_id,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "metadata": metadata,
+                        "name": name,
+                        "ledger_id": ledger_id,
+                        "parent_ledger_account_category_id": parent_ledger_account_category_id,
+                    },
+                    ledger_account_category_list_params.LedgerAccountCategoryListParams,
+                ),
             ),
             model=LedgerAccountCategory,
         )

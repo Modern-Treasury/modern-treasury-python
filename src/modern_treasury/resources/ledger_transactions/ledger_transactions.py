@@ -2,15 +2,18 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, List, Optional
+from typing import TYPE_CHECKING, Dict, List, Union, Optional
+from datetime import date, datetime
 from typing_extensions import Literal
 
 from ...types import (
     LedgerTransaction,
+    ledger_transaction_list_params,
     ledger_transaction_create_params,
     ledger_transaction_update_params,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from .versions import Versions, AsyncVersions
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ...pagination import SyncPage, AsyncPage
@@ -35,7 +38,7 @@ class LedgerTransactions(SyncAPIResource):
         description: Optional[str] | NotGiven = NOT_GIVEN,
         status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        effective_date: str,
+        effective_date: Union[str, date],
         ledger_entries: List[ledger_transaction_create_params.LedgerEntry],
         external_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
@@ -92,16 +95,19 @@ class LedgerTransactions(SyncAPIResource):
         """
         return self._post(
             "/api/ledger_transactions",
-            body={
-                "description": description,
-                "status": status,
-                "metadata": metadata,
-                "effective_date": effective_date,
-                "ledger_entries": ledger_entries,
-                "external_id": external_id,
-                "ledgerable_type": ledgerable_type,
-                "ledgerable_id": ledgerable_id,
-            },
+            body=maybe_transform(
+                {
+                    "description": description,
+                    "status": status,
+                    "metadata": metadata,
+                    "effective_date": effective_date,
+                    "ledger_entries": ledger_entries,
+                    "external_id": external_id,
+                    "ledgerable_type": ledgerable_type,
+                    "ledgerable_id": ledgerable_id,
+                },
+                ledger_transaction_create_params.LedgerTransactionCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=LedgerTransaction,
         )
@@ -158,12 +164,15 @@ class LedgerTransactions(SyncAPIResource):
         """
         return self._patch(
             f"/api/ledger_transactions/{id}",
-            body={
-                "description": description,
-                "status": status,
-                "metadata": metadata,
-                "ledger_entries": ledger_entries,
-            },
+            body=maybe_transform(
+                {
+                    "description": description,
+                    "status": status,
+                    "metadata": metadata,
+                    "ledger_entries": ledger_entries,
+                },
+                ledger_transaction_update_params.LedgerTransactionUpdateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=LedgerTransaction,
         )
@@ -177,9 +186,9 @@ class LedgerTransactions(SyncAPIResource):
         ledger_id: str | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
-        effective_date: Dict[str, str] | NotGiven = NOT_GIVEN,
-        posted_at: Dict[str, str] | NotGiven = NOT_GIVEN,
-        updated_at: Dict[str, str] | NotGiven = NOT_GIVEN,
+        effective_date: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        posted_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         status: Literal["pending", "posted", "archived"] | NotGiven = NOT_GIVEN,
         external_id: str | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
@@ -226,20 +235,23 @@ class LedgerTransactions(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "metadata": metadata,
-                    "ledger_id": ledger_id,
-                    "ledger_account_id": ledger_account_id,
-                    "effective_at": effective_at,
-                    "effective_date": effective_date,
-                    "posted_at": posted_at,
-                    "updated_at": updated_at,
-                    "status": status,
-                    "external_id": external_id,
-                    "ledger_account_category_id": ledger_account_category_id,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "metadata": metadata,
+                        "ledger_id": ledger_id,
+                        "ledger_account_id": ledger_account_id,
+                        "effective_at": effective_at,
+                        "effective_date": effective_date,
+                        "posted_at": posted_at,
+                        "updated_at": updated_at,
+                        "status": status,
+                        "external_id": external_id,
+                        "ledger_account_category_id": ledger_account_category_id,
+                    },
+                    ledger_transaction_list_params.LedgerTransactionListParams,
+                ),
             ),
             model=LedgerTransaction,
         )
@@ -258,7 +270,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         description: Optional[str] | NotGiven = NOT_GIVEN,
         status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        effective_date: str,
+        effective_date: Union[str, date],
         ledger_entries: List[ledger_transaction_create_params.LedgerEntry],
         external_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
@@ -315,16 +327,19 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         """
         return await self._post(
             "/api/ledger_transactions",
-            body={
-                "description": description,
-                "status": status,
-                "metadata": metadata,
-                "effective_date": effective_date,
-                "ledger_entries": ledger_entries,
-                "external_id": external_id,
-                "ledgerable_type": ledgerable_type,
-                "ledgerable_id": ledgerable_id,
-            },
+            body=maybe_transform(
+                {
+                    "description": description,
+                    "status": status,
+                    "metadata": metadata,
+                    "effective_date": effective_date,
+                    "ledger_entries": ledger_entries,
+                    "external_id": external_id,
+                    "ledgerable_type": ledgerable_type,
+                    "ledgerable_id": ledgerable_id,
+                },
+                ledger_transaction_create_params.LedgerTransactionCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=LedgerTransaction,
         )
@@ -381,12 +396,15 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         """
         return await self._patch(
             f"/api/ledger_transactions/{id}",
-            body={
-                "description": description,
-                "status": status,
-                "metadata": metadata,
-                "ledger_entries": ledger_entries,
-            },
+            body=maybe_transform(
+                {
+                    "description": description,
+                    "status": status,
+                    "metadata": metadata,
+                    "ledger_entries": ledger_entries,
+                },
+                ledger_transaction_update_params.LedgerTransactionUpdateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=LedgerTransaction,
         )
@@ -400,9 +418,9 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         ledger_id: str | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
-        effective_date: Dict[str, str] | NotGiven = NOT_GIVEN,
-        posted_at: Dict[str, str] | NotGiven = NOT_GIVEN,
-        updated_at: Dict[str, str] | NotGiven = NOT_GIVEN,
+        effective_date: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        posted_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         status: Literal["pending", "posted", "archived"] | NotGiven = NOT_GIVEN,
         external_id: str | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
@@ -449,20 +467,23 @@ class AsyncLedgerTransactions(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "metadata": metadata,
-                    "ledger_id": ledger_id,
-                    "ledger_account_id": ledger_account_id,
-                    "effective_at": effective_at,
-                    "effective_date": effective_date,
-                    "posted_at": posted_at,
-                    "updated_at": updated_at,
-                    "status": status,
-                    "external_id": external_id,
-                    "ledger_account_category_id": ledger_account_category_id,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "metadata": metadata,
+                        "ledger_id": ledger_id,
+                        "ledger_account_id": ledger_account_id,
+                        "effective_at": effective_at,
+                        "effective_date": effective_date,
+                        "posted_at": posted_at,
+                        "updated_at": updated_at,
+                        "status": status,
+                        "external_id": external_id,
+                        "ledger_account_category_id": ledger_account_category_id,
+                    },
+                    ledger_transaction_list_params.LedgerTransactionListParams,
+                ),
             ),
             model=LedgerTransaction,
         )
