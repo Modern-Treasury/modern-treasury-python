@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import LedgerAccount
+from modern_treasury._utils import parse_date, parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
@@ -62,7 +63,7 @@ class TestLedgerAccounts:
     def test_method_retrieve_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account = client.ledger_accounts.retrieve(
             "string",
-            balances={"as_of_date": "2019-12-27"},
+            balances={"as_of_date": parse_date("2019-12-27")},
         )
         assert_matches_type(LedgerAccount, ledger_account, path=["response"])
 
@@ -103,10 +104,10 @@ class TestLedgerAccounts:
             name="string",
             ledger_id="string",
             balances={
-                "as_of_date": "2019-12-27",
-                "effective_at": "2019-12-27T18:11:19.117Z",
+                "as_of_date": parse_date("2019-12-27"),
+                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
-            updated_at={"foo": "2019-12-27T18:11:19.117Z"},
+            updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             ledger_account_category_id="string",
         )
         assert_matches_type(SyncPage[LedgerAccount], ledger_account, path=["response"])
@@ -166,7 +167,7 @@ class TestAsyncLedgerAccounts:
     async def test_method_retrieve_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger_account = await client.ledger_accounts.retrieve(
             "string",
-            balances={"as_of_date": "2019-12-27"},
+            balances={"as_of_date": parse_date("2019-12-27")},
         )
         assert_matches_type(LedgerAccount, ledger_account, path=["response"])
 
@@ -207,10 +208,10 @@ class TestAsyncLedgerAccounts:
             name="string",
             ledger_id="string",
             balances={
-                "as_of_date": "2019-12-27",
-                "effective_at": "2019-12-27T18:11:19.117Z",
+                "as_of_date": parse_date("2019-12-27"),
+                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
-            updated_at={"foo": "2019-12-27T18:11:19.117Z"},
+            updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             ledger_account_category_id="string",
         )
         assert_matches_type(AsyncPage[LedgerAccount], ledger_account, path=["response"])

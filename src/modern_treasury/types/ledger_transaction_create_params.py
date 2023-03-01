@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing import Dict, List, Union, Optional
+from datetime import date
+from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from .._utils import PropertyInfo
 
 __all__ = ["LedgerTransactionCreateParams", "LedgerEntries", "LedgerEntry"]
 
@@ -71,7 +74,7 @@ Please use LedgerEntry instead.
 
 
 class LedgerTransactionCreateParams(TypedDict, total=False):
-    effective_date: Required[str]
+    effective_date: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]
     """
     The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
     purposes.

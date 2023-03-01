@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-from typing_extensions import Literal, TypedDict
+from typing import Dict, Union, Optional
+from datetime import date
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ..types import shared_params
+from .._utils import PropertyInfo
 
 __all__ = ["ExpectedPaymentUpdateParams"]
 
@@ -31,10 +33,10 @@ class ExpectedPaymentUpdateParams(TypedDict, total=False):
     currency: shared_params.Currency
     """Must conform to ISO 4217. Defaults to the currency of the internal account."""
 
-    date_lower_bound: Optional[str]
+    date_lower_bound: Annotated[Optional[Union[str, date]], PropertyInfo(format="iso8601")]
     """The earliest date the payment may come in. Format: yyyy-mm-dd"""
 
-    date_upper_bound: Optional[str]
+    date_upper_bound: Annotated[Optional[Union[str, date]], PropertyInfo(format="iso8601")]
     """The latest date the payment may come in. Format: yyyy-mm-dd"""
 
     description: Optional[str]

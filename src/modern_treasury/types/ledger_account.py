@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Dict, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
@@ -76,12 +77,12 @@ class LedgerAccount(BaseModel):
     and posted outgoing amounts.
     """
 
-    created_at: str
+    created_at: datetime
 
     description: Optional[str]
     """The description of the ledger account."""
 
-    discarded_at: Optional[str]
+    discarded_at: Optional[datetime]
 
     id: str
 
@@ -111,4 +112,4 @@ class LedgerAccount(BaseModel):
 
     object: str
 
-    updated_at: str
+    updated_at: datetime

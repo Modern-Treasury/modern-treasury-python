@@ -5,8 +5,9 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import Literal
 
-from ..types import LineItem
+from ..types import LineItem, line_item_list_params, line_item_update_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -62,7 +63,7 @@ class LineItems(SyncAPIResource):
         """
         return self._patch(
             f"/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
-            body={"metadata": metadata},
+            body=maybe_transform({"metadata": metadata}, line_item_update_params.LineItemUpdateParams),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=LineItem,
         )
@@ -97,10 +98,13 @@ class LineItems(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                    },
+                    line_item_list_params.LineItemListParams,
+                ),
             ),
             model=LineItem,
         )
@@ -154,7 +158,7 @@ class AsyncLineItems(AsyncAPIResource):
         """
         return await self._patch(
             f"/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
-            body={"metadata": metadata},
+            body=maybe_transform({"metadata": metadata}, line_item_update_params.LineItemUpdateParams),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=LineItem,
         )
@@ -189,10 +193,13 @@ class AsyncLineItems(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                    },
+                    line_item_list_params.LineItemListParams,
+                ),
             ),
             model=LineItem,
         )

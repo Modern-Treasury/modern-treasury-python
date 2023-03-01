@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Dict, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
@@ -12,7 +13,7 @@ class LedgerAccountPayout(BaseModel):
     amount: Optional[int]
     """The amount of the ledger account payout."""
 
-    created_at: str
+    created_at: datetime
 
     currency: str
     """The currency of the ledger account payout."""
@@ -67,4 +68,4 @@ class LedgerAccountPayout(BaseModel):
     One of `processing`, `pending`, `posted`, `archiving` or `archived`.
     """
 
-    updated_at: str
+    updated_at: datetime

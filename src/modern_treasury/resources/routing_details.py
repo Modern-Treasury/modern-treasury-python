@@ -5,8 +5,13 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal
 
-from ..types import RoutingDetail
+from ..types import (
+    RoutingDetail,
+    routing_detail_list_params,
+    routing_detail_create_params,
+)
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -71,11 +76,14 @@ class RoutingDetails(SyncAPIResource):
         """
         return self._post(
             f"/api/{accounts_type}/{account_id}/routing_details",
-            body={
-                "routing_number": routing_number,
-                "routing_number_type": routing_number_type,
-                "payment_type": payment_type,
-            },
+            body=maybe_transform(
+                {
+                    "routing_number": routing_number,
+                    "routing_number_type": routing_number_type,
+                    "payment_type": payment_type,
+                },
+                routing_detail_create_params.RoutingDetailCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=RoutingDetail,
         )
@@ -129,10 +137,13 @@ class RoutingDetails(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                    },
+                    routing_detail_list_params.RoutingDetailListParams,
+                ),
             ),
             model=RoutingDetail,
         )
@@ -215,11 +226,14 @@ class AsyncRoutingDetails(AsyncAPIResource):
         """
         return await self._post(
             f"/api/{accounts_type}/{account_id}/routing_details",
-            body={
-                "routing_number": routing_number,
-                "routing_number_type": routing_number_type,
-                "payment_type": payment_type,
-            },
+            body=maybe_transform(
+                {
+                    "routing_number": routing_number,
+                    "routing_number_type": routing_number_type,
+                    "payment_type": payment_type,
+                },
+                routing_detail_create_params.RoutingDetailCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=RoutingDetail,
         )
@@ -273,10 +287,13 @@ class AsyncRoutingDetails(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                    },
+                    routing_detail_list_params.RoutingDetailListParams,
+                ),
             ),
             model=RoutingDetail,
         )

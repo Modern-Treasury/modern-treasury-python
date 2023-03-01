@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import LedgerTransaction
+from modern_treasury._utils import parse_date, parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
@@ -27,7 +28,7 @@ class TestLedgerTransactions:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         ledger_transaction = client.ledger_transactions.create(
-            effective_date="2019-12-27",
+            effective_date=parse_date("2019-12-27"),
             ledger_entries=[
                 {
                     "amount": 0,
@@ -58,7 +59,7 @@ class TestLedgerTransactions:
                 "foo": "bar",
                 "modern": "treasury",
             },
-            effective_date="2019-12-27",
+            effective_date=parse_date("2019-12-27"),
             ledger_entries=[
                 {
                     "amount": 0,
@@ -171,9 +172,9 @@ class TestLedgerTransactions:
             ledger_id="string",
             ledger_account_id="string",
             effective_at={"foo": "string"},
-            effective_date={"foo": "2019-12-27T18:11:19.117Z"},
-            posted_at={"foo": "2019-12-27T18:11:19.117Z"},
-            updated_at={"foo": "2019-12-27T18:11:19.117Z"},
+            effective_date={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
+            posted_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
+            updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             status="pending",
             external_id="string",
             ledger_account_category_id="string",
@@ -193,7 +194,7 @@ class TestAsyncLedgerTransactions:
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         ledger_transaction = await client.ledger_transactions.create(
-            effective_date="2019-12-27",
+            effective_date=parse_date("2019-12-27"),
             ledger_entries=[
                 {
                     "amount": 0,
@@ -224,7 +225,7 @@ class TestAsyncLedgerTransactions:
                 "foo": "bar",
                 "modern": "treasury",
             },
-            effective_date="2019-12-27",
+            effective_date=parse_date("2019-12-27"),
             ledger_entries=[
                 {
                     "amount": 0,
@@ -337,9 +338,9 @@ class TestAsyncLedgerTransactions:
             ledger_id="string",
             ledger_account_id="string",
             effective_at={"foo": "string"},
-            effective_date={"foo": "2019-12-27T18:11:19.117Z"},
-            posted_at={"foo": "2019-12-27T18:11:19.117Z"},
-            updated_at={"foo": "2019-12-27T18:11:19.117Z"},
+            effective_date={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
+            posted_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
+            updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             status="pending",
             external_id="string",
             ledger_account_category_id="string",

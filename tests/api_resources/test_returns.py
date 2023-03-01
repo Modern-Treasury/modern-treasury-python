@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import ReturnObject
+from modern_treasury._utils import parse_date
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
@@ -38,7 +39,7 @@ class TestReturns:
             returnable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             code="901",
             reason="string",
-            date_of_death="2019-12-27",
+            date_of_death=parse_date("2019-12-27"),
             additional_information="string",
             returnable_type="incoming_payment_detail",
         )
@@ -92,7 +93,7 @@ class TestAsyncReturns:
             returnable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             code="901",
             reason="string",
-            date_of_death="2019-12-27",
+            date_of_death=parse_date("2019-12-27"),
             additional_information="string",
             returnable_type="incoming_payment_detail",
         )

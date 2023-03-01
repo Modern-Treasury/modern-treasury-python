@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import Ledger
+from modern_treasury._utils import parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
@@ -83,7 +84,7 @@ class TestLedgers:
             after_cursor="string",
             per_page=0,
             metadata={"foo": "string"},
-            updated_at={"foo": "2019-12-27T18:11:19.117Z"},
+            updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
         )
         assert_matches_type(SyncPage[Ledger], ledger, path=["response"])
 
@@ -163,7 +164,7 @@ class TestAsyncLedgers:
             after_cursor="string",
             per_page=0,
             metadata={"foo": "string"},
-            updated_at={"foo": "2019-12-27T18:11:19.117Z"},
+            updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
         )
         assert_matches_type(AsyncPage[Ledger], ledger, path=["response"])
 

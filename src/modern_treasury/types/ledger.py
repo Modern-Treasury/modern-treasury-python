@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Dict, Optional
+from datetime import datetime
 
 from .._models import BaseModel
 
@@ -8,12 +9,12 @@ __all__ = ["Ledger"]
 
 
 class Ledger(BaseModel):
-    created_at: str
+    created_at: datetime
 
     description: Optional[str]
     """An optional free-form description for internal use."""
 
-    discarded_at: Optional[str]
+    discarded_at: Optional[datetime]
 
     id: str
 
@@ -34,4 +35,4 @@ class Ledger(BaseModel):
 
     object: str
 
-    updated_at: str
+    updated_at: datetime

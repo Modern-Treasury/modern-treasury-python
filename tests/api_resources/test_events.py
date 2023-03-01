@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import Event
+from modern_treasury._utils import parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
@@ -41,8 +42,8 @@ class TestEvents:
         event = client.events.list(
             after_cursor="string",
             per_page=0,
-            event_time_start="2019-12-27T18:11:19.117Z",
-            event_time_end="2019-12-27T18:11:19.117Z",
+            event_time_start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            event_time_end=parse_datetime("2019-12-27T18:11:19.117Z"),
             resource="string",
             entity_id="string",
             event_name="string",
@@ -76,8 +77,8 @@ class TestAsyncEvents:
         event = await client.events.list(
             after_cursor="string",
             per_page=0,
-            event_time_start="2019-12-27T18:11:19.117Z",
-            event_time_end="2019-12-27T18:11:19.117Z",
+            event_time_start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            event_time_end=parse_datetime("2019-12-27T18:11:19.117Z"),
             resource="string",
             entity_id="string",
             event_name="string",

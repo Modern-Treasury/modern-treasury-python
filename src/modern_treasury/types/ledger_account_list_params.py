@@ -2,16 +2,19 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-from typing_extensions import TypedDict
+from typing import Dict, Union, Optional
+from datetime import date, datetime
+from typing_extensions import Annotated, TypedDict
+
+from .._utils import PropertyInfo
 
 __all__ = ["LedgerAccountListParams", "Balances"]
 
 
 class Balances(TypedDict, total=False):
-    as_of_date: str
+    as_of_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
 
-    effective_at: str
+    effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
 
 
 class LedgerAccountListParams(TypedDict, total=False):
@@ -42,7 +45,7 @@ class LedgerAccountListParams(TypedDict, total=False):
 
     per_page: int
 
-    updated_at: Dict[str, str]
+    updated_at: Dict[str, Union[str, datetime]]
     """
     Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
     posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use

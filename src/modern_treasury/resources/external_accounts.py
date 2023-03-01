@@ -9,10 +9,14 @@ from ..types import (
     ExternalAccount,
     ExternalAccountType,
     shared_params,
+    external_account_list_params,
     external_account_create_params,
     external_account_update_params,
+    external_account_verify_params,
+    external_account_complete_verification_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -71,20 +75,23 @@ class ExternalAccounts(SyncAPIResource):
         """
         return self._post(
             "/api/external_accounts",
-            body={
-                "account_type": account_type,
-                "party_type": party_type,
-                "party_address": party_address,
-                "name": name,
-                "counterparty_id": counterparty_id,
-                "account_details": account_details,
-                "routing_details": routing_details,
-                "metadata": metadata,
-                "party_name": party_name,
-                "party_identifier": party_identifier,
-                "plaid_processor_token": plaid_processor_token,
-                "contact_details": contact_details,
-            },
+            body=maybe_transform(
+                {
+                    "account_type": account_type,
+                    "party_type": party_type,
+                    "party_address": party_address,
+                    "name": name,
+                    "counterparty_id": counterparty_id,
+                    "account_details": account_details,
+                    "routing_details": routing_details,
+                    "metadata": metadata,
+                    "party_name": party_name,
+                    "party_identifier": party_identifier,
+                    "plaid_processor_token": plaid_processor_token,
+                    "contact_details": contact_details,
+                },
+                external_account_create_params.ExternalAccountCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=ExternalAccount,
         )
@@ -147,15 +154,18 @@ class ExternalAccounts(SyncAPIResource):
         """
         return self._patch(
             f"/api/external_accounts/{id}",
-            body={
-                "party_type": party_type,
-                "account_type": account_type,
-                "counterparty_id": counterparty_id,
-                "name": name,
-                "party_name": party_name,
-                "party_address": party_address,
-                "metadata": metadata,
-            },
+            body=maybe_transform(
+                {
+                    "party_type": party_type,
+                    "account_type": account_type,
+                    "counterparty_id": counterparty_id,
+                    "name": name,
+                    "party_name": party_name,
+                    "party_address": party_address,
+                    "metadata": metadata,
+                },
+                external_account_update_params.ExternalAccountUpdateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=ExternalAccount,
         )
@@ -197,13 +207,16 @@ class ExternalAccounts(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "party_name": party_name,
-                    "counterparty_id": counterparty_id,
-                    "metadata": metadata,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "party_name": party_name,
+                        "counterparty_id": counterparty_id,
+                        "metadata": metadata,
+                    },
+                    external_account_list_params.ExternalAccountListParams,
+                ),
             ),
             model=ExternalAccount,
         )
@@ -249,7 +262,10 @@ class ExternalAccounts(SyncAPIResource):
         """
         return self._post(
             f"/api/external_accounts/{id}/complete_verification",
-            body={"amounts": amounts},
+            body=maybe_transform(
+                {"amounts": amounts},
+                external_account_complete_verification_params.ExternalAccountCompleteVerificationParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=ExternalAccount,
         )
@@ -304,11 +320,14 @@ class ExternalAccounts(SyncAPIResource):
         """
         return self._post(
             f"/api/external_accounts/{id}/verify",
-            body={
-                "originating_account_id": originating_account_id,
-                "payment_type": payment_type,
-                "currency": currency,
-            },
+            body=maybe_transform(
+                {
+                    "originating_account_id": originating_account_id,
+                    "payment_type": payment_type,
+                    "currency": currency,
+                },
+                external_account_verify_params.ExternalAccountVerifyParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=ExternalAccount,
         )
@@ -365,20 +384,23 @@ class AsyncExternalAccounts(AsyncAPIResource):
         """
         return await self._post(
             "/api/external_accounts",
-            body={
-                "account_type": account_type,
-                "party_type": party_type,
-                "party_address": party_address,
-                "name": name,
-                "counterparty_id": counterparty_id,
-                "account_details": account_details,
-                "routing_details": routing_details,
-                "metadata": metadata,
-                "party_name": party_name,
-                "party_identifier": party_identifier,
-                "plaid_processor_token": plaid_processor_token,
-                "contact_details": contact_details,
-            },
+            body=maybe_transform(
+                {
+                    "account_type": account_type,
+                    "party_type": party_type,
+                    "party_address": party_address,
+                    "name": name,
+                    "counterparty_id": counterparty_id,
+                    "account_details": account_details,
+                    "routing_details": routing_details,
+                    "metadata": metadata,
+                    "party_name": party_name,
+                    "party_identifier": party_identifier,
+                    "plaid_processor_token": plaid_processor_token,
+                    "contact_details": contact_details,
+                },
+                external_account_create_params.ExternalAccountCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=ExternalAccount,
         )
@@ -441,15 +463,18 @@ class AsyncExternalAccounts(AsyncAPIResource):
         """
         return await self._patch(
             f"/api/external_accounts/{id}",
-            body={
-                "party_type": party_type,
-                "account_type": account_type,
-                "counterparty_id": counterparty_id,
-                "name": name,
-                "party_name": party_name,
-                "party_address": party_address,
-                "metadata": metadata,
-            },
+            body=maybe_transform(
+                {
+                    "party_type": party_type,
+                    "account_type": account_type,
+                    "counterparty_id": counterparty_id,
+                    "name": name,
+                    "party_name": party_name,
+                    "party_address": party_address,
+                    "metadata": metadata,
+                },
+                external_account_update_params.ExternalAccountUpdateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=ExternalAccount,
         )
@@ -491,13 +516,16 @@ class AsyncExternalAccounts(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "party_name": party_name,
-                    "counterparty_id": counterparty_id,
-                    "metadata": metadata,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "party_name": party_name,
+                        "counterparty_id": counterparty_id,
+                        "metadata": metadata,
+                    },
+                    external_account_list_params.ExternalAccountListParams,
+                ),
             ),
             model=ExternalAccount,
         )
@@ -543,7 +571,10 @@ class AsyncExternalAccounts(AsyncAPIResource):
         """
         return await self._post(
             f"/api/external_accounts/{id}/complete_verification",
-            body={"amounts": amounts},
+            body=maybe_transform(
+                {"amounts": amounts},
+                external_account_complete_verification_params.ExternalAccountCompleteVerificationParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=ExternalAccount,
         )
@@ -598,11 +629,14 @@ class AsyncExternalAccounts(AsyncAPIResource):
         """
         return await self._post(
             f"/api/external_accounts/{id}/verify",
-            body={
-                "originating_account_id": originating_account_id,
-                "payment_type": payment_type,
-                "currency": currency,
-            },
+            body=maybe_transform(
+                {
+                    "originating_account_id": originating_account_id,
+                    "payment_type": payment_type,
+                    "currency": currency,
+                },
+                external_account_verify_params.ExternalAccountVerifyParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=ExternalAccount,
         )

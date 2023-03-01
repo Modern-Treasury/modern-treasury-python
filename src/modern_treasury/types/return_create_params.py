@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing import Union, Optional
+from datetime import date
+from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from .._utils import PropertyInfo
 
 __all__ = ["ReturnCreateParams"]
 
@@ -73,7 +76,7 @@ class ReturnCreateParams(TypedDict, total=False):
     ]
     """The return code. For ACH returns, this is the required ACH return code."""
 
-    date_of_death: Optional[str]
+    date_of_death: Annotated[Optional[Union[str, date]], PropertyInfo(format="iso8601")]
     """
     If the return code is `R14` or `R15` this is the date the deceased counterparty
     passed away.

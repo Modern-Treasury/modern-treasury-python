@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import List, Optional
+from datetime import date, datetime
 from typing_extensions import Literal
 
 from ..types import shared
@@ -10,7 +11,7 @@ __all__ = ["ReturnObject", "ReferenceNumbers", "ReferenceNumber"]
 
 
 class ReferenceNumber(BaseModel):
-    created_at: str
+    created_at: datetime
 
     id: str
 
@@ -78,7 +79,7 @@ class ReferenceNumber(BaseModel):
     ]
     """The type of the reference number. Referring to the vendor payment id."""
 
-    updated_at: str
+    updated_at: datetime
 
 
 ReferenceNumbers = ReferenceNumber
@@ -150,12 +151,12 @@ class ReturnObject(BaseModel):
     ]
     """The return code. For ACH returns, this is the required ACH return code."""
 
-    created_at: str
+    created_at: datetime
 
     currency: Optional[shared.Currency]
     """Currency that this transaction is denominated in."""
 
-    date_of_death: Optional[str]
+    date_of_death: Optional[date]
     """
     If the return code is `R14` or `R15` this is the date the deceased counterparty
     passed away.
@@ -217,4 +218,4 @@ class ReturnObject(BaseModel):
     `paper_item`, `wire`.
     """
 
-    updated_at: str
+    updated_at: datetime

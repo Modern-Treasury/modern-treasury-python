@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing import Dict, List, Union, Optional
+from datetime import datetime
+from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from .._utils import PropertyInfo
 
 __all__ = ["VirtualAccountCreateParams", "AccountDetail", "RoutingDetail", "RoutingDetailBankAddress"]
 
@@ -18,9 +21,9 @@ class AccountDetail(TypedDict, total=False):
     Use `other` if the bank account number is in a generic format.
     """
 
-    created_at: Required[str]
+    created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
-    discarded_at: Required[Optional[str]]
+    discarded_at: Required[Annotated[Optional[Union[str, datetime]], PropertyInfo(format="iso8601")]]
 
     id: Required[str]
 
@@ -32,7 +35,7 @@ class AccountDetail(TypedDict, total=False):
 
     object: Required[str]
 
-    updated_at: Required[str]
+    updated_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
     account_number: str
     """The account number for the bank account."""
@@ -49,7 +52,7 @@ class RoutingDetailBankAddress(TypedDict, total=False):
     country: Required[Optional[str]]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
-    created_at: Required[str]
+    created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
     id: Required[str]
 
@@ -74,7 +77,7 @@ class RoutingDetailBankAddress(TypedDict, total=False):
     region: Required[Optional[str]]
     """Region or State."""
 
-    updated_at: Required[str]
+    updated_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
 
 RoutingDetailBankAddress = RoutingDetailBankAddress
@@ -90,9 +93,9 @@ class RoutingDetail(TypedDict, total=False):
     bank_name: Required[str]
     """The name of the bank."""
 
-    created_at: Required[str]
+    created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
-    discarded_at: Required[Optional[str]]
+    discarded_at: Required[Annotated[Optional[Union[str, datetime]], PropertyInfo(format="iso8601")]]
 
     id: Required[str]
 
@@ -140,7 +143,7 @@ class RoutingDetail(TypedDict, total=False):
     ]
     """One of `aba`, `swift`, `ca_cpa`, `au_bsb`, `gb_sort_code`, `in_ifsc`, `cnaps`."""
 
-    updated_at: Required[str]
+    updated_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
 
 RoutingDetail = RoutingDetail

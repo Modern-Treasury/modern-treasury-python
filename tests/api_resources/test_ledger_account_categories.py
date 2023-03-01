@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import LedgerAccountCategory
+from modern_treasury._utils import parse_date, parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
@@ -63,8 +64,8 @@ class TestLedgerAccountCategories:
         ledger_account_category = client.ledger_account_categories.retrieve(
             "string",
             balances={
-                "as_of_date": "2019-12-27",
-                "effective_at": "2019-12-27T18:11:19.117Z",
+                "as_of_date": parse_date("2019-12-27"),
+                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
         )
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
@@ -195,8 +196,8 @@ class TestAsyncLedgerAccountCategories:
         ledger_account_category = await client.ledger_account_categories.retrieve(
             "string",
             balances={
-                "as_of_date": "2019-12-27",
-                "effective_at": "2019-12-27T18:11:19.117Z",
+                "as_of_date": parse_date("2019-12-27"),
+                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
         )
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])

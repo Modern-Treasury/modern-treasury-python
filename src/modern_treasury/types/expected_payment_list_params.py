@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-from typing_extensions import Literal, TypedDict
+from typing import Dict, Union, Optional
+from datetime import datetime
+from typing_extensions import Literal, Annotated, TypedDict
+
+from .._utils import PropertyInfo
 
 __all__ = ["ExpectedPaymentListParams"]
 
@@ -14,10 +17,10 @@ class ExpectedPaymentListParams(TypedDict, total=False):
     counterparty_id: str
     """Specify counterparty_id to see expected_payments for a specific account."""
 
-    created_at_lower_bound: str
+    created_at_lower_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Used to return expected payments created after some datetime"""
 
-    created_at_upper_bound: str
+    created_at_upper_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Used to return expected payments created before some datetime"""
 
     direction: Literal["credit", "debit"]

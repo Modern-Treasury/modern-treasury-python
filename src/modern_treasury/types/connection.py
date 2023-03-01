@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Optional
+from datetime import datetime
 
 from .._models import BaseModel
 
@@ -8,9 +9,9 @@ __all__ = ["Connection"]
 
 
 class Connection(BaseModel):
-    created_at: str
+    created_at: datetime
 
-    discarded_at: Optional[str]
+    discarded_at: Optional[datetime]
 
     id: str
 
@@ -22,7 +23,7 @@ class Connection(BaseModel):
 
     object: str
 
-    updated_at: str
+    updated_at: datetime
 
     vendor_customer_id: Optional[str]
     """An identifier given to this connection by the bank."""

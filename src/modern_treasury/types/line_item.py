@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Dict, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
@@ -49,7 +50,7 @@ class LineItem(BaseModel):
     e.g. $10 would be represented as 1000.
     """
 
-    created_at: str
+    created_at: datetime
 
     description: Optional[str]
     """A free-form description of the line item."""
@@ -76,4 +77,4 @@ class LineItem(BaseModel):
 
     object: str
 
-    updated_at: str
+    updated_at: datetime

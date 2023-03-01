@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import List, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
@@ -9,9 +10,9 @@ __all__ = ["Document", "DocumentDetails", "DocumentDetail", "File"]
 
 
 class DocumentDetail(BaseModel):
-    created_at: str
+    created_at: datetime
 
-    discarded_at: Optional[str]
+    discarded_at: Optional[datetime]
 
     document_identifier: str
 
@@ -27,7 +28,7 @@ class DocumentDetail(BaseModel):
 
     object: str
 
-    updated_at: str
+    updated_at: datetime
 
 
 DocumentDetails = DocumentDetail
@@ -49,9 +50,9 @@ class File(BaseModel):
 
 
 class Document(BaseModel):
-    created_at: str
+    created_at: datetime
 
-    discarded_at: Optional[str]
+    discarded_at: Optional[datetime]
 
     document_details: List[DocumentDetail]
 
@@ -91,4 +92,4 @@ class Document(BaseModel):
 
     object: str
 
-    updated_at: str
+    updated_at: datetime
