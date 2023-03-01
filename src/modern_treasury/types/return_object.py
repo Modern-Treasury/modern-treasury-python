@@ -210,7 +210,7 @@ class ReturnObject(BaseModel):
     transaction_line_item_id: Optional[str]
     """The ID of the relevant Transaction Line Item or `null`."""
 
-    type: Literal["ach", "ach_noc", "au_becs", "bacs", "book", "eft", "interac", "manual", "paper_item", "sepa", "wire"]
+    type: Literal["ach", "ach_noc", "au_becs", "bacs", "book", "eft", "interac", "paper_item", "sepa", "wire"]
     """The type of return.
 
     Can be one of: `ach`, `ach_noc`, `au_becs`, `bacs`, `eft`, `interac`, `manual`,
