@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
@@ -18,9 +19,9 @@ class AccountDetail(BaseModel):
     Use `other` if the bank account number is in a generic format.
     """
 
-    created_at: str
+    created_at: datetime
 
-    discarded_at: Optional[str]
+    discarded_at: Optional[datetime]
 
     id: str
 
@@ -32,7 +33,7 @@ class AccountDetail(BaseModel):
 
     object: str
 
-    updated_at: str
+    updated_at: datetime
 
     account_number: Optional[str]
     """The account number for the bank account."""

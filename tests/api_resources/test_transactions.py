@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import Transaction
+from modern_treasury._utils import parse_date
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
@@ -59,8 +60,8 @@ class TestTransactions:
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             posted=True,
-            as_of_date_start="2019-12-27",
-            as_of_date_end="2019-12-27",
+            as_of_date_start=parse_date("2019-12-27"),
+            as_of_date_end=parse_date("2019-12-27"),
             direction="string",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payment_type="string",
@@ -115,8 +116,8 @@ class TestAsyncTransactions:
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             posted=True,
-            as_of_date_start="2019-12-27",
-            as_of_date_end="2019-12-27",
+            as_of_date_start=parse_date("2019-12-27"),
+            as_of_date_end=parse_date("2019-12-27"),
             direction="string",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payment_type="string",

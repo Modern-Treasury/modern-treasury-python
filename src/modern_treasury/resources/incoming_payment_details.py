@@ -2,11 +2,20 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, Union, Optional
+from datetime import date
 from typing_extensions import Literal
 
-from ..types import IncomingPaymentDetail, shared, shared_params
+from ..types import (
+    IncomingPaymentDetail,
+    shared,
+    shared_params,
+    incoming_payment_detail_list_params,
+    incoming_payment_detail_update_params,
+    incoming_payment_detail_create_async_params,
+)
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -58,7 +67,9 @@ class IncomingPaymentDetails(SyncAPIResource):
         """
         return self._patch(
             f"/api/incoming_payment_details/{id}",
-            body={"metadata": metadata},
+            body=maybe_transform(
+                {"metadata": metadata}, incoming_payment_detail_update_params.IncomingPaymentDetailUpdateParams
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=IncomingPaymentDetail,
         )
@@ -71,8 +82,8 @@ class IncomingPaymentDetails(SyncAPIResource):
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         status: Literal["completed", "pending", "returned"] | NotGiven = NOT_GIVEN,
         type: Literal["ach", "book", "check", "eft", "interac", "rtp", "sepa", "signet", "wire"] | NotGiven = NOT_GIVEN,
-        as_of_date_start: str | NotGiven = NOT_GIVEN,
-        as_of_date_end: str | NotGiven = NOT_GIVEN,
+        as_of_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
+        as_of_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         virtual_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -119,17 +130,20 @@ class IncomingPaymentDetails(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "direction": direction,
-                    "status": status,
-                    "type": type,
-                    "as_of_date_start": as_of_date_start,
-                    "as_of_date_end": as_of_date_end,
-                    "metadata": metadata,
-                    "virtual_account_id": virtual_account_id,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "direction": direction,
+                        "status": status,
+                        "type": type,
+                        "as_of_date_start": as_of_date_start,
+                        "as_of_date_end": as_of_date_end,
+                        "metadata": metadata,
+                        "virtual_account_id": virtual_account_id,
+                    },
+                    incoming_payment_detail_list_params.IncomingPaymentDetailListParams,
+                ),
             ),
             model=IncomingPaymentDetail,
         )
@@ -143,7 +157,7 @@ class IncomingPaymentDetails(SyncAPIResource):
         currency: shared_params.Currency | NotGiven = NOT_GIVEN,
         internal_account_id: str | NotGiven = NOT_GIVEN,
         virtual_account_id: Optional[str] | NotGiven = NOT_GIVEN,
-        as_of_date: Optional[str] | NotGiven = NOT_GIVEN,
+        as_of_date: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -178,15 +192,18 @@ class IncomingPaymentDetails(SyncAPIResource):
         """
         return self._post(
             "/api/simulations/incoming_payment_details/create_async",
-            body={
-                "type": type,
-                "direction": direction,
-                "amount": amount,
-                "currency": currency,
-                "internal_account_id": internal_account_id,
-                "virtual_account_id": virtual_account_id,
-                "as_of_date": as_of_date,
-            },
+            body=maybe_transform(
+                {
+                    "type": type,
+                    "direction": direction,
+                    "amount": amount,
+                    "currency": currency,
+                    "internal_account_id": internal_account_id,
+                    "virtual_account_id": virtual_account_id,
+                    "as_of_date": as_of_date,
+                },
+                incoming_payment_detail_create_async_params.IncomingPaymentDetailCreateAsyncParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=shared.AsyncResponse,
         )
@@ -236,7 +253,9 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         """
         return await self._patch(
             f"/api/incoming_payment_details/{id}",
-            body={"metadata": metadata},
+            body=maybe_transform(
+                {"metadata": metadata}, incoming_payment_detail_update_params.IncomingPaymentDetailUpdateParams
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=IncomingPaymentDetail,
         )
@@ -249,8 +268,8 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         status: Literal["completed", "pending", "returned"] | NotGiven = NOT_GIVEN,
         type: Literal["ach", "book", "check", "eft", "interac", "rtp", "sepa", "signet", "wire"] | NotGiven = NOT_GIVEN,
-        as_of_date_start: str | NotGiven = NOT_GIVEN,
-        as_of_date_end: str | NotGiven = NOT_GIVEN,
+        as_of_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
+        as_of_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         virtual_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -297,17 +316,20 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "direction": direction,
-                    "status": status,
-                    "type": type,
-                    "as_of_date_start": as_of_date_start,
-                    "as_of_date_end": as_of_date_end,
-                    "metadata": metadata,
-                    "virtual_account_id": virtual_account_id,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "direction": direction,
+                        "status": status,
+                        "type": type,
+                        "as_of_date_start": as_of_date_start,
+                        "as_of_date_end": as_of_date_end,
+                        "metadata": metadata,
+                        "virtual_account_id": virtual_account_id,
+                    },
+                    incoming_payment_detail_list_params.IncomingPaymentDetailListParams,
+                ),
             ),
             model=IncomingPaymentDetail,
         )
@@ -321,7 +343,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         currency: shared_params.Currency | NotGiven = NOT_GIVEN,
         internal_account_id: str | NotGiven = NOT_GIVEN,
         virtual_account_id: Optional[str] | NotGiven = NOT_GIVEN,
-        as_of_date: Optional[str] | NotGiven = NOT_GIVEN,
+        as_of_date: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -356,15 +378,18 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         """
         return await self._post(
             "/api/simulations/incoming_payment_details/create_async",
-            body={
-                "type": type,
-                "direction": direction,
-                "amount": amount,
-                "currency": currency,
-                "internal_account_id": internal_account_id,
-                "virtual_account_id": virtual_account_id,
-                "as_of_date": as_of_date,
-            },
+            body=maybe_transform(
+                {
+                    "type": type,
+                    "direction": direction,
+                    "amount": amount,
+                    "currency": currency,
+                    "internal_account_id": internal_account_id,
+                    "virtual_account_id": virtual_account_id,
+                    "as_of_date": as_of_date,
+                },
+                incoming_payment_detail_create_async_params.IncomingPaymentDetailCreateAsyncParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=shared.AsyncResponse,
         )

@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Dict, Optional
+from datetime import date, datetime
 from typing_extensions import Literal
 
 from ..types import shared, expected_payment_type
@@ -27,15 +28,15 @@ class ExpectedPayment(BaseModel):
     counterparty_id: Optional[str]
     """The ID of the counterparty you expect for this payment."""
 
-    created_at: str
+    created_at: datetime
 
     currency: Optional[shared.Currency]
     """Must conform to ISO 4217. Defaults to the currency of the internal account."""
 
-    date_lower_bound: Optional[str]
+    date_lower_bound: Optional[date]
     """The earliest date the payment may come in. Format: yyyy-mm-dd"""
 
-    date_upper_bound: Optional[str]
+    date_upper_bound: Optional[date]
     """The latest date the payment may come in. Format: yyyy-mm-dd"""
 
     description: Optional[str]
@@ -106,4 +107,4 @@ class ExpectedPayment(BaseModel):
     sepa, signet, wire.
     """
 
-    updated_at: str
+    updated_at: datetime

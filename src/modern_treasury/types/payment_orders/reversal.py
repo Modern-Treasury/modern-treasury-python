@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Dict, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -9,7 +10,7 @@ __all__ = ["Reversal"]
 
 
 class Reversal(BaseModel):
-    created_at: str
+    created_at: datetime
 
     id: str
 
@@ -42,4 +43,4 @@ class Reversal(BaseModel):
     status: Literal["completed", "failed", "pending", "processing", "returned", "sent"]
     """The current status of the reversal."""
 
-    updated_at: str
+    updated_at: datetime

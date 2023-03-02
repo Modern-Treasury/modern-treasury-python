@@ -2,15 +2,19 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing import Union
+from datetime import date, datetime
+from typing_extensions import Annotated, TypedDict
+
+from .._utils import PropertyInfo
 
 __all__ = ["LedgerAccountCategoryRetrieveParams", "Balances"]
 
 
 class Balances(TypedDict, total=False):
-    as_of_date: str
+    as_of_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
 
-    effective_at: str
+    effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
 
 
 class LedgerAccountCategoryRetrieveParams(TypedDict, total=False):

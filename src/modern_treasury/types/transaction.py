@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Dict, Optional
+from datetime import date, datetime
 from typing_extensions import Literal
 
 from ..types import shared
@@ -16,7 +17,7 @@ class Transaction(BaseModel):
     e.g. $10 would be represented as 1000.
     """
 
-    as_of_date: Optional[str]
+    as_of_date: Optional[date]
     """The date on which the transaction occurred."""
 
     as_of_time: Optional[str]
@@ -26,7 +27,7 @@ class Transaction(BaseModel):
     bank, it may be `null`.
     """
 
-    created_at: str
+    created_at: datetime
 
     currency: Optional[shared.Currency]
     """Currency that this transaction is denominated in."""
@@ -45,7 +46,7 @@ class Transaction(BaseModel):
     direction: str
     """Either `credit` or `debit`."""
 
-    discarded_at: Optional[str]
+    discarded_at: Optional[datetime]
 
     id: str
 
@@ -100,7 +101,7 @@ class Transaction(BaseModel):
     Can be one of `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
     """
 
-    updated_at: str
+    updated_at: datetime
 
     vendor_code: Optional[str]
     """When applicable, the bank-given code that determines the transaction's category.

@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Dict, List, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from ..types import account_detail, routing_detail, external_account_type
@@ -21,7 +22,7 @@ class AccountPartyAddress(BaseModel):
     country: Optional[str]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
-    created_at: str
+    created_at: datetime
 
     id: str
 
@@ -46,7 +47,7 @@ class AccountPartyAddress(BaseModel):
     region: Optional[str]
     """Region or State."""
 
-    updated_at: str
+    updated_at: datetime
 
 
 AccountsPartyAddress = AccountPartyAddress
@@ -61,9 +62,9 @@ class AccountContactDetail(BaseModel):
 
     contact_identifier_type: Literal["email", "phone_number", "website"]
 
-    created_at: str
+    created_at: datetime
 
-    discarded_at: Optional[str]
+    discarded_at: Optional[datetime]
 
     id: str
 
@@ -75,7 +76,7 @@ class AccountContactDetail(BaseModel):
 
     object: str
 
-    updated_at: str
+    updated_at: datetime
 
 
 AccountsContactDetails = AccountContactDetail
@@ -93,9 +94,9 @@ class Account(BaseModel):
 
     contact_details: Optional[List[AccountContactDetail]]
 
-    created_at: Optional[str]
+    created_at: Optional[datetime]
 
-    discarded_at: Optional[str]
+    discarded_at: Optional[datetime]
 
     id: Optional[str]
 
@@ -130,7 +131,7 @@ class Account(BaseModel):
 
     routing_details: Optional[List[routing_detail.RoutingDetail]]
 
-    updated_at: Optional[str]
+    updated_at: Optional[datetime]
 
     verification_status: Optional[Literal["pending_verification", "unverified", "verified"]]
 
@@ -146,9 +147,9 @@ class Counterparty(BaseModel):
     accounts: List[Account]
     """The accounts for this counterparty."""
 
-    created_at: str
+    created_at: datetime
 
-    discarded_at: Optional[str]
+    discarded_at: Optional[datetime]
 
     email: Optional[str]
     """The counterparty's email."""
@@ -178,4 +179,4 @@ class Counterparty(BaseModel):
     to the bank.
     """
 
-    updated_at: str
+    updated_at: datetime

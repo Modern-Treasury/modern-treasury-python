@@ -4,8 +4,9 @@ from __future__ import annotations
 
 from typing import Optional
 
-from ..types import Connection
+from ..types import Connection, connection_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -48,12 +49,15 @@ class Connections(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "vendor_customer_id": vendor_customer_id,
-                    "entity": entity,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "vendor_customer_id": vendor_customer_id,
+                        "entity": entity,
+                    },
+                    connection_list_params.ConnectionListParams,
+                ),
             ),
             model=Connection,
         )
@@ -94,12 +98,15 @@ class AsyncConnections(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "vendor_customer_id": vendor_customer_id,
-                    "entity": entity,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "vendor_customer_id": vendor_customer_id,
+                        "entity": entity,
+                    },
+                    connection_list_params.ConnectionListParams,
+                ),
             ),
             model=Connection,
         )

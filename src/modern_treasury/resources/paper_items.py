@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Union, Optional
+from datetime import date
 
-from ..types import PaperItem
+from ..types import PaperItem, paper_item_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -35,8 +37,8 @@ class PaperItems(SyncAPIResource):
         self,
         *,
         lockbox_number: str | NotGiven = NOT_GIVEN,
-        deposit_date_start: str | NotGiven = NOT_GIVEN,
-        deposit_date_end: str | NotGiven = NOT_GIVEN,
+        deposit_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
+        deposit_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -69,13 +71,16 @@ class PaperItems(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "lockbox_number": lockbox_number,
-                    "deposit_date_start": deposit_date_start,
-                    "deposit_date_end": deposit_date_end,
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                },
+                query=maybe_transform(
+                    {
+                        "lockbox_number": lockbox_number,
+                        "deposit_date_start": deposit_date_start,
+                        "deposit_date_end": deposit_date_end,
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                    },
+                    paper_item_list_params.PaperItemListParams,
+                ),
             ),
             model=PaperItem,
         )
@@ -103,8 +108,8 @@ class AsyncPaperItems(AsyncAPIResource):
         self,
         *,
         lockbox_number: str | NotGiven = NOT_GIVEN,
-        deposit_date_start: str | NotGiven = NOT_GIVEN,
-        deposit_date_end: str | NotGiven = NOT_GIVEN,
+        deposit_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
+        deposit_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -137,13 +142,16 @@ class AsyncPaperItems(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "lockbox_number": lockbox_number,
-                    "deposit_date_start": deposit_date_start,
-                    "deposit_date_end": deposit_date_end,
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                },
+                query=maybe_transform(
+                    {
+                        "lockbox_number": lockbox_number,
+                        "deposit_date_start": deposit_date_start,
+                        "deposit_date_end": deposit_date_end,
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                    },
+                    paper_item_list_params.PaperItemListParams,
+                ),
             ),
             model=PaperItem,
         )

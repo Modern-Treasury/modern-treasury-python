@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import Counterparty, CounterpartyCollectAccountResponse
+from modern_treasury._utils import parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
@@ -287,8 +288,8 @@ class TestCounterparties:
             name="string",
             email="dev@stainlessapi.com",
             metadata={"foo": "string"},
-            created_at_lower_bound="2019-12-27T18:11:19.117Z",
-            created_at_upper_bound="2019-12-27T18:11:19.117Z",
+            created_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
+            created_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(SyncPage[Counterparty], counterparty, path=["response"])
 
@@ -591,8 +592,8 @@ class TestAsyncCounterparties:
             name="string",
             email="dev@stainlessapi.com",
             metadata={"foo": "string"},
-            created_at_lower_bound="2019-12-27T18:11:19.117Z",
-            created_at_upper_bound="2019-12-27T18:11:19.117Z",
+            created_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
+            created_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(AsyncPage[Counterparty], counterparty, path=["response"])
 

@@ -5,8 +5,13 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal
 
-from ..types import AccountDetail
+from ..types import (
+    AccountDetail,
+    account_detail_list_params,
+    account_detail_create_params,
+)
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -45,10 +50,13 @@ class AccountDetails(SyncAPIResource):
         """
         return self._post(
             f"/api/{accounts_type}/{account_id}/account_details",
-            body={
-                "account_number": account_number,
-                "account_number_type": account_number_type,
-            },
+            body=maybe_transform(
+                {
+                    "account_number": account_number,
+                    "account_number_type": account_number_type,
+                },
+                account_detail_create_params.AccountDetailCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=AccountDetail,
         )
@@ -102,10 +110,13 @@ class AccountDetails(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                    },
+                    account_detail_list_params.AccountDetailListParams,
+                ),
             ),
             model=AccountDetail,
         )
@@ -162,10 +173,13 @@ class AsyncAccountDetails(AsyncAPIResource):
         """
         return await self._post(
             f"/api/{accounts_type}/{account_id}/account_details",
-            body={
-                "account_number": account_number,
-                "account_number_type": account_number_type,
-            },
+            body=maybe_transform(
+                {
+                    "account_number": account_number,
+                    "account_number_type": account_number_type,
+                },
+                account_detail_create_params.AccountDetailCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=AccountDetail,
         )
@@ -219,10 +233,13 @@ class AsyncAccountDetails(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                    },
+                    account_detail_list_params.AccountDetailListParams,
+                ),
             ),
             model=AccountDetail,
         )

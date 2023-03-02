@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, Union, Optional
+from datetime import datetime
 from typing_extensions import Literal, TypedDict
 
 __all__ = ["LedgerTransactionListParams"]
@@ -18,7 +19,7 @@ class LedgerTransactionListParams(TypedDict, total=False):
     effective_at%5Bgt%5D=2000-01-01T00:00:00:00.000Z.
     """
 
-    effective_date: Dict[str, str]
+    effective_date: Dict[str, Union[str, datetime]]
     """
     Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by
     effective date. For example, for all dates after Jan 1 2000, use
@@ -42,7 +43,7 @@ class LedgerTransactionListParams(TypedDict, total=False):
 
     per_page: int
 
-    posted_at: Dict[str, str]
+    posted_at: Dict[str, Union[str, datetime]]
     """
     Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
     posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
@@ -51,7 +52,7 @@ class LedgerTransactionListParams(TypedDict, total=False):
 
     status: Literal["pending", "posted", "archived"]
 
-    updated_at: Dict[str, str]
+    updated_at: Dict[str, Union[str, datetime]]
     """
     Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
     posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use

@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import List, Optional
+from datetime import date, datetime
 from typing_extensions import Literal
 
 from ...types import shared
@@ -30,7 +31,7 @@ class Balance(BaseModel):
     `current_available`, or `other`.
     """
 
-    created_at: str
+    created_at: datetime
 
     currency: Optional[shared.Currency]
     """The currency of the balance."""
@@ -45,7 +46,7 @@ class Balance(BaseModel):
 
     object: str
 
-    updated_at: str
+    updated_at: datetime
 
     vendor_code: str
     """The code used by the bank when reporting this specific balance."""
@@ -82,7 +83,7 @@ Please use Balance instead.
 
 
 class BalanceReport(BaseModel):
-    as_of_date: str
+    as_of_date: date
     """The date of the balance report in local time."""
 
     as_of_time: Optional[str]
@@ -97,7 +98,7 @@ class BalanceReport(BaseModel):
     balances: List[Balance]
     """An array of `Balance` objects."""
 
-    created_at: str
+    created_at: datetime
 
     id: str
 
@@ -112,4 +113,4 @@ class BalanceReport(BaseModel):
 
     object: str
 
-    updated_at: str
+    updated_at: datetime

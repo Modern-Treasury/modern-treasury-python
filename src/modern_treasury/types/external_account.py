@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Dict, List, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from ..types import account_detail, routing_detail, external_account_type
@@ -13,7 +14,7 @@ class PartyAddress(BaseModel):
     country: Optional[str]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
-    created_at: str
+    created_at: datetime
 
     id: str
 
@@ -38,7 +39,7 @@ class PartyAddress(BaseModel):
     region: Optional[str]
     """Region or State."""
 
-    updated_at: str
+    updated_at: datetime
 
 
 class ContactDetail(BaseModel):
@@ -46,9 +47,9 @@ class ContactDetail(BaseModel):
 
     contact_identifier_type: Literal["email", "phone_number", "website"]
 
-    created_at: str
+    created_at: datetime
 
-    discarded_at: Optional[str]
+    discarded_at: Optional[datetime]
 
     id: str
 
@@ -60,7 +61,7 @@ class ContactDetail(BaseModel):
 
     object: str
 
-    updated_at: str
+    updated_at: datetime
 
 
 ContactDetails = ContactDetail
@@ -80,9 +81,9 @@ class ExternalAccount(BaseModel):
 
     counterparty_id: Optional[str]
 
-    created_at: str
+    created_at: datetime
 
-    discarded_at: Optional[str]
+    discarded_at: Optional[datetime]
 
     id: str
 
@@ -117,6 +118,6 @@ class ExternalAccount(BaseModel):
 
     routing_details: List[routing_detail.RoutingDetail]
 
-    updated_at: str
+    updated_at: datetime
 
     verification_status: Literal["pending_verification", "unverified", "verified"]

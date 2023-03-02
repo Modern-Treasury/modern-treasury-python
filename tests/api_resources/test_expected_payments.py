@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import ExpectedPayment
+from modern_treasury._utils import parse_date, parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
@@ -43,8 +44,8 @@ class TestExpectedPayments:
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="ach",
             currency="AED",
-            date_upper_bound="2019-12-27",
-            date_lower_bound="2019-12-27",
+            date_upper_bound=parse_date("2019-12-27"),
+            date_lower_bound=parse_date("2019-12-27"),
             description="string",
             statement_descriptor="string",
             metadata={
@@ -113,8 +114,8 @@ class TestExpectedPayments:
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="ach",
             currency="AED",
-            date_upper_bound="2019-12-27",
-            date_lower_bound="2019-12-27",
+            date_upper_bound=parse_date("2019-12-27"),
+            date_lower_bound=parse_date("2019-12-27"),
             description="string",
             statement_descriptor="string",
             metadata={
@@ -143,8 +144,8 @@ class TestExpectedPayments:
             type="ach",
             counterparty_id="string",
             metadata={"foo": "string"},
-            created_at_lower_bound="2019-12-27T18:11:19.117Z",
-            created_at_upper_bound="2019-12-27T18:11:19.117Z",
+            created_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
+            created_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(SyncPage[ExpectedPayment], expected_payment, path=["response"])
 
@@ -184,8 +185,8 @@ class TestAsyncExpectedPayments:
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="ach",
             currency="AED",
-            date_upper_bound="2019-12-27",
-            date_lower_bound="2019-12-27",
+            date_upper_bound=parse_date("2019-12-27"),
+            date_lower_bound=parse_date("2019-12-27"),
             description="string",
             statement_descriptor="string",
             metadata={
@@ -254,8 +255,8 @@ class TestAsyncExpectedPayments:
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="ach",
             currency="AED",
-            date_upper_bound="2019-12-27",
-            date_lower_bound="2019-12-27",
+            date_upper_bound=parse_date("2019-12-27"),
+            date_lower_bound=parse_date("2019-12-27"),
             description="string",
             statement_descriptor="string",
             metadata={
@@ -284,8 +285,8 @@ class TestAsyncExpectedPayments:
             type="ach",
             counterparty_id="string",
             metadata={"foo": "string"},
-            created_at_lower_bound="2019-12-27T18:11:19.117Z",
-            created_at_upper_bound="2019-12-27T18:11:19.117Z",
+            created_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
+            created_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(AsyncPage[ExpectedPayment], expected_payment, path=["response"])
 

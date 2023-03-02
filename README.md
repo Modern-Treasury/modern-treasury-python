@@ -525,6 +525,40 @@ Full list of all changed type names:
 - `LedgerEntriesResultingLedgerAccountBalancesPendingBalance` -> `LedgerEntryResultingLedgerAccountBalancesPendingBalance`
 - `LedgerEntriesResultingLedgerAccountBalancesAvailableBalance` -> `LedgerEntryResultingLedgerAccountBalancesAvailableBalance`
 
+## Rich `date` and `datetime` types
+
+We've improved the types for response fields / request params that correspond to `date` or `datetime` values!
+
+Previously they were just raw strings but now response fields will be instances of `date` or `datetime`.
+
+This means that if you're working with these fields and parsing them into `datetime` instances manually you will have to remove
+any code that performs said parsing.
+
+```diff
+account = client.internal_accounts.retrieve('<id>')
+- created_at = datetime.fromisoformat(account.created_at)
++ created_at = account.created_at
+print(created_at.month)
+```
+
+For request params you can continue to pass in strings if you want to use a datetime library other than the standard library version but if you
+were writing code that looked like this:
+
+```py
+dt = datetime(...)
+for counterparty in client.counterparties.list(created_at_upper_bound=dt.isoformat()):
+  ...
+```
+
+You can remove the explicit call to `isoformat`!
+
+```diff
+dt = datetime(...)
+- for counterparty in client.counterparties.list(created_at_upper_bound=dt.isoformat()):
++ for counterparty in client.counterparties.list(created_at_upper_bound=dt):
+  ...
+```
+
 ## Status
 
 This package is in beta. Its internals and interfaces are not stable and subject to change without a major semver bump;

@@ -2,16 +2,20 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Union, Optional
+from datetime import date, datetime
 from typing_extensions import Literal
 
 from ..types import (
     ExpectedPayment,
     ExpectedPaymentType,
     shared_params,
+    expected_payment_list_params,
     expected_payment_create_params,
+    expected_payment_update_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -29,8 +33,8 @@ class ExpectedPayments(SyncAPIResource):
         internal_account_id: str,
         type: ExpectedPaymentType | NotGiven = NOT_GIVEN,
         currency: shared_params.Currency | NotGiven = NOT_GIVEN,
-        date_upper_bound: Optional[str] | NotGiven = NOT_GIVEN,
-        date_lower_bound: Optional[str] | NotGiven = NOT_GIVEN,
+        date_upper_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
+        date_lower_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -91,22 +95,25 @@ class ExpectedPayments(SyncAPIResource):
         """
         return self._post(
             "/api/expected_payments",
-            body={
-                "amount_upper_bound": amount_upper_bound,
-                "amount_lower_bound": amount_lower_bound,
-                "direction": direction,
-                "internal_account_id": internal_account_id,
-                "type": type,
-                "currency": currency,
-                "date_upper_bound": date_upper_bound,
-                "date_lower_bound": date_lower_bound,
-                "description": description,
-                "statement_descriptor": statement_descriptor,
-                "metadata": metadata,
-                "counterparty_id": counterparty_id,
-                "remittance_information": remittance_information,
-                "line_items": line_items,
-            },
+            body=maybe_transform(
+                {
+                    "amount_upper_bound": amount_upper_bound,
+                    "amount_lower_bound": amount_lower_bound,
+                    "direction": direction,
+                    "internal_account_id": internal_account_id,
+                    "type": type,
+                    "currency": currency,
+                    "date_upper_bound": date_upper_bound,
+                    "date_lower_bound": date_lower_bound,
+                    "description": description,
+                    "statement_descriptor": statement_descriptor,
+                    "metadata": metadata,
+                    "counterparty_id": counterparty_id,
+                    "remittance_information": remittance_information,
+                    "line_items": line_items,
+                },
+                expected_payment_create_params.ExpectedPaymentCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=ExpectedPayment,
         )
@@ -138,8 +145,8 @@ class ExpectedPayments(SyncAPIResource):
         internal_account_id: str | NotGiven = NOT_GIVEN,
         type: ExpectedPaymentType | NotGiven = NOT_GIVEN,
         currency: shared_params.Currency | NotGiven = NOT_GIVEN,
-        date_upper_bound: Optional[str] | NotGiven = NOT_GIVEN,
-        date_lower_bound: Optional[str] | NotGiven = NOT_GIVEN,
+        date_upper_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
+        date_lower_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -199,21 +206,24 @@ class ExpectedPayments(SyncAPIResource):
         """
         return self._patch(
             f"/api/expected_payments/{id}",
-            body={
-                "amount_upper_bound": amount_upper_bound,
-                "amount_lower_bound": amount_lower_bound,
-                "direction": direction,
-                "internal_account_id": internal_account_id,
-                "type": type,
-                "currency": currency,
-                "date_upper_bound": date_upper_bound,
-                "date_lower_bound": date_lower_bound,
-                "description": description,
-                "statement_descriptor": statement_descriptor,
-                "metadata": metadata,
-                "counterparty_id": counterparty_id,
-                "remittance_information": remittance_information,
-            },
+            body=maybe_transform(
+                {
+                    "amount_upper_bound": amount_upper_bound,
+                    "amount_lower_bound": amount_lower_bound,
+                    "direction": direction,
+                    "internal_account_id": internal_account_id,
+                    "type": type,
+                    "currency": currency,
+                    "date_upper_bound": date_upper_bound,
+                    "date_lower_bound": date_lower_bound,
+                    "description": description,
+                    "statement_descriptor": statement_descriptor,
+                    "metadata": metadata,
+                    "counterparty_id": counterparty_id,
+                    "remittance_information": remittance_information,
+                },
+                expected_payment_update_params.ExpectedPaymentUpdateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=ExpectedPayment,
         )
@@ -248,8 +258,8 @@ class ExpectedPayments(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        created_at_lower_bound: str | NotGiven = NOT_GIVEN,
-        created_at_upper_bound: str | NotGiven = NOT_GIVEN,
+        created_at_lower_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        created_at_upper_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -292,18 +302,21 @@ class ExpectedPayments(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "status": status,
-                    "internal_account_id": internal_account_id,
-                    "direction": direction,
-                    "type": type,
-                    "counterparty_id": counterparty_id,
-                    "metadata": metadata,
-                    "created_at_lower_bound": created_at_lower_bound,
-                    "created_at_upper_bound": created_at_upper_bound,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "status": status,
+                        "internal_account_id": internal_account_id,
+                        "direction": direction,
+                        "type": type,
+                        "counterparty_id": counterparty_id,
+                        "metadata": metadata,
+                        "created_at_lower_bound": created_at_lower_bound,
+                        "created_at_upper_bound": created_at_upper_bound,
+                    },
+                    expected_payment_list_params.ExpectedPaymentListParams,
+                ),
             ),
             model=ExpectedPayment,
         )
@@ -336,8 +349,8 @@ class AsyncExpectedPayments(AsyncAPIResource):
         internal_account_id: str,
         type: ExpectedPaymentType | NotGiven = NOT_GIVEN,
         currency: shared_params.Currency | NotGiven = NOT_GIVEN,
-        date_upper_bound: Optional[str] | NotGiven = NOT_GIVEN,
-        date_lower_bound: Optional[str] | NotGiven = NOT_GIVEN,
+        date_upper_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
+        date_lower_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -398,22 +411,25 @@ class AsyncExpectedPayments(AsyncAPIResource):
         """
         return await self._post(
             "/api/expected_payments",
-            body={
-                "amount_upper_bound": amount_upper_bound,
-                "amount_lower_bound": amount_lower_bound,
-                "direction": direction,
-                "internal_account_id": internal_account_id,
-                "type": type,
-                "currency": currency,
-                "date_upper_bound": date_upper_bound,
-                "date_lower_bound": date_lower_bound,
-                "description": description,
-                "statement_descriptor": statement_descriptor,
-                "metadata": metadata,
-                "counterparty_id": counterparty_id,
-                "remittance_information": remittance_information,
-                "line_items": line_items,
-            },
+            body=maybe_transform(
+                {
+                    "amount_upper_bound": amount_upper_bound,
+                    "amount_lower_bound": amount_lower_bound,
+                    "direction": direction,
+                    "internal_account_id": internal_account_id,
+                    "type": type,
+                    "currency": currency,
+                    "date_upper_bound": date_upper_bound,
+                    "date_lower_bound": date_lower_bound,
+                    "description": description,
+                    "statement_descriptor": statement_descriptor,
+                    "metadata": metadata,
+                    "counterparty_id": counterparty_id,
+                    "remittance_information": remittance_information,
+                    "line_items": line_items,
+                },
+                expected_payment_create_params.ExpectedPaymentCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=ExpectedPayment,
         )
@@ -445,8 +461,8 @@ class AsyncExpectedPayments(AsyncAPIResource):
         internal_account_id: str | NotGiven = NOT_GIVEN,
         type: ExpectedPaymentType | NotGiven = NOT_GIVEN,
         currency: shared_params.Currency | NotGiven = NOT_GIVEN,
-        date_upper_bound: Optional[str] | NotGiven = NOT_GIVEN,
-        date_lower_bound: Optional[str] | NotGiven = NOT_GIVEN,
+        date_upper_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
+        date_lower_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -506,21 +522,24 @@ class AsyncExpectedPayments(AsyncAPIResource):
         """
         return await self._patch(
             f"/api/expected_payments/{id}",
-            body={
-                "amount_upper_bound": amount_upper_bound,
-                "amount_lower_bound": amount_lower_bound,
-                "direction": direction,
-                "internal_account_id": internal_account_id,
-                "type": type,
-                "currency": currency,
-                "date_upper_bound": date_upper_bound,
-                "date_lower_bound": date_lower_bound,
-                "description": description,
-                "statement_descriptor": statement_descriptor,
-                "metadata": metadata,
-                "counterparty_id": counterparty_id,
-                "remittance_information": remittance_information,
-            },
+            body=maybe_transform(
+                {
+                    "amount_upper_bound": amount_upper_bound,
+                    "amount_lower_bound": amount_lower_bound,
+                    "direction": direction,
+                    "internal_account_id": internal_account_id,
+                    "type": type,
+                    "currency": currency,
+                    "date_upper_bound": date_upper_bound,
+                    "date_lower_bound": date_lower_bound,
+                    "description": description,
+                    "statement_descriptor": statement_descriptor,
+                    "metadata": metadata,
+                    "counterparty_id": counterparty_id,
+                    "remittance_information": remittance_information,
+                },
+                expected_payment_update_params.ExpectedPaymentUpdateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=ExpectedPayment,
         )
@@ -555,8 +574,8 @@ class AsyncExpectedPayments(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        created_at_lower_bound: str | NotGiven = NOT_GIVEN,
-        created_at_upper_bound: str | NotGiven = NOT_GIVEN,
+        created_at_lower_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        created_at_upper_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -599,18 +618,21 @@ class AsyncExpectedPayments(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "status": status,
-                    "internal_account_id": internal_account_id,
-                    "direction": direction,
-                    "type": type,
-                    "counterparty_id": counterparty_id,
-                    "metadata": metadata,
-                    "created_at_lower_bound": created_at_lower_bound,
-                    "created_at_upper_bound": created_at_upper_bound,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "status": status,
+                        "internal_account_id": internal_account_id,
+                        "direction": direction,
+                        "type": type,
+                        "counterparty_id": counterparty_id,
+                        "metadata": metadata,
+                        "created_at_lower_bound": created_at_lower_bound,
+                        "created_at_upper_bound": created_at_upper_bound,
+                    },
+                    expected_payment_list_params.ExpectedPaymentListParams,
+                ),
             ),
             model=ExpectedPayment,
         )

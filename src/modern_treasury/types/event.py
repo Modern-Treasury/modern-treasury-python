@@ -1,12 +1,14 @@
 # File generated from our OpenAPI spec by Stainless.
 
+from datetime import datetime
+
 from .._models import BaseModel
 
 __all__ = ["Event"]
 
 
 class Event(BaseModel):
-    created_at: str
+    created_at: datetime
 
     data: object
     """The body of the event."""
@@ -17,7 +19,7 @@ class Event(BaseModel):
     event_name: str
     """The name of the event."""
 
-    event_time: str
+    event_time: datetime
     """The time of the event."""
 
     id: str
@@ -33,4 +35,4 @@ class Event(BaseModel):
     resource: str
     """The type of resource for the event."""
 
-    updated_at: str
+    updated_at: datetime

@@ -2,15 +2,19 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, Union, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from ..types import (
     LedgerAccount,
     ledger_account_list_params,
+    ledger_account_create_params,
+    ledger_account_update_params,
     ledger_account_retrieve_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -62,15 +66,18 @@ class LedgerAccounts(SyncAPIResource):
         """
         return self._post(
             "/api/ledger_accounts",
-            body={
-                "name": name,
-                "description": description,
-                "normal_balance": normal_balance,
-                "ledger_id": ledger_id,
-                "currency": currency,
-                "currency_exponent": currency_exponent,
-                "metadata": metadata,
-            },
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "description": description,
+                    "normal_balance": normal_balance,
+                    "ledger_id": ledger_id,
+                    "currency": currency,
+                    "currency_exponent": currency_exponent,
+                    "metadata": metadata,
+                },
+                ledger_account_create_params.LedgerAccountCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=LedgerAccount,
         )
@@ -107,7 +114,9 @@ class LedgerAccounts(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={"balances": balances},
+                query=maybe_transform(
+                    {"balances": balances}, ledger_account_retrieve_params.LedgerAccountRetrieveParams
+                ),
             ),
             cast_to=LedgerAccount,
         )
@@ -147,12 +156,15 @@ class LedgerAccounts(SyncAPIResource):
         """
         return self._patch(
             f"/api/ledger_accounts/{id}",
-            body={
-                "name": name,
-                "description": description,
-                "normal_balance": normal_balance,
-                "metadata": metadata,
-            },
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "description": description,
+                    "normal_balance": normal_balance,
+                    "metadata": metadata,
+                },
+                ledger_account_update_params.LedgerAccountUpdateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=LedgerAccount,
         )
@@ -167,7 +179,7 @@ class LedgerAccounts(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         balances: ledger_account_list_params.Balances | NotGiven = NOT_GIVEN,
-        updated_at: Dict[str, str] | NotGiven = NOT_GIVEN,
+        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -205,17 +217,20 @@ class LedgerAccounts(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "metadata": metadata,
-                    "id": id,
-                    "name": name,
-                    "ledger_id": ledger_id,
-                    "balances": balances,
-                    "updated_at": updated_at,
-                    "ledger_account_category_id": ledger_account_category_id,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "metadata": metadata,
+                        "id": id,
+                        "name": name,
+                        "ledger_id": ledger_id,
+                        "balances": balances,
+                        "updated_at": updated_at,
+                        "ledger_account_category_id": ledger_account_category_id,
+                    },
+                    ledger_account_list_params.LedgerAccountListParams,
+                ),
             ),
             model=LedgerAccount,
         )
@@ -282,15 +297,18 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         """
         return await self._post(
             "/api/ledger_accounts",
-            body={
-                "name": name,
-                "description": description,
-                "normal_balance": normal_balance,
-                "ledger_id": ledger_id,
-                "currency": currency,
-                "currency_exponent": currency_exponent,
-                "metadata": metadata,
-            },
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "description": description,
+                    "normal_balance": normal_balance,
+                    "ledger_id": ledger_id,
+                    "currency": currency,
+                    "currency_exponent": currency_exponent,
+                    "metadata": metadata,
+                },
+                ledger_account_create_params.LedgerAccountCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=LedgerAccount,
         )
@@ -327,7 +345,9 @@ class AsyncLedgerAccounts(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={"balances": balances},
+                query=maybe_transform(
+                    {"balances": balances}, ledger_account_retrieve_params.LedgerAccountRetrieveParams
+                ),
             ),
             cast_to=LedgerAccount,
         )
@@ -367,12 +387,15 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         """
         return await self._patch(
             f"/api/ledger_accounts/{id}",
-            body={
-                "name": name,
-                "description": description,
-                "normal_balance": normal_balance,
-                "metadata": metadata,
-            },
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "description": description,
+                    "normal_balance": normal_balance,
+                    "metadata": metadata,
+                },
+                ledger_account_update_params.LedgerAccountUpdateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=LedgerAccount,
         )
@@ -387,7 +410,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         balances: ledger_account_list_params.Balances | NotGiven = NOT_GIVEN,
-        updated_at: Dict[str, str] | NotGiven = NOT_GIVEN,
+        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -425,17 +448,20 @@ class AsyncLedgerAccounts(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "metadata": metadata,
-                    "id": id,
-                    "name": name,
-                    "ledger_id": ledger_id,
-                    "balances": balances,
-                    "updated_at": updated_at,
-                    "ledger_account_category_id": ledger_account_category_id,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "metadata": metadata,
+                        "id": id,
+                        "name": name,
+                        "ledger_id": ledger_id,
+                        "balances": balances,
+                        "updated_at": updated_at,
+                        "ledger_account_category_id": ledger_account_category_id,
+                    },
+                    ledger_account_list_params.LedgerAccountListParams,
+                ),
             ),
             model=LedgerAccount,
         )

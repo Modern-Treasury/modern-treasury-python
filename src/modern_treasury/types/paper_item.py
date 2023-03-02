@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Optional
+from datetime import date, datetime
 from typing_extensions import Literal
 
 from ..types import shared
@@ -22,12 +23,12 @@ class PaperItem(BaseModel):
     check_number: Optional[str]
     """The check number on the paper item."""
 
-    created_at: str
+    created_at: datetime
 
     currency: Optional[shared.Currency]
     """The currency of the paper item."""
 
-    deposit_date: str
+    deposit_date: date
     """The date the paper item was deposited into your organization's bank account."""
 
     id: str
@@ -64,4 +65,4 @@ class PaperItem(BaseModel):
     transaction_line_item_id: Optional[str]
     """The ID of the reconciled Transaction Line Item or `null`."""
 
-    updated_at: str
+    updated_at: datetime

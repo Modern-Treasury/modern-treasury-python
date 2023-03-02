@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import LedgerEntry
+from modern_treasury._utils import parse_date, parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
@@ -43,9 +44,9 @@ class TestLedgerEntries:
             per_page=0,
             ledger_account_id="string",
             ledger_transaction_id="string",
-            effective_date={"foo": "2019-12-27"},
+            effective_date={"foo": parse_date("2019-12-27")},
             effective_at={"foo": "string"},
-            updated_at={"foo": "2019-12-27T18:11:19.117Z"},
+            updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             ledger_account_lock_version={"foo": 0},
             ledger_account_category_id="string",
             show_deleted=True,
@@ -83,9 +84,9 @@ class TestAsyncLedgerEntries:
             per_page=0,
             ledger_account_id="string",
             ledger_transaction_id="string",
-            effective_date={"foo": "2019-12-27"},
+            effective_date={"foo": parse_date("2019-12-27")},
             effective_at={"foo": "string"},
-            updated_at={"foo": "2019-12-27T18:11:19.117Z"},
+            updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             ledger_account_lock_version={"foo": 0},
             ledger_account_category_id="string",
             show_deleted=True,

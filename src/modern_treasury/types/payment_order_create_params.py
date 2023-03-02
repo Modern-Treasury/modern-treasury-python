@@ -2,11 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing import Dict, List, Union, Optional
+from datetime import date, datetime
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..types import shared_params
 from .._types import FileTypes
+from .._utils import PropertyInfo
 
 __all__ = [
     "PaymentOrderCreateParams",
@@ -230,7 +232,7 @@ Please use LedgerTransactionLedgerEntry instead.
 
 
 class LedgerTransaction(TypedDict, total=False):
-    effective_date: Required[str]
+    effective_date: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]
     """
     The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
     purposes.
@@ -409,14 +411,14 @@ class PaymentOrderCreateParams(TypedDict, total=False):
     `multipart/form-data`.
     """
 
-    effective_date: str
+    effective_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
     """Date transactions are to be posted to the participants' account.
 
     Defaults to the current business day or the next business day if the current day
     is a bank holiday or weekend. Format: yyyy-mm-dd.
     """
 
-    expires_at: Optional[str]
+    expires_at: Annotated[Optional[Union[str, datetime]], PropertyInfo(format="iso8601")]
     """RFP payments require an expires_at. This value must be past the effective_date."""
 
     fallback_type: Literal["ach"]

@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, Union, Optional
+from datetime import date
 
-from ..types import Transaction
+from ..types import Transaction, transaction_list_params, transaction_update_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -57,7 +59,7 @@ class Transactions(SyncAPIResource):
         """
         return self._patch(
             f"/api/transactions/{id}",
-            body={"metadata": metadata},
+            body=maybe_transform({"metadata": metadata}, transaction_update_params.TransactionUpdateParams),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=Transaction,
         )
@@ -70,8 +72,8 @@ class Transactions(SyncAPIResource):
         internal_account_id: str | NotGiven = NOT_GIVEN,
         virtual_account_id: str | NotGiven = NOT_GIVEN,
         posted: bool | NotGiven = NOT_GIVEN,
-        as_of_date_start: str | NotGiven = NOT_GIVEN,
-        as_of_date_end: str | NotGiven = NOT_GIVEN,
+        as_of_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
+        as_of_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
         direction: str | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
         payment_type: str | NotGiven = NOT_GIVEN,
@@ -118,21 +120,24 @@ class Transactions(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "internal_account_id": internal_account_id,
-                    "virtual_account_id": virtual_account_id,
-                    "posted": posted,
-                    "as_of_date_start": as_of_date_start,
-                    "as_of_date_end": as_of_date_end,
-                    "direction": direction,
-                    "counterparty_id": counterparty_id,
-                    "payment_type": payment_type,
-                    "transactable_type": transactable_type,
-                    "description": description,
-                    "metadata": metadata,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "internal_account_id": internal_account_id,
+                        "virtual_account_id": virtual_account_id,
+                        "posted": posted,
+                        "as_of_date_start": as_of_date_start,
+                        "as_of_date_end": as_of_date_end,
+                        "direction": direction,
+                        "counterparty_id": counterparty_id,
+                        "payment_type": payment_type,
+                        "transactable_type": transactable_type,
+                        "description": description,
+                        "metadata": metadata,
+                    },
+                    transaction_list_params.TransactionListParams,
+                ),
             ),
             model=Transaction,
         )
@@ -182,7 +187,7 @@ class AsyncTransactions(AsyncAPIResource):
         """
         return await self._patch(
             f"/api/transactions/{id}",
-            body={"metadata": metadata},
+            body=maybe_transform({"metadata": metadata}, transaction_update_params.TransactionUpdateParams),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=Transaction,
         )
@@ -195,8 +200,8 @@ class AsyncTransactions(AsyncAPIResource):
         internal_account_id: str | NotGiven = NOT_GIVEN,
         virtual_account_id: str | NotGiven = NOT_GIVEN,
         posted: bool | NotGiven = NOT_GIVEN,
-        as_of_date_start: str | NotGiven = NOT_GIVEN,
-        as_of_date_end: str | NotGiven = NOT_GIVEN,
+        as_of_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
+        as_of_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
         direction: str | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
         payment_type: str | NotGiven = NOT_GIVEN,
@@ -243,21 +248,24 @@ class AsyncTransactions(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "internal_account_id": internal_account_id,
-                    "virtual_account_id": virtual_account_id,
-                    "posted": posted,
-                    "as_of_date_start": as_of_date_start,
-                    "as_of_date_end": as_of_date_end,
-                    "direction": direction,
-                    "counterparty_id": counterparty_id,
-                    "payment_type": payment_type,
-                    "transactable_type": transactable_type,
-                    "description": description,
-                    "metadata": metadata,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "internal_account_id": internal_account_id,
+                        "virtual_account_id": virtual_account_id,
+                        "posted": posted,
+                        "as_of_date_start": as_of_date_start,
+                        "as_of_date_end": as_of_date_end,
+                        "direction": direction,
+                        "counterparty_id": counterparty_id,
+                        "payment_type": payment_type,
+                        "transactable_type": transactable_type,
+                        "description": description,
+                        "metadata": metadata,
+                    },
+                    transaction_list_params.TransactionListParams,
+                ),
             ),
             model=Transaction,
         )

@@ -1,5 +1,6 @@
 # File generated from our OpenAPI spec by Stainless.
 
+from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
@@ -8,7 +9,7 @@ __all__ = ["PaymentReference"]
 
 
 class PaymentReference(BaseModel):
-    created_at: str
+    created_at: datetime
 
     id: str
 
@@ -88,4 +89,4 @@ class PaymentReference(BaseModel):
     This must be accompanied by the id of the referenceable or will return an error.
     """
 
-    updated_at: str
+    updated_at: datetime

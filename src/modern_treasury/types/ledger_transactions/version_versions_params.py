@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, Union, Optional
+from datetime import datetime
 from typing_extensions import TypedDict
 
 __all__ = ["VersionVersionsParams"]
@@ -11,7 +12,7 @@ __all__ = ["VersionVersionsParams"]
 class VersionVersionsParams(TypedDict, total=False):
     after_cursor: Optional[str]
 
-    created_at: Dict[str, str]
+    created_at: Dict[str, Union[str, datetime]]
     """
     Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
     created_at timestamp. For example, for all dates after Jan 1 2000 12:00 UTC, use

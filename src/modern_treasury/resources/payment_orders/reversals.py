@@ -6,10 +6,15 @@ from typing import Dict, Optional
 from typing_extensions import Literal
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.payment_orders import Reversal, reversal_create_params
+from ...types.payment_orders import (
+    Reversal,
+    reversal_list_params,
+    reversal_create_params,
+)
 
 __all__ = ["Reversals", "AsyncReversals"]
 
@@ -57,11 +62,14 @@ class Reversals(SyncAPIResource):
         """
         return self._post(
             f"/api/payment_orders/{payment_order_id}/reversals",
-            body={
-                "reason": reason,
-                "metadata": metadata,
-                "ledger_transaction": ledger_transaction,
-            },
+            body=maybe_transform(
+                {
+                    "reason": reason,
+                    "metadata": metadata,
+                    "ledger_transaction": ledger_transaction,
+                },
+                reversal_create_params.ReversalCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=Reversal,
         )
@@ -113,10 +121,13 @@ class Reversals(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                    },
+                    reversal_list_params.ReversalListParams,
+                ),
             ),
             model=Reversal,
         )
@@ -165,11 +176,14 @@ class AsyncReversals(AsyncAPIResource):
         """
         return await self._post(
             f"/api/payment_orders/{payment_order_id}/reversals",
-            body={
-                "reason": reason,
-                "metadata": metadata,
-                "ledger_transaction": ledger_transaction,
-            },
+            body=maybe_transform(
+                {
+                    "reason": reason,
+                    "metadata": metadata,
+                    "ledger_transaction": ledger_transaction,
+                },
+                reversal_create_params.ReversalCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=Reversal,
         )
@@ -221,10 +235,13 @@ class AsyncReversals(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                    },
+                    reversal_list_params.ReversalListParams,
+                ),
             ),
             model=Reversal,
         )

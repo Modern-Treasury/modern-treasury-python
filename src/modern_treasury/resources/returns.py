@@ -2,11 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Union, Optional
+from datetime import date
 from typing_extensions import Literal
 
-from ..types import ReturnObject
+from ..types import ReturnObject, return_list_params, return_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
@@ -68,7 +70,7 @@ class Returns(SyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         reason: Optional[str] | NotGiven = NOT_GIVEN,
-        date_of_death: Optional[str] | NotGiven = NOT_GIVEN,
+        date_of_death: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
         additional_information: Optional[str] | NotGiven = NOT_GIVEN,
         returnable_type: Literal["incoming_payment_detail"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -105,14 +107,17 @@ class Returns(SyncAPIResource):
         """
         return self._post(
             "/api/returns",
-            body={
-                "returnable_id": returnable_id,
-                "code": code,
-                "reason": reason,
-                "date_of_death": date_of_death,
-                "additional_information": additional_information,
-                "returnable_type": returnable_type,
-            },
+            body=maybe_transform(
+                {
+                    "returnable_id": returnable_id,
+                    "code": code,
+                    "reason": reason,
+                    "date_of_death": date_of_death,
+                    "additional_information": additional_information,
+                    "returnable_type": returnable_type,
+                },
+                return_create_params.ReturnCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=ReturnObject,
         )
@@ -178,14 +183,17 @@ class Returns(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "internal_account_id": internal_account_id,
-                    "counterparty_id": counterparty_id,
-                    "returnable_id": returnable_id,
-                    "returnable_type": returnable_type,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "internal_account_id": internal_account_id,
+                        "counterparty_id": counterparty_id,
+                        "returnable_id": returnable_id,
+                        "returnable_type": returnable_type,
+                    },
+                    return_list_params.ReturnListParams,
+                ),
             ),
             model=ReturnObject,
         )
@@ -245,7 +253,7 @@ class AsyncReturns(AsyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         reason: Optional[str] | NotGiven = NOT_GIVEN,
-        date_of_death: Optional[str] | NotGiven = NOT_GIVEN,
+        date_of_death: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
         additional_information: Optional[str] | NotGiven = NOT_GIVEN,
         returnable_type: Literal["incoming_payment_detail"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -282,14 +290,17 @@ class AsyncReturns(AsyncAPIResource):
         """
         return await self._post(
             "/api/returns",
-            body={
-                "returnable_id": returnable_id,
-                "code": code,
-                "reason": reason,
-                "date_of_death": date_of_death,
-                "additional_information": additional_information,
-                "returnable_type": returnable_type,
-            },
+            body=maybe_transform(
+                {
+                    "returnable_id": returnable_id,
+                    "code": code,
+                    "reason": reason,
+                    "date_of_death": date_of_death,
+                    "additional_information": additional_information,
+                    "returnable_type": returnable_type,
+                },
+                return_create_params.ReturnCreateParams,
+            ),
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
             cast_to=ReturnObject,
         )
@@ -355,14 +366,17 @@ class AsyncReturns(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
-                query={
-                    "after_cursor": after_cursor,
-                    "per_page": per_page,
-                    "internal_account_id": internal_account_id,
-                    "counterparty_id": counterparty_id,
-                    "returnable_id": returnable_id,
-                    "returnable_type": returnable_type,
-                },
+                query=maybe_transform(
+                    {
+                        "after_cursor": after_cursor,
+                        "per_page": per_page,
+                        "internal_account_id": internal_account_id,
+                        "counterparty_id": counterparty_id,
+                        "returnable_id": returnable_id,
+                        "returnable_type": returnable_type,
+                    },
+                    return_list_params.ReturnListParams,
+                ),
             ),
             model=ReturnObject,
         )
