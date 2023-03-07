@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "modern-treasury"
-version = "1.9.0"
+version = "1.10.0"
 description = "Client library for the Modern Treasury API"
 readme = "README.md"
 authors = ["Modern Treasury <sdk-feedback@moderntreasury.com>"]
@@ -73,6 +73,19 @@ select = [
   "F401",
   # bare except statements
   "E722",
+  # print statements
+  "T201",
+  "T203",
+]
+unfixable = [
+  # disable auto fix for print statements
+  "T201",
+  "T203",
 ]
 ignore-init-module-imports = true
 
+
+[tool.ruff.per-file-ignores]
+"bin/**.py" = ["T201", "T203"]
+"tests/**.py" = ["T201", "T203"]
+"examples/**.py" = ["T201", "T203"]
