@@ -28,7 +28,7 @@ import anyio
 import httpx
 import distro
 import pydantic
-from httpx import URL
+from httpx import URL, Limits
 from pydantic import PrivateAttr
 
 from . import _base_exceptions as exceptions
@@ -75,6 +75,7 @@ _T_co = TypeVar("_T_co", covariant=True)
 
 DEFAULT_TIMEOUT = Timeout(timeout=60.0, connect=5.0)
 DEFAULT_MAX_RETRIES = 2
+DEFAULT_LIMITS = Limits(max_connections=100, max_keepalive_connections=20)
 
 
 class PageInfo:
@@ -273,21 +274,25 @@ class BaseClient:
     _version: str
     max_retries: int
     timeout: Union[float, Timeout, None]
+    _limits: httpx.Limits
     _strict_response_validation: bool
     _idempotency_header: str | None
 
     def __init__(
         self,
+        *,
         version: str,
         _strict_response_validation: bool,
         max_retries: int = DEFAULT_MAX_RETRIES,
         timeout: float | Timeout | None = DEFAULT_TIMEOUT,
+        limits: httpx.Limits,
         custom_headers: Mapping[str, str] | None = None,
         custom_query: Mapping[str, object] | None = None,
     ) -> None:
         self._version = version
         self.max_retries = max_retries
         self.timeout = timeout
+        self._limits = limits
         self._custom_headers = custom_headers or {}
         self._custom_query = custom_query or {}
         self._strict_response_validation = _strict_response_validation
@@ -328,15 +333,19 @@ class BaseClient:
     ) -> int:
         return remaining_retries if remaining_retries is not None else options.get_max_retries(self.max_retries)
 
-    def _build_headers(self, options: FinalRequestOptions) -> dict[str, str]:
+    def _build_headers(self, options: FinalRequestOptions) -> httpx.Headers:
         custom_headers = options.headers or {}
-        headers = _merge_mappings(self.default_headers, custom_headers)
-        self._validate_headers(headers, custom_headers)
+        headers_dict = _merge_mappings(self.default_headers, custom_headers)
+        self._validate_headers(headers_dict, custom_headers)
 
-        if self._idempotency_header and options.method.lower() != "get":
+        headers = httpx.Headers(headers_dict)
+
+        idempotency_header = self._idempotency_header
+        if idempotency_header and options.method.lower() != "get" and idempotency_header not in headers:
             if not options.idempotency_key:
                 options.idempotency_key = self._idempotency_key()
-            headers[self._idempotency_header] = options.idempotency_key
+
+            headers[idempotency_header] = options.idempotency_key
 
         return headers
 
@@ -605,15 +614,18 @@ class SyncAPIClient(BaseClient):
         version: str,
         base_url: str,
         max_retries: int = DEFAULT_MAX_RETRIES,
-        timeout: Union[float, Timeout, None] = DEFAULT_TIMEOUT,
-        transport: Optional[Transport] = None,
-        proxies: Optional[ProxiesTypes] = None,
+        timeout: float | Timeout | None = DEFAULT_TIMEOUT,
+        transport: Transport | None = None,
+        proxies: ProxiesTypes | None = None,
+        limits: Limits | None = DEFAULT_LIMITS,
         custom_headers: Mapping[str, str] | None = None,
         custom_query: Mapping[str, object] | None = None,
         _strict_response_validation: bool,
     ) -> None:
+        limits = limits or DEFAULT_LIMITS
         super().__init__(
             version=version,
+            limits=limits,
             timeout=timeout,
             max_retries=max_retries,
             custom_query=custom_query,
@@ -625,6 +637,7 @@ class SyncAPIClient(BaseClient):
             timeout=timeout,
             proxies=proxies,  # type: ignore
             transport=transport,  # type: ignore
+            limits=limits,
             headers={"Accept": "application/json"},
         )
 
@@ -669,10 +682,11 @@ class SyncAPIClient(BaseClient):
     ) -> ResponseT:
         remaining = remaining_retries - 1
         timeout = self.calculate_retry_timeout(remaining, options, response_headers)
-        print(f"Retry request in {timeout} seconds")
+
         # In a synchronous context we are blocking the entire thread. Up to the library user to run the client in a
         # different thread if necessary.
         time.sleep(timeout)
+
         return self.request(
             options=options,
             cast_to=cast_to,
@@ -772,14 +786,17 @@ class AsyncAPIClient(BaseClient):
         base_url: str,
         _strict_response_validation: bool,
         max_retries: int = DEFAULT_MAX_RETRIES,
-        timeout: Union[float, Timeout, None] = DEFAULT_TIMEOUT,
-        transport: Optional[Transport] = None,
-        proxies: Optional[ProxiesTypes] = None,
+        timeout: float | Timeout | None = DEFAULT_TIMEOUT,
+        transport: Transport | None = None,
+        proxies: ProxiesTypes | None = None,
+        limits: Limits | None = DEFAULT_LIMITS,
         custom_headers: Mapping[str, str] | None = None,
         custom_query: Mapping[str, object] | None = None,
     ) -> None:
+        limits = limits or DEFAULT_LIMITS
         super().__init__(
             version=version,
+            limits=limits,
             timeout=timeout,
             max_retries=max_retries,
             custom_query=custom_query,
@@ -791,6 +808,7 @@ class AsyncAPIClient(BaseClient):
             timeout=timeout,
             proxies=proxies,  # type: ignore
             transport=transport,  # type: ignore
+            limits=limits,
             headers={"Accept": "application/json"},
         )
 
@@ -845,7 +863,6 @@ class AsyncAPIClient(BaseClient):
     ) -> ResponseT:
         remaining = remaining_retries - 1
         timeout = self.calculate_retry_timeout(remaining, options, response_headers)
-        print(f"Retry request in {timeout} seconds")
         await anyio.sleep(timeout)
         return await self.request(
             options=options,
