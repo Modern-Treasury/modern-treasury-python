@@ -6,6 +6,8 @@ import os
 import base64
 from typing import Dict, Union, Mapping, Optional
 
+import httpx
+
 from . import resources
 from ._qs import Querystring
 from .types import PingResponse
@@ -22,6 +24,7 @@ from ._types import (
 )
 from ._version import __version__
 from ._base_client import (
+    DEFAULT_LIMITS,
     DEFAULT_TIMEOUT,
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
@@ -89,6 +92,8 @@ class ModernTreasury(SyncAPIClient):
         transport: Optional[Transport] = None,
         # See httpx documentation for [proxies](https://www.python-httpx.org/advanced/#http-proxying)
         proxies: Optional[ProxiesTypes] = None,
+        # See httpx documentation for [limits](https://www.python-httpx.org/advanced/#pool-limit-configuration)
+        connection_pool_limits: httpx.Limits | None = DEFAULT_LIMITS,
         # Enable or disable schema validation for data returned by the API.
         # When enabled an error APIResponseValidationError is raised
         # if the API responds with invalid data for the expected schema.
@@ -122,6 +127,7 @@ class ModernTreasury(SyncAPIClient):
             timeout=timeout,
             transport=transport,
             proxies=proxies,
+            limits=connection_pool_limits,
             custom_headers=default_headers,
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
@@ -186,6 +192,7 @@ class ModernTreasury(SyncAPIClient):
         api_key: str | None = None,
         base_url: str | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
+        connection_pool_limits: httpx.Limits | NotGiven = NOT_GIVEN,
         max_retries: int | NotGiven = NOT_GIVEN,
         default_headers: Mapping[str, str] | None = None,
         set_default_headers: Mapping[str, str] | None = None,
@@ -223,6 +230,9 @@ class ModernTreasury(SyncAPIClient):
             base_url=base_url or str(self.base_url),
             api_key=api_key or self.api_key,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
+            connection_pool_limits=self._limits
+            if isinstance(connection_pool_limits, NotGiven)
+            else connection_pool_limits,
             max_retries=self.max_retries if isinstance(max_retries, NotGiven) else max_retries,
             default_headers=headers,
             default_query=params,
@@ -299,6 +309,8 @@ class AsyncModernTreasury(AsyncAPIClient):
         transport: Optional[Transport] = None,
         # See httpx documentation for [proxies](https://www.python-httpx.org/advanced/#http-proxying)
         proxies: Optional[ProxiesTypes] = None,
+        # See httpx documentation for [limits](https://www.python-httpx.org/advanced/#pool-limit-configuration)
+        connection_pool_limits: httpx.Limits | None = DEFAULT_LIMITS,
         # Enable or disable schema validation for data returned by the API.
         # When enabled an error APIResponseValidationError is raised
         # if the API responds with invalid data for the expected schema.
@@ -332,6 +344,7 @@ class AsyncModernTreasury(AsyncAPIClient):
             timeout=timeout,
             transport=transport,
             proxies=proxies,
+            limits=connection_pool_limits,
             custom_headers=default_headers,
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
@@ -396,6 +409,7 @@ class AsyncModernTreasury(AsyncAPIClient):
         api_key: str | None = None,
         base_url: str | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
+        connection_pool_limits: httpx.Limits | NotGiven = NOT_GIVEN,
         max_retries: int | NotGiven = NOT_GIVEN,
         default_headers: Mapping[str, str] | None = None,
         set_default_headers: Mapping[str, str] | None = None,
@@ -433,6 +447,9 @@ class AsyncModernTreasury(AsyncAPIClient):
             base_url=base_url or str(self.base_url),
             api_key=api_key or self.api_key,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
+            connection_pool_limits=self._limits
+            if isinstance(connection_pool_limits, NotGiven)
+            else connection_pool_limits,
             max_retries=self.max_retries if isinstance(max_retries, NotGiven) else max_retries,
             default_headers=headers,
             default_query=params,

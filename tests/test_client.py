@@ -22,7 +22,7 @@ api_key = os.environ.get("API_KEY", "something1234")
 
 
 def _get_params(client: BaseClient) -> dict[str, str]:
-    request = client.build_request(FinalRequestOptions(method="get", url="/foo"))
+    request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
     url = httpx.URL(request.url)
     return dict(url.params)
 
@@ -184,7 +184,7 @@ class TestModernTreasury:
             organization_id="my-organization-ID",
             default_headers={"X-Foo": "bar"},
         )
-        request = client.build_request(FinalRequestOptions(method="get", url="/foo"))
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
@@ -198,7 +198,7 @@ class TestModernTreasury:
                 "X-Stainless-Lang": "my-overriding-header",
             },
         )
-        request = client2.build_request(FinalRequestOptions(method="get", url="/foo"))
+        request = client2._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
@@ -206,7 +206,7 @@ class TestModernTreasury:
         client = ModernTreasury(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
         )
-        request = client.build_request(FinalRequestOptions(method="get", url="/foo"))
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert "Basic" in request.headers.get("Authorization")
 
         with pytest.raises(
@@ -216,7 +216,7 @@ class TestModernTreasury:
             client2 = ModernTreasury(
                 base_url=base_url, api_key=None, _strict_response_validation=True, organization_id="my-organization-ID"
             )
-            client2.build_request(FinalRequestOptions(method="get", url="/foo"))
+            client2._build_request(FinalRequestOptions(method="get", url="/foo"))
 
     def test_default_query_option(self) -> None:
         client = ModernTreasury(
@@ -226,11 +226,11 @@ class TestModernTreasury:
             organization_id="my-organization-ID",
             default_query={"query_param": "bar"},
         )
-        request = client.build_request(FinalRequestOptions(method="get", url="/foo"))
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         url = httpx.URL(request.url)
         assert dict(url.params) == {"query_param": "bar"}
 
-        request = client.build_request(
+        request = client._build_request(
             FinalRequestOptions(
                 method="get",
                 url="/foo",
@@ -241,7 +241,7 @@ class TestModernTreasury:
         assert dict(url.params) == {"foo": "baz", "query_param": "overriden"}
 
     def test_request_extra_json(self) -> None:
-        request = self.client.build_request(
+        request = self.client._build_request(
             FinalRequestOptions(
                 method="post",
                 url="/foo",
@@ -252,7 +252,7 @@ class TestModernTreasury:
         data = json.loads(request.content.decode("utf-8"))
         assert data == {"foo": "bar", "baz": False}
 
-        request = self.client.build_request(
+        request = self.client._build_request(
             FinalRequestOptions(
                 method="post",
                 url="/foo",
@@ -263,7 +263,7 @@ class TestModernTreasury:
         assert data == {"baz": False}
 
         # `extra_json` takes priority over `json_data` when keys clash
-        request = self.client.build_request(
+        request = self.client._build_request(
             FinalRequestOptions(
                 method="post",
                 url="/foo",
@@ -275,7 +275,7 @@ class TestModernTreasury:
         assert data == {"foo": "bar", "baz": None}
 
     def test_request_extra_headers(self) -> None:
-        request = self.client.build_request(
+        request = self.client._build_request(
             FinalRequestOptions(
                 method="post",
                 url="/foo",
@@ -285,7 +285,7 @@ class TestModernTreasury:
         assert request.headers.get("X-Foo") == "Foo"
 
         # `extra_headers` takes priority over `default_headers` when keys clash
-        request = self.client.with_options(default_headers={"X-Bar": "true"}).build_request(
+        request = self.client.with_options(default_headers={"X-Bar": "true"})._build_request(
             FinalRequestOptions(
                 method="post",
                 url="/foo",
@@ -297,7 +297,7 @@ class TestModernTreasury:
         assert request.headers.get("X-Bar") == "false"
 
     def test_request_extra_query(self) -> None:
-        request = self.client.build_request(
+        request = self.client._build_request(
             FinalRequestOptions(
                 method="post",
                 url="/foo",
@@ -310,7 +310,7 @@ class TestModernTreasury:
         assert params == {"my_query_param": "Foo"}
 
         # if both `query` and `extra_query` are given, they are merged
-        request = self.client.build_request(
+        request = self.client._build_request(
             FinalRequestOptions(
                 method="post",
                 url="/foo",
@@ -324,7 +324,7 @@ class TestModernTreasury:
         assert params == {"bar": "1", "foo": "2"}
 
         # `extra_query` takes priority over `query` when keys clash
-        request = self.client.build_request(
+        request = self.client._build_request(
             FinalRequestOptions(
                 method="post",
                 url="/foo",
@@ -372,6 +372,30 @@ class TestModernTreasury:
         response = self.client.get("/foo", cast_to=cast(Any, Union[Model1, Model2]))
         assert isinstance(response, Model1)
         assert response.foo == 1
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_idempotency_header_options(self, respx_mock: MockRouter) -> None:
+        respx_mock.post("/foo").mock(return_value=httpx.Response(200, json={}))
+
+        response = self.client.post("/foo", cast_to=httpx.Response)
+
+        header = response.request.headers.get("Idempotency-Key")
+        assert header is not None
+        assert header.startswith("stainless-python-retry")
+
+        response = self.client.post(
+            "/foo",
+            cast_to=httpx.Response,
+            options=make_request_options(extra_headers={"Idempotency-Key": "custom-key"}),
+        )
+        assert response.request.headers.get("Idempotency-Key") == "custom-key"
+
+        response = self.client.post(
+            "/foo",
+            cast_to=httpx.Response,
+            options=make_request_options(extra_headers={"idempotency-key": "custom-key"}),
+        )
+        assert response.request.headers.get("Idempotency-Key") == "custom-key"
 
 
 class TestAsyncModernTreasury:
@@ -513,7 +537,7 @@ class TestAsyncModernTreasury:
             organization_id="my-organization-ID",
             default_headers={"X-Foo": "bar"},
         )
-        request = client.build_request(FinalRequestOptions(method="get", url="/foo"))
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
@@ -527,7 +551,7 @@ class TestAsyncModernTreasury:
                 "X-Stainless-Lang": "my-overriding-header",
             },
         )
-        request = client2.build_request(FinalRequestOptions(method="get", url="/foo"))
+        request = client2._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
@@ -535,7 +559,7 @@ class TestAsyncModernTreasury:
         client = AsyncModernTreasury(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
         )
-        request = client.build_request(FinalRequestOptions(method="get", url="/foo"))
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert "Basic" in request.headers.get("Authorization")
 
         with pytest.raises(
@@ -545,7 +569,7 @@ class TestAsyncModernTreasury:
             client2 = AsyncModernTreasury(
                 base_url=base_url, api_key=None, _strict_response_validation=True, organization_id="my-organization-ID"
             )
-            client2.build_request(FinalRequestOptions(method="get", url="/foo"))
+            client2._build_request(FinalRequestOptions(method="get", url="/foo"))
 
     def test_default_query_option(self) -> None:
         client = AsyncModernTreasury(
@@ -555,11 +579,11 @@ class TestAsyncModernTreasury:
             organization_id="my-organization-ID",
             default_query={"query_param": "bar"},
         )
-        request = client.build_request(FinalRequestOptions(method="get", url="/foo"))
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         url = httpx.URL(request.url)
         assert dict(url.params) == {"query_param": "bar"}
 
-        request = client.build_request(
+        request = client._build_request(
             FinalRequestOptions(
                 method="get",
                 url="/foo",
@@ -570,7 +594,7 @@ class TestAsyncModernTreasury:
         assert dict(url.params) == {"foo": "baz", "query_param": "overriden"}
 
     def test_request_extra_json(self) -> None:
-        request = self.client.build_request(
+        request = self.client._build_request(
             FinalRequestOptions(
                 method="post",
                 url="/foo",
@@ -581,7 +605,7 @@ class TestAsyncModernTreasury:
         data = json.loads(request.content.decode("utf-8"))
         assert data == {"foo": "bar", "baz": False}
 
-        request = self.client.build_request(
+        request = self.client._build_request(
             FinalRequestOptions(
                 method="post",
                 url="/foo",
@@ -592,7 +616,7 @@ class TestAsyncModernTreasury:
         assert data == {"baz": False}
 
         # `extra_json` takes priority over `json_data` when keys clash
-        request = self.client.build_request(
+        request = self.client._build_request(
             FinalRequestOptions(
                 method="post",
                 url="/foo",
@@ -604,7 +628,7 @@ class TestAsyncModernTreasury:
         assert data == {"foo": "bar", "baz": None}
 
     def test_request_extra_headers(self) -> None:
-        request = self.client.build_request(
+        request = self.client._build_request(
             FinalRequestOptions(
                 method="post",
                 url="/foo",
@@ -614,7 +638,7 @@ class TestAsyncModernTreasury:
         assert request.headers.get("X-Foo") == "Foo"
 
         # `extra_headers` takes priority over `default_headers` when keys clash
-        request = self.client.with_options(default_headers={"X-Bar": "true"}).build_request(
+        request = self.client.with_options(default_headers={"X-Bar": "true"})._build_request(
             FinalRequestOptions(
                 method="post",
                 url="/foo",
@@ -626,7 +650,7 @@ class TestAsyncModernTreasury:
         assert request.headers.get("X-Bar") == "false"
 
     def test_request_extra_query(self) -> None:
-        request = self.client.build_request(
+        request = self.client._build_request(
             FinalRequestOptions(
                 method="post",
                 url="/foo",
@@ -639,7 +663,7 @@ class TestAsyncModernTreasury:
         assert params == {"my_query_param": "Foo"}
 
         # if both `query` and `extra_query` are given, they are merged
-        request = self.client.build_request(
+        request = self.client._build_request(
             FinalRequestOptions(
                 method="post",
                 url="/foo",
@@ -653,7 +677,7 @@ class TestAsyncModernTreasury:
         assert params == {"bar": "1", "foo": "2"}
 
         # `extra_query` takes priority over `query` when keys clash
-        request = self.client.build_request(
+        request = self.client._build_request(
             FinalRequestOptions(
                 method="post",
                 url="/foo",
@@ -701,3 +725,27 @@ class TestAsyncModernTreasury:
         response = await self.client.get("/foo", cast_to=cast(Any, Union[Model1, Model2]))
         assert isinstance(response, Model1)
         assert response.foo == 1
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_idempotency_header_options(self, respx_mock: MockRouter) -> None:
+        respx_mock.post("/foo").mock(return_value=httpx.Response(200, json={}))
+
+        response = await self.client.post("/foo", cast_to=httpx.Response)
+
+        header = response.request.headers.get("Idempotency-Key")
+        assert header is not None
+        assert header.startswith("stainless-python-retry")
+
+        response = await self.client.post(
+            "/foo",
+            cast_to=httpx.Response,
+            options=make_request_options(extra_headers={"Idempotency-Key": "custom-key"}),
+        )
+        assert response.request.headers.get("Idempotency-Key") == "custom-key"
+
+        response = await self.client.post(
+            "/foo",
+            cast_to=httpx.Response,
+            options=make_request_options(extra_headers={"idempotency-key": "custom-key"}),
+        )
+        assert response.request.headers.get("Idempotency-Key") == "custom-key"
