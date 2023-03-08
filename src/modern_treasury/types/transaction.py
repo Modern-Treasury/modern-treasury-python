@@ -115,6 +115,7 @@ class Transaction(BaseModel):
             "bankprov",
             "bnk_dev",
             "cleartouch",
+            "column",
             "cross_river",
             "currencycloud",
             "dc_bank",
