@@ -78,13 +78,13 @@ class IncomingPaymentDetails(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        as_of_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
+        as_of_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         status: Literal["completed", "pending", "returned"] | NotGiven = NOT_GIVEN,
         type: Literal["ach", "book", "check", "eft", "interac", "rtp", "sepa", "signet", "wire"] | NotGiven = NOT_GIVEN,
-        as_of_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
-        as_of_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         virtual_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -96,23 +96,23 @@ class IncomingPaymentDetails(SyncAPIResource):
         Get a list of Incoming Payment Details.
 
         Args:
+          as_of_date_end: Filters incoming payment details with an as_of_date starting on or before the
+              specified date (YYYY-MM-DD).
+
+          as_of_date_start: Filters incoming payment details with an as_of_date starting on or after the
+              specified date (YYYY-MM-DD).
+
           direction: One of `credit` or `debit`.
+
+          metadata: For example, if you want to query for records with metadata key `Type` and value
+              `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+              parameters.
 
           status: The current status of the incoming payment order. One of `pending`, `completed`,
               or `returned`.
 
           type: One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
               `wire`.
-
-          as_of_date_start: Filters incoming payment details with an as_of_date starting on or after the
-              specified date (YYYY-MM-DD).
-
-          as_of_date_end: Filters incoming payment details with an as_of_date starting on or before the
-              specified date (YYYY-MM-DD).
-
-          metadata: For example, if you want to query for records with metadata key `Type` and value
-              `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
-              parameters.
 
           virtual_account_id: If the incoming payment detail is in a virtual account, the ID of the Virtual
               Account.
@@ -151,13 +151,13 @@ class IncomingPaymentDetails(SyncAPIResource):
     def create_async(
         self,
         *,
-        type: Literal["ach", "book", "check", "eft", "interac", "rtp", "sepa", "signet", "wire"] | NotGiven = NOT_GIVEN,
-        direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         amount: int | NotGiven = NOT_GIVEN,
-        currency: shared_params.Currency | NotGiven = NOT_GIVEN,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
-        virtual_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         as_of_date: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
+        currency: shared_params.Currency | NotGiven = NOT_GIVEN,
+        direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
+        internal_account_id: str | NotGiven = NOT_GIVEN,
+        type: Literal["ach", "book", "check", "eft", "interac", "rtp", "sepa", "signet", "wire"] | NotGiven = NOT_GIVEN,
+        virtual_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -168,21 +168,21 @@ class IncomingPaymentDetails(SyncAPIResource):
         Simulate Incoming Payment Detail
 
         Args:
-          type: One of `ach`, `wire`, `check`.
-
-          direction: One of `credit`, `debit`.
-
           amount: Value in specified currency's smallest unit. e.g. $10 would be represented
               as 1000.
 
+          as_of_date: Defaults to today.
+
           currency: Defaults to the currency of the originating account.
+
+          direction: One of `credit`, `debit`.
 
           internal_account_id: The ID of one of your internal accounts.
 
+          type: One of `ach`, `wire`, `check`.
+
           virtual_account_id: An optional parameter to associate the incoming payment detail to a virtual
               account.
-
-          as_of_date: Defaults to today.
 
           extra_headers: Send extra headers
 
@@ -264,13 +264,13 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        as_of_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
+        as_of_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         status: Literal["completed", "pending", "returned"] | NotGiven = NOT_GIVEN,
         type: Literal["ach", "book", "check", "eft", "interac", "rtp", "sepa", "signet", "wire"] | NotGiven = NOT_GIVEN,
-        as_of_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
-        as_of_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         virtual_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -282,23 +282,23 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         Get a list of Incoming Payment Details.
 
         Args:
+          as_of_date_end: Filters incoming payment details with an as_of_date starting on or before the
+              specified date (YYYY-MM-DD).
+
+          as_of_date_start: Filters incoming payment details with an as_of_date starting on or after the
+              specified date (YYYY-MM-DD).
+
           direction: One of `credit` or `debit`.
+
+          metadata: For example, if you want to query for records with metadata key `Type` and value
+              `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+              parameters.
 
           status: The current status of the incoming payment order. One of `pending`, `completed`,
               or `returned`.
 
           type: One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
               `wire`.
-
-          as_of_date_start: Filters incoming payment details with an as_of_date starting on or after the
-              specified date (YYYY-MM-DD).
-
-          as_of_date_end: Filters incoming payment details with an as_of_date starting on or before the
-              specified date (YYYY-MM-DD).
-
-          metadata: For example, if you want to query for records with metadata key `Type` and value
-              `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
-              parameters.
 
           virtual_account_id: If the incoming payment detail is in a virtual account, the ID of the Virtual
               Account.
@@ -337,13 +337,13 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
     async def create_async(
         self,
         *,
-        type: Literal["ach", "book", "check", "eft", "interac", "rtp", "sepa", "signet", "wire"] | NotGiven = NOT_GIVEN,
-        direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         amount: int | NotGiven = NOT_GIVEN,
-        currency: shared_params.Currency | NotGiven = NOT_GIVEN,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
-        virtual_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         as_of_date: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
+        currency: shared_params.Currency | NotGiven = NOT_GIVEN,
+        direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
+        internal_account_id: str | NotGiven = NOT_GIVEN,
+        type: Literal["ach", "book", "check", "eft", "interac", "rtp", "sepa", "signet", "wire"] | NotGiven = NOT_GIVEN,
+        virtual_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -354,21 +354,21 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         Simulate Incoming Payment Detail
 
         Args:
-          type: One of `ach`, `wire`, `check`.
-
-          direction: One of `credit`, `debit`.
-
           amount: Value in specified currency's smallest unit. e.g. $10 would be represented
               as 1000.
 
+          as_of_date: Defaults to today.
+
           currency: Defaults to the currency of the originating account.
+
+          direction: One of `credit`, `debit`.
 
           internal_account_id: The ID of one of your internal accounts.
 
+          type: One of `ach`, `wire`, `check`.
+
           virtual_account_id: An optional parameter to associate the incoming payment detail to a virtual
               account.
-
-          as_of_date: Defaults to today.
 
           extra_headers: Send extra headers
 

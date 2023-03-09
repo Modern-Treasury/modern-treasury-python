@@ -25,13 +25,13 @@ class LedgerAccountCategories(SyncAPIResource):
     def create(
         self,
         *,
+        currency: str,
+        ledger_id: str,
         name: str,
+        normal_balance: Literal["credit", "debit"],
+        currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        currency: str,
-        currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
-        ledger_id: str,
-        normal_balance: Literal["credit", "debit"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -42,20 +42,20 @@ class LedgerAccountCategories(SyncAPIResource):
         Create a ledger account category.
 
         Args:
+          currency: The currency of the ledger account category.
+
+          ledger_id: The id of the ledger that this account category belongs to.
+
           name: The name of the ledger account category.
+
+          normal_balance: The normal balance of the ledger account category.
+
+          currency_exponent: The currency exponent of the ledger account category.
 
           description: The description of the ledger account category.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
-
-          currency: The currency of the ledger account category.
-
-          currency_exponent: The currency exponent of the ledger account category.
-
-          ledger_id: The id of the ledger that this account category belongs to.
-
-          normal_balance: The normal balance of the ledger account category.
 
           extra_headers: Send extra headers
 
@@ -124,9 +124,9 @@ class LedgerAccountCategories(SyncAPIResource):
         self,
         id: str,
         *,
-        name: str | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -137,12 +137,12 @@ class LedgerAccountCategories(SyncAPIResource):
         Update the details of a ledger account category.
 
         Args:
-          name: The name of the ledger account category.
-
           description: The description of the ledger account category.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
+
+          name: The name of the ledger account category.
 
           extra_headers: Send extra headers
 
@@ -168,11 +168,11 @@ class LedgerAccountCategories(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        ledger_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        ledger_id: str | NotGiven = NOT_GIVEN,
         parent_ledger_account_category_id: str | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -315,13 +315,13 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
     async def create(
         self,
         *,
+        currency: str,
+        ledger_id: str,
         name: str,
+        normal_balance: Literal["credit", "debit"],
+        currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        currency: str,
-        currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
-        ledger_id: str,
-        normal_balance: Literal["credit", "debit"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -332,20 +332,20 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         Create a ledger account category.
 
         Args:
+          currency: The currency of the ledger account category.
+
+          ledger_id: The id of the ledger that this account category belongs to.
+
           name: The name of the ledger account category.
+
+          normal_balance: The normal balance of the ledger account category.
+
+          currency_exponent: The currency exponent of the ledger account category.
 
           description: The description of the ledger account category.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
-
-          currency: The currency of the ledger account category.
-
-          currency_exponent: The currency exponent of the ledger account category.
-
-          ledger_id: The id of the ledger that this account category belongs to.
-
-          normal_balance: The normal balance of the ledger account category.
 
           extra_headers: Send extra headers
 
@@ -414,9 +414,9 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         self,
         id: str,
         *,
-        name: str | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -427,12 +427,12 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         Update the details of a ledger account category.
 
         Args:
-          name: The name of the ledger account category.
-
           description: The description of the ledger account category.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
+
+          name: The name of the ledger account category.
 
           extra_headers: Send extra headers
 
@@ -458,11 +458,11 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        ledger_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        ledger_id: str | NotGiven = NOT_GIVEN,
         parent_ledger_account_category_id: str | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

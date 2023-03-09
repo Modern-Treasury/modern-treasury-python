@@ -36,10 +36,10 @@ class PaperItems(SyncAPIResource):
     def list(
         self,
         *,
-        lockbox_number: str | NotGiven = NOT_GIVEN,
-        deposit_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
-        deposit_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        deposit_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
+        deposit_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
+        lockbox_number: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -51,12 +51,12 @@ class PaperItems(SyncAPIResource):
         Get a list of all paper items.
 
         Args:
-          lockbox_number: Specify `lockbox_number` if you wish to see paper items that are associated with
-              a specific lockbox number.
+          deposit_date_end: Specify an inclusive end date (YYYY-MM-DD) when filtering by deposit_date
 
           deposit_date_start: Specify an inclusive start date (YYYY-MM-DD) when filtering by deposit_date
 
-          deposit_date_end: Specify an inclusive end date (YYYY-MM-DD) when filtering by deposit_date
+          lockbox_number: Specify `lockbox_number` if you wish to see paper items that are associated with
+              a specific lockbox number.
 
           extra_headers: Send extra headers
 
@@ -107,10 +107,10 @@ class AsyncPaperItems(AsyncAPIResource):
     def list(
         self,
         *,
-        lockbox_number: str | NotGiven = NOT_GIVEN,
-        deposit_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
-        deposit_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        deposit_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
+        deposit_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
+        lockbox_number: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -122,12 +122,12 @@ class AsyncPaperItems(AsyncAPIResource):
         Get a list of all paper items.
 
         Args:
-          lockbox_number: Specify `lockbox_number` if you wish to see paper items that are associated with
-              a specific lockbox number.
+          deposit_date_end: Specify an inclusive end date (YYYY-MM-DD) when filtering by deposit_date
 
           deposit_date_start: Specify an inclusive start date (YYYY-MM-DD) when filtering by deposit_date
 
-          deposit_date_end: Specify an inclusive end date (YYYY-MM-DD) when filtering by deposit_date
+          lockbox_number: Specify `lockbox_number` if you wish to see paper items that are associated with
+              a specific lockbox number.
 
           extra_headers: Send extra headers
 

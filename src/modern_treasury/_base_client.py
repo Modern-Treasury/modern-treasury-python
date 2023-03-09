@@ -126,7 +126,7 @@ class BasePage(GenericModel, Generic[ModelT]):
     def next_page_info(self) -> Optional[PageInfo]:
         ...
 
-    def _get_page_items(self) -> Iterable[ModelT]:
+    def _get_page_items(self) -> Iterable[ModelT]:  # type: ignore[empty-body]
         ...
 
     def _params_from_url(self, url: URL) -> httpx.QueryParams:
@@ -298,7 +298,11 @@ class BaseClient:
         self._strict_response_validation = _strict_response_validation
         self._idempotency_header = None
 
-    def _make_status_error(self, request: httpx.Request, response: httpx.Response) -> APIStatusError:
+    def _make_status_error_from_response(
+        self,
+        request: httpx.Request,
+        response: httpx.Response,
+    ) -> APIStatusError:
         err_text = response.text.strip()
         body = err_text
 
@@ -308,6 +312,11 @@ class BaseClient:
         except Exception:
             err_msg = err_text or f"Error code: {response.status_code}"
 
+        return self._make_status_error(err_msg, body=body, request=request, response=response)
+
+    def _make_status_error(
+        self, err_msg: str, *, body: object, request: httpx.Request, response: httpx.Response
+    ) -> APIStatusError:
         if response.status_code == 400:
             return exceptions.BadRequestError(err_msg, request=request, response=response, body=body)
         if response.status_code == 401:
@@ -436,7 +445,12 @@ class BaseClient:
                 try:
                     return cast(
                         ResponseT,
-                        self._process_response(cast_to=member, options=options, response=response, _strict=True),
+                        self._process_response(
+                            cast_to=member,
+                            options=options,
+                            response=response,
+                            _strict=True,
+                        ),
                     )
                 except Exception:
                     continue
@@ -444,7 +458,10 @@ class BaseClient:
             # If nobody matches exactly, try again loosely.
             for member in members:
                 try:
-                    return cast(ResponseT, self._process_response(cast_to=member, options=options, response=response))
+                    return cast(
+                        ResponseT,
+                        self._process_response(cast_to=member, options=options, response=response),
+                    )
                 except Exception:
                     continue
 
@@ -656,7 +673,7 @@ class SyncAPIClient(BaseClient):
         except httpx.HTTPStatusError as err:  # thrown on 4xx and 5xx status code
             if retries > 0 and self._should_retry(err.response):
                 return self._retry_request(options, cast_to, retries, err.response.headers)
-            raise self._make_status_error(request, err.response) from None
+            raise self._make_status_error_from_response(request, err.response) from None
         except httpx.TimeoutException as err:
             if retries > 0:
                 return self._retry_request(options, cast_to, retries)
@@ -827,7 +844,7 @@ class AsyncAPIClient(BaseClient):
         except httpx.HTTPStatusError as err:  # thrown on 4xx and 5xx status code
             if retries > 0 and self._should_retry(err.response):
                 return await self._retry_request(options, cast_to, retries, err.response.headers)
-            raise self._make_status_error(request, err.response) from None
+            raise self._make_status_error_from_response(request, err.response) from None
         except httpx.ConnectTimeout as err:
             if retries > 0:
                 return await self._retry_request(options, cast_to, retries)
