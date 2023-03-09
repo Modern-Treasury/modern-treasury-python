@@ -34,6 +34,7 @@ class PaymentReference(BaseModel):
         "bofa_end_to_end_id",
         "bofa_transaction_id",
         "check_number",
+        "column_transfer_id",
         "cross_river_payment_id",
         "cross_river_transaction_id",
         "currencycloud_conversion_id",
