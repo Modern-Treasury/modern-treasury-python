@@ -27,20 +27,20 @@ class ExpectedPayments(SyncAPIResource):
     def create(
         self,
         *,
-        amount_upper_bound: int,
         amount_lower_bound: int,
+        amount_upper_bound: int,
         direction: Literal["credit", "debit"],
         internal_account_id: str,
-        type: ExpectedPaymentType | NotGiven = NOT_GIVEN,
-        currency: shared_params.Currency | NotGiven = NOT_GIVEN,
-        date_upper_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
-        date_lower_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
-        remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
+        currency: shared_params.Currency | NotGiven = NOT_GIVEN,
+        date_lower_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
+        date_upper_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
         line_items: List[expected_payment_create_params.LineItem] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
+        statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
+        type: ExpectedPaymentType | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -51,10 +51,10 @@ class ExpectedPayments(SyncAPIResource):
         create expected payment
 
         Args:
-          amount_upper_bound: The highest amount this expected payment may be equal to. Value in specified
+          amount_lower_bound: The lowest amount this expected payment may be equal to. Value in specified
               currency's smallest unit. e.g. $10 would be represented as 1000.
 
-          amount_lower_bound: The lowest amount this expected payment may be equal to. Value in specified
+          amount_upper_bound: The highest amount this expected payment may be equal to. Value in specified
               currency's smallest unit. e.g. $10 would be represented as 1000.
 
           direction: One of credit or debit. When you are receiving money, use credit. When you are
@@ -62,30 +62,30 @@ class ExpectedPayments(SyncAPIResource):
 
           internal_account_id: The ID of the Internal Account for the expected payment.
 
-          type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
-              sepa, signet, wire.
+          counterparty_id: The ID of the counterparty you expect for this payment.
 
           currency: Must conform to ISO 4217. Defaults to the currency of the internal account.
 
-          date_upper_bound: The latest date the payment may come in. Format: yyyy-mm-dd
-
           date_lower_bound: The earliest date the payment may come in. Format: yyyy-mm-dd
 
+          date_upper_bound: The latest date the payment may come in. Format: yyyy-mm-dd
+
           description: An optional description for internal use.
+
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
+
+          remittance_information: For `ach`, this field will be passed through on an addenda record. For `wire`
+              payments the field will be passed through as the "Originator to Beneficiary
+              Information", also known as OBI or Fedwire tag 6000.
 
           statement_descriptor: The statement description you expect to see on the transaction. For ACH
               payments, this will be the full line item passed from the bank. For wire
               payments, this will be the OBI field on the wire. For check payments, this will
               be the memo field.
 
-          metadata: Additional data represented as key-value pairs. Both the key and value must be
-              strings.
-
-          counterparty_id: The ID of the counterparty you expect for this payment.
-
-          remittance_information: For `ach`, this field will be passed through on an addenda record. For `wire`
-              payments the field will be passed through as the "Originator to Beneficiary
-              Information", also known as OBI or Fedwire tag 6000.
+          type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
+              sepa, signet, wire.
 
           extra_headers: Send extra headers
 
@@ -139,19 +139,19 @@ class ExpectedPayments(SyncAPIResource):
         self,
         id: str,
         *,
-        amount_upper_bound: int | NotGiven = NOT_GIVEN,
         amount_lower_bound: int | NotGiven = NOT_GIVEN,
+        amount_upper_bound: int | NotGiven = NOT_GIVEN,
+        counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
+        currency: shared_params.Currency | NotGiven = NOT_GIVEN,
+        date_lower_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
+        date_upper_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         internal_account_id: str | NotGiven = NOT_GIVEN,
-        type: ExpectedPaymentType | NotGiven = NOT_GIVEN,
-        currency: shared_params.Currency | NotGiven = NOT_GIVEN,
-        date_upper_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
-        date_lower_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
         remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
+        statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
+        type: ExpectedPaymentType | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -162,41 +162,41 @@ class ExpectedPayments(SyncAPIResource):
         update expected payment
 
         Args:
+          amount_lower_bound: The lowest amount this expected payment may be equal to. Value in specified
+              currency's smallest unit. e.g. $10 would be represented as 1000.
+
           amount_upper_bound: The highest amount this expected payment may be equal to. Value in specified
               currency's smallest unit. e.g. $10 would be represented as 1000.
 
-          amount_lower_bound: The lowest amount this expected payment may be equal to. Value in specified
-              currency's smallest unit. e.g. $10 would be represented as 1000.
+          counterparty_id: The ID of the counterparty you expect for this payment.
+
+          currency: Must conform to ISO 4217. Defaults to the currency of the internal account.
+
+          date_lower_bound: The earliest date the payment may come in. Format: yyyy-mm-dd
+
+          date_upper_bound: The latest date the payment may come in. Format: yyyy-mm-dd
+
+          description: An optional description for internal use.
 
           direction: One of credit or debit. When you are receiving money, use credit. When you are
               being charged, use debit.
 
           internal_account_id: The ID of the Internal Account for the expected payment.
 
-          type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
-              sepa, signet, wire.
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
 
-          currency: Must conform to ISO 4217. Defaults to the currency of the internal account.
-
-          date_upper_bound: The latest date the payment may come in. Format: yyyy-mm-dd
-
-          date_lower_bound: The earliest date the payment may come in. Format: yyyy-mm-dd
-
-          description: An optional description for internal use.
+          remittance_information: For `ach`, this field will be passed through on an addenda record. For `wire`
+              payments the field will be passed through as the "Originator to Beneficiary
+              Information", also known as OBI or Fedwire tag 6000.
 
           statement_descriptor: The statement description you expect to see on the transaction. For ACH
               payments, this will be the full line item passed from the bank. For wire
               payments, this will be the OBI field on the wire. For check payments, this will
               be the memo field.
 
-          metadata: Additional data represented as key-value pairs. Both the key and value must be
-              strings.
-
-          counterparty_id: The ID of the counterparty you expect for this payment.
-
-          remittance_information: For `ach`, this field will be passed through on an addenda record. For `wire`
-              payments the field will be passed through as the "Originator to Beneficiary
-              Information", also known as OBI or Fedwire tag 6000.
+          type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
+              sepa, signet, wire.
 
           extra_headers: Send extra headers
 
@@ -232,10 +232,14 @@ class ExpectedPayments(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        counterparty_id: str | NotGiven = NOT_GIVEN,
+        created_at_lower_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        created_at_upper_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
+        internal_account_id: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         status: Literal["archived", "reconciled", "unreconciled"] | NotGiven = NOT_GIVEN,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
-        direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         type: Literal[
             "ach",
             "au_becs",
@@ -256,10 +260,6 @@ class ExpectedPayments(SyncAPIResource):
             "wire",
         ]
         | NotGiven = NOT_GIVEN,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        created_at_lower_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        created_at_upper_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -270,24 +270,24 @@ class ExpectedPayments(SyncAPIResource):
         list expected_payments
 
         Args:
-          status: One of unreconciled, reconciled, or archived.
+          counterparty_id: Specify counterparty_id to see expected_payments for a specific account.
 
-          internal_account_id: Specify internal_account_id to see expected_payments for a specific account.
+          created_at_lower_bound: Used to return expected payments created after some datetime
+
+          created_at_upper_bound: Used to return expected payments created before some datetime
 
           direction: One of credit, debit
 
-          type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp,sen,
-              sepa, signet, wire
-
-          counterparty_id: Specify counterparty_id to see expected_payments for a specific account.
+          internal_account_id: Specify internal_account_id to see expected_payments for a specific account.
 
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
 
-          created_at_lower_bound: Used to return expected payments created after some datetime
+          status: One of unreconciled, reconciled, or archived.
 
-          created_at_upper_bound: Used to return expected payments created before some datetime
+          type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp,sen,
+              sepa, signet, wire
 
           extra_headers: Send extra headers
 
@@ -343,20 +343,20 @@ class AsyncExpectedPayments(AsyncAPIResource):
     async def create(
         self,
         *,
-        amount_upper_bound: int,
         amount_lower_bound: int,
+        amount_upper_bound: int,
         direction: Literal["credit", "debit"],
         internal_account_id: str,
-        type: ExpectedPaymentType | NotGiven = NOT_GIVEN,
-        currency: shared_params.Currency | NotGiven = NOT_GIVEN,
-        date_upper_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
-        date_lower_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
-        remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
+        currency: shared_params.Currency | NotGiven = NOT_GIVEN,
+        date_lower_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
+        date_upper_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
         line_items: List[expected_payment_create_params.LineItem] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
+        statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
+        type: ExpectedPaymentType | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -367,10 +367,10 @@ class AsyncExpectedPayments(AsyncAPIResource):
         create expected payment
 
         Args:
-          amount_upper_bound: The highest amount this expected payment may be equal to. Value in specified
+          amount_lower_bound: The lowest amount this expected payment may be equal to. Value in specified
               currency's smallest unit. e.g. $10 would be represented as 1000.
 
-          amount_lower_bound: The lowest amount this expected payment may be equal to. Value in specified
+          amount_upper_bound: The highest amount this expected payment may be equal to. Value in specified
               currency's smallest unit. e.g. $10 would be represented as 1000.
 
           direction: One of credit or debit. When you are receiving money, use credit. When you are
@@ -378,30 +378,30 @@ class AsyncExpectedPayments(AsyncAPIResource):
 
           internal_account_id: The ID of the Internal Account for the expected payment.
 
-          type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
-              sepa, signet, wire.
+          counterparty_id: The ID of the counterparty you expect for this payment.
 
           currency: Must conform to ISO 4217. Defaults to the currency of the internal account.
 
-          date_upper_bound: The latest date the payment may come in. Format: yyyy-mm-dd
-
           date_lower_bound: The earliest date the payment may come in. Format: yyyy-mm-dd
 
+          date_upper_bound: The latest date the payment may come in. Format: yyyy-mm-dd
+
           description: An optional description for internal use.
+
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
+
+          remittance_information: For `ach`, this field will be passed through on an addenda record. For `wire`
+              payments the field will be passed through as the "Originator to Beneficiary
+              Information", also known as OBI or Fedwire tag 6000.
 
           statement_descriptor: The statement description you expect to see on the transaction. For ACH
               payments, this will be the full line item passed from the bank. For wire
               payments, this will be the OBI field on the wire. For check payments, this will
               be the memo field.
 
-          metadata: Additional data represented as key-value pairs. Both the key and value must be
-              strings.
-
-          counterparty_id: The ID of the counterparty you expect for this payment.
-
-          remittance_information: For `ach`, this field will be passed through on an addenda record. For `wire`
-              payments the field will be passed through as the "Originator to Beneficiary
-              Information", also known as OBI or Fedwire tag 6000.
+          type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
+              sepa, signet, wire.
 
           extra_headers: Send extra headers
 
@@ -455,19 +455,19 @@ class AsyncExpectedPayments(AsyncAPIResource):
         self,
         id: str,
         *,
-        amount_upper_bound: int | NotGiven = NOT_GIVEN,
         amount_lower_bound: int | NotGiven = NOT_GIVEN,
+        amount_upper_bound: int | NotGiven = NOT_GIVEN,
+        counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
+        currency: shared_params.Currency | NotGiven = NOT_GIVEN,
+        date_lower_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
+        date_upper_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         internal_account_id: str | NotGiven = NOT_GIVEN,
-        type: ExpectedPaymentType | NotGiven = NOT_GIVEN,
-        currency: shared_params.Currency | NotGiven = NOT_GIVEN,
-        date_upper_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
-        date_lower_bound: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
         remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
+        statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
+        type: ExpectedPaymentType | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -478,41 +478,41 @@ class AsyncExpectedPayments(AsyncAPIResource):
         update expected payment
 
         Args:
+          amount_lower_bound: The lowest amount this expected payment may be equal to. Value in specified
+              currency's smallest unit. e.g. $10 would be represented as 1000.
+
           amount_upper_bound: The highest amount this expected payment may be equal to. Value in specified
               currency's smallest unit. e.g. $10 would be represented as 1000.
 
-          amount_lower_bound: The lowest amount this expected payment may be equal to. Value in specified
-              currency's smallest unit. e.g. $10 would be represented as 1000.
+          counterparty_id: The ID of the counterparty you expect for this payment.
+
+          currency: Must conform to ISO 4217. Defaults to the currency of the internal account.
+
+          date_lower_bound: The earliest date the payment may come in. Format: yyyy-mm-dd
+
+          date_upper_bound: The latest date the payment may come in. Format: yyyy-mm-dd
+
+          description: An optional description for internal use.
 
           direction: One of credit or debit. When you are receiving money, use credit. When you are
               being charged, use debit.
 
           internal_account_id: The ID of the Internal Account for the expected payment.
 
-          type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
-              sepa, signet, wire.
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
 
-          currency: Must conform to ISO 4217. Defaults to the currency of the internal account.
-
-          date_upper_bound: The latest date the payment may come in. Format: yyyy-mm-dd
-
-          date_lower_bound: The earliest date the payment may come in. Format: yyyy-mm-dd
-
-          description: An optional description for internal use.
+          remittance_information: For `ach`, this field will be passed through on an addenda record. For `wire`
+              payments the field will be passed through as the "Originator to Beneficiary
+              Information", also known as OBI or Fedwire tag 6000.
 
           statement_descriptor: The statement description you expect to see on the transaction. For ACH
               payments, this will be the full line item passed from the bank. For wire
               payments, this will be the OBI field on the wire. For check payments, this will
               be the memo field.
 
-          metadata: Additional data represented as key-value pairs. Both the key and value must be
-              strings.
-
-          counterparty_id: The ID of the counterparty you expect for this payment.
-
-          remittance_information: For `ach`, this field will be passed through on an addenda record. For `wire`
-              payments the field will be passed through as the "Originator to Beneficiary
-              Information", also known as OBI or Fedwire tag 6000.
+          type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
+              sepa, signet, wire.
 
           extra_headers: Send extra headers
 
@@ -548,10 +548,14 @@ class AsyncExpectedPayments(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        counterparty_id: str | NotGiven = NOT_GIVEN,
+        created_at_lower_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        created_at_upper_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
+        internal_account_id: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         status: Literal["archived", "reconciled", "unreconciled"] | NotGiven = NOT_GIVEN,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
-        direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         type: Literal[
             "ach",
             "au_becs",
@@ -572,10 +576,6 @@ class AsyncExpectedPayments(AsyncAPIResource):
             "wire",
         ]
         | NotGiven = NOT_GIVEN,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        created_at_lower_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        created_at_upper_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -586,24 +586,24 @@ class AsyncExpectedPayments(AsyncAPIResource):
         list expected_payments
 
         Args:
-          status: One of unreconciled, reconciled, or archived.
+          counterparty_id: Specify counterparty_id to see expected_payments for a specific account.
 
-          internal_account_id: Specify internal_account_id to see expected_payments for a specific account.
+          created_at_lower_bound: Used to return expected payments created after some datetime
+
+          created_at_upper_bound: Used to return expected payments created before some datetime
 
           direction: One of credit, debit
 
-          type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp,sen,
-              sepa, signet, wire
-
-          counterparty_id: Specify counterparty_id to see expected_payments for a specific account.
+          internal_account_id: Specify internal_account_id to see expected_payments for a specific account.
 
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
 
-          created_at_lower_bound: Used to return expected payments created after some datetime
+          status: One of unreconciled, reconciled, or archived.
 
-          created_at_upper_bound: Used to return expected payments created before some datetime
+          type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp,sen,
+              sepa, signet, wire
 
           extra_headers: Send extra headers
 

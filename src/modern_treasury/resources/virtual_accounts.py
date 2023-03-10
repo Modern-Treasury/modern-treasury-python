@@ -23,15 +23,15 @@ class VirtualAccounts(SyncAPIResource):
     def create(
         self,
         *,
-        name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
         internal_account_id: str,
+        name: str,
         account_details: List[virtual_account_create_params.AccountDetail] | NotGiven = NOT_GIVEN,
-        routing_details: List[virtual_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
-        debit_ledger_account_id: str | NotGiven = NOT_GIVEN,
+        counterparty_id: str | NotGiven = NOT_GIVEN,
         credit_ledger_account_id: str | NotGiven = NOT_GIVEN,
+        debit_ledger_account_id: str | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        routing_details: List[virtual_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -42,28 +42,28 @@ class VirtualAccounts(SyncAPIResource):
         create virtual_account
 
         Args:
-          name: The name of the virtual account.
-
-          description: An optional description for internal use.
-
-          counterparty_id: The ID of the counterparty that the virtual account belongs to.
-
           internal_account_id: The ID of the internal account that this virtual account is associated with.
+
+          name: The name of the virtual account.
 
           account_details: An array of account detail objects.
 
-          routing_details: An array of routing detail objects.
-
-          debit_ledger_account_id: The ID of a debit normal ledger account. When money enters the virtual account,
-              this ledger account will be debited. Must be accompanied by a
-              credit_ledger_account_id if present.
+          counterparty_id: The ID of the counterparty that the virtual account belongs to.
 
           credit_ledger_account_id: The ID of a credit normal ledger account. When money leaves the virtual account,
               this ledger account will be credited. Must be accompanied by a
               debit_ledger_account_id if present.
 
+          debit_ledger_account_id: The ID of a debit normal ledger account. When money enters the virtual account,
+              this ledger account will be debited. Must be accompanied by a
+              credit_ledger_account_id if present.
+
+          description: An optional description for internal use.
+
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
+
+          routing_details: An array of routing detail objects.
 
           extra_headers: Send extra headers
 
@@ -113,9 +113,9 @@ class VirtualAccounts(SyncAPIResource):
         self,
         id: str,
         *,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -150,10 +150,10 @@ class VirtualAccounts(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
+        internal_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -217,15 +217,15 @@ class AsyncVirtualAccounts(AsyncAPIResource):
     async def create(
         self,
         *,
-        name: str,
-        description: str | NotGiven = NOT_GIVEN,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
         internal_account_id: str,
+        name: str,
         account_details: List[virtual_account_create_params.AccountDetail] | NotGiven = NOT_GIVEN,
-        routing_details: List[virtual_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
-        debit_ledger_account_id: str | NotGiven = NOT_GIVEN,
+        counterparty_id: str | NotGiven = NOT_GIVEN,
         credit_ledger_account_id: str | NotGiven = NOT_GIVEN,
+        debit_ledger_account_id: str | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        routing_details: List[virtual_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -236,28 +236,28 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         create virtual_account
 
         Args:
-          name: The name of the virtual account.
-
-          description: An optional description for internal use.
-
-          counterparty_id: The ID of the counterparty that the virtual account belongs to.
-
           internal_account_id: The ID of the internal account that this virtual account is associated with.
+
+          name: The name of the virtual account.
 
           account_details: An array of account detail objects.
 
-          routing_details: An array of routing detail objects.
-
-          debit_ledger_account_id: The ID of a debit normal ledger account. When money enters the virtual account,
-              this ledger account will be debited. Must be accompanied by a
-              credit_ledger_account_id if present.
+          counterparty_id: The ID of the counterparty that the virtual account belongs to.
 
           credit_ledger_account_id: The ID of a credit normal ledger account. When money leaves the virtual account,
               this ledger account will be credited. Must be accompanied by a
               debit_ledger_account_id if present.
 
+          debit_ledger_account_id: The ID of a debit normal ledger account. When money enters the virtual account,
+              this ledger account will be debited. Must be accompanied by a
+              credit_ledger_account_id if present.
+
+          description: An optional description for internal use.
+
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
+
+          routing_details: An array of routing detail objects.
 
           extra_headers: Send extra headers
 
@@ -307,9 +307,9 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         self,
         id: str,
         *,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -344,10 +344,10 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
+        internal_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

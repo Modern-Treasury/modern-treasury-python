@@ -38,17 +38,17 @@ class LedgerEntries(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        ledger_account_id: str | NotGiven = NOT_GIVEN,
-        ledger_transaction_id: str | NotGiven = NOT_GIVEN,
-        effective_date: Dict[str, Union[str, date]] | NotGiven = NOT_GIVEN,
-        effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
-        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        ledger_account_lock_version: Dict[str, int] | NotGiven = NOT_GIVEN,
-        ledger_account_category_id: str | NotGiven = NOT_GIVEN,
-        show_deleted: bool | NotGiven = NOT_GIVEN,
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
+        effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
+        effective_date: Dict[str, Union[str, date]] | NotGiven = NOT_GIVEN,
+        ledger_account_category_id: str | NotGiven = NOT_GIVEN,
+        ledger_account_id: str | NotGiven = NOT_GIVEN,
+        ledger_account_lock_version: Dict[str, int] | NotGiven = NOT_GIVEN,
+        ledger_transaction_id: str | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
+        show_deleted: bool | NotGiven = NOT_GIVEN,
         status: Literal["pending", "posted", "archived"] | NotGiven = NOT_GIVEN,
+        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -59,34 +59,34 @@ class LedgerEntries(SyncAPIResource):
         Get a list of all ledger entries.
 
         Args:
-          effective_date: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
-              transaction's effective date. Format YYYY-MM-DD
+          direction: If true, response will include ledger entries that were deleted. When you update
+              a ledger transaction to specify a new set of entries, the previous entries are
+              deleted.
 
           effective_at: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
               transaction's effective time. Format ISO8601
 
-          updated_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
-              posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
-              updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
+          effective_date: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
+              transaction's effective date. Format YYYY-MM-DD
+
+          ledger_account_category_id: Get all ledger entries that match the direction specified. One of `credit`,
+              `debit`.
 
           ledger_account_lock_version: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               lock_version of a ledger account. For example, for all entries created at or
               before before lock_version 1000 of a ledger account, use
               ledger_account_lock_version%5Blte%5D=1000
 
-          ledger_account_category_id: Get all ledger entries that match the direction specified. One of `credit`,
-              `debit`.
-
           show_deleted: If true, response will include ledger entries that were deleted. When you update
-              a ledger transaction to specify a new set of entries, the previous entries are
-              deleted.
-
-          direction: If true, response will include ledger entries that were deleted. When you update
               a ledger transaction to specify a new set of entries, the previous entries are
               deleted.
 
           status: Get all ledger entries that match the status specified. One of `pending`,
               `posted`, or `archived`.
+
+          updated_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
+              posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
+              updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
 
           extra_headers: Send extra headers
 
@@ -145,17 +145,17 @@ class AsyncLedgerEntries(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        ledger_account_id: str | NotGiven = NOT_GIVEN,
-        ledger_transaction_id: str | NotGiven = NOT_GIVEN,
-        effective_date: Dict[str, Union[str, date]] | NotGiven = NOT_GIVEN,
-        effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
-        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        ledger_account_lock_version: Dict[str, int] | NotGiven = NOT_GIVEN,
-        ledger_account_category_id: str | NotGiven = NOT_GIVEN,
-        show_deleted: bool | NotGiven = NOT_GIVEN,
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
+        effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
+        effective_date: Dict[str, Union[str, date]] | NotGiven = NOT_GIVEN,
+        ledger_account_category_id: str | NotGiven = NOT_GIVEN,
+        ledger_account_id: str | NotGiven = NOT_GIVEN,
+        ledger_account_lock_version: Dict[str, int] | NotGiven = NOT_GIVEN,
+        ledger_transaction_id: str | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
+        show_deleted: bool | NotGiven = NOT_GIVEN,
         status: Literal["pending", "posted", "archived"] | NotGiven = NOT_GIVEN,
+        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -166,34 +166,34 @@ class AsyncLedgerEntries(AsyncAPIResource):
         Get a list of all ledger entries.
 
         Args:
-          effective_date: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
-              transaction's effective date. Format YYYY-MM-DD
+          direction: If true, response will include ledger entries that were deleted. When you update
+              a ledger transaction to specify a new set of entries, the previous entries are
+              deleted.
 
           effective_at: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
               transaction's effective time. Format ISO8601
 
-          updated_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
-              posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
-              updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
+          effective_date: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
+              transaction's effective date. Format YYYY-MM-DD
+
+          ledger_account_category_id: Get all ledger entries that match the direction specified. One of `credit`,
+              `debit`.
 
           ledger_account_lock_version: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               lock_version of a ledger account. For example, for all entries created at or
               before before lock_version 1000 of a ledger account, use
               ledger_account_lock_version%5Blte%5D=1000
 
-          ledger_account_category_id: Get all ledger entries that match the direction specified. One of `credit`,
-              `debit`.
-
           show_deleted: If true, response will include ledger entries that were deleted. When you update
-              a ledger transaction to specify a new set of entries, the previous entries are
-              deleted.
-
-          direction: If true, response will include ledger entries that were deleted. When you update
               a ledger transaction to specify a new set of entries, the previous entries are
               deleted.
 
           status: Get all ledger entries that match the status specified. One of `pending`,
               `posted`, or `archived`.
+
+          updated_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
+              posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
+              updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
 
           extra_headers: Send extra headers
 
