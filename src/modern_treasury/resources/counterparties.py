@@ -28,12 +28,12 @@ class Counterparties(SyncAPIResource):
         self,
         *,
         name: Optional[str],
+        accounting: counterparty_create_params.Accounting | NotGiven = NOT_GIVEN,
         accounts: List[counterparty_create_params.Account] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
+        ledger_type: Literal["customer", "vendor"] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         send_remittance_advice: bool | NotGiven = NOT_GIVEN,
-        accounting: counterparty_create_params.Accounting | NotGiven = NOT_GIVEN,
-        ledger_type: Literal["customer", "vendor"] | NotGiven = NOT_GIVEN,
         taxpayer_identifier: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -51,14 +51,14 @@ class Counterparties(SyncAPIResource):
 
           email: The counterparty's email.
 
+          ledger_type: An optional type to auto-sync the counterparty to your ledger. Either `customer`
+              or `vendor`.
+
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
           send_remittance_advice: Send an email to the counterparty whenever an associated payment order is sent
               to the bank.
-
-          ledger_type: An optional type to auto-sync the counterparty to your ledger. Either `customer`
-              or `vendor`.
 
           taxpayer_identifier: Either a valid SSN or EIN.
 
@@ -108,9 +108,9 @@ class Counterparties(SyncAPIResource):
         self,
         id: str,
         *,
-        name: str | NotGiven = NOT_GIVEN,
         email: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         send_remittance_advice: bool | NotGiven = NOT_GIVEN,
         taxpayer_identifier: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -123,12 +123,12 @@ class Counterparties(SyncAPIResource):
         Updates a given counterparty with new information.
 
         Args:
-          name: A new name for the counterparty. Will only update if passed.
-
           email: A new email for the counterparty.
 
           metadata: Additional data in the form of key-value pairs. Pairs can be removed by passing
               an empty string or `null` as the value.
+
+          name: A new name for the counterparty. Will only update if passed.
 
           send_remittance_advice: If this is `true`, Modern Treasury will send an email to the counterparty
               whenever an associated payment order is sent to the bank.
@@ -161,12 +161,12 @@ class Counterparties(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        email: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         created_at_lower_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         created_at_upper_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        email: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -177,8 +177,9 @@ class Counterparties(SyncAPIResource):
         Get a paginated list of all counterparties.
 
         Args:
-          name: Performs a partial string match of the name field. This is also case
-              insensitive.
+          created_at_lower_bound: Used to return counterparties created after some datetime.
+
+          created_at_upper_bound: Used to return counterparties created before some datetime.
 
           email: Performs a partial string match of the email field. This is also case
               insensitive.
@@ -187,9 +188,8 @@ class Counterparties(SyncAPIResource):
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
 
-          created_at_lower_bound: Used to return counterparties created after some datetime.
-
-          created_at_upper_bound: Used to return counterparties created before some datetime.
+          name: Performs a partial string match of the name field. This is also case
+              insensitive.
 
           extra_headers: Send extra headers
 
@@ -243,7 +243,7 @@ class Counterparties(SyncAPIResource):
         id: str,
         *,
         direction: Literal["credit", "debit"],
-        send_email: bool | NotGiven = NOT_GIVEN,
+        custom_redirect: str | NotGiven = NOT_GIVEN,
         fields: List[
             Literal[
                 "name",
@@ -270,7 +270,7 @@ class Counterparties(SyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        custom_redirect: str | NotGiven = NOT_GIVEN,
+        send_email: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -285,10 +285,9 @@ class Counterparties(SyncAPIResource):
               Use `debit` when you need to charge a counterparty. This field helps us send a
               more tailored email to your counterparties."
 
-          send_email: By default, Modern Treasury will send an email to your counterparty that
-              includes a link to the form they must fill out. However, if you would like to
-              send the counterparty the link, you can set this parameter to `false`. The JSON
-              body will include the link to the secure Modern Treasury form.
+          custom_redirect: The URL you want your customer to visit upon filling out the form. By default,
+              they will be sent to a Modern Treasury landing page. This must be a valid HTTPS
+              URL if set.
 
           fields: The list of fields you want on the form. This field is optional and if it is not
               set, will default to [\"nameOnAccount\", \"accountType\", \"accountNumber\",
@@ -296,9 +295,10 @@ class Counterparties(SyncAPIResource):
               \"nameOnAccount\", \"taxpayerIdentifier\", \"accountType\", \"accountNumber\",
               \"routingNumber\", \"address\", \"ibanNumber\", \"swiftCode\"].
 
-          custom_redirect: The URL you want your customer to visit upon filling out the form. By default,
-              they will be sent to a Modern Treasury landing page. This must be a valid HTTPS
-              URL if set.
+          send_email: By default, Modern Treasury will send an email to your counterparty that
+              includes a link to the form they must fill out. However, if you would like to
+              send the counterparty the link, you can set this parameter to `false`. The JSON
+              body will include the link to the secure Modern Treasury form.
 
           extra_headers: Send extra headers
 
@@ -327,12 +327,12 @@ class AsyncCounterparties(AsyncAPIResource):
         self,
         *,
         name: Optional[str],
+        accounting: counterparty_create_params.Accounting | NotGiven = NOT_GIVEN,
         accounts: List[counterparty_create_params.Account] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
+        ledger_type: Literal["customer", "vendor"] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         send_remittance_advice: bool | NotGiven = NOT_GIVEN,
-        accounting: counterparty_create_params.Accounting | NotGiven = NOT_GIVEN,
-        ledger_type: Literal["customer", "vendor"] | NotGiven = NOT_GIVEN,
         taxpayer_identifier: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -350,14 +350,14 @@ class AsyncCounterparties(AsyncAPIResource):
 
           email: The counterparty's email.
 
+          ledger_type: An optional type to auto-sync the counterparty to your ledger. Either `customer`
+              or `vendor`.
+
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
           send_remittance_advice: Send an email to the counterparty whenever an associated payment order is sent
               to the bank.
-
-          ledger_type: An optional type to auto-sync the counterparty to your ledger. Either `customer`
-              or `vendor`.
 
           taxpayer_identifier: Either a valid SSN or EIN.
 
@@ -407,9 +407,9 @@ class AsyncCounterparties(AsyncAPIResource):
         self,
         id: str,
         *,
-        name: str | NotGiven = NOT_GIVEN,
         email: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         send_remittance_advice: bool | NotGiven = NOT_GIVEN,
         taxpayer_identifier: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -422,12 +422,12 @@ class AsyncCounterparties(AsyncAPIResource):
         Updates a given counterparty with new information.
 
         Args:
-          name: A new name for the counterparty. Will only update if passed.
-
           email: A new email for the counterparty.
 
           metadata: Additional data in the form of key-value pairs. Pairs can be removed by passing
               an empty string or `null` as the value.
+
+          name: A new name for the counterparty. Will only update if passed.
 
           send_remittance_advice: If this is `true`, Modern Treasury will send an email to the counterparty
               whenever an associated payment order is sent to the bank.
@@ -460,12 +460,12 @@ class AsyncCounterparties(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        email: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         created_at_lower_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         created_at_upper_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        email: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -476,8 +476,9 @@ class AsyncCounterparties(AsyncAPIResource):
         Get a paginated list of all counterparties.
 
         Args:
-          name: Performs a partial string match of the name field. This is also case
-              insensitive.
+          created_at_lower_bound: Used to return counterparties created after some datetime.
+
+          created_at_upper_bound: Used to return counterparties created before some datetime.
 
           email: Performs a partial string match of the email field. This is also case
               insensitive.
@@ -486,9 +487,8 @@ class AsyncCounterparties(AsyncAPIResource):
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
 
-          created_at_lower_bound: Used to return counterparties created after some datetime.
-
-          created_at_upper_bound: Used to return counterparties created before some datetime.
+          name: Performs a partial string match of the name field. This is also case
+              insensitive.
 
           extra_headers: Send extra headers
 
@@ -542,7 +542,7 @@ class AsyncCounterparties(AsyncAPIResource):
         id: str,
         *,
         direction: Literal["credit", "debit"],
-        send_email: bool | NotGiven = NOT_GIVEN,
+        custom_redirect: str | NotGiven = NOT_GIVEN,
         fields: List[
             Literal[
                 "name",
@@ -569,7 +569,7 @@ class AsyncCounterparties(AsyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        custom_redirect: str | NotGiven = NOT_GIVEN,
+        send_email: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -584,10 +584,9 @@ class AsyncCounterparties(AsyncAPIResource):
               Use `debit` when you need to charge a counterparty. This field helps us send a
               more tailored email to your counterparties."
 
-          send_email: By default, Modern Treasury will send an email to your counterparty that
-              includes a link to the form they must fill out. However, if you would like to
-              send the counterparty the link, you can set this parameter to `false`. The JSON
-              body will include the link to the secure Modern Treasury form.
+          custom_redirect: The URL you want your customer to visit upon filling out the form. By default,
+              they will be sent to a Modern Treasury landing page. This must be a valid HTTPS
+              URL if set.
 
           fields: The list of fields you want on the form. This field is optional and if it is not
               set, will default to [\"nameOnAccount\", \"accountType\", \"accountNumber\",
@@ -595,9 +594,10 @@ class AsyncCounterparties(AsyncAPIResource):
               \"nameOnAccount\", \"taxpayerIdentifier\", \"accountType\", \"accountNumber\",
               \"routingNumber\", \"address\", \"ibanNumber\", \"swiftCode\"].
 
-          custom_redirect: The URL you want your customer to visit upon filling out the form. By default,
-              they will be sent to a Modern Treasury landing page. This must be a valid HTTPS
-              URL if set.
+          send_email: By default, Modern Treasury will send an email to your counterparty that
+              includes a link to the form they must fill out. However, if you would like to
+              send the counterparty the link, you can set this parameter to `false`. The JSON
+              body will include the link to the secure Modern Treasury form.
 
           extra_headers: Send extra headers
 

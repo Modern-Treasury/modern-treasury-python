@@ -28,18 +28,18 @@ class ExternalAccounts(SyncAPIResource):
     def create(
         self,
         *,
-        account_type: ExternalAccountType | NotGiven = NOT_GIVEN,
-        party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
-        party_address: external_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str],
         account_details: List[external_account_create_params.AccountDetail] | NotGiven = NOT_GIVEN,
-        routing_details: List[external_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        party_name: str | NotGiven = NOT_GIVEN,
-        party_identifier: str | NotGiven = NOT_GIVEN,
-        plaid_processor_token: str | NotGiven = NOT_GIVEN,
+        account_type: ExternalAccountType | NotGiven = NOT_GIVEN,
         contact_details: List[external_account_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | NotGiven = NOT_GIVEN,
+        party_address: external_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
+        party_identifier: str | NotGiven = NOT_GIVEN,
+        party_name: str | NotGiven = NOT_GIVEN,
+        party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
+        plaid_processor_token: str | NotGiven = NOT_GIVEN,
+        routing_details: List[external_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -52,17 +52,17 @@ class ExternalAccounts(SyncAPIResource):
         Args:
           account_type: Can be `checking`, `savings` or `other`.
 
-          party_type: Either `individual` or `business`.
-
-          party_address: Required if receiving wire payments.
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
 
           name: A nickname for the external account. This is only for internal usage and won't
               affect any payments
 
-          metadata: Additional data represented as key-value pairs. Both the key and value must be
-              strings.
+          party_address: Required if receiving wire payments.
 
           party_name: If this value isn't provided, it will be inherited from the counterparty's name.
+
+          party_type: Either `individual` or `business`.
 
           plaid_processor_token: If you've enabled the Modern Treasury + Plaid integration in your Plaid account,
               you can pass the processor token in this field.
@@ -117,13 +117,13 @@ class ExternalAccounts(SyncAPIResource):
         self,
         id: str,
         *,
-        party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
         account_type: ExternalAccountType | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        party_name: str | NotGiven = NOT_GIVEN,
-        party_address: external_account_update_params.PartyAddress | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | NotGiven = NOT_GIVEN,
+        party_address: external_account_update_params.PartyAddress | NotGiven = NOT_GIVEN,
+        party_name: str | NotGiven = NOT_GIVEN,
+        party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -134,17 +134,17 @@ class ExternalAccounts(SyncAPIResource):
         update external account
 
         Args:
-          party_type: Either `individual` or `business`.
-
           account_type: Can be `checking`, `savings` or `other`.
+
+          metadata: Additional data in the form of key-value pairs. Pairs can be removed by passing
+              an empty string or `null` as the value.
 
           name: A nickname for the external account. This is only for internal usage and won't
               affect any payments
 
           party_name: If this value isn't provided, it will be inherited from the counterparty's name.
 
-          metadata: Additional data in the form of key-value pairs. Pairs can be removed by passing
-              an empty string or `null` as the value.
+          party_type: Either `individual` or `business`.
 
           extra_headers: Send extra headers
 
@@ -174,10 +174,10 @@ class ExternalAccounts(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        party_name: str | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        party_name: str | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -188,11 +188,11 @@ class ExternalAccounts(SyncAPIResource):
         list external accounts
 
         Args:
-          party_name: Searches the ExternalAccount's party_name AND the Counterparty's party_name
-
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
+
+          party_name: Searches the ExternalAccount's party_name AND the Counterparty's party_name
 
           extra_headers: Send extra headers
 
@@ -337,18 +337,18 @@ class AsyncExternalAccounts(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_type: ExternalAccountType | NotGiven = NOT_GIVEN,
-        party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
-        party_address: external_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str],
         account_details: List[external_account_create_params.AccountDetail] | NotGiven = NOT_GIVEN,
-        routing_details: List[external_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        party_name: str | NotGiven = NOT_GIVEN,
-        party_identifier: str | NotGiven = NOT_GIVEN,
-        plaid_processor_token: str | NotGiven = NOT_GIVEN,
+        account_type: ExternalAccountType | NotGiven = NOT_GIVEN,
         contact_details: List[external_account_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | NotGiven = NOT_GIVEN,
+        party_address: external_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
+        party_identifier: str | NotGiven = NOT_GIVEN,
+        party_name: str | NotGiven = NOT_GIVEN,
+        party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
+        plaid_processor_token: str | NotGiven = NOT_GIVEN,
+        routing_details: List[external_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -361,17 +361,17 @@ class AsyncExternalAccounts(AsyncAPIResource):
         Args:
           account_type: Can be `checking`, `savings` or `other`.
 
-          party_type: Either `individual` or `business`.
-
-          party_address: Required if receiving wire payments.
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
 
           name: A nickname for the external account. This is only for internal usage and won't
               affect any payments
 
-          metadata: Additional data represented as key-value pairs. Both the key and value must be
-              strings.
+          party_address: Required if receiving wire payments.
 
           party_name: If this value isn't provided, it will be inherited from the counterparty's name.
+
+          party_type: Either `individual` or `business`.
 
           plaid_processor_token: If you've enabled the Modern Treasury + Plaid integration in your Plaid account,
               you can pass the processor token in this field.
@@ -426,13 +426,13 @@ class AsyncExternalAccounts(AsyncAPIResource):
         self,
         id: str,
         *,
-        party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
         account_type: ExternalAccountType | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        party_name: str | NotGiven = NOT_GIVEN,
-        party_address: external_account_update_params.PartyAddress | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | NotGiven = NOT_GIVEN,
+        party_address: external_account_update_params.PartyAddress | NotGiven = NOT_GIVEN,
+        party_name: str | NotGiven = NOT_GIVEN,
+        party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -443,17 +443,17 @@ class AsyncExternalAccounts(AsyncAPIResource):
         update external account
 
         Args:
-          party_type: Either `individual` or `business`.
-
           account_type: Can be `checking`, `savings` or `other`.
+
+          metadata: Additional data in the form of key-value pairs. Pairs can be removed by passing
+              an empty string or `null` as the value.
 
           name: A nickname for the external account. This is only for internal usage and won't
               affect any payments
 
           party_name: If this value isn't provided, it will be inherited from the counterparty's name.
 
-          metadata: Additional data in the form of key-value pairs. Pairs can be removed by passing
-              an empty string or `null` as the value.
+          party_type: Either `individual` or `business`.
 
           extra_headers: Send extra headers
 
@@ -483,10 +483,10 @@ class AsyncExternalAccounts(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        party_name: str | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        party_name: str | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -497,11 +497,11 @@ class AsyncExternalAccounts(AsyncAPIResource):
         list external accounts
 
         Args:
-          party_name: Searches the ExternalAccount's party_name AND the Counterparty's party_name
-
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
+
+          party_name: Searches the ExternalAccount's party_name AND the Counterparty's party_name
 
           extra_headers: Send extra headers
 

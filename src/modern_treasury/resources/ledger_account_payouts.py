@@ -24,12 +24,12 @@ class LedgerAccountPayouts(SyncAPIResource):
     def create(
         self,
         *,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        status: Optional[Literal["pending", "posted"]] | NotGiven = NOT_GIVEN,
-        payout_ledger_account_id: str,
         funding_ledger_account_id: str,
+        payout_ledger_account_id: str,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at_upper_bound: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        status: Optional[Literal["pending", "posted"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -40,16 +40,13 @@ class LedgerAccountPayouts(SyncAPIResource):
         Create a ledger account payout.
 
         Args:
-          description: The description of the ledger account payout.
-
-          status: The status of the ledger account payout. It is set to `pending` by default. To
-              post a ledger account payout at creation, use `posted`.
+          funding_ledger_account_id: The id of the funding ledger account that sends to or receives funds from the
+              payout ledger account.
 
           payout_ledger_account_id: The id of the payout ledger account whose ledger entries are queried against,
               and its balance is reduced as a result.
 
-          funding_ledger_account_id: The id of the funding ledger account that sends to or receives funds from the
-              payout ledger account.
+          description: The description of the ledger account payout.
 
           effective_at_upper_bound: The maximum effective_at timestamp of the ledger entries to be included in the
               ledger account payout. The default value is the created_at timestamp of the
@@ -57,6 +54,9 @@ class LedgerAccountPayouts(SyncAPIResource):
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
+
+          status: The status of the ledger account payout. It is set to `pending` by default. To
+              post a ledger account payout at creation, use `posted`.
 
           extra_headers: Send extra headers
 
@@ -86,8 +86,8 @@ class LedgerAccountPayouts(SyncAPIResource):
         id: str,
         *,
         description: Optional[str] | NotGiven = NOT_GIVEN,
-        status: Literal["posted", "archived"] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        status: Literal["posted", "archived"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -100,11 +100,11 @@ class LedgerAccountPayouts(SyncAPIResource):
         Args:
           description: The description of the ledger account payout.
 
-          status: To post a pending ledger account payout, use `posted`. To archive a pending
-              ledger transaction, use `archived`.
-
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
+
+          status: To post a pending ledger account payout, use `posted`. To archive a pending
+              ledger transaction, use `archived`.
 
           extra_headers: Send extra headers
 
@@ -130,8 +130,8 @@ class LedgerAccountPayouts(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
         payout_ledger_account_id: str | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -189,12 +189,12 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
     async def create(
         self,
         *,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        status: Optional[Literal["pending", "posted"]] | NotGiven = NOT_GIVEN,
-        payout_ledger_account_id: str,
         funding_ledger_account_id: str,
+        payout_ledger_account_id: str,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at_upper_bound: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        status: Optional[Literal["pending", "posted"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -205,16 +205,13 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
         Create a ledger account payout.
 
         Args:
-          description: The description of the ledger account payout.
-
-          status: The status of the ledger account payout. It is set to `pending` by default. To
-              post a ledger account payout at creation, use `posted`.
+          funding_ledger_account_id: The id of the funding ledger account that sends to or receives funds from the
+              payout ledger account.
 
           payout_ledger_account_id: The id of the payout ledger account whose ledger entries are queried against,
               and its balance is reduced as a result.
 
-          funding_ledger_account_id: The id of the funding ledger account that sends to or receives funds from the
-              payout ledger account.
+          description: The description of the ledger account payout.
 
           effective_at_upper_bound: The maximum effective_at timestamp of the ledger entries to be included in the
               ledger account payout. The default value is the created_at timestamp of the
@@ -222,6 +219,9 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
+
+          status: The status of the ledger account payout. It is set to `pending` by default. To
+              post a ledger account payout at creation, use `posted`.
 
           extra_headers: Send extra headers
 
@@ -251,8 +251,8 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
         id: str,
         *,
         description: Optional[str] | NotGiven = NOT_GIVEN,
-        status: Literal["posted", "archived"] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        status: Literal["posted", "archived"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -265,11 +265,11 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
         Args:
           description: The description of the ledger account payout.
 
-          status: To post a pending ledger account payout, use `posted`. To archive a pending
-              ledger transaction, use `archived`.
-
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
+
+          status: To post a pending ledger account payout, use `posted`. To archive a pending
+              ledger transaction, use `archived`.
 
           extra_headers: Send extra headers
 
@@ -295,8 +295,8 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
         payout_ledger_account_id: str | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
