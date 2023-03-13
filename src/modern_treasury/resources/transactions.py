@@ -68,18 +68,18 @@ class Transactions(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
-        virtual_account_id: str | NotGiven = NOT_GIVEN,
-        posted: bool | NotGiven = NOT_GIVEN,
-        as_of_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
         as_of_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
-        direction: str | NotGiven = NOT_GIVEN,
+        as_of_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
-        payment_type: str | NotGiven = NOT_GIVEN,
-        transactable_type: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
+        direction: str | NotGiven = NOT_GIVEN,
+        internal_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        payment_type: str | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
+        posted: bool | NotGiven = NOT_GIVEN,
+        transactable_type: str | NotGiven = NOT_GIVEN,
+        virtual_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -90,22 +90,22 @@ class Transactions(SyncAPIResource):
         Get a list of all transactions.
 
         Args:
-          internal_account_id: Specify `internal_account_id` if you wish to see transactions to/from a specific
-              account.
-
-          posted: Either `true` or `false`.
+          as_of_date_end: Filters transactions with an `as_of_date` starting on or before the specified
+              date (YYYY-MM-DD).
 
           as_of_date_start: Filters transactions with an `as_of_date` starting on or after the specified
               date (YYYY-MM-DD).
 
-          as_of_date_end: Filters transactions with an `as_of_date` starting on or before the specified
-              date (YYYY-MM-DD).
-
           description: Filters for transactions including the queried string in the description.
+
+          internal_account_id: Specify `internal_account_id` if you wish to see transactions to/from a specific
+              account.
 
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
+
+          posted: Either `true` or `false`.
 
           extra_headers: Send extra headers
 
@@ -196,18 +196,18 @@ class AsyncTransactions(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
-        virtual_account_id: str | NotGiven = NOT_GIVEN,
-        posted: bool | NotGiven = NOT_GIVEN,
-        as_of_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
         as_of_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
-        direction: str | NotGiven = NOT_GIVEN,
+        as_of_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
-        payment_type: str | NotGiven = NOT_GIVEN,
-        transactable_type: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
+        direction: str | NotGiven = NOT_GIVEN,
+        internal_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        payment_type: str | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
+        posted: bool | NotGiven = NOT_GIVEN,
+        transactable_type: str | NotGiven = NOT_GIVEN,
+        virtual_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -218,22 +218,22 @@ class AsyncTransactions(AsyncAPIResource):
         Get a list of all transactions.
 
         Args:
-          internal_account_id: Specify `internal_account_id` if you wish to see transactions to/from a specific
-              account.
-
-          posted: Either `true` or `false`.
+          as_of_date_end: Filters transactions with an `as_of_date` starting on or before the specified
+              date (YYYY-MM-DD).
 
           as_of_date_start: Filters transactions with an `as_of_date` starting on or after the specified
               date (YYYY-MM-DD).
 
-          as_of_date_end: Filters transactions with an `as_of_date` starting on or before the specified
-              date (YYYY-MM-DD).
-
           description: Filters for transactions including the queried string in the description.
+
+          internal_account_id: Specify `internal_account_id` if you wish to see transactions to/from a specific
+              account.
 
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
+
+          posted: Either `true` or `false`.
 
           extra_headers: Send extra headers
 

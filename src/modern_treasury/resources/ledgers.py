@@ -85,9 +85,9 @@ class Ledgers(SyncAPIResource):
         self,
         id: str,
         *,
-        name: str | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -98,12 +98,12 @@ class Ledgers(SyncAPIResource):
         Update the details of a ledger.
 
         Args:
-          name: The name of the ledger.
-
           description: An optional free-form description for internal use.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
+
+          name: The name of the ledger.
 
           extra_headers: Send extra headers
 
@@ -129,8 +129,8 @@ class Ledgers(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -259,9 +259,9 @@ class AsyncLedgers(AsyncAPIResource):
         self,
         id: str,
         *,
-        name: str | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -272,12 +272,12 @@ class AsyncLedgers(AsyncAPIResource):
         Update the details of a ledger.
 
         Args:
-          name: The name of the ledger.
-
           description: An optional free-form description for internal use.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
+
+          name: The name of the ledger.
 
           extra_headers: Send extra headers
 
@@ -303,8 +303,8 @@ class AsyncLedgers(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
