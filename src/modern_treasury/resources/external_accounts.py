@@ -28,23 +28,24 @@ class ExternalAccounts(SyncAPIResource):
     def create(
         self,
         *,
-        account_type: ExternalAccountType | NotGiven = NOT_GIVEN,
-        party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
-        party_address: external_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str],
         account_details: List[external_account_create_params.AccountDetail] | NotGiven = NOT_GIVEN,
-        routing_details: List[external_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        party_name: str | NotGiven = NOT_GIVEN,
-        party_identifier: str | NotGiven = NOT_GIVEN,
-        plaid_processor_token: str | NotGiven = NOT_GIVEN,
+        account_type: ExternalAccountType | NotGiven = NOT_GIVEN,
         contact_details: List[external_account_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | NotGiven = NOT_GIVEN,
+        party_address: external_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
+        party_identifier: str | NotGiven = NOT_GIVEN,
+        party_name: str | NotGiven = NOT_GIVEN,
+        party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
+        plaid_processor_token: str | NotGiven = NOT_GIVEN,
+        routing_details: List[external_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> ExternalAccount:
         """
         create external account
@@ -52,17 +53,17 @@ class ExternalAccounts(SyncAPIResource):
         Args:
           account_type: Can be `checking`, `savings` or `other`.
 
-          party_type: Either `individual` or `business`.
-
-          party_address: Required if receiving wire payments.
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
 
           name: A nickname for the external account. This is only for internal usage and won't
               affect any payments
 
-          metadata: Additional data represented as key-value pairs. Both the key and value must be
-              strings.
+          party_address: Required if receiving wire payments.
 
           party_name: If this value isn't provided, it will be inherited from the counterparty's name.
+
+          party_type: Either `individual` or `business`.
 
           plaid_processor_token: If you've enabled the Modern Treasury + Plaid integration in your Plaid account,
               you can pass the processor token in this field.
@@ -72,6 +73,8 @@ class ExternalAccounts(SyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/api/external_accounts",
@@ -92,7 +95,12 @@ class ExternalAccounts(SyncAPIResource):
                 },
                 external_account_create_params.ExternalAccountCreateParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=ExternalAccount,
         )
 
@@ -117,40 +125,43 @@ class ExternalAccounts(SyncAPIResource):
         self,
         id: str,
         *,
-        party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
         account_type: ExternalAccountType | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        party_name: str | NotGiven = NOT_GIVEN,
-        party_address: external_account_update_params.PartyAddress | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | NotGiven = NOT_GIVEN,
+        party_address: external_account_update_params.PartyAddress | NotGiven = NOT_GIVEN,
+        party_name: str | NotGiven = NOT_GIVEN,
+        party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> ExternalAccount:
         """
         update external account
 
         Args:
-          party_type: Either `individual` or `business`.
-
           account_type: Can be `checking`, `savings` or `other`.
+
+          metadata: Additional data in the form of key-value pairs. Pairs can be removed by passing
+              an empty string or `null` as the value.
 
           name: A nickname for the external account. This is only for internal usage and won't
               affect any payments
 
           party_name: If this value isn't provided, it will be inherited from the counterparty's name.
 
-          metadata: Additional data in the form of key-value pairs. Pairs can be removed by passing
-              an empty string or `null` as the value.
+          party_type: Either `individual` or `business`.
 
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._patch(
             f"/api/external_accounts/{id}",
@@ -166,7 +177,12 @@ class ExternalAccounts(SyncAPIResource):
                 },
                 external_account_update_params.ExternalAccountUpdateParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=ExternalAccount,
         )
 
@@ -174,10 +190,10 @@ class ExternalAccounts(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        party_name: str | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        party_name: str | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -188,11 +204,11 @@ class ExternalAccounts(SyncAPIResource):
         list external accounts
 
         Args:
-          party_name: Searches the ExternalAccount's party_name AND the Counterparty's party_name
-
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
+
+          party_name: Searches the ExternalAccount's party_name AND the Counterparty's party_name
 
           extra_headers: Send extra headers
 
@@ -230,12 +246,18 @@ class ExternalAccounts(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> None:
         """delete external account"""
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/api/external_accounts/{id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=NoneType,
         )
 
@@ -249,6 +271,7 @@ class ExternalAccounts(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> ExternalAccount:
         """
         complete verification of external account
@@ -259,6 +282,8 @@ class ExternalAccounts(SyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             f"/api/external_accounts/{id}/complete_verification",
@@ -266,7 +291,12 @@ class ExternalAccounts(SyncAPIResource):
                 {"amounts": amounts},
                 external_account_complete_verification_params.ExternalAccountCompleteVerificationParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=ExternalAccount,
         )
 
@@ -300,6 +330,7 @@ class ExternalAccounts(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> ExternalAccount:
         """
         verify external account
@@ -317,6 +348,8 @@ class ExternalAccounts(SyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             f"/api/external_accounts/{id}/verify",
@@ -328,7 +361,12 @@ class ExternalAccounts(SyncAPIResource):
                 },
                 external_account_verify_params.ExternalAccountVerifyParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=ExternalAccount,
         )
 
@@ -337,23 +375,24 @@ class AsyncExternalAccounts(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_type: ExternalAccountType | NotGiven = NOT_GIVEN,
-        party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
-        party_address: external_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str],
         account_details: List[external_account_create_params.AccountDetail] | NotGiven = NOT_GIVEN,
-        routing_details: List[external_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        party_name: str | NotGiven = NOT_GIVEN,
-        party_identifier: str | NotGiven = NOT_GIVEN,
-        plaid_processor_token: str | NotGiven = NOT_GIVEN,
+        account_type: ExternalAccountType | NotGiven = NOT_GIVEN,
         contact_details: List[external_account_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | NotGiven = NOT_GIVEN,
+        party_address: external_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
+        party_identifier: str | NotGiven = NOT_GIVEN,
+        party_name: str | NotGiven = NOT_GIVEN,
+        party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
+        plaid_processor_token: str | NotGiven = NOT_GIVEN,
+        routing_details: List[external_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> ExternalAccount:
         """
         create external account
@@ -361,17 +400,17 @@ class AsyncExternalAccounts(AsyncAPIResource):
         Args:
           account_type: Can be `checking`, `savings` or `other`.
 
-          party_type: Either `individual` or `business`.
-
-          party_address: Required if receiving wire payments.
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
 
           name: A nickname for the external account. This is only for internal usage and won't
               affect any payments
 
-          metadata: Additional data represented as key-value pairs. Both the key and value must be
-              strings.
+          party_address: Required if receiving wire payments.
 
           party_name: If this value isn't provided, it will be inherited from the counterparty's name.
+
+          party_type: Either `individual` or `business`.
 
           plaid_processor_token: If you've enabled the Modern Treasury + Plaid integration in your Plaid account,
               you can pass the processor token in this field.
@@ -381,6 +420,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/api/external_accounts",
@@ -401,7 +442,12 @@ class AsyncExternalAccounts(AsyncAPIResource):
                 },
                 external_account_create_params.ExternalAccountCreateParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=ExternalAccount,
         )
 
@@ -426,40 +472,43 @@ class AsyncExternalAccounts(AsyncAPIResource):
         self,
         id: str,
         *,
-        party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
         account_type: ExternalAccountType | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        party_name: str | NotGiven = NOT_GIVEN,
-        party_address: external_account_update_params.PartyAddress | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | NotGiven = NOT_GIVEN,
+        party_address: external_account_update_params.PartyAddress | NotGiven = NOT_GIVEN,
+        party_name: str | NotGiven = NOT_GIVEN,
+        party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> ExternalAccount:
         """
         update external account
 
         Args:
-          party_type: Either `individual` or `business`.
-
           account_type: Can be `checking`, `savings` or `other`.
+
+          metadata: Additional data in the form of key-value pairs. Pairs can be removed by passing
+              an empty string or `null` as the value.
 
           name: A nickname for the external account. This is only for internal usage and won't
               affect any payments
 
           party_name: If this value isn't provided, it will be inherited from the counterparty's name.
 
-          metadata: Additional data in the form of key-value pairs. Pairs can be removed by passing
-              an empty string or `null` as the value.
+          party_type: Either `individual` or `business`.
 
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._patch(
             f"/api/external_accounts/{id}",
@@ -475,7 +524,12 @@ class AsyncExternalAccounts(AsyncAPIResource):
                 },
                 external_account_update_params.ExternalAccountUpdateParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=ExternalAccount,
         )
 
@@ -483,10 +537,10 @@ class AsyncExternalAccounts(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        party_name: str | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        party_name: str | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -497,11 +551,11 @@ class AsyncExternalAccounts(AsyncAPIResource):
         list external accounts
 
         Args:
-          party_name: Searches the ExternalAccount's party_name AND the Counterparty's party_name
-
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
+
+          party_name: Searches the ExternalAccount's party_name AND the Counterparty's party_name
 
           extra_headers: Send extra headers
 
@@ -539,12 +593,18 @@ class AsyncExternalAccounts(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> None:
         """delete external account"""
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/api/external_accounts/{id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=NoneType,
         )
 
@@ -558,6 +618,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> ExternalAccount:
         """
         complete verification of external account
@@ -568,6 +629,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             f"/api/external_accounts/{id}/complete_verification",
@@ -575,7 +638,12 @@ class AsyncExternalAccounts(AsyncAPIResource):
                 {"amounts": amounts},
                 external_account_complete_verification_params.ExternalAccountCompleteVerificationParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=ExternalAccount,
         )
 
@@ -609,6 +677,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> ExternalAccount:
         """
         verify external account
@@ -626,6 +695,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             f"/api/external_accounts/{id}/verify",
@@ -637,6 +708,11 @@ class AsyncExternalAccounts(AsyncAPIResource):
                 },
                 external_account_verify_params.ExternalAccountVerifyParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=ExternalAccount,
         )
