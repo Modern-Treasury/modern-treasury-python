@@ -35,12 +35,11 @@ class LedgerTransactions(SyncAPIResource):
     def create(
         self,
         *,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         effective_date: Union[str, date],
         ledger_entries: List[ledger_transaction_create_params.LedgerEntry],
+        description: Optional[str] | NotGiven = NOT_GIVEN,
         external_id: str | NotGiven = NOT_GIVEN,
+        ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
             "counterparty",
             "expected_payment",
@@ -54,44 +53,48 @@ class LedgerTransactions(SyncAPIResource):
             "reversal",
         ]
         | NotGiven = NOT_GIVEN,
-        ledgerable_id: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> LedgerTransaction:
         """
         Create a ledger transaction.
 
         Args:
-          description: An optional description for internal use.
-
-          status: To post a ledger transaction at creation, use `posted`.
-
-          metadata: Additional data represented as key-value pairs. Both the key and value must be
-              strings.
-
           effective_date: The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
               purposes.
 
           ledger_entries: An array of ledger entry objects.
 
+          description: An optional description for internal use.
+
           external_id: A unique string to represent the ledger transaction. Only one pending or posted
               ledger transaction may have this ID in the ledger.
+
+          ledgerable_id: If the ledger transaction can be reconciled to another object in Modern
+              Treasury, the id will be populated here, otherwise null.
 
           ledgerable_type: If the ledger transaction can be reconciled to another object in Modern
               Treasury, the type will be populated here, otherwise null. This can be one of
               payment_order, incoming_payment_detail, expected_payment, return, or reversal.
 
-          ledgerable_id: If the ledger transaction can be reconciled to another object in Modern
-              Treasury, the id will be populated here, otherwise null.
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
+
+          status: To post a ledger transaction at creation, use `posted`.
 
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/api/ledger_transactions",
@@ -108,7 +111,12 @@ class LedgerTransactions(SyncAPIResource):
                 },
                 ledger_transaction_create_params.LedgerTransactionCreateParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=LedgerTransaction,
         )
 
@@ -134,14 +142,15 @@ class LedgerTransactions(SyncAPIResource):
         id: str,
         *,
         description: Optional[str] | NotGiven = NOT_GIVEN,
-        status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         ledger_entries: List[ledger_transaction_update_params.LedgerEntry] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> LedgerTransaction:
         """
         Update the details of a ledger transaction.
@@ -149,18 +158,20 @@ class LedgerTransactions(SyncAPIResource):
         Args:
           description: An optional description for internal use.
 
-          status: To post a ledger transaction at creation, use `posted`.
+          ledger_entries: An array of ledger entry objects.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
-          ledger_entries: An array of ledger entry objects.
+          status: To post a ledger transaction at creation, use `posted`.
 
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._patch(
             f"/api/ledger_transactions/{id}",
@@ -173,7 +184,12 @@ class LedgerTransactions(SyncAPIResource):
                 },
                 ledger_transaction_update_params.LedgerTransactionUpdateParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=LedgerTransaction,
         )
 
@@ -181,17 +197,17 @@ class LedgerTransactions(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        ledger_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_id: str | NotGiven = NOT_GIVEN,
         effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
         effective_date: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        posted_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        status: Literal["pending", "posted", "archived"] | NotGiven = NOT_GIVEN,
         external_id: str | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
+        ledger_account_id: str | NotGiven = NOT_GIVEN,
+        ledger_id: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
+        posted_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        status: Literal["pending", "posted", "archived"] | NotGiven = NOT_GIVEN,
+        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -202,10 +218,6 @@ class LedgerTransactions(SyncAPIResource):
         Get a list of ledger transactions.
 
         Args:
-          metadata: For example, if you want to query for records with metadata key `Type` and value
-              `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
-              parameters.
-
           effective_at: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by
               effective at. For example, for all transactions after Jan 1 2000, use
               effective_at%5Bgt%5D=2000-01-01T00:00:00:00.000Z.
@@ -213,6 +225,10 @@ class LedgerTransactions(SyncAPIResource):
           effective_date: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by
               effective date. For example, for all dates after Jan 1 2000, use
               effective_date%5Bgt%5D=2000-01-01.
+
+          metadata: For example, if you want to query for records with metadata key `Type` and value
+              `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+              parameters.
 
           posted_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
@@ -267,12 +283,11 @@ class AsyncLedgerTransactions(AsyncAPIResource):
     async def create(
         self,
         *,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         effective_date: Union[str, date],
         ledger_entries: List[ledger_transaction_create_params.LedgerEntry],
+        description: Optional[str] | NotGiven = NOT_GIVEN,
         external_id: str | NotGiven = NOT_GIVEN,
+        ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
             "counterparty",
             "expected_payment",
@@ -286,44 +301,48 @@ class AsyncLedgerTransactions(AsyncAPIResource):
             "reversal",
         ]
         | NotGiven = NOT_GIVEN,
-        ledgerable_id: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> LedgerTransaction:
         """
         Create a ledger transaction.
 
         Args:
-          description: An optional description for internal use.
-
-          status: To post a ledger transaction at creation, use `posted`.
-
-          metadata: Additional data represented as key-value pairs. Both the key and value must be
-              strings.
-
           effective_date: The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
               purposes.
 
           ledger_entries: An array of ledger entry objects.
 
+          description: An optional description for internal use.
+
           external_id: A unique string to represent the ledger transaction. Only one pending or posted
               ledger transaction may have this ID in the ledger.
+
+          ledgerable_id: If the ledger transaction can be reconciled to another object in Modern
+              Treasury, the id will be populated here, otherwise null.
 
           ledgerable_type: If the ledger transaction can be reconciled to another object in Modern
               Treasury, the type will be populated here, otherwise null. This can be one of
               payment_order, incoming_payment_detail, expected_payment, return, or reversal.
 
-          ledgerable_id: If the ledger transaction can be reconciled to another object in Modern
-              Treasury, the id will be populated here, otherwise null.
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
+
+          status: To post a ledger transaction at creation, use `posted`.
 
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/api/ledger_transactions",
@@ -340,7 +359,12 @@ class AsyncLedgerTransactions(AsyncAPIResource):
                 },
                 ledger_transaction_create_params.LedgerTransactionCreateParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=LedgerTransaction,
         )
 
@@ -366,14 +390,15 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         id: str,
         *,
         description: Optional[str] | NotGiven = NOT_GIVEN,
-        status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         ledger_entries: List[ledger_transaction_update_params.LedgerEntry] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> LedgerTransaction:
         """
         Update the details of a ledger transaction.
@@ -381,18 +406,20 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         Args:
           description: An optional description for internal use.
 
-          status: To post a ledger transaction at creation, use `posted`.
+          ledger_entries: An array of ledger entry objects.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
-          ledger_entries: An array of ledger entry objects.
+          status: To post a ledger transaction at creation, use `posted`.
 
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._patch(
             f"/api/ledger_transactions/{id}",
@@ -405,7 +432,12 @@ class AsyncLedgerTransactions(AsyncAPIResource):
                 },
                 ledger_transaction_update_params.LedgerTransactionUpdateParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=LedgerTransaction,
         )
 
@@ -413,17 +445,17 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        ledger_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_id: str | NotGiven = NOT_GIVEN,
         effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
         effective_date: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        posted_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        status: Literal["pending", "posted", "archived"] | NotGiven = NOT_GIVEN,
         external_id: str | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
+        ledger_account_id: str | NotGiven = NOT_GIVEN,
+        ledger_id: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
+        posted_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        status: Literal["pending", "posted", "archived"] | NotGiven = NOT_GIVEN,
+        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -434,10 +466,6 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         Get a list of ledger transactions.
 
         Args:
-          metadata: For example, if you want to query for records with metadata key `Type` and value
-              `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
-              parameters.
-
           effective_at: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by
               effective at. For example, for all transactions after Jan 1 2000, use
               effective_at%5Bgt%5D=2000-01-01T00:00:00:00.000Z.
@@ -445,6 +473,10 @@ class AsyncLedgerTransactions(AsyncAPIResource):
           effective_date: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by
               effective date. For example, for all dates after Jan 1 2000, use
               effective_date%5Bgt%5D=2000-01-01.
+
+          metadata: For example, if you want to query for records with metadata key `Type` and value
+              `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+              parameters.
 
           posted_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use

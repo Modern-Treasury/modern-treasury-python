@@ -19,9 +19,9 @@ class Connections(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        entity: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         vendor_customer_id: str | NotGiven = NOT_GIVEN,
-        entity: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -32,9 +32,9 @@ class Connections(SyncAPIResource):
         Get a list of all connections.
 
         Args:
-          vendor_customer_id: An identifier assigned by the vendor to your organization.
-
           entity: A string code representing the vendor (i.e. bank).
+
+          vendor_customer_id: An identifier assigned by the vendor to your organization.
 
           extra_headers: Send extra headers
 
@@ -68,9 +68,9 @@ class AsyncConnections(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        entity: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         vendor_customer_id: str | NotGiven = NOT_GIVEN,
-        entity: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -81,9 +81,9 @@ class AsyncConnections(AsyncAPIResource):
         Get a list of all connections.
 
         Args:
-          vendor_customer_id: An identifier assigned by the vendor to your organization.
-
           entity: A string code representing the vendor (i.e. bank).
+
+          vendor_customer_id: An identifier assigned by the vendor to your organization.
 
           extra_headers: Send extra headers
 

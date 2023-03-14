@@ -37,12 +37,12 @@ class Events(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        event_time_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        event_time_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        resource: str | NotGiven = NOT_GIVEN,
         entity_id: str | NotGiven = NOT_GIVEN,
         event_name: str | NotGiven = NOT_GIVEN,
+        event_time_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        event_time_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
+        resource: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -53,9 +53,9 @@ class Events(SyncAPIResource):
         list events
 
         Args:
-          event_time_start: An inclusive lower bound for when the event occurred
-
           event_time_end: An inclusive upper bound for when the event occurred
+
+          event_time_start: An inclusive lower bound for when the event occurred
 
           extra_headers: Send extra headers
 
@@ -109,12 +109,12 @@ class AsyncEvents(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        event_time_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        event_time_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        resource: str | NotGiven = NOT_GIVEN,
         entity_id: str | NotGiven = NOT_GIVEN,
         event_name: str | NotGiven = NOT_GIVEN,
+        event_time_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        event_time_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
+        resource: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -125,9 +125,9 @@ class AsyncEvents(AsyncAPIResource):
         list events
 
         Args:
-          event_time_start: An inclusive lower bound for when the event occurred
-
           event_time_end: An inclusive upper bound for when the event occurred
+
+          event_time_start: An inclusive lower bound for when the event occurred
 
           extra_headers: Send extra headers
 
