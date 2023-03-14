@@ -31,13 +31,14 @@ class Documents(SyncAPIResource):
             "payment_orders",
             "transactions",
         ],
-        document_type: str | NotGiven = NOT_GIVEN,
         file: FileTypes,
+        document_type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> Document:
         """
         Create a document.
@@ -50,6 +51,8 @@ class Documents(SyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         body = deepcopy_minimal(
             {
@@ -68,7 +71,12 @@ class Documents(SyncAPIResource):
             f"/api/{documentable_type}/{documentable_id}/documents",
             body=maybe_transform(body, document_create_params.DocumentCreateParams),
             files=files,
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=Document,
         )
 
@@ -169,13 +177,14 @@ class AsyncDocuments(AsyncAPIResource):
             "payment_orders",
             "transactions",
         ],
-        document_type: str | NotGiven = NOT_GIVEN,
         file: FileTypes,
+        document_type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> Document:
         """
         Create a document.
@@ -188,6 +197,8 @@ class AsyncDocuments(AsyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         body = deepcopy_minimal(
             {
@@ -206,7 +217,12 @@ class AsyncDocuments(AsyncAPIResource):
             f"/api/{documentable_type}/{documentable_id}/documents",
             body=maybe_transform(body, document_create_params.DocumentCreateParams),
             files=files,
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=Document,
         )
 
