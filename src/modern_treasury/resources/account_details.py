@@ -32,6 +32,7 @@ class AccountDetails(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> AccountDetail:
         """
         Create an account detail for an external account.
@@ -47,6 +48,8 @@ class AccountDetails(SyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             f"/api/{accounts_type}/{account_id}/account_details",
@@ -57,7 +60,12 @@ class AccountDetails(SyncAPIResource):
                 },
                 account_detail_create_params.AccountDetailCreateParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=AccountDetail,
         )
 
@@ -132,12 +140,18 @@ class AccountDetails(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> None:
         """Delete a single account detail for an external account."""
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/api/{accounts_type}/{account_id}/account_details/{id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=NoneType,
         )
 
@@ -155,6 +169,7 @@ class AsyncAccountDetails(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> AccountDetail:
         """
         Create an account detail for an external account.
@@ -170,6 +185,8 @@ class AsyncAccountDetails(AsyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             f"/api/{accounts_type}/{account_id}/account_details",
@@ -180,7 +197,12 @@ class AsyncAccountDetails(AsyncAPIResource):
                 },
                 account_detail_create_params.AccountDetailCreateParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=AccountDetail,
         )
 
@@ -255,11 +277,17 @@ class AsyncAccountDetails(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> None:
         """Delete a single account detail for an external account."""
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/api/{accounts_type}/{account_id}/account_details/{id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=NoneType,
         )
