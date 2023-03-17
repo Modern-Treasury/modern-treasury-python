@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+import os
 import inspect
 import functools
 from typing import Any, Mapping, TypeVar, Callable, Iterable, Sequence, cast, overload
+from pathlib import Path
 from typing_extensions import Required, Annotated, TypeGuard, get_args, get_origin
 
 from pydantic.typing import is_union as _is_union
@@ -121,7 +123,7 @@ def is_annotated_type(typ: type) -> bool:
 
 
 def is_list_type(typ: type) -> bool:
-    return get_origin(typ) == list
+    return (get_origin(typ) or typ) == list
 
 
 def is_union_type(typ: type) -> bool:
@@ -315,3 +317,9 @@ def removesuffix(string: str, suffix: str) -> str:
     if string.endswith(suffix):
         return string[: -len(suffix)]
     return string
+
+
+def file_from_path(path: str) -> FileTypes:
+    contents = Path(path).read_bytes()
+    file_name = os.path.basename(path)
+    return (file_name, contents)
