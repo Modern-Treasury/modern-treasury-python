@@ -21,9 +21,9 @@ class PaymentReferences(SyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        reference_number: str | NotGiven = NOT_GIVEN,
         referenceable_id: str | NotGiven = NOT_GIVEN,
         referenceable_type: Literal["payment_order", "return", "reversal"] | NotGiven = NOT_GIVEN,
-        reference_number: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -34,13 +34,13 @@ class PaymentReferences(SyncAPIResource):
         list payment_references
 
         Args:
+          reference_number: The actual reference number assigned by the bank.
+
           referenceable_id: The id of the referenceable to search for. Must be accompanied by the
               referenceable_type or will return an error.
 
           referenceable_type: One of the referenceable types. This must be accompanied by the id of the
               referenceable or will return an error.
-
-          reference_number: The actual reference number assigned by the bank.
 
           extra_headers: Send extra headers
 
@@ -93,9 +93,9 @@ class AsyncPaymentReferences(AsyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        reference_number: str | NotGiven = NOT_GIVEN,
         referenceable_id: str | NotGiven = NOT_GIVEN,
         referenceable_type: Literal["payment_order", "return", "reversal"] | NotGiven = NOT_GIVEN,
-        reference_number: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -106,13 +106,13 @@ class AsyncPaymentReferences(AsyncAPIResource):
         list payment_references
 
         Args:
+          reference_number: The actual reference number assigned by the bank.
+
           referenceable_id: The id of the referenceable to search for. Must be accompanied by the
               referenceable_type or will return an error.
 
           referenceable_type: One of the referenceable types. This must be accompanied by the id of the
               referenceable or will return an error.
-
-          reference_number: The actual reference number assigned by the bank.
 
           extra_headers: Send extra headers
 

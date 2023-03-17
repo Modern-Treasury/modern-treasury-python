@@ -36,18 +36,19 @@ class InternalAccounts(SyncAPIResource):
         self,
         *,
         connection_id: str,
+        currency: Literal["USD", "CAD"],
         name: str,
         party_name: str,
-        party_address: internal_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
-        currency: Literal["USD", "CAD"],
+        counterparty_id: str | NotGiven = NOT_GIVEN,
         entity_id: str | NotGiven = NOT_GIVEN,
         parent_account_id: str | NotGiven = NOT_GIVEN,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
+        party_address: internal_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> InternalAccount:
         """
         create internal account
@@ -55,26 +56,28 @@ class InternalAccounts(SyncAPIResource):
         Args:
           connection_id: The identifier of the financial institution the account belongs to.
 
+          currency: Either "USD" or "CAD". Internal accounts created at Increase only supports
+              "USD".
+
           name: The nickname of the account.
 
           party_name: The legal name of the entity which owns the account.
 
-          party_address: The address associated with the owner or null.
-
-          currency: Either "USD" or "CAD". Internal accounts created at Increase only supports
-              "USD".
+          counterparty_id: The Counterparty associated to this account.
 
           entity_id: The identifier of the entity at Increase which owns the account.
 
           parent_account_id: The parent internal account of this new account.
 
-          counterparty_id: The Counterparty associated to this account.
+          party_address: The address associated with the owner or null.
 
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/api/internal_accounts",
@@ -91,7 +94,12 @@ class InternalAccounts(SyncAPIResource):
                 },
                 internal_account_create_params.InternalAccountCreateParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=InternalAccount,
         )
 
@@ -116,34 +124,37 @@ class InternalAccounts(SyncAPIResource):
         self,
         id: str,
         *,
-        name: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        parent_account_id: str | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        parent_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> InternalAccount:
         """
         update internal account
 
         Args:
-          name: The nickname for the internal account.
+          counterparty_id: The Counterparty associated to this account.
 
           metadata: Additional data in the form of key-value pairs. Pairs can be removed by passing
               an empty string or `null` as the value.
 
-          parent_account_id: The parent internal account for this account.
+          name: The nickname for the internal account.
 
-          counterparty_id: The Counterparty associated to this account.
+          parent_account_id: The parent internal account for this account.
 
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._patch(
             f"/api/internal_accounts/{id}",
@@ -156,7 +167,12 @@ class InternalAccounts(SyncAPIResource):
                 },
                 internal_account_update_params.InternalAccountUpdateParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=InternalAccount,
         )
 
@@ -164,8 +180,9 @@ class InternalAccounts(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
         currency: shared_params.Currency | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        payment_direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         payment_type: Literal[
             "ach",
             "au_becs",
@@ -186,8 +203,7 @@ class InternalAccounts(SyncAPIResource):
             "wire",
         ]
         | NotGiven = NOT_GIVEN,
-        payment_direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -200,13 +216,13 @@ class InternalAccounts(SyncAPIResource):
         Args:
           currency: The currency associated with the internal account.
 
-          payment_type: The type of payment that can be made by the internal account.
-
-          payment_direction: The direction of payments that can be made by internal account.
-
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
+
+          payment_direction: The direction of payments that can be made by internal account.
+
+          payment_type: The type of payment that can be made by the internal account.
 
           extra_headers: Send extra headers
 
@@ -248,18 +264,19 @@ class AsyncInternalAccounts(AsyncAPIResource):
         self,
         *,
         connection_id: str,
+        currency: Literal["USD", "CAD"],
         name: str,
         party_name: str,
-        party_address: internal_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
-        currency: Literal["USD", "CAD"],
+        counterparty_id: str | NotGiven = NOT_GIVEN,
         entity_id: str | NotGiven = NOT_GIVEN,
         parent_account_id: str | NotGiven = NOT_GIVEN,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
+        party_address: internal_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> InternalAccount:
         """
         create internal account
@@ -267,26 +284,28 @@ class AsyncInternalAccounts(AsyncAPIResource):
         Args:
           connection_id: The identifier of the financial institution the account belongs to.
 
+          currency: Either "USD" or "CAD". Internal accounts created at Increase only supports
+              "USD".
+
           name: The nickname of the account.
 
           party_name: The legal name of the entity which owns the account.
 
-          party_address: The address associated with the owner or null.
-
-          currency: Either "USD" or "CAD". Internal accounts created at Increase only supports
-              "USD".
+          counterparty_id: The Counterparty associated to this account.
 
           entity_id: The identifier of the entity at Increase which owns the account.
 
           parent_account_id: The parent internal account of this new account.
 
-          counterparty_id: The Counterparty associated to this account.
+          party_address: The address associated with the owner or null.
 
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/api/internal_accounts",
@@ -303,7 +322,12 @@ class AsyncInternalAccounts(AsyncAPIResource):
                 },
                 internal_account_create_params.InternalAccountCreateParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=InternalAccount,
         )
 
@@ -328,34 +352,37 @@ class AsyncInternalAccounts(AsyncAPIResource):
         self,
         id: str,
         *,
-        name: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        parent_account_id: str | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        parent_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> InternalAccount:
         """
         update internal account
 
         Args:
-          name: The nickname for the internal account.
+          counterparty_id: The Counterparty associated to this account.
 
           metadata: Additional data in the form of key-value pairs. Pairs can be removed by passing
               an empty string or `null` as the value.
 
-          parent_account_id: The parent internal account for this account.
+          name: The nickname for the internal account.
 
-          counterparty_id: The Counterparty associated to this account.
+          parent_account_id: The parent internal account for this account.
 
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._patch(
             f"/api/internal_accounts/{id}",
@@ -368,7 +395,12 @@ class AsyncInternalAccounts(AsyncAPIResource):
                 },
                 internal_account_update_params.InternalAccountUpdateParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=InternalAccount,
         )
 
@@ -376,8 +408,9 @@ class AsyncInternalAccounts(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
         currency: shared_params.Currency | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        payment_direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         payment_type: Literal[
             "ach",
             "au_becs",
@@ -398,8 +431,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
             "wire",
         ]
         | NotGiven = NOT_GIVEN,
-        payment_direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -412,13 +444,13 @@ class AsyncInternalAccounts(AsyncAPIResource):
         Args:
           currency: The currency associated with the internal account.
 
-          payment_type: The type of payment that can be made by the internal account.
-
-          payment_direction: The direction of payments that can be made by internal account.
-
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
+
+          payment_direction: The direction of payments that can be made by internal account.
+
+          payment_type: The type of payment that can be made by the internal account.
 
           extra_headers: Send extra headers
 
