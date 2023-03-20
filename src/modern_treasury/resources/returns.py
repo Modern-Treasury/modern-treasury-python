@@ -21,6 +21,8 @@ class Returns(SyncAPIResource):
         self,
         *,
         returnable_id: Optional[str],
+        returnable_type: Literal["incoming_payment_detail"],
+        additional_information: Optional[str] | NotGiven = NOT_GIVEN,
         code: Optional[
             Literal[
                 "901",
@@ -69,15 +71,14 @@ class Returns(SyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        reason: Optional[str] | NotGiven = NOT_GIVEN,
         date_of_death: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
-        additional_information: Optional[str] | NotGiven = NOT_GIVEN,
-        returnable_type: Literal["incoming_payment_detail"],
+        reason: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> ReturnObject:
         """
         Create a return.
@@ -85,25 +86,27 @@ class Returns(SyncAPIResource):
         Args:
           returnable_id: The ID of the object being returned or `null`.
 
-          code: The return code. For ACH returns, this is the required ACH return code.
-
-          reason: An optional description of the reason for the return. This is for internal usage
-              and will not be transmitted to the bank.”
-
-          date_of_death: If the return code is `R14` or `R15` this is the date the deceased counterparty
-              passed away.
+          returnable_type: The type of object being returned. Currently, this may only be
+              incoming_payment_detail.
 
           additional_information: Some returns may include additional information from the bank. In these cases,
               this string will be present.
 
-          returnable_type: The type of object being returned. Currently, this may only be
-              incoming_payment_detail.
+          code: The return code. For ACH returns, this is the required ACH return code.
+
+          date_of_death: If the return code is `R14` or `R15` this is the date the deceased counterparty
+              passed away.
+
+          reason: An optional description of the reason for the return. This is for internal usage
+              and will not be transmitted to the bank.”
 
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/api/returns",
@@ -118,7 +121,12 @@ class Returns(SyncAPIResource):
                 },
                 return_create_params.ReturnCreateParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=ReturnObject,
         )
 
@@ -143,9 +151,9 @@ class Returns(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
+        internal_account_id: str | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         returnable_id: str | NotGiven = NOT_GIVEN,
         returnable_type: Literal["incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"]
         | NotGiven = NOT_GIVEN,
@@ -159,11 +167,11 @@ class Returns(SyncAPIResource):
         Get a list of returns.
 
         Args:
-          internal_account_id: Specify `internal_account_id` if you wish to see returns to/from a specific
-              account.
-
           counterparty_id: Specify `counterparty_id` if you wish to see returns that occurred with a
               specific counterparty.
+
+          internal_account_id: Specify `internal_account_id` if you wish to see returns to/from a specific
+              account.
 
           returnable_id: The ID of a valid returnable. Must be accompanied by `returnable_type`.
 
@@ -204,6 +212,8 @@ class AsyncReturns(AsyncAPIResource):
         self,
         *,
         returnable_id: Optional[str],
+        returnable_type: Literal["incoming_payment_detail"],
+        additional_information: Optional[str] | NotGiven = NOT_GIVEN,
         code: Optional[
             Literal[
                 "901",
@@ -252,15 +262,14 @@ class AsyncReturns(AsyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        reason: Optional[str] | NotGiven = NOT_GIVEN,
         date_of_death: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
-        additional_information: Optional[str] | NotGiven = NOT_GIVEN,
-        returnable_type: Literal["incoming_payment_detail"],
+        reason: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> ReturnObject:
         """
         Create a return.
@@ -268,25 +277,27 @@ class AsyncReturns(AsyncAPIResource):
         Args:
           returnable_id: The ID of the object being returned or `null`.
 
-          code: The return code. For ACH returns, this is the required ACH return code.
-
-          reason: An optional description of the reason for the return. This is for internal usage
-              and will not be transmitted to the bank.”
-
-          date_of_death: If the return code is `R14` or `R15` this is the date the deceased counterparty
-              passed away.
+          returnable_type: The type of object being returned. Currently, this may only be
+              incoming_payment_detail.
 
           additional_information: Some returns may include additional information from the bank. In these cases,
               this string will be present.
 
-          returnable_type: The type of object being returned. Currently, this may only be
-              incoming_payment_detail.
+          code: The return code. For ACH returns, this is the required ACH return code.
+
+          date_of_death: If the return code is `R14` or `R15` this is the date the deceased counterparty
+              passed away.
+
+          reason: An optional description of the reason for the return. This is for internal usage
+              and will not be transmitted to the bank.”
 
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/api/returns",
@@ -301,7 +312,12 @@ class AsyncReturns(AsyncAPIResource):
                 },
                 return_create_params.ReturnCreateParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=ReturnObject,
         )
 
@@ -326,9 +342,9 @@ class AsyncReturns(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
+        internal_account_id: str | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         returnable_id: str | NotGiven = NOT_GIVEN,
         returnable_type: Literal["incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"]
         | NotGiven = NOT_GIVEN,
@@ -342,11 +358,11 @@ class AsyncReturns(AsyncAPIResource):
         Get a list of returns.
 
         Args:
-          internal_account_id: Specify `internal_account_id` if you wish to see returns to/from a specific
-              account.
-
           counterparty_id: Specify `counterparty_id` if you wish to see returns that occurred with a
               specific counterparty.
+
+          internal_account_id: Specify `internal_account_id` if you wish to see returns to/from a specific
+              account.
 
           returnable_id: The ID of a valid returnable. Must be accompanied by `returnable_type`.
 

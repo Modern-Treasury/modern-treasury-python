@@ -32,6 +32,7 @@ class Ledgers(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> Ledger:
         """
         Create a ledger.
@@ -49,6 +50,8 @@ class Ledgers(SyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
             "/api/ledgers",
@@ -60,7 +63,12 @@ class Ledgers(SyncAPIResource):
                 },
                 ledger_create_params.LedgerCreateParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=Ledger,
         )
 
@@ -85,31 +93,34 @@ class Ledgers(SyncAPIResource):
         self,
         id: str,
         *,
-        name: str | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> Ledger:
         """
         Update the details of a ledger.
 
         Args:
-          name: The name of the ledger.
-
           description: An optional free-form description for internal use.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
+
+          name: The name of the ledger.
 
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return self._patch(
             f"/api/ledgers/{id}",
@@ -121,7 +132,12 @@ class Ledgers(SyncAPIResource):
                 },
                 ledger_update_params.LedgerUpdateParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=Ledger,
         )
 
@@ -129,8 +145,8 @@ class Ledgers(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -185,11 +201,17 @@ class Ledgers(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> Ledger:
         """Delete a ledger."""
         return self._delete(
             f"/api/ledgers/{id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=Ledger,
         )
 
@@ -206,6 +228,7 @@ class AsyncLedgers(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> Ledger:
         """
         Create a ledger.
@@ -223,6 +246,8 @@ class AsyncLedgers(AsyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
             "/api/ledgers",
@@ -234,7 +259,12 @@ class AsyncLedgers(AsyncAPIResource):
                 },
                 ledger_create_params.LedgerCreateParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=Ledger,
         )
 
@@ -259,31 +289,34 @@ class AsyncLedgers(AsyncAPIResource):
         self,
         id: str,
         *,
-        name: str | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> Ledger:
         """
         Update the details of a ledger.
 
         Args:
-          name: The name of the ledger.
-
           description: An optional free-form description for internal use.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
+
+          name: The name of the ledger.
 
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._patch(
             f"/api/ledgers/{id}",
@@ -295,7 +328,12 @@ class AsyncLedgers(AsyncAPIResource):
                 },
                 ledger_update_params.LedgerUpdateParams,
             ),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=Ledger,
         )
 
@@ -303,8 +341,8 @@ class AsyncLedgers(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -359,10 +397,16 @@ class AsyncLedgers(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        idempotency_key: str | None = None,
     ) -> Ledger:
         """Delete a ledger."""
         return await self._delete(
             f"/api/ledgers/{id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                idempotency_key=idempotency_key,
+            ),
             cast_to=Ledger,
         )
