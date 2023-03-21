@@ -10,6 +10,7 @@ from .connections import Connections, AsyncConnections
 from .paper_items import PaperItems, AsyncPaperItems
 from .validations import Validations, AsyncValidations
 from .transactions import Transactions, AsyncTransactions
+from .payment_flows import PaymentFlows, AsyncPaymentFlows
 from .counterparties import Counterparties, AsyncCounterparties
 from .ledger_entries import LedgerEntries, AsyncLedgerEntries
 from .payment_orders import PaymentOrders, AsyncPaymentOrders
@@ -23,6 +24,10 @@ from .internal_accounts import InternalAccounts, AsyncInternalAccounts
 from .payment_references import PaymentReferences, AsyncPaymentReferences
 from .ledger_transactions import LedgerTransactions, AsyncLedgerTransactions
 from .ledger_account_payouts import LedgerAccountPayouts, AsyncLedgerAccountPayouts
+from .account_collection_flows import (
+    AccountCollectionFlows,
+    AsyncAccountCollectionFlows,
+)
 from .incoming_payment_details import (
     IncomingPaymentDetails,
     AsyncIncomingPaymentDetails,
@@ -47,6 +52,8 @@ __all__ = [
     "AsyncIncomingPaymentDetails",
     "Documents",
     "AsyncDocuments",
+    "AccountCollectionFlows",
+    "AsyncAccountCollectionFlows",
     "AccountDetails",
     "AsyncAccountDetails",
     "RoutingDetails",
@@ -67,6 +74,8 @@ __all__ = [
     "AsyncLedgerTransactions",
     "LineItems",
     "AsyncLineItems",
+    "PaymentFlows",
+    "AsyncPaymentFlows",
     "PaymentOrders",
     "AsyncPaymentOrders",
     "PaymentReferences",

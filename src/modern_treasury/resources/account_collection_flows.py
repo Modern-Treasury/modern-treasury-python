@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from datetime import datetime
+from typing import List, Optional
+from typing_extensions import Literal
 
 from ..types import (
-    Ledger,
-    ledger_list_params,
-    ledger_create_params,
-    ledger_update_params,
+    AcccountConnectionFlow,
+    account_collection_flow_list_params,
+    account_collection_flow_create_params,
+    account_collection_flow_update_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
@@ -17,33 +17,27 @@ from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
 
-__all__ = ["Ledgers", "AsyncLedgers"]
+__all__ = ["AccountCollectionFlows", "AsyncAccountCollectionFlows"]
 
 
-class Ledgers(SyncAPIResource):
+class AccountCollectionFlows(SyncAPIResource):
     def create(
         self,
         *,
-        name: str,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        counterparty_id: str,
+        payment_types: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         idempotency_key: str | None = None,
-    ) -> Ledger:
+    ) -> AcccountConnectionFlow:
         """
-        Create a ledger.
+        create account_collection_flow
 
         Args:
-          name: The name of the ledger.
-
-          description: An optional free-form description for internal use.
-
-          metadata: Additional data represented as key-value pairs. Both the key and value must be
-              strings.
+          counterparty_id: Required.
 
           extra_headers: Send extra headers
 
@@ -54,14 +48,13 @@ class Ledgers(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
-            "/api/ledgers",
+            "/api/account_collection_flows",
             body=maybe_transform(
                 {
-                    "name": name,
-                    "description": description,
-                    "metadata": metadata,
+                    "counterparty_id": counterparty_id,
+                    "payment_types": payment_types,
                 },
-                ledger_create_params.LedgerCreateParams,
+                account_collection_flow_create_params.AccountCollectionFlowCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -69,7 +62,7 @@ class Ledgers(SyncAPIResource):
                 extra_body=extra_body,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=Ledger,
+            cast_to=AcccountConnectionFlow,
         )
 
     def retrieve(
@@ -81,38 +74,33 @@ class Ledgers(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> Ledger:
-        """Get details on a single ledger."""
+    ) -> AcccountConnectionFlow:
+        """get account_collection_flow"""
         return self._get(
-            f"/api/ledgers/{id}",
+            f"/api/account_collection_flows/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
-            cast_to=Ledger,
+            cast_to=AcccountConnectionFlow,
         )
 
     def update(
         self,
         id: str,
         *,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        status: Literal["cancelled"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         idempotency_key: str | None = None,
-    ) -> Ledger:
-        """
-        Update the details of a ledger.
+    ) -> AcccountConnectionFlow:
+        """update account_collection_flow
 
         Args:
-          description: An optional free-form description for internal use.
+          status: Required.
 
-          metadata: Additional data represented as key-value pairs. Both the key and value must be
-              strings.
-
-          name: The name of the ledger.
+        The updated status of the account collection flow. Can only be used to
+              mark a flow as `cancelled`.
 
           extra_headers: Send extra headers
 
@@ -123,14 +111,9 @@ class Ledgers(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         return self._patch(
-            f"/api/ledgers/{id}",
+            f"/api/account_collection_flows/{id}",
             body=maybe_transform(
-                {
-                    "name": name,
-                    "description": description,
-                    "metadata": metadata,
-                },
-                ledger_update_params.LedgerUpdateParams,
+                {"status": status}, account_collection_flow_update_params.AccountCollectionFlowUpdateParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -138,34 +121,28 @@ class Ledgers(SyncAPIResource):
                 extra_body=extra_body,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=Ledger,
+            cast_to=AcccountConnectionFlow,
         )
 
     def list(
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        client_token: str | NotGiven = NOT_GIVEN,
+        counterparty_id: str | NotGiven = NOT_GIVEN,
+        external_account_id: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        status: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> SyncPage[Ledger]:
+    ) -> SyncPage[AcccountConnectionFlow]:
         """
-        Get a list of ledgers.
+        list account_collection_flows
 
         Args:
-          metadata: For example, if you want to query for records with metadata key `Type` and value
-              `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
-              parameters.
-
-          updated_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
-              posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
-              updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -173,8 +150,8 @@ class Ledgers(SyncAPIResource):
           extra_body: Add additional JSON properties to the request
         """
         return self._get_api_list(
-            "/api/ledgers",
-            page=SyncPage[Ledger],
+            "/api/account_collection_flows",
+            page=SyncPage[AcccountConnectionFlow],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -183,63 +160,36 @@ class Ledgers(SyncAPIResource):
                     {
                         "after_cursor": after_cursor,
                         "per_page": per_page,
-                        "metadata": metadata,
-                        "updated_at": updated_at,
+                        "client_token": client_token,
+                        "status": status,
+                        "counterparty_id": counterparty_id,
+                        "external_account_id": external_account_id,
                     },
-                    ledger_list_params.LedgerListParams,
+                    account_collection_flow_list_params.AccountCollectionFlowListParams,
                 ),
             ),
-            model=Ledger,
-        )
-
-    def delete(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        idempotency_key: str | None = None,
-    ) -> Ledger:
-        """Delete a ledger."""
-        return self._delete(
-            f"/api/ledgers/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                idempotency_key=idempotency_key,
-            ),
-            cast_to=Ledger,
+            model=AcccountConnectionFlow,
         )
 
 
-class AsyncLedgers(AsyncAPIResource):
+class AsyncAccountCollectionFlows(AsyncAPIResource):
     async def create(
         self,
         *,
-        name: str,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        counterparty_id: str,
+        payment_types: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         idempotency_key: str | None = None,
-    ) -> Ledger:
+    ) -> AcccountConnectionFlow:
         """
-        Create a ledger.
+        create account_collection_flow
 
         Args:
-          name: The name of the ledger.
-
-          description: An optional free-form description for internal use.
-
-          metadata: Additional data represented as key-value pairs. Both the key and value must be
-              strings.
+          counterparty_id: Required.
 
           extra_headers: Send extra headers
 
@@ -250,14 +200,13 @@ class AsyncLedgers(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
-            "/api/ledgers",
+            "/api/account_collection_flows",
             body=maybe_transform(
                 {
-                    "name": name,
-                    "description": description,
-                    "metadata": metadata,
+                    "counterparty_id": counterparty_id,
+                    "payment_types": payment_types,
                 },
-                ledger_create_params.LedgerCreateParams,
+                account_collection_flow_create_params.AccountCollectionFlowCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -265,7 +214,7 @@ class AsyncLedgers(AsyncAPIResource):
                 extra_body=extra_body,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=Ledger,
+            cast_to=AcccountConnectionFlow,
         )
 
     async def retrieve(
@@ -277,38 +226,33 @@ class AsyncLedgers(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> Ledger:
-        """Get details on a single ledger."""
+    ) -> AcccountConnectionFlow:
+        """get account_collection_flow"""
         return await self._get(
-            f"/api/ledgers/{id}",
+            f"/api/account_collection_flows/{id}",
             options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
-            cast_to=Ledger,
+            cast_to=AcccountConnectionFlow,
         )
 
     async def update(
         self,
         id: str,
         *,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        status: Literal["cancelled"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         idempotency_key: str | None = None,
-    ) -> Ledger:
-        """
-        Update the details of a ledger.
+    ) -> AcccountConnectionFlow:
+        """update account_collection_flow
 
         Args:
-          description: An optional free-form description for internal use.
+          status: Required.
 
-          metadata: Additional data represented as key-value pairs. Both the key and value must be
-              strings.
-
-          name: The name of the ledger.
+        The updated status of the account collection flow. Can only be used to
+              mark a flow as `cancelled`.
 
           extra_headers: Send extra headers
 
@@ -319,14 +263,9 @@ class AsyncLedgers(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._patch(
-            f"/api/ledgers/{id}",
+            f"/api/account_collection_flows/{id}",
             body=maybe_transform(
-                {
-                    "name": name,
-                    "description": description,
-                    "metadata": metadata,
-                },
-                ledger_update_params.LedgerUpdateParams,
+                {"status": status}, account_collection_flow_update_params.AccountCollectionFlowUpdateParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -334,34 +273,28 @@ class AsyncLedgers(AsyncAPIResource):
                 extra_body=extra_body,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=Ledger,
+            cast_to=AcccountConnectionFlow,
         )
 
     def list(
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        client_token: str | NotGiven = NOT_GIVEN,
+        counterparty_id: str | NotGiven = NOT_GIVEN,
+        external_account_id: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        status: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-    ) -> AsyncPaginator[Ledger, AsyncPage[Ledger]]:
+    ) -> AsyncPaginator[AcccountConnectionFlow, AsyncPage[AcccountConnectionFlow]]:
         """
-        Get a list of ledgers.
+        list account_collection_flows
 
         Args:
-          metadata: For example, if you want to query for records with metadata key `Type` and value
-              `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
-              parameters.
-
-          updated_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
-              posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
-              updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -369,8 +302,8 @@ class AsyncLedgers(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
         """
         return self._get_api_list(
-            "/api/ledgers",
-            page=AsyncPage[Ledger],
+            "/api/account_collection_flows",
+            page=AsyncPage[AcccountConnectionFlow],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -379,34 +312,13 @@ class AsyncLedgers(AsyncAPIResource):
                     {
                         "after_cursor": after_cursor,
                         "per_page": per_page,
-                        "metadata": metadata,
-                        "updated_at": updated_at,
+                        "client_token": client_token,
+                        "status": status,
+                        "counterparty_id": counterparty_id,
+                        "external_account_id": external_account_id,
                     },
-                    ledger_list_params.LedgerListParams,
+                    account_collection_flow_list_params.AccountCollectionFlowListParams,
                 ),
             ),
-            model=Ledger,
-        )
-
-    async def delete(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        idempotency_key: str | None = None,
-    ) -> Ledger:
-        """Delete a ledger."""
-        return await self._delete(
-            f"/api/ledgers/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                idempotency_key=idempotency_key,
-            ),
-            cast_to=Ledger,
+            model=AcccountConnectionFlow,
         )

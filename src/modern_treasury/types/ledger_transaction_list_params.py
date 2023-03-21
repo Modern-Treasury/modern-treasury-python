@@ -6,7 +6,13 @@ from typing import Dict, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["LedgerTransactionListParams"]
+__all__ = ["LedgerTransactionListParams", "OrderBy"]
+
+
+class OrderBy(TypedDict, total=False):
+    created_at: Literal["asc", "desc"]
+
+    effective_at: Literal["asc", "desc"]
 
 
 class LedgerTransactionListParams(TypedDict, total=False):
@@ -39,6 +45,14 @@ class LedgerTransactionListParams(TypedDict, total=False):
     For example, if you want to query for records with metadata key `Type` and value
     `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
     parameters.
+    """
+
+    order_by: OrderBy
+    """Order by `created_at` and/or `effective_at` in `asc` or `desc` order.
+
+    For example, to order by `effective_at asc`, use
+    `order_by%5Beffective_at%5D=asc`. Ordering by only one field at a time is
+    supported.
     """
 
     per_page: int

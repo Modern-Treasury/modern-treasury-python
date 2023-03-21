@@ -23,14 +23,10 @@ from ._types import (
     RequestOptions,
 )
 from ._version import __version__
-from ._base_client import (
-    DEFAULT_LIMITS,
-    DEFAULT_TIMEOUT,
-    DEFAULT_MAX_RETRIES,
-    SyncAPIClient,
-    AsyncAPIClient,
-    make_request_options,
-)
+from ._base_client import DEFAULT_LIMITS, DEFAULT_TIMEOUT, DEFAULT_MAX_RETRIES
+from ._base_client import Stream as Stream
+from ._base_client import AsyncStream as AsyncStream
+from ._base_client import SyncAPIClient, AsyncAPIClient, make_request_options
 
 __all__ = [
     "Timeout",
@@ -53,6 +49,7 @@ class ModernTreasury(SyncAPIClient):
     external_accounts: resources.ExternalAccounts
     incoming_payment_details: resources.IncomingPaymentDetails
     documents: resources.Documents
+    account_collection_flows: resources.AccountCollectionFlows
     account_details: resources.AccountDetails
     routing_details: resources.RoutingDetails
     internal_accounts: resources.InternalAccounts
@@ -63,6 +60,7 @@ class ModernTreasury(SyncAPIClient):
     ledger_entries: resources.LedgerEntries
     ledger_transactions: resources.LedgerTransactions
     line_items: resources.LineItems
+    payment_flows: resources.PaymentFlows
     payment_orders: resources.PaymentOrders
     payment_references: resources.PaymentReferences
     returns: resources.Returns
@@ -155,6 +153,7 @@ class ModernTreasury(SyncAPIClient):
         self.external_accounts = resources.ExternalAccounts(self)
         self.incoming_payment_details = resources.IncomingPaymentDetails(self)
         self.documents = resources.Documents(self)
+        self.account_collection_flows = resources.AccountCollectionFlows(self)
         self.account_details = resources.AccountDetails(self)
         self.routing_details = resources.RoutingDetails(self)
         self.internal_accounts = resources.InternalAccounts(self)
@@ -165,6 +164,7 @@ class ModernTreasury(SyncAPIClient):
         self.ledger_entries = resources.LedgerEntries(self)
         self.ledger_transactions = resources.LedgerTransactions(self)
         self.line_items = resources.LineItems(self)
+        self.payment_flows = resources.PaymentFlows(self)
         self.payment_orders = resources.PaymentOrders(self)
         self.payment_references = resources.PaymentReferences(self)
         self.returns = resources.Returns(self)
@@ -270,6 +270,7 @@ class AsyncModernTreasury(AsyncAPIClient):
     external_accounts: resources.AsyncExternalAccounts
     incoming_payment_details: resources.AsyncIncomingPaymentDetails
     documents: resources.AsyncDocuments
+    account_collection_flows: resources.AsyncAccountCollectionFlows
     account_details: resources.AsyncAccountDetails
     routing_details: resources.AsyncRoutingDetails
     internal_accounts: resources.AsyncInternalAccounts
@@ -280,6 +281,7 @@ class AsyncModernTreasury(AsyncAPIClient):
     ledger_entries: resources.AsyncLedgerEntries
     ledger_transactions: resources.AsyncLedgerTransactions
     line_items: resources.AsyncLineItems
+    payment_flows: resources.AsyncPaymentFlows
     payment_orders: resources.AsyncPaymentOrders
     payment_references: resources.AsyncPaymentReferences
     returns: resources.AsyncReturns
@@ -372,6 +374,7 @@ class AsyncModernTreasury(AsyncAPIClient):
         self.external_accounts = resources.AsyncExternalAccounts(self)
         self.incoming_payment_details = resources.AsyncIncomingPaymentDetails(self)
         self.documents = resources.AsyncDocuments(self)
+        self.account_collection_flows = resources.AsyncAccountCollectionFlows(self)
         self.account_details = resources.AsyncAccountDetails(self)
         self.routing_details = resources.AsyncRoutingDetails(self)
         self.internal_accounts = resources.AsyncInternalAccounts(self)
@@ -382,6 +385,7 @@ class AsyncModernTreasury(AsyncAPIClient):
         self.ledger_entries = resources.AsyncLedgerEntries(self)
         self.ledger_transactions = resources.AsyncLedgerTransactions(self)
         self.line_items = resources.AsyncLineItems(self)
+        self.payment_flows = resources.AsyncPaymentFlows(self)
         self.payment_orders = resources.AsyncPaymentOrders(self)
         self.payment_references = resources.AsyncPaymentReferences(self)
         self.returns = resources.AsyncReturns(self)

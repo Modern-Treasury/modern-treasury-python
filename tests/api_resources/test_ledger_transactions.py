@@ -175,6 +175,10 @@ class TestLedgerTransactions:
             effective_date={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             posted_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
+            order_by={
+                "created_at": "asc",
+                "effective_at": "asc",
+            },
             status="pending",
             external_id="string",
             ledger_account_category_id="string",
@@ -341,6 +345,10 @@ class TestAsyncLedgerTransactions:
             effective_date={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             posted_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
+            order_by={
+                "created_at": "asc",
+                "effective_at": "asc",
+            },
             status="pending",
             external_id="string",
             ledger_account_category_id="string",
