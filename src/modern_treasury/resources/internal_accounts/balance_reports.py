@@ -39,9 +39,9 @@ class BalanceReports(SyncAPIResource):
         self,
         internal_account_id: str,
         *,
+        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         as_of_date: Union[str, date] | NotGiven = NOT_GIVEN,
         balance_report_type: Literal["intraday", "other", "previous_day", "real_time"] | NotGiven = NOT_GIVEN,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -108,9 +108,9 @@ class AsyncBalanceReports(AsyncAPIResource):
         self,
         internal_account_id: str,
         *,
+        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         as_of_date: Union[str, date] | NotGiven = NOT_GIVEN,
         balance_report_type: Literal["intraday", "other", "previous_day", "real_time"] | NotGiven = NOT_GIVEN,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

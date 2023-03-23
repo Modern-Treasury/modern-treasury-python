@@ -36,7 +36,7 @@ class RoutingNumberLookupRequest(BaseModel):
     routing_number: Optional[str]
     """The routing number of the bank."""
 
-    routing_number_type: Optional[Literal["aba", "au_bsb", "ca_cpa", "gb_sort_code", "swift"]]
+    routing_number_type: Optional[Literal["aba", "au_bsb", "ca_cpa", "gb_sort_code", "in_ifsc", "swift"]]
     """
     One of `aba`, `au_bsb`, `br_codigo`, `ca_cpa`, `cnaps`, `gb_sort_code`,
     `in_ifsc`, `my_branch_code`, or `swift`. In sandbox mode we currently only

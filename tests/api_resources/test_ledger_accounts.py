@@ -80,7 +80,6 @@ class TestLedgerAccounts:
             "string",
             name="string",
             description="string",
-            normal_balance="credit",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -184,7 +183,6 @@ class TestAsyncLedgerAccounts:
             "string",
             name="string",
             description="string",
-            normal_balance="credit",
             metadata={
                 "key": "value",
                 "foo": "bar",
