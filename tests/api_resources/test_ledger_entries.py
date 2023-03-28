@@ -47,11 +47,16 @@ class TestLedgerEntries:
             effective_date={"foo": parse_date("2019-12-27")},
             effective_at={"foo": "string"},
             updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
+            as_of_lock_version=0,
             ledger_account_lock_version={"foo": 0},
             ledger_account_category_id="string",
             show_deleted=True,
             direction="credit",
             status="pending",
+            order_by={
+                "created_at": "asc",
+                "effective_at": "asc",
+            },
         )
         assert_matches_type(SyncPage[LedgerEntry], ledger_entry, path=["response"])
 
@@ -87,10 +92,15 @@ class TestAsyncLedgerEntries:
             effective_date={"foo": parse_date("2019-12-27")},
             effective_at={"foo": "string"},
             updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
+            as_of_lock_version=0,
             ledger_account_lock_version={"foo": 0},
             ledger_account_category_id="string",
             show_deleted=True,
             direction="credit",
             status="pending",
+            order_by={
+                "created_at": "asc",
+                "effective_at": "asc",
+            },
         )
         assert_matches_type(AsyncPage[LedgerEntry], ledger_entry, path=["response"])
