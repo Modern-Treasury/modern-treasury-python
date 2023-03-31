@@ -45,20 +45,22 @@ class TestVersions:
 
     @parametrize
     def test_method_versions(self, client: ModernTreasury) -> None:
-        version = client.ledger_transactions.versions.versions(
-            "string",
-        )
+        with pytest.warns(DeprecationWarning):
+            version = client.ledger_transactions.versions.versions(
+                "string",
+            )
         assert_matches_type(SyncPage[LedgerTransactionVersion], version, path=["response"])
 
     @parametrize
     def test_method_versions_with_all_params(self, client: ModernTreasury) -> None:
-        version = client.ledger_transactions.versions.versions(
-            "string",
-            after_cursor="string",
-            per_page=0,
-            created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
-            version={"foo": 0},
-        )
+        with pytest.warns(DeprecationWarning):
+            version = client.ledger_transactions.versions.versions(
+                "string",
+                after_cursor="string",
+                per_page=0,
+                created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
+                version={"foo": 0},
+            )
         assert_matches_type(SyncPage[LedgerTransactionVersion], version, path=["response"])
 
 
@@ -91,18 +93,20 @@ class TestAsyncVersions:
 
     @parametrize
     async def test_method_versions(self, client: AsyncModernTreasury) -> None:
-        version = await client.ledger_transactions.versions.versions(
-            "string",
-        )
+        with pytest.warns(DeprecationWarning):
+            version = await client.ledger_transactions.versions.versions(
+                "string",
+            )
         assert_matches_type(AsyncPage[LedgerTransactionVersion], version, path=["response"])
 
     @parametrize
     async def test_method_versions_with_all_params(self, client: AsyncModernTreasury) -> None:
-        version = await client.ledger_transactions.versions.versions(
-            "string",
-            after_cursor="string",
-            per_page=0,
-            created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
-            version={"foo": 0},
-        )
+        with pytest.warns(DeprecationWarning):
+            version = await client.ledger_transactions.versions.versions(
+                "string",
+                after_cursor="string",
+                per_page=0,
+                created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
+                version={"foo": 0},
+            )
         assert_matches_type(AsyncPage[LedgerTransactionVersion], version, path=["response"])
