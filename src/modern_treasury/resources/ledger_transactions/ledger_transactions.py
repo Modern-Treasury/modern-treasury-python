@@ -231,9 +231,9 @@ class LedgerTransactions(SyncAPIResource):
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
 
-          order_by: Order by `created_at` and/or `effective_at` in `asc` or `desc` order. For
-              example, to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`.
-              Ordering by only one field at a time is supported.
+          order_by: Order by `created_at` or `effective_at` in `asc` or `desc` order. For example,
+              to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`. Ordering
+              by only one field at a time is supported.
 
           posted_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
@@ -485,9 +485,9 @@ class AsyncLedgerTransactions(AsyncAPIResource):
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
 
-          order_by: Order by `created_at` and/or `effective_at` in `asc` or `desc` order. For
-              example, to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`.
-              Ordering by only one field at a time is supported.
+          order_by: Order by `created_at` or `effective_at` in `asc` or `desc` order. For example,
+              to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`. Ordering
+              by only one field at a time is supported.
 
           posted_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use

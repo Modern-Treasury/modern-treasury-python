@@ -77,7 +77,18 @@ class ReceivingAccountRoutingDetail(TypedDict, total=False):
     routing_number: Required[str]
 
     routing_number_type: Required[
-        Literal["aba", "swift", "au_bsb", "ca_cpa", "cnaps", "gb_sort_code", "in_ifsc", "my_branch_code", "br_codigo"]
+        Literal[
+            "aba",
+            "au_bsb",
+            "br_codigo",
+            "ca_cpa",
+            "chips",
+            "cnaps",
+            "gb_sort_code",
+            "in_ifsc",
+            "my_branch_code",
+            "swift",
+        ]
     ]
 
     payment_type: Literal[

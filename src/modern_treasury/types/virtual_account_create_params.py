@@ -139,7 +139,18 @@ class RoutingDetail(TypedDict, total=False):
     """The routing number of the bank."""
 
     routing_number_type: Required[
-        Literal["aba", "au_bsb", "br_codigo", "ca_cpa", "cnaps", "gb_sort_code", "in_ifsc", "my_branch_code", "swift"]
+        Literal[
+            "aba",
+            "au_bsb",
+            "br_codigo",
+            "ca_cpa",
+            "chips",
+            "cnaps",
+            "gb_sort_code",
+            "in_ifsc",
+            "my_branch_code",
+            "swift",
+        ]
     ]
     """One of `aba`, `swift`, `ca_cpa`, `au_bsb`, `gb_sort_code`, `in_ifsc`, `cnaps`."""
 
