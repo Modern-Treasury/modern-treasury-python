@@ -48,7 +48,7 @@ class LedgerTransactionListParams(TypedDict, total=False):
     """
 
     order_by: OrderBy
-    """Order by `created_at` and/or `effective_at` in `asc` or `desc` order.
+    """Order by `created_at` or `effective_at` in `asc` or `desc` order.
 
     For example, to order by `effective_at asc`, use
     `order_by%5Beffective_at%5D=asc`. Ordering by only one field at a time is

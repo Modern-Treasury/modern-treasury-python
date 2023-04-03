@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import os
 import base64
-from typing import Dict, Union, Mapping, Optional
+from typing import Union, Mapping, Optional
 
 import httpx
 
@@ -179,7 +179,7 @@ class ModernTreasury(SyncAPIClient):
         return Querystring(array_format="repeat")
 
     @property
-    def auth_headers(self) -> Dict[str, str]:
+    def auth_headers(self) -> dict[str, str]:
         credentials = f"{self.organization_id}:{self.api_key}".encode("ascii")
         header = f"Basic {base64.b64encode(credentials).decode('ascii')}"
         return {"Authorization": header}
@@ -400,7 +400,7 @@ class AsyncModernTreasury(AsyncAPIClient):
         return Querystring(array_format="repeat")
 
     @property
-    def auth_headers(self) -> Dict[str, str]:
+    def auth_headers(self) -> dict[str, str]:
         credentials = f"{self.organization_id}:{self.api_key}".encode("ascii")
         header = f"Basic {base64.b64encode(credentials).decode('ascii')}"
         return {"Authorization": header}
