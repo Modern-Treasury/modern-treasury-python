@@ -38,13 +38,16 @@ class LedgerEntries(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        as_of_lock_version: int | NotGiven = NOT_GIVEN,
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
         effective_date: Dict[str, Union[str, date]] | NotGiven = NOT_GIVEN,
+        id: Dict[str, str] | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_account_lock_version: Dict[str, int] | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
+        order_by: ledger_entry_list_params.OrderBy | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         show_deleted: bool | NotGiven = NOT_GIVEN,
         status: Literal["pending", "posted", "archived"] | NotGiven = NOT_GIVEN,
@@ -59,6 +62,9 @@ class LedgerEntries(SyncAPIResource):
         Get a list of all ledger entries.
 
         Args:
+          as_of_lock_version: Shows all ledger entries that were present on a ledger account at a particular
+              `lock_version`. You must also specify `ledger_account_id`.
+
           direction: If true, response will include ledger entries that were deleted. When you update
               a ledger transaction to specify a new set of entries, the previous entries are
               deleted.
@@ -75,7 +81,11 @@ class LedgerEntries(SyncAPIResource):
           ledger_account_lock_version: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               lock_version of a ledger account. For example, for all entries created at or
               before before lock_version 1000 of a ledger account, use
-              ledger_account_lock_version%5Blte%5D=1000
+              `ledger_account_lock_version%5Blte%5D=1000`.
+
+          order_by: Order by `created_at` or `effective_at` in `asc` or `desc` order. For example,
+              to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`. Ordering
+              by only one field at a time is supported.
 
           show_deleted: If true, response will include ledger entries that were deleted. When you update
               a ledger transaction to specify a new set of entries, the previous entries are
@@ -105,16 +115,19 @@ class LedgerEntries(SyncAPIResource):
                     {
                         "after_cursor": after_cursor,
                         "per_page": per_page,
+                        "id": id,
                         "ledger_account_id": ledger_account_id,
                         "ledger_transaction_id": ledger_transaction_id,
                         "effective_date": effective_date,
                         "effective_at": effective_at,
                         "updated_at": updated_at,
+                        "as_of_lock_version": as_of_lock_version,
                         "ledger_account_lock_version": ledger_account_lock_version,
                         "ledger_account_category_id": ledger_account_category_id,
                         "show_deleted": show_deleted,
                         "direction": direction,
                         "status": status,
+                        "order_by": order_by,
                     },
                     ledger_entry_list_params.LedgerEntryListParams,
                 ),
@@ -145,13 +158,16 @@ class AsyncLedgerEntries(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        as_of_lock_version: int | NotGiven = NOT_GIVEN,
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
         effective_date: Dict[str, Union[str, date]] | NotGiven = NOT_GIVEN,
+        id: Dict[str, str] | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_account_lock_version: Dict[str, int] | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
+        order_by: ledger_entry_list_params.OrderBy | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         show_deleted: bool | NotGiven = NOT_GIVEN,
         status: Literal["pending", "posted", "archived"] | NotGiven = NOT_GIVEN,
@@ -166,6 +182,9 @@ class AsyncLedgerEntries(AsyncAPIResource):
         Get a list of all ledger entries.
 
         Args:
+          as_of_lock_version: Shows all ledger entries that were present on a ledger account at a particular
+              `lock_version`. You must also specify `ledger_account_id`.
+
           direction: If true, response will include ledger entries that were deleted. When you update
               a ledger transaction to specify a new set of entries, the previous entries are
               deleted.
@@ -182,7 +201,11 @@ class AsyncLedgerEntries(AsyncAPIResource):
           ledger_account_lock_version: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               lock_version of a ledger account. For example, for all entries created at or
               before before lock_version 1000 of a ledger account, use
-              ledger_account_lock_version%5Blte%5D=1000
+              `ledger_account_lock_version%5Blte%5D=1000`.
+
+          order_by: Order by `created_at` or `effective_at` in `asc` or `desc` order. For example,
+              to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`. Ordering
+              by only one field at a time is supported.
 
           show_deleted: If true, response will include ledger entries that were deleted. When you update
               a ledger transaction to specify a new set of entries, the previous entries are
@@ -212,16 +235,19 @@ class AsyncLedgerEntries(AsyncAPIResource):
                     {
                         "after_cursor": after_cursor,
                         "per_page": per_page,
+                        "id": id,
                         "ledger_account_id": ledger_account_id,
                         "ledger_transaction_id": ledger_transaction_id,
                         "effective_date": effective_date,
                         "effective_at": effective_at,
                         "updated_at": updated_at,
+                        "as_of_lock_version": as_of_lock_version,
                         "ledger_account_lock_version": ledger_account_lock_version,
                         "ledger_account_category_id": ledger_account_category_id,
                         "show_deleted": show_deleted,
                         "direction": direction,
                         "status": status,
+                        "order_by": order_by,
                     },
                     ledger_entry_list_params.LedgerEntryListParams,
                 ),

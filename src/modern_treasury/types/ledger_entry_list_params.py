@@ -6,11 +6,23 @@ from typing import Dict, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["LedgerEntryListParams"]
+__all__ = ["LedgerEntryListParams", "OrderBy"]
+
+
+class OrderBy(TypedDict, total=False):
+    created_at: Literal["asc", "desc"]
+
+    effective_at: Literal["asc", "desc"]
 
 
 class LedgerEntryListParams(TypedDict, total=False):
     after_cursor: Optional[str]
+
+    as_of_lock_version: int
+    """
+    Shows all ledger entries that were present on a ledger account at a particular
+    `lock_version`. You must also specify `ledger_account_id`.
+    """
 
     direction: Literal["credit", "debit"]
     """If true, response will include ledger entries that were deleted.
@@ -31,6 +43,8 @@ class LedgerEntryListParams(TypedDict, total=False):
     transaction's effective date. Format YYYY-MM-DD
     """
 
+    id: Dict[str, str]
+
     ledger_account_category_id: str
     """Get all ledger entries that match the direction specified.
 
@@ -44,10 +58,18 @@ class LedgerEntryListParams(TypedDict, total=False):
     Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
     lock_version of a ledger account. For example, for all entries created at or
     before before lock_version 1000 of a ledger account, use
-    ledger_account_lock_version%5Blte%5D=1000
+    `ledger_account_lock_version%5Blte%5D=1000`.
     """
 
     ledger_transaction_id: str
+
+    order_by: OrderBy
+    """Order by `created_at` or `effective_at` in `asc` or `desc` order.
+
+    For example, to order by `effective_at asc`, use
+    `order_by%5Beffective_at%5D=asc`. Ordering by only one field at a time is
+    supported.
+    """
 
     per_page: int
 
