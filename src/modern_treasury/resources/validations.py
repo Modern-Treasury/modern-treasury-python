@@ -8,7 +8,7 @@ from ..types import (
     RoutingNumberLookupRequest,
     validation_validate_routing_number_params,
 )
-from .._types import Body, Query, Headers
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._base_client import make_request_options
@@ -38,6 +38,7 @@ class Validations(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> RoutingNumberLookupRequest:
         """
         Validates the routing number information supplied without creating a routing
@@ -56,6 +57,8 @@ class Validations(SyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
             "/api/validations/routing_numbers",
@@ -63,6 +66,7 @@ class Validations(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 query=maybe_transform(
                     {
                         "routing_number": routing_number,
@@ -97,6 +101,7 @@ class AsyncValidations(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> RoutingNumberLookupRequest:
         """
         Validates the routing number information supplied without creating a routing
@@ -115,6 +120,8 @@ class AsyncValidations(AsyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
             "/api/validations/routing_numbers",
@@ -122,6 +129,7 @@ class AsyncValidations(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 query=maybe_transform(
                     {
                         "routing_number": routing_number,

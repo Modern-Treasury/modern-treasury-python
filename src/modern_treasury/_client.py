@@ -250,6 +250,7 @@ class ModernTreasury(SyncAPIClient):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> PingResponse:
         """
         A test endpoint often used to confirm credentials and headers are being passed
@@ -257,7 +258,9 @@ class ModernTreasury(SyncAPIClient):
         """
         return self.get(
             "/api/ping",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=PingResponse,
         )
 
@@ -471,6 +474,7 @@ class AsyncModernTreasury(AsyncAPIClient):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> PingResponse:
         """
         A test endpoint often used to confirm credentials and headers are being passed
@@ -478,7 +482,9 @@ class AsyncModernTreasury(AsyncAPIClient):
         """
         return await self.get(
             "/api/ping",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=PingResponse,
         )
 

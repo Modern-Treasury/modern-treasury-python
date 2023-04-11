@@ -32,6 +32,7 @@ class AccountDetails(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> AccountDetail:
         """
@@ -49,6 +50,8 @@ class AccountDetails(SyncAPIResource):
 
           extra_body: Add additional JSON properties to the request
 
+          timeout: Override the client-level default timeout for this request, in seconds
+
           idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
@@ -64,6 +67,7 @@ class AccountDetails(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
             cast_to=AccountDetail,
@@ -80,11 +84,14 @@ class AccountDetails(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> AccountDetail:
         """Get a single account detail for a single internal or external account."""
         return self._get(
             f"/api/{accounts_type}/{account_id}/account_details/{id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=AccountDetail,
         )
 
@@ -100,6 +107,7 @@ class AccountDetails(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> SyncPage[AccountDetail]:
         """
         Get a list of account details for a single internal or external account.
@@ -110,6 +118,8 @@ class AccountDetails(SyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
             f"/api/{accounts_type}/{account_id}/account_details",
@@ -118,6 +128,7 @@ class AccountDetails(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
@@ -140,6 +151,7 @@ class AccountDetails(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> None:
         """Delete a single account detail for an external account."""
@@ -150,6 +162,7 @@ class AccountDetails(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
             cast_to=NoneType,
@@ -169,6 +182,7 @@ class AsyncAccountDetails(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> AccountDetail:
         """
@@ -186,6 +200,8 @@ class AsyncAccountDetails(AsyncAPIResource):
 
           extra_body: Add additional JSON properties to the request
 
+          timeout: Override the client-level default timeout for this request, in seconds
+
           idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
@@ -201,6 +217,7 @@ class AsyncAccountDetails(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
             cast_to=AccountDetail,
@@ -217,11 +234,14 @@ class AsyncAccountDetails(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> AccountDetail:
         """Get a single account detail for a single internal or external account."""
         return await self._get(
             f"/api/{accounts_type}/{account_id}/account_details/{id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=AccountDetail,
         )
 
@@ -237,6 +257,7 @@ class AsyncAccountDetails(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[AccountDetail, AsyncPage[AccountDetail]]:
         """
         Get a list of account details for a single internal or external account.
@@ -247,6 +268,8 @@ class AsyncAccountDetails(AsyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
             f"/api/{accounts_type}/{account_id}/account_details",
@@ -255,6 +278,7 @@ class AsyncAccountDetails(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
@@ -277,6 +301,7 @@ class AsyncAccountDetails(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> None:
         """Delete a single account detail for an external account."""
@@ -287,6 +312,7 @@ class AsyncAccountDetails(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
             cast_to=NoneType,

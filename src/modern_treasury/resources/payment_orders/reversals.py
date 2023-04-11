@@ -38,6 +38,7 @@ class Reversals(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> Reversal:
         """
@@ -61,6 +62,8 @@ class Reversals(SyncAPIResource):
 
           extra_body: Add additional JSON properties to the request
 
+          timeout: Override the client-level default timeout for this request, in seconds
+
           idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
@@ -77,6 +80,7 @@ class Reversals(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
             cast_to=Reversal,
@@ -92,11 +96,14 @@ class Reversals(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> Reversal:
         """Get details on a single reversal of a payment order."""
         return self._get(
             f"/api/payment_orders/{payment_order_id}/reversals/{reversal_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=Reversal,
         )
 
@@ -111,6 +118,7 @@ class Reversals(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> SyncPage[Reversal]:
         """
         Get a list of all reversals of a payment order.
@@ -121,6 +129,8 @@ class Reversals(SyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
             f"/api/payment_orders/{payment_order_id}/reversals",
@@ -129,6 +139,7 @@ class Reversals(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
@@ -160,6 +171,7 @@ class AsyncReversals(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> Reversal:
         """
@@ -183,6 +195,8 @@ class AsyncReversals(AsyncAPIResource):
 
           extra_body: Add additional JSON properties to the request
 
+          timeout: Override the client-level default timeout for this request, in seconds
+
           idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
@@ -199,6 +213,7 @@ class AsyncReversals(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
             cast_to=Reversal,
@@ -214,11 +229,14 @@ class AsyncReversals(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> Reversal:
         """Get details on a single reversal of a payment order."""
         return await self._get(
             f"/api/payment_orders/{payment_order_id}/reversals/{reversal_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=Reversal,
         )
 
@@ -233,6 +251,7 @@ class AsyncReversals(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Reversal, AsyncPage[Reversal]]:
         """
         Get a list of all reversals of a payment order.
@@ -243,6 +262,8 @@ class AsyncReversals(AsyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
             f"/api/payment_orders/{payment_order_id}/reversals",
@@ -251,6 +272,7 @@ class AsyncReversals(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,

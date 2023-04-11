@@ -27,6 +27,7 @@ class Connections(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> SyncPage[Connection]:
         """
         Get a list of all connections.
@@ -41,6 +42,8 @@ class Connections(SyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
             "/api/connections",
@@ -49,6 +52,7 @@ class Connections(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
@@ -76,6 +80,7 @@ class AsyncConnections(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Connection, AsyncPage[Connection]]:
         """
         Get a list of all connections.
@@ -90,6 +95,8 @@ class AsyncConnections(AsyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
             "/api/connections",
@@ -98,6 +105,7 @@ class AsyncConnections(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,

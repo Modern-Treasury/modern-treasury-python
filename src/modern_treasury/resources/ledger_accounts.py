@@ -38,6 +38,7 @@ class LedgerAccounts(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> LedgerAccount:
         """
@@ -65,6 +66,8 @@ class LedgerAccounts(SyncAPIResource):
 
           extra_body: Add additional JSON properties to the request
 
+          timeout: Override the client-level default timeout for this request, in seconds
+
           idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
@@ -85,6 +88,7 @@ class LedgerAccounts(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
             cast_to=LedgerAccount,
@@ -100,6 +104,7 @@ class LedgerAccounts(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> LedgerAccount:
         """
         Get details on a single ledger account.
@@ -115,6 +120,8 @@ class LedgerAccounts(SyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
             f"/api/ledger_accounts/{id}",
@@ -122,6 +129,7 @@ class LedgerAccounts(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 query=maybe_transform(
                     {"balances": balances}, ledger_account_retrieve_params.LedgerAccountRetrieveParams
                 ),
@@ -141,6 +149,7 @@ class LedgerAccounts(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> LedgerAccount:
         """
@@ -160,6 +169,8 @@ class LedgerAccounts(SyncAPIResource):
 
           extra_body: Add additional JSON properties to the request
 
+          timeout: Override the client-level default timeout for this request, in seconds
+
           idempotency_key: Specify a custom idempotency key for this request
         """
         return self._patch(
@@ -176,6 +187,7 @@ class LedgerAccounts(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
             cast_to=LedgerAccount,
@@ -198,6 +210,7 @@ class LedgerAccounts(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> SyncPage[LedgerAccount]:
         """
         Get a list of ledger accounts.
@@ -221,6 +234,8 @@ class LedgerAccounts(SyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
             "/api/ledger_accounts",
@@ -229,6 +244,7 @@ class LedgerAccounts(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
@@ -256,6 +272,7 @@ class LedgerAccounts(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> LedgerAccount:
         """Delete a ledger account."""
@@ -265,6 +282,7 @@ class LedgerAccounts(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
             cast_to=LedgerAccount,
@@ -287,6 +305,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> LedgerAccount:
         """
@@ -314,6 +333,8 @@ class AsyncLedgerAccounts(AsyncAPIResource):
 
           extra_body: Add additional JSON properties to the request
 
+          timeout: Override the client-level default timeout for this request, in seconds
+
           idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
@@ -334,6 +355,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
             cast_to=LedgerAccount,
@@ -349,6 +371,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> LedgerAccount:
         """
         Get details on a single ledger account.
@@ -364,6 +387,8 @@ class AsyncLedgerAccounts(AsyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
             f"/api/ledger_accounts/{id}",
@@ -371,6 +396,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 query=maybe_transform(
                     {"balances": balances}, ledger_account_retrieve_params.LedgerAccountRetrieveParams
                 ),
@@ -390,6 +416,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> LedgerAccount:
         """
@@ -409,6 +436,8 @@ class AsyncLedgerAccounts(AsyncAPIResource):
 
           extra_body: Add additional JSON properties to the request
 
+          timeout: Override the client-level default timeout for this request, in seconds
+
           idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._patch(
@@ -425,6 +454,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
             cast_to=LedgerAccount,
@@ -447,6 +477,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[LedgerAccount, AsyncPage[LedgerAccount]]:
         """
         Get a list of ledger accounts.
@@ -470,6 +501,8 @@ class AsyncLedgerAccounts(AsyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
             "/api/ledger_accounts",
@@ -478,6 +511,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
@@ -505,6 +539,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> LedgerAccount:
         """Delete a ledger account."""
@@ -514,6 +549,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
             cast_to=LedgerAccount,
