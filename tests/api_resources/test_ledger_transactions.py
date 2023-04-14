@@ -168,6 +168,7 @@ class TestLedgerTransactions:
         ledger_transaction = client.ledger_transactions.list(
             after_cursor="string",
             per_page=0,
+            id={"foo": "string"},
             metadata={"foo": "string"},
             ledger_id="string",
             ledger_account_id="string",
@@ -338,6 +339,7 @@ class TestAsyncLedgerTransactions:
         ledger_transaction = await client.ledger_transactions.list(
             after_cursor="string",
             per_page=0,
+            id={"foo": "string"},
             metadata={"foo": "string"},
             ledger_id="string",
             ledger_account_id="string",

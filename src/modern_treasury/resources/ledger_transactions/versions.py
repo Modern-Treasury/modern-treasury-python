@@ -30,6 +30,7 @@ class Versions(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> SyncPage[LedgerTransactionVersion]:
         """
         Get a list of ledger transaction versions.
@@ -47,6 +48,8 @@ class Versions(SyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
             f"/api/ledger_transactions/{id}/versions",
@@ -55,6 +58,7 @@ class Versions(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
@@ -81,6 +85,7 @@ class Versions(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> SyncPage[LedgerTransactionVersion]:
         """
         Get a list of ledger transaction versions.
@@ -98,6 +103,8 @@ class Versions(SyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         warnings.warn("This method has been deprecated and will be removed soon.", DeprecationWarning, stacklevel=2)
         return self.list(
@@ -109,6 +116,7 @@ class Versions(SyncAPIResource):
             extra_headers=extra_headers,
             extra_query=extra_query,
             extra_body=extra_body,
+            timeout=timeout,
         )
 
 
@@ -126,6 +134,7 @@ class AsyncVersions(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[LedgerTransactionVersion, AsyncPage[LedgerTransactionVersion]]:
         """
         Get a list of ledger transaction versions.
@@ -143,6 +152,8 @@ class AsyncVersions(AsyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
             f"/api/ledger_transactions/{id}/versions",
@@ -151,6 +162,7 @@ class AsyncVersions(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
@@ -177,6 +189,7 @@ class AsyncVersions(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[LedgerTransactionVersion, AsyncPage[LedgerTransactionVersion]]:
         """
         Get a list of ledger transaction versions.
@@ -194,6 +207,8 @@ class AsyncVersions(AsyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         warnings.warn("This method has been deprecated and will be removed soon.", DeprecationWarning, stacklevel=2)
         return self.list(
@@ -205,4 +220,5 @@ class AsyncVersions(AsyncAPIResource):
             extra_headers=extra_headers,
             extra_query=extra_query,
             extra_body=extra_body,
+            timeout=timeout,
         )

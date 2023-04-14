@@ -39,7 +39,7 @@ modern_treasury = ModernTreasury(
 )
 
 external_account = modern_treasury.external_accounts.create(
-    counterparty_id="123",
+    counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a",
     name="my bank",
 )
 print(external_account.id)
@@ -64,7 +64,7 @@ modern_treasury = AsyncModernTreasury(
 
 async def main():
     external_account = await modern_treasury.external_accounts.create(
-        counterparty_id="123",
+        counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a",
         name="my bank",
     )
     print(external_account.id)

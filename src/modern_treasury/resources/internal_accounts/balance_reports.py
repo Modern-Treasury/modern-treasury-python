@@ -27,11 +27,14 @@ class BalanceReports(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> BalanceReport:
         """Get a single balance report for a given internal account."""
         return self._get(
             f"/api/internal_accounts/{internal_account_id}/balance_reports/{id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=BalanceReport,
         )
 
@@ -48,6 +51,7 @@ class BalanceReports(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> SyncPage[BalanceReport]:
         """
         Get all balance reports for a given internal account.
@@ -63,6 +67,8 @@ class BalanceReports(SyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
             f"/api/internal_accounts/{internal_account_id}/balance_reports",
@@ -71,6 +77,7 @@ class BalanceReports(SyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 query=maybe_transform(
                     {
                         "as_of_date": as_of_date,
@@ -96,11 +103,14 @@ class AsyncBalanceReports(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> BalanceReport:
         """Get a single balance report for a given internal account."""
         return await self._get(
             f"/api/internal_accounts/{internal_account_id}/balance_reports/{id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=BalanceReport,
         )
 
@@ -117,6 +127,7 @@ class AsyncBalanceReports(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[BalanceReport, AsyncPage[BalanceReport]]:
         """
         Get all balance reports for a given internal account.
@@ -132,6 +143,8 @@ class AsyncBalanceReports(AsyncAPIResource):
           extra_query: Add additional query parameters to the request
 
           extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
             f"/api/internal_accounts/{internal_account_id}/balance_reports",
@@ -140,6 +153,7 @@ class AsyncBalanceReports(AsyncAPIResource):
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
+                timeout=timeout,
                 query=maybe_transform(
                     {
                         "as_of_date": as_of_date,
