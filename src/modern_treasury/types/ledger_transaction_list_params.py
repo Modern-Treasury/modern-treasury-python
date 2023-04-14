@@ -34,6 +34,8 @@ class LedgerTransactionListParams(TypedDict, total=False):
 
     external_id: str
 
+    id: Dict[str, str]
+
     ledger_account_category_id: str
 
     ledger_account_id: str
