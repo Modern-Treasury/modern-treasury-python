@@ -13,6 +13,9 @@ __all__ = ["InternalAccountListParams"]
 class InternalAccountListParams(TypedDict, total=False):
     after_cursor: Optional[str]
 
+    counterparty_id: str
+    """The counterparty associated with the internal account."""
+
     currency: shared_params.Currency
     """The currency associated with the internal account."""
 

@@ -48,6 +48,7 @@ class ModernTreasury(SyncAPIClient):
     expected_payments: resources.ExpectedPayments
     external_accounts: resources.ExternalAccounts
     incoming_payment_details: resources.IncomingPaymentDetails
+    invoices: resources.Invoices
     documents: resources.Documents
     account_collection_flows: resources.AccountCollectionFlows
     account_details: resources.AccountDetails
@@ -152,6 +153,7 @@ class ModernTreasury(SyncAPIClient):
         self.expected_payments = resources.ExpectedPayments(self)
         self.external_accounts = resources.ExternalAccounts(self)
         self.incoming_payment_details = resources.IncomingPaymentDetails(self)
+        self.invoices = resources.Invoices(self)
         self.documents = resources.Documents(self)
         self.account_collection_flows = resources.AccountCollectionFlows(self)
         self.account_details = resources.AccountDetails(self)
@@ -272,6 +274,7 @@ class AsyncModernTreasury(AsyncAPIClient):
     expected_payments: resources.AsyncExpectedPayments
     external_accounts: resources.AsyncExternalAccounts
     incoming_payment_details: resources.AsyncIncomingPaymentDetails
+    invoices: resources.AsyncInvoices
     documents: resources.AsyncDocuments
     account_collection_flows: resources.AsyncAccountCollectionFlows
     account_details: resources.AsyncAccountDetails
@@ -376,6 +379,7 @@ class AsyncModernTreasury(AsyncAPIClient):
         self.expected_payments = resources.AsyncExpectedPayments(self)
         self.external_accounts = resources.AsyncExternalAccounts(self)
         self.incoming_payment_details = resources.AsyncIncomingPaymentDetails(self)
+        self.invoices = resources.AsyncInvoices(self)
         self.documents = resources.AsyncDocuments(self)
         self.account_collection_flows = resources.AsyncAccountCollectionFlows(self)
         self.account_details = resources.AsyncAccountDetails(self)
