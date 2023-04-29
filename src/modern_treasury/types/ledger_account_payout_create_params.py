@@ -26,9 +26,9 @@ class LedgerAccountPayoutCreateParams(TypedDict, total=False):
 
     effective_at_upper_bound: Optional[str]
     """
-    The maximum effective_at timestamp of the ledger entries to be included in the
-    ledger account payout. The default value is the created_at timestamp of the
-    ledger account payout.
+    The exclusive upper bound of the effective_at timestamp of the ledger entries to
+    be included in the ledger account payout. The default value is the created_at
+    timestamp of the ledger account payout.
     """
 
     metadata: Dict[str, str]

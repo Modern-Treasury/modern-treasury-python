@@ -1,5 +1,6 @@
 # File generated from our OpenAPI spec by Stainless.
 
+from typing import Dict
 from datetime import datetime
 
 from .._models import BaseModel
@@ -10,7 +11,7 @@ __all__ = ["Event"]
 class Event(BaseModel):
     created_at: datetime
 
-    data: object
+    data: Dict[str, object]
     """The body of the event."""
 
     entity_id: str
