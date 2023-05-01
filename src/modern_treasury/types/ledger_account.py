@@ -60,6 +60,18 @@ class Balances(BaseModel):
     pending_credits.
     """
 
+    effective_at_lower_bound: Optional[str]
+    """
+    The inclusive lower bound of the effective_at timestamp for the returned
+    balances.
+    """
+
+    effective_at_upper_bound: Optional[str]
+    """
+    The exclusive upper bound of the effective_at timestamp for the returned
+    balances.
+    """
+
     pending_balance: BalancesPendingBalance
     """The pending_balance is the sum of all pending and posted entries."""
 
@@ -88,6 +100,19 @@ class LedgerAccount(BaseModel):
 
     ledger_id: str
     """The id of the ledger that this account belongs to."""
+
+    ledgerable_id: Optional[str]
+    """
+    If the ledger account links to another object in Modern Treasury, the id will be
+    populated here, otherwise null.
+    """
+
+    ledgerable_type: Optional[Literal["external_account", "internal_account"]]
+    """
+    If the ledger account links to another object in Modern Treasury, the type will
+    be populated here, otherwise null. The value is one of internal_account or
+    external_account.
+    """
 
     live_mode: bool
     """

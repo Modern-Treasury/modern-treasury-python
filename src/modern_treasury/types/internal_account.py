@@ -62,6 +62,12 @@ class InternalAccount(BaseModel):
 
     id: str
 
+    ledger_account_id: Optional[str]
+    """
+    If the internal account links to a ledger account in Modern Treasury, the id of
+    the ledger account will be populated here.
+    """
+
     live_mode: bool
     """
     This field will be true if this object exists in the live environment or false

@@ -67,6 +67,7 @@ class Balance(BaseModel):
             "iso20022",
             "jpmc",
             "mx",
+            "plaid",
             "rspec_vendor",
             "signet",
             "silvergate",

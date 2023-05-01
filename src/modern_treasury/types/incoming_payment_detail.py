@@ -25,7 +25,7 @@ class IncomingPaymentDetail(BaseModel):
     currency: Optional[shared.Currency]
     """The currency of the incoming payment detail."""
 
-    data: object
+    data: Dict[str, object]
     """The raw data from the payment pre-notification file that we get from the bank."""
 
     direction: Literal["credit", "debit"]

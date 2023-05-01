@@ -50,9 +50,9 @@ class LedgerAccountPayouts(SyncAPIResource):
 
           description: The description of the ledger account payout.
 
-          effective_at_upper_bound: The maximum effective_at timestamp of the ledger entries to be included in the
-              ledger account payout. The default value is the created_at timestamp of the
-              ledger account payout.
+          effective_at_upper_bound: The exclusive upper bound of the effective_at timestamp of the ledger entries to
+              be included in the ledger account payout. The default value is the created_at
+              timestamp of the ledger account payout.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -246,9 +246,9 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
 
           description: The description of the ledger account payout.
 
-          effective_at_upper_bound: The maximum effective_at timestamp of the ledger entries to be included in the
-              ledger account payout. The default value is the created_at timestamp of the
-              ledger account payout.
+          effective_at_upper_bound: The exclusive upper bound of the effective_at timestamp of the ledger entries to
+              be included in the ledger account payout. The default value is the created_at
+              timestamp of the ledger account payout.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
