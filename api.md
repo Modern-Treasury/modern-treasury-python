@@ -107,6 +107,37 @@ Methods:
 - <code title="get /api/incoming_payment_details">client.incoming_payment_details.<a href="./src/modern_treasury/resources/incoming_payment_details.py">list</a>(\*\*<a href="src/modern_treasury/types/incoming_payment_detail_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/incoming_payment_detail.py">SyncPage[IncomingPaymentDetail]</a></code>
 - <code title="post /api/simulations/incoming_payment_details/create_async">client.incoming_payment_details.<a href="./src/modern_treasury/resources/incoming_payment_details.py">create_async</a>(\*\*<a href="src/modern_treasury/types/incoming_payment_detail_create_async_params.py">params</a>) -> <a href="./src/modern_treasury/types/shared/async_response.py">shared.AsyncResponse</a></code>
 
+# Invoices
+
+Types:
+
+```python
+from modern_treasury.types import Invoice
+```
+
+Methods:
+
+- <code title="post /api/invoices">client.invoices.<a href="./src/modern_treasury/resources/invoices/invoices.py">create</a>(\*\*<a href="src/modern_treasury/types/invoice_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/invoice.py">Invoice</a></code>
+- <code title="get /api/invoices/{id}">client.invoices.<a href="./src/modern_treasury/resources/invoices/invoices.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/invoice.py">Invoice</a></code>
+- <code title="patch /api/invoices/{id}">client.invoices.<a href="./src/modern_treasury/resources/invoices/invoices.py">update</a>(id, \*\*<a href="src/modern_treasury/types/invoice_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/invoice.py">Invoice</a></code>
+- <code title="get /api/invoices">client.invoices.<a href="./src/modern_treasury/resources/invoices/invoices.py">list</a>(\*\*<a href="src/modern_treasury/types/invoice_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/invoice.py">SyncPage[Invoice]</a></code>
+
+## LineItems
+
+Types:
+
+```python
+from modern_treasury.types.invoices import InvoiceLineItem
+```
+
+Methods:
+
+- <code title="post /api/invoices/{invoice_id}/invoice_line_items">client.invoices.line_items.<a href="./src/modern_treasury/resources/invoices/line_items.py">create</a>(invoice_id, \*\*<a href="src/modern_treasury/types/invoices/line_item_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/invoices/invoice_line_item.py">InvoiceLineItem</a></code>
+- <code title="get /api/invoices/{invoice_id}/invoice_line_items/{id}">client.invoices.line_items.<a href="./src/modern_treasury/resources/invoices/line_items.py">retrieve</a>(id, invoice_id) -> <a href="./src/modern_treasury/types/invoices/invoice_line_item.py">InvoiceLineItem</a></code>
+- <code title="patch /api/invoices/{invoice_id}/invoice_line_items/{id}">client.invoices.line_items.<a href="./src/modern_treasury/resources/invoices/line_items.py">update</a>(id, invoice_id, \*\*<a href="src/modern_treasury/types/invoices/line_item_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/invoices/invoice_line_item.py">InvoiceLineItem</a></code>
+- <code title="get /api/invoices/{invoice_id}/invoice_line_items">client.invoices.line_items.<a href="./src/modern_treasury/resources/invoices/line_items.py">list</a>(invoice_id, \*\*<a href="src/modern_treasury/types/invoices/line_item_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/invoices/invoice_line_item.py">SyncPage[InvoiceLineItem]</a></code>
+- <code title="delete /api/invoices/{invoice_id}/invoice_line_items/{id}">client.invoices.line_items.<a href="./src/modern_treasury/resources/invoices/line_items.py">delete</a>(id, invoice_id) -> <a href="./src/modern_treasury/types/invoices/invoice_line_item.py">InvoiceLineItem</a></code>
+
 # Documents
 
 Types:

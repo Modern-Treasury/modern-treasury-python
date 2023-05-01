@@ -191,6 +191,7 @@ class InternalAccounts(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        counterparty_id: str | NotGiven = NOT_GIVEN,
         currency: shared_params.Currency | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
@@ -226,6 +227,8 @@ class InternalAccounts(SyncAPIResource):
         list internal accounts
 
         Args:
+          counterparty_id: The counterparty associated with the internal account.
+
           currency: The currency associated with the internal account.
 
           metadata: For example, if you want to query for records with metadata key `Type` and value
@@ -257,6 +260,7 @@ class InternalAccounts(SyncAPIResource):
                         "after_cursor": after_cursor,
                         "per_page": per_page,
                         "currency": currency,
+                        "counterparty_id": counterparty_id,
                         "payment_type": payment_type,
                         "payment_direction": payment_direction,
                         "metadata": metadata,
@@ -434,6 +438,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        counterparty_id: str | NotGiven = NOT_GIVEN,
         currency: shared_params.Currency | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
@@ -469,6 +474,8 @@ class AsyncInternalAccounts(AsyncAPIResource):
         list internal accounts
 
         Args:
+          counterparty_id: The counterparty associated with the internal account.
+
           currency: The currency associated with the internal account.
 
           metadata: For example, if you want to query for records with metadata key `Type` and value
@@ -500,6 +507,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                         "after_cursor": after_cursor,
                         "per_page": per_page,
                         "currency": currency,
+                        "counterparty_id": counterparty_id,
                         "payment_type": payment_type,
                         "payment_direction": payment_direction,
                         "metadata": metadata,

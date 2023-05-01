@@ -16,6 +16,10 @@ class Balances(TypedDict, total=False):
 
     effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
 
+    effective_at_lower_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+
+    effective_at_upper_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+
 
 class LedgerAccountListParams(TypedDict, total=False):
     after_cursor: Optional[str]

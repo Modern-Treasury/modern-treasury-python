@@ -63,7 +63,12 @@ class TestLedgerAccounts:
     def test_method_retrieve_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account = client.ledger_accounts.retrieve(
             "string",
-            balances={"as_of_date": parse_date("2019-12-27")},
+            balances={
+                "as_of_date": parse_date("2019-12-27"),
+                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "effective_at_lower_bound": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "effective_at_upper_bound": parse_datetime("2019-12-27T18:11:19.117Z"),
+            },
         )
         assert_matches_type(LedgerAccount, ledger_account, path=["response"])
 
@@ -105,6 +110,8 @@ class TestLedgerAccounts:
             balances={
                 "as_of_date": parse_date("2019-12-27"),
                 "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "effective_at_lower_bound": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "effective_at_upper_bound": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
             updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             ledger_account_category_id="string",
@@ -166,7 +173,12 @@ class TestAsyncLedgerAccounts:
     async def test_method_retrieve_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger_account = await client.ledger_accounts.retrieve(
             "string",
-            balances={"as_of_date": parse_date("2019-12-27")},
+            balances={
+                "as_of_date": parse_date("2019-12-27"),
+                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "effective_at_lower_bound": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "effective_at_upper_bound": parse_datetime("2019-12-27T18:11:19.117Z"),
+            },
         )
         assert_matches_type(LedgerAccount, ledger_account, path=["response"])
 
@@ -208,6 +220,8 @@ class TestAsyncLedgerAccounts:
             balances={
                 "as_of_date": parse_date("2019-12-27"),
                 "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "effective_at_lower_bound": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "effective_at_upper_bound": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
             updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             ledger_account_category_id="string",

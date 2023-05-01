@@ -3,6 +3,7 @@
 from .events import Events, AsyncEvents
 from .ledgers import Ledgers, AsyncLedgers
 from .returns import Returns, AsyncReturns
+from .invoices import Invoices, AsyncInvoices
 from .webhooks import Webhooks, AsyncWebhooks
 from .documents import Documents, AsyncDocuments
 from .line_items import LineItems, AsyncLineItems
@@ -50,6 +51,8 @@ __all__ = [
     "AsyncExternalAccounts",
     "IncomingPaymentDetails",
     "AsyncIncomingPaymentDetails",
+    "Invoices",
+    "AsyncInvoices",
     "Documents",
     "AsyncDocuments",
     "AccountCollectionFlows",

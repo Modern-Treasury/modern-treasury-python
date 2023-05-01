@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from datetime import date
+from datetime import date, datetime
 from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -13,6 +13,12 @@ __all__ = ["LedgerAccountRetrieveParams", "Balances"]
 
 class Balances(TypedDict, total=False):
     as_of_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+
+    effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+
+    effective_at_lower_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+
+    effective_at_upper_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
 
 
 class LedgerAccountRetrieveParams(TypedDict, total=False):

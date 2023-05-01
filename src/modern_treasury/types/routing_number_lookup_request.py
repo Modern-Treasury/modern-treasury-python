@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
@@ -44,7 +44,7 @@ class RoutingNumberLookupRequest(BaseModel):
     respectively.
     """
 
-    sanctions: Optional[object]
+    sanctions: Optional[Dict[str, object]]
     """
     An object containing key-value pairs, each with a sanctions list as the key and
     a boolean value representing whether the bank is on that particular sanctions
