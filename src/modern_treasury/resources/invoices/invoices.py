@@ -181,8 +181,8 @@ class Invoices(SyncAPIResource):
           originating_account_id: The ID of the internal account the invoice should be paid to.
 
           status: Invoice status must be updated in a `PATCH` request that does not modify any
-              other invoice attributes. Valid state transitions are `draft` to `unpaid`,
-              `draft` or `unpaid` to `void` and `unpaid` to `closed`.
+              other invoice attributes. Valid state transitions are `draft` to `unpaid` and
+              `draft` or `unpaid` to `voided`.
 
           extra_headers: Send extra headers
 
@@ -422,8 +422,8 @@ class AsyncInvoices(AsyncAPIResource):
           originating_account_id: The ID of the internal account the invoice should be paid to.
 
           status: Invoice status must be updated in a `PATCH` request that does not modify any
-              other invoice attributes. Valid state transitions are `draft` to `unpaid`,
-              `draft` or `unpaid` to `void` and `unpaid` to `closed`.
+              other invoice attributes. Valid state transitions are `draft` to `unpaid` and
+              `draft` or `unpaid` to `voided`.
 
           extra_headers: Send extra headers
 
