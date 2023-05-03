@@ -139,6 +139,6 @@ class InvoiceUpdateParams(TypedDict, total=False):
     status: str
     """
     Invoice status must be updated in a `PATCH` request that does not modify any
-    other invoice attributes. Valid state transitions are `draft` to `unpaid`,
-    `draft` or `unpaid` to `void` and `unpaid` to `closed`.
+    other invoice attributes. Valid state transitions are `draft` to `unpaid` and
+    `draft` or `unpaid` to `voided`.
     """

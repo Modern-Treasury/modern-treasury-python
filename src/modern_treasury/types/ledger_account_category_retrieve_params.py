@@ -22,6 +22,6 @@ class LedgerAccountCategoryRetrieveParams(TypedDict, total=False):
     """
     For example, if you want the balances as of a particular effective date
     (YYYY-MM-DD), the encoded query string would be
-    balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are inclusive of
+    balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are exclusive of
     entries with that exact date.
     """
