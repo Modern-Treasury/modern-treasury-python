@@ -87,6 +87,19 @@ class TestCounterparties:
                     },
                     "party_name": "string",
                     "party_identifier": "string",
+                    "ledger_account": {
+                        "name": "string",
+                        "description": "string",
+                        "normal_balance": "credit",
+                        "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "currency": "string",
+                        "currency_exponent": 0,
+                        "metadata": {
+                            "key": "value",
+                            "foo": "bar",
+                            "modern": "treasury",
+                        },
+                    },
                     "plaid_processor_token": "string",
                     "contact_details": [
                         {
@@ -153,6 +166,19 @@ class TestCounterparties:
                     },
                     "party_name": "string",
                     "party_identifier": "string",
+                    "ledger_account": {
+                        "name": "string",
+                        "description": "string",
+                        "normal_balance": "credit",
+                        "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "currency": "string",
+                        "currency_exponent": 0,
+                        "metadata": {
+                            "key": "value",
+                            "foo": "bar",
+                            "modern": "treasury",
+                        },
+                    },
                     "plaid_processor_token": "string",
                     "contact_details": [
                         {
@@ -219,6 +245,19 @@ class TestCounterparties:
                     },
                     "party_name": "string",
                     "party_identifier": "string",
+                    "ledger_account": {
+                        "name": "string",
+                        "description": "string",
+                        "normal_balance": "credit",
+                        "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "currency": "string",
+                        "currency_exponent": 0,
+                        "metadata": {
+                            "key": "value",
+                            "foo": "bar",
+                            "modern": "treasury",
+                        },
+                    },
                     "plaid_processor_token": "string",
                     "contact_details": [
                         {
@@ -391,6 +430,19 @@ class TestAsyncCounterparties:
                     },
                     "party_name": "string",
                     "party_identifier": "string",
+                    "ledger_account": {
+                        "name": "string",
+                        "description": "string",
+                        "normal_balance": "credit",
+                        "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "currency": "string",
+                        "currency_exponent": 0,
+                        "metadata": {
+                            "key": "value",
+                            "foo": "bar",
+                            "modern": "treasury",
+                        },
+                    },
                     "plaid_processor_token": "string",
                     "contact_details": [
                         {
@@ -457,6 +509,19 @@ class TestAsyncCounterparties:
                     },
                     "party_name": "string",
                     "party_identifier": "string",
+                    "ledger_account": {
+                        "name": "string",
+                        "description": "string",
+                        "normal_balance": "credit",
+                        "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "currency": "string",
+                        "currency_exponent": 0,
+                        "metadata": {
+                            "key": "value",
+                            "foo": "bar",
+                            "modern": "treasury",
+                        },
+                    },
                     "plaid_processor_token": "string",
                     "contact_details": [
                         {
@@ -523,6 +588,19 @@ class TestAsyncCounterparties:
                     },
                     "party_name": "string",
                     "party_identifier": "string",
+                    "ledger_account": {
+                        "name": "string",
+                        "description": "string",
+                        "normal_balance": "credit",
+                        "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "currency": "string",
+                        "currency_exponent": 0,
+                        "metadata": {
+                            "key": "value",
+                            "foo": "bar",
+                            "modern": "treasury",
+                        },
+                    },
                     "plaid_processor_token": "string",
                     "contact_details": [
                         {

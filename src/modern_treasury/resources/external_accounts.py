@@ -32,6 +32,7 @@ class ExternalAccounts(SyncAPIResource):
         account_details: List[external_account_create_params.AccountDetail] | NotGiven = NOT_GIVEN,
         account_type: ExternalAccountType | NotGiven = NOT_GIVEN,
         contact_details: List[external_account_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
+        ledger_account: external_account_create_params.LedgerAccount | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         party_address: external_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
@@ -53,6 +54,12 @@ class ExternalAccounts(SyncAPIResource):
 
         Args:
           account_type: Can be `checking`, `savings` or `other`.
+
+          ledger_account: Specifies a ledger account object that will be created with the external
+              account. The resulting ledger account is linked to the external account for
+              auto-ledgering Payment objects. See
+              https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+              for more details.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -93,6 +100,7 @@ class ExternalAccounts(SyncAPIResource):
                     "metadata": metadata,
                     "party_name": party_name,
                     "party_identifier": party_identifier,
+                    "ledger_account": ledger_account,
                     "plaid_processor_token": plaid_processor_token,
                     "contact_details": contact_details,
                 },
@@ -404,6 +412,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
         account_details: List[external_account_create_params.AccountDetail] | NotGiven = NOT_GIVEN,
         account_type: ExternalAccountType | NotGiven = NOT_GIVEN,
         contact_details: List[external_account_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
+        ledger_account: external_account_create_params.LedgerAccount | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         party_address: external_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
@@ -425,6 +434,12 @@ class AsyncExternalAccounts(AsyncAPIResource):
 
         Args:
           account_type: Can be `checking`, `savings` or `other`.
+
+          ledger_account: Specifies a ledger account object that will be created with the external
+              account. The resulting ledger account is linked to the external account for
+              auto-ledgering Payment objects. See
+              https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+              for more details.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -465,6 +480,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
                     "metadata": metadata,
                     "party_name": party_name,
                     "party_identifier": party_identifier,
+                    "ledger_account": ledger_account,
                     "plaid_processor_token": plaid_processor_token,
                     "contact_details": contact_details,
                 },
