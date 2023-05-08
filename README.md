@@ -152,7 +152,7 @@ for external_account in first_page.items:
 
 Nested parameters are dictionaries, typed using `TypedDict`, for example:
 
-```py
+```python
 from modern_treasury import ModernTreasury
 
 modern_treasury = ModernTreasury(
@@ -161,7 +161,7 @@ modern_treasury = ModernTreasury(
 
 modern_treasury.external_accounts.create(
     foo={
-        "bar": True
+        "bar": True,
     },
 )
 ```
