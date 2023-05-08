@@ -12,6 +12,7 @@ __all__ = [
     "AccountDetail",
     "RoutingDetails",
     "RoutingDetail",
+    "LedgerAccount",
     "ContactDetails",
     "ContactDetail",
 ]
@@ -94,6 +95,32 @@ Please use RoutingDetail instead.
 """
 
 
+class LedgerAccount(TypedDict, total=False):
+    currency: Required[str]
+    """The currency of the ledger account."""
+
+    ledger_id: Required[str]
+    """The id of the ledger that this account belongs to."""
+
+    name: Required[str]
+    """The name of the ledger account."""
+
+    normal_balance: Required[Literal["credit", "debit"]]
+    """The normal balance of the ledger account."""
+
+    currency_exponent: Optional[int]
+    """The currency exponent of the ledger account."""
+
+    description: Optional[str]
+    """The description of the ledger account."""
+
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
+
+
 class ContactDetail(TypedDict, total=False):
     contact_identifier: str
 
@@ -116,6 +143,16 @@ class ExternalAccountCreateParams(TypedDict, total=False):
     """Can be `checking`, `savings` or `other`."""
 
     contact_details: List[ContactDetail]
+
+    ledger_account: LedgerAccount
+    """Specifies a ledger account object that will be created with the external
+    account.
+
+    The resulting ledger account is linked to the external account for
+    auto-ledgering Payment objects. See
+    https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+    for more details.
+    """
 
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.

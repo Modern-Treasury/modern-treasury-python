@@ -39,6 +39,12 @@ class IncomingPaymentDetail(BaseModel):
     This is always present.
     """
 
+    ledger_transaction_id: Optional[str]
+    """
+    The ID of the ledger transaction linked to the incoming payment detail or
+    `null`.
+    """
+
     live_mode: bool
     """
     This field will be true if this object exists in the live environment or false
