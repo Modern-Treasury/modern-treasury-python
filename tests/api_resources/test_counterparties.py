@@ -94,6 +94,8 @@ class TestCounterparties:
                         "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "currency": "string",
                         "currency_exponent": 0,
+                        "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "ledgerable_type": "external_account",
                         "metadata": {
                             "key": "value",
                             "foo": "bar",
@@ -173,6 +175,8 @@ class TestCounterparties:
                         "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "currency": "string",
                         "currency_exponent": 0,
+                        "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "ledgerable_type": "external_account",
                         "metadata": {
                             "key": "value",
                             "foo": "bar",
@@ -252,6 +256,8 @@ class TestCounterparties:
                         "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "currency": "string",
                         "currency_exponent": 0,
+                        "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "ledgerable_type": "external_account",
                         "metadata": {
                             "key": "value",
                             "foo": "bar",
@@ -437,6 +443,8 @@ class TestAsyncCounterparties:
                         "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "currency": "string",
                         "currency_exponent": 0,
+                        "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "ledgerable_type": "external_account",
                         "metadata": {
                             "key": "value",
                             "foo": "bar",
@@ -516,6 +524,8 @@ class TestAsyncCounterparties:
                         "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "currency": "string",
                         "currency_exponent": 0,
+                        "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "ledgerable_type": "external_account",
                         "metadata": {
                             "key": "value",
                             "foo": "bar",
@@ -595,6 +605,8 @@ class TestAsyncCounterparties:
                         "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "currency": "string",
                         "currency_exponent": 0,
+                        "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "ledgerable_type": "external_account",
                         "metadata": {
                             "key": "value",
                             "foo": "bar",
