@@ -19,7 +19,7 @@ https://user-images.githubusercontent.com/704302/216504942-09ed8dd7-7f44-40a6-a5
 
 ## Documentation
 
-The API documentation can be found [here](https://docs.moderntreasury.com).
+The API documentation can be found [here](https://docs.moderntreasury.com)
 
 ## Installation
 
