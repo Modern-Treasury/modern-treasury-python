@@ -32,6 +32,8 @@ class LedgerAccounts(SyncAPIResource):
         normal_balance: Literal["credit", "debit"],
         currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        ledgerable_id: str | NotGiven = NOT_GIVEN,
+        ledgerable_type: Literal["external_account", "internal_account"] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -57,6 +59,13 @@ class LedgerAccounts(SyncAPIResource):
 
           description: The description of the ledger account.
 
+          ledgerable_id: If the ledger account links to another object in Modern Treasury, the id will be
+              populated here, otherwise null.
+
+          ledgerable_type: If the ledger account links to another object in Modern Treasury, the type will
+              be populated here, otherwise null. The value is one of internal_account or
+              external_account.
+
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
@@ -80,6 +89,8 @@ class LedgerAccounts(SyncAPIResource):
                     "ledger_id": ledger_id,
                     "currency": currency,
                     "currency_exponent": currency_exponent,
+                    "ledgerable_id": ledgerable_id,
+                    "ledgerable_type": ledgerable_type,
                     "metadata": metadata,
                 },
                 ledger_account_create_params.LedgerAccountCreateParams,
@@ -198,6 +209,7 @@ class LedgerAccounts(SyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         balances: ledger_account_list_params.Balances | NotGiven = NOT_GIVEN,
+        created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
@@ -221,12 +233,16 @@ class LedgerAccounts(SyncAPIResource):
               while the upper bound is exclusive of the provided timestamps. If no value is
               supplied the balances will be retrieved not including that bound.
 
+          created_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
+              created at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
+              created_at%5Bgt%5D=2000-01-01T12:00:00Z.
+
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
 
           updated_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
-              posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
+              updated at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
               updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
 
           extra_headers: Send extra headers
@@ -254,6 +270,7 @@ class LedgerAccounts(SyncAPIResource):
                         "name": name,
                         "ledger_id": ledger_id,
                         "balances": balances,
+                        "created_at": created_at,
                         "updated_at": updated_at,
                         "ledger_account_category_id": ledger_account_category_id,
                     },
@@ -299,6 +316,8 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         normal_balance: Literal["credit", "debit"],
         currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        ledgerable_id: str | NotGiven = NOT_GIVEN,
+        ledgerable_type: Literal["external_account", "internal_account"] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -324,6 +343,13 @@ class AsyncLedgerAccounts(AsyncAPIResource):
 
           description: The description of the ledger account.
 
+          ledgerable_id: If the ledger account links to another object in Modern Treasury, the id will be
+              populated here, otherwise null.
+
+          ledgerable_type: If the ledger account links to another object in Modern Treasury, the type will
+              be populated here, otherwise null. The value is one of internal_account or
+              external_account.
+
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
@@ -347,6 +373,8 @@ class AsyncLedgerAccounts(AsyncAPIResource):
                     "ledger_id": ledger_id,
                     "currency": currency,
                     "currency_exponent": currency_exponent,
+                    "ledgerable_id": ledgerable_id,
+                    "ledgerable_type": ledgerable_type,
                     "metadata": metadata,
                 },
                 ledger_account_create_params.LedgerAccountCreateParams,
@@ -465,6 +493,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         balances: ledger_account_list_params.Balances | NotGiven = NOT_GIVEN,
+        created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
@@ -488,12 +517,16 @@ class AsyncLedgerAccounts(AsyncAPIResource):
               while the upper bound is exclusive of the provided timestamps. If no value is
               supplied the balances will be retrieved not including that bound.
 
+          created_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
+              created at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
+              created_at%5Bgt%5D=2000-01-01T12:00:00Z.
+
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
 
           updated_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
-              posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
+              updated at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
               updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
 
           extra_headers: Send extra headers
@@ -521,6 +554,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
                         "name": name,
                         "ledger_id": ledger_id,
                         "balances": balances,
+                        "created_at": created_at,
                         "updated_at": updated_at,
                         "ledger_account_category_id": ledger_account_category_id,
                     },
