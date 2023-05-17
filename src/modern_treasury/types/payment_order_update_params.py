@@ -139,6 +139,19 @@ class ReceivingAccountLedgerAccount(TypedDict, total=False):
     description: Optional[str]
     """The description of the ledger account."""
 
+    ledgerable_id: str
+    """
+    If the ledger account links to another object in Modern Treasury, the id will be
+    populated here, otherwise null.
+    """
+
+    ledgerable_type: Literal["external_account", "internal_account"]
+    """
+    If the ledger account links to another object in Modern Treasury, the type will
+    be populated here, otherwise null. The value is one of internal_account or
+    external_account.
+    """
+
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.
 
