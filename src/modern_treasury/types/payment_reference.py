@@ -43,6 +43,7 @@ class PaymentReference(BaseModel):
         "dc_bank_transaction_id",
         "dwolla_transaction_id",
         "eft_trace_number",
+        "evolve_transaction_id",
         "fedwire_imad",
         "fedwire_omad",
         "first_republic_internal_id",
