@@ -5,4 +5,4 @@ from typing_extensions import Literal
 
 __all__ = ["PaymentOrderSubtype"]
 
-PaymentOrderSubtype = Optional[Literal["CCD", "CIE", "CTX", "IAT", "PPD", "TEL", "WEB"]]
+PaymentOrderSubtype = Optional[Literal["0C", "0N", "0S", "CCD", "CIE", "CTX", "IAT", "PPD", "TEL", "WEB"]]

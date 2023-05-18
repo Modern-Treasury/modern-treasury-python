@@ -180,7 +180,7 @@ class Account(TypedDict, total=False):
 
     The resulting ledger account is linked to the external account for
     auto-ledgering Payment objects. See
-    https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+    https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
     for more details.
     """
 
