@@ -1,10 +1,12 @@
 # File generated from our OpenAPI spec by Stainless.
 
+from __future__ import annotations
+
 from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ..types import shared, payment_order
+from ..types import shared
 from .._models import BaseModel
 
 __all__ = [
@@ -165,3 +167,12 @@ class Invoice(BaseModel):
     """
 
     updated_at: datetime
+
+
+from ..types import payment_order
+
+Invoice.update_forward_refs()
+ContactDetail.update_forward_refs()
+CounterpartyBillingAddress.update_forward_refs()
+CounterpartyShippingAddress.update_forward_refs()
+InvoicerAddress.update_forward_refs()
