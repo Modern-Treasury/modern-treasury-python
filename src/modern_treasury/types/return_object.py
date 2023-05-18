@@ -1,5 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
+from __future__ import annotations
+
 from typing import List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
@@ -160,6 +162,12 @@ class ReturnObject(BaseModel):
     currency: Optional[shared.Currency]
     """Currency that this transaction is denominated in."""
 
+    current_return: Optional[return_object.ReturnObject]
+    """
+    If the return's status is `returned`, this will include the return object's data
+    that is returning this return.
+    """
+
     date_of_death: Optional[date]
     """
     If the return code is `R14` or `R15` this is the date the deceased counterparty
@@ -223,3 +231,9 @@ class ReturnObject(BaseModel):
     """
 
     updated_at: datetime
+
+
+from ..types import return_object
+
+ReturnObject.update_forward_refs()
+ReferenceNumber.update_forward_refs()

@@ -1,10 +1,12 @@
 # File generated from our OpenAPI spec by Stainless.
 
+from __future__ import annotations
+
 from typing import Dict, List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
-from ..types import shared, return_object, payment_order_type, payment_order_subtype
+from ..types import shared
 from .._models import BaseModel
 
 __all__ = ["PaymentOrder", "Accounting", "ReferenceNumbers", "ReferenceNumber"]
@@ -349,3 +351,10 @@ class PaymentOrder(BaseModel):
     Currencycloud) failure occurs. Logic shouldn't be built on its value as it is
     free-form.
     """
+
+
+from ..types import return_object, payment_order_type, payment_order_subtype
+
+PaymentOrder.update_forward_refs()
+Accounting.update_forward_refs()
+ReferenceNumber.update_forward_refs()
