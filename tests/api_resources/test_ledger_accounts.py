@@ -44,6 +44,8 @@ class TestLedgerAccounts:
             ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="string",
             currency_exponent=0,
+            ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            ledgerable_type="external_account",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -113,6 +115,7 @@ class TestLedgerAccounts:
                 "effective_at_lower_bound": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "effective_at_upper_bound": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
+            created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             ledger_account_category_id="string",
         )
@@ -154,6 +157,8 @@ class TestAsyncLedgerAccounts:
             ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="string",
             currency_exponent=0,
+            ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            ledgerable_type="external_account",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -223,6 +228,7 @@ class TestAsyncLedgerAccounts:
                 "effective_at_lower_bound": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "effective_at_upper_bound": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
+            created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             ledger_account_category_id="string",
         )

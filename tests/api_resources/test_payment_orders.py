@@ -41,7 +41,7 @@ class TestPaymentOrders:
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         payment_order = client.payment_orders.create(
             type="ach",
-            subtype="CCD",
+            subtype="0C",
             amount=0,
             direction="credit",
             priority="high",
@@ -133,6 +133,8 @@ class TestPaymentOrders:
                     "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "currency": "string",
                     "currency_exponent": 0,
+                    "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "ledgerable_type": "external_account",
                     "metadata": {
                         "key": "value",
                         "foo": "bar",
@@ -269,7 +271,7 @@ class TestPaymentOrders:
         payment_order = client.payment_orders.update(
             "string",
             type="ach",
-            subtype="CCD",
+            subtype="0C",
             amount=0,
             direction="credit",
             priority="high",
@@ -363,6 +365,8 @@ class TestPaymentOrders:
                     "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "currency": "string",
                     "currency_exponent": 0,
+                    "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "ledgerable_type": "external_account",
                     "metadata": {
                         "key": "value",
                         "foo": "bar",
@@ -458,7 +462,7 @@ class TestPaymentOrders:
     def test_method_create_async_with_all_params(self, client: ModernTreasury) -> None:
         payment_order = client.payment_orders.create_async(
             type="ach",
-            subtype="CCD",
+            subtype="0C",
             amount=0,
             direction="credit",
             priority="high",
@@ -550,6 +554,8 @@ class TestPaymentOrders:
                     "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "currency": "string",
                     "currency_exponent": 0,
+                    "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "ledgerable_type": "external_account",
                     "metadata": {
                         "key": "value",
                         "foo": "bar",
@@ -679,7 +685,7 @@ class TestAsyncPaymentOrders:
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         payment_order = await client.payment_orders.create(
             type="ach",
-            subtype="CCD",
+            subtype="0C",
             amount=0,
             direction="credit",
             priority="high",
@@ -771,6 +777,8 @@ class TestAsyncPaymentOrders:
                     "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "currency": "string",
                     "currency_exponent": 0,
+                    "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "ledgerable_type": "external_account",
                     "metadata": {
                         "key": "value",
                         "foo": "bar",
@@ -907,7 +915,7 @@ class TestAsyncPaymentOrders:
         payment_order = await client.payment_orders.update(
             "string",
             type="ach",
-            subtype="CCD",
+            subtype="0C",
             amount=0,
             direction="credit",
             priority="high",
@@ -1001,6 +1009,8 @@ class TestAsyncPaymentOrders:
                     "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "currency": "string",
                     "currency_exponent": 0,
+                    "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "ledgerable_type": "external_account",
                     "metadata": {
                         "key": "value",
                         "foo": "bar",
@@ -1096,7 +1106,7 @@ class TestAsyncPaymentOrders:
     async def test_method_create_async_with_all_params(self, client: AsyncModernTreasury) -> None:
         payment_order = await client.payment_orders.create_async(
             type="ach",
-            subtype="CCD",
+            subtype="0C",
             amount=0,
             direction="credit",
             priority="high",
@@ -1188,6 +1198,8 @@ class TestAsyncPaymentOrders:
                     "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "currency": "string",
                     "currency_exponent": 0,
+                    "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "ledgerable_type": "external_account",
                     "metadata": {
                         "key": "value",
                         "foo": "bar",

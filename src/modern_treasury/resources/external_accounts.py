@@ -58,7 +58,7 @@ class ExternalAccounts(SyncAPIResource):
           ledger_account: Specifies a ledger account object that will be created with the external
               account. The resulting ledger account is linked to the external account for
               auto-ledgering Payment objects. See
-              https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+              https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
               for more details.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
@@ -438,7 +438,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
           ledger_account: Specifies a ledger account object that will be created with the external
               account. The resulting ledger account is linked to the external account for
               auto-ledgering Payment objects. See
-              https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+              https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
               for more details.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be

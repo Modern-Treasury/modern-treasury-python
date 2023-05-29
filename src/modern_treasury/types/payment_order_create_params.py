@@ -145,6 +145,19 @@ class ReceivingAccountLedgerAccount(TypedDict, total=False):
     description: Optional[str]
     """The description of the ledger account."""
 
+    ledgerable_id: str
+    """
+    If the ledger account links to another object in Modern Treasury, the id will be
+    populated here, otherwise null.
+    """
+
+    ledgerable_type: Literal["external_account", "internal_account"]
+    """
+    If the ledger account links to another object in Modern Treasury, the type will
+    be populated here, otherwise null. The value is one of internal_account or
+    external_account.
+    """
+
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.
 
@@ -179,7 +192,7 @@ class ReceivingAccount(TypedDict, total=False):
 
     The resulting ledger account is linked to the external account for
     auto-ledgering Payment objects. See
-    https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+    https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
     for more details.
     """
 
@@ -574,7 +587,7 @@ class PaymentOrderCreateParams(TypedDict, total=False):
     characters.
     """
 
-    subtype: Optional[Literal["CCD", "CIE", "CTX", "IAT", "PPD", "TEL", "WEB"]]
+    subtype: Optional[Literal["0C", "0N", "0S", "CCD", "CIE", "CTX", "IAT", "PPD", "TEL", "WEB"]]
     """
     An additional layer of classification for the type of payment order you are
     doing. This field is only used for `ach` payment orders currently. For `ach`
