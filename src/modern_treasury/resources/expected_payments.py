@@ -103,20 +103,20 @@ class ExpectedPayments(SyncAPIResource):
             "/api/expected_payments",
             body=maybe_transform(
                 {
-                    "amount_upper_bound": amount_upper_bound,
                     "amount_lower_bound": amount_lower_bound,
+                    "amount_upper_bound": amount_upper_bound,
                     "direction": direction,
                     "internal_account_id": internal_account_id,
-                    "type": type,
-                    "currency": currency,
-                    "date_upper_bound": date_upper_bound,
-                    "date_lower_bound": date_lower_bound,
-                    "description": description,
-                    "statement_descriptor": statement_descriptor,
-                    "metadata": metadata,
                     "counterparty_id": counterparty_id,
-                    "remittance_information": remittance_information,
+                    "currency": currency,
+                    "date_lower_bound": date_lower_bound,
+                    "date_upper_bound": date_upper_bound,
+                    "description": description,
                     "line_items": line_items,
+                    "metadata": metadata,
+                    "remittance_information": remittance_information,
+                    "statement_descriptor": statement_descriptor,
+                    "type": type,
                 },
                 expected_payment_create_params.ExpectedPaymentCreateParams,
             ),
@@ -141,7 +141,18 @@ class ExpectedPayments(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> ExpectedPayment:
-        """get expected payment"""
+        """
+        get expected payment
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/expected_payments/{id}",
             options=make_request_options(
@@ -229,19 +240,19 @@ class ExpectedPayments(SyncAPIResource):
             f"/api/expected_payments/{id}",
             body=maybe_transform(
                 {
-                    "amount_upper_bound": amount_upper_bound,
                     "amount_lower_bound": amount_lower_bound,
+                    "amount_upper_bound": amount_upper_bound,
+                    "counterparty_id": counterparty_id,
+                    "currency": currency,
+                    "date_lower_bound": date_lower_bound,
+                    "date_upper_bound": date_upper_bound,
+                    "description": description,
                     "direction": direction,
                     "internal_account_id": internal_account_id,
-                    "type": type,
-                    "currency": currency,
-                    "date_upper_bound": date_upper_bound,
-                    "date_lower_bound": date_lower_bound,
-                    "description": description,
-                    "statement_descriptor": statement_descriptor,
                     "metadata": metadata,
-                    "counterparty_id": counterparty_id,
                     "remittance_information": remittance_information,
+                    "statement_descriptor": statement_descriptor,
+                    "type": type,
                 },
                 expected_payment_update_params.ExpectedPaymentUpdateParams,
             ),
@@ -336,15 +347,15 @@ class ExpectedPayments(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "status": status,
-                        "internal_account_id": internal_account_id,
-                        "direction": direction,
-                        "type": type,
                         "counterparty_id": counterparty_id,
-                        "metadata": metadata,
                         "created_at_lower_bound": created_at_lower_bound,
                         "created_at_upper_bound": created_at_upper_bound,
+                        "direction": direction,
+                        "internal_account_id": internal_account_id,
+                        "metadata": metadata,
+                        "per_page": per_page,
+                        "status": status,
+                        "type": type,
                     },
                     expected_payment_list_params.ExpectedPaymentListParams,
                 ),
@@ -364,7 +375,20 @@ class ExpectedPayments(SyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> ExpectedPayment:
-        """delete expected payment"""
+        """
+        delete expected payment
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         return self._delete(
             f"/api/expected_payments/{id}",
             options=make_request_options(
@@ -458,20 +482,20 @@ class AsyncExpectedPayments(AsyncAPIResource):
             "/api/expected_payments",
             body=maybe_transform(
                 {
-                    "amount_upper_bound": amount_upper_bound,
                     "amount_lower_bound": amount_lower_bound,
+                    "amount_upper_bound": amount_upper_bound,
                     "direction": direction,
                     "internal_account_id": internal_account_id,
-                    "type": type,
-                    "currency": currency,
-                    "date_upper_bound": date_upper_bound,
-                    "date_lower_bound": date_lower_bound,
-                    "description": description,
-                    "statement_descriptor": statement_descriptor,
-                    "metadata": metadata,
                     "counterparty_id": counterparty_id,
-                    "remittance_information": remittance_information,
+                    "currency": currency,
+                    "date_lower_bound": date_lower_bound,
+                    "date_upper_bound": date_upper_bound,
+                    "description": description,
                     "line_items": line_items,
+                    "metadata": metadata,
+                    "remittance_information": remittance_information,
+                    "statement_descriptor": statement_descriptor,
+                    "type": type,
                 },
                 expected_payment_create_params.ExpectedPaymentCreateParams,
             ),
@@ -496,7 +520,18 @@ class AsyncExpectedPayments(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> ExpectedPayment:
-        """get expected payment"""
+        """
+        get expected payment
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/expected_payments/{id}",
             options=make_request_options(
@@ -584,19 +619,19 @@ class AsyncExpectedPayments(AsyncAPIResource):
             f"/api/expected_payments/{id}",
             body=maybe_transform(
                 {
-                    "amount_upper_bound": amount_upper_bound,
                     "amount_lower_bound": amount_lower_bound,
+                    "amount_upper_bound": amount_upper_bound,
+                    "counterparty_id": counterparty_id,
+                    "currency": currency,
+                    "date_lower_bound": date_lower_bound,
+                    "date_upper_bound": date_upper_bound,
+                    "description": description,
                     "direction": direction,
                     "internal_account_id": internal_account_id,
-                    "type": type,
-                    "currency": currency,
-                    "date_upper_bound": date_upper_bound,
-                    "date_lower_bound": date_lower_bound,
-                    "description": description,
-                    "statement_descriptor": statement_descriptor,
                     "metadata": metadata,
-                    "counterparty_id": counterparty_id,
                     "remittance_information": remittance_information,
+                    "statement_descriptor": statement_descriptor,
+                    "type": type,
                 },
                 expected_payment_update_params.ExpectedPaymentUpdateParams,
             ),
@@ -691,15 +726,15 @@ class AsyncExpectedPayments(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "status": status,
-                        "internal_account_id": internal_account_id,
-                        "direction": direction,
-                        "type": type,
                         "counterparty_id": counterparty_id,
-                        "metadata": metadata,
                         "created_at_lower_bound": created_at_lower_bound,
                         "created_at_upper_bound": created_at_upper_bound,
+                        "direction": direction,
+                        "internal_account_id": internal_account_id,
+                        "metadata": metadata,
+                        "per_page": per_page,
+                        "status": status,
+                        "type": type,
                     },
                     expected_payment_list_params.ExpectedPaymentListParams,
                 ),
@@ -719,7 +754,20 @@ class AsyncExpectedPayments(AsyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> ExpectedPayment:
-        """delete expected payment"""
+        """
+        delete expected payment
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         return await self._delete(
             f"/api/expected_payments/{id}",
             options=make_request_options(

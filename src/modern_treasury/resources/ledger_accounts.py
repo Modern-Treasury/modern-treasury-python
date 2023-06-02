@@ -83,12 +83,12 @@ class LedgerAccounts(SyncAPIResource):
             "/api/ledger_accounts",
             body=maybe_transform(
                 {
-                    "name": name,
-                    "description": description,
-                    "normal_balance": normal_balance,
-                    "ledger_id": ledger_id,
                     "currency": currency,
+                    "ledger_id": ledger_id,
+                    "name": name,
+                    "normal_balance": normal_balance,
                     "currency_exponent": currency_exponent,
+                    "description": description,
                     "ledgerable_id": ledgerable_id,
                     "ledgerable_type": ledgerable_type,
                     "metadata": metadata,
@@ -188,9 +188,9 @@ class LedgerAccounts(SyncAPIResource):
             f"/api/ledger_accounts/{id}",
             body=maybe_transform(
                 {
-                    "name": name,
                     "description": description,
                     "metadata": metadata,
+                    "name": name,
                 },
                 ledger_account_update_params.LedgerAccountUpdateParams,
             ),
@@ -264,15 +264,15 @@ class LedgerAccounts(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "metadata": metadata,
-                        "id": id,
-                        "name": name,
-                        "ledger_id": ledger_id,
                         "balances": balances,
                         "created_at": created_at,
-                        "updated_at": updated_at,
+                        "id": id,
                         "ledger_account_category_id": ledger_account_category_id,
+                        "ledger_id": ledger_id,
+                        "metadata": metadata,
+                        "name": name,
+                        "per_page": per_page,
+                        "updated_at": updated_at,
                     },
                     ledger_account_list_params.LedgerAccountListParams,
                 ),
@@ -292,7 +292,20 @@ class LedgerAccounts(SyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> LedgerAccount:
-        """Delete a ledger account."""
+        """
+        Delete a ledger account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         return self._delete(
             f"/api/ledger_accounts/{id}",
             options=make_request_options(
@@ -367,12 +380,12 @@ class AsyncLedgerAccounts(AsyncAPIResource):
             "/api/ledger_accounts",
             body=maybe_transform(
                 {
-                    "name": name,
-                    "description": description,
-                    "normal_balance": normal_balance,
-                    "ledger_id": ledger_id,
                     "currency": currency,
+                    "ledger_id": ledger_id,
+                    "name": name,
+                    "normal_balance": normal_balance,
                     "currency_exponent": currency_exponent,
+                    "description": description,
                     "ledgerable_id": ledgerable_id,
                     "ledgerable_type": ledgerable_type,
                     "metadata": metadata,
@@ -472,9 +485,9 @@ class AsyncLedgerAccounts(AsyncAPIResource):
             f"/api/ledger_accounts/{id}",
             body=maybe_transform(
                 {
-                    "name": name,
                     "description": description,
                     "metadata": metadata,
+                    "name": name,
                 },
                 ledger_account_update_params.LedgerAccountUpdateParams,
             ),
@@ -548,15 +561,15 @@ class AsyncLedgerAccounts(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "metadata": metadata,
-                        "id": id,
-                        "name": name,
-                        "ledger_id": ledger_id,
                         "balances": balances,
                         "created_at": created_at,
-                        "updated_at": updated_at,
+                        "id": id,
                         "ledger_account_category_id": ledger_account_category_id,
+                        "ledger_id": ledger_id,
+                        "metadata": metadata,
+                        "name": name,
+                        "per_page": per_page,
+                        "updated_at": updated_at,
                     },
                     ledger_account_list_params.LedgerAccountListParams,
                 ),
@@ -576,7 +589,20 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> LedgerAccount:
-        """Delete a ledger account."""
+        """
+        Delete a ledger account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         return await self._delete(
             f"/api/ledger_accounts/{id}",
             options=make_request_options(

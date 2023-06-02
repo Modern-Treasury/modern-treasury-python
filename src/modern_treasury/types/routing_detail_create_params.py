@@ -9,6 +9,8 @@ __all__ = ["RoutingDetailCreateParams"]
 
 
 class RoutingDetailCreateParams(TypedDict, total=False):
+    accounts_type: Required[Literal["external_accounts"]]
+
     routing_number: Required[str]
     """The routing number of the bank."""
 

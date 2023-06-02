@@ -56,13 +56,13 @@ class TestIncomingPaymentDetails:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         incoming_payment_detail = client.incoming_payment_details.list(
             after_cursor="string",
-            per_page=0,
+            as_of_date_end=parse_date("2019-12-27"),
+            as_of_date_start=parse_date("2019-12-27"),
             direction="credit",
+            metadata={"foo": "string"},
+            per_page=0,
             status="completed",
             type="ach",
-            as_of_date_start=parse_date("2019-12-27"),
-            as_of_date_end=parse_date("2019-12-27"),
-            metadata={"foo": "string"},
             virtual_account_id="string",
         )
         assert_matches_type(SyncPage[IncomingPaymentDetail], incoming_payment_detail, path=["response"])
@@ -75,13 +75,13 @@ class TestIncomingPaymentDetails:
     @parametrize
     def test_method_create_async_with_all_params(self, client: ModernTreasury) -> None:
         incoming_payment_detail = client.incoming_payment_details.create_async(
-            type="ach",
-            direction="credit",
             amount=0,
-            currency="AED",
-            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             as_of_date=parse_date("2019-12-27"),
+            currency="AED",
+            direction="credit",
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="ach",
+            virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(shared.AsyncResponse, incoming_payment_detail, path=["response"])
 
@@ -126,13 +126,13 @@ class TestAsyncIncomingPaymentDetails:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         incoming_payment_detail = await client.incoming_payment_details.list(
             after_cursor="string",
-            per_page=0,
+            as_of_date_end=parse_date("2019-12-27"),
+            as_of_date_start=parse_date("2019-12-27"),
             direction="credit",
+            metadata={"foo": "string"},
+            per_page=0,
             status="completed",
             type="ach",
-            as_of_date_start=parse_date("2019-12-27"),
-            as_of_date_end=parse_date("2019-12-27"),
-            metadata={"foo": "string"},
             virtual_account_id="string",
         )
         assert_matches_type(AsyncPage[IncomingPaymentDetail], incoming_payment_detail, path=["response"])
@@ -145,12 +145,12 @@ class TestAsyncIncomingPaymentDetails:
     @parametrize
     async def test_method_create_async_with_all_params(self, client: AsyncModernTreasury) -> None:
         incoming_payment_detail = await client.incoming_payment_details.create_async(
-            type="ach",
-            direction="credit",
             amount=0,
-            currency="AED",
-            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             as_of_date=parse_date("2019-12-27"),
+            currency="AED",
+            direction="credit",
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="ach",
+            virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(shared.AsyncResponse, incoming_payment_detail, path=["response"])

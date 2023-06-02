@@ -70,9 +70,9 @@ class PaymentFlows(SyncAPIResource):
             body=maybe_transform(
                 {
                     "amount": amount,
+                    "counterparty_id": counterparty_id,
                     "currency": currency,
                     "direction": direction,
-                    "counterparty_id": counterparty_id,
                     "originating_account_id": originating_account_id,
                 },
                 payment_flow_create_params.PaymentFlowCreateParams,
@@ -98,7 +98,18 @@ class PaymentFlows(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> PaymentFlow:
-        """get payment_flow"""
+        """
+        get payment_flow
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/payment_flows/{id}",
             options=make_request_options(
@@ -192,13 +203,13 @@ class PaymentFlows(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
                         "client_token": client_token,
-                        "status": status,
                         "counterparty_id": counterparty_id,
-                        "receiving_account_id": receiving_account_id,
                         "originating_account_id": originating_account_id,
                         "payment_order_id": payment_order_id,
+                        "per_page": per_page,
+                        "receiving_account_id": receiving_account_id,
+                        "status": status,
                     },
                     payment_flow_list_params.PaymentFlowListParams,
                 ),
@@ -257,9 +268,9 @@ class AsyncPaymentFlows(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "amount": amount,
+                    "counterparty_id": counterparty_id,
                     "currency": currency,
                     "direction": direction,
-                    "counterparty_id": counterparty_id,
                     "originating_account_id": originating_account_id,
                 },
                 payment_flow_create_params.PaymentFlowCreateParams,
@@ -285,7 +296,18 @@ class AsyncPaymentFlows(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> PaymentFlow:
-        """get payment_flow"""
+        """
+        get payment_flow
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/payment_flows/{id}",
             options=make_request_options(
@@ -379,13 +401,13 @@ class AsyncPaymentFlows(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
                         "client_token": client_token,
-                        "status": status,
                         "counterparty_id": counterparty_id,
-                        "receiving_account_id": receiving_account_id,
                         "originating_account_id": originating_account_id,
                         "payment_order_id": payment_order_id,
+                        "per_page": per_page,
+                        "receiving_account_id": receiving_account_id,
+                        "status": status,
                     },
                     payment_flow_list_params.PaymentFlowListParams,
                 ),

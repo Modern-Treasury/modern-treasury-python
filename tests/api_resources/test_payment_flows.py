@@ -28,9 +28,9 @@ class TestPaymentFlows:
     def test_method_create(self, client: ModernTreasury) -> None:
         payment_flow = client.payment_flows.create(
             amount=0,
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="string",
             direction="credit",
-            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(PaymentFlow, payment_flow, path=["response"])
@@ -59,13 +59,13 @@ class TestPaymentFlows:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         payment_flow = client.payment_flows.list(
             after_cursor="string",
-            per_page=0,
             client_token="string",
-            status="string",
             counterparty_id="string",
-            receiving_account_id="string",
             originating_account_id="string",
             payment_order_id="string",
+            per_page=0,
+            receiving_account_id="string",
+            status="string",
         )
         assert_matches_type(SyncPage[PaymentFlow], payment_flow, path=["response"])
 
@@ -83,9 +83,9 @@ class TestAsyncPaymentFlows:
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         payment_flow = await client.payment_flows.create(
             amount=0,
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="string",
             direction="credit",
-            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(PaymentFlow, payment_flow, path=["response"])
@@ -114,12 +114,12 @@ class TestAsyncPaymentFlows:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         payment_flow = await client.payment_flows.list(
             after_cursor="string",
-            per_page=0,
             client_token="string",
-            status="string",
             counterparty_id="string",
-            receiving_account_id="string",
             originating_account_id="string",
             payment_order_id="string",
+            per_page=0,
+            receiving_account_id="string",
+            status="string",
         )
         assert_matches_type(AsyncPage[PaymentFlow], payment_flow, path=["response"])

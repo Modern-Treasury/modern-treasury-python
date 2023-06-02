@@ -27,24 +27,24 @@ class TestLedgerAccountPayouts:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         ledger_account_payout = client.ledger_account_payouts.create(
-            payout_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             funding_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            payout_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(LedgerAccountPayout, ledger_account_payout, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account_payout = client.ledger_account_payouts.create(
-            description="string",
-            status="pending",
-            payout_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             funding_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            payout_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            description="string",
             effective_at_upper_bound="14:15:22Z",
             metadata={
                 "key": "value",
                 "foo": "bar",
                 "modern": "treasury",
             },
+            status="pending",
         )
         assert_matches_type(LedgerAccountPayout, ledger_account_payout, path=["response"])
 
@@ -60,12 +60,12 @@ class TestLedgerAccountPayouts:
         ledger_account_payout = client.ledger_account_payouts.update(
             "string",
             description="string",
-            status="posted",
             metadata={
                 "key": "value",
                 "foo": "bar",
                 "modern": "treasury",
             },
+            status="posted",
         )
         assert_matches_type(LedgerAccountPayout, ledger_account_payout, path=["response"])
 
@@ -78,8 +78,8 @@ class TestLedgerAccountPayouts:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account_payout = client.ledger_account_payouts.list(
             after_cursor="string",
-            per_page=0,
             payout_ledger_account_id="string",
+            per_page=0,
         )
         assert_matches_type(SyncPage[LedgerAccountPayout], ledger_account_payout, path=["response"])
 
@@ -103,24 +103,24 @@ class TestAsyncLedgerAccountPayouts:
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         ledger_account_payout = await client.ledger_account_payouts.create(
-            payout_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             funding_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            payout_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(LedgerAccountPayout, ledger_account_payout, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger_account_payout = await client.ledger_account_payouts.create(
-            description="string",
-            status="pending",
-            payout_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             funding_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            payout_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            description="string",
             effective_at_upper_bound="14:15:22Z",
             metadata={
                 "key": "value",
                 "foo": "bar",
                 "modern": "treasury",
             },
+            status="pending",
         )
         assert_matches_type(LedgerAccountPayout, ledger_account_payout, path=["response"])
 
@@ -136,12 +136,12 @@ class TestAsyncLedgerAccountPayouts:
         ledger_account_payout = await client.ledger_account_payouts.update(
             "string",
             description="string",
-            status="posted",
             metadata={
                 "key": "value",
                 "foo": "bar",
                 "modern": "treasury",
             },
+            status="posted",
         )
         assert_matches_type(LedgerAccountPayout, ledger_account_payout, path=["response"])
 
@@ -154,8 +154,8 @@ class TestAsyncLedgerAccountPayouts:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger_account_payout = await client.ledger_account_payouts.list(
             after_cursor="string",
-            per_page=0,
             payout_ledger_account_id="string",
+            per_page=0,
         )
         assert_matches_type(AsyncPage[LedgerAccountPayout], ledger_account_payout, path=["response"])
 

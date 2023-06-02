@@ -7,6 +7,7 @@ from typing_extensions import Literal, Required, TypedDict
 
 __all__ = [
     "CounterpartyCreateParams",
+    "Accounting",
     "Accounts",
     "Account",
     "AccountsPartyAddress",
@@ -19,8 +20,49 @@ __all__ = [
     "AccountLedgerAccount",
     "AccountsContactDetails",
     "AccountContactDetail",
-    "Accounting",
 ]
+
+
+class CounterpartyCreateParams(TypedDict, total=False):
+    name: Required[Optional[str]]
+    """A human friendly name for this counterparty."""
+
+    accounting: Accounting
+
+    accounts: List[Account]
+    """The accounts for this counterparty."""
+
+    email: Optional[str]
+    """The counterparty's email."""
+
+    ledger_type: Literal["customer", "vendor"]
+    """An optional type to auto-sync the counterparty to your ledger.
+
+    Either `customer` or `vendor`.
+    """
+
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
+
+    send_remittance_advice: bool
+    """
+    Send an email to the counterparty whenever an associated payment order is sent
+    to the bank.
+    """
+
+    taxpayer_identifier: str
+    """Either a valid SSN or EIN."""
+
+
+class Accounting(TypedDict, total=False):
+    type: Literal["customer", "vendor"]
+    """An optional type to auto-sync the counterparty to your ledger.
+
+    Either `customer` or `vendor`.
+    """
 
 
 class AccountPartyAddress(TypedDict, total=False):
@@ -223,45 +265,3 @@ Accounts = Account
 
 Please use Account instead.
 """
-
-
-class Accounting(TypedDict, total=False):
-    type: Literal["customer", "vendor"]
-    """An optional type to auto-sync the counterparty to your ledger.
-
-    Either `customer` or `vendor`.
-    """
-
-
-class CounterpartyCreateParams(TypedDict, total=False):
-    name: Required[Optional[str]]
-    """A human friendly name for this counterparty."""
-
-    accounting: Accounting
-
-    accounts: List[Account]
-    """The accounts for this counterparty."""
-
-    email: Optional[str]
-    """The counterparty's email."""
-
-    ledger_type: Literal["customer", "vendor"]
-    """An optional type to auto-sync the counterparty to your ledger.
-
-    Either `customer` or `vendor`.
-    """
-
-    metadata: Dict[str, str]
-    """Additional data represented as key-value pairs.
-
-    Both the key and value must be strings.
-    """
-
-    send_remittance_advice: bool
-    """
-    Send an email to the counterparty whenever an associated payment order is sent
-    to the bank.
-    """
-
-    taxpayer_identifier: str
-    """Either a valid SSN or EIN."""

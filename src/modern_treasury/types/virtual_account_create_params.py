@@ -11,6 +11,46 @@ from .._utils import PropertyInfo
 __all__ = ["VirtualAccountCreateParams", "AccountDetail", "RoutingDetail", "RoutingDetailBankAddress"]
 
 
+class VirtualAccountCreateParams(TypedDict, total=False):
+    internal_account_id: Required[str]
+    """The ID of the internal account that this virtual account is associated with."""
+
+    name: Required[str]
+    """The name of the virtual account."""
+
+    account_details: List[AccountDetail]
+    """An array of account detail objects."""
+
+    counterparty_id: str
+    """The ID of the counterparty that the virtual account belongs to."""
+
+    credit_ledger_account_id: str
+    """The ID of a credit normal ledger account.
+
+    When money leaves the virtual account, this ledger account will be credited.
+    Must be accompanied by a debit_ledger_account_id if present.
+    """
+
+    debit_ledger_account_id: str
+    """The ID of a debit normal ledger account.
+
+    When money enters the virtual account, this ledger account will be debited. Must
+    be accompanied by a credit_ledger_account_id if present.
+    """
+
+    description: str
+    """An optional description for internal use."""
+
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
+
+    routing_details: List[RoutingDetail]
+    """An array of routing detail objects."""
+
+
 class AccountDetail(TypedDict, total=False):
     account_number_safe: Required[str]
     """The last 4 digits of the account_number."""
@@ -162,43 +202,3 @@ RoutingDetail = RoutingDetail
 
 Please use RoutingDetail instead.
 """
-
-
-class VirtualAccountCreateParams(TypedDict, total=False):
-    internal_account_id: Required[str]
-    """The ID of the internal account that this virtual account is associated with."""
-
-    name: Required[str]
-    """The name of the virtual account."""
-
-    account_details: List[AccountDetail]
-    """An array of account detail objects."""
-
-    counterparty_id: str
-    """The ID of the counterparty that the virtual account belongs to."""
-
-    credit_ledger_account_id: str
-    """The ID of a credit normal ledger account.
-
-    When money leaves the virtual account, this ledger account will be credited.
-    Must be accompanied by a debit_ledger_account_id if present.
-    """
-
-    debit_ledger_account_id: str
-    """The ID of a debit normal ledger account.
-
-    When money enters the virtual account, this ledger account will be debited. Must
-    be accompanied by a credit_ledger_account_id if present.
-    """
-
-    description: str
-    """An optional description for internal use."""
-
-    metadata: Dict[str, str]
-    """Additional data represented as key-value pairs.
-
-    Both the key and value must be strings.
-    """
-
-    routing_details: List[RoutingDetail]
-    """An array of routing detail objects."""

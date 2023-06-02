@@ -63,13 +63,13 @@ class TestLedgers:
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         ledger = client.ledgers.update(
             "string",
-            name="string",
             description="string",
             metadata={
                 "key": "value",
                 "foo": "bar",
                 "modern": "treasury",
             },
+            name="string",
         )
         assert_matches_type(Ledger, ledger, path=["response"])
 
@@ -82,8 +82,8 @@ class TestLedgers:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger = client.ledgers.list(
             after_cursor="string",
-            per_page=0,
             metadata={"foo": "string"},
+            per_page=0,
             updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
         )
         assert_matches_type(SyncPage[Ledger], ledger, path=["response"])
@@ -143,13 +143,13 @@ class TestAsyncLedgers:
     async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger = await client.ledgers.update(
             "string",
-            name="string",
             description="string",
             metadata={
                 "key": "value",
                 "foo": "bar",
                 "modern": "treasury",
             },
+            name="string",
         )
         assert_matches_type(Ledger, ledger, path=["response"])
 
@@ -162,8 +162,8 @@ class TestAsyncLedgers:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger = await client.ledgers.list(
             after_cursor="string",
-            per_page=0,
             metadata={"foo": "string"},
+            per_page=0,
             updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
         )
         assert_matches_type(AsyncPage[Ledger], ledger, path=["response"])

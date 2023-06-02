@@ -81,15 +81,15 @@ class VirtualAccounts(SyncAPIResource):
             "/api/virtual_accounts",
             body=maybe_transform(
                 {
-                    "name": name,
-                    "description": description,
-                    "counterparty_id": counterparty_id,
                     "internal_account_id": internal_account_id,
+                    "name": name,
                     "account_details": account_details,
-                    "routing_details": routing_details,
-                    "debit_ledger_account_id": debit_ledger_account_id,
+                    "counterparty_id": counterparty_id,
                     "credit_ledger_account_id": credit_ledger_account_id,
+                    "debit_ledger_account_id": debit_ledger_account_id,
+                    "description": description,
                     "metadata": metadata,
+                    "routing_details": routing_details,
                 },
                 virtual_account_create_params.VirtualAccountCreateParams,
             ),
@@ -114,7 +114,18 @@ class VirtualAccounts(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> None:
-        """get virtual_account"""
+        """
+        get virtual_account
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._get(
             f"/api/virtual_accounts/{id}",
@@ -157,9 +168,9 @@ class VirtualAccounts(SyncAPIResource):
             f"/api/virtual_accounts/{id}",
             body=maybe_transform(
                 {
-                    "name": name,
                     "counterparty_id": counterparty_id,
                     "metadata": metadata,
+                    "name": name,
                 },
                 virtual_account_update_params.VirtualAccountUpdateParams,
             ),
@@ -215,10 +226,10 @@ class VirtualAccounts(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "internal_account_id": internal_account_id,
                         "counterparty_id": counterparty_id,
+                        "internal_account_id": internal_account_id,
                         "metadata": metadata,
+                        "per_page": per_page,
                     },
                     virtual_account_list_params.VirtualAccountListParams,
                 ),
@@ -238,7 +249,20 @@ class VirtualAccounts(SyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> VirtualAccount:
-        """delete virtual_account"""
+        """
+        delete virtual_account
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         return self._delete(
             f"/api/virtual_accounts/{id}",
             options=make_request_options(
@@ -314,15 +338,15 @@ class AsyncVirtualAccounts(AsyncAPIResource):
             "/api/virtual_accounts",
             body=maybe_transform(
                 {
-                    "name": name,
-                    "description": description,
-                    "counterparty_id": counterparty_id,
                     "internal_account_id": internal_account_id,
+                    "name": name,
                     "account_details": account_details,
-                    "routing_details": routing_details,
-                    "debit_ledger_account_id": debit_ledger_account_id,
+                    "counterparty_id": counterparty_id,
                     "credit_ledger_account_id": credit_ledger_account_id,
+                    "debit_ledger_account_id": debit_ledger_account_id,
+                    "description": description,
                     "metadata": metadata,
+                    "routing_details": routing_details,
                 },
                 virtual_account_create_params.VirtualAccountCreateParams,
             ),
@@ -347,7 +371,18 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> None:
-        """get virtual_account"""
+        """
+        get virtual_account
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._get(
             f"/api/virtual_accounts/{id}",
@@ -390,9 +425,9 @@ class AsyncVirtualAccounts(AsyncAPIResource):
             f"/api/virtual_accounts/{id}",
             body=maybe_transform(
                 {
-                    "name": name,
                     "counterparty_id": counterparty_id,
                     "metadata": metadata,
+                    "name": name,
                 },
                 virtual_account_update_params.VirtualAccountUpdateParams,
             ),
@@ -448,10 +483,10 @@ class AsyncVirtualAccounts(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "internal_account_id": internal_account_id,
                         "counterparty_id": counterparty_id,
+                        "internal_account_id": internal_account_id,
                         "metadata": metadata,
+                        "per_page": per_page,
                     },
                     virtual_account_list_params.VirtualAccountListParams,
                 ),
@@ -471,7 +506,20 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> VirtualAccount:
-        """delete virtual_account"""
+        """
+        delete virtual_account
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         return await self._delete(
             f"/api/virtual_accounts/{id}",
             options=make_request_options(

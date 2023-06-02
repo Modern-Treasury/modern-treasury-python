@@ -34,17 +34,6 @@ class TestExternalAccounts:
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         external_account = client.external_accounts.create(
-            account_type="cash",
-            party_type="business",
-            party_address={
-                "line1": "string",
-                "line2": "string",
-                "locality": "string",
-                "region": "string",
-                "postal_code": "string",
-                "country": "string",
-            },
-            name="string",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_details=[
                 {
@@ -60,30 +49,21 @@ class TestExternalAccounts:
                     "account_number_type": "iban",
                 },
             ],
-            routing_details=[
+            account_type="cash",
+            contact_details=[
                 {
-                    "routing_number": "string",
-                    "routing_number_type": "aba",
-                    "payment_type": "ach",
+                    "contact_identifier": "string",
+                    "contact_identifier_type": "email",
                 },
                 {
-                    "routing_number": "string",
-                    "routing_number_type": "aba",
-                    "payment_type": "ach",
+                    "contact_identifier": "string",
+                    "contact_identifier_type": "email",
                 },
                 {
-                    "routing_number": "string",
-                    "routing_number_type": "aba",
-                    "payment_type": "ach",
+                    "contact_identifier": "string",
+                    "contact_identifier_type": "email",
                 },
             ],
-            metadata={
-                "key": "value",
-                "foo": "bar",
-                "modern": "treasury",
-            },
-            party_name="string",
-            party_identifier="string",
             ledger_account={
                 "name": "string",
                 "description": "string",
@@ -99,19 +79,39 @@ class TestExternalAccounts:
                     "modern": "treasury",
                 },
             },
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
+            name="string",
+            party_address={
+                "line1": "string",
+                "line2": "string",
+                "locality": "string",
+                "region": "string",
+                "postal_code": "string",
+                "country": "string",
+            },
+            party_identifier="string",
+            party_name="string",
+            party_type="business",
             plaid_processor_token="string",
-            contact_details=[
+            routing_details=[
                 {
-                    "contact_identifier": "string",
-                    "contact_identifier_type": "email",
+                    "routing_number": "string",
+                    "routing_number_type": "aba",
+                    "payment_type": "ach",
                 },
                 {
-                    "contact_identifier": "string",
-                    "contact_identifier_type": "email",
+                    "routing_number": "string",
+                    "routing_number_type": "aba",
+                    "payment_type": "ach",
                 },
                 {
-                    "contact_identifier": "string",
-                    "contact_identifier_type": "email",
+                    "routing_number": "string",
+                    "routing_number_type": "aba",
+                    "payment_type": "ach",
                 },
             ],
         )
@@ -135,11 +135,10 @@ class TestExternalAccounts:
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         external_account = client.external_accounts.update(
             "string",
-            party_type="business",
             account_type="cash",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            metadata={"foo": "string"},
             name="string",
-            party_name="string",
             party_address={
                 "line1": "string",
                 "line2": "string",
@@ -148,7 +147,8 @@ class TestExternalAccounts:
                 "postal_code": "string",
                 "country": "string",
             },
-            metadata={"foo": "string"},
+            party_name="string",
+            party_type="business",
         )
         assert_matches_type(ExternalAccount, external_account, path=["response"])
 
@@ -161,10 +161,10 @@ class TestExternalAccounts:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         external_account = client.external_accounts.list(
             after_cursor="string",
-            per_page=0,
-            party_name="string",
             counterparty_id="string",
             metadata={"foo": "string"},
+            party_name="string",
+            per_page=0,
         )
         assert_matches_type(SyncPage[ExternalAccount], external_account, path=["response"])
 
@@ -229,17 +229,6 @@ class TestAsyncExternalAccounts:
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         external_account = await client.external_accounts.create(
-            account_type="cash",
-            party_type="business",
-            party_address={
-                "line1": "string",
-                "line2": "string",
-                "locality": "string",
-                "region": "string",
-                "postal_code": "string",
-                "country": "string",
-            },
-            name="string",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_details=[
                 {
@@ -255,30 +244,21 @@ class TestAsyncExternalAccounts:
                     "account_number_type": "iban",
                 },
             ],
-            routing_details=[
+            account_type="cash",
+            contact_details=[
                 {
-                    "routing_number": "string",
-                    "routing_number_type": "aba",
-                    "payment_type": "ach",
+                    "contact_identifier": "string",
+                    "contact_identifier_type": "email",
                 },
                 {
-                    "routing_number": "string",
-                    "routing_number_type": "aba",
-                    "payment_type": "ach",
+                    "contact_identifier": "string",
+                    "contact_identifier_type": "email",
                 },
                 {
-                    "routing_number": "string",
-                    "routing_number_type": "aba",
-                    "payment_type": "ach",
+                    "contact_identifier": "string",
+                    "contact_identifier_type": "email",
                 },
             ],
-            metadata={
-                "key": "value",
-                "foo": "bar",
-                "modern": "treasury",
-            },
-            party_name="string",
-            party_identifier="string",
             ledger_account={
                 "name": "string",
                 "description": "string",
@@ -294,19 +274,39 @@ class TestAsyncExternalAccounts:
                     "modern": "treasury",
                 },
             },
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
+            name="string",
+            party_address={
+                "line1": "string",
+                "line2": "string",
+                "locality": "string",
+                "region": "string",
+                "postal_code": "string",
+                "country": "string",
+            },
+            party_identifier="string",
+            party_name="string",
+            party_type="business",
             plaid_processor_token="string",
-            contact_details=[
+            routing_details=[
                 {
-                    "contact_identifier": "string",
-                    "contact_identifier_type": "email",
+                    "routing_number": "string",
+                    "routing_number_type": "aba",
+                    "payment_type": "ach",
                 },
                 {
-                    "contact_identifier": "string",
-                    "contact_identifier_type": "email",
+                    "routing_number": "string",
+                    "routing_number_type": "aba",
+                    "payment_type": "ach",
                 },
                 {
-                    "contact_identifier": "string",
-                    "contact_identifier_type": "email",
+                    "routing_number": "string",
+                    "routing_number_type": "aba",
+                    "payment_type": "ach",
                 },
             ],
         )
@@ -330,11 +330,10 @@ class TestAsyncExternalAccounts:
     async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
         external_account = await client.external_accounts.update(
             "string",
-            party_type="business",
             account_type="cash",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            metadata={"foo": "string"},
             name="string",
-            party_name="string",
             party_address={
                 "line1": "string",
                 "line2": "string",
@@ -343,7 +342,8 @@ class TestAsyncExternalAccounts:
                 "postal_code": "string",
                 "country": "string",
             },
-            metadata={"foo": "string"},
+            party_name="string",
+            party_type="business",
         )
         assert_matches_type(ExternalAccount, external_account, path=["response"])
 
@@ -356,10 +356,10 @@ class TestAsyncExternalAccounts:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         external_account = await client.external_accounts.list(
             after_cursor="string",
-            per_page=0,
-            party_name="string",
             counterparty_id="string",
             metadata={"foo": "string"},
+            party_name="string",
+            per_page=0,
         )
         assert_matches_type(AsyncPage[ExternalAccount], external_account, path=["response"])
 

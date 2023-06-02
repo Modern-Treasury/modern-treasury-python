@@ -34,9 +34,9 @@ class TestPaymentReferences:
         payment_reference = client.payment_references.list(
             after_cursor="string",
             per_page=0,
+            reference_number="string",
             referenceable_id="string",
             referenceable_type="payment_order",
-            reference_number="string",
         )
         assert_matches_type(SyncPage[PaymentReference], payment_reference, path=["response"])
 
@@ -67,9 +67,9 @@ class TestAsyncPaymentReferences:
         payment_reference = await client.payment_references.list(
             after_cursor="string",
             per_page=0,
+            reference_number="string",
             referenceable_id="string",
             referenceable_type="payment_order",
-            reference_number="string",
         )
         assert_matches_type(AsyncPage[PaymentReference], payment_reference, path=["response"])
 

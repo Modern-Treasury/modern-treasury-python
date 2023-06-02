@@ -29,7 +29,18 @@ class BalanceReports(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> BalanceReport:
-        """Get a single balance report for a given internal account."""
+        """
+        Get a single balance report for a given internal account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/internal_accounts/{internal_account_id}/balance_reports/{id}",
             options=make_request_options(
@@ -80,9 +91,9 @@ class BalanceReports(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "after_cursor": after_cursor,
                         "as_of_date": as_of_date,
                         "balance_report_type": balance_report_type,
-                        "after_cursor": after_cursor,
                         "per_page": per_page,
                     },
                     balance_report_list_params.BalanceReportListParams,
@@ -105,7 +116,18 @@ class AsyncBalanceReports(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> BalanceReport:
-        """Get a single balance report for a given internal account."""
+        """
+        Get a single balance report for a given internal account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/internal_accounts/{internal_account_id}/balance_reports/{id}",
             options=make_request_options(
@@ -156,9 +178,9 @@ class AsyncBalanceReports(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "after_cursor": after_cursor,
                         "as_of_date": as_of_date,
                         "balance_report_type": balance_report_type,
-                        "after_cursor": after_cursor,
                         "per_page": per_page,
                     },
                     balance_report_list_params.BalanceReportListParams,

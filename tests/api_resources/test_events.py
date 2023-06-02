@@ -41,12 +41,12 @@ class TestEvents:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         event = client.events.list(
             after_cursor="string",
-            per_page=0,
-            event_time_start=parse_datetime("2019-12-27T18:11:19.117Z"),
-            event_time_end=parse_datetime("2019-12-27T18:11:19.117Z"),
-            resource="string",
             entity_id="string",
             event_name="string",
+            event_time_end=parse_datetime("2019-12-27T18:11:19.117Z"),
+            event_time_start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            per_page=0,
+            resource="string",
         )
         assert_matches_type(SyncPage[Event], event, path=["response"])
 
@@ -76,11 +76,11 @@ class TestAsyncEvents:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         event = await client.events.list(
             after_cursor="string",
-            per_page=0,
-            event_time_start=parse_datetime("2019-12-27T18:11:19.117Z"),
-            event_time_end=parse_datetime("2019-12-27T18:11:19.117Z"),
-            resource="string",
             entity_id="string",
             event_name="string",
+            event_time_end=parse_datetime("2019-12-27T18:11:19.117Z"),
+            event_time_start=parse_datetime("2019-12-27T18:11:19.117Z"),
+            per_page=0,
+            resource="string",
         )
         assert_matches_type(AsyncPage[Event], event, path=["response"])

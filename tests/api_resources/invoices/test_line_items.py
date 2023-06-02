@@ -39,10 +39,10 @@ class TestLineItems:
         line_item = client.invoices.line_items.create(
             "string",
             name="string",
-            description="string",
-            quantity=0,
             unit_amount=0,
+            description="string",
             direction="string",
+            quantity=0,
         )
         assert_matches_type(InvoiceLineItem, line_item, path=["response"])
 
@@ -99,7 +99,6 @@ class TestLineItems:
                     "contact_identifier_type": "email",
                 },
             ],
-            counterparty_id="string",
             counterparty_billing_address={
                 "line1": "string",
                 "line2": "string",
@@ -108,6 +107,7 @@ class TestLineItems:
                 "postal_code": "string",
                 "country": "string",
             },
+            counterparty_id="string",
             counterparty_shipping_address={
                 "line1": "string",
                 "line2": "string",
@@ -179,10 +179,10 @@ class TestAsyncLineItems:
         line_item = await client.invoices.line_items.create(
             "string",
             name="string",
-            description="string",
-            quantity=0,
             unit_amount=0,
+            description="string",
             direction="string",
+            quantity=0,
         )
         assert_matches_type(InvoiceLineItem, line_item, path=["response"])
 
@@ -239,7 +239,6 @@ class TestAsyncLineItems:
                     "contact_identifier_type": "email",
                 },
             ],
-            counterparty_id="string",
             counterparty_billing_address={
                 "line1": "string",
                 "line2": "string",
@@ -248,6 +247,7 @@ class TestAsyncLineItems:
                 "postal_code": "string",
                 "country": "string",
             },
+            counterparty_id="string",
             counterparty_shipping_address={
                 "line1": "string",
                 "line2": "string",

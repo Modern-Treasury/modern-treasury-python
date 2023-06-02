@@ -45,6 +45,8 @@ class Reversals(SyncAPIResource):
         Create a reversal for a payment order.
 
         Args:
+          payment_order_id: The id of the payment order being reversed.
+
           reason: The reason for the reversal. Must be one of `duplicate`, `incorrect_amount`,
               `incorrect_receiving_account`, `date_earlier_than_intended`,
               `date_later_than_intended`.
@@ -71,8 +73,8 @@ class Reversals(SyncAPIResource):
             body=maybe_transform(
                 {
                     "reason": reason,
-                    "metadata": metadata,
                     "ledger_transaction": ledger_transaction,
+                    "metadata": metadata,
                 },
                 reversal_create_params.ReversalCreateParams,
             ),
@@ -98,7 +100,18 @@ class Reversals(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> Reversal:
-        """Get details on a single reversal of a payment order."""
+        """
+        Get details on a single reversal of a payment order.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/payment_orders/{payment_order_id}/reversals/{reversal_id}",
             options=make_request_options(
@@ -178,6 +191,8 @@ class AsyncReversals(AsyncAPIResource):
         Create a reversal for a payment order.
 
         Args:
+          payment_order_id: The id of the payment order being reversed.
+
           reason: The reason for the reversal. Must be one of `duplicate`, `incorrect_amount`,
               `incorrect_receiving_account`, `date_earlier_than_intended`,
               `date_later_than_intended`.
@@ -204,8 +219,8 @@ class AsyncReversals(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "reason": reason,
-                    "metadata": metadata,
                     "ledger_transaction": ledger_transaction,
+                    "metadata": metadata,
                 },
                 reversal_create_params.ReversalCreateParams,
             ),
@@ -231,7 +246,18 @@ class AsyncReversals(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> Reversal:
-        """Get details on a single reversal of a payment order."""
+        """
+        Get details on a single reversal of a payment order.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/payment_orders/{payment_order_id}/reversals/{reversal_id}",
             options=make_request_options(

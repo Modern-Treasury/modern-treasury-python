@@ -28,22 +28,22 @@ class TestLedgerAccounts:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         ledger_account = client.ledger_accounts.create(
+            currency="string",
+            ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             name="string",
             normal_balance="credit",
-            ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            currency="string",
         )
         assert_matches_type(LedgerAccount, ledger_account, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account = client.ledger_accounts.create(
-            name="string",
-            description="string",
-            normal_balance="credit",
-            ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="string",
+            ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="string",
+            normal_balance="credit",
             currency_exponent=0,
+            description="string",
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledgerable_type="external_account",
             metadata={
@@ -85,13 +85,13 @@ class TestLedgerAccounts:
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account = client.ledger_accounts.update(
             "string",
-            name="string",
             description="string",
             metadata={
                 "key": "value",
                 "foo": "bar",
                 "modern": "treasury",
             },
+            name="string",
         )
         assert_matches_type(LedgerAccount, ledger_account, path=["response"])
 
@@ -104,11 +104,6 @@ class TestLedgerAccounts:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account = client.ledger_accounts.list(
             after_cursor="string",
-            per_page=0,
-            metadata={"foo": "string"},
-            id="string",
-            name="string",
-            ledger_id="string",
             balances={
                 "as_of_date": parse_date("2019-12-27"),
                 "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -116,8 +111,13 @@ class TestLedgerAccounts:
                 "effective_at_upper_bound": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
             created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
-            updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
+            id="string",
             ledger_account_category_id="string",
+            ledger_id="string",
+            metadata={"foo": "string"},
+            name="string",
+            per_page=0,
+            updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
         )
         assert_matches_type(SyncPage[LedgerAccount], ledger_account, path=["response"])
 
@@ -141,22 +141,22 @@ class TestAsyncLedgerAccounts:
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         ledger_account = await client.ledger_accounts.create(
+            currency="string",
+            ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             name="string",
             normal_balance="credit",
-            ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            currency="string",
         )
         assert_matches_type(LedgerAccount, ledger_account, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger_account = await client.ledger_accounts.create(
-            name="string",
-            description="string",
-            normal_balance="credit",
-            ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="string",
+            ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="string",
+            normal_balance="credit",
             currency_exponent=0,
+            description="string",
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledgerable_type="external_account",
             metadata={
@@ -198,13 +198,13 @@ class TestAsyncLedgerAccounts:
     async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger_account = await client.ledger_accounts.update(
             "string",
-            name="string",
             description="string",
             metadata={
                 "key": "value",
                 "foo": "bar",
                 "modern": "treasury",
             },
+            name="string",
         )
         assert_matches_type(LedgerAccount, ledger_account, path=["response"])
 
@@ -217,11 +217,6 @@ class TestAsyncLedgerAccounts:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger_account = await client.ledger_accounts.list(
             after_cursor="string",
-            per_page=0,
-            metadata={"foo": "string"},
-            id="string",
-            name="string",
-            ledger_id="string",
             balances={
                 "as_of_date": parse_date("2019-12-27"),
                 "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -229,8 +224,13 @@ class TestAsyncLedgerAccounts:
                 "effective_at_upper_bound": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
             created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
-            updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
+            id="string",
             ledger_account_category_id="string",
+            ledger_id="string",
+            metadata={"foo": "string"},
+            name="string",
+            per_page=0,
+            updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
         )
         assert_matches_type(AsyncPage[LedgerAccount], ledger_account, path=["response"])
 

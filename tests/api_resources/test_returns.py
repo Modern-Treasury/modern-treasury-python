@@ -37,11 +37,11 @@ class TestReturns:
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         return_ = client.returns.create(
             returnable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            code="901",
-            reason="string",
-            date_of_death=parse_date("2019-12-27"),
-            additional_information="string",
             returnable_type="incoming_payment_detail",
+            additional_information="string",
+            code="901",
+            date_of_death=parse_date("2019-12-27"),
+            reason="string",
         )
         assert_matches_type(ReturnObject, return_, path=["response"])
 
@@ -61,9 +61,9 @@ class TestReturns:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         return_ = client.returns.list(
             after_cursor="string",
-            per_page=0,
-            internal_account_id="string",
             counterparty_id="string",
+            internal_account_id="string",
+            per_page=0,
             returnable_id="string",
             returnable_type="incoming_payment_detail",
         )
@@ -91,11 +91,11 @@ class TestAsyncReturns:
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         return_ = await client.returns.create(
             returnable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            code="901",
-            reason="string",
-            date_of_death=parse_date("2019-12-27"),
-            additional_information="string",
             returnable_type="incoming_payment_detail",
+            additional_information="string",
+            code="901",
+            date_of_death=parse_date("2019-12-27"),
+            reason="string",
         )
         assert_matches_type(ReturnObject, return_, path=["response"])
 
@@ -115,9 +115,9 @@ class TestAsyncReturns:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         return_ = await client.returns.list(
             after_cursor="string",
-            per_page=0,
-            internal_account_id="string",
             counterparty_id="string",
+            internal_account_id="string",
+            per_page=0,
             returnable_id="string",
             returnable_type="incoming_payment_detail",
         )

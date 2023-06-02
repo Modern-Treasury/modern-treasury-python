@@ -28,7 +28,18 @@ class LedgerEntries(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> LedgerEntry:
-        """Get details on a single ledger entry."""
+        """
+        Get details on a single ledger entry.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/ledger_entries/{id}",
             options=make_request_options(
@@ -121,20 +132,20 @@ class LedgerEntries(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "id": id,
-                        "ledger_account_id": ledger_account_id,
-                        "ledger_transaction_id": ledger_transaction_id,
-                        "effective_date": effective_date,
-                        "effective_at": effective_at,
-                        "updated_at": updated_at,
                         "as_of_lock_version": as_of_lock_version,
-                        "ledger_account_lock_version": ledger_account_lock_version,
-                        "ledger_account_category_id": ledger_account_category_id,
-                        "show_deleted": show_deleted,
                         "direction": direction,
-                        "status": status,
+                        "effective_at": effective_at,
+                        "effective_date": effective_date,
+                        "id": id,
+                        "ledger_account_category_id": ledger_account_category_id,
+                        "ledger_account_id": ledger_account_id,
+                        "ledger_account_lock_version": ledger_account_lock_version,
+                        "ledger_transaction_id": ledger_transaction_id,
                         "order_by": order_by,
+                        "per_page": per_page,
+                        "show_deleted": show_deleted,
+                        "status": status,
+                        "updated_at": updated_at,
                     },
                     ledger_entry_list_params.LedgerEntryListParams,
                 ),
@@ -155,7 +166,18 @@ class AsyncLedgerEntries(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> LedgerEntry:
-        """Get details on a single ledger entry."""
+        """
+        Get details on a single ledger entry.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/ledger_entries/{id}",
             options=make_request_options(
@@ -248,20 +270,20 @@ class AsyncLedgerEntries(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "id": id,
-                        "ledger_account_id": ledger_account_id,
-                        "ledger_transaction_id": ledger_transaction_id,
-                        "effective_date": effective_date,
-                        "effective_at": effective_at,
-                        "updated_at": updated_at,
                         "as_of_lock_version": as_of_lock_version,
-                        "ledger_account_lock_version": ledger_account_lock_version,
-                        "ledger_account_category_id": ledger_account_category_id,
-                        "show_deleted": show_deleted,
                         "direction": direction,
-                        "status": status,
+                        "effective_at": effective_at,
+                        "effective_date": effective_date,
+                        "id": id,
+                        "ledger_account_category_id": ledger_account_category_id,
+                        "ledger_account_id": ledger_account_id,
+                        "ledger_account_lock_version": ledger_account_lock_version,
+                        "ledger_transaction_id": ledger_transaction_id,
                         "order_by": order_by,
+                        "per_page": per_page,
+                        "show_deleted": show_deleted,
+                        "status": status,
+                        "updated_at": updated_at,
                     },
                     ledger_entry_list_params.LedgerEntryListParams,
                 ),

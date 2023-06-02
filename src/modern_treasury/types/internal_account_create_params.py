@@ -7,24 +7,6 @@ from typing_extensions import Literal, Required, TypedDict
 __all__ = ["InternalAccountCreateParams", "PartyAddress"]
 
 
-class PartyAddress(TypedDict, total=False):
-    country: Required[str]
-    """Country code conforms to [ISO 3166-1 alpha-2]"""
-
-    line1: Required[str]
-
-    locality: Required[str]
-    """Locality or City."""
-
-    postal_code: Required[str]
-    """The postal code of the address."""
-
-    region: Required[str]
-    """Region or State."""
-
-    line2: str
-
-
 class InternalAccountCreateParams(TypedDict, total=False):
     connection_id: Required[str]
     """The identifier of the financial institution the account belongs to."""
@@ -52,3 +34,21 @@ class InternalAccountCreateParams(TypedDict, total=False):
 
     party_address: PartyAddress
     """The address associated with the owner or null."""
+
+
+class PartyAddress(TypedDict, total=False):
+    country: Required[str]
+    """Country code conforms to [ISO 3166-1 alpha-2]"""
+
+    line1: Required[str]
+
+    locality: Required[str]
+    """Locality or City."""
+
+    postal_code: Required[str]
+    """The postal code of the address."""
+
+    region: Required[str]
+    """Region or State."""
+
+    line2: str

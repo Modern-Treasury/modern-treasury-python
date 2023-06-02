@@ -74,12 +74,12 @@ class LedgerAccountPayouts(SyncAPIResource):
             "/api/ledger_account_payouts",
             body=maybe_transform(
                 {
-                    "description": description,
-                    "status": status,
-                    "payout_ledger_account_id": payout_ledger_account_id,
                     "funding_ledger_account_id": funding_ledger_account_id,
+                    "payout_ledger_account_id": payout_ledger_account_id,
+                    "description": description,
                     "effective_at_upper_bound": effective_at_upper_bound,
                     "metadata": metadata,
+                    "status": status,
                 },
                 ledger_account_payout_create_params.LedgerAccountPayoutCreateParams,
             ),
@@ -135,8 +135,8 @@ class LedgerAccountPayouts(SyncAPIResource):
             body=maybe_transform(
                 {
                     "description": description,
-                    "status": status,
                     "metadata": metadata,
+                    "status": status,
                 },
                 ledger_account_payout_update_params.LedgerAccountPayoutUpdateParams,
             ),
@@ -186,8 +186,8 @@ class LedgerAccountPayouts(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
                         "payout_ledger_account_id": payout_ledger_account_id,
+                        "per_page": per_page,
                     },
                     ledger_account_payout_list_params.LedgerAccountPayoutListParams,
                 ),
@@ -206,7 +206,18 @@ class LedgerAccountPayouts(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> LedgerAccountPayout:
-        """Get details on a single ledger account payout."""
+        """
+        Get details on a single ledger account payout.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/ledger_account_payouts/{id}",
             options=make_request_options(
@@ -270,12 +281,12 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
             "/api/ledger_account_payouts",
             body=maybe_transform(
                 {
-                    "description": description,
-                    "status": status,
-                    "payout_ledger_account_id": payout_ledger_account_id,
                     "funding_ledger_account_id": funding_ledger_account_id,
+                    "payout_ledger_account_id": payout_ledger_account_id,
+                    "description": description,
                     "effective_at_upper_bound": effective_at_upper_bound,
                     "metadata": metadata,
+                    "status": status,
                 },
                 ledger_account_payout_create_params.LedgerAccountPayoutCreateParams,
             ),
@@ -331,8 +342,8 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "description": description,
-                    "status": status,
                     "metadata": metadata,
+                    "status": status,
                 },
                 ledger_account_payout_update_params.LedgerAccountPayoutUpdateParams,
             ),
@@ -382,8 +393,8 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
                         "payout_ledger_account_id": payout_ledger_account_id,
+                        "per_page": per_page,
                     },
                     ledger_account_payout_list_params.LedgerAccountPayoutListParams,
                 ),
@@ -402,7 +413,18 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> LedgerAccountPayout:
-        """Get details on a single ledger account payout."""
+        """
+        Get details on a single ledger account payout.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/ledger_account_payouts/{id}",
             options=make_request_options(

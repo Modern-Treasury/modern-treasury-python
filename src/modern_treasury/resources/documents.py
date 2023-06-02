@@ -60,8 +60,8 @@ class Documents(SyncAPIResource):
         """
         body = deepcopy_minimal(
             {
-                "document_type": document_type,
                 "file": file,
+                "document_type": document_type,
             }
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
@@ -109,7 +109,18 @@ class Documents(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> Document:
-        """Get an existing document."""
+        """
+        Get an existing document.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/{documentable_type}/{documentable_id}/documents/{id}",
             options=make_request_options(
@@ -220,8 +231,8 @@ class AsyncDocuments(AsyncAPIResource):
         """
         body = deepcopy_minimal(
             {
-                "document_type": document_type,
                 "file": file,
+                "document_type": document_type,
             }
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
@@ -269,7 +280,18 @@ class AsyncDocuments(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> Document:
-        """Get an existing document."""
+        """
+        Get an existing document.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/{documentable_type}/{documentable_id}/documents/{id}",
             options=make_request_options(

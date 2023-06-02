@@ -8,6 +8,8 @@ __all__ = ["AccountDetailCreateParams"]
 
 
 class AccountDetailCreateParams(TypedDict, total=False):
+    accounts_type: Required[Literal["external_accounts"]]
+
     account_number: Required[str]
     """The account number for the bank account."""
 

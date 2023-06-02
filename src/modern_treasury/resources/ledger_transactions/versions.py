@@ -62,8 +62,8 @@ class Versions(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
                         "created_at": created_at,
+                        "per_page": per_page,
                         "version": version,
                     },
                     version_list_params.VersionListParams,
@@ -110,8 +110,8 @@ class Versions(SyncAPIResource):
         return self.list(
             id=id,
             after_cursor=after_cursor,
-            per_page=per_page,
             created_at=created_at,
+            per_page=per_page,
             version=version,
             extra_headers=extra_headers,
             extra_query=extra_query,
@@ -166,8 +166,8 @@ class AsyncVersions(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
                         "created_at": created_at,
+                        "per_page": per_page,
                         "version": version,
                     },
                     version_list_params.VersionListParams,
@@ -214,8 +214,8 @@ class AsyncVersions(AsyncAPIResource):
         return self.list(
             id=id,
             after_cursor=after_cursor,
-            per_page=per_page,
             created_at=created_at,
+            per_page=per_page,
             version=version,
             extra_headers=extra_headers,
             extra_query=extra_query,

@@ -87,7 +87,18 @@ class Ledgers(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> Ledger:
-        """Get details on a single ledger."""
+        """
+        Get details on a single ledger.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/ledgers/{id}",
             options=make_request_options(
@@ -136,9 +147,9 @@ class Ledgers(SyncAPIResource):
             f"/api/ledgers/{id}",
             body=maybe_transform(
                 {
-                    "name": name,
                     "description": description,
                     "metadata": metadata,
+                    "name": name,
                 },
                 ledger_update_params.LedgerUpdateParams,
             ),
@@ -197,8 +208,8 @@ class Ledgers(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
                         "metadata": metadata,
+                        "per_page": per_page,
                         "updated_at": updated_at,
                     },
                     ledger_list_params.LedgerListParams,
@@ -219,7 +230,20 @@ class Ledgers(SyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> Ledger:
-        """Delete a ledger."""
+        """
+        Delete a ledger.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         return self._delete(
             f"/api/ledgers/{id}",
             options=make_request_options(
@@ -300,7 +324,18 @@ class AsyncLedgers(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> Ledger:
-        """Get details on a single ledger."""
+        """
+        Get details on a single ledger.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/ledgers/{id}",
             options=make_request_options(
@@ -349,9 +384,9 @@ class AsyncLedgers(AsyncAPIResource):
             f"/api/ledgers/{id}",
             body=maybe_transform(
                 {
-                    "name": name,
                     "description": description,
                     "metadata": metadata,
+                    "name": name,
                 },
                 ledger_update_params.LedgerUpdateParams,
             ),
@@ -410,8 +445,8 @@ class AsyncLedgers(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
                         "metadata": metadata,
+                        "per_page": per_page,
                         "updated_at": updated_at,
                     },
                     ledger_list_params.LedgerListParams,
@@ -432,7 +467,20 @@ class AsyncLedgers(AsyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> Ledger:
-        """Delete a ledger."""
+        """
+        Delete a ledger.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         return await self._delete(
             f"/api/ledgers/{id}",
             options=make_request_options(

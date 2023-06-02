@@ -133,10 +133,10 @@ from modern_treasury.types.invoices import InvoiceLineItem
 Methods:
 
 - <code title="post /api/invoices/{invoice_id}/invoice_line_items">client.invoices.line_items.<a href="./src/modern_treasury/resources/invoices/line_items.py">create</a>(invoice_id, \*\*<a href="src/modern_treasury/types/invoices/line_item_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/invoices/invoice_line_item.py">InvoiceLineItem</a></code>
-- <code title="get /api/invoices/{invoice_id}/invoice_line_items/{id}">client.invoices.line_items.<a href="./src/modern_treasury/resources/invoices/line_items.py">retrieve</a>(id, invoice_id) -> <a href="./src/modern_treasury/types/invoices/invoice_line_item.py">InvoiceLineItem</a></code>
-- <code title="patch /api/invoices/{invoice_id}/invoice_line_items/{id}">client.invoices.line_items.<a href="./src/modern_treasury/resources/invoices/line_items.py">update</a>(id, invoice_id, \*\*<a href="src/modern_treasury/types/invoices/line_item_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/invoices/invoice_line_item.py">InvoiceLineItem</a></code>
+- <code title="get /api/invoices/{invoice_id}/invoice_line_items/{id}">client.invoices.line_items.<a href="./src/modern_treasury/resources/invoices/line_items.py">retrieve</a>(invoice_id, id) -> <a href="./src/modern_treasury/types/invoices/invoice_line_item.py">InvoiceLineItem</a></code>
+- <code title="patch /api/invoices/{invoice_id}/invoice_line_items/{id}">client.invoices.line_items.<a href="./src/modern_treasury/resources/invoices/line_items.py">update</a>(invoice_id, id, \*\*<a href="src/modern_treasury/types/invoices/line_item_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/invoices/invoice_line_item.py">InvoiceLineItem</a></code>
 - <code title="get /api/invoices/{invoice_id}/invoice_line_items">client.invoices.line_items.<a href="./src/modern_treasury/resources/invoices/line_items.py">list</a>(invoice_id, \*\*<a href="src/modern_treasury/types/invoices/line_item_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/invoices/invoice_line_item.py">SyncPage[InvoiceLineItem]</a></code>
-- <code title="delete /api/invoices/{invoice_id}/invoice_line_items/{id}">client.invoices.line_items.<a href="./src/modern_treasury/resources/invoices/line_items.py">delete</a>(id, invoice_id) -> <a href="./src/modern_treasury/types/invoices/invoice_line_item.py">InvoiceLineItem</a></code>
+- <code title="delete /api/invoices/{invoice_id}/invoice_line_items/{id}">client.invoices.line_items.<a href="./src/modern_treasury/resources/invoices/line_items.py">delete</a>(invoice_id, id) -> <a href="./src/modern_treasury/types/invoices/invoice_line_item.py">InvoiceLineItem</a></code>
 
 # Documents
 
@@ -148,9 +148,9 @@ from modern_treasury.types import Document
 
 Methods:
 
-- <code title="post /api/{documentable_type}/{documentable_id}/documents">client.documents.<a href="./src/modern_treasury/resources/documents.py">create</a>(documentable_id, documentable_type, \*\*<a href="src/modern_treasury/types/document_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/document.py">Document</a></code>
-- <code title="get /api/{documentable_type}/{documentable_id}/documents/{id}">client.documents.<a href="./src/modern_treasury/resources/documents.py">retrieve</a>(id, documentable_type, documentable_id) -> <a href="./src/modern_treasury/types/document.py">Document</a></code>
-- <code title="get /api/{documentable_type}/{documentable_id}/documents">client.documents.<a href="./src/modern_treasury/resources/documents.py">list</a>(documentable_id, documentable_type, \*\*<a href="src/modern_treasury/types/document_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/document.py">SyncPage[Document]</a></code>
+- <code title="post /api/{documentable_type}/{documentable_id}/documents">client.documents.<a href="./src/modern_treasury/resources/documents.py">create</a>(documentable_type, documentable_id, \*\*<a href="src/modern_treasury/types/document_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/document.py">Document</a></code>
+- <code title="get /api/{documentable_type}/{documentable_id}/documents/{id}">client.documents.<a href="./src/modern_treasury/resources/documents.py">retrieve</a>(documentable_type, documentable_id, id) -> <a href="./src/modern_treasury/types/document.py">Document</a></code>
+- <code title="get /api/{documentable_type}/{documentable_id}/documents">client.documents.<a href="./src/modern_treasury/resources/documents.py">list</a>(documentable_type, documentable_id, \*\*<a href="src/modern_treasury/types/document_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/document.py">SyncPage[Document]</a></code>
 
 # AccountCollectionFlows
 
@@ -177,10 +177,10 @@ from modern_treasury.types import AccountDetail
 
 Methods:
 
-- <code title="post /api/{accounts_type}/{account_id}/account_details">client.account_details.<a href="./src/modern_treasury/resources/account_details.py">create</a>(account_id, accounts_type, \*\*<a href="src/modern_treasury/types/account_detail_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/account_detail.py">AccountDetail</a></code>
-- <code title="get /api/{accounts_type}/{account_id}/account_details/{id}">client.account_details.<a href="./src/modern_treasury/resources/account_details.py">retrieve</a>(id, accounts_type, account_id) -> <a href="./src/modern_treasury/types/account_detail.py">AccountDetail</a></code>
-- <code title="get /api/{accounts_type}/{account_id}/account_details">client.account_details.<a href="./src/modern_treasury/resources/account_details.py">list</a>(account_id, accounts_type, \*\*<a href="src/modern_treasury/types/account_detail_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/account_detail.py">SyncPage[AccountDetail]</a></code>
-- <code title="delete /api/{accounts_type}/{account_id}/account_details/{id}">client.account_details.<a href="./src/modern_treasury/resources/account_details.py">delete</a>(id, accounts_type, account_id) -> None</code>
+- <code title="post /api/{accounts_type}/{account_id}/account_details">client.account_details.<a href="./src/modern_treasury/resources/account_details.py">create</a>(accounts_type, account_id, \*\*<a href="src/modern_treasury/types/account_detail_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/account_detail.py">AccountDetail</a></code>
+- <code title="get /api/{accounts_type}/{account_id}/account_details/{id}">client.account_details.<a href="./src/modern_treasury/resources/account_details.py">retrieve</a>(accounts_type, account_id, id) -> <a href="./src/modern_treasury/types/account_detail.py">AccountDetail</a></code>
+- <code title="get /api/{accounts_type}/{account_id}/account_details">client.account_details.<a href="./src/modern_treasury/resources/account_details.py">list</a>(accounts_type, account_id, \*\*<a href="src/modern_treasury/types/account_detail_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/account_detail.py">SyncPage[AccountDetail]</a></code>
+- <code title="delete /api/{accounts_type}/{account_id}/account_details/{id}">client.account_details.<a href="./src/modern_treasury/resources/account_details.py">delete</a>(accounts_type, account_id, id) -> None</code>
 
 # RoutingDetails
 
@@ -192,10 +192,10 @@ from modern_treasury.types import RoutingDetail
 
 Methods:
 
-- <code title="post /api/{accounts_type}/{account_id}/routing_details">client.routing_details.<a href="./src/modern_treasury/resources/routing_details.py">create</a>(account_id, accounts_type, \*\*<a href="src/modern_treasury/types/routing_detail_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/routing_detail.py">RoutingDetail</a></code>
-- <code title="get /api/{accounts_type}/{account_id}/routing_details/{id}">client.routing_details.<a href="./src/modern_treasury/resources/routing_details.py">retrieve</a>(id, accounts_type, account_id) -> <a href="./src/modern_treasury/types/routing_detail.py">RoutingDetail</a></code>
-- <code title="get /api/{accounts_type}/{account_id}/routing_details">client.routing_details.<a href="./src/modern_treasury/resources/routing_details.py">list</a>(account_id, accounts_type, \*\*<a href="src/modern_treasury/types/routing_detail_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/routing_detail.py">SyncPage[RoutingDetail]</a></code>
-- <code title="delete /api/{accounts_type}/{account_id}/routing_details/{id}">client.routing_details.<a href="./src/modern_treasury/resources/routing_details.py">delete</a>(id, accounts_type, account_id) -> None</code>
+- <code title="post /api/{accounts_type}/{account_id}/routing_details">client.routing_details.<a href="./src/modern_treasury/resources/routing_details.py">create</a>(accounts_type, account_id, \*\*<a href="src/modern_treasury/types/routing_detail_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/routing_detail.py">RoutingDetail</a></code>
+- <code title="get /api/{accounts_type}/{account_id}/routing_details/{id}">client.routing_details.<a href="./src/modern_treasury/resources/routing_details.py">retrieve</a>(accounts_type, account_id, id) -> <a href="./src/modern_treasury/types/routing_detail.py">RoutingDetail</a></code>
+- <code title="get /api/{accounts_type}/{account_id}/routing_details">client.routing_details.<a href="./src/modern_treasury/resources/routing_details.py">list</a>(accounts_type, account_id, \*\*<a href="src/modern_treasury/types/routing_detail_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/routing_detail.py">SyncPage[RoutingDetail]</a></code>
+- <code title="delete /api/{accounts_type}/{account_id}/routing_details/{id}">client.routing_details.<a href="./src/modern_treasury/resources/routing_details.py">delete</a>(accounts_type, account_id, id) -> None</code>
 
 # InternalAccounts
 
@@ -222,7 +222,7 @@ from modern_treasury.types.internal_accounts import BalanceReport
 
 Methods:
 
-- <code title="get /api/internal_accounts/{internal_account_id}/balance_reports/{id}">client.internal_accounts.balance_reports.<a href="./src/modern_treasury/resources/internal_accounts/balance_reports.py">retrieve</a>(id, internal_account_id) -> <a href="./src/modern_treasury/types/internal_accounts/balance_report.py">BalanceReport</a></code>
+- <code title="get /api/internal_accounts/{internal_account_id}/balance_reports/{id}">client.internal_accounts.balance_reports.<a href="./src/modern_treasury/resources/internal_accounts/balance_reports.py">retrieve</a>(internal_account_id, id) -> <a href="./src/modern_treasury/types/internal_accounts/balance_report.py">BalanceReport</a></code>
 - <code title="get /api/internal_accounts/{internal_account_id}/balance_reports">client.internal_accounts.balance_reports.<a href="./src/modern_treasury/resources/internal_accounts/balance_reports.py">list</a>(internal_account_id, \*\*<a href="src/modern_treasury/types/internal_accounts/balance_report_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/internal_accounts/balance_report.py">SyncPage[BalanceReport]</a></code>
 
 # Ledgers
@@ -255,11 +255,11 @@ Methods:
 - <code title="get /api/ledger_account_categories/{id}">client.ledger_account_categories.<a href="./src/modern_treasury/resources/ledger_account_categories.py">retrieve</a>(id, \*\*<a href="src/modern_treasury/types/ledger_account_category_retrieve_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_category.py">LedgerAccountCategory</a></code>
 - <code title="patch /api/ledger_account_categories/{id}">client.ledger_account_categories.<a href="./src/modern_treasury/resources/ledger_account_categories.py">update</a>(id, \*\*<a href="src/modern_treasury/types/ledger_account_category_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_category.py">LedgerAccountCategory</a></code>
 - <code title="get /api/ledger_account_categories">client.ledger_account_categories.<a href="./src/modern_treasury/resources/ledger_account_categories.py">list</a>(\*\*<a href="src/modern_treasury/types/ledger_account_category_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_category.py">SyncPage[LedgerAccountCategory]</a></code>
-- <code title="delete /api/ledger_account_categories/{id}">client.ledger_account_categories.<a href="./src/modern_treasury/resources/ledger_account_categories.py">delete</a>(id) -> <a href="./src/modern_treasury/types/ledger_account_category.py">LedgerAccountCategory</a></code>
-- <code title="put /api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}">client.ledger_account_categories.<a href="./src/modern_treasury/resources/ledger_account_categories.py">add_ledger_account</a>(ledger_account_id, id) -> None</code>
-- <code title="put /api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}">client.ledger_account_categories.<a href="./src/modern_treasury/resources/ledger_account_categories.py">add_nested_category</a>(sub_category_id, id) -> None</code>
-- <code title="delete /api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}">client.ledger_account_categories.<a href="./src/modern_treasury/resources/ledger_account_categories.py">remove_ledger_account</a>(ledger_account_id, id) -> None</code>
-- <code title="delete /api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}">client.ledger_account_categories.<a href="./src/modern_treasury/resources/ledger_account_categories.py">remove_nested_category</a>(sub_category_id, id) -> None</code>
+- <code title="delete /api/ledger_account_categories/{id}">client.ledger_account_categories.<a href="./src/modern_treasury/resources/ledger_account_categories.py">delete</a>(id, \*\*<a href="src/modern_treasury/types/ledger_account_category_delete_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_category.py">LedgerAccountCategory</a></code>
+- <code title="put /api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}">client.ledger_account_categories.<a href="./src/modern_treasury/resources/ledger_account_categories.py">add_ledger_account</a>(id, ledger_account_id) -> None</code>
+- <code title="put /api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}">client.ledger_account_categories.<a href="./src/modern_treasury/resources/ledger_account_categories.py">add_nested_category</a>(id, sub_category_id) -> None</code>
+- <code title="delete /api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}">client.ledger_account_categories.<a href="./src/modern_treasury/resources/ledger_account_categories.py">remove_ledger_account</a>(id, ledger_account_id) -> None</code>
+- <code title="delete /api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}">client.ledger_account_categories.<a href="./src/modern_treasury/resources/ledger_account_categories.py">remove_nested_category</a>(id, sub_category_id) -> None</code>
 
 # LedgerAccounts
 
@@ -342,9 +342,9 @@ from modern_treasury.types import LineItem
 
 Methods:
 
-- <code title="get /api/{itemizable_type}/{itemizable_id}/line_items/{id}">client.line_items.<a href="./src/modern_treasury/resources/line_items.py">retrieve</a>(id, itemizable_type, itemizable_id) -> <a href="./src/modern_treasury/types/line_item.py">LineItem</a></code>
-- <code title="patch /api/{itemizable_type}/{itemizable_id}/line_items/{id}">client.line_items.<a href="./src/modern_treasury/resources/line_items.py">update</a>(id, itemizable_type, itemizable_id, \*\*<a href="src/modern_treasury/types/line_item_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/line_item.py">LineItem</a></code>
-- <code title="get /api/{itemizable_type}/{itemizable_id}/line_items">client.line_items.<a href="./src/modern_treasury/resources/line_items.py">list</a>(itemizable_id, itemizable_type, \*\*<a href="src/modern_treasury/types/line_item_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/line_item.py">SyncPage[LineItem]</a></code>
+- <code title="get /api/{itemizable_type}/{itemizable_id}/line_items/{id}">client.line_items.<a href="./src/modern_treasury/resources/line_items.py">retrieve</a>(itemizable_type, itemizable_id, id) -> <a href="./src/modern_treasury/types/line_item.py">LineItem</a></code>
+- <code title="patch /api/{itemizable_type}/{itemizable_id}/line_items/{id}">client.line_items.<a href="./src/modern_treasury/resources/line_items.py">update</a>(itemizable_type, itemizable_id, id, \*\*<a href="src/modern_treasury/types/line_item_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/line_item.py">LineItem</a></code>
+- <code title="get /api/{itemizable_type}/{itemizable_id}/line_items">client.line_items.<a href="./src/modern_treasury/resources/line_items.py">list</a>(itemizable_type, itemizable_id, \*\*<a href="src/modern_treasury/types/line_item_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/line_item.py">SyncPage[LineItem]</a></code>
 
 # PaymentFlows
 
@@ -388,7 +388,7 @@ from modern_treasury.types.payment_orders import Reversal
 Methods:
 
 - <code title="post /api/payment_orders/{payment_order_id}/reversals">client.payment_orders.reversals.<a href="./src/modern_treasury/resources/payment_orders/reversals.py">create</a>(payment_order_id, \*\*<a href="src/modern_treasury/types/payment_orders/reversal_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/payment_orders/reversal.py">Reversal</a></code>
-- <code title="get /api/payment_orders/{payment_order_id}/reversals/{reversal_id}">client.payment_orders.reversals.<a href="./src/modern_treasury/resources/payment_orders/reversals.py">retrieve</a>(reversal_id, payment_order_id) -> <a href="./src/modern_treasury/types/payment_orders/reversal.py">Reversal</a></code>
+- <code title="get /api/payment_orders/{payment_order_id}/reversals/{reversal_id}">client.payment_orders.reversals.<a href="./src/modern_treasury/resources/payment_orders/reversals.py">retrieve</a>(payment_order_id, reversal_id) -> <a href="./src/modern_treasury/types/payment_orders/reversal.py">Reversal</a></code>
 - <code title="get /api/payment_orders/{payment_order_id}/reversals">client.payment_orders.reversals.<a href="./src/modern_treasury/resources/payment_orders/reversals.py">list</a>(payment_order_id, \*\*<a href="src/modern_treasury/types/payment_orders/reversal_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/payment_orders/reversal.py">SyncPage[Reversal]</a></code>
 
 # PaymentReferences

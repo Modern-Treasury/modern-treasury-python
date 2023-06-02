@@ -27,7 +27,18 @@ class PaperItems(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> PaperItem:
-        """Get details on a single paper item."""
+        """
+        Get details on a single paper item.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/paper_items/{id}",
             options=make_request_options(
@@ -80,10 +91,10 @@ class PaperItems(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "lockbox_number": lockbox_number,
-                        "deposit_date_start": deposit_date_start,
-                        "deposit_date_end": deposit_date_end,
                         "after_cursor": after_cursor,
+                        "deposit_date_end": deposit_date_end,
+                        "deposit_date_start": deposit_date_start,
+                        "lockbox_number": lockbox_number,
                         "per_page": per_page,
                     },
                     paper_item_list_params.PaperItemListParams,
@@ -105,7 +116,18 @@ class AsyncPaperItems(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> PaperItem:
-        """Get details on a single paper item."""
+        """
+        Get details on a single paper item.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/paper_items/{id}",
             options=make_request_options(
@@ -158,10 +180,10 @@ class AsyncPaperItems(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "lockbox_number": lockbox_number,
-                        "deposit_date_start": deposit_date_start,
-                        "deposit_date_end": deposit_date_end,
                         "after_cursor": after_cursor,
+                        "deposit_date_end": deposit_date_end,
+                        "deposit_date_start": deposit_date_start,
+                        "lockbox_number": lockbox_number,
                         "per_page": per_page,
                     },
                     paper_item_list_params.PaperItemListParams,

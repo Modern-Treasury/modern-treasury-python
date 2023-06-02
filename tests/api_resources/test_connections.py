@@ -33,9 +33,9 @@ class TestConnections:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         connection = client.connections.list(
             after_cursor="string",
+            entity="string",
             per_page=0,
             vendor_customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            entity="string",
         )
         assert_matches_type(SyncPage[Connection], connection, path=["response"])
 
@@ -58,8 +58,8 @@ class TestAsyncConnections:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         connection = await client.connections.list(
             after_cursor="string",
+            entity="string",
             per_page=0,
             vendor_customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            entity="string",
         )
         assert_matches_type(AsyncPage[Connection], connection, path=["response"])

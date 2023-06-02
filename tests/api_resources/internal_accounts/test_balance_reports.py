@@ -44,9 +44,9 @@ class TestBalanceReports:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         balance_report = client.internal_accounts.balance_reports.list(
             "string",
+            after_cursor="string",
             as_of_date=parse_date("2019-12-27"),
             balance_report_type="intraday",
-            after_cursor="string",
             per_page=0,
         )
         assert_matches_type(SyncPage[BalanceReport], balance_report, path=["response"])
@@ -80,9 +80,9 @@ class TestAsyncBalanceReports:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         balance_report = await client.internal_accounts.balance_reports.list(
             "string",
+            after_cursor="string",
             as_of_date=parse_date("2019-12-27"),
             balance_report_type="intraday",
-            after_cursor="string",
             per_page=0,
         )
         assert_matches_type(AsyncPage[BalanceReport], balance_report, path=["response"])
