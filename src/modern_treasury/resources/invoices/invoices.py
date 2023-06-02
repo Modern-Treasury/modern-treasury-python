@@ -89,15 +89,15 @@ class Invoices(SyncAPIResource):
             "/api/invoices",
             body=maybe_transform(
                 {
-                    "contact_details": contact_details,
                     "counterparty_id": counterparty_id,
+                    "due_date": due_date,
+                    "originating_account_id": originating_account_id,
+                    "contact_details": contact_details,
                     "counterparty_billing_address": counterparty_billing_address,
                     "counterparty_shipping_address": counterparty_shipping_address,
                     "currency": currency,
                     "description": description,
-                    "due_date": due_date,
                     "invoicer_address": invoicer_address,
-                    "originating_account_id": originating_account_id,
                 },
                 invoice_create_params.InvoiceCreateParams,
             ),
@@ -122,7 +122,18 @@ class Invoices(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> Invoice:
-        """get invoice"""
+        """
+        get invoice
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/invoices/{id}",
             options=make_request_options(
@@ -199,15 +210,15 @@ class Invoices(SyncAPIResource):
             body=maybe_transform(
                 {
                     "contact_details": contact_details,
-                    "counterparty_id": counterparty_id,
                     "counterparty_billing_address": counterparty_billing_address,
+                    "counterparty_id": counterparty_id,
                     "counterparty_shipping_address": counterparty_shipping_address,
                     "currency": currency,
                     "description": description,
                     "due_date": due_date,
+                    "include_payment_ui": include_payment_ui,
                     "invoicer_address": invoicer_address,
                     "originating_account_id": originating_account_id,
-                    "include_payment_ui": include_payment_ui,
                     "status": status,
                 },
                 invoice_update_params.InvoiceUpdateParams,
@@ -330,15 +341,15 @@ class AsyncInvoices(AsyncAPIResource):
             "/api/invoices",
             body=maybe_transform(
                 {
-                    "contact_details": contact_details,
                     "counterparty_id": counterparty_id,
+                    "due_date": due_date,
+                    "originating_account_id": originating_account_id,
+                    "contact_details": contact_details,
                     "counterparty_billing_address": counterparty_billing_address,
                     "counterparty_shipping_address": counterparty_shipping_address,
                     "currency": currency,
                     "description": description,
-                    "due_date": due_date,
                     "invoicer_address": invoicer_address,
-                    "originating_account_id": originating_account_id,
                 },
                 invoice_create_params.InvoiceCreateParams,
             ),
@@ -363,7 +374,18 @@ class AsyncInvoices(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> Invoice:
-        """get invoice"""
+        """
+        get invoice
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/invoices/{id}",
             options=make_request_options(
@@ -440,15 +462,15 @@ class AsyncInvoices(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "contact_details": contact_details,
-                    "counterparty_id": counterparty_id,
                     "counterparty_billing_address": counterparty_billing_address,
+                    "counterparty_id": counterparty_id,
                     "counterparty_shipping_address": counterparty_shipping_address,
                     "currency": currency,
                     "description": description,
                     "due_date": due_date,
+                    "include_payment_ui": include_payment_ui,
                     "invoicer_address": invoicer_address,
                     "originating_account_id": originating_account_id,
-                    "include_payment_ui": include_payment_ui,
                     "status": status,
                 },
                 invoice_update_params.InvoiceUpdateParams,

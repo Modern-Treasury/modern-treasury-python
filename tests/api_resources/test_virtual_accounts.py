@@ -28,18 +28,16 @@ class TestVirtualAccounts:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         virtual_account = client.virtual_accounts.create(
-            name="string",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="string",
         )
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         virtual_account = client.virtual_accounts.create(
-            name="string",
-            description="string",
-            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="string",
             account_details=[
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -75,6 +73,11 @@ class TestVirtualAccounts:
                     "account_number_safe": "string",
                 },
             ],
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            credit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            debit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            description="string",
+            metadata={"foo": "string"},
             routing_details=[
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -152,9 +155,6 @@ class TestVirtualAccounts:
                     },
                 },
             ],
-            debit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            credit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            metadata={"foo": "string"},
         )
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
@@ -176,9 +176,9 @@ class TestVirtualAccounts:
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         virtual_account = client.virtual_accounts.update(
             "string",
-            name="string",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
+            name="string",
         )
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
@@ -191,10 +191,10 @@ class TestVirtualAccounts:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         virtual_account = client.virtual_accounts.list(
             after_cursor="string",
-            per_page=0,
-            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
+            per_page=0,
         )
         assert_matches_type(SyncPage[VirtualAccount], virtual_account, path=["response"])
 
@@ -218,18 +218,16 @@ class TestAsyncVirtualAccounts:
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         virtual_account = await client.virtual_accounts.create(
-            name="string",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="string",
         )
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         virtual_account = await client.virtual_accounts.create(
-            name="string",
-            description="string",
-            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="string",
             account_details=[
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -265,6 +263,11 @@ class TestAsyncVirtualAccounts:
                     "account_number_safe": "string",
                 },
             ],
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            credit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            debit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            description="string",
+            metadata={"foo": "string"},
             routing_details=[
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -342,9 +345,6 @@ class TestAsyncVirtualAccounts:
                     },
                 },
             ],
-            debit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            credit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            metadata={"foo": "string"},
         )
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
@@ -366,9 +366,9 @@ class TestAsyncVirtualAccounts:
     async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
         virtual_account = await client.virtual_accounts.update(
             "string",
-            name="string",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
+            name="string",
         )
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
@@ -381,10 +381,10 @@ class TestAsyncVirtualAccounts:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         virtual_account = await client.virtual_accounts.list(
             after_cursor="string",
-            per_page=0,
-            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
+            per_page=0,
         )
         assert_matches_type(AsyncPage[VirtualAccount], virtual_account, path=["response"])
 

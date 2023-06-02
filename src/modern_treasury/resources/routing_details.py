@@ -7,6 +7,7 @@ from typing_extensions import Literal
 
 from ..types import (
     RoutingDetail,
+    shared_params,
     routing_detail_list_params,
     routing_detail_create_params,
 )
@@ -113,7 +114,7 @@ class RoutingDetails(SyncAPIResource):
         self,
         id: str,
         *,
-        accounts_type: Literal["external_accounts", "internal_accounts"],
+        accounts_type: shared_params.AccountsType,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -122,7 +123,18 @@ class RoutingDetails(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> RoutingDetail:
-        """Get a single routing detail for a single internal or external account."""
+        """
+        Get a single routing detail for a single internal or external account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/{accounts_type}/{account_id}/routing_details/{id}",
             options=make_request_options(
@@ -135,7 +147,7 @@ class RoutingDetails(SyncAPIResource):
         self,
         account_id: str,
         *,
-        accounts_type: Literal["external_accounts", "internal_accounts"],
+        accounts_type: shared_params.AccountsType,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -190,7 +202,20 @@ class RoutingDetails(SyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> None:
-        """Delete a routing detail for a single external account."""
+        """
+        Delete a routing detail for a single external account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/api/{accounts_type}/{account_id}/routing_details/{id}",
@@ -299,7 +324,7 @@ class AsyncRoutingDetails(AsyncAPIResource):
         self,
         id: str,
         *,
-        accounts_type: Literal["external_accounts", "internal_accounts"],
+        accounts_type: shared_params.AccountsType,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -308,7 +333,18 @@ class AsyncRoutingDetails(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> RoutingDetail:
-        """Get a single routing detail for a single internal or external account."""
+        """
+        Get a single routing detail for a single internal or external account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/{accounts_type}/{account_id}/routing_details/{id}",
             options=make_request_options(
@@ -321,7 +357,7 @@ class AsyncRoutingDetails(AsyncAPIResource):
         self,
         account_id: str,
         *,
-        accounts_type: Literal["external_accounts", "internal_accounts"],
+        accounts_type: shared_params.AccountsType,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -376,7 +412,20 @@ class AsyncRoutingDetails(AsyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> None:
-        """Delete a routing detail for a single external account."""
+        """
+        Delete a routing detail for a single external account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/api/{accounts_type}/{account_id}/routing_details/{id}",

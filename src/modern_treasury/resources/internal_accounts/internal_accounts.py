@@ -87,13 +87,13 @@ class InternalAccounts(SyncAPIResource):
             body=maybe_transform(
                 {
                     "connection_id": connection_id,
+                    "currency": currency,
                     "name": name,
                     "party_name": party_name,
-                    "party_address": party_address,
-                    "currency": currency,
+                    "counterparty_id": counterparty_id,
                     "entity_id": entity_id,
                     "parent_account_id": parent_account_id,
-                    "counterparty_id": counterparty_id,
+                    "party_address": party_address,
                 },
                 internal_account_create_params.InternalAccountCreateParams,
             ),
@@ -118,7 +118,18 @@ class InternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> InternalAccount:
-        """get internal account"""
+        """
+        get internal account
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/internal_accounts/{id}",
             options=make_request_options(
@@ -170,10 +181,10 @@ class InternalAccounts(SyncAPIResource):
             f"/api/internal_accounts/{id}",
             body=maybe_transform(
                 {
-                    "name": name,
-                    "metadata": metadata,
-                    "parent_account_id": parent_account_id,
                     "counterparty_id": counterparty_id,
+                    "metadata": metadata,
+                    "name": name,
+                    "parent_account_id": parent_account_id,
                 },
                 internal_account_update_params.InternalAccountUpdateParams,
             ),
@@ -258,12 +269,12 @@ class InternalAccounts(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "currency": currency,
                         "counterparty_id": counterparty_id,
-                        "payment_type": payment_type,
-                        "payment_direction": payment_direction,
+                        "currency": currency,
                         "metadata": metadata,
+                        "payment_direction": payment_direction,
+                        "payment_type": payment_type,
+                        "per_page": per_page,
                     },
                     internal_account_list_params.InternalAccountListParams,
                 ),
@@ -334,13 +345,13 @@ class AsyncInternalAccounts(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "connection_id": connection_id,
+                    "currency": currency,
                     "name": name,
                     "party_name": party_name,
-                    "party_address": party_address,
-                    "currency": currency,
+                    "counterparty_id": counterparty_id,
                     "entity_id": entity_id,
                     "parent_account_id": parent_account_id,
-                    "counterparty_id": counterparty_id,
+                    "party_address": party_address,
                 },
                 internal_account_create_params.InternalAccountCreateParams,
             ),
@@ -365,7 +376,18 @@ class AsyncInternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> InternalAccount:
-        """get internal account"""
+        """
+        get internal account
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/internal_accounts/{id}",
             options=make_request_options(
@@ -417,10 +439,10 @@ class AsyncInternalAccounts(AsyncAPIResource):
             f"/api/internal_accounts/{id}",
             body=maybe_transform(
                 {
-                    "name": name,
-                    "metadata": metadata,
-                    "parent_account_id": parent_account_id,
                     "counterparty_id": counterparty_id,
+                    "metadata": metadata,
+                    "name": name,
+                    "parent_account_id": parent_account_id,
                 },
                 internal_account_update_params.InternalAccountUpdateParams,
             ),
@@ -505,12 +527,12 @@ class AsyncInternalAccounts(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "currency": currency,
                         "counterparty_id": counterparty_id,
-                        "payment_type": payment_type,
-                        "payment_direction": payment_direction,
+                        "currency": currency,
                         "metadata": metadata,
+                        "payment_direction": payment_direction,
+                        "payment_type": payment_type,
+                        "per_page": per_page,
                     },
                     internal_account_list_params.InternalAccountListParams,
                 ),

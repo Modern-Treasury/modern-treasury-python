@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 from .._types import FileTypes
 
@@ -10,6 +10,21 @@ __all__ = ["DocumentCreateParams"]
 
 
 class DocumentCreateParams(TypedDict, total=False):
+    documentable_type: Required[
+        Literal[
+            "cases",
+            "counterparties",
+            "expected_payments",
+            "external_accounts",
+            "internal_accounts",
+            "organizations",
+            "paper_items",
+            "payment_orders",
+            "transactions",
+            "decisions",
+        ]
+    ]
+
     file: Required[FileTypes]
 
     document_type: str

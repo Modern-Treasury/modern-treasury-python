@@ -37,6 +37,9 @@ class TestInvoices:
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         invoice = client.invoices.create(
+            counterparty_id="string",
+            due_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            originating_account_id="string",
             contact_details=[
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -69,7 +72,6 @@ class TestInvoices:
                     "contact_identifier_type": "email",
                 },
             ],
-            counterparty_id="string",
             counterparty_billing_address={
                 "line1": "string",
                 "line2": "string",
@@ -88,7 +90,6 @@ class TestInvoices:
             },
             currency="AED",
             description="string",
-            due_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             invoicer_address={
                 "line1": "string",
                 "line2": "string",
@@ -97,7 +98,6 @@ class TestInvoices:
                 "postal_code": "string",
                 "country": "string",
             },
-            originating_account_id="string",
         )
         assert_matches_type(Invoice, invoice, path=["response"])
 
@@ -151,7 +151,6 @@ class TestInvoices:
                     "contact_identifier_type": "email",
                 },
             ],
-            counterparty_id="string",
             counterparty_billing_address={
                 "line1": "string",
                 "line2": "string",
@@ -160,6 +159,7 @@ class TestInvoices:
                 "postal_code": "string",
                 "country": "string",
             },
+            counterparty_id="string",
             counterparty_shipping_address={
                 "line1": "string",
                 "line2": "string",
@@ -171,6 +171,7 @@ class TestInvoices:
             currency="AED",
             description="string",
             due_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            include_payment_ui=True,
             invoicer_address={
                 "line1": "string",
                 "line2": "string",
@@ -180,7 +181,6 @@ class TestInvoices:
                 "country": "string",
             },
             originating_account_id="string",
-            include_payment_ui=True,
             status="string",
         )
         assert_matches_type(Invoice, invoice, path=["response"])
@@ -220,6 +220,9 @@ class TestAsyncInvoices:
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         invoice = await client.invoices.create(
+            counterparty_id="string",
+            due_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            originating_account_id="string",
             contact_details=[
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -252,7 +255,6 @@ class TestAsyncInvoices:
                     "contact_identifier_type": "email",
                 },
             ],
-            counterparty_id="string",
             counterparty_billing_address={
                 "line1": "string",
                 "line2": "string",
@@ -271,7 +273,6 @@ class TestAsyncInvoices:
             },
             currency="AED",
             description="string",
-            due_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             invoicer_address={
                 "line1": "string",
                 "line2": "string",
@@ -280,7 +281,6 @@ class TestAsyncInvoices:
                 "postal_code": "string",
                 "country": "string",
             },
-            originating_account_id="string",
         )
         assert_matches_type(Invoice, invoice, path=["response"])
 
@@ -334,7 +334,6 @@ class TestAsyncInvoices:
                     "contact_identifier_type": "email",
                 },
             ],
-            counterparty_id="string",
             counterparty_billing_address={
                 "line1": "string",
                 "line2": "string",
@@ -343,6 +342,7 @@ class TestAsyncInvoices:
                 "postal_code": "string",
                 "country": "string",
             },
+            counterparty_id="string",
             counterparty_shipping_address={
                 "line1": "string",
                 "line2": "string",
@@ -354,6 +354,7 @@ class TestAsyncInvoices:
             currency="AED",
             description="string",
             due_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            include_payment_ui=True,
             invoicer_address={
                 "line1": "string",
                 "line2": "string",
@@ -363,7 +364,6 @@ class TestAsyncInvoices:
                 "country": "string",
             },
             originating_account_id="string",
-            include_payment_ui=True,
             status="string",
         )
         assert_matches_type(Invoice, invoice, path=["response"])

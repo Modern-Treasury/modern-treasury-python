@@ -79,12 +79,12 @@ class Counterparties(SyncAPIResource):
             body=maybe_transform(
                 {
                     "name": name,
+                    "accounting": accounting,
                     "accounts": accounts,
                     "email": email,
+                    "ledger_type": ledger_type,
                     "metadata": metadata,
                     "send_remittance_advice": send_remittance_advice,
-                    "accounting": accounting,
-                    "ledger_type": ledger_type,
                     "taxpayer_identifier": taxpayer_identifier,
                 },
                 counterparty_create_params.CounterpartyCreateParams,
@@ -110,7 +110,18 @@ class Counterparties(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> Counterparty:
-        """Get details on a single counterparty."""
+        """
+        Get details on a single counterparty.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/counterparties/{id}",
             options=make_request_options(
@@ -166,9 +177,9 @@ class Counterparties(SyncAPIResource):
             f"/api/counterparties/{id}",
             body=maybe_transform(
                 {
-                    "name": name,
                     "email": email,
                     "metadata": metadata,
+                    "name": name,
                     "send_remittance_advice": send_remittance_advice,
                     "taxpayer_identifier": taxpayer_identifier,
                 },
@@ -238,12 +249,12 @@ class Counterparties(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "name": name,
-                        "email": email,
-                        "metadata": metadata,
                         "created_at_lower_bound": created_at_lower_bound,
                         "created_at_upper_bound": created_at_upper_bound,
+                        "email": email,
+                        "metadata": metadata,
+                        "name": name,
+                        "per_page": per_page,
                     },
                     counterparty_list_params.CounterpartyListParams,
                 ),
@@ -263,7 +274,20 @@ class Counterparties(SyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> None:
-        """Deletes a given counterparty."""
+        """
+        Deletes a given counterparty.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/api/counterparties/{id}",
@@ -356,9 +380,9 @@ class Counterparties(SyncAPIResource):
             body=maybe_transform(
                 {
                     "direction": direction,
-                    "send_email": send_email,
-                    "fields": fields,
                     "custom_redirect": custom_redirect,
+                    "fields": fields,
+                    "send_email": send_email,
                 },
                 counterparty_collect_account_params.CounterpartyCollectAccountParams,
             ),
@@ -429,12 +453,12 @@ class AsyncCounterparties(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "name": name,
+                    "accounting": accounting,
                     "accounts": accounts,
                     "email": email,
+                    "ledger_type": ledger_type,
                     "metadata": metadata,
                     "send_remittance_advice": send_remittance_advice,
-                    "accounting": accounting,
-                    "ledger_type": ledger_type,
                     "taxpayer_identifier": taxpayer_identifier,
                 },
                 counterparty_create_params.CounterpartyCreateParams,
@@ -460,7 +484,18 @@ class AsyncCounterparties(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> Counterparty:
-        """Get details on a single counterparty."""
+        """
+        Get details on a single counterparty.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/counterparties/{id}",
             options=make_request_options(
@@ -516,9 +551,9 @@ class AsyncCounterparties(AsyncAPIResource):
             f"/api/counterparties/{id}",
             body=maybe_transform(
                 {
-                    "name": name,
                     "email": email,
                     "metadata": metadata,
+                    "name": name,
                     "send_remittance_advice": send_remittance_advice,
                     "taxpayer_identifier": taxpayer_identifier,
                 },
@@ -588,12 +623,12 @@ class AsyncCounterparties(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "name": name,
-                        "email": email,
-                        "metadata": metadata,
                         "created_at_lower_bound": created_at_lower_bound,
                         "created_at_upper_bound": created_at_upper_bound,
+                        "email": email,
+                        "metadata": metadata,
+                        "name": name,
+                        "per_page": per_page,
                     },
                     counterparty_list_params.CounterpartyListParams,
                 ),
@@ -613,7 +648,20 @@ class AsyncCounterparties(AsyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> None:
-        """Deletes a given counterparty."""
+        """
+        Deletes a given counterparty.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/api/counterparties/{id}",
@@ -706,9 +754,9 @@ class AsyncCounterparties(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "direction": direction,
-                    "send_email": send_email,
-                    "fields": fields,
                     "custom_redirect": custom_redirect,
+                    "fields": fields,
+                    "send_email": send_email,
                 },
                 counterparty_collect_account_params.CounterpartyCollectAccountParams,
             ),

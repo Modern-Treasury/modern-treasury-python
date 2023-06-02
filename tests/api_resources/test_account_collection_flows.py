@@ -56,11 +56,11 @@ class TestAccountCollectionFlows:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         account_collection_flow = client.account_collection_flows.list(
             after_cursor="string",
-            per_page=0,
             client_token="string",
-            status="string",
             counterparty_id="string",
             external_account_id="string",
+            per_page=0,
+            status="string",
         )
         assert_matches_type(SyncPage[AccountConnectionFlow], account_collection_flow, path=["response"])
 
@@ -106,10 +106,10 @@ class TestAsyncAccountCollectionFlows:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         account_collection_flow = await client.account_collection_flows.list(
             after_cursor="string",
-            per_page=0,
             client_token="string",
-            status="string",
             counterparty_id="string",
             external_account_id="string",
+            per_page=0,
+            status="string",
         )
         assert_matches_type(AsyncPage[AccountConnectionFlow], account_collection_flow, path=["response"])

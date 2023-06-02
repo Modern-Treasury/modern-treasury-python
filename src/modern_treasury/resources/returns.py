@@ -116,11 +116,11 @@ class Returns(SyncAPIResource):
             body=maybe_transform(
                 {
                     "returnable_id": returnable_id,
-                    "code": code,
-                    "reason": reason,
-                    "date_of_death": date_of_death,
-                    "additional_information": additional_information,
                     "returnable_type": returnable_type,
+                    "additional_information": additional_information,
+                    "code": code,
+                    "date_of_death": date_of_death,
+                    "reason": reason,
                 },
                 return_create_params.ReturnCreateParams,
             ),
@@ -145,7 +145,18 @@ class Returns(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> ReturnObject:
-        """Get a single return."""
+        """
+        Get a single return.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/returns/{id}",
             options=make_request_options(
@@ -205,9 +216,9 @@ class Returns(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "internal_account_id": internal_account_id,
                         "counterparty_id": counterparty_id,
+                        "internal_account_id": internal_account_id,
+                        "per_page": per_page,
                         "returnable_id": returnable_id,
                         "returnable_type": returnable_type,
                     },
@@ -318,11 +329,11 @@ class AsyncReturns(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "returnable_id": returnable_id,
-                    "code": code,
-                    "reason": reason,
-                    "date_of_death": date_of_death,
-                    "additional_information": additional_information,
                     "returnable_type": returnable_type,
+                    "additional_information": additional_information,
+                    "code": code,
+                    "date_of_death": date_of_death,
+                    "reason": reason,
                 },
                 return_create_params.ReturnCreateParams,
             ),
@@ -347,7 +358,18 @@ class AsyncReturns(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> ReturnObject:
-        """Get a single return."""
+        """
+        Get a single return.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/returns/{id}",
             options=make_request_options(
@@ -407,9 +429,9 @@ class AsyncReturns(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "internal_account_id": internal_account_id,
                         "counterparty_id": counterparty_id,
+                        "internal_account_id": internal_account_id,
+                        "per_page": per_page,
                         "returnable_id": returnable_id,
                         "returnable_type": returnable_type,
                     },

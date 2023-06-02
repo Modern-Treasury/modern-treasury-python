@@ -37,8 +37,8 @@ class TestVersions:
         version = client.ledger_transactions.versions.list(
             "string",
             after_cursor="string",
-            per_page=0,
             created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
+            per_page=0,
             version={"foo": 0},
         )
         assert_matches_type(SyncPage[LedgerTransactionVersion], version, path=["response"])
@@ -57,8 +57,8 @@ class TestVersions:
             version = client.ledger_transactions.versions.versions(
                 "string",
                 after_cursor="string",
-                per_page=0,
                 created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
+                per_page=0,
                 version={"foo": 0},
             )
         assert_matches_type(SyncPage[LedgerTransactionVersion], version, path=["response"])
@@ -85,8 +85,8 @@ class TestAsyncVersions:
         version = await client.ledger_transactions.versions.list(
             "string",
             after_cursor="string",
-            per_page=0,
             created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
+            per_page=0,
             version={"foo": 0},
         )
         assert_matches_type(AsyncPage[LedgerTransactionVersion], version, path=["response"])
@@ -105,8 +105,8 @@ class TestAsyncVersions:
             version = await client.ledger_transactions.versions.versions(
                 "string",
                 after_cursor="string",
-                per_page=0,
                 created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
+                per_page=0,
                 version={"foo": 0},
             )
         assert_matches_type(AsyncPage[LedgerTransactionVersion], version, path=["response"])

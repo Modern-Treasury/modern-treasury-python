@@ -38,11 +38,6 @@ class TestReversals:
         reversal = client.payment_orders.reversals.create(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             reason="duplicate",
-            metadata={
-                "key": "value",
-                "foo": "bar",
-                "modern": "treasury",
-            },
             ledger_transaction={
                 "description": "string",
                 "status": "archived",
@@ -87,6 +82,11 @@ class TestReversals:
                 "external_id": "string",
                 "ledgerable_type": "counterparty",
                 "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            },
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
             },
         )
         assert_matches_type(Reversal, reversal, path=["response"])
@@ -138,11 +138,6 @@ class TestAsyncReversals:
         reversal = await client.payment_orders.reversals.create(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             reason="duplicate",
-            metadata={
-                "key": "value",
-                "foo": "bar",
-                "modern": "treasury",
-            },
             ledger_transaction={
                 "description": "string",
                 "status": "archived",
@@ -187,6 +182,11 @@ class TestAsyncReversals:
                 "external_id": "string",
                 "ledgerable_type": "counterparty",
                 "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            },
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
             },
         )
         assert_matches_type(Reversal, reversal, path=["response"])

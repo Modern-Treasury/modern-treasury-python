@@ -7,144 +7,15 @@ from typing_extensions import Literal, Required, TypedDict
 
 __all__ = [
     "ExternalAccountCreateParams",
-    "PartyAddress",
     "AccountDetails",
     "AccountDetail",
-    "RoutingDetails",
-    "RoutingDetail",
-    "LedgerAccount",
     "ContactDetails",
     "ContactDetail",
+    "LedgerAccount",
+    "PartyAddress",
+    "RoutingDetails",
+    "RoutingDetail",
 ]
-
-
-class PartyAddress(TypedDict, total=False):
-    country: Optional[str]
-    """Country code conforms to [ISO 3166-1 alpha-2]"""
-
-    line1: Optional[str]
-
-    line2: Optional[str]
-
-    locality: Optional[str]
-    """Locality or City."""
-
-    postal_code: Optional[str]
-    """The postal code of the address."""
-
-    region: Optional[str]
-    """Region or State."""
-
-
-class AccountDetail(TypedDict, total=False):
-    account_number: Required[str]
-
-    account_number_type: Literal["iban", "clabe", "wallet_address", "pan", "other"]
-
-
-AccountDetails = AccountDetail
-"""This type is deprecated and will be removed in a future release.
-
-Please use AccountDetail instead.
-"""
-
-
-class RoutingDetail(TypedDict, total=False):
-    routing_number: Required[str]
-
-    routing_number_type: Required[
-        Literal[
-            "aba",
-            "au_bsb",
-            "br_codigo",
-            "ca_cpa",
-            "chips",
-            "cnaps",
-            "gb_sort_code",
-            "in_ifsc",
-            "my_branch_code",
-            "swift",
-        ]
-    ]
-
-    payment_type: Literal[
-        "ach",
-        "au_becs",
-        "bacs",
-        "book",
-        "card",
-        "check",
-        "eft",
-        "cross_border",
-        "interac",
-        "masav",
-        "neft",
-        "provxchange",
-        "rtp",
-        "sen",
-        "sepa",
-        "signet",
-        "wire",
-    ]
-
-
-RoutingDetails = RoutingDetail
-"""This type is deprecated and will be removed in a future release.
-
-Please use RoutingDetail instead.
-"""
-
-
-class LedgerAccount(TypedDict, total=False):
-    currency: Required[str]
-    """The currency of the ledger account."""
-
-    ledger_id: Required[str]
-    """The id of the ledger that this account belongs to."""
-
-    name: Required[str]
-    """The name of the ledger account."""
-
-    normal_balance: Required[Literal["credit", "debit"]]
-    """The normal balance of the ledger account."""
-
-    currency_exponent: Optional[int]
-    """The currency exponent of the ledger account."""
-
-    description: Optional[str]
-    """The description of the ledger account."""
-
-    ledgerable_id: str
-    """
-    If the ledger account links to another object in Modern Treasury, the id will be
-    populated here, otherwise null.
-    """
-
-    ledgerable_type: Literal["external_account", "internal_account"]
-    """
-    If the ledger account links to another object in Modern Treasury, the type will
-    be populated here, otherwise null. The value is one of internal_account or
-    external_account.
-    """
-
-    metadata: Dict[str, str]
-    """Additional data represented as key-value pairs.
-
-    Both the key and value must be strings.
-    """
-
-
-class ContactDetail(TypedDict, total=False):
-    contact_identifier: str
-
-    contact_identifier_type: Literal["email", "phone_number", "website"]
-
-
-ContactDetails = ContactDetail
-"""This type is deprecated and will be removed in a future release.
-
-Please use ContactDetail instead.
-"""
 
 
 class ExternalAccountCreateParams(TypedDict, total=False):
@@ -199,3 +70,132 @@ class ExternalAccountCreateParams(TypedDict, total=False):
     """
 
     routing_details: List[RoutingDetail]
+
+
+class AccountDetail(TypedDict, total=False):
+    account_number: Required[str]
+
+    account_number_type: Literal["iban", "clabe", "wallet_address", "pan", "other"]
+
+
+AccountDetails = AccountDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use AccountDetail instead.
+"""
+
+
+class ContactDetail(TypedDict, total=False):
+    contact_identifier: str
+
+    contact_identifier_type: Literal["email", "phone_number", "website"]
+
+
+ContactDetails = ContactDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use ContactDetail instead.
+"""
+
+
+class LedgerAccount(TypedDict, total=False):
+    currency: Required[str]
+    """The currency of the ledger account."""
+
+    ledger_id: Required[str]
+    """The id of the ledger that this account belongs to."""
+
+    name: Required[str]
+    """The name of the ledger account."""
+
+    normal_balance: Required[Literal["credit", "debit"]]
+    """The normal balance of the ledger account."""
+
+    currency_exponent: Optional[int]
+    """The currency exponent of the ledger account."""
+
+    description: Optional[str]
+    """The description of the ledger account."""
+
+    ledgerable_id: str
+    """
+    If the ledger account links to another object in Modern Treasury, the id will be
+    populated here, otherwise null.
+    """
+
+    ledgerable_type: Literal["external_account", "internal_account"]
+    """
+    If the ledger account links to another object in Modern Treasury, the type will
+    be populated here, otherwise null. The value is one of internal_account or
+    external_account.
+    """
+
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
+
+
+class PartyAddress(TypedDict, total=False):
+    country: Optional[str]
+    """Country code conforms to [ISO 3166-1 alpha-2]"""
+
+    line1: Optional[str]
+
+    line2: Optional[str]
+
+    locality: Optional[str]
+    """Locality or City."""
+
+    postal_code: Optional[str]
+    """The postal code of the address."""
+
+    region: Optional[str]
+    """Region or State."""
+
+
+class RoutingDetail(TypedDict, total=False):
+    routing_number: Required[str]
+
+    routing_number_type: Required[
+        Literal[
+            "aba",
+            "au_bsb",
+            "br_codigo",
+            "ca_cpa",
+            "chips",
+            "cnaps",
+            "gb_sort_code",
+            "in_ifsc",
+            "my_branch_code",
+            "swift",
+        ]
+    ]
+
+    payment_type: Literal[
+        "ach",
+        "au_becs",
+        "bacs",
+        "book",
+        "card",
+        "check",
+        "eft",
+        "cross_border",
+        "interac",
+        "masav",
+        "neft",
+        "provxchange",
+        "rtp",
+        "sen",
+        "sepa",
+        "signet",
+        "wire",
+    ]
+
+
+RoutingDetails = RoutingDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use RoutingDetail instead.
+"""

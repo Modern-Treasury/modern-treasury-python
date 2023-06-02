@@ -29,7 +29,18 @@ class LineItems(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> LineItem:
-        """Get a single line item"""
+        """
+        Get a single line item
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
             options=make_request_options(
@@ -143,7 +154,18 @@ class AsyncLineItems(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> LineItem:
-        """Get a single line item"""
+        """
+        Get a single line item
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
             options=make_request_options(

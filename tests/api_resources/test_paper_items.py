@@ -40,10 +40,10 @@ class TestPaperItems:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         paper_item = client.paper_items.list(
-            lockbox_number="string",
-            deposit_date_start=parse_date("2019-12-27"),
-            deposit_date_end=parse_date("2019-12-27"),
             after_cursor="string",
+            deposit_date_end=parse_date("2019-12-27"),
+            deposit_date_start=parse_date("2019-12-27"),
+            lockbox_number="string",
             per_page=0,
         )
         assert_matches_type(SyncPage[PaperItem], paper_item, path=["response"])
@@ -73,10 +73,10 @@ class TestAsyncPaperItems:
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         paper_item = await client.paper_items.list(
-            lockbox_number="string",
-            deposit_date_start=parse_date("2019-12-27"),
-            deposit_date_end=parse_date("2019-12-27"),
             after_cursor="string",
+            deposit_date_end=parse_date("2019-12-27"),
+            deposit_date_start=parse_date("2019-12-27"),
+            lockbox_number="string",
             per_page=0,
         )
         assert_matches_type(AsyncPage[PaperItem], paper_item, path=["response"])
