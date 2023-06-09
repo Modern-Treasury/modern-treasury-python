@@ -183,7 +183,6 @@ class LedgerAccountCategories(SyncAPIResource):
             f"/api/ledger_account_categories/{id}",
             body=maybe_transform(
                 {
-                    "balances": balances,
                     "description": description,
                     "metadata": metadata,
                     "name": name,
@@ -197,13 +196,7 @@ class LedgerAccountCategories(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
                 query=maybe_transform(
-                    {
-                        "balances": balances,
-                        "description": description,
-                        "metadata": metadata,
-                        "name": name,
-                    },
-                    ledger_account_category_update_params.LedgerAccountCategoryUpdateParams,
+                    {"balances": balances}, ledger_account_category_update_params.LedgerAccountCategoryUpdateParams
                 ),
             ),
             cast_to=LedgerAccountCategory,
@@ -635,7 +628,6 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
             f"/api/ledger_account_categories/{id}",
             body=maybe_transform(
                 {
-                    "balances": balances,
                     "description": description,
                     "metadata": metadata,
                     "name": name,
@@ -649,13 +641,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
                 query=maybe_transform(
-                    {
-                        "balances": balances,
-                        "description": description,
-                        "metadata": metadata,
-                        "name": name,
-                    },
-                    ledger_account_category_update_params.LedgerAccountCategoryUpdateParams,
+                    {"balances": balances}, ledger_account_category_update_params.LedgerAccountCategoryUpdateParams
                 ),
             ),
             cast_to=LedgerAccountCategory,
