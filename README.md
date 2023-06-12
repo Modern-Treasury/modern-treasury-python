@@ -196,7 +196,7 @@ modern_treasury = ModernTreasury(
     organization_id="my-organization-ID",
 )
 
-async with aiofiles.open("pytest.ini", mode="rb") as f:
+async with aiofiles.open("my/file.txt", mode="rb") as f:
     contents = await f.read()
 
 await modern_treasury.documents.create(
