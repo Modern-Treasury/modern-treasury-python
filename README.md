@@ -564,8 +564,7 @@ dt = datetime(...)
 This package is in beta. Its internals and interfaces are not stable and subject to change without a major semver bump;
 please reach out if you rely on any undocumented behavior.
 
-We are keen for your feedback; please email us at [sdk-feedback@moderntreasury.com](mailto:sdk-feedback@moderntreasury.com) or open an issue with questions,
-bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/Modern-Treasury/modern-treasury-python/issues) with questions, bugs, or suggestions.
 
 ## Requirements
 
