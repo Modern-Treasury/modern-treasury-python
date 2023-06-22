@@ -11,6 +11,59 @@ from .._utils import PropertyInfo
 __all__ = ["LedgerTransactionCreateParams", "LedgerEntries", "LedgerEntry"]
 
 
+class LedgerTransactionCreateParams(TypedDict, total=False):
+    effective_date: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]
+    """
+    The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
+    purposes.
+    """
+
+    ledger_entries: Required[List[LedgerEntry]]
+    """An array of ledger entry objects."""
+
+    description: Optional[str]
+    """An optional description for internal use."""
+
+    external_id: str
+    """A unique string to represent the ledger transaction.
+
+    Only one pending or posted ledger transaction may have this ID in the ledger.
+    """
+
+    ledgerable_id: str
+    """
+    If the ledger transaction can be reconciled to another object in Modern
+    Treasury, the id will be populated here, otherwise null.
+    """
+
+    ledgerable_type: Literal[
+        "counterparty",
+        "expected_payment",
+        "incoming_payment_detail",
+        "internal_account",
+        "line_item",
+        "paper_item",
+        "payment_order",
+        "payment_order_attempt",
+        "return",
+        "reversal",
+    ]
+    """
+    If the ledger transaction can be reconciled to another object in Modern
+    Treasury, the type will be populated here, otherwise null. This can be one of
+    payment_order, incoming_payment_detail, expected_payment, return, or reversal.
+    """
+
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
+
+    status: Literal["archived", "pending", "posted"]
+    """To post a ledger transaction at creation, use `posted`."""
+
+
 class LedgerEntry(TypedDict, total=False):
     amount: Required[int]
     """Value in specified currency's smallest unit.
@@ -71,56 +124,3 @@ LedgerEntries = LedgerEntry
 
 Please use LedgerEntry instead.
 """
-
-
-class LedgerTransactionCreateParams(TypedDict, total=False):
-    effective_date: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]
-    """
-    The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
-    purposes.
-    """
-
-    ledger_entries: Required[List[LedgerEntry]]
-    """An array of ledger entry objects."""
-
-    description: Optional[str]
-    """An optional description for internal use."""
-
-    external_id: str
-    """A unique string to represent the ledger transaction.
-
-    Only one pending or posted ledger transaction may have this ID in the ledger.
-    """
-
-    ledgerable_id: str
-    """
-    If the ledger transaction can be reconciled to another object in Modern
-    Treasury, the id will be populated here, otherwise null.
-    """
-
-    ledgerable_type: Literal[
-        "counterparty",
-        "expected_payment",
-        "incoming_payment_detail",
-        "internal_account",
-        "line_item",
-        "paper_item",
-        "payment_order",
-        "payment_order_attempt",
-        "return",
-        "reversal",
-    ]
-    """
-    If the ledger transaction can be reconciled to another object in Modern
-    Treasury, the type will be populated here, otherwise null. This can be one of
-    payment_order, incoming_payment_detail, expected_payment, return, or reversal.
-    """
-
-    metadata: Dict[str, str]
-    """Additional data represented as key-value pairs.
-
-    Both the key and value must be strings.
-    """
-
-    status: Literal["archived", "pending", "posted"]
-    """To post a ledger transaction at creation, use `posted`."""

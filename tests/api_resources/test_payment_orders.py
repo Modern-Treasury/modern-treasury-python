@@ -29,10 +29,10 @@ class TestPaymentOrders:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         payment_order = client.payment_orders.create(
-            type="ach",
             amount=0,
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="ach",
         )
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
@@ -40,121 +40,38 @@ class TestPaymentOrders:
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         payment_order = client.payment_orders.create(
-            type="ach",
-            subtype="CCD",
             amount=0,
             direction="credit",
-            priority="high",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="ach",
             accounting={
                 "account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "class_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             },
             accounting_category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            currency="AED",
-            effective_date=parse_date("2019-12-27"),
-            description="string",
-            statement_descriptor="string",
-            remittance_information="string",
-            purpose="string",
-            metadata={
-                "key": "value",
-                "foo": "bar",
-                "modern": "treasury",
-            },
             charge_bearer="shared",
-            foreign_exchange_indicator="fixed_to_variable",
-            foreign_exchange_contract="string",
-            nsf_protected=True,
-            originating_party_name="string",
-            ultimate_originating_party_name="string",
-            ultimate_originating_party_identifier="string",
-            ultimate_receiving_party_name="string",
-            ultimate_receiving_party_identifier="string",
-            send_remittance_advice=True,
+            currency="AED",
+            description="string",
+            documents=[
+                {
+                    "document_type": "string",
+                    "file": b"raw file contents",
+                },
+                {
+                    "document_type": "string",
+                    "file": b"raw file contents",
+                },
+                {
+                    "document_type": "string",
+                    "file": b"raw file contents",
+                },
+            ],
+            effective_date=parse_date("2019-12-27"),
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             fallback_type="ach",
-            receiving_account={
-                "account_type": "cash",
-                "party_type": "business",
-                "party_address": {
-                    "line1": "string",
-                    "line2": "string",
-                    "locality": "string",
-                    "region": "string",
-                    "postal_code": "string",
-                    "country": "string",
-                },
-                "name": "string",
-                "account_details": [
-                    {
-                        "account_number": "string",
-                        "account_number_type": "iban",
-                    },
-                    {
-                        "account_number": "string",
-                        "account_number_type": "iban",
-                    },
-                    {
-                        "account_number": "string",
-                        "account_number_type": "iban",
-                    },
-                ],
-                "routing_details": [
-                    {
-                        "routing_number": "string",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "string",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "string",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                ],
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
-                },
-                "party_name": "string",
-                "party_identifier": "string",
-                "ledger_account": {
-                    "name": "string",
-                    "description": "string",
-                    "normal_balance": "credit",
-                    "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "currency": "string",
-                    "currency_exponent": 0,
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                },
-                "plaid_processor_token": "string",
-                "contact_details": [
-                    {
-                        "contact_identifier": "string",
-                        "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "string",
-                        "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "string",
-                        "contact_identifier_type": "email",
-                    },
-                ],
-            },
+            foreign_exchange_contract="string",
+            foreign_exchange_indicator="fixed_to_variable",
             ledger_transaction={
                 "description": "string",
                 "status": "archived",
@@ -232,21 +149,106 @@ class TestPaymentOrders:
                     "accounting_category_id": "string",
                 },
             ],
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
+            nsf_protected=True,
+            originating_party_name="string",
+            priority="high",
+            purpose="string",
+            receiving_account={
+                "account_type": "cash",
+                "party_type": "business",
+                "party_address": {
+                    "line1": "string",
+                    "line2": "string",
+                    "locality": "string",
+                    "region": "string",
+                    "postal_code": "string",
+                    "country": "string",
+                },
+                "name": "string",
+                "account_details": [
+                    {
+                        "account_number": "string",
+                        "account_number_type": "iban",
+                    },
+                    {
+                        "account_number": "string",
+                        "account_number_type": "iban",
+                    },
+                    {
+                        "account_number": "string",
+                        "account_number_type": "iban",
+                    },
+                ],
+                "routing_details": [
+                    {
+                        "routing_number": "string",
+                        "routing_number_type": "aba",
+                        "payment_type": "ach",
+                    },
+                    {
+                        "routing_number": "string",
+                        "routing_number_type": "aba",
+                        "payment_type": "ach",
+                    },
+                    {
+                        "routing_number": "string",
+                        "routing_number_type": "aba",
+                        "payment_type": "ach",
+                    },
+                ],
+                "metadata": {
+                    "key": "value",
+                    "foo": "bar",
+                    "modern": "treasury",
+                },
+                "party_name": "string",
+                "party_identifier": "string",
+                "ledger_account": {
+                    "name": "string",
+                    "description": "string",
+                    "normal_balance": "credit",
+                    "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "currency": "string",
+                    "currency_exponent": 0,
+                    "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "ledgerable_type": "external_account",
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
+                },
+                "plaid_processor_token": "string",
+                "contact_details": [
+                    {
+                        "contact_identifier": "string",
+                        "contact_identifier_type": "email",
+                    },
+                    {
+                        "contact_identifier": "string",
+                        "contact_identifier_type": "email",
+                    },
+                    {
+                        "contact_identifier": "string",
+                        "contact_identifier_type": "email",
+                    },
+                ],
+            },
+            receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            remittance_information="string",
+            send_remittance_advice=True,
+            statement_descriptor="string",
+            subtype="0C",
             transaction_monitoring_enabled=True,
-            documents=[
-                {
-                    "document_type": "string",
-                    "file": b"raw file contents",
-                },
-                {
-                    "document_type": "string",
-                    "file": b"raw file contents",
-                },
-                {
-                    "document_type": "string",
-                    "file": b"raw file contents",
-                },
-            ],
+            ultimate_originating_party_identifier="string",
+            ultimate_originating_party_name="string",
+            ultimate_receiving_party_identifier="string",
+            ultimate_receiving_party_name="string",
         )
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
@@ -268,123 +270,23 @@ class TestPaymentOrders:
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         payment_order = client.payment_orders.update(
             "string",
-            type="ach",
-            subtype="CCD",
-            amount=0,
-            direction="credit",
-            priority="high",
-            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             accounting={
                 "account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "class_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             },
             accounting_category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            currency="AED",
-            effective_date=parse_date("2019-12-27"),
-            description="string",
-            statement_descriptor="string",
-            remittance_information="string",
-            purpose="string",
-            metadata={
-                "key": "value",
-                "foo": "bar",
-                "modern": "treasury",
-            },
+            amount=0,
             charge_bearer="shared",
-            foreign_exchange_indicator="fixed_to_variable",
-            foreign_exchange_contract="string",
-            nsf_protected=True,
-            originating_party_name="string",
-            ultimate_originating_party_name="string",
-            ultimate_originating_party_identifier="string",
-            ultimate_receiving_party_name="string",
-            ultimate_receiving_party_identifier="string",
-            send_remittance_advice=True,
-            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            status="approved",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            currency="AED",
+            description="string",
+            direction="credit",
+            effective_date=parse_date("2019-12-27"),
+            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             fallback_type="ach",
-            receiving_account={
-                "account_type": "cash",
-                "party_type": "business",
-                "party_address": {
-                    "line1": "string",
-                    "line2": "string",
-                    "locality": "string",
-                    "region": "string",
-                    "postal_code": "string",
-                    "country": "string",
-                },
-                "name": "string",
-                "account_details": [
-                    {
-                        "account_number": "string",
-                        "account_number_type": "iban",
-                    },
-                    {
-                        "account_number": "string",
-                        "account_number_type": "iban",
-                    },
-                    {
-                        "account_number": "string",
-                        "account_number_type": "iban",
-                    },
-                ],
-                "routing_details": [
-                    {
-                        "routing_number": "string",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "string",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "string",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                ],
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
-                },
-                "party_name": "string",
-                "party_identifier": "string",
-                "ledger_account": {
-                    "name": "string",
-                    "description": "string",
-                    "normal_balance": "credit",
-                    "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "currency": "string",
-                    "currency_exponent": 0,
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                },
-                "plaid_processor_token": "string",
-                "contact_details": [
-                    {
-                        "contact_identifier": "string",
-                        "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "string",
-                        "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "string",
-                        "contact_identifier_type": "email",
-                    },
-                ],
-            },
+            foreign_exchange_contract="string",
+            foreign_exchange_indicator="fixed_to_variable",
             line_items=[
                 {
                     "amount": 0,
@@ -417,82 +319,16 @@ class TestPaymentOrders:
                     "accounting_category_id": "string",
                 },
             ],
-        )
-        assert_matches_type(PaymentOrder, payment_order, path=["response"])
-
-    @parametrize
-    def test_method_list(self, client: ModernTreasury) -> None:
-        payment_order = client.payment_orders.list()
-        assert_matches_type(SyncPage[PaymentOrder], payment_order, path=["response"])
-
-    @parametrize
-    def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
-        payment_order = client.payment_orders.list(
-            after_cursor="string",
-            per_page=0,
-            type="ach",
-            priority="high",
-            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            transaction_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            status="approved",
-            direction="credit",
-            reference_number="string",
-            effective_date_start=parse_date("2019-12-27"),
-            effective_date_end=parse_date("2019-12-27"),
-            metadata={"foo": "string"},
-        )
-        assert_matches_type(SyncPage[PaymentOrder], payment_order, path=["response"])
-
-    @parametrize
-    def test_method_create_async(self, client: ModernTreasury) -> None:
-        payment_order = client.payment_orders.create_async(
-            type="ach",
-            amount=0,
-            direction="credit",
-            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        )
-        assert_matches_type(shared.AsyncResponse, payment_order, path=["response"])
-
-    @parametrize
-    def test_method_create_async_with_all_params(self, client: ModernTreasury) -> None:
-        payment_order = client.payment_orders.create_async(
-            type="ach",
-            subtype="CCD",
-            amount=0,
-            direction="credit",
-            priority="high",
-            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            accounting={
-                "account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "class_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            },
-            accounting_category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            currency="AED",
-            effective_date=parse_date("2019-12-27"),
-            description="string",
-            statement_descriptor="string",
-            remittance_information="string",
-            purpose="string",
             metadata={
                 "key": "value",
                 "foo": "bar",
                 "modern": "treasury",
             },
-            charge_bearer="shared",
-            foreign_exchange_indicator="fixed_to_variable",
-            foreign_exchange_contract="string",
             nsf_protected=True,
+            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             originating_party_name="string",
-            ultimate_originating_party_name="string",
-            ultimate_originating_party_identifier="string",
-            ultimate_receiving_party_name="string",
-            ultimate_receiving_party_identifier="string",
-            send_remittance_advice=True,
-            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            fallback_type="ach",
+            priority="high",
+            purpose="string",
             receiving_account={
                 "account_type": "cash",
                 "party_type": "business",
@@ -550,6 +386,8 @@ class TestPaymentOrders:
                     "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "currency": "string",
                     "currency_exponent": 0,
+                    "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "ledgerable_type": "external_account",
                     "metadata": {
                         "key": "value",
                         "foo": "bar",
@@ -572,6 +410,75 @@ class TestPaymentOrders:
                     },
                 ],
             },
+            receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            remittance_information="string",
+            send_remittance_advice=True,
+            statement_descriptor="string",
+            status="approved",
+            subtype="0C",
+            type="ach",
+            ultimate_originating_party_identifier="string",
+            ultimate_originating_party_name="string",
+            ultimate_receiving_party_identifier="string",
+            ultimate_receiving_party_name="string",
+        )
+        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+
+    @parametrize
+    def test_method_list(self, client: ModernTreasury) -> None:
+        payment_order = client.payment_orders.list()
+        assert_matches_type(SyncPage[PaymentOrder], payment_order, path=["response"])
+
+    @parametrize
+    def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
+        payment_order = client.payment_orders.list(
+            after_cursor="string",
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            direction="credit",
+            effective_date_end=parse_date("2019-12-27"),
+            effective_date_start=parse_date("2019-12-27"),
+            metadata={"foo": "string"},
+            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            per_page=0,
+            priority="high",
+            reference_number="string",
+            status="approved",
+            transaction_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="ach",
+        )
+        assert_matches_type(SyncPage[PaymentOrder], payment_order, path=["response"])
+
+    @parametrize
+    def test_method_create_async(self, client: ModernTreasury) -> None:
+        payment_order = client.payment_orders.create_async(
+            amount=0,
+            direction="credit",
+            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="ach",
+        )
+        assert_matches_type(shared.AsyncResponse, payment_order, path=["response"])
+
+    @parametrize
+    def test_method_create_async_with_all_params(self, client: ModernTreasury) -> None:
+        payment_order = client.payment_orders.create_async(
+            amount=0,
+            direction="credit",
+            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="ach",
+            accounting={
+                "account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "class_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            },
+            accounting_category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            charge_bearer="shared",
+            currency="AED",
+            description="string",
+            effective_date=parse_date("2019-12-27"),
+            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            fallback_type="ach",
+            foreign_exchange_contract="string",
+            foreign_exchange_indicator="fixed_to_variable",
             ledger_transaction={
                 "description": "string",
                 "status": "archived",
@@ -649,7 +556,106 @@ class TestPaymentOrders:
                     "accounting_category_id": "string",
                 },
             ],
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
+            nsf_protected=True,
+            originating_party_name="string",
+            priority="high",
+            purpose="string",
+            receiving_account={
+                "account_type": "cash",
+                "party_type": "business",
+                "party_address": {
+                    "line1": "string",
+                    "line2": "string",
+                    "locality": "string",
+                    "region": "string",
+                    "postal_code": "string",
+                    "country": "string",
+                },
+                "name": "string",
+                "account_details": [
+                    {
+                        "account_number": "string",
+                        "account_number_type": "iban",
+                    },
+                    {
+                        "account_number": "string",
+                        "account_number_type": "iban",
+                    },
+                    {
+                        "account_number": "string",
+                        "account_number_type": "iban",
+                    },
+                ],
+                "routing_details": [
+                    {
+                        "routing_number": "string",
+                        "routing_number_type": "aba",
+                        "payment_type": "ach",
+                    },
+                    {
+                        "routing_number": "string",
+                        "routing_number_type": "aba",
+                        "payment_type": "ach",
+                    },
+                    {
+                        "routing_number": "string",
+                        "routing_number_type": "aba",
+                        "payment_type": "ach",
+                    },
+                ],
+                "metadata": {
+                    "key": "value",
+                    "foo": "bar",
+                    "modern": "treasury",
+                },
+                "party_name": "string",
+                "party_identifier": "string",
+                "ledger_account": {
+                    "name": "string",
+                    "description": "string",
+                    "normal_balance": "credit",
+                    "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "currency": "string",
+                    "currency_exponent": 0,
+                    "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "ledgerable_type": "external_account",
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
+                },
+                "plaid_processor_token": "string",
+                "contact_details": [
+                    {
+                        "contact_identifier": "string",
+                        "contact_identifier_type": "email",
+                    },
+                    {
+                        "contact_identifier": "string",
+                        "contact_identifier_type": "email",
+                    },
+                    {
+                        "contact_identifier": "string",
+                        "contact_identifier_type": "email",
+                    },
+                ],
+            },
+            receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            remittance_information="string",
+            send_remittance_advice=True,
+            statement_descriptor="string",
+            subtype="0C",
             transaction_monitoring_enabled=True,
+            ultimate_originating_party_identifier="string",
+            ultimate_originating_party_name="string",
+            ultimate_receiving_party_identifier="string",
+            ultimate_receiving_party_name="string",
         )
         assert_matches_type(shared.AsyncResponse, payment_order, path=["response"])
 
@@ -667,10 +673,10 @@ class TestAsyncPaymentOrders:
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         payment_order = await client.payment_orders.create(
-            type="ach",
             amount=0,
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="ach",
         )
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
@@ -678,121 +684,38 @@ class TestAsyncPaymentOrders:
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         payment_order = await client.payment_orders.create(
-            type="ach",
-            subtype="CCD",
             amount=0,
             direction="credit",
-            priority="high",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="ach",
             accounting={
                 "account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "class_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             },
             accounting_category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            currency="AED",
-            effective_date=parse_date("2019-12-27"),
-            description="string",
-            statement_descriptor="string",
-            remittance_information="string",
-            purpose="string",
-            metadata={
-                "key": "value",
-                "foo": "bar",
-                "modern": "treasury",
-            },
             charge_bearer="shared",
-            foreign_exchange_indicator="fixed_to_variable",
-            foreign_exchange_contract="string",
-            nsf_protected=True,
-            originating_party_name="string",
-            ultimate_originating_party_name="string",
-            ultimate_originating_party_identifier="string",
-            ultimate_receiving_party_name="string",
-            ultimate_receiving_party_identifier="string",
-            send_remittance_advice=True,
+            currency="AED",
+            description="string",
+            documents=[
+                {
+                    "document_type": "string",
+                    "file": b"raw file contents",
+                },
+                {
+                    "document_type": "string",
+                    "file": b"raw file contents",
+                },
+                {
+                    "document_type": "string",
+                    "file": b"raw file contents",
+                },
+            ],
+            effective_date=parse_date("2019-12-27"),
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             fallback_type="ach",
-            receiving_account={
-                "account_type": "cash",
-                "party_type": "business",
-                "party_address": {
-                    "line1": "string",
-                    "line2": "string",
-                    "locality": "string",
-                    "region": "string",
-                    "postal_code": "string",
-                    "country": "string",
-                },
-                "name": "string",
-                "account_details": [
-                    {
-                        "account_number": "string",
-                        "account_number_type": "iban",
-                    },
-                    {
-                        "account_number": "string",
-                        "account_number_type": "iban",
-                    },
-                    {
-                        "account_number": "string",
-                        "account_number_type": "iban",
-                    },
-                ],
-                "routing_details": [
-                    {
-                        "routing_number": "string",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "string",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "string",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                ],
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
-                },
-                "party_name": "string",
-                "party_identifier": "string",
-                "ledger_account": {
-                    "name": "string",
-                    "description": "string",
-                    "normal_balance": "credit",
-                    "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "currency": "string",
-                    "currency_exponent": 0,
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                },
-                "plaid_processor_token": "string",
-                "contact_details": [
-                    {
-                        "contact_identifier": "string",
-                        "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "string",
-                        "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "string",
-                        "contact_identifier_type": "email",
-                    },
-                ],
-            },
+            foreign_exchange_contract="string",
+            foreign_exchange_indicator="fixed_to_variable",
             ledger_transaction={
                 "description": "string",
                 "status": "archived",
@@ -870,21 +793,106 @@ class TestAsyncPaymentOrders:
                     "accounting_category_id": "string",
                 },
             ],
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
+            nsf_protected=True,
+            originating_party_name="string",
+            priority="high",
+            purpose="string",
+            receiving_account={
+                "account_type": "cash",
+                "party_type": "business",
+                "party_address": {
+                    "line1": "string",
+                    "line2": "string",
+                    "locality": "string",
+                    "region": "string",
+                    "postal_code": "string",
+                    "country": "string",
+                },
+                "name": "string",
+                "account_details": [
+                    {
+                        "account_number": "string",
+                        "account_number_type": "iban",
+                    },
+                    {
+                        "account_number": "string",
+                        "account_number_type": "iban",
+                    },
+                    {
+                        "account_number": "string",
+                        "account_number_type": "iban",
+                    },
+                ],
+                "routing_details": [
+                    {
+                        "routing_number": "string",
+                        "routing_number_type": "aba",
+                        "payment_type": "ach",
+                    },
+                    {
+                        "routing_number": "string",
+                        "routing_number_type": "aba",
+                        "payment_type": "ach",
+                    },
+                    {
+                        "routing_number": "string",
+                        "routing_number_type": "aba",
+                        "payment_type": "ach",
+                    },
+                ],
+                "metadata": {
+                    "key": "value",
+                    "foo": "bar",
+                    "modern": "treasury",
+                },
+                "party_name": "string",
+                "party_identifier": "string",
+                "ledger_account": {
+                    "name": "string",
+                    "description": "string",
+                    "normal_balance": "credit",
+                    "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "currency": "string",
+                    "currency_exponent": 0,
+                    "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "ledgerable_type": "external_account",
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
+                },
+                "plaid_processor_token": "string",
+                "contact_details": [
+                    {
+                        "contact_identifier": "string",
+                        "contact_identifier_type": "email",
+                    },
+                    {
+                        "contact_identifier": "string",
+                        "contact_identifier_type": "email",
+                    },
+                    {
+                        "contact_identifier": "string",
+                        "contact_identifier_type": "email",
+                    },
+                ],
+            },
+            receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            remittance_information="string",
+            send_remittance_advice=True,
+            statement_descriptor="string",
+            subtype="0C",
             transaction_monitoring_enabled=True,
-            documents=[
-                {
-                    "document_type": "string",
-                    "file": b"raw file contents",
-                },
-                {
-                    "document_type": "string",
-                    "file": b"raw file contents",
-                },
-                {
-                    "document_type": "string",
-                    "file": b"raw file contents",
-                },
-            ],
+            ultimate_originating_party_identifier="string",
+            ultimate_originating_party_name="string",
+            ultimate_receiving_party_identifier="string",
+            ultimate_receiving_party_name="string",
         )
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
@@ -906,123 +914,23 @@ class TestAsyncPaymentOrders:
     async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
         payment_order = await client.payment_orders.update(
             "string",
-            type="ach",
-            subtype="CCD",
-            amount=0,
-            direction="credit",
-            priority="high",
-            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             accounting={
                 "account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "class_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             },
             accounting_category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            currency="AED",
-            effective_date=parse_date("2019-12-27"),
-            description="string",
-            statement_descriptor="string",
-            remittance_information="string",
-            purpose="string",
-            metadata={
-                "key": "value",
-                "foo": "bar",
-                "modern": "treasury",
-            },
+            amount=0,
             charge_bearer="shared",
-            foreign_exchange_indicator="fixed_to_variable",
-            foreign_exchange_contract="string",
-            nsf_protected=True,
-            originating_party_name="string",
-            ultimate_originating_party_name="string",
-            ultimate_originating_party_identifier="string",
-            ultimate_receiving_party_name="string",
-            ultimate_receiving_party_identifier="string",
-            send_remittance_advice=True,
-            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            status="approved",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            currency="AED",
+            description="string",
+            direction="credit",
+            effective_date=parse_date("2019-12-27"),
+            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             fallback_type="ach",
-            receiving_account={
-                "account_type": "cash",
-                "party_type": "business",
-                "party_address": {
-                    "line1": "string",
-                    "line2": "string",
-                    "locality": "string",
-                    "region": "string",
-                    "postal_code": "string",
-                    "country": "string",
-                },
-                "name": "string",
-                "account_details": [
-                    {
-                        "account_number": "string",
-                        "account_number_type": "iban",
-                    },
-                    {
-                        "account_number": "string",
-                        "account_number_type": "iban",
-                    },
-                    {
-                        "account_number": "string",
-                        "account_number_type": "iban",
-                    },
-                ],
-                "routing_details": [
-                    {
-                        "routing_number": "string",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "string",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "string",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                ],
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
-                },
-                "party_name": "string",
-                "party_identifier": "string",
-                "ledger_account": {
-                    "name": "string",
-                    "description": "string",
-                    "normal_balance": "credit",
-                    "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "currency": "string",
-                    "currency_exponent": 0,
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                },
-                "plaid_processor_token": "string",
-                "contact_details": [
-                    {
-                        "contact_identifier": "string",
-                        "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "string",
-                        "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "string",
-                        "contact_identifier_type": "email",
-                    },
-                ],
-            },
+            foreign_exchange_contract="string",
+            foreign_exchange_indicator="fixed_to_variable",
             line_items=[
                 {
                     "amount": 0,
@@ -1055,82 +963,16 @@ class TestAsyncPaymentOrders:
                     "accounting_category_id": "string",
                 },
             ],
-        )
-        assert_matches_type(PaymentOrder, payment_order, path=["response"])
-
-    @parametrize
-    async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        payment_order = await client.payment_orders.list()
-        assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=["response"])
-
-    @parametrize
-    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        payment_order = await client.payment_orders.list(
-            after_cursor="string",
-            per_page=0,
-            type="ach",
-            priority="high",
-            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            transaction_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            status="approved",
-            direction="credit",
-            reference_number="string",
-            effective_date_start=parse_date("2019-12-27"),
-            effective_date_end=parse_date("2019-12-27"),
-            metadata={"foo": "string"},
-        )
-        assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=["response"])
-
-    @parametrize
-    async def test_method_create_async(self, client: AsyncModernTreasury) -> None:
-        payment_order = await client.payment_orders.create_async(
-            type="ach",
-            amount=0,
-            direction="credit",
-            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        )
-        assert_matches_type(shared.AsyncResponse, payment_order, path=["response"])
-
-    @parametrize
-    async def test_method_create_async_with_all_params(self, client: AsyncModernTreasury) -> None:
-        payment_order = await client.payment_orders.create_async(
-            type="ach",
-            subtype="CCD",
-            amount=0,
-            direction="credit",
-            priority="high",
-            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            accounting={
-                "account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "class_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            },
-            accounting_category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            currency="AED",
-            effective_date=parse_date("2019-12-27"),
-            description="string",
-            statement_descriptor="string",
-            remittance_information="string",
-            purpose="string",
             metadata={
                 "key": "value",
                 "foo": "bar",
                 "modern": "treasury",
             },
-            charge_bearer="shared",
-            foreign_exchange_indicator="fixed_to_variable",
-            foreign_exchange_contract="string",
             nsf_protected=True,
+            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             originating_party_name="string",
-            ultimate_originating_party_name="string",
-            ultimate_originating_party_identifier="string",
-            ultimate_receiving_party_name="string",
-            ultimate_receiving_party_identifier="string",
-            send_remittance_advice=True,
-            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            fallback_type="ach",
+            priority="high",
+            purpose="string",
             receiving_account={
                 "account_type": "cash",
                 "party_type": "business",
@@ -1188,6 +1030,8 @@ class TestAsyncPaymentOrders:
                     "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "currency": "string",
                     "currency_exponent": 0,
+                    "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "ledgerable_type": "external_account",
                     "metadata": {
                         "key": "value",
                         "foo": "bar",
@@ -1210,6 +1054,75 @@ class TestAsyncPaymentOrders:
                     },
                 ],
             },
+            receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            remittance_information="string",
+            send_remittance_advice=True,
+            statement_descriptor="string",
+            status="approved",
+            subtype="0C",
+            type="ach",
+            ultimate_originating_party_identifier="string",
+            ultimate_originating_party_name="string",
+            ultimate_receiving_party_identifier="string",
+            ultimate_receiving_party_name="string",
+        )
+        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+
+    @parametrize
+    async def test_method_list(self, client: AsyncModernTreasury) -> None:
+        payment_order = await client.payment_orders.list()
+        assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
+        payment_order = await client.payment_orders.list(
+            after_cursor="string",
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            direction="credit",
+            effective_date_end=parse_date("2019-12-27"),
+            effective_date_start=parse_date("2019-12-27"),
+            metadata={"foo": "string"},
+            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            per_page=0,
+            priority="high",
+            reference_number="string",
+            status="approved",
+            transaction_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="ach",
+        )
+        assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=["response"])
+
+    @parametrize
+    async def test_method_create_async(self, client: AsyncModernTreasury) -> None:
+        payment_order = await client.payment_orders.create_async(
+            amount=0,
+            direction="credit",
+            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="ach",
+        )
+        assert_matches_type(shared.AsyncResponse, payment_order, path=["response"])
+
+    @parametrize
+    async def test_method_create_async_with_all_params(self, client: AsyncModernTreasury) -> None:
+        payment_order = await client.payment_orders.create_async(
+            amount=0,
+            direction="credit",
+            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="ach",
+            accounting={
+                "account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "class_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            },
+            accounting_category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            charge_bearer="shared",
+            currency="AED",
+            description="string",
+            effective_date=parse_date("2019-12-27"),
+            expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            fallback_type="ach",
+            foreign_exchange_contract="string",
+            foreign_exchange_indicator="fixed_to_variable",
             ledger_transaction={
                 "description": "string",
                 "status": "archived",
@@ -1287,6 +1200,105 @@ class TestAsyncPaymentOrders:
                     "accounting_category_id": "string",
                 },
             ],
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
+            nsf_protected=True,
+            originating_party_name="string",
+            priority="high",
+            purpose="string",
+            receiving_account={
+                "account_type": "cash",
+                "party_type": "business",
+                "party_address": {
+                    "line1": "string",
+                    "line2": "string",
+                    "locality": "string",
+                    "region": "string",
+                    "postal_code": "string",
+                    "country": "string",
+                },
+                "name": "string",
+                "account_details": [
+                    {
+                        "account_number": "string",
+                        "account_number_type": "iban",
+                    },
+                    {
+                        "account_number": "string",
+                        "account_number_type": "iban",
+                    },
+                    {
+                        "account_number": "string",
+                        "account_number_type": "iban",
+                    },
+                ],
+                "routing_details": [
+                    {
+                        "routing_number": "string",
+                        "routing_number_type": "aba",
+                        "payment_type": "ach",
+                    },
+                    {
+                        "routing_number": "string",
+                        "routing_number_type": "aba",
+                        "payment_type": "ach",
+                    },
+                    {
+                        "routing_number": "string",
+                        "routing_number_type": "aba",
+                        "payment_type": "ach",
+                    },
+                ],
+                "metadata": {
+                    "key": "value",
+                    "foo": "bar",
+                    "modern": "treasury",
+                },
+                "party_name": "string",
+                "party_identifier": "string",
+                "ledger_account": {
+                    "name": "string",
+                    "description": "string",
+                    "normal_balance": "credit",
+                    "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "currency": "string",
+                    "currency_exponent": 0,
+                    "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "ledgerable_type": "external_account",
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
+                },
+                "plaid_processor_token": "string",
+                "contact_details": [
+                    {
+                        "contact_identifier": "string",
+                        "contact_identifier_type": "email",
+                    },
+                    {
+                        "contact_identifier": "string",
+                        "contact_identifier_type": "email",
+                    },
+                    {
+                        "contact_identifier": "string",
+                        "contact_identifier_type": "email",
+                    },
+                ],
+            },
+            receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            remittance_information="string",
+            send_remittance_advice=True,
+            statement_descriptor="string",
+            subtype="0C",
             transaction_monitoring_enabled=True,
+            ultimate_originating_party_identifier="string",
+            ultimate_originating_party_name="string",
+            ultimate_receiving_party_identifier="string",
+            ultimate_receiving_party_name="string",
         )
         assert_matches_type(shared.AsyncResponse, payment_order, path=["response"])

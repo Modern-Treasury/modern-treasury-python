@@ -56,9 +56,9 @@ class Connections(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
+                        "entity": entity,
                         "per_page": per_page,
                         "vendor_customer_id": vendor_customer_id,
-                        "entity": entity,
                     },
                     connection_list_params.ConnectionListParams,
                 ),
@@ -109,9 +109,9 @@ class AsyncConnections(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
+                        "entity": entity,
                         "per_page": per_page,
                         "vendor_customer_id": vendor_customer_id,
-                        "entity": entity,
                     },
                     connection_list_params.ConnectionListParams,
                 ),

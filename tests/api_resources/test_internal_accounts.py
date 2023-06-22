@@ -28,9 +28,9 @@ class TestInternalAccounts:
     def test_method_create(self, client: ModernTreasury) -> None:
         internal_account = client.internal_accounts.create(
             connection_id="string",
+            currency="USD",
             name="string",
             party_name="string",
-            currency="USD",
         )
         assert_matches_type(InternalAccount, internal_account, path=["response"])
 
@@ -38,8 +38,12 @@ class TestInternalAccounts:
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         internal_account = client.internal_accounts.create(
             connection_id="string",
+            currency="USD",
             name="string",
             party_name="string",
+            counterparty_id="string",
+            entity_id="string",
+            parent_account_id="string",
             party_address={
                 "line1": "string",
                 "line2": "string",
@@ -48,10 +52,6 @@ class TestInternalAccounts:
                 "postal_code": "string",
                 "country": "string",
             },
-            currency="USD",
-            entity_id="string",
-            parent_account_id="string",
-            counterparty_id="string",
         )
         assert_matches_type(InternalAccount, internal_account, path=["response"])
 
@@ -73,10 +73,10 @@ class TestInternalAccounts:
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         internal_account = client.internal_accounts.update(
             "string",
-            name="string",
-            metadata={"foo": "string"},
-            parent_account_id="string",
             counterparty_id="string",
+            metadata={"foo": "string"},
+            name="string",
+            parent_account_id="string",
         )
         assert_matches_type(InternalAccount, internal_account, path=["response"])
 
@@ -89,12 +89,12 @@ class TestInternalAccounts:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         internal_account = client.internal_accounts.list(
             after_cursor="string",
-            per_page=0,
-            currency="AED",
             counterparty_id="string",
-            payment_type="ach",
-            payment_direction="credit",
+            currency="AED",
             metadata={"foo": "string"},
+            payment_direction="credit",
+            payment_type="ach",
+            per_page=0,
         )
         assert_matches_type(SyncPage[InternalAccount], internal_account, path=["response"])
 
@@ -112,9 +112,9 @@ class TestAsyncInternalAccounts:
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         internal_account = await client.internal_accounts.create(
             connection_id="string",
+            currency="USD",
             name="string",
             party_name="string",
-            currency="USD",
         )
         assert_matches_type(InternalAccount, internal_account, path=["response"])
 
@@ -122,8 +122,12 @@ class TestAsyncInternalAccounts:
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         internal_account = await client.internal_accounts.create(
             connection_id="string",
+            currency="USD",
             name="string",
             party_name="string",
+            counterparty_id="string",
+            entity_id="string",
+            parent_account_id="string",
             party_address={
                 "line1": "string",
                 "line2": "string",
@@ -132,10 +136,6 @@ class TestAsyncInternalAccounts:
                 "postal_code": "string",
                 "country": "string",
             },
-            currency="USD",
-            entity_id="string",
-            parent_account_id="string",
-            counterparty_id="string",
         )
         assert_matches_type(InternalAccount, internal_account, path=["response"])
 
@@ -157,10 +157,10 @@ class TestAsyncInternalAccounts:
     async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
         internal_account = await client.internal_accounts.update(
             "string",
-            name="string",
-            metadata={"foo": "string"},
-            parent_account_id="string",
             counterparty_id="string",
+            metadata={"foo": "string"},
+            name="string",
+            parent_account_id="string",
         )
         assert_matches_type(InternalAccount, internal_account, path=["response"])
 
@@ -173,11 +173,11 @@ class TestAsyncInternalAccounts:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         internal_account = await client.internal_accounts.list(
             after_cursor="string",
-            per_page=0,
-            currency="AED",
             counterparty_id="string",
-            payment_type="ach",
-            payment_direction="credit",
+            currency="AED",
             metadata={"foo": "string"},
+            payment_direction="credit",
+            payment_type="ach",
+            per_page=0,
         )
         assert_matches_type(AsyncPage[InternalAccount], internal_account, path=["response"])

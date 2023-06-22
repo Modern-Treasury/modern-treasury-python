@@ -80,7 +80,18 @@ class AccountCollectionFlows(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> AccountConnectionFlow:
-        """get account_collection_flow"""
+        """
+        get account_collection_flow
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/account_collection_flows/{id}",
             options=make_request_options(
@@ -174,11 +185,11 @@ class AccountCollectionFlows(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
                         "client_token": client_token,
-                        "status": status,
                         "counterparty_id": counterparty_id,
                         "external_account_id": external_account_id,
+                        "per_page": per_page,
+                        "status": status,
                     },
                     account_collection_flow_list_params.AccountCollectionFlowListParams,
                 ),
@@ -247,7 +258,18 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> AccountConnectionFlow:
-        """get account_collection_flow"""
+        """
+        get account_collection_flow
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/account_collection_flows/{id}",
             options=make_request_options(
@@ -341,11 +363,11 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
                         "client_token": client_token,
-                        "status": status,
                         "counterparty_id": counterparty_id,
                         "external_account_id": external_account_id,
+                        "per_page": per_page,
+                        "status": status,
                     },
                     account_collection_flow_list_params.AccountCollectionFlowListParams,
                 ),

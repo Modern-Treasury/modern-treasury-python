@@ -58,7 +58,7 @@ class ExternalAccounts(SyncAPIResource):
           ledger_account: Specifies a ledger account object that will be created with the external
               account. The resulting ledger account is linked to the external account for
               auto-ledgering Payment objects. See
-              https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+              https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
               for more details.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
@@ -90,19 +90,19 @@ class ExternalAccounts(SyncAPIResource):
             "/api/external_accounts",
             body=maybe_transform(
                 {
-                    "account_type": account_type,
-                    "party_type": party_type,
-                    "party_address": party_address,
-                    "name": name,
                     "counterparty_id": counterparty_id,
                     "account_details": account_details,
-                    "routing_details": routing_details,
-                    "metadata": metadata,
-                    "party_name": party_name,
-                    "party_identifier": party_identifier,
-                    "ledger_account": ledger_account,
-                    "plaid_processor_token": plaid_processor_token,
+                    "account_type": account_type,
                     "contact_details": contact_details,
+                    "ledger_account": ledger_account,
+                    "metadata": metadata,
+                    "name": name,
+                    "party_address": party_address,
+                    "party_identifier": party_identifier,
+                    "party_name": party_name,
+                    "party_type": party_type,
+                    "plaid_processor_token": plaid_processor_token,
+                    "routing_details": routing_details,
                 },
                 external_account_create_params.ExternalAccountCreateParams,
             ),
@@ -127,7 +127,18 @@ class ExternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> ExternalAccount:
-        """show external account"""
+        """
+        show external account
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/external_accounts/{id}",
             options=make_request_options(
@@ -185,13 +196,13 @@ class ExternalAccounts(SyncAPIResource):
             f"/api/external_accounts/{id}",
             body=maybe_transform(
                 {
-                    "party_type": party_type,
                     "account_type": account_type,
                     "counterparty_id": counterparty_id,
-                    "name": name,
-                    "party_name": party_name,
-                    "party_address": party_address,
                     "metadata": metadata,
+                    "name": name,
+                    "party_address": party_address,
+                    "party_name": party_name,
+                    "party_type": party_type,
                 },
                 external_account_update_params.ExternalAccountUpdateParams,
             ),
@@ -249,10 +260,10 @@ class ExternalAccounts(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "party_name": party_name,
                         "counterparty_id": counterparty_id,
                         "metadata": metadata,
+                        "party_name": party_name,
+                        "per_page": per_page,
                     },
                     external_account_list_params.ExternalAccountListParams,
                 ),
@@ -272,7 +283,20 @@ class ExternalAccounts(SyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> None:
-        """delete external account"""
+        """
+        delete external account
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/api/external_accounts/{id}",
@@ -438,7 +462,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
           ledger_account: Specifies a ledger account object that will be created with the external
               account. The resulting ledger account is linked to the external account for
               auto-ledgering Payment objects. See
-              https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+              https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
               for more details.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
@@ -470,19 +494,19 @@ class AsyncExternalAccounts(AsyncAPIResource):
             "/api/external_accounts",
             body=maybe_transform(
                 {
-                    "account_type": account_type,
-                    "party_type": party_type,
-                    "party_address": party_address,
-                    "name": name,
                     "counterparty_id": counterparty_id,
                     "account_details": account_details,
-                    "routing_details": routing_details,
-                    "metadata": metadata,
-                    "party_name": party_name,
-                    "party_identifier": party_identifier,
-                    "ledger_account": ledger_account,
-                    "plaid_processor_token": plaid_processor_token,
+                    "account_type": account_type,
                     "contact_details": contact_details,
+                    "ledger_account": ledger_account,
+                    "metadata": metadata,
+                    "name": name,
+                    "party_address": party_address,
+                    "party_identifier": party_identifier,
+                    "party_name": party_name,
+                    "party_type": party_type,
+                    "plaid_processor_token": plaid_processor_token,
+                    "routing_details": routing_details,
                 },
                 external_account_create_params.ExternalAccountCreateParams,
             ),
@@ -507,7 +531,18 @@ class AsyncExternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> ExternalAccount:
-        """show external account"""
+        """
+        show external account
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/external_accounts/{id}",
             options=make_request_options(
@@ -565,13 +600,13 @@ class AsyncExternalAccounts(AsyncAPIResource):
             f"/api/external_accounts/{id}",
             body=maybe_transform(
                 {
-                    "party_type": party_type,
                     "account_type": account_type,
                     "counterparty_id": counterparty_id,
-                    "name": name,
-                    "party_name": party_name,
-                    "party_address": party_address,
                     "metadata": metadata,
+                    "name": name,
+                    "party_address": party_address,
+                    "party_name": party_name,
+                    "party_type": party_type,
                 },
                 external_account_update_params.ExternalAccountUpdateParams,
             ),
@@ -629,10 +664,10 @@ class AsyncExternalAccounts(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "party_name": party_name,
                         "counterparty_id": counterparty_id,
                         "metadata": metadata,
+                        "party_name": party_name,
+                        "per_page": per_page,
                     },
                     external_account_list_params.ExternalAccountListParams,
                 ),
@@ -652,7 +687,20 @@ class AsyncExternalAccounts(AsyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> None:
-        """delete external account"""
+        """
+        delete external account
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/api/external_accounts/{id}",

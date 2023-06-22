@@ -11,16 +11,6 @@ from .._utils import PropertyInfo
 __all__ = ["LedgerAccountListParams", "Balances"]
 
 
-class Balances(TypedDict, total=False):
-    as_of_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
-
-    effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-
-    effective_at_lower_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-
-    effective_at_upper_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-
-
 class LedgerAccountListParams(TypedDict, total=False):
     after_cursor: Optional[str]
 
@@ -30,6 +20,13 @@ class LedgerAccountListParams(TypedDict, total=False):
     get the balances change between the two timestamps. The lower bound is inclusive
     while the upper bound is exclusive of the provided timestamps. If no value is
     supplied the balances will be retrieved not including that bound.
+    """
+
+    created_at: Dict[str, Union[str, datetime]]
+    """
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
+    created at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
+    created_at%5Bgt%5D=2000-01-01T12:00:00Z.
     """
 
     id: str
@@ -52,6 +49,16 @@ class LedgerAccountListParams(TypedDict, total=False):
     updated_at: Dict[str, Union[str, datetime]]
     """
     Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
-    posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
+    updated at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
     updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
     """
+
+
+class Balances(TypedDict, total=False):
+    as_of_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+
+    effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+
+    effective_at_lower_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+
+    effective_at_upper_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]

@@ -56,18 +56,18 @@ class TestTransactions:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         transaction = client.transactions.list(
             after_cursor="string",
-            per_page=0,
-            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            posted=True,
-            as_of_date_start=parse_date("2019-12-27"),
             as_of_date_end=parse_date("2019-12-27"),
-            direction="string",
+            as_of_date_start=parse_date("2019-12-27"),
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            payment_type="string",
-            transactable_type="string",
             description="string",
+            direction="string",
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
+            payment_type="string",
+            per_page=0,
+            posted=True,
+            transactable_type="string",
+            virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(SyncPage[Transaction], transaction, path=["response"])
 
@@ -112,17 +112,17 @@ class TestAsyncTransactions:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         transaction = await client.transactions.list(
             after_cursor="string",
-            per_page=0,
-            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            posted=True,
-            as_of_date_start=parse_date("2019-12-27"),
             as_of_date_end=parse_date("2019-12-27"),
-            direction="string",
+            as_of_date_start=parse_date("2019-12-27"),
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            payment_type="string",
-            transactable_type="string",
             description="string",
+            direction="string",
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
+            payment_type="string",
+            per_page=0,
+            posted=True,
+            transactable_type="string",
+            virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(AsyncPage[Transaction], transaction, path=["response"])

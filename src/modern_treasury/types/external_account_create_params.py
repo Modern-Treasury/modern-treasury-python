@@ -7,15 +7,134 @@ from typing_extensions import Literal, Required, TypedDict
 
 __all__ = [
     "ExternalAccountCreateParams",
-    "PartyAddress",
     "AccountDetails",
     "AccountDetail",
-    "RoutingDetails",
-    "RoutingDetail",
-    "LedgerAccount",
     "ContactDetails",
     "ContactDetail",
+    "LedgerAccount",
+    "PartyAddress",
+    "RoutingDetails",
+    "RoutingDetail",
 ]
+
+
+class ExternalAccountCreateParams(TypedDict, total=False):
+    counterparty_id: Required[Optional[str]]
+
+    account_details: List[AccountDetail]
+
+    account_type: Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]
+    """Can be `checking`, `savings` or `other`."""
+
+    contact_details: List[ContactDetail]
+
+    ledger_account: LedgerAccount
+    """Specifies a ledger account object that will be created with the external
+    account.
+
+    The resulting ledger account is linked to the external account for
+    auto-ledgering Payment objects. See
+    https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
+    for more details.
+    """
+
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
+
+    name: Optional[str]
+    """A nickname for the external account.
+
+    This is only for internal usage and won't affect any payments
+    """
+
+    party_address: PartyAddress
+    """Required if receiving wire payments."""
+
+    party_identifier: str
+
+    party_name: str
+    """
+    If this value isn't provided, it will be inherited from the counterparty's name.
+    """
+
+    party_type: Optional[Literal["business", "individual"]]
+    """Either `individual` or `business`."""
+
+    plaid_processor_token: str
+    """
+    If you've enabled the Modern Treasury + Plaid integration in your Plaid account,
+    you can pass the processor token in this field.
+    """
+
+    routing_details: List[RoutingDetail]
+
+
+class AccountDetail(TypedDict, total=False):
+    account_number: Required[str]
+
+    account_number_type: Literal["iban", "clabe", "wallet_address", "pan", "other"]
+
+
+AccountDetails = AccountDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use AccountDetail instead.
+"""
+
+
+class ContactDetail(TypedDict, total=False):
+    contact_identifier: str
+
+    contact_identifier_type: Literal["email", "phone_number", "website"]
+
+
+ContactDetails = ContactDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use ContactDetail instead.
+"""
+
+
+class LedgerAccount(TypedDict, total=False):
+    currency: Required[str]
+    """The currency of the ledger account."""
+
+    ledger_id: Required[str]
+    """The id of the ledger that this account belongs to."""
+
+    name: Required[str]
+    """The name of the ledger account."""
+
+    normal_balance: Required[Literal["credit", "debit"]]
+    """The normal balance of the ledger account."""
+
+    currency_exponent: Optional[int]
+    """The currency exponent of the ledger account."""
+
+    description: Optional[str]
+    """The description of the ledger account."""
+
+    ledgerable_id: str
+    """
+    If the ledger account links to another object in Modern Treasury, the id will be
+    populated here, otherwise null.
+    """
+
+    ledgerable_type: Literal["external_account", "internal_account"]
+    """
+    If the ledger account links to another object in Modern Treasury, the type will
+    be populated here, otherwise null. The value is one of internal_account or
+    external_account.
+    """
+
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
 
 
 class PartyAddress(TypedDict, total=False):
@@ -34,19 +153,6 @@ class PartyAddress(TypedDict, total=False):
 
     region: Optional[str]
     """Region or State."""
-
-
-class AccountDetail(TypedDict, total=False):
-    account_number: Required[str]
-
-    account_number_type: Literal["iban", "clabe", "wallet_address", "pan", "other"]
-
-
-AccountDetails = AccountDetail
-"""This type is deprecated and will be removed in a future release.
-
-Please use AccountDetail instead.
-"""
 
 
 class RoutingDetail(TypedDict, total=False):
@@ -93,96 +199,3 @@ RoutingDetails = RoutingDetail
 
 Please use RoutingDetail instead.
 """
-
-
-class LedgerAccount(TypedDict, total=False):
-    currency: Required[str]
-    """The currency of the ledger account."""
-
-    ledger_id: Required[str]
-    """The id of the ledger that this account belongs to."""
-
-    name: Required[str]
-    """The name of the ledger account."""
-
-    normal_balance: Required[Literal["credit", "debit"]]
-    """The normal balance of the ledger account."""
-
-    currency_exponent: Optional[int]
-    """The currency exponent of the ledger account."""
-
-    description: Optional[str]
-    """The description of the ledger account."""
-
-    metadata: Dict[str, str]
-    """Additional data represented as key-value pairs.
-
-    Both the key and value must be strings.
-    """
-
-
-class ContactDetail(TypedDict, total=False):
-    contact_identifier: str
-
-    contact_identifier_type: Literal["email", "phone_number", "website"]
-
-
-ContactDetails = ContactDetail
-"""This type is deprecated and will be removed in a future release.
-
-Please use ContactDetail instead.
-"""
-
-
-class ExternalAccountCreateParams(TypedDict, total=False):
-    counterparty_id: Required[Optional[str]]
-
-    account_details: List[AccountDetail]
-
-    account_type: Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]
-    """Can be `checking`, `savings` or `other`."""
-
-    contact_details: List[ContactDetail]
-
-    ledger_account: LedgerAccount
-    """Specifies a ledger account object that will be created with the external
-    account.
-
-    The resulting ledger account is linked to the external account for
-    auto-ledgering Payment objects. See
-    https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
-    for more details.
-    """
-
-    metadata: Dict[str, str]
-    """Additional data represented as key-value pairs.
-
-    Both the key and value must be strings.
-    """
-
-    name: Optional[str]
-    """A nickname for the external account.
-
-    This is only for internal usage and won't affect any payments
-    """
-
-    party_address: PartyAddress
-    """Required if receiving wire payments."""
-
-    party_identifier: str
-
-    party_name: str
-    """
-    If this value isn't provided, it will be inherited from the counterparty's name.
-    """
-
-    party_type: Optional[Literal["business", "individual"]]
-    """Either `individual` or `business`."""
-
-    plaid_processor_token: str
-    """
-    If you've enabled the Modern Treasury + Plaid integration in your Plaid account,
-    you can pass the processor token in this field.
-    """
-
-    routing_details: List[RoutingDetail]

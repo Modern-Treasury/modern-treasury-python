@@ -11,12 +11,6 @@ from .._utils import PropertyInfo
 __all__ = ["LedgerAccountCategoryRetrieveParams", "Balances"]
 
 
-class Balances(TypedDict, total=False):
-    as_of_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
-
-    effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-
-
 class LedgerAccountCategoryRetrieveParams(TypedDict, total=False):
     balances: Balances
     """
@@ -25,3 +19,9 @@ class LedgerAccountCategoryRetrieveParams(TypedDict, total=False):
     balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are exclusive of
     entries with that exact date.
     """
+
+
+class Balances(TypedDict, total=False):
+    as_of_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+
+    effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]

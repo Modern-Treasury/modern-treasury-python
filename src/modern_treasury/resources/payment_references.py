@@ -63,9 +63,9 @@ class PaymentReferences(SyncAPIResource):
                     {
                         "after_cursor": after_cursor,
                         "per_page": per_page,
+                        "reference_number": reference_number,
                         "referenceable_id": referenceable_id,
                         "referenceable_type": referenceable_type,
-                        "reference_number": reference_number,
                     },
                     payment_reference_list_params.PaymentReferenceListParams,
                 ),
@@ -84,7 +84,18 @@ class PaymentReferences(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> PaymentReference:
-        """get payment_reference"""
+        """
+        get payment_reference
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/payment_references/{id}",
             options=make_request_options(
@@ -142,9 +153,9 @@ class AsyncPaymentReferences(AsyncAPIResource):
                     {
                         "after_cursor": after_cursor,
                         "per_page": per_page,
+                        "reference_number": reference_number,
                         "referenceable_id": referenceable_id,
                         "referenceable_type": referenceable_type,
-                        "reference_number": reference_number,
                     },
                     payment_reference_list_params.PaymentReferenceListParams,
                 ),
@@ -163,7 +174,18 @@ class AsyncPaymentReferences(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> PaymentReference:
-        """get payment_reference"""
+        """
+        get payment_reference
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/payment_references/{id}",
             options=make_request_options(

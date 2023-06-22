@@ -9,6 +9,7 @@ from ..types import (
     LedgerAccountCategory,
     ledger_account_category_list_params,
     ledger_account_category_create_params,
+    ledger_account_category_delete_params,
     ledger_account_category_update_params,
     ledger_account_category_retrieve_params,
 )
@@ -73,13 +74,13 @@ class LedgerAccountCategories(SyncAPIResource):
             "/api/ledger_account_categories",
             body=maybe_transform(
                 {
+                    "currency": currency,
+                    "ledger_id": ledger_id,
                     "name": name,
+                    "normal_balance": normal_balance,
+                    "currency_exponent": currency_exponent,
                     "description": description,
                     "metadata": metadata,
-                    "currency": currency,
-                    "currency_exponent": currency_exponent,
-                    "ledger_id": ledger_id,
-                    "normal_balance": normal_balance,
                 },
                 ledger_account_category_create_params.LedgerAccountCategoryCreateParams,
             ),
@@ -140,6 +141,7 @@ class LedgerAccountCategories(SyncAPIResource):
         self,
         id: str,
         *,
+        balances: ledger_account_category_update_params.Balances | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -155,6 +157,11 @@ class LedgerAccountCategories(SyncAPIResource):
         Update the details of a ledger account category.
 
         Args:
+          balances: For example, if you want the balances as of a particular effective date
+              (YYYY-MM-DD), the encoded query string would be
+              balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are exclusive of
+              entries with that exact date.
+
           description: The description of the ledger account category.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
@@ -176,9 +183,9 @@ class LedgerAccountCategories(SyncAPIResource):
             f"/api/ledger_account_categories/{id}",
             body=maybe_transform(
                 {
-                    "name": name,
                     "description": description,
                     "metadata": metadata,
+                    "name": name,
                 },
                 ledger_account_category_update_params.LedgerAccountCategoryUpdateParams,
             ),
@@ -188,6 +195,9 @@ class LedgerAccountCategories(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
+                query=maybe_transform(
+                    {"balances": balances}, ledger_account_category_update_params.LedgerAccountCategoryUpdateParams
+                ),
             ),
             cast_to=LedgerAccountCategory,
         )
@@ -237,11 +247,11 @@ class LedgerAccountCategories(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
+                        "ledger_id": ledger_id,
                         "metadata": metadata,
                         "name": name,
-                        "ledger_id": ledger_id,
                         "parent_ledger_account_category_id": parent_ledger_account_category_id,
+                        "per_page": per_page,
                     },
                     ledger_account_category_list_params.LedgerAccountCategoryListParams,
                 ),
@@ -253,6 +263,7 @@ class LedgerAccountCategories(SyncAPIResource):
         self,
         id: str,
         *,
+        balances: ledger_account_category_delete_params.Balances | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -261,7 +272,25 @@ class LedgerAccountCategories(SyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> LedgerAccountCategory:
-        """Delete a ledger account category."""
+        """
+        Delete a ledger account category.
+
+        Args:
+          balances: For example, if you want the balances as of a particular effective date
+              (YYYY-MM-DD), the encoded query string would be
+              balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are exclusive of
+              entries with that exact date.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         return self._delete(
             f"/api/ledger_account_categories/{id}",
             options=make_request_options(
@@ -270,6 +299,9 @@ class LedgerAccountCategories(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
+                query=maybe_transform(
+                    {"balances": balances}, ledger_account_category_delete_params.LedgerAccountCategoryDeleteParams
+                ),
             ),
             cast_to=LedgerAccountCategory,
         )
@@ -287,7 +319,20 @@ class LedgerAccountCategories(SyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> None:
-        """Add a ledger account category to an account."""
+        """
+        Add a ledger account category to an account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
             f"/api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}",
@@ -314,7 +359,20 @@ class LedgerAccountCategories(SyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> None:
-        """Add a ledger account category to a ledger account category."""
+        """
+        Add a ledger account category to a ledger account category.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
             f"/api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}",
@@ -341,7 +399,20 @@ class LedgerAccountCategories(SyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> None:
-        """Delete a ledger account category from an account."""
+        """
+        Delete a ledger account category from an account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}",
@@ -368,7 +439,20 @@ class LedgerAccountCategories(SyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> None:
-        """Delete a ledger account category from a ledger account category."""
+        """
+        Delete a ledger account category from a ledger account category.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}",
@@ -435,13 +519,13 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
             "/api/ledger_account_categories",
             body=maybe_transform(
                 {
+                    "currency": currency,
+                    "ledger_id": ledger_id,
                     "name": name,
+                    "normal_balance": normal_balance,
+                    "currency_exponent": currency_exponent,
                     "description": description,
                     "metadata": metadata,
-                    "currency": currency,
-                    "currency_exponent": currency_exponent,
-                    "ledger_id": ledger_id,
-                    "normal_balance": normal_balance,
                 },
                 ledger_account_category_create_params.LedgerAccountCategoryCreateParams,
             ),
@@ -502,6 +586,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         self,
         id: str,
         *,
+        balances: ledger_account_category_update_params.Balances | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -517,6 +602,11 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         Update the details of a ledger account category.
 
         Args:
+          balances: For example, if you want the balances as of a particular effective date
+              (YYYY-MM-DD), the encoded query string would be
+              balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are exclusive of
+              entries with that exact date.
+
           description: The description of the ledger account category.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
@@ -538,9 +628,9 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
             f"/api/ledger_account_categories/{id}",
             body=maybe_transform(
                 {
-                    "name": name,
                     "description": description,
                     "metadata": metadata,
+                    "name": name,
                 },
                 ledger_account_category_update_params.LedgerAccountCategoryUpdateParams,
             ),
@@ -550,6 +640,9 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
+                query=maybe_transform(
+                    {"balances": balances}, ledger_account_category_update_params.LedgerAccountCategoryUpdateParams
+                ),
             ),
             cast_to=LedgerAccountCategory,
         )
@@ -599,11 +692,11 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
+                        "ledger_id": ledger_id,
                         "metadata": metadata,
                         "name": name,
-                        "ledger_id": ledger_id,
                         "parent_ledger_account_category_id": parent_ledger_account_category_id,
+                        "per_page": per_page,
                     },
                     ledger_account_category_list_params.LedgerAccountCategoryListParams,
                 ),
@@ -615,6 +708,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         self,
         id: str,
         *,
+        balances: ledger_account_category_delete_params.Balances | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -623,7 +717,25 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> LedgerAccountCategory:
-        """Delete a ledger account category."""
+        """
+        Delete a ledger account category.
+
+        Args:
+          balances: For example, if you want the balances as of a particular effective date
+              (YYYY-MM-DD), the encoded query string would be
+              balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are exclusive of
+              entries with that exact date.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         return await self._delete(
             f"/api/ledger_account_categories/{id}",
             options=make_request_options(
@@ -632,6 +744,9 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
+                query=maybe_transform(
+                    {"balances": balances}, ledger_account_category_delete_params.LedgerAccountCategoryDeleteParams
+                ),
             ),
             cast_to=LedgerAccountCategory,
         )
@@ -649,7 +764,20 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> None:
-        """Add a ledger account category to an account."""
+        """
+        Add a ledger account category to an account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
             f"/api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}",
@@ -676,7 +804,20 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> None:
-        """Add a ledger account category to a ledger account category."""
+        """
+        Add a ledger account category to a ledger account category.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
             f"/api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}",
@@ -703,7 +844,20 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> None:
-        """Delete a ledger account category from an account."""
+        """
+        Delete a ledger account category from an account.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}",
@@ -730,7 +884,20 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> None:
-        """Delete a ledger account category from a ledger account category."""
+        """
+        Delete a ledger account category from a ledger account category.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}",

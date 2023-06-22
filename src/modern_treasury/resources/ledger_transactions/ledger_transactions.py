@@ -103,14 +103,14 @@ class LedgerTransactions(SyncAPIResource):
             "/api/ledger_transactions",
             body=maybe_transform(
                 {
-                    "description": description,
-                    "status": status,
-                    "metadata": metadata,
                     "effective_date": effective_date,
                     "ledger_entries": ledger_entries,
+                    "description": description,
                     "external_id": external_id,
-                    "ledgerable_type": ledgerable_type,
                     "ledgerable_id": ledgerable_id,
+                    "ledgerable_type": ledgerable_type,
+                    "metadata": metadata,
+                    "status": status,
                 },
                 ledger_transaction_create_params.LedgerTransactionCreateParams,
             ),
@@ -135,7 +135,18 @@ class LedgerTransactions(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> LedgerTransaction:
-        """Get details on a single ledger transaction."""
+        """
+        Get details on a single ledger transaction.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/ledger_transactions/{id}",
             options=make_request_options(
@@ -188,9 +199,9 @@ class LedgerTransactions(SyncAPIResource):
             body=maybe_transform(
                 {
                     "description": description,
-                    "status": status,
-                    "metadata": metadata,
                     "ledger_entries": ledger_entries,
+                    "metadata": metadata,
+                    "status": status,
                 },
                 ledger_transaction_update_params.LedgerTransactionUpdateParams,
             ),
@@ -275,19 +286,19 @@ class LedgerTransactions(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "id": id,
-                        "metadata": metadata,
-                        "ledger_id": ledger_id,
-                        "ledger_account_id": ledger_account_id,
                         "effective_at": effective_at,
                         "effective_date": effective_date,
-                        "posted_at": posted_at,
-                        "updated_at": updated_at,
-                        "order_by": order_by,
-                        "status": status,
                         "external_id": external_id,
+                        "id": id,
                         "ledger_account_category_id": ledger_account_category_id,
+                        "ledger_account_id": ledger_account_id,
+                        "ledger_id": ledger_id,
+                        "metadata": metadata,
+                        "order_by": order_by,
+                        "per_page": per_page,
+                        "posted_at": posted_at,
+                        "status": status,
+                        "updated_at": updated_at,
                     },
                     ledger_transaction_list_params.LedgerTransactionListParams,
                 ),
@@ -374,14 +385,14 @@ class AsyncLedgerTransactions(AsyncAPIResource):
             "/api/ledger_transactions",
             body=maybe_transform(
                 {
-                    "description": description,
-                    "status": status,
-                    "metadata": metadata,
                     "effective_date": effective_date,
                     "ledger_entries": ledger_entries,
+                    "description": description,
                     "external_id": external_id,
-                    "ledgerable_type": ledgerable_type,
                     "ledgerable_id": ledgerable_id,
+                    "ledgerable_type": ledgerable_type,
+                    "metadata": metadata,
+                    "status": status,
                 },
                 ledger_transaction_create_params.LedgerTransactionCreateParams,
             ),
@@ -406,7 +417,18 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> LedgerTransaction:
-        """Get details on a single ledger transaction."""
+        """
+        Get details on a single ledger transaction.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/ledger_transactions/{id}",
             options=make_request_options(
@@ -459,9 +481,9 @@ class AsyncLedgerTransactions(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "description": description,
-                    "status": status,
-                    "metadata": metadata,
                     "ledger_entries": ledger_entries,
+                    "metadata": metadata,
+                    "status": status,
                 },
                 ledger_transaction_update_params.LedgerTransactionUpdateParams,
             ),
@@ -546,19 +568,19 @@ class AsyncLedgerTransactions(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "id": id,
-                        "metadata": metadata,
-                        "ledger_id": ledger_id,
-                        "ledger_account_id": ledger_account_id,
                         "effective_at": effective_at,
                         "effective_date": effective_date,
-                        "posted_at": posted_at,
-                        "updated_at": updated_at,
-                        "order_by": order_by,
-                        "status": status,
                         "external_id": external_id,
+                        "id": id,
                         "ledger_account_category_id": ledger_account_category_id,
+                        "ledger_account_id": ledger_account_id,
+                        "ledger_id": ledger_id,
+                        "metadata": metadata,
+                        "order_by": order_by,
+                        "per_page": per_page,
+                        "posted_at": posted_at,
+                        "status": status,
+                        "updated_at": updated_at,
                     },
                     ledger_transaction_list_params.LedgerTransactionListParams,
                 ),

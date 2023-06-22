@@ -27,7 +27,18 @@ class Transactions(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> Transaction:
-        """Get details on a single transaction."""
+        """
+        Get details on a single transaction.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/transactions/{id}",
             options=make_request_options(
@@ -142,18 +153,18 @@ class Transactions(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "internal_account_id": internal_account_id,
-                        "virtual_account_id": virtual_account_id,
-                        "posted": posted,
-                        "as_of_date_start": as_of_date_start,
                         "as_of_date_end": as_of_date_end,
-                        "direction": direction,
+                        "as_of_date_start": as_of_date_start,
                         "counterparty_id": counterparty_id,
-                        "payment_type": payment_type,
-                        "transactable_type": transactable_type,
                         "description": description,
+                        "direction": direction,
+                        "internal_account_id": internal_account_id,
                         "metadata": metadata,
+                        "payment_type": payment_type,
+                        "per_page": per_page,
+                        "posted": posted,
+                        "transactable_type": transactable_type,
+                        "virtual_account_id": virtual_account_id,
                     },
                     transaction_list_params.TransactionListParams,
                 ),
@@ -174,7 +185,18 @@ class AsyncTransactions(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> Transaction:
-        """Get details on a single transaction."""
+        """
+        Get details on a single transaction.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/transactions/{id}",
             options=make_request_options(
@@ -289,18 +311,18 @@ class AsyncTransactions(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "internal_account_id": internal_account_id,
-                        "virtual_account_id": virtual_account_id,
-                        "posted": posted,
-                        "as_of_date_start": as_of_date_start,
                         "as_of_date_end": as_of_date_end,
-                        "direction": direction,
+                        "as_of_date_start": as_of_date_start,
                         "counterparty_id": counterparty_id,
-                        "payment_type": payment_type,
-                        "transactable_type": transactable_type,
                         "description": description,
+                        "direction": direction,
+                        "internal_account_id": internal_account_id,
                         "metadata": metadata,
+                        "payment_type": payment_type,
+                        "per_page": per_page,
+                        "posted": posted,
+                        "transactable_type": transactable_type,
+                        "virtual_account_id": virtual_account_id,
                     },
                     transaction_list_params.TransactionListParams,
                 ),

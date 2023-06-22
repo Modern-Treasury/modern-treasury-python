@@ -36,6 +36,7 @@ class TestCounterparties:
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         counterparty = client.counterparties.create(
             name="string",
+            accounting={"type": "customer"},
             accounts=[
                 {
                     "account_type": "cash",
@@ -94,6 +95,8 @@ class TestCounterparties:
                         "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "currency": "string",
                         "currency_exponent": 0,
+                        "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "ledgerable_type": "external_account",
                         "metadata": {
                             "key": "value",
                             "foo": "bar",
@@ -173,6 +176,8 @@ class TestCounterparties:
                         "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "currency": "string",
                         "currency_exponent": 0,
+                        "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "ledgerable_type": "external_account",
                         "metadata": {
                             "key": "value",
                             "foo": "bar",
@@ -252,6 +257,8 @@ class TestCounterparties:
                         "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "currency": "string",
                         "currency_exponent": 0,
+                        "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "ledgerable_type": "external_account",
                         "metadata": {
                             "key": "value",
                             "foo": "bar",
@@ -276,14 +283,13 @@ class TestCounterparties:
                 },
             ],
             email="dev@stainlessapi.com",
+            ledger_type="customer",
             metadata={
                 "key": "value",
                 "foo": "bar",
                 "modern": "treasury",
             },
             send_remittance_advice=True,
-            accounting={"type": "customer"},
-            ledger_type="customer",
             taxpayer_identifier="string",
         )
         assert_matches_type(Counterparty, counterparty, path=["response"])
@@ -306,9 +312,9 @@ class TestCounterparties:
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         counterparty = client.counterparties.update(
             "string",
-            name="string",
             email="dev@stainlessapi.com",
             metadata={"foo": "string"},
+            name="string",
             send_remittance_advice=True,
             taxpayer_identifier="string",
         )
@@ -323,12 +329,12 @@ class TestCounterparties:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         counterparty = client.counterparties.list(
             after_cursor="string",
-            per_page=0,
-            name="string",
-            email="dev@stainlessapi.com",
-            metadata={"foo": "string"},
             created_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
+            email="dev@stainlessapi.com",
+            metadata={"foo": "string"},
+            name="string",
+            per_page=0,
         )
         assert_matches_type(SyncPage[Counterparty], counterparty, path=["response"])
 
@@ -352,9 +358,9 @@ class TestCounterparties:
         counterparty = client.counterparties.collect_account(
             "string",
             direction="credit",
-            send_email=True,
-            fields=["name", "name", "name"],
             custom_redirect="https://example.com",
+            fields=["name", "name", "name"],
+            send_email=True,
         )
         assert_matches_type(CounterpartyCollectAccountResponse, counterparty, path=["response"])
 
@@ -379,6 +385,7 @@ class TestAsyncCounterparties:
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         counterparty = await client.counterparties.create(
             name="string",
+            accounting={"type": "customer"},
             accounts=[
                 {
                     "account_type": "cash",
@@ -437,6 +444,8 @@ class TestAsyncCounterparties:
                         "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "currency": "string",
                         "currency_exponent": 0,
+                        "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "ledgerable_type": "external_account",
                         "metadata": {
                             "key": "value",
                             "foo": "bar",
@@ -516,6 +525,8 @@ class TestAsyncCounterparties:
                         "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "currency": "string",
                         "currency_exponent": 0,
+                        "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "ledgerable_type": "external_account",
                         "metadata": {
                             "key": "value",
                             "foo": "bar",
@@ -595,6 +606,8 @@ class TestAsyncCounterparties:
                         "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "currency": "string",
                         "currency_exponent": 0,
+                        "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "ledgerable_type": "external_account",
                         "metadata": {
                             "key": "value",
                             "foo": "bar",
@@ -619,14 +632,13 @@ class TestAsyncCounterparties:
                 },
             ],
             email="dev@stainlessapi.com",
+            ledger_type="customer",
             metadata={
                 "key": "value",
                 "foo": "bar",
                 "modern": "treasury",
             },
             send_remittance_advice=True,
-            accounting={"type": "customer"},
-            ledger_type="customer",
             taxpayer_identifier="string",
         )
         assert_matches_type(Counterparty, counterparty, path=["response"])
@@ -649,9 +661,9 @@ class TestAsyncCounterparties:
     async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
         counterparty = await client.counterparties.update(
             "string",
-            name="string",
             email="dev@stainlessapi.com",
             metadata={"foo": "string"},
+            name="string",
             send_remittance_advice=True,
             taxpayer_identifier="string",
         )
@@ -666,12 +678,12 @@ class TestAsyncCounterparties:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         counterparty = await client.counterparties.list(
             after_cursor="string",
-            per_page=0,
-            name="string",
-            email="dev@stainlessapi.com",
-            metadata={"foo": "string"},
             created_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
+            email="dev@stainlessapi.com",
+            metadata={"foo": "string"},
+            name="string",
+            per_page=0,
         )
         assert_matches_type(AsyncPage[Counterparty], counterparty, path=["response"])
 
@@ -695,8 +707,8 @@ class TestAsyncCounterparties:
         counterparty = await client.counterparties.collect_account(
             "string",
             direction="credit",
-            send_email=True,
-            fields=["name", "name", "name"],
             custom_redirect="https://example.com",
+            fields=["name", "name", "name"],
+            send_email=True,
         )
         assert_matches_type(CounterpartyCollectAccountResponse, counterparty, path=["response"])

@@ -72,10 +72,10 @@ class LineItems(SyncAPIResource):
             body=maybe_transform(
                 {
                     "name": name,
-                    "description": description,
-                    "quantity": quantity,
                     "unit_amount": unit_amount,
+                    "description": description,
                     "direction": direction,
+                    "quantity": quantity,
                 },
                 line_item_create_params.LineItemCreateParams,
             ),
@@ -101,7 +101,18 @@ class LineItems(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> InvoiceLineItem:
-        """get invoice_line_item"""
+        """
+        get invoice_line_item
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/invoices/{invoice_id}/invoice_line_items/{id}",
             options=make_request_options(
@@ -171,8 +182,8 @@ class LineItems(SyncAPIResource):
             body=maybe_transform(
                 {
                     "contact_details": contact_details,
-                    "counterparty_id": counterparty_id,
                     "counterparty_billing_address": counterparty_billing_address,
+                    "counterparty_id": counterparty_id,
                     "counterparty_shipping_address": counterparty_shipping_address,
                     "currency": currency,
                     "description": description,
@@ -249,7 +260,20 @@ class LineItems(SyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> InvoiceLineItem:
-        """delete invoice_line_item"""
+        """
+        delete invoice_line_item
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         return self._delete(
             f"/api/invoices/{invoice_id}/invoice_line_items/{id}",
             options=make_request_options(
@@ -314,10 +338,10 @@ class AsyncLineItems(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "name": name,
-                    "description": description,
-                    "quantity": quantity,
                     "unit_amount": unit_amount,
+                    "description": description,
                     "direction": direction,
+                    "quantity": quantity,
                 },
                 line_item_create_params.LineItemCreateParams,
             ),
@@ -343,7 +367,18 @@ class AsyncLineItems(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> InvoiceLineItem:
-        """get invoice_line_item"""
+        """
+        get invoice_line_item
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/invoices/{invoice_id}/invoice_line_items/{id}",
             options=make_request_options(
@@ -413,8 +448,8 @@ class AsyncLineItems(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "contact_details": contact_details,
-                    "counterparty_id": counterparty_id,
                     "counterparty_billing_address": counterparty_billing_address,
+                    "counterparty_id": counterparty_id,
                     "counterparty_shipping_address": counterparty_shipping_address,
                     "currency": currency,
                     "description": description,
@@ -491,7 +526,20 @@ class AsyncLineItems(AsyncAPIResource):
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> InvoiceLineItem:
-        """delete invoice_line_item"""
+        """
+        delete invoice_line_item
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
         return await self._delete(
             f"/api/invoices/{invoice_id}/invoice_line_items/{id}",
             options=make_request_options(

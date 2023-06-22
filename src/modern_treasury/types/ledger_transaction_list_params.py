@@ -9,12 +9,6 @@ from typing_extensions import Literal, TypedDict
 __all__ = ["LedgerTransactionListParams", "OrderBy"]
 
 
-class OrderBy(TypedDict, total=False):
-    created_at: Literal["asc", "desc"]
-
-    effective_at: Literal["asc", "desc"]
-
-
 class LedgerTransactionListParams(TypedDict, total=False):
     after_cursor: Optional[str]
 
@@ -74,3 +68,9 @@ class LedgerTransactionListParams(TypedDict, total=False):
     posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
     updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
     """
+
+
+class OrderBy(TypedDict, total=False):
+    created_at: Literal["asc", "desc"]
+
+    effective_at: Literal["asc", "desc"]

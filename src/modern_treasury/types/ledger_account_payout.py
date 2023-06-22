@@ -39,8 +39,11 @@ class LedgerAccountPayout(BaseModel):
 
     id: str
 
+    ledger_id: str
+    """The id of the ledger that this ledger account payout belongs to."""
+
     ledger_transaction_id: Optional[str]
-    """The ledger transaction that this payout is associated with."""
+    """The id of the ledger transaction that this payout is associated with."""
 
     live_mode: bool
     """

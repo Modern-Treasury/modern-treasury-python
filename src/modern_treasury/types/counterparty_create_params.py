@@ -7,6 +7,7 @@ from typing_extensions import Literal, Required, TypedDict
 
 __all__ = [
     "CounterpartyCreateParams",
+    "Accounting",
     "Accounts",
     "Account",
     "AccountsPartyAddress",
@@ -19,8 +20,49 @@ __all__ = [
     "AccountLedgerAccount",
     "AccountsContactDetails",
     "AccountContactDetail",
-    "Accounting",
 ]
+
+
+class CounterpartyCreateParams(TypedDict, total=False):
+    name: Required[Optional[str]]
+    """A human friendly name for this counterparty."""
+
+    accounting: Accounting
+
+    accounts: List[Account]
+    """The accounts for this counterparty."""
+
+    email: Optional[str]
+    """The counterparty's email."""
+
+    ledger_type: Literal["customer", "vendor"]
+    """An optional type to auto-sync the counterparty to your ledger.
+
+    Either `customer` or `vendor`.
+    """
+
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
+
+    send_remittance_advice: bool
+    """
+    Send an email to the counterparty whenever an associated payment order is sent
+    to the bank.
+    """
+
+    taxpayer_identifier: str
+    """Either a valid SSN or EIN."""
+
+
+class Accounting(TypedDict, total=False):
+    type: Literal["customer", "vendor"]
+    """An optional type to auto-sync the counterparty to your ledger.
+
+    Either `customer` or `vendor`.
+    """
 
 
 class AccountPartyAddress(TypedDict, total=False):
@@ -126,6 +168,19 @@ class AccountLedgerAccount(TypedDict, total=False):
     description: Optional[str]
     """The description of the ledger account."""
 
+    ledgerable_id: str
+    """
+    If the ledger account links to another object in Modern Treasury, the id will be
+    populated here, otherwise null.
+    """
+
+    ledgerable_type: Literal["external_account", "internal_account"]
+    """
+    If the ledger account links to another object in Modern Treasury, the type will
+    be populated here, otherwise null. The value is one of internal_account or
+    external_account.
+    """
+
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.
 
@@ -167,7 +222,7 @@ class Account(TypedDict, total=False):
 
     The resulting ledger account is linked to the external account for
     auto-ledgering Payment objects. See
-    https://dash.readme.com/project/modern-treasury/v1.1/docs/linking-to-other-modern-treasury-objects
+    https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
     for more details.
     """
 
@@ -210,45 +265,3 @@ Accounts = Account
 
 Please use Account instead.
 """
-
-
-class Accounting(TypedDict, total=False):
-    type: Literal["customer", "vendor"]
-    """An optional type to auto-sync the counterparty to your ledger.
-
-    Either `customer` or `vendor`.
-    """
-
-
-class CounterpartyCreateParams(TypedDict, total=False):
-    name: Required[Optional[str]]
-    """A human friendly name for this counterparty."""
-
-    accounting: Accounting
-
-    accounts: List[Account]
-    """The accounts for this counterparty."""
-
-    email: Optional[str]
-    """The counterparty's email."""
-
-    ledger_type: Literal["customer", "vendor"]
-    """An optional type to auto-sync the counterparty to your ledger.
-
-    Either `customer` or `vendor`.
-    """
-
-    metadata: Dict[str, str]
-    """Additional data represented as key-value pairs.
-
-    Both the key and value must be strings.
-    """
-
-    send_remittance_advice: bool
-    """
-    Send an email to the counterparty whenever an associated payment order is sent
-    to the bank.
-    """
-
-    taxpayer_identifier: str
-    """Either a valid SSN or EIN."""

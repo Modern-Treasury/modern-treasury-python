@@ -35,7 +35,18 @@ class IncomingPaymentDetails(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> IncomingPaymentDetail:
-        """Get an existing Incoming Payment Detail."""
+        """
+        Get an existing Incoming Payment Detail.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/incoming_payment_details/{id}",
             options=make_request_options(
@@ -152,13 +163,13 @@ class IncomingPaymentDetails(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
+                        "as_of_date_end": as_of_date_end,
+                        "as_of_date_start": as_of_date_start,
                         "direction": direction,
+                        "metadata": metadata,
+                        "per_page": per_page,
                         "status": status,
                         "type": type,
-                        "as_of_date_start": as_of_date_start,
-                        "as_of_date_end": as_of_date_end,
-                        "metadata": metadata,
                         "virtual_account_id": virtual_account_id,
                     },
                     incoming_payment_detail_list_params.IncomingPaymentDetailListParams,
@@ -219,13 +230,13 @@ class IncomingPaymentDetails(SyncAPIResource):
             "/api/simulations/incoming_payment_details/create_async",
             body=maybe_transform(
                 {
-                    "type": type,
-                    "direction": direction,
                     "amount": amount,
-                    "currency": currency,
-                    "internal_account_id": internal_account_id,
-                    "virtual_account_id": virtual_account_id,
                     "as_of_date": as_of_date,
+                    "currency": currency,
+                    "direction": direction,
+                    "internal_account_id": internal_account_id,
+                    "type": type,
+                    "virtual_account_id": virtual_account_id,
                 },
                 incoming_payment_detail_create_async_params.IncomingPaymentDetailCreateAsyncParams,
             ),
@@ -252,7 +263,18 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> IncomingPaymentDetail:
-        """Get an existing Incoming Payment Detail."""
+        """
+        Get an existing Incoming Payment Detail.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/incoming_payment_details/{id}",
             options=make_request_options(
@@ -369,13 +391,13 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
+                        "as_of_date_end": as_of_date_end,
+                        "as_of_date_start": as_of_date_start,
                         "direction": direction,
+                        "metadata": metadata,
+                        "per_page": per_page,
                         "status": status,
                         "type": type,
-                        "as_of_date_start": as_of_date_start,
-                        "as_of_date_end": as_of_date_end,
-                        "metadata": metadata,
                         "virtual_account_id": virtual_account_id,
                     },
                     incoming_payment_detail_list_params.IncomingPaymentDetailListParams,
@@ -436,13 +458,13 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
             "/api/simulations/incoming_payment_details/create_async",
             body=maybe_transform(
                 {
-                    "type": type,
-                    "direction": direction,
                     "amount": amount,
-                    "currency": currency,
-                    "internal_account_id": internal_account_id,
-                    "virtual_account_id": virtual_account_id,
                     "as_of_date": as_of_date,
+                    "currency": currency,
+                    "direction": direction,
+                    "internal_account_id": internal_account_id,
+                    "type": type,
+                    "virtual_account_id": virtual_account_id,
                 },
                 incoming_payment_detail_create_async_params.IncomingPaymentDetailCreateAsyncParams,
             ),

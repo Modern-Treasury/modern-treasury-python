@@ -8,6 +8,23 @@ from typing_extensions import Literal, Required, TypedDict
 __all__ = ["LedgerTransactionUpdateParams", "LedgerEntries", "LedgerEntry"]
 
 
+class LedgerTransactionUpdateParams(TypedDict, total=False):
+    description: Optional[str]
+    """An optional description for internal use."""
+
+    ledger_entries: List[LedgerEntry]
+    """An array of ledger entry objects."""
+
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
+
+    status: Literal["archived", "pending", "posted"]
+    """To post a ledger transaction at creation, use `posted`."""
+
+
 class LedgerEntry(TypedDict, total=False):
     amount: Required[int]
     """Value in specified currency's smallest unit.
@@ -68,20 +85,3 @@ LedgerEntries = LedgerEntry
 
 Please use LedgerEntry instead.
 """
-
-
-class LedgerTransactionUpdateParams(TypedDict, total=False):
-    description: Optional[str]
-    """An optional description for internal use."""
-
-    ledger_entries: List[LedgerEntry]
-    """An array of ledger entry objects."""
-
-    metadata: Dict[str, str]
-    """Additional data represented as key-value pairs.
-
-    Both the key and value must be strings.
-    """
-
-    status: Literal["archived", "pending", "posted"]
-    """To post a ledger transaction at creation, use `posted`."""

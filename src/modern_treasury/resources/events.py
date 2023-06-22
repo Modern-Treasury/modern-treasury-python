@@ -27,7 +27,18 @@ class Events(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> Event:
-        """get event"""
+        """
+        get event
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return self._get(
             f"/api/events/{id}",
             options=make_request_options(
@@ -80,12 +91,12 @@ class Events(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "event_time_start": event_time_start,
-                        "event_time_end": event_time_end,
-                        "resource": resource,
                         "entity_id": entity_id,
                         "event_name": event_name,
+                        "event_time_end": event_time_end,
+                        "event_time_start": event_time_start,
+                        "per_page": per_page,
+                        "resource": resource,
                     },
                     event_list_params.EventListParams,
                 ),
@@ -106,7 +117,18 @@ class AsyncEvents(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
     ) -> Event:
-        """get event"""
+        """
+        get event
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         return await self._get(
             f"/api/events/{id}",
             options=make_request_options(
@@ -159,12 +181,12 @@ class AsyncEvents(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "event_time_start": event_time_start,
-                        "event_time_end": event_time_end,
-                        "resource": resource,
                         "entity_id": entity_id,
                         "event_name": event_name,
+                        "event_time_end": event_time_end,
+                        "event_time_start": event_time_start,
+                        "per_page": per_page,
+                        "resource": resource,
                     },
                     event_list_params.EventListParams,
                 ),

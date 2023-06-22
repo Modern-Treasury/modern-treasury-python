@@ -40,8 +40,8 @@ class TestDocuments:
         document = client.documents.create(
             "string",
             documentable_type="cases",
-            document_type="string",
             file=b"raw file contents",
+            document_type="string",
         )
         assert_matches_type(Document, document, path=["response"])
 
@@ -98,8 +98,8 @@ class TestAsyncDocuments:
         document = await client.documents.create(
             "string",
             documentable_type="cases",
-            document_type="string",
             file=b"raw file contents",
+            document_type="string",
         )
         assert_matches_type(Document, document, path=["response"])
 
