@@ -19,6 +19,18 @@ class VersionListParams(TypedDict, total=False):
     created_at%5Bgt%5D=2000-01-01T12:00:00Z.
     """
 
+    ledger_account_statement_id: str
+    """
+    Get all ledger transaction versions that are included in the ledger account
+    statement.
+    """
+
+    ledger_transaction_id: str
+    """
+    Get all the ledger transaction versions corresponding to the ID of a ledger
+    transaction.
+    """
+
     per_page: int
 
     version: Dict[str, int]

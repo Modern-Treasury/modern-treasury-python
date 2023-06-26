@@ -174,6 +174,8 @@ class TestLedgerTransactions:
             ledger_account_category_id="string",
             ledger_account_id="string",
             ledger_id="string",
+            ledgerable_id="string",
+            ledgerable_type="counterparty",
             metadata={"foo": "string"},
             order_by={
                 "created_at": "asc",
@@ -181,10 +183,36 @@ class TestLedgerTransactions:
             },
             per_page=0,
             posted_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
+            reverses_ledger_transaction_id="string",
             status="pending",
             updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
         )
         assert_matches_type(SyncPage[LedgerTransaction], ledger_transaction, path=["response"])
+
+    @parametrize
+    def test_method_create_reversal(self, client: ModernTreasury) -> None:
+        ledger_transaction = client.ledger_transactions.create_reversal(
+            "string",
+        )
+        assert_matches_type(LedgerTransaction, ledger_transaction, path=["response"])
+
+    @parametrize
+    def test_method_create_reversal_with_all_params(self, client: ModernTreasury) -> None:
+        ledger_transaction = client.ledger_transactions.create_reversal(
+            "string",
+            description="string",
+            effective_at=parse_date("2019-12-27"),
+            external_id="string",
+            ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            ledgerable_type="counterparty",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
+            status="archived",
+        )
+        assert_matches_type(LedgerTransaction, ledger_transaction, path=["response"])
 
 
 class TestAsyncLedgerTransactions:
@@ -345,6 +373,8 @@ class TestAsyncLedgerTransactions:
             ledger_account_category_id="string",
             ledger_account_id="string",
             ledger_id="string",
+            ledgerable_id="string",
+            ledgerable_type="counterparty",
             metadata={"foo": "string"},
             order_by={
                 "created_at": "asc",
@@ -352,7 +382,33 @@ class TestAsyncLedgerTransactions:
             },
             per_page=0,
             posted_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
+            reverses_ledger_transaction_id="string",
             status="pending",
             updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
         )
         assert_matches_type(AsyncPage[LedgerTransaction], ledger_transaction, path=["response"])
+
+    @parametrize
+    async def test_method_create_reversal(self, client: AsyncModernTreasury) -> None:
+        ledger_transaction = await client.ledger_transactions.create_reversal(
+            "string",
+        )
+        assert_matches_type(LedgerTransaction, ledger_transaction, path=["response"])
+
+    @parametrize
+    async def test_method_create_reversal_with_all_params(self, client: AsyncModernTreasury) -> None:
+        ledger_transaction = await client.ledger_transactions.create_reversal(
+            "string",
+            description="string",
+            effective_at=parse_date("2019-12-27"),
+            external_id="string",
+            ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            ledgerable_type="counterparty",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
+            status="archived",
+        )
+        assert_matches_type(LedgerTransaction, ledger_transaction, path=["response"])

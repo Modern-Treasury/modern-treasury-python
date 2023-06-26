@@ -1,5 +1,6 @@
 # File generated from our OpenAPI spec by Stainless.
 
+import builtins
 from typing import Dict, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
@@ -69,6 +70,12 @@ class ExpectedPayment(BaseModel):
     """
 
     object: str
+
+    reconciliation_filters: Optional[builtins.object]
+    """The reconciliation filters you have for this payment."""
+
+    reconciliation_groups: Optional[builtins.object]
+    """The reconciliation groups you have for this payment."""
 
     reconciliation_method: Optional[Literal["automatic", "manual"]]
     """

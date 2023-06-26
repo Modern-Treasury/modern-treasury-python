@@ -88,6 +88,11 @@ class LedgerTransaction(BaseModel):
     This is null if the ledger transaction is pending.
     """
 
+    reverses_ledger_transaction_id: Optional[str]
+    """
+    The ID of the original ledger transaction that this ledger transaction reverses.
+    """
+
     status: Literal["archived", "pending", "posted"]
     """To post a ledger transaction at creation, use `posted`."""
 

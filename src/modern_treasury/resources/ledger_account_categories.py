@@ -206,6 +206,7 @@ class LedgerAccountCategories(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -222,6 +223,9 @@ class LedgerAccountCategories(SyncAPIResource):
         Get a list of ledger account categories.
 
         Args:
+          ledger_account_id: Query categories which contain a ledger account directly or through child
+              categories.
+
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
@@ -247,6 +251,7 @@ class LedgerAccountCategories(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
+                        "ledger_account_id": ledger_account_id,
                         "ledger_id": ledger_id,
                         "metadata": metadata,
                         "name": name,
@@ -651,6 +656,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -667,6 +673,9 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         Get a list of ledger account categories.
 
         Args:
+          ledger_account_id: Query categories which contain a ledger account directly or through child
+              categories.
+
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
@@ -692,6 +701,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
+                        "ledger_account_id": ledger_account_id,
                         "ledger_id": ledger_id,
                         "metadata": metadata,
                         "name": name,

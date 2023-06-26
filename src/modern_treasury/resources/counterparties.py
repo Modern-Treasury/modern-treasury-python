@@ -35,6 +35,7 @@ class Counterparties(SyncAPIResource):
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         send_remittance_advice: bool | NotGiven = NOT_GIVEN,
         taxpayer_identifier: str | NotGiven = NOT_GIVEN,
+        verification_status: Literal["denied", "needs_approval", "unverified", "verified"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -64,6 +65,8 @@ class Counterparties(SyncAPIResource):
 
           taxpayer_identifier: Either a valid SSN or EIN.
 
+          verification_status: The verification status of the counterparty.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -86,6 +89,7 @@ class Counterparties(SyncAPIResource):
                     "metadata": metadata,
                     "send_remittance_advice": send_remittance_advice,
                     "taxpayer_identifier": taxpayer_identifier,
+                    "verification_status": verification_status,
                 },
                 counterparty_create_params.CounterpartyCreateParams,
             ),
@@ -409,6 +413,7 @@ class AsyncCounterparties(AsyncAPIResource):
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         send_remittance_advice: bool | NotGiven = NOT_GIVEN,
         taxpayer_identifier: str | NotGiven = NOT_GIVEN,
+        verification_status: Literal["denied", "needs_approval", "unverified", "verified"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -438,6 +443,8 @@ class AsyncCounterparties(AsyncAPIResource):
 
           taxpayer_identifier: Either a valid SSN or EIN.
 
+          verification_status: The verification status of the counterparty.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -460,6 +467,7 @@ class AsyncCounterparties(AsyncAPIResource):
                     "metadata": metadata,
                     "send_remittance_advice": send_remittance_advice,
                     "taxpayer_identifier": taxpayer_identifier,
+                    "verification_status": verification_status,
                 },
                 counterparty_create_params.CounterpartyCreateParams,
             ),

@@ -55,4 +55,10 @@ class TransactionListParams(TypedDict, total=False):
 
     transactable_type: str
 
+    vendor_id: str
+    """
+    Filters for transactions including the queried vendor id (an identifier given to
+    transactions by the bank).
+    """
+
     virtual_account_id: str

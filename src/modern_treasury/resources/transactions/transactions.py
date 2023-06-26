@@ -2,20 +2,30 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing import TYPE_CHECKING, Dict, Union, Optional
 from datetime import date
 
-from ..types import Transaction, transaction_list_params, transaction_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import maybe_transform
-from .._resource import SyncAPIResource, AsyncAPIResource
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
+from ...types import Transaction, transaction_list_params, transaction_update_params
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
+from .line_items import LineItems, AsyncLineItems
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...pagination import SyncPage, AsyncPage
+from ..._base_client import AsyncPaginator, make_request_options
+
+if TYPE_CHECKING:
+    from ..._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["Transactions", "AsyncTransactions"]
 
 
 class Transactions(SyncAPIResource):
+    line_items: LineItems
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.line_items = LineItems(client)
+
     def retrieve(
         self,
         id: str,
@@ -105,6 +115,7 @@ class Transactions(SyncAPIResource):
         per_page: int | NotGiven = NOT_GIVEN,
         posted: bool | NotGiven = NOT_GIVEN,
         transactable_type: str | NotGiven = NOT_GIVEN,
+        vendor_id: str | NotGiven = NOT_GIVEN,
         virtual_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -133,6 +144,9 @@ class Transactions(SyncAPIResource):
               parameters.
 
           posted: Either `true` or `false`.
+
+          vendor_id: Filters for transactions including the queried vendor id (an identifier given to
+              transactions by the bank).
 
           extra_headers: Send extra headers
 
@@ -164,6 +178,7 @@ class Transactions(SyncAPIResource):
                         "per_page": per_page,
                         "posted": posted,
                         "transactable_type": transactable_type,
+                        "vendor_id": vendor_id,
                         "virtual_account_id": virtual_account_id,
                     },
                     transaction_list_params.TransactionListParams,
@@ -174,6 +189,12 @@ class Transactions(SyncAPIResource):
 
 
 class AsyncTransactions(AsyncAPIResource):
+    line_items: AsyncLineItems
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.line_items = AsyncLineItems(client)
+
     async def retrieve(
         self,
         id: str,
@@ -263,6 +284,7 @@ class AsyncTransactions(AsyncAPIResource):
         per_page: int | NotGiven = NOT_GIVEN,
         posted: bool | NotGiven = NOT_GIVEN,
         transactable_type: str | NotGiven = NOT_GIVEN,
+        vendor_id: str | NotGiven = NOT_GIVEN,
         virtual_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -291,6 +313,9 @@ class AsyncTransactions(AsyncAPIResource):
               parameters.
 
           posted: Either `true` or `false`.
+
+          vendor_id: Filters for transactions including the queried vendor id (an identifier given to
+              transactions by the bank).
 
           extra_headers: Send extra headers
 
@@ -322,6 +347,7 @@ class AsyncTransactions(AsyncAPIResource):
                         "per_page": per_page,
                         "posted": posted,
                         "transactable_type": transactable_type,
+                        "vendor_id": vendor_id,
                         "virtual_account_id": virtual_account_id,
                     },
                     transaction_list_params.TransactionListParams,

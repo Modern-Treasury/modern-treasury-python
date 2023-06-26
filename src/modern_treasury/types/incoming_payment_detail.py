@@ -59,6 +59,34 @@ class IncomingPaymentDetail(BaseModel):
 
     object: str
 
+    originating_account_number_safe: Optional[str]
+    """
+    The last 4 digits of the originating account_number for the incoming payment
+    detail.
+    """
+
+    originating_account_number_type: Optional[Literal["clabe", "iban", "other", "pan", "wallet_address"]]
+    """The type of the originating account number for the incoming payment detail."""
+
+    originating_routing_number: Optional[str]
+    """The routing number of the originating account for the incoming payment detail."""
+
+    originating_routing_number_type: Optional[
+        Literal[
+            "aba",
+            "au_bsb",
+            "br_codigo",
+            "ca_cpa",
+            "chips",
+            "cnaps",
+            "gb_sort_code",
+            "in_ifsc",
+            "my_branch_code",
+            "swift",
+        ]
+    ]
+    """The type of the originating routing number for the incoming payment detail."""
+
     status: Literal["completed", "pending", "returned"]
     """The current status of the incoming payment order.
 
@@ -93,3 +121,6 @@ class IncomingPaymentDetail(BaseModel):
     If the incoming payment detail is in a virtual account, the ID of the Virtual
     Account.
     """
+
+    originating_account_number: Optional[str]
+    """The account number of the originating account for the incoming payment detail."""

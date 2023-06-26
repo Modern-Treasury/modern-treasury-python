@@ -61,10 +61,13 @@ class ModernTreasury(SyncAPIClient):
     routing_details: resources.RoutingDetails
     internal_accounts: resources.InternalAccounts
     ledgers: resources.Ledgers
+    ledgerable_events: resources.LedgerableEvents
     ledger_account_categories: resources.LedgerAccountCategories
     ledger_accounts: resources.LedgerAccounts
     ledger_account_payouts: resources.LedgerAccountPayouts
+    ledger_account_statements: resources.LedgerAccountStatements
     ledger_entries: resources.LedgerEntries
+    ledger_event_handlers: resources.LedgerEventHandlers
     ledger_transactions: resources.LedgerTransactions
     line_items: resources.LineItems
     payment_flows: resources.PaymentFlows
@@ -166,10 +169,13 @@ class ModernTreasury(SyncAPIClient):
         self.routing_details = resources.RoutingDetails(self)
         self.internal_accounts = resources.InternalAccounts(self)
         self.ledgers = resources.Ledgers(self)
+        self.ledgerable_events = resources.LedgerableEvents(self)
         self.ledger_account_categories = resources.LedgerAccountCategories(self)
         self.ledger_accounts = resources.LedgerAccounts(self)
         self.ledger_account_payouts = resources.LedgerAccountPayouts(self)
+        self.ledger_account_statements = resources.LedgerAccountStatements(self)
         self.ledger_entries = resources.LedgerEntries(self)
+        self.ledger_event_handlers = resources.LedgerEventHandlers(self)
         self.ledger_transactions = resources.LedgerTransactions(self)
         self.line_items = resources.LineItems(self)
         self.payment_flows = resources.PaymentFlows(self)
@@ -287,10 +293,13 @@ class AsyncModernTreasury(AsyncAPIClient):
     routing_details: resources.AsyncRoutingDetails
     internal_accounts: resources.AsyncInternalAccounts
     ledgers: resources.AsyncLedgers
+    ledgerable_events: resources.AsyncLedgerableEvents
     ledger_account_categories: resources.AsyncLedgerAccountCategories
     ledger_accounts: resources.AsyncLedgerAccounts
     ledger_account_payouts: resources.AsyncLedgerAccountPayouts
+    ledger_account_statements: resources.AsyncLedgerAccountStatements
     ledger_entries: resources.AsyncLedgerEntries
+    ledger_event_handlers: resources.AsyncLedgerEventHandlers
     ledger_transactions: resources.AsyncLedgerTransactions
     line_items: resources.AsyncLineItems
     payment_flows: resources.AsyncPaymentFlows
@@ -392,10 +401,13 @@ class AsyncModernTreasury(AsyncAPIClient):
         self.routing_details = resources.AsyncRoutingDetails(self)
         self.internal_accounts = resources.AsyncInternalAccounts(self)
         self.ledgers = resources.AsyncLedgers(self)
+        self.ledgerable_events = resources.AsyncLedgerableEvents(self)
         self.ledger_account_categories = resources.AsyncLedgerAccountCategories(self)
         self.ledger_accounts = resources.AsyncLedgerAccounts(self)
         self.ledger_account_payouts = resources.AsyncLedgerAccountPayouts(self)
+        self.ledger_account_statements = resources.AsyncLedgerAccountStatements(self)
         self.ledger_entries = resources.AsyncLedgerEntries(self)
+        self.ledger_event_handlers = resources.AsyncLedgerEventHandlers(self)
         self.ledger_transactions = resources.AsyncLedgerTransactions(self)
         self.line_items = resources.AsyncLineItems(self)
         self.payment_flows = resources.AsyncPaymentFlows(self)
