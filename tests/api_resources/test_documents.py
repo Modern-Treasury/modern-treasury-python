@@ -28,7 +28,7 @@ class TestDocuments:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         document = client.documents.create(
-            "string",
+            documentable_id="string",
             documentable_type="cases",
             file=b"raw file contents",
         )
@@ -38,7 +38,7 @@ class TestDocuments:
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         document = client.documents.create(
-            "string",
+            documentable_id="string",
             documentable_type="cases",
             file=b"raw file contents",
             document_type="string",
@@ -49,25 +49,20 @@ class TestDocuments:
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         document = client.documents.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            documentable_type="cases",
-            documentable_id="string",
         )
         assert_matches_type(Document, document, path=["response"])
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
-        document = client.documents.list(
-            "string",
-            documentable_type="cases",
-        )
+        document = client.documents.list()
         assert_matches_type(SyncPage[Document], document, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         document = client.documents.list(
-            "string",
-            documentable_type="cases",
             after_cursor="string",
+            documentable_id="string",
+            documentable_type="cases",
             per_page=0,
         )
         assert_matches_type(SyncPage[Document], document, path=["response"])
@@ -86,7 +81,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         document = await client.documents.create(
-            "string",
+            documentable_id="string",
             documentable_type="cases",
             file=b"raw file contents",
         )
@@ -96,7 +91,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         document = await client.documents.create(
-            "string",
+            documentable_id="string",
             documentable_type="cases",
             file=b"raw file contents",
             document_type="string",
@@ -107,25 +102,20 @@ class TestAsyncDocuments:
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         document = await client.documents.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            documentable_type="cases",
-            documentable_id="string",
         )
         assert_matches_type(Document, document, path=["response"])
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        document = await client.documents.list(
-            "string",
-            documentable_type="cases",
-        )
+        document = await client.documents.list()
         assert_matches_type(AsyncPage[Document], document, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         document = await client.documents.list(
-            "string",
-            documentable_type="cases",
             after_cursor="string",
+            documentable_id="string",
+            documentable_type="cases",
             per_page=0,
         )
         assert_matches_type(AsyncPage[Document], document, path=["response"])

@@ -73,6 +73,7 @@ class Document(BaseModel):
         "payment_order",
         "transaction",
         "decision",
+        "connection",
     ]
     """The type of the associated object.
 
@@ -92,5 +93,8 @@ class Document(BaseModel):
     """
 
     object: str
+
+    source: str
+    """The source of the document. Can be `vendor`, `customer`, or `modern_treasury`."""
 
     updated_at: datetime

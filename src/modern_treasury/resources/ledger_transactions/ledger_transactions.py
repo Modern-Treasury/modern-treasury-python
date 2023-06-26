@@ -11,6 +11,7 @@ from ...types import (
     ledger_transaction_list_params,
     ledger_transaction_create_params,
     ledger_transaction_update_params,
+    ledger_transaction_create_reversal_params,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import maybe_transform
@@ -226,10 +227,25 @@ class LedgerTransactions(SyncAPIResource):
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
+        ledgerable_id: str | NotGiven = NOT_GIVEN,
+        ledgerable_type: Literal[
+            "counterparty",
+            "expected_payment",
+            "incoming_payment_detail",
+            "internal_account",
+            "line_item",
+            "paper_item",
+            "payment_order",
+            "payment_order_attempt",
+            "return",
+            "reversal",
+        ]
+        | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         order_by: ledger_transaction_list_params.OrderBy | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         posted_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        reverses_ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         status: Literal["pending", "posted", "archived"] | NotGiven = NOT_GIVEN,
         updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -293,10 +309,13 @@ class LedgerTransactions(SyncAPIResource):
                         "ledger_account_category_id": ledger_account_category_id,
                         "ledger_account_id": ledger_account_id,
                         "ledger_id": ledger_id,
+                        "ledgerable_id": ledgerable_id,
+                        "ledgerable_type": ledgerable_type,
                         "metadata": metadata,
                         "order_by": order_by,
                         "per_page": per_page,
                         "posted_at": posted_at,
+                        "reverses_ledger_transaction_id": reverses_ledger_transaction_id,
                         "status": status,
                         "updated_at": updated_at,
                     },
@@ -304,6 +323,96 @@ class LedgerTransactions(SyncAPIResource):
                 ),
             ),
             model=LedgerTransaction,
+        )
+
+    def create_reversal(
+        self,
+        ledger_transaction_id: str,
+        *,
+        description: str | NotGiven = NOT_GIVEN,
+        effective_at: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
+        external_id: str | NotGiven = NOT_GIVEN,
+        ledgerable_id: str | NotGiven = NOT_GIVEN,
+        ledgerable_type: Literal[
+            "counterparty",
+            "expected_payment",
+            "incoming_payment_detail",
+            "internal_account",
+            "line_item",
+            "paper_item",
+            "payment_order",
+            "payment_order_attempt",
+            "return",
+            "reversal",
+        ]
+        | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
+        idempotency_key: str | None = None,
+    ) -> LedgerTransaction:
+        """
+        Create a ledger transaction reversal.
+
+        Args:
+          description: An optional free-form description for the reversal ledger transaction. Maximum
+              of 1000 characters allowed.
+
+          effective_at: The timestamp (ISO8601 format) at which the reversal ledger transaction happened
+              for reporting purposes. It defaults to the `effective_at` of the original ledger
+              transaction if not provided.
+
+          external_id: Must be unique within the ledger.
+
+          ledgerable_id: Specify this if you'd like to link the reversal ledger transaction to a Payment
+              object like Return or Reversal.
+
+          ledgerable_type: Specify this if you'd like to link the reversal ledger transaction to a Payment
+              object like Return or Reversal.
+
+          metadata: Additional data to be added to the reversal ledger transaction as key-value
+              pairs. Both the key and value must be strings.
+
+          status: Status of the reversal ledger transaction. It defaults to `posted` if not
+              provided.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        return self._post(
+            f"/api/ledger_transactions/{ledger_transaction_id}/reversal",
+            body=maybe_transform(
+                {
+                    "description": description,
+                    "effective_at": effective_at,
+                    "external_id": external_id,
+                    "ledgerable_id": ledgerable_id,
+                    "ledgerable_type": ledgerable_type,
+                    "metadata": metadata,
+                    "status": status,
+                },
+                ledger_transaction_create_reversal_params.LedgerTransactionCreateReversalParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=LedgerTransaction,
         )
 
 
@@ -508,10 +617,25 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
+        ledgerable_id: str | NotGiven = NOT_GIVEN,
+        ledgerable_type: Literal[
+            "counterparty",
+            "expected_payment",
+            "incoming_payment_detail",
+            "internal_account",
+            "line_item",
+            "paper_item",
+            "payment_order",
+            "payment_order_attempt",
+            "return",
+            "reversal",
+        ]
+        | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         order_by: ledger_transaction_list_params.OrderBy | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         posted_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        reverses_ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         status: Literal["pending", "posted", "archived"] | NotGiven = NOT_GIVEN,
         updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -575,10 +699,13 @@ class AsyncLedgerTransactions(AsyncAPIResource):
                         "ledger_account_category_id": ledger_account_category_id,
                         "ledger_account_id": ledger_account_id,
                         "ledger_id": ledger_id,
+                        "ledgerable_id": ledgerable_id,
+                        "ledgerable_type": ledgerable_type,
                         "metadata": metadata,
                         "order_by": order_by,
                         "per_page": per_page,
                         "posted_at": posted_at,
+                        "reverses_ledger_transaction_id": reverses_ledger_transaction_id,
                         "status": status,
                         "updated_at": updated_at,
                     },
@@ -586,4 +713,94 @@ class AsyncLedgerTransactions(AsyncAPIResource):
                 ),
             ),
             model=LedgerTransaction,
+        )
+
+    async def create_reversal(
+        self,
+        ledger_transaction_id: str,
+        *,
+        description: str | NotGiven = NOT_GIVEN,
+        effective_at: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
+        external_id: str | NotGiven = NOT_GIVEN,
+        ledgerable_id: str | NotGiven = NOT_GIVEN,
+        ledgerable_type: Literal[
+            "counterparty",
+            "expected_payment",
+            "incoming_payment_detail",
+            "internal_account",
+            "line_item",
+            "paper_item",
+            "payment_order",
+            "payment_order_attempt",
+            "return",
+            "reversal",
+        ]
+        | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
+        idempotency_key: str | None = None,
+    ) -> LedgerTransaction:
+        """
+        Create a ledger transaction reversal.
+
+        Args:
+          description: An optional free-form description for the reversal ledger transaction. Maximum
+              of 1000 characters allowed.
+
+          effective_at: The timestamp (ISO8601 format) at which the reversal ledger transaction happened
+              for reporting purposes. It defaults to the `effective_at` of the original ledger
+              transaction if not provided.
+
+          external_id: Must be unique within the ledger.
+
+          ledgerable_id: Specify this if you'd like to link the reversal ledger transaction to a Payment
+              object like Return or Reversal.
+
+          ledgerable_type: Specify this if you'd like to link the reversal ledger transaction to a Payment
+              object like Return or Reversal.
+
+          metadata: Additional data to be added to the reversal ledger transaction as key-value
+              pairs. Both the key and value must be strings.
+
+          status: Status of the reversal ledger transaction. It defaults to `posted` if not
+              provided.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        return await self._post(
+            f"/api/ledger_transactions/{ledger_transaction_id}/reversal",
+            body=maybe_transform(
+                {
+                    "description": description,
+                    "effective_at": effective_at,
+                    "external_id": external_id,
+                    "ledgerable_id": ledgerable_id,
+                    "ledgerable_type": ledgerable_type,
+                    "metadata": metadata,
+                    "status": status,
+                },
+                ledger_transaction_create_reversal_params.LedgerTransactionCreateReversalParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=LedgerTransaction,
         )

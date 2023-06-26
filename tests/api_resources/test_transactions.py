@@ -67,6 +67,7 @@ class TestTransactions:
             per_page=0,
             posted=True,
             transactable_type="string",
+            vendor_id="string",
             virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(SyncPage[Transaction], transaction, path=["response"])
@@ -123,6 +124,7 @@ class TestAsyncTransactions:
             per_page=0,
             posted=True,
             transactable_type="string",
+            vendor_id="string",
             virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(AsyncPage[Transaction], transaction, path=["response"])

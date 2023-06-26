@@ -153,6 +153,12 @@ class LedgerEntry(BaseModel):
     if it exists in the test environment.
     """
 
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
+
     object: str
 
     resulting_ledger_account_balances: Optional[LedgerEntryResultingLedgerAccountBalances]

@@ -248,6 +248,12 @@ class ExpectedPaymentUpdateParams(TypedDict, total=False):
     Both the key and value must be strings.
     """
 
+    reconciliation_filters: Optional[object]
+    """The reconciliation filters you have for this payment."""
+
+    reconciliation_groups: Optional[object]
+    """The reconciliation groups you have for this payment."""
+
     remittance_information: Optional[str]
     """For `ach`, this field will be passed through on an addenda record.
 

@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import warnings
 from typing import Dict, Union, Optional
 from datetime import datetime
 
@@ -19,10 +18,11 @@ __all__ = ["Versions", "AsyncVersions"]
 class Versions(SyncAPIResource):
     def list(
         self,
-        id: str,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        ledger_account_statement_id: str | NotGiven = NOT_GIVEN,
+        ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         version: Dict[str, int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -40,6 +40,12 @@ class Versions(SyncAPIResource):
               created_at timestamp. For example, for all dates after Jan 1 2000 12:00 UTC, use
               created_at%5Bgt%5D=2000-01-01T12:00:00Z.
 
+          ledger_account_statement_id: Get all ledger transaction versions that are included in the ledger account
+              statement.
+
+          ledger_transaction_id: Get all the ledger transaction versions corresponding to the ID of a ledger
+              transaction.
+
           version: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               version. For example, for all versions after 2, use version%5Bgt%5D=2.
 
@@ -52,7 +58,7 @@ class Versions(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/api/ledger_transactions/{id}/versions",
+            "/api/ledger_transaction_versions",
             page=SyncPage[LedgerTransactionVersion],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -63,6 +69,8 @@ class Versions(SyncAPIResource):
                     {
                         "after_cursor": after_cursor,
                         "created_at": created_at,
+                        "ledger_account_statement_id": ledger_account_statement_id,
+                        "ledger_transaction_id": ledger_transaction_id,
                         "per_page": per_page,
                         "version": version,
                     },
@@ -72,61 +80,15 @@ class Versions(SyncAPIResource):
             model=LedgerTransactionVersion,
         )
 
-    def versions(
-        self,
-        id: str,
-        *,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        version: Dict[str, int] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
-    ) -> SyncPage[LedgerTransactionVersion]:
-        """
-        Get a list of ledger transaction versions.
-
-        Args:
-          created_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
-              created_at timestamp. For example, for all dates after Jan 1 2000 12:00 UTC, use
-              created_at%5Bgt%5D=2000-01-01T12:00:00Z.
-
-          version: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
-              version. For example, for all versions after 2, use version%5Bgt%5D=2.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        warnings.warn("This method has been deprecated and will be removed soon.", DeprecationWarning, stacklevel=2)
-        return self.list(
-            id=id,
-            after_cursor=after_cursor,
-            created_at=created_at,
-            per_page=per_page,
-            version=version,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
-        )
-
 
 class AsyncVersions(AsyncAPIResource):
     def list(
         self,
-        id: str,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        ledger_account_statement_id: str | NotGiven = NOT_GIVEN,
+        ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         version: Dict[str, int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -143,6 +105,12 @@ class AsyncVersions(AsyncAPIResource):
           created_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               created_at timestamp. For example, for all dates after Jan 1 2000 12:00 UTC, use
               created_at%5Bgt%5D=2000-01-01T12:00:00Z.
+
+          ledger_account_statement_id: Get all ledger transaction versions that are included in the ledger account
+              statement.
+
+          ledger_transaction_id: Get all the ledger transaction versions corresponding to the ID of a ledger
+              transaction.
 
           version: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               version. For example, for all versions after 2, use version%5Bgt%5D=2.
@@ -156,7 +124,7 @@ class AsyncVersions(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/api/ledger_transactions/{id}/versions",
+            "/api/ledger_transaction_versions",
             page=AsyncPage[LedgerTransactionVersion],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -167,6 +135,8 @@ class AsyncVersions(AsyncAPIResource):
                     {
                         "after_cursor": after_cursor,
                         "created_at": created_at,
+                        "ledger_account_statement_id": ledger_account_statement_id,
+                        "ledger_transaction_id": ledger_transaction_id,
                         "per_page": per_page,
                         "version": version,
                     },
@@ -174,51 +144,4 @@ class AsyncVersions(AsyncAPIResource):
                 ),
             ),
             model=LedgerTransactionVersion,
-        )
-
-    def versions(
-        self,
-        id: str,
-        *,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        version: Dict[str, int] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[LedgerTransactionVersion, AsyncPage[LedgerTransactionVersion]]:
-        """
-        Get a list of ledger transaction versions.
-
-        Args:
-          created_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
-              created_at timestamp. For example, for all dates after Jan 1 2000 12:00 UTC, use
-              created_at%5Bgt%5D=2000-01-01T12:00:00Z.
-
-          version: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
-              version. For example, for all versions after 2, use version%5Bgt%5D=2.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        warnings.warn("This method has been deprecated and will be removed soon.", DeprecationWarning, stacklevel=2)
-        return self.list(
-            id=id,
-            after_cursor=after_cursor,
-            created_at=created_at,
-            per_page=per_page,
-            version=version,
-            extra_headers=extra_headers,
-            extra_query=extra_query,
-            extra_body=extra_body,
-            timeout=timeout,
         )

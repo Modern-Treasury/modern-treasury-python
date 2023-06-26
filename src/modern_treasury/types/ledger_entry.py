@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import Optional
+from typing import Dict, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -119,6 +119,12 @@ class LedgerEntry(BaseModel):
     """
     This field will be true if this object exists in the live environment or false
     if it exists in the test environment.
+    """
+
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
     """
 
     object: str

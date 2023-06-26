@@ -38,6 +38,8 @@ class ExpectedPayments(SyncAPIResource):
         description: Optional[str] | NotGiven = NOT_GIVEN,
         line_items: List[expected_payment_create_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        reconciliation_filters: Optional[object] | NotGiven = NOT_GIVEN,
+        reconciliation_groups: Optional[object] | NotGiven = NOT_GIVEN,
         remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
         type: ExpectedPaymentType | NotGiven = NOT_GIVEN,
@@ -77,6 +79,10 @@ class ExpectedPayments(SyncAPIResource):
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
+          reconciliation_filters: The reconciliation filters you have for this payment.
+
+          reconciliation_groups: The reconciliation groups you have for this payment.
+
           remittance_information: For `ach`, this field will be passed through on an addenda record. For `wire`
               payments the field will be passed through as the "Originator to Beneficiary
               Information", also known as OBI or Fedwire tag 6000.
@@ -114,6 +120,8 @@ class ExpectedPayments(SyncAPIResource):
                     "description": description,
                     "line_items": line_items,
                     "metadata": metadata,
+                    "reconciliation_filters": reconciliation_filters,
+                    "reconciliation_groups": reconciliation_groups,
                     "remittance_information": remittance_information,
                     "statement_descriptor": statement_descriptor,
                     "type": type,
@@ -175,6 +183,8 @@ class ExpectedPayments(SyncAPIResource):
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         internal_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        reconciliation_filters: Optional[object] | NotGiven = NOT_GIVEN,
+        reconciliation_groups: Optional[object] | NotGiven = NOT_GIVEN,
         remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
         type: ExpectedPaymentType | NotGiven = NOT_GIVEN,
@@ -214,6 +224,10 @@ class ExpectedPayments(SyncAPIResource):
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
+          reconciliation_filters: The reconciliation filters you have for this payment.
+
+          reconciliation_groups: The reconciliation groups you have for this payment.
+
           remittance_information: For `ach`, this field will be passed through on an addenda record. For `wire`
               payments the field will be passed through as the "Originator to Beneficiary
               Information", also known as OBI or Fedwire tag 6000.
@@ -250,6 +264,8 @@ class ExpectedPayments(SyncAPIResource):
                     "direction": direction,
                     "internal_account_id": internal_account_id,
                     "metadata": metadata,
+                    "reconciliation_filters": reconciliation_filters,
+                    "reconciliation_groups": reconciliation_groups,
                     "remittance_information": remittance_information,
                     "statement_descriptor": statement_descriptor,
                     "type": type,
@@ -417,6 +433,8 @@ class AsyncExpectedPayments(AsyncAPIResource):
         description: Optional[str] | NotGiven = NOT_GIVEN,
         line_items: List[expected_payment_create_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        reconciliation_filters: Optional[object] | NotGiven = NOT_GIVEN,
+        reconciliation_groups: Optional[object] | NotGiven = NOT_GIVEN,
         remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
         type: ExpectedPaymentType | NotGiven = NOT_GIVEN,
@@ -456,6 +474,10 @@ class AsyncExpectedPayments(AsyncAPIResource):
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
+          reconciliation_filters: The reconciliation filters you have for this payment.
+
+          reconciliation_groups: The reconciliation groups you have for this payment.
+
           remittance_information: For `ach`, this field will be passed through on an addenda record. For `wire`
               payments the field will be passed through as the "Originator to Beneficiary
               Information", also known as OBI or Fedwire tag 6000.
@@ -493,6 +515,8 @@ class AsyncExpectedPayments(AsyncAPIResource):
                     "description": description,
                     "line_items": line_items,
                     "metadata": metadata,
+                    "reconciliation_filters": reconciliation_filters,
+                    "reconciliation_groups": reconciliation_groups,
                     "remittance_information": remittance_information,
                     "statement_descriptor": statement_descriptor,
                     "type": type,
@@ -554,6 +578,8 @@ class AsyncExpectedPayments(AsyncAPIResource):
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         internal_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        reconciliation_filters: Optional[object] | NotGiven = NOT_GIVEN,
+        reconciliation_groups: Optional[object] | NotGiven = NOT_GIVEN,
         remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
         type: ExpectedPaymentType | NotGiven = NOT_GIVEN,
@@ -593,6 +619,10 @@ class AsyncExpectedPayments(AsyncAPIResource):
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
+          reconciliation_filters: The reconciliation filters you have for this payment.
+
+          reconciliation_groups: The reconciliation groups you have for this payment.
+
           remittance_information: For `ach`, this field will be passed through on an addenda record. For `wire`
               payments the field will be passed through as the "Originator to Beneficiary
               Information", also known as OBI or Fedwire tag 6000.
@@ -629,6 +659,8 @@ class AsyncExpectedPayments(AsyncAPIResource):
                     "direction": direction,
                     "internal_account_id": internal_account_id,
                     "metadata": metadata,
+                    "reconciliation_filters": reconciliation_filters,
+                    "reconciliation_groups": reconciliation_groups,
                     "remittance_information": remittance_information,
                     "statement_descriptor": statement_descriptor,
                     "type": type,

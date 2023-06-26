@@ -18,8 +18,8 @@ __all__ = ["Documents", "AsyncDocuments"]
 class Documents(SyncAPIResource):
     def create(
         self,
-        documentable_id: str,
         *,
+        documentable_id: str,
         documentable_type: Literal[
             "cases",
             "counterparties",
@@ -31,6 +31,7 @@ class Documents(SyncAPIResource):
             "payment_orders",
             "transactions",
             "decisions",
+            "connections",
         ],
         file: FileTypes,
         document_type: str | NotGiven = NOT_GIVEN,
@@ -46,6 +47,12 @@ class Documents(SyncAPIResource):
         Create a document.
 
         Args:
+          documentable_id: The unique identifier for the associated object.
+
+          documentable_type: The type of the associated object. Currently can be one of `payment_order`,
+              `transaction`, `paper_item`, `expected_payment`, `counterparty`, `organization`,
+              `case`, `internal_account`, `decision`, or `external_account`.
+
           document_type: A category given to the document, can be `null`.
 
           extra_headers: Send extra headers
@@ -72,7 +79,7 @@ class Documents(SyncAPIResource):
             extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
 
         return self._post(
-            f"/api/{documentable_type}/{documentable_id}/documents",
+            "/api/documents",
             body=maybe_transform(body, document_create_params.DocumentCreateParams),
             files=files,
             options=make_request_options(
@@ -81,6 +88,13 @@ class Documents(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
+                query=maybe_transform(
+                    {
+                        "documentable_id": documentable_id,
+                        "documentable_type": documentable_type,
+                    },
+                    document_create_params.DocumentCreateParams,
+                ),
             ),
             cast_to=Document,
         )
@@ -89,19 +103,6 @@ class Documents(SyncAPIResource):
         self,
         id: str,
         *,
-        documentable_type: Literal[
-            "cases",
-            "counterparties",
-            "expected_payments",
-            "external_accounts",
-            "internal_accounts",
-            "organizations",
-            "paper_items",
-            "payment_orders",
-            "transactions",
-            "decisions",
-        ],
-        documentable_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -122,7 +123,7 @@ class Documents(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/api/{documentable_type}/{documentable_id}/documents/{id}",
+            f"/api/documents/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -131,8 +132,9 @@ class Documents(SyncAPIResource):
 
     def list(
         self,
-        documentable_id: str,
         *,
+        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        documentable_id: str | NotGiven = NOT_GIVEN,
         documentable_type: Literal[
             "cases",
             "counterparties",
@@ -144,8 +146,9 @@ class Documents(SyncAPIResource):
             "payment_orders",
             "transactions",
             "decisions",
-        ],
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+            "connections",
+        ]
+        | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -158,6 +161,12 @@ class Documents(SyncAPIResource):
         Get a list of documents.
 
         Args:
+          documentable_id: The unique identifier for the associated object.
+
+          documentable_type: The type of the associated object. Currently can be one of `payment_order`,
+              `transaction`, `paper_item`, `expected_payment`, `counterparty`, `organization`,
+              `case`, `internal_account`, `decision`, or `external_account`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -167,7 +176,7 @@ class Documents(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/api/{documentable_type}/{documentable_id}/documents",
+            "/api/documents",
             page=SyncPage[Document],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -177,6 +186,8 @@ class Documents(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
+                        "documentable_id": documentable_id,
+                        "documentable_type": documentable_type,
                         "per_page": per_page,
                     },
                     document_list_params.DocumentListParams,
@@ -189,8 +200,8 @@ class Documents(SyncAPIResource):
 class AsyncDocuments(AsyncAPIResource):
     async def create(
         self,
-        documentable_id: str,
         *,
+        documentable_id: str,
         documentable_type: Literal[
             "cases",
             "counterparties",
@@ -202,6 +213,7 @@ class AsyncDocuments(AsyncAPIResource):
             "payment_orders",
             "transactions",
             "decisions",
+            "connections",
         ],
         file: FileTypes,
         document_type: str | NotGiven = NOT_GIVEN,
@@ -217,6 +229,12 @@ class AsyncDocuments(AsyncAPIResource):
         Create a document.
 
         Args:
+          documentable_id: The unique identifier for the associated object.
+
+          documentable_type: The type of the associated object. Currently can be one of `payment_order`,
+              `transaction`, `paper_item`, `expected_payment`, `counterparty`, `organization`,
+              `case`, `internal_account`, `decision`, or `external_account`.
+
           document_type: A category given to the document, can be `null`.
 
           extra_headers: Send extra headers
@@ -243,7 +261,7 @@ class AsyncDocuments(AsyncAPIResource):
             extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
 
         return await self._post(
-            f"/api/{documentable_type}/{documentable_id}/documents",
+            "/api/documents",
             body=maybe_transform(body, document_create_params.DocumentCreateParams),
             files=files,
             options=make_request_options(
@@ -252,6 +270,13 @@ class AsyncDocuments(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
+                query=maybe_transform(
+                    {
+                        "documentable_id": documentable_id,
+                        "documentable_type": documentable_type,
+                    },
+                    document_create_params.DocumentCreateParams,
+                ),
             ),
             cast_to=Document,
         )
@@ -260,19 +285,6 @@ class AsyncDocuments(AsyncAPIResource):
         self,
         id: str,
         *,
-        documentable_type: Literal[
-            "cases",
-            "counterparties",
-            "expected_payments",
-            "external_accounts",
-            "internal_accounts",
-            "organizations",
-            "paper_items",
-            "payment_orders",
-            "transactions",
-            "decisions",
-        ],
-        documentable_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -293,7 +305,7 @@ class AsyncDocuments(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/api/{documentable_type}/{documentable_id}/documents/{id}",
+            f"/api/documents/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -302,8 +314,9 @@ class AsyncDocuments(AsyncAPIResource):
 
     def list(
         self,
-        documentable_id: str,
         *,
+        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        documentable_id: str | NotGiven = NOT_GIVEN,
         documentable_type: Literal[
             "cases",
             "counterparties",
@@ -315,8 +328,9 @@ class AsyncDocuments(AsyncAPIResource):
             "payment_orders",
             "transactions",
             "decisions",
-        ],
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+            "connections",
+        ]
+        | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -329,6 +343,12 @@ class AsyncDocuments(AsyncAPIResource):
         Get a list of documents.
 
         Args:
+          documentable_id: The unique identifier for the associated object.
+
+          documentable_type: The type of the associated object. Currently can be one of `payment_order`,
+              `transaction`, `paper_item`, `expected_payment`, `counterparty`, `organization`,
+              `case`, `internal_account`, `decision`, or `external_account`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -338,7 +358,7 @@ class AsyncDocuments(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/api/{documentable_type}/{documentable_id}/documents",
+            "/api/documents",
             page=AsyncPage[Document],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -348,6 +368,8 @@ class AsyncDocuments(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
+                        "documentable_id": documentable_id,
+                        "documentable_type": documentable_type,
                         "per_page": per_page,
                     },
                     document_list_params.DocumentListParams,
