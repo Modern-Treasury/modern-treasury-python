@@ -20,6 +20,8 @@ __all__ = [
 
 
 class ContactDetail(BaseModel):
+    id: str
+
     contact_identifier: str
 
     contact_identifier_type: Literal["email", "phone_number", "website"]
@@ -27,8 +29,6 @@ class ContactDetail(BaseModel):
     created_at: datetime
 
     discarded_at: Optional[datetime]
-
-    id: str
 
     live_mode: bool
     """
@@ -103,6 +103,8 @@ class InvoicerAddress(BaseModel):
 
 
 class Invoice(BaseModel):
+    id: str
+
     contact_details: List[ContactDetail]
     """The invoicer's contact details displayed at the top of the invoice."""
 
@@ -128,8 +130,6 @@ class Invoice(BaseModel):
 
     hosted_url: str
     """The URL of the hosted web UI where the invoice can be viewed."""
-
-    id: str
 
     invoicer_address: Optional[InvoicerAddress]
     """The invoice issuer's business address."""

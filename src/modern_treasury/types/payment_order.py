@@ -30,9 +30,9 @@ class Accounting(BaseModel):
 
 
 class ReferenceNumber(BaseModel):
-    created_at: datetime
-
     id: str
+
+    created_at: datetime
 
     live_mode: bool
     """
@@ -115,6 +115,8 @@ Please use ReferenceNumber instead.
 
 
 class PaymentOrder(BaseModel):
+    id: str
+
     accounting: Accounting
 
     accounting_category_id: Optional[str]
@@ -208,8 +210,6 @@ class PaymentOrder(BaseModel):
     `variable_to_fixed`, `fixed_to_variable`, or `null` if the payment order
     currency matches the originating account currency.
     """
-
-    id: str
 
     ledger_transaction_id: Optional[str]
     """The ID of the ledger transaction linked to the payment order."""

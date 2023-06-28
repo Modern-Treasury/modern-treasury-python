@@ -12,6 +12,8 @@ __all__ = ["ExpectedPayment"]
 
 
 class ExpectedPayment(BaseModel):
+    id: str
+
     amount_lower_bound: int
     """The lowest amount this expected payment may be equal to.
 
@@ -48,8 +50,6 @@ class ExpectedPayment(BaseModel):
 
     When you are receiving money, use credit. When you are being charged, use debit.
     """
-
-    id: str
 
     internal_account_id: str
     """The ID of the Internal Account for the expected payment."""

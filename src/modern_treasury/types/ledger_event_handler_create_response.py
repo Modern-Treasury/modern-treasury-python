@@ -7,11 +7,25 @@ from .._models import BaseModel
 
 __all__ = [
     "LedgerEventHandlerCreateResponse",
+    "Conditions",
     "LedgerTransactionTemplate",
     "LedgerTransactionTemplateLedgerEntries",
     "LedgerTransactionTemplateLedgerEntry",
-    "Conditions",
 ]
+
+
+class Conditions(BaseModel):
+    field: str
+    """The field you're fetching from the `ledgerable_event`."""
+
+    operator: str
+    """What the operator between the `field` and `value` is.
+
+    Currently only supports `equals`.
+    """
+
+    value: str
+    """What raw string you are comparing the `field` against."""
 
 
 class LedgerTransactionTemplateLedgerEntry(BaseModel):
@@ -55,21 +69,9 @@ class LedgerTransactionTemplate(BaseModel):
     """
 
 
-class Conditions(BaseModel):
-    field: str
-    """The field you're fetching from the `ledgerable_event`."""
-
-    operator: str
-    """What the operator between the `field` and `value` is.
-
-    Currently only supports `equals`.
-    """
-
-    value: str
-    """What raw string you are comparing the `field` against."""
-
-
 class LedgerEventHandlerCreateResponse(BaseModel):
+    id: str
+
     conditions: Optional[Conditions]
 
     created_at: datetime
@@ -78,8 +80,6 @@ class LedgerEventHandlerCreateResponse(BaseModel):
     """An optional description."""
 
     discarded_at: Optional[datetime]
-
-    id: str
 
     ledger_transaction_template: LedgerTransactionTemplate
 

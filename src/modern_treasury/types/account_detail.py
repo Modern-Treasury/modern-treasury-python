@@ -10,6 +10,8 @@ __all__ = ["AccountDetail"]
 
 
 class AccountDetail(BaseModel):
+    id: str
+
     account_number_safe: str
     """The last 4 digits of the account_number."""
 
@@ -22,8 +24,6 @@ class AccountDetail(BaseModel):
     created_at: datetime
 
     discarded_at: Optional[datetime]
-
-    id: str
 
     live_mode: bool
     """

@@ -10,6 +10,8 @@ __all__ = ["Document", "DocumentDetails", "DocumentDetail", "File"]
 
 
 class DocumentDetail(BaseModel):
+    id: str
+
     created_at: datetime
 
     discarded_at: Optional[datetime]
@@ -17,8 +19,6 @@ class DocumentDetail(BaseModel):
     document_identifier: str
 
     document_identifier_type: str
-
-    id: str
 
     live_mode: bool
     """
@@ -50,6 +50,8 @@ class File(BaseModel):
 
 
 class Document(BaseModel):
+    id: str
+
     created_at: datetime
 
     discarded_at: Optional[datetime]
@@ -83,8 +85,6 @@ class Document(BaseModel):
     """
 
     file: File
-
-    id: str
 
     live_mode: bool
     """

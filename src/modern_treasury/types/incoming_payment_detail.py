@@ -11,6 +11,8 @@ __all__ = ["IncomingPaymentDetail"]
 
 
 class IncomingPaymentDetail(BaseModel):
+    id: str
+
     amount: int
     """Value in specified currency's smallest unit.
 
@@ -30,8 +32,6 @@ class IncomingPaymentDetail(BaseModel):
 
     direction: Literal["credit", "debit"]
     """One of `credit` or `debit`."""
-
-    id: str
 
     internal_account_id: str
     """The ID of the Internal Account for the incoming payment detail.

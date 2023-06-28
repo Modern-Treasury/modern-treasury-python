@@ -11,6 +11,8 @@ __all__ = ["BalanceReport", "Balances", "Balance"]
 
 
 class Balance(BaseModel):
+    id: str
+
     amount: int
     """The balance amount."""
 
@@ -35,8 +37,6 @@ class Balance(BaseModel):
 
     currency: Optional[shared.Currency]
     """The currency of the balance."""
-
-    id: str
 
     live_mode: bool
     """
@@ -86,6 +86,8 @@ Please use Balance instead.
 
 
 class BalanceReport(BaseModel):
+    id: str
+
     as_of_date: date
     """The date of the balance report in local time."""
 
@@ -102,8 +104,6 @@ class BalanceReport(BaseModel):
     """An array of `Balance` objects."""
 
     created_at: datetime
-
-    id: str
 
     internal_account_id: str
     """The ID of one of your organization's Internal Accounts."""

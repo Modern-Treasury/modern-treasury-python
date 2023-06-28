@@ -10,6 +10,8 @@ __all__ = ["LedgerTransactionListParams", "OrderBy"]
 
 
 class LedgerTransactionListParams(TypedDict, total=False):
+    id: Dict[str, str]
+
     after_cursor: Optional[str]
 
     effective_at: Dict[str, str]
@@ -27,8 +29,6 @@ class LedgerTransactionListParams(TypedDict, total=False):
     """
 
     external_id: str
-
-    id: Dict[str, str]
 
     ledger_account_category_id: str
 

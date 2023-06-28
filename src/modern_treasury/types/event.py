@@ -9,6 +9,8 @@ __all__ = ["Event"]
 
 
 class Event(BaseModel):
+    id: str
+
     created_at: datetime
 
     data: Dict[str, object]
@@ -22,8 +24,6 @@ class Event(BaseModel):
 
     event_time: datetime
     """The time of the event."""
-
-    id: str
 
     live_mode: bool
     """
