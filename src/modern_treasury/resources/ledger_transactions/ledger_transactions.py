@@ -219,11 +219,11 @@ class LedgerTransactions(SyncAPIResource):
     def list(
         self,
         *,
+        id: Dict[str, str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
         effective_date: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         external_id: str | NotGiven = NOT_GIVEN,
-        id: Dict[str, str] | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
@@ -301,11 +301,11 @@ class LedgerTransactions(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after_cursor": after_cursor,
                         "effective_at": effective_at,
                         "effective_date": effective_date,
                         "external_id": external_id,
-                        "id": id,
                         "ledger_account_category_id": ledger_account_category_id,
                         "ledger_account_id": ledger_account_id,
                         "ledger_id": ledger_id,
@@ -609,11 +609,11 @@ class AsyncLedgerTransactions(AsyncAPIResource):
     def list(
         self,
         *,
+        id: Dict[str, str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
         effective_date: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         external_id: str | NotGiven = NOT_GIVEN,
-        id: Dict[str, str] | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
@@ -691,11 +691,11 @@ class AsyncLedgerTransactions(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after_cursor": after_cursor,
                         "effective_at": effective_at,
                         "effective_date": effective_date,
                         "external_id": external_id,
-                        "id": id,
                         "ledger_account_category_id": ledger_account_category_id,
                         "ledger_account_id": ledger_account_id,
                         "ledger_id": ledger_id,

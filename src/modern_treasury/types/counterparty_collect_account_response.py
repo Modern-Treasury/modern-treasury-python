@@ -6,6 +6,9 @@ __all__ = ["CounterpartyCollectAccountResponse"]
 
 
 class CounterpartyCollectAccountResponse(BaseModel):
+    id: str
+    """The id of the existing counterparty."""
+
     form_link: str
     """This is the link to the secure Modern Treasury form.
 
@@ -14,9 +17,6 @@ class CounterpartyCollectAccountResponse(BaseModel):
     the body then Modern Treasury will not send the email and you can send it to the
     counterparty directly.
     """
-
-    id: str
-    """The id of the existing counterparty."""
 
     is_resend: bool
     """

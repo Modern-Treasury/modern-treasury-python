@@ -207,10 +207,10 @@ class LedgerAccounts(SyncAPIResource):
     def list(
         self,
         *,
+        id: str | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         balances: ledger_account_list_params.Balances | NotGiven = NOT_GIVEN,
         created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -263,10 +263,10 @@ class LedgerAccounts(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after_cursor": after_cursor,
                         "balances": balances,
                         "created_at": created_at,
-                        "id": id,
                         "ledger_account_category_id": ledger_account_category_id,
                         "ledger_id": ledger_id,
                         "metadata": metadata,
@@ -504,10 +504,10 @@ class AsyncLedgerAccounts(AsyncAPIResource):
     def list(
         self,
         *,
+        id: str | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         balances: ledger_account_list_params.Balances | NotGiven = NOT_GIVEN,
         created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -560,10 +560,10 @@ class AsyncLedgerAccounts(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after_cursor": after_cursor,
                         "balances": balances,
                         "created_at": created_at,
-                        "id": id,
                         "ledger_account_category_id": ledger_account_category_id,
                         "ledger_id": ledger_id,
                         "metadata": metadata,

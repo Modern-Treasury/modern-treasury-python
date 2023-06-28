@@ -48,12 +48,12 @@ class TestLedgerEntries:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger_entry = client.ledger_entries.list(
+            id={"foo": "string"},
             after_cursor="string",
             as_of_lock_version=0,
             direction="credit",
             effective_at={"foo": "string"},
             effective_date={"foo": parse_date("2019-12-27")},
-            id={"foo": "string"},
             ledger_account_category_id="string",
             ledger_account_id="string",
             ledger_account_lock_version={"foo": 0},
@@ -104,12 +104,12 @@ class TestAsyncLedgerEntries:
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger_entry = await client.ledger_entries.list(
+            id={"foo": "string"},
             after_cursor="string",
             as_of_lock_version=0,
             direction="credit",
             effective_at={"foo": "string"},
             effective_date={"foo": parse_date("2019-12-27")},
-            id={"foo": "string"},
             ledger_account_category_id="string",
             ledger_account_id="string",
             ledger_account_lock_version={"foo": 0},

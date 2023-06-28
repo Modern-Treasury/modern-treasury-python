@@ -9,10 +9,24 @@ from .._models import BaseModel
 __all__ = [
     "LedgerAccountCategory",
     "Balances",
+    "BalancesAvailableBalance",
     "BalancesPendingBalance",
     "BalancesPostedBalance",
-    "BalancesAvailableBalance",
 ]
+
+
+class BalancesAvailableBalance(BaseModel):
+    amount: int
+
+    credits: int
+
+    currency: str
+    """The currency of the ledger account."""
+
+    currency_exponent: int
+    """The currency exponent of the ledger account."""
+
+    debits: int
 
 
 class BalancesPendingBalance(BaseModel):
@@ -43,20 +57,6 @@ class BalancesPostedBalance(BaseModel):
     debits: int
 
 
-class BalancesAvailableBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
 class Balances(BaseModel):
     available_balance: BalancesAvailableBalance
     """
@@ -74,6 +74,8 @@ class Balances(BaseModel):
 
 
 class LedgerAccountCategory(BaseModel):
+    id: str
+
     balances: Balances
     """The pending, posted, and available balances for this ledger account category.
 
@@ -89,8 +91,6 @@ class LedgerAccountCategory(BaseModel):
     """The description of the ledger account category."""
 
     discarded_at: Optional[datetime]
-
-    id: str
 
     ledger_id: str
     """The id of the ledger that this account category belongs to."""

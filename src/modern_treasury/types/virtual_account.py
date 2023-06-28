@@ -10,6 +10,8 @@ __all__ = ["VirtualAccount"]
 
 
 class VirtualAccount(BaseModel):
+    id: str
+
     account_details: List[account_detail.AccountDetail]
     """An array of account detail objects."""
 
@@ -36,8 +38,6 @@ class VirtualAccount(BaseModel):
     """An optional free-form description for internal use."""
 
     discarded_at: Optional[datetime]
-
-    id: str
 
     internal_account_id: str
     """The ID of the internal account that the virtual account is in."""

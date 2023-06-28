@@ -10,6 +10,8 @@ __all__ = ["LedgerAccountPayout"]
 
 
 class LedgerAccountPayout(BaseModel):
+    id: str
+
     amount: Optional[int]
     """The amount of the ledger account payout."""
 
@@ -36,8 +38,6 @@ class LedgerAccountPayout(BaseModel):
     The id of the funding ledger account that sends to or receives funds from the
     payout ledger account.
     """
-
-    id: str
 
     ledger_id: str
     """The id of the ledger that this ledger account payout belongs to."""

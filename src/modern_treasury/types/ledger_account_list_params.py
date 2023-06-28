@@ -12,6 +12,8 @@ __all__ = ["LedgerAccountListParams", "Balances"]
 
 
 class LedgerAccountListParams(TypedDict, total=False):
+    id: str
+
     after_cursor: Optional[str]
 
     balances: Balances
@@ -28,8 +30,6 @@ class LedgerAccountListParams(TypedDict, total=False):
     created at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
     created_at%5Bgt%5D=2000-01-01T12:00:00Z.
     """
-
-    id: str
 
     ledger_account_category_id: str
 

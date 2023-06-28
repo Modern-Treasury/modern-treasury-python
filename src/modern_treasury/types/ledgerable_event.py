@@ -9,6 +9,8 @@ __all__ = ["LedgerableEvent"]
 
 
 class LedgerableEvent(BaseModel):
+    id: str
+
     amount: int
     """Value in specified currency's smallest unit.
 
@@ -34,8 +36,6 @@ class LedgerableEvent(BaseModel):
 
     direction: Optional[str]
     """One of `credit`, `debit`."""
-
-    id: str
 
     ledger_event_handler_id: str
     """Id of the ledger event handler that is used to create a ledger transaction."""

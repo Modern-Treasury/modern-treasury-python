@@ -8,18 +8,18 @@ from .._models import BaseModel
 
 __all__ = [
     "LedgerAccountStatementCreateResponse",
-    "StartingBalance",
-    "StartingBalancePendingBalance",
-    "StartingBalancePostedBalance",
-    "StartingBalanceAvailableBalance",
     "EndingBalance",
+    "EndingBalanceAvailableBalance",
     "EndingBalancePendingBalance",
     "EndingBalancePostedBalance",
-    "EndingBalanceAvailableBalance",
+    "StartingBalance",
+    "StartingBalanceAvailableBalance",
+    "StartingBalancePendingBalance",
+    "StartingBalancePostedBalance",
 ]
 
 
-class StartingBalancePendingBalance(BaseModel):
+class EndingBalanceAvailableBalance(BaseModel):
     amount: int
 
     credits: int
@@ -31,50 +31,6 @@ class StartingBalancePendingBalance(BaseModel):
     """The currency exponent of the ledger account."""
 
     debits: int
-
-
-class StartingBalancePostedBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-class StartingBalanceAvailableBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-class StartingBalance(BaseModel):
-    available_balance: StartingBalanceAvailableBalance
-    """
-    The available_balance is the sum of all posted inbound entries and pending
-    outbound entries. For credit normal, available_amount = posted_credits -
-    pending_debits; for debit normal, available_amount = posted_debits -
-    pending_credits.
-    """
-
-    pending_balance: StartingBalancePendingBalance
-    """The pending_balance is the sum of all pending and posted entries."""
-
-    posted_balance: StartingBalancePostedBalance
-    """The posted_balance is the sum of all posted entries."""
 
 
 class EndingBalancePendingBalance(BaseModel):
@@ -105,20 +61,6 @@ class EndingBalancePostedBalance(BaseModel):
     debits: int
 
 
-class EndingBalanceAvailableBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
 class EndingBalance(BaseModel):
     available_balance: EndingBalanceAvailableBalance
     """
@@ -135,7 +77,67 @@ class EndingBalance(BaseModel):
     """The posted_balance is the sum of all posted entries."""
 
 
+class StartingBalanceAvailableBalance(BaseModel):
+    amount: int
+
+    credits: int
+
+    currency: str
+    """The currency of the ledger account."""
+
+    currency_exponent: int
+    """The currency exponent of the ledger account."""
+
+    debits: int
+
+
+class StartingBalancePendingBalance(BaseModel):
+    amount: int
+
+    credits: int
+
+    currency: str
+    """The currency of the ledger account."""
+
+    currency_exponent: int
+    """The currency exponent of the ledger account."""
+
+    debits: int
+
+
+class StartingBalancePostedBalance(BaseModel):
+    amount: int
+
+    credits: int
+
+    currency: str
+    """The currency of the ledger account."""
+
+    currency_exponent: int
+    """The currency exponent of the ledger account."""
+
+    debits: int
+
+
+class StartingBalance(BaseModel):
+    available_balance: StartingBalanceAvailableBalance
+    """
+    The available_balance is the sum of all posted inbound entries and pending
+    outbound entries. For credit normal, available_amount = posted_credits -
+    pending_debits; for debit normal, available_amount = posted_debits -
+    pending_credits.
+    """
+
+    pending_balance: StartingBalancePendingBalance
+    """The pending_balance is the sum of all pending and posted entries."""
+
+    posted_balance: StartingBalancePostedBalance
+    """The posted_balance is the sum of all posted entries."""
+
+
 class LedgerAccountStatementCreateResponse(BaseModel):
+    id: str
+
     created_at: datetime
 
     description: Optional[str]
@@ -161,8 +163,6 @@ class LedgerAccountStatementCreateResponse(BaseModel):
     on the account. The available balance is the posted incoming entries minus the
     sum of the pending and posted outgoing amounts.
     """
-
-    id: str
 
     ledger_account_id: str
     """

@@ -12,13 +12,34 @@ __all__ = [
     "LedgerEntry",
     "LedgerEntriesResultingLedgerAccountBalances",
     "LedgerEntryResultingLedgerAccountBalances",
+    "LedgerEntriesResultingLedgerAccountBalancesAvailableBalance",
+    "LedgerEntryResultingLedgerAccountBalancesAvailableBalance",
     "LedgerEntriesResultingLedgerAccountBalancesPendingBalance",
     "LedgerEntryResultingLedgerAccountBalancesPendingBalance",
     "LedgerEntriesResultingLedgerAccountBalancesPostedBalance",
     "LedgerEntryResultingLedgerAccountBalancesPostedBalance",
-    "LedgerEntriesResultingLedgerAccountBalancesAvailableBalance",
-    "LedgerEntryResultingLedgerAccountBalancesAvailableBalance",
 ]
+
+
+class LedgerEntryResultingLedgerAccountBalancesAvailableBalance(BaseModel):
+    amount: int
+
+    credits: int
+
+    currency: str
+    """The currency of the ledger account."""
+
+    currency_exponent: int
+    """The currency exponent of the ledger account."""
+
+    debits: int
+
+
+LedgerEntriesResultingLedgerAccountBalancesAvailableBalance = LedgerEntryResultingLedgerAccountBalancesAvailableBalance
+"""This type is deprecated and will be removed in a future release.
+
+Please use LedgerEntryResultingLedgerAccountBalancesAvailableBalance instead.
+"""
 
 
 class LedgerEntryResultingLedgerAccountBalancesPendingBalance(BaseModel):
@@ -63,27 +84,6 @@ Please use LedgerEntryResultingLedgerAccountBalancesPostedBalance instead.
 """
 
 
-class LedgerEntryResultingLedgerAccountBalancesAvailableBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-LedgerEntriesResultingLedgerAccountBalancesAvailableBalance = LedgerEntryResultingLedgerAccountBalancesAvailableBalance
-"""This type is deprecated and will be removed in a future release.
-
-Please use LedgerEntryResultingLedgerAccountBalancesAvailableBalance instead.
-"""
-
-
 class LedgerEntryResultingLedgerAccountBalances(BaseModel):
     available_balance: LedgerEntryResultingLedgerAccountBalancesAvailableBalance
     """
@@ -108,6 +108,8 @@ Please use LedgerEntryResultingLedgerAccountBalances instead.
 
 
 class LedgerEntry(BaseModel):
+    id: str
+
     amount: int
     """Value in specified currency's smallest unit.
 
@@ -124,8 +126,6 @@ class LedgerEntry(BaseModel):
     else's account to your own. Note that wire, rtp, and check payments will always
     be `credit`.
     """
-
-    id: str
 
     ledger_account_currency: str
     """The currency of the ledger account."""
@@ -187,6 +187,8 @@ Please use LedgerEntry instead.
 
 
 class LedgerTransactionVersion(BaseModel):
+    id: str
+
     created_at: datetime
 
     description: Optional[str]
@@ -209,8 +211,6 @@ class LedgerTransactionVersion(BaseModel):
 
     Only one pending or posted ledger transaction may have this ID in the ledger.
     """
-
-    id: str
 
     ledger_entries: List[LedgerEntry]
     """An array of ledger entry objects."""

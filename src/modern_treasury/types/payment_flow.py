@@ -10,6 +10,8 @@ __all__ = ["PaymentFlow"]
 
 
 class PaymentFlow(BaseModel):
+    id: Optional[str]
+
     amount: Optional[int]
     """Value in specified currency's smallest unit.
 
@@ -41,8 +43,6 @@ class PaymentFlow(BaseModel):
     Can only be `debit`. A `debit` pulls money from someone else's account to your
     own.
     """
-
-    id: Optional[str]
 
     live_mode: Optional[bool]
     """

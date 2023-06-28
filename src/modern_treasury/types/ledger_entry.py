@@ -9,10 +9,24 @@ from .._models import BaseModel
 __all__ = [
     "LedgerEntry",
     "ResultingLedgerAccountBalances",
+    "ResultingLedgerAccountBalancesAvailableBalance",
     "ResultingLedgerAccountBalancesPendingBalance",
     "ResultingLedgerAccountBalancesPostedBalance",
-    "ResultingLedgerAccountBalancesAvailableBalance",
 ]
+
+
+class ResultingLedgerAccountBalancesAvailableBalance(BaseModel):
+    amount: int
+
+    credits: int
+
+    currency: str
+    """The currency of the ledger account."""
+
+    currency_exponent: int
+    """The currency exponent of the ledger account."""
+
+    debits: int
 
 
 class ResultingLedgerAccountBalancesPendingBalance(BaseModel):
@@ -43,20 +57,6 @@ class ResultingLedgerAccountBalancesPostedBalance(BaseModel):
     debits: int
 
 
-class ResultingLedgerAccountBalancesAvailableBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
 class ResultingLedgerAccountBalances(BaseModel):
     available_balance: ResultingLedgerAccountBalancesAvailableBalance
     """
@@ -74,6 +74,8 @@ class ResultingLedgerAccountBalances(BaseModel):
 
 
 class LedgerEntry(BaseModel):
+    id: str
+
     amount: int
     """Value in specified currency's smallest unit.
 
@@ -92,8 +94,6 @@ class LedgerEntry(BaseModel):
     """
 
     discarded_at: Optional[datetime]
-
-    id: str
 
     ledger_account_currency: str
     """The currency of the ledger account."""

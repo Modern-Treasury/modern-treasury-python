@@ -11,6 +11,8 @@ __all__ = ["PaperItem"]
 
 
 class PaperItem(BaseModel):
+    id: str
+
     account_number: Optional[str]
     """The account number on the paper item."""
 
@@ -30,8 +32,6 @@ class PaperItem(BaseModel):
 
     deposit_date: date
     """The date the paper item was deposited into your organization's bank account."""
-
-    id: str
 
     live_mode: bool
     """

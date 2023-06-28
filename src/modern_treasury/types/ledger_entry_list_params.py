@@ -10,6 +10,8 @@ __all__ = ["LedgerEntryListParams", "OrderBy"]
 
 
 class LedgerEntryListParams(TypedDict, total=False):
+    id: Dict[str, str]
+
     after_cursor: Optional[str]
 
     as_of_lock_version: int
@@ -36,8 +38,6 @@ class LedgerEntryListParams(TypedDict, total=False):
     Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
     transaction's effective date. Format YYYY-MM-DD
     """
-
-    id: Dict[str, str]
 
     ledger_account_category_id: str
     """Get all ledger entries that match the direction specified.

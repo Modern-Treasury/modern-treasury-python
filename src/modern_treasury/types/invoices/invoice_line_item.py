@@ -8,6 +8,8 @@ __all__ = ["InvoiceLineItem"]
 
 
 class InvoiceLineItem(BaseModel):
+    id: str
+
     amount: int
     """
     The total amount for this line item specified in the invoice currency's smallest
@@ -25,8 +27,6 @@ class InvoiceLineItem(BaseModel):
     `debit` indicates that a client owes the business money and increases the
     invoice's `total_amount` due. `credit` has the opposite intention and effect.
     """
-
-    id: str
 
     live_mode: bool
     """

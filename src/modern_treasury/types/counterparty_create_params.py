@@ -10,16 +10,16 @@ __all__ = [
     "Accounting",
     "Accounts",
     "Account",
-    "AccountsPartyAddress",
-    "AccountPartyAddress",
     "AccountsAccountDetails",
     "AccountAccountDetail",
-    "AccountsRoutingDetails",
-    "AccountRoutingDetail",
-    "AccountsLedgerAccount",
-    "AccountLedgerAccount",
     "AccountsContactDetails",
     "AccountContactDetail",
+    "AccountsLedgerAccount",
+    "AccountLedgerAccount",
+    "AccountsPartyAddress",
+    "AccountPartyAddress",
+    "AccountsRoutingDetails",
+    "AccountRoutingDetail",
 ]
 
 
@@ -68,31 +68,6 @@ class Accounting(TypedDict, total=False):
     """
 
 
-class AccountPartyAddress(TypedDict, total=False):
-    country: Optional[str]
-    """Country code conforms to [ISO 3166-1 alpha-2]"""
-
-    line1: Optional[str]
-
-    line2: Optional[str]
-
-    locality: Optional[str]
-    """Locality or City."""
-
-    postal_code: Optional[str]
-    """The postal code of the address."""
-
-    region: Optional[str]
-    """Region or State."""
-
-
-AccountsPartyAddress = AccountPartyAddress
-"""This type is deprecated and will be removed in a future release.
-
-Please use AccountPartyAddress instead.
-"""
-
-
 class AccountAccountDetail(TypedDict, total=False):
     account_number: Required[str]
 
@@ -106,49 +81,16 @@ Please use AccountAccountDetail instead.
 """
 
 
-class AccountRoutingDetail(TypedDict, total=False):
-    routing_number: Required[str]
+class AccountContactDetail(TypedDict, total=False):
+    contact_identifier: str
 
-    routing_number_type: Required[
-        Literal[
-            "aba",
-            "au_bsb",
-            "br_codigo",
-            "ca_cpa",
-            "chips",
-            "cnaps",
-            "gb_sort_code",
-            "in_ifsc",
-            "my_branch_code",
-            "swift",
-        ]
-    ]
-
-    payment_type: Literal[
-        "ach",
-        "au_becs",
-        "bacs",
-        "book",
-        "card",
-        "check",
-        "eft",
-        "cross_border",
-        "interac",
-        "masav",
-        "neft",
-        "provxchange",
-        "rtp",
-        "sen",
-        "sepa",
-        "signet",
-        "wire",
-    ]
+    contact_identifier_type: Literal["email", "phone_number", "website"]
 
 
-AccountsRoutingDetails = AccountRoutingDetail
+AccountsContactDetails = AccountContactDetail
 """This type is deprecated and will be removed in a future release.
 
-Please use AccountRoutingDetail instead.
+Please use AccountContactDetail instead.
 """
 
 
@@ -198,16 +140,74 @@ Please use AccountLedgerAccount instead.
 """
 
 
-class AccountContactDetail(TypedDict, total=False):
-    contact_identifier: str
+class AccountPartyAddress(TypedDict, total=False):
+    country: Optional[str]
+    """Country code conforms to [ISO 3166-1 alpha-2]"""
 
-    contact_identifier_type: Literal["email", "phone_number", "website"]
+    line1: Optional[str]
+
+    line2: Optional[str]
+
+    locality: Optional[str]
+    """Locality or City."""
+
+    postal_code: Optional[str]
+    """The postal code of the address."""
+
+    region: Optional[str]
+    """Region or State."""
 
 
-AccountsContactDetails = AccountContactDetail
+AccountsPartyAddress = AccountPartyAddress
 """This type is deprecated and will be removed in a future release.
 
-Please use AccountContactDetail instead.
+Please use AccountPartyAddress instead.
+"""
+
+
+class AccountRoutingDetail(TypedDict, total=False):
+    routing_number: Required[str]
+
+    routing_number_type: Required[
+        Literal[
+            "aba",
+            "au_bsb",
+            "br_codigo",
+            "ca_cpa",
+            "chips",
+            "cnaps",
+            "gb_sort_code",
+            "in_ifsc",
+            "my_branch_code",
+            "swift",
+        ]
+    ]
+
+    payment_type: Literal[
+        "ach",
+        "au_becs",
+        "bacs",
+        "book",
+        "card",
+        "check",
+        "eft",
+        "cross_border",
+        "interac",
+        "masav",
+        "neft",
+        "provxchange",
+        "rtp",
+        "sen",
+        "sepa",
+        "signet",
+        "wire",
+    ]
+
+
+AccountsRoutingDetails = AccountRoutingDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use AccountRoutingDetail instead.
 """
 
 

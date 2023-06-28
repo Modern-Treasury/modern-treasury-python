@@ -10,9 +10,9 @@ __all__ = ["Reversal"]
 
 
 class Reversal(BaseModel):
-    created_at: datetime
-
     id: str
+
+    created_at: datetime
 
     live_mode: bool
     """

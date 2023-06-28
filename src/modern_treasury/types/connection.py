@@ -9,11 +9,11 @@ __all__ = ["Connection"]
 
 
 class Connection(BaseModel):
+    id: str
+
     created_at: datetime
 
     discarded_at: Optional[datetime]
-
-    id: str
 
     live_mode: bool
     """

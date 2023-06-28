@@ -9,14 +9,14 @@ __all__ = ["Ledger"]
 
 
 class Ledger(BaseModel):
+    id: str
+
     created_at: datetime
 
     description: Optional[str]
     """An optional free-form description for internal use."""
 
     discarded_at: Optional[datetime]
-
-    id: str
 
     live_mode: bool
     """

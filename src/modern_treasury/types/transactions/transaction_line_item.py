@@ -10,6 +10,8 @@ __all__ = ["TransactionLineItem"]
 
 
 class TransactionLineItem(BaseModel):
+    id: str
+
     amount: int
     """If a matching object exists in Modern Treasury, `amount` will be populated.
 
@@ -34,8 +36,6 @@ class TransactionLineItem(BaseModel):
 
     expected_payment_id: str
     """The ID of the reconciled Expected Payment, otherwise `null`."""
-
-    id: str
 
     live_mode: bool
     """

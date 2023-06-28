@@ -13,9 +13,9 @@ __all__ = ["ReturnObject", "ReferenceNumbers", "ReferenceNumber"]
 
 
 class ReferenceNumber(BaseModel):
-    created_at: datetime
-
     id: str
+
+    created_at: datetime
 
     live_mode: bool
     """
@@ -98,6 +98,8 @@ Please use ReferenceNumber instead.
 
 
 class ReturnObject(BaseModel):
+    id: str
+
     additional_information: Optional[str]
     """Some returns may include additional information from the bank.
 
@@ -181,8 +183,6 @@ class ReturnObject(BaseModel):
     If an originating return failed to be processed by the bank, a description of
     the failure reason will be available.
     """
-
-    id: str
 
     internal_account_id: Optional[str]
     """The ID of the relevant Internal Account."""

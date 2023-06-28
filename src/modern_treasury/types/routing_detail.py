@@ -10,12 +10,12 @@ __all__ = ["RoutingDetail", "BankAddress"]
 
 
 class BankAddress(BaseModel):
+    id: str
+
     country: Optional[str]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
     created_at: datetime
-
-    id: str
 
     line1: Optional[str]
 
@@ -42,6 +42,8 @@ class BankAddress(BaseModel):
 
 
 class RoutingDetail(BaseModel):
+    id: str
+
     bank_address: Optional[BankAddress]
 
     bank_name: str
@@ -50,8 +52,6 @@ class RoutingDetail(BaseModel):
     created_at: datetime
 
     discarded_at: Optional[datetime]
-
-    id: str
 
     live_mode: bool
     """
