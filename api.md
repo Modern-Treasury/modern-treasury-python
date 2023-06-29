@@ -4,7 +4,7 @@
 from modern_treasury.types import AccountsType, AsyncResponse, Currency
 ```
 
-# Top Level
+# ModernTreasury
 
 Types:
 
@@ -14,7 +14,7 @@ from modern_treasury.types import PingResponse
 
 Methods:
 
-- <code title="get /api/ping">client..<a href="./src/modern_treasury/_client.py">ping</a>() -> <a href="./src/modern_treasury/types/ping_response.py">PingResponse</a></code>
+- <code title="get /api/ping">client.<a href="./src/modern_treasury/_client.py">ping</a>() -> <a href="./src/modern_treasury/types/ping_response.py">PingResponse</a></code>
 
 # Connections
 
@@ -521,10 +521,10 @@ Methods:
 
 # Webhooks
 
-Custom Methods:
+Methods:
 
-- `get_signature`
-- `validate_signature`
+- <code>client.webhooks.<a href="./src/modern_treasury/resources/webhooks.py">get_signature</a>(\*args) -> str</code>
+- <code>client.webhooks.<a href="./src/modern_treasury/resources/webhooks.py">validate_signature</a>(\*args) -> bool</code>
 
 # VirtualAccounts
 
