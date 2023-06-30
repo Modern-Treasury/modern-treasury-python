@@ -9,9 +9,9 @@ __all__ = ["PaymentReference"]
 
 
 class PaymentReference(BaseModel):
-    created_at: datetime
-
     id: str
+
+    created_at: datetime
 
     live_mode: bool
     """
@@ -35,6 +35,7 @@ class PaymentReference(BaseModel):
         "bofa_transaction_id",
         "check_number",
         "column_fx_quote_id",
+        "column_reversal_pair_transfer_id",
         "column_transfer_id",
         "cross_river_payment_id",
         "cross_river_transaction_id",
@@ -68,6 +69,7 @@ class PaymentReference(BaseModel):
         "pnc_instruction_id",
         "pnc_multipayment_id",
         "pnc_payment_trace_id",
+        "rspec_vendor_payment_id",
         "rtp_instruction_id",
         "signet_api_reference_id",
         "signet_confirmation_id",

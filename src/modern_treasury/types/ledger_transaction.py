@@ -11,6 +11,8 @@ __all__ = ["LedgerTransaction"]
 
 
 class LedgerTransaction(BaseModel):
+    id: str
+
     created_at: datetime
 
     description: Optional[str]
@@ -33,8 +35,6 @@ class LedgerTransaction(BaseModel):
 
     Only one pending or posted ledger transaction may have this ID in the ledger.
     """
-
-    id: str
 
     ledger_entries: List[ledger_entry.LedgerEntry]
     """An array of ledger entry objects."""
@@ -86,6 +86,11 @@ class LedgerTransaction(BaseModel):
     """The time on which the ledger transaction posted.
 
     This is null if the ledger transaction is pending.
+    """
+
+    reverses_ledger_transaction_id: Optional[str]
+    """
+    The ID of the original ledger transaction that this ledger transaction reverses.
     """
 
     status: Literal["archived", "pending", "posted"]

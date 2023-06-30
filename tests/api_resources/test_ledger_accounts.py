@@ -103,6 +103,7 @@ class TestLedgerAccounts:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account = client.ledger_accounts.list(
+            id="string",
             after_cursor="string",
             balances={
                 "as_of_date": parse_date("2019-12-27"),
@@ -111,7 +112,6 @@ class TestLedgerAccounts:
                 "effective_at_upper_bound": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
             created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
-            id="string",
             ledger_account_category_id="string",
             ledger_id="string",
             metadata={"foo": "string"},
@@ -216,6 +216,7 @@ class TestAsyncLedgerAccounts:
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger_account = await client.ledger_accounts.list(
+            id="string",
             after_cursor="string",
             balances={
                 "as_of_date": parse_date("2019-12-27"),
@@ -224,7 +225,6 @@ class TestAsyncLedgerAccounts:
                 "effective_at_upper_bound": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
             created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
-            id="string",
             ledger_account_category_id="string",
             ledger_id="string",
             metadata={"foo": "string"},

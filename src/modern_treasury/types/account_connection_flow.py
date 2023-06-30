@@ -19,6 +19,8 @@ class AccountConnectionFlow(BaseModel):
 
     payment_types: List[Literal["ach", "wire"]]
 
+    id: Optional[str]
+
     client_token: Optional[str]
     """The client token of the account collection flow.
 
@@ -30,8 +32,6 @@ class AccountConnectionFlow(BaseModel):
 
     external_account_id: Optional[str]
     """If present, the ID of the external account created using this flow."""
-
-    id: Optional[str]
 
     live_mode: Optional[bool]
     """

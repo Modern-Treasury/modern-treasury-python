@@ -10,6 +10,8 @@ __all__ = ["Document", "DocumentDetails", "DocumentDetail", "File"]
 
 
 class DocumentDetail(BaseModel):
+    id: str
+
     created_at: datetime
 
     discarded_at: Optional[datetime]
@@ -17,8 +19,6 @@ class DocumentDetail(BaseModel):
     document_identifier: str
 
     document_identifier_type: str
-
-    id: str
 
     live_mode: bool
     """
@@ -50,6 +50,8 @@ class File(BaseModel):
 
 
 class Document(BaseModel):
+    id: str
+
     created_at: datetime
 
     discarded_at: Optional[datetime]
@@ -73,6 +75,7 @@ class Document(BaseModel):
         "payment_order",
         "transaction",
         "decision",
+        "connection",
     ]
     """The type of the associated object.
 
@@ -83,8 +86,6 @@ class Document(BaseModel):
 
     file: File
 
-    id: str
-
     live_mode: bool
     """
     This field will be true if this object exists in the live environment or false
@@ -92,5 +93,8 @@ class Document(BaseModel):
     """
 
     object: str
+
+    source: str
+    """The source of the document. Can be `vendor`, `customer`, or `modern_treasury`."""
 
     updated_at: datetime

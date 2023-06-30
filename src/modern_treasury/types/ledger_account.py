@@ -6,7 +6,21 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["LedgerAccount", "Balances", "BalancesPendingBalance", "BalancesPostedBalance", "BalancesAvailableBalance"]
+__all__ = ["LedgerAccount", "Balances", "BalancesAvailableBalance", "BalancesPendingBalance", "BalancesPostedBalance"]
+
+
+class BalancesAvailableBalance(BaseModel):
+    amount: int
+
+    credits: int
+
+    currency: str
+    """The currency of the ledger account."""
+
+    currency_exponent: int
+    """The currency exponent of the ledger account."""
+
+    debits: int
 
 
 class BalancesPendingBalance(BaseModel):
@@ -24,20 +38,6 @@ class BalancesPendingBalance(BaseModel):
 
 
 class BalancesPostedBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-class BalancesAvailableBalance(BaseModel):
     amount: int
 
     credits: int
@@ -80,6 +80,8 @@ class Balances(BaseModel):
 
 
 class LedgerAccount(BaseModel):
+    id: str
+
     balances: Balances
     """The pending, posted, and available balances for this ledger account.
 
@@ -95,8 +97,6 @@ class LedgerAccount(BaseModel):
     """The description of the ledger account."""
 
     discarded_at: Optional[datetime]
-
-    id: str
 
     ledger_id: str
     """The id of the ledger that this account belongs to."""

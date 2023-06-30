@@ -10,6 +10,8 @@ __all__ = ["LedgerEntryListParams", "OrderBy"]
 
 
 class LedgerEntryListParams(TypedDict, total=False):
+    id: Dict[str, str]
+
     after_cursor: Optional[str]
 
     as_of_lock_version: int
@@ -37,8 +39,6 @@ class LedgerEntryListParams(TypedDict, total=False):
     transaction's effective date. Format YYYY-MM-DD
     """
 
-    id: Dict[str, str]
-
     ledger_account_category_id: str
     """Get all ledger entries that match the direction specified.
 
@@ -55,6 +55,9 @@ class LedgerEntryListParams(TypedDict, total=False):
     `ledger_account_lock_version%5Blte%5D=1000`.
     """
 
+    ledger_account_statement_id: str
+    """Get all ledger entries that are included in the ledger account statement."""
+
     ledger_transaction_id: str
 
     order_by: OrderBy
@@ -66,6 +69,12 @@ class LedgerEntryListParams(TypedDict, total=False):
     """
 
     per_page: int
+
+    show_balances: bool
+    """If true, response will include the balances attached to the ledger entry.
+
+    If there is no balance available, null will be returned instead.
+    """
 
     show_deleted: bool
     """If true, response will include ledger entries that were deleted.

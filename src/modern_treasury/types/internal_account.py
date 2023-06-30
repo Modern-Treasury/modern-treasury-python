@@ -11,12 +11,12 @@ __all__ = ["InternalAccount", "PartyAddress"]
 
 
 class PartyAddress(BaseModel):
+    id: str
+
     country: Optional[str]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
     created_at: datetime
-
-    id: str
 
     line1: Optional[str]
 
@@ -43,6 +43,8 @@ class PartyAddress(BaseModel):
 
 
 class InternalAccount(BaseModel):
+    id: str
+
     account_details: List[account_detail.AccountDetail]
     """An array of account detail objects."""
 
@@ -59,8 +61,6 @@ class InternalAccount(BaseModel):
 
     currency: Optional[shared.Currency]
     """The currency of the account."""
-
-    id: str
 
     ledger_account_id: Optional[str]
     """

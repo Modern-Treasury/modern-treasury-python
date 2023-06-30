@@ -11,6 +11,8 @@ __all__ = ["Transaction"]
 
 
 class Transaction(BaseModel):
+    id: str
+
     amount: int
     """Value in specified currency's smallest unit.
 
@@ -47,8 +49,6 @@ class Transaction(BaseModel):
     """Either `credit` or `debit`."""
 
     discarded_at: Optional[datetime]
-
-    id: str
 
     internal_account_id: str
     """The ID of the relevant Internal Account."""

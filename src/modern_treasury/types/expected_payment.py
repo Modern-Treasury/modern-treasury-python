@@ -1,5 +1,6 @@
 # File generated from our OpenAPI spec by Stainless.
 
+import builtins
 from typing import Dict, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
@@ -11,6 +12,8 @@ __all__ = ["ExpectedPayment"]
 
 
 class ExpectedPayment(BaseModel):
+    id: str
+
     amount_lower_bound: int
     """The lowest amount this expected payment may be equal to.
 
@@ -48,8 +51,6 @@ class ExpectedPayment(BaseModel):
     When you are receiving money, use credit. When you are being charged, use debit.
     """
 
-    id: str
-
     internal_account_id: str
     """The ID of the Internal Account for the expected payment."""
 
@@ -69,6 +70,12 @@ class ExpectedPayment(BaseModel):
     """
 
     object: str
+
+    reconciliation_filters: Optional[builtins.object]
+    """The reconciliation filters you have for this payment."""
+
+    reconciliation_groups: Optional[builtins.object]
+    """The reconciliation groups you have for this payment."""
 
     reconciliation_method: Optional[Literal["automatic", "manual"]]
     """

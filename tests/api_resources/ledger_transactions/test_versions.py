@@ -27,40 +27,19 @@ class TestVersions:
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
-        version = client.ledger_transactions.versions.list(
-            "string",
-        )
+        version = client.ledger_transactions.versions.list()
         assert_matches_type(SyncPage[LedgerTransactionVersion], version, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         version = client.ledger_transactions.versions.list(
-            "string",
             after_cursor="string",
             created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
+            ledger_account_statement_id="string",
+            ledger_transaction_id="string",
             per_page=0,
             version={"foo": 0},
         )
-        assert_matches_type(SyncPage[LedgerTransactionVersion], version, path=["response"])
-
-    @parametrize
-    def test_method_versions(self, client: ModernTreasury) -> None:
-        with pytest.warns(DeprecationWarning):
-            version = client.ledger_transactions.versions.versions(
-                "string",
-            )
-        assert_matches_type(SyncPage[LedgerTransactionVersion], version, path=["response"])
-
-    @parametrize
-    def test_method_versions_with_all_params(self, client: ModernTreasury) -> None:
-        with pytest.warns(DeprecationWarning):
-            version = client.ledger_transactions.versions.versions(
-                "string",
-                after_cursor="string",
-                created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
-                per_page=0,
-                version={"foo": 0},
-            )
         assert_matches_type(SyncPage[LedgerTransactionVersion], version, path=["response"])
 
 
@@ -75,38 +54,17 @@ class TestAsyncVersions:
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        version = await client.ledger_transactions.versions.list(
-            "string",
-        )
+        version = await client.ledger_transactions.versions.list()
         assert_matches_type(AsyncPage[LedgerTransactionVersion], version, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         version = await client.ledger_transactions.versions.list(
-            "string",
             after_cursor="string",
             created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
+            ledger_account_statement_id="string",
+            ledger_transaction_id="string",
             per_page=0,
             version={"foo": 0},
         )
-        assert_matches_type(AsyncPage[LedgerTransactionVersion], version, path=["response"])
-
-    @parametrize
-    async def test_method_versions(self, client: AsyncModernTreasury) -> None:
-        with pytest.warns(DeprecationWarning):
-            version = await client.ledger_transactions.versions.versions(
-                "string",
-            )
-        assert_matches_type(AsyncPage[LedgerTransactionVersion], version, path=["response"])
-
-    @parametrize
-    async def test_method_versions_with_all_params(self, client: AsyncModernTreasury) -> None:
-        with pytest.warns(DeprecationWarning):
-            version = await client.ledger_transactions.versions.versions(
-                "string",
-                after_cursor="string",
-                created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
-                per_page=0,
-                version={"foo": 0},
-            )
         assert_matches_type(AsyncPage[LedgerTransactionVersion], version, path=["response"])

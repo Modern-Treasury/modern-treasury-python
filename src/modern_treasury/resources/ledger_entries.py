@@ -6,7 +6,7 @@ from typing import Dict, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
-from ..types import LedgerEntry, ledger_entry_list_params
+from ..types import LedgerEntry, ledger_entry_list_params, ledger_entry_retrieve_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -21,6 +21,7 @@ class LedgerEntries(SyncAPIResource):
         self,
         id: str,
         *,
+        show_balances: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -32,6 +33,9 @@ class LedgerEntries(SyncAPIResource):
         Get details on a single ledger entry.
 
         Args:
+          show_balances: If true, response will include the balances attached to the ledger entry. If
+              there is no balance available, null will be returned instead.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -43,7 +47,13 @@ class LedgerEntries(SyncAPIResource):
         return self._get(
             f"/api/ledger_entries/{id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"show_balances": show_balances}, ledger_entry_retrieve_params.LedgerEntryRetrieveParams
+                ),
             ),
             cast_to=LedgerEntry,
         )
@@ -51,18 +61,20 @@ class LedgerEntries(SyncAPIResource):
     def list(
         self,
         *,
+        id: Dict[str, str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         as_of_lock_version: int | NotGiven = NOT_GIVEN,
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
         effective_date: Dict[str, Union[str, date]] | NotGiven = NOT_GIVEN,
-        id: Dict[str, str] | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_account_lock_version: Dict[str, int] | NotGiven = NOT_GIVEN,
+        ledger_account_statement_id: str | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         order_by: ledger_entry_list_params.OrderBy | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        show_balances: bool | NotGiven = NOT_GIVEN,
         show_deleted: bool | NotGiven = NOT_GIVEN,
         status: Literal["pending", "posted", "archived"] | NotGiven = NOT_GIVEN,
         updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
@@ -98,9 +110,14 @@ class LedgerEntries(SyncAPIResource):
               before before lock_version 1000 of a ledger account, use
               `ledger_account_lock_version%5Blte%5D=1000`.
 
+          ledger_account_statement_id: Get all ledger entries that are included in the ledger account statement.
+
           order_by: Order by `created_at` or `effective_at` in `asc` or `desc` order. For example,
               to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`. Ordering
               by only one field at a time is supported.
+
+          show_balances: If true, response will include the balances attached to the ledger entry. If
+              there is no balance available, null will be returned instead.
 
           show_deleted: If true, response will include ledger entries that were deleted. When you update
               a ledger transaction to specify a new set of entries, the previous entries are
@@ -131,18 +148,20 @@ class LedgerEntries(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after_cursor": after_cursor,
                         "as_of_lock_version": as_of_lock_version,
                         "direction": direction,
                         "effective_at": effective_at,
                         "effective_date": effective_date,
-                        "id": id,
                         "ledger_account_category_id": ledger_account_category_id,
                         "ledger_account_id": ledger_account_id,
                         "ledger_account_lock_version": ledger_account_lock_version,
+                        "ledger_account_statement_id": ledger_account_statement_id,
                         "ledger_transaction_id": ledger_transaction_id,
                         "order_by": order_by,
                         "per_page": per_page,
+                        "show_balances": show_balances,
                         "show_deleted": show_deleted,
                         "status": status,
                         "updated_at": updated_at,
@@ -159,6 +178,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
         self,
         id: str,
         *,
+        show_balances: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -170,6 +190,9 @@ class AsyncLedgerEntries(AsyncAPIResource):
         Get details on a single ledger entry.
 
         Args:
+          show_balances: If true, response will include the balances attached to the ledger entry. If
+              there is no balance available, null will be returned instead.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -181,7 +204,13 @@ class AsyncLedgerEntries(AsyncAPIResource):
         return await self._get(
             f"/api/ledger_entries/{id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"show_balances": show_balances}, ledger_entry_retrieve_params.LedgerEntryRetrieveParams
+                ),
             ),
             cast_to=LedgerEntry,
         )
@@ -189,18 +218,20 @@ class AsyncLedgerEntries(AsyncAPIResource):
     def list(
         self,
         *,
+        id: Dict[str, str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         as_of_lock_version: int | NotGiven = NOT_GIVEN,
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
         effective_date: Dict[str, Union[str, date]] | NotGiven = NOT_GIVEN,
-        id: Dict[str, str] | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_account_lock_version: Dict[str, int] | NotGiven = NOT_GIVEN,
+        ledger_account_statement_id: str | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         order_by: ledger_entry_list_params.OrderBy | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        show_balances: bool | NotGiven = NOT_GIVEN,
         show_deleted: bool | NotGiven = NOT_GIVEN,
         status: Literal["pending", "posted", "archived"] | NotGiven = NOT_GIVEN,
         updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
@@ -236,9 +267,14 @@ class AsyncLedgerEntries(AsyncAPIResource):
               before before lock_version 1000 of a ledger account, use
               `ledger_account_lock_version%5Blte%5D=1000`.
 
+          ledger_account_statement_id: Get all ledger entries that are included in the ledger account statement.
+
           order_by: Order by `created_at` or `effective_at` in `asc` or `desc` order. For example,
               to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`. Ordering
               by only one field at a time is supported.
+
+          show_balances: If true, response will include the balances attached to the ledger entry. If
+              there is no balance available, null will be returned instead.
 
           show_deleted: If true, response will include ledger entries that were deleted. When you update
               a ledger transaction to specify a new set of entries, the previous entries are
@@ -269,18 +305,20 @@ class AsyncLedgerEntries(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after_cursor": after_cursor,
                         "as_of_lock_version": as_of_lock_version,
                         "direction": direction,
                         "effective_at": effective_at,
                         "effective_date": effective_date,
-                        "id": id,
                         "ledger_account_category_id": ledger_account_category_id,
                         "ledger_account_id": ledger_account_id,
                         "ledger_account_lock_version": ledger_account_lock_version,
+                        "ledger_account_statement_id": ledger_account_statement_id,
                         "ledger_transaction_id": ledger_transaction_id,
                         "order_by": order_by,
                         "per_page": per_page,
+                        "show_balances": show_balances,
                         "show_deleted": show_deleted,
                         "status": status,
                         "updated_at": updated_at,

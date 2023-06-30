@@ -253,6 +253,8 @@ class InvoiceUpdateParams(TypedDict, total=False):
 
 
 class ContactDetail(TypedDict, total=False):
+    id: Required[str]
+
     contact_identifier: Required[str]
 
     contact_identifier_type: Required[Literal["email", "phone_number", "website"]]
@@ -260,8 +262,6 @@ class ContactDetail(TypedDict, total=False):
     created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
     discarded_at: Required[Annotated[Optional[Union[str, datetime]], PropertyInfo(format="iso8601")]]
-
-    id: Required[str]
 
     live_mode: Required[bool]
     """

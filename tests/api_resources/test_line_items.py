@@ -56,6 +56,7 @@ class TestLineItems:
         )
         assert_matches_type(LineItem, line_item, path=["response"])
 
+    @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         line_item = client.line_items.list(
@@ -64,6 +65,7 @@ class TestLineItems:
         )
         assert_matches_type(SyncPage[LineItem], line_item, path=["response"])
 
+    @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         line_item = client.line_items.list(
@@ -116,6 +118,7 @@ class TestAsyncLineItems:
         )
         assert_matches_type(LineItem, line_item, path=["response"])
 
+    @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
         line_item = await client.line_items.list(
@@ -124,6 +127,7 @@ class TestAsyncLineItems:
         )
         assert_matches_type(AsyncPage[LineItem], line_item, path=["response"])
 
+    @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         line_item = await client.line_items.list(

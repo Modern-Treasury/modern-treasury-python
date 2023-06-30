@@ -52,6 +52,8 @@ class VirtualAccountCreateParams(TypedDict, total=False):
 
 
 class AccountDetail(TypedDict, total=False):
+    id: Required[str]
+
     account_number_safe: Required[str]
     """The last 4 digits of the account_number."""
 
@@ -64,8 +66,6 @@ class AccountDetail(TypedDict, total=False):
     created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
     discarded_at: Required[Annotated[Optional[Union[str, datetime]], PropertyInfo(format="iso8601")]]
-
-    id: Required[str]
 
     live_mode: Required[bool]
     """
@@ -89,12 +89,12 @@ Please use AccountDetail instead.
 
 
 class RoutingDetailBankAddress(TypedDict, total=False):
+    id: Required[str]
+
     country: Required[Optional[str]]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
     created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
-
-    id: Required[str]
 
     line1: Required[Optional[str]]
 
@@ -128,6 +128,8 @@ Please use RoutingDetailBankAddress instead.
 
 
 class RoutingDetail(TypedDict, total=False):
+    id: Required[str]
+
     bank_address: Required[Optional[RoutingDetailBankAddress]]
 
     bank_name: Required[str]
@@ -136,8 +138,6 @@ class RoutingDetail(TypedDict, total=False):
     created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
     discarded_at: Required[Annotated[Optional[Union[str, datetime]], PropertyInfo(format="iso8601")]]
-
-    id: Required[str]
 
     live_mode: Required[bool]
     """

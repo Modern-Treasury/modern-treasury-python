@@ -180,9 +180,9 @@ modern_treasury = ModernTreasury(
 
 contents = Path("my/file.txt").read_bytes()
 modern_treasury.documents.create(
-    "counterparties",
-    "24c6b7a3-02...",
     file=contents,
+    documentable_type="counterparties",
+    documentable_id="24c6b7a3-02...",
 )
 ```
 
@@ -200,9 +200,9 @@ async with aiofiles.open("my/file.txt", mode="rb") as f:
     contents = await f.read()
 
 await modern_treasury.documents.create(
-    "counterparties",
-    "24c6b7a3-02...",
     file=contents,
+    documentable_type="counterparties",
+    documentable_id="24c6b7a3-02...",
 )
 ```
 

@@ -11,20 +11,49 @@ __all__ = [
     "Counterparty",
     "Accounts",
     "Account",
-    "AccountsPartyAddress",
-    "AccountPartyAddress",
     "AccountsContactDetails",
     "AccountContactDetail",
+    "AccountsPartyAddress",
+    "AccountPartyAddress",
 ]
 
 
+class AccountContactDetail(BaseModel):
+    id: str
+
+    contact_identifier: str
+
+    contact_identifier_type: Literal["email", "phone_number", "website"]
+
+    created_at: datetime
+
+    discarded_at: Optional[datetime]
+
+    live_mode: bool
+    """
+    This field will be true if this object exists in the live environment or false
+    if it exists in the test environment.
+    """
+
+    object: str
+
+    updated_at: datetime
+
+
+AccountsContactDetails = AccountContactDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use AccountContactDetail instead.
+"""
+
+
 class AccountPartyAddress(BaseModel):
+    id: str
+
     country: Optional[str]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
     created_at: datetime
-
-    id: str
 
     line1: Optional[str]
 
@@ -57,36 +86,9 @@ Please use AccountPartyAddress instead.
 """
 
 
-class AccountContactDetail(BaseModel):
-    contact_identifier: str
-
-    contact_identifier_type: Literal["email", "phone_number", "website"]
-
-    created_at: datetime
-
-    discarded_at: Optional[datetime]
-
-    id: str
-
-    live_mode: bool
-    """
-    This field will be true if this object exists in the live environment or false
-    if it exists in the test environment.
-    """
-
-    object: str
-
-    updated_at: datetime
-
-
-AccountsContactDetails = AccountContactDetail
-"""This type is deprecated and will be removed in a future release.
-
-Please use AccountContactDetail instead.
-"""
-
-
 class Account(BaseModel):
+    id: Optional[str]
+
     account_details: Optional[List[account_detail.AccountDetail]]
 
     account_type: Optional[external_account_type.ExternalAccountType]
@@ -97,8 +99,6 @@ class Account(BaseModel):
     created_at: Optional[datetime]
 
     discarded_at: Optional[datetime]
-
-    id: Optional[str]
 
     ledger_account_id: Optional[str]
     """
@@ -150,6 +150,8 @@ Please use Account instead.
 
 
 class Counterparty(BaseModel):
+    id: str
+
     accounts: List[Account]
     """The accounts for this counterparty."""
 
@@ -159,8 +161,6 @@ class Counterparty(BaseModel):
 
     email: Optional[str]
     """The counterparty's email."""
-
-    id: str
 
     live_mode: bool
     """
@@ -186,3 +186,6 @@ class Counterparty(BaseModel):
     """
 
     updated_at: datetime
+
+    verification_status: Literal["denied", "needs_approval", "unverified", "verified"]
+    """The verification status of the counterparty."""

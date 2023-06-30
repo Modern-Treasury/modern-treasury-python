@@ -13,9 +13,9 @@ __all__ = ["ReturnObject", "ReferenceNumbers", "ReferenceNumber"]
 
 
 class ReferenceNumber(BaseModel):
-    created_at: datetime
-
     id: str
+
+    created_at: datetime
 
     live_mode: bool
     """
@@ -39,6 +39,7 @@ class ReferenceNumber(BaseModel):
         "bofa_transaction_id",
         "check_number",
         "column_fx_quote_id",
+        "column_reversal_pair_transfer_id",
         "column_transfer_id",
         "cross_river_payment_id",
         "cross_river_transaction_id",
@@ -72,6 +73,7 @@ class ReferenceNumber(BaseModel):
         "pnc_instruction_id",
         "pnc_multipayment_id",
         "pnc_payment_trace_id",
+        "rspec_vendor_payment_id",
         "rtp_instruction_id",
         "signet_api_reference_id",
         "signet_confirmation_id",
@@ -96,6 +98,8 @@ Please use ReferenceNumber instead.
 
 
 class ReturnObject(BaseModel):
+    id: str
+
     additional_information: Optional[str]
     """Some returns may include additional information from the bank.
 
@@ -180,8 +184,6 @@ class ReturnObject(BaseModel):
     the failure reason will be available.
     """
 
-    id: str
-
     internal_account_id: Optional[str]
     """The ID of the relevant Internal Account."""
 
@@ -223,7 +225,9 @@ class ReturnObject(BaseModel):
     transaction_line_item_id: Optional[str]
     """The ID of the relevant Transaction Line Item or `null`."""
 
-    type: Literal["ach", "ach_noc", "au_becs", "bacs", "book", "eft", "interac", "manual", "paper_item", "sepa", "wire"]
+    type: Literal[
+        "ach", "ach_noc", "au_becs", "bacs", "book", "check", "eft", "interac", "manual", "paper_item", "sepa", "wire"
+    ]
     """The type of return.
 
     Can be one of: `ach`, `ach_noc`, `au_becs`, `bacs`, `eft`, `interac`, `manual`,

@@ -33,6 +33,14 @@ class TestLedgerEntries:
         assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
 
     @parametrize
+    def test_method_retrieve_with_all_params(self, client: ModernTreasury) -> None:
+        ledger_entry = client.ledger_entries.retrieve(
+            "string",
+            show_balances=True,
+        )
+        assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
+
+    @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         ledger_entry = client.ledger_entries.list()
         assert_matches_type(SyncPage[LedgerEntry], ledger_entry, path=["response"])
@@ -40,21 +48,23 @@ class TestLedgerEntries:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger_entry = client.ledger_entries.list(
+            id={"foo": "string"},
             after_cursor="string",
             as_of_lock_version=0,
             direction="credit",
             effective_at={"foo": "string"},
             effective_date={"foo": parse_date("2019-12-27")},
-            id={"foo": "string"},
             ledger_account_category_id="string",
             ledger_account_id="string",
             ledger_account_lock_version={"foo": 0},
+            ledger_account_statement_id="string",
             ledger_transaction_id="string",
             order_by={
                 "created_at": "asc",
                 "effective_at": "asc",
             },
             per_page=0,
+            show_balances=True,
             show_deleted=True,
             status="pending",
             updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
@@ -79,6 +89,14 @@ class TestAsyncLedgerEntries:
         assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
 
     @parametrize
+    async def test_method_retrieve_with_all_params(self, client: AsyncModernTreasury) -> None:
+        ledger_entry = await client.ledger_entries.retrieve(
+            "string",
+            show_balances=True,
+        )
+        assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
+
+    @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
         ledger_entry = await client.ledger_entries.list()
         assert_matches_type(AsyncPage[LedgerEntry], ledger_entry, path=["response"])
@@ -86,21 +104,23 @@ class TestAsyncLedgerEntries:
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger_entry = await client.ledger_entries.list(
+            id={"foo": "string"},
             after_cursor="string",
             as_of_lock_version=0,
             direction="credit",
             effective_at={"foo": "string"},
             effective_date={"foo": parse_date("2019-12-27")},
-            id={"foo": "string"},
             ledger_account_category_id="string",
             ledger_account_id="string",
             ledger_account_lock_version={"foo": 0},
+            ledger_account_statement_id="string",
             ledger_transaction_id="string",
             order_by={
                 "created_at": "asc",
                 "effective_at": "asc",
             },
             per_page=0,
+            show_balances=True,
             show_deleted=True,
             status="pending",
             updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},

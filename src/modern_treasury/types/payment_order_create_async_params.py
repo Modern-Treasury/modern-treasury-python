@@ -17,14 +17,14 @@ __all__ = [
     "LineItems",
     "LineItem",
     "ReceivingAccount",
-    "ReceivingAccountPartyAddress",
     "ReceivingAccountAccountDetails",
     "ReceivingAccountAccountDetail",
-    "ReceivingAccountRoutingDetails",
-    "ReceivingAccountRoutingDetail",
-    "ReceivingAccountLedgerAccount",
     "ReceivingAccountContactDetails",
     "ReceivingAccountContactDetail",
+    "ReceivingAccountLedgerAccount",
+    "ReceivingAccountPartyAddress",
+    "ReceivingAccountRoutingDetails",
+    "ReceivingAccountRoutingDetail",
 ]
 
 
@@ -600,6 +600,71 @@ Please use LineItem instead.
 """
 
 
+class ReceivingAccountAccountDetail(TypedDict, total=False):
+    account_number: Required[str]
+
+    account_number_type: Literal["iban", "clabe", "wallet_address", "pan", "other"]
+
+
+ReceivingAccountAccountDetails = ReceivingAccountAccountDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use ReceivingAccountAccountDetail instead.
+"""
+
+
+class ReceivingAccountContactDetail(TypedDict, total=False):
+    contact_identifier: str
+
+    contact_identifier_type: Literal["email", "phone_number", "website"]
+
+
+ReceivingAccountContactDetails = ReceivingAccountContactDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use ReceivingAccountContactDetail instead.
+"""
+
+
+class ReceivingAccountLedgerAccount(TypedDict, total=False):
+    currency: Required[str]
+    """The currency of the ledger account."""
+
+    ledger_id: Required[str]
+    """The id of the ledger that this account belongs to."""
+
+    name: Required[str]
+    """The name of the ledger account."""
+
+    normal_balance: Required[Literal["credit", "debit"]]
+    """The normal balance of the ledger account."""
+
+    currency_exponent: Optional[int]
+    """The currency exponent of the ledger account."""
+
+    description: Optional[str]
+    """The description of the ledger account."""
+
+    ledgerable_id: str
+    """
+    If the ledger account links to another object in Modern Treasury, the id will be
+    populated here, otherwise null.
+    """
+
+    ledgerable_type: Literal["external_account", "internal_account"]
+    """
+    If the ledger account links to another object in Modern Treasury, the type will
+    be populated here, otherwise null. The value is one of internal_account or
+    external_account.
+    """
+
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
+
+
 class ReceivingAccountPartyAddress(TypedDict, total=False):
     country: Optional[str]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
@@ -616,19 +681,6 @@ class ReceivingAccountPartyAddress(TypedDict, total=False):
 
     region: Optional[str]
     """Region or State."""
-
-
-class ReceivingAccountAccountDetail(TypedDict, total=False):
-    account_number: Required[str]
-
-    account_number_type: Literal["iban", "clabe", "wallet_address", "pan", "other"]
-
-
-ReceivingAccountAccountDetails = ReceivingAccountAccountDetail
-"""This type is deprecated and will be removed in a future release.
-
-Please use ReceivingAccountAccountDetail instead.
-"""
 
 
 class ReceivingAccountRoutingDetail(TypedDict, total=False):
@@ -674,58 +726,6 @@ ReceivingAccountRoutingDetails = ReceivingAccountRoutingDetail
 """This type is deprecated and will be removed in a future release.
 
 Please use ReceivingAccountRoutingDetail instead.
-"""
-
-
-class ReceivingAccountLedgerAccount(TypedDict, total=False):
-    currency: Required[str]
-    """The currency of the ledger account."""
-
-    ledger_id: Required[str]
-    """The id of the ledger that this account belongs to."""
-
-    name: Required[str]
-    """The name of the ledger account."""
-
-    normal_balance: Required[Literal["credit", "debit"]]
-    """The normal balance of the ledger account."""
-
-    currency_exponent: Optional[int]
-    """The currency exponent of the ledger account."""
-
-    description: Optional[str]
-    """The description of the ledger account."""
-
-    ledgerable_id: str
-    """
-    If the ledger account links to another object in Modern Treasury, the id will be
-    populated here, otherwise null.
-    """
-
-    ledgerable_type: Literal["external_account", "internal_account"]
-    """
-    If the ledger account links to another object in Modern Treasury, the type will
-    be populated here, otherwise null. The value is one of internal_account or
-    external_account.
-    """
-
-    metadata: Dict[str, str]
-    """Additional data represented as key-value pairs.
-
-    Both the key and value must be strings.
-    """
-
-
-class ReceivingAccountContactDetail(TypedDict, total=False):
-    contact_identifier: str
-
-    contact_identifier_type: Literal["email", "phone_number", "website"]
-
-
-ReceivingAccountContactDetails = ReceivingAccountContactDetail
-"""This type is deprecated and will be removed in a future release.
-
-Please use ReceivingAccountContactDetail instead.
 """
 
 

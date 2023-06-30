@@ -7,16 +7,45 @@ from typing_extensions import Literal
 from ..types import account_detail, routing_detail, external_account_type
 from .._models import BaseModel
 
-__all__ = ["ExternalAccount", "PartyAddress", "ContactDetails", "ContactDetail"]
+__all__ = ["ExternalAccount", "ContactDetails", "ContactDetail", "PartyAddress"]
+
+
+class ContactDetail(BaseModel):
+    id: str
+
+    contact_identifier: str
+
+    contact_identifier_type: Literal["email", "phone_number", "website"]
+
+    created_at: datetime
+
+    discarded_at: Optional[datetime]
+
+    live_mode: bool
+    """
+    This field will be true if this object exists in the live environment or false
+    if it exists in the test environment.
+    """
+
+    object: str
+
+    updated_at: datetime
+
+
+ContactDetails = ContactDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use ContactDetail instead.
+"""
 
 
 class PartyAddress(BaseModel):
+    id: str
+
     country: Optional[str]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
     created_at: datetime
-
-    id: str
 
     line1: Optional[str]
 
@@ -42,36 +71,9 @@ class PartyAddress(BaseModel):
     updated_at: datetime
 
 
-class ContactDetail(BaseModel):
-    contact_identifier: str
-
-    contact_identifier_type: Literal["email", "phone_number", "website"]
-
-    created_at: datetime
-
-    discarded_at: Optional[datetime]
-
+class ExternalAccount(BaseModel):
     id: str
 
-    live_mode: bool
-    """
-    This field will be true if this object exists in the live environment or false
-    if it exists in the test environment.
-    """
-
-    object: str
-
-    updated_at: datetime
-
-
-ContactDetails = ContactDetail
-"""This type is deprecated and will be removed in a future release.
-
-Please use ContactDetail instead.
-"""
-
-
-class ExternalAccount(BaseModel):
     account_details: List[account_detail.AccountDetail]
 
     account_type: external_account_type.ExternalAccountType
@@ -84,8 +86,6 @@ class ExternalAccount(BaseModel):
     created_at: datetime
 
     discarded_at: Optional[datetime]
-
-    id: str
 
     ledger_account_id: Optional[str]
     """

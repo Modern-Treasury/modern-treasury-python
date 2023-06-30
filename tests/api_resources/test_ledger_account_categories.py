@@ -104,6 +104,7 @@ class TestLedgerAccountCategories:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account_category = client.ledger_account_categories.list(
             after_cursor="string",
+            ledger_account_id="string",
             ledger_id="string",
             metadata={"foo": "string"},
             name="string",
@@ -251,6 +252,7 @@ class TestAsyncLedgerAccountCategories:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger_account_category = await client.ledger_account_categories.list(
             after_cursor="string",
+            ledger_account_id="string",
             ledger_id="string",
             metadata={"foo": "string"},
             name="string",

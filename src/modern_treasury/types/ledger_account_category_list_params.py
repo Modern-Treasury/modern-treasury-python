@@ -11,6 +11,12 @@ __all__ = ["LedgerAccountCategoryListParams"]
 class LedgerAccountCategoryListParams(TypedDict, total=False):
     after_cursor: Optional[str]
 
+    ledger_account_id: str
+    """
+    Query categories which contain a ledger account directly or through child
+    categories.
+    """
+
     ledger_id: str
 
     metadata: Dict[str, str]

@@ -27,6 +27,8 @@ class Accounting(BaseModel):
 
 
 class LineItem(BaseModel):
+    id: str
+
     accounting: Accounting
 
     accounting_category_id: Optional[str]
@@ -54,8 +56,6 @@ class LineItem(BaseModel):
 
     description: Optional[str]
     """A free-form description of the line item."""
-
-    id: str
 
     itemizable_id: str
     """The ID of the payment order or expected payment."""

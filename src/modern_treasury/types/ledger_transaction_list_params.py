@@ -10,6 +10,8 @@ __all__ = ["LedgerTransactionListParams", "OrderBy"]
 
 
 class LedgerTransactionListParams(TypedDict, total=False):
+    id: Dict[str, str]
+
     after_cursor: Optional[str]
 
     effective_at: Dict[str, str]
@@ -28,13 +30,26 @@ class LedgerTransactionListParams(TypedDict, total=False):
 
     external_id: str
 
-    id: Dict[str, str]
-
     ledger_account_category_id: str
 
     ledger_account_id: str
 
     ledger_id: str
+
+    ledgerable_id: str
+
+    ledgerable_type: Literal[
+        "counterparty",
+        "expected_payment",
+        "incoming_payment_detail",
+        "internal_account",
+        "line_item",
+        "paper_item",
+        "payment_order",
+        "payment_order_attempt",
+        "return",
+        "reversal",
+    ]
 
     metadata: Dict[str, str]
     """
@@ -59,6 +74,8 @@ class LedgerTransactionListParams(TypedDict, total=False):
     posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
     posted_at%5Bgt%5D=2000-01-01T12:00:00Z.
     """
+
+    reverses_ledger_transaction_id: str
 
     status: Literal["pending", "posted", "archived"]
 
