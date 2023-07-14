@@ -465,6 +465,25 @@ class Accounting(TypedDict, total=False):
 
 
 class Document(TypedDict, total=False):
+    documentable_id: Required[str]
+    """The unique identifier for the associated object."""
+
+    documentable_type: Required[
+        Literal[
+            "cases",
+            "counterparties",
+            "expected_payments",
+            "external_accounts",
+            "internal_accounts",
+            "organizations",
+            "paper_items",
+            "payment_orders",
+            "transactions",
+            "decisions",
+            "connections",
+        ]
+    ]
+
     file: Required[FileTypes]
 
     document_type: str

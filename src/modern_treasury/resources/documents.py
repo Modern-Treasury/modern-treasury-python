@@ -49,10 +49,6 @@ class Documents(SyncAPIResource):
         Args:
           documentable_id: The unique identifier for the associated object.
 
-          documentable_type: The type of the associated object. Currently can be one of `payment_order`,
-              `transaction`, `paper_item`, `expected_payment`, `counterparty`, `organization`,
-              `case`, `internal_account`, `decision`, or `external_account`.
-
           document_type: A category given to the document, can be `null`.
 
           extra_headers: Send extra headers
@@ -67,6 +63,8 @@ class Documents(SyncAPIResource):
         """
         body = deepcopy_minimal(
             {
+                "documentable_id": documentable_id,
+                "documentable_type": documentable_type,
                 "file": file,
                 "document_type": document_type,
             }
@@ -88,13 +86,6 @@ class Documents(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
-                query=maybe_transform(
-                    {
-                        "documentable_id": documentable_id,
-                        "documentable_type": documentable_type,
-                    },
-                    document_create_params.DocumentCreateParams,
-                ),
             ),
             cast_to=Document,
         )
@@ -231,10 +222,6 @@ class AsyncDocuments(AsyncAPIResource):
         Args:
           documentable_id: The unique identifier for the associated object.
 
-          documentable_type: The type of the associated object. Currently can be one of `payment_order`,
-              `transaction`, `paper_item`, `expected_payment`, `counterparty`, `organization`,
-              `case`, `internal_account`, `decision`, or `external_account`.
-
           document_type: A category given to the document, can be `null`.
 
           extra_headers: Send extra headers
@@ -249,6 +236,8 @@ class AsyncDocuments(AsyncAPIResource):
         """
         body = deepcopy_minimal(
             {
+                "documentable_id": documentable_id,
+                "documentable_type": documentable_type,
                 "file": file,
                 "document_type": document_type,
             }
@@ -270,13 +259,6 @@ class AsyncDocuments(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
-                query=maybe_transform(
-                    {
-                        "documentable_id": documentable_id,
-                        "documentable_type": documentable_type,
-                    },
-                    document_create_params.DocumentCreateParams,
-                ),
             ),
             cast_to=Document,
         )
