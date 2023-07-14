@@ -537,7 +537,7 @@ from modern_treasury.types import VirtualAccount
 Methods:
 
 - <code title="post /api/virtual_accounts">client.virtual_accounts.<a href="./src/modern_treasury/resources/virtual_accounts.py">create</a>(\*\*<a href="src/modern_treasury/types/virtual_account_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/virtual_account.py">VirtualAccount</a></code>
-- <code title="get /api/virtual_accounts/{id}">client.virtual_accounts.<a href="./src/modern_treasury/resources/virtual_accounts.py">retrieve</a>(id) -> None</code>
+- <code title="get /api/virtual_accounts/{id}">client.virtual_accounts.<a href="./src/modern_treasury/resources/virtual_accounts.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/virtual_account.py">VirtualAccount</a></code>
 - <code title="patch /api/virtual_accounts/{id}">client.virtual_accounts.<a href="./src/modern_treasury/resources/virtual_accounts.py">update</a>(id, \*\*<a href="src/modern_treasury/types/virtual_account_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/virtual_account.py">VirtualAccount</a></code>
 - <code title="get /api/virtual_accounts">client.virtual_accounts.<a href="./src/modern_treasury/resources/virtual_accounts.py">list</a>(\*\*<a href="src/modern_treasury/types/virtual_account_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/virtual_account.py">SyncPage[VirtualAccount]</a></code>
 - <code title="delete /api/virtual_accounts/{id}">client.virtual_accounts.<a href="./src/modern_treasury/resources/virtual_accounts.py">delete</a>(id) -> <a href="./src/modern_treasury/types/virtual_account.py">VirtualAccount</a></code>

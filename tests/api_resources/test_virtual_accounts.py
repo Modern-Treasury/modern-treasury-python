@@ -163,7 +163,7 @@ class TestVirtualAccounts:
         virtual_account = client.virtual_accounts.retrieve(
             "string",
         )
-        assert virtual_account is None
+        assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
@@ -353,7 +353,7 @@ class TestAsyncVirtualAccounts:
         virtual_account = await client.virtual_accounts.retrieve(
             "string",
         )
-        assert virtual_account is None
+        assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
     @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:

@@ -42,7 +42,6 @@ class TestInternalAccounts:
             name="string",
             party_name="string",
             counterparty_id="string",
-            entity_id="string",
             parent_account_id="string",
             party_address={
                 "line1": "string",
@@ -51,6 +50,11 @@ class TestInternalAccounts:
                 "region": "string",
                 "postal_code": "string",
                 "country": "string",
+            },
+            vendor_attributes={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
             },
         )
         assert_matches_type(InternalAccount, internal_account, path=["response"])
@@ -126,7 +130,6 @@ class TestAsyncInternalAccounts:
             name="string",
             party_name="string",
             counterparty_id="string",
-            entity_id="string",
             parent_account_id="string",
             party_address={
                 "line1": "string",
@@ -135,6 +138,11 @@ class TestAsyncInternalAccounts:
                 "region": "string",
                 "postal_code": "string",
                 "country": "string",
+            },
+            vendor_attributes={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
             },
         )
         assert_matches_type(InternalAccount, internal_account, path=["response"])

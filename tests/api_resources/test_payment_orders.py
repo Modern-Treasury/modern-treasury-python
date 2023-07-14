@@ -55,14 +55,20 @@ class TestPaymentOrders:
             description="string",
             documents=[
                 {
+                    "documentable_id": "string",
+                    "documentable_type": "cases",
                     "document_type": "string",
                     "file": b"raw file contents",
                 },
                 {
+                    "documentable_id": "string",
+                    "documentable_type": "cases",
                     "document_type": "string",
                     "file": b"raw file contents",
                 },
                 {
+                    "documentable_id": "string",
+                    "documentable_type": "cases",
                     "document_type": "string",
                     "file": b"raw file contents",
                 },
@@ -699,14 +705,20 @@ class TestAsyncPaymentOrders:
             description="string",
             documents=[
                 {
+                    "documentable_id": "string",
+                    "documentable_type": "cases",
                     "document_type": "string",
                     "file": b"raw file contents",
                 },
                 {
+                    "documentable_id": "string",
+                    "documentable_type": "cases",
                     "document_type": "string",
                     "file": b"raw file contents",
                 },
                 {
+                    "documentable_id": "string",
+                    "documentable_type": "cases",
                     "document_type": "string",
                     "file": b"raw file contents",
                 },

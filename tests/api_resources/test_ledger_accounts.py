@@ -70,6 +70,7 @@ class TestLedgerAccounts:
                 "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "effective_at_lower_bound": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "effective_at_upper_bound": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "as_of_lock_version": 0,
             },
         )
         assert_matches_type(LedgerAccount, ledger_account, path=["response"])
@@ -183,6 +184,7 @@ class TestAsyncLedgerAccounts:
                 "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "effective_at_lower_bound": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "effective_at_upper_bound": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "as_of_lock_version": 0,
             },
         )
         assert_matches_type(LedgerAccount, ledger_account, path=["response"])

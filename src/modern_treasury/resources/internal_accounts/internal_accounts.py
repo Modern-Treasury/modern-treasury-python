@@ -40,9 +40,9 @@ class InternalAccounts(SyncAPIResource):
         name: str,
         party_name: str,
         counterparty_id: str | NotGiven = NOT_GIVEN,
-        entity_id: str | NotGiven = NOT_GIVEN,
         parent_account_id: str | NotGiven = NOT_GIVEN,
         party_address: internal_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
+        vendor_attributes: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -66,11 +66,12 @@ class InternalAccounts(SyncAPIResource):
 
           counterparty_id: The Counterparty associated to this account.
 
-          entity_id: The identifier of the entity at Increase which owns the account.
-
           parent_account_id: The parent internal account of this new account.
 
           party_address: The address associated with the owner or null.
+
+          vendor_attributes: A hash of vendor specific attributes that will be used when creating the account
+              at the vendor specified by the given connection.
 
           extra_headers: Send extra headers
 
@@ -91,9 +92,9 @@ class InternalAccounts(SyncAPIResource):
                     "name": name,
                     "party_name": party_name,
                     "counterparty_id": counterparty_id,
-                    "entity_id": entity_id,
                     "parent_account_id": parent_account_id,
                     "party_address": party_address,
+                    "vendor_attributes": vendor_attributes,
                 },
                 internal_account_create_params.InternalAccountCreateParams,
             ),
@@ -298,9 +299,9 @@ class AsyncInternalAccounts(AsyncAPIResource):
         name: str,
         party_name: str,
         counterparty_id: str | NotGiven = NOT_GIVEN,
-        entity_id: str | NotGiven = NOT_GIVEN,
         parent_account_id: str | NotGiven = NOT_GIVEN,
         party_address: internal_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
+        vendor_attributes: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -324,11 +325,12 @@ class AsyncInternalAccounts(AsyncAPIResource):
 
           counterparty_id: The Counterparty associated to this account.
 
-          entity_id: The identifier of the entity at Increase which owns the account.
-
           parent_account_id: The parent internal account of this new account.
 
           party_address: The address associated with the owner or null.
+
+          vendor_attributes: A hash of vendor specific attributes that will be used when creating the account
+              at the vendor specified by the given connection.
 
           extra_headers: Send extra headers
 
@@ -349,9 +351,9 @@ class AsyncInternalAccounts(AsyncAPIResource):
                     "name": name,
                     "party_name": party_name,
                     "counterparty_id": counterparty_id,
-                    "entity_id": entity_id,
                     "parent_account_id": parent_account_id,
                     "party_address": party_address,
+                    "vendor_attributes": vendor_attributes,
                 },
                 internal_account_create_params.InternalAccountCreateParams,
             ),
