@@ -121,10 +121,12 @@ class LedgerAccounts(SyncAPIResource):
         Get details on a single ledger account.
 
         Args:
-          balances: Use balances[effective_at_lower_bound] and balances[effective_at_upper_bound] to
-              get the balances change between the two timestamps. The lower bound is inclusive
-              while the upper bound is exclusive of the provided timestamps. If no value is
-              supplied the balances will be retrieved not including that bound.
+          balances: Use `balances[effective_at_lower_bound]` and
+              `balances[effective_at_upper_bound]` to get the balances change between the two
+              timestamps. The lower bound is inclusive while the upper bound is exclusive of
+              the provided timestamps. If no value is supplied the balances will be retrieved
+              not including that bound. Use `balances[as_of_lock_version]` to retrieve a
+              balance as of a specific Ledger Account `lock_version`.
 
           extra_headers: Send extra headers
 
@@ -228,10 +230,11 @@ class LedgerAccounts(SyncAPIResource):
         Get a list of ledger accounts.
 
         Args:
-          balances: Use balances[effective_at_lower_bound] and balances[effective_at_upper_bound] to
-              get the balances change between the two timestamps. The lower bound is inclusive
-              while the upper bound is exclusive of the provided timestamps. If no value is
-              supplied the balances will be retrieved not including that bound.
+          balances: Use `balances[effective_at_lower_bound]` and
+              `balances[effective_at_upper_bound]` to get the balances change between the two
+              timestamps. The lower bound is inclusive while the upper bound is exclusive of
+              the provided timestamps. If no value is supplied the balances will be retrieved
+              not including that bound.
 
           created_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               created at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
@@ -418,10 +421,12 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         Get details on a single ledger account.
 
         Args:
-          balances: Use balances[effective_at_lower_bound] and balances[effective_at_upper_bound] to
-              get the balances change between the two timestamps. The lower bound is inclusive
-              while the upper bound is exclusive of the provided timestamps. If no value is
-              supplied the balances will be retrieved not including that bound.
+          balances: Use `balances[effective_at_lower_bound]` and
+              `balances[effective_at_upper_bound]` to get the balances change between the two
+              timestamps. The lower bound is inclusive while the upper bound is exclusive of
+              the provided timestamps. If no value is supplied the balances will be retrieved
+              not including that bound. Use `balances[as_of_lock_version]` to retrieve a
+              balance as of a specific Ledger Account `lock_version`.
 
           extra_headers: Send extra headers
 
@@ -525,10 +530,11 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         Get a list of ledger accounts.
 
         Args:
-          balances: Use balances[effective_at_lower_bound] and balances[effective_at_upper_bound] to
-              get the balances change between the two timestamps. The lower bound is inclusive
-              while the upper bound is exclusive of the provided timestamps. If no value is
-              supplied the balances will be retrieved not including that bound.
+          balances: Use `balances[effective_at_lower_bound]` and
+              `balances[effective_at_upper_bound]` to get the balances change between the two
+              timestamps. The lower bound is inclusive while the upper bound is exclusive of
+              the provided timestamps. If no value is supplied the balances will be retrieved
+              not including that bound.
 
           created_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               created at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use

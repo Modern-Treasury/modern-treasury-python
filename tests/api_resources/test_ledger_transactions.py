@@ -201,7 +201,7 @@ class TestLedgerTransactions:
         ledger_transaction = client.ledger_transactions.create_reversal(
             "string",
             description="string",
-            effective_at=parse_date("2019-12-27"),
+            effective_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             external_id="string",
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledgerable_type="counterparty",
@@ -400,7 +400,7 @@ class TestAsyncLedgerTransactions:
         ledger_transaction = await client.ledger_transactions.create_reversal(
             "string",
             description="string",
-            effective_at=parse_date("2019-12-27"),
+            effective_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             external_id="string",
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledgerable_type="counterparty",

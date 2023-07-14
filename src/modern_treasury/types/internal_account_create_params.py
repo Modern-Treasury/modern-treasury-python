@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Dict
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["InternalAccountCreateParams", "PartyAddress"]
@@ -26,14 +27,17 @@ class InternalAccountCreateParams(TypedDict, total=False):
     counterparty_id: str
     """The Counterparty associated to this account."""
 
-    entity_id: str
-    """The identifier of the entity at Increase which owns the account."""
-
     parent_account_id: str
     """The parent internal account of this new account."""
 
     party_address: PartyAddress
     """The address associated with the owner or null."""
+
+    vendor_attributes: Dict[str, str]
+    """
+    A hash of vendor specific attributes that will be used when creating the account
+    at the vendor specified by the given connection.
+    """
 
 
 class PartyAddress(TypedDict, total=False):
