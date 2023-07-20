@@ -216,14 +216,15 @@ response), a subclass of `modern_treasury.APIStatusError` will be raised, contai
 All errors inherit from `modern_treasury.APIError`.
 
 ```python
+import modern_treasury
 from modern_treasury import ModernTreasury
 
-modern_treasury = ModernTreasury(
+client = ModernTreasury(
     organization_id="my-organization-ID",
 )
 
 try:
-    modern_treasury.external_accounts.create(
+    client.external_accounts.create(
         counterparty_id="missing",
     )
 except modern_treasury.APIConnectionError as e:
