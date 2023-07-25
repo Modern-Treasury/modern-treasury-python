@@ -8,7 +8,7 @@ import pytest
 
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
-from modern_treasury._utils import parse_datetime
+from modern_treasury._utils import parse_date, parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
 from modern_treasury.types.invoices import InvoiceLineItem
 
@@ -128,6 +128,10 @@ class TestLineItems:
                 "country": "string",
             },
             originating_account_id="string",
+            payment_effective_date=parse_date("2019-12-27"),
+            payment_method="ui",
+            payment_type="ach",
+            receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(InvoiceLineItem, line_item, path=["response"])
 
@@ -268,6 +272,10 @@ class TestAsyncLineItems:
                 "country": "string",
             },
             originating_account_id="string",
+            payment_effective_date=parse_date("2019-12-27"),
+            payment_method="ui",
+            payment_type="ach",
+            receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(InvoiceLineItem, line_item, path=["response"])
 

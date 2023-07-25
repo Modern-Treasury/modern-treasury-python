@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Union, Optional
-from datetime import datetime
+from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
@@ -239,6 +239,51 @@ class LineItemUpdateParams(TypedDict, total=False):
 
     originating_account_id: str
     """The ID of the internal account the invoice should be paid to."""
+
+    payment_effective_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    """Date transactions are to be posted to the participants' account.
+
+    Defaults to the current business day or the next business day if the current day
+    is a bank holiday or weekend. Format: yyyy-mm-dd.
+    """
+
+    payment_method: Literal["ui", "manual", "automatic"]
+    """The method by which the invoice can be paid.
+
+    `ui` will show the embedded payment collection flow. `automatic` will
+    automatically initiate payment based upon the account details of the
+    receiving_account id.\nIf the invoice amount is positive, the automatically
+    initiated payment order's direction will be debit. If the invoice amount is
+    negative, the automatically initiated payment order's direction will be credit.
+    One of `manual`, `ui`, or `automatic`.
+    """
+
+    payment_type: Literal[
+        "ach",
+        "au_becs",
+        "bacs",
+        "book",
+        "card",
+        "check",
+        "eft",
+        "cross_border",
+        "interac",
+        "masav",
+        "neft",
+        "provxchange",
+        "rtp",
+        "sen",
+        "sepa",
+        "signet",
+        "wire",
+    ]
+    """
+    One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
+    `au_becs`, `interac`, `signet`, `provexchange`.
+    """
+
+    receiving_account_id: str
+    """The receiving account ID. Can be an `external_account`."""
 
 
 class ContactDetail(TypedDict, total=False):

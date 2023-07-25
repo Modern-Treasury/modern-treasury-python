@@ -30,6 +30,7 @@ class LedgerEventHandlers(SyncAPIResource):
         name: str,
         conditions: Optional[ledger_event_handler_create_params.Conditions] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        ledger_id: str | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -46,6 +47,8 @@ class LedgerEventHandlers(SyncAPIResource):
           name: Name of the ledger event handler.
 
           description: An optional description.
+
+          ledger_id: The id of the ledger that this account belongs to.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -68,6 +71,7 @@ class LedgerEventHandlers(SyncAPIResource):
                     "name": name,
                     "conditions": conditions,
                     "description": description,
+                    "ledger_id": ledger_id,
                     "metadata": metadata,
                 },
                 ledger_event_handler_create_params.LedgerEventHandlerCreateParams,
@@ -217,6 +221,7 @@ class AsyncLedgerEventHandlers(AsyncAPIResource):
         name: str,
         conditions: Optional[ledger_event_handler_create_params.Conditions] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        ledger_id: str | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -233,6 +238,8 @@ class AsyncLedgerEventHandlers(AsyncAPIResource):
           name: Name of the ledger event handler.
 
           description: An optional description.
+
+          ledger_id: The id of the ledger that this account belongs to.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -255,6 +262,7 @@ class AsyncLedgerEventHandlers(AsyncAPIResource):
                     "name": name,
                     "conditions": conditions,
                     "description": description,
+                    "ledger_id": ledger_id,
                     "metadata": metadata,
                 },
                 ledger_event_handler_create_params.LedgerEventHandlerCreateParams,
