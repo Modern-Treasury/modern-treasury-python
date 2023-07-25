@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["AccountConnectionFlow"]
+__all__ = ["AccountCollectionFlow"]
 
 
-class AccountConnectionFlow(BaseModel):
+class AccountCollectionFlow(BaseModel):
     counterparty_id: str
     """The ID of a counterparty.
 
