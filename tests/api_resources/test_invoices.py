@@ -9,7 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import Invoice
-from modern_treasury._utils import parse_datetime
+from modern_treasury._utils import parse_date, parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
@@ -98,6 +98,10 @@ class TestInvoices:
                 "postal_code": "string",
                 "country": "string",
             },
+            payment_effective_date=parse_date("2019-12-27"),
+            payment_method="ui",
+            payment_type="ach",
+            receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(Invoice, invoice, path=["response"])
 
@@ -171,7 +175,6 @@ class TestInvoices:
             currency="AED",
             description="string",
             due_date=parse_datetime("2019-12-27T18:11:19.117Z"),
-            include_payment_ui=True,
             invoicer_address={
                 "line1": "string",
                 "line2": "string",
@@ -181,6 +184,10 @@ class TestInvoices:
                 "country": "string",
             },
             originating_account_id="string",
+            payment_effective_date=parse_date("2019-12-27"),
+            payment_method="ui",
+            payment_type="ach",
+            receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             status="string",
         )
         assert_matches_type(Invoice, invoice, path=["response"])
@@ -281,6 +288,10 @@ class TestAsyncInvoices:
                 "postal_code": "string",
                 "country": "string",
             },
+            payment_effective_date=parse_date("2019-12-27"),
+            payment_method="ui",
+            payment_type="ach",
+            receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(Invoice, invoice, path=["response"])
 
@@ -354,7 +365,6 @@ class TestAsyncInvoices:
             currency="AED",
             description="string",
             due_date=parse_datetime("2019-12-27T18:11:19.117Z"),
-            include_payment_ui=True,
             invoicer_address={
                 "line1": "string",
                 "line2": "string",
@@ -364,6 +374,10 @@ class TestAsyncInvoices:
                 "country": "string",
             },
             originating_account_id="string",
+            payment_effective_date=parse_date("2019-12-27"),
+            payment_method="ui",
+            payment_type="ach",
+            receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             status="string",
         )
         assert_matches_type(Invoice, invoice, path=["response"])

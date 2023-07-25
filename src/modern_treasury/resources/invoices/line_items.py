@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 from typing import List, Union, Optional
-from datetime import datetime
+from datetime import date, datetime
+from typing_extensions import Literal
 
 from ...types import shared_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -137,6 +138,29 @@ class LineItems(SyncAPIResource):
         due_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[line_item_update_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
         originating_account_id: str | NotGiven = NOT_GIVEN,
+        payment_effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
+        payment_method: Literal["ui", "manual", "automatic"] | NotGiven = NOT_GIVEN,
+        payment_type: Literal[
+            "ach",
+            "au_becs",
+            "bacs",
+            "book",
+            "card",
+            "check",
+            "eft",
+            "cross_border",
+            "interac",
+            "masav",
+            "neft",
+            "provxchange",
+            "rtp",
+            "sen",
+            "sepa",
+            "signet",
+            "wire",
+        ]
+        | NotGiven = NOT_GIVEN,
+        receiving_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -167,6 +191,22 @@ class LineItems(SyncAPIResource):
 
           originating_account_id: The ID of the internal account the invoice should be paid to.
 
+          payment_effective_date: Date transactions are to be posted to the participants' account. Defaults to the
+              current business day or the next business day if the current day is a bank
+              holiday or weekend. Format: yyyy-mm-dd.
+
+          payment_method: The method by which the invoice can be paid. `ui` will show the embedded payment
+              collection flow. `automatic` will automatically initiate payment based upon the
+              account details of the receiving_account id.\nIf the invoice amount is positive,
+              the automatically initiated payment order's direction will be debit. If the
+              invoice amount is negative, the automatically initiated payment order's
+              direction will be credit. One of `manual`, `ui`, or `automatic`.
+
+          payment_type: One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
+              `au_becs`, `interac`, `signet`, `provexchange`.
+
+          receiving_account_id: The receiving account ID. Can be an `external_account`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -190,6 +230,10 @@ class LineItems(SyncAPIResource):
                     "due_date": due_date,
                     "invoicer_address": invoicer_address,
                     "originating_account_id": originating_account_id,
+                    "payment_effective_date": payment_effective_date,
+                    "payment_method": payment_method,
+                    "payment_type": payment_type,
+                    "receiving_account_id": receiving_account_id,
                 },
                 line_item_update_params.LineItemUpdateParams,
             ),
@@ -403,6 +447,29 @@ class AsyncLineItems(AsyncAPIResource):
         due_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[line_item_update_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
         originating_account_id: str | NotGiven = NOT_GIVEN,
+        payment_effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
+        payment_method: Literal["ui", "manual", "automatic"] | NotGiven = NOT_GIVEN,
+        payment_type: Literal[
+            "ach",
+            "au_becs",
+            "bacs",
+            "book",
+            "card",
+            "check",
+            "eft",
+            "cross_border",
+            "interac",
+            "masav",
+            "neft",
+            "provxchange",
+            "rtp",
+            "sen",
+            "sepa",
+            "signet",
+            "wire",
+        ]
+        | NotGiven = NOT_GIVEN,
+        receiving_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -433,6 +500,22 @@ class AsyncLineItems(AsyncAPIResource):
 
           originating_account_id: The ID of the internal account the invoice should be paid to.
 
+          payment_effective_date: Date transactions are to be posted to the participants' account. Defaults to the
+              current business day or the next business day if the current day is a bank
+              holiday or weekend. Format: yyyy-mm-dd.
+
+          payment_method: The method by which the invoice can be paid. `ui` will show the embedded payment
+              collection flow. `automatic` will automatically initiate payment based upon the
+              account details of the receiving_account id.\nIf the invoice amount is positive,
+              the automatically initiated payment order's direction will be debit. If the
+              invoice amount is negative, the automatically initiated payment order's
+              direction will be credit. One of `manual`, `ui`, or `automatic`.
+
+          payment_type: One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
+              `au_becs`, `interac`, `signet`, `provexchange`.
+
+          receiving_account_id: The receiving account ID. Can be an `external_account`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -456,6 +539,10 @@ class AsyncLineItems(AsyncAPIResource):
                     "due_date": due_date,
                     "invoicer_address": invoicer_address,
                     "originating_account_id": originating_account_id,
+                    "payment_effective_date": payment_effective_date,
+                    "payment_method": payment_method,
+                    "payment_type": payment_type,
+                    "receiving_account_id": receiving_account_id,
                 },
                 line_item_update_params.LineItemUpdateParams,
             ),
