@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Optional
-from datetime import datetime
+from datetime import date, datetime
 from typing_extensions import Literal
 
 from ..types import shared
@@ -148,14 +148,33 @@ class Invoice(BaseModel):
     originating_account_id: str
     """The ID of the internal account the invoice should be paid to."""
 
+    payment_effective_date: Optional[date]
+    """Date transactions are to be posted to the participants' account.
+
+    Defaults to the current business day or the next business day if the current day
+    is a bank holiday or weekend. Format: yyyy-mm-dd.
+    """
+
+    payment_method: Optional[Literal["ui", "manual", "automatic"]]
+    """
+    When opening an invoice, whether to show the embedded payment UI , automatically
+    debit the recipient, or rely on manual payment from the recipient.
+    """
+
     payment_orders: List[payment_order.PaymentOrder]
     """
     The payment orders created for paying the invoice through the invoice payment
     UI.
     """
 
+    payment_type: Optional[Literal["eft", "ach"]]
+    """One of `ach` or `eft`"""
+
     pdf_url: Optional[str]
     """The URL where the invoice PDF can be downloaded."""
+
+    receiving_account_id: Optional[str]
+    """The receiving account ID. Can be an `internal_account`."""
 
     status: Literal["draft", "paid", "payment_pending", "unpaid", "voided"]
     """The status of the invoice."""

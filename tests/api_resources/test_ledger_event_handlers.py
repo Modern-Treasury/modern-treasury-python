@@ -99,6 +99,7 @@ class TestLedgerEventHandlers:
                 "value": "string",
             },
             description="string",
+            ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -216,6 +217,7 @@ class TestAsyncLedgerEventHandlers:
                 "value": "string",
             },
             description="string",
+            ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={
                 "key": "value",
                 "foo": "bar",

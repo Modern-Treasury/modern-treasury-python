@@ -25,6 +25,9 @@ class LedgerEventHandlerCreateParams(TypedDict, total=False):
     description: Optional[str]
     """An optional description."""
 
+    ledger_id: str
+    """The id of the ledger that this account belongs to."""
+
     metadata: Optional[Dict[str, str]]
     """Additional data represented as key-value pairs.
 
