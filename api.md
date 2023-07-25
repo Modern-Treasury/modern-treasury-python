@@ -157,15 +157,15 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import AccountConnectionFlow
+from modern_treasury.types import AccountCollectionFlow
 ```
 
 Methods:
 
-- <code title="post /api/account_collection_flows">client.account_collection_flows.<a href="./src/modern_treasury/resources/account_collection_flows.py">create</a>(\*\*<a href="src/modern_treasury/types/account_collection_flow_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/account_connection_flow.py">AccountConnectionFlow</a></code>
-- <code title="get /api/account_collection_flows/{id}">client.account_collection_flows.<a href="./src/modern_treasury/resources/account_collection_flows.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/account_connection_flow.py">AccountConnectionFlow</a></code>
-- <code title="patch /api/account_collection_flows/{id}">client.account_collection_flows.<a href="./src/modern_treasury/resources/account_collection_flows.py">update</a>(id, \*\*<a href="src/modern_treasury/types/account_collection_flow_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/account_connection_flow.py">AccountConnectionFlow</a></code>
-- <code title="get /api/account_collection_flows">client.account_collection_flows.<a href="./src/modern_treasury/resources/account_collection_flows.py">list</a>(\*\*<a href="src/modern_treasury/types/account_collection_flow_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/account_connection_flow.py">SyncPage[AccountConnectionFlow]</a></code>
+- <code title="post /api/account_collection_flows">client.account_collection_flows.<a href="./src/modern_treasury/resources/account_collection_flows.py">create</a>(\*\*<a href="src/modern_treasury/types/account_collection_flow_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/account_collection_flow.py">AccountCollectionFlow</a></code>
+- <code title="get /api/account_collection_flows/{id}">client.account_collection_flows.<a href="./src/modern_treasury/resources/account_collection_flows.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/account_collection_flow.py">AccountCollectionFlow</a></code>
+- <code title="patch /api/account_collection_flows/{id}">client.account_collection_flows.<a href="./src/modern_treasury/resources/account_collection_flows.py">update</a>(id, \*\*<a href="src/modern_treasury/types/account_collection_flow_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/account_collection_flow.py">AccountCollectionFlow</a></code>
+- <code title="get /api/account_collection_flows">client.account_collection_flows.<a href="./src/modern_treasury/resources/account_collection_flows.py">list</a>(\*\*<a href="src/modern_treasury/types/account_collection_flow_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/account_collection_flow.py">SyncPage[AccountCollectionFlow]</a></code>
 
 # AccountDetails
 

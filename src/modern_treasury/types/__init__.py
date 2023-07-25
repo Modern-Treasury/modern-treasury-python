@@ -48,7 +48,7 @@ from .payment_order_subtype import PaymentOrderSubtype as PaymentOrderSubtype
 from .connection_list_params import ConnectionListParams as ConnectionListParams
 from .document_create_params import DocumentCreateParams as DocumentCreateParams
 from .paper_item_list_params import PaperItemListParams as PaperItemListParams
-from .account_connection_flow import AccountConnectionFlow as AccountConnectionFlow
+from .account_collection_flow import AccountCollectionFlow as AccountCollectionFlow
 from .incoming_payment_detail import IncomingPaymentDetail as IncomingPaymentDetail
 from .ledger_account_category import LedgerAccountCategory as LedgerAccountCategory
 from .line_item_update_params import LineItemUpdateParams as LineItemUpdateParams
