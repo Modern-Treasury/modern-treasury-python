@@ -6,7 +6,7 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from ..types import (
-    AccountConnectionFlow,
+    AccountCollectionFlow,
     account_collection_flow_list_params,
     account_collection_flow_create_params,
     account_collection_flow_update_params,
@@ -33,7 +33,7 @@ class AccountCollectionFlows(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> AccountConnectionFlow:
+    ) -> AccountCollectionFlow:
         """
         create account_collection_flow
 
@@ -66,7 +66,7 @@ class AccountCollectionFlows(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=AccountConnectionFlow,
+            cast_to=AccountCollectionFlow,
         )
 
     def retrieve(
@@ -79,7 +79,7 @@ class AccountCollectionFlows(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
-    ) -> AccountConnectionFlow:
+    ) -> AccountCollectionFlow:
         """
         get account_collection_flow
 
@@ -97,7 +97,7 @@ class AccountCollectionFlows(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AccountConnectionFlow,
+            cast_to=AccountCollectionFlow,
         )
 
     def update(
@@ -112,7 +112,7 @@ class AccountCollectionFlows(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> AccountConnectionFlow:
+    ) -> AccountCollectionFlow:
         """update account_collection_flow
 
         Args:
@@ -143,7 +143,7 @@ class AccountCollectionFlows(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=AccountConnectionFlow,
+            cast_to=AccountCollectionFlow,
         )
 
     def list(
@@ -161,7 +161,7 @@ class AccountCollectionFlows(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
-    ) -> SyncPage[AccountConnectionFlow]:
+    ) -> SyncPage[AccountCollectionFlow]:
         """
         list account_collection_flows
 
@@ -176,7 +176,7 @@ class AccountCollectionFlows(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/account_collection_flows",
-            page=SyncPage[AccountConnectionFlow],
+            page=SyncPage[AccountCollectionFlow],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -194,7 +194,7 @@ class AccountCollectionFlows(SyncAPIResource):
                     account_collection_flow_list_params.AccountCollectionFlowListParams,
                 ),
             ),
-            model=AccountConnectionFlow,
+            model=AccountCollectionFlow,
         )
 
 
@@ -211,7 +211,7 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> AccountConnectionFlow:
+    ) -> AccountCollectionFlow:
         """
         create account_collection_flow
 
@@ -244,7 +244,7 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=AccountConnectionFlow,
+            cast_to=AccountCollectionFlow,
         )
 
     async def retrieve(
@@ -257,7 +257,7 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
-    ) -> AccountConnectionFlow:
+    ) -> AccountCollectionFlow:
         """
         get account_collection_flow
 
@@ -275,7 +275,7 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AccountConnectionFlow,
+            cast_to=AccountCollectionFlow,
         )
 
     async def update(
@@ -290,7 +290,7 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> AccountConnectionFlow:
+    ) -> AccountCollectionFlow:
         """update account_collection_flow
 
         Args:
@@ -321,7 +321,7 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=AccountConnectionFlow,
+            cast_to=AccountCollectionFlow,
         )
 
     def list(
@@ -339,7 +339,7 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AccountConnectionFlow, AsyncPage[AccountConnectionFlow]]:
+    ) -> AsyncPaginator[AccountCollectionFlow, AsyncPage[AccountCollectionFlow]]:
         """
         list account_collection_flows
 
@@ -354,7 +354,7 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/account_collection_flows",
-            page=AsyncPage[AccountConnectionFlow],
+            page=AsyncPage[AccountCollectionFlow],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -372,5 +372,5 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
                     account_collection_flow_list_params.AccountCollectionFlowListParams,
                 ),
             ),
-            model=AccountConnectionFlow,
+            model=AccountCollectionFlow,
         )
