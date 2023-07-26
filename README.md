@@ -32,13 +32,13 @@ pip install modern-treasury
 ```python
 from modern_treasury import ModernTreasury
 
-modern_treasury = ModernTreasury(
+client = ModernTreasury(
     # defaults to os.environ.get("MODERN_TREASURY_API_KEY")
     api_key="my api key",
     organization_id="my-organization-ID",
 )
 
-external_account = modern_treasury.external_accounts.create(
+external_account = client.external_accounts.create(
     counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a",
     name="my bank",
 )
@@ -55,7 +55,7 @@ Simply import `AsyncModernTreasury` instead of `ModernTreasury` and use `await` 
 ```python
 from modern_treasury import AsyncModernTreasury
 
-modern_treasury = AsyncModernTreasury(
+client = AsyncModernTreasury(
     # defaults to os.environ.get("MODERN_TREASURY_API_KEY")
     api_key="my api key",
     organization_id="my-organization-ID",
@@ -63,7 +63,7 @@ modern_treasury = AsyncModernTreasury(
 
 
 async def main():
-    external_account = await modern_treasury.external_accounts.create(
+    external_account = await client.external_accounts.create(
         counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a",
         name="my bank",
     )
@@ -90,13 +90,13 @@ This library provides auto-paginating iterators with each list response, so you 
 ```python
 import modern_treasury
 
-modern_treasury = ModernTreasury(
+client = ModernTreasury(
     organization_id="my-organization-ID",
 )
 
 all_external_accounts = []
 # Automatically fetches more pages as needed.
-for external_account in modern_treasury.external_accounts.list():
+for external_account in client.external_accounts.list():
     # Do something with external_account here
     all_external_accounts.append(external_account)
 print(all_external_accounts)
@@ -108,7 +108,7 @@ Or, asynchronously:
 import asyncio
 import modern_treasury
 
-modern_treasury = AsyncModernTreasury(
+client = AsyncModernTreasury(
     organization_id="my-organization-ID",
 )
 
@@ -116,7 +116,7 @@ modern_treasury = AsyncModernTreasury(
 async def main() -> None:
     all_external_accounts = []
     # Iterate through items across all pages, issuing requests as needed.
-    async for external_account in modern_treasury.external_accounts.list():
+    async for external_account in client.external_accounts.list():
         all_external_accounts.append(external_account)
     print(all_external_accounts)
 
@@ -127,7 +127,7 @@ asyncio.run(main())
 Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get_next_page()` methods for more granular control working with pages:
 
 ```python
-first_page = await modern_treasury.external_accounts.list()
+first_page = await client.external_accounts.list()
 if first_page.has_next_page():
     print(f"will fetch next page using these details: {first_page.next_page_info()}")
     next_page = await first_page.get_next_page()
@@ -139,7 +139,7 @@ if first_page.has_next_page():
 Or just work directly with the returned data:
 
 ```python
-first_page = await modern_treasury.external_accounts.list()
+first_page = await client.external_accounts.list()
 
 print(f"next page cursor: {first_page.after_cursor}")  # => "next page cursor: ..."
 for external_account in first_page.items:
@@ -155,11 +155,11 @@ Nested parameters are dictionaries, typed using `TypedDict`, for example:
 ```python
 from modern_treasury import ModernTreasury
 
-modern_treasury = ModernTreasury(
+client = ModernTreasury(
     organization_id="my-organization-ID",
 )
 
-modern_treasury.external_accounts.create(
+client.external_accounts.create(
     foo={
         "bar": True,
     },
@@ -174,12 +174,12 @@ Request parameters that correspond to file uploads can be passed as `bytes` or a
 from pathlib import Path
 from modern_treasury import ModernTreasury
 
-modern_treasury = ModernTreasury(
+client = ModernTreasury(
     organization_id="my-organization-ID",
 )
 
 contents = Path("my/file.txt").read_bytes()
-modern_treasury.documents.create(
+client.documents.create(
     file=contents,
     documentable_type="counterparties",
     documentable_id="24c6b7a3-02...",
@@ -192,14 +192,14 @@ The async client uses the exact same interface. This example uses `aiofiles` to 
 import aiofiles
 from modern_treasury import ModernTreasury
 
-modern_treasury = ModernTreasury(
+client = ModernTreasury(
     organization_id="my-organization-ID",
 )
 
 async with aiofiles.open("my/file.txt", mode="rb") as f:
     contents = await f.read()
 
-await modern_treasury.documents.create(
+await client.documents.create(
     file=contents,
     documentable_type="counterparties",
     documentable_id="24c6b7a3-02...",
@@ -263,14 +263,14 @@ You can use the `max_retries` option to configure or disable this:
 from modern_treasury import ModernTreasury
 
 # Configure the default for all requests:
-modern_treasury = ModernTreasury(
+client = ModernTreasury(
     # default is 2
     max_retries=0,
     organization_id="my-organization-ID",
 )
 
 # Or, configure per-request:
-modern_treasury.with_options(max_retries=5).external_accounts.list()
+client.with_options(max_retries=5).external_accounts.list()
 ```
 
 ### Timeouts
@@ -282,20 +282,20 @@ which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advan
 from modern_treasury import ModernTreasury
 
 # Configure the default for all requests:
-modern_treasury = ModernTreasury(
+client = ModernTreasury(
     # default is 60s
     timeout=20.0,
     organization_id="my-organization-ID",
 )
 
 # More granular control:
-modern_treasury = ModernTreasury(
+client = ModernTreasury(
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
     organization_id="my-organization-ID",
 )
 
 # Override per-request:
-modern_treasury.with_options(timeout=5 * 1000).external_accounts.list(
+client.with_options(timeout=5 * 1000).external_accounts.list(
     party_name="my bank",
 )
 ```
@@ -312,7 +312,7 @@ You can configure the following keyword arguments when instantiating the client:
 import httpx
 from modern_treasury import ModernTreasury
 
-modern_treasury = ModernTreasury(
+client = ModernTreasury(
     # Use a custom base URL
     base_url="http://my.test.server.example.com:8083",
     proxies="http://my.test.proxy.example.com",
