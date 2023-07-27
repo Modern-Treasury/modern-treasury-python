@@ -41,9 +41,3 @@ class LedgerableEventCreateParams(TypedDict, total=False):
 
     Both the key and value must be strings.
     """
-
-    originating_ledger_account_id: Optional[str]
-    """The ledger account that initiates the money movement."""
-
-    receiving_ledger_account_id: Optional[str]
-    """The ledger account that receives the money movement."""

@@ -28,7 +28,7 @@ class TestLedgerTransactions:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         ledger_transaction = client.ledger_transactions.create(
-            effective_date=parse_date("2019-12-27"),
+            effective_at=parse_date("2019-12-27"),
             ledger_entries=[
                 {
                     "amount": 0,
@@ -52,7 +52,7 @@ class TestLedgerTransactions:
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         ledger_transaction = client.ledger_transactions.create(
-            effective_date=parse_date("2019-12-27"),
+            effective_at=parse_date("2019-12-27"),
             ledger_entries=[
                 {
                     "amount": 0,
@@ -86,6 +86,7 @@ class TestLedgerTransactions:
                 },
             ],
             description="string",
+            effective_date=parse_date("2019-12-27"),
             external_id="string",
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledgerable_type="counterparty",
@@ -227,7 +228,7 @@ class TestAsyncLedgerTransactions:
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         ledger_transaction = await client.ledger_transactions.create(
-            effective_date=parse_date("2019-12-27"),
+            effective_at=parse_date("2019-12-27"),
             ledger_entries=[
                 {
                     "amount": 0,
@@ -251,7 +252,7 @@ class TestAsyncLedgerTransactions:
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger_transaction = await client.ledger_transactions.create(
-            effective_date=parse_date("2019-12-27"),
+            effective_at=parse_date("2019-12-27"),
             ledger_entries=[
                 {
                     "amount": 0,
@@ -285,6 +286,7 @@ class TestAsyncLedgerTransactions:
                 },
             ],
             description="string",
+            effective_date=parse_date("2019-12-27"),
             external_id="string",
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledgerable_type="counterparty",
