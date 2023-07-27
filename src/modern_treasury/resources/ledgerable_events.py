@@ -25,8 +25,6 @@ class LedgerableEvents(SyncAPIResource):
         description: Optional[str] | NotGiven = NOT_GIVEN,
         direction: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        originating_ledger_account_id: Optional[str] | NotGiven = NOT_GIVEN,
-        receiving_ledger_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -59,10 +57,6 @@ class LedgerableEvents(SyncAPIResource):
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
-          originating_ledger_account_id: The ledger account that initiates the money movement.
-
-          receiving_ledger_account_id: The ledger account that receives the money movement.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -85,8 +79,6 @@ class LedgerableEvents(SyncAPIResource):
                     "description": description,
                     "direction": direction,
                     "metadata": metadata,
-                    "originating_ledger_account_id": originating_ledger_account_id,
-                    "receiving_ledger_account_id": receiving_ledger_account_id,
                 },
                 ledgerable_event_create_params.LedgerableEventCreateParams,
             ),
@@ -144,8 +136,6 @@ class AsyncLedgerableEvents(AsyncAPIResource):
         description: Optional[str] | NotGiven = NOT_GIVEN,
         direction: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        originating_ledger_account_id: Optional[str] | NotGiven = NOT_GIVEN,
-        receiving_ledger_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -178,10 +168,6 @@ class AsyncLedgerableEvents(AsyncAPIResource):
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
-          originating_ledger_account_id: The ledger account that initiates the money movement.
-
-          receiving_ledger_account_id: The ledger account that receives the money movement.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -204,8 +190,6 @@ class AsyncLedgerableEvents(AsyncAPIResource):
                     "description": description,
                     "direction": direction,
                     "metadata": metadata,
-                    "originating_ledger_account_id": originating_ledger_account_id,
-                    "receiving_ledger_account_id": receiving_ledger_account_id,
                 },
                 ledgerable_event_create_params.LedgerableEventCreateParams,
             ),

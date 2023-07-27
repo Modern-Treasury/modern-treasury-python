@@ -36,9 +36,10 @@ class LedgerTransactions(SyncAPIResource):
     def create(
         self,
         *,
-        effective_date: Union[str, date],
+        effective_at: Union[str, date],
         ledger_entries: List[ledger_transaction_create_params.LedgerEntry],
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
         external_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
@@ -68,12 +69,15 @@ class LedgerTransactions(SyncAPIResource):
         Create a ledger transaction.
 
         Args:
-          effective_date: The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
-              purposes.
+          effective_at: The timestamp (ISO8601 format) at which the ledger transaction happened for
+              reporting purposes.
 
           ledger_entries: An array of ledger entry objects.
 
           description: An optional description for internal use.
+
+          effective_date: The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
+              purposes.
 
           external_id: A unique string to represent the ledger transaction. Only one pending or posted
               ledger transaction may have this ID in the ledger.
@@ -104,9 +108,10 @@ class LedgerTransactions(SyncAPIResource):
             "/api/ledger_transactions",
             body=maybe_transform(
                 {
-                    "effective_date": effective_date,
+                    "effective_at": effective_at,
                     "ledger_entries": ledger_entries,
                     "description": description,
+                    "effective_date": effective_date,
                     "external_id": external_id,
                     "ledgerable_id": ledgerable_id,
                     "ledgerable_type": ledgerable_type,
@@ -426,9 +431,10 @@ class AsyncLedgerTransactions(AsyncAPIResource):
     async def create(
         self,
         *,
-        effective_date: Union[str, date],
+        effective_at: Union[str, date],
         ledger_entries: List[ledger_transaction_create_params.LedgerEntry],
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
         external_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
@@ -458,12 +464,15 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         Create a ledger transaction.
 
         Args:
-          effective_date: The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
-              purposes.
+          effective_at: The timestamp (ISO8601 format) at which the ledger transaction happened for
+              reporting purposes.
 
           ledger_entries: An array of ledger entry objects.
 
           description: An optional description for internal use.
+
+          effective_date: The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
+              purposes.
 
           external_id: A unique string to represent the ledger transaction. Only one pending or posted
               ledger transaction may have this ID in the ledger.
@@ -494,9 +503,10 @@ class AsyncLedgerTransactions(AsyncAPIResource):
             "/api/ledger_transactions",
             body=maybe_transform(
                 {
-                    "effective_date": effective_date,
+                    "effective_at": effective_at,
                     "ledger_entries": ledger_entries,
                     "description": description,
+                    "effective_date": effective_date,
                     "external_id": external_id,
                     "ledgerable_id": ledgerable_id,
                     "ledgerable_type": ledgerable_type,

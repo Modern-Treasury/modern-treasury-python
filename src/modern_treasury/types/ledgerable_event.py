@@ -57,10 +57,4 @@ class LedgerableEvent(BaseModel):
 
     object: str
 
-    originating_ledger_account_id: Optional[str]
-    """The ledger account that initiates the money movement."""
-
-    receiving_ledger_account_id: Optional[str]
-    """The ledger account that receives the money movement."""
-
     updated_at: datetime

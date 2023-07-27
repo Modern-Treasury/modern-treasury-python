@@ -126,7 +126,7 @@ class ModernTreasury(SyncAPIClient):
             )
 
         if base_url is None:
-            base_url = "https://app.moderntreasury.com"
+            base_url = f"https://app.moderntreasury.com"
 
         super().__init__(
             version=__version__,
@@ -358,7 +358,7 @@ class AsyncModernTreasury(AsyncAPIClient):
             )
 
         if base_url is None:
-            base_url = "https://app.moderntreasury.com"
+            base_url = f"https://app.moderntreasury.com"
 
         super().__init__(
             version=__version__,
