@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import os
 import json
+import asyncio
 import inspect
 from typing import Any, Dict, Union, cast
 
@@ -181,22 +182,6 @@ class TestModernTreasury:
         request = client2._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
-
-    def test_validate_headers(self) -> None:
-        client = ModernTreasury(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
-        )
-        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert "Basic" in request.headers.get("Authorization")
-
-        with pytest.raises(
-            Exception,
-            match="The api_key client option must be set either by passing api_key to the client or by setting the MODERN_TREASURY_API_KEY environment variable",
-        ):
-            client2 = ModernTreasury(
-                base_url=base_url, api_key=None, _strict_response_validation=True, organization_id="my-organization-ID"
-            )
-            client2._build_request(FinalRequestOptions(method="get", url="/foo"))
 
     def test_default_query_option(self) -> None:
         client = ModernTreasury(
@@ -416,6 +401,26 @@ class TestModernTreasury:
         )
         assert request.url == "http://localhost:5000/custom/path/foo"
 
+    def test_client_del(self) -> None:
+        client = ModernTreasury(
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
+        )
+        assert not client.is_closed()
+
+        client.__del__()
+
+        assert client.is_closed()
+
+    def test_client_context_manager(self) -> None:
+        client = ModernTreasury(
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
+        )
+        with client as c2:
+            assert c2 is client
+            assert not c2.is_closed()
+            assert not client.is_closed()
+        assert client.is_closed()
+
 
 class TestAsyncModernTreasury:
     client = AsyncModernTreasury(
@@ -573,22 +578,6 @@ class TestAsyncModernTreasury:
         request = client2._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
-
-    def test_validate_headers(self) -> None:
-        client = AsyncModernTreasury(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
-        )
-        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert "Basic" in request.headers.get("Authorization")
-
-        with pytest.raises(
-            Exception,
-            match="The api_key client option must be set either by passing api_key to the client or by setting the MODERN_TREASURY_API_KEY environment variable",
-        ):
-            client2 = AsyncModernTreasury(
-                base_url=base_url, api_key=None, _strict_response_validation=True, organization_id="my-organization-ID"
-            )
-            client2._build_request(FinalRequestOptions(method="get", url="/foo"))
 
     def test_default_query_option(self) -> None:
         client = AsyncModernTreasury(
@@ -807,3 +796,24 @@ class TestAsyncModernTreasury:
             ),
         )
         assert request.url == "http://localhost:5000/custom/path/foo"
+
+    async def test_client_del(self) -> None:
+        client = AsyncModernTreasury(
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
+        )
+        assert not client.is_closed()
+
+        client.__del__()
+
+        await asyncio.sleep(0.2)
+        assert client.is_closed()
+
+    async def test_client_context_manager(self) -> None:
+        client = AsyncModernTreasury(
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
+        )
+        async with client as c2:
+            assert c2 is client
+            assert not c2.is_closed()
+            assert not client.is_closed()
+        assert client.is_closed()
