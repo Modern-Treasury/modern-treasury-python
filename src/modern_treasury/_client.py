@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import os
 import base64
+import asyncio
 from typing import Union, Mapping, Optional
 
 import httpx
@@ -256,6 +257,9 @@ class ModernTreasury(SyncAPIClient):
     # client.with_options(timeout=10).foo.create(...)
     with_options = copy
 
+    def __del__(self) -> None:
+        self.close()
+
     def ping(
         self,
         *,
@@ -487,6 +491,12 @@ class AsyncModernTreasury(AsyncAPIClient):
     # Alias for `copy` for nicer inline usage, e.g.
     # client.with_options(timeout=10).foo.create(...)
     with_options = copy
+
+    def __del__(self) -> None:
+        try:
+            asyncio.get_running_loop().create_task(self.close())
+        except Exception:
+            pass
 
     async def ping(
         self,
