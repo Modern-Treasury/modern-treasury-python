@@ -119,7 +119,7 @@ class ModernTreasury(SyncAPIClient):
         - `webhook_key` from `MODERN_TREASURY_WEBHOOK_KEY`
         - `api_key` from `MODERN_TREASURY_API_KEY`
         """
-        api_key = api_key or os.environ.get("MODERN_TREASURY_API_KEY", "")
+        api_key = api_key or os.environ.get("MODERN_TREASURY_API_KEY", None)
         if not api_key:
             raise Exception(
                 "The api_key client option must be set either by passing api_key to the client or by setting the MODERN_TREASURY_API_KEY environment variable"
@@ -351,7 +351,7 @@ class AsyncModernTreasury(AsyncAPIClient):
         - `webhook_key` from `MODERN_TREASURY_WEBHOOK_KEY`
         - `api_key` from `MODERN_TREASURY_API_KEY`
         """
-        api_key = api_key or os.environ.get("MODERN_TREASURY_API_KEY", "")
+        api_key = api_key or os.environ.get("MODERN_TREASURY_API_KEY", None)
         if not api_key:
             raise Exception(
                 "The api_key client option must be set either by passing api_key to the client or by setting the MODERN_TREASURY_API_KEY environment variable"
