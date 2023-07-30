@@ -1,3 +1,5 @@
+#!/usr/bin/env -S poetry run python
+
 from datetime import datetime
 
 from modern_treasury import ModernTreasury
