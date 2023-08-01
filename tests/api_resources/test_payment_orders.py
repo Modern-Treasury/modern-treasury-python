@@ -25,7 +25,7 @@ class TestPaymentOrders:
     )
     parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
 
-    @pytest.mark.skip(reason="file upload tests are broken on the Prism mock server")
+    @pytest.mark.skip(reason="Multiple values for nested arrays aren't supported yet")
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         payment_order = client.payment_orders.create(
@@ -36,7 +36,7 @@ class TestPaymentOrders:
         )
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
-    @pytest.mark.skip(reason="file upload tests are broken on the Prism mock server")
+    @pytest.mark.skip(reason="Multiple values for nested arrays aren't supported yet")
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         payment_order = client.payment_orders.create(
@@ -677,7 +677,7 @@ class TestAsyncPaymentOrders:
     )
     parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
 
-    @pytest.mark.skip(reason="file upload tests are broken on the Prism mock server")
+    @pytest.mark.skip(reason="Multiple values for nested arrays aren't supported yet")
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         payment_order = await client.payment_orders.create(
@@ -688,7 +688,7 @@ class TestAsyncPaymentOrders:
         )
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
-    @pytest.mark.skip(reason="file upload tests are broken on the Prism mock server")
+    @pytest.mark.skip(reason="Multiple values for nested arrays aren't supported yet")
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         payment_order = await client.payment_orders.create(
