@@ -24,7 +24,6 @@ class TestDocuments:
     )
     parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
 
-    @pytest.mark.skip(reason="file upload tests are broken on the Prism mock server")
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         document = client.documents.create(
@@ -34,7 +33,6 @@ class TestDocuments:
         )
         assert_matches_type(Document, document, path=["response"])
 
-    @pytest.mark.skip(reason="file upload tests are broken on the Prism mock server")
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         document = client.documents.create(
@@ -77,7 +75,6 @@ class TestAsyncDocuments:
     )
     parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
 
-    @pytest.mark.skip(reason="file upload tests are broken on the Prism mock server")
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         document = await client.documents.create(
@@ -87,7 +84,6 @@ class TestAsyncDocuments:
         )
         assert_matches_type(Document, document, path=["response"])
 
-    @pytest.mark.skip(reason="file upload tests are broken on the Prism mock server")
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         document = await client.documents.create(
