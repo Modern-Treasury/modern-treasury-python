@@ -104,6 +104,12 @@ class LedgerEntry(TypedDict, total=False):
     Designing the Ledgers API with Optimistic Locking for more details.
     """
 
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
+
     pending_balance_amount: Optional[Dict[str, int]]
     """
     Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the

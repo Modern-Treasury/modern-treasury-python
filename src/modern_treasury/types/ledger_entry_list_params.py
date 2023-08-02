@@ -60,6 +60,13 @@ class LedgerEntryListParams(TypedDict, total=False):
 
     ledger_transaction_id: str
 
+    metadata: Dict[str, str]
+    """
+    For example, if you want to query for records with metadata key `Type` and value
+    `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+    parameters.
+    """
+
     order_by: OrderBy
     """Order by `created_at` or `effective_at` in `asc` or `desc` order.
 
