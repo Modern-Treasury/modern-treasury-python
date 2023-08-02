@@ -72,6 +72,7 @@ class LedgerEntries(SyncAPIResource):
         ledger_account_lock_version: Dict[str, int] | NotGiven = NOT_GIVEN,
         ledger_account_statement_id: str | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         order_by: ledger_entry_list_params.OrderBy | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         show_balances: bool | NotGiven = NOT_GIVEN,
@@ -111,6 +112,10 @@ class LedgerEntries(SyncAPIResource):
               `ledger_account_lock_version%5Blte%5D=1000`.
 
           ledger_account_statement_id: Get all ledger entries that are included in the ledger account statement.
+
+          metadata: For example, if you want to query for records with metadata key `Type` and value
+              `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+              parameters.
 
           order_by: Order by `created_at` or `effective_at` in `asc` or `desc` order. For example,
               to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`. Ordering
@@ -159,6 +164,7 @@ class LedgerEntries(SyncAPIResource):
                         "ledger_account_lock_version": ledger_account_lock_version,
                         "ledger_account_statement_id": ledger_account_statement_id,
                         "ledger_transaction_id": ledger_transaction_id,
+                        "metadata": metadata,
                         "order_by": order_by,
                         "per_page": per_page,
                         "show_balances": show_balances,
@@ -229,6 +235,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
         ledger_account_lock_version: Dict[str, int] | NotGiven = NOT_GIVEN,
         ledger_account_statement_id: str | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         order_by: ledger_entry_list_params.OrderBy | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         show_balances: bool | NotGiven = NOT_GIVEN,
@@ -268,6 +275,10 @@ class AsyncLedgerEntries(AsyncAPIResource):
               `ledger_account_lock_version%5Blte%5D=1000`.
 
           ledger_account_statement_id: Get all ledger entries that are included in the ledger account statement.
+
+          metadata: For example, if you want to query for records with metadata key `Type` and value
+              `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+              parameters.
 
           order_by: Order by `created_at` or `effective_at` in `asc` or `desc` order. For example,
               to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`. Ordering
@@ -316,6 +327,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
                         "ledger_account_lock_version": ledger_account_lock_version,
                         "ledger_account_statement_id": ledger_account_statement_id,
                         "ledger_transaction_id": ledger_transaction_id,
+                        "metadata": metadata,
                         "order_by": order_by,
                         "per_page": per_page,
                         "show_balances": show_balances,

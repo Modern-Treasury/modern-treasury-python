@@ -184,6 +184,7 @@ class IncomingPaymentDetails(SyncAPIResource):
         amount: int | NotGiven = NOT_GIVEN,
         as_of_date: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
         currency: shared_params.Currency | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         internal_account_id: str | NotGiven = NOT_GIVEN,
         type: Literal["ach", "book", "check", "eft", "interac", "rtp", "sepa", "signet", "wire"] | NotGiven = NOT_GIVEN,
@@ -206,6 +207,8 @@ class IncomingPaymentDetails(SyncAPIResource):
           as_of_date: Defaults to today.
 
           currency: Defaults to the currency of the originating account.
+
+          description: Defaults to a random description.
 
           direction: One of `credit`, `debit`.
 
@@ -233,6 +236,7 @@ class IncomingPaymentDetails(SyncAPIResource):
                     "amount": amount,
                     "as_of_date": as_of_date,
                     "currency": currency,
+                    "description": description,
                     "direction": direction,
                     "internal_account_id": internal_account_id,
                     "type": type,
@@ -412,6 +416,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         amount: int | NotGiven = NOT_GIVEN,
         as_of_date: Optional[Union[str, date]] | NotGiven = NOT_GIVEN,
         currency: shared_params.Currency | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         internal_account_id: str | NotGiven = NOT_GIVEN,
         type: Literal["ach", "book", "check", "eft", "interac", "rtp", "sepa", "signet", "wire"] | NotGiven = NOT_GIVEN,
@@ -434,6 +439,8 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
           as_of_date: Defaults to today.
 
           currency: Defaults to the currency of the originating account.
+
+          description: Defaults to a random description.
 
           direction: One of `credit`, `debit`.
 
@@ -461,6 +468,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
                     "amount": amount,
                     "as_of_date": as_of_date,
                     "currency": currency,
+                    "description": description,
                     "direction": direction,
                     "internal_account_id": internal_account_id,
                     "type": type,

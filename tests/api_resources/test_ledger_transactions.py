@@ -63,6 +63,11 @@ class TestLedgerTransactions:
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
                     "show_resulting_ledger_account_balances": True,
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
                 },
                 {
                     "amount": 0,
@@ -73,6 +78,11 @@ class TestLedgerTransactions:
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
                     "show_resulting_ledger_account_balances": True,
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
                 },
                 {
                     "amount": 0,
@@ -83,6 +93,11 @@ class TestLedgerTransactions:
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
                     "show_resulting_ledger_account_balances": True,
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
                 },
             ],
             description="string",
@@ -128,6 +143,11 @@ class TestLedgerTransactions:
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
                     "show_resulting_ledger_account_balances": True,
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
                 },
                 {
                     "amount": 0,
@@ -138,6 +158,11 @@ class TestLedgerTransactions:
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
                     "show_resulting_ledger_account_balances": True,
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
                 },
                 {
                     "amount": 0,
@@ -148,6 +173,11 @@ class TestLedgerTransactions:
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
                     "show_resulting_ledger_account_balances": True,
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
                 },
             ],
             metadata={
@@ -263,6 +293,11 @@ class TestAsyncLedgerTransactions:
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
                     "show_resulting_ledger_account_balances": True,
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
                 },
                 {
                     "amount": 0,
@@ -273,6 +308,11 @@ class TestAsyncLedgerTransactions:
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
                     "show_resulting_ledger_account_balances": True,
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
                 },
                 {
                     "amount": 0,
@@ -283,6 +323,11 @@ class TestAsyncLedgerTransactions:
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
                     "show_resulting_ledger_account_balances": True,
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
                 },
             ],
             description="string",
@@ -328,6 +373,11 @@ class TestAsyncLedgerTransactions:
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
                     "show_resulting_ledger_account_balances": True,
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
                 },
                 {
                     "amount": 0,
@@ -338,6 +388,11 @@ class TestAsyncLedgerTransactions:
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
                     "show_resulting_ledger_account_balances": True,
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
                 },
                 {
                     "amount": 0,
@@ -348,6 +403,11 @@ class TestAsyncLedgerTransactions:
                     "posted_balance_amount": {"foo": 0},
                     "available_balance_amount": {"foo": 0},
                     "show_resulting_ledger_account_balances": True,
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
                 },
             ],
             metadata={

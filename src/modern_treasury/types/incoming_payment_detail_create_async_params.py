@@ -216,6 +216,9 @@ class IncomingPaymentDetailCreateAsyncParams(TypedDict, total=False):
     ]
     """Defaults to the currency of the originating account."""
 
+    description: Optional[str]
+    """Defaults to a random description."""
+
     direction: Literal["credit", "debit"]
     """One of `credit`, `debit`."""
 

@@ -59,6 +59,7 @@ class TestLedgerEntries:
             ledger_account_lock_version={"foo": 0},
             ledger_account_statement_id="string",
             ledger_transaction_id="string",
+            metadata={"foo": "string"},
             order_by={
                 "created_at": "asc",
                 "effective_at": "asc",
@@ -115,6 +116,7 @@ class TestAsyncLedgerEntries:
             ledger_account_lock_version={"foo": 0},
             ledger_account_statement_id="string",
             ledger_transaction_id="string",
+            metadata={"foo": "string"},
             order_by={
                 "created_at": "asc",
                 "effective_at": "asc",
