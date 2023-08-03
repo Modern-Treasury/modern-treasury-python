@@ -81,10 +81,6 @@ class TestLedgerAccountCategories:
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account_category = client.ledger_account_categories.update(
             "string",
-            balances={
-                "as_of_date": parse_date("2019-12-27"),
-                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-            },
             description="string",
             metadata={
                 "key": "value",
@@ -104,6 +100,7 @@ class TestLedgerAccountCategories:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account_category = client.ledger_account_categories.list(
             after_cursor="string",
+            balances={"effective_at": parse_datetime("2019-12-27T18:11:19.117Z")},
             ledger_account_id="string",
             ledger_id="string",
             metadata={"foo": "string"},
@@ -117,17 +114,6 @@ class TestLedgerAccountCategories:
     def test_method_delete(self, client: ModernTreasury) -> None:
         ledger_account_category = client.ledger_account_categories.delete(
             "string",
-        )
-        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
-
-    @parametrize
-    def test_method_delete_with_all_params(self, client: ModernTreasury) -> None:
-        ledger_account_category = client.ledger_account_categories.delete(
-            "string",
-            balances={
-                "as_of_date": parse_date("2019-12-27"),
-                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-            },
         )
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
@@ -229,10 +215,6 @@ class TestAsyncLedgerAccountCategories:
     async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger_account_category = await client.ledger_account_categories.update(
             "string",
-            balances={
-                "as_of_date": parse_date("2019-12-27"),
-                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-            },
             description="string",
             metadata={
                 "key": "value",
@@ -252,6 +234,7 @@ class TestAsyncLedgerAccountCategories:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger_account_category = await client.ledger_account_categories.list(
             after_cursor="string",
+            balances={"effective_at": parse_datetime("2019-12-27T18:11:19.117Z")},
             ledger_account_id="string",
             ledger_id="string",
             metadata={"foo": "string"},
@@ -265,17 +248,6 @@ class TestAsyncLedgerAccountCategories:
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
         ledger_account_category = await client.ledger_account_categories.delete(
             "string",
-        )
-        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
-
-    @parametrize
-    async def test_method_delete_with_all_params(self, client: AsyncModernTreasury) -> None:
-        ledger_account_category = await client.ledger_account_categories.delete(
-            "string",
-            balances={
-                "as_of_date": parse_date("2019-12-27"),
-                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-            },
         )
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 

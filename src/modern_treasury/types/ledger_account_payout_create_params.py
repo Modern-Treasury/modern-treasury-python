@@ -37,6 +37,12 @@ class LedgerAccountPayoutCreateParams(TypedDict, total=False):
     Both the key and value must be strings.
     """
 
+    skip_payout_ledger_transaction: Optional[bool]
+    """It is set to `false` by default.
+
+    It should be set to `true` when migrating existing payouts.
+    """
+
     status: Optional[Literal["pending", "posted"]]
     """The status of the ledger account payout.
 

@@ -32,6 +32,8 @@ class LedgerAccountListParams(TypedDict, total=False):
     created_at%5Bgt%5D=2000-01-01T12:00:00Z.
     """
 
+    currency: str
+
     ledger_account_category_id: str
 
     ledger_id: str
