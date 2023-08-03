@@ -9,7 +9,6 @@ from ..types import (
     LedgerAccountCategory,
     ledger_account_category_list_params,
     ledger_account_category_create_params,
-    ledger_account_category_delete_params,
     ledger_account_category_update_params,
     ledger_account_category_retrieve_params,
 )
@@ -110,10 +109,9 @@ class LedgerAccountCategories(SyncAPIResource):
         Get the details on a single ledger account category.
 
         Args:
-          balances: For example, if you want the balances as of a particular effective date
-              (YYYY-MM-DD), the encoded query string would be
-              balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are exclusive of
-              entries with that exact date.
+          balances: For example, if you want the balances as of a particular time (ISO8601), the
+              encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
+              The balances as of a time are inclusive of entries with that exact time.
 
           extra_headers: Send extra headers
 
@@ -141,7 +139,6 @@ class LedgerAccountCategories(SyncAPIResource):
         self,
         id: str,
         *,
-        balances: ledger_account_category_update_params.Balances | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -157,11 +154,6 @@ class LedgerAccountCategories(SyncAPIResource):
         Update the details of a ledger account category.
 
         Args:
-          balances: For example, if you want the balances as of a particular effective date
-              (YYYY-MM-DD), the encoded query string would be
-              balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are exclusive of
-              entries with that exact date.
-
           description: The description of the ledger account category.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
@@ -195,9 +187,6 @@ class LedgerAccountCategories(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
-                query=maybe_transform(
-                    {"balances": balances}, ledger_account_category_update_params.LedgerAccountCategoryUpdateParams
-                ),
             ),
             cast_to=LedgerAccountCategory,
         )
@@ -206,6 +195,7 @@ class LedgerAccountCategories(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        balances: ledger_account_category_list_params.Balances | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -223,6 +213,10 @@ class LedgerAccountCategories(SyncAPIResource):
         Get a list of ledger account categories.
 
         Args:
+          balances: For example, if you want the balances as of a particular time (ISO8601), the
+              encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
+              The balances as of a time are inclusive of entries with that exact time.
+
           ledger_account_id: Query categories which contain a ledger account directly or through child
               categories.
 
@@ -251,6 +245,7 @@ class LedgerAccountCategories(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
+                        "balances": balances,
                         "ledger_account_id": ledger_account_id,
                         "ledger_id": ledger_id,
                         "metadata": metadata,
@@ -268,7 +263,6 @@ class LedgerAccountCategories(SyncAPIResource):
         self,
         id: str,
         *,
-        balances: ledger_account_category_delete_params.Balances | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -281,11 +275,6 @@ class LedgerAccountCategories(SyncAPIResource):
         Delete a ledger account category.
 
         Args:
-          balances: For example, if you want the balances as of a particular effective date
-              (YYYY-MM-DD), the encoded query string would be
-              balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are exclusive of
-              entries with that exact date.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -304,9 +293,6 @@ class LedgerAccountCategories(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
-                query=maybe_transform(
-                    {"balances": balances}, ledger_account_category_delete_params.LedgerAccountCategoryDeleteParams
-                ),
             ),
             cast_to=LedgerAccountCategory,
         )
@@ -325,7 +311,7 @@ class LedgerAccountCategories(SyncAPIResource):
         idempotency_key: str | None = None,
     ) -> None:
         """
-        Add a ledger account category to an account.
+        Add a ledger account to a ledger account category.
 
         Args:
           extra_headers: Send extra headers
@@ -405,7 +391,7 @@ class LedgerAccountCategories(SyncAPIResource):
         idempotency_key: str | None = None,
     ) -> None:
         """
-        Delete a ledger account category from an account.
+        Remove a ledger account from a ledger account category.
 
         Args:
           extra_headers: Send extra headers
@@ -560,10 +546,9 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         Get the details on a single ledger account category.
 
         Args:
-          balances: For example, if you want the balances as of a particular effective date
-              (YYYY-MM-DD), the encoded query string would be
-              balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are exclusive of
-              entries with that exact date.
+          balances: For example, if you want the balances as of a particular time (ISO8601), the
+              encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
+              The balances as of a time are inclusive of entries with that exact time.
 
           extra_headers: Send extra headers
 
@@ -591,7 +576,6 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         self,
         id: str,
         *,
-        balances: ledger_account_category_update_params.Balances | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -607,11 +591,6 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         Update the details of a ledger account category.
 
         Args:
-          balances: For example, if you want the balances as of a particular effective date
-              (YYYY-MM-DD), the encoded query string would be
-              balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are exclusive of
-              entries with that exact date.
-
           description: The description of the ledger account category.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
@@ -645,9 +624,6 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
-                query=maybe_transform(
-                    {"balances": balances}, ledger_account_category_update_params.LedgerAccountCategoryUpdateParams
-                ),
             ),
             cast_to=LedgerAccountCategory,
         )
@@ -656,6 +632,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        balances: ledger_account_category_list_params.Balances | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -673,6 +650,10 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         Get a list of ledger account categories.
 
         Args:
+          balances: For example, if you want the balances as of a particular time (ISO8601), the
+              encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
+              The balances as of a time are inclusive of entries with that exact time.
+
           ledger_account_id: Query categories which contain a ledger account directly or through child
               categories.
 
@@ -701,6 +682,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
+                        "balances": balances,
                         "ledger_account_id": ledger_account_id,
                         "ledger_id": ledger_id,
                         "metadata": metadata,
@@ -718,7 +700,6 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         self,
         id: str,
         *,
-        balances: ledger_account_category_delete_params.Balances | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -731,11 +712,6 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         Delete a ledger account category.
 
         Args:
-          balances: For example, if you want the balances as of a particular effective date
-              (YYYY-MM-DD), the encoded query string would be
-              balances%5Bas_of_date%5D=2000-12-31. The balances as of a date are exclusive of
-              entries with that exact date.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -754,9 +730,6 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
-                query=maybe_transform(
-                    {"balances": balances}, ledger_account_category_delete_params.LedgerAccountCategoryDeleteParams
-                ),
             ),
             cast_to=LedgerAccountCategory,
         )
@@ -775,7 +748,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         idempotency_key: str | None = None,
     ) -> None:
         """
-        Add a ledger account category to an account.
+        Add a ledger account to a ledger account category.
 
         Args:
           extra_headers: Send extra headers
@@ -855,7 +828,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         idempotency_key: str | None = None,
     ) -> None:
         """
-        Delete a ledger account category from an account.
+        Remove a ledger account from a ledger account category.
 
         Args:
           extra_headers: Send extra headers

@@ -523,17 +523,17 @@ Please use LedgerTransactionLedgerEntry instead.
 
 
 class LedgerTransaction(TypedDict, total=False):
-    effective_at: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]
-    """
-    The timestamp (ISO8601 format) at which the ledger transaction happened for
-    reporting purposes.
-    """
-
     ledger_entries: Required[List[LedgerTransactionLedgerEntry]]
     """An array of ledger entry objects."""
 
     description: Optional[str]
     """An optional description for internal use."""
+
+    effective_at: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    """
+    The timestamp (ISO8601 format) at which the ledger transaction happened for
+    reporting purposes.
+    """
 
     effective_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
     """
