@@ -2,14 +2,24 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-from typing_extensions import TypedDict
+from typing import Dict, Union, Optional
+from datetime import datetime
+from typing_extensions import Annotated, TypedDict
 
-__all__ = ["LedgerAccountCategoryListParams"]
+from .._utils import PropertyInfo
+
+__all__ = ["LedgerAccountCategoryListParams", "Balances"]
 
 
 class LedgerAccountCategoryListParams(TypedDict, total=False):
     after_cursor: Optional[str]
+
+    balances: Balances
+    """
+    For example, if you want the balances as of a particular time (ISO8601), the
+    encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
+    The balances as of a time are inclusive of entries with that exact time.
+    """
 
     ledger_account_id: str
     """
@@ -32,3 +42,7 @@ class LedgerAccountCategoryListParams(TypedDict, total=False):
     """Query categories that are nested underneath a parent category"""
 
     per_page: int
+
+
+class Balances(TypedDict, total=False):
+    effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]

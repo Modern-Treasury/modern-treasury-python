@@ -29,6 +29,7 @@ class LedgerAccountPayouts(SyncAPIResource):
         description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at_upper_bound: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        skip_payout_ledger_transaction: Optional[bool] | NotGiven = NOT_GIVEN,
         status: Optional[Literal["pending", "posted"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -57,6 +58,9 @@ class LedgerAccountPayouts(SyncAPIResource):
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
+          skip_payout_ledger_transaction: It is set to `false` by default. It should be set to `true` when migrating
+              existing payouts.
+
           status: The status of the ledger account payout. It is set to `pending` by default. To
               post a ledger account payout at creation, use `posted`.
 
@@ -79,6 +83,7 @@ class LedgerAccountPayouts(SyncAPIResource):
                     "description": description,
                     "effective_at_upper_bound": effective_at_upper_bound,
                     "metadata": metadata,
+                    "skip_payout_ledger_transaction": skip_payout_ledger_transaction,
                     "status": status,
                 },
                 ledger_account_payout_create_params.LedgerAccountPayoutCreateParams,
@@ -154,6 +159,7 @@ class LedgerAccountPayouts(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payout_ledger_account_id: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -167,6 +173,10 @@ class LedgerAccountPayouts(SyncAPIResource):
         Get a list of ledger account payouts.
 
         Args:
+          metadata: For example, if you want to query for records with metadata key `Type` and value
+              `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+              parameters.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -186,6 +196,7 @@ class LedgerAccountPayouts(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
+                        "metadata": metadata,
                         "payout_ledger_account_id": payout_ledger_account_id,
                         "per_page": per_page,
                     },
@@ -236,6 +247,7 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
         description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at_upper_bound: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        skip_payout_ledger_transaction: Optional[bool] | NotGiven = NOT_GIVEN,
         status: Optional[Literal["pending", "posted"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -264,6 +276,9 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
+          skip_payout_ledger_transaction: It is set to `false` by default. It should be set to `true` when migrating
+              existing payouts.
+
           status: The status of the ledger account payout. It is set to `pending` by default. To
               post a ledger account payout at creation, use `posted`.
 
@@ -286,6 +301,7 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
                     "description": description,
                     "effective_at_upper_bound": effective_at_upper_bound,
                     "metadata": metadata,
+                    "skip_payout_ledger_transaction": skip_payout_ledger_transaction,
                     "status": status,
                 },
                 ledger_account_payout_create_params.LedgerAccountPayoutCreateParams,
@@ -361,6 +377,7 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payout_ledger_account_id: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -374,6 +391,10 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
         Get a list of ledger account payouts.
 
         Args:
+          metadata: For example, if you want to query for records with metadata key `Type` and value
+              `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+              parameters.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -393,6 +414,7 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
+                        "metadata": metadata,
                         "payout_ledger_account_id": payout_ledger_account_id,
                         "per_page": per_page,
                     },

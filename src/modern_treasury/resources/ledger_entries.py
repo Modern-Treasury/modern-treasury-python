@@ -70,6 +70,7 @@ class LedgerEntries(SyncAPIResource):
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_account_lock_version: Dict[str, int] | NotGiven = NOT_GIVEN,
+        ledger_account_payout_id: str | NotGiven = NOT_GIVEN,
         ledger_account_statement_id: str | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -97,7 +98,7 @@ class LedgerEntries(SyncAPIResource):
               a ledger transaction to specify a new set of entries, the previous entries are
               deleted.
 
-          effective_at: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+          effective_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               transaction's effective time. Format ISO8601
 
           effective_date: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
@@ -162,6 +163,7 @@ class LedgerEntries(SyncAPIResource):
                         "ledger_account_category_id": ledger_account_category_id,
                         "ledger_account_id": ledger_account_id,
                         "ledger_account_lock_version": ledger_account_lock_version,
+                        "ledger_account_payout_id": ledger_account_payout_id,
                         "ledger_account_statement_id": ledger_account_statement_id,
                         "ledger_transaction_id": ledger_transaction_id,
                         "metadata": metadata,
@@ -233,6 +235,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_account_lock_version: Dict[str, int] | NotGiven = NOT_GIVEN,
+        ledger_account_payout_id: str | NotGiven = NOT_GIVEN,
         ledger_account_statement_id: str | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -260,7 +263,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
               a ledger transaction to specify a new set of entries, the previous entries are
               deleted.
 
-          effective_at: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+          effective_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               transaction's effective time. Format ISO8601
 
           effective_date: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
@@ -325,6 +328,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
                         "ledger_account_category_id": ledger_account_category_id,
                         "ledger_account_id": ledger_account_id,
                         "ledger_account_lock_version": ledger_account_lock_version,
+                        "ledger_account_payout_id": ledger_account_payout_id,
                         "ledger_account_statement_id": ledger_account_statement_id,
                         "ledger_transaction_id": ledger_transaction_id,
                         "metadata": metadata,

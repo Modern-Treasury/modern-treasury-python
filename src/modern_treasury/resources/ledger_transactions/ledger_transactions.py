@@ -36,9 +36,9 @@ class LedgerTransactions(SyncAPIResource):
     def create(
         self,
         *,
-        effective_at: Union[str, date],
         ledger_entries: List[ledger_transaction_create_params.LedgerEntry],
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        effective_at: Union[str, date] | NotGiven = NOT_GIVEN,
         effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
         external_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
@@ -69,12 +69,12 @@ class LedgerTransactions(SyncAPIResource):
         Create a ledger transaction.
 
         Args:
-          effective_at: The timestamp (ISO8601 format) at which the ledger transaction happened for
-              reporting purposes.
-
           ledger_entries: An array of ledger entry objects.
 
           description: An optional description for internal use.
+
+          effective_at: The timestamp (ISO8601 format) at which the ledger transaction happened for
+              reporting purposes.
 
           effective_date: The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
               purposes.
@@ -108,9 +108,9 @@ class LedgerTransactions(SyncAPIResource):
             "/api/ledger_transactions",
             body=maybe_transform(
                 {
-                    "effective_at": effective_at,
                     "ledger_entries": ledger_entries,
                     "description": description,
+                    "effective_at": effective_at,
                     "effective_date": effective_date,
                     "external_id": external_id,
                     "ledgerable_id": ledgerable_id,
@@ -166,6 +166,7 @@ class LedgerTransactions(SyncAPIResource):
         id: str,
         *,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        effective_at: Union[str, date] | NotGiven = NOT_GIVEN,
         ledger_entries: List[ledger_transaction_update_params.LedgerEntry] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
@@ -182,6 +183,9 @@ class LedgerTransactions(SyncAPIResource):
 
         Args:
           description: An optional description for internal use.
+
+          effective_at: The timestamp (ISO8601 format) at which the ledger transaction happened for
+              reporting purposes.
 
           ledger_entries: An array of ledger entry objects.
 
@@ -205,6 +209,7 @@ class LedgerTransactions(SyncAPIResource):
             body=maybe_transform(
                 {
                     "description": description,
+                    "effective_at": effective_at,
                     "ledger_entries": ledger_entries,
                     "metadata": metadata,
                     "status": status,
@@ -231,6 +236,7 @@ class LedgerTransactions(SyncAPIResource):
         external_id: str | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
+        ledger_account_payout_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
@@ -313,6 +319,7 @@ class LedgerTransactions(SyncAPIResource):
                         "external_id": external_id,
                         "ledger_account_category_id": ledger_account_category_id,
                         "ledger_account_id": ledger_account_id,
+                        "ledger_account_payout_id": ledger_account_payout_id,
                         "ledger_id": ledger_id,
                         "ledgerable_id": ledgerable_id,
                         "ledgerable_type": ledgerable_type,
@@ -332,7 +339,7 @@ class LedgerTransactions(SyncAPIResource):
 
     def create_reversal(
         self,
-        ledger_transaction_id: str,
+        id: str,
         *,
         description: str | NotGiven = NOT_GIVEN,
         effective_at: Optional[Union[str, datetime]] | NotGiven = NOT_GIVEN,
@@ -397,7 +404,7 @@ class LedgerTransactions(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
-            f"/api/ledger_transactions/{ledger_transaction_id}/reversal",
+            f"/api/ledger_transactions/{id}/reversal",
             body=maybe_transform(
                 {
                     "description": description,
@@ -431,9 +438,9 @@ class AsyncLedgerTransactions(AsyncAPIResource):
     async def create(
         self,
         *,
-        effective_at: Union[str, date],
         ledger_entries: List[ledger_transaction_create_params.LedgerEntry],
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        effective_at: Union[str, date] | NotGiven = NOT_GIVEN,
         effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
         external_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
@@ -464,12 +471,12 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         Create a ledger transaction.
 
         Args:
-          effective_at: The timestamp (ISO8601 format) at which the ledger transaction happened for
-              reporting purposes.
-
           ledger_entries: An array of ledger entry objects.
 
           description: An optional description for internal use.
+
+          effective_at: The timestamp (ISO8601 format) at which the ledger transaction happened for
+              reporting purposes.
 
           effective_date: The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
               purposes.
@@ -503,9 +510,9 @@ class AsyncLedgerTransactions(AsyncAPIResource):
             "/api/ledger_transactions",
             body=maybe_transform(
                 {
-                    "effective_at": effective_at,
                     "ledger_entries": ledger_entries,
                     "description": description,
+                    "effective_at": effective_at,
                     "effective_date": effective_date,
                     "external_id": external_id,
                     "ledgerable_id": ledgerable_id,
@@ -561,6 +568,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         id: str,
         *,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        effective_at: Union[str, date] | NotGiven = NOT_GIVEN,
         ledger_entries: List[ledger_transaction_update_params.LedgerEntry] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
@@ -577,6 +585,9 @@ class AsyncLedgerTransactions(AsyncAPIResource):
 
         Args:
           description: An optional description for internal use.
+
+          effective_at: The timestamp (ISO8601 format) at which the ledger transaction happened for
+              reporting purposes.
 
           ledger_entries: An array of ledger entry objects.
 
@@ -600,6 +611,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "description": description,
+                    "effective_at": effective_at,
                     "ledger_entries": ledger_entries,
                     "metadata": metadata,
                     "status": status,
@@ -626,6 +638,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         external_id: str | NotGiven = NOT_GIVEN,
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
+        ledger_account_payout_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
@@ -708,6 +721,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
                         "external_id": external_id,
                         "ledger_account_category_id": ledger_account_category_id,
                         "ledger_account_id": ledger_account_id,
+                        "ledger_account_payout_id": ledger_account_payout_id,
                         "ledger_id": ledger_id,
                         "ledgerable_id": ledgerable_id,
                         "ledgerable_type": ledgerable_type,
@@ -727,7 +741,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
 
     async def create_reversal(
         self,
-        ledger_transaction_id: str,
+        id: str,
         *,
         description: str | NotGiven = NOT_GIVEN,
         effective_at: Optional[Union[str, datetime]] | NotGiven = NOT_GIVEN,
@@ -792,7 +806,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
-            f"/api/ledger_transactions/{ledger_transaction_id}/reversal",
+            f"/api/ledger_transactions/{id}/reversal",
             body=maybe_transform(
                 {
                     "description": description,

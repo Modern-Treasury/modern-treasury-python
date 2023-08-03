@@ -216,9 +216,6 @@ from .incoming_payment_detail_update_params import (
 from .ledger_account_category_create_params import (
     LedgerAccountCategoryCreateParams as LedgerAccountCategoryCreateParams,
 )
-from .ledger_account_category_delete_params import (
-    LedgerAccountCategoryDeleteParams as LedgerAccountCategoryDeleteParams,
-)
 from .ledger_account_category_update_params import (
     LedgerAccountCategoryUpdateParams as LedgerAccountCategoryUpdateParams,
 )

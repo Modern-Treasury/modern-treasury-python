@@ -29,7 +29,7 @@ class LedgerEntryListParams(TypedDict, total=False):
 
     effective_at: Dict[str, str]
     """
-    Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by the
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
     transaction's effective time. Format ISO8601
     """
 
@@ -54,6 +54,8 @@ class LedgerEntryListParams(TypedDict, total=False):
     before before lock_version 1000 of a ledger account, use
     `ledger_account_lock_version%5Blte%5D=1000`.
     """
+
+    ledger_account_payout_id: str
 
     ledger_account_statement_id: str
     """Get all ledger entries that are included in the ledger account statement."""

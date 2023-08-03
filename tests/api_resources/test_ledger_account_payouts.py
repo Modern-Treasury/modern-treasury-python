@@ -44,6 +44,7 @@ class TestLedgerAccountPayouts:
                 "foo": "bar",
                 "modern": "treasury",
             },
+            skip_payout_ledger_transaction=True,
             status="pending",
         )
         assert_matches_type(LedgerAccountPayout, ledger_account_payout, path=["response"])
@@ -78,6 +79,7 @@ class TestLedgerAccountPayouts:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account_payout = client.ledger_account_payouts.list(
             after_cursor="string",
+            metadata={"foo": "string"},
             payout_ledger_account_id="string",
             per_page=0,
         )
@@ -120,6 +122,7 @@ class TestAsyncLedgerAccountPayouts:
                 "foo": "bar",
                 "modern": "treasury",
             },
+            skip_payout_ledger_transaction=True,
             status="pending",
         )
         assert_matches_type(LedgerAccountPayout, ledger_account_payout, path=["response"])
@@ -154,6 +157,7 @@ class TestAsyncLedgerAccountPayouts:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger_account_payout = await client.ledger_account_payouts.list(
             after_cursor="string",
+            metadata={"foo": "string"},
             payout_ledger_account_id="string",
             per_page=0,
         )
