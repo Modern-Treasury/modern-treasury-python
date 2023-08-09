@@ -4,8 +4,10 @@ from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ..types import shared, connection, account_detail, routing_detail
+from ..types import account_detail, routing_detail
 from .._models import BaseModel
+from ..types.connection import Connection
+from ..types.shared.currency import Currency
 
 __all__ = ["InternalAccount", "PartyAddress"]
 
@@ -51,7 +53,7 @@ class InternalAccount(BaseModel):
     account_type: Optional[Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]]
     """Can be checking, savings or other."""
 
-    connection: connection.Connection
+    connection: Connection
     """Specifies which financial institution the accounts belong to."""
 
     counterparty_id: Optional[str]
@@ -59,7 +61,7 @@ class InternalAccount(BaseModel):
 
     created_at: datetime
 
-    currency: Optional[shared.Currency]
+    currency: Optional[Currency]
     """The currency of the account."""
 
     ledger_account_id: Optional[str]

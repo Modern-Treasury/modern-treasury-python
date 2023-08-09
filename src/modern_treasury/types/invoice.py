@@ -6,8 +6,8 @@ from typing import List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
-from ..types import shared
 from .._models import BaseModel
+from ..types.shared.currency import Currency
 
 __all__ = [
     "Invoice",
@@ -119,7 +119,7 @@ class Invoice(BaseModel):
 
     created_at: datetime
 
-    currency: Optional[shared.Currency]
+    currency: Optional[Currency]
     """Currency that the invoice is denominated in. Defaults to `USD` if not provided."""
 
     description: str

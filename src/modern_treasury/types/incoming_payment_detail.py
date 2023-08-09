@@ -4,8 +4,9 @@ from typing import Dict, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
-from ..types import shared, virtual_account
 from .._models import BaseModel
+from ..types.shared.currency import Currency
+from ..types.virtual_account import VirtualAccount
 
 __all__ = ["IncomingPaymentDetail"]
 
@@ -24,7 +25,7 @@ class IncomingPaymentDetail(BaseModel):
 
     created_at: datetime
 
-    currency: Optional[shared.Currency]
+    currency: Optional[Currency]
     """The currency of the incoming payment detail."""
 
     data: Dict[str, object]
@@ -110,7 +111,7 @@ class IncomingPaymentDetail(BaseModel):
     vendor_id: Optional[str]
     """The identifier of the vendor bank."""
 
-    virtual_account: Optional[virtual_account.VirtualAccount]
+    virtual_account: Optional[VirtualAccount]
     """
     If the incoming payment detail is in a virtual account, the serialized virtual
     account object.

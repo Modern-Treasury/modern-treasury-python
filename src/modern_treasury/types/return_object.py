@@ -6,8 +6,8 @@ from typing import List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
-from ..types import shared
 from .._models import BaseModel
+from ..types.shared.currency import Currency
 
 __all__ = ["ReturnObject", "ReferenceNumbers", "ReferenceNumber"]
 
@@ -163,7 +163,7 @@ class ReturnObject(BaseModel):
 
     created_at: datetime
 
-    currency: Optional[shared.Currency]
+    currency: Optional[Currency]
     """Currency that this transaction is denominated in."""
 
     current_return: Optional[return_object.ReturnObject]

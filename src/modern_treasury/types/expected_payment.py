@@ -5,8 +5,9 @@ from typing import Dict, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
-from ..types import shared, expected_payment_type
+from ..types import expected_payment_type
 from .._models import BaseModel
+from ..types.shared.currency import Currency
 
 __all__ = ["ExpectedPayment"]
 
@@ -33,7 +34,7 @@ class ExpectedPayment(BaseModel):
 
     created_at: datetime
 
-    currency: Optional[shared.Currency]
+    currency: Optional[Currency]
     """Must conform to ISO 4217. Defaults to the currency of the internal account."""
 
     date_lower_bound: Optional[date]

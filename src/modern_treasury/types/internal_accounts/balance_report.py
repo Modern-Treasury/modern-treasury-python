@@ -4,8 +4,8 @@ from typing import List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
-from ...types import shared
 from ..._models import BaseModel
+from ...types.shared.currency import Currency
 
 __all__ = ["BalanceReport", "Balances", "Balance"]
 
@@ -35,7 +35,7 @@ class Balance(BaseModel):
 
     created_at: datetime
 
-    currency: Optional[shared.Currency]
+    currency: Optional[Currency]
     """The currency of the balance."""
 
     live_mode: bool
