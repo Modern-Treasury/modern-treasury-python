@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from typing import Dict, Optional
+import builtins
+from typing import TYPE_CHECKING, Dict, Optional
 from datetime import datetime
 
 from .._models import BaseModel
@@ -36,3 +37,10 @@ class Ledger(BaseModel):
     object: str
 
     updated_at: datetime
+
+    if TYPE_CHECKING:
+        # Stub to indicate that arbitrary properties are accepted.
+        # To access properties that are not valid identifiers you can use `getattr`, e.g.
+        # `getattr(obj, '$type')`
+        def __getattr__(self, attr: str) -> builtins.object:
+            ...

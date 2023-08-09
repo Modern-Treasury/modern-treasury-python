@@ -6,8 +6,8 @@ from typing import Dict, List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
-from ..types import shared
 from .._models import BaseModel
+from ..types.shared.currency import Currency
 
 __all__ = ["PaymentOrder", "Accounting", "ReferenceNumbers", "ReferenceNumber"]
 
@@ -161,7 +161,7 @@ class PaymentOrder(BaseModel):
 
     created_at: datetime
 
-    currency: Optional[shared.Currency]
+    currency: Optional[Currency]
     """Defaults to the currency of the originating account."""
 
     current_return: Optional[return_object.ReturnObject]
