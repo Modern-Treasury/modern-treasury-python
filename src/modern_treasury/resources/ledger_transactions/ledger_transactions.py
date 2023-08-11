@@ -229,7 +229,7 @@ class LedgerTransactions(SyncAPIResource):
     def list(
         self,
         *,
-        id: Dict[str, str] | NotGiven = NOT_GIVEN,
+        id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
         effective_date: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
@@ -270,6 +270,9 @@ class LedgerTransactions(SyncAPIResource):
         Get a list of ledger transactions.
 
         Args:
+          id: If you have specific IDs to retrieve in bulk, you can pass them as query
+              parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
+
           effective_at: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by
               effective at. For example, for all transactions after Jan 1 2000, use
               effective_at%5Bgt%5D=2000-01-01T00:00:00:00.000Z.
@@ -631,7 +634,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
     def list(
         self,
         *,
-        id: Dict[str, str] | NotGiven = NOT_GIVEN,
+        id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at: Dict[str, str] | NotGiven = NOT_GIVEN,
         effective_date: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
@@ -672,6 +675,9 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         Get a list of ledger transactions.
 
         Args:
+          id: If you have specific IDs to retrieve in bulk, you can pass them as query
+              parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
+
           effective_at: Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by
               effective at. For example, for all transactions after Jan 1 2000, use
               effective_at%5Bgt%5D=2000-01-01T00:00:00:00.000Z.

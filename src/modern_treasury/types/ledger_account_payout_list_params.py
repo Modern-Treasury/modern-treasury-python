@@ -2,13 +2,19 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from typing_extensions import TypedDict
 
 __all__ = ["LedgerAccountPayoutListParams"]
 
 
 class LedgerAccountPayoutListParams(TypedDict, total=False):
+    id: List[str]
+    """
+    If you have specific IDs to retrieve in bulk, you can pass them as query
+    parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
+    """
+
     after_cursor: Optional[str]
 
     metadata: Dict[str, str]

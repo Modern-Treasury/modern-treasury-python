@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Annotated, TypedDict
 
@@ -12,6 +12,12 @@ __all__ = ["LedgerAccountCategoryListParams", "Balances"]
 
 
 class LedgerAccountCategoryListParams(TypedDict, total=False):
+    id: List[str]
+    """
+    If you have specific IDs to retrieve in bulk, you can pass them as query
+    parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
+    """
+
     after_cursor: Optional[str]
 
     balances: Balances

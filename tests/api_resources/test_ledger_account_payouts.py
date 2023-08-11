@@ -78,6 +78,7 @@ class TestLedgerAccountPayouts:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account_payout = client.ledger_account_payouts.list(
+            id=["string", "string", "string"],
             after_cursor="string",
             metadata={"foo": "string"},
             payout_ledger_account_id="string",
@@ -156,6 +157,7 @@ class TestAsyncLedgerAccountPayouts:
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger_account_payout = await client.ledger_account_payouts.list(
+            id=["string", "string", "string"],
             after_cursor="string",
             metadata={"foo": "string"},
             payout_ledger_account_id="string",

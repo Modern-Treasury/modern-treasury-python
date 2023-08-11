@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 from ..types import (
@@ -194,6 +194,7 @@ class LedgerAccountCategories(SyncAPIResource):
     def list(
         self,
         *,
+        id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         balances: ledger_account_category_list_params.Balances | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
@@ -213,6 +214,9 @@ class LedgerAccountCategories(SyncAPIResource):
         Get a list of ledger account categories.
 
         Args:
+          id: If you have specific IDs to retrieve in bulk, you can pass them as query
+              parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
+
           balances: For example, if you want the balances as of a particular time (ISO8601), the
               encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
               The balances as of a time are inclusive of entries with that exact time.
@@ -244,6 +248,7 @@ class LedgerAccountCategories(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after_cursor": after_cursor,
                         "balances": balances,
                         "ledger_account_id": ledger_account_id,
@@ -631,6 +636,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
     def list(
         self,
         *,
+        id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         balances: ledger_account_category_list_params.Balances | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
@@ -650,6 +656,9 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         Get a list of ledger account categories.
 
         Args:
+          id: If you have specific IDs to retrieve in bulk, you can pass them as query
+              parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
+
           balances: For example, if you want the balances as of a particular time (ISO8601), the
               encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
               The balances as of a time are inclusive of entries with that exact time.
@@ -681,6 +690,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after_cursor": after_cursor,
                         "balances": balances,
                         "ledger_account_id": ledger_account_id,
