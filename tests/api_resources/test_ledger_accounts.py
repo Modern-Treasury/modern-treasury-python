@@ -104,7 +104,7 @@ class TestLedgerAccounts:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account = client.ledger_accounts.list(
-            id="string",
+            id=["string", "string", "string"],
             after_cursor="string",
             balances={
                 "as_of_date": parse_date("2019-12-27"),
@@ -219,7 +219,7 @@ class TestAsyncLedgerAccounts:
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger_account = await client.ledger_accounts.list(
-            id="string",
+            id=["string", "string", "string"],
             after_cursor="string",
             balances={
                 "as_of_date": parse_date("2019-12-27"),

@@ -235,6 +235,19 @@ class InvoiceUpdateParams(TypedDict, total=False):
     invoicer_address: Optional[InvoicerAddress]
     """The invoice issuer's business address."""
 
+    notification_email_addresses: Optional[List[str]]
+    """
+    Emails in addition to the counterparty email to send invoice status
+    notifications to. At least one email is required if notifications are enabled
+    and the counterparty doesn't have an email.
+    """
+
+    notifications_enabled: bool
+    """
+    If true, the invoice will send email notifications to the invoice recipients
+    about invoice status changes.
+    """
+
     originating_account_id: str
     """The ID of the internal account the invoice should be paid to."""
 
@@ -286,8 +299,8 @@ class InvoiceUpdateParams(TypedDict, total=False):
     status: str
     """
     Invoice status must be updated in a `PATCH` request that does not modify any
-    other invoice attributes. Valid state transitions are `draft` to `unpaid` and
-    `draft` or `unpaid` to `voided`.
+    other invoice attributes. Valid state transitions are `draft` to `unpaid`,
+    `draft` or `unpaid` to `voided`, and `draft` or `unpaid` to `paid`.
     """
 
 

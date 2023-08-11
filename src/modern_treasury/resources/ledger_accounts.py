@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -209,7 +209,7 @@ class LedgerAccounts(SyncAPIResource):
     def list(
         self,
         *,
-        id: str | NotGiven = NOT_GIVEN,
+        id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         balances: ledger_account_list_params.Balances | NotGiven = NOT_GIVEN,
         created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
@@ -231,6 +231,9 @@ class LedgerAccounts(SyncAPIResource):
         Get a list of ledger accounts.
 
         Args:
+          id: If you have specific IDs to retrieve in bulk, you can pass them as query
+              parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
+
           balances: Use `balances[effective_at_lower_bound]` and
               `balances[effective_at_upper_bound]` to get the balances change between the two
               timestamps. The lower bound is inclusive while the upper bound is exclusive of
@@ -511,7 +514,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
     def list(
         self,
         *,
-        id: str | NotGiven = NOT_GIVEN,
+        id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         balances: ledger_account_list_params.Balances | NotGiven = NOT_GIVEN,
         created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
@@ -533,6 +536,9 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         Get a list of ledger accounts.
 
         Args:
+          id: If you have specific IDs to retrieve in bulk, you can pass them as query
+              parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
+
           balances: Use `balances[effective_at_lower_bound]` and
               `balances[effective_at_upper_bound]` to get the balances change between the two
               timestamps. The lower bound is inclusive while the upper bound is exclusive of

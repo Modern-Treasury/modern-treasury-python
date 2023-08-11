@@ -46,6 +46,8 @@ class Invoices(SyncAPIResource):
         currency: shared_params.Currency | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_create_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
+        notification_email_addresses: List[str] | NotGiven = NOT_GIVEN,
+        notifications_enabled: bool | NotGiven = NOT_GIVEN,
         payment_effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
         payment_method: Literal["ui", "manual", "automatic"] | NotGiven = NOT_GIVEN,
         payment_type: Literal[
@@ -99,6 +101,13 @@ class Invoices(SyncAPIResource):
 
           invoicer_address: The invoice issuer's business address.
 
+          notification_email_addresses: Emails in addition to the counterparty email to send invoice status
+              notifications to. At least one email is required if notifications are enabled
+              and the counterparty doesn't have an email.
+
+          notifications_enabled: If true, the invoice will send email notifications to the invoice recipients
+              about invoice status changes.
+
           payment_effective_date: Date transactions are to be posted to the participants' account. Defaults to the
               current business day or the next business day if the current day is a bank
               holiday or weekend. Format: yyyy-mm-dd.
@@ -138,6 +147,8 @@ class Invoices(SyncAPIResource):
                     "currency": currency,
                     "description": description,
                     "invoicer_address": invoicer_address,
+                    "notification_email_addresses": notification_email_addresses,
+                    "notifications_enabled": notifications_enabled,
                     "payment_effective_date": payment_effective_date,
                     "payment_method": payment_method,
                     "payment_type": payment_type,
@@ -199,6 +210,8 @@ class Invoices(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         due_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_update_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
+        notification_email_addresses: List[str] | NotGiven = NOT_GIVEN,
+        notifications_enabled: bool | NotGiven = NOT_GIVEN,
         originating_account_id: str | NotGiven = NOT_GIVEN,
         payment_effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
         payment_method: Literal["ui", "manual", "automatic"] | NotGiven = NOT_GIVEN,
@@ -252,6 +265,13 @@ class Invoices(SyncAPIResource):
 
           invoicer_address: The invoice issuer's business address.
 
+          notification_email_addresses: Emails in addition to the counterparty email to send invoice status
+              notifications to. At least one email is required if notifications are enabled
+              and the counterparty doesn't have an email.
+
+          notifications_enabled: If true, the invoice will send email notifications to the invoice recipients
+              about invoice status changes.
+
           originating_account_id: The ID of the internal account the invoice should be paid to.
 
           payment_effective_date: Date transactions are to be posted to the participants' account. Defaults to the
@@ -271,8 +291,8 @@ class Invoices(SyncAPIResource):
           receiving_account_id: The receiving account ID. Can be an `external_account`.
 
           status: Invoice status must be updated in a `PATCH` request that does not modify any
-              other invoice attributes. Valid state transitions are `draft` to `unpaid` and
-              `draft` or `unpaid` to `voided`.
+              other invoice attributes. Valid state transitions are `draft` to `unpaid`,
+              `draft` or `unpaid` to `voided`, and `draft` or `unpaid` to `paid`.
 
           extra_headers: Send extra headers
 
@@ -296,6 +316,8 @@ class Invoices(SyncAPIResource):
                     "description": description,
                     "due_date": due_date,
                     "invoicer_address": invoicer_address,
+                    "notification_email_addresses": notification_email_addresses,
+                    "notifications_enabled": notifications_enabled,
                     "originating_account_id": originating_account_id,
                     "payment_effective_date": payment_effective_date,
                     "payment_method": payment_method,
@@ -379,6 +401,8 @@ class AsyncInvoices(AsyncAPIResource):
         currency: shared_params.Currency | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_create_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
+        notification_email_addresses: List[str] | NotGiven = NOT_GIVEN,
+        notifications_enabled: bool | NotGiven = NOT_GIVEN,
         payment_effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
         payment_method: Literal["ui", "manual", "automatic"] | NotGiven = NOT_GIVEN,
         payment_type: Literal[
@@ -432,6 +456,13 @@ class AsyncInvoices(AsyncAPIResource):
 
           invoicer_address: The invoice issuer's business address.
 
+          notification_email_addresses: Emails in addition to the counterparty email to send invoice status
+              notifications to. At least one email is required if notifications are enabled
+              and the counterparty doesn't have an email.
+
+          notifications_enabled: If true, the invoice will send email notifications to the invoice recipients
+              about invoice status changes.
+
           payment_effective_date: Date transactions are to be posted to the participants' account. Defaults to the
               current business day or the next business day if the current day is a bank
               holiday or weekend. Format: yyyy-mm-dd.
@@ -471,6 +502,8 @@ class AsyncInvoices(AsyncAPIResource):
                     "currency": currency,
                     "description": description,
                     "invoicer_address": invoicer_address,
+                    "notification_email_addresses": notification_email_addresses,
+                    "notifications_enabled": notifications_enabled,
                     "payment_effective_date": payment_effective_date,
                     "payment_method": payment_method,
                     "payment_type": payment_type,
@@ -532,6 +565,8 @@ class AsyncInvoices(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         due_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_update_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
+        notification_email_addresses: List[str] | NotGiven = NOT_GIVEN,
+        notifications_enabled: bool | NotGiven = NOT_GIVEN,
         originating_account_id: str | NotGiven = NOT_GIVEN,
         payment_effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
         payment_method: Literal["ui", "manual", "automatic"] | NotGiven = NOT_GIVEN,
@@ -585,6 +620,13 @@ class AsyncInvoices(AsyncAPIResource):
 
           invoicer_address: The invoice issuer's business address.
 
+          notification_email_addresses: Emails in addition to the counterparty email to send invoice status
+              notifications to. At least one email is required if notifications are enabled
+              and the counterparty doesn't have an email.
+
+          notifications_enabled: If true, the invoice will send email notifications to the invoice recipients
+              about invoice status changes.
+
           originating_account_id: The ID of the internal account the invoice should be paid to.
 
           payment_effective_date: Date transactions are to be posted to the participants' account. Defaults to the
@@ -604,8 +646,8 @@ class AsyncInvoices(AsyncAPIResource):
           receiving_account_id: The receiving account ID. Can be an `external_account`.
 
           status: Invoice status must be updated in a `PATCH` request that does not modify any
-              other invoice attributes. Valid state transitions are `draft` to `unpaid` and
-              `draft` or `unpaid` to `voided`.
+              other invoice attributes. Valid state transitions are `draft` to `unpaid`,
+              `draft` or `unpaid` to `voided`, and `draft` or `unpaid` to `paid`.
 
           extra_headers: Send extra headers
 
@@ -629,6 +671,8 @@ class AsyncInvoices(AsyncAPIResource):
                     "description": description,
                     "due_date": due_date,
                     "invoicer_address": invoicer_address,
+                    "notification_email_addresses": notification_email_addresses,
+                    "notifications_enabled": notifications_enabled,
                     "originating_account_id": originating_account_id,
                     "payment_effective_date": payment_effective_date,
                     "payment_method": payment_method,

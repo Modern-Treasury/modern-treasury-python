@@ -140,6 +140,19 @@ class Invoice(BaseModel):
     if it exists in the test environment.
     """
 
+    notification_email_addresses: Optional[List[str]]
+    """
+    Emails in addition to the counterparty email to send invoice status
+    notifications to. At least one email is required if notifications are enabled
+    and the counterparty doesn't have an email.
+    """
+
+    notifications_enabled: bool
+    """
+    If true, the invoice will send email notifications to the invoice recipients
+    about invoice status changes.
+    """
+
     number: str
     """A unique record number assigned to each invoice that is issued."""
 
@@ -168,7 +181,7 @@ class Invoice(BaseModel):
     """
 
     payment_type: Optional[Literal["eft", "ach"]]
-    """One of `ach` or `eft`"""
+    """One of `ach` or `eft`."""
 
     pdf_url: Optional[str]
     """The URL where the invoice PDF can be downloaded."""
@@ -184,6 +197,9 @@ class Invoice(BaseModel):
     Total amount due in specified currency's smallest unit, e.g., $10 USD would be
     represented as 1000.
     """
+
+    transaction_line_item_ids: List[str]
+    """IDs of transaction line items associated with an invoice."""
 
     updated_at: datetime
 
