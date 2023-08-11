@@ -197,7 +197,7 @@ class TestLedgerTransactions:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger_transaction = client.ledger_transactions.list(
-            id={"foo": "string"},
+            id=["string", "string", "string"],
             after_cursor="string",
             effective_at={"foo": "string"},
             effective_date={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
@@ -428,7 +428,7 @@ class TestAsyncLedgerTransactions:
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger_transaction = await client.ledger_transactions.list(
-            id={"foo": "string"},
+            id=["string", "string", "string"],
             after_cursor="string",
             effective_at={"foo": "string"},
             effective_date={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},

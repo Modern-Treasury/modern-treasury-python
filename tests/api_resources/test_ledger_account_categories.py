@@ -99,6 +99,7 @@ class TestLedgerAccountCategories:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account_category = client.ledger_account_categories.list(
+            id=["string", "string", "string"],
             after_cursor="string",
             balances={"effective_at": parse_datetime("2019-12-27T18:11:19.117Z")},
             ledger_account_id="string",
@@ -233,6 +234,7 @@ class TestAsyncLedgerAccountCategories:
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger_account_category = await client.ledger_account_categories.list(
+            id=["string", "string", "string"],
             after_cursor="string",
             balances={"effective_at": parse_datetime("2019-12-27T18:11:19.117Z")},
             ledger_account_id="string",

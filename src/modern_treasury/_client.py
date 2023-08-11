@@ -10,7 +10,6 @@ from typing import Union, Mapping, Optional
 import httpx
 
 from . import resources
-from ._qs import Querystring
 from .types import PingResponse
 from ._types import (
     NOT_GIVEN,
@@ -187,10 +186,6 @@ class ModernTreasury(SyncAPIClient):
         self.paper_items = resources.PaperItems(self)
         self.webhooks = resources.Webhooks(self)
         self.virtual_accounts = resources.VirtualAccounts(self)
-
-    @property
-    def qs(self) -> Querystring:
-        return Querystring(array_format="repeat")
 
     @property
     def auth_headers(self) -> dict[str, str]:
@@ -421,10 +416,6 @@ class AsyncModernTreasury(AsyncAPIClient):
         self.paper_items = resources.AsyncPaperItems(self)
         self.webhooks = resources.AsyncWebhooks(self)
         self.virtual_accounts = resources.AsyncVirtualAccounts(self)
-
-    @property
-    def qs(self) -> Querystring:
-        return Querystring(array_format="repeat")
 
     @property
     def auth_headers(self) -> dict[str, str]:

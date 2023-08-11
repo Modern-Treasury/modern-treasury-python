@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 from ..types import (
@@ -158,6 +158,7 @@ class LedgerAccountPayouts(SyncAPIResource):
     def list(
         self,
         *,
+        id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payout_ledger_account_id: str | NotGiven = NOT_GIVEN,
@@ -173,6 +174,9 @@ class LedgerAccountPayouts(SyncAPIResource):
         Get a list of ledger account payouts.
 
         Args:
+          id: If you have specific IDs to retrieve in bulk, you can pass them as query
+              parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
+
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
@@ -195,6 +199,7 @@ class LedgerAccountPayouts(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after_cursor": after_cursor,
                         "metadata": metadata,
                         "payout_ledger_account_id": payout_ledger_account_id,
@@ -376,6 +381,7 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
     def list(
         self,
         *,
+        id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payout_ledger_account_id: str | NotGiven = NOT_GIVEN,
@@ -391,6 +397,9 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
         Get a list of ledger account payouts.
 
         Args:
+          id: If you have specific IDs to retrieve in bulk, you can pass them as query
+              parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
+
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
@@ -413,6 +422,7 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after_cursor": after_cursor,
                         "metadata": metadata,
                         "payout_ledger_account_id": payout_ledger_account_id,
