@@ -56,6 +56,10 @@
       "hidden": true
     }
   ],
+  "reviewers": [
+    "cleb11",
+    "chen-annie"
+  ],
   "release-type": "python",
   "extra-files": [
     "src/modern_treasury/_version.py"
