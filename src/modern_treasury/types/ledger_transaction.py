@@ -4,8 +4,8 @@ from typing import Dict, List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
-from ..types import ledger_entry
 from .._models import BaseModel
+from .ledger_entry import LedgerEntry
 
 __all__ = ["LedgerTransaction"]
 
@@ -36,7 +36,7 @@ class LedgerTransaction(BaseModel):
     Only one pending or posted ledger transaction may have this ID in the ledger.
     """
 
-    ledger_entries: List[ledger_entry.LedgerEntry]
+    ledger_entries: List[LedgerEntry]
     """An array of ledger entry objects."""
 
     ledger_id: str

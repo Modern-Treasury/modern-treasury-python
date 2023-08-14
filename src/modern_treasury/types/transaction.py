@@ -4,8 +4,8 @@ from typing import Dict, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
+from .shared import Currency
 from .._models import BaseModel
-from ..types.shared.currency import Currency
 
 __all__ = ["Transaction"]
 
