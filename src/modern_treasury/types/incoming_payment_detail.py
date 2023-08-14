@@ -4,9 +4,9 @@ from typing import Dict, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
+from .shared import Currency
 from .._models import BaseModel
-from ..types.shared.currency import Currency
-from ..types.virtual_account import VirtualAccount
+from .virtual_account import VirtualAccount
 
 __all__ = ["IncomingPaymentDetail"]
 

@@ -8,9 +8,10 @@ import pytest
 
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
-from modern_treasury.types import IncomingPaymentDetail, shared
+from modern_treasury.types import IncomingPaymentDetail
 from modern_treasury._utils import parse_date
 from modern_treasury.pagination import SyncPage, AsyncPage
+from modern_treasury.types.shared import AsyncResponse
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
 api_key = os.environ.get("API_KEY", "something1234")
@@ -70,7 +71,7 @@ class TestIncomingPaymentDetails:
     @parametrize
     def test_method_create_async(self, client: ModernTreasury) -> None:
         incoming_payment_detail = client.incoming_payment_details.create_async()
-        assert_matches_type(shared.AsyncResponse, incoming_payment_detail, path=["response"])
+        assert_matches_type(AsyncResponse, incoming_payment_detail, path=["response"])
 
     @parametrize
     def test_method_create_async_with_all_params(self, client: ModernTreasury) -> None:
@@ -84,7 +85,7 @@ class TestIncomingPaymentDetails:
             type="ach",
             virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(shared.AsyncResponse, incoming_payment_detail, path=["response"])
+        assert_matches_type(AsyncResponse, incoming_payment_detail, path=["response"])
 
 
 class TestAsyncIncomingPaymentDetails:
@@ -141,7 +142,7 @@ class TestAsyncIncomingPaymentDetails:
     @parametrize
     async def test_method_create_async(self, client: AsyncModernTreasury) -> None:
         incoming_payment_detail = await client.incoming_payment_details.create_async()
-        assert_matches_type(shared.AsyncResponse, incoming_payment_detail, path=["response"])
+        assert_matches_type(AsyncResponse, incoming_payment_detail, path=["response"])
 
     @parametrize
     async def test_method_create_async_with_all_params(self, client: AsyncModernTreasury) -> None:
@@ -155,4 +156,4 @@ class TestAsyncIncomingPaymentDetails:
             type="ach",
             virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(shared.AsyncResponse, incoming_payment_detail, path=["response"])
+        assert_matches_type(AsyncResponse, incoming_payment_detail, path=["response"])

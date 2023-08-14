@@ -4,8 +4,10 @@ from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ..types import account_detail, routing_detail, external_account_type
 from .._models import BaseModel
+from .account_detail import AccountDetail
+from .routing_detail import RoutingDetail
+from .external_account_type import ExternalAccountType
 
 __all__ = ["ExternalAccount", "ContactDetails", "ContactDetail", "PartyAddress"]
 
@@ -74,9 +76,9 @@ class PartyAddress(BaseModel):
 class ExternalAccount(BaseModel):
     id: str
 
-    account_details: List[account_detail.AccountDetail]
+    account_details: List[AccountDetail]
 
-    account_type: external_account_type.ExternalAccountType
+    account_type: ExternalAccountType
     """Can be `checking`, `savings` or `other`."""
 
     contact_details: List[ContactDetail]
@@ -122,7 +124,7 @@ class ExternalAccount(BaseModel):
     party_type: Optional[Literal["business", "individual"]]
     """Either `individual` or `business`."""
 
-    routing_details: List[routing_detail.RoutingDetail]
+    routing_details: List[RoutingDetail]
 
     updated_at: datetime
 

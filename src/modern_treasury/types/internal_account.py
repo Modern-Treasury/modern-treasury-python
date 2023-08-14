@@ -4,10 +4,11 @@ from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ..types import account_detail, routing_detail
+from .shared import Currency
 from .._models import BaseModel
-from ..types.connection import Connection
-from ..types.shared.currency import Currency
+from .connection import Connection
+from .account_detail import AccountDetail
+from .routing_detail import RoutingDetail
 
 __all__ = ["InternalAccount", "PartyAddress"]
 
@@ -47,7 +48,7 @@ class PartyAddress(BaseModel):
 class InternalAccount(BaseModel):
     id: str
 
-    account_details: List[account_detail.AccountDetail]
+    account_details: List[AccountDetail]
     """An array of account detail objects."""
 
     account_type: Optional[Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]]
@@ -99,7 +100,7 @@ class InternalAccount(BaseModel):
     party_type: Optional[Literal["business", "individual"]]
     """Either individual or business."""
 
-    routing_details: List[routing_detail.RoutingDetail]
+    routing_details: List[RoutingDetail]
     """An array of routing detail objects."""
 
     updated_at: datetime

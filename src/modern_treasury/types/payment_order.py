@@ -6,8 +6,10 @@ from typing import Dict, List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
+from .shared import Currency
 from .._models import BaseModel
-from ..types.shared.currency import Currency
+from .payment_order_type import PaymentOrderType
+from .payment_order_subtype import PaymentOrderSubtype
 
 __all__ = ["PaymentOrder", "Accounting", "ReferenceNumbers", "ReferenceNumber"]
 
@@ -164,7 +166,7 @@ class PaymentOrder(BaseModel):
     currency: Optional[Currency]
     """Defaults to the currency of the originating account."""
 
-    current_return: Optional[return_object.ReturnObject]
+    current_return: Optional[ReturnObject]
     """
     If the payment order's status is `returned`, this will include the return
     object's data.
@@ -307,7 +309,7 @@ class PaymentOrder(BaseModel):
     ]
     """The current status of the payment order."""
 
-    subtype: Optional[payment_order_subtype.PaymentOrderSubtype]
+    subtype: Optional[PaymentOrderSubtype]
     """
     An additional layer of classification for the type of payment order you are
     doing. This field is only used for `ach` payment orders currently. For `ach`
@@ -329,7 +331,7 @@ class PaymentOrder(BaseModel):
     monitoring.
     """
 
-    type: payment_order_type.PaymentOrderType
+    type: PaymentOrderType
     """
     One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
     `au_becs`, `interac`, `signet`, `provexchange`.
@@ -355,7 +357,7 @@ class PaymentOrder(BaseModel):
     """
 
 
-from ..types import return_object, payment_order_type, payment_order_subtype
+from .return_object import ReturnObject
 
 PaymentOrder.update_forward_refs()
 Accounting.update_forward_refs()
