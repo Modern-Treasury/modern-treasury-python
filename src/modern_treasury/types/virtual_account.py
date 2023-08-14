@@ -3,8 +3,9 @@
 from typing import Dict, List, Optional
 from datetime import datetime
 
-from ..types import account_detail, routing_detail
 from .._models import BaseModel
+from .account_detail import AccountDetail
+from .routing_detail import RoutingDetail
 
 __all__ = ["VirtualAccount"]
 
@@ -12,7 +13,7 @@ __all__ = ["VirtualAccount"]
 class VirtualAccount(BaseModel):
     id: str
 
-    account_details: List[account_detail.AccountDetail]
+    account_details: List[AccountDetail]
     """An array of account detail objects."""
 
     counterparty_id: Optional[str]
@@ -59,7 +60,7 @@ class VirtualAccount(BaseModel):
 
     object: str
 
-    routing_details: List[routing_detail.RoutingDetail]
+    routing_details: List[RoutingDetail]
     """An array of routing detail objects.
 
     These will be the routing details of the internal account.

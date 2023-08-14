@@ -10,7 +10,6 @@ from ...types import (
     PaymentOrder,
     PaymentOrderType,
     PaymentOrderSubtype,
-    shared,
     shared_params,
     payment_order_list_params,
     payment_order_create_params,
@@ -23,6 +22,7 @@ from .reversals import Reversals, AsyncReversals
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.shared import AsyncResponse
 
 if TYPE_CHECKING:
     from ..._client import ModernTreasury, AsyncModernTreasury
@@ -691,7 +691,7 @@ class PaymentOrders(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> shared.AsyncResponse:
+    ) -> AsyncResponse:
         """
         Create a new payment order asynchronously
 
@@ -862,7 +862,7 @@ class PaymentOrders(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=shared.AsyncResponse,
+            cast_to=AsyncResponse,
         )
 
 
@@ -1527,7 +1527,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> shared.AsyncResponse:
+    ) -> AsyncResponse:
         """
         Create a new payment order asynchronously
 
@@ -1698,5 +1698,5 @@ class AsyncPaymentOrders(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=shared.AsyncResponse,
+            cast_to=AsyncResponse,
         )

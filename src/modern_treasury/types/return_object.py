@@ -6,8 +6,8 @@ from typing import List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
+from .shared import Currency
 from .._models import BaseModel
-from ..types.shared.currency import Currency
 
 __all__ = ["ReturnObject", "ReferenceNumbers", "ReferenceNumber"]
 
@@ -166,7 +166,7 @@ class ReturnObject(BaseModel):
     currency: Optional[Currency]
     """Currency that this transaction is denominated in."""
 
-    current_return: Optional[return_object.ReturnObject]
+    current_return: Optional[ReturnObject]
     """
     If the return's status is `returned`, this will include the return object's data
     that is returning this return.
@@ -236,8 +236,6 @@ class ReturnObject(BaseModel):
 
     updated_at: datetime
 
-
-from ..types import return_object
 
 ReturnObject.update_forward_refs()
 ReferenceNumber.update_forward_refs()

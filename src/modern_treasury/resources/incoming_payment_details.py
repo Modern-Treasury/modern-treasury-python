@@ -8,7 +8,6 @@ from typing_extensions import Literal
 
 from ..types import (
     IncomingPaymentDetail,
-    shared,
     shared_params,
     incoming_payment_detail_list_params,
     incoming_payment_detail_update_params,
@@ -19,6 +18,7 @@ from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
+from ..types.shared import AsyncResponse
 
 __all__ = ["IncomingPaymentDetails", "AsyncIncomingPaymentDetails"]
 
@@ -196,7 +196,7 @@ class IncomingPaymentDetails(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> shared.AsyncResponse:
+    ) -> AsyncResponse:
         """
         Simulate Incoming Payment Detail
 
@@ -251,7 +251,7 @@ class IncomingPaymentDetails(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=shared.AsyncResponse,
+            cast_to=AsyncResponse,
         )
 
 
@@ -428,7 +428,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> shared.AsyncResponse:
+    ) -> AsyncResponse:
         """
         Simulate Incoming Payment Detail
 
@@ -483,5 +483,5 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=shared.AsyncResponse,
+            cast_to=AsyncResponse,
         )

@@ -6,8 +6,8 @@ from typing import List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
+from .shared import Currency
 from .._models import BaseModel
-from ..types.shared.currency import Currency
 
 __all__ = [
     "Invoice",
@@ -174,7 +174,7 @@ class Invoice(BaseModel):
     debit the recipient, or rely on manual payment from the recipient.
     """
 
-    payment_orders: List[payment_order.PaymentOrder]
+    payment_orders: List[PaymentOrder]
     """
     The payment orders created for paying the invoice through the invoice payment
     UI.
@@ -204,7 +204,7 @@ class Invoice(BaseModel):
     updated_at: datetime
 
 
-from ..types import payment_order
+from .payment_order import PaymentOrder
 
 Invoice.update_forward_refs()
 ContactDetail.update_forward_refs()
