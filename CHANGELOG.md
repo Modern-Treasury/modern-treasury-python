@@ -1,5 +1,43 @@
 # Changelog
 
+## [1.14.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.13.0...v1.14.0) (2023-08-15)
+
+
+### Features
+
+* allow a default timeout to be set for clients ([#176](https://github.com/Modern-Treasury/modern-treasury-python/issues/176)) ([1798742](https://github.com/Modern-Treasury/modern-treasury-python/commit/17987428b3be710b854e96967e3ebdbf42afa10e))
+* **api:** add `metadata` in several places it was missing; add `description` ([#163](https://github.com/Modern-Treasury/modern-treasury-python/issues/163)) ([8f5f131](https://github.com/Modern-Treasury/modern-treasury-python/commit/8f5f1314bd321742d971321cda1f01c6d37ff6b0))
+* **api:** support multiple `id`s in `ledger` `retrieve`/`list` endpoints ([#174](https://github.com/Modern-Treasury/modern-treasury-python/issues/174)) ([a6939c6](https://github.com/Modern-Treasury/modern-treasury-python/commit/a6939c604b57cc90b5308515e6cf4443f2411979))
+* **api:** updates ([#166](https://github.com/Modern-Treasury/modern-treasury-python/issues/166)) ([8d5c102](https://github.com/Modern-Treasury/modern-treasury-python/commit/8d5c102ad3d3e203302c8a19e2ddc56a472693c0))
+
+
+### Bug Fixes
+
+* **client:** fix array query param serialization ([#175](https://github.com/Modern-Treasury/modern-treasury-python/issues/175)) ([7509dfe](https://github.com/Modern-Treasury/modern-treasury-python/commit/7509dfe1501036ea068f351080f9da2a7da28f61))
+
+
+### Documentation
+
+* **readme:** remove beta status + document versioning policy ([#167](https://github.com/Modern-Treasury/modern-treasury-python/issues/167)) ([cbc1bf8](https://github.com/Modern-Treasury/modern-treasury-python/commit/cbc1bf8b98031165814f72d56ca2dc275927a256))
+
+
+### Styles
+
+* prefer importing types directly instead of module names ([#177](https://github.com/Modern-Treasury/modern-treasury-python/issues/177)) ([00094f7](https://github.com/Modern-Treasury/modern-treasury-python/commit/00094f704cfb56c0a80689123be02ddabfc9eea0))
+
+
+### Chores
+
+* assign default reviewers to release PRs ([#178](https://github.com/Modern-Treasury/modern-treasury-python/issues/178)) ([9e5c3a1](https://github.com/Modern-Treasury/modern-treasury-python/commit/9e5c3a1932b56761d48c6c24bf6c60889ebdd448))
+* **deps:** bump typing-extensions to 4.5 ([#172](https://github.com/Modern-Treasury/modern-treasury-python/issues/172)) ([5f2d470](https://github.com/Modern-Treasury/modern-treasury-python/commit/5f2d4706ad46d4ab321dd0b64b09d8eb69e8e4d6))
+* **internal/deps:** update lock file ([#171](https://github.com/Modern-Treasury/modern-treasury-python/issues/171)) ([43f0e4f](https://github.com/Modern-Treasury/modern-treasury-python/commit/43f0e4fb307f9c677672fc7c8b7bc556a2c9872d))
+* **internal:** bump certifi dependency ([#169](https://github.com/Modern-Treasury/modern-treasury-python/issues/169)) ([a6e48a2](https://github.com/Modern-Treasury/modern-treasury-python/commit/a6e48a24050cf8d83d2916a927947616bd3c7e62))
+* **internal:** bump pytest-asyncio ([#173](https://github.com/Modern-Treasury/modern-treasury-python/issues/173)) ([72e1329](https://github.com/Modern-Treasury/modern-treasury-python/commit/72e13293f029b3d9c3d8434b99dbe46096e128b6))
+* **internal:** minor formatting change ([#179](https://github.com/Modern-Treasury/modern-treasury-python/issues/179)) ([5ff2fe7](https://github.com/Modern-Treasury/modern-treasury-python/commit/5ff2fe75d2fa6622aa5e2e4a7b8739c49731040a))
+* **internal:** minor import restructuring ([#170](https://github.com/Modern-Treasury/modern-treasury-python/issues/170)) ([ebf2ac9](https://github.com/Modern-Treasury/modern-treasury-python/commit/ebf2ac9385e7e027666f2733b2822486a5c56fd8))
+* **internal:** update mypy to v1.4.1 ([#165](https://github.com/Modern-Treasury/modern-treasury-python/issues/165)) ([b712b7b](https://github.com/Modern-Treasury/modern-treasury-python/commit/b712b7b4d7d127671ed2dd1ee03bd8d499e4ba29))
+* **internal:** update ruff to v0.0.282 ([#168](https://github.com/Modern-Treasury/modern-treasury-python/issues/168)) ([487add7](https://github.com/Modern-Treasury/modern-treasury-python/commit/487add7ea17b2e36f8bdb1a7a4b5bf604e212e93))
+
 ## [1.13.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.12.1...v2.0.0) (2023-08-01)
 
 
