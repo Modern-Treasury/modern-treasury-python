@@ -7,6 +7,7 @@ from datetime import date, datetime
 from typing_extensions import Literal
 
 from .shared import Currency
+from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 
 __all__ = [
@@ -63,7 +64,7 @@ class CounterpartyBillingAddress(BaseModel):
     region: str
     """Region or State."""
 
-    line2: Optional[str]
+    line2: Optional[str] = None
 
 
 class CounterpartyShippingAddress(BaseModel):
@@ -81,7 +82,7 @@ class CounterpartyShippingAddress(BaseModel):
     region: str
     """Region or State."""
 
-    line2: Optional[str]
+    line2: Optional[str] = None
 
 
 class InvoicerAddress(BaseModel):
@@ -99,7 +100,7 @@ class InvoicerAddress(BaseModel):
     region: str
     """Region or State."""
 
-    line2: Optional[str]
+    line2: Optional[str] = None
 
 
 class Invoice(BaseModel):
@@ -206,8 +207,15 @@ class Invoice(BaseModel):
 
 from .payment_order import PaymentOrder
 
-Invoice.update_forward_refs()
-ContactDetail.update_forward_refs()
-CounterpartyBillingAddress.update_forward_refs()
-CounterpartyShippingAddress.update_forward_refs()
-InvoicerAddress.update_forward_refs()
+if PYDANTIC_V2:
+    Invoice.model_rebuild()
+    ContactDetail.model_rebuild()
+    CounterpartyBillingAddress.model_rebuild()
+    CounterpartyShippingAddress.model_rebuild()
+    InvoicerAddress.model_rebuild()
+else:
+    Invoice.update_forward_refs()  # type: ignore
+    ContactDetail.update_forward_refs()  # type: ignore
+    CounterpartyBillingAddress.update_forward_refs()  # type: ignore
+    CounterpartyShippingAddress.update_forward_refs()  # type: ignore
+    InvoicerAddress.update_forward_refs()  # type: ignore

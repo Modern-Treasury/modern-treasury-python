@@ -7,6 +7,7 @@ from datetime import date, datetime
 from typing_extensions import Literal
 
 from .shared import Currency
+from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 
 __all__ = ["ReturnObject", "ReferenceNumbers", "ReferenceNumber"]
@@ -237,5 +238,9 @@ class ReturnObject(BaseModel):
     updated_at: datetime
 
 
-ReturnObject.update_forward_refs()
-ReferenceNumber.update_forward_refs()
+if PYDANTIC_V2:
+    ReturnObject.model_rebuild()
+    ReferenceNumber.model_rebuild()
+else:
+    ReturnObject.update_forward_refs()  # type: ignore
+    ReferenceNumber.update_forward_refs()  # type: ignore

@@ -9,34 +9,34 @@ __all__ = ["RoutingNumberLookupRequest", "BankAddress"]
 
 
 class BankAddress(BaseModel):
-    country: Optional[str]
+    country: Optional[str] = None
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
-    line1: Optional[str]
+    line1: Optional[str] = None
 
-    line2: Optional[str]
+    line2: Optional[str] = None
 
-    locality: Optional[str]
+    locality: Optional[str] = None
     """Locality or City."""
 
-    postal_code: Optional[str]
+    postal_code: Optional[str] = None
     """The postal code of the address."""
 
-    region: Optional[str]
+    region: Optional[str] = None
     """Region or State."""
 
 
 class RoutingNumberLookupRequest(BaseModel):
-    bank_address: Optional[BankAddress]
+    bank_address: Optional[BankAddress] = None
     """The address of the bank."""
 
-    bank_name: Optional[str]
+    bank_name: Optional[str] = None
     """The name of the bank."""
 
-    routing_number: Optional[str]
+    routing_number: Optional[str] = None
     """The routing number of the bank."""
 
-    routing_number_type: Optional[Literal["aba", "au_bsb", "ca_cpa", "gb_sort_code", "in_ifsc", "swift"]]
+    routing_number_type: Optional[Literal["aba", "au_bsb", "ca_cpa", "gb_sort_code", "in_ifsc", "swift"]] = None
     """
     One of `aba`, `au_bsb`, `br_codigo`, `ca_cpa`, `cnaps`, `gb_sort_code`,
     `in_ifsc`, `my_branch_code`, or `swift`. In sandbox mode we currently only
@@ -44,7 +44,7 @@ class RoutingNumberLookupRequest(BaseModel):
     respectively.
     """
 
-    sanctions: Optional[Dict[str, object]]
+    sanctions: Optional[Dict[str, object]] = None
     """
     An object containing key-value pairs, each with a sanctions list as the key and
     a boolean value representing whether the bank is on that particular sanctions
@@ -73,7 +73,7 @@ class RoutingNumberLookupRequest(BaseModel):
                 "wire",
             ]
         ]
-    ]
+    ] = None
     """An array of payment types that are supported for this routing number.
 
     This can include `ach`, `wire`, `rtp`, `sepa`, `bacs`, `au_becs` currently.

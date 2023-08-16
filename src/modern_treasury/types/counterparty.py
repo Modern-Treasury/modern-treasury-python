@@ -89,59 +89,59 @@ Please use AccountPartyAddress instead.
 
 
 class Account(BaseModel):
-    id: Optional[str]
+    id: Optional[str] = None
 
-    account_details: Optional[List[AccountDetail]]
+    account_details: Optional[List[AccountDetail]] = None
 
-    account_type: Optional[ExternalAccountType]
+    account_type: Optional[ExternalAccountType] = None
     """Can be `checking`, `savings` or `other`."""
 
-    contact_details: Optional[List[AccountContactDetail]]
+    contact_details: Optional[List[AccountContactDetail]] = None
 
-    created_at: Optional[datetime]
+    created_at: Optional[datetime] = None
 
-    discarded_at: Optional[datetime]
+    discarded_at: Optional[datetime] = None
 
-    ledger_account_id: Optional[str]
+    ledger_account_id: Optional[str] = None
     """
     If the external account links to a ledger account in Modern Treasury, the id of
     the ledger account will be populated here.
     """
 
-    live_mode: Optional[bool]
+    live_mode: Optional[bool] = None
     """
     This field will be true if this object exists in the live environment or false
     if it exists in the test environment.
     """
 
-    metadata: Optional[Dict[str, str]]
+    metadata: Optional[Dict[str, str]] = None
     """Additional data represented as key-value pairs.
 
     Both the key and value must be strings.
     """
 
-    name: Optional[str]
+    name: Optional[str] = None
     """A nickname for the external account.
 
     This is only for internal usage and won't affect any payments
     """
 
-    object: Optional[str]
+    object: Optional[str] = None
 
-    party_address: Optional[AccountPartyAddress]
+    party_address: Optional[AccountPartyAddress] = None
     """The address associated with the owner or `null`."""
 
-    party_name: Optional[str]
+    party_name: Optional[str] = None
     """The legal name of the entity which owns the account."""
 
-    party_type: Optional[Literal["business", "individual"]]
+    party_type: Optional[Literal["business", "individual"]] = None
     """Either `individual` or `business`."""
 
-    routing_details: Optional[List[RoutingDetail]]
+    routing_details: Optional[List[RoutingDetail]] = None
 
-    updated_at: Optional[datetime]
+    updated_at: Optional[datetime] = None
 
-    verification_status: Optional[Literal["pending_verification", "unverified", "verified"]]
+    verification_status: Optional[Literal["pending_verification", "unverified", "verified"]] = None
 
 
 Accounts = Account
