@@ -39,13 +39,13 @@ Please use DocumentDetail instead.
 
 
 class File(BaseModel):
-    content_type: Optional[str]
+    content_type: Optional[str] = None
     """The MIME content type of the document."""
 
-    filename: Optional[str]
+    filename: Optional[str] = None
     """The original filename of the document."""
 
-    size: Optional[int]
+    size: Optional[int] = None
     """The size of the document in bytes."""
 
 

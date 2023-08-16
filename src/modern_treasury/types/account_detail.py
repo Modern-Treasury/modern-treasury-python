@@ -35,5 +35,5 @@ class AccountDetail(BaseModel):
 
     updated_at: datetime
 
-    account_number: Optional[str]
+    account_number: Optional[str] = None
     """The account number for the bank account."""
