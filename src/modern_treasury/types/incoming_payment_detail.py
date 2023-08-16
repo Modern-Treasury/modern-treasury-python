@@ -123,5 +123,5 @@ class IncomingPaymentDetail(BaseModel):
     Account.
     """
 
-    originating_account_number: Optional[str]
+    originating_account_number: Optional[str] = None
     """The account number of the originating account for the incoming payment detail."""

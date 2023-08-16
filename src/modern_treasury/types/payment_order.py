@@ -7,6 +7,7 @@ from datetime import date, datetime
 from typing_extensions import Literal
 
 from .shared import Currency
+from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 from .payment_order_type import PaymentOrderType
 from .payment_order_subtype import PaymentOrderSubtype
@@ -15,14 +16,14 @@ __all__ = ["PaymentOrder", "Accounting", "ReferenceNumbers", "ReferenceNumber"]
 
 
 class Accounting(BaseModel):
-    account_id: Optional[str]
+    account_id: Optional[str] = None
     """The ID of one of your accounting categories.
 
     Note that these will only be accessible if your accounting system has been
     connected.
     """
 
-    class_id: Optional[str]
+    class_id: Optional[str] = None
     """The ID of one of the class objects in your accounting system.
 
     Class objects track segments of your business independent of client or project.
@@ -359,6 +360,11 @@ class PaymentOrder(BaseModel):
 
 from .return_object import ReturnObject
 
-PaymentOrder.update_forward_refs()
-Accounting.update_forward_refs()
-ReferenceNumber.update_forward_refs()
+if PYDANTIC_V2:
+    PaymentOrder.model_rebuild()
+    Accounting.model_rebuild()
+    ReferenceNumber.model_rebuild()
+else:
+    PaymentOrder.update_forward_refs()  # type: ignore
+    Accounting.update_forward_refs()  # type: ignore
+    ReferenceNumber.update_forward_refs()  # type: ignore

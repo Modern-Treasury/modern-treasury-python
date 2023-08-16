@@ -19,32 +19,32 @@ class AccountCollectionFlow(BaseModel):
 
     payment_types: List[Literal["ach", "wire"]]
 
-    id: Optional[str]
+    id: Optional[str] = None
 
-    client_token: Optional[str]
+    client_token: Optional[str] = None
     """The client token of the account collection flow.
 
     This token can be used to embed account collection in your client-side
     application.
     """
 
-    created_at: Optional[datetime]
+    created_at: Optional[datetime] = None
 
-    external_account_id: Optional[str]
+    external_account_id: Optional[str] = None
     """If present, the ID of the external account created using this flow."""
 
-    live_mode: Optional[bool]
+    live_mode: Optional[bool] = None
     """
     This field will be true if this object exists in the live environment or false
     if it exists in the test environment.
     """
 
-    object: Optional[str]
+    object: Optional[str] = None
 
-    status: Optional[Literal["cancelled", "completed", "expired", "pending"]]
+    status: Optional[Literal["cancelled", "completed", "expired", "pending"]] = None
     """The current status of the account collection flow.
 
     One of `pending`, `completed`, `expired`, or `cancelled`.
     """
 
-    updated_at: Optional[datetime]
+    updated_at: Optional[datetime] = None
