@@ -3,13 +3,15 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
+
+from ..types import shared_params
 
 __all__ = ["RoutingDetailListParams"]
 
 
 class RoutingDetailListParams(TypedDict, total=False):
-    accounts_type: Required[Literal["external_accounts", "internal_accounts"]]
+    accounts_type: Required[shared_params.AccountsType]
 
     after_cursor: Optional[str]
 
