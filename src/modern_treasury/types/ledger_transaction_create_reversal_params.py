@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing import Dict, Union
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
@@ -18,7 +18,7 @@ class LedgerTransactionCreateReversalParams(TypedDict, total=False):
     Maximum of 1000 characters allowed.
     """
 
-    effective_at: Annotated[Optional[Union[str, datetime]], PropertyInfo(format="iso8601")]
+    effective_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """
     The timestamp (ISO8601 format) at which the reversal ledger transaction happened
     for reporting purposes. It defaults to the `effective_at` of the original ledger

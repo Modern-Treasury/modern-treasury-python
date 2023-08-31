@@ -76,7 +76,7 @@ class ReturnCreateParams(TypedDict, total=False):
     ]
     """The return code. For ACH returns, this is the required ACH return code."""
 
-    date_of_death: Annotated[Optional[Union[str, date]], PropertyInfo(format="iso8601")]
+    date_of_death: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
     """
     If the return code is `R14` or `R15` this is the date the deceased counterparty
     passed away.

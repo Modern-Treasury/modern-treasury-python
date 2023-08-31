@@ -19,7 +19,7 @@ class IncomingPaymentDetailCreateAsyncParams(TypedDict, total=False):
     e.g. $10 would be represented as 1000.
     """
 
-    as_of_date: Annotated[Optional[Union[str, date]], PropertyInfo(format="iso8601")]
+    as_of_date: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
     """Defaults to today."""
 
     currency: shared_params.Currency

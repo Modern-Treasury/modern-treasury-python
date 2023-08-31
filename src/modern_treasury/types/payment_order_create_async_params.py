@@ -8,6 +8,9 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..types import shared_params
 from .._utils import PropertyInfo
+from .payment_order_type import PaymentOrderType
+from .external_account_type import ExternalAccountType
+from .payment_order_subtype import PaymentOrderSubtype
 
 __all__ = [
     "PaymentOrderCreateAsyncParams",
@@ -49,27 +52,7 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
     originating_account_id: Required[str]
     """The ID of one of your organization's internal accounts."""
 
-    type: Required[
-        Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "card",
-            "check",
-            "cross_border",
-            "eft",
-            "interac",
-            "masav",
-            "neft",
-            "provxchange",
-            "rtp",
-            "sen",
-            "sepa",
-            "signet",
-            "wire",
-        ]
-    ]
+    type: Required[PaymentOrderType]
     """
     One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
     `au_becs`, `interac`, `signet`, `provexchange`.
@@ -111,7 +94,7 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
     is a bank holiday or weekend. Format: yyyy-mm-dd.
     """
 
-    expires_at: Annotated[Optional[Union[str, datetime]], PropertyInfo(format="iso8601")]
+    expires_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """RFP payments require an expires_at. This value must be past the effective_date."""
 
     fallback_type: Literal["ach"]
@@ -219,7 +202,7 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
     characters.
     """
 
-    subtype: Optional[Literal["0C", "0N", "0S", "CCD", "CIE", "CTX", "IAT", "PPD", "TEL", "WEB"]]
+    subtype: PaymentOrderSubtype
     """
     An additional layer of classification for the type of payment order you are
     doing. This field is only used for `ach` payment orders currently. For `ach`
@@ -553,7 +536,7 @@ Please use ReceivingAccountRoutingDetail instead.
 class ReceivingAccount(TypedDict, total=False):
     account_details: List[ReceivingAccountAccountDetail]
 
-    account_type: Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]
+    account_type: ExternalAccountType
     """Can be `checking`, `savings` or `other`."""
 
     contact_details: List[ReceivingAccountContactDetail]
