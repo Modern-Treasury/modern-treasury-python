@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import builtins
 from typing import Dict, List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
@@ -150,7 +151,7 @@ class PaymentOrder(BaseModel):
     which correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
     """
 
-    compliance_rule_metadata: Optional[Dict[str, object]]
+    compliance_rule_metadata: Optional[Dict[str, builtins.object]]
     """Custom key-value pair for usage in compliance rules.
 
     Please contact support before making changes to this field.

@@ -345,7 +345,7 @@ class LedgerTransactions(SyncAPIResource):
         id: str,
         *,
         description: str | NotGiven = NOT_GIVEN,
-        effective_at: Optional[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        effective_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         external_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
@@ -750,7 +750,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         id: str,
         *,
         description: str | NotGiven = NOT_GIVEN,
-        effective_at: Optional[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        effective_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         external_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[

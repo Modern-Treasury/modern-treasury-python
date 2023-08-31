@@ -5,11 +5,13 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import Literal, TypedDict
 
+from .external_account_type import ExternalAccountType
+
 __all__ = ["ExternalAccountUpdateParams", "PartyAddress"]
 
 
 class ExternalAccountUpdateParams(TypedDict, total=False):
-    account_type: Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]
+    account_type: ExternalAccountType
     """Can be `checking`, `savings` or `other`."""
 
     counterparty_id: Optional[str]
