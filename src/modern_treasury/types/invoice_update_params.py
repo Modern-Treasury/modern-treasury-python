@@ -122,7 +122,7 @@ class ContactDetail(TypedDict, total=False):
 
     created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
-    discarded_at: Required[Annotated[Optional[Union[str, datetime]], PropertyInfo(format="iso8601")]]
+    discarded_at: Required[Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]]
 
     live_mode: Required[bool]
     """

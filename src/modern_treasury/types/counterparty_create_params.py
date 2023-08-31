@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import Dict, List, Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from .external_account_type import ExternalAccountType
+
 __all__ = [
     "CounterpartyCreateParams",
     "Accounting",
@@ -214,7 +216,7 @@ Please use AccountRoutingDetail instead.
 class Account(TypedDict, total=False):
     account_details: List[AccountAccountDetail]
 
-    account_type: Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]
+    account_type: ExternalAccountType
     """Can be `checking`, `savings` or `other`."""
 
     contact_details: List[AccountContactDetail]

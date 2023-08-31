@@ -8,6 +8,7 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..types import shared_params
 from .._utils import PropertyInfo
+from .expected_payment_type import ExpectedPaymentType
 
 __all__ = ["ExpectedPaymentCreateParams", "LineItems", "LineItem"]
 
@@ -42,10 +43,10 @@ class ExpectedPaymentCreateParams(TypedDict, total=False):
     currency: shared_params.Currency
     """Must conform to ISO 4217. Defaults to the currency of the internal account."""
 
-    date_lower_bound: Annotated[Optional[Union[str, date]], PropertyInfo(format="iso8601")]
+    date_lower_bound: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
     """The earliest date the payment may come in. Format: yyyy-mm-dd"""
 
-    date_upper_bound: Annotated[Optional[Union[str, date]], PropertyInfo(format="iso8601")]
+    date_upper_bound: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
     """The latest date the payment may come in. Format: yyyy-mm-dd"""
 
     description: Optional[str]
@@ -80,27 +81,7 @@ class ExpectedPaymentCreateParams(TypedDict, total=False):
     be the memo field.
     """
 
-    type: Optional[
-        Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "card",
-            "check",
-            "cross_border",
-            "eft",
-            "interac",
-            "masav",
-            "neft",
-            "provxchange",
-            "rtp",
-            "sen",
-            "sepa",
-            "signet",
-            "wire",
-        ]
-    ]
+    type: ExpectedPaymentType
     """
     One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
     sepa, signet, wire.
