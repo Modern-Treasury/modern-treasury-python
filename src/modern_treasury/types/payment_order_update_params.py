@@ -63,7 +63,7 @@ class PaymentOrderUpdateParams(TypedDict, total=False):
     counterparty_id: Optional[str]
     """Required when receiving_account_id is passed the ID of an external account."""
 
-    currency: shared_params.Currency
+    currency: Optional[shared_params.Currency]
     """Defaults to the currency of the originating account."""
 
     description: Optional[str]
@@ -207,7 +207,7 @@ class PaymentOrderUpdateParams(TypedDict, total=False):
     denied or approved payment order, use `needs_approval`.
     """
 
-    subtype: PaymentOrderSubtype
+    subtype: Optional[PaymentOrderSubtype]
     """
     An additional layer of classification for the type of payment order you are
     doing. This field is only used for `ach` payment orders currently. For `ach`

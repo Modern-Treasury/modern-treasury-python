@@ -204,7 +204,7 @@ class InternalAccounts(SyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
-        currency: shared_params.Currency | NotGiven = NOT_GIVEN,
+        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         payment_type: Literal[
@@ -463,7 +463,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
-        currency: shared_params.Currency | NotGiven = NOT_GIVEN,
+        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         payment_type: Literal[

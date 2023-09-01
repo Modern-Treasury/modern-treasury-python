@@ -22,7 +22,7 @@ class IncomingPaymentDetailCreateAsyncParams(TypedDict, total=False):
     as_of_date: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
     """Defaults to today."""
 
-    currency: shared_params.Currency
+    currency: Optional[shared_params.Currency]
     """Defaults to the currency of the originating account."""
 
     description: Optional[str]

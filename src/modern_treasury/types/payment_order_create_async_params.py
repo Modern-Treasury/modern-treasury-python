@@ -81,7 +81,7 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
     which correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
     """
 
-    currency: shared_params.Currency
+    currency: Optional[shared_params.Currency]
     """Defaults to the currency of the originating account."""
 
     description: Optional[str]
@@ -202,7 +202,7 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
     characters.
     """
 
-    subtype: PaymentOrderSubtype
+    subtype: Optional[PaymentOrderSubtype]
     """
     An additional layer of classification for the type of payment order you are
     doing. This field is only used for `ach` payment orders currently. For `ach`
