@@ -16,7 +16,7 @@ class InternalAccountListParams(TypedDict, total=False):
     counterparty_id: str
     """The counterparty associated with the internal account."""
 
-    currency: shared_params.Currency
+    currency: Optional[shared_params.Currency]
     """The currency associated with the internal account."""
 
     metadata: Dict[str, str]
