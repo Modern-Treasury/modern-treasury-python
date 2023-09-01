@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.15.0 (2023-09-01)
+
+Full Changelog: [v1.14.0...v1.15.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.14.0...v1.15.0)
+
+### Features
+
+* add support for Pydantic v2 ([#181](https://github.com/Modern-Treasury/modern-treasury-python/issues/181)) ([85709bb](https://github.com/Modern-Treasury/modern-treasury-python/commit/85709bbf02d619c3f3ee77164b3519fbc2caf14e))
+
+
+### Chores
+
+* **ci:** setup workflows to create releases and release PRs ([#186](https://github.com/Modern-Treasury/modern-treasury-python/issues/186)) ([2897c74](https://github.com/Modern-Treasury/modern-treasury-python/commit/2897c74b8a53b9ae2256cdde7204faecbca75dc8))
+* **internal:** add `pydantic.generics` import for compatibility ([#189](https://github.com/Modern-Treasury/modern-treasury-python/issues/189)) ([4eb74d8](https://github.com/Modern-Treasury/modern-treasury-python/commit/4eb74d84c6530aac2e94db644d166a7f21a6f689))
+* **internal:** bump pydantic dep ([#183](https://github.com/Modern-Treasury/modern-treasury-python/issues/183)) ([039e10e](https://github.com/Modern-Treasury/modern-treasury-python/commit/039e10efdbf08e8c0e37f64c86d7d0524b7dba65))
+* **internal:** minor formatting changes ([#193](https://github.com/Modern-Treasury/modern-treasury-python/issues/193)) ([7f0aba8](https://github.com/Modern-Treasury/modern-treasury-python/commit/7f0aba8e493cd2bae08dae8e5380e67c9eb9693b))
+* **internal:** minor restructuring ([#191](https://github.com/Modern-Treasury/modern-treasury-python/issues/191)) ([ea1703d](https://github.com/Modern-Treasury/modern-treasury-python/commit/ea1703d25df908945fb02a0f13b9490394cd99ae))
+* **internal:** update anyio ([#184](https://github.com/Modern-Treasury/modern-treasury-python/issues/184)) ([aad6ac7](https://github.com/Modern-Treasury/modern-treasury-python/commit/aad6ac7752700cdc8efe255d45be642e93b770d0))
+* **internal:** use shared params references ([#188](https://github.com/Modern-Treasury/modern-treasury-python/issues/188)) ([6188ec5](https://github.com/Modern-Treasury/modern-treasury-python/commit/6188ec57f83ea49d4d5c8717ad2684232c031923))
+
+
+### Documentation
+
+* **readme:** reference pydantic helpers ([#192](https://github.com/Modern-Treasury/modern-treasury-python/issues/192)) ([08abce9](https://github.com/Modern-Treasury/modern-treasury-python/commit/08abce9073badb359b082608721e8f14e007f105))
+
 ## [1.14.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.13.0...v1.14.0) (2023-08-15)
 
 
