@@ -32,7 +32,7 @@ class ExpectedPayments(SyncAPIResource):
         direction: Literal["credit", "debit"],
         internal_account_id: str,
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
-        currency: shared_params.Currency | NotGiven = NOT_GIVEN,
+        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
         date_lower_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_upper_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
@@ -42,7 +42,7 @@ class ExpectedPayments(SyncAPIResource):
         reconciliation_groups: Optional[object] | NotGiven = NOT_GIVEN,
         remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
-        type: ExpectedPaymentType | NotGiven = NOT_GIVEN,
+        type: Optional[ExpectedPaymentType] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -176,7 +176,7 @@ class ExpectedPayments(SyncAPIResource):
         amount_lower_bound: int | NotGiven = NOT_GIVEN,
         amount_upper_bound: int | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
-        currency: shared_params.Currency | NotGiven = NOT_GIVEN,
+        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
         date_lower_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_upper_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
@@ -187,7 +187,7 @@ class ExpectedPayments(SyncAPIResource):
         reconciliation_groups: Optional[object] | NotGiven = NOT_GIVEN,
         remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
-        type: ExpectedPaymentType | NotGiven = NOT_GIVEN,
+        type: Optional[ExpectedPaymentType] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -427,7 +427,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
         direction: Literal["credit", "debit"],
         internal_account_id: str,
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
-        currency: shared_params.Currency | NotGiven = NOT_GIVEN,
+        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
         date_lower_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_upper_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
@@ -437,7 +437,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
         reconciliation_groups: Optional[object] | NotGiven = NOT_GIVEN,
         remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
-        type: ExpectedPaymentType | NotGiven = NOT_GIVEN,
+        type: Optional[ExpectedPaymentType] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -571,7 +571,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
         amount_lower_bound: int | NotGiven = NOT_GIVEN,
         amount_upper_bound: int | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
-        currency: shared_params.Currency | NotGiven = NOT_GIVEN,
+        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
         date_lower_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_upper_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
@@ -582,7 +582,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
         reconciliation_groups: Optional[object] | NotGiven = NOT_GIVEN,
         remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
-        type: ExpectedPaymentType | NotGiven = NOT_GIVEN,
+        type: Optional[ExpectedPaymentType] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

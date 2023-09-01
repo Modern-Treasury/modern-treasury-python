@@ -31,7 +31,7 @@ class ExpectedPaymentUpdateParams(TypedDict, total=False):
     counterparty_id: Optional[str]
     """The ID of the counterparty you expect for this payment."""
 
-    currency: shared_params.Currency
+    currency: Optional[shared_params.Currency]
     """Must conform to ISO 4217. Defaults to the currency of the internal account."""
 
     date_lower_bound: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
@@ -79,7 +79,7 @@ class ExpectedPaymentUpdateParams(TypedDict, total=False):
     be the memo field.
     """
 
-    type: ExpectedPaymentType
+    type: Optional[ExpectedPaymentType]
     """
     One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
     sepa, signet, wire.
