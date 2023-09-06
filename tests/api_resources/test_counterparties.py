@@ -360,7 +360,7 @@ class TestCounterparties:
             "string",
             direction="credit",
             custom_redirect="https://example.com",
-            fields=["name", "name", "name"],
+            fields=["name", "nameOnAccount", "taxpayerIdentifier"],
             send_email=True,
         )
         assert_matches_type(CounterpartyCollectAccountResponse, counterparty, path=["response"])
@@ -710,7 +710,7 @@ class TestAsyncCounterparties:
             "string",
             direction="credit",
             custom_redirect="https://example.com",
-            fields=["name", "name", "name"],
+            fields=["name", "nameOnAccount", "taxpayerIdentifier"],
             send_email=True,
         )
         assert_matches_type(CounterpartyCollectAccountResponse, counterparty, path=["response"])
