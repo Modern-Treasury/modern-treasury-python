@@ -29,6 +29,8 @@ pip install modern-treasury
 
 ## Usage
 
+The full API of this library can be found in [api.md](https://www.github.com/Modern-Treasury/modern-treasury-python/blob/main/api.md).
+
 ```python
 from modern_treasury import ModernTreasury
 
