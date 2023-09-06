@@ -186,7 +186,7 @@ class TestExternalAccounts:
     def test_method_complete_verification_with_all_params(self, client: ModernTreasury) -> None:
         external_account = client.external_accounts.complete_verification(
             "string",
-            amounts=[0, 0],
+            amounts=[2, 4],
         )
         assert_matches_type(ExternalAccount, external_account, path=["response"])
 
@@ -381,7 +381,7 @@ class TestAsyncExternalAccounts:
     async def test_method_complete_verification_with_all_params(self, client: AsyncModernTreasury) -> None:
         external_account = await client.external_accounts.complete_verification(
             "string",
-            amounts=[0, 0],
+            amounts=[2, 4],
         )
         assert_matches_type(ExternalAccount, external_account, path=["response"])
 
