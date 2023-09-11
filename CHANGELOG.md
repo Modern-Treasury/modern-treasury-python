@@ -1,5 +1,31 @@
 # Changelog
 
+## 1.16.0 (2023-09-11)
+
+Full Changelog: [v1.15.0...v1.16.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.15.0...v1.16.0)
+
+### Features
+
+* fixes tests where an array has to have unique enum values ([#196](https://github.com/Modern-Treasury/modern-treasury-python/issues/196)) ([1e582ba](https://github.com/Modern-Treasury/modern-treasury-python/commit/1e582baa5782a61f757d4a9060f15209ba14c081))
+
+
+### Bug Fixes
+
+* **client:** properly handle optional file params ([#194](https://github.com/Modern-Treasury/modern-treasury-python/issues/194)) ([08db5c4](https://github.com/Modern-Treasury/modern-treasury-python/commit/08db5c435d42eb86bf7e7dc1f6c9239164c2cdef))
+
+
+### Chores
+
+* **internal:** minor update ([#198](https://github.com/Modern-Treasury/modern-treasury-python/issues/198)) ([2372dd7](https://github.com/Modern-Treasury/modern-treasury-python/commit/2372dd7dfcbb152e8b08bed89c99eeb16247fbd0))
+* **internal:** update base client ([#197](https://github.com/Modern-Treasury/modern-treasury-python/issues/197)) ([f8969c8](https://github.com/Modern-Treasury/modern-treasury-python/commit/f8969c8f7f21d629864e08b33986cb774a2657b5))
+* **internal:** update pyright ([#201](https://github.com/Modern-Treasury/modern-treasury-python/issues/201)) ([087470d](https://github.com/Modern-Treasury/modern-treasury-python/commit/087470dbeda6205a6012d3e8ddfa3b03d74ad7b2))
+* **internal:** updates ([#200](https://github.com/Modern-Treasury/modern-treasury-python/issues/200)) ([5c940e0](https://github.com/Modern-Treasury/modern-treasury-python/commit/5c940e01787e6218769823908cf20c6627b645e7))
+
+
+### Documentation
+
+* **readme:** add link to api.md ([#199](https://github.com/Modern-Treasury/modern-treasury-python/issues/199)) ([bd499a1](https://github.com/Modern-Treasury/modern-treasury-python/commit/bd499a10002e3ae158e70f6221b94eacb9472d1d))
+
 ## 1.15.0 (2023-09-01)
 
 Full Changelog: [v1.14.0...v1.15.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.14.0...v1.15.0)
