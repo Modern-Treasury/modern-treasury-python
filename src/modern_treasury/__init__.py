@@ -10,7 +10,6 @@ from ._client import (
     Transport,
     AsyncClient,
     AsyncStream,
-    ProxiesTypes,
     ModernTreasury,
     RequestOptions,
     AsyncModernTreasury,
