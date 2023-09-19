@@ -33,6 +33,15 @@ class TestAccountCollectionFlows:
         assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
 
     @parametrize
+    def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
+        account_collection_flow = client.account_collection_flows.create(
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            payment_types=["string", "string", "string"],
+            receiving_countries=["USA", "AUS", "BEL"],
+        )
+        assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
+
+    @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         account_collection_flow = client.account_collection_flows.retrieve(
             "string",
@@ -79,6 +88,15 @@ class TestAsyncAccountCollectionFlows:
         account_collection_flow = await client.account_collection_flows.create(
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payment_types=["string", "string", "string"],
+        )
+        assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
+        account_collection_flow = await client.account_collection_flows.create(
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            payment_types=["string", "string", "string"],
+            receiving_countries=["USA", "AUS", "BEL"],
         )
         assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
 

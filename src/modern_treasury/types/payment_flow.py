@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Optional
-from datetime import datetime
+from datetime import date, datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
@@ -44,6 +44,18 @@ class PaymentFlow(BaseModel):
     own.
     """
 
+    due_date: Optional[date] = None
+    """The due date for the flow.
+
+    Can only be passed in when `effective_date_selection_enabled` is `true`.
+    """
+
+    effective_date_selection_enabled: Optional[bool] = None
+    """
+    When `true`, your end-user can schedule the payment `effective_date` while
+    completing the pre-built UI.
+    """
+
     live_mode: Optional[bool] = None
     """
     This field will be true if this object exists in the live environment or false
@@ -60,6 +72,13 @@ class PaymentFlow(BaseModel):
 
     receiving_account_id: Optional[str] = None
     """If present, the ID of the external account created using this flow."""
+
+    selected_effective_date: Optional[date] = None
+    """
+    This field is set after your end-user selects a payment date while completing
+    the pre-built UI. This field is always `null` unless
+    `effective_date_selection_enabled` is `true`.
+    """
 
     status: Optional[Literal["cancelled", "completed", "expired", "pending"]] = None
     """The current status of the payment flow.

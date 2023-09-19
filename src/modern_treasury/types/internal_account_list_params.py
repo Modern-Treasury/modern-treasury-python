@@ -41,12 +41,16 @@ class InternalAccountListParams(TypedDict, total=False):
         "interac",
         "masav",
         "neft",
+        "nics",
         "provxchange",
         "rtp",
+        "se_bankgirot",
         "sen",
         "sepa",
+        "sic",
         "signet",
         "wire",
+        "zengin",
     ]
     """The type of payment that can be made by the internal account."""
 

@@ -106,6 +106,14 @@ class TestLedgerAccounts:
         ledger_account = client.ledger_accounts.list(
             id=["string", "string", "string"],
             after_cursor="string",
+            available_balance_amount={
+                "gt": 0,
+                "lt": 0,
+                "gte": 0,
+                "lte": 0,
+                "eq": 0,
+                "not_eq": 0,
+            },
             balances={
                 "as_of_date": parse_date("2019-12-27"),
                 "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -118,7 +126,23 @@ class TestLedgerAccounts:
             ledger_id="string",
             metadata={"foo": "string"},
             name="string",
+            pending_balance_amount={
+                "gt": 0,
+                "lt": 0,
+                "gte": 0,
+                "lte": 0,
+                "eq": 0,
+                "not_eq": 0,
+            },
             per_page=0,
+            posted_balance_amount={
+                "gt": 0,
+                "lt": 0,
+                "gte": 0,
+                "lte": 0,
+                "eq": 0,
+                "not_eq": 0,
+            },
             updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
         )
         assert_matches_type(SyncPage[LedgerAccount], ledger_account, path=["response"])
@@ -221,6 +245,14 @@ class TestAsyncLedgerAccounts:
         ledger_account = await client.ledger_accounts.list(
             id=["string", "string", "string"],
             after_cursor="string",
+            available_balance_amount={
+                "gt": 0,
+                "lt": 0,
+                "gte": 0,
+                "lte": 0,
+                "eq": 0,
+                "not_eq": 0,
+            },
             balances={
                 "as_of_date": parse_date("2019-12-27"),
                 "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -233,7 +265,23 @@ class TestAsyncLedgerAccounts:
             ledger_id="string",
             metadata={"foo": "string"},
             name="string",
+            pending_balance_amount={
+                "gt": 0,
+                "lt": 0,
+                "gte": 0,
+                "lte": 0,
+                "eq": 0,
+                "not_eq": 0,
+            },
             per_page=0,
+            posted_balance_amount={
+                "gt": 0,
+                "lt": 0,
+                "gte": 0,
+                "lte": 0,
+                "eq": 0,
+                "not_eq": 0,
+            },
             updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
         )
         assert_matches_type(AsyncPage[LedgerAccount], ledger_account, path=["response"])

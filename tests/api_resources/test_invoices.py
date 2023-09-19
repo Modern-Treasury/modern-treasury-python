@@ -104,6 +104,9 @@ class TestInvoices:
             payment_method="ui",
             payment_type="ach",
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            recipient_email="string",
+            recipient_name="string",
+            virtual_account_id="string",
         )
         assert_matches_type(Invoice, invoice, path=["response"])
 
@@ -192,7 +195,10 @@ class TestInvoices:
             payment_method="ui",
             payment_type="ach",
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            recipient_email="string",
+            recipient_name="string",
             status="string",
+            virtual_account_id="string",
         )
         assert_matches_type(Invoice, invoice, path=["response"])
 
@@ -208,6 +214,14 @@ class TestInvoices:
             per_page=0,
         )
         assert_matches_type(SyncPage[Invoice], invoice, path=["response"])
+
+    @parametrize
+    def test_method_add_payment_order(self, client: ModernTreasury) -> None:
+        invoice = client.invoices.add_payment_order(
+            "string",
+            id="string",
+        )
+        assert invoice is None
 
 
 class TestAsyncInvoices:
@@ -298,6 +312,9 @@ class TestAsyncInvoices:
             payment_method="ui",
             payment_type="ach",
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            recipient_email="string",
+            recipient_name="string",
+            virtual_account_id="string",
         )
         assert_matches_type(Invoice, invoice, path=["response"])
 
@@ -386,7 +403,10 @@ class TestAsyncInvoices:
             payment_method="ui",
             payment_type="ach",
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            recipient_email="string",
+            recipient_name="string",
             status="string",
+            virtual_account_id="string",
         )
         assert_matches_type(Invoice, invoice, path=["response"])
 
@@ -402,3 +422,11 @@ class TestAsyncInvoices:
             per_page=0,
         )
         assert_matches_type(AsyncPage[Invoice], invoice, path=["response"])
+
+    @parametrize
+    async def test_method_add_payment_order(self, client: AsyncModernTreasury) -> None:
+        invoice = await client.invoices.add_payment_order(
+            "string",
+            id="string",
+        )
+        assert invoice is None

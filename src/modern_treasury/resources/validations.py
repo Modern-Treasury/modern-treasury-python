@@ -30,7 +30,9 @@ class Validations(SyncAPIResource):
             "cnaps",
             "gb_sort_code",
             "in_ifsc",
+            "jp_zengin_code",
             "my_branch_code",
+            "se_bankgiro_clearing_code",
             "swift",
         ],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -48,9 +50,9 @@ class Validations(SyncAPIResource):
           routing_number: The routing number that is being validated.
 
           routing_number_type: One of `aba`, `au_bsb`, `br_codigo`, `ca_cpa`, `cnaps`, `gb_sort_code`,
-              `in_ifsc`, `my_branch_code`, or `swift`. In sandbox mode we currently only
-              support `aba` and `swift` with routing numbers '123456789' and 'GRINUST0XXX'
-              respectively.
+              `in_ifsc`, `my_branch_code`, `se_bankgiro_clearing_code`, or `swift`. In sandbox
+              mode we currently only support `aba` and `swift` with routing numbers
+              '123456789' and 'GRINUST0XXX' respectively.
 
           extra_headers: Send extra headers
 
@@ -93,7 +95,9 @@ class AsyncValidations(AsyncAPIResource):
             "cnaps",
             "gb_sort_code",
             "in_ifsc",
+            "jp_zengin_code",
             "my_branch_code",
+            "se_bankgiro_clearing_code",
             "swift",
         ],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -111,9 +115,9 @@ class AsyncValidations(AsyncAPIResource):
           routing_number: The routing number that is being validated.
 
           routing_number_type: One of `aba`, `au_bsb`, `br_codigo`, `ca_cpa`, `cnaps`, `gb_sort_code`,
-              `in_ifsc`, `my_branch_code`, or `swift`. In sandbox mode we currently only
-              support `aba` and `swift` with routing numbers '123456789' and 'GRINUST0XXX'
-              respectively.
+              `in_ifsc`, `my_branch_code`, `se_bankgiro_clearing_code`, or `swift`. In sandbox
+              mode we currently only support `aba` and `swift` with routing numbers
+              '123456789' and 'GRINUST0XXX' respectively.
 
           extra_headers: Send extra headers
 

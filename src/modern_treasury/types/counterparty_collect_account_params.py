@@ -47,6 +47,7 @@ class CounterpartyCollectAccountParams(TypedDict, total=False):
             "brCodigo",
             "routingNumberType",
             "address",
+            "jp_zengin_code",
         ]
     ]
     """The list of fields you want on the form.

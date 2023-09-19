@@ -24,21 +24,25 @@ class TestLineItems:
     )
     parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
 
-    @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
-    def test_method_list(self, client: ModernTreasury) -> None:
-        line_item = client.transactions.line_items.list(
+    def test_method_retrieve(self, client: ModernTreasury) -> None:
+        line_item = client.transactions.line_items.retrieve(
             "string",
         )
+        assert_matches_type(TransactionLineItem, line_item, path=["response"])
+
+    @parametrize
+    def test_method_list(self, client: ModernTreasury) -> None:
+        line_item = client.transactions.line_items.list()
         assert_matches_type(SyncPage[TransactionLineItem], line_item, path=["response"])
 
-    @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         line_item = client.transactions.line_items.list(
-            "string",
+            id={"foo": "string"},
             after_cursor="string",
             per_page=0,
+            transaction_id="string",
             type="originating",
         )
         assert_matches_type(SyncPage[TransactionLineItem], line_item, path=["response"])
@@ -53,21 +57,25 @@ class TestAsyncLineItems:
     )
     parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
 
-    @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
-    async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        line_item = await client.transactions.line_items.list(
+    async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
+        line_item = await client.transactions.line_items.retrieve(
             "string",
         )
+        assert_matches_type(TransactionLineItem, line_item, path=["response"])
+
+    @parametrize
+    async def test_method_list(self, client: AsyncModernTreasury) -> None:
+        line_item = await client.transactions.line_items.list()
         assert_matches_type(AsyncPage[TransactionLineItem], line_item, path=["response"])
 
-    @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         line_item = await client.transactions.line_items.list(
-            "string",
+            id={"foo": "string"},
             after_cursor="string",
             per_page=0,
+            transaction_id="string",
             type="originating",
         )
         assert_matches_type(AsyncPage[TransactionLineItem], line_item, path=["response"])

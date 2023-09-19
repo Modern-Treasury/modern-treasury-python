@@ -174,6 +174,7 @@ class AccountRoutingDetail(TypedDict, total=False):
         Literal[
             "aba",
             "au_bsb",
+            "se_bankgiro_clearing_code",
             "br_codigo",
             "ca_cpa",
             "chips",
@@ -182,12 +183,14 @@ class AccountRoutingDetail(TypedDict, total=False):
             "in_ifsc",
             "my_branch_code",
             "swift",
+            "jp_zengin_code",
         ]
     ]
 
     payment_type: Literal[
         "ach",
         "au_becs",
+        "se_bankgirot",
         "bacs",
         "book",
         "card",
@@ -197,12 +200,15 @@ class AccountRoutingDetail(TypedDict, total=False):
         "interac",
         "masav",
         "neft",
+        "nics",
         "provxchange",
         "rtp",
         "sen",
+        "sic",
         "sepa",
         "signet",
         "wire",
+        "zengin",
     ]
 
 

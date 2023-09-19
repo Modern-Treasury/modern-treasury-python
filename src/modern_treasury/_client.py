@@ -65,6 +65,7 @@ class ModernTreasury(SyncAPIClient):
     ledgerable_events: resources.LedgerableEvents
     ledger_account_categories: resources.LedgerAccountCategories
     ledger_accounts: resources.LedgerAccounts
+    ledger_account_balance_monitors: resources.LedgerAccountBalanceMonitors
     ledger_account_payouts: resources.LedgerAccountPayouts
     ledger_account_statements: resources.LedgerAccountStatements
     ledger_entries: resources.LedgerEntries
@@ -172,6 +173,7 @@ class ModernTreasury(SyncAPIClient):
         self.ledgerable_events = resources.LedgerableEvents(self)
         self.ledger_account_categories = resources.LedgerAccountCategories(self)
         self.ledger_accounts = resources.LedgerAccounts(self)
+        self.ledger_account_balance_monitors = resources.LedgerAccountBalanceMonitors(self)
         self.ledger_account_payouts = resources.LedgerAccountPayouts(self)
         self.ledger_account_statements = resources.LedgerAccountStatements(self)
         self.ledger_entries = resources.LedgerEntries(self)
@@ -299,6 +301,7 @@ class AsyncModernTreasury(AsyncAPIClient):
     ledgerable_events: resources.AsyncLedgerableEvents
     ledger_account_categories: resources.AsyncLedgerAccountCategories
     ledger_accounts: resources.AsyncLedgerAccounts
+    ledger_account_balance_monitors: resources.AsyncLedgerAccountBalanceMonitors
     ledger_account_payouts: resources.AsyncLedgerAccountPayouts
     ledger_account_statements: resources.AsyncLedgerAccountStatements
     ledger_entries: resources.AsyncLedgerEntries
@@ -406,6 +409,7 @@ class AsyncModernTreasury(AsyncAPIClient):
         self.ledgerable_events = resources.AsyncLedgerableEvents(self)
         self.ledger_account_categories = resources.AsyncLedgerAccountCategories(self)
         self.ledger_accounts = resources.AsyncLedgerAccounts(self)
+        self.ledger_account_balance_monitors = resources.AsyncLedgerAccountBalanceMonitors(self)
         self.ledger_account_payouts = resources.AsyncLedgerAccountPayouts(self)
         self.ledger_account_statements = resources.AsyncLedgerAccountStatements(self)
         self.ledger_entries = resources.AsyncLedgerEntries(self)

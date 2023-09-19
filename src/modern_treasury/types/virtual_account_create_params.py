@@ -80,7 +80,9 @@ class RoutingDetail(TypedDict, total=False):
             "cnaps",
             "gb_sort_code",
             "in_ifsc",
+            "jp_zengin_code",
             "my_branch_code",
+            "se_bankgiro_clearing_code",
             "swift",
         ]
     ]
@@ -99,12 +101,16 @@ class RoutingDetail(TypedDict, total=False):
             "interac",
             "masav",
             "neft",
+            "nics",
             "provxchange",
             "rtp",
+            "se_bankgirot",
             "sen",
             "sepa",
+            "sic",
             "signet",
             "wire",
+            "zengin",
         ]
     ]
     """

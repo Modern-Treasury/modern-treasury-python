@@ -30,12 +30,16 @@ class ExternalAccountVerifyParams(TypedDict, total=False):
             "interac",
             "masav",
             "neft",
+            "nics",
             "provxchange",
             "rtp",
+            "se_bankgirot",
             "sen",
             "sepa",
+            "sic",
             "signet",
             "wire",
+            "zengin",
         ]
     ]
     """Both ach and eft are supported payment types."""

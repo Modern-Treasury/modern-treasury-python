@@ -2,71 +2,31 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import Literal
+from typing import Dict, List, Optional
 
 from ..types import (
-    RoutingDetail,
-    shared_params,
-    routing_detail_list_params,
-    routing_detail_create_params,
+    LedgerAccountBalanceMonitor,
+    ledger_account_balance_monitor_list_params,
+    ledger_account_balance_monitor_create_params,
+    ledger_account_balance_monitor_update_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
 
-__all__ = ["RoutingDetails", "AsyncRoutingDetails"]
+__all__ = ["LedgerAccountBalanceMonitors", "AsyncLedgerAccountBalanceMonitors"]
 
 
-class RoutingDetails(SyncAPIResource):
+class LedgerAccountBalanceMonitors(SyncAPIResource):
     def create(
         self,
-        account_id: str,
         *,
-        accounts_type: Literal["external_accounts"],
-        routing_number: str,
-        routing_number_type: Literal[
-            "aba",
-            "au_bsb",
-            "br_codigo",
-            "ca_cpa",
-            "chips",
-            "cnaps",
-            "gb_sort_code",
-            "in_ifsc",
-            "jp_zengin_code",
-            "my_branch_code",
-            "se_bankgiro_clearing_code",
-            "swift",
-        ],
-        payment_type: Optional[
-            Literal[
-                "ach",
-                "au_becs",
-                "bacs",
-                "book",
-                "card",
-                "check",
-                "cross_border",
-                "eft",
-                "interac",
-                "masav",
-                "neft",
-                "nics",
-                "provxchange",
-                "rtp",
-                "se_bankgirot",
-                "sen",
-                "sepa",
-                "sic",
-                "signet",
-                "wire",
-                "zengin",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        alert_condition: ledger_account_balance_monitor_create_params.AlertCondition,
+        ledger_account_id: str,
+        description: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -74,17 +34,19 @@ class RoutingDetails(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> RoutingDetail:
+    ) -> LedgerAccountBalanceMonitor:
         """
-        Create a routing detail for a single external account.
+        Create a ledger account balance monitor.
 
         Args:
-          routing_number: The routing number of the bank.
+          alert_condition: Describes the condition that must be satisfied for the monitor to be triggered.
 
-          routing_number_type: One of `aba`, `swift`, `ca_cpa`, `au_bsb`, `gb_sort_code`, `in_ifsc`, `cnaps`.
+          ledger_account_id: The ledger account associated with this balance monitor.
 
-          payment_type: If the routing detail is to be used for a specific payment type this field will
-              be populated, otherwise null.
+          description: An optional, free-form description for internal use.
+
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
 
           extra_headers: Send extra headers
 
@@ -97,14 +59,15 @@ class RoutingDetails(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
-            f"/api/{accounts_type}/{account_id}/routing_details",
+            "/api/ledger_account_balance_monitors",
             body=maybe_transform(
                 {
-                    "routing_number": routing_number,
-                    "routing_number_type": routing_number_type,
-                    "payment_type": payment_type,
+                    "alert_condition": alert_condition,
+                    "ledger_account_id": ledger_account_id,
+                    "description": description,
+                    "metadata": metadata,
                 },
-                routing_detail_create_params.RoutingDetailCreateParams,
+                ledger_account_balance_monitor_create_params.LedgerAccountBalanceMonitorCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -113,24 +76,22 @@ class RoutingDetails(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=RoutingDetail,
+            cast_to=LedgerAccountBalanceMonitor,
         )
 
     def retrieve(
         self,
         id: str,
         *,
-        accounts_type: shared_params.AccountsType,
-        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
-    ) -> RoutingDetail:
+    ) -> LedgerAccountBalanceMonitor:
         """
-        Get a single routing detail for a single internal or external account.
+        Get details on a single ledger account balance monitor.
 
         Args:
           extra_headers: Send extra headers
@@ -142,19 +103,72 @@ class RoutingDetails(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/api/{accounts_type}/{account_id}/routing_details/{id}",
+            f"/api/ledger_account_balance_monitors/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RoutingDetail,
+            cast_to=LedgerAccountBalanceMonitor,
+        )
+
+    def update(
+        self,
+        id: str,
+        *,
+        description: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
+        idempotency_key: str | None = None,
+    ) -> LedgerAccountBalanceMonitor:
+        """
+        Update a ledger account balance monitor.
+
+        Args:
+          description: An optional, free-form description for internal use.
+
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        return self._patch(
+            f"/api/ledger_account_balance_monitors/{id}",
+            body=maybe_transform(
+                {
+                    "description": description,
+                    "metadata": metadata,
+                },
+                ledger_account_balance_monitor_update_params.LedgerAccountBalanceMonitorUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=LedgerAccountBalanceMonitor,
         )
 
     def list(
         self,
-        account_id: str,
         *,
-        accounts_type: shared_params.AccountsType,
+        id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        ledger_account_id: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -162,11 +176,20 @@ class RoutingDetails(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
-    ) -> SyncPage[RoutingDetail]:
+    ) -> SyncPage[LedgerAccountBalanceMonitor]:
         """
-        Get a list of routing details for a single internal or external account.
+        Get a list of ledger account balance monitors.
 
         Args:
+          id: If you have specific IDs to retrieve in bulk, you can pass them as query
+              parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
+
+          ledger_account_id: Query the balance monitors for a single ledger account.
+
+          metadata: For example, if you want to query for records with metadata key `Type` and value
+              `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+              parameters.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -176,8 +199,8 @@ class RoutingDetails(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/api/{accounts_type}/{account_id}/routing_details",
-            page=SyncPage[RoutingDetail],
+            "/api/ledger_account_balance_monitors",
+            page=SyncPage[LedgerAccountBalanceMonitor],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -185,21 +208,22 @@ class RoutingDetails(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after_cursor": after_cursor,
+                        "ledger_account_id": ledger_account_id,
+                        "metadata": metadata,
                         "per_page": per_page,
                     },
-                    routing_detail_list_params.RoutingDetailListParams,
+                    ledger_account_balance_monitor_list_params.LedgerAccountBalanceMonitorListParams,
                 ),
             ),
-            model=RoutingDetail,
+            model=LedgerAccountBalanceMonitor,
         )
 
     def delete(
         self,
         id: str,
         *,
-        accounts_type: Literal["external_accounts"],
-        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -207,9 +231,9 @@ class RoutingDetails(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> None:
+    ) -> LedgerAccountBalanceMonitor:
         """
-        Delete a routing detail for a single external account.
+        Delete a ledger account balance monitor.
 
         Args:
           extra_headers: Send extra headers
@@ -222,9 +246,8 @@ class RoutingDetails(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/api/{accounts_type}/{account_id}/routing_details/{id}",
+            f"/api/ledger_account_balance_monitors/{id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -232,57 +255,18 @@ class RoutingDetails(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=NoneType,
+            cast_to=LedgerAccountBalanceMonitor,
         )
 
 
-class AsyncRoutingDetails(AsyncAPIResource):
+class AsyncLedgerAccountBalanceMonitors(AsyncAPIResource):
     async def create(
         self,
-        account_id: str,
         *,
-        accounts_type: Literal["external_accounts"],
-        routing_number: str,
-        routing_number_type: Literal[
-            "aba",
-            "au_bsb",
-            "br_codigo",
-            "ca_cpa",
-            "chips",
-            "cnaps",
-            "gb_sort_code",
-            "in_ifsc",
-            "jp_zengin_code",
-            "my_branch_code",
-            "se_bankgiro_clearing_code",
-            "swift",
-        ],
-        payment_type: Optional[
-            Literal[
-                "ach",
-                "au_becs",
-                "bacs",
-                "book",
-                "card",
-                "check",
-                "cross_border",
-                "eft",
-                "interac",
-                "masav",
-                "neft",
-                "nics",
-                "provxchange",
-                "rtp",
-                "se_bankgirot",
-                "sen",
-                "sepa",
-                "sic",
-                "signet",
-                "wire",
-                "zengin",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        alert_condition: ledger_account_balance_monitor_create_params.AlertCondition,
+        ledger_account_id: str,
+        description: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -290,17 +274,19 @@ class AsyncRoutingDetails(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> RoutingDetail:
+    ) -> LedgerAccountBalanceMonitor:
         """
-        Create a routing detail for a single external account.
+        Create a ledger account balance monitor.
 
         Args:
-          routing_number: The routing number of the bank.
+          alert_condition: Describes the condition that must be satisfied for the monitor to be triggered.
 
-          routing_number_type: One of `aba`, `swift`, `ca_cpa`, `au_bsb`, `gb_sort_code`, `in_ifsc`, `cnaps`.
+          ledger_account_id: The ledger account associated with this balance monitor.
 
-          payment_type: If the routing detail is to be used for a specific payment type this field will
-              be populated, otherwise null.
+          description: An optional, free-form description for internal use.
+
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
 
           extra_headers: Send extra headers
 
@@ -313,14 +299,15 @@ class AsyncRoutingDetails(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
-            f"/api/{accounts_type}/{account_id}/routing_details",
+            "/api/ledger_account_balance_monitors",
             body=maybe_transform(
                 {
-                    "routing_number": routing_number,
-                    "routing_number_type": routing_number_type,
-                    "payment_type": payment_type,
+                    "alert_condition": alert_condition,
+                    "ledger_account_id": ledger_account_id,
+                    "description": description,
+                    "metadata": metadata,
                 },
-                routing_detail_create_params.RoutingDetailCreateParams,
+                ledger_account_balance_monitor_create_params.LedgerAccountBalanceMonitorCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -329,24 +316,22 @@ class AsyncRoutingDetails(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=RoutingDetail,
+            cast_to=LedgerAccountBalanceMonitor,
         )
 
     async def retrieve(
         self,
         id: str,
         *,
-        accounts_type: shared_params.AccountsType,
-        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
-    ) -> RoutingDetail:
+    ) -> LedgerAccountBalanceMonitor:
         """
-        Get a single routing detail for a single internal or external account.
+        Get details on a single ledger account balance monitor.
 
         Args:
           extra_headers: Send extra headers
@@ -358,19 +343,72 @@ class AsyncRoutingDetails(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/api/{accounts_type}/{account_id}/routing_details/{id}",
+            f"/api/ledger_account_balance_monitors/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=RoutingDetail,
+            cast_to=LedgerAccountBalanceMonitor,
+        )
+
+    async def update(
+        self,
+        id: str,
+        *,
+        description: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
+        idempotency_key: str | None = None,
+    ) -> LedgerAccountBalanceMonitor:
+        """
+        Update a ledger account balance monitor.
+
+        Args:
+          description: An optional, free-form description for internal use.
+
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        return await self._patch(
+            f"/api/ledger_account_balance_monitors/{id}",
+            body=maybe_transform(
+                {
+                    "description": description,
+                    "metadata": metadata,
+                },
+                ledger_account_balance_monitor_update_params.LedgerAccountBalanceMonitorUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=LedgerAccountBalanceMonitor,
         )
 
     def list(
         self,
-        account_id: str,
         *,
-        accounts_type: shared_params.AccountsType,
+        id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        ledger_account_id: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -378,11 +416,20 @@ class AsyncRoutingDetails(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[RoutingDetail, AsyncPage[RoutingDetail]]:
+    ) -> AsyncPaginator[LedgerAccountBalanceMonitor, AsyncPage[LedgerAccountBalanceMonitor]]:
         """
-        Get a list of routing details for a single internal or external account.
+        Get a list of ledger account balance monitors.
 
         Args:
+          id: If you have specific IDs to retrieve in bulk, you can pass them as query
+              parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
+
+          ledger_account_id: Query the balance monitors for a single ledger account.
+
+          metadata: For example, if you want to query for records with metadata key `Type` and value
+              `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+              parameters.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -392,8 +439,8 @@ class AsyncRoutingDetails(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            f"/api/{accounts_type}/{account_id}/routing_details",
-            page=AsyncPage[RoutingDetail],
+            "/api/ledger_account_balance_monitors",
+            page=AsyncPage[LedgerAccountBalanceMonitor],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -401,21 +448,22 @@ class AsyncRoutingDetails(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after_cursor": after_cursor,
+                        "ledger_account_id": ledger_account_id,
+                        "metadata": metadata,
                         "per_page": per_page,
                     },
-                    routing_detail_list_params.RoutingDetailListParams,
+                    ledger_account_balance_monitor_list_params.LedgerAccountBalanceMonitorListParams,
                 ),
             ),
-            model=RoutingDetail,
+            model=LedgerAccountBalanceMonitor,
         )
 
     async def delete(
         self,
         id: str,
         *,
-        accounts_type: Literal["external_accounts"],
-        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -423,9 +471,9 @@ class AsyncRoutingDetails(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> None:
+    ) -> LedgerAccountBalanceMonitor:
         """
-        Delete a routing detail for a single external account.
+        Delete a ledger account balance monitor.
 
         Args:
           extra_headers: Send extra headers
@@ -438,9 +486,8 @@ class AsyncRoutingDetails(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/api/{accounts_type}/{account_id}/routing_details/{id}",
+            f"/api/ledger_account_balance_monitors/{id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -448,5 +495,5 @@ class AsyncRoutingDetails(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=NoneType,
+            cast_to=LedgerAccountBalanceMonitor,
         )

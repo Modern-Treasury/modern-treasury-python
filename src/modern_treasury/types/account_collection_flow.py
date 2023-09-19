@@ -41,6 +41,30 @@ class AccountCollectionFlow(BaseModel):
 
     object: Optional[str] = None
 
+    receiving_countries: Optional[
+        List[
+            Literal[
+                "USA",
+                "AUS",
+                "BEL",
+                "CAN",
+                "CHL",
+                "CHN",
+                "COL",
+                "FRA",
+                "DEU",
+                "HKG",
+                "IND",
+                "IRL",
+                "ITA",
+                "MEX",
+                "NLD",
+                "PER",
+                "ESP",
+            ]
+        ]
+    ] = None
+
     status: Optional[Literal["cancelled", "completed", "expired", "pending"]] = None
     """The current status of the account collection flow.
 

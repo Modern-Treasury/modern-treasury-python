@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import PaymentFlow
+from modern_treasury._utils import parse_date
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
@@ -32,6 +33,18 @@ class TestPaymentFlows:
             currency="string",
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(PaymentFlow, payment_flow, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
+        payment_flow = client.payment_flows.create(
+            amount=0,
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            currency="string",
+            direction="credit",
+            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            due_date=parse_date("2019-12-27"),
         )
         assert_matches_type(PaymentFlow, payment_flow, path=["response"])
 
@@ -87,6 +100,18 @@ class TestAsyncPaymentFlows:
             currency="string",
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(PaymentFlow, payment_flow, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
+        payment_flow = await client.payment_flows.create(
+            amount=0,
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            currency="string",
+            direction="credit",
+            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            due_date=parse_date("2019-12-27"),
         )
         assert_matches_type(PaymentFlow, payment_flow, path=["response"])
 
