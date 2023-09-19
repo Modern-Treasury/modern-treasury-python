@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Union, Optional
+from datetime import date
 from typing_extensions import Literal
 
 from ..types import (
@@ -29,6 +30,7 @@ class PaymentFlows(SyncAPIResource):
         currency: str,
         direction: Literal["credit", "debit"],
         originating_account_id: str,
+        due_date: Union[str, date] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -55,6 +57,10 @@ class PaymentFlows(SyncAPIResource):
 
           originating_account_id: Required. The ID of one of your organization's internal accounts.
 
+          due_date: Optional. Can only be passed in when `effective_date_selection_enabled` is
+              `true`. When set, the due date is shown to your end-user in the pre-built UI as
+              they are selecting a payment `effective_date`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -74,6 +80,7 @@ class PaymentFlows(SyncAPIResource):
                     "currency": currency,
                     "direction": direction,
                     "originating_account_id": originating_account_id,
+                    "due_date": due_date,
                 },
                 payment_flow_create_params.PaymentFlowCreateParams,
             ),
@@ -227,6 +234,7 @@ class AsyncPaymentFlows(AsyncAPIResource):
         currency: str,
         direction: Literal["credit", "debit"],
         originating_account_id: str,
+        due_date: Union[str, date] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -253,6 +261,10 @@ class AsyncPaymentFlows(AsyncAPIResource):
 
           originating_account_id: Required. The ID of one of your organization's internal accounts.
 
+          due_date: Optional. Can only be passed in when `effective_date_selection_enabled` is
+              `true`. When set, the due date is shown to your end-user in the pre-built UI as
+              they are selecting a payment `effective_date`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -272,6 +284,7 @@ class AsyncPaymentFlows(AsyncAPIResource):
                     "currency": currency,
                     "direction": direction,
                     "originating_account_id": originating_account_id,
+                    "due_date": due_date,
                 },
                 payment_flow_create_params.PaymentFlowCreateParams,
             ),

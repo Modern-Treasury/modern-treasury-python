@@ -217,8 +217,9 @@ class PaymentOrderUpdateParams(TypedDict, total=False):
 
     type: PaymentOrderType
     """
-    One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
-    `au_becs`, `interac`, `signet`, `provexchange`.
+    One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+    `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
+    `zengin`.
     """
 
     ultimate_originating_party_identifier: Optional[str]
@@ -388,6 +389,7 @@ class ReceivingAccountRoutingDetail(TypedDict, total=False):
         Literal[
             "aba",
             "au_bsb",
+            "se_bankgiro_clearing_code",
             "br_codigo",
             "ca_cpa",
             "chips",
@@ -396,12 +398,14 @@ class ReceivingAccountRoutingDetail(TypedDict, total=False):
             "in_ifsc",
             "my_branch_code",
             "swift",
+            "jp_zengin_code",
         ]
     ]
 
     payment_type: Literal[
         "ach",
         "au_becs",
+        "se_bankgirot",
         "bacs",
         "book",
         "card",
@@ -411,12 +415,15 @@ class ReceivingAccountRoutingDetail(TypedDict, total=False):
         "interac",
         "masav",
         "neft",
+        "nics",
         "provxchange",
         "rtp",
         "sen",
+        "sic",
         "sepa",
         "signet",
         "wire",
+        "zengin",
     ]
 
 

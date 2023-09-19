@@ -26,6 +26,28 @@ class AccountCollectionFlows(SyncAPIResource):
         *,
         counterparty_id: str,
         payment_types: List[str],
+        receiving_countries: List[
+            Literal[
+                "USA",
+                "AUS",
+                "BEL",
+                "CAN",
+                "CHL",
+                "CHN",
+                "COL",
+                "FRA",
+                "DEU",
+                "HKG",
+                "IND",
+                "IRL",
+                "ITA",
+                "MEX",
+                "NLD",
+                "PER",
+                "ESP",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -56,6 +78,7 @@ class AccountCollectionFlows(SyncAPIResource):
                 {
                     "counterparty_id": counterparty_id,
                     "payment_types": payment_types,
+                    "receiving_countries": receiving_countries,
                 },
                 account_collection_flow_create_params.AccountCollectionFlowCreateParams,
             ),
@@ -204,6 +227,28 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
         *,
         counterparty_id: str,
         payment_types: List[str],
+        receiving_countries: List[
+            Literal[
+                "USA",
+                "AUS",
+                "BEL",
+                "CAN",
+                "CHL",
+                "CHN",
+                "COL",
+                "FRA",
+                "DEU",
+                "HKG",
+                "IND",
+                "IRL",
+                "ITA",
+                "MEX",
+                "NLD",
+                "PER",
+                "ESP",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -234,6 +279,7 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
                 {
                     "counterparty_id": counterparty_id,
                     "payment_types": payment_types,
+                    "receiving_countries": receiving_countries,
                 },
                 account_collection_flow_create_params.AccountCollectionFlowCreateParams,
             ),

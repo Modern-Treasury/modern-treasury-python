@@ -190,6 +190,18 @@ class Invoice(BaseModel):
     receiving_account_id: Optional[str]
     """The receiving account ID. Can be an `internal_account`."""
 
+    recipient_email: Optional[str]
+    """The email of the recipient of the invoice.
+
+    Leaving this value as null will fallback to using the counterparty's name.
+    """
+
+    recipient_name: Optional[str]
+    """The name of the recipient of the invoice.
+
+    Leaving this value as null will fallback to using the counterparty's name.
+    """
+
     status: Literal["draft", "paid", "payment_pending", "unpaid", "voided"]
     """The status of the invoice."""
 
@@ -203,6 +215,9 @@ class Invoice(BaseModel):
     """IDs of transaction line items associated with an invoice."""
 
     updated_at: datetime
+
+    virtual_account_id: Optional[str]
+    """The ID of the virtual account the invoice should be paid to."""
 
 
 from .payment_order import PaymentOrder

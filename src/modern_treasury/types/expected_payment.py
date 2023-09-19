@@ -100,7 +100,7 @@ class ExpectedPayment(BaseModel):
     be the memo field.
     """
 
-    status: Literal["archived", "reconciled", "unreconciled"]
+    status: Literal["archived", "partially_reconciled", "reconciled", "unreconciled"]
     """One of unreconciled, reconciled, or archived."""
 
     transaction_id: Optional[str]

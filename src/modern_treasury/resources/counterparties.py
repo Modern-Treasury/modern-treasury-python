@@ -334,6 +334,7 @@ class Counterparties(SyncAPIResource):
                 "brCodigo",
                 "routingNumberType",
                 "address",
+                "jp_zengin_code",
             ]
         ]
         | NotGiven = NOT_GIVEN,
@@ -712,6 +713,7 @@ class AsyncCounterparties(AsyncAPIResource):
                 "brCodigo",
                 "routingNumberType",
                 "address",
+                "jp_zengin_code",
             ]
         ]
         | NotGiven = NOT_GIVEN,

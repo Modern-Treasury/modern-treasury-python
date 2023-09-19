@@ -335,8 +335,9 @@ class PaymentOrder(BaseModel):
 
     type: PaymentOrderType
     """
-    One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
-    `au_becs`, `interac`, `signet`, `provexchange`.
+    One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+    `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
+    `zengin`.
     """
 
     ultimate_originating_party_identifier: Optional[str]

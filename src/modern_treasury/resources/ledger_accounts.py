@@ -211,6 +211,7 @@ class LedgerAccounts(SyncAPIResource):
         *,
         id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        available_balance_amount: ledger_account_list_params.AvailableBalanceAmount | NotGiven = NOT_GIVEN,
         balances: ledger_account_list_params.Balances | NotGiven = NOT_GIVEN,
         created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         currency: str | NotGiven = NOT_GIVEN,
@@ -218,7 +219,9 @@ class LedgerAccounts(SyncAPIResource):
         ledger_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        pending_balance_amount: ledger_account_list_params.PendingBalanceAmount | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        posted_balance_amount: ledger_account_list_params.PostedBalanceAmount | NotGiven = NOT_GIVEN,
         updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -234,6 +237,9 @@ class LedgerAccounts(SyncAPIResource):
           id: If you have specific IDs to retrieve in bulk, you can pass them as query
               parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
 
+          available_balance_amount: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to
+              filter by balance amount.
+
           balances: Use `balances[effective_at_lower_bound]` and
               `balances[effective_at_upper_bound]` to get the balances change between the two
               timestamps. The lower bound is inclusive while the upper bound is exclusive of
@@ -247,6 +253,12 @@ class LedgerAccounts(SyncAPIResource):
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
+
+          pending_balance_amount: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to
+              filter by balance amount.
+
+          posted_balance_amount: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to
+              filter by balance amount.
 
           updated_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               updated at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
@@ -272,6 +284,7 @@ class LedgerAccounts(SyncAPIResource):
                     {
                         "id": id,
                         "after_cursor": after_cursor,
+                        "available_balance_amount": available_balance_amount,
                         "balances": balances,
                         "created_at": created_at,
                         "currency": currency,
@@ -279,7 +292,9 @@ class LedgerAccounts(SyncAPIResource):
                         "ledger_id": ledger_id,
                         "metadata": metadata,
                         "name": name,
+                        "pending_balance_amount": pending_balance_amount,
                         "per_page": per_page,
+                        "posted_balance_amount": posted_balance_amount,
                         "updated_at": updated_at,
                     },
                     ledger_account_list_params.LedgerAccountListParams,
@@ -516,6 +531,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         *,
         id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        available_balance_amount: ledger_account_list_params.AvailableBalanceAmount | NotGiven = NOT_GIVEN,
         balances: ledger_account_list_params.Balances | NotGiven = NOT_GIVEN,
         created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         currency: str | NotGiven = NOT_GIVEN,
@@ -523,7 +539,9 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         ledger_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        pending_balance_amount: ledger_account_list_params.PendingBalanceAmount | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        posted_balance_amount: ledger_account_list_params.PostedBalanceAmount | NotGiven = NOT_GIVEN,
         updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -539,6 +557,9 @@ class AsyncLedgerAccounts(AsyncAPIResource):
           id: If you have specific IDs to retrieve in bulk, you can pass them as query
               parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
 
+          available_balance_amount: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to
+              filter by balance amount.
+
           balances: Use `balances[effective_at_lower_bound]` and
               `balances[effective_at_upper_bound]` to get the balances change between the two
               timestamps. The lower bound is inclusive while the upper bound is exclusive of
@@ -552,6 +573,12 @@ class AsyncLedgerAccounts(AsyncAPIResource):
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
+
+          pending_balance_amount: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to
+              filter by balance amount.
+
+          posted_balance_amount: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to
+              filter by balance amount.
 
           updated_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               updated at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
@@ -577,6 +604,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
                     {
                         "id": id,
                         "after_cursor": after_cursor,
+                        "available_balance_amount": available_balance_amount,
                         "balances": balances,
                         "created_at": created_at,
                         "currency": currency,
@@ -584,7 +612,9 @@ class AsyncLedgerAccounts(AsyncAPIResource):
                         "ledger_id": ledger_id,
                         "metadata": metadata,
                         "name": name,
+                        "pending_balance_amount": pending_balance_amount,
                         "per_page": per_page,
+                        "posted_balance_amount": posted_balance_amount,
                         "updated_at": updated_at,
                     },
                     ledger_account_list_params.LedgerAccountListParams,

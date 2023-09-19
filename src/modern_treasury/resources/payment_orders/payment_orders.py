@@ -96,8 +96,9 @@ class PaymentOrders(SyncAPIResource):
 
           originating_account_id: The ID of one of your organization's internal accounts.
 
-          type: One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
-              `au_becs`, `interac`, `signet`, `provexchange`.
+          type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
+              `zengin`.
 
           accounting_category_id: The ID of one of your accounting categories. Note that these will only be
               accessible if your accounting system has been connected.
@@ -456,8 +457,9 @@ class PaymentOrders(SyncAPIResource):
               payment orders, the `subtype` represents the SEC code. We currently support
               `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
 
-          type: One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
-              `au_becs`, `interac`, `signet`, `provexchange`.
+          type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
+              `zengin`.
 
           ultimate_originating_party_identifier: This represents the identifier by which the person is known to the receiver when
               using the CIE subtype for ACH payments. Only the first 22 characters of this
@@ -575,12 +577,16 @@ class PaymentOrders(SyncAPIResource):
             "interac",
             "masav",
             "neft",
+            "nics",
             "provxchange",
             "rtp",
+            "se_bankgirot",
             "sen",
             "sepa",
+            "sic",
             "signet",
             "wire",
+            "zengin",
         ]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -706,8 +712,9 @@ class PaymentOrders(SyncAPIResource):
 
           originating_account_id: The ID of one of your organization's internal accounts.
 
-          type: One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
-              `au_becs`, `interac`, `signet`, `provexchange`.
+          type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
+              `zengin`.
 
           accounting_category_id: The ID of one of your accounting categories. Note that these will only be
               accessible if your accounting system has been connected.
@@ -932,8 +939,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
 
           originating_account_id: The ID of one of your organization's internal accounts.
 
-          type: One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
-              `au_becs`, `interac`, `signet`, `provexchange`.
+          type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
+              `zengin`.
 
           accounting_category_id: The ID of one of your accounting categories. Note that these will only be
               accessible if your accounting system has been connected.
@@ -1292,8 +1300,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
               payment orders, the `subtype` represents the SEC code. We currently support
               `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
 
-          type: One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
-              `au_becs`, `interac`, `signet`, `provexchange`.
+          type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
+              `zengin`.
 
           ultimate_originating_party_identifier: This represents the identifier by which the person is known to the receiver when
               using the CIE subtype for ACH payments. Only the first 22 characters of this
@@ -1411,12 +1420,16 @@ class AsyncPaymentOrders(AsyncAPIResource):
             "interac",
             "masav",
             "neft",
+            "nics",
             "provxchange",
             "rtp",
+            "se_bankgirot",
             "sen",
             "sepa",
+            "sic",
             "signet",
             "wire",
+            "zengin",
         ]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1542,8 +1555,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
 
           originating_account_id: The ID of one of your organization's internal accounts.
 
-          type: One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
-              `au_becs`, `interac`, `signet`, `provexchange`.
+          type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
+              `zengin`.
 
           accounting_category_id: The ID of one of your accounting categories. Note that these will only be
               accessible if your accounting system has been connected.

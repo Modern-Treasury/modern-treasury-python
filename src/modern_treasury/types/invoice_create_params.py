@@ -81,6 +81,7 @@ class InvoiceCreateParams(TypedDict, total=False):
     payment_type: Literal[
         "ach",
         "au_becs",
+        "se_bankgirot",
         "bacs",
         "book",
         "card",
@@ -90,20 +91,39 @@ class InvoiceCreateParams(TypedDict, total=False):
         "interac",
         "masav",
         "neft",
+        "nics",
         "provxchange",
         "rtp",
         "sen",
+        "sic",
         "sepa",
         "signet",
         "wire",
+        "zengin",
     ]
     """
-    One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
-    `au_becs`, `interac`, `signet`, `provexchange`.
+    One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+    `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
+    `zengin`.
     """
 
     receiving_account_id: str
     """The receiving account ID. Can be an `external_account`."""
+
+    recipient_email: Optional[str]
+    """The email of the recipient of the invoice.
+
+    Leaving this value as null will fallback to using the counterparty's name.
+    """
+
+    recipient_name: Optional[str]
+    """The name of the recipient of the invoice.
+
+    Leaving this value as null will fallback to using the counterparty's name.
+    """
+
+    virtual_account_id: Optional[str]
+    """The ID of the virtual account the invoice should be paid to."""
 
 
 class ContactDetail(TypedDict, total=False):
