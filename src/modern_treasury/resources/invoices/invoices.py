@@ -13,7 +13,7 @@ from ...types import (
     invoice_create_params,
     invoice_update_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ..._utils import maybe_transform
 from .line_items import LineItems, AsyncLineItems
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -53,6 +53,7 @@ class Invoices(SyncAPIResource):
         payment_type: Literal[
             "ach",
             "au_becs",
+            "se_bankgirot",
             "bacs",
             "book",
             "card",
@@ -62,15 +63,21 @@ class Invoices(SyncAPIResource):
             "interac",
             "masav",
             "neft",
+            "nics",
             "provxchange",
             "rtp",
             "sen",
+            "sic",
             "sepa",
             "signet",
             "wire",
+            "zengin",
         ]
         | NotGiven = NOT_GIVEN,
         receiving_account_id: str | NotGiven = NOT_GIVEN,
+        recipient_email: Optional[str] | NotGiven = NOT_GIVEN,
+        recipient_name: Optional[str] | NotGiven = NOT_GIVEN,
+        virtual_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -119,10 +126,19 @@ class Invoices(SyncAPIResource):
               invoice amount is negative, the automatically initiated payment order's
               direction will be credit. One of `manual`, `ui`, or `automatic`.
 
-          payment_type: One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
-              `au_becs`, `interac`, `signet`, `provexchange`.
+          payment_type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
+              `zengin`.
 
           receiving_account_id: The receiving account ID. Can be an `external_account`.
+
+          recipient_email: The email of the recipient of the invoice. Leaving this value as null will
+              fallback to using the counterparty's name.
+
+          recipient_name: The name of the recipient of the invoice. Leaving this value as null will
+              fallback to using the counterparty's name.
+
+          virtual_account_id: The ID of the virtual account the invoice should be paid to.
 
           extra_headers: Send extra headers
 
@@ -153,6 +169,9 @@ class Invoices(SyncAPIResource):
                     "payment_method": payment_method,
                     "payment_type": payment_type,
                     "receiving_account_id": receiving_account_id,
+                    "recipient_email": recipient_email,
+                    "recipient_name": recipient_name,
+                    "virtual_account_id": virtual_account_id,
                 },
                 invoice_create_params.InvoiceCreateParams,
             ),
@@ -218,6 +237,7 @@ class Invoices(SyncAPIResource):
         payment_type: Literal[
             "ach",
             "au_becs",
+            "se_bankgirot",
             "bacs",
             "book",
             "card",
@@ -227,16 +247,22 @@ class Invoices(SyncAPIResource):
             "interac",
             "masav",
             "neft",
+            "nics",
             "provxchange",
             "rtp",
             "sen",
+            "sic",
             "sepa",
             "signet",
             "wire",
+            "zengin",
         ]
         | NotGiven = NOT_GIVEN,
         receiving_account_id: str | NotGiven = NOT_GIVEN,
+        recipient_email: Optional[str] | NotGiven = NOT_GIVEN,
+        recipient_name: Optional[str] | NotGiven = NOT_GIVEN,
         status: str | NotGiven = NOT_GIVEN,
+        virtual_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -285,14 +311,23 @@ class Invoices(SyncAPIResource):
               invoice amount is negative, the automatically initiated payment order's
               direction will be credit. One of `manual`, `ui`, or `automatic`.
 
-          payment_type: One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
-              `au_becs`, `interac`, `signet`, `provexchange`.
+          payment_type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
+              `zengin`.
 
           receiving_account_id: The receiving account ID. Can be an `external_account`.
+
+          recipient_email: The email of the recipient of the invoice. Leaving this value as null will
+              fallback to using the counterparty's name.
+
+          recipient_name: The name of the recipient of the invoice. Leaving this value as null will
+              fallback to using the counterparty's name.
 
           status: Invoice status must be updated in a `PATCH` request that does not modify any
               other invoice attributes. Valid state transitions are `draft` to `unpaid`,
               `draft` or `unpaid` to `voided`, and `draft` or `unpaid` to `paid`.
+
+          virtual_account_id: The ID of the virtual account the invoice should be paid to.
 
           extra_headers: Send extra headers
 
@@ -323,7 +358,10 @@ class Invoices(SyncAPIResource):
                     "payment_method": payment_method,
                     "payment_type": payment_type,
                     "receiving_account_id": receiving_account_id,
+                    "recipient_email": recipient_email,
+                    "recipient_name": recipient_name,
                     "status": status,
+                    "virtual_account_id": virtual_account_id,
                 },
                 invoice_update_params.InvoiceUpdateParams,
             ),
@@ -380,6 +418,46 @@ class Invoices(SyncAPIResource):
             model=Invoice,
         )
 
+    def add_payment_order(
+        self,
+        payment_order_id: str,
+        *,
+        id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
+        idempotency_key: str | None = None,
+    ) -> None:
+        """
+        Add a payment order to an invoice.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._put(
+            f"/api/invoices/{id}/payment_orders/{payment_order_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=NoneType,
+        )
+
 
 class AsyncInvoices(AsyncAPIResource):
     line_items: AsyncLineItems
@@ -408,6 +486,7 @@ class AsyncInvoices(AsyncAPIResource):
         payment_type: Literal[
             "ach",
             "au_becs",
+            "se_bankgirot",
             "bacs",
             "book",
             "card",
@@ -417,15 +496,21 @@ class AsyncInvoices(AsyncAPIResource):
             "interac",
             "masav",
             "neft",
+            "nics",
             "provxchange",
             "rtp",
             "sen",
+            "sic",
             "sepa",
             "signet",
             "wire",
+            "zengin",
         ]
         | NotGiven = NOT_GIVEN,
         receiving_account_id: str | NotGiven = NOT_GIVEN,
+        recipient_email: Optional[str] | NotGiven = NOT_GIVEN,
+        recipient_name: Optional[str] | NotGiven = NOT_GIVEN,
+        virtual_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -474,10 +559,19 @@ class AsyncInvoices(AsyncAPIResource):
               invoice amount is negative, the automatically initiated payment order's
               direction will be credit. One of `manual`, `ui`, or `automatic`.
 
-          payment_type: One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
-              `au_becs`, `interac`, `signet`, `provexchange`.
+          payment_type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
+              `zengin`.
 
           receiving_account_id: The receiving account ID. Can be an `external_account`.
+
+          recipient_email: The email of the recipient of the invoice. Leaving this value as null will
+              fallback to using the counterparty's name.
+
+          recipient_name: The name of the recipient of the invoice. Leaving this value as null will
+              fallback to using the counterparty's name.
+
+          virtual_account_id: The ID of the virtual account the invoice should be paid to.
 
           extra_headers: Send extra headers
 
@@ -508,6 +602,9 @@ class AsyncInvoices(AsyncAPIResource):
                     "payment_method": payment_method,
                     "payment_type": payment_type,
                     "receiving_account_id": receiving_account_id,
+                    "recipient_email": recipient_email,
+                    "recipient_name": recipient_name,
+                    "virtual_account_id": virtual_account_id,
                 },
                 invoice_create_params.InvoiceCreateParams,
             ),
@@ -573,6 +670,7 @@ class AsyncInvoices(AsyncAPIResource):
         payment_type: Literal[
             "ach",
             "au_becs",
+            "se_bankgirot",
             "bacs",
             "book",
             "card",
@@ -582,16 +680,22 @@ class AsyncInvoices(AsyncAPIResource):
             "interac",
             "masav",
             "neft",
+            "nics",
             "provxchange",
             "rtp",
             "sen",
+            "sic",
             "sepa",
             "signet",
             "wire",
+            "zengin",
         ]
         | NotGiven = NOT_GIVEN,
         receiving_account_id: str | NotGiven = NOT_GIVEN,
+        recipient_email: Optional[str] | NotGiven = NOT_GIVEN,
+        recipient_name: Optional[str] | NotGiven = NOT_GIVEN,
         status: str | NotGiven = NOT_GIVEN,
+        virtual_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -640,14 +744,23 @@ class AsyncInvoices(AsyncAPIResource):
               invoice amount is negative, the automatically initiated payment order's
               direction will be credit. One of `manual`, `ui`, or `automatic`.
 
-          payment_type: One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`,
-              `au_becs`, `interac`, `signet`, `provexchange`.
+          payment_type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
+              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
+              `zengin`.
 
           receiving_account_id: The receiving account ID. Can be an `external_account`.
+
+          recipient_email: The email of the recipient of the invoice. Leaving this value as null will
+              fallback to using the counterparty's name.
+
+          recipient_name: The name of the recipient of the invoice. Leaving this value as null will
+              fallback to using the counterparty's name.
 
           status: Invoice status must be updated in a `PATCH` request that does not modify any
               other invoice attributes. Valid state transitions are `draft` to `unpaid`,
               `draft` or `unpaid` to `voided`, and `draft` or `unpaid` to `paid`.
+
+          virtual_account_id: The ID of the virtual account the invoice should be paid to.
 
           extra_headers: Send extra headers
 
@@ -678,7 +791,10 @@ class AsyncInvoices(AsyncAPIResource):
                     "payment_method": payment_method,
                     "payment_type": payment_type,
                     "receiving_account_id": receiving_account_id,
+                    "recipient_email": recipient_email,
+                    "recipient_name": recipient_name,
                     "status": status,
+                    "virtual_account_id": virtual_account_id,
                 },
                 invoice_update_params.InvoiceUpdateParams,
             ),
@@ -733,4 +849,44 @@ class AsyncInvoices(AsyncAPIResource):
                 ),
             ),
             model=Invoice,
+        )
+
+    async def add_payment_order(
+        self,
+        payment_order_id: str,
+        *,
+        id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
+        idempotency_key: str | None = None,
+    ) -> None:
+        """
+        Add a payment order to an invoice.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._put(
+            f"/api/invoices/{id}/payment_orders/{payment_order_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=NoneType,
         )

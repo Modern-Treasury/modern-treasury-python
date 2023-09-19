@@ -50,6 +50,13 @@ class TestLedgerAccountPayouts:
         assert_matches_type(LedgerAccountPayout, ledger_account_payout, path=["response"])
 
     @parametrize
+    def test_method_retrieve(self, client: ModernTreasury) -> None:
+        ledger_account_payout = client.ledger_account_payouts.retrieve(
+            "string",
+        )
+        assert_matches_type(LedgerAccountPayout, ledger_account_payout, path=["response"])
+
+    @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
         ledger_account_payout = client.ledger_account_payouts.update(
             "string",
@@ -88,9 +95,10 @@ class TestLedgerAccountPayouts:
 
     @parametrize
     def test_method_retireve(self, client: ModernTreasury) -> None:
-        ledger_account_payout = client.ledger_account_payouts.retireve(
-            "string",
-        )
+        with pytest.warns(DeprecationWarning):
+            ledger_account_payout = client.ledger_account_payouts.retireve(  # pyright: ignore[reportDeprecated]
+                "string",
+            )
         assert_matches_type(LedgerAccountPayout, ledger_account_payout, path=["response"])
 
 
@@ -125,6 +133,13 @@ class TestAsyncLedgerAccountPayouts:
             },
             skip_payout_ledger_transaction=True,
             status="pending",
+        )
+        assert_matches_type(LedgerAccountPayout, ledger_account_payout, path=["response"])
+
+    @parametrize
+    async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
+        ledger_account_payout = await client.ledger_account_payouts.retrieve(
+            "string",
         )
         assert_matches_type(LedgerAccountPayout, ledger_account_payout, path=["response"])
 
@@ -167,7 +182,8 @@ class TestAsyncLedgerAccountPayouts:
 
     @parametrize
     async def test_method_retireve(self, client: AsyncModernTreasury) -> None:
-        ledger_account_payout = await client.ledger_account_payouts.retireve(
-            "string",
-        )
+        with pytest.warns(DeprecationWarning):
+            ledger_account_payout = await client.ledger_account_payouts.retireve(  # pyright: ignore[reportDeprecated]
+                "string",
+            )
         assert_matches_type(LedgerAccountPayout, ledger_account_payout, path=["response"])

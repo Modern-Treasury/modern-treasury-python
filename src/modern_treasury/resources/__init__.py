@@ -43,6 +43,10 @@ from .ledger_account_statements import (
     LedgerAccountStatements,
     AsyncLedgerAccountStatements,
 )
+from .ledger_account_balance_monitors import (
+    LedgerAccountBalanceMonitors,
+    AsyncLedgerAccountBalanceMonitors,
+)
 
 __all__ = [
     "Connections",
@@ -77,6 +81,8 @@ __all__ = [
     "AsyncLedgerAccountCategories",
     "LedgerAccounts",
     "AsyncLedgerAccounts",
+    "LedgerAccountBalanceMonitors",
+    "AsyncLedgerAccountBalanceMonitors",
     "LedgerAccountPayouts",
     "AsyncLedgerAccountPayouts",
     "LedgerAccountStatements",

@@ -89,12 +89,16 @@ class Transaction(BaseModel):
         "interac",
         "masav",
         "neft",
+        "nics",
         "provxchange",
         "rtp",
+        "se_bankgirot",
         "sen",
         "sepa",
+        "sic",
         "signet",
         "wire",
+        "zengin",
     ]
     """The type of the transaction.
 

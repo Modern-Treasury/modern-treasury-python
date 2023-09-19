@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["AccountCollectionFlowCreateParams"]
 
@@ -13,3 +13,25 @@ class AccountCollectionFlowCreateParams(TypedDict, total=False):
     """Required."""
 
     payment_types: Required[List[str]]
+
+    receiving_countries: List[
+        Literal[
+            "USA",
+            "AUS",
+            "BEL",
+            "CAN",
+            "CHL",
+            "CHN",
+            "COL",
+            "FRA",
+            "DEU",
+            "HKG",
+            "IND",
+            "IRL",
+            "ITA",
+            "MEX",
+            "NLD",
+            "PER",
+            "ESP",
+        ]
+    ]

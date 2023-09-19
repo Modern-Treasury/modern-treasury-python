@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Dict, List, Optional
 from typing_extensions import Literal
 
@@ -94,6 +95,37 @@ class LedgerAccountPayouts(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
+            ),
+            cast_to=LedgerAccountPayout,
+        )
+
+    def retrieve(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
+    ) -> LedgerAccountPayout:
+        """
+        Get details on a single ledger account payout.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            f"/api/ledger_account_payouts/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=LedgerAccountPayout,
         )
@@ -211,6 +243,7 @@ class LedgerAccountPayouts(SyncAPIResource):
             model=LedgerAccountPayout,
         )
 
+    @typing_extensions.deprecated("use `retrieve` instead")
     def retireve(
         self,
         id: str,
@@ -234,12 +267,8 @@ class LedgerAccountPayouts(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
-            f"/api/ledger_account_payouts/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=LedgerAccountPayout,
+        return self.retrieve(
+            id=id, extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
         )
 
 
@@ -317,6 +346,37 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
+            ),
+            cast_to=LedgerAccountPayout,
+        )
+
+    async def retrieve(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
+    ) -> LedgerAccountPayout:
+        """
+        Get details on a single ledger account payout.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            f"/api/ledger_account_payouts/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=LedgerAccountPayout,
         )
@@ -434,6 +494,7 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
             model=LedgerAccountPayout,
         )
 
+    @typing_extensions.deprecated("use `retrieve` instead")
     async def retireve(
         self,
         id: str,
@@ -457,10 +518,6 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
-            f"/api/ledger_account_payouts/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=LedgerAccountPayout,
+        return await self.retrieve(
+            id=id, extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
         )

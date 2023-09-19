@@ -293,7 +293,7 @@ class ExpectedPayments(SyncAPIResource):
         internal_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        status: Literal["archived", "reconciled", "unreconciled"] | NotGiven = NOT_GIVEN,
+        status: Literal["archived", "partially_reconciled", "reconciled", "unreconciled"] | NotGiven = NOT_GIVEN,
         type: Literal[
             "ach",
             "au_becs",
@@ -306,12 +306,16 @@ class ExpectedPayments(SyncAPIResource):
             "interac",
             "masav",
             "neft",
+            "nics",
             "provxchange",
             "rtp",
+            "se_bankgirot",
             "sen",
             "sepa",
+            "sic",
             "signet",
             "wire",
+            "zengin",
         ]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -688,7 +692,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
         internal_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        status: Literal["archived", "reconciled", "unreconciled"] | NotGiven = NOT_GIVEN,
+        status: Literal["archived", "partially_reconciled", "reconciled", "unreconciled"] | NotGiven = NOT_GIVEN,
         type: Literal[
             "ach",
             "au_becs",
@@ -701,12 +705,16 @@ class AsyncExpectedPayments(AsyncAPIResource):
             "interac",
             "masav",
             "neft",
+            "nics",
             "provxchange",
             "rtp",
+            "se_bankgirot",
             "sen",
             "sepa",
+            "sic",
             "signet",
             "wire",
+            "zengin",
         ]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

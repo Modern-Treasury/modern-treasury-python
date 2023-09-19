@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Optional
 from typing_extensions import Literal
 
@@ -16,6 +17,37 @@ __all__ = ["PaymentReferences", "AsyncPaymentReferences"]
 
 
 class PaymentReferences(SyncAPIResource):
+    def retrieve(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
+    ) -> PaymentReference:
+        """
+        get payment_reference
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            f"/api/payment_references/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PaymentReference,
+        )
+
     def list(
         self,
         *,
@@ -73,6 +105,7 @@ class PaymentReferences(SyncAPIResource):
             model=PaymentReference,
         )
 
+    @typing_extensions.deprecated("use `retrieve` instead")
     def retireve(
         self,
         id: str,
@@ -96,7 +129,36 @@ class PaymentReferences(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self.retrieve(
+            id=id, extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        )
+
+
+class AsyncPaymentReferences(AsyncAPIResource):
+    async def retrieve(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | None | NotGiven = NOT_GIVEN,
+    ) -> PaymentReference:
+        """
+        get payment_reference
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
             f"/api/payment_references/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -104,8 +166,6 @@ class PaymentReferences(SyncAPIResource):
             cast_to=PaymentReference,
         )
 
-
-class AsyncPaymentReferences(AsyncAPIResource):
     def list(
         self,
         *,
@@ -163,6 +223,7 @@ class AsyncPaymentReferences(AsyncAPIResource):
             model=PaymentReference,
         )
 
+    @typing_extensions.deprecated("use `retrieve` instead")
     async def retireve(
         self,
         id: str,
@@ -186,10 +247,6 @@ class AsyncPaymentReferences(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
-            f"/api/payment_references/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=PaymentReference,
+        return await self.retrieve(
+            id=id, extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
         )

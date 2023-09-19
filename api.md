@@ -121,6 +121,7 @@ Methods:
 - <code title="get /api/invoices/{id}">client.invoices.<a href="./src/modern_treasury/resources/invoices/invoices.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/invoice.py">Invoice</a></code>
 - <code title="patch /api/invoices/{id}">client.invoices.<a href="./src/modern_treasury/resources/invoices/invoices.py">update</a>(id, \*\*<a href="src/modern_treasury/types/invoice_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/invoice.py">Invoice</a></code>
 - <code title="get /api/invoices">client.invoices.<a href="./src/modern_treasury/resources/invoices/invoices.py">list</a>(\*\*<a href="src/modern_treasury/types/invoice_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/invoice.py">SyncPage[Invoice]</a></code>
+- <code title="put /api/invoices/{id}/payment_orders/{payment_order_id}">client.invoices.<a href="./src/modern_treasury/resources/invoices/invoices.py">add_payment_order</a>(id, payment_order_id) -> None</code>
 
 ## LineItems
 
@@ -290,6 +291,22 @@ Methods:
 - <code title="get /api/ledger_accounts">client.ledger_accounts.<a href="./src/modern_treasury/resources/ledger_accounts.py">list</a>(\*\*<a href="src/modern_treasury/types/ledger_account_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account.py">SyncPage[LedgerAccount]</a></code>
 - <code title="delete /api/ledger_accounts/{id}">client.ledger_accounts.<a href="./src/modern_treasury/resources/ledger_accounts.py">delete</a>(id) -> <a href="./src/modern_treasury/types/ledger_account.py">LedgerAccount</a></code>
 
+# LedgerAccountBalanceMonitors
+
+Types:
+
+```python
+from modern_treasury.types import LedgerAccountBalanceMonitor
+```
+
+Methods:
+
+- <code title="post /api/ledger_account_balance_monitors">client.ledger_account_balance_monitors.<a href="./src/modern_treasury/resources/ledger_account_balance_monitors.py">create</a>(\*\*<a href="src/modern_treasury/types/ledger_account_balance_monitor_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_balance_monitor.py">LedgerAccountBalanceMonitor</a></code>
+- <code title="get /api/ledger_account_balance_monitors/{id}">client.ledger_account_balance_monitors.<a href="./src/modern_treasury/resources/ledger_account_balance_monitors.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/ledger_account_balance_monitor.py">LedgerAccountBalanceMonitor</a></code>
+- <code title="patch /api/ledger_account_balance_monitors/{id}">client.ledger_account_balance_monitors.<a href="./src/modern_treasury/resources/ledger_account_balance_monitors.py">update</a>(id, \*\*<a href="src/modern_treasury/types/ledger_account_balance_monitor_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_balance_monitor.py">LedgerAccountBalanceMonitor</a></code>
+- <code title="get /api/ledger_account_balance_monitors">client.ledger_account_balance_monitors.<a href="./src/modern_treasury/resources/ledger_account_balance_monitors.py">list</a>(\*\*<a href="src/modern_treasury/types/ledger_account_balance_monitor_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_balance_monitor.py">SyncPage[LedgerAccountBalanceMonitor]</a></code>
+- <code title="delete /api/ledger_account_balance_monitors/{id}">client.ledger_account_balance_monitors.<a href="./src/modern_treasury/resources/ledger_account_balance_monitors.py">delete</a>(id) -> <a href="./src/modern_treasury/types/ledger_account_balance_monitor.py">LedgerAccountBalanceMonitor</a></code>
+
 # LedgerAccountPayouts
 
 Types:
@@ -301,9 +318,9 @@ from modern_treasury.types import LedgerAccountPayout
 Methods:
 
 - <code title="post /api/ledger_account_payouts">client.ledger_account_payouts.<a href="./src/modern_treasury/resources/ledger_account_payouts.py">create</a>(\*\*<a href="src/modern_treasury/types/ledger_account_payout_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_payout.py">LedgerAccountPayout</a></code>
+- <code title="get /api/ledger_account_payouts/{id}">client.ledger_account_payouts.<a href="./src/modern_treasury/resources/ledger_account_payouts.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/ledger_account_payout.py">LedgerAccountPayout</a></code>
 - <code title="patch /api/ledger_account_payouts/{id}">client.ledger_account_payouts.<a href="./src/modern_treasury/resources/ledger_account_payouts.py">update</a>(id, \*\*<a href="src/modern_treasury/types/ledger_account_payout_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_payout.py">LedgerAccountPayout</a></code>
 - <code title="get /api/ledger_account_payouts">client.ledger_account_payouts.<a href="./src/modern_treasury/resources/ledger_account_payouts.py">list</a>(\*\*<a href="src/modern_treasury/types/ledger_account_payout_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_payout.py">SyncPage[LedgerAccountPayout]</a></code>
-- <code title="get /api/ledger_account_payouts/{id}">client.ledger_account_payouts.<a href="./src/modern_treasury/resources/ledger_account_payouts.py">retireve</a>(id) -> <a href="./src/modern_treasury/types/ledger_account_payout.py">LedgerAccountPayout</a></code>
 
 # LedgerAccountStatements
 
@@ -451,8 +468,8 @@ from modern_treasury.types import PaymentReference
 
 Methods:
 
+- <code title="get /api/payment_references/{id}">client.payment_references.<a href="./src/modern_treasury/resources/payment_references.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/payment_reference.py">PaymentReference</a></code>
 - <code title="get /api/payment_references">client.payment_references.<a href="./src/modern_treasury/resources/payment_references.py">list</a>(\*\*<a href="src/modern_treasury/types/payment_reference_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/payment_reference.py">SyncPage[PaymentReference]</a></code>
-- <code title="get /api/payment_references/{id}">client.payment_references.<a href="./src/modern_treasury/resources/payment_references.py">retireve</a>(id) -> <a href="./src/modern_treasury/types/payment_reference.py">PaymentReference</a></code>
 
 # Returns
 
@@ -492,7 +509,8 @@ from modern_treasury.types.transactions import TransactionLineItem
 
 Methods:
 
-- <code title="get /api/transactions/{transaction_id}/line_items">client.transactions.line_items.<a href="./src/modern_treasury/resources/transactions/line_items.py">list</a>(transaction_id, \*\*<a href="src/modern_treasury/types/transactions/line_item_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/transactions/transaction_line_item.py">SyncPage[TransactionLineItem]</a></code>
+- <code title="get /api/transaction_line_items/{id}">client.transactions.line_items.<a href="./src/modern_treasury/resources/transactions/line_items.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/transactions/transaction_line_item.py">TransactionLineItem</a></code>
+- <code title="get /api/transaction_line_items">client.transactions.line_items.<a href="./src/modern_treasury/resources/transactions/line_items.py">list</a>(\*\*<a href="src/modern_treasury/types/transactions/line_item_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/transactions/transaction_line_item.py">SyncPage[TransactionLineItem]</a></code>
 
 # Validations
 

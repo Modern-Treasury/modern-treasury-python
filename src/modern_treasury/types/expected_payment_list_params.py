@@ -38,7 +38,7 @@ class ExpectedPaymentListParams(TypedDict, total=False):
 
     per_page: int
 
-    status: Literal["archived", "reconciled", "unreconciled"]
+    status: Literal["archived", "partially_reconciled", "reconciled", "unreconciled"]
     """One of unreconciled, reconciled, or archived."""
 
     type: Literal[
@@ -53,12 +53,16 @@ class ExpectedPaymentListParams(TypedDict, total=False):
         "interac",
         "masav",
         "neft",
+        "nics",
         "provxchange",
         "rtp",
+        "se_bankgirot",
         "sen",
         "sepa",
+        "sic",
         "signet",
         "wire",
+        "zengin",
     ]
     """
     One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp,sen,

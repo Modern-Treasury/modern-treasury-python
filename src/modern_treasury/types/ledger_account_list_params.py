@@ -8,7 +8,13 @@ from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["LedgerAccountListParams", "Balances"]
+__all__ = [
+    "LedgerAccountListParams",
+    "AvailableBalanceAmount",
+    "Balances",
+    "PendingBalanceAmount",
+    "PostedBalanceAmount",
+]
 
 
 class LedgerAccountListParams(TypedDict, total=False):
@@ -19,6 +25,12 @@ class LedgerAccountListParams(TypedDict, total=False):
     """
 
     after_cursor: Optional[str]
+
+    available_balance_amount: AvailableBalanceAmount
+    """
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to
+    filter by balance amount.
+    """
 
     balances: Balances
     """
@@ -51,7 +63,19 @@ class LedgerAccountListParams(TypedDict, total=False):
 
     name: str
 
+    pending_balance_amount: PendingBalanceAmount
+    """
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to
+    filter by balance amount.
+    """
+
     per_page: int
+
+    posted_balance_amount: PostedBalanceAmount
+    """
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to
+    filter by balance amount.
+    """
 
     updated_at: Dict[str, Union[str, datetime]]
     """
@@ -59,6 +83,20 @@ class LedgerAccountListParams(TypedDict, total=False):
     updated at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
     updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
     """
+
+
+class AvailableBalanceAmount(TypedDict, total=False):
+    eq: int
+
+    gt: int
+
+    gte: int
+
+    lt: int
+
+    lte: int
+
+    not_eq: int
 
 
 class Balances(TypedDict, total=False):
@@ -69,3 +107,31 @@ class Balances(TypedDict, total=False):
     effective_at_lower_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
 
     effective_at_upper_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+
+
+class PendingBalanceAmount(TypedDict, total=False):
+    eq: int
+
+    gt: int
+
+    gte: int
+
+    lt: int
+
+    lte: int
+
+    not_eq: int
+
+
+class PostedBalanceAmount(TypedDict, total=False):
+    eq: int
+
+    gt: int
+
+    gte: int
+
+    lt: int
+
+    lte: int
+
+    not_eq: int

@@ -25,6 +25,13 @@ class TestPaymentReferences:
     parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
 
     @parametrize
+    def test_method_retrieve(self, client: ModernTreasury) -> None:
+        payment_reference = client.payment_references.retrieve(
+            "string",
+        )
+        assert_matches_type(PaymentReference, payment_reference, path=["response"])
+
+    @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         payment_reference = client.payment_references.list()
         assert_matches_type(SyncPage[PaymentReference], payment_reference, path=["response"])
@@ -42,9 +49,10 @@ class TestPaymentReferences:
 
     @parametrize
     def test_method_retireve(self, client: ModernTreasury) -> None:
-        payment_reference = client.payment_references.retireve(
-            "string",
-        )
+        with pytest.warns(DeprecationWarning):
+            payment_reference = client.payment_references.retireve(  # pyright: ignore[reportDeprecated]
+                "string",
+            )
         assert_matches_type(PaymentReference, payment_reference, path=["response"])
 
 
@@ -56,6 +64,13 @@ class TestAsyncPaymentReferences:
         base_url=base_url, api_key=api_key, _strict_response_validation=False, organization_id="my-organization-ID"
     )
     parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
+
+    @parametrize
+    async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
+        payment_reference = await client.payment_references.retrieve(
+            "string",
+        )
+        assert_matches_type(PaymentReference, payment_reference, path=["response"])
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -75,7 +90,8 @@ class TestAsyncPaymentReferences:
 
     @parametrize
     async def test_method_retireve(self, client: AsyncModernTreasury) -> None:
-        payment_reference = await client.payment_references.retireve(
-            "string",
-        )
+        with pytest.warns(DeprecationWarning):
+            payment_reference = await client.payment_references.retireve(  # pyright: ignore[reportDeprecated]
+                "string",
+            )
         assert_matches_type(PaymentReference, payment_reference, path=["response"])
