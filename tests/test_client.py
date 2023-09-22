@@ -11,6 +11,7 @@ from typing import Any, Dict, Union, cast
 import httpx
 import pytest
 from respx import MockRouter
+from pydantic import ValidationError
 
 from modern_treasury import (
     ModernTreasury,
@@ -18,6 +19,7 @@ from modern_treasury import (
     APIResponseValidationError,
 )
 from modern_treasury._models import BaseModel, FinalRequestOptions
+from modern_treasury._exceptions import APIResponseValidationError
 from modern_treasury._base_client import BaseClient, make_request_options
 
 base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
@@ -424,6 +426,18 @@ class TestModernTreasury:
             assert not c2.is_closed()
             assert not client.is_closed()
         assert client.is_closed()
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_client_response_validation_error(self, respx_mock: MockRouter) -> None:
+        class Model(BaseModel):
+            foo: str
+
+        respx_mock.get("/foo").mock(return_value=httpx.Response(200, json={"foo": {"invalid": True}}))
+
+        with pytest.raises(APIResponseValidationError) as exc:
+            self.client.get("/foo", cast_to=Model)
+
+        assert isinstance(exc.value.__cause__, ValidationError)
 
     @pytest.mark.respx(base_url=base_url)
     def test_received_text_for_expected_json(self, respx_mock: MockRouter) -> None:
@@ -842,6 +856,19 @@ class TestAsyncModernTreasury:
             assert not c2.is_closed()
             assert not client.is_closed()
         assert client.is_closed()
+
+    @pytest.mark.respx(base_url=base_url)
+    @pytest.mark.asyncio
+    async def test_client_response_validation_error(self, respx_mock: MockRouter) -> None:
+        class Model(BaseModel):
+            foo: str
+
+        respx_mock.get("/foo").mock(return_value=httpx.Response(200, json={"foo": {"invalid": True}}))
+
+        with pytest.raises(APIResponseValidationError) as exc:
+            await self.client.get("/foo", cast_to=Model)
+
+        assert isinstance(exc.value.__cause__, ValidationError)
 
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
