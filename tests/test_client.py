@@ -12,7 +12,11 @@ import httpx
 import pytest
 from respx import MockRouter
 
-from modern_treasury import ModernTreasury, AsyncModernTreasury
+from modern_treasury import (
+    ModernTreasury,
+    AsyncModernTreasury,
+    APIResponseValidationError,
+)
 from modern_treasury._models import BaseModel, FinalRequestOptions
 from modern_treasury._base_client import BaseClient, make_request_options
 
@@ -421,6 +425,27 @@ class TestModernTreasury:
             assert not client.is_closed()
         assert client.is_closed()
 
+    @pytest.mark.respx(base_url=base_url)
+    def test_received_text_for_expected_json(self, respx_mock: MockRouter) -> None:
+        class Model(BaseModel):
+            name: str
+
+        respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
+
+        strict_client = ModernTreasury(
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
+        )
+
+        with pytest.raises(APIResponseValidationError):
+            strict_client.get("/foo", cast_to=Model)
+
+        client = ModernTreasury(
+            base_url=base_url, api_key=api_key, _strict_response_validation=False, organization_id="my-organization-ID"
+        )
+
+        response = client.get("/foo", cast_to=Model)
+        assert isinstance(response, str)  # type: ignore[unreachable]
+
 
 class TestAsyncModernTreasury:
     client = AsyncModernTreasury(
@@ -817,3 +842,25 @@ class TestAsyncModernTreasury:
             assert not c2.is_closed()
             assert not client.is_closed()
         assert client.is_closed()
+
+    @pytest.mark.respx(base_url=base_url)
+    @pytest.mark.asyncio
+    async def test_received_text_for_expected_json(self, respx_mock: MockRouter) -> None:
+        class Model(BaseModel):
+            name: str
+
+        respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
+
+        strict_client = AsyncModernTreasury(
+            base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
+        )
+
+        with pytest.raises(APIResponseValidationError):
+            await strict_client.get("/foo", cast_to=Model)
+
+        client = AsyncModernTreasury(
+            base_url=base_url, api_key=api_key, _strict_response_validation=False, organization_id="my-organization-ID"
+        )
+
+        response = await client.get("/foo", cast_to=Model)
+        assert isinstance(response, str)  # type: ignore[unreachable]
