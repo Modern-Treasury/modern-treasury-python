@@ -1,5 +1,31 @@
 # Changelog
 
+## 1.17.0 (2023-09-25)
+
+Full Changelog: [v1.16.0...v1.17.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.16.0...v1.17.0)
+
+### Features
+
+* **api:** updates ([#209](https://github.com/Modern-Treasury/modern-treasury-python/issues/209)) ([27fc6bf](https://github.com/Modern-Treasury/modern-treasury-python/commit/27fc6bfbfd34d54888563cc2351118ffab64fa33))
+* **package:** export a root error type ([#212](https://github.com/Modern-Treasury/modern-treasury-python/issues/212)) ([73bf24d](https://github.com/Modern-Treasury/modern-treasury-python/commit/73bf24d1cd0429cbbf4117c38633cc9b3951f173))
+
+
+### Bug Fixes
+
+* **client:** don't error by default for unexpected content types ([#210](https://github.com/Modern-Treasury/modern-treasury-python/issues/210)) ([0762e5f](https://github.com/Modern-Treasury/modern-treasury-python/commit/0762e5f9f298a244da024c36e66ccf8658c5ccfc))
+* **client:** properly configure model set fields ([#205](https://github.com/Modern-Treasury/modern-treasury-python/issues/205)) ([2f8c907](https://github.com/Modern-Treasury/modern-treasury-python/commit/2f8c907591ae43e92f194e71964de3a58178d27c))
+
+
+### Chores
+
+* **internal:** add helpers ([#206](https://github.com/Modern-Treasury/modern-treasury-python/issues/206)) ([adedb5e](https://github.com/Modern-Treasury/modern-treasury-python/commit/adedb5e0a9bf645cdee5c3ec1be430a729c42853))
+* **internal:** move error classes from _base_exceptions to _exceptions (⚠️ breaking) ([#211](https://github.com/Modern-Treasury/modern-treasury-python/issues/211)) ([f252a33](https://github.com/Modern-Treasury/modern-treasury-python/commit/f252a333dce04b58f212c31b42b7fa03b449b3e8))
+
+
+### Documentation
+
+* add some missing inline documentation ([#202](https://github.com/Modern-Treasury/modern-treasury-python/issues/202)) ([37804de](https://github.com/Modern-Treasury/modern-treasury-python/commit/37804de665eb98bdf7c706b6d8394c2ed9be5598))
+
 ## 1.16.0 (2023-09-11)
 
 Full Changelog: [v1.15.0...v1.16.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.15.0...v1.16.0)
