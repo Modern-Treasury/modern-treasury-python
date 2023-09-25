@@ -18,7 +18,11 @@ __all__ = [
 ]
 
 
-class APIError(Exception):
+class ModernTreasuryError(Exception):
+    pass
+
+
+class APIError(ModernTreasuryError):
     message: str
     request: httpx.Request
 
