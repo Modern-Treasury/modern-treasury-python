@@ -26,7 +26,7 @@ from ._types import (
 from ._version import __version__
 from ._streaming import Stream as Stream
 from ._streaming import AsyncStream as AsyncStream
-from ._exceptions import APIStatusError
+from ._exceptions import APIStatusError, ModernTreasuryError
 from ._base_client import (
     DEFAULT_LIMITS,
     DEFAULT_TIMEOUT,
@@ -124,7 +124,7 @@ class ModernTreasury(SyncAPIClient):
         """
         api_key = api_key or os.environ.get("MODERN_TREASURY_API_KEY", None)
         if not api_key:
-            raise Exception(
+            raise ModernTreasuryError(
                 "The api_key client option must be set either by passing api_key to the client or by setting the MODERN_TREASURY_API_KEY environment variable"
             )
         self.api_key = api_key
@@ -392,7 +392,7 @@ class AsyncModernTreasury(AsyncAPIClient):
         """
         api_key = api_key or os.environ.get("MODERN_TREASURY_API_KEY", None)
         if not api_key:
-            raise Exception(
+            raise ModernTreasuryError(
                 "The api_key client option must be set either by passing api_key to the client or by setting the MODERN_TREASURY_API_KEY environment variable"
             )
         self.api_key = api_key
