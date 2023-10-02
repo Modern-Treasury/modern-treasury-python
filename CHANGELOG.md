@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.17.1 (2023-10-02)
+
+Full Changelog: [v1.17.0...v1.17.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.17.0...v1.17.1)
+
+### Chores
+
+* **tests:** improve raw response test ([#214](https://github.com/Modern-Treasury/modern-treasury-python/issues/214)) ([456480a](https://github.com/Modern-Treasury/modern-treasury-python/commit/456480ace69584a28c68c899520504e85e323975))
+
 ## 1.17.0 (2023-09-25)
 
 Full Changelog: [v1.16.0...v1.17.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.16.0...v1.17.0)
