@@ -23,7 +23,7 @@ from modern_treasury._models import BaseModel, FinalRequestOptions
 from modern_treasury._exceptions import APIResponseValidationError
 from modern_treasury._base_client import BaseClient, make_request_options
 
-base_url = os.environ.get("API_BASE_URL", "http://127.0.0.1:4010")
+base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 api_key = os.environ.get("API_KEY", "something1234")
 
 
