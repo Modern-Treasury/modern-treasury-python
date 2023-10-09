@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.18.0 (2023-10-09)
+
+Full Changelog: [v1.17.1...v1.18.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.17.1...v1.18.0)
+
+### Features
+
+* **client:** add forwards-compatible pydantic methods ([#219](https://github.com/Modern-Treasury/modern-treasury-python/issues/219)) ([b1a9311](https://github.com/Modern-Treasury/modern-treasury-python/commit/b1a9311cb2ab79dc3698124ea69d84582ec12bb1))
+* **client:** handle retry-after header with a date format ([#216](https://github.com/Modern-Treasury/modern-treasury-python/issues/216)) ([947a747](https://github.com/Modern-Treasury/modern-treasury-python/commit/947a7477b9c5c3d932c0622d4ec366ba2f079c90))
+
 ## 1.17.1 (2023-10-02)
 
 Full Changelog: [v1.17.0...v1.17.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.17.0...v1.17.1)
