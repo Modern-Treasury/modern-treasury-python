@@ -64,7 +64,7 @@ class TestModernTreasury:
         assert copied.organization_id == "my-organization-ID"
 
     def test_copy_default_options(self) -> None:
-        # options that have a default are overriden correctly
+        # options that have a default are overridden correctly
         copied = self.client.copy(max_retries=7)
         assert copied.max_retries == 7
         assert self.client.max_retries == 2
@@ -766,7 +766,7 @@ class TestAsyncModernTreasury:
         assert copied.organization_id == "my-organization-ID"
 
     def test_copy_default_options(self) -> None:
-        # options that have a default are overriden correctly
+        # options that have a default are overridden correctly
         copied = self.client.copy(max_retries=7)
         assert copied.max_retries == 7
         assert self.client.max_retries == 2
