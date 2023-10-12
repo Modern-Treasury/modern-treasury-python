@@ -29,7 +29,8 @@ from modern_treasury._base_client import (
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
-api_key = os.environ.get("API_KEY", "something1234")
+api_key = "My API Key"
+organization_id = "my-organization-ID"
 
 
 def _get_params(client: BaseClient) -> dict[str, str]:
@@ -40,7 +41,7 @@ def _get_params(client: BaseClient) -> dict[str, str]:
 
 class TestModernTreasury:
     client = ModernTreasury(
-        base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
+        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
     )
 
     @pytest.mark.respx(base_url=base_url)
@@ -56,12 +57,13 @@ class TestModernTreasury:
         copied = self.client.copy()
         assert id(copied) != id(self.client)
 
-        copied = self.client.copy(api_key="my new api key")
-        assert copied.api_key == "my new api key"
-        assert self.client.api_key == api_key
+        copied = self.client.copy(api_key="another My API Key")
+        assert copied.api_key == "another My API Key"
+        assert self.client.api_key == "My API Key"
 
-        copied = self.client.copy(organization_id="my-organization-ID")
-        assert copied.organization_id == "my-organization-ID"
+        copied = self.client.copy(organization_id="another my-organization-ID")
+        assert copied.organization_id == "another my-organization-ID"
+        assert self.client.organization_id == "my-organization-ID"
 
     def test_copy_default_options(self) -> None:
         # options that have a default are overridden correctly
@@ -83,8 +85,8 @@ class TestModernTreasury:
         client = ModernTreasury(
             base_url=base_url,
             api_key=api_key,
+            organization_id=organization_id,
             _strict_response_validation=True,
-            organization_id="my-organization-ID",
             default_headers={"X-Foo": "bar"},
         )
         assert client.default_headers["X-Foo"] == "bar"
@@ -121,8 +123,8 @@ class TestModernTreasury:
         client = ModernTreasury(
             base_url=base_url,
             api_key=api_key,
+            organization_id=organization_id,
             _strict_response_validation=True,
-            organization_id="my-organization-ID",
             default_query={"foo": "bar"},
         )
         assert _get_params(client)["foo"] == "bar"
@@ -188,8 +190,8 @@ class TestModernTreasury:
         client = ModernTreasury(
             base_url=base_url,
             api_key=api_key,
+            organization_id=organization_id,
             _strict_response_validation=True,
-            organization_id="my-organization-ID",
             timeout=httpx.Timeout(0),
         )
 
@@ -203,8 +205,8 @@ class TestModernTreasury:
             client = ModernTreasury(
                 base_url=base_url,
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
                 http_client=http_client,
             )
 
@@ -217,8 +219,8 @@ class TestModernTreasury:
             client = ModernTreasury(
                 base_url=base_url,
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
                 http_client=http_client,
             )
 
@@ -231,8 +233,8 @@ class TestModernTreasury:
             client = ModernTreasury(
                 base_url=base_url,
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
                 http_client=http_client,
             )
 
@@ -244,8 +246,8 @@ class TestModernTreasury:
         client = ModernTreasury(
             base_url=base_url,
             api_key=api_key,
+            organization_id=organization_id,
             _strict_response_validation=True,
-            organization_id="my-organization-ID",
             default_headers={"X-Foo": "bar"},
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -255,8 +257,8 @@ class TestModernTreasury:
         client2 = ModernTreasury(
             base_url=base_url,
             api_key=api_key,
+            organization_id=organization_id,
             _strict_response_validation=True,
-            organization_id="my-organization-ID",
             default_headers={
                 "X-Foo": "stainless",
                 "X-Stainless-Lang": "my-overriding-header",
@@ -266,12 +268,25 @@ class TestModernTreasury:
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
+    def test_validate_headers(self) -> None:
+        client = ModernTreasury(
+            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
+        )
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+        assert "Basic" in request.headers.get("Authorization")
+
+        with pytest.raises(Exception):
+            client2 = ModernTreasury(
+                base_url=base_url, api_key=None, organization_id=None, _strict_response_validation=True
+            )
+            _ = client2
+
     def test_default_query_option(self) -> None:
         client = ModernTreasury(
             base_url=base_url,
             api_key=api_key,
+            organization_id=organization_id,
             _strict_response_validation=True,
-            organization_id="my-organization-ID",
             default_query={"query_param": "bar"},
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -458,14 +473,14 @@ class TestModernTreasury:
             ModernTreasury(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
             ),
             ModernTreasury(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
                 http_client=httpx.Client(),
             ),
         ],
@@ -487,14 +502,14 @@ class TestModernTreasury:
             ModernTreasury(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
             ),
             ModernTreasury(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
                 http_client=httpx.Client(),
             ),
         ],
@@ -516,14 +531,14 @@ class TestModernTreasury:
             ModernTreasury(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
             ),
             ModernTreasury(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
                 http_client=httpx.Client(),
             ),
         ],
@@ -549,8 +564,8 @@ class TestModernTreasury:
             client = ModernTreasury(
                 base_url=base_url,
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
                 transport=transport,
             )
 
@@ -563,8 +578,8 @@ class TestModernTreasury:
                     ModernTreasury(
                         base_url=base_url,
                         api_key=api_key,
+                        organization_id=organization_id,
                         _strict_response_validation=True,
-                        organization_id="my-organization-ID",
                         transport=httpx.MockTransport(lambda: None),
                         http_client=http_client,
                     )
@@ -581,8 +596,8 @@ class TestModernTreasury:
             client = ModernTreasury(
                 base_url=base_url,
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
                 connection_pool_limits=connection_pool_limits,
             )
 
@@ -600,8 +615,8 @@ class TestModernTreasury:
                     ModernTreasury(
                         base_url=base_url,
                         api_key=api_key,
+                        organization_id=organization_id,
                         _strict_response_validation=True,
-                        organization_id="my-organization-ID",
                         connection_pool_limits=httpx.Limits(
                             max_connections=101, max_keepalive_connections=76, keepalive_expiry=23
                         ),
@@ -618,8 +633,8 @@ class TestModernTreasury:
             client = ModernTreasury(
                 base_url=base_url,
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
                 proxies=proxies,
             )
 
@@ -636,15 +651,15 @@ class TestModernTreasury:
                     ModernTreasury(
                         base_url=base_url,
                         api_key=api_key,
+                        organization_id=organization_id,
                         _strict_response_validation=True,
-                        organization_id="my-organization-ID",
                         proxies="https://www.example.com/proxy",
                         http_client=http_client,
                     )
 
     def test_client_del(self) -> None:
         client = ModernTreasury(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
+            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
         )
         assert not client.is_closed()
 
@@ -654,7 +669,7 @@ class TestModernTreasury:
 
     def test_copied_client_does_not_close_http(self) -> None:
         client = ModernTreasury(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
+            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
         )
         assert not client.is_closed()
 
@@ -668,7 +683,7 @@ class TestModernTreasury:
 
     def test_client_context_manager(self) -> None:
         client = ModernTreasury(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
+            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
         )
         with client as c2:
             assert c2 is client
@@ -696,14 +711,14 @@ class TestModernTreasury:
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
         strict_client = ModernTreasury(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
+            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
         )
 
         with pytest.raises(APIResponseValidationError):
             strict_client.get("/foo", cast_to=Model)
 
         client = ModernTreasury(
-            base_url=base_url, api_key=api_key, _strict_response_validation=False, organization_id="my-organization-ID"
+            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=False
         )
 
         response = client.get("/foo", cast_to=Model)
@@ -730,7 +745,7 @@ class TestModernTreasury:
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
         client = ModernTreasury(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
+            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
         )
 
         headers = httpx.Headers({"retry-after": retry_after})
@@ -741,7 +756,7 @@ class TestModernTreasury:
 
 class TestAsyncModernTreasury:
     client = AsyncModernTreasury(
-        base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
+        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
     )
 
     @pytest.mark.respx(base_url=base_url)
@@ -758,12 +773,13 @@ class TestAsyncModernTreasury:
         copied = self.client.copy()
         assert id(copied) != id(self.client)
 
-        copied = self.client.copy(api_key="my new api key")
-        assert copied.api_key == "my new api key"
-        assert self.client.api_key == api_key
+        copied = self.client.copy(api_key="another My API Key")
+        assert copied.api_key == "another My API Key"
+        assert self.client.api_key == "My API Key"
 
-        copied = self.client.copy(organization_id="my-organization-ID")
-        assert copied.organization_id == "my-organization-ID"
+        copied = self.client.copy(organization_id="another my-organization-ID")
+        assert copied.organization_id == "another my-organization-ID"
+        assert self.client.organization_id == "my-organization-ID"
 
     def test_copy_default_options(self) -> None:
         # options that have a default are overridden correctly
@@ -785,8 +801,8 @@ class TestAsyncModernTreasury:
         client = AsyncModernTreasury(
             base_url=base_url,
             api_key=api_key,
+            organization_id=organization_id,
             _strict_response_validation=True,
-            organization_id="my-organization-ID",
             default_headers={"X-Foo": "bar"},
         )
         assert client.default_headers["X-Foo"] == "bar"
@@ -823,8 +839,8 @@ class TestAsyncModernTreasury:
         client = AsyncModernTreasury(
             base_url=base_url,
             api_key=api_key,
+            organization_id=organization_id,
             _strict_response_validation=True,
-            organization_id="my-organization-ID",
             default_query={"foo": "bar"},
         )
         assert _get_params(client)["foo"] == "bar"
@@ -890,8 +906,8 @@ class TestAsyncModernTreasury:
         client = AsyncModernTreasury(
             base_url=base_url,
             api_key=api_key,
+            organization_id=organization_id,
             _strict_response_validation=True,
-            organization_id="my-organization-ID",
             timeout=httpx.Timeout(0),
         )
 
@@ -905,8 +921,8 @@ class TestAsyncModernTreasury:
             client = AsyncModernTreasury(
                 base_url=base_url,
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
                 http_client=http_client,
             )
 
@@ -919,8 +935,8 @@ class TestAsyncModernTreasury:
             client = AsyncModernTreasury(
                 base_url=base_url,
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
                 http_client=http_client,
             )
 
@@ -933,8 +949,8 @@ class TestAsyncModernTreasury:
             client = AsyncModernTreasury(
                 base_url=base_url,
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
                 http_client=http_client,
             )
 
@@ -946,8 +962,8 @@ class TestAsyncModernTreasury:
         client = AsyncModernTreasury(
             base_url=base_url,
             api_key=api_key,
+            organization_id=organization_id,
             _strict_response_validation=True,
-            organization_id="my-organization-ID",
             default_headers={"X-Foo": "bar"},
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -957,8 +973,8 @@ class TestAsyncModernTreasury:
         client2 = AsyncModernTreasury(
             base_url=base_url,
             api_key=api_key,
+            organization_id=organization_id,
             _strict_response_validation=True,
-            organization_id="my-organization-ID",
             default_headers={
                 "X-Foo": "stainless",
                 "X-Stainless-Lang": "my-overriding-header",
@@ -968,12 +984,25 @@ class TestAsyncModernTreasury:
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
+    def test_validate_headers(self) -> None:
+        client = AsyncModernTreasury(
+            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
+        )
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+        assert "Basic" in request.headers.get("Authorization")
+
+        with pytest.raises(Exception):
+            client2 = AsyncModernTreasury(
+                base_url=base_url, api_key=None, organization_id=None, _strict_response_validation=True
+            )
+            _ = client2
+
     def test_default_query_option(self) -> None:
         client = AsyncModernTreasury(
             base_url=base_url,
             api_key=api_key,
+            organization_id=organization_id,
             _strict_response_validation=True,
-            organization_id="my-organization-ID",
             default_query={"query_param": "bar"},
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1160,14 +1189,14 @@ class TestAsyncModernTreasury:
             AsyncModernTreasury(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
             ),
             AsyncModernTreasury(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
                 http_client=httpx.AsyncClient(),
             ),
         ],
@@ -1189,14 +1218,14 @@ class TestAsyncModernTreasury:
             AsyncModernTreasury(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
             ),
             AsyncModernTreasury(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
                 http_client=httpx.AsyncClient(),
             ),
         ],
@@ -1218,14 +1247,14 @@ class TestAsyncModernTreasury:
             AsyncModernTreasury(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
             ),
             AsyncModernTreasury(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
                 http_client=httpx.AsyncClient(),
             ),
         ],
@@ -1251,8 +1280,8 @@ class TestAsyncModernTreasury:
             client = AsyncModernTreasury(
                 base_url=base_url,
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
                 transport=transport,
             )
 
@@ -1265,8 +1294,8 @@ class TestAsyncModernTreasury:
                     AsyncModernTreasury(
                         base_url=base_url,
                         api_key=api_key,
+                        organization_id=organization_id,
                         _strict_response_validation=True,
-                        organization_id="my-organization-ID",
                         transport=httpx.MockTransport(lambda: None),
                         http_client=http_client,
                     )
@@ -1283,8 +1312,8 @@ class TestAsyncModernTreasury:
             client = AsyncModernTreasury(
                 base_url=base_url,
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
                 connection_pool_limits=connection_pool_limits,
             )
 
@@ -1302,8 +1331,8 @@ class TestAsyncModernTreasury:
                     AsyncModernTreasury(
                         base_url=base_url,
                         api_key=api_key,
+                        organization_id=organization_id,
                         _strict_response_validation=True,
-                        organization_id="my-organization-ID",
                         connection_pool_limits=httpx.Limits(
                             max_connections=101, max_keepalive_connections=76, keepalive_expiry=23
                         ),
@@ -1320,8 +1349,8 @@ class TestAsyncModernTreasury:
             client = AsyncModernTreasury(
                 base_url=base_url,
                 api_key=api_key,
+                organization_id=organization_id,
                 _strict_response_validation=True,
-                organization_id="my-organization-ID",
                 proxies=proxies,
             )
 
@@ -1338,15 +1367,15 @@ class TestAsyncModernTreasury:
                     AsyncModernTreasury(
                         base_url=base_url,
                         api_key=api_key,
+                        organization_id=organization_id,
                         _strict_response_validation=True,
-                        organization_id="my-organization-ID",
                         proxies="https://www.example.com/proxy",
                         http_client=http_client,
                     )
 
     async def test_client_del(self) -> None:
         client = AsyncModernTreasury(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
+            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
         )
         assert not client.is_closed()
 
@@ -1357,7 +1386,7 @@ class TestAsyncModernTreasury:
 
     async def test_copied_client_does_not_close_http(self) -> None:
         client = AsyncModernTreasury(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
+            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
         )
         assert not client.is_closed()
 
@@ -1372,7 +1401,7 @@ class TestAsyncModernTreasury:
 
     async def test_client_context_manager(self) -> None:
         client = AsyncModernTreasury(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
+            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
         )
         async with client as c2:
             assert c2 is client
@@ -1402,14 +1431,14 @@ class TestAsyncModernTreasury:
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
         strict_client = AsyncModernTreasury(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
+            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
         )
 
         with pytest.raises(APIResponseValidationError):
             await strict_client.get("/foo", cast_to=Model)
 
         client = AsyncModernTreasury(
-            base_url=base_url, api_key=api_key, _strict_response_validation=False, organization_id="my-organization-ID"
+            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=False
         )
 
         response = await client.get("/foo", cast_to=Model)
@@ -1437,7 +1466,7 @@ class TestAsyncModernTreasury:
     @pytest.mark.asyncio
     async def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
         client = AsyncModernTreasury(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, organization_id="my-organization-ID"
+            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
         )
 
         headers = httpx.Headers({"retry-after": retry_after})

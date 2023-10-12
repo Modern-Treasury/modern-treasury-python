@@ -92,10 +92,10 @@ class ModernTreasury(SyncAPIClient):
     def __init__(
         self,
         *,
-        organization_id: str | None = None,
-        webhook_key: str | None = None,
+        api_key: str | None = os.environ.get("MODERN_TREASURY_API_KEY", None),
+        organization_id: str | None = os.environ.get("MODERN_TREASURY_ORGANIZATION_ID", None),
+        webhook_key: str | None = os.environ.get("MODERN_TREASURY_WEBHOOK_KEY", None),
         base_url: Optional[str] = None,
-        api_key: Optional[str] = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
@@ -125,23 +125,19 @@ class ModernTreasury(SyncAPIClient):
         - `organization_id` from `MODERN_TREASURY_ORGANIZATION_ID`
         - `webhook_key` from `MODERN_TREASURY_WEBHOOK_KEY`
         """
-        api_key = api_key or os.environ.get("MODERN_TREASURY_API_KEY", None)
-        if not api_key:
+        if api_key is None:
             raise ModernTreasuryError(
                 "The api_key client option must be set either by passing api_key to the client or by setting the MODERN_TREASURY_API_KEY environment variable"
             )
         self.api_key = api_key
 
-        organization_id_envvar = os.environ.get("MODERN_TREASURY_ORGANIZATION_ID", None)
-        organization_id = organization_id or organization_id_envvar or None
         if organization_id is None:
-            raise ValueError(
+            raise ModernTreasuryError(
                 "The organization_id client option must be set either by passing organization_id to the client or by setting the MODERN_TREASURY_ORGANIZATION_ID environment variable"
             )
         self.organization_id = organization_id
 
-        webhook_key_envvar = os.environ.get("MODERN_TREASURY_WEBHOOK_KEY", None)
-        self.webhook_key = webhook_key or webhook_key_envvar or None
+        self.webhook_key = webhook_key
 
         if base_url is None:
             base_url = f"https://app.moderntreasury.com"
@@ -208,9 +204,9 @@ class ModernTreasury(SyncAPIClient):
     def copy(
         self,
         *,
+        api_key: str | None = None,
         organization_id: str | None = None,
         webhook_key: str | None = None,
-        api_key: str | None = None,
         base_url: str | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
@@ -264,10 +260,10 @@ class ModernTreasury(SyncAPIClient):
             http_client = http_client or self._client
 
         return self.__class__(
+            api_key=api_key or self.api_key,
             organization_id=organization_id or self.organization_id,
             webhook_key=webhook_key or self.webhook_key,
             base_url=base_url or str(self.base_url),
-            api_key=api_key or self.api_key,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
             connection_pool_limits=connection_pool_limits,
@@ -387,10 +383,10 @@ class AsyncModernTreasury(AsyncAPIClient):
     def __init__(
         self,
         *,
-        organization_id: str | None = None,
-        webhook_key: str | None = None,
+        api_key: str | None = os.environ.get("MODERN_TREASURY_API_KEY", None),
+        organization_id: str | None = os.environ.get("MODERN_TREASURY_ORGANIZATION_ID", None),
+        webhook_key: str | None = os.environ.get("MODERN_TREASURY_WEBHOOK_KEY", None),
         base_url: Optional[str] = None,
-        api_key: Optional[str] = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
@@ -420,23 +416,19 @@ class AsyncModernTreasury(AsyncAPIClient):
         - `organization_id` from `MODERN_TREASURY_ORGANIZATION_ID`
         - `webhook_key` from `MODERN_TREASURY_WEBHOOK_KEY`
         """
-        api_key = api_key or os.environ.get("MODERN_TREASURY_API_KEY", None)
-        if not api_key:
+        if api_key is None:
             raise ModernTreasuryError(
                 "The api_key client option must be set either by passing api_key to the client or by setting the MODERN_TREASURY_API_KEY environment variable"
             )
         self.api_key = api_key
 
-        organization_id_envvar = os.environ.get("MODERN_TREASURY_ORGANIZATION_ID", None)
-        organization_id = organization_id or organization_id_envvar or None
         if organization_id is None:
-            raise ValueError(
+            raise ModernTreasuryError(
                 "The organization_id client option must be set either by passing organization_id to the client or by setting the MODERN_TREASURY_ORGANIZATION_ID environment variable"
             )
         self.organization_id = organization_id
 
-        webhook_key_envvar = os.environ.get("MODERN_TREASURY_WEBHOOK_KEY", None)
-        self.webhook_key = webhook_key or webhook_key_envvar or None
+        self.webhook_key = webhook_key
 
         if base_url is None:
             base_url = f"https://app.moderntreasury.com"
@@ -503,9 +495,9 @@ class AsyncModernTreasury(AsyncAPIClient):
     def copy(
         self,
         *,
+        api_key: str | None = None,
         organization_id: str | None = None,
         webhook_key: str | None = None,
-        api_key: str | None = None,
         base_url: str | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.AsyncClient | None = None,
@@ -559,10 +551,10 @@ class AsyncModernTreasury(AsyncAPIClient):
             http_client = http_client or self._client
 
         return self.__class__(
+            api_key=api_key or self.api_key,
             organization_id=organization_id or self.organization_id,
             webhook_key=webhook_key or self.webhook_key,
             base_url=base_url or str(self.base_url),
-            api_key=api_key or self.api_key,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
             connection_pool_limits=connection_pool_limits,
