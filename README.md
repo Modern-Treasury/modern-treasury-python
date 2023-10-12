@@ -35,9 +35,10 @@ The full API of this library can be found in [api.md](https://www.github.com/Mod
 from modern_treasury import ModernTreasury
 
 client = ModernTreasury(
-    # defaults to os.environ.get("MODERN_TREASURY_API_KEY")
-    api_key="my api key",
+    # defaults to os.environ.get("MODERN_TREASURY_ORGANIZATION_ID")
     organization_id="my-organization-ID",
+    # defaults to os.environ.get("MODERN_TREASURY_API_KEY")
+    api_key="My API Key",
 )
 
 external_account = client.external_accounts.create(
@@ -47,8 +48,10 @@ external_account = client.external_accounts.create(
 print(external_account.id)
 ```
 
-While you can provide an `api_key` keyword argument, we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-and adding `MODERN_TREASURY_API_KEY="my api key"` to your `.env` file so that your API Key is not stored in source control.
+While you can provide a `organization_id` keyword argument,
+we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
+to add `MODERN_TREASURY_ORGANIZATION_ID="my-organization-ID"` to your `.env` file
+so that your Organization ID is not stored in source control.
 
 ## Async usage
 
@@ -58,9 +61,10 @@ Simply import `AsyncModernTreasury` instead of `ModernTreasury` and use `await` 
 from modern_treasury import AsyncModernTreasury
 
 client = AsyncModernTreasury(
-    # defaults to os.environ.get("MODERN_TREASURY_API_KEY")
-    api_key="my api key",
+    # defaults to os.environ.get("MODERN_TREASURY_ORGANIZATION_ID")
     organization_id="my-organization-ID",
+    # defaults to os.environ.get("MODERN_TREASURY_API_KEY")
+    api_key="My API Key",
 )
 
 
@@ -92,9 +96,7 @@ This library provides auto-paginating iterators with each list response, so you 
 ```python
 import modern_treasury
 
-client = ModernTreasury(
-    organization_id="my-organization-ID",
-)
+client = ModernTreasury()
 
 all_external_accounts = []
 # Automatically fetches more pages as needed.
@@ -110,9 +112,7 @@ Or, asynchronously:
 import asyncio
 import modern_treasury
 
-client = AsyncModernTreasury(
-    organization_id="my-organization-ID",
-)
+client = AsyncModernTreasury()
 
 
 async def main() -> None:
@@ -157,9 +157,7 @@ Nested parameters are dictionaries, typed using `TypedDict`, for example:
 ```python
 from modern_treasury import ModernTreasury
 
-client = ModernTreasury(
-    organization_id="my-organization-ID",
-)
+client = ModernTreasury()
 
 client.external_accounts.create(
     foo={
@@ -176,9 +174,7 @@ Request parameters that correspond to file uploads can be passed as `bytes` or a
 from pathlib import Path
 from modern_treasury import ModernTreasury
 
-client = ModernTreasury(
-    organization_id="my-organization-ID",
-)
+client = ModernTreasury()
 
 contents = Path("my/file.txt").read_bytes()
 client.documents.create(
@@ -194,9 +190,7 @@ The async client uses the exact same interface. This example uses `aiofiles` to 
 import aiofiles
 from modern_treasury import ModernTreasury
 
-client = ModernTreasury(
-    organization_id="my-organization-ID",
-)
+client = ModernTreasury()
 
 async with aiofiles.open("my/file.txt", mode="rb") as f:
     contents = await f.read()
@@ -221,9 +215,7 @@ All errors inherit from `modern_treasury.APIError`.
 import modern_treasury
 from modern_treasury import ModernTreasury
 
-client = ModernTreasury(
-    organization_id="my-organization-ID",
-)
+client = ModernTreasury()
 
 try:
     client.external_accounts.create(
@@ -268,7 +260,6 @@ from modern_treasury import ModernTreasury
 client = ModernTreasury(
     # default is 2
     max_retries=0,
-    organization_id="my-organization-ID",
 )
 
 # Or, configure per-request:
@@ -287,13 +278,11 @@ from modern_treasury import ModernTreasury
 client = ModernTreasury(
     # default is 60s
     timeout=20.0,
-    organization_id="my-organization-ID",
 )
 
 # More granular control:
 client = ModernTreasury(
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
-    organization_id="my-organization-ID",
 )
 
 # Override per-request:
@@ -338,7 +327,6 @@ client = ModernTreasury(
         proxies="http://my.test.proxy.example.com",
         transport=httpx.HTTPTransport(local_address="0.0.0.0"),
     ),
-    organization_id="my-organization-ID",
 )
 ```
 
