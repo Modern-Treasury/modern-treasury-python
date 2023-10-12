@@ -92,9 +92,9 @@ class ModernTreasury(SyncAPIClient):
     def __init__(
         self,
         *,
-        api_key: str | None = os.environ.get("MODERN_TREASURY_API_KEY", None),
-        organization_id: str | None = os.environ.get("MODERN_TREASURY_ORGANIZATION_ID", None),
-        webhook_key: str | None = os.environ.get("MODERN_TREASURY_WEBHOOK_KEY", None),
+        api_key: str | None = None,
+        organization_id: str | None = None,
+        webhook_key: str | None = None,
         base_url: Optional[str] = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -126,17 +126,23 @@ class ModernTreasury(SyncAPIClient):
         - `webhook_key` from `MODERN_TREASURY_WEBHOOK_KEY`
         """
         if api_key is None:
+            api_key = os.environ.get("MODERN_TREASURY_API_KEY")
+        if api_key is None:
             raise ModernTreasuryError(
                 "The api_key client option must be set either by passing api_key to the client or by setting the MODERN_TREASURY_API_KEY environment variable"
             )
         self.api_key = api_key
 
         if organization_id is None:
+            organization_id = os.environ.get("MODERN_TREASURY_ORGANIZATION_ID")
+        if organization_id is None:
             raise ModernTreasuryError(
                 "The organization_id client option must be set either by passing organization_id to the client or by setting the MODERN_TREASURY_ORGANIZATION_ID environment variable"
             )
         self.organization_id = organization_id
 
+        if webhook_key is None:
+            webhook_key = os.environ.get("MODERN_TREASURY_WEBHOOK_KEY") or None
         self.webhook_key = webhook_key
 
         if base_url is None:
@@ -383,9 +389,9 @@ class AsyncModernTreasury(AsyncAPIClient):
     def __init__(
         self,
         *,
-        api_key: str | None = os.environ.get("MODERN_TREASURY_API_KEY", None),
-        organization_id: str | None = os.environ.get("MODERN_TREASURY_ORGANIZATION_ID", None),
-        webhook_key: str | None = os.environ.get("MODERN_TREASURY_WEBHOOK_KEY", None),
+        api_key: str | None = None,
+        organization_id: str | None = None,
+        webhook_key: str | None = None,
         base_url: Optional[str] = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -417,17 +423,23 @@ class AsyncModernTreasury(AsyncAPIClient):
         - `webhook_key` from `MODERN_TREASURY_WEBHOOK_KEY`
         """
         if api_key is None:
+            api_key = os.environ.get("MODERN_TREASURY_API_KEY")
+        if api_key is None:
             raise ModernTreasuryError(
                 "The api_key client option must be set either by passing api_key to the client or by setting the MODERN_TREASURY_API_KEY environment variable"
             )
         self.api_key = api_key
 
         if organization_id is None:
+            organization_id = os.environ.get("MODERN_TREASURY_ORGANIZATION_ID")
+        if organization_id is None:
             raise ModernTreasuryError(
                 "The organization_id client option must be set either by passing organization_id to the client or by setting the MODERN_TREASURY_ORGANIZATION_ID environment variable"
             )
         self.organization_id = organization_id
 
+        if webhook_key is None:
+            webhook_key = os.environ.get("MODERN_TREASURY_WEBHOOK_KEY") or None
         self.webhook_key = webhook_key
 
         if base_url is None:
