@@ -6,6 +6,7 @@ import hmac
 from hashlib import sha256
 
 from .._types import HeadersLike
+from .._utils import get_required_header
 from .._resource import SyncAPIResource, AsyncAPIResource
 
 __all__ = ["Webhooks", "AsyncWebhooks"]
@@ -56,9 +57,7 @@ class Webhooks(SyncAPIResource):
     ) -> bool:
         """Returns whether or not the webhook payload was sent by Modern Treasury."""
         signature = self.get_signature(payload, key=key)
-        expected_signature = headers.get("X-Signature") or headers.get("x-signature")
-        if expected_signature is None:
-            raise ValueError("Could not find an X-Signature header")
+        expected_signature = get_required_header(headers, "X-Signature")
 
         return signature == expected_signature
 
@@ -108,8 +107,6 @@ class AsyncWebhooks(AsyncAPIResource):
     ) -> bool:
         """Returns whether or not the webhook payload was sent by Modern Treasury."""
         signature = self.get_signature(payload, key=key)
-        expected_signature = headers.get("X-Signature") or headers.get("x-signature")
-        if expected_signature is None:
-            raise ValueError("Could not find an X-Signature header")
+        expected_signature = get_required_header(headers, "X-Signature")
 
         return signature == expected_signature

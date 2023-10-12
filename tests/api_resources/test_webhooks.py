@@ -60,7 +60,7 @@ class TestWebhooks:
         assert sig != other_sig
 
     def test_validate_signature_no_header(self) -> None:
-        with pytest.raises(ValueError, match="Could not find an X-Signature header"):
+        with pytest.raises(ValueError, match="Could not find X-Signature header"):
             self.strict_client.webhooks.validate_signature("foo", headers={"foo": "bar"}, key="foo")
 
     def test_validate_signature(self) -> None:
@@ -111,7 +111,7 @@ class TestWebhooks:
         )
         assert result is True
 
-        with pytest.raises(ValueError, match="Could not find an X-Signature header"):
+        with pytest.raises(ValueError, match="Could not find X-Signature header"):
             self.strict_client.webhooks.validate_signature(
                 '{"foo":"bar"}',
                 headers=Headers({}),
@@ -165,7 +165,7 @@ class TestAsyncWebhooks:
         assert sig != other_sig
 
     def test_validate_signature_no_header(self) -> None:
-        with pytest.raises(ValueError, match="Could not find an X-Signature header"):
+        with pytest.raises(ValueError, match="Could not find X-Signature header"):
             self.strict_client.webhooks.validate_signature("foo", headers={"foo": "bar"}, key="foo")
 
     def test_validate_signature(self) -> None:
@@ -216,7 +216,7 @@ class TestAsyncWebhooks:
         )
         assert result is True
 
-        with pytest.raises(ValueError, match="Could not find an X-Signature header"):
+        with pytest.raises(ValueError, match="Could not find X-Signature header"):
             self.strict_client.webhooks.validate_signature(
                 '{"foo":"bar"}',
                 headers=Headers({}),
