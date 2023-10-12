@@ -31,6 +31,7 @@ from ._exceptions import (
     UnprocessableEntityError,
     APIResponseValidationError,
 )
+from ._utils._logs import setup_logging as _setup_logging
 
 __all__ = [
     "types",
@@ -63,6 +64,8 @@ __all__ = [
     "AsyncModernTreasury",
     "file_from_path",
 ]
+
+_setup_logging()
 
 # Update the __module__ attribute for exported symbols so that
 # error messages point to this module instead of the module
