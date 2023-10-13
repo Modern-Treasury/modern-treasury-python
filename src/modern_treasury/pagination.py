@@ -30,7 +30,7 @@ class SyncPage(BaseSyncPage[ModelT], BasePage[ModelT], Generic[ModelT]):
         return PageInfo(params={"after_cursor": cursor})
 
     @classmethod
-    def build(cls: Type[_BaseModelT], *, response: Response, data: object) -> _BaseModelT:
+    def build(cls: Type[_BaseModelT], *, response: Response, data: object) -> _BaseModelT:  # noqa: ARG003
         return cls.construct(
             **{
                 **(cast(Mapping[str, Any], data) if is_mapping(data) else {"items": data}),
@@ -56,7 +56,7 @@ class AsyncPage(BaseAsyncPage[ModelT], BasePage[ModelT], Generic[ModelT]):
         return PageInfo(params={"after_cursor": cursor})
 
     @classmethod
-    def build(cls: Type[_BaseModelT], *, response: Response, data: object) -> _BaseModelT:
+    def build(cls: Type[_BaseModelT], *, response: Response, data: object) -> _BaseModelT:  # noqa: ARG003
         return cls.construct(
             **{
                 **(cast(Mapping[str, Any], data) if is_mapping(data) else {"items": data}),
