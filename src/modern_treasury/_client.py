@@ -142,7 +142,7 @@ class ModernTreasury(SyncAPIClient):
         self.organization_id = organization_id
 
         if webhook_key is None:
-            webhook_key = os.environ.get("MODERN_TREASURY_WEBHOOK_KEY") or None
+            webhook_key = os.environ.get("MODERN_TREASURY_WEBHOOK_KEY")
         self.webhook_key = webhook_key
 
         if base_url is None:
@@ -439,7 +439,7 @@ class AsyncModernTreasury(AsyncAPIClient):
         self.organization_id = organization_id
 
         if webhook_key is None:
-            webhook_key = os.environ.get("MODERN_TREASURY_WEBHOOK_KEY") or None
+            webhook_key = os.environ.get("MODERN_TREASURY_WEBHOOK_KEY")
         self.webhook_key = webhook_key
 
         if base_url is None:
