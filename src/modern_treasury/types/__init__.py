@@ -7,6 +7,7 @@ from .ledger import Ledger as Ledger
 from .shared import Currency as Currency
 from .shared import AccountsType as AccountsType
 from .shared import AsyncResponse as AsyncResponse
+from .shared import TransactionDirection as TransactionDirection
 from .invoice import Invoice as Invoice
 from .document import Document as Document
 from .line_item import LineItem as LineItem

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Dict, List, Union, Optional
 from datetime import date
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
 from ..types import shared_params
 from .._utils import PropertyInfo
@@ -28,7 +28,7 @@ class ExpectedPaymentCreateParams(TypedDict, total=False):
     as 1000.
     """
 
-    direction: Required[Literal["credit", "debit"]]
+    direction: Required[shared_params.TransactionDirection]
     """One of credit or debit.
 
     When you are receiving money, use credit. When you are being charged, use debit.
