@@ -26,7 +26,7 @@ class InternalAccountListParams(TypedDict, total=False):
     parameters.
     """
 
-    payment_direction: Literal["credit", "debit"]
+    payment_direction: shared_params.TransactionDirection
     """The direction of payments that can be made by internal account."""
 
     payment_type: Literal[

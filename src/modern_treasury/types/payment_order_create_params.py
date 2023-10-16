@@ -297,7 +297,7 @@ class LedgerTransactionLedgerEntry(TypedDict, total=False):
     e.g. $10 would be represented as 1000. Can be any integer up to 36 digits.
     """
 
-    direction: Required[Literal["credit", "debit"]]
+    direction: Required[shared_params.TransactionDirection]
     """One of `credit`, `debit`.
 
     Describes the direction money is flowing in the transaction. A `credit` moves
@@ -484,7 +484,7 @@ class ReceivingAccountLedgerAccount(TypedDict, total=False):
     name: Required[str]
     """The name of the ledger account."""
 
-    normal_balance: Required[Literal["credit", "debit"]]
+    normal_balance: Required[shared_params.TransactionDirection]
     """The normal balance of the ledger account."""
 
     currency_exponent: Optional[int]

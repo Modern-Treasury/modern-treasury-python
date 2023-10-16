@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Dict, Union, Optional
 from datetime import date
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict
 
 from ..types import shared_params
 from .._utils import PropertyInfo
@@ -43,7 +43,7 @@ class ExpectedPaymentUpdateParams(TypedDict, total=False):
     description: Optional[str]
     """An optional description for internal use."""
 
-    direction: Literal["credit", "debit"]
+    direction: shared_params.TransactionDirection
     """One of credit or debit.
 
     When you are receiving money, use credit. When you are being charged, use debit.

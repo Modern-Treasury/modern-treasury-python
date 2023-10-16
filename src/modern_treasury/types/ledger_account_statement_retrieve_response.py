@@ -2,8 +2,8 @@
 
 from typing import Dict, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
+from .shared import TransactionDirection
 from .._models import BaseModel
 
 __all__ = [
@@ -173,7 +173,7 @@ class LedgerAccountStatementRetrieveResponse(BaseModel):
     ledger_account_lock_version: int
     """Lock version of the ledger account at the time of statement generation."""
 
-    ledger_account_normal_balance: Literal["credit", "debit"]
+    ledger_account_normal_balance: TransactionDirection
     """The normal balance of the ledger account."""
 
     ledger_id: str

@@ -4,6 +4,7 @@ from typing import Dict, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
+from .shared import TransactionDirection
 from .._models import BaseModel
 
 __all__ = [
@@ -84,7 +85,7 @@ class LedgerEntry(BaseModel):
 
     created_at: datetime
 
-    direction: Literal["credit", "debit"]
+    direction: TransactionDirection
     """One of `credit`, `debit`.
 
     Describes the direction money is flowing in the transaction. A `credit` moves
