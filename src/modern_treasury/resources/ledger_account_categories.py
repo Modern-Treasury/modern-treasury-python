@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 from typing import Dict, List, Optional
-from typing_extensions import Literal
 
 from ..types import (
     LedgerAccountCategory,
+    shared_params,
     ledger_account_category_list_params,
     ledger_account_category_create_params,
     ledger_account_category_update_params,
@@ -28,7 +28,7 @@ class LedgerAccountCategories(SyncAPIResource):
         currency: str,
         ledger_id: str,
         name: str,
-        normal_balance: Literal["credit", "debit"],
+        normal_balance: shared_params.TransactionDirection,
         currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -470,7 +470,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         currency: str,
         ledger_id: str,
         name: str,
-        normal_balance: Literal["credit", "debit"],
+        normal_balance: shared_params.TransactionDirection,
         currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,

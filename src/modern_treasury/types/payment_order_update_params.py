@@ -335,7 +335,7 @@ class ReceivingAccountLedgerAccount(TypedDict, total=False):
     name: Required[str]
     """The name of the ledger account."""
 
-    normal_balance: Required[Literal["credit", "debit"]]
+    normal_balance: Required[shared_params.TransactionDirection]
     """The normal balance of the ledger account."""
 
     currency_exponent: Optional[int]

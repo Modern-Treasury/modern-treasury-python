@@ -4,6 +4,7 @@ from typing import Dict, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
+from .shared import TransactionDirection
 from .._models import BaseModel
 
 __all__ = ["LedgerAccount", "Balances", "BalancesAvailableBalance", "BalancesPendingBalance", "BalancesPostedBalance"]
@@ -132,7 +133,7 @@ class LedgerAccount(BaseModel):
     name: str
     """The name of the ledger account."""
 
-    normal_balance: Literal["credit", "debit"]
+    normal_balance: TransactionDirection
     """The normal balance of the ledger account."""
 
     object: str

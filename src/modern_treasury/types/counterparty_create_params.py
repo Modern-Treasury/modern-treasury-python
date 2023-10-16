@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Dict, List, Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from ..types import shared_params
 from .external_account_type import ExternalAccountType
 
 __all__ = [
@@ -106,7 +107,7 @@ class AccountLedgerAccount(TypedDict, total=False):
     name: Required[str]
     """The name of the ledger account."""
 
-    normal_balance: Required[Literal["credit", "debit"]]
+    normal_balance: Required[shared_params.TransactionDirection]
     """The normal balance of the ledger account."""
 
     currency_exponent: Optional[int]

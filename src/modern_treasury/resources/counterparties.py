@@ -9,6 +9,7 @@ from typing_extensions import Literal
 from ..types import (
     Counterparty,
     CounterpartyCollectAccountResponse,
+    shared_params,
     counterparty_list_params,
     counterparty_create_params,
     counterparty_update_params,
@@ -309,7 +310,7 @@ class Counterparties(SyncAPIResource):
         self,
         id: str,
         *,
-        direction: Literal["credit", "debit"],
+        direction: shared_params.TransactionDirection,
         custom_redirect: str | NotGiven = NOT_GIVEN,
         fields: List[
             Literal[
@@ -688,7 +689,7 @@ class AsyncCounterparties(AsyncAPIResource):
         self,
         id: str,
         *,
-        direction: Literal["credit", "debit"],
+        direction: shared_params.TransactionDirection,
         custom_redirect: str | NotGiven = NOT_GIVEN,
         fields: List[
             Literal[

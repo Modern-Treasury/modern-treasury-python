@@ -5,7 +5,7 @@ from typing import Dict, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
-from .shared import Currency
+from .shared import Currency, TransactionDirection
 from .._models import BaseModel
 from .virtual_account import VirtualAccount
 
@@ -32,7 +32,7 @@ class IncomingPaymentDetail(BaseModel):
     data: Dict[str, builtins.object]
     """The raw data from the payment pre-notification file that we get from the bank."""
 
-    direction: Literal["credit", "debit"]
+    direction: TransactionDirection
     """One of `credit` or `debit`."""
 
     internal_account_id: str

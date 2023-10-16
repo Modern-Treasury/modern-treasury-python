@@ -2,8 +2,8 @@
 
 from typing import Dict, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
+from .shared import TransactionDirection
 from .._models import BaseModel
 
 __all__ = [
@@ -110,7 +110,7 @@ class LedgerAccountCategory(BaseModel):
     name: str
     """The name of the ledger account category."""
 
-    normal_balance: Literal["credit", "debit"]
+    normal_balance: TransactionDirection
     """The normal balance of the ledger account category."""
 
     object: str
