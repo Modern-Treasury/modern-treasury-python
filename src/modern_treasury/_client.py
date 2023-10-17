@@ -5,7 +5,7 @@ from __future__ import annotations
 import os
 import base64
 import asyncio
-from typing import Union, Mapping, Optional
+from typing import Union, Mapping
 
 import httpx
 
@@ -95,7 +95,7 @@ class ModernTreasury(SyncAPIClient):
         api_key: str | None = None,
         organization_id: str | None = None,
         webhook_key: str | None = None,
-        base_url: Optional[str] = None,
+        base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
@@ -213,7 +213,7 @@ class ModernTreasury(SyncAPIClient):
         api_key: str | None = None,
         organization_id: str | None = None,
         webhook_key: str | None = None,
-        base_url: str | None = None,
+        base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
         connection_pool_limits: httpx.Limits | None = None,
@@ -392,7 +392,7 @@ class AsyncModernTreasury(AsyncAPIClient):
         api_key: str | None = None,
         organization_id: str | None = None,
         webhook_key: str | None = None,
-        base_url: Optional[str] = None,
+        base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
@@ -510,7 +510,7 @@ class AsyncModernTreasury(AsyncAPIClient):
         api_key: str | None = None,
         organization_id: str | None = None,
         webhook_key: str | None = None,
-        base_url: str | None = None,
+        base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.AsyncClient | None = None,
         connection_pool_limits: httpx.Limits | None = None,
