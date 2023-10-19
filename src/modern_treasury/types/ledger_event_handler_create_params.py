@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
-from typing_extensions import Required, TypedDict
+from typing import Dict, List, Union, Optional
+from datetime import datetime
+from typing_extensions import Required, Annotated, TypedDict
+
+from .._utils import PropertyInfo
 
 __all__ = [
     "LedgerEventHandlerCreateParams",
@@ -60,7 +63,7 @@ class LedgerTransactionTemplate(TypedDict, total=False):
     description: Required[Optional[str]]
     """An optional description for internal use."""
 
-    effective_at: Required[Optional[str]]
+    effective_at: Required[Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]]
     """
     The timestamp (ISO8601 format) at which the ledger transaction happened for
     reporting purposes.

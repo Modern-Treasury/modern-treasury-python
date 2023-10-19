@@ -8,7 +8,7 @@ import pytest
 
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
-from modern_treasury._utils import parse_date
+from modern_treasury._utils import parse_date, parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
 from modern_treasury.types.payment_orders import Reversal
 
@@ -47,7 +47,7 @@ class TestReversals:
                     "foo": "bar",
                     "modern": "treasury",
                 },
-                "effective_at": parse_date("2019-12-27"),
+                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "effective_date": parse_date("2019-12-27"),
                 "ledger_entries": [
                     {
@@ -163,7 +163,7 @@ class TestAsyncReversals:
                     "foo": "bar",
                     "modern": "treasury",
                 },
-                "effective_at": parse_date("2019-12-27"),
+                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "effective_date": parse_date("2019-12-27"),
                 "ledger_entries": [
                     {
