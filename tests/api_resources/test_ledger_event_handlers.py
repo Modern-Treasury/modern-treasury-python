@@ -36,7 +36,7 @@ class TestLedgerEventHandlers:
         ledger_event_handler = client.ledger_event_handlers.create(
             ledger_transaction_template={
                 "description": "string",
-                "effective_at": "string",
+                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "ledger_entries": [
                     {
                         "amount": "string",
@@ -69,7 +69,7 @@ class TestLedgerEventHandlers:
         ledger_event_handler = client.ledger_event_handlers.create(
             ledger_transaction_template={
                 "description": "string",
-                "effective_at": "string",
+                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "ledger_entries": [
                     {
                         "amount": "string",
@@ -154,7 +154,7 @@ class TestAsyncLedgerEventHandlers:
         ledger_event_handler = await client.ledger_event_handlers.create(
             ledger_transaction_template={
                 "description": "string",
-                "effective_at": "string",
+                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "ledger_entries": [
                     {
                         "amount": "string",
@@ -187,7 +187,7 @@ class TestAsyncLedgerEventHandlers:
         ledger_event_handler = await client.ledger_event_handlers.create(
             ledger_transaction_template={
                 "description": "string",
-                "effective_at": "string",
+                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "ledger_entries": [
                     {
                         "amount": "string",
