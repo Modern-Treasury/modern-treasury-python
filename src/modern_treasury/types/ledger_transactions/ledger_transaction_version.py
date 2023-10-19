@@ -195,7 +195,7 @@ class LedgerTransactionVersion(BaseModel):
     description: Optional[str]
     """An optional description for internal use."""
 
-    effective_at: str
+    effective_at: datetime
     """
     The timestamp (ISO8601 format) at which the ledger transaction happened for
     reporting purposes.

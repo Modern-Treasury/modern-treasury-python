@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, List, Union, Optional
-from datetime import date
+from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ...types import shared_params
@@ -122,7 +122,7 @@ class LedgerTransaction(TypedDict, total=False):
     description: Optional[str]
     """An optional description for internal use."""
 
-    effective_at: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """
     The timestamp (ISO8601 format) at which the ledger transaction happened for
     reporting purposes.
