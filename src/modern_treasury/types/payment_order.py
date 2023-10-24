@@ -3,17 +3,19 @@
 from __future__ import annotations
 
 import builtins
-from typing import Dict, List, Optional
+from typing import Dict, List, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
 from .shared import Currency
 from .._compat import PYDANTIC_V2
 from .._models import BaseModel
+from .virtual_account import VirtualAccount
+from .internal_account import InternalAccount
 from .payment_order_type import PaymentOrderType
 from .payment_order_subtype import PaymentOrderSubtype
 
-__all__ = ["PaymentOrder", "Accounting", "ReferenceNumbers", "ReferenceNumber"]
+__all__ = ["PaymentOrder", "Accounting", "ReferenceNumbers", "ReferenceNumber", "UltimateOriginatingAccount"]
 
 
 class Accounting(BaseModel):
@@ -116,6 +118,8 @@ ReferenceNumbers = ReferenceNumber
 
 Please use ReferenceNumber instead.
 """
+
+UltimateOriginatingAccount = Union[VirtualAccount, InternalAccount, None]
 
 
 class PaymentOrder(BaseModel):
@@ -336,9 +340,23 @@ class PaymentOrder(BaseModel):
     type: PaymentOrderType
     """
     One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-    `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
-    `zengin`.
+    `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
+    `sic`, `signet`, `provexchange`, `zengin`.
     """
+
+    ultimate_originating_account: UltimateOriginatingAccount
+    """The account to which the originating of this payment should be attributed to.
+
+    Can be a `virtual_account` or `internal_account`.
+    """
+
+    ultimate_originating_account_id: Optional[str]
+    """The ultimate originating account ID.
+
+    Can be a `virtual_account` or `internal_account`.
+    """
+
+    ultimate_originating_account_type: Optional[Literal["internal_account", "virtual_account"]]
 
     ultimate_originating_party_identifier: Optional[str]
     """Identifier of the ultimate originator of the payment order."""

@@ -35,9 +35,11 @@ class RoutingDetails(SyncAPIResource):
             "chips",
             "cnaps",
             "gb_sort_code",
+            "hk_interbank_clearing_code",
             "in_ifsc",
             "jp_zengin_code",
             "my_branch_code",
+            "nz_national_clearing_code",
             "se_bankgiro_clearing_code",
             "swift",
         ],
@@ -48,6 +50,7 @@ class RoutingDetails(SyncAPIResource):
                 "bacs",
                 "book",
                 "card",
+                "chats",
                 "check",
                 "cross_border",
                 "eft",
@@ -55,6 +58,7 @@ class RoutingDetails(SyncAPIResource):
                 "masav",
                 "neft",
                 "nics",
+                "nz_becs",
                 "provxchange",
                 "rtp",
                 "se_bankgirot",
@@ -81,7 +85,9 @@ class RoutingDetails(SyncAPIResource):
         Args:
           routing_number: The routing number of the bank.
 
-          routing_number_type: One of `aba`, `swift`, `ca_cpa`, `au_bsb`, `gb_sort_code`, `in_ifsc`, `cnaps`.
+          routing_number_type: The type of routing number. See
+              https://docs.moderntreasury.com/platform/reference/routing-detail-object for
+              more details.
 
           payment_type: If the routing detail is to be used for a specific payment type this field will
               be populated, otherwise null.
@@ -251,9 +257,11 @@ class AsyncRoutingDetails(AsyncAPIResource):
             "chips",
             "cnaps",
             "gb_sort_code",
+            "hk_interbank_clearing_code",
             "in_ifsc",
             "jp_zengin_code",
             "my_branch_code",
+            "nz_national_clearing_code",
             "se_bankgiro_clearing_code",
             "swift",
         ],
@@ -264,6 +272,7 @@ class AsyncRoutingDetails(AsyncAPIResource):
                 "bacs",
                 "book",
                 "card",
+                "chats",
                 "check",
                 "cross_border",
                 "eft",
@@ -271,6 +280,7 @@ class AsyncRoutingDetails(AsyncAPIResource):
                 "masav",
                 "neft",
                 "nics",
+                "nz_becs",
                 "provxchange",
                 "rtp",
                 "se_bankgirot",
@@ -297,7 +307,9 @@ class AsyncRoutingDetails(AsyncAPIResource):
         Args:
           routing_number: The routing number of the bank.
 
-          routing_number_type: One of `aba`, `swift`, `ca_cpa`, `au_bsb`, `gb_sort_code`, `in_ifsc`, `cnaps`.
+          routing_number_type: The type of routing number. See
+              https://docs.moderntreasury.com/platform/reference/routing-detail-object for
+              more details.
 
           payment_type: If the routing detail is to be used for a specific payment type this field will
               be populated, otherwise null.

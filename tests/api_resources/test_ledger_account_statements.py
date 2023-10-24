@@ -12,6 +12,7 @@ from modern_treasury.types import (
     LedgerAccountStatementCreateResponse,
     LedgerAccountStatementRetrieveResponse,
 )
+from modern_treasury._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 api_key = "My API Key"
@@ -31,8 +32,8 @@ class TestLedgerAccountStatements:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         ledger_account_statement = client.ledger_account_statements.create(
-            effective_at_lower_bound="string",
-            effective_at_upper_bound="string",
+            effective_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
+            effective_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(LedgerAccountStatementCreateResponse, ledger_account_statement, path=["response"])
@@ -41,8 +42,8 @@ class TestLedgerAccountStatements:
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account_statement = client.ledger_account_statements.create(
-            effective_at_lower_bound="string",
-            effective_at_upper_bound="string",
+            effective_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
+            effective_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             description="string",
             metadata={
@@ -74,8 +75,8 @@ class TestAsyncLedgerAccountStatements:
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         ledger_account_statement = await client.ledger_account_statements.create(
-            effective_at_lower_bound="string",
-            effective_at_upper_bound="string",
+            effective_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
+            effective_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(LedgerAccountStatementCreateResponse, ledger_account_statement, path=["response"])
@@ -84,8 +85,8 @@ class TestAsyncLedgerAccountStatements:
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger_account_statement = await client.ledger_account_statements.create(
-            effective_at_lower_bound="string",
-            effective_at_upper_bound="string",
+            effective_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
+            effective_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             description="string",
             metadata={

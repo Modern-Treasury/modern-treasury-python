@@ -61,6 +61,7 @@ class AccountCollectionFlow(BaseModel):
                 "NLD",
                 "PER",
                 "ESP",
+                "GBR",
             ]
         ]
     ] = None

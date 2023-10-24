@@ -45,6 +45,12 @@ class TransactionLineItem(BaseModel):
 
     object: str
 
+    reconcilable: bool
+    """
+    Describes whether this line item should be counted towards the corresponding
+    transaction’s reconciliation.
+    """
+
     transactable_id: Optional[str]
     """
     If a matching object exists in Modern Treasury, the ID will be populated here,

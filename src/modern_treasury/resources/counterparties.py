@@ -336,6 +336,8 @@ class Counterparties(SyncAPIResource):
                 "routingNumberType",
                 "address",
                 "jp_zengin_code",
+                "se_bankgiro_clearing_code",
+                "nz_national_clearing_code",
             ]
         ]
         | NotGiven = NOT_GIVEN,
@@ -715,6 +717,8 @@ class AsyncCounterparties(AsyncAPIResource):
                 "routingNumberType",
                 "address",
                 "jp_zengin_code",
+                "se_bankgiro_clearing_code",
+                "nz_national_clearing_code",
             ]
         ]
         | NotGiven = NOT_GIVEN,

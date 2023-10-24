@@ -29,9 +29,11 @@ class Validations(SyncAPIResource):
             "chips",
             "cnaps",
             "gb_sort_code",
+            "hk_interbank_clearing_code",
             "in_ifsc",
             "jp_zengin_code",
             "my_branch_code",
+            "nz_national_clearing_code",
             "se_bankgiro_clearing_code",
             "swift",
         ],
@@ -49,10 +51,10 @@ class Validations(SyncAPIResource):
         Args:
           routing_number: The routing number that is being validated.
 
-          routing_number_type: One of `aba`, `au_bsb`, `br_codigo`, `ca_cpa`, `cnaps`, `gb_sort_code`,
-              `in_ifsc`, `my_branch_code`, `se_bankgiro_clearing_code`, or `swift`. In sandbox
-              mode we currently only support `aba` and `swift` with routing numbers
-              '123456789' and 'GRINUST0XXX' respectively.
+          routing_number_type: The type of routing number. See
+              https://docs.moderntreasury.com/platform/reference/routing-detail-object for
+              more details. In sandbox mode we currently only support `aba` and `swift` with
+              routing numbers '123456789' and 'GRINUST0XXX' respectively.
 
           extra_headers: Send extra headers
 
@@ -94,9 +96,11 @@ class AsyncValidations(AsyncAPIResource):
             "chips",
             "cnaps",
             "gb_sort_code",
+            "hk_interbank_clearing_code",
             "in_ifsc",
             "jp_zengin_code",
             "my_branch_code",
+            "nz_national_clearing_code",
             "se_bankgiro_clearing_code",
             "swift",
         ],
@@ -114,10 +118,10 @@ class AsyncValidations(AsyncAPIResource):
         Args:
           routing_number: The routing number that is being validated.
 
-          routing_number_type: One of `aba`, `au_bsb`, `br_codigo`, `ca_cpa`, `cnaps`, `gb_sort_code`,
-              `in_ifsc`, `my_branch_code`, `se_bankgiro_clearing_code`, or `swift`. In sandbox
-              mode we currently only support `aba` and `swift` with routing numbers
-              '123456789' and 'GRINUST0XXX' respectively.
+          routing_number_type: The type of routing number. See
+              https://docs.moderntreasury.com/platform/reference/routing-detail-object for
+              more details. In sandbox mode we currently only support `aba` and `swift` with
+              routing numbers '123456789' and 'GRINUST0XXX' respectively.
 
           extra_headers: Send extra headers
 

@@ -97,8 +97,8 @@ class PaymentOrders(SyncAPIResource):
           originating_account_id: The ID of one of your organization's internal accounts.
 
           type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
-              `zengin`.
+              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
+              `sic`, `signet`, `provexchange`, `zengin`.
 
           accounting_category_id: The ID of one of your accounting categories. Note that these will only be
               accessible if your accounting system has been connected.
@@ -458,8 +458,8 @@ class PaymentOrders(SyncAPIResource):
               `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
 
           type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
-              `zengin`.
+              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
+              `sic`, `signet`, `provexchange`, `zengin`.
 
           ultimate_originating_party_identifier: This represents the identifier by which the person is known to the receiver when
               using the CIE subtype for ACH payments. Only the first 22 characters of this
@@ -571,6 +571,7 @@ class PaymentOrders(SyncAPIResource):
             "bacs",
             "book",
             "card",
+            "chats",
             "check",
             "cross_border",
             "eft",
@@ -578,6 +579,7 @@ class PaymentOrders(SyncAPIResource):
             "masav",
             "neft",
             "nics",
+            "nz_becs",
             "provxchange",
             "rtp",
             "se_bankgirot",
@@ -713,8 +715,8 @@ class PaymentOrders(SyncAPIResource):
           originating_account_id: The ID of one of your organization's internal accounts.
 
           type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
-              `zengin`.
+              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
+              `sic`, `signet`, `provexchange`, `zengin`.
 
           accounting_category_id: The ID of one of your accounting categories. Note that these will only be
               accessible if your accounting system has been connected.
@@ -940,8 +942,8 @@ class AsyncPaymentOrders(AsyncAPIResource):
           originating_account_id: The ID of one of your organization's internal accounts.
 
           type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
-              `zengin`.
+              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
+              `sic`, `signet`, `provexchange`, `zengin`.
 
           accounting_category_id: The ID of one of your accounting categories. Note that these will only be
               accessible if your accounting system has been connected.
@@ -1301,8 +1303,8 @@ class AsyncPaymentOrders(AsyncAPIResource):
               `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
 
           type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
-              `zengin`.
+              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
+              `sic`, `signet`, `provexchange`, `zengin`.
 
           ultimate_originating_party_identifier: This represents the identifier by which the person is known to the receiver when
               using the CIE subtype for ACH payments. Only the first 22 characters of this
@@ -1414,6 +1416,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
             "bacs",
             "book",
             "card",
+            "chats",
             "check",
             "cross_border",
             "eft",
@@ -1421,6 +1424,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
             "masav",
             "neft",
             "nics",
+            "nz_becs",
             "provxchange",
             "rtp",
             "se_bankgirot",
@@ -1556,8 +1560,8 @@ class AsyncPaymentOrders(AsyncAPIResource):
           originating_account_id: The ID of one of your organization's internal accounts.
 
           type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
-              `zengin`.
+              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
+              `sic`, `signet`, `provexchange`, `zengin`.
 
           accounting_category_id: The ID of one of your accounting categories. Note that these will only be
               accessible if your accounting system has been connected.

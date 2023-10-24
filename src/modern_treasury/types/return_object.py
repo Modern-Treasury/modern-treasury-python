@@ -101,12 +101,6 @@ Please use ReferenceNumber instead.
 class ReturnObject(BaseModel):
     id: str
 
-    additional_information: Optional[str]
-    """Some returns may include additional information from the bank.
-
-    In these cases, this string will be present.
-    """
-
     amount: int
     """Value in specified currency's smallest unit.
 
@@ -236,6 +230,12 @@ class ReturnObject(BaseModel):
     """
 
     updated_at: datetime
+
+    additional_information: Optional[str] = None
+    """Some returns may include additional information from the bank.
+
+    In these cases, this string will be present.
+    """
 
 
 if PYDANTIC_V2:

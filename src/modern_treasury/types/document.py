@@ -69,6 +69,7 @@ class Document(BaseModel):
         "counterparty",
         "expected_payment",
         "external_account",
+        "incoming_payment_detail",
         "internal_account",
         "organization",
         "paper_item",

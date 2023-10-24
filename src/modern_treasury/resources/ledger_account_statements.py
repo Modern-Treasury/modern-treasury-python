@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, Union, Optional
+from datetime import datetime
 
 from ..types import (
     LedgerAccountStatementCreateResponse,
@@ -21,8 +22,8 @@ class LedgerAccountStatements(SyncAPIResource):
     def create(
         self,
         *,
-        effective_at_lower_bound: str,
-        effective_at_upper_bound: str,
+        effective_at_lower_bound: Union[str, datetime],
+        effective_at_upper_bound: Union[str, datetime],
         ledger_account_id: str,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -120,8 +121,8 @@ class AsyncLedgerAccountStatements(AsyncAPIResource):
     async def create(
         self,
         *,
-        effective_at_lower_bound: str,
-        effective_at_upper_bound: str,
+        effective_at_lower_bound: Union[str, datetime],
+        effective_at_upper_bound: Union[str, datetime],
         ledger_account_id: str,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,

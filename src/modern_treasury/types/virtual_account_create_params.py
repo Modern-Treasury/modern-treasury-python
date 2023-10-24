@@ -79,14 +79,20 @@ class RoutingDetail(TypedDict, total=False):
             "chips",
             "cnaps",
             "gb_sort_code",
+            "hk_interbank_clearing_code",
             "in_ifsc",
             "jp_zengin_code",
             "my_branch_code",
+            "nz_national_clearing_code",
             "se_bankgiro_clearing_code",
             "swift",
         ]
     ]
-    """One of `aba`, `swift`, `ca_cpa`, `au_bsb`, `gb_sort_code`, `in_ifsc`, `cnaps`."""
+    """The type of routing number.
+
+    See https://docs.moderntreasury.com/platform/reference/routing-detail-object for
+    more details.
+    """
 
     payment_type: Optional[
         Literal[
@@ -95,6 +101,7 @@ class RoutingDetail(TypedDict, total=False):
             "bacs",
             "book",
             "card",
+            "chats",
             "check",
             "cross_border",
             "eft",
@@ -102,6 +109,7 @@ class RoutingDetail(TypedDict, total=False):
             "masav",
             "neft",
             "nics",
+            "nz_becs",
             "provxchange",
             "rtp",
             "se_bankgirot",

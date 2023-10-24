@@ -361,20 +361,15 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import (
-    LedgerEventHandlerCreateResponse,
-    LedgerEventHandlerRetrieveResponse,
-    LedgerEventHandlerListResponse,
-    LedgerEventHandlerDeleteResponse,
-)
+from modern_treasury.types import LedgerEventHandler, LedgerEventHandlerVariable
 ```
 
 Methods:
 
-- <code title="post /api/ledger_event_handlers">client.ledger_event_handlers.<a href="./src/modern_treasury/resources/ledger_event_handlers.py">create</a>(\*\*<a href="src/modern_treasury/types/ledger_event_handler_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_event_handler_create_response.py">LedgerEventHandlerCreateResponse</a></code>
-- <code title="get /api/ledger_event_handlers/{id}">client.ledger_event_handlers.<a href="./src/modern_treasury/resources/ledger_event_handlers.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/ledger_event_handler_retrieve_response.py">LedgerEventHandlerRetrieveResponse</a></code>
-- <code title="get /api/ledger_event_handlers">client.ledger_event_handlers.<a href="./src/modern_treasury/resources/ledger_event_handlers.py">list</a>(\*\*<a href="src/modern_treasury/types/ledger_event_handler_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_event_handler_list_response.py">SyncPage[LedgerEventHandlerListResponse]</a></code>
-- <code title="delete /api/ledger_event_handlers/{id}">client.ledger_event_handlers.<a href="./src/modern_treasury/resources/ledger_event_handlers.py">delete</a>(id) -> <a href="./src/modern_treasury/types/ledger_event_handler_delete_response.py">LedgerEventHandlerDeleteResponse</a></code>
+- <code title="post /api/ledger_event_handlers">client.ledger_event_handlers.<a href="./src/modern_treasury/resources/ledger_event_handlers.py">create</a>(\*\*<a href="src/modern_treasury/types/ledger_event_handler_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_event_handler.py">LedgerEventHandler</a></code>
+- <code title="get /api/ledger_event_handlers/{id}">client.ledger_event_handlers.<a href="./src/modern_treasury/resources/ledger_event_handlers.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/ledger_event_handler.py">LedgerEventHandler</a></code>
+- <code title="get /api/ledger_event_handlers">client.ledger_event_handlers.<a href="./src/modern_treasury/resources/ledger_event_handlers.py">list</a>(\*\*<a href="src/modern_treasury/types/ledger_event_handler_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_event_handler.py">SyncPage[LedgerEventHandler]</a></code>
+- <code title="delete /api/ledger_event_handlers/{id}">client.ledger_event_handlers.<a href="./src/modern_treasury/resources/ledger_event_handlers.py">delete</a>(id) -> <a href="./src/modern_treasury/types/ledger_event_handler.py">LedgerEventHandler</a></code>
 
 # LedgerTransactions
 

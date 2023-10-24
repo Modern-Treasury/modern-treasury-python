@@ -66,6 +66,9 @@ class ExpectedPaymentCreateParams(TypedDict, total=False):
     reconciliation_groups: Optional[object]
     """The reconciliation groups you have for this payment."""
 
+    reconciliation_rule_variables: Optional[List[object]]
+    """An array of reconciliation rule variables for this payment."""
+
     remittance_information: Optional[str]
     """For `ach`, this field will be passed through on an addenda record.
 

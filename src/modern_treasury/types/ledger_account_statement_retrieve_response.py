@@ -143,13 +143,13 @@ class LedgerAccountStatementRetrieveResponse(BaseModel):
     description: Optional[str]
     """The description of the ledger account statement."""
 
-    effective_at_lower_bound: str
+    effective_at_lower_bound: datetime
     """
     The inclusive lower bound of the effective_at timestamp of the ledger entries to
     be included in the ledger account statement.
     """
 
-    effective_at_upper_bound: str
+    effective_at_upper_bound: datetime
     """
     The exclusive upper bound of the effective_at timestamp of the ledger entries to
     be included in the ledger account statement.
