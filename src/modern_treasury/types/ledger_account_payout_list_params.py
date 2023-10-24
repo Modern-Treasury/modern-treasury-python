@@ -24,6 +24,8 @@ class LedgerAccountPayoutListParams(TypedDict, total=False):
     parameters.
     """
 
+    payout_entry_direction: str
+
     payout_ledger_account_id: str
 
     per_page: int

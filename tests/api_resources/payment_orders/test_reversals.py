@@ -29,7 +29,7 @@ class TestReversals:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         reversal = client.payment_orders.reversals.create(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "string",
             reason="duplicate",
         )
         assert_matches_type(Reversal, reversal, path=["response"])
@@ -37,7 +37,7 @@ class TestReversals:
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         reversal = client.payment_orders.reversals.create(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "string",
             reason="duplicate",
             ledger_transaction={
                 "description": "string",
@@ -111,8 +111,8 @@ class TestReversals:
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         reversal = client.payment_orders.reversals.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            payment_order_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "string",
+            payment_order_id="string",
         )
         assert_matches_type(Reversal, reversal, path=["response"])
 
@@ -145,7 +145,7 @@ class TestAsyncReversals:
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         reversal = await client.payment_orders.reversals.create(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "string",
             reason="duplicate",
         )
         assert_matches_type(Reversal, reversal, path=["response"])
@@ -153,7 +153,7 @@ class TestAsyncReversals:
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         reversal = await client.payment_orders.reversals.create(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "string",
             reason="duplicate",
             ledger_transaction={
                 "description": "string",
@@ -227,8 +227,8 @@ class TestAsyncReversals:
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         reversal = await client.payment_orders.reversals.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            payment_order_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "string",
+            payment_order_id="string",
         )
         assert_matches_type(Reversal, reversal, path=["response"])
 

@@ -38,6 +38,7 @@ class TestLedgerAccountPayouts:
         ledger_account_payout = client.ledger_account_payouts.create(
             funding_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payout_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            allow_either_direction=True,
             description="string",
             effective_at_upper_bound="14:15:22Z",
             metadata={
@@ -89,6 +90,7 @@ class TestLedgerAccountPayouts:
             id=["string", "string", "string"],
             after_cursor="string",
             metadata={"foo": "string"},
+            payout_entry_direction="string",
             payout_ledger_account_id="string",
             per_page=0,
         )
@@ -125,6 +127,7 @@ class TestAsyncLedgerAccountPayouts:
         ledger_account_payout = await client.ledger_account_payouts.create(
             funding_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payout_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            allow_either_direction=True,
             description="string",
             effective_at_upper_bound="14:15:22Z",
             metadata={
@@ -176,6 +179,7 @@ class TestAsyncLedgerAccountPayouts:
             id=["string", "string", "string"],
             after_cursor="string",
             metadata={"foo": "string"},
+            payout_entry_direction="string",
             payout_ledger_account_id="string",
             per_page=0,
         )

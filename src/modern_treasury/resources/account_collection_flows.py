@@ -45,6 +45,7 @@ class AccountCollectionFlows(SyncAPIResource):
                 "NLD",
                 "PER",
                 "ESP",
+                "GBR",
             ]
         ]
         | NotGiven = NOT_GIVEN,
@@ -246,6 +247,7 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
                 "NLD",
                 "PER",
                 "ESP",
+                "GBR",
             ]
         ]
         | NotGiven = NOT_GIVEN,

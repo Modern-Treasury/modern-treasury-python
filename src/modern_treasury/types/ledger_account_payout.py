@@ -26,7 +26,7 @@ class LedgerAccountPayout(BaseModel):
     description: Optional[str]
     """The description of the ledger account payout."""
 
-    effective_at_upper_bound: str
+    effective_at_upper_bound: datetime
     """
     The exclusive upper bound of the effective_at timestamp of the ledger entries to
     be included in the ledger account payout. The default value is the created_at
@@ -58,6 +58,9 @@ class LedgerAccountPayout(BaseModel):
     """
 
     object: str
+
+    payout_entry_direction: Optional[str]
+    """The direction of the ledger entry with the payout_ledger_account."""
 
     payout_ledger_account_id: str
     """

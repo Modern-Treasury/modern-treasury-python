@@ -47,7 +47,7 @@ class TestDocuments:
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         document = client.documents.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "string",
         )
         assert_matches_type(Document, document, path=["response"])
 
@@ -98,7 +98,7 @@ class TestAsyncDocuments:
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         document = await client.documents.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "string",
         )
         assert_matches_type(Document, document, path=["response"])
 

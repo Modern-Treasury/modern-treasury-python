@@ -262,7 +262,7 @@ class LedgerTransactionVersion(BaseModel):
 
     object: str
 
-    posted_at: Optional[str]
+    posted_at: Optional[datetime]
     """The time on which the ledger transaction posted.
 
     This is null if the ledger transaction is pending.

@@ -457,17 +457,17 @@ class TestPaymentOrders:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         payment_order = client.payment_orders.list(
             after_cursor="string",
-            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            counterparty_id="string",
             direction="credit",
             effective_date_end=parse_date("2019-12-27"),
             effective_date_start=parse_date("2019-12-27"),
             metadata={"foo": "string"},
-            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            originating_account_id="string",
             per_page=0,
             priority="high",
             reference_number="string",
             status="approved",
-            transaction_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            transaction_id="string",
             type="ach",
         )
         assert_matches_type(SyncPage[PaymentOrder], payment_order, path=["response"])
@@ -1139,17 +1139,17 @@ class TestAsyncPaymentOrders:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         payment_order = await client.payment_orders.list(
             after_cursor="string",
-            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            counterparty_id="string",
             direction="credit",
             effective_date_end=parse_date("2019-12-27"),
             effective_date_start=parse_date("2019-12-27"),
             metadata={"foo": "string"},
-            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            originating_account_id="string",
             per_page=0,
             priority="high",
             reference_number="string",
             status="approved",
-            transaction_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            transaction_id="string",
             type="ach",
         )
         assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=["response"])
