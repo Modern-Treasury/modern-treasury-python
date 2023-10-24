@@ -218,8 +218,8 @@ class PaymentOrderUpdateParams(TypedDict, total=False):
     type: PaymentOrderType
     """
     One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-    `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
-    `zengin`.
+    `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
+    `sic`, `signet`, `provexchange`, `zengin`.
     """
 
     ultimate_originating_party_identifier: Optional[str]
@@ -395,8 +395,10 @@ class ReceivingAccountRoutingDetail(TypedDict, total=False):
             "chips",
             "cnaps",
             "gb_sort_code",
+            "hk_interbank_clearing_code",
             "in_ifsc",
             "my_branch_code",
+            "nz_national_clearing_code",
             "swift",
             "jp_zengin_code",
         ]
@@ -405,22 +407,24 @@ class ReceivingAccountRoutingDetail(TypedDict, total=False):
     payment_type: Literal[
         "ach",
         "au_becs",
-        "se_bankgirot",
         "bacs",
         "book",
         "card",
+        "chats",
         "check",
-        "eft",
         "cross_border",
+        "eft",
         "interac",
         "masav",
         "neft",
         "nics",
+        "nz_becs",
         "provxchange",
         "rtp",
+        "se_bankgirot",
         "sen",
-        "sic",
         "sepa",
+        "sic",
         "signet",
         "wire",
         "zengin",

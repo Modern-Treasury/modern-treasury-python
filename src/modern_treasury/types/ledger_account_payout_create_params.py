@@ -21,6 +21,12 @@ class LedgerAccountPayoutCreateParams(TypedDict, total=False):
     and its balance is reduced as a result.
     """
 
+    allow_either_direction: Optional[bool]
+    """
+    If true, the payout amount and payout_entry_direction will bring the payout
+    ledger account’s balance closer to zero, even if the balance is negative.
+    """
+
     description: Optional[str]
     """The description of the ledger account payout."""
 

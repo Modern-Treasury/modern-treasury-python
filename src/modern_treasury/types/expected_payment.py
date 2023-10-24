@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 import builtins
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
@@ -84,6 +84,9 @@ class ExpectedPayment(BaseModel):
     automatic if it was automatically reconciled by Modern Treasury, or null if it
     is unreconciled.
     """
+
+    reconciliation_rule_variables: Optional[List[builtins.object]]
+    """An array of reconciliation rule variables for this payment."""
 
     remittance_information: Optional[str]
     """For `ach`, this field will be passed through on an addenda record.

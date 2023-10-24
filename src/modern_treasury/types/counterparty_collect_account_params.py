@@ -50,6 +50,8 @@ class CounterpartyCollectAccountParams(TypedDict, total=False):
             "routingNumberType",
             "address",
             "jp_zengin_code",
+            "se_bankgiro_clearing_code",
+            "nz_national_clearing_code",
         ]
     ]
     """The list of fields you want on the form.

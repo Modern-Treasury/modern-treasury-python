@@ -9,6 +9,7 @@ from typing_extensions import Literal
 from .shared import Currency
 from .._compat import PYDANTIC_V2
 from .._models import BaseModel
+from .expected_payment import ExpectedPayment
 
 __all__ = [
     "Invoice",
@@ -106,6 +107,18 @@ class InvoicerAddress(BaseModel):
 class Invoice(BaseModel):
     id: str
 
+    amount_paid: int
+    """
+    Amount paid on the invoice in specified currency's smallest unit, e.g., $10 USD
+    would be represented as 1000.
+    """
+
+    amount_remaining: int
+    """
+    Amount remaining due on the invoice in specified currency's smallest unit, e.g.,
+    $10 USD would be represented as 1000.
+    """
+
     contact_details: List[ContactDetail]
     """The invoicer's contact details displayed at the top of the invoice."""
 
@@ -128,6 +141,9 @@ class Invoice(BaseModel):
 
     due_date: datetime
     """A future date by when the invoice needs to be paid."""
+
+    expected_payments: List[ExpectedPayment]
+    """The expected payments created for an unpaid invoice."""
 
     hosted_url: str
     """The URL of the hosted web UI where the invoice can be viewed."""
@@ -202,7 +218,7 @@ class Invoice(BaseModel):
     Leaving this value as null will fallback to using the counterparty's name.
     """
 
-    status: Literal["draft", "paid", "payment_pending", "unpaid", "voided"]
+    status: Literal["draft", "paid", "partially_paid", "payment_pending", "unpaid", "voided"]
     """The status of the invoice."""
 
     total_amount: int

@@ -6,10 +6,8 @@ from typing import Dict, Union, Optional
 from datetime import datetime
 
 from ..types import (
-    LedgerEventHandlerListResponse,
-    LedgerEventHandlerCreateResponse,
-    LedgerEventHandlerDeleteResponse,
-    LedgerEventHandlerRetrieveResponse,
+    LedgerEventHandler,
+    LedgerEventHandlerVariableParam,
     ledger_event_handler_list_params,
     ledger_event_handler_create_params,
 )
@@ -32,6 +30,7 @@ class LedgerEventHandlers(SyncAPIResource):
         description: Optional[str] | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        variables: Optional[Dict[str, LedgerEventHandlerVariableParam]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -39,7 +38,7 @@ class LedgerEventHandlers(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> LedgerEventHandlerCreateResponse:
+    ) -> LedgerEventHandler:
         """
         create ledger_event_handler
 
@@ -73,6 +72,7 @@ class LedgerEventHandlers(SyncAPIResource):
                     "description": description,
                     "ledger_id": ledger_id,
                     "metadata": metadata,
+                    "variables": variables,
                 },
                 ledger_event_handler_create_params.LedgerEventHandlerCreateParams,
             ),
@@ -83,7 +83,7 @@ class LedgerEventHandlers(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=LedgerEventHandlerCreateResponse,
+            cast_to=LedgerEventHandler,
         )
 
     def retrieve(
@@ -96,7 +96,7 @@ class LedgerEventHandlers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
-    ) -> LedgerEventHandlerRetrieveResponse:
+    ) -> LedgerEventHandler:
         """
         Get details on a single ledger event handler.
 
@@ -114,7 +114,7 @@ class LedgerEventHandlers(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LedgerEventHandlerRetrieveResponse,
+            cast_to=LedgerEventHandler,
         )
 
     def list(
@@ -131,7 +131,7 @@ class LedgerEventHandlers(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
-    ) -> SyncPage[LedgerEventHandlerListResponse]:
+    ) -> SyncPage[LedgerEventHandler]:
         """
         Get a list of ledger event handlers.
 
@@ -154,7 +154,7 @@ class LedgerEventHandlers(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/ledger_event_handlers",
-            page=SyncPage[LedgerEventHandlerListResponse],
+            page=SyncPage[LedgerEventHandler],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -171,7 +171,7 @@ class LedgerEventHandlers(SyncAPIResource):
                     ledger_event_handler_list_params.LedgerEventHandlerListParams,
                 ),
             ),
-            model=LedgerEventHandlerListResponse,
+            model=LedgerEventHandler,
         )
 
     def delete(
@@ -185,7 +185,7 @@ class LedgerEventHandlers(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> LedgerEventHandlerDeleteResponse:
+    ) -> LedgerEventHandler:
         """
         Archive a ledger event handler.
 
@@ -209,7 +209,7 @@ class LedgerEventHandlers(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=LedgerEventHandlerDeleteResponse,
+            cast_to=LedgerEventHandler,
         )
 
 
@@ -223,6 +223,7 @@ class AsyncLedgerEventHandlers(AsyncAPIResource):
         description: Optional[str] | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
+        variables: Optional[Dict[str, LedgerEventHandlerVariableParam]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -230,7 +231,7 @@ class AsyncLedgerEventHandlers(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> LedgerEventHandlerCreateResponse:
+    ) -> LedgerEventHandler:
         """
         create ledger_event_handler
 
@@ -264,6 +265,7 @@ class AsyncLedgerEventHandlers(AsyncAPIResource):
                     "description": description,
                     "ledger_id": ledger_id,
                     "metadata": metadata,
+                    "variables": variables,
                 },
                 ledger_event_handler_create_params.LedgerEventHandlerCreateParams,
             ),
@@ -274,7 +276,7 @@ class AsyncLedgerEventHandlers(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=LedgerEventHandlerCreateResponse,
+            cast_to=LedgerEventHandler,
         )
 
     async def retrieve(
@@ -287,7 +289,7 @@ class AsyncLedgerEventHandlers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
-    ) -> LedgerEventHandlerRetrieveResponse:
+    ) -> LedgerEventHandler:
         """
         Get details on a single ledger event handler.
 
@@ -305,7 +307,7 @@ class AsyncLedgerEventHandlers(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LedgerEventHandlerRetrieveResponse,
+            cast_to=LedgerEventHandler,
         )
 
     def list(
@@ -322,7 +324,7 @@ class AsyncLedgerEventHandlers(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[LedgerEventHandlerListResponse, AsyncPage[LedgerEventHandlerListResponse]]:
+    ) -> AsyncPaginator[LedgerEventHandler, AsyncPage[LedgerEventHandler]]:
         """
         Get a list of ledger event handlers.
 
@@ -345,7 +347,7 @@ class AsyncLedgerEventHandlers(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/ledger_event_handlers",
-            page=AsyncPage[LedgerEventHandlerListResponse],
+            page=AsyncPage[LedgerEventHandler],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -362,7 +364,7 @@ class AsyncLedgerEventHandlers(AsyncAPIResource):
                     ledger_event_handler_list_params.LedgerEventHandlerListParams,
                 ),
             ),
-            model=LedgerEventHandlerListResponse,
+            model=LedgerEventHandler,
         )
 
     async def delete(
@@ -376,7 +378,7 @@ class AsyncLedgerEventHandlers(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> LedgerEventHandlerDeleteResponse:
+    ) -> LedgerEventHandler:
         """
         Archive a ledger event handler.
 
@@ -400,5 +402,5 @@ class AsyncLedgerEventHandlers(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=LedgerEventHandlerDeleteResponse,
+            cast_to=LedgerEventHandler,
         )

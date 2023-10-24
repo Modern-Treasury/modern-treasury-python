@@ -19,6 +19,7 @@ class DocumentListParams(TypedDict, total=False):
         "counterparties",
         "expected_payments",
         "external_accounts",
+        "incoming_payment_details",
         "internal_accounts",
         "organizations",
         "paper_items",

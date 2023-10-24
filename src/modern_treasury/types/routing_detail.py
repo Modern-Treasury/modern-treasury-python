@@ -68,6 +68,7 @@ class RoutingDetail(BaseModel):
             "bacs",
             "book",
             "card",
+            "chats",
             "check",
             "cross_border",
             "eft",
@@ -75,6 +76,7 @@ class RoutingDetail(BaseModel):
             "masav",
             "neft",
             "nics",
+            "nz_becs",
             "provxchange",
             "rtp",
             "se_bankgirot",
@@ -102,12 +104,18 @@ class RoutingDetail(BaseModel):
         "chips",
         "cnaps",
         "gb_sort_code",
+        "hk_interbank_clearing_code",
         "in_ifsc",
         "jp_zengin_code",
         "my_branch_code",
+        "nz_national_clearing_code",
         "se_bankgiro_clearing_code",
         "swift",
     ]
-    """One of `aba`, `swift`, `ca_cpa`, `au_bsb`, `gb_sort_code`, `in_ifsc`, `cnaps`."""
+    """The type of routing number.
+
+    See https://docs.moderntreasury.com/platform/reference/routing-detail-object for
+    more details.
+    """
 
     updated_at: datetime

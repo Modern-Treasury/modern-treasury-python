@@ -37,13 +37,22 @@ class RoutingNumberLookupRequest(BaseModel):
     """The routing number of the bank."""
 
     routing_number_type: Optional[
-        Literal["aba", "au_bsb", "ca_cpa", "gb_sort_code", "in_ifsc", "se_bankgiro_clearing_code", "swift"]
+        Literal[
+            "aba",
+            "au_bsb",
+            "ca_cpa",
+            "gb_sort_code",
+            "in_ifsc",
+            "nz_national_clearing_code",
+            "se_bankgiro_clearing_code",
+            "swift",
+        ]
     ] = None
-    """
-    One of `aba`, `au_bsb`, `br_codigo`, `ca_cpa`, `cnaps`, `gb_sort_code`,
-    `in_ifsc`, `my_branch_code`, `se_bankgiro_clearing_code`, or `swift`. In sandbox
-    mode we currently only support `aba` and `swift` with routing numbers
-    '123456789' and 'GRINUST0XXX' respectively.
+    """The type of routing number.
+
+    See https://docs.moderntreasury.com/platform/reference/routing-detail-object for
+    more details. In sandbox mode we currently only support `aba` and `swift` with
+    routing numbers '123456789' and 'GRINUST0XXX' respectively.
     """
 
     sanctions: Optional[Dict[str, object]] = None
@@ -61,6 +70,7 @@ class RoutingNumberLookupRequest(BaseModel):
                 "bacs",
                 "book",
                 "card",
+                "chats",
                 "check",
                 "cross_border",
                 "eft",
@@ -68,6 +78,7 @@ class RoutingNumberLookupRequest(BaseModel):
                 "masav",
                 "neft",
                 "nics",
+                "nz_becs",
                 "provxchange",
                 "rtp",
                 "se_bankgirot",

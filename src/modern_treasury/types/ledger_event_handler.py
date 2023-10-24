@@ -4,9 +4,10 @@ from typing import Dict, List, Optional
 from datetime import datetime
 
 from .._models import BaseModel
+from .ledger_event_handler_variable import LedgerEventHandlerVariable
 
 __all__ = [
-    "LedgerEventHandlerRetrieveResponse",
+    "LedgerEventHandler",
     "Conditions",
     "LedgerTransactionTemplate",
     "LedgerTransactionTemplateLedgerEntries",
@@ -16,30 +17,24 @@ __all__ = [
 
 class Conditions(BaseModel):
     field: str
-    """The field you're fetching from the `ledgerable_event`."""
+    """The LHS of the conditional."""
 
     operator: str
-    """What the operator between the `field` and `value` is.
-
-    Currently only supports `equals`.
-    """
+    """What the operator between the `field` and `value` is."""
 
     value: str
-    """What raw string you are comparing the `field` against."""
+    """The RHS of the conditional."""
 
 
 class LedgerTransactionTemplateLedgerEntry(BaseModel):
     amount: str
-    """The field you're fetching from the `ledgerable_event`."""
+    """The LHS of the conditional."""
 
     direction: str
-    """What the operator between the `field` and `value` is.
-
-    Currently only supports `equals`.
-    """
+    """What the operator between the `field` and `value` is."""
 
     ledger_account_id: str
-    """What raw string you are comparing the `field` against."""
+    """The RHS of the conditional."""
 
 
 LedgerTransactionTemplateLedgerEntries = LedgerTransactionTemplateLedgerEntry
@@ -53,7 +48,7 @@ class LedgerTransactionTemplate(BaseModel):
     description: Optional[str]
     """An optional description for internal use."""
 
-    effective_at: Optional[datetime]
+    effective_at: Optional[str]
     """
     The timestamp (ISO8601 format) at which the ledger transaction happened for
     reporting purposes.
@@ -62,14 +57,11 @@ class LedgerTransactionTemplate(BaseModel):
     ledger_entries: List[LedgerTransactionTemplateLedgerEntry]
     """An array of ledger entry objects."""
 
-    metadata: Optional[Dict[str, str]]
-    """Additional data represented as key-value pairs.
-
-    Both the key and value must be strings.
-    """
+    status: Optional[str]
+    """To post a ledger transaction at creation, use `posted`."""
 
 
-class LedgerEventHandlerRetrieveResponse(BaseModel):
+class LedgerEventHandler(BaseModel):
     id: str
 
     conditions: Optional[Conditions]
@@ -80,6 +72,9 @@ class LedgerEventHandlerRetrieveResponse(BaseModel):
     """An optional description."""
 
     discarded_at: Optional[datetime]
+
+    ledger_id: Optional[str]
+    """The id of the ledger that this event handler belongs to."""
 
     ledger_transaction_template: LedgerTransactionTemplate
 
@@ -101,3 +96,5 @@ class LedgerEventHandlerRetrieveResponse(BaseModel):
     object: str
 
     updated_at: datetime
+
+    variables: Optional[Dict[str, LedgerEventHandlerVariable]]

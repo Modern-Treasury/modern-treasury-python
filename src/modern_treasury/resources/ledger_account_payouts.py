@@ -27,6 +27,7 @@ class LedgerAccountPayouts(SyncAPIResource):
         *,
         funding_ledger_account_id: str,
         payout_ledger_account_id: str,
+        allow_either_direction: Optional[bool] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at_upper_bound: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -49,6 +50,9 @@ class LedgerAccountPayouts(SyncAPIResource):
 
           payout_ledger_account_id: The id of the payout ledger account whose ledger entries are queried against,
               and its balance is reduced as a result.
+
+          allow_either_direction: If true, the payout amount and payout_entry_direction will bring the payout
+              ledger account’s balance closer to zero, even if the balance is negative.
 
           description: The description of the ledger account payout.
 
@@ -81,6 +85,7 @@ class LedgerAccountPayouts(SyncAPIResource):
                 {
                     "funding_ledger_account_id": funding_ledger_account_id,
                     "payout_ledger_account_id": payout_ledger_account_id,
+                    "allow_either_direction": allow_either_direction,
                     "description": description,
                     "effective_at_upper_bound": effective_at_upper_bound,
                     "metadata": metadata,
@@ -193,6 +198,7 @@ class LedgerAccountPayouts(SyncAPIResource):
         id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        payout_entry_direction: str | NotGiven = NOT_GIVEN,
         payout_ledger_account_id: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -234,6 +240,7 @@ class LedgerAccountPayouts(SyncAPIResource):
                         "id": id,
                         "after_cursor": after_cursor,
                         "metadata": metadata,
+                        "payout_entry_direction": payout_entry_direction,
                         "payout_ledger_account_id": payout_ledger_account_id,
                         "per_page": per_page,
                     },
@@ -278,6 +285,7 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
         *,
         funding_ledger_account_id: str,
         payout_ledger_account_id: str,
+        allow_either_direction: Optional[bool] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at_upper_bound: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -300,6 +308,9 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
 
           payout_ledger_account_id: The id of the payout ledger account whose ledger entries are queried against,
               and its balance is reduced as a result.
+
+          allow_either_direction: If true, the payout amount and payout_entry_direction will bring the payout
+              ledger account’s balance closer to zero, even if the balance is negative.
 
           description: The description of the ledger account payout.
 
@@ -332,6 +343,7 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
                 {
                     "funding_ledger_account_id": funding_ledger_account_id,
                     "payout_ledger_account_id": payout_ledger_account_id,
+                    "allow_either_direction": allow_either_direction,
                     "description": description,
                     "effective_at_upper_bound": effective_at_upper_bound,
                     "metadata": metadata,
@@ -444,6 +456,7 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
         id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        payout_entry_direction: str | NotGiven = NOT_GIVEN,
         payout_ledger_account_id: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -485,6 +498,7 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
                         "id": id,
                         "after_cursor": after_cursor,
                         "metadata": metadata,
+                        "payout_entry_direction": payout_entry_direction,
                         "payout_ledger_account_id": payout_ledger_account_id,
                         "per_page": per_page,
                     },

@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
-from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
+from typing import Dict, List, Optional
+from typing_extensions import Required, TypedDict
 
-from .._utils import PropertyInfo
+from .ledger_event_handler_variable_param import LedgerEventHandlerVariableParam
 
 __all__ = [
     "LedgerEventHandlerCreateParams",
@@ -37,19 +36,18 @@ class LedgerEventHandlerCreateParams(TypedDict, total=False):
     Both the key and value must be strings.
     """
 
+    variables: Optional[Dict[str, LedgerEventHandlerVariableParam]]
+
 
 class LedgerTransactionTemplateLedgerEntry(TypedDict, total=False):
     amount: Required[str]
-    """The field you're fetching from the `ledgerable_event`."""
+    """The LHS of the conditional."""
 
     direction: Required[str]
-    """What the operator between the `field` and `value` is.
-
-    Currently only supports `equals`.
-    """
+    """What the operator between the `field` and `value` is."""
 
     ledger_account_id: Required[str]
-    """What raw string you are comparing the `field` against."""
+    """The RHS of the conditional."""
 
 
 LedgerTransactionTemplateLedgerEntries = LedgerTransactionTemplateLedgerEntry
@@ -63,7 +61,7 @@ class LedgerTransactionTemplate(TypedDict, total=False):
     description: Required[Optional[str]]
     """An optional description for internal use."""
 
-    effective_at: Required[Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]]
+    effective_at: Required[Optional[str]]
     """
     The timestamp (ISO8601 format) at which the ledger transaction happened for
     reporting purposes.
@@ -72,22 +70,16 @@ class LedgerTransactionTemplate(TypedDict, total=False):
     ledger_entries: Required[List[LedgerTransactionTemplateLedgerEntry]]
     """An array of ledger entry objects."""
 
-    metadata: Required[Optional[Dict[str, str]]]
-    """Additional data represented as key-value pairs.
-
-    Both the key and value must be strings.
-    """
+    status: Required[Optional[str]]
+    """To post a ledger transaction at creation, use `posted`."""
 
 
 class Conditions(TypedDict, total=False):
     field: Required[str]
-    """The field you're fetching from the `ledgerable_event`."""
+    """The LHS of the conditional."""
 
     operator: Required[str]
-    """What the operator between the `field` and `value` is.
-
-    Currently only supports `equals`.
-    """
+    """What the operator between the `field` and `value` is."""
 
     value: Required[str]
-    """What raw string you are comparing the `field` against."""
+    """The RHS of the conditional."""

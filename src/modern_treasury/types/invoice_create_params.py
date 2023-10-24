@@ -8,6 +8,7 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..types import shared_params
 from .._utils import PropertyInfo
+from .payment_order_type import PaymentOrderType
 
 __all__ = [
     "InvoiceCreateParams",
@@ -78,33 +79,11 @@ class InvoiceCreateParams(TypedDict, total=False):
     One of `manual`, `ui`, or `automatic`.
     """
 
-    payment_type: Literal[
-        "ach",
-        "au_becs",
-        "se_bankgirot",
-        "bacs",
-        "book",
-        "card",
-        "check",
-        "eft",
-        "cross_border",
-        "interac",
-        "masav",
-        "neft",
-        "nics",
-        "provxchange",
-        "rtp",
-        "sen",
-        "sic",
-        "sepa",
-        "signet",
-        "wire",
-        "zengin",
-    ]
+    payment_type: PaymentOrderType
     """
     One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-    `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
-    `zengin`.
+    `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
+    `sic`, `signet`, `provexchange`, `zengin`.
     """
 
     receiving_account_id: str

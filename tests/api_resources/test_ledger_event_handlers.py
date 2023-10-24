@@ -8,12 +8,7 @@ import pytest
 
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
-from modern_treasury.types import (
-    LedgerEventHandlerListResponse,
-    LedgerEventHandlerCreateResponse,
-    LedgerEventHandlerDeleteResponse,
-    LedgerEventHandlerRetrieveResponse,
-)
+from modern_treasury.types import LedgerEventHandler
 from modern_treasury._utils import parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
 
@@ -35,8 +30,9 @@ class TestLedgerEventHandlers:
     def test_method_create(self, client: ModernTreasury) -> None:
         ledger_event_handler = client.ledger_event_handlers.create(
             ledger_transaction_template={
-                "description": "string",
-                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "description": "My Ledger Transaction Template Description",
+                "effective_at": "{{ledgerable_event.custom_data.effective_at}}",
+                "status": "posted",
                 "ledger_entries": [
                     {
                         "amount": "string",
@@ -54,22 +50,18 @@ class TestLedgerEventHandlers:
                         "ledger_account_id": "string",
                     },
                 ],
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
-                },
             },
             name="string",
         )
-        assert_matches_type(LedgerEventHandlerCreateResponse, ledger_event_handler, path=["response"])
+        assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         ledger_event_handler = client.ledger_event_handlers.create(
             ledger_transaction_template={
-                "description": "string",
-                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "description": "My Ledger Transaction Template Description",
+                "effective_at": "{{ledgerable_event.custom_data.effective_at}}",
+                "status": "posted",
                 "ledger_entries": [
                     {
                         "amount": "string",
@@ -87,17 +79,12 @@ class TestLedgerEventHandlers:
                         "ledger_account_id": "string",
                     },
                 ],
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
-                },
             },
             name="string",
             conditions={
-                "field": "string",
-                "operator": "string",
-                "value": "string",
+                "field": "ledgerable_event.name",
+                "operator": "equals",
+                "value": "credit_card_swipe",
             },
             description="string",
             ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -106,20 +93,30 @@ class TestLedgerEventHandlers:
                 "foo": "bar",
                 "modern": "treasury",
             },
+            variables={
+                "credit_account": {
+                    "type": "ledger_account",
+                    "query": {
+                        "field": "name",
+                        "operator": "equals",
+                        "value": "my_credit_account",
+                    },
+                }
+            },
         )
-        assert_matches_type(LedgerEventHandlerCreateResponse, ledger_event_handler, path=["response"])
+        assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         ledger_event_handler = client.ledger_event_handlers.retrieve(
             "string",
         )
-        assert_matches_type(LedgerEventHandlerRetrieveResponse, ledger_event_handler, path=["response"])
+        assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         ledger_event_handler = client.ledger_event_handlers.list()
-        assert_matches_type(SyncPage[LedgerEventHandlerListResponse], ledger_event_handler, path=["response"])
+        assert_matches_type(SyncPage[LedgerEventHandler], ledger_event_handler, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
@@ -130,14 +127,14 @@ class TestLedgerEventHandlers:
             name="string",
             per_page=0,
         )
-        assert_matches_type(SyncPage[LedgerEventHandlerListResponse], ledger_event_handler, path=["response"])
+        assert_matches_type(SyncPage[LedgerEventHandler], ledger_event_handler, path=["response"])
 
     @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
         ledger_event_handler = client.ledger_event_handlers.delete(
             "string",
         )
-        assert_matches_type(LedgerEventHandlerDeleteResponse, ledger_event_handler, path=["response"])
+        assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
 
 
 class TestAsyncLedgerEventHandlers:
@@ -153,8 +150,9 @@ class TestAsyncLedgerEventHandlers:
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         ledger_event_handler = await client.ledger_event_handlers.create(
             ledger_transaction_template={
-                "description": "string",
-                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "description": "My Ledger Transaction Template Description",
+                "effective_at": "{{ledgerable_event.custom_data.effective_at}}",
+                "status": "posted",
                 "ledger_entries": [
                     {
                         "amount": "string",
@@ -172,22 +170,18 @@ class TestAsyncLedgerEventHandlers:
                         "ledger_account_id": "string",
                     },
                 ],
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
-                },
             },
             name="string",
         )
-        assert_matches_type(LedgerEventHandlerCreateResponse, ledger_event_handler, path=["response"])
+        assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledger_event_handler = await client.ledger_event_handlers.create(
             ledger_transaction_template={
-                "description": "string",
-                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "description": "My Ledger Transaction Template Description",
+                "effective_at": "{{ledgerable_event.custom_data.effective_at}}",
+                "status": "posted",
                 "ledger_entries": [
                     {
                         "amount": "string",
@@ -205,17 +199,12 @@ class TestAsyncLedgerEventHandlers:
                         "ledger_account_id": "string",
                     },
                 ],
-                "metadata": {
-                    "key": "value",
-                    "foo": "bar",
-                    "modern": "treasury",
-                },
             },
             name="string",
             conditions={
-                "field": "string",
-                "operator": "string",
-                "value": "string",
+                "field": "ledgerable_event.name",
+                "operator": "equals",
+                "value": "credit_card_swipe",
             },
             description="string",
             ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -224,20 +213,30 @@ class TestAsyncLedgerEventHandlers:
                 "foo": "bar",
                 "modern": "treasury",
             },
+            variables={
+                "credit_account": {
+                    "type": "ledger_account",
+                    "query": {
+                        "field": "name",
+                        "operator": "equals",
+                        "value": "my_credit_account",
+                    },
+                }
+            },
         )
-        assert_matches_type(LedgerEventHandlerCreateResponse, ledger_event_handler, path=["response"])
+        assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         ledger_event_handler = await client.ledger_event_handlers.retrieve(
             "string",
         )
-        assert_matches_type(LedgerEventHandlerRetrieveResponse, ledger_event_handler, path=["response"])
+        assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
         ledger_event_handler = await client.ledger_event_handlers.list()
-        assert_matches_type(AsyncPage[LedgerEventHandlerListResponse], ledger_event_handler, path=["response"])
+        assert_matches_type(AsyncPage[LedgerEventHandler], ledger_event_handler, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
@@ -248,11 +247,11 @@ class TestAsyncLedgerEventHandlers:
             name="string",
             per_page=0,
         )
-        assert_matches_type(AsyncPage[LedgerEventHandlerListResponse], ledger_event_handler, path=["response"])
+        assert_matches_type(AsyncPage[LedgerEventHandler], ledger_event_handler, path=["response"])
 
     @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
         ledger_event_handler = await client.ledger_event_handlers.delete(
             "string",
         )
-        assert_matches_type(LedgerEventHandlerDeleteResponse, ledger_event_handler, path=["response"])
+        assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])

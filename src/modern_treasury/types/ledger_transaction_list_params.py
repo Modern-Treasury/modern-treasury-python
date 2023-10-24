@@ -18,7 +18,7 @@ class LedgerTransactionListParams(TypedDict, total=False):
 
     after_cursor: Optional[str]
 
-    effective_at: Dict[str, str]
+    effective_at: Dict[str, Union[str, datetime]]
     """
     Use "gt" (>), "gte" (>=), "lt" (<), "lte" (<=), or "eq" (=) to filter by
     effective at. For example, for all transactions after Jan 1 2000, use

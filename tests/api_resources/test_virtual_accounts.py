@@ -110,8 +110,8 @@ class TestVirtualAccounts:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         virtual_account = client.virtual_accounts.list(
             after_cursor="string",
-            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            counterparty_id="string",
+            internal_account_id="string",
             metadata={"foo": "string"},
             per_page=0,
         )
@@ -219,8 +219,8 @@ class TestAsyncVirtualAccounts:
     async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
         virtual_account = await client.virtual_accounts.list(
             after_cursor="string",
-            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            counterparty_id="string",
+            internal_account_id="string",
             metadata={"foo": "string"},
             per_page=0,
         )

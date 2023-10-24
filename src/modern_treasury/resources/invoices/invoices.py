@@ -8,6 +8,7 @@ from typing_extensions import Literal
 
 from ...types import (
     Invoice,
+    PaymentOrderType,
     shared_params,
     invoice_list_params,
     invoice_create_params,
@@ -50,30 +51,7 @@ class Invoices(SyncAPIResource):
         notifications_enabled: bool | NotGiven = NOT_GIVEN,
         payment_effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
         payment_method: Literal["ui", "manual", "automatic"] | NotGiven = NOT_GIVEN,
-        payment_type: Literal[
-            "ach",
-            "au_becs",
-            "se_bankgirot",
-            "bacs",
-            "book",
-            "card",
-            "check",
-            "eft",
-            "cross_border",
-            "interac",
-            "masav",
-            "neft",
-            "nics",
-            "provxchange",
-            "rtp",
-            "sen",
-            "sic",
-            "sepa",
-            "signet",
-            "wire",
-            "zengin",
-        ]
-        | NotGiven = NOT_GIVEN,
+        payment_type: PaymentOrderType | NotGiven = NOT_GIVEN,
         receiving_account_id: str | NotGiven = NOT_GIVEN,
         recipient_email: Optional[str] | NotGiven = NOT_GIVEN,
         recipient_name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -127,8 +105,8 @@ class Invoices(SyncAPIResource):
               direction will be credit. One of `manual`, `ui`, or `automatic`.
 
           payment_type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
-              `zengin`.
+              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
+              `sic`, `signet`, `provexchange`, `zengin`.
 
           receiving_account_id: The receiving account ID. Can be an `external_account`.
 
@@ -234,30 +212,7 @@ class Invoices(SyncAPIResource):
         originating_account_id: str | NotGiven = NOT_GIVEN,
         payment_effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
         payment_method: Literal["ui", "manual", "automatic"] | NotGiven = NOT_GIVEN,
-        payment_type: Literal[
-            "ach",
-            "au_becs",
-            "se_bankgirot",
-            "bacs",
-            "book",
-            "card",
-            "check",
-            "eft",
-            "cross_border",
-            "interac",
-            "masav",
-            "neft",
-            "nics",
-            "provxchange",
-            "rtp",
-            "sen",
-            "sic",
-            "sepa",
-            "signet",
-            "wire",
-            "zengin",
-        ]
-        | NotGiven = NOT_GIVEN,
+        payment_type: PaymentOrderType | NotGiven = NOT_GIVEN,
         receiving_account_id: str | NotGiven = NOT_GIVEN,
         recipient_email: Optional[str] | NotGiven = NOT_GIVEN,
         recipient_name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -312,8 +267,8 @@ class Invoices(SyncAPIResource):
               direction will be credit. One of `manual`, `ui`, or `automatic`.
 
           payment_type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
-              `zengin`.
+              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
+              `sic`, `signet`, `provexchange`, `zengin`.
 
           receiving_account_id: The receiving account ID. Can be an `external_account`.
 
@@ -483,30 +438,7 @@ class AsyncInvoices(AsyncAPIResource):
         notifications_enabled: bool | NotGiven = NOT_GIVEN,
         payment_effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
         payment_method: Literal["ui", "manual", "automatic"] | NotGiven = NOT_GIVEN,
-        payment_type: Literal[
-            "ach",
-            "au_becs",
-            "se_bankgirot",
-            "bacs",
-            "book",
-            "card",
-            "check",
-            "eft",
-            "cross_border",
-            "interac",
-            "masav",
-            "neft",
-            "nics",
-            "provxchange",
-            "rtp",
-            "sen",
-            "sic",
-            "sepa",
-            "signet",
-            "wire",
-            "zengin",
-        ]
-        | NotGiven = NOT_GIVEN,
+        payment_type: PaymentOrderType | NotGiven = NOT_GIVEN,
         receiving_account_id: str | NotGiven = NOT_GIVEN,
         recipient_email: Optional[str] | NotGiven = NOT_GIVEN,
         recipient_name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -560,8 +492,8 @@ class AsyncInvoices(AsyncAPIResource):
               direction will be credit. One of `manual`, `ui`, or `automatic`.
 
           payment_type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
-              `zengin`.
+              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
+              `sic`, `signet`, `provexchange`, `zengin`.
 
           receiving_account_id: The receiving account ID. Can be an `external_account`.
 
@@ -667,30 +599,7 @@ class AsyncInvoices(AsyncAPIResource):
         originating_account_id: str | NotGiven = NOT_GIVEN,
         payment_effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
         payment_method: Literal["ui", "manual", "automatic"] | NotGiven = NOT_GIVEN,
-        payment_type: Literal[
-            "ach",
-            "au_becs",
-            "se_bankgirot",
-            "bacs",
-            "book",
-            "card",
-            "check",
-            "eft",
-            "cross_border",
-            "interac",
-            "masav",
-            "neft",
-            "nics",
-            "provxchange",
-            "rtp",
-            "sen",
-            "sic",
-            "sepa",
-            "signet",
-            "wire",
-            "zengin",
-        ]
-        | NotGiven = NOT_GIVEN,
+        payment_type: PaymentOrderType | NotGiven = NOT_GIVEN,
         receiving_account_id: str | NotGiven = NOT_GIVEN,
         recipient_email: Optional[str] | NotGiven = NOT_GIVEN,
         recipient_name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -745,8 +654,8 @@ class AsyncInvoices(AsyncAPIResource):
               direction will be credit. One of `manual`, `ui`, or `automatic`.
 
           payment_type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `sic`, `signet`, `provexchange`,
-              `zengin`.
+              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
+              `sic`, `signet`, `provexchange`, `zengin`.
 
           receiving_account_id: The receiving account ID. Can be an `external_account`.
 

@@ -61,13 +61,13 @@ class Balances(BaseModel):
     pending_credits.
     """
 
-    effective_at_lower_bound: Optional[str]
+    effective_at_lower_bound: Optional[datetime]
     """
     The inclusive lower bound of the effective_at timestamp for the returned
     balances.
     """
 
-    effective_at_upper_bound: Optional[str]
+    effective_at_upper_bound: Optional[datetime]
     """
     The exclusive upper bound of the effective_at timestamp for the returned
     balances.

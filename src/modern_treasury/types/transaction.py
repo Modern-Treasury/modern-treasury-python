@@ -34,17 +34,6 @@ class Transaction(BaseModel):
     currency: Optional[Currency]
     """Currency that this transaction is denominated in."""
 
-    details: Dict[str, str]
-    """
-    This field contains additional information that the bank provided about the
-    transaction. This is structured data. Some of the data in here might overlap
-    with what is in the `vendor_description`. For example, the OBI could be a part
-    of the vendor description, and it would also be included in here. The attributes
-    that are passed through the details field will vary based on your banking
-    partner. Currently, the following keys may be in the details object:
-    `originator_name`, `originator_to_beneficiary_information`.
-    """
-
     direction: str
     """Either `credit` or `debit`."""
 
@@ -83,6 +72,7 @@ class Transaction(BaseModel):
         "bacs",
         "book",
         "card",
+        "chats",
         "check",
         "cross_border",
         "eft",
@@ -90,6 +80,7 @@ class Transaction(BaseModel):
         "masav",
         "neft",
         "nics",
+        "nz_becs",
         "provxchange",
         "rtp",
         "se_bankgirot",
@@ -147,11 +138,22 @@ class Transaction(BaseModel):
     vendor_customer_id: Optional[str]
     """An identifier given to this transaction by the bank, often `null`."""
 
-    vendor_description: Optional[str]
+    vendor_id: Optional[str]
+    """An identifier given to this transaction by the bank."""
+
+    details: Optional[Dict[str, str]] = None
+    """
+    This field contains additional information that the bank provided about the
+    transaction. This is structured data. Some of the data in here might overlap
+    with what is in the `vendor_description`. For example, the OBI could be a part
+    of the vendor description, and it would also be included in here. The attributes
+    that are passed through the details field will vary based on your banking
+    partner. Currently, the following keys may be in the details object:
+    `originator_name`, `originator_to_beneficiary_information`.
+    """
+
+    vendor_description: Optional[str] = None
     """
     The transaction detail text that often appears in on your bank statement and in
     your banking portal.
     """
-
-    vendor_id: Optional[str]
-    """An identifier given to this transaction by the bank."""

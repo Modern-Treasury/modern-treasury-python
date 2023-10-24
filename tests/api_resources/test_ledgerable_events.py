@@ -27,7 +27,6 @@ class TestLedgerableEvents:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         ledgerable_event = client.ledgerable_events.create(
-            amount=0,
             name="string",
         )
         assert_matches_type(LedgerableEvent, ledgerable_event, path=["response"])
@@ -35,13 +34,9 @@ class TestLedgerableEvents:
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         ledgerable_event = client.ledgerable_events.create(
-            amount=0,
             name="string",
-            currency="string",
-            currency_exponent=0,
             custom_data={},
             description="string",
-            direction="string",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -70,7 +65,6 @@ class TestAsyncLedgerableEvents:
     @parametrize
     async def test_method_create(self, client: AsyncModernTreasury) -> None:
         ledgerable_event = await client.ledgerable_events.create(
-            amount=0,
             name="string",
         )
         assert_matches_type(LedgerableEvent, ledgerable_event, path=["response"])
@@ -78,13 +72,9 @@ class TestAsyncLedgerableEvents:
     @parametrize
     async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
         ledgerable_event = await client.ledgerable_events.create(
-            amount=0,
             name="string",
-            currency="string",
-            currency_exponent=0,
             custom_data={},
             description="string",
-            direction="string",
             metadata={
                 "key": "value",
                 "foo": "bar",

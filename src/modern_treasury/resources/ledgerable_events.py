@@ -17,13 +17,9 @@ class LedgerableEvents(SyncAPIResource):
     def create(
         self,
         *,
-        amount: int,
         name: str,
-        currency: Optional[str] | NotGiven = NOT_GIVEN,
-        currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
         custom_data: Optional[object] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
-        direction: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -34,25 +30,14 @@ class LedgerableEvents(SyncAPIResource):
         idempotency_key: str | None = None,
     ) -> LedgerableEvent:
         """
-        Translation missing:
-        en.openapi.descriptions.ledger.operations.create_ledgerable_event
+        Create a ledgerable event.
 
         Args:
-          amount: Value in specified currency's smallest unit. e.g. $10 would be represented
-              as 1000.
-
           name: Name of the ledgerable event.
-
-          currency: An ISO 4217 conformed currency or a custom currency.
-
-          currency_exponent: Must be included if currency is a custom currency. The currency_exponent cannot
-              exceed 30.
 
           custom_data: Additionally data to be used by the Ledger Event Handler.
 
           description: Description of the ledgerable event.
-
-          direction: One of `credit`, `debit`.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -71,13 +56,9 @@ class LedgerableEvents(SyncAPIResource):
             "/api/ledgerable_events",
             body=maybe_transform(
                 {
-                    "amount": amount,
                     "name": name,
-                    "currency": currency,
-                    "currency_exponent": currency_exponent,
                     "custom_data": custom_data,
                     "description": description,
-                    "direction": direction,
                     "metadata": metadata,
                 },
                 ledgerable_event_create_params.LedgerableEventCreateParams,
@@ -128,13 +109,9 @@ class AsyncLedgerableEvents(AsyncAPIResource):
     async def create(
         self,
         *,
-        amount: int,
         name: str,
-        currency: Optional[str] | NotGiven = NOT_GIVEN,
-        currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
         custom_data: Optional[object] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
-        direction: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -145,25 +122,14 @@ class AsyncLedgerableEvents(AsyncAPIResource):
         idempotency_key: str | None = None,
     ) -> LedgerableEvent:
         """
-        Translation missing:
-        en.openapi.descriptions.ledger.operations.create_ledgerable_event
+        Create a ledgerable event.
 
         Args:
-          amount: Value in specified currency's smallest unit. e.g. $10 would be represented
-              as 1000.
-
           name: Name of the ledgerable event.
-
-          currency: An ISO 4217 conformed currency or a custom currency.
-
-          currency_exponent: Must be included if currency is a custom currency. The currency_exponent cannot
-              exceed 30.
 
           custom_data: Additionally data to be used by the Ledger Event Handler.
 
           description: Description of the ledgerable event.
-
-          direction: One of `credit`, `debit`.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -182,13 +148,9 @@ class AsyncLedgerableEvents(AsyncAPIResource):
             "/api/ledgerable_events",
             body=maybe_transform(
                 {
-                    "amount": amount,
                     "name": name,
-                    "currency": currency,
-                    "currency_exponent": currency_exponent,
                     "custom_data": custom_data,
                     "description": description,
-                    "direction": direction,
                     "metadata": metadata,
                 },
                 ledgerable_event_create_params.LedgerableEventCreateParams,
