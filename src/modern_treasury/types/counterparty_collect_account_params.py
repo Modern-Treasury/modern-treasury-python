@@ -5,13 +5,13 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
-from ..types import shared_params
+from .shared import TransactionDirection
 
 __all__ = ["CounterpartyCollectAccountParams"]
 
 
 class CounterpartyCollectAccountParams(TypedDict, total=False):
-    direction: Required[shared_params.TransactionDirection]
+    direction: Required[TransactionDirection]
     """One of `credit` or `debit`.
 
     Use `credit` when you want to pay a counterparty. Use `debit` when you need to

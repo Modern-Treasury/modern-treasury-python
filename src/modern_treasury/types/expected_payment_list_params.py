@@ -6,7 +6,7 @@ from typing import Dict, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
-from ..types import shared_params
+from .shared import TransactionDirection
 from .._utils import PropertyInfo
 
 __all__ = ["ExpectedPaymentListParams"]
@@ -24,7 +24,7 @@ class ExpectedPaymentListParams(TypedDict, total=False):
     created_at_upper_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Used to return expected payments created before some datetime"""
 
-    direction: shared_params.TransactionDirection
+    direction: TransactionDirection
     """One of credit, debit"""
 
     internal_account_id: str

@@ -6,7 +6,7 @@ from typing import Dict, List, Union, Optional
 from datetime import date
 from typing_extensions import Annotated, TypedDict
 
-from ..types import shared_params
+from .shared import Currency, TransactionDirection
 from .._utils import PropertyInfo
 from .expected_payment_type import ExpectedPaymentType
 
@@ -31,7 +31,7 @@ class ExpectedPaymentUpdateParams(TypedDict, total=False):
     counterparty_id: Optional[str]
     """The ID of the counterparty you expect for this payment."""
 
-    currency: Optional[shared_params.Currency]
+    currency: Optional[Currency]
     """Must conform to ISO 4217. Defaults to the currency of the internal account."""
 
     date_lower_bound: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
@@ -43,7 +43,7 @@ class ExpectedPaymentUpdateParams(TypedDict, total=False):
     description: Optional[str]
     """An optional description for internal use."""
 
-    direction: shared_params.TransactionDirection
+    direction: TransactionDirection
     """One of credit or debit.
 
     When you are receiving money, use credit. When you are being charged, use debit.

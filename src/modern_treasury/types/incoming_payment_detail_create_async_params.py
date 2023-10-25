@@ -6,7 +6,7 @@ from typing import Union, Optional
 from datetime import date
 from typing_extensions import Literal, Annotated, TypedDict
 
-from ..types import shared_params
+from .shared import Currency
 from .._utils import PropertyInfo
 
 __all__ = ["IncomingPaymentDetailCreateAsyncParams"]
@@ -22,7 +22,7 @@ class IncomingPaymentDetailCreateAsyncParams(TypedDict, total=False):
     as_of_date: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
     """Defaults to today."""
 
-    currency: Optional[shared_params.Currency]
+    currency: Optional[Currency]
     """Defaults to the currency of the originating account."""
 
     description: Optional[str]

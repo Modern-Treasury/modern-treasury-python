@@ -6,7 +6,7 @@ from typing import List, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ..types import shared_params
+from .shared import Currency
 from .._utils import PropertyInfo
 from .payment_order_type import PaymentOrderType
 
@@ -39,7 +39,7 @@ class InvoiceCreateParams(TypedDict, total=False):
     counterparty_shipping_address: Optional[CounterpartyShippingAddress]
     """The counterparty's shipping address where physical goods should be delivered."""
 
-    currency: Optional[shared_params.Currency]
+    currency: Optional[Currency]
     """Currency that the invoice is denominated in. Defaults to `USD` if not provided."""
 
     description: str

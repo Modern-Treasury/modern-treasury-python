@@ -10,7 +10,6 @@ from ...types import (
     PaymentOrder,
     PaymentOrderType,
     PaymentOrderSubtype,
-    shared_params,
     payment_order_list_params,
     payment_order_create_params,
     payment_order_update_params,
@@ -22,7 +21,7 @@ from .reversals import Reversals, AsyncReversals
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.shared import AsyncResponse
+from ...types.shared import Currency, AsyncResponse, TransactionDirection
 
 if TYPE_CHECKING:
     from ..._client import ModernTreasury, AsyncModernTreasury
@@ -48,7 +47,7 @@ class PaymentOrders(SyncAPIResource):
         accounting_category_id: Optional[str] | NotGiven = NOT_GIVEN,
         accounting_ledger_class_id: Optional[str] | NotGiven = NOT_GIVEN,
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | NotGiven = NOT_GIVEN,
-        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         documents: List[payment_order_create_params.Document] | NotGiven = NOT_GIVEN,
         effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
@@ -309,7 +308,7 @@ class PaymentOrders(SyncAPIResource):
         amount: int | NotGiven = NOT_GIVEN,
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
-        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
@@ -542,7 +541,7 @@ class PaymentOrders(SyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
-        direction: shared_params.TransactionDirection | NotGiven = NOT_GIVEN,
+        direction: TransactionDirection | NotGiven = NOT_GIVEN,
         effective_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
         effective_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -667,7 +666,7 @@ class PaymentOrders(SyncAPIResource):
         accounting_category_id: Optional[str] | NotGiven = NOT_GIVEN,
         accounting_ledger_class_id: Optional[str] | NotGiven = NOT_GIVEN,
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | NotGiven = NOT_GIVEN,
-        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
         expires_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
@@ -893,7 +892,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         accounting_category_id: Optional[str] | NotGiven = NOT_GIVEN,
         accounting_ledger_class_id: Optional[str] | NotGiven = NOT_GIVEN,
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | NotGiven = NOT_GIVEN,
-        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         documents: List[payment_order_create_params.Document] | NotGiven = NOT_GIVEN,
         effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
@@ -1154,7 +1153,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         amount: int | NotGiven = NOT_GIVEN,
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
-        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
@@ -1387,7 +1386,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
-        direction: shared_params.TransactionDirection | NotGiven = NOT_GIVEN,
+        direction: TransactionDirection | NotGiven = NOT_GIVEN,
         effective_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
         effective_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -1512,7 +1511,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         accounting_category_id: Optional[str] | NotGiven = NOT_GIVEN,
         accounting_ledger_class_id: Optional[str] | NotGiven = NOT_GIVEN,
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | NotGiven = NOT_GIVEN,
-        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
         expires_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,

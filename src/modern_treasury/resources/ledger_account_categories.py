@@ -6,7 +6,6 @@ from typing import Dict, List, Optional
 
 from ..types import (
     LedgerAccountCategory,
-    shared_params,
     ledger_account_category_list_params,
     ledger_account_category_create_params,
     ledger_account_category_update_params,
@@ -17,6 +16,7 @@ from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
+from ..types.shared import TransactionDirection
 
 __all__ = ["LedgerAccountCategories", "AsyncLedgerAccountCategories"]
 
@@ -28,7 +28,7 @@ class LedgerAccountCategories(SyncAPIResource):
         currency: str,
         ledger_id: str,
         name: str,
-        normal_balance: shared_params.TransactionDirection,
+        normal_balance: TransactionDirection,
         currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -470,7 +470,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         currency: str,
         ledger_id: str,
         name: str,
-        normal_balance: shared_params.TransactionDirection,
+        normal_balance: TransactionDirection,
         currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,

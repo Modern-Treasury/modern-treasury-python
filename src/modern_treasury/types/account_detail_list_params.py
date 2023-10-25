@@ -5,13 +5,13 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Required, TypedDict
 
-from ..types import shared_params
+from .shared import AccountsType
 
 __all__ = ["AccountDetailListParams"]
 
 
 class AccountDetailListParams(TypedDict, total=False):
-    accounts_type: Required[shared_params.AccountsType]
+    accounts_type: Required[AccountsType]
 
     after_cursor: Optional[str]
 

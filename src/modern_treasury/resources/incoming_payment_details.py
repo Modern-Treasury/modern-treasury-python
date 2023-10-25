@@ -8,7 +8,6 @@ from typing_extensions import Literal
 
 from ..types import (
     IncomingPaymentDetail,
-    shared_params,
     incoming_payment_detail_list_params,
     incoming_payment_detail_update_params,
     incoming_payment_detail_create_async_params,
@@ -18,7 +17,7 @@ from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.shared import AsyncResponse
+from ..types.shared import Currency, AsyncResponse, TransactionDirection
 
 __all__ = ["IncomingPaymentDetails", "AsyncIncomingPaymentDetails"]
 
@@ -106,7 +105,7 @@ class IncomingPaymentDetails(SyncAPIResource):
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         as_of_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
         as_of_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
-        direction: shared_params.TransactionDirection | NotGiven = NOT_GIVEN,
+        direction: TransactionDirection | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         status: Literal["completed", "pending", "returned"] | NotGiven = NOT_GIVEN,
@@ -183,7 +182,7 @@ class IncomingPaymentDetails(SyncAPIResource):
         *,
         amount: int | NotGiven = NOT_GIVEN,
         as_of_date: Union[str, date, None] | NotGiven = NOT_GIVEN,
-        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         internal_account_id: str | NotGiven = NOT_GIVEN,
@@ -338,7 +337,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         as_of_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
         as_of_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
-        direction: shared_params.TransactionDirection | NotGiven = NOT_GIVEN,
+        direction: TransactionDirection | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         status: Literal["completed", "pending", "returned"] | NotGiven = NOT_GIVEN,
@@ -415,7 +414,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         *,
         amount: int | NotGiven = NOT_GIVEN,
         as_of_date: Union[str, date, None] | NotGiven = NOT_GIVEN,
-        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         internal_account_id: str | NotGiven = NOT_GIVEN,
