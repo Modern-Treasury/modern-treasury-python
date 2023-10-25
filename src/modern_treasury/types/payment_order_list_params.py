@@ -6,7 +6,7 @@ from typing import Dict, Union, Optional
 from datetime import date
 from typing_extensions import Literal, Annotated, TypedDict
 
-from ..types import shared_params
+from .shared import TransactionDirection
 from .._utils import PropertyInfo
 
 __all__ = ["PaymentOrderListParams"]
@@ -17,7 +17,7 @@ class PaymentOrderListParams(TypedDict, total=False):
 
     counterparty_id: str
 
-    direction: shared_params.TransactionDirection
+    direction: TransactionDirection
 
     effective_date_end: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
     """An inclusive upper bound for searching effective_date"""

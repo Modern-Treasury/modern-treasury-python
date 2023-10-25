@@ -6,7 +6,7 @@ from typing import Dict, Union, Optional
 from datetime import date
 from typing_extensions import Literal, Annotated, TypedDict
 
-from ..types import shared_params
+from .shared import TransactionDirection
 from .._utils import PropertyInfo
 
 __all__ = ["IncomingPaymentDetailListParams"]
@@ -27,7 +27,7 @@ class IncomingPaymentDetailListParams(TypedDict, total=False):
     specified date (YYYY-MM-DD).
     """
 
-    direction: shared_params.TransactionDirection
+    direction: TransactionDirection
     """One of `credit` or `debit`."""
 
     metadata: Dict[str, str]

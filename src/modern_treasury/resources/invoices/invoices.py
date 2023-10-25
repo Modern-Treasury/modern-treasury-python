@@ -9,7 +9,6 @@ from typing_extensions import Literal
 from ...types import (
     Invoice,
     PaymentOrderType,
-    shared_params,
     invoice_list_params,
     invoice_create_params,
     invoice_update_params,
@@ -20,6 +19,7 @@ from .line_items import LineItems, AsyncLineItems
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.shared import Currency
 
 if TYPE_CHECKING:
     from ..._client import ModernTreasury, AsyncModernTreasury
@@ -44,7 +44,7 @@ class Invoices(SyncAPIResource):
         counterparty_billing_address: Optional[invoice_create_params.CounterpartyBillingAddress] | NotGiven = NOT_GIVEN,
         counterparty_shipping_address: Optional[invoice_create_params.CounterpartyShippingAddress]
         | NotGiven = NOT_GIVEN,
-        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_create_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
         notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
@@ -203,7 +203,7 @@ class Invoices(SyncAPIResource):
         counterparty_id: str | NotGiven = NOT_GIVEN,
         counterparty_shipping_address: Optional[invoice_update_params.CounterpartyShippingAddress]
         | NotGiven = NOT_GIVEN,
-        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         due_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_update_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
@@ -431,7 +431,7 @@ class AsyncInvoices(AsyncAPIResource):
         counterparty_billing_address: Optional[invoice_create_params.CounterpartyBillingAddress] | NotGiven = NOT_GIVEN,
         counterparty_shipping_address: Optional[invoice_create_params.CounterpartyShippingAddress]
         | NotGiven = NOT_GIVEN,
-        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_create_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
         notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
@@ -590,7 +590,7 @@ class AsyncInvoices(AsyncAPIResource):
         counterparty_id: str | NotGiven = NOT_GIVEN,
         counterparty_shipping_address: Optional[invoice_update_params.CounterpartyShippingAddress]
         | NotGiven = NOT_GIVEN,
-        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         due_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_update_params.InvoicerAddress] | NotGiven = NOT_GIVEN,

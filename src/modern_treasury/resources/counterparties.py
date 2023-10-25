@@ -9,7 +9,6 @@ from typing_extensions import Literal
 from ..types import (
     Counterparty,
     CounterpartyCollectAccountResponse,
-    shared_params,
     counterparty_list_params,
     counterparty_create_params,
     counterparty_update_params,
@@ -20,6 +19,7 @@ from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
+from ..types.shared import TransactionDirection
 
 __all__ = ["Counterparties", "AsyncCounterparties"]
 
@@ -310,7 +310,7 @@ class Counterparties(SyncAPIResource):
         self,
         id: str,
         *,
-        direction: shared_params.TransactionDirection,
+        direction: TransactionDirection,
         custom_redirect: str | NotGiven = NOT_GIVEN,
         fields: List[
             Literal[
@@ -691,7 +691,7 @@ class AsyncCounterparties(AsyncAPIResource):
         self,
         id: str,
         *,
-        direction: shared_params.TransactionDirection,
+        direction: TransactionDirection,
         custom_redirect: str | NotGiven = NOT_GIVEN,
         fields: List[
             Literal[

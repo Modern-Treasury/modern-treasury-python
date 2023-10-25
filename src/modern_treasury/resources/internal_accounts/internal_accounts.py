@@ -7,7 +7,6 @@ from typing_extensions import Literal
 
 from ...types import (
     InternalAccount,
-    shared_params,
     internal_account_list_params,
     internal_account_create_params,
     internal_account_update_params,
@@ -17,6 +16,7 @@ from ..._utils import maybe_transform
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.shared import Currency, TransactionDirection
 from .balance_reports import BalanceReports, AsyncBalanceReports
 
 if TYPE_CHECKING:
@@ -204,9 +204,9 @@ class InternalAccounts(SyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
-        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        payment_direction: shared_params.TransactionDirection | NotGiven = NOT_GIVEN,
+        payment_direction: TransactionDirection | NotGiven = NOT_GIVEN,
         payment_type: Literal[
             "ach",
             "au_becs",
@@ -469,9 +469,9 @@ class AsyncInternalAccounts(AsyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
-        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        payment_direction: shared_params.TransactionDirection | NotGiven = NOT_GIVEN,
+        payment_direction: TransactionDirection | NotGiven = NOT_GIVEN,
         payment_type: Literal[
             "ach",
             "au_becs",

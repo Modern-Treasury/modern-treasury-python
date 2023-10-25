@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
-from ..types import shared_params
+from .shared import Currency
 
 __all__ = ["ExternalAccountVerifyParams"]
 
@@ -46,5 +46,5 @@ class ExternalAccountVerifyParams(TypedDict, total=False):
     ]
     """Both ach and eft are supported payment types."""
 
-    currency: Optional[shared_params.Currency]
+    currency: Optional[Currency]
     """Defaults to the currency of the originating account."""

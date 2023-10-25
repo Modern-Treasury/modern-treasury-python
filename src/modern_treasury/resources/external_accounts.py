@@ -8,7 +8,6 @@ from typing_extensions import Literal
 from ..types import (
     ExternalAccount,
     ExternalAccountType,
-    shared_params,
     external_account_list_params,
     external_account_create_params,
     external_account_update_params,
@@ -20,6 +19,7 @@ from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
+from ..types.shared import Currency
 
 __all__ = ["ExternalAccounts", "AsyncExternalAccounts"]
 
@@ -383,7 +383,7 @@ class ExternalAccounts(SyncAPIResource):
             "wire",
             "zengin",
         ],
-        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -793,7 +793,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
             "wire",
             "zengin",
         ],
-        currency: Optional[shared_params.Currency] | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

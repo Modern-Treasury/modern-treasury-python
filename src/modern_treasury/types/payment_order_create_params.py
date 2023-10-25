@@ -6,7 +6,7 @@ from typing import Dict, List, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ..types import shared_params
+from .shared import Currency, TransactionDirection
 from .._types import FileTypes
 from .._utils import PropertyInfo
 from .payment_order_type import PaymentOrderType
@@ -85,7 +85,7 @@ class PaymentOrderCreateParams(TypedDict, total=False):
     which correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
     """
 
-    currency: Optional[shared_params.Currency]
+    currency: Optional[Currency]
     """Defaults to the currency of the originating account."""
 
     description: Optional[str]
@@ -298,7 +298,7 @@ class LedgerTransactionLedgerEntry(TypedDict, total=False):
     e.g. $10 would be represented as 1000. Can be any integer up to 36 digits.
     """
 
-    direction: Required[shared_params.TransactionDirection]
+    direction: Required[TransactionDirection]
     """One of `credit`, `debit`.
 
     Describes the direction money is flowing in the transaction. A `credit` moves
@@ -485,7 +485,7 @@ class ReceivingAccountLedgerAccount(TypedDict, total=False):
     name: Required[str]
     """The name of the ledger account."""
 
-    normal_balance: Required[shared_params.TransactionDirection]
+    normal_balance: Required[TransactionDirection]
     """The normal balance of the ledger account."""
 
     currency_exponent: Optional[int]
