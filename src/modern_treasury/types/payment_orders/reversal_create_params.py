@@ -6,7 +6,7 @@ from typing import Dict, List, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ...types import shared_params
+from ..shared import TransactionDirection
 from ..._utils import PropertyInfo
 
 __all__ = [
@@ -54,7 +54,7 @@ class LedgerTransactionLedgerEntry(TypedDict, total=False):
     e.g. $10 would be represented as 1000. Can be any integer up to 36 digits.
     """
 
-    direction: Required[shared_params.TransactionDirection]
+    direction: Required[TransactionDirection]
     """One of `credit`, `debit`.
 
     Describes the direction money is flowing in the transaction. A `credit` moves

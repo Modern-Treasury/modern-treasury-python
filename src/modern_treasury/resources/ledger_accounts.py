@@ -8,7 +8,6 @@ from typing_extensions import Literal
 
 from ..types import (
     LedgerAccount,
-    shared_params,
     ledger_account_list_params,
     ledger_account_create_params,
     ledger_account_update_params,
@@ -19,6 +18,7 @@ from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
+from ..types.shared import TransactionDirection
 
 __all__ = ["LedgerAccounts", "AsyncLedgerAccounts"]
 
@@ -30,7 +30,7 @@ class LedgerAccounts(SyncAPIResource):
         currency: str,
         ledger_id: str,
         name: str,
-        normal_balance: shared_params.TransactionDirection,
+        normal_balance: TransactionDirection,
         currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
@@ -350,7 +350,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         currency: str,
         ledger_id: str,
         name: str,
-        normal_balance: shared_params.TransactionDirection,
+        normal_balance: TransactionDirection,
         currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,

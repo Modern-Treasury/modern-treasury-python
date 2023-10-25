@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import Literal, Required, TypedDict
 
-from ..types import shared_params
+from .shared import TransactionDirection
 
 __all__ = ["LedgerAccountCreateParams"]
 
@@ -20,7 +20,7 @@ class LedgerAccountCreateParams(TypedDict, total=False):
     name: Required[str]
     """The name of the ledger account."""
 
-    normal_balance: Required[shared_params.TransactionDirection]
+    normal_balance: Required[TransactionDirection]
     """The normal balance of the ledger account."""
 
     currency_exponent: Optional[int]

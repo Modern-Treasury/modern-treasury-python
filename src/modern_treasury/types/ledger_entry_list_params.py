@@ -6,7 +6,7 @@ from typing import Dict, List, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, TypedDict
 
-from ..types import shared_params
+from .shared import TransactionDirection
 
 __all__ = ["LedgerEntryListParams", "OrderBy"]
 
@@ -26,7 +26,7 @@ class LedgerEntryListParams(TypedDict, total=False):
     `lock_version`. You must also specify `ledger_account_id`.
     """
 
-    direction: shared_params.TransactionDirection
+    direction: TransactionDirection
     """If true, response will include ledger entries that were deleted.
 
     When you update a ledger transaction to specify a new set of entries, the

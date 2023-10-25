@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import Literal, TypedDict
 
-from ..types import shared_params
+from .shared import Currency, TransactionDirection
 
 __all__ = ["InternalAccountListParams"]
 
@@ -16,7 +16,7 @@ class InternalAccountListParams(TypedDict, total=False):
     counterparty_id: str
     """The counterparty associated with the internal account."""
 
-    currency: Optional[shared_params.Currency]
+    currency: Optional[Currency]
     """The currency associated with the internal account."""
 
     metadata: Dict[str, str]
@@ -26,7 +26,7 @@ class InternalAccountListParams(TypedDict, total=False):
     parameters.
     """
 
-    payment_direction: shared_params.TransactionDirection
+    payment_direction: TransactionDirection
     """The direction of payments that can be made by internal account."""
 
     payment_type: Literal[

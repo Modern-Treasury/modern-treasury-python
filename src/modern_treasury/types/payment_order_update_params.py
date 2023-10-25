@@ -6,7 +6,7 @@ from typing import Dict, List, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ..types import shared_params
+from .shared import Currency, TransactionDirection
 from .._utils import PropertyInfo
 from .payment_order_type import PaymentOrderType
 from .external_account_type import ExternalAccountType
@@ -63,7 +63,7 @@ class PaymentOrderUpdateParams(TypedDict, total=False):
     counterparty_id: Optional[str]
     """Required when receiving_account_id is passed the ID of an external account."""
 
-    currency: Optional[shared_params.Currency]
+    currency: Optional[Currency]
     """Defaults to the currency of the originating account."""
 
     description: Optional[str]
@@ -335,7 +335,7 @@ class ReceivingAccountLedgerAccount(TypedDict, total=False):
     name: Required[str]
     """The name of the ledger account."""
 
-    normal_balance: Required[shared_params.TransactionDirection]
+    normal_balance: Required[TransactionDirection]
     """The normal balance of the ledger account."""
 
     currency_exponent: Optional[int]
