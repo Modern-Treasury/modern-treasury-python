@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless.
 
 from typing import Any, List, Type, Generic, Mapping, TypeVar, Optional, cast
+from typing_extensions import override
 
 from httpx import Response
 
@@ -19,9 +20,11 @@ class SyncPage(BaseSyncPage[ModelT], BasePage[ModelT], Generic[ModelT]):
     per_page: Optional[int]
     after_cursor: Optional[str]
 
+    @override
     def _get_page_items(self) -> List[ModelT]:
         return self.items
 
+    @override
     def next_page_info(self) -> Optional[PageInfo]:
         cursor = self.after_cursor
         if not cursor:
@@ -45,9 +48,11 @@ class AsyncPage(BaseAsyncPage[ModelT], BasePage[ModelT], Generic[ModelT]):
     per_page: Optional[int]
     after_cursor: Optional[str]
 
+    @override
     def _get_page_items(self) -> List[ModelT]:
         return self.items
 
+    @override
     def next_page_info(self) -> Optional[PageInfo]:
         cursor = self.after_cursor
         if not cursor:
