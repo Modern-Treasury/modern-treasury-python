@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import LedgerAccountPayout
+from modern_treasury._utils import parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -40,7 +41,7 @@ class TestLedgerAccountPayouts:
             payout_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             allow_either_direction=True,
             description="string",
-            effective_at_upper_bound="14:15:22Z",
+            effective_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -129,7 +130,7 @@ class TestAsyncLedgerAccountPayouts:
             payout_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             allow_either_direction=True,
             description="string",
-            effective_at_upper_bound="14:15:22Z",
+            effective_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             metadata={
                 "key": "value",
                 "foo": "bar",

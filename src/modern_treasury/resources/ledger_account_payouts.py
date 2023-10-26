@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import Dict, List, Optional
+from typing import Dict, List, Union, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from ..types import (
@@ -29,7 +30,7 @@ class LedgerAccountPayouts(SyncAPIResource):
         payout_ledger_account_id: str,
         allow_either_direction: Optional[bool] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
-        effective_at_upper_bound: Optional[str] | NotGiven = NOT_GIVEN,
+        effective_at_upper_bound: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         skip_payout_ledger_transaction: Optional[bool] | NotGiven = NOT_GIVEN,
         status: Optional[Literal["pending", "posted"]] | NotGiven = NOT_GIVEN,
@@ -52,7 +53,7 @@ class LedgerAccountPayouts(SyncAPIResource):
               and its balance is reduced as a result.
 
           allow_either_direction: If true, the payout amount and payout_entry_direction will bring the payout
-              ledger account’s balance closer to zero, even if the balance is negative.
+              ledger account's balance closer to zero, even if the balance is negative.
 
           description: The description of the ledger account payout.
 
@@ -287,7 +288,7 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
         payout_ledger_account_id: str,
         allow_either_direction: Optional[bool] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
-        effective_at_upper_bound: Optional[str] | NotGiven = NOT_GIVEN,
+        effective_at_upper_bound: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         skip_payout_ledger_transaction: Optional[bool] | NotGiven = NOT_GIVEN,
         status: Optional[Literal["pending", "posted"]] | NotGiven = NOT_GIVEN,
@@ -310,7 +311,7 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
               and its balance is reduced as a result.
 
           allow_either_direction: If true, the payout amount and payout_entry_direction will bring the payout
-              ledger account’s balance closer to zero, even if the balance is negative.
+              ledger account's balance closer to zero, even if the balance is negative.
 
           description: The description of the ledger account payout.
 

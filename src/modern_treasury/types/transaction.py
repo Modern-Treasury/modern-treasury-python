@@ -86,6 +86,7 @@ class Transaction(BaseModel):
         "se_bankgirot",
         "sen",
         "sepa",
+        "sg_giro",
         "sic",
         "signet",
         "wire",
