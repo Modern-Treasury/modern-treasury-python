@@ -6,6 +6,7 @@ import os
 import base64
 import asyncio
 from typing import Union, Mapping
+from typing_extensions import override
 
 import httpx
 
@@ -198,10 +199,12 @@ class ModernTreasury(SyncAPIClient):
         self.virtual_accounts = resources.VirtualAccounts(self)
 
     @property
+    @override
     def qs(self) -> Querystring:
         return Querystring(array_format="brackets")
 
     @property
+    @override
     def auth_headers(self) -> dict[str, str]:
         credentials = f"{self.organization_id}:{self.api_key}".encode("ascii")
         header = f"Basic {base64.b64encode(credentials).decode('ascii')}"
@@ -314,6 +317,7 @@ class ModernTreasury(SyncAPIClient):
             cast_to=PingResponse,
         )
 
+    @override
     def _make_status_error(
         self,
         err_msg: str,
@@ -495,10 +499,12 @@ class AsyncModernTreasury(AsyncAPIClient):
         self.virtual_accounts = resources.AsyncVirtualAccounts(self)
 
     @property
+    @override
     def qs(self) -> Querystring:
         return Querystring(array_format="brackets")
 
     @property
+    @override
     def auth_headers(self) -> dict[str, str]:
         credentials = f"{self.organization_id}:{self.api_key}".encode("ascii")
         header = f"Basic {base64.b64encode(credentials).decode('ascii')}"
@@ -614,6 +620,7 @@ class AsyncModernTreasury(AsyncAPIClient):
             cast_to=PingResponse,
         )
 
+    @override
     def _make_status_error(
         self,
         err_msg: str,
