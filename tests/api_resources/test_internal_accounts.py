@@ -79,6 +79,7 @@ class TestInternalAccounts:
         internal_account = client.internal_accounts.update(
             "string",
             counterparty_id="string",
+            ledger_account_id="string",
             metadata={"foo": "string"},
             name="string",
             parent_account_id="string",
@@ -167,6 +168,7 @@ class TestAsyncInternalAccounts:
         internal_account = await client.internal_accounts.update(
             "string",
             counterparty_id="string",
+            ledger_account_id="string",
             metadata={"foo": "string"},
             name="string",
             parent_account_id="string",

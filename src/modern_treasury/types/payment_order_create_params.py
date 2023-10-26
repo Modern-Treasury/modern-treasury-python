@@ -136,6 +136,14 @@ class PaymentOrderCreateParams(TypedDict, total=False):
     the payment order.
     """
 
+    ledger_transaction_id: str
+    """Either ledger_transaction or ledger_transaction_id can be provided.
+
+    Only a pending ledger transaction can be attached upon payment order creation.
+    Once the payment order is created, the status of the ledger transaction tracks
+    the payment order automatically.
+    """
+
     line_items: List[LineItem]
     """An array of line items that must sum up to the amount of the payment order."""
 
@@ -571,6 +579,7 @@ class ReceivingAccountRoutingDetail(TypedDict, total=False):
         "nz_becs",
         "provxchange",
         "rtp",
+        "sg_giro",
         "se_bankgirot",
         "sen",
         "sepa",

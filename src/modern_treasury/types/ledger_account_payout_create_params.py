@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing import Dict, Union, Optional
+from datetime import datetime
+from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from .._utils import PropertyInfo
 
 __all__ = ["LedgerAccountPayoutCreateParams"]
 
@@ -24,13 +27,13 @@ class LedgerAccountPayoutCreateParams(TypedDict, total=False):
     allow_either_direction: Optional[bool]
     """
     If true, the payout amount and payout_entry_direction will bring the payout
-    ledger account’s balance closer to zero, even if the balance is negative.
+    ledger account's balance closer to zero, even if the balance is negative.
     """
 
     description: Optional[str]
     """The description of the ledger account payout."""
 
-    effective_at_upper_bound: Optional[str]
+    effective_at_upper_bound: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """
     The exclusive upper bound of the effective_at timestamp of the ledger entries to
     be included in the ledger account payout. The default value is the created_at
