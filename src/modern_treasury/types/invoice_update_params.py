@@ -8,7 +8,6 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .shared import Currency
 from .._utils import PropertyInfo
-from .payment_order_type import PaymentOrderType
 
 __all__ = [
     "InvoiceUpdateParams",
@@ -79,7 +78,32 @@ class InvoiceUpdateParams(TypedDict, total=False):
     One of `manual`, `ui`, or `automatic`.
     """
 
-    payment_type: PaymentOrderType
+    payment_type: Literal[
+        "ach",
+        "au_becs",
+        "bacs",
+        "book",
+        "card",
+        "chats",
+        "check",
+        "cross_border",
+        "eft",
+        "interac",
+        "masav",
+        "neft",
+        "nics",
+        "nz_becs",
+        "provxchange",
+        "rtp",
+        "sg_giro",
+        "se_bankgirot",
+        "sen",
+        "sepa",
+        "sic",
+        "signet",
+        "wire",
+        "zengin",
+    ]
     """
     One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
     `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,

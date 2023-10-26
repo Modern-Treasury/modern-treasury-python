@@ -144,6 +144,7 @@ class InternalAccounts(SyncAPIResource):
         id: str,
         *,
         counterparty_id: str | NotGiven = NOT_GIVEN,
+        ledger_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         parent_account_id: str | NotGiven = NOT_GIVEN,
@@ -160,6 +161,8 @@ class InternalAccounts(SyncAPIResource):
 
         Args:
           counterparty_id: The Counterparty associated to this account.
+
+          ledger_account_id: The Ledger Account associated to this account.
 
           metadata: Additional data in the form of key-value pairs. Pairs can be removed by passing
               an empty string or `null` as the value.
@@ -183,6 +186,7 @@ class InternalAccounts(SyncAPIResource):
             body=maybe_transform(
                 {
                     "counterparty_id": counterparty_id,
+                    "ledger_account_id": ledger_account_id,
                     "metadata": metadata,
                     "name": name,
                     "parent_account_id": parent_account_id,
@@ -227,6 +231,7 @@ class InternalAccounts(SyncAPIResource):
             "se_bankgirot",
             "sen",
             "sepa",
+            "sg_giro",
             "sic",
             "signet",
             "wire",
@@ -409,6 +414,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         id: str,
         *,
         counterparty_id: str | NotGiven = NOT_GIVEN,
+        ledger_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         parent_account_id: str | NotGiven = NOT_GIVEN,
@@ -425,6 +431,8 @@ class AsyncInternalAccounts(AsyncAPIResource):
 
         Args:
           counterparty_id: The Counterparty associated to this account.
+
+          ledger_account_id: The Ledger Account associated to this account.
 
           metadata: Additional data in the form of key-value pairs. Pairs can be removed by passing
               an empty string or `null` as the value.
@@ -448,6 +456,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "counterparty_id": counterparty_id,
+                    "ledger_account_id": ledger_account_id,
                     "metadata": metadata,
                     "name": name,
                     "parent_account_id": parent_account_id,
@@ -492,6 +501,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
             "se_bankgirot",
             "sen",
             "sepa",
+            "sg_giro",
             "sic",
             "signet",
             "wire",

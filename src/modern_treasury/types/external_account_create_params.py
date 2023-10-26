@@ -197,6 +197,7 @@ class RoutingDetail(TypedDict, total=False):
         "nz_becs",
         "provxchange",
         "rtp",
+        "sg_giro",
         "se_bankgirot",
         "sen",
         "sepa",

@@ -56,6 +56,7 @@ class PaymentOrders(SyncAPIResource):
         foreign_exchange_contract: Optional[str] | NotGiven = NOT_GIVEN,
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | NotGiven = NOT_GIVEN,
         ledger_transaction: payment_order_create_params.LedgerTransaction | NotGiven = NOT_GIVEN,
+        ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         line_items: List[payment_order_create_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         nsf_protected: bool | NotGiven = NOT_GIVEN,
@@ -137,6 +138,11 @@ class PaymentOrders(SyncAPIResource):
               order. If the ledger transaction cannot be created, then the payment order
               creation will fail. The resulting ledger transaction will mirror the status of
               the payment order.
+
+          ledger_transaction_id: Either ledger_transaction or ledger_transaction_id can be provided. Only a
+              pending ledger transaction can be attached upon payment order creation. Once the
+              payment order is created, the status of the ledger transaction tracks the
+              payment order automatically.
 
           line_items: An array of line items that must sum up to the amount of the payment order.
 
@@ -227,6 +233,7 @@ class PaymentOrders(SyncAPIResource):
                 "foreign_exchange_contract": foreign_exchange_contract,
                 "foreign_exchange_indicator": foreign_exchange_indicator,
                 "ledger_transaction": ledger_transaction,
+                "ledger_transaction_id": ledger_transaction_id,
                 "line_items": line_items,
                 "metadata": metadata,
                 "nsf_protected": nsf_protected,
@@ -584,6 +591,7 @@ class PaymentOrders(SyncAPIResource):
             "se_bankgirot",
             "sen",
             "sepa",
+            "sg_giro",
             "sic",
             "signet",
             "wire",
@@ -674,6 +682,7 @@ class PaymentOrders(SyncAPIResource):
         foreign_exchange_contract: Optional[str] | NotGiven = NOT_GIVEN,
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | NotGiven = NOT_GIVEN,
         ledger_transaction: payment_order_create_async_params.LedgerTransaction | NotGiven = NOT_GIVEN,
+        ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         line_items: List[payment_order_create_async_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         nsf_protected: bool | NotGiven = NOT_GIVEN,
@@ -752,6 +761,11 @@ class PaymentOrders(SyncAPIResource):
               order. If the ledger transaction cannot be created, then the payment order
               creation will fail. The resulting ledger transaction will mirror the status of
               the payment order.
+
+          ledger_transaction_id: Either ledger_transaction or ledger_transaction_id can be provided. Only a
+              pending ledger transaction can be attached upon payment order creation. Once the
+              payment order is created, the status of the ledger transaction tracks the
+              payment order automatically.
 
           line_items: An array of line items that must sum up to the amount of the payment order.
 
@@ -843,6 +857,7 @@ class PaymentOrders(SyncAPIResource):
                     "foreign_exchange_contract": foreign_exchange_contract,
                     "foreign_exchange_indicator": foreign_exchange_indicator,
                     "ledger_transaction": ledger_transaction,
+                    "ledger_transaction_id": ledger_transaction_id,
                     "line_items": line_items,
                     "metadata": metadata,
                     "nsf_protected": nsf_protected,
@@ -901,6 +916,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         foreign_exchange_contract: Optional[str] | NotGiven = NOT_GIVEN,
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | NotGiven = NOT_GIVEN,
         ledger_transaction: payment_order_create_params.LedgerTransaction | NotGiven = NOT_GIVEN,
+        ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         line_items: List[payment_order_create_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         nsf_protected: bool | NotGiven = NOT_GIVEN,
@@ -982,6 +998,11 @@ class AsyncPaymentOrders(AsyncAPIResource):
               order. If the ledger transaction cannot be created, then the payment order
               creation will fail. The resulting ledger transaction will mirror the status of
               the payment order.
+
+          ledger_transaction_id: Either ledger_transaction or ledger_transaction_id can be provided. Only a
+              pending ledger transaction can be attached upon payment order creation. Once the
+              payment order is created, the status of the ledger transaction tracks the
+              payment order automatically.
 
           line_items: An array of line items that must sum up to the amount of the payment order.
 
@@ -1072,6 +1093,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
                 "foreign_exchange_contract": foreign_exchange_contract,
                 "foreign_exchange_indicator": foreign_exchange_indicator,
                 "ledger_transaction": ledger_transaction,
+                "ledger_transaction_id": ledger_transaction_id,
                 "line_items": line_items,
                 "metadata": metadata,
                 "nsf_protected": nsf_protected,
@@ -1429,6 +1451,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
             "se_bankgirot",
             "sen",
             "sepa",
+            "sg_giro",
             "sic",
             "signet",
             "wire",
@@ -1519,6 +1542,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         foreign_exchange_contract: Optional[str] | NotGiven = NOT_GIVEN,
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | NotGiven = NOT_GIVEN,
         ledger_transaction: payment_order_create_async_params.LedgerTransaction | NotGiven = NOT_GIVEN,
+        ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         line_items: List[payment_order_create_async_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         nsf_protected: bool | NotGiven = NOT_GIVEN,
@@ -1597,6 +1621,11 @@ class AsyncPaymentOrders(AsyncAPIResource):
               order. If the ledger transaction cannot be created, then the payment order
               creation will fail. The resulting ledger transaction will mirror the status of
               the payment order.
+
+          ledger_transaction_id: Either ledger_transaction or ledger_transaction_id can be provided. Only a
+              pending ledger transaction can be attached upon payment order creation. Once the
+              payment order is created, the status of the ledger transaction tracks the
+              payment order automatically.
 
           line_items: An array of line items that must sum up to the amount of the payment order.
 
@@ -1688,6 +1717,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
                     "foreign_exchange_contract": foreign_exchange_contract,
                     "foreign_exchange_indicator": foreign_exchange_indicator,
                     "ledger_transaction": ledger_transaction,
+                    "ledger_transaction_id": ledger_transaction_id,
                     "line_items": line_items,
                     "metadata": metadata,
                     "nsf_protected": nsf_protected,

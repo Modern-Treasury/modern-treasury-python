@@ -33,7 +33,7 @@ class LedgerEntryListParams(TypedDict, total=False):
     previous entries are deleted.
     """
 
-    effective_at: Dict[str, str]
+    effective_at: Dict[str, Union[str, datetime]]
     """
     Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
     transaction's effective time. Format ISO8601

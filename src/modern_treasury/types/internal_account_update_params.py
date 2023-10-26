@@ -12,6 +12,9 @@ class InternalAccountUpdateParams(TypedDict, total=False):
     counterparty_id: str
     """The Counterparty associated to this account."""
 
+    ledger_account_id: str
+    """The Ledger Account associated to this account."""
+
     metadata: Dict[str, str]
     """Additional data in the form of key-value pairs.
 

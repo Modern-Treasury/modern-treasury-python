@@ -115,6 +115,7 @@ class RoutingDetail(TypedDict, total=False):
             "se_bankgirot",
             "sen",
             "sepa",
+            "sg_giro",
             "sic",
             "signet",
             "wire",
