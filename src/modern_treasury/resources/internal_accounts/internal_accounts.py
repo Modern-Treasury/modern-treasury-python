@@ -14,10 +14,16 @@ from ...types import (
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import maybe_transform
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.shared import Currency, TransactionDirection
-from .balance_reports import BalanceReports, AsyncBalanceReports
+from .balance_reports import (
+    BalanceReports,
+    AsyncBalanceReports,
+    BalanceReportsWithRawResponse,
+    AsyncBalanceReportsWithRawResponse,
+)
 
 if TYPE_CHECKING:
     from ..._client import ModernTreasury, AsyncModernTreasury
@@ -27,10 +33,12 @@ __all__ = ["InternalAccounts", "AsyncInternalAccounts"]
 
 class InternalAccounts(SyncAPIResource):
     balance_reports: BalanceReports
+    with_raw_response: InternalAccountsWithRawResponse
 
     def __init__(self, client: ModernTreasury) -> None:
         super().__init__(client)
         self.balance_reports = BalanceReports(client)
+        self.with_raw_response = InternalAccountsWithRawResponse(self)
 
     def create(
         self,
@@ -297,10 +305,12 @@ class InternalAccounts(SyncAPIResource):
 
 class AsyncInternalAccounts(AsyncAPIResource):
     balance_reports: AsyncBalanceReports
+    with_raw_response: AsyncInternalAccountsWithRawResponse
 
     def __init__(self, client: AsyncModernTreasury) -> None:
         super().__init__(client)
         self.balance_reports = AsyncBalanceReports(client)
+        self.with_raw_response = AsyncInternalAccountsWithRawResponse(self)
 
     async def create(
         self,
@@ -562,4 +572,40 @@ class AsyncInternalAccounts(AsyncAPIResource):
                 ),
             ),
             model=InternalAccount,
+        )
+
+
+class InternalAccountsWithRawResponse:
+    def __init__(self, internal_accounts: InternalAccounts) -> None:
+        self.balance_reports = BalanceReportsWithRawResponse(internal_accounts.balance_reports)
+
+        self.create = to_raw_response_wrapper(
+            internal_accounts.create,
+        )
+        self.retrieve = to_raw_response_wrapper(
+            internal_accounts.retrieve,
+        )
+        self.update = to_raw_response_wrapper(
+            internal_accounts.update,
+        )
+        self.list = to_raw_response_wrapper(
+            internal_accounts.list,
+        )
+
+
+class AsyncInternalAccountsWithRawResponse:
+    def __init__(self, internal_accounts: AsyncInternalAccounts) -> None:
+        self.balance_reports = AsyncBalanceReportsWithRawResponse(internal_accounts.balance_reports)
+
+        self.create = async_to_raw_response_wrapper(
+            internal_accounts.create,
+        )
+        self.retrieve = async_to_raw_response_wrapper(
+            internal_accounts.retrieve,
+        )
+        self.update = async_to_raw_response_wrapper(
+            internal_accounts.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            internal_accounts.list,
         )

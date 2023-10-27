@@ -2,20 +2,30 @@
 
 from __future__ import annotations
 
-from typing import Mapping, Optional, cast
+from typing import TYPE_CHECKING, Mapping, Optional, cast
 from typing_extensions import Literal
 
 from ..types import Document, document_list_params, document_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
 from .._utils import extract_files, maybe_transform, deepcopy_minimal
 from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
+
+if TYPE_CHECKING:
+    from .._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["Documents", "AsyncDocuments"]
 
 
 class Documents(SyncAPIResource):
+    with_raw_response: DocumentsWithRawResponse
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = DocumentsWithRawResponse(self)
+
     def create(
         self,
         *,
@@ -191,6 +201,12 @@ class Documents(SyncAPIResource):
 
 
 class AsyncDocuments(AsyncAPIResource):
+    with_raw_response: AsyncDocumentsWithRawResponse
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AsyncDocumentsWithRawResponse(self)
+
     async def create(
         self,
         *,
@@ -362,4 +378,30 @@ class AsyncDocuments(AsyncAPIResource):
                 ),
             ),
             model=Document,
+        )
+
+
+class DocumentsWithRawResponse:
+    def __init__(self, documents: Documents) -> None:
+        self.create = to_raw_response_wrapper(
+            documents.create,
+        )
+        self.retrieve = to_raw_response_wrapper(
+            documents.retrieve,
+        )
+        self.list = to_raw_response_wrapper(
+            documents.list,
+        )
+
+
+class AsyncDocumentsWithRawResponse:
+    def __init__(self, documents: AsyncDocuments) -> None:
+        self.create = async_to_raw_response_wrapper(
+            documents.create,
+        )
+        self.retrieve = async_to_raw_response_wrapper(
+            documents.retrieve,
+        )
+        self.list = async_to_raw_response_wrapper(
+            documents.list,
         )

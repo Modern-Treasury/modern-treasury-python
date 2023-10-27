@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import TYPE_CHECKING, Dict, Optional
 from typing_extensions import Literal
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import maybe_transform
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.payment_orders import (
@@ -16,10 +17,19 @@ from ...types.payment_orders import (
     reversal_create_params,
 )
 
+if TYPE_CHECKING:
+    from ..._client import ModernTreasury, AsyncModernTreasury
+
 __all__ = ["Reversals", "AsyncReversals"]
 
 
 class Reversals(SyncAPIResource):
+    with_raw_response: ReversalsWithRawResponse
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = ReversalsWithRawResponse(self)
+
     def create(
         self,
         payment_order_id: str,
@@ -166,6 +176,12 @@ class Reversals(SyncAPIResource):
 
 
 class AsyncReversals(AsyncAPIResource):
+    with_raw_response: AsyncReversalsWithRawResponse
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AsyncReversalsWithRawResponse(self)
+
     async def create(
         self,
         payment_order_id: str,
@@ -308,4 +324,30 @@ class AsyncReversals(AsyncAPIResource):
                 ),
             ),
             model=Reversal,
+        )
+
+
+class ReversalsWithRawResponse:
+    def __init__(self, reversals: Reversals) -> None:
+        self.create = to_raw_response_wrapper(
+            reversals.create,
+        )
+        self.retrieve = to_raw_response_wrapper(
+            reversals.retrieve,
+        )
+        self.list = to_raw_response_wrapper(
+            reversals.list,
+        )
+
+
+class AsyncReversalsWithRawResponse:
+    def __init__(self, reversals: AsyncReversals) -> None:
+        self.create = async_to_raw_response_wrapper(
+            reversals.create,
+        )
+        self.retrieve = async_to_raw_response_wrapper(
+            reversals.retrieve,
+        )
+        self.list = async_to_raw_response_wrapper(
+            reversals.list,
         )

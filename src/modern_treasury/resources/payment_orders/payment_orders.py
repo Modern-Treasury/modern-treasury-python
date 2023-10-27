@@ -17,8 +17,14 @@ from ...types import (
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import extract_files, maybe_transform, deepcopy_minimal
-from .reversals import Reversals, AsyncReversals
+from .reversals import (
+    Reversals,
+    AsyncReversals,
+    ReversalsWithRawResponse,
+    AsyncReversalsWithRawResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.shared import Currency, AsyncResponse, TransactionDirection
@@ -31,10 +37,12 @@ __all__ = ["PaymentOrders", "AsyncPaymentOrders"]
 
 class PaymentOrders(SyncAPIResource):
     reversals: Reversals
+    with_raw_response: PaymentOrdersWithRawResponse
 
     def __init__(self, client: ModernTreasury) -> None:
         super().__init__(client)
         self.reversals = Reversals(client)
+        self.with_raw_response = PaymentOrdersWithRawResponse(self)
 
     def create(
         self,
@@ -891,10 +899,12 @@ class PaymentOrders(SyncAPIResource):
 
 class AsyncPaymentOrders(AsyncAPIResource):
     reversals: AsyncReversals
+    with_raw_response: AsyncPaymentOrdersWithRawResponse
 
     def __init__(self, client: AsyncModernTreasury) -> None:
         super().__init__(client)
         self.reversals = AsyncReversals(client)
+        self.with_raw_response = AsyncPaymentOrdersWithRawResponse(self)
 
     async def create(
         self,
@@ -1746,4 +1756,46 @@ class AsyncPaymentOrders(AsyncAPIResource):
                 idempotency_key=idempotency_key,
             ),
             cast_to=AsyncResponse,
+        )
+
+
+class PaymentOrdersWithRawResponse:
+    def __init__(self, payment_orders: PaymentOrders) -> None:
+        self.reversals = ReversalsWithRawResponse(payment_orders.reversals)
+
+        self.create = to_raw_response_wrapper(
+            payment_orders.create,
+        )
+        self.retrieve = to_raw_response_wrapper(
+            payment_orders.retrieve,
+        )
+        self.update = to_raw_response_wrapper(
+            payment_orders.update,
+        )
+        self.list = to_raw_response_wrapper(
+            payment_orders.list,
+        )
+        self.create_async = to_raw_response_wrapper(
+            payment_orders.create_async,
+        )
+
+
+class AsyncPaymentOrdersWithRawResponse:
+    def __init__(self, payment_orders: AsyncPaymentOrders) -> None:
+        self.reversals = AsyncReversalsWithRawResponse(payment_orders.reversals)
+
+        self.create = async_to_raw_response_wrapper(
+            payment_orders.create,
+        )
+        self.retrieve = async_to_raw_response_wrapper(
+            payment_orders.retrieve,
+        )
+        self.update = async_to_raw_response_wrapper(
+            payment_orders.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            payment_orders.list,
+        )
+        self.create_async = async_to_raw_response_wrapper(
+            payment_orders.create_async,
         )

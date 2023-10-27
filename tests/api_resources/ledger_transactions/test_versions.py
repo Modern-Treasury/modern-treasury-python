@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury._utils import parse_datetime
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 from modern_treasury.types.ledger_transactions import LedgerTransactionVersion
 
@@ -43,6 +44,13 @@ class TestVersions:
         )
         assert_matches_type(SyncPage[LedgerTransactionVersion], version, path=["response"])
 
+    @parametrize
+    def test_raw_response_list(self, client: ModernTreasury) -> None:
+        response = client.ledger_transactions.versions.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        version = response.parse()
+        assert_matches_type(SyncPage[LedgerTransactionVersion], version, path=["response"])
+
 
 class TestAsyncVersions:
     strict_client = AsyncModernTreasury(
@@ -68,4 +76,11 @@ class TestAsyncVersions:
             per_page=0,
             version={"foo": 0},
         )
+        assert_matches_type(AsyncPage[LedgerTransactionVersion], version, path=["response"])
+
+    @parametrize
+    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledger_transactions.versions.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        version = response.parse()
         assert_matches_type(AsyncPage[LedgerTransactionVersion], version, path=["response"])

@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import AccountCollectionFlow
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -43,10 +44,29 @@ class TestAccountCollectionFlows:
         assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
 
     @parametrize
+    def test_raw_response_create(self, client: ModernTreasury) -> None:
+        response = client.account_collection_flows.with_raw_response.create(
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            payment_types=["string", "string", "string"],
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        account_collection_flow = response.parse()
+        assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
+
+    @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         account_collection_flow = client.account_collection_flows.retrieve(
             "string",
         )
+        assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+        response = client.account_collection_flows.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        account_collection_flow = response.parse()
         assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
 
     @parametrize
@@ -55,6 +75,16 @@ class TestAccountCollectionFlows:
             "string",
             status="cancelled",
         )
+        assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
+
+    @parametrize
+    def test_raw_response_update(self, client: ModernTreasury) -> None:
+        response = client.account_collection_flows.with_raw_response.update(
+            "string",
+            status="cancelled",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        account_collection_flow = response.parse()
         assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
 
     @parametrize
@@ -72,6 +102,13 @@ class TestAccountCollectionFlows:
             per_page=0,
             status="string",
         )
+        assert_matches_type(SyncPage[AccountCollectionFlow], account_collection_flow, path=["response"])
+
+    @parametrize
+    def test_raw_response_list(self, client: ModernTreasury) -> None:
+        response = client.account_collection_flows.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        account_collection_flow = response.parse()
         assert_matches_type(SyncPage[AccountCollectionFlow], account_collection_flow, path=["response"])
 
 
@@ -102,10 +139,29 @@ class TestAsyncAccountCollectionFlows:
         assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
 
     @parametrize
+    async def test_raw_response_create(self, client: AsyncModernTreasury) -> None:
+        response = await client.account_collection_flows.with_raw_response.create(
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            payment_types=["string", "string", "string"],
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        account_collection_flow = response.parse()
+        assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
+
+    @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         account_collection_flow = await client.account_collection_flows.retrieve(
             "string",
         )
+        assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        response = await client.account_collection_flows.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        account_collection_flow = response.parse()
         assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
 
     @parametrize
@@ -114,6 +170,16 @@ class TestAsyncAccountCollectionFlows:
             "string",
             status="cancelled",
         )
+        assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update(self, client: AsyncModernTreasury) -> None:
+        response = await client.account_collection_flows.with_raw_response.update(
+            "string",
+            status="cancelled",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        account_collection_flow = response.parse()
         assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
 
     @parametrize
@@ -131,4 +197,11 @@ class TestAsyncAccountCollectionFlows:
             per_page=0,
             status="string",
         )
+        assert_matches_type(AsyncPage[AccountCollectionFlow], account_collection_flow, path=["response"])
+
+    @parametrize
+    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
+        response = await client.account_collection_flows.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        account_collection_flow = response.parse()
         assert_matches_type(AsyncPage[AccountCollectionFlow], account_collection_flow, path=["response"])

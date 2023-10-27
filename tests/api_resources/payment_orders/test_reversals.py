@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury._utils import parse_date, parse_datetime
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 from modern_treasury.types.payment_orders import Reversal
 
@@ -109,11 +110,31 @@ class TestReversals:
         assert_matches_type(Reversal, reversal, path=["response"])
 
     @parametrize
+    def test_raw_response_create(self, client: ModernTreasury) -> None:
+        response = client.payment_orders.reversals.with_raw_response.create(
+            "string",
+            reason="duplicate",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        reversal = response.parse()
+        assert_matches_type(Reversal, reversal, path=["response"])
+
+    @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         reversal = client.payment_orders.reversals.retrieve(
             "string",
             payment_order_id="string",
         )
+        assert_matches_type(Reversal, reversal, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+        response = client.payment_orders.reversals.with_raw_response.retrieve(
+            "string",
+            payment_order_id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        reversal = response.parse()
         assert_matches_type(Reversal, reversal, path=["response"])
 
     @parametrize
@@ -130,6 +151,15 @@ class TestReversals:
             after_cursor="string",
             per_page=0,
         )
+        assert_matches_type(SyncPage[Reversal], reversal, path=["response"])
+
+    @parametrize
+    def test_raw_response_list(self, client: ModernTreasury) -> None:
+        response = client.payment_orders.reversals.with_raw_response.list(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        reversal = response.parse()
         assert_matches_type(SyncPage[Reversal], reversal, path=["response"])
 
 
@@ -225,11 +255,31 @@ class TestAsyncReversals:
         assert_matches_type(Reversal, reversal, path=["response"])
 
     @parametrize
+    async def test_raw_response_create(self, client: AsyncModernTreasury) -> None:
+        response = await client.payment_orders.reversals.with_raw_response.create(
+            "string",
+            reason="duplicate",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        reversal = response.parse()
+        assert_matches_type(Reversal, reversal, path=["response"])
+
+    @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         reversal = await client.payment_orders.reversals.retrieve(
             "string",
             payment_order_id="string",
         )
+        assert_matches_type(Reversal, reversal, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        response = await client.payment_orders.reversals.with_raw_response.retrieve(
+            "string",
+            payment_order_id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        reversal = response.parse()
         assert_matches_type(Reversal, reversal, path=["response"])
 
     @parametrize
@@ -246,4 +296,13 @@ class TestAsyncReversals:
             after_cursor="string",
             per_page=0,
         )
+        assert_matches_type(AsyncPage[Reversal], reversal, path=["response"])
+
+    @parametrize
+    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
+        response = await client.payment_orders.reversals.with_raw_response.list(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        reversal = response.parse()
         assert_matches_type(AsyncPage[Reversal], reversal, path=["response"])

@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import Connection
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -40,6 +41,13 @@ class TestConnections:
         )
         assert_matches_type(SyncPage[Connection], connection, path=["response"])
 
+    @parametrize
+    def test_raw_response_list(self, client: ModernTreasury) -> None:
+        response = client.connections.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        connection = response.parse()
+        assert_matches_type(SyncPage[Connection], connection, path=["response"])
+
 
 class TestAsyncConnections:
     strict_client = AsyncModernTreasury(
@@ -63,4 +71,11 @@ class TestAsyncConnections:
             per_page=0,
             vendor_customer_id="string",
         )
+        assert_matches_type(AsyncPage[Connection], connection, path=["response"])
+
+    @parametrize
+    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
+        response = await client.connections.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        connection = response.parse()
         assert_matches_type(AsyncPage[Connection], connection, path=["response"])

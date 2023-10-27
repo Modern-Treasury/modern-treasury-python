@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import TYPE_CHECKING, Dict, List, Optional
 
 from ..types import (
     LedgerAccountBalanceMonitor,
@@ -13,13 +13,23 @@ from ..types import (
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
+
+if TYPE_CHECKING:
+    from .._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["LedgerAccountBalanceMonitors", "AsyncLedgerAccountBalanceMonitors"]
 
 
 class LedgerAccountBalanceMonitors(SyncAPIResource):
+    with_raw_response: LedgerAccountBalanceMonitorsWithRawResponse
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = LedgerAccountBalanceMonitorsWithRawResponse(self)
+
     def create(
         self,
         *,
@@ -260,6 +270,12 @@ class LedgerAccountBalanceMonitors(SyncAPIResource):
 
 
 class AsyncLedgerAccountBalanceMonitors(AsyncAPIResource):
+    with_raw_response: AsyncLedgerAccountBalanceMonitorsWithRawResponse
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AsyncLedgerAccountBalanceMonitorsWithRawResponse(self)
+
     async def create(
         self,
         *,
@@ -496,4 +512,42 @@ class AsyncLedgerAccountBalanceMonitors(AsyncAPIResource):
                 idempotency_key=idempotency_key,
             ),
             cast_to=LedgerAccountBalanceMonitor,
+        )
+
+
+class LedgerAccountBalanceMonitorsWithRawResponse:
+    def __init__(self, ledger_account_balance_monitors: LedgerAccountBalanceMonitors) -> None:
+        self.create = to_raw_response_wrapper(
+            ledger_account_balance_monitors.create,
+        )
+        self.retrieve = to_raw_response_wrapper(
+            ledger_account_balance_monitors.retrieve,
+        )
+        self.update = to_raw_response_wrapper(
+            ledger_account_balance_monitors.update,
+        )
+        self.list = to_raw_response_wrapper(
+            ledger_account_balance_monitors.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            ledger_account_balance_monitors.delete,
+        )
+
+
+class AsyncLedgerAccountBalanceMonitorsWithRawResponse:
+    def __init__(self, ledger_account_balance_monitors: AsyncLedgerAccountBalanceMonitors) -> None:
+        self.create = async_to_raw_response_wrapper(
+            ledger_account_balance_monitors.create,
+        )
+        self.retrieve = async_to_raw_response_wrapper(
+            ledger_account_balance_monitors.retrieve,
+        )
+        self.update = async_to_raw_response_wrapper(
+            ledger_account_balance_monitors.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            ledger_account_balance_monitors.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            ledger_account_balance_monitors.delete,
         )

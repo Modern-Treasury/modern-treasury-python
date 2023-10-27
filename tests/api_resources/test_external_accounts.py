@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import ExternalAccount
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -119,10 +120,28 @@ class TestExternalAccounts:
         assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
+    def test_raw_response_create(self, client: ModernTreasury) -> None:
+        response = client.external_accounts.with_raw_response.create(
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        external_account = response.parse()
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
+
+    @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         external_account = client.external_accounts.retrieve(
             "string",
         )
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+        response = client.external_accounts.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        external_account = response.parse()
         assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
@@ -154,6 +173,15 @@ class TestExternalAccounts:
         assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
+    def test_raw_response_update(self, client: ModernTreasury) -> None:
+        response = client.external_accounts.with_raw_response.update(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        external_account = response.parse()
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
+
+    @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         external_account = client.external_accounts.list()
         assert_matches_type(SyncPage[ExternalAccount], external_account, path=["response"])
@@ -170,10 +198,26 @@ class TestExternalAccounts:
         assert_matches_type(SyncPage[ExternalAccount], external_account, path=["response"])
 
     @parametrize
+    def test_raw_response_list(self, client: ModernTreasury) -> None:
+        response = client.external_accounts.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        external_account = response.parse()
+        assert_matches_type(SyncPage[ExternalAccount], external_account, path=["response"])
+
+    @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
         external_account = client.external_accounts.delete(
             "string",
         )
+        assert external_account is None
+
+    @parametrize
+    def test_raw_response_delete(self, client: ModernTreasury) -> None:
+        response = client.external_accounts.with_raw_response.delete(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        external_account = response.parse()
         assert external_account is None
 
     @parametrize
@@ -189,6 +233,15 @@ class TestExternalAccounts:
             "string",
             amounts=[2, 4],
         )
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
+
+    @parametrize
+    def test_raw_response_complete_verification(self, client: ModernTreasury) -> None:
+        response = client.external_accounts.with_raw_response.complete_verification(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        external_account = response.parse()
         assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
@@ -208,6 +261,17 @@ class TestExternalAccounts:
             payment_type="ach",
             currency="AED",
         )
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
+
+    @parametrize
+    def test_raw_response_verify(self, client: ModernTreasury) -> None:
+        response = client.external_accounts.with_raw_response.verify(
+            "string",
+            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            payment_type="ach",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        external_account = response.parse()
         assert_matches_type(ExternalAccount, external_account, path=["response"])
 
 
@@ -314,10 +378,28 @@ class TestAsyncExternalAccounts:
         assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
+    async def test_raw_response_create(self, client: AsyncModernTreasury) -> None:
+        response = await client.external_accounts.with_raw_response.create(
+            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        external_account = response.parse()
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
+
+    @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         external_account = await client.external_accounts.retrieve(
             "string",
         )
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        response = await client.external_accounts.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        external_account = response.parse()
         assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
@@ -349,6 +431,15 @@ class TestAsyncExternalAccounts:
         assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
+    async def test_raw_response_update(self, client: AsyncModernTreasury) -> None:
+        response = await client.external_accounts.with_raw_response.update(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        external_account = response.parse()
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
+
+    @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
         external_account = await client.external_accounts.list()
         assert_matches_type(AsyncPage[ExternalAccount], external_account, path=["response"])
@@ -365,10 +456,26 @@ class TestAsyncExternalAccounts:
         assert_matches_type(AsyncPage[ExternalAccount], external_account, path=["response"])
 
     @parametrize
+    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
+        response = await client.external_accounts.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        external_account = response.parse()
+        assert_matches_type(AsyncPage[ExternalAccount], external_account, path=["response"])
+
+    @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
         external_account = await client.external_accounts.delete(
             "string",
         )
+        assert external_account is None
+
+    @parametrize
+    async def test_raw_response_delete(self, client: AsyncModernTreasury) -> None:
+        response = await client.external_accounts.with_raw_response.delete(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        external_account = response.parse()
         assert external_account is None
 
     @parametrize
@@ -384,6 +491,15 @@ class TestAsyncExternalAccounts:
             "string",
             amounts=[2, 4],
         )
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
+
+    @parametrize
+    async def test_raw_response_complete_verification(self, client: AsyncModernTreasury) -> None:
+        response = await client.external_accounts.with_raw_response.complete_verification(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        external_account = response.parse()
         assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
@@ -403,4 +519,15 @@ class TestAsyncExternalAccounts:
             payment_type="ach",
             currency="AED",
         )
+        assert_matches_type(ExternalAccount, external_account, path=["response"])
+
+    @parametrize
+    async def test_raw_response_verify(self, client: AsyncModernTreasury) -> None:
+        response = await client.external_accounts.with_raw_response.verify(
+            "string",
+            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            payment_type="ach",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        external_account = response.parse()
         assert_matches_type(ExternalAccount, external_account, path=["response"])

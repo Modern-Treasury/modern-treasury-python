@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import Dict, List, Union, Optional
+from typing import TYPE_CHECKING, Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -16,13 +16,23 @@ from ..types import (
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
+
+if TYPE_CHECKING:
+    from .._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["LedgerAccountPayouts", "AsyncLedgerAccountPayouts"]
 
 
 class LedgerAccountPayouts(SyncAPIResource):
+    with_raw_response: LedgerAccountPayoutsWithRawResponse
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = LedgerAccountPayoutsWithRawResponse(self)
+
     def create(
         self,
         *,
@@ -281,6 +291,12 @@ class LedgerAccountPayouts(SyncAPIResource):
 
 
 class AsyncLedgerAccountPayouts(AsyncAPIResource):
+    with_raw_response: AsyncLedgerAccountPayoutsWithRawResponse
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AsyncLedgerAccountPayoutsWithRawResponse(self)
+
     async def create(
         self,
         *,
@@ -535,4 +551,42 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
         """
         return await self.retrieve(
             id=id, extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        )
+
+
+class LedgerAccountPayoutsWithRawResponse:
+    def __init__(self, ledger_account_payouts: LedgerAccountPayouts) -> None:
+        self.create = to_raw_response_wrapper(
+            ledger_account_payouts.create,
+        )
+        self.retrieve = to_raw_response_wrapper(
+            ledger_account_payouts.retrieve,
+        )
+        self.update = to_raw_response_wrapper(
+            ledger_account_payouts.update,
+        )
+        self.list = to_raw_response_wrapper(
+            ledger_account_payouts.list,
+        )
+        self.retireve = to_raw_response_wrapper(  # pyright: ignore[reportDeprecated]
+            ledger_account_payouts.retireve  # pyright: ignore[reportDeprecated],
+        )
+
+
+class AsyncLedgerAccountPayoutsWithRawResponse:
+    def __init__(self, ledger_account_payouts: AsyncLedgerAccountPayouts) -> None:
+        self.create = async_to_raw_response_wrapper(
+            ledger_account_payouts.create,
+        )
+        self.retrieve = async_to_raw_response_wrapper(
+            ledger_account_payouts.retrieve,
+        )
+        self.update = async_to_raw_response_wrapper(
+            ledger_account_payouts.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            ledger_account_payouts.list,
+        )
+        self.retireve = async_to_raw_response_wrapper(  # pyright: ignore[reportDeprecated]
+            ledger_account_payouts.retireve  # pyright: ignore[reportDeprecated],
         )

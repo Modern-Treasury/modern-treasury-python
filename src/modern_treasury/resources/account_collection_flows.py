@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import TYPE_CHECKING, List, Optional
 from typing_extensions import Literal
 
 from ..types import (
@@ -14,13 +14,23 @@ from ..types import (
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
+
+if TYPE_CHECKING:
+    from .._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["AccountCollectionFlows", "AsyncAccountCollectionFlows"]
 
 
 class AccountCollectionFlows(SyncAPIResource):
+    with_raw_response: AccountCollectionFlowsWithRawResponse
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AccountCollectionFlowsWithRawResponse(self)
+
     def create(
         self,
         *,
@@ -223,6 +233,12 @@ class AccountCollectionFlows(SyncAPIResource):
 
 
 class AsyncAccountCollectionFlows(AsyncAPIResource):
+    with_raw_response: AsyncAccountCollectionFlowsWithRawResponse
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AsyncAccountCollectionFlowsWithRawResponse(self)
+
     async def create(
         self,
         *,
@@ -421,4 +437,36 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
                 ),
             ),
             model=AccountCollectionFlow,
+        )
+
+
+class AccountCollectionFlowsWithRawResponse:
+    def __init__(self, account_collection_flows: AccountCollectionFlows) -> None:
+        self.create = to_raw_response_wrapper(
+            account_collection_flows.create,
+        )
+        self.retrieve = to_raw_response_wrapper(
+            account_collection_flows.retrieve,
+        )
+        self.update = to_raw_response_wrapper(
+            account_collection_flows.update,
+        )
+        self.list = to_raw_response_wrapper(
+            account_collection_flows.list,
+        )
+
+
+class AsyncAccountCollectionFlowsWithRawResponse:
+    def __init__(self, account_collection_flows: AsyncAccountCollectionFlows) -> None:
+        self.create = async_to_raw_response_wrapper(
+            account_collection_flows.create,
+        )
+        self.retrieve = async_to_raw_response_wrapper(
+            account_collection_flows.retrieve,
+        )
+        self.update = async_to_raw_response_wrapper(
+            account_collection_flows.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            account_collection_flows.list,
         )

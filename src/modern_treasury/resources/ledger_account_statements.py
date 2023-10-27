@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing import TYPE_CHECKING, Dict, Union, Optional
 from datetime import datetime
 
 from ..types import (
@@ -13,12 +13,22 @@ from ..types import (
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from .._base_client import make_request_options
+
+if TYPE_CHECKING:
+    from .._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["LedgerAccountStatements", "AsyncLedgerAccountStatements"]
 
 
 class LedgerAccountStatements(SyncAPIResource):
+    with_raw_response: LedgerAccountStatementsWithRawResponse
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = LedgerAccountStatementsWithRawResponse(self)
+
     def create(
         self,
         *,
@@ -118,6 +128,12 @@ class LedgerAccountStatements(SyncAPIResource):
 
 
 class AsyncLedgerAccountStatements(AsyncAPIResource):
+    with_raw_response: AsyncLedgerAccountStatementsWithRawResponse
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AsyncLedgerAccountStatementsWithRawResponse(self)
+
     async def create(
         self,
         *,
@@ -213,4 +229,24 @@ class AsyncLedgerAccountStatements(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=LedgerAccountStatementRetrieveResponse,
+        )
+
+
+class LedgerAccountStatementsWithRawResponse:
+    def __init__(self, ledger_account_statements: LedgerAccountStatements) -> None:
+        self.create = to_raw_response_wrapper(
+            ledger_account_statements.create,
+        )
+        self.retrieve = to_raw_response_wrapper(
+            ledger_account_statements.retrieve,
+        )
+
+
+class AsyncLedgerAccountStatementsWithRawResponse:
+    def __init__(self, ledger_account_statements: AsyncLedgerAccountStatements) -> None:
+        self.create = async_to_raw_response_wrapper(
+            ledger_account_statements.create,
+        )
+        self.retrieve = async_to_raw_response_wrapper(
+            ledger_account_statements.retrieve,
         )

@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import AccountDetail
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -45,12 +46,34 @@ class TestAccountDetails:
         assert_matches_type(AccountDetail, account_detail, path=["response"])
 
     @parametrize
+    def test_raw_response_create(self, client: ModernTreasury) -> None:
+        response = client.account_details.with_raw_response.create(
+            "string",
+            accounts_type="external_accounts",
+            account_number="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        account_detail = response.parse()
+        assert_matches_type(AccountDetail, account_detail, path=["response"])
+
+    @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         account_detail = client.account_details.retrieve(
             "string",
             accounts_type="external_accounts",
             account_id="string",
         )
+        assert_matches_type(AccountDetail, account_detail, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+        response = client.account_details.with_raw_response.retrieve(
+            "string",
+            accounts_type="external_accounts",
+            account_id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        account_detail = response.parse()
         assert_matches_type(AccountDetail, account_detail, path=["response"])
 
     @parametrize
@@ -72,12 +95,33 @@ class TestAccountDetails:
         assert_matches_type(SyncPage[AccountDetail], account_detail, path=["response"])
 
     @parametrize
+    def test_raw_response_list(self, client: ModernTreasury) -> None:
+        response = client.account_details.with_raw_response.list(
+            "string",
+            accounts_type="external_accounts",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        account_detail = response.parse()
+        assert_matches_type(SyncPage[AccountDetail], account_detail, path=["response"])
+
+    @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
         account_detail = client.account_details.delete(
             "string",
             accounts_type="external_accounts",
             account_id="string",
         )
+        assert account_detail is None
+
+    @parametrize
+    def test_raw_response_delete(self, client: ModernTreasury) -> None:
+        response = client.account_details.with_raw_response.delete(
+            "string",
+            accounts_type="external_accounts",
+            account_id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        account_detail = response.parse()
         assert account_detail is None
 
 
@@ -110,12 +154,34 @@ class TestAsyncAccountDetails:
         assert_matches_type(AccountDetail, account_detail, path=["response"])
 
     @parametrize
+    async def test_raw_response_create(self, client: AsyncModernTreasury) -> None:
+        response = await client.account_details.with_raw_response.create(
+            "string",
+            accounts_type="external_accounts",
+            account_number="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        account_detail = response.parse()
+        assert_matches_type(AccountDetail, account_detail, path=["response"])
+
+    @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         account_detail = await client.account_details.retrieve(
             "string",
             accounts_type="external_accounts",
             account_id="string",
         )
+        assert_matches_type(AccountDetail, account_detail, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        response = await client.account_details.with_raw_response.retrieve(
+            "string",
+            accounts_type="external_accounts",
+            account_id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        account_detail = response.parse()
         assert_matches_type(AccountDetail, account_detail, path=["response"])
 
     @parametrize
@@ -137,10 +203,31 @@ class TestAsyncAccountDetails:
         assert_matches_type(AsyncPage[AccountDetail], account_detail, path=["response"])
 
     @parametrize
+    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
+        response = await client.account_details.with_raw_response.list(
+            "string",
+            accounts_type="external_accounts",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        account_detail = response.parse()
+        assert_matches_type(AsyncPage[AccountDetail], account_detail, path=["response"])
+
+    @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
         account_detail = await client.account_details.delete(
             "string",
             accounts_type="external_accounts",
             account_id="string",
         )
+        assert account_detail is None
+
+    @parametrize
+    async def test_raw_response_delete(self, client: AsyncModernTreasury) -> None:
+        response = await client.account_details.with_raw_response.delete(
+            "string",
+            accounts_type="external_accounts",
+            account_id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        account_detail = response.parse()
         assert account_detail is None
