@@ -10,6 +10,7 @@ from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import ExpectedPayment
 from modern_treasury._utils import parse_date, parse_datetime
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -95,10 +96,31 @@ class TestExpectedPayments:
         assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
 
     @parametrize
+    def test_raw_response_create(self, client: ModernTreasury) -> None:
+        response = client.expected_payments.with_raw_response.create(
+            amount_lower_bound=0,
+            amount_upper_bound=0,
+            direction="credit",
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        expected_payment = response.parse()
+        assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+    @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         expected_payment = client.expected_payments.retrieve(
             "string",
         )
+        assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+        response = client.expected_payments.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        expected_payment = response.parse()
         assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
 
     @parametrize
@@ -136,6 +158,15 @@ class TestExpectedPayments:
         assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
 
     @parametrize
+    def test_raw_response_update(self, client: ModernTreasury) -> None:
+        response = client.expected_payments.with_raw_response.update(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        expected_payment = response.parse()
+        assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+    @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         expected_payment = client.expected_payments.list()
         assert_matches_type(SyncPage[ExpectedPayment], expected_payment, path=["response"])
@@ -157,10 +188,26 @@ class TestExpectedPayments:
         assert_matches_type(SyncPage[ExpectedPayment], expected_payment, path=["response"])
 
     @parametrize
+    def test_raw_response_list(self, client: ModernTreasury) -> None:
+        response = client.expected_payments.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        expected_payment = response.parse()
+        assert_matches_type(SyncPage[ExpectedPayment], expected_payment, path=["response"])
+
+    @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
         expected_payment = client.expected_payments.delete(
             "string",
         )
+        assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+    @parametrize
+    def test_raw_response_delete(self, client: ModernTreasury) -> None:
+        response = client.expected_payments.with_raw_response.delete(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        expected_payment = response.parse()
         assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
 
 
@@ -242,10 +289,31 @@ class TestAsyncExpectedPayments:
         assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
 
     @parametrize
+    async def test_raw_response_create(self, client: AsyncModernTreasury) -> None:
+        response = await client.expected_payments.with_raw_response.create(
+            amount_lower_bound=0,
+            amount_upper_bound=0,
+            direction="credit",
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        expected_payment = response.parse()
+        assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+    @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         expected_payment = await client.expected_payments.retrieve(
             "string",
         )
+        assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        response = await client.expected_payments.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        expected_payment = response.parse()
         assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
 
     @parametrize
@@ -283,6 +351,15 @@ class TestAsyncExpectedPayments:
         assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
 
     @parametrize
+    async def test_raw_response_update(self, client: AsyncModernTreasury) -> None:
+        response = await client.expected_payments.with_raw_response.update(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        expected_payment = response.parse()
+        assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+    @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
         expected_payment = await client.expected_payments.list()
         assert_matches_type(AsyncPage[ExpectedPayment], expected_payment, path=["response"])
@@ -304,8 +381,24 @@ class TestAsyncExpectedPayments:
         assert_matches_type(AsyncPage[ExpectedPayment], expected_payment, path=["response"])
 
     @parametrize
+    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
+        response = await client.expected_payments.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        expected_payment = response.parse()
+        assert_matches_type(AsyncPage[ExpectedPayment], expected_payment, path=["response"])
+
+    @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
         expected_payment = await client.expected_payments.delete(
             "string",
         )
+        assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+    @parametrize
+    async def test_raw_response_delete(self, client: AsyncModernTreasury) -> None:
+        response = await client.expected_payments.with_raw_response.delete(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        expected_payment = response.parse()
         assert_matches_type(ExpectedPayment, expected_payment, path=["response"])

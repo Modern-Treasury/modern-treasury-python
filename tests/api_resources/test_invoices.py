@@ -10,6 +10,7 @@ from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import Invoice
 from modern_treasury._utils import parse_date, parse_datetime
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -112,10 +113,30 @@ class TestInvoices:
         assert_matches_type(Invoice, invoice, path=["response"])
 
     @parametrize
+    def test_raw_response_create(self, client: ModernTreasury) -> None:
+        response = client.invoices.with_raw_response.create(
+            counterparty_id="string",
+            due_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            originating_account_id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        invoice = response.parse()
+        assert_matches_type(Invoice, invoice, path=["response"])
+
+    @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         invoice = client.invoices.retrieve(
             "string",
         )
+        assert_matches_type(Invoice, invoice, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+        response = client.invoices.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        invoice = response.parse()
         assert_matches_type(Invoice, invoice, path=["response"])
 
     @parametrize
@@ -204,6 +225,15 @@ class TestInvoices:
         assert_matches_type(Invoice, invoice, path=["response"])
 
     @parametrize
+    def test_raw_response_update(self, client: ModernTreasury) -> None:
+        response = client.invoices.with_raw_response.update(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        invoice = response.parse()
+        assert_matches_type(Invoice, invoice, path=["response"])
+
+    @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         invoice = client.invoices.list()
         assert_matches_type(SyncPage[Invoice], invoice, path=["response"])
@@ -217,11 +247,28 @@ class TestInvoices:
         assert_matches_type(SyncPage[Invoice], invoice, path=["response"])
 
     @parametrize
+    def test_raw_response_list(self, client: ModernTreasury) -> None:
+        response = client.invoices.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        invoice = response.parse()
+        assert_matches_type(SyncPage[Invoice], invoice, path=["response"])
+
+    @parametrize
     def test_method_add_payment_order(self, client: ModernTreasury) -> None:
         invoice = client.invoices.add_payment_order(
             "string",
             id="string",
         )
+        assert invoice is None
+
+    @parametrize
+    def test_raw_response_add_payment_order(self, client: ModernTreasury) -> None:
+        response = client.invoices.with_raw_response.add_payment_order(
+            "string",
+            id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        invoice = response.parse()
         assert invoice is None
 
 
@@ -320,10 +367,30 @@ class TestAsyncInvoices:
         assert_matches_type(Invoice, invoice, path=["response"])
 
     @parametrize
+    async def test_raw_response_create(self, client: AsyncModernTreasury) -> None:
+        response = await client.invoices.with_raw_response.create(
+            counterparty_id="string",
+            due_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            originating_account_id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        invoice = response.parse()
+        assert_matches_type(Invoice, invoice, path=["response"])
+
+    @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         invoice = await client.invoices.retrieve(
             "string",
         )
+        assert_matches_type(Invoice, invoice, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        response = await client.invoices.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        invoice = response.parse()
         assert_matches_type(Invoice, invoice, path=["response"])
 
     @parametrize
@@ -412,6 +479,15 @@ class TestAsyncInvoices:
         assert_matches_type(Invoice, invoice, path=["response"])
 
     @parametrize
+    async def test_raw_response_update(self, client: AsyncModernTreasury) -> None:
+        response = await client.invoices.with_raw_response.update(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        invoice = response.parse()
+        assert_matches_type(Invoice, invoice, path=["response"])
+
+    @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
         invoice = await client.invoices.list()
         assert_matches_type(AsyncPage[Invoice], invoice, path=["response"])
@@ -425,9 +501,26 @@ class TestAsyncInvoices:
         assert_matches_type(AsyncPage[Invoice], invoice, path=["response"])
 
     @parametrize
+    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
+        response = await client.invoices.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        invoice = response.parse()
+        assert_matches_type(AsyncPage[Invoice], invoice, path=["response"])
+
+    @parametrize
     async def test_method_add_payment_order(self, client: AsyncModernTreasury) -> None:
         invoice = await client.invoices.add_payment_order(
             "string",
             id="string",
         )
+        assert invoice is None
+
+    @parametrize
+    async def test_raw_response_add_payment_order(self, client: AsyncModernTreasury) -> None:
+        response = await client.invoices.with_raw_response.add_payment_order(
+            "string",
+            id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        invoice = response.parse()
         assert invoice is None

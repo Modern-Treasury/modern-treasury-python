@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import TYPE_CHECKING, Dict, List, Optional
 
 from ..types import (
     VirtualAccount,
@@ -13,13 +13,23 @@ from ..types import (
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
+
+if TYPE_CHECKING:
+    from .._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["VirtualAccounts", "AsyncVirtualAccounts"]
 
 
 class VirtualAccounts(SyncAPIResource):
+    with_raw_response: VirtualAccountsWithRawResponse
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = VirtualAccountsWithRawResponse(self)
+
     def create(
         self,
         *,
@@ -276,6 +286,12 @@ class VirtualAccounts(SyncAPIResource):
 
 
 class AsyncVirtualAccounts(AsyncAPIResource):
+    with_raw_response: AsyncVirtualAccountsWithRawResponse
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AsyncVirtualAccountsWithRawResponse(self)
+
     async def create(
         self,
         *,
@@ -528,4 +544,42 @@ class AsyncVirtualAccounts(AsyncAPIResource):
                 idempotency_key=idempotency_key,
             ),
             cast_to=VirtualAccount,
+        )
+
+
+class VirtualAccountsWithRawResponse:
+    def __init__(self, virtual_accounts: VirtualAccounts) -> None:
+        self.create = to_raw_response_wrapper(
+            virtual_accounts.create,
+        )
+        self.retrieve = to_raw_response_wrapper(
+            virtual_accounts.retrieve,
+        )
+        self.update = to_raw_response_wrapper(
+            virtual_accounts.update,
+        )
+        self.list = to_raw_response_wrapper(
+            virtual_accounts.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            virtual_accounts.delete,
+        )
+
+
+class AsyncVirtualAccountsWithRawResponse:
+    def __init__(self, virtual_accounts: AsyncVirtualAccounts) -> None:
+        self.create = async_to_raw_response_wrapper(
+            virtual_accounts.create,
+        )
+        self.retrieve = async_to_raw_response_wrapper(
+            virtual_accounts.retrieve,
+        )
+        self.update = async_to_raw_response_wrapper(
+            virtual_accounts.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            virtual_accounts.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            virtual_accounts.delete,
         )

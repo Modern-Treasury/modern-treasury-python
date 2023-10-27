@@ -15,8 +15,14 @@ from ...types import (
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import maybe_transform
-from .versions import Versions, AsyncVersions
+from .versions import (
+    Versions,
+    AsyncVersions,
+    VersionsWithRawResponse,
+    AsyncVersionsWithRawResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
 
@@ -28,10 +34,12 @@ __all__ = ["LedgerTransactions", "AsyncLedgerTransactions"]
 
 class LedgerTransactions(SyncAPIResource):
     versions: Versions
+    with_raw_response: LedgerTransactionsWithRawResponse
 
     def __init__(self, client: ModernTreasury) -> None:
         super().__init__(client)
         self.versions = Versions(client)
+        self.with_raw_response = LedgerTransactionsWithRawResponse(self)
 
     def create(
         self,
@@ -433,10 +441,12 @@ class LedgerTransactions(SyncAPIResource):
 
 class AsyncLedgerTransactions(AsyncAPIResource):
     versions: AsyncVersions
+    with_raw_response: AsyncLedgerTransactionsWithRawResponse
 
     def __init__(self, client: AsyncModernTreasury) -> None:
         super().__init__(client)
         self.versions = AsyncVersions(client)
+        self.with_raw_response = AsyncLedgerTransactionsWithRawResponse(self)
 
     async def create(
         self,
@@ -833,4 +843,46 @@ class AsyncLedgerTransactions(AsyncAPIResource):
                 idempotency_key=idempotency_key,
             ),
             cast_to=LedgerTransaction,
+        )
+
+
+class LedgerTransactionsWithRawResponse:
+    def __init__(self, ledger_transactions: LedgerTransactions) -> None:
+        self.versions = VersionsWithRawResponse(ledger_transactions.versions)
+
+        self.create = to_raw_response_wrapper(
+            ledger_transactions.create,
+        )
+        self.retrieve = to_raw_response_wrapper(
+            ledger_transactions.retrieve,
+        )
+        self.update = to_raw_response_wrapper(
+            ledger_transactions.update,
+        )
+        self.list = to_raw_response_wrapper(
+            ledger_transactions.list,
+        )
+        self.create_reversal = to_raw_response_wrapper(
+            ledger_transactions.create_reversal,
+        )
+
+
+class AsyncLedgerTransactionsWithRawResponse:
+    def __init__(self, ledger_transactions: AsyncLedgerTransactions) -> None:
+        self.versions = AsyncVersionsWithRawResponse(ledger_transactions.versions)
+
+        self.create = async_to_raw_response_wrapper(
+            ledger_transactions.create,
+        )
+        self.retrieve = async_to_raw_response_wrapper(
+            ledger_transactions.retrieve,
+        )
+        self.update = async_to_raw_response_wrapper(
+            ledger_transactions.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            ledger_transactions.list,
+        )
+        self.create_reversal = async_to_raw_response_wrapper(
+            ledger_transactions.create_reversal,
         )

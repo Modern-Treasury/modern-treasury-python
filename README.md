@@ -293,6 +293,26 @@ if response.my_field is None:
     print('Got json like {"my_field": null}.')
 ```
 
+### Accessing raw response data (e.g. headers)
+
+The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call.
+
+```py
+from modern_treasury import ModernTreasury
+
+client = ModernTreasury()
+response = client.external_accounts.with_raw_response.create(
+    counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+)
+
+print(response.headers.get('X-My-Header'))
+
+external_account = response.parse()  # get the object that `external_accounts.create()` would have returned
+print(external_account.id)
+```
+
+These methods return an [`APIResponse`](https://github.com/Modern-Treasury/modern-treasury-python/src/modern_treasury/_response.py) object.
+
 ### Configuring the HTTP client
 
 You can directly override the [httpx client](https://www.python-httpx.org/api/#client) to customize it for your use case, including:

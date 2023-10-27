@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import TYPE_CHECKING, Dict, List, Union, Optional
 from datetime import datetime
 
 from ..types import (
@@ -14,13 +14,23 @@ from ..types import (
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
+
+if TYPE_CHECKING:
+    from .._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["Ledgers", "AsyncLedgers"]
 
 
 class Ledgers(SyncAPIResource):
+    with_raw_response: LedgersWithRawResponse
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = LedgersWithRawResponse(self)
+
     def create(
         self,
         *,
@@ -263,6 +273,12 @@ class Ledgers(SyncAPIResource):
 
 
 class AsyncLedgers(AsyncAPIResource):
+    with_raw_response: AsyncLedgersWithRawResponse
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AsyncLedgersWithRawResponse(self)
+
     async def create(
         self,
         *,
@@ -501,4 +517,42 @@ class AsyncLedgers(AsyncAPIResource):
                 idempotency_key=idempotency_key,
             ),
             cast_to=Ledger,
+        )
+
+
+class LedgersWithRawResponse:
+    def __init__(self, ledgers: Ledgers) -> None:
+        self.create = to_raw_response_wrapper(
+            ledgers.create,
+        )
+        self.retrieve = to_raw_response_wrapper(
+            ledgers.retrieve,
+        )
+        self.update = to_raw_response_wrapper(
+            ledgers.update,
+        )
+        self.list = to_raw_response_wrapper(
+            ledgers.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            ledgers.delete,
+        )
+
+
+class AsyncLedgersWithRawResponse:
+    def __init__(self, ledgers: AsyncLedgers) -> None:
+        self.create = async_to_raw_response_wrapper(
+            ledgers.create,
+        )
+        self.retrieve = async_to_raw_response_wrapper(
+            ledgers.retrieve,
+        )
+        self.update = async_to_raw_response_wrapper(
+            ledgers.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            ledgers.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            ledgers.delete,
         )

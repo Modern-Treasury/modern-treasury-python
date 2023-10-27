@@ -3,20 +3,30 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 from typing_extensions import Literal
 
 from ..types import PaymentReference, payment_reference_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
+
+if TYPE_CHECKING:
+    from .._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["PaymentReferences", "AsyncPaymentReferences"]
 
 
 class PaymentReferences(SyncAPIResource):
+    with_raw_response: PaymentReferencesWithRawResponse
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = PaymentReferencesWithRawResponse(self)
+
     def retrieve(
         self,
         id: str,
@@ -135,6 +145,12 @@ class PaymentReferences(SyncAPIResource):
 
 
 class AsyncPaymentReferences(AsyncAPIResource):
+    with_raw_response: AsyncPaymentReferencesWithRawResponse
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AsyncPaymentReferencesWithRawResponse(self)
+
     async def retrieve(
         self,
         id: str,
@@ -249,4 +265,30 @@ class AsyncPaymentReferences(AsyncAPIResource):
         """
         return await self.retrieve(
             id=id, extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        )
+
+
+class PaymentReferencesWithRawResponse:
+    def __init__(self, payment_references: PaymentReferences) -> None:
+        self.retrieve = to_raw_response_wrapper(
+            payment_references.retrieve,
+        )
+        self.list = to_raw_response_wrapper(
+            payment_references.list,
+        )
+        self.retireve = to_raw_response_wrapper(  # pyright: ignore[reportDeprecated]
+            payment_references.retireve  # pyright: ignore[reportDeprecated],
+        )
+
+
+class AsyncPaymentReferencesWithRawResponse:
+    def __init__(self, payment_references: AsyncPaymentReferences) -> None:
+        self.retrieve = async_to_raw_response_wrapper(
+            payment_references.retrieve,
+        )
+        self.list = async_to_raw_response_wrapper(
+            payment_references.list,
+        )
+        self.retireve = async_to_raw_response_wrapper(  # pyright: ignore[reportDeprecated]
+            payment_references.retireve  # pyright: ignore[reportDeprecated],
         )

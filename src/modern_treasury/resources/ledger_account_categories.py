@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import TYPE_CHECKING, Dict, List, Optional
 
 from ..types import (
     LedgerAccountCategory,
@@ -14,14 +14,24 @@ from ..types import (
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.shared import TransactionDirection
+
+if TYPE_CHECKING:
+    from .._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["LedgerAccountCategories", "AsyncLedgerAccountCategories"]
 
 
 class LedgerAccountCategories(SyncAPIResource):
+    with_raw_response: LedgerAccountCategoriesWithRawResponse
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = LedgerAccountCategoriesWithRawResponse(self)
+
     def create(
         self,
         *,
@@ -464,6 +474,12 @@ class LedgerAccountCategories(SyncAPIResource):
 
 
 class AsyncLedgerAccountCategories(AsyncAPIResource):
+    with_raw_response: AsyncLedgerAccountCategoriesWithRawResponse
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AsyncLedgerAccountCategoriesWithRawResponse(self)
+
     async def create(
         self,
         *,
@@ -902,4 +918,66 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
                 idempotency_key=idempotency_key,
             ),
             cast_to=NoneType,
+        )
+
+
+class LedgerAccountCategoriesWithRawResponse:
+    def __init__(self, ledger_account_categories: LedgerAccountCategories) -> None:
+        self.create = to_raw_response_wrapper(
+            ledger_account_categories.create,
+        )
+        self.retrieve = to_raw_response_wrapper(
+            ledger_account_categories.retrieve,
+        )
+        self.update = to_raw_response_wrapper(
+            ledger_account_categories.update,
+        )
+        self.list = to_raw_response_wrapper(
+            ledger_account_categories.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            ledger_account_categories.delete,
+        )
+        self.add_ledger_account = to_raw_response_wrapper(
+            ledger_account_categories.add_ledger_account,
+        )
+        self.add_nested_category = to_raw_response_wrapper(
+            ledger_account_categories.add_nested_category,
+        )
+        self.remove_ledger_account = to_raw_response_wrapper(
+            ledger_account_categories.remove_ledger_account,
+        )
+        self.remove_nested_category = to_raw_response_wrapper(
+            ledger_account_categories.remove_nested_category,
+        )
+
+
+class AsyncLedgerAccountCategoriesWithRawResponse:
+    def __init__(self, ledger_account_categories: AsyncLedgerAccountCategories) -> None:
+        self.create = async_to_raw_response_wrapper(
+            ledger_account_categories.create,
+        )
+        self.retrieve = async_to_raw_response_wrapper(
+            ledger_account_categories.retrieve,
+        )
+        self.update = async_to_raw_response_wrapper(
+            ledger_account_categories.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            ledger_account_categories.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            ledger_account_categories.delete,
+        )
+        self.add_ledger_account = async_to_raw_response_wrapper(
+            ledger_account_categories.add_ledger_account,
+        )
+        self.add_nested_category = async_to_raw_response_wrapper(
+            ledger_account_categories.add_nested_category,
+        )
+        self.remove_ledger_account = async_to_raw_response_wrapper(
+            ledger_account_categories.remove_ledger_account,
+        )
+        self.remove_nested_category = async_to_raw_response_wrapper(
+            ledger_account_categories.remove_nested_category,
         )

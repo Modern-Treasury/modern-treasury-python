@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing import TYPE_CHECKING, Dict, Union, Optional
 from datetime import date
 from typing_extensions import Literal
 
@@ -15,14 +15,24 @@ from ..types import (
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.shared import Currency, AsyncResponse, TransactionDirection
+
+if TYPE_CHECKING:
+    from .._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["IncomingPaymentDetails", "AsyncIncomingPaymentDetails"]
 
 
 class IncomingPaymentDetails(SyncAPIResource):
+    with_raw_response: IncomingPaymentDetailsWithRawResponse
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = IncomingPaymentDetailsWithRawResponse(self)
+
     def retrieve(
         self,
         id: str,
@@ -255,6 +265,12 @@ class IncomingPaymentDetails(SyncAPIResource):
 
 
 class AsyncIncomingPaymentDetails(AsyncAPIResource):
+    with_raw_response: AsyncIncomingPaymentDetailsWithRawResponse
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AsyncIncomingPaymentDetailsWithRawResponse(self)
+
     async def retrieve(
         self,
         id: str,
@@ -483,4 +499,36 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
                 idempotency_key=idempotency_key,
             ),
             cast_to=AsyncResponse,
+        )
+
+
+class IncomingPaymentDetailsWithRawResponse:
+    def __init__(self, incoming_payment_details: IncomingPaymentDetails) -> None:
+        self.retrieve = to_raw_response_wrapper(
+            incoming_payment_details.retrieve,
+        )
+        self.update = to_raw_response_wrapper(
+            incoming_payment_details.update,
+        )
+        self.list = to_raw_response_wrapper(
+            incoming_payment_details.list,
+        )
+        self.create_async = to_raw_response_wrapper(
+            incoming_payment_details.create_async,
+        )
+
+
+class AsyncIncomingPaymentDetailsWithRawResponse:
+    def __init__(self, incoming_payment_details: AsyncIncomingPaymentDetails) -> None:
+        self.retrieve = async_to_raw_response_wrapper(
+            incoming_payment_details.retrieve,
+        )
+        self.update = async_to_raw_response_wrapper(
+            incoming_payment_details.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            incoming_payment_details.list,
+        )
+        self.create_async = async_to_raw_response_wrapper(
+            incoming_payment_details.create_async,
         )

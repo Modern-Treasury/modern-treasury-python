@@ -10,6 +10,7 @@ from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import PaperItem
 from modern_treasury._utils import parse_date
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -34,6 +35,15 @@ class TestPaperItems:
         assert_matches_type(PaperItem, paper_item, path=["response"])
 
     @parametrize
+    def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+        response = client.paper_items.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        paper_item = response.parse()
+        assert_matches_type(PaperItem, paper_item, path=["response"])
+
+    @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         paper_item = client.paper_items.list()
         assert_matches_type(SyncPage[PaperItem], paper_item, path=["response"])
@@ -47,6 +57,13 @@ class TestPaperItems:
             lockbox_number="string",
             per_page=0,
         )
+        assert_matches_type(SyncPage[PaperItem], paper_item, path=["response"])
+
+    @parametrize
+    def test_raw_response_list(self, client: ModernTreasury) -> None:
+        response = client.paper_items.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        paper_item = response.parse()
         assert_matches_type(SyncPage[PaperItem], paper_item, path=["response"])
 
 
@@ -67,6 +84,15 @@ class TestAsyncPaperItems:
         assert_matches_type(PaperItem, paper_item, path=["response"])
 
     @parametrize
+    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        response = await client.paper_items.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        paper_item = response.parse()
+        assert_matches_type(PaperItem, paper_item, path=["response"])
+
+    @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
         paper_item = await client.paper_items.list()
         assert_matches_type(AsyncPage[PaperItem], paper_item, path=["response"])
@@ -80,4 +106,11 @@ class TestAsyncPaperItems:
             lockbox_number="string",
             per_page=0,
         )
+        assert_matches_type(AsyncPage[PaperItem], paper_item, path=["response"])
+
+    @parametrize
+    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
+        response = await client.paper_items.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        paper_item = response.parse()
         assert_matches_type(AsyncPage[PaperItem], paper_item, path=["response"])

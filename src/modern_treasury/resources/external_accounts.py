@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import TYPE_CHECKING, Dict, List, Optional
 from typing_extensions import Literal
 
 from ..types import (
@@ -17,14 +17,24 @@ from ..types import (
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.shared import Currency
+
+if TYPE_CHECKING:
+    from .._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["ExternalAccounts", "AsyncExternalAccounts"]
 
 
 class ExternalAccounts(SyncAPIResource):
+    with_raw_response: ExternalAccountsWithRawResponse
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = ExternalAccountsWithRawResponse(self)
+
     def create(
         self,
         *,
@@ -436,6 +446,12 @@ class ExternalAccounts(SyncAPIResource):
 
 
 class AsyncExternalAccounts(AsyncAPIResource):
+    with_raw_response: AsyncExternalAccountsWithRawResponse
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AsyncExternalAccountsWithRawResponse(self)
+
     async def create(
         self,
         *,
@@ -843,4 +859,54 @@ class AsyncExternalAccounts(AsyncAPIResource):
                 idempotency_key=idempotency_key,
             ),
             cast_to=ExternalAccount,
+        )
+
+
+class ExternalAccountsWithRawResponse:
+    def __init__(self, external_accounts: ExternalAccounts) -> None:
+        self.create = to_raw_response_wrapper(
+            external_accounts.create,
+        )
+        self.retrieve = to_raw_response_wrapper(
+            external_accounts.retrieve,
+        )
+        self.update = to_raw_response_wrapper(
+            external_accounts.update,
+        )
+        self.list = to_raw_response_wrapper(
+            external_accounts.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            external_accounts.delete,
+        )
+        self.complete_verification = to_raw_response_wrapper(
+            external_accounts.complete_verification,
+        )
+        self.verify = to_raw_response_wrapper(
+            external_accounts.verify,
+        )
+
+
+class AsyncExternalAccountsWithRawResponse:
+    def __init__(self, external_accounts: AsyncExternalAccounts) -> None:
+        self.create = async_to_raw_response_wrapper(
+            external_accounts.create,
+        )
+        self.retrieve = async_to_raw_response_wrapper(
+            external_accounts.retrieve,
+        )
+        self.update = async_to_raw_response_wrapper(
+            external_accounts.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            external_accounts.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            external_accounts.delete,
+        )
+        self.complete_verification = async_to_raw_response_wrapper(
+            external_accounts.complete_verification,
+        )
+        self.verify = async_to_raw_response_wrapper(
+            external_accounts.verify,
         )

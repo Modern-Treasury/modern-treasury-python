@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import TYPE_CHECKING, Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -17,14 +17,24 @@ from ..types import (
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.shared import TransactionDirection
+
+if TYPE_CHECKING:
+    from .._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["Counterparties", "AsyncCounterparties"]
 
 
 class Counterparties(SyncAPIResource):
+    with_raw_response: CounterpartiesWithRawResponse
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = CounterpartiesWithRawResponse(self)
+
     def create(
         self,
         *,
@@ -406,6 +416,12 @@ class Counterparties(SyncAPIResource):
 
 
 class AsyncCounterparties(AsyncAPIResource):
+    with_raw_response: AsyncCounterpartiesWithRawResponse
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AsyncCounterpartiesWithRawResponse(self)
+
     async def create(
         self,
         *,
@@ -783,4 +799,48 @@ class AsyncCounterparties(AsyncAPIResource):
                 idempotency_key=idempotency_key,
             ),
             cast_to=CounterpartyCollectAccountResponse,
+        )
+
+
+class CounterpartiesWithRawResponse:
+    def __init__(self, counterparties: Counterparties) -> None:
+        self.create = to_raw_response_wrapper(
+            counterparties.create,
+        )
+        self.retrieve = to_raw_response_wrapper(
+            counterparties.retrieve,
+        )
+        self.update = to_raw_response_wrapper(
+            counterparties.update,
+        )
+        self.list = to_raw_response_wrapper(
+            counterparties.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            counterparties.delete,
+        )
+        self.collect_account = to_raw_response_wrapper(
+            counterparties.collect_account,
+        )
+
+
+class AsyncCounterpartiesWithRawResponse:
+    def __init__(self, counterparties: AsyncCounterparties) -> None:
+        self.create = async_to_raw_response_wrapper(
+            counterparties.create,
+        )
+        self.retrieve = async_to_raw_response_wrapper(
+            counterparties.retrieve,
+        )
+        self.update = async_to_raw_response_wrapper(
+            counterparties.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            counterparties.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            counterparties.delete,
+        )
+        self.collect_account = async_to_raw_response_wrapper(
+            counterparties.collect_account,
         )

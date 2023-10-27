@@ -13,6 +13,7 @@ from modern_treasury.types import (
     LedgerAccountStatementRetrieveResponse,
 )
 from modern_treasury._utils import parse_datetime
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 api_key = "My API Key"
@@ -54,11 +55,32 @@ class TestLedgerAccountStatements:
         )
         assert_matches_type(LedgerAccountStatementCreateResponse, ledger_account_statement, path=["response"])
 
+    @pytest.mark.skip(reason="Prism is broken in this case")
+    @parametrize
+    def test_raw_response_create(self, client: ModernTreasury) -> None:
+        response = client.ledger_account_statements.with_raw_response.create(
+            effective_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
+            effective_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
+            ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_statement = response.parse()
+        assert_matches_type(LedgerAccountStatementCreateResponse, ledger_account_statement, path=["response"])
+
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         ledger_account_statement = client.ledger_account_statements.retrieve(
             "string",
         )
+        assert_matches_type(LedgerAccountStatementRetrieveResponse, ledger_account_statement, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+        response = client.ledger_account_statements.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_statement = response.parse()
         assert_matches_type(LedgerAccountStatementRetrieveResponse, ledger_account_statement, path=["response"])
 
 
@@ -97,9 +119,30 @@ class TestAsyncLedgerAccountStatements:
         )
         assert_matches_type(LedgerAccountStatementCreateResponse, ledger_account_statement, path=["response"])
 
+    @pytest.mark.skip(reason="Prism is broken in this case")
+    @parametrize
+    async def test_raw_response_create(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledger_account_statements.with_raw_response.create(
+            effective_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
+            effective_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
+            ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_statement = response.parse()
+        assert_matches_type(LedgerAccountStatementCreateResponse, ledger_account_statement, path=["response"])
+
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         ledger_account_statement = await client.ledger_account_statements.retrieve(
             "string",
         )
+        assert_matches_type(LedgerAccountStatementRetrieveResponse, ledger_account_statement, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledger_account_statements.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_statement = response.parse()
         assert_matches_type(LedgerAccountStatementRetrieveResponse, ledger_account_statement, path=["response"])

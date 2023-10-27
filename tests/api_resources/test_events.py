@@ -10,6 +10,7 @@ from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import Event
 from modern_treasury._utils import parse_datetime
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -34,6 +35,15 @@ class TestEvents:
         assert_matches_type(Event, event, path=["response"])
 
     @parametrize
+    def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+        response = client.events.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        event = response.parse()
+        assert_matches_type(Event, event, path=["response"])
+
+    @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         event = client.events.list()
         assert_matches_type(SyncPage[Event], event, path=["response"])
@@ -49,6 +59,13 @@ class TestEvents:
             per_page=0,
             resource="string",
         )
+        assert_matches_type(SyncPage[Event], event, path=["response"])
+
+    @parametrize
+    def test_raw_response_list(self, client: ModernTreasury) -> None:
+        response = client.events.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        event = response.parse()
         assert_matches_type(SyncPage[Event], event, path=["response"])
 
 
@@ -69,6 +86,15 @@ class TestAsyncEvents:
         assert_matches_type(Event, event, path=["response"])
 
     @parametrize
+    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        response = await client.events.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        event = response.parse()
+        assert_matches_type(Event, event, path=["response"])
+
+    @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
         event = await client.events.list()
         assert_matches_type(AsyncPage[Event], event, path=["response"])
@@ -84,4 +110,11 @@ class TestAsyncEvents:
             per_page=0,
             resource="string",
         )
+        assert_matches_type(AsyncPage[Event], event, path=["response"])
+
+    @parametrize
+    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
+        response = await client.events.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        event = response.parse()
         assert_matches_type(AsyncPage[Event], event, path=["response"])

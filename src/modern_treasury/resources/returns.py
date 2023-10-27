@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import TYPE_CHECKING, Union, Optional
 from datetime import date
 from typing_extensions import Literal
 
@@ -10,13 +10,23 @@ from ..types import ReturnObject, return_list_params, return_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
+
+if TYPE_CHECKING:
+    from .._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["Returns", "AsyncReturns"]
 
 
 class Returns(SyncAPIResource):
+    with_raw_response: ReturnsWithRawResponse
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = ReturnsWithRawResponse(self)
+
     def create(
         self,
         *,
@@ -230,6 +240,12 @@ class Returns(SyncAPIResource):
 
 
 class AsyncReturns(AsyncAPIResource):
+    with_raw_response: AsyncReturnsWithRawResponse
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AsyncReturnsWithRawResponse(self)
+
     async def create(
         self,
         *,
@@ -439,4 +455,30 @@ class AsyncReturns(AsyncAPIResource):
                 ),
             ),
             model=ReturnObject,
+        )
+
+
+class ReturnsWithRawResponse:
+    def __init__(self, returns: Returns) -> None:
+        self.create = to_raw_response_wrapper(
+            returns.create,
+        )
+        self.retrieve = to_raw_response_wrapper(
+            returns.retrieve,
+        )
+        self.list = to_raw_response_wrapper(
+            returns.list,
+        )
+
+
+class AsyncReturnsWithRawResponse:
+    def __init__(self, returns: AsyncReturns) -> None:
+        self.create = async_to_raw_response_wrapper(
+            returns.create,
+        )
+        self.retrieve = async_to_raw_response_wrapper(
+            returns.retrieve,
+        )
+        self.list = async_to_raw_response_wrapper(
+            returns.list,
         )

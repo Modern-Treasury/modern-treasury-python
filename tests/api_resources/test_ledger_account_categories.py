@@ -10,6 +10,7 @@ from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import LedgerAccountCategory
 from modern_treasury._utils import parse_date, parse_datetime
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -54,6 +55,18 @@ class TestLedgerAccountCategories:
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
+    def test_raw_response_create(self, client: ModernTreasury) -> None:
+        response = client.ledger_account_categories.with_raw_response.create(
+            currency="string",
+            ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="string",
+            normal_balance="credit",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_category = response.parse()
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+    @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         ledger_account_category = client.ledger_account_categories.retrieve(
             "string",
@@ -69,6 +82,15 @@ class TestLedgerAccountCategories:
                 "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
         )
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+        response = client.ledger_account_categories.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_category = response.parse()
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
@@ -93,6 +115,15 @@ class TestLedgerAccountCategories:
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
+    def test_raw_response_update(self, client: ModernTreasury) -> None:
+        response = client.ledger_account_categories.with_raw_response.update(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_category = response.parse()
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+    @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         ledger_account_category = client.ledger_account_categories.list()
         assert_matches_type(SyncPage[LedgerAccountCategory], ledger_account_category, path=["response"])
@@ -113,10 +144,26 @@ class TestLedgerAccountCategories:
         assert_matches_type(SyncPage[LedgerAccountCategory], ledger_account_category, path=["response"])
 
     @parametrize
+    def test_raw_response_list(self, client: ModernTreasury) -> None:
+        response = client.ledger_account_categories.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_category = response.parse()
+        assert_matches_type(SyncPage[LedgerAccountCategory], ledger_account_category, path=["response"])
+
+    @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
         ledger_account_category = client.ledger_account_categories.delete(
             "string",
         )
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+    @parametrize
+    def test_raw_response_delete(self, client: ModernTreasury) -> None:
+        response = client.ledger_account_categories.with_raw_response.delete(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_category = response.parse()
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
@@ -128,11 +175,31 @@ class TestLedgerAccountCategories:
         assert ledger_account_category is None
 
     @parametrize
+    def test_raw_response_add_ledger_account(self, client: ModernTreasury) -> None:
+        response = client.ledger_account_categories.with_raw_response.add_ledger_account(
+            "string",
+            id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_category = response.parse()
+        assert ledger_account_category is None
+
+    @parametrize
     def test_method_add_nested_category(self, client: ModernTreasury) -> None:
         ledger_account_category = client.ledger_account_categories.add_nested_category(
             "string",
             id="string",
         )
+        assert ledger_account_category is None
+
+    @parametrize
+    def test_raw_response_add_nested_category(self, client: ModernTreasury) -> None:
+        response = client.ledger_account_categories.with_raw_response.add_nested_category(
+            "string",
+            id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_category = response.parse()
         assert ledger_account_category is None
 
     @parametrize
@@ -144,11 +211,31 @@ class TestLedgerAccountCategories:
         assert ledger_account_category is None
 
     @parametrize
+    def test_raw_response_remove_ledger_account(self, client: ModernTreasury) -> None:
+        response = client.ledger_account_categories.with_raw_response.remove_ledger_account(
+            "string",
+            id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_category = response.parse()
+        assert ledger_account_category is None
+
+    @parametrize
     def test_method_remove_nested_category(self, client: ModernTreasury) -> None:
         ledger_account_category = client.ledger_account_categories.remove_nested_category(
             "string",
             id="string",
         )
+        assert ledger_account_category is None
+
+    @parametrize
+    def test_raw_response_remove_nested_category(self, client: ModernTreasury) -> None:
+        response = client.ledger_account_categories.with_raw_response.remove_nested_category(
+            "string",
+            id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_category = response.parse()
         assert ledger_account_category is None
 
 
@@ -189,6 +276,18 @@ class TestAsyncLedgerAccountCategories:
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
+    async def test_raw_response_create(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledger_account_categories.with_raw_response.create(
+            currency="string",
+            ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="string",
+            normal_balance="credit",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_category = response.parse()
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+    @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         ledger_account_category = await client.ledger_account_categories.retrieve(
             "string",
@@ -204,6 +303,15 @@ class TestAsyncLedgerAccountCategories:
                 "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
             },
         )
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledger_account_categories.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_category = response.parse()
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
@@ -228,6 +336,15 @@ class TestAsyncLedgerAccountCategories:
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
+    async def test_raw_response_update(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledger_account_categories.with_raw_response.update(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_category = response.parse()
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+    @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
         ledger_account_category = await client.ledger_account_categories.list()
         assert_matches_type(AsyncPage[LedgerAccountCategory], ledger_account_category, path=["response"])
@@ -248,10 +365,26 @@ class TestAsyncLedgerAccountCategories:
         assert_matches_type(AsyncPage[LedgerAccountCategory], ledger_account_category, path=["response"])
 
     @parametrize
+    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledger_account_categories.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_category = response.parse()
+        assert_matches_type(AsyncPage[LedgerAccountCategory], ledger_account_category, path=["response"])
+
+    @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
         ledger_account_category = await client.ledger_account_categories.delete(
             "string",
         )
+        assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+    @parametrize
+    async def test_raw_response_delete(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledger_account_categories.with_raw_response.delete(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_category = response.parse()
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
@@ -263,11 +396,31 @@ class TestAsyncLedgerAccountCategories:
         assert ledger_account_category is None
 
     @parametrize
+    async def test_raw_response_add_ledger_account(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledger_account_categories.with_raw_response.add_ledger_account(
+            "string",
+            id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_category = response.parse()
+        assert ledger_account_category is None
+
+    @parametrize
     async def test_method_add_nested_category(self, client: AsyncModernTreasury) -> None:
         ledger_account_category = await client.ledger_account_categories.add_nested_category(
             "string",
             id="string",
         )
+        assert ledger_account_category is None
+
+    @parametrize
+    async def test_raw_response_add_nested_category(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledger_account_categories.with_raw_response.add_nested_category(
+            "string",
+            id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_category = response.parse()
         assert ledger_account_category is None
 
     @parametrize
@@ -279,9 +432,29 @@ class TestAsyncLedgerAccountCategories:
         assert ledger_account_category is None
 
     @parametrize
+    async def test_raw_response_remove_ledger_account(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledger_account_categories.with_raw_response.remove_ledger_account(
+            "string",
+            id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_category = response.parse()
+        assert ledger_account_category is None
+
+    @parametrize
     async def test_method_remove_nested_category(self, client: AsyncModernTreasury) -> None:
         ledger_account_category = await client.ledger_account_categories.remove_nested_category(
             "string",
             id="string",
         )
+        assert ledger_account_category is None
+
+    @parametrize
+    async def test_raw_response_remove_nested_category(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledger_account_categories.with_raw_response.remove_nested_category(
+            "string",
+            id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_account_category = response.parse()
         assert ledger_account_category is None

@@ -2,18 +2,28 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import TYPE_CHECKING, Dict, Optional
 
 from ..types import LedgerableEvent, ledgerable_event_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from .._base_client import make_request_options
+
+if TYPE_CHECKING:
+    from .._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["LedgerableEvents", "AsyncLedgerableEvents"]
 
 
 class LedgerableEvents(SyncAPIResource):
+    with_raw_response: LedgerableEventsWithRawResponse
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = LedgerableEventsWithRawResponse(self)
+
     def create(
         self,
         *,
@@ -106,6 +116,12 @@ class LedgerableEvents(SyncAPIResource):
 
 
 class AsyncLedgerableEvents(AsyncAPIResource):
+    with_raw_response: AsyncLedgerableEventsWithRawResponse
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AsyncLedgerableEventsWithRawResponse(self)
+
     async def create(
         self,
         *,
@@ -194,4 +210,24 @@ class AsyncLedgerableEvents(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=LedgerableEvent,
+        )
+
+
+class LedgerableEventsWithRawResponse:
+    def __init__(self, ledgerable_events: LedgerableEvents) -> None:
+        self.create = to_raw_response_wrapper(
+            ledgerable_events.create,
+        )
+        self.retrieve = to_raw_response_wrapper(
+            ledgerable_events.retrieve,
+        )
+
+
+class AsyncLedgerableEventsWithRawResponse:
+    def __init__(self, ledgerable_events: AsyncLedgerableEvents) -> None:
+        self.create = async_to_raw_response_wrapper(
+            ledgerable_events.create,
+        )
+        self.retrieve = async_to_raw_response_wrapper(
+            ledgerable_events.retrieve,
         )
