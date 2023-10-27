@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import Document
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -45,10 +46,30 @@ class TestDocuments:
         assert_matches_type(Document, document, path=["response"])
 
     @parametrize
+    def test_raw_response_create(self, client: ModernTreasury) -> None:
+        response = client.documents.with_raw_response.create(
+            documentable_id="string",
+            documentable_type="cases",
+            file=b"raw file contents",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        document = response.parse()
+        assert_matches_type(Document, document, path=["response"])
+
+    @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         document = client.documents.retrieve(
             "string",
         )
+        assert_matches_type(Document, document, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+        response = client.documents.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        document = response.parse()
         assert_matches_type(Document, document, path=["response"])
 
     @parametrize
@@ -64,6 +85,13 @@ class TestDocuments:
             documentable_type="cases",
             per_page=0,
         )
+        assert_matches_type(SyncPage[Document], document, path=["response"])
+
+    @parametrize
+    def test_raw_response_list(self, client: ModernTreasury) -> None:
+        response = client.documents.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        document = response.parse()
         assert_matches_type(SyncPage[Document], document, path=["response"])
 
 
@@ -96,10 +124,30 @@ class TestAsyncDocuments:
         assert_matches_type(Document, document, path=["response"])
 
     @parametrize
+    async def test_raw_response_create(self, client: AsyncModernTreasury) -> None:
+        response = await client.documents.with_raw_response.create(
+            documentable_id="string",
+            documentable_type="cases",
+            file=b"raw file contents",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        document = response.parse()
+        assert_matches_type(Document, document, path=["response"])
+
+    @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         document = await client.documents.retrieve(
             "string",
         )
+        assert_matches_type(Document, document, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        response = await client.documents.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        document = response.parse()
         assert_matches_type(Document, document, path=["response"])
 
     @parametrize
@@ -115,4 +163,11 @@ class TestAsyncDocuments:
             documentable_type="cases",
             per_page=0,
         )
+        assert_matches_type(AsyncPage[Document], document, path=["response"])
+
+    @parametrize
+    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
+        response = await client.documents.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        document = response.parse()
         assert_matches_type(AsyncPage[Document], document, path=["response"])

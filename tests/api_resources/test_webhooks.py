@@ -8,6 +8,7 @@ from typing import Mapping
 import pytest
 
 from modern_treasury import ModernTreasury, AsyncModernTreasury
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 api_key = "My API Key"

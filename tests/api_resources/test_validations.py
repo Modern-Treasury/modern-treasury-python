@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import RoutingNumberLookupRequest
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 api_key = "My API Key"
@@ -32,6 +33,16 @@ class TestValidations:
         )
         assert_matches_type(RoutingNumberLookupRequest, validation, path=["response"])
 
+    @parametrize
+    def test_raw_response_validate_routing_number(self, client: ModernTreasury) -> None:
+        response = client.validations.with_raw_response.validate_routing_number(
+            routing_number="string",
+            routing_number_type="aba",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        validation = response.parse()
+        assert_matches_type(RoutingNumberLookupRequest, validation, path=["response"])
+
 
 class TestAsyncValidations:
     strict_client = AsyncModernTreasury(
@@ -48,4 +59,14 @@ class TestAsyncValidations:
             routing_number="string",
             routing_number_type="aba",
         )
+        assert_matches_type(RoutingNumberLookupRequest, validation, path=["response"])
+
+    @parametrize
+    async def test_raw_response_validate_routing_number(self, client: AsyncModernTreasury) -> None:
+        response = await client.validations.with_raw_response.validate_routing_number(
+            routing_number="string",
+            routing_number_type="aba",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        validation = response.parse()
         assert_matches_type(RoutingNumberLookupRequest, validation, path=["response"])

@@ -10,6 +10,7 @@ from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import Counterparty, CounterpartyCollectAccountResponse
 from modern_treasury._utils import parse_datetime
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -297,10 +298,28 @@ class TestCounterparties:
         assert_matches_type(Counterparty, counterparty, path=["response"])
 
     @parametrize
+    def test_raw_response_create(self, client: ModernTreasury) -> None:
+        response = client.counterparties.with_raw_response.create(
+            name="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        counterparty = response.parse()
+        assert_matches_type(Counterparty, counterparty, path=["response"])
+
+    @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         counterparty = client.counterparties.retrieve(
             "string",
         )
+        assert_matches_type(Counterparty, counterparty, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+        response = client.counterparties.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        counterparty = response.parse()
         assert_matches_type(Counterparty, counterparty, path=["response"])
 
     @parametrize
@@ -323,6 +342,15 @@ class TestCounterparties:
         assert_matches_type(Counterparty, counterparty, path=["response"])
 
     @parametrize
+    def test_raw_response_update(self, client: ModernTreasury) -> None:
+        response = client.counterparties.with_raw_response.update(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        counterparty = response.parse()
+        assert_matches_type(Counterparty, counterparty, path=["response"])
+
+    @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         counterparty = client.counterparties.list()
         assert_matches_type(SyncPage[Counterparty], counterparty, path=["response"])
@@ -341,10 +369,26 @@ class TestCounterparties:
         assert_matches_type(SyncPage[Counterparty], counterparty, path=["response"])
 
     @parametrize
+    def test_raw_response_list(self, client: ModernTreasury) -> None:
+        response = client.counterparties.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        counterparty = response.parse()
+        assert_matches_type(SyncPage[Counterparty], counterparty, path=["response"])
+
+    @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
         counterparty = client.counterparties.delete(
             "string",
         )
+        assert counterparty is None
+
+    @parametrize
+    def test_raw_response_delete(self, client: ModernTreasury) -> None:
+        response = client.counterparties.with_raw_response.delete(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        counterparty = response.parse()
         assert counterparty is None
 
     @parametrize
@@ -364,6 +408,16 @@ class TestCounterparties:
             fields=["name", "nameOnAccount", "taxpayerIdentifier"],
             send_email=True,
         )
+        assert_matches_type(CounterpartyCollectAccountResponse, counterparty, path=["response"])
+
+    @parametrize
+    def test_raw_response_collect_account(self, client: ModernTreasury) -> None:
+        response = client.counterparties.with_raw_response.collect_account(
+            "string",
+            direction="credit",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        counterparty = response.parse()
         assert_matches_type(CounterpartyCollectAccountResponse, counterparty, path=["response"])
 
 
@@ -647,10 +701,28 @@ class TestAsyncCounterparties:
         assert_matches_type(Counterparty, counterparty, path=["response"])
 
     @parametrize
+    async def test_raw_response_create(self, client: AsyncModernTreasury) -> None:
+        response = await client.counterparties.with_raw_response.create(
+            name="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        counterparty = response.parse()
+        assert_matches_type(Counterparty, counterparty, path=["response"])
+
+    @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         counterparty = await client.counterparties.retrieve(
             "string",
         )
+        assert_matches_type(Counterparty, counterparty, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        response = await client.counterparties.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        counterparty = response.parse()
         assert_matches_type(Counterparty, counterparty, path=["response"])
 
     @parametrize
@@ -673,6 +745,15 @@ class TestAsyncCounterparties:
         assert_matches_type(Counterparty, counterparty, path=["response"])
 
     @parametrize
+    async def test_raw_response_update(self, client: AsyncModernTreasury) -> None:
+        response = await client.counterparties.with_raw_response.update(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        counterparty = response.parse()
+        assert_matches_type(Counterparty, counterparty, path=["response"])
+
+    @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
         counterparty = await client.counterparties.list()
         assert_matches_type(AsyncPage[Counterparty], counterparty, path=["response"])
@@ -691,10 +772,26 @@ class TestAsyncCounterparties:
         assert_matches_type(AsyncPage[Counterparty], counterparty, path=["response"])
 
     @parametrize
+    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
+        response = await client.counterparties.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        counterparty = response.parse()
+        assert_matches_type(AsyncPage[Counterparty], counterparty, path=["response"])
+
+    @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
         counterparty = await client.counterparties.delete(
             "string",
         )
+        assert counterparty is None
+
+    @parametrize
+    async def test_raw_response_delete(self, client: AsyncModernTreasury) -> None:
+        response = await client.counterparties.with_raw_response.delete(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        counterparty = response.parse()
         assert counterparty is None
 
     @parametrize
@@ -714,4 +811,14 @@ class TestAsyncCounterparties:
             fields=["name", "nameOnAccount", "taxpayerIdentifier"],
             send_email=True,
         )
+        assert_matches_type(CounterpartyCollectAccountResponse, counterparty, path=["response"])
+
+    @parametrize
+    async def test_raw_response_collect_account(self, client: AsyncModernTreasury) -> None:
+        response = await client.counterparties.with_raw_response.collect_account(
+            "string",
+            direction="credit",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        counterparty = response.parse()
         assert_matches_type(CounterpartyCollectAccountResponse, counterparty, path=["response"])

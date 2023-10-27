@@ -2,20 +2,30 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import TYPE_CHECKING, Union, Optional
 from datetime import datetime
 
 from ..types import Event, event_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
+
+if TYPE_CHECKING:
+    from .._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["Events", "AsyncEvents"]
 
 
 class Events(SyncAPIResource):
+    with_raw_response: EventsWithRawResponse
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = EventsWithRawResponse(self)
+
     def retrieve(
         self,
         id: str,
@@ -106,6 +116,12 @@ class Events(SyncAPIResource):
 
 
 class AsyncEvents(AsyncAPIResource):
+    with_raw_response: AsyncEventsWithRawResponse
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AsyncEventsWithRawResponse(self)
+
     async def retrieve(
         self,
         id: str,
@@ -192,4 +208,24 @@ class AsyncEvents(AsyncAPIResource):
                 ),
             ),
             model=Event,
+        )
+
+
+class EventsWithRawResponse:
+    def __init__(self, events: Events) -> None:
+        self.retrieve = to_raw_response_wrapper(
+            events.retrieve,
+        )
+        self.list = to_raw_response_wrapper(
+            events.list,
+        )
+
+
+class AsyncEventsWithRawResponse:
+    def __init__(self, events: AsyncEvents) -> None:
+        self.retrieve = async_to_raw_response_wrapper(
+            events.retrieve,
+        )
+        self.list = async_to_raw_response_wrapper(
+            events.list,
         )

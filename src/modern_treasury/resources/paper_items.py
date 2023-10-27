@@ -2,20 +2,30 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import TYPE_CHECKING, Union, Optional
 from datetime import date
 
 from ..types import PaperItem, paper_item_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
+
+if TYPE_CHECKING:
+    from .._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["PaperItems", "AsyncPaperItems"]
 
 
 class PaperItems(SyncAPIResource):
+    with_raw_response: PaperItemsWithRawResponse
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = PaperItemsWithRawResponse(self)
+
     def retrieve(
         self,
         id: str,
@@ -105,6 +115,12 @@ class PaperItems(SyncAPIResource):
 
 
 class AsyncPaperItems(AsyncAPIResource):
+    with_raw_response: AsyncPaperItemsWithRawResponse
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AsyncPaperItemsWithRawResponse(self)
+
     async def retrieve(
         self,
         id: str,
@@ -190,4 +206,24 @@ class AsyncPaperItems(AsyncAPIResource):
                 ),
             ),
             model=PaperItem,
+        )
+
+
+class PaperItemsWithRawResponse:
+    def __init__(self, paper_items: PaperItems) -> None:
+        self.retrieve = to_raw_response_wrapper(
+            paper_items.retrieve,
+        )
+        self.list = to_raw_response_wrapper(
+            paper_items.list,
+        )
+
+
+class AsyncPaperItemsWithRawResponse:
+    def __init__(self, paper_items: AsyncPaperItems) -> None:
+        self.retrieve = async_to_raw_response_wrapper(
+            paper_items.retrieve,
+        )
+        self.list = async_to_raw_response_wrapper(
+            paper_items.list,
         )

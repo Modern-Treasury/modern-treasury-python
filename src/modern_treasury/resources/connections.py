@@ -2,19 +2,29 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from ..types import Connection, connection_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
+
+if TYPE_CHECKING:
+    from .._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["Connections", "AsyncConnections"]
 
 
 class Connections(SyncAPIResource):
+    with_raw_response: ConnectionsWithRawResponse
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = ConnectionsWithRawResponse(self)
+
     def list(
         self,
         *,
@@ -68,6 +78,12 @@ class Connections(SyncAPIResource):
 
 
 class AsyncConnections(AsyncAPIResource):
+    with_raw_response: AsyncConnectionsWithRawResponse
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AsyncConnectionsWithRawResponse(self)
+
     def list(
         self,
         *,
@@ -117,4 +133,18 @@ class AsyncConnections(AsyncAPIResource):
                 ),
             ),
             model=Connection,
+        )
+
+
+class ConnectionsWithRawResponse:
+    def __init__(self, connections: Connections) -> None:
+        self.list = to_raw_response_wrapper(
+            connections.list,
+        )
+
+
+class AsyncConnectionsWithRawResponse:
+    def __init__(self, connections: AsyncConnections) -> None:
+        self.list = async_to_raw_response_wrapper(
+            connections.list,
         )

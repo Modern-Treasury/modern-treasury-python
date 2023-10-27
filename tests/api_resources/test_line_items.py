@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import LineItem
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -35,6 +36,17 @@ class TestLineItems:
         assert_matches_type(LineItem, line_item, path=["response"])
 
     @parametrize
+    def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+        response = client.line_items.with_raw_response.retrieve(
+            "string",
+            itemizable_type="expected_payments",
+            itemizable_id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        line_item = response.parse()
+        assert_matches_type(LineItem, line_item, path=["response"])
+
+    @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
         line_item = client.line_items.update(
             "string",
@@ -57,6 +69,17 @@ class TestLineItems:
         )
         assert_matches_type(LineItem, line_item, path=["response"])
 
+    @parametrize
+    def test_raw_response_update(self, client: ModernTreasury) -> None:
+        response = client.line_items.with_raw_response.update(
+            "string",
+            itemizable_type="expected_payments",
+            itemizable_id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        line_item = response.parse()
+        assert_matches_type(LineItem, line_item, path=["response"])
+
     @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -77,6 +100,17 @@ class TestLineItems:
         )
         assert_matches_type(SyncPage[LineItem], line_item, path=["response"])
 
+    @pytest.mark.skip(reason="Prism is broken in this case")
+    @parametrize
+    def test_raw_response_list(self, client: ModernTreasury) -> None:
+        response = client.line_items.with_raw_response.list(
+            "string",
+            itemizable_type="expected_payments",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        line_item = response.parse()
+        assert_matches_type(SyncPage[LineItem], line_item, path=["response"])
+
 
 class TestAsyncLineItems:
     strict_client = AsyncModernTreasury(
@@ -94,6 +128,17 @@ class TestAsyncLineItems:
             itemizable_type="expected_payments",
             itemizable_id="string",
         )
+        assert_matches_type(LineItem, line_item, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        response = await client.line_items.with_raw_response.retrieve(
+            "string",
+            itemizable_type="expected_payments",
+            itemizable_id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        line_item = response.parse()
         assert_matches_type(LineItem, line_item, path=["response"])
 
     @parametrize
@@ -119,6 +164,17 @@ class TestAsyncLineItems:
         )
         assert_matches_type(LineItem, line_item, path=["response"])
 
+    @parametrize
+    async def test_raw_response_update(self, client: AsyncModernTreasury) -> None:
+        response = await client.line_items.with_raw_response.update(
+            "string",
+            itemizable_type="expected_payments",
+            itemizable_id="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        line_item = response.parse()
+        assert_matches_type(LineItem, line_item, path=["response"])
+
     @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -137,4 +193,15 @@ class TestAsyncLineItems:
             after_cursor="string",
             per_page=0,
         )
+        assert_matches_type(AsyncPage[LineItem], line_item, path=["response"])
+
+    @pytest.mark.skip(reason="Prism is broken in this case")
+    @parametrize
+    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
+        response = await client.line_items.with_raw_response.list(
+            "string",
+            itemizable_type="expected_payments",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        line_item = response.parse()
         assert_matches_type(AsyncPage[LineItem], line_item, path=["response"])

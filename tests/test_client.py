@@ -19,6 +19,7 @@ from modern_treasury import (
     AsyncModernTreasury,
     APIResponseValidationError,
 )
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury._models import BaseModel, FinalRequestOptions
 from modern_treasury._exceptions import APIResponseValidationError
 from modern_treasury._base_client import (
@@ -33,7 +34,7 @@ api_key = "My API Key"
 organization_id = "my-organization-ID"
 
 
-def _get_params(client: BaseClient[Any]) -> dict[str, str]:
+def _get_params(client: BaseClient[Any, Any]) -> dict[str, str]:
     request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
     url = httpx.URL(request.url)
     return dict(url.params)

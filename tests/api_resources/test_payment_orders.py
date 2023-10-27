@@ -10,6 +10,7 @@ from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import PaymentOrder
 from modern_treasury._utils import parse_date, parse_datetime
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 from modern_treasury.types.shared import AsyncResponse
 
@@ -277,11 +278,33 @@ class TestPaymentOrders:
         )
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
+    @pytest.mark.skip(reason="Multiple values for nested arrays aren't supported yet")
+    @parametrize
+    def test_raw_response_create(self, client: ModernTreasury) -> None:
+        response = client.payment_orders.with_raw_response.create(
+            amount=0,
+            direction="credit",
+            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="ach",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        payment_order = response.parse()
+        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         payment_order = client.payment_orders.retrieve(
             "string",
         )
+        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+        response = client.payment_orders.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        payment_order = response.parse()
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
@@ -450,6 +473,15 @@ class TestPaymentOrders:
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
+    def test_raw_response_update(self, client: ModernTreasury) -> None:
+        response = client.payment_orders.with_raw_response.update(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        payment_order = response.parse()
+        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+
+    @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         payment_order = client.payment_orders.list()
         assert_matches_type(SyncPage[PaymentOrder], payment_order, path=["response"])
@@ -471,6 +503,13 @@ class TestPaymentOrders:
             transaction_id="string",
             type="ach",
         )
+        assert_matches_type(SyncPage[PaymentOrder], payment_order, path=["response"])
+
+    @parametrize
+    def test_raw_response_list(self, client: ModernTreasury) -> None:
+        response = client.payment_orders.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        payment_order = response.parse()
         assert_matches_type(SyncPage[PaymentOrder], payment_order, path=["response"])
 
     @parametrize
@@ -699,6 +738,18 @@ class TestPaymentOrders:
             ultimate_receiving_party_identifier="string",
             ultimate_receiving_party_name="string",
         )
+        assert_matches_type(AsyncResponse, payment_order, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_async(self, client: ModernTreasury) -> None:
+        response = client.payment_orders.with_raw_response.create_async(
+            amount=0,
+            direction="credit",
+            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="ach",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        payment_order = response.parse()
         assert_matches_type(AsyncResponse, payment_order, path=["response"])
 
 
@@ -961,11 +1012,33 @@ class TestAsyncPaymentOrders:
         )
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
+    @pytest.mark.skip(reason="Multiple values for nested arrays aren't supported yet")
+    @parametrize
+    async def test_raw_response_create(self, client: AsyncModernTreasury) -> None:
+        response = await client.payment_orders.with_raw_response.create(
+            amount=0,
+            direction="credit",
+            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="ach",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        payment_order = response.parse()
+        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         payment_order = await client.payment_orders.retrieve(
             "string",
         )
+        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        response = await client.payment_orders.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        payment_order = response.parse()
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
@@ -1134,6 +1207,15 @@ class TestAsyncPaymentOrders:
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
+    async def test_raw_response_update(self, client: AsyncModernTreasury) -> None:
+        response = await client.payment_orders.with_raw_response.update(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        payment_order = response.parse()
+        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+
+    @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
         payment_order = await client.payment_orders.list()
         assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=["response"])
@@ -1155,6 +1237,13 @@ class TestAsyncPaymentOrders:
             transaction_id="string",
             type="ach",
         )
+        assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=["response"])
+
+    @parametrize
+    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
+        response = await client.payment_orders.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        payment_order = response.parse()
         assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=["response"])
 
     @parametrize
@@ -1383,4 +1472,16 @@ class TestAsyncPaymentOrders:
             ultimate_receiving_party_identifier="string",
             ultimate_receiving_party_name="string",
         )
+        assert_matches_type(AsyncResponse, payment_order, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_async(self, client: AsyncModernTreasury) -> None:
+        response = await client.payment_orders.with_raw_response.create_async(
+            amount=0,
+            direction="credit",
+            originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            type="ach",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        payment_order = response.parse()
         assert_matches_type(AsyncResponse, payment_order, path=["response"])

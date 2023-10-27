@@ -10,6 +10,7 @@ from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import LedgerEventHandler
 from modern_treasury._utils import parse_datetime
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -107,10 +108,50 @@ class TestLedgerEventHandlers:
         assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
 
     @parametrize
+    def test_raw_response_create(self, client: ModernTreasury) -> None:
+        response = client.ledger_event_handlers.with_raw_response.create(
+            ledger_transaction_template={
+                "description": "My Ledger Transaction Template Description",
+                "effective_at": "{{ledgerable_event.custom_data.effective_at}}",
+                "status": "posted",
+                "ledger_entries": [
+                    {
+                        "amount": "string",
+                        "direction": "string",
+                        "ledger_account_id": "string",
+                    },
+                    {
+                        "amount": "string",
+                        "direction": "string",
+                        "ledger_account_id": "string",
+                    },
+                    {
+                        "amount": "string",
+                        "direction": "string",
+                        "ledger_account_id": "string",
+                    },
+                ],
+            },
+            name="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_event_handler = response.parse()
+        assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
+
+    @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         ledger_event_handler = client.ledger_event_handlers.retrieve(
             "string",
         )
+        assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+        response = client.ledger_event_handlers.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_event_handler = response.parse()
         assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
 
     @parametrize
@@ -130,10 +171,26 @@ class TestLedgerEventHandlers:
         assert_matches_type(SyncPage[LedgerEventHandler], ledger_event_handler, path=["response"])
 
     @parametrize
+    def test_raw_response_list(self, client: ModernTreasury) -> None:
+        response = client.ledger_event_handlers.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_event_handler = response.parse()
+        assert_matches_type(SyncPage[LedgerEventHandler], ledger_event_handler, path=["response"])
+
+    @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
         ledger_event_handler = client.ledger_event_handlers.delete(
             "string",
         )
+        assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
+
+    @parametrize
+    def test_raw_response_delete(self, client: ModernTreasury) -> None:
+        response = client.ledger_event_handlers.with_raw_response.delete(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_event_handler = response.parse()
         assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
 
 
@@ -227,10 +284,50 @@ class TestAsyncLedgerEventHandlers:
         assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
 
     @parametrize
+    async def test_raw_response_create(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledger_event_handlers.with_raw_response.create(
+            ledger_transaction_template={
+                "description": "My Ledger Transaction Template Description",
+                "effective_at": "{{ledgerable_event.custom_data.effective_at}}",
+                "status": "posted",
+                "ledger_entries": [
+                    {
+                        "amount": "string",
+                        "direction": "string",
+                        "ledger_account_id": "string",
+                    },
+                    {
+                        "amount": "string",
+                        "direction": "string",
+                        "ledger_account_id": "string",
+                    },
+                    {
+                        "amount": "string",
+                        "direction": "string",
+                        "ledger_account_id": "string",
+                    },
+                ],
+            },
+            name="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_event_handler = response.parse()
+        assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
+
+    @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         ledger_event_handler = await client.ledger_event_handlers.retrieve(
             "string",
         )
+        assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledger_event_handlers.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_event_handler = response.parse()
         assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
 
     @parametrize
@@ -250,8 +347,24 @@ class TestAsyncLedgerEventHandlers:
         assert_matches_type(AsyncPage[LedgerEventHandler], ledger_event_handler, path=["response"])
 
     @parametrize
+    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledger_event_handlers.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_event_handler = response.parse()
+        assert_matches_type(AsyncPage[LedgerEventHandler], ledger_event_handler, path=["response"])
+
+    @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
         ledger_event_handler = await client.ledger_event_handlers.delete(
             "string",
         )
+        assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
+
+    @parametrize
+    async def test_raw_response_delete(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledger_event_handlers.with_raw_response.delete(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_event_handler = response.parse()
         assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])

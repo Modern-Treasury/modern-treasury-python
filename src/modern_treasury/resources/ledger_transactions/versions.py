@@ -2,20 +2,30 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing import TYPE_CHECKING, Dict, Union, Optional
 from datetime import datetime
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import maybe_transform
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.ledger_transactions import LedgerTransactionVersion, version_list_params
+
+if TYPE_CHECKING:
+    from ..._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["Versions", "AsyncVersions"]
 
 
 class Versions(SyncAPIResource):
+    with_raw_response: VersionsWithRawResponse
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = VersionsWithRawResponse(self)
+
     def list(
         self,
         *,
@@ -82,6 +92,12 @@ class Versions(SyncAPIResource):
 
 
 class AsyncVersions(AsyncAPIResource):
+    with_raw_response: AsyncVersionsWithRawResponse
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AsyncVersionsWithRawResponse(self)
+
     def list(
         self,
         *,
@@ -144,4 +160,18 @@ class AsyncVersions(AsyncAPIResource):
                 ),
             ),
             model=LedgerTransactionVersion,
+        )
+
+
+class VersionsWithRawResponse:
+    def __init__(self, versions: Versions) -> None:
+        self.list = to_raw_response_wrapper(
+            versions.list,
+        )
+
+
+class AsyncVersionsWithRawResponse:
+    def __init__(self, versions: AsyncVersions) -> None:
+        self.list = async_to_raw_response_wrapper(
+            versions.list,
         )

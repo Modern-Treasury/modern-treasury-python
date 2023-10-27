@@ -2,20 +2,30 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import TYPE_CHECKING, Dict, Optional
 from typing_extensions import Literal
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import maybe_transform
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.transactions import TransactionLineItem, line_item_list_params
+
+if TYPE_CHECKING:
+    from ..._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["LineItems", "AsyncLineItems"]
 
 
 class LineItems(SyncAPIResource):
+    with_raw_response: LineItemsWithRawResponse
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = LineItemsWithRawResponse(self)
+
     def retrieve(
         self,
         id: str,
@@ -98,6 +108,12 @@ class LineItems(SyncAPIResource):
 
 
 class AsyncLineItems(AsyncAPIResource):
+    with_raw_response: AsyncLineItemsWithRawResponse
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AsyncLineItemsWithRawResponse(self)
+
     async def retrieve(
         self,
         id: str,
@@ -176,4 +192,24 @@ class AsyncLineItems(AsyncAPIResource):
                 ),
             ),
             model=TransactionLineItem,
+        )
+
+
+class LineItemsWithRawResponse:
+    def __init__(self, line_items: LineItems) -> None:
+        self.retrieve = to_raw_response_wrapper(
+            line_items.retrieve,
+        )
+        self.list = to_raw_response_wrapper(
+            line_items.list,
+        )
+
+
+class AsyncLineItemsWithRawResponse:
+    def __init__(self, line_items: AsyncLineItems) -> None:
+        self.retrieve = async_to_raw_response_wrapper(
+            line_items.retrieve,
+        )
+        self.list = async_to_raw_response_wrapper(
+            line_items.list,
         )

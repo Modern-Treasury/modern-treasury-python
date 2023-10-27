@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 from typing_extensions import Literal
 
 from ..types import (
@@ -13,14 +13,24 @@ from ..types import (
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.shared import AccountsType
+
+if TYPE_CHECKING:
+    from .._client import ModernTreasury, AsyncModernTreasury
 
 __all__ = ["AccountDetails", "AsyncAccountDetails"]
 
 
 class AccountDetails(SyncAPIResource):
+    with_raw_response: AccountDetailsWithRawResponse
+
+    def __init__(self, client: ModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AccountDetailsWithRawResponse(self)
+
     def create(
         self,
         account_id: str,
@@ -195,6 +205,12 @@ class AccountDetails(SyncAPIResource):
 
 
 class AsyncAccountDetails(AsyncAPIResource):
+    with_raw_response: AsyncAccountDetailsWithRawResponse
+
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        super().__init__(client)
+        self.with_raw_response = AsyncAccountDetailsWithRawResponse(self)
+
     async def create(
         self,
         account_id: str,
@@ -365,4 +381,36 @@ class AsyncAccountDetails(AsyncAPIResource):
                 idempotency_key=idempotency_key,
             ),
             cast_to=NoneType,
+        )
+
+
+class AccountDetailsWithRawResponse:
+    def __init__(self, account_details: AccountDetails) -> None:
+        self.create = to_raw_response_wrapper(
+            account_details.create,
+        )
+        self.retrieve = to_raw_response_wrapper(
+            account_details.retrieve,
+        )
+        self.list = to_raw_response_wrapper(
+            account_details.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            account_details.delete,
+        )
+
+
+class AsyncAccountDetailsWithRawResponse:
+    def __init__(self, account_details: AsyncAccountDetails) -> None:
+        self.create = async_to_raw_response_wrapper(
+            account_details.create,
+        )
+        self.retrieve = async_to_raw_response_wrapper(
+            account_details.retrieve,
+        )
+        self.list = async_to_raw_response_wrapper(
+            account_details.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            account_details.delete,
         )

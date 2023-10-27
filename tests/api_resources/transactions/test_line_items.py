@@ -8,6 +8,7 @@ import pytest
 
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 from modern_treasury.types.transactions import TransactionLineItem
 
@@ -33,6 +34,15 @@ class TestLineItems:
         assert_matches_type(TransactionLineItem, line_item, path=["response"])
 
     @parametrize
+    def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+        response = client.transactions.line_items.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        line_item = response.parse()
+        assert_matches_type(TransactionLineItem, line_item, path=["response"])
+
+    @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         line_item = client.transactions.line_items.list()
         assert_matches_type(SyncPage[TransactionLineItem], line_item, path=["response"])
@@ -46,6 +56,13 @@ class TestLineItems:
             transaction_id="string",
             type="originating",
         )
+        assert_matches_type(SyncPage[TransactionLineItem], line_item, path=["response"])
+
+    @parametrize
+    def test_raw_response_list(self, client: ModernTreasury) -> None:
+        response = client.transactions.line_items.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        line_item = response.parse()
         assert_matches_type(SyncPage[TransactionLineItem], line_item, path=["response"])
 
 
@@ -66,6 +83,15 @@ class TestAsyncLineItems:
         assert_matches_type(TransactionLineItem, line_item, path=["response"])
 
     @parametrize
+    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        response = await client.transactions.line_items.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        line_item = response.parse()
+        assert_matches_type(TransactionLineItem, line_item, path=["response"])
+
+    @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
         line_item = await client.transactions.line_items.list()
         assert_matches_type(AsyncPage[TransactionLineItem], line_item, path=["response"])
@@ -79,4 +105,11 @@ class TestAsyncLineItems:
             transaction_id="string",
             type="originating",
         )
+        assert_matches_type(AsyncPage[TransactionLineItem], line_item, path=["response"])
+
+    @parametrize
+    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
+        response = await client.transactions.line_items.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        line_item = response.parse()
         assert_matches_type(AsyncPage[TransactionLineItem], line_item, path=["response"])

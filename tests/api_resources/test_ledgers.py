@@ -10,6 +10,7 @@ from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import Ledger
 from modern_treasury._utils import parse_datetime
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -47,10 +48,28 @@ class TestLedgers:
         assert_matches_type(Ledger, ledger, path=["response"])
 
     @parametrize
+    def test_raw_response_create(self, client: ModernTreasury) -> None:
+        response = client.ledgers.with_raw_response.create(
+            name="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger = response.parse()
+        assert_matches_type(Ledger, ledger, path=["response"])
+
+    @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         ledger = client.ledgers.retrieve(
             "string",
         )
+        assert_matches_type(Ledger, ledger, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+        response = client.ledgers.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger = response.parse()
         assert_matches_type(Ledger, ledger, path=["response"])
 
     @parametrize
@@ -75,6 +94,15 @@ class TestLedgers:
         assert_matches_type(Ledger, ledger, path=["response"])
 
     @parametrize
+    def test_raw_response_update(self, client: ModernTreasury) -> None:
+        response = client.ledgers.with_raw_response.update(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger = response.parse()
+        assert_matches_type(Ledger, ledger, path=["response"])
+
+    @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         ledger = client.ledgers.list()
         assert_matches_type(SyncPage[Ledger], ledger, path=["response"])
@@ -91,10 +119,26 @@ class TestLedgers:
         assert_matches_type(SyncPage[Ledger], ledger, path=["response"])
 
     @parametrize
+    def test_raw_response_list(self, client: ModernTreasury) -> None:
+        response = client.ledgers.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger = response.parse()
+        assert_matches_type(SyncPage[Ledger], ledger, path=["response"])
+
+    @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
         ledger = client.ledgers.delete(
             "string",
         )
+        assert_matches_type(Ledger, ledger, path=["response"])
+
+    @parametrize
+    def test_raw_response_delete(self, client: ModernTreasury) -> None:
+        response = client.ledgers.with_raw_response.delete(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger = response.parse()
         assert_matches_type(Ledger, ledger, path=["response"])
 
 
@@ -128,10 +172,28 @@ class TestAsyncLedgers:
         assert_matches_type(Ledger, ledger, path=["response"])
 
     @parametrize
+    async def test_raw_response_create(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledgers.with_raw_response.create(
+            name="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger = response.parse()
+        assert_matches_type(Ledger, ledger, path=["response"])
+
+    @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         ledger = await client.ledgers.retrieve(
             "string",
         )
+        assert_matches_type(Ledger, ledger, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledgers.with_raw_response.retrieve(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger = response.parse()
         assert_matches_type(Ledger, ledger, path=["response"])
 
     @parametrize
@@ -156,6 +218,15 @@ class TestAsyncLedgers:
         assert_matches_type(Ledger, ledger, path=["response"])
 
     @parametrize
+    async def test_raw_response_update(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledgers.with_raw_response.update(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger = response.parse()
+        assert_matches_type(Ledger, ledger, path=["response"])
+
+    @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
         ledger = await client.ledgers.list()
         assert_matches_type(AsyncPage[Ledger], ledger, path=["response"])
@@ -172,8 +243,24 @@ class TestAsyncLedgers:
         assert_matches_type(AsyncPage[Ledger], ledger, path=["response"])
 
     @parametrize
+    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledgers.with_raw_response.list()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger = response.parse()
+        assert_matches_type(AsyncPage[Ledger], ledger, path=["response"])
+
+    @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
         ledger = await client.ledgers.delete(
             "string",
         )
+        assert_matches_type(Ledger, ledger, path=["response"])
+
+    @parametrize
+    async def test_raw_response_delete(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledgers.with_raw_response.delete(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger = response.parse()
         assert_matches_type(Ledger, ledger, path=["response"])

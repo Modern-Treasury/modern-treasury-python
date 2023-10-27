@@ -9,6 +9,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import PingResponse
+from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 api_key = "My API Key"
@@ -29,6 +30,13 @@ class TestTopLevel:
         top_level = client.ping()
         assert_matches_type(PingResponse, top_level, path=["response"])
 
+    @parametrize
+    def test_raw_response_ping(self, client: ModernTreasury) -> None:
+        response = client.with_raw_response.ping()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        top_level = response.parse()
+        assert_matches_type(PingResponse, top_level, path=["response"])
+
 
 class TestAsyncTopLevel:
     strict_client = AsyncModernTreasury(
@@ -42,4 +50,11 @@ class TestAsyncTopLevel:
     @parametrize
     async def test_method_ping(self, client: AsyncModernTreasury) -> None:
         top_level = await client.ping()
+        assert_matches_type(PingResponse, top_level, path=["response"])
+
+    @parametrize
+    async def test_raw_response_ping(self, client: AsyncModernTreasury) -> None:
+        response = await client.with_raw_response.ping()
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        top_level = response.parse()
         assert_matches_type(PingResponse, top_level, path=["response"])

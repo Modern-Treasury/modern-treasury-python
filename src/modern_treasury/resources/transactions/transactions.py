@@ -8,8 +8,14 @@ from datetime import date
 from ...types import Transaction, transaction_list_params, transaction_update_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import maybe_transform
-from .line_items import LineItems, AsyncLineItems
+from .line_items import (
+    LineItems,
+    AsyncLineItems,
+    LineItemsWithRawResponse,
+    AsyncLineItemsWithRawResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
 
@@ -21,10 +27,12 @@ __all__ = ["Transactions", "AsyncTransactions"]
 
 class Transactions(SyncAPIResource):
     line_items: LineItems
+    with_raw_response: TransactionsWithRawResponse
 
     def __init__(self, client: ModernTreasury) -> None:
         super().__init__(client)
         self.line_items = LineItems(client)
+        self.with_raw_response = TransactionsWithRawResponse(self)
 
     def retrieve(
         self,
@@ -190,10 +198,12 @@ class Transactions(SyncAPIResource):
 
 class AsyncTransactions(AsyncAPIResource):
     line_items: AsyncLineItems
+    with_raw_response: AsyncTransactionsWithRawResponse
 
     def __init__(self, client: AsyncModernTreasury) -> None:
         super().__init__(client)
         self.line_items = AsyncLineItems(client)
+        self.with_raw_response = AsyncTransactionsWithRawResponse(self)
 
     async def retrieve(
         self,
@@ -354,4 +364,34 @@ class AsyncTransactions(AsyncAPIResource):
                 ),
             ),
             model=Transaction,
+        )
+
+
+class TransactionsWithRawResponse:
+    def __init__(self, transactions: Transactions) -> None:
+        self.line_items = LineItemsWithRawResponse(transactions.line_items)
+
+        self.retrieve = to_raw_response_wrapper(
+            transactions.retrieve,
+        )
+        self.update = to_raw_response_wrapper(
+            transactions.update,
+        )
+        self.list = to_raw_response_wrapper(
+            transactions.list,
+        )
+
+
+class AsyncTransactionsWithRawResponse:
+    def __init__(self, transactions: AsyncTransactions) -> None:
+        self.line_items = AsyncLineItemsWithRawResponse(transactions.line_items)
+
+        self.retrieve = async_to_raw_response_wrapper(
+            transactions.retrieve,
+        )
+        self.update = async_to_raw_response_wrapper(
+            transactions.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            transactions.list,
         )

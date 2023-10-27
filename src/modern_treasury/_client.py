@@ -27,6 +27,7 @@ from ._types import (
 )
 from ._utils import is_given
 from ._version import __version__
+from ._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ._streaming import Stream as Stream
 from ._streaming import AsyncStream as AsyncStream
 from ._exceptions import APIStatusError, ModernTreasuryError
@@ -84,6 +85,7 @@ class ModernTreasury(SyncAPIClient):
     paper_items: resources.PaperItems
     webhooks: resources.Webhooks
     virtual_accounts: resources.VirtualAccounts
+    with_raw_response: ModernTreasuryWithRawResponse
 
     # client options
     api_key: str
@@ -197,6 +199,7 @@ class ModernTreasury(SyncAPIClient):
         self.paper_items = resources.PaperItems(self)
         self.webhooks = resources.Webhooks(self)
         self.virtual_accounts = resources.VirtualAccounts(self)
+        self.with_raw_response = ModernTreasuryWithRawResponse(self)
 
     @property
     @override
@@ -384,6 +387,7 @@ class AsyncModernTreasury(AsyncAPIClient):
     paper_items: resources.AsyncPaperItems
     webhooks: resources.AsyncWebhooks
     virtual_accounts: resources.AsyncVirtualAccounts
+    with_raw_response: AsyncModernTreasuryWithRawResponse
 
     # client options
     api_key: str
@@ -497,6 +501,7 @@ class AsyncModernTreasury(AsyncAPIClient):
         self.paper_items = resources.AsyncPaperItems(self)
         self.webhooks = resources.AsyncWebhooks(self)
         self.virtual_accounts = resources.AsyncVirtualAccounts(self)
+        self.with_raw_response = AsyncModernTreasuryWithRawResponse(self)
 
     @property
     @override
@@ -652,6 +657,100 @@ class AsyncModernTreasury(AsyncAPIClient):
         if response.status_code >= 500:
             return _exceptions.InternalServerError(err_msg, response=response, body=body)
         return APIStatusError(err_msg, response=response, body=body)
+
+
+class ModernTreasuryWithRawResponse:
+    def __init__(self, client: ModernTreasury) -> None:
+        self.connections = resources.ConnectionsWithRawResponse(client.connections)
+        self.counterparties = resources.CounterpartiesWithRawResponse(client.counterparties)
+        self.events = resources.EventsWithRawResponse(client.events)
+        self.expected_payments = resources.ExpectedPaymentsWithRawResponse(client.expected_payments)
+        self.external_accounts = resources.ExternalAccountsWithRawResponse(client.external_accounts)
+        self.incoming_payment_details = resources.IncomingPaymentDetailsWithRawResponse(client.incoming_payment_details)
+        self.invoices = resources.InvoicesWithRawResponse(client.invoices)
+        self.documents = resources.DocumentsWithRawResponse(client.documents)
+        self.account_collection_flows = resources.AccountCollectionFlowsWithRawResponse(client.account_collection_flows)
+        self.account_details = resources.AccountDetailsWithRawResponse(client.account_details)
+        self.routing_details = resources.RoutingDetailsWithRawResponse(client.routing_details)
+        self.internal_accounts = resources.InternalAccountsWithRawResponse(client.internal_accounts)
+        self.ledgers = resources.LedgersWithRawResponse(client.ledgers)
+        self.ledgerable_events = resources.LedgerableEventsWithRawResponse(client.ledgerable_events)
+        self.ledger_account_categories = resources.LedgerAccountCategoriesWithRawResponse(
+            client.ledger_account_categories
+        )
+        self.ledger_accounts = resources.LedgerAccountsWithRawResponse(client.ledger_accounts)
+        self.ledger_account_balance_monitors = resources.LedgerAccountBalanceMonitorsWithRawResponse(
+            client.ledger_account_balance_monitors
+        )
+        self.ledger_account_payouts = resources.LedgerAccountPayoutsWithRawResponse(client.ledger_account_payouts)
+        self.ledger_account_statements = resources.LedgerAccountStatementsWithRawResponse(
+            client.ledger_account_statements
+        )
+        self.ledger_entries = resources.LedgerEntriesWithRawResponse(client.ledger_entries)
+        self.ledger_event_handlers = resources.LedgerEventHandlersWithRawResponse(client.ledger_event_handlers)
+        self.ledger_transactions = resources.LedgerTransactionsWithRawResponse(client.ledger_transactions)
+        self.line_items = resources.LineItemsWithRawResponse(client.line_items)
+        self.payment_flows = resources.PaymentFlowsWithRawResponse(client.payment_flows)
+        self.payment_orders = resources.PaymentOrdersWithRawResponse(client.payment_orders)
+        self.payment_references = resources.PaymentReferencesWithRawResponse(client.payment_references)
+        self.returns = resources.ReturnsWithRawResponse(client.returns)
+        self.transactions = resources.TransactionsWithRawResponse(client.transactions)
+        self.validations = resources.ValidationsWithRawResponse(client.validations)
+        self.paper_items = resources.PaperItemsWithRawResponse(client.paper_items)
+        self.virtual_accounts = resources.VirtualAccountsWithRawResponse(client.virtual_accounts)
+
+        self.ping = to_raw_response_wrapper(
+            client.ping,
+        )
+
+
+class AsyncModernTreasuryWithRawResponse:
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        self.connections = resources.AsyncConnectionsWithRawResponse(client.connections)
+        self.counterparties = resources.AsyncCounterpartiesWithRawResponse(client.counterparties)
+        self.events = resources.AsyncEventsWithRawResponse(client.events)
+        self.expected_payments = resources.AsyncExpectedPaymentsWithRawResponse(client.expected_payments)
+        self.external_accounts = resources.AsyncExternalAccountsWithRawResponse(client.external_accounts)
+        self.incoming_payment_details = resources.AsyncIncomingPaymentDetailsWithRawResponse(
+            client.incoming_payment_details
+        )
+        self.invoices = resources.AsyncInvoicesWithRawResponse(client.invoices)
+        self.documents = resources.AsyncDocumentsWithRawResponse(client.documents)
+        self.account_collection_flows = resources.AsyncAccountCollectionFlowsWithRawResponse(
+            client.account_collection_flows
+        )
+        self.account_details = resources.AsyncAccountDetailsWithRawResponse(client.account_details)
+        self.routing_details = resources.AsyncRoutingDetailsWithRawResponse(client.routing_details)
+        self.internal_accounts = resources.AsyncInternalAccountsWithRawResponse(client.internal_accounts)
+        self.ledgers = resources.AsyncLedgersWithRawResponse(client.ledgers)
+        self.ledgerable_events = resources.AsyncLedgerableEventsWithRawResponse(client.ledgerable_events)
+        self.ledger_account_categories = resources.AsyncLedgerAccountCategoriesWithRawResponse(
+            client.ledger_account_categories
+        )
+        self.ledger_accounts = resources.AsyncLedgerAccountsWithRawResponse(client.ledger_accounts)
+        self.ledger_account_balance_monitors = resources.AsyncLedgerAccountBalanceMonitorsWithRawResponse(
+            client.ledger_account_balance_monitors
+        )
+        self.ledger_account_payouts = resources.AsyncLedgerAccountPayoutsWithRawResponse(client.ledger_account_payouts)
+        self.ledger_account_statements = resources.AsyncLedgerAccountStatementsWithRawResponse(
+            client.ledger_account_statements
+        )
+        self.ledger_entries = resources.AsyncLedgerEntriesWithRawResponse(client.ledger_entries)
+        self.ledger_event_handlers = resources.AsyncLedgerEventHandlersWithRawResponse(client.ledger_event_handlers)
+        self.ledger_transactions = resources.AsyncLedgerTransactionsWithRawResponse(client.ledger_transactions)
+        self.line_items = resources.AsyncLineItemsWithRawResponse(client.line_items)
+        self.payment_flows = resources.AsyncPaymentFlowsWithRawResponse(client.payment_flows)
+        self.payment_orders = resources.AsyncPaymentOrdersWithRawResponse(client.payment_orders)
+        self.payment_references = resources.AsyncPaymentReferencesWithRawResponse(client.payment_references)
+        self.returns = resources.AsyncReturnsWithRawResponse(client.returns)
+        self.transactions = resources.AsyncTransactionsWithRawResponse(client.transactions)
+        self.validations = resources.AsyncValidationsWithRawResponse(client.validations)
+        self.paper_items = resources.AsyncPaperItemsWithRawResponse(client.paper_items)
+        self.virtual_accounts = resources.AsyncVirtualAccountsWithRawResponse(client.virtual_accounts)
+
+        self.ping = async_to_raw_response_wrapper(
+            client.ping,
+        )
 
 
 Client = ModernTreasury
