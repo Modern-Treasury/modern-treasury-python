@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.20.0 (2023-10-31)
+
+Full Changelog: [v1.19.0...v1.20.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.19.0...v1.20.0)
+
+### Features
+
+* **api:** updates ([#253](https://github.com/Modern-Treasury/modern-treasury-python/issues/253)) ([b94afc8](https://github.com/Modern-Treasury/modern-treasury-python/commit/b94afc87b2f474093dbead5946a7a93af18f41af))
+* **client:** support accessing raw response objects ([#256](https://github.com/Modern-Treasury/modern-treasury-python/issues/256)) ([a8cc529](https://github.com/Modern-Treasury/modern-treasury-python/commit/a8cc5299938a555420c7684731346fb50ce716ed))
+* **github:** include a devcontainer setup ([#260](https://github.com/Modern-Treasury/modern-treasury-python/issues/260)) ([840d376](https://github.com/Modern-Treasury/modern-treasury-python/commit/840d3762955a22fcd20c03fa9f9cdccceffbf7a4))
+* **package:** add classifiers ([#259](https://github.com/Modern-Treasury/modern-treasury-python/issues/259)) ([a16d816](https://github.com/Modern-Treasury/modern-treasury-python/commit/a16d816ef5e56de0e78fc5011b73c5058cb4c0a9))
+
+
+### Chores
+
+* **docs:** remove old migration guide ([#251](https://github.com/Modern-Treasury/modern-treasury-python/issues/251)) ([ecb2c32](https://github.com/Modern-Treasury/modern-treasury-python/commit/ecb2c323bd24eeb6700313559df548b1aa802932))
+* **internal:** minor restructuring of base client ([#258](https://github.com/Modern-Treasury/modern-treasury-python/issues/258)) ([8a0a728](https://github.com/Modern-Treasury/modern-treasury-python/commit/8a0a7284348d6e1da94d1b98054619e04c1078d4))
+* **internal:** minor type reference restructuring ([#252](https://github.com/Modern-Treasury/modern-treasury-python/issues/252)) ([8a0a010](https://github.com/Modern-Treasury/modern-treasury-python/commit/8a0a0102df19ee984ff55e9f97488975638f31d7))
+* **internal:** require explicit overrides ([#255](https://github.com/Modern-Treasury/modern-treasury-python/issues/255)) ([ed9dd52](https://github.com/Modern-Treasury/modern-treasury-python/commit/ed9dd52587b7f68f9be88149f68af3df16008426))
+
+
+### Documentation
+
+* improve to dictionary example ([#250](https://github.com/Modern-Treasury/modern-treasury-python/issues/250)) ([a7d0f8d](https://github.com/Modern-Treasury/modern-treasury-python/commit/a7d0f8d0b8218d60370c03637e37ddbc58e898da))
+
 ## 1.19.0 (2023-10-24)
 
 Full Changelog: [v1.18.0...v1.19.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.18.0...v1.19.0)
