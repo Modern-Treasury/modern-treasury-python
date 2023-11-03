@@ -6,7 +6,7 @@ from typing_extensions import override
 from httpx import Response
 
 from ._types import ModelT
-from ._utils import is_mapping
+from ._utils import is_mapping, maybe_coerce_integer
 from ._models import BaseModel
 from ._base_client import BasePage, PageInfo, BaseSyncPage, BaseAsyncPage
 
@@ -35,11 +35,12 @@ class SyncPage(BaseSyncPage[ModelT], BasePage[ModelT], Generic[ModelT]):
     @classmethod
     def build(cls: Type[_BaseModelT], *, response: Response, data: object) -> _BaseModelT:  # noqa: ARG003
         return cls.construct(
+            None,
             **{
                 **(cast(Mapping[str, Any], data) if is_mapping(data) else {"items": data}),
-                "per_page": response.headers.get("X-Per-Page"),
+                "per_page": maybe_coerce_integer(response.headers.get("X-Per-Page")),
                 "after_cursor": response.headers.get("X-After-Cursor"),
-            }
+            },
         )
 
 
@@ -63,9 +64,10 @@ class AsyncPage(BaseAsyncPage[ModelT], BasePage[ModelT], Generic[ModelT]):
     @classmethod
     def build(cls: Type[_BaseModelT], *, response: Response, data: object) -> _BaseModelT:  # noqa: ARG003
         return cls.construct(
+            None,
             **{
                 **(cast(Mapping[str, Any], data) if is_mapping(data) else {"items": data}),
-                "per_page": response.headers.get("X-Per-Page"),
+                "per_page": maybe_coerce_integer(response.headers.get("X-Per-Page")),
                 "after_cursor": response.headers.get("X-After-Cursor"),
-            }
+            },
         )
