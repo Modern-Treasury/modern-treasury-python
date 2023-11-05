@@ -49,6 +49,7 @@ so that your Organization ID is not stored in source control.
 Simply import `AsyncModernTreasury` instead of `ModernTreasury` and use `await` with each API call:
 
 ```python
+import asyncio
 from modern_treasury import AsyncModernTreasury
 
 client = AsyncModernTreasury(
@@ -59,7 +60,7 @@ client = AsyncModernTreasury(
 )
 
 
-async def main():
+async def main() -> None:
     external_account = await client.external_accounts.create(
         counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a",
         name="my bank",
@@ -150,11 +151,10 @@ from modern_treasury import ModernTreasury
 
 client = ModernTreasury()
 
-client.external_accounts.create(
-    foo={
-        "bar": True,
-    },
+external_account = client.external_accounts.create(
+    counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 )
+print(external_account.id)
 ```
 
 ## File Uploads
@@ -168,9 +168,9 @@ from modern_treasury import ModernTreasury
 client = ModernTreasury()
 
 client.documents.create(
-    file=Path("my/file.txt"),
-    documentable_type="counterparties",
     documentable_id="24c6b7a3-02...",
+    documentable_type="counterparties",
+    file=Path("my/file.txt"),
 )
 ```
 
@@ -302,9 +302,9 @@ from modern_treasury import ModernTreasury
 
 client = ModernTreasury()
 response = client.external_accounts.with_raw_response.create(
-    counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+    counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a",
+    name="my bank",
 )
-
 print(response.headers.get('X-My-Header'))
 
 external_account = response.parse()  # get the object that `external_accounts.create()` would have returned
