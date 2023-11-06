@@ -6,6 +6,8 @@ from typing import TYPE_CHECKING, Dict, List, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
+import httpx
+
 from ..types import LedgerEntry, ledger_entry_list_params, ledger_entry_retrieve_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
@@ -38,7 +40,7 @@ class LedgerEntries(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LedgerEntry:
         """
         Get details on a single ledger entry.
@@ -96,7 +98,7 @@ class LedgerEntries(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncPage[LedgerEntry]:
         """
         Get a list of all ledger entries.
@@ -212,7 +214,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LedgerEntry:
         """
         Get details on a single ledger entry.
@@ -270,7 +272,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[LedgerEntry, AsyncPage[LedgerEntry]]:
         """
         Get a list of all ledger entries.

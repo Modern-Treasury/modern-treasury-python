@@ -6,6 +6,8 @@ import typing_extensions
 from typing import TYPE_CHECKING, Optional
 from typing_extensions import Literal
 
+import httpx
+
 from ..types import PaymentReference, payment_reference_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
@@ -36,7 +38,7 @@ class PaymentReferences(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PaymentReference:
         """
         get payment_reference
@@ -71,7 +73,7 @@ class PaymentReferences(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncPage[PaymentReference]:
         """
         list payment_references
@@ -125,7 +127,7 @@ class PaymentReferences(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PaymentReference:
         """
         get payment_reference
@@ -160,7 +162,7 @@ class AsyncPaymentReferences(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PaymentReference:
         """
         get payment_reference
@@ -195,7 +197,7 @@ class AsyncPaymentReferences(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[PaymentReference, AsyncPage[PaymentReference]]:
         """
         list payment_references
@@ -249,7 +251,7 @@ class AsyncPaymentReferences(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PaymentReference:
         """
         get payment_reference

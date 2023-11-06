@@ -306,7 +306,7 @@ class ModernTreasury(SyncAPIClient):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PingResponse:
         """
         A test endpoint often used to confirm credentials and headers are being passed
@@ -611,7 +611,7 @@ class AsyncModernTreasury(AsyncAPIClient):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PingResponse:
         """
         A test endpoint often used to confirm credentials and headers are being passed
