@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Dict, List, Optional
 
+import httpx
+
 from ..types import (
     LedgerAccountBalanceMonitor,
     ledger_account_balance_monitor_list_params,
@@ -42,7 +44,7 @@ class LedgerAccountBalanceMonitors(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> LedgerAccountBalanceMonitor:
         """
@@ -98,7 +100,7 @@ class LedgerAccountBalanceMonitors(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LedgerAccountBalanceMonitor:
         """
         Get details on a single ledger account balance monitor.
@@ -131,7 +133,7 @@ class LedgerAccountBalanceMonitors(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> LedgerAccountBalanceMonitor:
         """
@@ -185,7 +187,7 @@ class LedgerAccountBalanceMonitors(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncPage[LedgerAccountBalanceMonitor]:
         """
         Get a list of ledger account balance monitors.
@@ -239,7 +241,7 @@ class LedgerAccountBalanceMonitors(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> LedgerAccountBalanceMonitor:
         """
@@ -288,7 +290,7 @@ class AsyncLedgerAccountBalanceMonitors(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> LedgerAccountBalanceMonitor:
         """
@@ -344,7 +346,7 @@ class AsyncLedgerAccountBalanceMonitors(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LedgerAccountBalanceMonitor:
         """
         Get details on a single ledger account balance monitor.
@@ -377,7 +379,7 @@ class AsyncLedgerAccountBalanceMonitors(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> LedgerAccountBalanceMonitor:
         """
@@ -431,7 +433,7 @@ class AsyncLedgerAccountBalanceMonitors(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[LedgerAccountBalanceMonitor, AsyncPage[LedgerAccountBalanceMonitor]]:
         """
         Get a list of ledger account balance monitors.
@@ -485,7 +487,7 @@ class AsyncLedgerAccountBalanceMonitors(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> LedgerAccountBalanceMonitor:
         """

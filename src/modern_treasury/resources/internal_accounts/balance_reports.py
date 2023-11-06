@@ -6,6 +6,8 @@ from typing import TYPE_CHECKING, Union, Optional
 from datetime import date
 from typing_extensions import Literal
 
+import httpx
+
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import maybe_transform
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -37,7 +39,7 @@ class BalanceReports(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BalanceReport:
         """
         Get a single balance report for a given internal account.
@@ -72,7 +74,7 @@ class BalanceReports(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncPage[BalanceReport]:
         """
         Get all balance reports for a given internal account.
@@ -130,7 +132,7 @@ class AsyncBalanceReports(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BalanceReport:
         """
         Get a single balance report for a given internal account.
@@ -165,7 +167,7 @@ class AsyncBalanceReports(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[BalanceReport, AsyncPage[BalanceReport]]:
         """
         Get all balance reports for a given internal account.

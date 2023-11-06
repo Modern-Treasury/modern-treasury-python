@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 from typing_extensions import Literal
 
+import httpx
+
 from ..types import (
     RoutingNumberLookupRequest,
     validation_validate_routing_number_params,
@@ -53,7 +55,7 @@ class Validations(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RoutingNumberLookupRequest:
         """
         Validates the routing number information supplied without creating a routing
@@ -126,7 +128,7 @@ class AsyncValidations(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RoutingNumberLookupRequest:
         """
         Validates the routing number information supplied without creating a routing
