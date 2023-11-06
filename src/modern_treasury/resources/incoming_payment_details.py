@@ -6,6 +6,8 @@ from typing import TYPE_CHECKING, Dict, Union, Optional
 from datetime import date
 from typing_extensions import Literal
 
+import httpx
+
 from ..types import (
     IncomingPaymentDetail,
     incoming_payment_detail_list_params,
@@ -42,7 +44,7 @@ class IncomingPaymentDetails(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> IncomingPaymentDetail:
         """
         Get an existing Incoming Payment Detail.
@@ -74,7 +76,7 @@ class IncomingPaymentDetails(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> IncomingPaymentDetail:
         """
@@ -126,7 +128,7 @@ class IncomingPaymentDetails(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncPage[IncomingPaymentDetail]:
         """
         Get a list of Incoming Payment Details.
@@ -203,7 +205,7 @@ class IncomingPaymentDetails(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> AsyncResponse:
         """
@@ -280,7 +282,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> IncomingPaymentDetail:
         """
         Get an existing Incoming Payment Detail.
@@ -312,7 +314,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> IncomingPaymentDetail:
         """
@@ -364,7 +366,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[IncomingPaymentDetail, AsyncPage[IncomingPaymentDetail]]:
         """
         Get a list of Incoming Payment Details.
@@ -441,7 +443,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> AsyncResponse:
         """

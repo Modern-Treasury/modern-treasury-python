@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, List, Optional
 from typing_extensions import Literal
 
+import httpx
+
 from ..types import (
     AccountCollectionFlow,
     account_collection_flow_list_params,
@@ -64,7 +66,7 @@ class AccountCollectionFlows(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> AccountCollectionFlow:
         """
@@ -112,7 +114,7 @@ class AccountCollectionFlows(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AccountCollectionFlow:
         """
         get account_collection_flow
@@ -144,7 +146,7 @@ class AccountCollectionFlows(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> AccountCollectionFlow:
         """update account_collection_flow
@@ -194,7 +196,7 @@ class AccountCollectionFlows(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncPage[AccountCollectionFlow]:
         """
         list account_collection_flows
@@ -272,7 +274,7 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> AccountCollectionFlow:
         """
@@ -320,7 +322,7 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AccountCollectionFlow:
         """
         get account_collection_flow
@@ -352,7 +354,7 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> AccountCollectionFlow:
         """update account_collection_flow
@@ -402,7 +404,7 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[AccountCollectionFlow, AsyncPage[AccountCollectionFlow]]:
         """
         list account_collection_flows

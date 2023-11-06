@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Dict, Union, Optional
 from datetime import datetime
 
+import httpx
+
 from ..types import (
     LedgerEventHandler,
     LedgerEventHandlerVariableParam,
@@ -46,7 +48,7 @@ class LedgerEventHandlers(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> LedgerEventHandler:
         """
@@ -105,7 +107,7 @@ class LedgerEventHandlers(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LedgerEventHandler:
         """
         Get details on a single ledger event handler.
@@ -140,7 +142,7 @@ class LedgerEventHandlers(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncPage[LedgerEventHandler]:
         """
         Get a list of ledger event handlers.
@@ -193,7 +195,7 @@ class LedgerEventHandlers(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> LedgerEventHandler:
         """
@@ -245,7 +247,7 @@ class AsyncLedgerEventHandlers(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> LedgerEventHandler:
         """
@@ -304,7 +306,7 @@ class AsyncLedgerEventHandlers(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LedgerEventHandler:
         """
         Get details on a single ledger event handler.
@@ -339,7 +341,7 @@ class AsyncLedgerEventHandlers(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[LedgerEventHandler, AsyncPage[LedgerEventHandler]]:
         """
         Get a list of ledger event handlers.
@@ -392,7 +394,7 @@ class AsyncLedgerEventHandlers(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> LedgerEventHandler:
         """

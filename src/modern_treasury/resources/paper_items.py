@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Union, Optional
 from datetime import date
 
+import httpx
+
 from ..types import PaperItem, paper_item_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
@@ -35,7 +37,7 @@ class PaperItems(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PaperItem:
         """
         Get details on a single paper item.
@@ -70,7 +72,7 @@ class PaperItems(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncPage[PaperItem]:
         """
         Get a list of all paper items.
@@ -130,7 +132,7 @@ class AsyncPaperItems(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PaperItem:
         """
         Get details on a single paper item.
@@ -165,7 +167,7 @@ class AsyncPaperItems(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[PaperItem, AsyncPage[PaperItem]]:
         """
         Get a list of all paper items.

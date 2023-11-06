@@ -6,6 +6,8 @@ from typing import TYPE_CHECKING, Union, Optional
 from datetime import date
 from typing_extensions import Literal
 
+import httpx
+
 from ..types import (
     PaymentFlow,
     payment_flow_list_params,
@@ -46,7 +48,7 @@ class PaymentFlows(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> PaymentFlow:
         """create payment_flow
@@ -113,7 +115,7 @@ class PaymentFlows(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PaymentFlow:
         """
         get payment_flow
@@ -145,7 +147,7 @@ class PaymentFlows(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> PaymentFlow:
         """update payment_flow
@@ -195,7 +197,7 @@ class PaymentFlows(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncPage[PaymentFlow]:
         """
         list payment_flows
@@ -256,7 +258,7 @@ class AsyncPaymentFlows(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> PaymentFlow:
         """create payment_flow
@@ -323,7 +325,7 @@ class AsyncPaymentFlows(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PaymentFlow:
         """
         get payment_flow
@@ -355,7 +357,7 @@ class AsyncPaymentFlows(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
     ) -> PaymentFlow:
         """update payment_flow
@@ -405,7 +407,7 @@ class AsyncPaymentFlows(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[PaymentFlow, AsyncPage[PaymentFlow]]:
         """
         list payment_flows
