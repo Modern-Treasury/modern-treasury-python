@@ -1,5 +1,34 @@
 # Changelog
 
+## 1.21.0 (2023-11-07)
+
+Full Changelog: [v1.20.0...v1.21.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.20.0...v1.21.0)
+
+### Features
+
+* **client:** allow binary returns ([#261](https://github.com/Modern-Treasury/modern-treasury-python/issues/261)) ([3cdcc11](https://github.com/Modern-Treasury/modern-treasury-python/commit/3cdcc11f012b4185a237775297e2bdfa3ea51497))
+* **client:** support passing BaseModels to request params at runtime ([#263](https://github.com/Modern-Treasury/modern-treasury-python/issues/263)) ([b5f251f](https://github.com/Modern-Treasury/modern-treasury-python/commit/b5f251f185ee6ac1b3dfb7eed1512dbe63c2103f))
+* **client:** support passing httpx.Timeout to method timeout argument ([#269](https://github.com/Modern-Treasury/modern-treasury-python/issues/269)) ([b8bbd4f](https://github.com/Modern-Treasury/modern-treasury-python/commit/b8bbd4f49f4dedb1155604e9cae22a8fa208d629))
+
+
+### Bug Fixes
+
+* **binaries:** don't synchronously block in astream_to_file ([#264](https://github.com/Modern-Treasury/modern-treasury-python/issues/264)) ([a6cc7ee](https://github.com/Modern-Treasury/modern-treasury-python/commit/a6cc7ee2a495117939e57e748bc02dcabdadd0f3))
+* prevent TypeError in Python 3.8 (ABC is not subscriptable) ([#268](https://github.com/Modern-Treasury/modern-treasury-python/issues/268)) ([763a9d4](https://github.com/Modern-Treasury/modern-treasury-python/commit/763a9d4d0be2476e43779fe643d9e26ab84241c4))
+
+
+### Chores
+
+* **docs:** fix github links ([#271](https://github.com/Modern-Treasury/modern-treasury-python/issues/271)) ([3b9cd0c](https://github.com/Modern-Treasury/modern-treasury-python/commit/3b9cd0c7a2cad462705666f06aebc3345228ff37))
+* **internal:** fix some typos ([#270](https://github.com/Modern-Treasury/modern-treasury-python/issues/270)) ([fba0a65](https://github.com/Modern-Treasury/modern-treasury-python/commit/fba0a651e6c3ae6e67bfb7e0a824b46370787cbb))
+* **internal:** remove unused int/float conversion ([#266](https://github.com/Modern-Treasury/modern-treasury-python/issues/266)) ([b419653](https://github.com/Modern-Treasury/modern-treasury-python/commit/b41965318bdcb2172345f9a062637fde806665fc))
+
+
+### Documentation
+
+* **api:** improve method signatures for named path params ([#265](https://github.com/Modern-Treasury/modern-treasury-python/issues/265)) ([bf4006c](https://github.com/Modern-Treasury/modern-treasury-python/commit/bf4006ccb4be551e272487b3d888656132fde54c))
+* **readme:** improve example snippets ([#267](https://github.com/Modern-Treasury/modern-treasury-python/issues/267)) ([fbf4205](https://github.com/Modern-Treasury/modern-treasury-python/commit/fbf4205a0220192b005e7f47225de8f4a897a20f))
+
 ## 1.20.0 (2023-10-31)
 
 Full Changelog: [v1.19.0...v1.20.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.19.0...v1.20.0)
