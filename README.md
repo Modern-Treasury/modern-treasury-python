@@ -311,7 +311,7 @@ external_account = response.parse()  # get the object that `external_accounts.cr
 print(external_account.id)
 ```
 
-These methods return an [`APIResponse`](https://github.com/Modern-Treasury/modern-treasury-python/src/modern_treasury/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/Modern-Treasury/modern-treasury-python/tree/main/src/modern_treasury/_response.py) object.
 
 ### Configuring the HTTP client
 
