@@ -56,6 +56,20 @@ class PaymentFlow(BaseModel):
     completing the pre-built UI.
     """
 
+    existing_external_accounts_filter: Optional[Literal["verified"]] = None
+    """
+    When `verified` and `external_account_collection` is `enabled`, filters the list
+    of external accounts your end-user can select to those with a
+    `verification_status` of `verified`.
+    """
+
+    external_account_collection: Optional[Literal["disabled", "enabled"]] = None
+    """
+    When `enabled`, your end-user can select from an existing external account when
+    completing the flow. When `disabled`, your end-user must add new payment details
+    when completing the flow.
+    """
+
     live_mode: Optional[bool] = None
     """
     This field will be true if this object exists in the live environment or false

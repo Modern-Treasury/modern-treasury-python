@@ -495,9 +495,11 @@ from modern_treasury.types import Transaction
 
 Methods:
 
+- <code title="post /api/transactions">client.transactions.<a href="./src/modern_treasury/resources/transactions/transactions.py">create</a>(\*\*<a href="src/modern_treasury/types/transaction_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/transaction.py">Transaction</a></code>
 - <code title="get /api/transactions/{id}">client.transactions.<a href="./src/modern_treasury/resources/transactions/transactions.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/transaction.py">Transaction</a></code>
 - <code title="patch /api/transactions/{id}">client.transactions.<a href="./src/modern_treasury/resources/transactions/transactions.py">update</a>(id, \*\*<a href="src/modern_treasury/types/transaction_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/transaction.py">Transaction</a></code>
 - <code title="get /api/transactions">client.transactions.<a href="./src/modern_treasury/resources/transactions/transactions.py">list</a>(\*\*<a href="src/modern_treasury/types/transaction_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/transaction.py">SyncPage[Transaction]</a></code>
+- <code title="delete /api/transactions/{id}">client.transactions.<a href="./src/modern_treasury/resources/transactions/transactions.py">delete</a>(id) -> None</code>
 
 ## LineItems
 
@@ -559,3 +561,30 @@ Methods:
 - <code title="patch /api/virtual_accounts/{id}">client.virtual_accounts.<a href="./src/modern_treasury/resources/virtual_accounts.py">update</a>(id, \*\*<a href="src/modern_treasury/types/virtual_account_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/virtual_account.py">VirtualAccount</a></code>
 - <code title="get /api/virtual_accounts">client.virtual_accounts.<a href="./src/modern_treasury/resources/virtual_accounts.py">list</a>(\*\*<a href="src/modern_treasury/types/virtual_account_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/virtual_account.py">SyncPage[VirtualAccount]</a></code>
 - <code title="delete /api/virtual_accounts/{id}">client.virtual_accounts.<a href="./src/modern_treasury/resources/virtual_accounts.py">delete</a>(id) -> <a href="./src/modern_treasury/types/virtual_account.py">VirtualAccount</a></code>
+
+# BulkRequests
+
+Types:
+
+```python
+from modern_treasury.types import BulkRequest
+```
+
+Methods:
+
+- <code title="post /api/bulk_requests">client.bulk_requests.<a href="./src/modern_treasury/resources/bulk_requests.py">create</a>(\*\*<a href="src/modern_treasury/types/bulk_request_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/bulk_request.py">BulkRequest</a></code>
+- <code title="get /api/bulk_requests/{id}">client.bulk_requests.<a href="./src/modern_treasury/resources/bulk_requests.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/bulk_request.py">BulkRequest</a></code>
+- <code title="get /api/bulk_requests">client.bulk_requests.<a href="./src/modern_treasury/resources/bulk_requests.py">list</a>(\*\*<a href="src/modern_treasury/types/bulk_request_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/bulk_request.py">SyncPage[BulkRequest]</a></code>
+
+# BulkResults
+
+Types:
+
+```python
+from modern_treasury.types import BulkResult
+```
+
+Methods:
+
+- <code title="get /api/bulk_results/{id}">client.bulk_results.<a href="./src/modern_treasury/resources/bulk_results.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/bulk_result.py">BulkResult</a></code>
+- <code title="get /api/bulk_results">client.bulk_results.<a href="./src/modern_treasury/resources/bulk_results.py">list</a>(\*\*<a href="src/modern_treasury/types/bulk_result_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/bulk_result.py">SyncPage[BulkResult]</a></code>

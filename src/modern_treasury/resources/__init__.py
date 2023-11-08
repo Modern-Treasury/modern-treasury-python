@@ -55,11 +55,23 @@ from .validations import (
     ValidationsWithRawResponse,
     AsyncValidationsWithRawResponse,
 )
+from .bulk_results import (
+    BulkResults,
+    AsyncBulkResults,
+    BulkResultsWithRawResponse,
+    AsyncBulkResultsWithRawResponse,
+)
 from .transactions import (
     Transactions,
     AsyncTransactions,
     TransactionsWithRawResponse,
     AsyncTransactionsWithRawResponse,
+)
+from .bulk_requests import (
+    BulkRequests,
+    AsyncBulkRequests,
+    BulkRequestsWithRawResponse,
+    AsyncBulkRequestsWithRawResponse,
 )
 from .payment_flows import (
     PaymentFlows,
@@ -315,4 +327,12 @@ __all__ = [
     "AsyncVirtualAccounts",
     "VirtualAccountsWithRawResponse",
     "AsyncVirtualAccountsWithRawResponse",
+    "BulkRequests",
+    "AsyncBulkRequests",
+    "BulkRequestsWithRawResponse",
+    "AsyncBulkRequestsWithRawResponse",
+    "BulkResults",
+    "AsyncBulkResults",
+    "BulkResultsWithRawResponse",
+    "AsyncBulkResultsWithRawResponse",
 ]

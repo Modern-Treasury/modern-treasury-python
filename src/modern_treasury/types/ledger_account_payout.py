@@ -68,10 +68,11 @@ class LedgerAccountPayout(BaseModel):
     and its balance is reduced as a result.
     """
 
-    status: Literal["archived", "archiving", "pending", "posted", "processing"]
+    status: Literal["archived", "archiving", "pending", "posted", "processing", "reversed", "reversing"]
     """The status of the ledger account payout.
 
-    One of `processing`, `pending`, `posted`, `archiving` or `archived`.
+    One of `processing`, `pending`, `posted`, `archiving`, `archived`, `reversing`
+    or `reversed`.
     """
 
     updated_at: datetime

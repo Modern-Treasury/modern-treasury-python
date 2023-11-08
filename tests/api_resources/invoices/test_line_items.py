@@ -44,6 +44,7 @@ class TestLineItems:
             description="string",
             direction="string",
             quantity=0,
+            unit_amount_decimal="string",
         )
         assert_matches_type(InvoiceLineItem, line_item, path=["response"])
 
@@ -94,6 +95,7 @@ class TestLineItems:
             name="string",
             quantity=0,
             unit_amount=0,
+            unit_amount_decimal="string",
         )
         assert_matches_type(InvoiceLineItem, line_item, path=["response"])
 
@@ -178,6 +180,7 @@ class TestAsyncLineItems:
             description="string",
             direction="string",
             quantity=0,
+            unit_amount_decimal="string",
         )
         assert_matches_type(InvoiceLineItem, line_item, path=["response"])
 
@@ -228,6 +231,7 @@ class TestAsyncLineItems:
             name="string",
             quantity=0,
             unit_amount=0,
+            unit_amount_decimal="string",
         )
         assert_matches_type(InvoiceLineItem, line_item, path=["response"])
 
