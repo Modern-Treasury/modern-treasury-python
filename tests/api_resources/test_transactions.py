@@ -28,6 +28,49 @@ class TestTransactions:
     parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
 
     @parametrize
+    def test_method_create(self, client: ModernTreasury) -> None:
+        transaction = client.transactions.create(
+            amount=0,
+            as_of_date=parse_date("2019-12-27"),
+            direction="string",
+            vendor_code="string",
+            vendor_code_type="string",
+        )
+        assert_matches_type(Transaction, transaction, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
+        transaction = client.transactions.create(
+            amount=0,
+            as_of_date=parse_date("2019-12-27"),
+            direction="string",
+            vendor_code="string",
+            vendor_code_type="string",
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
+            posted=True,
+            vendor_description="string",
+        )
+        assert_matches_type(Transaction, transaction, path=["response"])
+
+    @parametrize
+    def test_raw_response_create(self, client: ModernTreasury) -> None:
+        response = client.transactions.with_raw_response.create(
+            amount=0,
+            as_of_date=parse_date("2019-12-27"),
+            direction="string",
+            vendor_code="string",
+            vendor_code_type="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        transaction = response.parse()
+        assert_matches_type(Transaction, transaction, path=["response"])
+
+    @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         transaction = client.transactions.retrieve(
             "string",
@@ -99,6 +142,22 @@ class TestTransactions:
         transaction = response.parse()
         assert_matches_type(SyncPage[Transaction], transaction, path=["response"])
 
+    @parametrize
+    def test_method_delete(self, client: ModernTreasury) -> None:
+        transaction = client.transactions.delete(
+            "string",
+        )
+        assert transaction is None
+
+    @parametrize
+    def test_raw_response_delete(self, client: ModernTreasury) -> None:
+        response = client.transactions.with_raw_response.delete(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        transaction = response.parse()
+        assert transaction is None
+
 
 class TestAsyncTransactions:
     strict_client = AsyncModernTreasury(
@@ -108,6 +167,49 @@ class TestAsyncTransactions:
         base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=False
     )
     parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
+
+    @parametrize
+    async def test_method_create(self, client: AsyncModernTreasury) -> None:
+        transaction = await client.transactions.create(
+            amount=0,
+            as_of_date=parse_date("2019-12-27"),
+            direction="string",
+            vendor_code="string",
+            vendor_code_type="string",
+        )
+        assert_matches_type(Transaction, transaction, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
+        transaction = await client.transactions.create(
+            amount=0,
+            as_of_date=parse_date("2019-12-27"),
+            direction="string",
+            vendor_code="string",
+            vendor_code_type="string",
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
+            posted=True,
+            vendor_description="string",
+        )
+        assert_matches_type(Transaction, transaction, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create(self, client: AsyncModernTreasury) -> None:
+        response = await client.transactions.with_raw_response.create(
+            amount=0,
+            as_of_date=parse_date("2019-12-27"),
+            direction="string",
+            vendor_code="string",
+            vendor_code_type="string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        transaction = response.parse()
+        assert_matches_type(Transaction, transaction, path=["response"])
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
@@ -180,3 +282,19 @@ class TestAsyncTransactions:
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         transaction = response.parse()
         assert_matches_type(AsyncPage[Transaction], transaction, path=["response"])
+
+    @parametrize
+    async def test_method_delete(self, client: AsyncModernTreasury) -> None:
+        transaction = await client.transactions.delete(
+            "string",
+        )
+        assert transaction is None
+
+    @parametrize
+    async def test_raw_response_delete(self, client: AsyncModernTreasury) -> None:
+        response = await client.transactions.with_raw_response.delete(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        transaction = response.parse()
+        assert transaction is None

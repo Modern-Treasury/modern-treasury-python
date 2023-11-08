@@ -13,7 +13,9 @@ from .document import Document as Document
 from .line_item import LineItem as LineItem
 from .connection import Connection as Connection
 from .paper_item import PaperItem as PaperItem
+from .bulk_result import BulkResult as BulkResult
 from .transaction import Transaction as Transaction
+from .bulk_request import BulkRequest as BulkRequest
 from .counterparty import Counterparty as Counterparty
 from .ledger_entry import LedgerEntry as LedgerEntry
 from .payment_flow import PaymentFlow as PaymentFlow
@@ -51,19 +53,27 @@ from .connection_list_params import ConnectionListParams as ConnectionListParams
 from .document_create_params import DocumentCreateParams as DocumentCreateParams
 from .paper_item_list_params import PaperItemListParams as PaperItemListParams
 from .account_collection_flow import AccountCollectionFlow as AccountCollectionFlow
+from .bulk_result_list_params import BulkResultListParams as BulkResultListParams
 from .incoming_payment_detail import IncomingPaymentDetail as IncomingPaymentDetail
 from .ledger_account_category import LedgerAccountCategory as LedgerAccountCategory
 from .line_item_update_params import LineItemUpdateParams as LineItemUpdateParams
 from .transaction_list_params import TransactionListParams as TransactionListParams
+from .bulk_request_list_params import BulkRequestListParams as BulkRequestListParams
 from .counterparty_list_params import CounterpartyListParams as CounterpartyListParams
 from .ledger_entry_list_params import LedgerEntryListParams as LedgerEntryListParams
 from .payment_flow_list_params import PaymentFlowListParams as PaymentFlowListParams
 from .payment_order_list_params import PaymentOrderListParams as PaymentOrderListParams
+from .transaction_create_params import (
+    TransactionCreateParams as TransactionCreateParams,
+)
 from .transaction_update_params import (
     TransactionUpdateParams as TransactionUpdateParams,
 )
 from .account_detail_list_params import (
     AccountDetailListParams as AccountDetailListParams,
+)
+from .bulk_request_create_params import (
+    BulkRequestCreateParams as BulkRequestCreateParams,
 )
 from .counterparty_create_params import (
     CounterpartyCreateParams as CounterpartyCreateParams,

@@ -51,4 +51,11 @@ class InvoiceLineItem(BaseModel):
     specified in the invoice currency's smallest unit.
     """
 
+    unit_amount_decimal: str
+    """
+    The cost per unit of the product or service that this line item is for,
+    specified in the invoice currency's smallest unit. Accepts decimal strings with
+    up to 12 decimals
+    """
+
     updated_at: datetime

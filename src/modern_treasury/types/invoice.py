@@ -191,7 +191,7 @@ class Invoice(BaseModel):
     debit the recipient, or rely on manual payment from the recipient.
     """
 
-    payment_orders: List[PaymentOrder]
+    payment_orders: List["PaymentOrder"]
     """
     The payment orders created for paying the invoice through the invoice payment
     UI.

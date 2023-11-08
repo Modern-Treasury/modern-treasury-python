@@ -41,6 +41,7 @@ class LineItems(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         direction: str | NotGiven = NOT_GIVEN,
         quantity: int | NotGiven = NOT_GIVEN,
+        unit_amount_decimal: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -67,6 +68,10 @@ class LineItems(SyncAPIResource):
           quantity: The number of units of a product or service that this line item is for. Must be
               a whole number. Defaults to 1 if not provided.
 
+          unit_amount_decimal: The cost per unit of the product or service that this line item is for,
+              specified in the invoice currency's smallest unit. Accepts decimal strings with
+              up to 12 decimals
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -86,6 +91,7 @@ class LineItems(SyncAPIResource):
                     "description": description,
                     "direction": direction,
                     "quantity": quantity,
+                    "unit_amount_decimal": unit_amount_decimal,
                 },
                 line_item_create_params.LineItemCreateParams,
             ),
@@ -141,6 +147,7 @@ class LineItems(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         quantity: int | NotGiven = NOT_GIVEN,
         unit_amount: int | NotGiven = NOT_GIVEN,
+        unit_amount_decimal: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -167,6 +174,10 @@ class LineItems(SyncAPIResource):
           unit_amount: The cost per unit of the product or service that this line item is for,
               specified in the invoice currency's smallest unit.
 
+          unit_amount_decimal: The cost per unit of the product or service that this line item is for,
+              specified in the invoice currency's smallest unit. Accepts decimal strings with
+              up to 12 decimals
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -186,6 +197,7 @@ class LineItems(SyncAPIResource):
                     "name": name,
                     "quantity": quantity,
                     "unit_amount": unit_amount,
+                    "unit_amount_decimal": unit_amount_decimal,
                 },
                 line_item_update_params.LineItemUpdateParams,
             ),
@@ -299,6 +311,7 @@ class AsyncLineItems(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         direction: str | NotGiven = NOT_GIVEN,
         quantity: int | NotGiven = NOT_GIVEN,
+        unit_amount_decimal: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -325,6 +338,10 @@ class AsyncLineItems(AsyncAPIResource):
           quantity: The number of units of a product or service that this line item is for. Must be
               a whole number. Defaults to 1 if not provided.
 
+          unit_amount_decimal: The cost per unit of the product or service that this line item is for,
+              specified in the invoice currency's smallest unit. Accepts decimal strings with
+              up to 12 decimals
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -344,6 +361,7 @@ class AsyncLineItems(AsyncAPIResource):
                     "description": description,
                     "direction": direction,
                     "quantity": quantity,
+                    "unit_amount_decimal": unit_amount_decimal,
                 },
                 line_item_create_params.LineItemCreateParams,
             ),
@@ -399,6 +417,7 @@ class AsyncLineItems(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         quantity: int | NotGiven = NOT_GIVEN,
         unit_amount: int | NotGiven = NOT_GIVEN,
+        unit_amount_decimal: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -425,6 +444,10 @@ class AsyncLineItems(AsyncAPIResource):
           unit_amount: The cost per unit of the product or service that this line item is for,
               specified in the invoice currency's smallest unit.
 
+          unit_amount_decimal: The cost per unit of the product or service that this line item is for,
+              specified in the invoice currency's smallest unit. Accepts decimal strings with
+              up to 12 decimals
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -444,6 +467,7 @@ class AsyncLineItems(AsyncAPIResource):
                     "name": name,
                     "quantity": quantity,
                     "unit_amount": unit_amount,
+                    "unit_amount_decimal": unit_amount_decimal,
                 },
                 line_item_update_params.LineItemUpdateParams,
             ),

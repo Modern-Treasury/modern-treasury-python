@@ -75,6 +75,8 @@ class PaymentReference(BaseModel):
         "signet_confirmation_id",
         "signet_request_id",
         "silvergate_payment_id",
+        "svb_transaction_cleared_for_sanctions_review",
+        "svb_transaction_held_for_sanctions_review",
         "swift_mir",
         "swift_uetr",
         "usbank_payment_id",
