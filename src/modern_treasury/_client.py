@@ -85,6 +85,8 @@ class ModernTreasury(SyncAPIClient):
     paper_items: resources.PaperItems
     webhooks: resources.Webhooks
     virtual_accounts: resources.VirtualAccounts
+    bulk_requests: resources.BulkRequests
+    bulk_results: resources.BulkResults
     with_raw_response: ModernTreasuryWithRawResponse
 
     # client options
@@ -199,6 +201,8 @@ class ModernTreasury(SyncAPIClient):
         self.paper_items = resources.PaperItems(self)
         self.webhooks = resources.Webhooks(self)
         self.virtual_accounts = resources.VirtualAccounts(self)
+        self.bulk_requests = resources.BulkRequests(self)
+        self.bulk_results = resources.BulkResults(self)
         self.with_raw_response = ModernTreasuryWithRawResponse(self)
 
     @property
@@ -387,6 +391,8 @@ class AsyncModernTreasury(AsyncAPIClient):
     paper_items: resources.AsyncPaperItems
     webhooks: resources.AsyncWebhooks
     virtual_accounts: resources.AsyncVirtualAccounts
+    bulk_requests: resources.AsyncBulkRequests
+    bulk_results: resources.AsyncBulkResults
     with_raw_response: AsyncModernTreasuryWithRawResponse
 
     # client options
@@ -501,6 +507,8 @@ class AsyncModernTreasury(AsyncAPIClient):
         self.paper_items = resources.AsyncPaperItems(self)
         self.webhooks = resources.AsyncWebhooks(self)
         self.virtual_accounts = resources.AsyncVirtualAccounts(self)
+        self.bulk_requests = resources.AsyncBulkRequests(self)
+        self.bulk_results = resources.AsyncBulkResults(self)
         self.with_raw_response = AsyncModernTreasuryWithRawResponse(self)
 
     @property
@@ -698,6 +706,8 @@ class ModernTreasuryWithRawResponse:
         self.validations = resources.ValidationsWithRawResponse(client.validations)
         self.paper_items = resources.PaperItemsWithRawResponse(client.paper_items)
         self.virtual_accounts = resources.VirtualAccountsWithRawResponse(client.virtual_accounts)
+        self.bulk_requests = resources.BulkRequestsWithRawResponse(client.bulk_requests)
+        self.bulk_results = resources.BulkResultsWithRawResponse(client.bulk_results)
 
         self.ping = to_raw_response_wrapper(
             client.ping,
@@ -747,6 +757,8 @@ class AsyncModernTreasuryWithRawResponse:
         self.validations = resources.AsyncValidationsWithRawResponse(client.validations)
         self.paper_items = resources.AsyncPaperItemsWithRawResponse(client.paper_items)
         self.virtual_accounts = resources.AsyncVirtualAccountsWithRawResponse(client.virtual_accounts)
+        self.bulk_requests = resources.AsyncBulkRequestsWithRawResponse(client.bulk_requests)
+        self.bulk_results = resources.AsyncBulkResultsWithRawResponse(client.bulk_results)
 
         self.ping = async_to_raw_response_wrapper(
             client.ping,

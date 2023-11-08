@@ -7,8 +7,13 @@ from datetime import date
 
 import httpx
 
-from ...types import Transaction, transaction_list_params, transaction_update_params
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...types import (
+    Transaction,
+    transaction_list_params,
+    transaction_create_params,
+    transaction_update_params,
+)
+from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ..._utils import maybe_transform
 from .line_items import (
     LineItems,
@@ -35,6 +40,92 @@ class Transactions(SyncAPIResource):
         super().__init__(client)
         self.line_items = LineItems(client)
         self.with_raw_response = TransactionsWithRawResponse(self)
+
+    def create(
+        self,
+        *,
+        amount: int,
+        as_of_date: Union[str, date, None],
+        direction: str,
+        vendor_code: str,
+        vendor_code_type: str,
+        internal_account_id: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        posted: bool | NotGiven = NOT_GIVEN,
+        vendor_description: Optional[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        idempotency_key: str | None = None,
+    ) -> Transaction:
+        """create transaction
+
+        Args:
+          amount: Value in specified currency's smallest unit.
+
+        e.g. $10 would be represented
+              as 1000.
+
+          as_of_date: The date on which the transaction occurred.
+
+          direction: Either `credit` or `debit`.
+
+          vendor_code: When applicable, the bank-given code that determines the transaction's category.
+              For most banks this is the BAI2/BTRS transaction code.
+
+          vendor_code_type: The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
+              `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
+              `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
+              `swift`, `us_bank`, or others.
+
+          internal_account_id: The ID of the relevant Internal Account.
+
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
+
+          posted: This field will be `true` if the transaction has posted to the account.
+
+          vendor_description: The transaction detail text that often appears in on your bank statement and in
+              your banking portal.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        return self._post(
+            "/api/transactions",
+            body=maybe_transform(
+                {
+                    "amount": amount,
+                    "as_of_date": as_of_date,
+                    "direction": direction,
+                    "vendor_code": vendor_code,
+                    "vendor_code_type": vendor_code_type,
+                    "internal_account_id": internal_account_id,
+                    "metadata": metadata,
+                    "posted": posted,
+                    "vendor_description": vendor_description,
+                },
+                transaction_create_params.TransactionCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=Transaction,
+        )
 
     def retrieve(
         self,
@@ -197,6 +288,45 @@ class Transactions(SyncAPIResource):
             model=Transaction,
         )
 
+    def delete(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        idempotency_key: str | None = None,
+    ) -> None:
+        """
+        delete transaction
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._delete(
+            f"/api/transactions/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=NoneType,
+        )
+
 
 class AsyncTransactions(AsyncAPIResource):
     line_items: AsyncLineItems
@@ -206,6 +336,92 @@ class AsyncTransactions(AsyncAPIResource):
         super().__init__(client)
         self.line_items = AsyncLineItems(client)
         self.with_raw_response = AsyncTransactionsWithRawResponse(self)
+
+    async def create(
+        self,
+        *,
+        amount: int,
+        as_of_date: Union[str, date, None],
+        direction: str,
+        vendor_code: str,
+        vendor_code_type: str,
+        internal_account_id: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        posted: bool | NotGiven = NOT_GIVEN,
+        vendor_description: Optional[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        idempotency_key: str | None = None,
+    ) -> Transaction:
+        """create transaction
+
+        Args:
+          amount: Value in specified currency's smallest unit.
+
+        e.g. $10 would be represented
+              as 1000.
+
+          as_of_date: The date on which the transaction occurred.
+
+          direction: Either `credit` or `debit`.
+
+          vendor_code: When applicable, the bank-given code that determines the transaction's category.
+              For most banks this is the BAI2/BTRS transaction code.
+
+          vendor_code_type: The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
+              `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
+              `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
+              `swift`, `us_bank`, or others.
+
+          internal_account_id: The ID of the relevant Internal Account.
+
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
+
+          posted: This field will be `true` if the transaction has posted to the account.
+
+          vendor_description: The transaction detail text that often appears in on your bank statement and in
+              your banking portal.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        return await self._post(
+            "/api/transactions",
+            body=maybe_transform(
+                {
+                    "amount": amount,
+                    "as_of_date": as_of_date,
+                    "direction": direction,
+                    "vendor_code": vendor_code,
+                    "vendor_code_type": vendor_code_type,
+                    "internal_account_id": internal_account_id,
+                    "metadata": metadata,
+                    "posted": posted,
+                    "vendor_description": vendor_description,
+                },
+                transaction_create_params.TransactionCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=Transaction,
+        )
 
     async def retrieve(
         self,
@@ -368,11 +584,53 @@ class AsyncTransactions(AsyncAPIResource):
             model=Transaction,
         )
 
+    async def delete(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        idempotency_key: str | None = None,
+    ) -> None:
+        """
+        delete transaction
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._delete(
+            f"/api/transactions/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=NoneType,
+        )
+
 
 class TransactionsWithRawResponse:
     def __init__(self, transactions: Transactions) -> None:
         self.line_items = LineItemsWithRawResponse(transactions.line_items)
 
+        self.create = to_raw_response_wrapper(
+            transactions.create,
+        )
         self.retrieve = to_raw_response_wrapper(
             transactions.retrieve,
         )
@@ -382,12 +640,18 @@ class TransactionsWithRawResponse:
         self.list = to_raw_response_wrapper(
             transactions.list,
         )
+        self.delete = to_raw_response_wrapper(
+            transactions.delete,
+        )
 
 
 class AsyncTransactionsWithRawResponse:
     def __init__(self, transactions: AsyncTransactions) -> None:
         self.line_items = AsyncLineItemsWithRawResponse(transactions.line_items)
 
+        self.create = async_to_raw_response_wrapper(
+            transactions.create,
+        )
         self.retrieve = async_to_raw_response_wrapper(
             transactions.retrieve,
         )
@@ -396,4 +660,7 @@ class AsyncTransactionsWithRawResponse:
         )
         self.list = async_to_raw_response_wrapper(
             transactions.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            transactions.delete,
         )

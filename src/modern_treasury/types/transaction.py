@@ -133,7 +133,7 @@ class Transaction(BaseModel):
 
     Can be one of `bai2`, `bankprov`, `bnk_dev`, `cleartouch`, `currencycloud`,
     `cross_river`, `dc_bank`, `dwolla`, `evolve`, `goldman_sachs`, `iso20022`,
-    `jpmc`, `mx`, `signet`, `silvergate`, `swift`, or `us_bank`.
+    `jpmc`, `mx`, `signet`, `silvergate`, `swift`, `us_bank`, or others.
     """
 
     vendor_customer_id: Optional[str]
