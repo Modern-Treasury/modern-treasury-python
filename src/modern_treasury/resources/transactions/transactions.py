@@ -47,9 +47,9 @@ class Transactions(SyncAPIResource):
         amount: int,
         as_of_date: Union[str, date, None],
         direction: str,
+        internal_account_id: str,
         vendor_code: str,
         vendor_code_type: str,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         posted: bool | NotGiven = NOT_GIVEN,
         vendor_description: Optional[str] | NotGiven = NOT_GIVEN,
@@ -73,6 +73,8 @@ class Transactions(SyncAPIResource):
 
           direction: Either `credit` or `debit`.
 
+          internal_account_id: The ID of the relevant Internal Account.
+
           vendor_code: When applicable, the bank-given code that determines the transaction's category.
               For most banks this is the BAI2/BTRS transaction code.
 
@@ -80,8 +82,6 @@ class Transactions(SyncAPIResource):
               `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
               `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
               `swift`, `us_bank`, or others.
-
-          internal_account_id: The ID of the relevant Internal Account.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -108,9 +108,9 @@ class Transactions(SyncAPIResource):
                     "amount": amount,
                     "as_of_date": as_of_date,
                     "direction": direction,
+                    "internal_account_id": internal_account_id,
                     "vendor_code": vendor_code,
                     "vendor_code_type": vendor_code_type,
-                    "internal_account_id": internal_account_id,
                     "metadata": metadata,
                     "posted": posted,
                     "vendor_description": vendor_description,
@@ -343,9 +343,9 @@ class AsyncTransactions(AsyncAPIResource):
         amount: int,
         as_of_date: Union[str, date, None],
         direction: str,
+        internal_account_id: str,
         vendor_code: str,
         vendor_code_type: str,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         posted: bool | NotGiven = NOT_GIVEN,
         vendor_description: Optional[str] | NotGiven = NOT_GIVEN,
@@ -369,6 +369,8 @@ class AsyncTransactions(AsyncAPIResource):
 
           direction: Either `credit` or `debit`.
 
+          internal_account_id: The ID of the relevant Internal Account.
+
           vendor_code: When applicable, the bank-given code that determines the transaction's category.
               For most banks this is the BAI2/BTRS transaction code.
 
@@ -376,8 +378,6 @@ class AsyncTransactions(AsyncAPIResource):
               `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
               `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
               `swift`, `us_bank`, or others.
-
-          internal_account_id: The ID of the relevant Internal Account.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -404,9 +404,9 @@ class AsyncTransactions(AsyncAPIResource):
                     "amount": amount,
                     "as_of_date": as_of_date,
                     "direction": direction,
+                    "internal_account_id": internal_account_id,
                     "vendor_code": vendor_code,
                     "vendor_code_type": vendor_code_type,
-                    "internal_account_id": internal_account_id,
                     "metadata": metadata,
                     "posted": posted,
                     "vendor_description": vendor_description,

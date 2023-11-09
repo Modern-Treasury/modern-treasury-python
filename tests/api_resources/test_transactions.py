@@ -33,6 +33,7 @@ class TestTransactions:
             amount=0,
             as_of_date=parse_date("2019-12-27"),
             direction="string",
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             vendor_code="string",
             vendor_code_type="string",
         )
@@ -44,9 +45,9 @@ class TestTransactions:
             amount=0,
             as_of_date=parse_date("2019-12-27"),
             direction="string",
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             vendor_code="string",
             vendor_code_type="string",
-            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -63,6 +64,7 @@ class TestTransactions:
             amount=0,
             as_of_date=parse_date("2019-12-27"),
             direction="string",
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             vendor_code="string",
             vendor_code_type="string",
         )
@@ -174,6 +176,7 @@ class TestAsyncTransactions:
             amount=0,
             as_of_date=parse_date("2019-12-27"),
             direction="string",
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             vendor_code="string",
             vendor_code_type="string",
         )
@@ -185,9 +188,9 @@ class TestAsyncTransactions:
             amount=0,
             as_of_date=parse_date("2019-12-27"),
             direction="string",
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             vendor_code="string",
             vendor_code_type="string",
-            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -204,6 +207,7 @@ class TestAsyncTransactions:
             amount=0,
             as_of_date=parse_date("2019-12-27"),
             direction="string",
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             vendor_code="string",
             vendor_code_type="string",
         )

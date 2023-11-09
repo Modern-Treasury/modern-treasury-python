@@ -81,6 +81,7 @@ class IncomingPaymentDetail(BaseModel):
             "ca_cpa",
             "chips",
             "cnaps",
+            "dk_interbank_clearing_code",
             "gb_sort_code",
             "hk_interbank_clearing_code",
             "in_ifsc",

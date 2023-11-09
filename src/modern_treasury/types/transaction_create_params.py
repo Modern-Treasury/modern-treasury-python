@@ -24,6 +24,9 @@ class TransactionCreateParams(TypedDict, total=False):
     direction: Required[str]
     """Either `credit` or `debit`."""
 
+    internal_account_id: Required[str]
+    """The ID of the relevant Internal Account."""
+
     vendor_code: Required[str]
     """When applicable, the bank-given code that determines the transaction's category.
 
@@ -37,9 +40,6 @@ class TransactionCreateParams(TypedDict, total=False):
     `cross_river`, `dc_bank`, `dwolla`, `evolve`, `goldman_sachs`, `iso20022`,
     `jpmc`, `mx`, `signet`, `silvergate`, `swift`, `us_bank`, or others.
     """
-
-    internal_account_id: str
-    """The ID of the relevant Internal Account."""
 
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.
