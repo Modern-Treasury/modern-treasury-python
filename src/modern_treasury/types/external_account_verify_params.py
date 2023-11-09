@@ -27,6 +27,7 @@ class ExternalAccountVerifyParams(TypedDict, total=False):
             "chats",
             "check",
             "cross_border",
+            "dk_nets",
             "eft",
             "interac",
             "masav",
