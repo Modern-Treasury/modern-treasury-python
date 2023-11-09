@@ -13,6 +13,7 @@ PaymentOrderType = Literal[
     "chats",
     "check",
     "cross_border",
+    "dk_nets",
     "eft",
     "interac",
     "masav",
