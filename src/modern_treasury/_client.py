@@ -151,6 +151,8 @@ class ModernTreasury(SyncAPIClient):
         self.webhook_key = webhook_key
 
         if base_url is None:
+            base_url = os.environ.get("MODERN_TREASURY_BASE_URL")
+        if base_url is None:
             base_url = f"https://app.moderntreasury.com"
 
         super().__init__(
@@ -456,6 +458,8 @@ class AsyncModernTreasury(AsyncAPIClient):
             webhook_key = os.environ.get("MODERN_TREASURY_WEBHOOK_KEY")
         self.webhook_key = webhook_key
 
+        if base_url is None:
+            base_url = os.environ.get("MODERN_TREASURY_BASE_URL")
         if base_url is None:
             base_url = f"https://app.moderntreasury.com"
 
