@@ -29,6 +29,8 @@ from modern_treasury._base_client import (
     make_request_options,
 )
 
+from .utils import update_env
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 api_key = "My API Key"
 organization_id = "my-organization-ID"
@@ -478,6 +480,11 @@ class TestModernTreasury:
             "/foo", cast_to=httpx.Response, options=make_request_options(idempotency_key="custom-key")
         )
         assert response.request.headers.get("Idempotency-Key") == "custom-key"
+
+    def test_base_url_env(self) -> None:
+        with update_env(MODERN_TREASURY_BASE_URL="http://localhost:5000/from/env"):
+            client = ModernTreasury(api_key=api_key, organization_id=organization_id, _strict_response_validation=True)
+            assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
         "client",
@@ -1208,6 +1215,13 @@ class TestAsyncModernTreasury:
             "/foo", cast_to=httpx.Response, options=make_request_options(idempotency_key="custom-key")
         )
         assert response.request.headers.get("Idempotency-Key") == "custom-key"
+
+    def test_base_url_env(self) -> None:
+        with update_env(MODERN_TREASURY_BASE_URL="http://localhost:5000/from/env"):
+            client = AsyncModernTreasury(
+                api_key=api_key, organization_id=organization_id, _strict_response_validation=True
+            )
+            assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
         "client",
