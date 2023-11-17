@@ -1,5 +1,39 @@
 # Changelog
 
+## 1.22.0 (2023-11-17)
+
+Full Changelog: [v1.21.0...v1.22.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.21.0...v1.22.0)
+
+### Features
+
+* **api:** add dk_interbank_clearing_code and dk_nets enum members ([#276](https://github.com/Modern-Treasury/modern-treasury-python/issues/276)) ([7a9e489](https://github.com/Modern-Treasury/modern-treasury-python/commit/7a9e489f71be91fab3ab5761e3bc942a67d86141))
+* **api:** updates ([#272](https://github.com/Modern-Treasury/modern-treasury-python/issues/272)) ([441b8f1](https://github.com/Modern-Treasury/modern-treasury-python/commit/441b8f1e2c993d44e6460a050e83c9d2043a29f7))
+* **client:** support passing chunk size for binary responses ([#275](https://github.com/Modern-Treasury/modern-treasury-python/issues/275)) ([d97b06d](https://github.com/Modern-Treasury/modern-treasury-python/commit/d97b06d89b72d3f34a414bb39b77e061754ffb31))
+* **client:** support reading the base url from an env variable ([#285](https://github.com/Modern-Treasury/modern-treasury-python/issues/285)) ([a49743f](https://github.com/Modern-Treasury/modern-treasury-python/commit/a49743f686bafdf39c9306c40171979cc488e33e))
+
+
+### Bug Fixes
+
+* **client:** retry if SSLWantReadError occurs in the async client ([#281](https://github.com/Modern-Treasury/modern-treasury-python/issues/281)) ([9d4ebc6](https://github.com/Modern-Treasury/modern-treasury-python/commit/9d4ebc6f449bb76e6b650d1fcd143fbe1481e2c5))
+* **client:** serialise pydantic v1 default fields correctly in params ([#280](https://github.com/Modern-Treasury/modern-treasury-python/issues/280)) ([44bc532](https://github.com/Modern-Treasury/modern-treasury-python/commit/44bc5325eb274561d7dda1b46e6ad4402b57e7cc))
+* **models:** mark unknown fields as set in pydantic v1 ([#279](https://github.com/Modern-Treasury/modern-treasury-python/issues/279)) ([3101a6a](https://github.com/Modern-Treasury/modern-treasury-python/commit/3101a6a36c5574f8cd6caf316483d6bcb817700c))
+
+
+### Chores
+
+* **internal:** base client updates ([#278](https://github.com/Modern-Treasury/modern-treasury-python/issues/278)) ([445ca02](https://github.com/Modern-Treasury/modern-treasury-python/commit/445ca025c37fa73a22ccbd358fb7972b748f0224))
+* **internal:** fix devcontainer interpeter path ([#283](https://github.com/Modern-Treasury/modern-treasury-python/issues/283)) ([8158c02](https://github.com/Modern-Treasury/modern-treasury-python/commit/8158c027980a4a66702efbeb3f91a39bab5db53a))
+* **internal:** fix typo in NotGiven docstring ([#282](https://github.com/Modern-Treasury/modern-treasury-python/issues/282)) ([170338f](https://github.com/Modern-Treasury/modern-treasury-python/commit/170338f7ede9f26a3673f9cf04591ccfc53ab906))
+* **internal:** improve github devcontainer setup ([#274](https://github.com/Modern-Treasury/modern-treasury-python/issues/274)) ([b3b1b02](https://github.com/Modern-Treasury/modern-treasury-python/commit/b3b1b02cc1fd381179438866a9b248c0d5a764f8))
+* **internal:** update type hint for helper function ([#287](https://github.com/Modern-Treasury/modern-treasury-python/issues/287)) ([3bf66fb](https://github.com/Modern-Treasury/modern-treasury-python/commit/3bf66fb826fedf71fe232183b5f784370fcbd97a))
+
+
+### Documentation
+
+* fix code comment typo ([#284](https://github.com/Modern-Treasury/modern-treasury-python/issues/284)) ([1610591](https://github.com/Modern-Treasury/modern-treasury-python/commit/1610591311027cc3a37678cefa739a294a21f000))
+* **readme:** minor updates ([#286](https://github.com/Modern-Treasury/modern-treasury-python/issues/286)) ([aa07685](https://github.com/Modern-Treasury/modern-treasury-python/commit/aa07685d621bf4afb6ce68a9a61bfa9669a75f2f))
+* reword package description ([#277](https://github.com/Modern-Treasury/modern-treasury-python/issues/277)) ([20cfecc](https://github.com/Modern-Treasury/modern-treasury-python/commit/20cfeccc1516c2bc4af2faa3a6ec653ec12ce47f))
+
 ## 1.21.0 (2023-11-07)
 
 Full Changelog: [v1.20.0...v1.21.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.20.0...v1.21.0)
