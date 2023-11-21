@@ -84,6 +84,7 @@ class IncomingPaymentDetail(BaseModel):
             "dk_interbank_clearing_code",
             "gb_sort_code",
             "hk_interbank_clearing_code",
+            "hu_interbank_clearing_code",
             "in_ifsc",
             "jp_zengin_code",
             "my_branch_code",

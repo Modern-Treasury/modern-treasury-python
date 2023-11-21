@@ -503,7 +503,6 @@ class ReceivingAccountRoutingDetail(TypedDict, total=False):
         Literal[
             "aba",
             "au_bsb",
-            "se_bankgiro_clearing_code",
             "br_codigo",
             "ca_cpa",
             "chips",
@@ -511,11 +510,13 @@ class ReceivingAccountRoutingDetail(TypedDict, total=False):
             "dk_interbank_clearing_code",
             "gb_sort_code",
             "hk_interbank_clearing_code",
+            "hu_interbank_clearing_code",
             "in_ifsc",
+            "jp_zengin_code",
             "my_branch_code",
             "nz_national_clearing_code",
+            "se_bankgiro_clearing_code",
             "swift",
-            "jp_zengin_code",
         ]
     ]
 
@@ -530,12 +531,14 @@ class ReceivingAccountRoutingDetail(TypedDict, total=False):
         "cross_border",
         "dk_nets",
         "eft",
+        "hu_ics",
         "interac",
         "masav",
         "neft",
         "nics",
         "nz_becs",
         "provxchange",
+        "ro_sent",
         "rtp",
         "sg_giro",
         "se_bankgirot",
