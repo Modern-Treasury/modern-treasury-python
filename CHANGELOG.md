@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.23.0 (2023-11-21)
+
+Full Changelog: [v1.22.0...v1.23.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.22.0...v1.23.0)
+
+### Features
+
+* **api:** updates ([#290](https://github.com/Modern-Treasury/modern-treasury-python/issues/290)) ([4c353bd](https://github.com/Modern-Treasury/modern-treasury-python/commit/4c353bd459c28589d320945ba3d07b2fe3686367))
+
+
+### Bug Fixes
+
+* **client:** attempt to parse unknown json content types ([#288](https://github.com/Modern-Treasury/modern-treasury-python/issues/288)) ([1ebfa3e](https://github.com/Modern-Treasury/modern-treasury-python/commit/1ebfa3e38ee4508bb32772e876aac50912cf6ee7))
+
 ## 1.22.0 (2023-11-17)
 
 Full Changelog: [v1.21.0...v1.22.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.21.0...v1.22.0)
