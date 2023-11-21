@@ -276,26 +276,6 @@ class TestBulkRequests:
                         },
                     ],
                     "transaction_monitoring_enabled": True,
-                    "documents": [
-                        {
-                            "documentable_id": "string",
-                            "documentable_type": "cases",
-                            "document_type": "string",
-                            "file": b"raw file contents",
-                        },
-                        {
-                            "documentable_id": "string",
-                            "documentable_type": "cases",
-                            "document_type": "string",
-                            "file": b"raw file contents",
-                        },
-                        {
-                            "documentable_id": "string",
-                            "documentable_type": "cases",
-                            "document_type": "string",
-                            "file": b"raw file contents",
-                        },
-                    ],
                 },
                 {
                     "type": "ach",
@@ -510,26 +490,6 @@ class TestBulkRequests:
                         },
                     ],
                     "transaction_monitoring_enabled": True,
-                    "documents": [
-                        {
-                            "documentable_id": "string",
-                            "documentable_type": "cases",
-                            "document_type": "string",
-                            "file": b"raw file contents",
-                        },
-                        {
-                            "documentable_id": "string",
-                            "documentable_type": "cases",
-                            "document_type": "string",
-                            "file": b"raw file contents",
-                        },
-                        {
-                            "documentable_id": "string",
-                            "documentable_type": "cases",
-                            "document_type": "string",
-                            "file": b"raw file contents",
-                        },
-                    ],
                 },
                 {
                     "type": "ach",
@@ -744,26 +704,6 @@ class TestBulkRequests:
                         },
                     ],
                     "transaction_monitoring_enabled": True,
-                    "documents": [
-                        {
-                            "documentable_id": "string",
-                            "documentable_type": "cases",
-                            "document_type": "string",
-                            "file": b"raw file contents",
-                        },
-                        {
-                            "documentable_id": "string",
-                            "documentable_type": "cases",
-                            "document_type": "string",
-                            "file": b"raw file contents",
-                        },
-                        {
-                            "documentable_id": "string",
-                            "documentable_type": "cases",
-                            "document_type": "string",
-                            "file": b"raw file contents",
-                        },
-                    ],
                 },
             ],
             metadata={
@@ -1104,26 +1044,6 @@ class TestAsyncBulkRequests:
                         },
                     ],
                     "transaction_monitoring_enabled": True,
-                    "documents": [
-                        {
-                            "documentable_id": "string",
-                            "documentable_type": "cases",
-                            "document_type": "string",
-                            "file": b"raw file contents",
-                        },
-                        {
-                            "documentable_id": "string",
-                            "documentable_type": "cases",
-                            "document_type": "string",
-                            "file": b"raw file contents",
-                        },
-                        {
-                            "documentable_id": "string",
-                            "documentable_type": "cases",
-                            "document_type": "string",
-                            "file": b"raw file contents",
-                        },
-                    ],
                 },
                 {
                     "type": "ach",
@@ -1338,26 +1258,6 @@ class TestAsyncBulkRequests:
                         },
                     ],
                     "transaction_monitoring_enabled": True,
-                    "documents": [
-                        {
-                            "documentable_id": "string",
-                            "documentable_type": "cases",
-                            "document_type": "string",
-                            "file": b"raw file contents",
-                        },
-                        {
-                            "documentable_id": "string",
-                            "documentable_type": "cases",
-                            "document_type": "string",
-                            "file": b"raw file contents",
-                        },
-                        {
-                            "documentable_id": "string",
-                            "documentable_type": "cases",
-                            "document_type": "string",
-                            "file": b"raw file contents",
-                        },
-                    ],
                 },
                 {
                     "type": "ach",
@@ -1572,26 +1472,6 @@ class TestAsyncBulkRequests:
                         },
                     ],
                     "transaction_monitoring_enabled": True,
-                    "documents": [
-                        {
-                            "documentable_id": "string",
-                            "documentable_type": "cases",
-                            "document_type": "string",
-                            "file": b"raw file contents",
-                        },
-                        {
-                            "documentable_id": "string",
-                            "documentable_type": "cases",
-                            "document_type": "string",
-                            "file": b"raw file contents",
-                        },
-                        {
-                            "documentable_id": "string",
-                            "documentable_type": "cases",
-                            "document_type": "string",
-                            "file": b"raw file contents",
-                        },
-                    ],
                 },
             ],
             metadata={

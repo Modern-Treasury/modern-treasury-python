@@ -7,7 +7,6 @@ from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .shared import Currency, TransactionDirection
-from .._types import FileTypes
 from .._utils import PropertyInfo
 from .payment_order_type import PaymentOrderType
 from .expected_payment_type import ExpectedPaymentType
@@ -18,30 +17,28 @@ __all__ = [
     "BulkRequestCreateParams",
     "Resources",
     "Resource",
-    "ResourcesPaymentOrderCreateRequest",
-    "ResourcePaymentOrderCreateRequest",
-    "ResourcesPaymentOrderCreateRequestAccounting",
-    "ResourcePaymentOrderCreateRequestAccounting",
-    "ResourcesPaymentOrderCreateRequestDocuments",
-    "ResourcePaymentOrderCreateRequestDocument",
-    "ResourcesPaymentOrderCreateRequestLedgerTransaction",
-    "ResourcePaymentOrderCreateRequestLedgerTransaction",
-    "ResourcesPaymentOrderCreateRequestLedgerTransactionLedgerEntries",
-    "ResourcePaymentOrderCreateRequestLedgerTransactionLedgerEntry",
-    "ResourcesPaymentOrderCreateRequestLineItems",
-    "ResourcePaymentOrderCreateRequestLineItem",
-    "ResourcesPaymentOrderCreateRequestReceivingAccount",
-    "ResourcePaymentOrderCreateRequestReceivingAccount",
-    "ResourcesPaymentOrderCreateRequestReceivingAccountAccountDetails",
-    "ResourcePaymentOrderCreateRequestReceivingAccountAccountDetail",
-    "ResourcesPaymentOrderCreateRequestReceivingAccountContactDetails",
-    "ResourcePaymentOrderCreateRequestReceivingAccountContactDetail",
-    "ResourcesPaymentOrderCreateRequestReceivingAccountLedgerAccount",
-    "ResourcePaymentOrderCreateRequestReceivingAccountLedgerAccount",
-    "ResourcesPaymentOrderCreateRequestReceivingAccountPartyAddress",
-    "ResourcePaymentOrderCreateRequestReceivingAccountPartyAddress",
-    "ResourcesPaymentOrderCreateRequestReceivingAccountRoutingDetails",
-    "ResourcePaymentOrderCreateRequestReceivingAccountRoutingDetail",
+    "ResourcesPaymentOrderAsyncCreateRequest",
+    "ResourcePaymentOrderAsyncCreateRequest",
+    "ResourcesPaymentOrderAsyncCreateRequestAccounting",
+    "ResourcePaymentOrderAsyncCreateRequestAccounting",
+    "ResourcesPaymentOrderAsyncCreateRequestLedgerTransaction",
+    "ResourcePaymentOrderAsyncCreateRequestLedgerTransaction",
+    "ResourcesPaymentOrderAsyncCreateRequestLedgerTransactionLedgerEntries",
+    "ResourcePaymentOrderAsyncCreateRequestLedgerTransactionLedgerEntry",
+    "ResourcesPaymentOrderAsyncCreateRequestLineItems",
+    "ResourcePaymentOrderAsyncCreateRequestLineItem",
+    "ResourcesPaymentOrderAsyncCreateRequestReceivingAccount",
+    "ResourcePaymentOrderAsyncCreateRequestReceivingAccount",
+    "ResourcesPaymentOrderAsyncCreateRequestReceivingAccountAccountDetails",
+    "ResourcePaymentOrderAsyncCreateRequestReceivingAccountAccountDetail",
+    "ResourcesPaymentOrderAsyncCreateRequestReceivingAccountContactDetails",
+    "ResourcePaymentOrderAsyncCreateRequestReceivingAccountContactDetail",
+    "ResourcesPaymentOrderAsyncCreateRequestReceivingAccountLedgerAccount",
+    "ResourcePaymentOrderAsyncCreateRequestReceivingAccountLedgerAccount",
+    "ResourcesPaymentOrderAsyncCreateRequestReceivingAccountPartyAddress",
+    "ResourcePaymentOrderAsyncCreateRequestReceivingAccountPartyAddress",
+    "ResourcesPaymentOrderAsyncCreateRequestReceivingAccountRoutingDetails",
+    "ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail",
     "ResourcesExpectedPaymentCreateRequest",
     "ResourceExpectedPaymentCreateRequest",
     "ResourcesExpectedPaymentCreateRequestLineItems",
@@ -97,7 +94,7 @@ class BulkRequestCreateParams(TypedDict, total=False):
     """
 
 
-class ResourcePaymentOrderCreateRequestAccounting(TypedDict, total=False):
+class ResourcePaymentOrderAsyncCreateRequestAccounting(TypedDict, total=False):
     account_id: Optional[str]
     """The ID of one of your accounting categories.
 
@@ -114,48 +111,14 @@ class ResourcePaymentOrderCreateRequestAccounting(TypedDict, total=False):
     """
 
 
-ResourcesPaymentOrderCreateRequestAccounting = ResourcePaymentOrderCreateRequestAccounting
+ResourcesPaymentOrderAsyncCreateRequestAccounting = ResourcePaymentOrderAsyncCreateRequestAccounting
 """This type is deprecated and will be removed in a future release.
 
-Please use ResourcePaymentOrderCreateRequestAccounting instead.
+Please use ResourcePaymentOrderAsyncCreateRequestAccounting instead.
 """
 
 
-class ResourcePaymentOrderCreateRequestDocument(TypedDict, total=False):
-    documentable_id: Required[str]
-    """The unique identifier for the associated object."""
-
-    documentable_type: Required[
-        Literal[
-            "cases",
-            "counterparties",
-            "expected_payments",
-            "external_accounts",
-            "incoming_payment_details",
-            "internal_accounts",
-            "organizations",
-            "paper_items",
-            "payment_orders",
-            "transactions",
-            "decisions",
-            "connections",
-        ]
-    ]
-
-    file: Required[FileTypes]
-
-    document_type: str
-    """A category given to the document, can be `null`."""
-
-
-ResourcesPaymentOrderCreateRequestDocuments = ResourcePaymentOrderCreateRequestDocument
-"""This type is deprecated and will be removed in a future release.
-
-Please use ResourcePaymentOrderCreateRequestDocument instead.
-"""
-
-
-class ResourcePaymentOrderCreateRequestLedgerTransactionLedgerEntry(TypedDict, total=False):
+class ResourcePaymentOrderAsyncCreateRequestLedgerTransactionLedgerEntry(TypedDict, total=False):
     amount: Required[int]
     """Value in specified currency's smallest unit.
 
@@ -216,17 +179,17 @@ class ResourcePaymentOrderCreateRequestLedgerTransactionLedgerEntry(TypedDict, t
     """
 
 
-ResourcesPaymentOrderCreateRequestLedgerTransactionLedgerEntries = (
-    ResourcePaymentOrderCreateRequestLedgerTransactionLedgerEntry
+ResourcesPaymentOrderAsyncCreateRequestLedgerTransactionLedgerEntries = (
+    ResourcePaymentOrderAsyncCreateRequestLedgerTransactionLedgerEntry
 )
 """This type is deprecated and will be removed in a future release.
 
-Please use ResourcePaymentOrderCreateRequestLedgerTransactionLedgerEntry instead.
+Please use ResourcePaymentOrderAsyncCreateRequestLedgerTransactionLedgerEntry instead.
 """
 
 
-class ResourcePaymentOrderCreateRequestLedgerTransaction(TypedDict, total=False):
-    ledger_entries: Required[List[ResourcePaymentOrderCreateRequestLedgerTransactionLedgerEntry]]
+class ResourcePaymentOrderAsyncCreateRequestLedgerTransaction(TypedDict, total=False):
+    ledger_entries: Required[List[ResourcePaymentOrderAsyncCreateRequestLedgerTransactionLedgerEntry]]
     """An array of ledger entry objects."""
 
     description: Optional[str]
@@ -284,14 +247,14 @@ class ResourcePaymentOrderCreateRequestLedgerTransaction(TypedDict, total=False)
     """To post a ledger transaction at creation, use `posted`."""
 
 
-ResourcesPaymentOrderCreateRequestLedgerTransaction = ResourcePaymentOrderCreateRequestLedgerTransaction
+ResourcesPaymentOrderAsyncCreateRequestLedgerTransaction = ResourcePaymentOrderAsyncCreateRequestLedgerTransaction
 """This type is deprecated and will be removed in a future release.
 
-Please use ResourcePaymentOrderCreateRequestLedgerTransaction instead.
+Please use ResourcePaymentOrderAsyncCreateRequestLedgerTransaction instead.
 """
 
 
-class ResourcePaymentOrderCreateRequestLineItem(TypedDict, total=False):
+class ResourcePaymentOrderAsyncCreateRequestLineItem(TypedDict, total=False):
     amount: Required[int]
     """Value in specified currency's smallest unit.
 
@@ -315,44 +278,44 @@ class ResourcePaymentOrderCreateRequestLineItem(TypedDict, total=False):
     """
 
 
-ResourcesPaymentOrderCreateRequestLineItems = ResourcePaymentOrderCreateRequestLineItem
+ResourcesPaymentOrderAsyncCreateRequestLineItems = ResourcePaymentOrderAsyncCreateRequestLineItem
 """This type is deprecated and will be removed in a future release.
 
-Please use ResourcePaymentOrderCreateRequestLineItem instead.
+Please use ResourcePaymentOrderAsyncCreateRequestLineItem instead.
 """
 
 
-class ResourcePaymentOrderCreateRequestReceivingAccountAccountDetail(TypedDict, total=False):
+class ResourcePaymentOrderAsyncCreateRequestReceivingAccountAccountDetail(TypedDict, total=False):
     account_number: Required[str]
 
     account_number_type: Literal["iban", "clabe", "wallet_address", "pan", "other"]
 
 
-ResourcesPaymentOrderCreateRequestReceivingAccountAccountDetails = (
-    ResourcePaymentOrderCreateRequestReceivingAccountAccountDetail
+ResourcesPaymentOrderAsyncCreateRequestReceivingAccountAccountDetails = (
+    ResourcePaymentOrderAsyncCreateRequestReceivingAccountAccountDetail
 )
 """This type is deprecated and will be removed in a future release.
 
-Please use ResourcePaymentOrderCreateRequestReceivingAccountAccountDetail instead.
+Please use ResourcePaymentOrderAsyncCreateRequestReceivingAccountAccountDetail instead.
 """
 
 
-class ResourcePaymentOrderCreateRequestReceivingAccountContactDetail(TypedDict, total=False):
+class ResourcePaymentOrderAsyncCreateRequestReceivingAccountContactDetail(TypedDict, total=False):
     contact_identifier: str
 
     contact_identifier_type: Literal["email", "phone_number", "website"]
 
 
-ResourcesPaymentOrderCreateRequestReceivingAccountContactDetails = (
-    ResourcePaymentOrderCreateRequestReceivingAccountContactDetail
+ResourcesPaymentOrderAsyncCreateRequestReceivingAccountContactDetails = (
+    ResourcePaymentOrderAsyncCreateRequestReceivingAccountContactDetail
 )
 """This type is deprecated and will be removed in a future release.
 
-Please use ResourcePaymentOrderCreateRequestReceivingAccountContactDetail instead.
+Please use ResourcePaymentOrderAsyncCreateRequestReceivingAccountContactDetail instead.
 """
 
 
-class ResourcePaymentOrderCreateRequestReceivingAccountLedgerAccount(TypedDict, total=False):
+class ResourcePaymentOrderAsyncCreateRequestReceivingAccountLedgerAccount(TypedDict, total=False):
     currency: Required[str]
     """The currency of the ledger account."""
 
@@ -391,16 +354,16 @@ class ResourcePaymentOrderCreateRequestReceivingAccountLedgerAccount(TypedDict, 
     """
 
 
-ResourcesPaymentOrderCreateRequestReceivingAccountLedgerAccount = (
-    ResourcePaymentOrderCreateRequestReceivingAccountLedgerAccount
+ResourcesPaymentOrderAsyncCreateRequestReceivingAccountLedgerAccount = (
+    ResourcePaymentOrderAsyncCreateRequestReceivingAccountLedgerAccount
 )
 """This type is deprecated and will be removed in a future release.
 
-Please use ResourcePaymentOrderCreateRequestReceivingAccountLedgerAccount instead.
+Please use ResourcePaymentOrderAsyncCreateRequestReceivingAccountLedgerAccount instead.
 """
 
 
-class ResourcePaymentOrderCreateRequestReceivingAccountPartyAddress(TypedDict, total=False):
+class ResourcePaymentOrderAsyncCreateRequestReceivingAccountPartyAddress(TypedDict, total=False):
     country: Optional[str]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
@@ -418,23 +381,22 @@ class ResourcePaymentOrderCreateRequestReceivingAccountPartyAddress(TypedDict, t
     """Region or State."""
 
 
-ResourcesPaymentOrderCreateRequestReceivingAccountPartyAddress = (
-    ResourcePaymentOrderCreateRequestReceivingAccountPartyAddress
+ResourcesPaymentOrderAsyncCreateRequestReceivingAccountPartyAddress = (
+    ResourcePaymentOrderAsyncCreateRequestReceivingAccountPartyAddress
 )
 """This type is deprecated and will be removed in a future release.
 
-Please use ResourcePaymentOrderCreateRequestReceivingAccountPartyAddress instead.
+Please use ResourcePaymentOrderAsyncCreateRequestReceivingAccountPartyAddress instead.
 """
 
 
-class ResourcePaymentOrderCreateRequestReceivingAccountRoutingDetail(TypedDict, total=False):
+class ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail(TypedDict, total=False):
     routing_number: Required[str]
 
     routing_number_type: Required[
         Literal[
             "aba",
             "au_bsb",
-            "se_bankgiro_clearing_code",
             "br_codigo",
             "ca_cpa",
             "chips",
@@ -442,11 +404,13 @@ class ResourcePaymentOrderCreateRequestReceivingAccountRoutingDetail(TypedDict, 
             "dk_interbank_clearing_code",
             "gb_sort_code",
             "hk_interbank_clearing_code",
+            "hu_interbank_clearing_code",
             "in_ifsc",
+            "jp_zengin_code",
             "my_branch_code",
             "nz_national_clearing_code",
+            "se_bankgiro_clearing_code",
             "swift",
-            "jp_zengin_code",
         ]
     ]
 
@@ -461,12 +425,14 @@ class ResourcePaymentOrderCreateRequestReceivingAccountRoutingDetail(TypedDict, 
         "cross_border",
         "dk_nets",
         "eft",
+        "hu_ics",
         "interac",
         "masav",
         "neft",
         "nics",
         "nz_becs",
         "provxchange",
+        "ro_sent",
         "rtp",
         "sg_giro",
         "se_bankgirot",
@@ -479,24 +445,24 @@ class ResourcePaymentOrderCreateRequestReceivingAccountRoutingDetail(TypedDict, 
     ]
 
 
-ResourcesPaymentOrderCreateRequestReceivingAccountRoutingDetails = (
-    ResourcePaymentOrderCreateRequestReceivingAccountRoutingDetail
+ResourcesPaymentOrderAsyncCreateRequestReceivingAccountRoutingDetails = (
+    ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail
 )
 """This type is deprecated and will be removed in a future release.
 
-Please use ResourcePaymentOrderCreateRequestReceivingAccountRoutingDetail instead.
+Please use ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail instead.
 """
 
 
-class ResourcePaymentOrderCreateRequestReceivingAccount(TypedDict, total=False):
-    account_details: List[ResourcePaymentOrderCreateRequestReceivingAccountAccountDetail]
+class ResourcePaymentOrderAsyncCreateRequestReceivingAccount(TypedDict, total=False):
+    account_details: List[ResourcePaymentOrderAsyncCreateRequestReceivingAccountAccountDetail]
 
     account_type: ExternalAccountType
     """Can be `checking`, `savings` or `other`."""
 
-    contact_details: List[ResourcePaymentOrderCreateRequestReceivingAccountContactDetail]
+    contact_details: List[ResourcePaymentOrderAsyncCreateRequestReceivingAccountContactDetail]
 
-    ledger_account: ResourcePaymentOrderCreateRequestReceivingAccountLedgerAccount
+    ledger_account: ResourcePaymentOrderAsyncCreateRequestReceivingAccountLedgerAccount
     """Specifies a ledger account object that will be created with the external
     account.
 
@@ -518,7 +484,7 @@ class ResourcePaymentOrderCreateRequestReceivingAccount(TypedDict, total=False):
     This is only for internal usage and won't affect any payments
     """
 
-    party_address: ResourcePaymentOrderCreateRequestReceivingAccountPartyAddress
+    party_address: ResourcePaymentOrderAsyncCreateRequestReceivingAccountPartyAddress
     """Required if receiving wire payments."""
 
     party_identifier: str
@@ -537,17 +503,17 @@ class ResourcePaymentOrderCreateRequestReceivingAccount(TypedDict, total=False):
     you can pass the processor token in this field.
     """
 
-    routing_details: List[ResourcePaymentOrderCreateRequestReceivingAccountRoutingDetail]
+    routing_details: List[ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail]
 
 
-ResourcesPaymentOrderCreateRequestReceivingAccount = ResourcePaymentOrderCreateRequestReceivingAccount
+ResourcesPaymentOrderAsyncCreateRequestReceivingAccount = ResourcePaymentOrderAsyncCreateRequestReceivingAccount
 """This type is deprecated and will be removed in a future release.
 
-Please use ResourcePaymentOrderCreateRequestReceivingAccount instead.
+Please use ResourcePaymentOrderAsyncCreateRequestReceivingAccount instead.
 """
 
 
-class ResourcePaymentOrderCreateRequest(TypedDict, total=False):
+class ResourcePaymentOrderAsyncCreateRequest(TypedDict, total=False):
     amount: Required[int]
     """Value in specified currency's smallest unit.
 
@@ -574,7 +540,7 @@ class ResourcePaymentOrderCreateRequest(TypedDict, total=False):
     `sic`, `signet`, `provexchange`, `zengin`.
     """
 
-    accounting: ResourcePaymentOrderCreateRequestAccounting
+    accounting: ResourcePaymentOrderAsyncCreateRequestAccounting
 
     accounting_category_id: Optional[str]
     """The ID of one of your accounting categories.
@@ -602,13 +568,6 @@ class ResourcePaymentOrderCreateRequest(TypedDict, total=False):
 
     description: Optional[str]
     """An optional description for internal use."""
-
-    documents: List[ResourcePaymentOrderCreateRequestDocument]
-    """An array of documents to be attached to the payment order.
-
-    Note that if you attach documents, the request's content type must be
-    `multipart/form-data`.
-    """
 
     effective_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
     """Date transactions are to be posted to the participants' account.
@@ -640,7 +599,7 @@ class ResourcePaymentOrderCreateRequest(TypedDict, total=False):
     currency matches the originating account currency.
     """
 
-    ledger_transaction: ResourcePaymentOrderCreateRequestLedgerTransaction
+    ledger_transaction: ResourcePaymentOrderAsyncCreateRequestLedgerTransaction
     """
     Specifies a ledger transaction object that will be created with the payment
     order. If the ledger transaction cannot be created, then the payment order
@@ -656,7 +615,7 @@ class ResourcePaymentOrderCreateRequest(TypedDict, total=False):
     the payment order automatically.
     """
 
-    line_items: List[ResourcePaymentOrderCreateRequestLineItem]
+    line_items: List[ResourcePaymentOrderAsyncCreateRequestLineItem]
     """An array of line items that must sum up to the amount of the payment order."""
 
     metadata: Dict[str, str]
@@ -696,7 +655,7 @@ class ResourcePaymentOrderCreateRequest(TypedDict, total=False):
     CPA Code that will be attached to the payment.
     """
 
-    receiving_account: ResourcePaymentOrderCreateRequestReceivingAccount
+    receiving_account: ResourcePaymentOrderAsyncCreateRequestReceivingAccount
     """Either `receiving_account` or `receiving_account_id` must be present.
 
     When using `receiving_account_id`, you may pass the id of an external account or
@@ -760,10 +719,10 @@ class ResourcePaymentOrderCreateRequest(TypedDict, total=False):
     """Name of the ultimate funds recipient."""
 
 
-ResourcesPaymentOrderCreateRequest = ResourcePaymentOrderCreateRequest
+ResourcesPaymentOrderAsyncCreateRequest = ResourcePaymentOrderAsyncCreateRequest
 """This type is deprecated and will be removed in a future release.
 
-Please use ResourcePaymentOrderCreateRequest instead.
+Please use ResourcePaymentOrderAsyncCreateRequest instead.
 """
 
 
@@ -1184,7 +1143,6 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail(Typed
         Literal[
             "aba",
             "au_bsb",
-            "se_bankgiro_clearing_code",
             "br_codigo",
             "ca_cpa",
             "chips",
@@ -1192,11 +1150,13 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail(Typed
             "dk_interbank_clearing_code",
             "gb_sort_code",
             "hk_interbank_clearing_code",
+            "hu_interbank_clearing_code",
             "in_ifsc",
+            "jp_zengin_code",
             "my_branch_code",
             "nz_national_clearing_code",
+            "se_bankgiro_clearing_code",
             "swift",
-            "jp_zengin_code",
         ]
     ]
 
@@ -1211,12 +1171,14 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail(Typed
         "cross_border",
         "dk_nets",
         "eft",
+        "hu_ics",
         "interac",
         "masav",
         "neft",
         "nics",
         "nz_becs",
         "provxchange",
+        "ro_sent",
         "rtp",
         "sg_giro",
         "se_bankgirot",
@@ -1713,7 +1675,7 @@ Please use ResourceLedgerTransactionUpdateRequestWithID instead.
 """
 
 Resource = Union[
-    ResourcePaymentOrderCreateRequest,
+    ResourcePaymentOrderAsyncCreateRequest,
     ResourceExpectedPaymentCreateRequest,
     ResourceLedgerTransactionCreateRequest,
     ResourcePaymentOrderUpdateRequestWithID,
