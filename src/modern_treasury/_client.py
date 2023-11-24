@@ -16,6 +16,7 @@ from .types import PingResponse
 from ._types import (
     NOT_GIVEN,
     Body,
+    Omit,
     Query,
     Headers,
     Timeout,
@@ -25,7 +26,7 @@ from ._types import (
     AsyncTransport,
     RequestOptions,
 )
-from ._utils import is_given
+from ._utils import is_given, get_async_library
 from ._version import __version__
 from ._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ._streaming import Stream as Stream
@@ -218,6 +219,15 @@ class ModernTreasury(SyncAPIClient):
         credentials = f"{self.organization_id}:{self.api_key}".encode("ascii")
         header = f"Basic {base64.b64encode(credentials).decode('ascii')}"
         return {"Authorization": header}
+
+    @property
+    @override
+    def default_headers(self) -> dict[str, str | Omit]:
+        return {
+            **super().default_headers,
+            "X-Stainless-Async": "false",
+            **self._custom_headers,
+        }
 
     def copy(
         self,
@@ -525,6 +535,15 @@ class AsyncModernTreasury(AsyncAPIClient):
         credentials = f"{self.organization_id}:{self.api_key}".encode("ascii")
         header = f"Basic {base64.b64encode(credentials).decode('ascii')}"
         return {"Authorization": header}
+
+    @property
+    @override
+    def default_headers(self) -> dict[str, str | Omit]:
+        return {
+            **super().default_headers,
+            "X-Stainless-Async": f"async:{get_async_library()}",
+            **self._custom_headers,
+        }
 
     def copy(
         self,
