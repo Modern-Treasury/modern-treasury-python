@@ -23,13 +23,14 @@ pip install modern-treasury
 The full API of this library can be found in [api.md](https://www.github.com/Modern-Treasury/modern-treasury-python/blob/main/api.md).
 
 ```python
+import os
 from modern_treasury import ModernTreasury
 
 client = ModernTreasury(
-    # defaults to os.environ.get("MODERN_TREASURY_ORGANIZATION_ID")
-    organization_id="my-organization-ID",
-    # defaults to os.environ.get("MODERN_TREASURY_API_KEY")
-    api_key="My API Key",
+    # This is the default and can be omitted
+    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),
+    # This is the default and can be omitted
+    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),
 )
 
 external_account = client.external_accounts.create(
@@ -49,14 +50,15 @@ so that your Organization ID is not stored in source control.
 Simply import `AsyncModernTreasury` instead of `ModernTreasury` and use `await` with each API call:
 
 ```python
+import os
 import asyncio
 from modern_treasury import AsyncModernTreasury
 
 client = AsyncModernTreasury(
-    # defaults to os.environ.get("MODERN_TREASURY_ORGANIZATION_ID")
-    organization_id="my-organization-ID",
-    # defaults to os.environ.get("MODERN_TREASURY_API_KEY")
-    api_key="My API Key",
+    # This is the default and can be omitted
+    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),
+    # This is the default and can be omitted
+    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),
 )
 
 
