@@ -525,6 +525,19 @@ class TestModernTreasury:
         )
         assert response.request.headers.get("Idempotency-Key") == "custom-key"
 
+    def test_base_url_setter(self) -> None:
+        client = ModernTreasury(
+            base_url="https://example.com/from_init",
+            api_key=api_key,
+            organization_id=organization_id,
+            _strict_response_validation=True,
+        )
+        assert client.base_url == "https://example.com/from_init/"
+
+        client.base_url = "https://example.com/from_setter"  # type: ignore[assignment]
+
+        assert client.base_url == "https://example.com/from_setter/"
+
     def test_base_url_env(self) -> None:
         with update_env(MODERN_TREASURY_BASE_URL="http://localhost:5000/from/env"):
             client = ModernTreasury(api_key=api_key, organization_id=organization_id, _strict_response_validation=True)
@@ -1355,6 +1368,19 @@ class TestAsyncModernTreasury:
             "/foo", cast_to=httpx.Response, options=make_request_options(idempotency_key="custom-key")
         )
         assert response.request.headers.get("Idempotency-Key") == "custom-key"
+
+    def test_base_url_setter(self) -> None:
+        client = AsyncModernTreasury(
+            base_url="https://example.com/from_init",
+            api_key=api_key,
+            organization_id=organization_id,
+            _strict_response_validation=True,
+        )
+        assert client.base_url == "https://example.com/from_init/"
+
+        client.base_url = "https://example.com/from_setter"  # type: ignore[assignment]
+
+        assert client.base_url == "https://example.com/from_setter/"
 
     def test_base_url_env(self) -> None:
         with update_env(MODERN_TREASURY_BASE_URL="http://localhost:5000/from/env"):
