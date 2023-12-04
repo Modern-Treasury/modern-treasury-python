@@ -1,5 +1,34 @@
 # Changelog
 
+## 1.23.1 (2023-12-04)
+
+Full Changelog: [v1.23.0...v1.23.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.23.0...v1.23.1)
+
+### Bug Fixes
+
+* **client:** correct base_url setter implementation ([#304](https://github.com/Modern-Treasury/modern-treasury-python/issues/304)) ([0362dce](https://github.com/Modern-Treasury/modern-treasury-python/commit/0362dcec36b99978b17cf4edd65d23e983d2c10b))
+* **client:** ensure retried requests are closed ([#301](https://github.com/Modern-Treasury/modern-treasury-python/issues/301)) ([ae36851](https://github.com/Modern-Treasury/modern-treasury-python/commit/ae368516e44b2027e32a74f0742f66fe21b7f589))
+
+
+### Chores
+
+* **client:** improve copy method ([#291](https://github.com/Modern-Treasury/modern-treasury-python/issues/291)) ([85a47d1](https://github.com/Modern-Treasury/modern-treasury-python/commit/85a47d1221114d66209704ecc8c9e86d4669debc))
+* **deps:** bump mypy to v1.7.1 ([#297](https://github.com/Modern-Treasury/modern-treasury-python/issues/297)) ([478ebc7](https://github.com/Modern-Treasury/modern-treasury-python/commit/478ebc7fd42d4e29081354f43f0c14a29dc2e673))
+* **internal:** add tests for proxy change ([#300](https://github.com/Modern-Treasury/modern-treasury-python/issues/300)) ([f37e526](https://github.com/Modern-Treasury/modern-treasury-python/commit/f37e5264624ce21d2037a4dc7fe7f4e32aef1580))
+* **internal:** options updates ([#294](https://github.com/Modern-Treasury/modern-treasury-python/issues/294)) ([ddb98bd](https://github.com/Modern-Treasury/modern-treasury-python/commit/ddb98bdd6d9c4d67c48e1d0f511a16c601fce1d4))
+* **internal:** replace string concatenation with f-strings ([#303](https://github.com/Modern-Treasury/modern-treasury-python/issues/303)) ([7c02a27](https://github.com/Modern-Treasury/modern-treasury-python/commit/7c02a2712217e2439fe276e83d7ae70c8cd82512))
+* **internal:** revert recent options change ([#295](https://github.com/Modern-Treasury/modern-treasury-python/issues/295)) ([9c20edd](https://github.com/Modern-Treasury/modern-treasury-python/commit/9c20edd87abdd7a284d0c6007658ab57510e41a6))
+* **internal:** send more detailed x-stainless headers ([#296](https://github.com/Modern-Treasury/modern-treasury-python/issues/296)) ([3c46c06](https://github.com/Modern-Treasury/modern-treasury-python/commit/3c46c06e29e65bc6788ecd693f9ac00bb0bd98a2))
+* **internal:** update lock file ([#298](https://github.com/Modern-Treasury/modern-treasury-python/issues/298)) ([071b8d9](https://github.com/Modern-Treasury/modern-treasury-python/commit/071b8d94cd5c1be925e94c7c70bc7254c2deabe6))
+* **internal:** updates to proxy helper ([#299](https://github.com/Modern-Treasury/modern-treasury-python/issues/299)) ([e6c67a4](https://github.com/Modern-Treasury/modern-treasury-python/commit/e6c67a46a37eccb68911aaab888fd6137778c2b4))
+* **package:** add license classifier metadata ([#293](https://github.com/Modern-Treasury/modern-treasury-python/issues/293)) ([c8c3d75](https://github.com/Modern-Treasury/modern-treasury-python/commit/c8c3d75be96a4b77390a11872afacb0a0ebcce44))
+* **package:** lift anyio v4 restriction ([#305](https://github.com/Modern-Treasury/modern-treasury-python/issues/305)) ([9f0db06](https://github.com/Modern-Treasury/modern-treasury-python/commit/9f0db065c81a46ca63730731e112cce5cf7a6184))
+
+
+### Documentation
+
+* **readme:** update example snippets ([#302](https://github.com/Modern-Treasury/modern-treasury-python/issues/302)) ([b603520](https://github.com/Modern-Treasury/modern-treasury-python/commit/b6035204b745c8488bf3a6eba349fdfdd7de3ce5))
+
 ## 1.23.0 (2023-11-21)
 
 Full Changelog: [v1.22.0...v1.23.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.22.0...v1.23.0)
