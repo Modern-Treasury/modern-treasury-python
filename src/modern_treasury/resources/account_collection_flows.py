@@ -13,21 +13,12 @@ from ..types import (
     account_collection_flow_create_params,
     account_collection_flow_update_params,
 )
-from .._types import (
-    NOT_GIVEN,
-    Body,
-    Query,
-    Headers,
-    NotGiven,
-)
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
-from .._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from .._base_client import AsyncPaginator, make_request_options
 
 if TYPE_CHECKING:
     from .._client import ModernTreasury, AsyncModernTreasury

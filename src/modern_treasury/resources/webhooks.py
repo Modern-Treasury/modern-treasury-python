@@ -6,12 +6,8 @@ import hmac
 from typing import TYPE_CHECKING
 from hashlib import sha256
 
-from .._types import (
-    HeadersLike,
-)
-from .._utils import (
-    get_required_header,
-)
+from .._types import HeadersLike
+from .._utils import get_required_header
 from .._resource import SyncAPIResource, AsyncAPIResource
 
 if TYPE_CHECKING:

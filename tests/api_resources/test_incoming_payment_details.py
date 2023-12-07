@@ -8,9 +8,7 @@ import pytest
 
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
-from modern_treasury.types import (
-    IncomingPaymentDetail,
-)
+from modern_treasury.types import IncomingPaymentDetail
 from modern_treasury._utils import parse_date
 from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
