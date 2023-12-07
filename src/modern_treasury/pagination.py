@@ -17,20 +17,23 @@ _BaseModelT = TypeVar("_BaseModelT", bound=BaseModel)
 
 class SyncPage(BaseSyncPage[ModelT], BasePage[ModelT], Generic[ModelT]):
     items: List[ModelT]
-    per_page: Optional[int]
-    after_cursor: Optional[str]
+    per_page: Optional[int] = None
+    after_cursor: Optional[str] = None
 
     @override
     def _get_page_items(self) -> List[ModelT]:
-        return self.items
+        items = self.items
+        if not items:
+            return []
+        return items
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
-        cursor = self.after_cursor
-        if not cursor:
+        after_cursor = self.after_cursor
+        if not after_cursor:
             return None
 
-        return PageInfo(params={"after_cursor": cursor})
+        return PageInfo(params={"after_cursor": after_cursor})
 
     @classmethod
     def build(cls: Type[_BaseModelT], *, response: Response, data: object) -> _BaseModelT:  # noqa: ARG003
@@ -46,20 +49,23 @@ class SyncPage(BaseSyncPage[ModelT], BasePage[ModelT], Generic[ModelT]):
 
 class AsyncPage(BaseAsyncPage[ModelT], BasePage[ModelT], Generic[ModelT]):
     items: List[ModelT]
-    per_page: Optional[int]
-    after_cursor: Optional[str]
+    per_page: Optional[int] = None
+    after_cursor: Optional[str] = None
 
     @override
     def _get_page_items(self) -> List[ModelT]:
-        return self.items
+        items = self.items
+        if not items:
+            return []
+        return items
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
-        cursor = self.after_cursor
-        if not cursor:
+        after_cursor = self.after_cursor
+        if not after_cursor:
             return None
 
-        return PageInfo(params={"after_cursor": cursor})
+        return PageInfo(params={"after_cursor": after_cursor})
 
     @classmethod
     def build(cls: Type[_BaseModelT], *, response: Response, data: object) -> _BaseModelT:  # noqa: ARG003
