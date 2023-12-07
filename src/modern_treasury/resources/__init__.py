@@ -1,17 +1,72 @@
 # File generated from our OpenAPI spec by Stainless.
 
-from .events import Events, AsyncEvents, EventsWithRawResponse, AsyncEventsWithRawResponse
-from .ledgers import Ledgers, AsyncLedgers, LedgersWithRawResponse, AsyncLedgersWithRawResponse
-from .returns import Returns, AsyncReturns, ReturnsWithRawResponse, AsyncReturnsWithRawResponse
-from .invoices import Invoices, AsyncInvoices, InvoicesWithRawResponse, AsyncInvoicesWithRawResponse
+from .events import (
+    Events,
+    AsyncEvents,
+    EventsWithRawResponse,
+    AsyncEventsWithRawResponse,
+)
+from .ledgers import (
+    Ledgers,
+    AsyncLedgers,
+    LedgersWithRawResponse,
+    AsyncLedgersWithRawResponse,
+)
+from .returns import (
+    Returns,
+    AsyncReturns,
+    ReturnsWithRawResponse,
+    AsyncReturnsWithRawResponse,
+)
+from .invoices import (
+    Invoices,
+    AsyncInvoices,
+    InvoicesWithRawResponse,
+    AsyncInvoicesWithRawResponse,
+)
 from .webhooks import Webhooks, AsyncWebhooks
-from .documents import Documents, AsyncDocuments, DocumentsWithRawResponse, AsyncDocumentsWithRawResponse
-from .line_items import LineItems, AsyncLineItems, LineItemsWithRawResponse, AsyncLineItemsWithRawResponse
-from .connections import Connections, AsyncConnections, ConnectionsWithRawResponse, AsyncConnectionsWithRawResponse
-from .paper_items import PaperItems, AsyncPaperItems, PaperItemsWithRawResponse, AsyncPaperItemsWithRawResponse
-from .validations import Validations, AsyncValidations, ValidationsWithRawResponse, AsyncValidationsWithRawResponse
-from .bulk_results import BulkResults, AsyncBulkResults, BulkResultsWithRawResponse, AsyncBulkResultsWithRawResponse
-from .transactions import Transactions, AsyncTransactions, TransactionsWithRawResponse, AsyncTransactionsWithRawResponse
+from .documents import (
+    Documents,
+    AsyncDocuments,
+    DocumentsWithRawResponse,
+    AsyncDocumentsWithRawResponse,
+)
+from .line_items import (
+    LineItems,
+    AsyncLineItems,
+    LineItemsWithRawResponse,
+    AsyncLineItemsWithRawResponse,
+)
+from .connections import (
+    Connections,
+    AsyncConnections,
+    ConnectionsWithRawResponse,
+    AsyncConnectionsWithRawResponse,
+)
+from .paper_items import (
+    PaperItems,
+    AsyncPaperItems,
+    PaperItemsWithRawResponse,
+    AsyncPaperItemsWithRawResponse,
+)
+from .validations import (
+    Validations,
+    AsyncValidations,
+    ValidationsWithRawResponse,
+    AsyncValidationsWithRawResponse,
+)
+from .bulk_results import (
+    BulkResults,
+    AsyncBulkResults,
+    BulkResultsWithRawResponse,
+    AsyncBulkResultsWithRawResponse,
+)
+from .transactions import (
+    Transactions,
+    AsyncTransactions,
+    TransactionsWithRawResponse,
+    AsyncTransactionsWithRawResponse,
+)
 from .bulk_requests import (
     BulkRequests,
     AsyncBulkRequests,

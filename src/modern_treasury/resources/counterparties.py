@@ -16,22 +16,12 @@ from ..types import (
     counterparty_update_params,
     counterparty_collect_account_params,
 )
-from .._types import (
-    NOT_GIVEN,
-    Body,
-    Query,
-    Headers,
-    NoneType,
-    NotGiven,
-)
+from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
-from .._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.shared import TransactionDirection
 
 if TYPE_CHECKING:
