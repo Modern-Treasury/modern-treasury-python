@@ -25,6 +25,7 @@ from modern_treasury._exceptions import (
     APIStatusError,
     APITimeoutError,
     APIConnectionError,
+    ModernTreasuryError,
     APIResponseValidationError,
 )
 from modern_treasury._base_client import (
@@ -312,7 +313,7 @@ class TestModernTreasury:
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert "Basic" in request.headers.get("Authorization")
 
-        with pytest.raises(Exception):
+        with pytest.raises(ModernTreasuryError):
             client2 = ModernTreasury(
                 base_url=base_url, api_key=None, organization_id=None, _strict_response_validation=True
             )
@@ -1160,7 +1161,7 @@ class TestAsyncModernTreasury:
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert "Basic" in request.headers.get("Authorization")
 
-        with pytest.raises(Exception):
+        with pytest.raises(ModernTreasuryError):
             client2 = AsyncModernTreasury(
                 base_url=base_url, api_key=None, organization_id=None, _strict_response_validation=True
             )
