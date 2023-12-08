@@ -416,7 +416,7 @@ Please use LineItem instead.
 class ReceivingAccountAccountDetail(TypedDict, total=False):
     account_number: Required[str]
 
-    account_number_type: Literal["iban", "clabe", "wallet_address", "pan", "other"]
+    account_number_type: Literal["iban", "hk_number", "clabe", "wallet_address", "pan", "other"]
 
 
 ReceivingAccountAccountDetails = ReceivingAccountAccountDetail
@@ -511,10 +511,12 @@ class ReceivingAccountRoutingDetail(TypedDict, total=False):
             "gb_sort_code",
             "hk_interbank_clearing_code",
             "hu_interbank_clearing_code",
+            "id_sknbi_code",
             "in_ifsc",
             "jp_zengin_code",
             "my_branch_code",
             "nz_national_clearing_code",
+            "pl_national_clearing_code",
             "se_bankgiro_clearing_code",
             "swift",
         ]
@@ -534,9 +536,11 @@ class ReceivingAccountRoutingDetail(TypedDict, total=False):
         "hu_ics",
         "interac",
         "masav",
+        "mx_ccen",
         "neft",
         "nics",
         "nz_becs",
+        "pl_elixir",
         "provxchange",
         "ro_sent",
         "rtp",
@@ -546,6 +550,7 @@ class ReceivingAccountRoutingDetail(TypedDict, total=False):
         "sepa",
         "sic",
         "signet",
+        "sknbi",
         "wire",
         "zengin",
     ]

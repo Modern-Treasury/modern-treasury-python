@@ -88,6 +88,7 @@ class ModernTreasury(SyncAPIClient):
     virtual_accounts: resources.VirtualAccounts
     bulk_requests: resources.BulkRequests
     bulk_results: resources.BulkResults
+    ledger_account_settlements: resources.LedgerAccountSettlements
     with_raw_response: ModernTreasuryWithRawResponse
 
     # client options
@@ -206,6 +207,7 @@ class ModernTreasury(SyncAPIClient):
         self.virtual_accounts = resources.VirtualAccounts(self)
         self.bulk_requests = resources.BulkRequests(self)
         self.bulk_results = resources.BulkResults(self)
+        self.ledger_account_settlements = resources.LedgerAccountSettlements(self)
         self.with_raw_response = ModernTreasuryWithRawResponse(self)
 
     @property
@@ -404,6 +406,7 @@ class AsyncModernTreasury(AsyncAPIClient):
     virtual_accounts: resources.AsyncVirtualAccounts
     bulk_requests: resources.AsyncBulkRequests
     bulk_results: resources.AsyncBulkResults
+    ledger_account_settlements: resources.AsyncLedgerAccountSettlements
     with_raw_response: AsyncModernTreasuryWithRawResponse
 
     # client options
@@ -522,6 +525,7 @@ class AsyncModernTreasury(AsyncAPIClient):
         self.virtual_accounts = resources.AsyncVirtualAccounts(self)
         self.bulk_requests = resources.AsyncBulkRequests(self)
         self.bulk_results = resources.AsyncBulkResults(self)
+        self.ledger_account_settlements = resources.AsyncLedgerAccountSettlements(self)
         self.with_raw_response = AsyncModernTreasuryWithRawResponse(self)
 
     @property
@@ -729,6 +733,9 @@ class ModernTreasuryWithRawResponse:
         self.virtual_accounts = resources.VirtualAccountsWithRawResponse(client.virtual_accounts)
         self.bulk_requests = resources.BulkRequestsWithRawResponse(client.bulk_requests)
         self.bulk_results = resources.BulkResultsWithRawResponse(client.bulk_results)
+        self.ledger_account_settlements = resources.LedgerAccountSettlementsWithRawResponse(
+            client.ledger_account_settlements
+        )
 
         self.ping = to_raw_response_wrapper(
             client.ping,
@@ -780,6 +787,9 @@ class AsyncModernTreasuryWithRawResponse:
         self.virtual_accounts = resources.AsyncVirtualAccountsWithRawResponse(client.virtual_accounts)
         self.bulk_requests = resources.AsyncBulkRequestsWithRawResponse(client.bulk_requests)
         self.bulk_results = resources.AsyncBulkResultsWithRawResponse(client.bulk_results)
+        self.ledger_account_settlements = resources.AsyncLedgerAccountSettlementsWithRawResponse(
+            client.ledger_account_settlements
+        )
 
         self.ping = async_to_raw_response_wrapper(
             client.ping,

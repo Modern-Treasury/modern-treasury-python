@@ -52,6 +52,34 @@ class TestLedgerEntries:
         assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
 
     @parametrize
+    def test_method_update(self, client: ModernTreasury) -> None:
+        ledger_entry = client.ledger_entries.update(
+            "string",
+        )
+        assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
+        ledger_entry = client.ledger_entries.update(
+            "string",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
+        )
+        assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
+
+    @parametrize
+    def test_raw_response_update(self, client: ModernTreasury) -> None:
+        response = client.ledger_entries.with_raw_response.update(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_entry = response.parse()
+        assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
+
+    @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         ledger_entry = client.ledger_entries.list()
         assert_matches_type(SyncPage[LedgerEntry], ledger_entry, path=["response"])
@@ -69,6 +97,7 @@ class TestLedgerEntries:
             ledger_account_id="string",
             ledger_account_lock_version={"foo": 0},
             ledger_account_payout_id="string",
+            ledger_account_settlement_id="string",
             ledger_account_statement_id="string",
             ledger_transaction_id="string",
             metadata={"foo": "string"},
@@ -126,6 +155,34 @@ class TestAsyncLedgerEntries:
         assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
 
     @parametrize
+    async def test_method_update(self, client: AsyncModernTreasury) -> None:
+        ledger_entry = await client.ledger_entries.update(
+            "string",
+        )
+        assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
+        ledger_entry = await client.ledger_entries.update(
+            "string",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
+        )
+        assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update(self, client: AsyncModernTreasury) -> None:
+        response = await client.ledger_entries.with_raw_response.update(
+            "string",
+        )
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_entry = response.parse()
+        assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
+
+    @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
         ledger_entry = await client.ledger_entries.list()
         assert_matches_type(AsyncPage[LedgerEntry], ledger_entry, path=["response"])
@@ -143,6 +200,7 @@ class TestAsyncLedgerEntries:
             ledger_account_id="string",
             ledger_account_lock_version={"foo": 0},
             ledger_account_payout_id="string",
+            ledger_account_settlement_id="string",
             ledger_account_statement_id="string",
             ledger_transaction_id="string",
             metadata={"foo": "string"},

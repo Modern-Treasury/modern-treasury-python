@@ -2,57 +2,49 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Optional
+from typing import TYPE_CHECKING, Dict, List, Union, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
-from ...types import (
-    InternalAccount,
-    internal_account_list_params,
-    internal_account_create_params,
-    internal_account_update_params,
+from ..types import (
+    LedgerAccountSettlement,
+    ledger_account_settlement_list_params,
+    ledger_account_settlement_create_params,
+    ledger_account_settlement_update_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
-from ...pagination import SyncPage, AsyncPage
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.shared import Currency, TransactionDirection
-from .balance_reports import (
-    BalanceReports,
-    AsyncBalanceReports,
-    BalanceReportsWithRawResponse,
-    AsyncBalanceReportsWithRawResponse,
-)
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform
+from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from ..pagination import SyncPage, AsyncPage
+from .._base_client import AsyncPaginator, make_request_options
 
 if TYPE_CHECKING:
-    from ..._client import ModernTreasury, AsyncModernTreasury
+    from .._client import ModernTreasury, AsyncModernTreasury
 
-__all__ = ["InternalAccounts", "AsyncInternalAccounts"]
+__all__ = ["LedgerAccountSettlements", "AsyncLedgerAccountSettlements"]
 
 
-class InternalAccounts(SyncAPIResource):
-    balance_reports: BalanceReports
-    with_raw_response: InternalAccountsWithRawResponse
+class LedgerAccountSettlements(SyncAPIResource):
+    with_raw_response: LedgerAccountSettlementsWithRawResponse
 
     def __init__(self, client: ModernTreasury) -> None:
         super().__init__(client)
-        self.balance_reports = BalanceReports(client)
-        self.with_raw_response = InternalAccountsWithRawResponse(self)
+        self.with_raw_response = LedgerAccountSettlementsWithRawResponse(self)
 
     def create(
         self,
         *,
-        connection_id: str,
-        currency: Literal["USD", "CAD"],
-        name: str,
-        party_name: str,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        parent_account_id: str | NotGiven = NOT_GIVEN,
-        party_address: internal_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
-        vendor_attributes: Dict[str, str] | NotGiven = NOT_GIVEN,
+        contra_ledger_account_id: str,
+        settled_ledger_account_id: str,
+        allow_either_direction: Optional[bool] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        effective_at_upper_bound: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        skip_settlement_ledger_transaction: Optional[bool] | NotGiven = NOT_GIVEN,
+        status: Optional[Literal["pending", "posted"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -60,28 +52,35 @@ class InternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> InternalAccount:
+    ) -> LedgerAccountSettlement:
         """
-        create internal account
+        Create a ledger account settlement.
 
         Args:
-          connection_id: The identifier of the financial institution the account belongs to.
+          contra_ledger_account_id: The id of the contra ledger account that sends to or receives funds from the
+              settled ledger account.
 
-          currency: Either "USD" or "CAD". Internal accounts created at Increase only supports
-              "USD".
+          settled_ledger_account_id: The id of the settled ledger account whose ledger entries are queried against,
+              and its balance is reduced as a result.
 
-          name: The nickname of the account.
+          allow_either_direction: If true, the settlement amount and settlement_entry_direction will bring the
+              settlement ledger account's balance closer to zero, even if the balance is
+              negative.
 
-          party_name: The legal name of the entity which owns the account.
+          description: The description of the ledger account settlement.
 
-          counterparty_id: The Counterparty associated to this account.
+          effective_at_upper_bound: The exclusive upper bound of the effective_at timestamp of the ledger entries to
+              be included in the ledger account settlement. The default value is the
+              created_at timestamp of the ledger account settlement.
 
-          parent_account_id: The parent internal account of this new account.
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
 
-          party_address: The address associated with the owner or null.
+          skip_settlement_ledger_transaction: It is set to `false` by default. It should be set to `true` when migrating
+              existing settlements.
 
-          vendor_attributes: A hash of vendor specific attributes that will be used when creating the account
-              at the vendor specified by the given connection.
+          status: The status of the ledger account settlement. It is set to `pending` by default.
+              To post a ledger account settlement at creation, use `posted`.
 
           extra_headers: Send extra headers
 
@@ -94,19 +93,19 @@ class InternalAccounts(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         return self._post(
-            "/api/internal_accounts",
+            "/api/ledger_account_settlements",
             body=maybe_transform(
                 {
-                    "connection_id": connection_id,
-                    "currency": currency,
-                    "name": name,
-                    "party_name": party_name,
-                    "counterparty_id": counterparty_id,
-                    "parent_account_id": parent_account_id,
-                    "party_address": party_address,
-                    "vendor_attributes": vendor_attributes,
+                    "contra_ledger_account_id": contra_ledger_account_id,
+                    "settled_ledger_account_id": settled_ledger_account_id,
+                    "allow_either_direction": allow_either_direction,
+                    "description": description,
+                    "effective_at_upper_bound": effective_at_upper_bound,
+                    "metadata": metadata,
+                    "skip_settlement_ledger_transaction": skip_settlement_ledger_transaction,
+                    "status": status,
                 },
-                internal_account_create_params.InternalAccountCreateParams,
+                ledger_account_settlement_create_params.LedgerAccountSettlementCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -115,7 +114,7 @@ class InternalAccounts(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=InternalAccount,
+            cast_to=LedgerAccountSettlement,
         )
 
     def retrieve(
@@ -128,9 +127,9 @@ class InternalAccounts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> InternalAccount:
+    ) -> LedgerAccountSettlement:
         """
-        get internal account
+        Get details on a single ledger account settlement.
 
         Args:
           extra_headers: Send extra headers
@@ -142,22 +141,20 @@ class InternalAccounts(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/api/internal_accounts/{id}",
+            f"/api/ledger_account_settlements/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=InternalAccount,
+            cast_to=LedgerAccountSettlement,
         )
 
     def update(
         self,
         id: str,
         *,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_id: str | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        parent_account_id: str | NotGiven = NOT_GIVEN,
+        status: Literal["posted", "archived"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -165,21 +162,18 @@ class InternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> InternalAccount:
+    ) -> LedgerAccountSettlement:
         """
-        update internal account
+        Update the details of a ledger account settlement.
 
         Args:
-          counterparty_id: The Counterparty associated to this account.
+          description: The description of the ledger account settlement.
 
-          ledger_account_id: The Ledger Account associated to this account.
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
 
-          metadata: Additional data in the form of key-value pairs. Pairs can be removed by passing
-              an empty string or `null` as the value.
-
-          name: The nickname for the internal account.
-
-          parent_account_id: The parent internal account for this account.
+          status: To post a pending ledger account settlement, use `posted`. To archive a pending
+              ledger transaction, use `archived`.
 
           extra_headers: Send extra headers
 
@@ -192,16 +186,14 @@ class InternalAccounts(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         return self._patch(
-            f"/api/internal_accounts/{id}",
+            f"/api/ledger_account_settlements/{id}",
             body=maybe_transform(
                 {
-                    "counterparty_id": counterparty_id,
-                    "ledger_account_id": ledger_account_id,
+                    "description": description,
                     "metadata": metadata,
-                    "name": name,
-                    "parent_account_id": parent_account_id,
+                    "status": status,
                 },
-                internal_account_update_params.InternalAccountUpdateParams,
+                ledger_account_settlement_update_params.LedgerAccountSettlementUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -210,73 +202,35 @@ class InternalAccounts(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=InternalAccount,
+            cast_to=LedgerAccountSettlement,
         )
 
     def list(
         self,
         *,
+        id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        payment_direction: TransactionDirection | NotGiven = NOT_GIVEN,
-        payment_type: Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "card",
-            "chats",
-            "check",
-            "cross_border",
-            "dk_nets",
-            "eft",
-            "hu_ics",
-            "interac",
-            "masav",
-            "mx_ccen",
-            "neft",
-            "nics",
-            "nz_becs",
-            "pl_elixir",
-            "provxchange",
-            "ro_sent",
-            "rtp",
-            "se_bankgirot",
-            "sen",
-            "sepa",
-            "sg_giro",
-            "sic",
-            "signet",
-            "sknbi",
-            "wire",
-            "zengin",
-        ]
-        | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        settled_ledger_account_id: str | NotGiven = NOT_GIVEN,
+        settlement_entry_direction: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncPage[InternalAccount]:
+    ) -> SyncPage[LedgerAccountSettlement]:
         """
-        list internal accounts
+        Get a list of ledger account settlements.
 
         Args:
-          counterparty_id: The counterparty associated with the internal account.
-
-          currency: The currency associated with the internal account.
+          id: If you have specific IDs to retrieve in bulk, you can pass them as query
+              parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
 
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
-
-          payment_direction: The direction of payments that can be made by internal account.
-
-          payment_type: The type of payment that can be made by the internal account.
 
           extra_headers: Send extra headers
 
@@ -287,8 +241,8 @@ class InternalAccounts(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/api/internal_accounts",
-            page=SyncPage[InternalAccount],
+            "/api/ledger_account_settlements",
+            page=SyncPage[LedgerAccountSettlement],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -296,41 +250,38 @@ class InternalAccounts(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after_cursor": after_cursor,
-                        "counterparty_id": counterparty_id,
-                        "currency": currency,
                         "metadata": metadata,
-                        "payment_direction": payment_direction,
-                        "payment_type": payment_type,
                         "per_page": per_page,
+                        "settled_ledger_account_id": settled_ledger_account_id,
+                        "settlement_entry_direction": settlement_entry_direction,
                     },
-                    internal_account_list_params.InternalAccountListParams,
+                    ledger_account_settlement_list_params.LedgerAccountSettlementListParams,
                 ),
             ),
-            model=InternalAccount,
+            model=LedgerAccountSettlement,
         )
 
 
-class AsyncInternalAccounts(AsyncAPIResource):
-    balance_reports: AsyncBalanceReports
-    with_raw_response: AsyncInternalAccountsWithRawResponse
+class AsyncLedgerAccountSettlements(AsyncAPIResource):
+    with_raw_response: AsyncLedgerAccountSettlementsWithRawResponse
 
     def __init__(self, client: AsyncModernTreasury) -> None:
         super().__init__(client)
-        self.balance_reports = AsyncBalanceReports(client)
-        self.with_raw_response = AsyncInternalAccountsWithRawResponse(self)
+        self.with_raw_response = AsyncLedgerAccountSettlementsWithRawResponse(self)
 
     async def create(
         self,
         *,
-        connection_id: str,
-        currency: Literal["USD", "CAD"],
-        name: str,
-        party_name: str,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        parent_account_id: str | NotGiven = NOT_GIVEN,
-        party_address: internal_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
-        vendor_attributes: Dict[str, str] | NotGiven = NOT_GIVEN,
+        contra_ledger_account_id: str,
+        settled_ledger_account_id: str,
+        allow_either_direction: Optional[bool] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        effective_at_upper_bound: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        skip_settlement_ledger_transaction: Optional[bool] | NotGiven = NOT_GIVEN,
+        status: Optional[Literal["pending", "posted"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -338,28 +289,35 @@ class AsyncInternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> InternalAccount:
+    ) -> LedgerAccountSettlement:
         """
-        create internal account
+        Create a ledger account settlement.
 
         Args:
-          connection_id: The identifier of the financial institution the account belongs to.
+          contra_ledger_account_id: The id of the contra ledger account that sends to or receives funds from the
+              settled ledger account.
 
-          currency: Either "USD" or "CAD". Internal accounts created at Increase only supports
-              "USD".
+          settled_ledger_account_id: The id of the settled ledger account whose ledger entries are queried against,
+              and its balance is reduced as a result.
 
-          name: The nickname of the account.
+          allow_either_direction: If true, the settlement amount and settlement_entry_direction will bring the
+              settlement ledger account's balance closer to zero, even if the balance is
+              negative.
 
-          party_name: The legal name of the entity which owns the account.
+          description: The description of the ledger account settlement.
 
-          counterparty_id: The Counterparty associated to this account.
+          effective_at_upper_bound: The exclusive upper bound of the effective_at timestamp of the ledger entries to
+              be included in the ledger account settlement. The default value is the
+              created_at timestamp of the ledger account settlement.
 
-          parent_account_id: The parent internal account of this new account.
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
 
-          party_address: The address associated with the owner or null.
+          skip_settlement_ledger_transaction: It is set to `false` by default. It should be set to `true` when migrating
+              existing settlements.
 
-          vendor_attributes: A hash of vendor specific attributes that will be used when creating the account
-              at the vendor specified by the given connection.
+          status: The status of the ledger account settlement. It is set to `pending` by default.
+              To post a ledger account settlement at creation, use `posted`.
 
           extra_headers: Send extra headers
 
@@ -372,19 +330,19 @@ class AsyncInternalAccounts(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._post(
-            "/api/internal_accounts",
+            "/api/ledger_account_settlements",
             body=maybe_transform(
                 {
-                    "connection_id": connection_id,
-                    "currency": currency,
-                    "name": name,
-                    "party_name": party_name,
-                    "counterparty_id": counterparty_id,
-                    "parent_account_id": parent_account_id,
-                    "party_address": party_address,
-                    "vendor_attributes": vendor_attributes,
+                    "contra_ledger_account_id": contra_ledger_account_id,
+                    "settled_ledger_account_id": settled_ledger_account_id,
+                    "allow_either_direction": allow_either_direction,
+                    "description": description,
+                    "effective_at_upper_bound": effective_at_upper_bound,
+                    "metadata": metadata,
+                    "skip_settlement_ledger_transaction": skip_settlement_ledger_transaction,
+                    "status": status,
                 },
-                internal_account_create_params.InternalAccountCreateParams,
+                ledger_account_settlement_create_params.LedgerAccountSettlementCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -393,7 +351,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=InternalAccount,
+            cast_to=LedgerAccountSettlement,
         )
 
     async def retrieve(
@@ -406,9 +364,9 @@ class AsyncInternalAccounts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> InternalAccount:
+    ) -> LedgerAccountSettlement:
         """
-        get internal account
+        Get details on a single ledger account settlement.
 
         Args:
           extra_headers: Send extra headers
@@ -420,22 +378,20 @@ class AsyncInternalAccounts(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/api/internal_accounts/{id}",
+            f"/api/ledger_account_settlements/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=InternalAccount,
+            cast_to=LedgerAccountSettlement,
         )
 
     async def update(
         self,
         id: str,
         *,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_id: str | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        parent_account_id: str | NotGiven = NOT_GIVEN,
+        status: Literal["posted", "archived"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -443,21 +399,18 @@ class AsyncInternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> InternalAccount:
+    ) -> LedgerAccountSettlement:
         """
-        update internal account
+        Update the details of a ledger account settlement.
 
         Args:
-          counterparty_id: The Counterparty associated to this account.
+          description: The description of the ledger account settlement.
 
-          ledger_account_id: The Ledger Account associated to this account.
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
 
-          metadata: Additional data in the form of key-value pairs. Pairs can be removed by passing
-              an empty string or `null` as the value.
-
-          name: The nickname for the internal account.
-
-          parent_account_id: The parent internal account for this account.
+          status: To post a pending ledger account settlement, use `posted`. To archive a pending
+              ledger transaction, use `archived`.
 
           extra_headers: Send extra headers
 
@@ -470,16 +423,14 @@ class AsyncInternalAccounts(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         return await self._patch(
-            f"/api/internal_accounts/{id}",
+            f"/api/ledger_account_settlements/{id}",
             body=maybe_transform(
                 {
-                    "counterparty_id": counterparty_id,
-                    "ledger_account_id": ledger_account_id,
+                    "description": description,
                     "metadata": metadata,
-                    "name": name,
-                    "parent_account_id": parent_account_id,
+                    "status": status,
                 },
-                internal_account_update_params.InternalAccountUpdateParams,
+                ledger_account_settlement_update_params.LedgerAccountSettlementUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -488,73 +439,35 @@ class AsyncInternalAccounts(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=InternalAccount,
+            cast_to=LedgerAccountSettlement,
         )
 
     def list(
         self,
         *,
+        id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        payment_direction: TransactionDirection | NotGiven = NOT_GIVEN,
-        payment_type: Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "card",
-            "chats",
-            "check",
-            "cross_border",
-            "dk_nets",
-            "eft",
-            "hu_ics",
-            "interac",
-            "masav",
-            "mx_ccen",
-            "neft",
-            "nics",
-            "nz_becs",
-            "pl_elixir",
-            "provxchange",
-            "ro_sent",
-            "rtp",
-            "se_bankgirot",
-            "sen",
-            "sepa",
-            "sg_giro",
-            "sic",
-            "signet",
-            "sknbi",
-            "wire",
-            "zengin",
-        ]
-        | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        settled_ledger_account_id: str | NotGiven = NOT_GIVEN,
+        settlement_entry_direction: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[InternalAccount, AsyncPage[InternalAccount]]:
+    ) -> AsyncPaginator[LedgerAccountSettlement, AsyncPage[LedgerAccountSettlement]]:
         """
-        list internal accounts
+        Get a list of ledger account settlements.
 
         Args:
-          counterparty_id: The counterparty associated with the internal account.
-
-          currency: The currency associated with the internal account.
+          id: If you have specific IDs to retrieve in bulk, you can pass them as query
+              parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
 
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
-
-          payment_direction: The direction of payments that can be made by internal account.
-
-          payment_type: The type of payment that can be made by the internal account.
 
           extra_headers: Send extra headers
 
@@ -565,8 +478,8 @@ class AsyncInternalAccounts(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get_api_list(
-            "/api/internal_accounts",
-            page=AsyncPage[InternalAccount],
+            "/api/ledger_account_settlements",
+            page=AsyncPage[LedgerAccountSettlement],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -574,52 +487,47 @@ class AsyncInternalAccounts(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after_cursor": after_cursor,
-                        "counterparty_id": counterparty_id,
-                        "currency": currency,
                         "metadata": metadata,
-                        "payment_direction": payment_direction,
-                        "payment_type": payment_type,
                         "per_page": per_page,
+                        "settled_ledger_account_id": settled_ledger_account_id,
+                        "settlement_entry_direction": settlement_entry_direction,
                     },
-                    internal_account_list_params.InternalAccountListParams,
+                    ledger_account_settlement_list_params.LedgerAccountSettlementListParams,
                 ),
             ),
-            model=InternalAccount,
+            model=LedgerAccountSettlement,
         )
 
 
-class InternalAccountsWithRawResponse:
-    def __init__(self, internal_accounts: InternalAccounts) -> None:
-        self.balance_reports = BalanceReportsWithRawResponse(internal_accounts.balance_reports)
-
+class LedgerAccountSettlementsWithRawResponse:
+    def __init__(self, ledger_account_settlements: LedgerAccountSettlements) -> None:
         self.create = to_raw_response_wrapper(
-            internal_accounts.create,
+            ledger_account_settlements.create,
         )
         self.retrieve = to_raw_response_wrapper(
-            internal_accounts.retrieve,
+            ledger_account_settlements.retrieve,
         )
         self.update = to_raw_response_wrapper(
-            internal_accounts.update,
+            ledger_account_settlements.update,
         )
         self.list = to_raw_response_wrapper(
-            internal_accounts.list,
+            ledger_account_settlements.list,
         )
 
 
-class AsyncInternalAccountsWithRawResponse:
-    def __init__(self, internal_accounts: AsyncInternalAccounts) -> None:
-        self.balance_reports = AsyncBalanceReportsWithRawResponse(internal_accounts.balance_reports)
-
+class AsyncLedgerAccountSettlementsWithRawResponse:
+    def __init__(self, ledger_account_settlements: AsyncLedgerAccountSettlements) -> None:
         self.create = async_to_raw_response_wrapper(
-            internal_accounts.create,
+            ledger_account_settlements.create,
         )
         self.retrieve = async_to_raw_response_wrapper(
-            internal_accounts.retrieve,
+            ledger_account_settlements.retrieve,
         )
         self.update = async_to_raw_response_wrapper(
-            internal_accounts.update,
+            ledger_account_settlements.update,
         )
         self.list = async_to_raw_response_wrapper(
-            internal_accounts.list,
+            ledger_account_settlements.list,
         )

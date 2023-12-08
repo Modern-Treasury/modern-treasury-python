@@ -193,6 +193,12 @@ from .ledger_account_statements import (
     LedgerAccountStatementsWithRawResponse,
     AsyncLedgerAccountStatementsWithRawResponse,
 )
+from .ledger_account_settlements import (
+    LedgerAccountSettlements,
+    AsyncLedgerAccountSettlements,
+    LedgerAccountSettlementsWithRawResponse,
+    AsyncLedgerAccountSettlementsWithRawResponse,
+)
 from .ledger_account_balance_monitors import (
     LedgerAccountBalanceMonitors,
     AsyncLedgerAccountBalanceMonitors,
@@ -335,4 +341,8 @@ __all__ = [
     "AsyncBulkResults",
     "BulkResultsWithRawResponse",
     "AsyncBulkResultsWithRawResponse",
+    "LedgerAccountSettlements",
+    "AsyncLedgerAccountSettlements",
+    "LedgerAccountSettlementsWithRawResponse",
+    "AsyncLedgerAccountSettlementsWithRawResponse",
 ]
