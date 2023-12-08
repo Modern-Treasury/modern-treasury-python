@@ -491,6 +491,8 @@ class TestPaymentOrders:
         payment_order = client.payment_orders.list(
             after_cursor="string",
             counterparty_id="string",
+            created_at_end=parse_date("2019-12-27"),
+            created_at_start=parse_date("2019-12-27"),
             direction="credit",
             effective_date_end=parse_date("2019-12-27"),
             effective_date_start=parse_date("2019-12-27"),
@@ -1225,6 +1227,8 @@ class TestAsyncPaymentOrders:
         payment_order = await client.payment_orders.list(
             after_cursor="string",
             counterparty_id="string",
+            created_at_end=parse_date("2019-12-27"),
+            created_at_start=parse_date("2019-12-27"),
             direction="credit",
             effective_date_end=parse_date("2019-12-27"),
             effective_date_start=parse_date("2019-12-27"),

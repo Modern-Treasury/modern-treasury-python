@@ -67,7 +67,7 @@ class IncomingPaymentDetail(BaseModel):
     detail.
     """
 
-    originating_account_number_type: Optional[Literal["clabe", "iban", "other", "pan", "wallet_address"]]
+    originating_account_number_type: Optional[Literal["clabe", "hk_number", "iban", "other", "pan", "wallet_address"]]
     """The type of the originating account number for the incoming payment detail."""
 
     originating_routing_number: Optional[str]
@@ -85,10 +85,12 @@ class IncomingPaymentDetail(BaseModel):
             "gb_sort_code",
             "hk_interbank_clearing_code",
             "hu_interbank_clearing_code",
+            "id_sknbi_code",
             "in_ifsc",
             "jp_zengin_code",
             "my_branch_code",
             "nz_national_clearing_code",
+            "pl_national_clearing_code",
             "se_bankgiro_clearing_code",
             "swift",
         ]

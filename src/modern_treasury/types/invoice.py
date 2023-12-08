@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
@@ -145,6 +145,12 @@ class Invoice(BaseModel):
     expected_payments: List[ExpectedPayment]
     """The expected payments created for an unpaid invoice."""
 
+    fallback_payment_method: Optional[str]
+    """
+    When payment_method is automatic, the fallback payment method to use when an
+    automatic payment fails. One of `manual` or `ui`.
+    """
+
     hosted_url: str
     """The URL of the hosted web UI where the invoice can be viewed."""
 
@@ -155,6 +161,12 @@ class Invoice(BaseModel):
     """
     This field will be true if this object exists in the live environment or false
     if it exists in the test environment.
+    """
+
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
     """
 
     notification_email_addresses: Optional[List[str]]

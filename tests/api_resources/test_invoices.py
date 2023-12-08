@@ -92,6 +92,7 @@ class TestInvoices:
             },
             currency="AED",
             description="string",
+            fallback_payment_method="string",
             invoicer_address={
                 "line1": "string",
                 "line2": "string",
@@ -202,6 +203,7 @@ class TestInvoices:
             currency="AED",
             description="string",
             due_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            fallback_payment_method="string",
             invoicer_address={
                 "line1": "string",
                 "line2": "string",
@@ -346,6 +348,7 @@ class TestAsyncInvoices:
             },
             currency="AED",
             description="string",
+            fallback_payment_method="string",
             invoicer_address={
                 "line1": "string",
                 "line2": "string",
@@ -456,6 +459,7 @@ class TestAsyncInvoices:
             currency="AED",
             description="string",
             due_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            fallback_payment_method="string",
             invoicer_address={
                 "line1": "string",
                 "line2": "string",

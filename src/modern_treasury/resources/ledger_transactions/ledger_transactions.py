@@ -247,6 +247,7 @@ class LedgerTransactions(SyncAPIResource):
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_account_payout_id: str | NotGiven = NOT_GIVEN,
+        ledger_account_settlement_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
@@ -333,6 +334,7 @@ class LedgerTransactions(SyncAPIResource):
                         "ledger_account_category_id": ledger_account_category_id,
                         "ledger_account_id": ledger_account_id,
                         "ledger_account_payout_id": ledger_account_payout_id,
+                        "ledger_account_settlement_id": ledger_account_settlement_id,
                         "ledger_id": ledger_id,
                         "ledgerable_id": ledgerable_id,
                         "ledgerable_type": ledgerable_type,
@@ -654,6 +656,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_account_payout_id: str | NotGiven = NOT_GIVEN,
+        ledger_account_settlement_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
@@ -740,6 +743,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
                         "ledger_account_category_id": ledger_account_category_id,
                         "ledger_account_id": ledger_account_id,
                         "ledger_account_payout_id": ledger_account_payout_id,
+                        "ledger_account_settlement_id": ledger_account_settlement_id,
                         "ledger_id": ledger_id,
                         "ledgerable_id": ledgerable_id,
                         "ledgerable_type": ledgerable_type,

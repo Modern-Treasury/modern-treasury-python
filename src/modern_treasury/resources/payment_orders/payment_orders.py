@@ -558,6 +558,8 @@ class PaymentOrders(SyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
+        created_at_end: Union[str, date] | NotGiven = NOT_GIVEN,
+        created_at_start: Union[str, date] | NotGiven = NOT_GIVEN,
         direction: TransactionDirection | NotGiven = NOT_GIVEN,
         effective_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
         effective_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
@@ -595,9 +597,11 @@ class PaymentOrders(SyncAPIResource):
             "hu_ics",
             "interac",
             "masav",
+            "mx_ccen",
             "neft",
             "nics",
             "nz_becs",
+            "pl_elixir",
             "provxchange",
             "ro_sent",
             "rtp",
@@ -607,6 +611,7 @@ class PaymentOrders(SyncAPIResource):
             "sg_giro",
             "sic",
             "signet",
+            "sknbi",
             "wire",
             "zengin",
         ]
@@ -622,6 +627,10 @@ class PaymentOrders(SyncAPIResource):
         Get a list of all payment orders
 
         Args:
+          created_at_end: An inclusive upper bound for searching created_at
+
+          created_at_start: An inclusive lower bound for searching created_at
+
           effective_date_end: An inclusive upper bound for searching effective_date
 
           effective_date_start: An inclusive lower bound for searching effective_date
@@ -658,6 +667,8 @@ class PaymentOrders(SyncAPIResource):
                     {
                         "after_cursor": after_cursor,
                         "counterparty_id": counterparty_id,
+                        "created_at_end": created_at_end,
+                        "created_at_start": created_at_start,
                         "direction": direction,
                         "effective_date_end": effective_date_end,
                         "effective_date_start": effective_date_start,
@@ -1423,6 +1434,8 @@ class AsyncPaymentOrders(AsyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
+        created_at_end: Union[str, date] | NotGiven = NOT_GIVEN,
+        created_at_start: Union[str, date] | NotGiven = NOT_GIVEN,
         direction: TransactionDirection | NotGiven = NOT_GIVEN,
         effective_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
         effective_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
@@ -1460,9 +1473,11 @@ class AsyncPaymentOrders(AsyncAPIResource):
             "hu_ics",
             "interac",
             "masav",
+            "mx_ccen",
             "neft",
             "nics",
             "nz_becs",
+            "pl_elixir",
             "provxchange",
             "ro_sent",
             "rtp",
@@ -1472,6 +1487,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
             "sg_giro",
             "sic",
             "signet",
+            "sknbi",
             "wire",
             "zengin",
         ]
@@ -1487,6 +1503,10 @@ class AsyncPaymentOrders(AsyncAPIResource):
         Get a list of all payment orders
 
         Args:
+          created_at_end: An inclusive upper bound for searching created_at
+
+          created_at_start: An inclusive lower bound for searching created_at
+
           effective_date_end: An inclusive upper bound for searching effective_date
 
           effective_date_start: An inclusive lower bound for searching effective_date
@@ -1523,6 +1543,8 @@ class AsyncPaymentOrders(AsyncAPIResource):
                     {
                         "after_cursor": after_cursor,
                         "counterparty_id": counterparty_id,
+                        "created_at_end": created_at_end,
+                        "created_at_start": created_at_start,
                         "direction": direction,
                         "effective_date_end": effective_date_end,
                         "effective_date_start": effective_date_start,

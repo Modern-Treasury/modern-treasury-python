@@ -23,10 +23,12 @@ class ValidationValidateRoutingNumberParams(TypedDict, total=False):
             "gb_sort_code",
             "hk_interbank_clearing_code",
             "hu_interbank_clearing_code",
+            "id_sknbi_code",
             "in_ifsc",
             "jp_zengin_code",
             "my_branch_code",
             "nz_national_clearing_code",
+            "pl_national_clearing_code",
             "se_bankgiro_clearing_code",
             "swift",
         ]
