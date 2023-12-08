@@ -8,7 +8,12 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import LedgerEntry, ledger_entry_list_params, ledger_entry_retrieve_params
+from ..types import (
+    LedgerEntry,
+    ledger_entry_list_params,
+    ledger_entry_update_params,
+    ledger_entry_retrieve_params,
+)
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -71,6 +76,49 @@ class LedgerEntries(SyncAPIResource):
             cast_to=LedgerEntry,
         )
 
+    def update(
+        self,
+        id: str,
+        *,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        idempotency_key: str | None = None,
+    ) -> LedgerEntry:
+        """
+        Update the details of a ledger entry.
+
+        Args:
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        return self._patch(
+            f"/api/ledger_entries/{id}",
+            body=maybe_transform({"metadata": metadata}, ledger_entry_update_params.LedgerEntryUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=LedgerEntry,
+        )
+
     def list(
         self,
         *,
@@ -84,6 +132,7 @@ class LedgerEntries(SyncAPIResource):
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_account_lock_version: Dict[str, int] | NotGiven = NOT_GIVEN,
         ledger_account_payout_id: str | NotGiven = NOT_GIVEN,
+        ledger_account_settlement_id: str | NotGiven = NOT_GIVEN,
         ledger_account_statement_id: str | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -180,6 +229,7 @@ class LedgerEntries(SyncAPIResource):
                         "ledger_account_id": ledger_account_id,
                         "ledger_account_lock_version": ledger_account_lock_version,
                         "ledger_account_payout_id": ledger_account_payout_id,
+                        "ledger_account_settlement_id": ledger_account_settlement_id,
                         "ledger_account_statement_id": ledger_account_statement_id,
                         "ledger_transaction_id": ledger_transaction_id,
                         "metadata": metadata,
@@ -245,6 +295,49 @@ class AsyncLedgerEntries(AsyncAPIResource):
             cast_to=LedgerEntry,
         )
 
+    async def update(
+        self,
+        id: str,
+        *,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        idempotency_key: str | None = None,
+    ) -> LedgerEntry:
+        """
+        Update the details of a ledger entry.
+
+        Args:
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        return await self._patch(
+            f"/api/ledger_entries/{id}",
+            body=maybe_transform({"metadata": metadata}, ledger_entry_update_params.LedgerEntryUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=LedgerEntry,
+        )
+
     def list(
         self,
         *,
@@ -258,6 +351,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_account_lock_version: Dict[str, int] | NotGiven = NOT_GIVEN,
         ledger_account_payout_id: str | NotGiven = NOT_GIVEN,
+        ledger_account_settlement_id: str | NotGiven = NOT_GIVEN,
         ledger_account_statement_id: str | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -354,6 +448,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
                         "ledger_account_id": ledger_account_id,
                         "ledger_account_lock_version": ledger_account_lock_version,
                         "ledger_account_payout_id": ledger_account_payout_id,
+                        "ledger_account_settlement_id": ledger_account_settlement_id,
                         "ledger_account_statement_id": ledger_account_statement_id,
                         "ledger_transaction_id": ledger_transaction_id,
                         "metadata": metadata,
@@ -376,6 +471,9 @@ class LedgerEntriesWithRawResponse:
         self.retrieve = to_raw_response_wrapper(
             ledger_entries.retrieve,
         )
+        self.update = to_raw_response_wrapper(
+            ledger_entries.update,
+        )
         self.list = to_raw_response_wrapper(
             ledger_entries.list,
         )
@@ -385,6 +483,9 @@ class AsyncLedgerEntriesWithRawResponse:
     def __init__(self, ledger_entries: AsyncLedgerEntries) -> None:
         self.retrieve = async_to_raw_response_wrapper(
             ledger_entries.retrieve,
+        )
+        self.update = async_to_raw_response_wrapper(
+            ledger_entries.update,
         )
         self.list = async_to_raw_response_wrapper(
             ledger_entries.list,

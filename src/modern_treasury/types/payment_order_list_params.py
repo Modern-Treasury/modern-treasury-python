@@ -17,6 +17,12 @@ class PaymentOrderListParams(TypedDict, total=False):
 
     counterparty_id: str
 
+    created_at_end: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    """An inclusive upper bound for searching created_at"""
+
+    created_at_start: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    """An inclusive lower bound for searching created_at"""
+
     direction: TransactionDirection
 
     effective_date_end: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
@@ -78,9 +84,11 @@ class PaymentOrderListParams(TypedDict, total=False):
         "hu_ics",
         "interac",
         "masav",
+        "mx_ccen",
         "neft",
         "nics",
         "nz_becs",
+        "pl_elixir",
         "provxchange",
         "ro_sent",
         "rtp",
@@ -90,6 +98,7 @@ class PaymentOrderListParams(TypedDict, total=False):
         "sg_giro",
         "sic",
         "signet",
+        "sknbi",
         "wire",
         "zengin",
     ]

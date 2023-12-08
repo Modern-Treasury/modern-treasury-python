@@ -288,7 +288,7 @@ Please use ResourcePaymentOrderAsyncCreateRequestLineItem instead.
 class ResourcePaymentOrderAsyncCreateRequestReceivingAccountAccountDetail(TypedDict, total=False):
     account_number: Required[str]
 
-    account_number_type: Literal["iban", "clabe", "wallet_address", "pan", "other"]
+    account_number_type: Literal["iban", "hk_number", "clabe", "wallet_address", "pan", "other"]
 
 
 ResourcesPaymentOrderAsyncCreateRequestReceivingAccountAccountDetails = (
@@ -405,10 +405,12 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail(TypedD
             "gb_sort_code",
             "hk_interbank_clearing_code",
             "hu_interbank_clearing_code",
+            "id_sknbi_code",
             "in_ifsc",
             "jp_zengin_code",
             "my_branch_code",
             "nz_national_clearing_code",
+            "pl_national_clearing_code",
             "se_bankgiro_clearing_code",
             "swift",
         ]
@@ -428,9 +430,11 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail(TypedD
         "hu_ics",
         "interac",
         "masav",
+        "mx_ccen",
         "neft",
         "nics",
         "nz_becs",
+        "pl_elixir",
         "provxchange",
         "ro_sent",
         "rtp",
@@ -440,6 +444,7 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail(TypedD
         "sepa",
         "sic",
         "signet",
+        "sknbi",
         "wire",
         "zengin",
     ]
@@ -1034,7 +1039,7 @@ Please use ResourcePaymentOrderUpdateRequestWithIDLineItem instead.
 class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountAccountDetail(TypedDict, total=False):
     account_number: Required[str]
 
-    account_number_type: Literal["iban", "clabe", "wallet_address", "pan", "other"]
+    account_number_type: Literal["iban", "hk_number", "clabe", "wallet_address", "pan", "other"]
 
 
 ResourcesPaymentOrderUpdateRequestWithIDReceivingAccountAccountDetails = (
@@ -1151,10 +1156,12 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail(Typed
             "gb_sort_code",
             "hk_interbank_clearing_code",
             "hu_interbank_clearing_code",
+            "id_sknbi_code",
             "in_ifsc",
             "jp_zengin_code",
             "my_branch_code",
             "nz_national_clearing_code",
+            "pl_national_clearing_code",
             "se_bankgiro_clearing_code",
             "swift",
         ]
@@ -1174,9 +1181,11 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail(Typed
         "hu_ics",
         "interac",
         "masav",
+        "mx_ccen",
         "neft",
         "nics",
         "nz_becs",
+        "pl_elixir",
         "provxchange",
         "ro_sent",
         "rtp",
@@ -1186,6 +1195,7 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail(Typed
         "sepa",
         "sic",
         "signet",
+        "sknbi",
         "wire",
         "zengin",
     ]

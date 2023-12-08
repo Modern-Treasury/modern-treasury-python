@@ -41,6 +41,12 @@ class InvoiceUpdateParams(TypedDict, total=False):
     due_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """A future date by when the invoice needs to be paid."""
 
+    fallback_payment_method: Optional[str]
+    """
+    When payment_method is automatic, the fallback payment method to use when an
+    automatic payment fails. One of `manual` or `ui`.
+    """
+
     invoicer_address: Optional[InvoicerAddress]
     """The invoice issuer's business address."""
 
@@ -92,9 +98,11 @@ class InvoiceUpdateParams(TypedDict, total=False):
         "hu_ics",
         "interac",
         "masav",
+        "mx_ccen",
         "neft",
         "nics",
         "nz_becs",
+        "pl_elixir",
         "provxchange",
         "ro_sent",
         "rtp",
@@ -104,6 +112,7 @@ class InvoiceUpdateParams(TypedDict, total=False):
         "sepa",
         "sic",
         "signet",
+        "sknbi",
         "wire",
         "zengin",
     ]

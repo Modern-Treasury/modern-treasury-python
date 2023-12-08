@@ -350,6 +350,10 @@ class Counterparties(SyncAPIResource):
                 "jp_zengin_code",
                 "se_bankgiro_clearing_code",
                 "nz_national_clearing_code",
+                "hk_interbank_clearing_code",
+                "hu_interbank_clearing_code",
+                "dk_interbank_clearing_code",
+                "id_sknbi_code",
             ]
         ]
         | NotGiven = NOT_GIVEN,
@@ -737,6 +741,10 @@ class AsyncCounterparties(AsyncAPIResource):
                 "jp_zengin_code",
                 "se_bankgiro_clearing_code",
                 "nz_national_clearing_code",
+                "hk_interbank_clearing_code",
+                "hu_interbank_clearing_code",
+                "dk_interbank_clearing_code",
+                "id_sknbi_code",
             ]
         ]
         | NotGiven = NOT_GIVEN,

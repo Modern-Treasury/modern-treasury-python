@@ -55,6 +55,7 @@ class Invoices(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
+        fallback_payment_method: Optional[str] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_create_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
         notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
         notifications_enabled: bool | NotGiven = NOT_GIVEN,
@@ -74,9 +75,11 @@ class Invoices(SyncAPIResource):
             "hu_ics",
             "interac",
             "masav",
+            "mx_ccen",
             "neft",
             "nics",
             "nz_becs",
+            "pl_elixir",
             "provxchange",
             "ro_sent",
             "rtp",
@@ -86,6 +89,7 @@ class Invoices(SyncAPIResource):
             "sepa",
             "sic",
             "signet",
+            "sknbi",
             "wire",
             "zengin",
         ]
@@ -121,6 +125,9 @@ class Invoices(SyncAPIResource):
           currency: Currency that the invoice is denominated in. Defaults to `USD` if not provided.
 
           description: A free-form description of the invoice.
+
+          fallback_payment_method: When payment_method is automatic, the fallback payment method to use when an
+              automatic payment fails. One of `manual` or `ui`.
 
           invoicer_address: The invoice issuer's business address.
 
@@ -178,6 +185,7 @@ class Invoices(SyncAPIResource):
                     "counterparty_shipping_address": counterparty_shipping_address,
                     "currency": currency,
                     "description": description,
+                    "fallback_payment_method": fallback_payment_method,
                     "invoicer_address": invoicer_address,
                     "notification_email_addresses": notification_email_addresses,
                     "notifications_enabled": notifications_enabled,
@@ -244,6 +252,7 @@ class Invoices(SyncAPIResource):
         currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         due_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        fallback_payment_method: Optional[str] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_update_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
         notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
         notifications_enabled: bool | NotGiven = NOT_GIVEN,
@@ -264,9 +273,11 @@ class Invoices(SyncAPIResource):
             "hu_ics",
             "interac",
             "masav",
+            "mx_ccen",
             "neft",
             "nics",
             "nz_becs",
+            "pl_elixir",
             "provxchange",
             "ro_sent",
             "rtp",
@@ -276,6 +287,7 @@ class Invoices(SyncAPIResource):
             "sepa",
             "sic",
             "signet",
+            "sknbi",
             "wire",
             "zengin",
         ]
@@ -310,6 +322,9 @@ class Invoices(SyncAPIResource):
           description: A free-form description of the invoice.
 
           due_date: A future date by when the invoice needs to be paid.
+
+          fallback_payment_method: When payment_method is automatic, the fallback payment method to use when an
+              automatic payment fails. One of `manual` or `ui`.
 
           invoicer_address: The invoice issuer's business address.
 
@@ -372,6 +387,7 @@ class Invoices(SyncAPIResource):
                     "currency": currency,
                     "description": description,
                     "due_date": due_date,
+                    "fallback_payment_method": fallback_payment_method,
                     "invoicer_address": invoicer_address,
                     "notification_email_addresses": notification_email_addresses,
                     "notifications_enabled": notifications_enabled,
@@ -502,6 +518,7 @@ class AsyncInvoices(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
+        fallback_payment_method: Optional[str] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_create_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
         notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
         notifications_enabled: bool | NotGiven = NOT_GIVEN,
@@ -521,9 +538,11 @@ class AsyncInvoices(AsyncAPIResource):
             "hu_ics",
             "interac",
             "masav",
+            "mx_ccen",
             "neft",
             "nics",
             "nz_becs",
+            "pl_elixir",
             "provxchange",
             "ro_sent",
             "rtp",
@@ -533,6 +552,7 @@ class AsyncInvoices(AsyncAPIResource):
             "sepa",
             "sic",
             "signet",
+            "sknbi",
             "wire",
             "zengin",
         ]
@@ -568,6 +588,9 @@ class AsyncInvoices(AsyncAPIResource):
           currency: Currency that the invoice is denominated in. Defaults to `USD` if not provided.
 
           description: A free-form description of the invoice.
+
+          fallback_payment_method: When payment_method is automatic, the fallback payment method to use when an
+              automatic payment fails. One of `manual` or `ui`.
 
           invoicer_address: The invoice issuer's business address.
 
@@ -625,6 +648,7 @@ class AsyncInvoices(AsyncAPIResource):
                     "counterparty_shipping_address": counterparty_shipping_address,
                     "currency": currency,
                     "description": description,
+                    "fallback_payment_method": fallback_payment_method,
                     "invoicer_address": invoicer_address,
                     "notification_email_addresses": notification_email_addresses,
                     "notifications_enabled": notifications_enabled,
@@ -691,6 +715,7 @@ class AsyncInvoices(AsyncAPIResource):
         currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         due_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        fallback_payment_method: Optional[str] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_update_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
         notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
         notifications_enabled: bool | NotGiven = NOT_GIVEN,
@@ -711,9 +736,11 @@ class AsyncInvoices(AsyncAPIResource):
             "hu_ics",
             "interac",
             "masav",
+            "mx_ccen",
             "neft",
             "nics",
             "nz_becs",
+            "pl_elixir",
             "provxchange",
             "ro_sent",
             "rtp",
@@ -723,6 +750,7 @@ class AsyncInvoices(AsyncAPIResource):
             "sepa",
             "sic",
             "signet",
+            "sknbi",
             "wire",
             "zengin",
         ]
@@ -757,6 +785,9 @@ class AsyncInvoices(AsyncAPIResource):
           description: A free-form description of the invoice.
 
           due_date: A future date by when the invoice needs to be paid.
+
+          fallback_payment_method: When payment_method is automatic, the fallback payment method to use when an
+              automatic payment fails. One of `manual` or `ui`.
 
           invoicer_address: The invoice issuer's business address.
 
@@ -819,6 +850,7 @@ class AsyncInvoices(AsyncAPIResource):
                     "currency": currency,
                     "description": description,
                     "due_date": due_date,
+                    "fallback_payment_method": fallback_payment_method,
                     "invoicer_address": invoicer_address,
                     "notification_email_addresses": notification_email_addresses,
                     "notifications_enabled": notifications_enabled,

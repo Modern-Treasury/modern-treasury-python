@@ -52,6 +52,10 @@ class CounterpartyCollectAccountParams(TypedDict, total=False):
             "jp_zengin_code",
             "se_bankgiro_clearing_code",
             "nz_national_clearing_code",
+            "hk_interbank_clearing_code",
+            "hu_interbank_clearing_code",
+            "dk_interbank_clearing_code",
+            "id_sknbi_code",
         ]
     ]
     """The list of fields you want on the form.

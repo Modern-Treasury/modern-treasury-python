@@ -63,6 +63,8 @@ class LedgerEntryListParams(TypedDict, total=False):
 
     ledger_account_payout_id: str
 
+    ledger_account_settlement_id: str
+
     ledger_account_statement_id: str
     """Get all ledger entries that are included in the ledger account statement."""
 
