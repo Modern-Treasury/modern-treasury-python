@@ -255,7 +255,7 @@ from modern_treasury import ModernTreasury
 
 # Configure the default for all requests:
 client = ModernTreasury(
-    # default is 60s
+    # 20 seconds (default is 1 minute)
     timeout=20.0,
 )
 
