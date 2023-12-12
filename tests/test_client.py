@@ -801,16 +801,6 @@ class TestModernTreasury:
                         http_client=http_client,
                     )
 
-    def test_client_del(self) -> None:
-        client = ModernTreasury(
-            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-        )
-        assert not client.is_closed()
-
-        client.__del__()
-
-        assert client.is_closed()
-
     def test_copied_client_does_not_close_http(self) -> None:
         client = ModernTreasury(
             base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
@@ -820,9 +810,8 @@ class TestModernTreasury:
         copied = client.copy()
         assert copied is not client
 
-        copied.__del__()
+        del copied
 
-        assert not copied.is_closed()
         assert not client.is_closed()
 
     def test_client_context_manager(self) -> None:
@@ -1712,17 +1701,6 @@ class TestAsyncModernTreasury:
                         http_client=http_client,
                     )
 
-    async def test_client_del(self) -> None:
-        client = AsyncModernTreasury(
-            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-        )
-        assert not client.is_closed()
-
-        client.__del__()
-
-        await asyncio.sleep(0.2)
-        assert client.is_closed()
-
     async def test_copied_client_does_not_close_http(self) -> None:
         client = AsyncModernTreasury(
             base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
@@ -1732,10 +1710,9 @@ class TestAsyncModernTreasury:
         copied = client.copy()
         assert copied is not client
 
-        copied.__del__()
+        del copied
 
         await asyncio.sleep(0.2)
-        assert not copied.is_closed()
         assert not client.is_closed()
 
     async def test_client_context_manager(self) -> None:
