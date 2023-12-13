@@ -346,7 +346,7 @@ class PaymentOrder(BaseModel):
     `sic`, `signet`, `provexchange`, `zengin`.
     """
 
-    ultimate_originating_account: UltimateOriginatingAccount
+    ultimate_originating_account: Optional[UltimateOriginatingAccount]
     """The account to which the originating of this payment should be attributed to.
 
     Can be a `virtual_account` or `internal_account`.
