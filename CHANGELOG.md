@@ -1,5 +1,50 @@
 # Changelog
 
+## 1.24.0 (2024-01-02)
+
+Full Changelog: [v1.23.1...v1.24.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.23.1...v1.24.0)
+
+### Features
+
+* **api:** remove reversed and reversing ledger account status type ([#322](https://github.com/Modern-Treasury/modern-treasury-python/issues/322)) ([0c03887](https://github.com/Modern-Treasury/modern-treasury-python/commit/0c038878e9d91e055388380d5ddbd525822179d2))
+* **api:** updates ([#315](https://github.com/Modern-Treasury/modern-treasury-python/issues/315)) ([778352f](https://github.com/Modern-Treasury/modern-treasury-python/commit/778352f011002e16303a245242f4dc7a87f3c7eb))
+
+
+### Bug Fixes
+
+* avoid leaking memory when Client.with_options is used ([#316](https://github.com/Modern-Treasury/modern-treasury-python/issues/316)) ([6e6b257](https://github.com/Modern-Treasury/modern-treasury-python/commit/6e6b257318061ff15a017dcae9646a3287295824))
+* **client:** correctly use custom http client auth ([#330](https://github.com/Modern-Treasury/modern-treasury-python/issues/330)) ([af5287b](https://github.com/Modern-Treasury/modern-treasury-python/commit/af5287b7092a33fe6d5ae306c01e74e6baf519ee))
+* **errors:** properly assign APIError.body ([#314](https://github.com/Modern-Treasury/modern-treasury-python/issues/314)) ([67627a3](https://github.com/Modern-Treasury/modern-treasury-python/commit/67627a3f7ea47584ea95d597808bd54d1ae3cfdd))
+
+
+### Chores
+
+* **ci:** run release workflow once per day ([#321](https://github.com/Modern-Treasury/modern-treasury-python/issues/321)) ([af16395](https://github.com/Modern-Treasury/modern-treasury-python/commit/af163956e68d59f371785a44d127ec9d10fbacbf))
+* **internal:** add bin script ([#327](https://github.com/Modern-Treasury/modern-treasury-python/issues/327)) ([05bfe94](https://github.com/Modern-Treasury/modern-treasury-python/commit/05bfe94c979c1815e330edafcfca2dc0f937f5c9))
+* **internal:** bump license ([#331](https://github.com/Modern-Treasury/modern-treasury-python/issues/331)) ([8cb7937](https://github.com/Modern-Treasury/modern-treasury-python/commit/8cb7937708f3a2a032a2a66cfcc088df6de8a398))
+* **internal:** enable more lint rules ([#313](https://github.com/Modern-Treasury/modern-treasury-python/issues/313)) ([046e84d](https://github.com/Modern-Treasury/modern-treasury-python/commit/046e84d17f2239779fcbd8e358f322fe9b8309e6))
+* **internal:** fix typos ([#325](https://github.com/Modern-Treasury/modern-treasury-python/issues/325)) ([9be3fdd](https://github.com/Modern-Treasury/modern-treasury-python/commit/9be3fdde3f65fe8e2223206d75ae4805ea62930d))
+* **internal:** minor updates to pagination ([#311](https://github.com/Modern-Treasury/modern-treasury-python/issues/311)) ([90cb5cd](https://github.com/Modern-Treasury/modern-treasury-python/commit/90cb5cde7cb08e64e9a7b68f75496870a5153142))
+* **internal:** minor utils restructuring ([#324](https://github.com/Modern-Treasury/modern-treasury-python/issues/324)) ([817e69b](https://github.com/Modern-Treasury/modern-treasury-python/commit/817e69b9a68b1ba0d56c45dd50044121652590c3))
+* **internal:** reformat imports ([#309](https://github.com/Modern-Treasury/modern-treasury-python/issues/309)) ([9acbb03](https://github.com/Modern-Treasury/modern-treasury-python/commit/9acbb03939cee4a3f32726d1eb556f33b7bf78b9))
+* **internal:** reformat imports ([#312](https://github.com/Modern-Treasury/modern-treasury-python/issues/312)) ([2fec25c](https://github.com/Modern-Treasury/modern-treasury-python/commit/2fec25c955f4d901953ceda660a4e9bc451d1391))
+* **internal:** update formatting ([#310](https://github.com/Modern-Treasury/modern-treasury-python/issues/310)) ([c8ce56f](https://github.com/Modern-Treasury/modern-treasury-python/commit/c8ce56ff74fb9c1bba514a881eadb5e56f9213b8))
+* **internal:** updates to base client ([#323](https://github.com/Modern-Treasury/modern-treasury-python/issues/323)) ([d717ab1](https://github.com/Modern-Treasury/modern-treasury-python/commit/d717ab1eb8d1a73e12d0e4239d06839064e65be5))
+* **internal:** use ruff instead of black for formatting ([#329](https://github.com/Modern-Treasury/modern-treasury-python/issues/329)) ([8aa1f23](https://github.com/Modern-Treasury/modern-treasury-python/commit/8aa1f23197c974e4cb3bda321fc1ef88030f6545))
+* **package:** bump minimum typing-extensions to 4.7 ([#326](https://github.com/Modern-Treasury/modern-treasury-python/issues/326)) ([92448b7](https://github.com/Modern-Treasury/modern-treasury-python/commit/92448b7406b60350d29f2769a4952cc95b478cbd))
+
+
+### Documentation
+
+* improve README timeout comment ([#317](https://github.com/Modern-Treasury/modern-treasury-python/issues/317)) ([777630c](https://github.com/Modern-Treasury/modern-treasury-python/commit/777630ca24a7694a7ac2756423eab556debe34cb))
+
+
+### Refactors
+
+* **client:** simplify cleanup ([#318](https://github.com/Modern-Treasury/modern-treasury-python/issues/318)) ([3000062](https://github.com/Modern-Treasury/modern-treasury-python/commit/3000062dde43792e8e880abf24b00388d21a3067))
+* remove unused model types used in params ([#320](https://github.com/Modern-Treasury/modern-treasury-python/issues/320)) ([7731c5c](https://github.com/Modern-Treasury/modern-treasury-python/commit/7731c5c5257f4dfab58e5a54073af53249875c10))
+* simplify internal error handling ([#319](https://github.com/Modern-Treasury/modern-treasury-python/issues/319)) ([c911df5](https://github.com/Modern-Treasury/modern-treasury-python/commit/c911df5e686b84d551d29c519fc51a839eb24ffb))
+
 ## 1.23.1 (2023-12-04)
 
 Full Changelog: [v1.23.0...v1.23.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.23.0...v1.23.1)
