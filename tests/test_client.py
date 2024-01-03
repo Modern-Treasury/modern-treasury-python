@@ -16,19 +16,10 @@ import pytest
 from respx import MockRouter
 from pydantic import ValidationError
 
-from modern_treasury import (
-    ModernTreasury,
-    AsyncModernTreasury,
-    APIResponseValidationError,
-)
+from modern_treasury import ModernTreasury, AsyncModernTreasury, APIResponseValidationError
 from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury._models import BaseModel, FinalRequestOptions
-from modern_treasury._exceptions import (
-    APIStatusError,
-    APITimeoutError,
-    ModernTreasuryError,
-    APIResponseValidationError,
-)
+from modern_treasury._exceptions import APIStatusError, APITimeoutError, ModernTreasuryError, APIResponseValidationError
 from modern_treasury._base_client import (
     DEFAULT_TIMEOUT,
     HTTPX_DEFAULT_TIMEOUT,
