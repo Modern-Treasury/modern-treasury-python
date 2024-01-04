@@ -28,7 +28,7 @@ class Reversal(BaseModel):
 
     object: str
 
-    payment_order_id: Optional[str]
+    payment_order_id: Optional[str] = None
     """The ID of the relevant Payment Order."""
 
     reason: Literal[

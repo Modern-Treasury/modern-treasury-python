@@ -14,10 +14,10 @@ class Ledger(BaseModel):
 
     created_at: datetime
 
-    description: Optional[str]
+    description: Optional[str] = None
     """An optional free-form description for internal use."""
 
-    discarded_at: Optional[datetime]
+    discarded_at: Optional[datetime] = None
 
     live_mode: bool
     """

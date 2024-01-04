@@ -16,29 +16,29 @@ class VirtualAccount(BaseModel):
     account_details: List[AccountDetail]
     """An array of account detail objects."""
 
-    counterparty_id: Optional[str]
+    counterparty_id: Optional[str] = None
     """The ID of a counterparty that the virtual account belongs to. Optional."""
 
     created_at: datetime
 
-    credit_ledger_account_id: Optional[str]
+    credit_ledger_account_id: Optional[str] = None
     """The ID of a credit normal ledger account.
 
     When money enters the virtual account, this ledger account will be credited.
     Must be accompanied by a debit_ledger_account_id if present.
     """
 
-    debit_ledger_account_id: Optional[str]
+    debit_ledger_account_id: Optional[str] = None
     """The ID of a debit normal ledger account.
 
     When money enters the virtual account, this ledger account will be debited. Must
     be accompanied by a credit_ledger_account_id if present.
     """
 
-    description: Optional[str]
+    description: Optional[str] = None
     """An optional free-form description for internal use."""
 
-    discarded_at: Optional[datetime]
+    discarded_at: Optional[datetime] = None
 
     internal_account_id: str
     """The ID of the internal account that the virtual account is in."""

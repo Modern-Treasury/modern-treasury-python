@@ -94,7 +94,7 @@ class LedgerEntry(BaseModel):
     be `credit`.
     """
 
-    discarded_at: Optional[datetime]
+    discarded_at: Optional[datetime] = None
 
     ledger_account_currency: str
     """The currency of the ledger account."""
@@ -105,7 +105,7 @@ class LedgerEntry(BaseModel):
     ledger_account_id: str
     """The ledger account that this ledger entry is associated with."""
 
-    ledger_account_lock_version: Optional[int]
+    ledger_account_lock_version: Optional[int] = None
     """Lock version of the ledger account.
 
     This can be passed when creating a ledger transaction to only succeed if no
@@ -130,7 +130,7 @@ class LedgerEntry(BaseModel):
 
     object: str
 
-    resulting_ledger_account_balances: Optional[ResultingLedgerAccountBalances]
+    resulting_ledger_account_balances: Optional[ResultingLedgerAccountBalances] = None
     """
     The pending, posted, and available balances for this ledger entry's ledger
     account. The posted balance is the sum of all posted entries on the account. The

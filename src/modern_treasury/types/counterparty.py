@@ -29,7 +29,7 @@ class AccountContactDetail(BaseModel):
 
     created_at: datetime
 
-    discarded_at: Optional[datetime]
+    discarded_at: Optional[datetime] = None
 
     live_mode: bool
     """
@@ -52,14 +52,14 @@ Please use AccountContactDetail instead.
 class AccountPartyAddress(BaseModel):
     id: str
 
-    country: Optional[str]
+    country: Optional[str] = None
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
     created_at: datetime
 
-    line1: Optional[str]
+    line1: Optional[str] = None
 
-    line2: Optional[str]
+    line2: Optional[str] = None
 
     live_mode: bool
     """
@@ -67,15 +67,15 @@ class AccountPartyAddress(BaseModel):
     if it exists in the test environment.
     """
 
-    locality: Optional[str]
+    locality: Optional[str] = None
     """Locality or City."""
 
     object: str
 
-    postal_code: Optional[str]
+    postal_code: Optional[str] = None
     """The postal code of the address."""
 
-    region: Optional[str]
+    region: Optional[str] = None
     """Region or State."""
 
     updated_at: datetime
@@ -159,9 +159,9 @@ class Counterparty(BaseModel):
 
     created_at: datetime
 
-    discarded_at: Optional[datetime]
+    discarded_at: Optional[datetime] = None
 
-    email: Optional[str]
+    email: Optional[str] = None
     """The counterparty's email."""
 
     live_mode: bool
@@ -176,7 +176,7 @@ class Counterparty(BaseModel):
     Both the key and value must be strings.
     """
 
-    name: Optional[str]
+    name: Optional[str] = None
     """A human friendly name for this counterparty."""
 
     object: str

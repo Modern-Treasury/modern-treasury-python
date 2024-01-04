@@ -18,7 +18,7 @@ class TransactionLineItem(BaseModel):
     Value in specified currency's smallest unit (taken from parent Transaction).
     """
 
-    counterparty_id: Optional[str]
+    counterparty_id: Optional[str] = None
     """The ID for the counterparty for this transaction line item."""
 
     created_at: datetime
@@ -32,9 +32,9 @@ class TransactionLineItem(BaseModel):
     https://docs.moderntreasury.com/reference/personally-identifiable-information.
     """
 
-    discarded_at: Optional[datetime]
+    discarded_at: Optional[datetime] = None
 
-    expected_payment_id: Optional[str]
+    expected_payment_id: Optional[str] = None
     """The ID of the reconciled Expected Payment, otherwise `null`."""
 
     live_mode: bool
@@ -51,7 +51,7 @@ class TransactionLineItem(BaseModel):
     transaction’s reconciliation.
     """
 
-    transactable_id: Optional[str]
+    transactable_id: Optional[str] = None
     """
     If a matching object exists in Modern Treasury, the ID will be populated here,
     otherwise `null`.
@@ -59,7 +59,7 @@ class TransactionLineItem(BaseModel):
 
     transactable_type: Optional[
         Literal["incoming_payment_detail", "paper_item", "payment_order", "payment_order_attempt", "return", "reversal"]
-    ]
+    ] = None
     """
     If a matching object exists in Modern Treasury, the type will be populated here,
     otherwise `null`.

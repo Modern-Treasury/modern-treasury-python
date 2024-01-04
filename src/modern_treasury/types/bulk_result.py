@@ -86,7 +86,7 @@ class BulkResult(BaseModel):
     This is the ID of the bulk request when `request_type` is bulk_request
     """
 
-    request_params: Optional[Dict[str, str]]
+    request_params: Optional[Dict[str, str]] = None
     """
     An optional object that contains the provided input params for the request that
     created this result. This is an item in the `resources` array for the

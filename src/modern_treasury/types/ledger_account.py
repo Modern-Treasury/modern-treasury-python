@@ -61,13 +61,13 @@ class Balances(BaseModel):
     pending_credits.
     """
 
-    effective_at_lower_bound: Optional[datetime]
+    effective_at_lower_bound: Optional[datetime] = None
     """
     The inclusive lower bound of the effective_at timestamp for the returned
     balances.
     """
 
-    effective_at_upper_bound: Optional[datetime]
+    effective_at_upper_bound: Optional[datetime] = None
     """
     The exclusive upper bound of the effective_at timestamp for the returned
     balances.
@@ -94,21 +94,21 @@ class LedgerAccount(BaseModel):
 
     created_at: datetime
 
-    description: Optional[str]
+    description: Optional[str] = None
     """The description of the ledger account."""
 
-    discarded_at: Optional[datetime]
+    discarded_at: Optional[datetime] = None
 
     ledger_id: str
     """The id of the ledger that this account belongs to."""
 
-    ledgerable_id: Optional[str]
+    ledgerable_id: Optional[str] = None
     """
     If the ledger account links to another object in Modern Treasury, the id will be
     populated here, otherwise null.
     """
 
-    ledgerable_type: Optional[Literal["external_account", "internal_account"]]
+    ledgerable_type: Optional[Literal["external_account", "internal_account"]] = None
     """
     If the ledger account links to another object in Modern Treasury, the type will
     be populated here, otherwise null. The value is one of internal_account or

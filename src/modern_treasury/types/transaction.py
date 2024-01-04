@@ -19,10 +19,10 @@ class Transaction(BaseModel):
     e.g. $10 would be represented as 1000.
     """
 
-    as_of_date: Optional[date]
+    as_of_date: Optional[date] = None
     """The date on which the transaction occurred."""
 
-    as_of_time: Optional[str]
+    as_of_time: Optional[str] = None
     """The time on which the transaction occurred.
 
     Depending on the granularity of the timestamp information received from the
@@ -31,13 +31,13 @@ class Transaction(BaseModel):
 
     created_at: datetime
 
-    currency: Optional[Currency]
+    currency: Optional[Currency] = None
     """Currency that this transaction is denominated in."""
 
     direction: str
     """Either `credit` or `debit`."""
 
-    discarded_at: Optional[datetime]
+    discarded_at: Optional[datetime] = None
 
     internal_account_id: str
     """The ID of the relevant Internal Account."""
@@ -105,7 +105,7 @@ class Transaction(BaseModel):
 
     updated_at: datetime
 
-    vendor_code: Optional[str]
+    vendor_code: Optional[str] = None
     """When applicable, the bank-given code that determines the transaction's category.
 
     For most banks this is the BAI2/BTRS transaction code.
@@ -134,7 +134,7 @@ class Transaction(BaseModel):
             "swift",
             "us_bank",
         ]
-    ]
+    ] = None
     """The type of `vendor_code` being reported.
 
     Can be one of `bai2`, `bankprov`, `bnk_dev`, `cleartouch`, `currencycloud`,
@@ -142,10 +142,10 @@ class Transaction(BaseModel):
     `jpmc`, `mx`, `signet`, `silvergate`, `swift`, `us_bank`, or others.
     """
 
-    vendor_customer_id: Optional[str]
+    vendor_customer_id: Optional[str] = None
     """An identifier given to this transaction by the bank, often `null`."""
 
-    vendor_id: Optional[str]
+    vendor_id: Optional[str] = None
     """An identifier given to this transaction by the bank."""
 
     details: Optional[Dict[str, str]] = None

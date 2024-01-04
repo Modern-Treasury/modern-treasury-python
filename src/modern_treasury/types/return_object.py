@@ -155,36 +155,36 @@ class ReturnObject(BaseModel):
             "R53",
             "currencycloud",
         ]
-    ]
+    ] = None
     """The return code. For ACH returns, this is the required ACH return code."""
 
     created_at: datetime
 
-    currency: Optional[Currency]
+    currency: Optional[Currency] = None
     """Currency that this transaction is denominated in."""
 
-    current_return: Optional[ReturnObject]
+    current_return: Optional[ReturnObject] = None
     """
     If the return's status is `returned`, this will include the return object's data
     that is returning this return.
     """
 
-    date_of_death: Optional[date]
+    date_of_death: Optional[date] = None
     """
     If the return code is `R14` or `R15` this is the date the deceased counterparty
     passed away.
     """
 
-    failure_reason: Optional[str]
+    failure_reason: Optional[str] = None
     """
     If an originating return failed to be processed by the bank, a description of
     the failure reason will be available.
     """
 
-    internal_account_id: Optional[str]
+    internal_account_id: Optional[str] = None
     """The ID of the relevant Internal Account."""
 
-    ledger_transaction_id: Optional[str]
+    ledger_transaction_id: Optional[str] = None
     """The ID of the ledger transaction linked to the return."""
 
     live_mode: bool
@@ -195,7 +195,7 @@ class ReturnObject(BaseModel):
 
     object: str
 
-    reason: Optional[str]
+    reason: Optional[str] = None
     """
     Often the bank will provide an explanation for the return, which is a short
     human readable string.
@@ -204,10 +204,12 @@ class ReturnObject(BaseModel):
     reference_numbers: List[ReferenceNumber]
     """An array of Payment Reference objects."""
 
-    returnable_id: Optional[str]
+    returnable_id: Optional[str] = None
     """The ID of the object being returned or `null`."""
 
-    returnable_type: Optional[Literal["incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"]]
+    returnable_type: Optional[
+        Literal["incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"]
+    ] = None
     """The type of object being returned or `null`."""
 
     role: Literal["originating", "receiving"]
@@ -216,10 +218,10 @@ class ReturnObject(BaseModel):
     status: Literal["completed", "failed", "pending", "processing", "returned", "sent"]
     """The current status of the return."""
 
-    transaction_id: Optional[str]
+    transaction_id: Optional[str] = None
     """The ID of the relevant Transaction or `null`."""
 
-    transaction_line_item_id: Optional[str]
+    transaction_line_item_id: Optional[str] = None
     """The ID of the relevant Transaction Line Item or `null`."""
 
     type: Literal[

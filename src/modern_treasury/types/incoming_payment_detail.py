@@ -26,7 +26,7 @@ class IncomingPaymentDetail(BaseModel):
 
     created_at: datetime
 
-    currency: Optional[Currency]
+    currency: Optional[Currency] = None
     """The currency of the incoming payment detail."""
 
     data: Dict[str, builtins.object]
@@ -41,7 +41,7 @@ class IncomingPaymentDetail(BaseModel):
     This is always present.
     """
 
-    ledger_transaction_id: Optional[str]
+    ledger_transaction_id: Optional[str] = None
     """
     The ID of the ledger transaction linked to the incoming payment detail or
     `null`.
@@ -61,16 +61,18 @@ class IncomingPaymentDetail(BaseModel):
 
     object: str
 
-    originating_account_number_safe: Optional[str]
+    originating_account_number_safe: Optional[str] = None
     """
     The last 4 digits of the originating account_number for the incoming payment
     detail.
     """
 
-    originating_account_number_type: Optional[Literal["clabe", "hk_number", "iban", "other", "pan", "wallet_address"]]
+    originating_account_number_type: Optional[
+        Literal["clabe", "hk_number", "iban", "other", "pan", "wallet_address"]
+    ] = None
     """The type of the originating account number for the incoming payment detail."""
 
-    originating_routing_number: Optional[str]
+    originating_routing_number: Optional[str] = None
     """The routing number of the originating account for the incoming payment detail."""
 
     originating_routing_number_type: Optional[
@@ -94,7 +96,7 @@ class IncomingPaymentDetail(BaseModel):
             "se_bankgiro_clearing_code",
             "swift",
         ]
-    ]
+    ] = None
     """The type of the originating routing number for the incoming payment detail."""
 
     status: Literal["completed", "pending", "returned"]
@@ -103,10 +105,10 @@ class IncomingPaymentDetail(BaseModel):
     One of `pending`, `completed`, or `returned`.
     """
 
-    transaction_id: Optional[str]
+    transaction_id: Optional[str] = None
     """The ID of the reconciled Transaction or `null`."""
 
-    transaction_line_item_id: Optional[str]
+    transaction_line_item_id: Optional[str] = None
     """The ID of the reconciled Transaction Line Item or `null`."""
 
     type: Literal["ach", "book", "check", "eft", "interac", "rtp", "sepa", "signet", "wire"]
@@ -117,16 +119,16 @@ class IncomingPaymentDetail(BaseModel):
 
     updated_at: datetime
 
-    vendor_id: Optional[str]
+    vendor_id: Optional[str] = None
     """The identifier of the vendor bank."""
 
-    virtual_account: Optional[VirtualAccount]
+    virtual_account: Optional[VirtualAccount] = None
     """
     If the incoming payment detail is in a virtual account, the serialized virtual
     account object.
     """
 
-    virtual_account_id: Optional[str]
+    virtual_account_id: Optional[str] = None
     """
     If the incoming payment detail is in a virtual account, the ID of the Virtual
     Account.
