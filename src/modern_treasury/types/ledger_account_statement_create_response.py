@@ -140,7 +140,7 @@ class LedgerAccountStatementCreateResponse(BaseModel):
 
     created_at: datetime
 
-    description: Optional[str]
+    description: Optional[str] = None
     """The description of the ledger account statement."""
 
     effective_at_lower_bound: datetime

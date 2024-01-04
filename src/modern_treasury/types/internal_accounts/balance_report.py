@@ -35,7 +35,7 @@ class Balance(BaseModel):
 
     created_at: datetime
 
-    currency: Optional[Currency]
+    currency: Optional[Currency] = None
     """The currency of the balance."""
 
     live_mode: bool
@@ -74,7 +74,7 @@ class Balance(BaseModel):
             "swift",
             "us_bank",
         ]
-    ]
+    ] = None
     """The code used by the bank when reporting this specific balance."""
 
 
@@ -91,7 +91,7 @@ class BalanceReport(BaseModel):
     as_of_date: date
     """The date of the balance report in local time."""
 
-    as_of_time: Optional[str]
+    as_of_time: Optional[str] = None
     """The time (24-hour clock) of the balance report in local time."""
 
     balance_report_type: Literal["intraday", "other", "previous_day", "real_time"]

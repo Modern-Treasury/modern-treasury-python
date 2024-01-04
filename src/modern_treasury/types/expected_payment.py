@@ -29,21 +29,21 @@ class ExpectedPayment(BaseModel):
     as 1000.
     """
 
-    counterparty_id: Optional[str]
+    counterparty_id: Optional[str] = None
     """The ID of the counterparty you expect for this payment."""
 
     created_at: datetime
 
-    currency: Optional[Currency]
+    currency: Optional[Currency] = None
     """Must conform to ISO 4217. Defaults to the currency of the internal account."""
 
-    date_lower_bound: Optional[date]
+    date_lower_bound: Optional[date] = None
     """The earliest date the payment may come in. Format: yyyy-mm-dd"""
 
-    date_upper_bound: Optional[date]
+    date_upper_bound: Optional[date] = None
     """The latest date the payment may come in. Format: yyyy-mm-dd"""
 
-    description: Optional[str]
+    description: Optional[str] = None
     """An optional description for internal use."""
 
     direction: TransactionDirection
@@ -55,7 +55,7 @@ class ExpectedPayment(BaseModel):
     internal_account_id: str
     """The ID of the Internal Account for the expected payment."""
 
-    ledger_transaction_id: Optional[str]
+    ledger_transaction_id: Optional[str] = None
     """The ID of the ledger transaction linked to the expected payment."""
 
     live_mode: bool
@@ -72,30 +72,30 @@ class ExpectedPayment(BaseModel):
 
     object: str
 
-    reconciliation_filters: Optional[builtins.object]
+    reconciliation_filters: Optional[builtins.object] = None
     """The reconciliation filters you have for this payment."""
 
-    reconciliation_groups: Optional[builtins.object]
+    reconciliation_groups: Optional[builtins.object] = None
     """The reconciliation groups you have for this payment."""
 
-    reconciliation_method: Optional[Literal["automatic", "manual"]]
+    reconciliation_method: Optional[Literal["automatic", "manual"]] = None
     """
     One of manual if this expected payment was manually reconciled in the dashboard,
     automatic if it was automatically reconciled by Modern Treasury, or null if it
     is unreconciled.
     """
 
-    reconciliation_rule_variables: Optional[List[builtins.object]]
+    reconciliation_rule_variables: Optional[List[builtins.object]] = None
     """An array of reconciliation rule variables for this payment."""
 
-    remittance_information: Optional[str]
+    remittance_information: Optional[str] = None
     """For `ach`, this field will be passed through on an addenda record.
 
     For `wire` payments the field will be passed through as the "Originator to
     Beneficiary Information", also known as OBI or Fedwire tag 6000.
     """
 
-    statement_descriptor: Optional[str]
+    statement_descriptor: Optional[str] = None
     """The statement description you expect to see on the transaction.
 
     For ACH payments, this will be the full line item passed from the bank. For wire
@@ -106,13 +106,13 @@ class ExpectedPayment(BaseModel):
     status: Literal["archived", "partially_reconciled", "reconciled", "unreconciled"]
     """One of unreconciled, reconciled, or archived."""
 
-    transaction_id: Optional[str]
+    transaction_id: Optional[str] = None
     """The ID of the Transaction this expected payment object has been matched to."""
 
-    transaction_line_item_id: Optional[str]
+    transaction_line_item_id: Optional[str] = None
     """The ID of the Transaction Line Item this expected payment has been matched to."""
 
-    type: Optional[ExpectedPaymentType]
+    type: Optional[ExpectedPaymentType] = None
     """
     One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
     sepa, signet, wire.

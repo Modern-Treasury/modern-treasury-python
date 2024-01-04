@@ -123,10 +123,10 @@ class LedgerAccountBalanceMonitor(BaseModel):
     account lock version.
     """
 
-    description: Optional[str]
+    description: Optional[str] = None
     """An optional, free-form description for internal use."""
 
-    discarded_at: Optional[datetime]
+    discarded_at: Optional[datetime] = None
 
     ledger_account_id: str
     """The ledger account associated with this balance monitor."""

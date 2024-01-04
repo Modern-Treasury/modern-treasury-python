@@ -137,7 +137,7 @@ class LedgerEntry(BaseModel):
     ledger_account_id: str
     """The ledger account that this ledger entry is associated with."""
 
-    ledger_account_lock_version: Optional[int]
+    ledger_account_lock_version: Optional[int] = None
     """Lock version of the ledger account.
 
     This can be passed when creating a ledger transaction to only succeed if no
@@ -162,7 +162,7 @@ class LedgerEntry(BaseModel):
 
     object: str
 
-    resulting_ledger_account_balances: Optional[LedgerEntryResultingLedgerAccountBalances]
+    resulting_ledger_account_balances: Optional[LedgerEntryResultingLedgerAccountBalances] = None
     """
     The pending, posted, and available balances for this ledger entry's ledger
     account. The posted balance is the sum of all posted entries on the account. The
@@ -192,7 +192,7 @@ class LedgerTransactionVersion(BaseModel):
 
     created_at: datetime
 
-    description: Optional[str]
+    description: Optional[str] = None
     """An optional description for internal use."""
 
     effective_at: datetime
@@ -207,7 +207,7 @@ class LedgerTransactionVersion(BaseModel):
     purposes.
     """
 
-    external_id: Optional[str]
+    external_id: Optional[str] = None
     """A unique string to represent the ledger transaction.
 
     Only one pending or posted ledger transaction may have this ID in the ledger.
@@ -222,7 +222,7 @@ class LedgerTransactionVersion(BaseModel):
     ledger_transaction_id: str
     """The ID of the ledger transaction"""
 
-    ledgerable_id: Optional[str]
+    ledgerable_id: Optional[str] = None
     """
     If the ledger transaction can be reconciled to another object in Modern
     Treasury, the id will be populated here, otherwise null.
@@ -241,7 +241,7 @@ class LedgerTransactionVersion(BaseModel):
             "return",
             "reversal",
         ]
-    ]
+    ] = None
     """
     If the ledger transaction can be reconciled to another object in Modern
     Treasury, the type will be populated here, otherwise null. This can be one of
@@ -262,7 +262,7 @@ class LedgerTransactionVersion(BaseModel):
 
     object: str
 
-    posted_at: Optional[datetime]
+    posted_at: Optional[datetime] = None
     """The time on which the ledger transaction posted.
 
     This is null if the ledger transaction is pending.
