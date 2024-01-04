@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, List, Union, Optional
+from typing import Dict, List, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
@@ -24,6 +24,7 @@ from ..._types import (
 )
 from ..._utils import maybe_transform
 from .versions import Versions, AsyncVersions, VersionsWithRawResponse, AsyncVersionsWithRawResponse
+from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ...pagination import SyncPage, AsyncPage
@@ -32,20 +33,17 @@ from ..._base_client import (
     make_request_options,
 )
 
-if TYPE_CHECKING:
-    from ..._client import ModernTreasury, AsyncModernTreasury
-
 __all__ = ["LedgerTransactions", "AsyncLedgerTransactions"]
 
 
 class LedgerTransactions(SyncAPIResource):
-    versions: Versions
-    with_raw_response: LedgerTransactionsWithRawResponse
+    @cached_property
+    def versions(self) -> Versions:
+        return Versions(self._client)
 
-    def __init__(self, client: ModernTreasury) -> None:
-        super().__init__(client)
-        self.versions = Versions(client)
-        self.with_raw_response = LedgerTransactionsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> LedgerTransactionsWithRawResponse:
+        return LedgerTransactionsWithRawResponse(self)
 
     def create(
         self,
@@ -448,13 +446,13 @@ class LedgerTransactions(SyncAPIResource):
 
 
 class AsyncLedgerTransactions(AsyncAPIResource):
-    versions: AsyncVersions
-    with_raw_response: AsyncLedgerTransactionsWithRawResponse
+    @cached_property
+    def versions(self) -> AsyncVersions:
+        return AsyncVersions(self._client)
 
-    def __init__(self, client: AsyncModernTreasury) -> None:
-        super().__init__(client)
-        self.versions = AsyncVersions(client)
-        self.with_raw_response = AsyncLedgerTransactionsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AsyncLedgerTransactionsWithRawResponse:
+        return AsyncLedgerTransactionsWithRawResponse(self)
 
     async def create(
         self,

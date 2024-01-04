@@ -2,16 +2,12 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 from typing_extensions import Literal
 
 import httpx
 
-from ..types import (
-    RoutingDetail,
-    routing_detail_list_params,
-    routing_detail_create_params,
-)
+from ..types import RoutingDetail, routing_detail_list_params, routing_detail_create_params
 from .._types import (
     NOT_GIVEN,
     Body,
@@ -21,6 +17,7 @@ from .._types import (
     NotGiven,
 )
 from .._utils import maybe_transform
+from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
@@ -30,18 +27,13 @@ from .._base_client import (
 )
 from ..types.shared import AccountsType
 
-if TYPE_CHECKING:
-    from .._client import ModernTreasury, AsyncModernTreasury
-
 __all__ = ["RoutingDetails", "AsyncRoutingDetails"]
 
 
 class RoutingDetails(SyncAPIResource):
-    with_raw_response: RoutingDetailsWithRawResponse
-
-    def __init__(self, client: ModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = RoutingDetailsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> RoutingDetailsWithRawResponse:
+        return RoutingDetailsWithRawResponse(self)
 
     def create(
         self,
@@ -276,11 +268,9 @@ class RoutingDetails(SyncAPIResource):
 
 
 class AsyncRoutingDetails(AsyncAPIResource):
-    with_raw_response: AsyncRoutingDetailsWithRawResponse
-
-    def __init__(self, client: AsyncModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = AsyncRoutingDetailsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AsyncRoutingDetailsWithRawResponse:
+        return AsyncRoutingDetailsWithRawResponse(self)
 
     async def create(
         self,

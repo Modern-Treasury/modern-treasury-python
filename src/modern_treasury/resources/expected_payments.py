@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, List, Union, Optional
+from typing import Dict, List, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
@@ -23,6 +23,7 @@ from .._types import (
     NotGiven,
 )
 from .._utils import maybe_transform
+from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
@@ -32,18 +33,13 @@ from .._base_client import (
 )
 from ..types.shared import Currency, TransactionDirection
 
-if TYPE_CHECKING:
-    from .._client import ModernTreasury, AsyncModernTreasury
-
 __all__ = ["ExpectedPayments", "AsyncExpectedPayments"]
 
 
 class ExpectedPayments(SyncAPIResource):
-    with_raw_response: ExpectedPaymentsWithRawResponse
-
-    def __init__(self, client: ModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = ExpectedPaymentsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> ExpectedPaymentsWithRawResponse:
+        return ExpectedPaymentsWithRawResponse(self)
 
     def create(
         self,
@@ -461,11 +457,9 @@ class ExpectedPayments(SyncAPIResource):
 
 
 class AsyncExpectedPayments(AsyncAPIResource):
-    with_raw_response: AsyncExpectedPaymentsWithRawResponse
-
-    def __init__(self, client: AsyncModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = AsyncExpectedPaymentsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AsyncExpectedPaymentsWithRawResponse:
+        return AsyncExpectedPaymentsWithRawResponse(self)
 
     async def create(
         self,
