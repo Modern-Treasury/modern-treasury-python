@@ -30,7 +30,7 @@ class ContactDetail(BaseModel):
 
     created_at: datetime
 
-    discarded_at: Optional[datetime]
+    discarded_at: Optional[datetime] = None
 
     live_mode: bool
     """
@@ -122,18 +122,18 @@ class Invoice(BaseModel):
     contact_details: List[ContactDetail]
     """The invoicer's contact details displayed at the top of the invoice."""
 
-    counterparty_billing_address: Optional[CounterpartyBillingAddress]
+    counterparty_billing_address: Optional[CounterpartyBillingAddress] = None
     """The counterparty's billing address."""
 
     counterparty_id: str
     """The ID of the counterparty receiving the invoice."""
 
-    counterparty_shipping_address: Optional[CounterpartyShippingAddress]
+    counterparty_shipping_address: Optional[CounterpartyShippingAddress] = None
     """The counterparty's shipping address where physical goods should be delivered."""
 
     created_at: datetime
 
-    currency: Optional[Currency]
+    currency: Optional[Currency] = None
     """Currency that the invoice is denominated in. Defaults to `USD` if not provided."""
 
     description: str
@@ -145,7 +145,7 @@ class Invoice(BaseModel):
     expected_payments: List[ExpectedPayment]
     """The expected payments created for an unpaid invoice."""
 
-    fallback_payment_method: Optional[str]
+    fallback_payment_method: Optional[str] = None
     """
     When payment_method is automatic, the fallback payment method to use when an
     automatic payment fails. One of `manual` or `ui`.
@@ -154,7 +154,7 @@ class Invoice(BaseModel):
     hosted_url: str
     """The URL of the hosted web UI where the invoice can be viewed."""
 
-    invoicer_address: Optional[InvoicerAddress]
+    invoicer_address: Optional[InvoicerAddress] = None
     """The invoice issuer's business address."""
 
     live_mode: bool
@@ -169,7 +169,7 @@ class Invoice(BaseModel):
     Both the key and value must be strings.
     """
 
-    notification_email_addresses: Optional[List[str]]
+    notification_email_addresses: Optional[List[str]] = None
     """
     Emails in addition to the counterparty email to send invoice status
     notifications to. At least one email is required if notifications are enabled
@@ -190,14 +190,14 @@ class Invoice(BaseModel):
     originating_account_id: str
     """The ID of the internal account the invoice should be paid to."""
 
-    payment_effective_date: Optional[date]
+    payment_effective_date: Optional[date] = None
     """Date transactions are to be posted to the participants' account.
 
     Defaults to the current business day or the next business day if the current day
     is a bank holiday or weekend. Format: yyyy-mm-dd.
     """
 
-    payment_method: Optional[Literal["ui", "manual", "automatic"]]
+    payment_method: Optional[Literal["ui", "manual", "automatic"]] = None
     """
     When opening an invoice, whether to show the embedded payment UI , automatically
     debit the recipient, or rely on manual payment from the recipient.
@@ -209,22 +209,22 @@ class Invoice(BaseModel):
     UI.
     """
 
-    payment_type: Optional[Literal["eft", "ach"]]
+    payment_type: Optional[Literal["eft", "ach"]] = None
     """One of `ach` or `eft`."""
 
-    pdf_url: Optional[str]
+    pdf_url: Optional[str] = None
     """The URL where the invoice PDF can be downloaded."""
 
-    receiving_account_id: Optional[str]
+    receiving_account_id: Optional[str] = None
     """The receiving account ID. Can be an `internal_account`."""
 
-    recipient_email: Optional[str]
+    recipient_email: Optional[str] = None
     """The email of the recipient of the invoice.
 
     Leaving this value as null will fallback to using the counterparty's name.
     """
 
-    recipient_name: Optional[str]
+    recipient_name: Optional[str] = None
     """The name of the recipient of the invoice.
 
     Leaving this value as null will fallback to using the counterparty's name.
@@ -244,7 +244,7 @@ class Invoice(BaseModel):
 
     updated_at: datetime
 
-    virtual_account_id: Optional[str]
+    virtual_account_id: Optional[str] = None
     """The ID of the virtual account the invoice should be paid to."""
 
 

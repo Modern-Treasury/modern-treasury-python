@@ -16,14 +16,14 @@ __all__ = ["InternalAccount", "PartyAddress"]
 class PartyAddress(BaseModel):
     id: str
 
-    country: Optional[str]
+    country: Optional[str] = None
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
     created_at: datetime
 
-    line1: Optional[str]
+    line1: Optional[str] = None
 
-    line2: Optional[str]
+    line2: Optional[str] = None
 
     live_mode: bool
     """
@@ -31,15 +31,15 @@ class PartyAddress(BaseModel):
     if it exists in the test environment.
     """
 
-    locality: Optional[str]
+    locality: Optional[str] = None
     """Locality or City."""
 
     object: str
 
-    postal_code: Optional[str]
+    postal_code: Optional[str] = None
     """The postal code of the address."""
 
-    region: Optional[str]
+    region: Optional[str] = None
     """Region or State."""
 
     updated_at: datetime
@@ -51,21 +51,21 @@ class InternalAccount(BaseModel):
     account_details: List[AccountDetail]
     """An array of account detail objects."""
 
-    account_type: Optional[Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]]
+    account_type: Optional[Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]] = None
     """Can be checking, savings or other."""
 
     connection: Connection
     """Specifies which financial institution the accounts belong to."""
 
-    counterparty_id: Optional[str]
+    counterparty_id: Optional[str] = None
     """The Counterparty associated to this account."""
 
     created_at: datetime
 
-    currency: Optional[Currency]
+    currency: Optional[Currency] = None
     """The currency of the account."""
 
-    ledger_account_id: Optional[str]
+    ledger_account_id: Optional[str] = None
     """
     If the internal account links to a ledger account in Modern Treasury, the id of
     the ledger account will be populated here.
@@ -83,21 +83,21 @@ class InternalAccount(BaseModel):
     Both the key and value must be strings.
     """
 
-    name: Optional[str]
+    name: Optional[str] = None
     """A nickname for the account."""
 
     object: str
 
-    parent_account_id: Optional[str]
+    parent_account_id: Optional[str] = None
     """The parent InternalAccount of this account."""
 
-    party_address: Optional[PartyAddress]
+    party_address: Optional[PartyAddress] = None
     """The address associated with the owner or null."""
 
     party_name: str
     """The legal name of the entity which owns the account."""
 
-    party_type: Optional[Literal["business", "individual"]]
+    party_type: Optional[Literal["business", "individual"]] = None
     """Either individual or business."""
 
     routing_details: List[RoutingDetail]

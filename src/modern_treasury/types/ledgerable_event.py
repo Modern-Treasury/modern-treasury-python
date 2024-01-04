@@ -14,10 +14,10 @@ class LedgerableEvent(BaseModel):
 
     created_at: datetime
 
-    custom_data: Optional[builtins.object]
+    custom_data: Optional[builtins.object] = None
     """Additionally data to be used by the Ledger Event Handler."""
 
-    description: Optional[str]
+    description: Optional[str] = None
     """Description of the ledgerable event."""
 
     ledger_event_handler_id: str
@@ -29,7 +29,7 @@ class LedgerableEvent(BaseModel):
     if it exists in the test environment.
     """
 
-    metadata: Optional[Dict[str, str]]
+    metadata: Optional[Dict[str, str]] = None
     """Additional data represented as key-value pairs.
 
     Both the key and value must be strings.

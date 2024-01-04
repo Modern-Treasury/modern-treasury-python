@@ -14,7 +14,7 @@ class DocumentDetail(BaseModel):
 
     created_at: datetime
 
-    discarded_at: Optional[datetime]
+    discarded_at: Optional[datetime] = None
 
     document_identifier: str
 
@@ -54,11 +54,11 @@ class Document(BaseModel):
 
     created_at: datetime
 
-    discarded_at: Optional[datetime]
+    discarded_at: Optional[datetime] = None
 
     document_details: List[DocumentDetail]
 
-    document_type: Optional[str]
+    document_type: Optional[str] = None
     """A category given to the document, can be `null`."""
 
     documentable_id: str

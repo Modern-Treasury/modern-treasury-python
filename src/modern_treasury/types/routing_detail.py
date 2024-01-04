@@ -12,14 +12,14 @@ __all__ = ["RoutingDetail", "BankAddress"]
 class BankAddress(BaseModel):
     id: str
 
-    country: Optional[str]
+    country: Optional[str] = None
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
     created_at: datetime
 
-    line1: Optional[str]
+    line1: Optional[str] = None
 
-    line2: Optional[str]
+    line2: Optional[str] = None
 
     live_mode: bool
     """
@@ -27,15 +27,15 @@ class BankAddress(BaseModel):
     if it exists in the test environment.
     """
 
-    locality: Optional[str]
+    locality: Optional[str] = None
     """Locality or City."""
 
     object: str
 
-    postal_code: Optional[str]
+    postal_code: Optional[str] = None
     """The postal code of the address."""
 
-    region: Optional[str]
+    region: Optional[str] = None
     """Region or State."""
 
     updated_at: datetime
@@ -44,14 +44,14 @@ class BankAddress(BaseModel):
 class RoutingDetail(BaseModel):
     id: str
 
-    bank_address: Optional[BankAddress]
+    bank_address: Optional[BankAddress] = None
 
     bank_name: str
     """The name of the bank."""
 
     created_at: datetime
 
-    discarded_at: Optional[datetime]
+    discarded_at: Optional[datetime] = None
 
     live_mode: bool
     """
@@ -94,7 +94,7 @@ class RoutingDetail(BaseModel):
             "wire",
             "zengin",
         ]
-    ]
+    ] = None
     """
     If the routing detail is to be used for a specific payment type this field will
     be populated, otherwise null.

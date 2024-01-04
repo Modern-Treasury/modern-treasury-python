@@ -12,7 +12,7 @@ __all__ = ["LedgerAccountSettlement"]
 class LedgerAccountSettlement(BaseModel):
     id: str
 
-    amount: Optional[int]
+    amount: Optional[int] = None
     """The amount of the ledger account settlement."""
 
     contra_ledger_account_id: str
@@ -26,10 +26,10 @@ class LedgerAccountSettlement(BaseModel):
     currency: str
     """The currency of the ledger account settlement."""
 
-    currency_exponent: Optional[int]
+    currency_exponent: Optional[int] = None
     """The currency exponent of the ledger account settlement."""
 
-    description: Optional[str]
+    description: Optional[str] = None
     """The description of the ledger account settlement."""
 
     effective_at_upper_bound: datetime
@@ -42,7 +42,7 @@ class LedgerAccountSettlement(BaseModel):
     ledger_id: str
     """The id of the ledger that this ledger account settlement belongs to."""
 
-    ledger_transaction_id: Optional[str]
+    ledger_transaction_id: Optional[str] = None
     """The id of the ledger transaction that this settlement is associated with."""
 
     live_mode: bool
@@ -65,7 +65,7 @@ class LedgerAccountSettlement(BaseModel):
     and its balance is reduced as a result.
     """
 
-    settlement_entry_direction: Optional[str]
+    settlement_entry_direction: Optional[str] = None
     """The direction of the ledger entry with the settlement_ledger_account."""
 
     status: Literal["archived", "archiving", "pending", "posted", "processing"]

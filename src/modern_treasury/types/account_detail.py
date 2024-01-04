@@ -23,7 +23,7 @@ class AccountDetail(BaseModel):
 
     created_at: datetime
 
-    discarded_at: Optional[datetime]
+    discarded_at: Optional[datetime] = None
 
     live_mode: bool
     """

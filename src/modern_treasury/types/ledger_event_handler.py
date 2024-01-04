@@ -45,10 +45,10 @@ Please use LedgerTransactionTemplateLedgerEntry instead.
 
 
 class LedgerTransactionTemplate(BaseModel):
-    description: Optional[str]
+    description: Optional[str] = None
     """An optional description for internal use."""
 
-    effective_at: Optional[str]
+    effective_at: Optional[str] = None
     """
     The timestamp (ISO8601 format) at which the ledger transaction happened for
     reporting purposes.
@@ -57,23 +57,23 @@ class LedgerTransactionTemplate(BaseModel):
     ledger_entries: List[LedgerTransactionTemplateLedgerEntry]
     """An array of ledger entry objects."""
 
-    status: Optional[str]
+    status: Optional[str] = None
     """To post a ledger transaction at creation, use `posted`."""
 
 
 class LedgerEventHandler(BaseModel):
     id: str
 
-    conditions: Optional[Conditions]
+    conditions: Optional[Conditions] = None
 
     created_at: datetime
 
-    description: Optional[str]
+    description: Optional[str] = None
     """An optional description."""
 
-    discarded_at: Optional[datetime]
+    discarded_at: Optional[datetime] = None
 
-    ledger_id: Optional[str]
+    ledger_id: Optional[str] = None
     """The id of the ledger that this event handler belongs to."""
 
     ledger_transaction_template: LedgerTransactionTemplate
@@ -84,7 +84,7 @@ class LedgerEventHandler(BaseModel):
     if it exists in the test environment.
     """
 
-    metadata: Optional[Dict[str, str]]
+    metadata: Optional[Dict[str, str]] = None
     """Additional data represented as key-value pairs.
 
     Both the key and value must be strings.
@@ -97,4 +97,4 @@ class LedgerEventHandler(BaseModel):
 
     updated_at: datetime
 
-    variables: Optional[Dict[str, LedgerEventHandlerVariable]]
+    variables: Optional[Dict[str, LedgerEventHandlerVariable]] = None

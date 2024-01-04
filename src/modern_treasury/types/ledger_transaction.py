@@ -15,7 +15,7 @@ class LedgerTransaction(BaseModel):
 
     created_at: datetime
 
-    description: Optional[str]
+    description: Optional[str] = None
     """An optional description for internal use."""
 
     effective_at: datetime
@@ -30,7 +30,7 @@ class LedgerTransaction(BaseModel):
     purposes.
     """
 
-    external_id: Optional[str]
+    external_id: Optional[str] = None
     """A unique string to represent the ledger transaction.
 
     Only one pending or posted ledger transaction may have this ID in the ledger.
@@ -42,7 +42,7 @@ class LedgerTransaction(BaseModel):
     ledger_id: str
     """The ID of the ledger this ledger transaction belongs to."""
 
-    ledgerable_id: Optional[str]
+    ledgerable_id: Optional[str] = None
     """
     If the ledger transaction can be reconciled to another object in Modern
     Treasury, the id will be populated here, otherwise null.
@@ -61,7 +61,7 @@ class LedgerTransaction(BaseModel):
             "return",
             "reversal",
         ]
-    ]
+    ] = None
     """
     If the ledger transaction can be reconciled to another object in Modern
     Treasury, the type will be populated here, otherwise null. This can be one of
@@ -82,13 +82,13 @@ class LedgerTransaction(BaseModel):
 
     object: str
 
-    posted_at: Optional[datetime]
+    posted_at: Optional[datetime] = None
     """The time on which the ledger transaction posted.
 
     This is null if the ledger transaction is pending.
     """
 
-    reverses_ledger_transaction_id: Optional[str]
+    reverses_ledger_transaction_id: Optional[str] = None
     """
     The ID of the original ledger transaction that this ledger transaction reverses.
     """

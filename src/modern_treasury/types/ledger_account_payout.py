@@ -12,7 +12,7 @@ __all__ = ["LedgerAccountPayout"]
 class LedgerAccountPayout(BaseModel):
     id: str
 
-    amount: Optional[int]
+    amount: Optional[int] = None
     """The amount of the ledger account payout."""
 
     created_at: datetime
@@ -20,10 +20,10 @@ class LedgerAccountPayout(BaseModel):
     currency: str
     """The currency of the ledger account payout."""
 
-    currency_exponent: Optional[int]
+    currency_exponent: Optional[int] = None
     """The currency exponent of the ledger account payout."""
 
-    description: Optional[str]
+    description: Optional[str] = None
     """The description of the ledger account payout."""
 
     effective_at_upper_bound: datetime
@@ -42,7 +42,7 @@ class LedgerAccountPayout(BaseModel):
     ledger_id: str
     """The id of the ledger that this ledger account payout belongs to."""
 
-    ledger_transaction_id: Optional[str]
+    ledger_transaction_id: Optional[str] = None
     """The id of the ledger transaction that this payout is associated with."""
 
     live_mode: bool
@@ -59,7 +59,7 @@ class LedgerAccountPayout(BaseModel):
 
     object: str
 
-    payout_entry_direction: Optional[str]
+    payout_entry_direction: Optional[str] = None
     """The direction of the ledger entry with the payout_ledger_account."""
 
     payout_ledger_account_id: str

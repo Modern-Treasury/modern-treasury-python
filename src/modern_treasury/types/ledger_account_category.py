@@ -87,10 +87,10 @@ class LedgerAccountCategory(BaseModel):
 
     created_at: datetime
 
-    description: Optional[str]
+    description: Optional[str] = None
     """The description of the ledger account category."""
 
-    discarded_at: Optional[datetime]
+    discarded_at: Optional[datetime] = None
 
     ledger_id: str
     """The id of the ledger that this account category belongs to."""

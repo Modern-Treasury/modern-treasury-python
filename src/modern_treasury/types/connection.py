@@ -13,7 +13,7 @@ class Connection(BaseModel):
 
     created_at: datetime
 
-    discarded_at: Optional[datetime]
+    discarded_at: Optional[datetime] = None
 
     live_mode: bool
     """
@@ -25,7 +25,7 @@ class Connection(BaseModel):
 
     updated_at: datetime
 
-    vendor_customer_id: Optional[str]
+    vendor_customer_id: Optional[str] = None
     """An identifier given to this connection by the bank."""
 
     vendor_id: str

@@ -21,7 +21,7 @@ class ContactDetail(BaseModel):
 
     created_at: datetime
 
-    discarded_at: Optional[datetime]
+    discarded_at: Optional[datetime] = None
 
     live_mode: bool
     """
@@ -44,14 +44,14 @@ Please use ContactDetail instead.
 class PartyAddress(BaseModel):
     id: str
 
-    country: Optional[str]
+    country: Optional[str] = None
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
     created_at: datetime
 
-    line1: Optional[str]
+    line1: Optional[str] = None
 
-    line2: Optional[str]
+    line2: Optional[str] = None
 
     live_mode: bool
     """
@@ -59,15 +59,15 @@ class PartyAddress(BaseModel):
     if it exists in the test environment.
     """
 
-    locality: Optional[str]
+    locality: Optional[str] = None
     """Locality or City."""
 
     object: str
 
-    postal_code: Optional[str]
+    postal_code: Optional[str] = None
     """The postal code of the address."""
 
-    region: Optional[str]
+    region: Optional[str] = None
     """Region or State."""
 
     updated_at: datetime
@@ -83,13 +83,13 @@ class ExternalAccount(BaseModel):
 
     contact_details: List[ContactDetail]
 
-    counterparty_id: Optional[str]
+    counterparty_id: Optional[str] = None
 
     created_at: datetime
 
-    discarded_at: Optional[datetime]
+    discarded_at: Optional[datetime] = None
 
-    ledger_account_id: Optional[str]
+    ledger_account_id: Optional[str] = None
     """
     If the external account links to a ledger account in Modern Treasury, the id of
     the ledger account will be populated here.
@@ -107,7 +107,7 @@ class ExternalAccount(BaseModel):
     Both the key and value must be strings.
     """
 
-    name: Optional[str]
+    name: Optional[str] = None
     """A nickname for the external account.
 
     This is only for internal usage and won't affect any payments
@@ -115,13 +115,13 @@ class ExternalAccount(BaseModel):
 
     object: str
 
-    party_address: Optional[PartyAddress]
+    party_address: Optional[PartyAddress] = None
     """The address associated with the owner or `null`."""
 
     party_name: str
     """The legal name of the entity which owns the account."""
 
-    party_type: Optional[Literal["business", "individual"]]
+    party_type: Optional[Literal["business", "individual"]] = None
     """Either `individual` or `business`."""
 
     routing_details: List[RoutingDetail]
