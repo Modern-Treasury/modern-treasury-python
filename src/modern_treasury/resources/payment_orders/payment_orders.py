@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, List, Union, Mapping, Optional, cast
+from typing import Dict, List, Union, Mapping, Optional, cast
 from datetime import date, datetime
 from typing_extensions import Literal
 
@@ -25,6 +25,7 @@ from ..._types import (
     NotGiven,
 )
 from ..._utils import extract_files, maybe_transform, deepcopy_minimal
+from ..._compat import cached_property
 from .reversals import Reversals, AsyncReversals, ReversalsWithRawResponse, AsyncReversalsWithRawResponse
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
@@ -33,26 +34,19 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.shared import (
-    Currency,
-    AsyncResponse,
-    TransactionDirection,
-)
-
-if TYPE_CHECKING:
-    from ..._client import ModernTreasury, AsyncModernTreasury
+from ...types.shared import Currency, AsyncResponse, TransactionDirection
 
 __all__ = ["PaymentOrders", "AsyncPaymentOrders"]
 
 
 class PaymentOrders(SyncAPIResource):
-    reversals: Reversals
-    with_raw_response: PaymentOrdersWithRawResponse
+    @cached_property
+    def reversals(self) -> Reversals:
+        return Reversals(self._client)
 
-    def __init__(self, client: ModernTreasury) -> None:
-        super().__init__(client)
-        self.reversals = Reversals(client)
-        self.with_raw_response = PaymentOrdersWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> PaymentOrdersWithRawResponse:
+        return PaymentOrdersWithRawResponse(self)
 
     def create(
         self,
@@ -922,13 +916,13 @@ class PaymentOrders(SyncAPIResource):
 
 
 class AsyncPaymentOrders(AsyncAPIResource):
-    reversals: AsyncReversals
-    with_raw_response: AsyncPaymentOrdersWithRawResponse
+    @cached_property
+    def reversals(self) -> AsyncReversals:
+        return AsyncReversals(self._client)
 
-    def __init__(self, client: AsyncModernTreasury) -> None:
-        super().__init__(client)
-        self.reversals = AsyncReversals(client)
-        self.with_raw_response = AsyncPaymentOrdersWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AsyncPaymentOrdersWithRawResponse:
+        return AsyncPaymentOrdersWithRawResponse(self)
 
     async def create(
         self,

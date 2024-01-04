@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, List, Union, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -23,6 +23,7 @@ from .._types import (
     NotGiven,
 )
 from .._utils import maybe_transform
+from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
@@ -32,18 +33,13 @@ from .._base_client import (
 )
 from ..types.shared import TransactionDirection
 
-if TYPE_CHECKING:
-    from .._client import ModernTreasury, AsyncModernTreasury
-
 __all__ = ["LedgerAccounts", "AsyncLedgerAccounts"]
 
 
 class LedgerAccounts(SyncAPIResource):
-    with_raw_response: LedgerAccountsWithRawResponse
-
-    def __init__(self, client: ModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = LedgerAccountsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> LedgerAccountsWithRawResponse:
+        return LedgerAccountsWithRawResponse(self)
 
     def create(
         self,
@@ -365,11 +361,9 @@ class LedgerAccounts(SyncAPIResource):
 
 
 class AsyncLedgerAccounts(AsyncAPIResource):
-    with_raw_response: AsyncLedgerAccountsWithRawResponse
-
-    def __init__(self, client: AsyncModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = AsyncLedgerAccountsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AsyncLedgerAccountsWithRawResponse:
+        return AsyncLedgerAccountsWithRawResponse(self)
 
     async def create(
         self,

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Union, Optional
+from typing import Dict, Union, Optional
 from datetime import datetime
 
 import httpx
@@ -15,6 +15,7 @@ from ..._types import (
     NotGiven,
 )
 from ..._utils import maybe_transform
+from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ...pagination import SyncPage, AsyncPage
@@ -24,18 +25,13 @@ from ..._base_client import (
 )
 from ...types.ledger_transactions import LedgerTransactionVersion, version_list_params
 
-if TYPE_CHECKING:
-    from ..._client import ModernTreasury, AsyncModernTreasury
-
 __all__ = ["Versions", "AsyncVersions"]
 
 
 class Versions(SyncAPIResource):
-    with_raw_response: VersionsWithRawResponse
-
-    def __init__(self, client: ModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = VersionsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> VersionsWithRawResponse:
+        return VersionsWithRawResponse(self)
 
     def list(
         self,
@@ -103,11 +99,9 @@ class Versions(SyncAPIResource):
 
 
 class AsyncVersions(AsyncAPIResource):
-    with_raw_response: AsyncVersionsWithRawResponse
-
-    def __init__(self, client: AsyncModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = AsyncVersionsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AsyncVersionsWithRawResponse:
+        return AsyncVersionsWithRawResponse(self)
 
     def list(
         self,

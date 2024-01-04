@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Union, Optional
+from typing import Dict, Union, Optional
 from datetime import date
 
 import httpx
@@ -22,6 +22,7 @@ from ..._types import (
     NotGiven,
 )
 from ..._utils import maybe_transform
+from ..._compat import cached_property
 from .line_items import LineItems, AsyncLineItems, LineItemsWithRawResponse, AsyncLineItemsWithRawResponse
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
@@ -31,20 +32,17 @@ from ..._base_client import (
     make_request_options,
 )
 
-if TYPE_CHECKING:
-    from ..._client import ModernTreasury, AsyncModernTreasury
-
 __all__ = ["Transactions", "AsyncTransactions"]
 
 
 class Transactions(SyncAPIResource):
-    line_items: LineItems
-    with_raw_response: TransactionsWithRawResponse
+    @cached_property
+    def line_items(self) -> LineItems:
+        return LineItems(self._client)
 
-    def __init__(self, client: ModernTreasury) -> None:
-        super().__init__(client)
-        self.line_items = LineItems(client)
-        self.with_raw_response = TransactionsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> TransactionsWithRawResponse:
+        return TransactionsWithRawResponse(self)
 
     def create(
         self,
@@ -334,13 +332,13 @@ class Transactions(SyncAPIResource):
 
 
 class AsyncTransactions(AsyncAPIResource):
-    line_items: AsyncLineItems
-    with_raw_response: AsyncTransactionsWithRawResponse
+    @cached_property
+    def line_items(self) -> AsyncLineItems:
+        return AsyncLineItems(self._client)
 
-    def __init__(self, client: AsyncModernTreasury) -> None:
-        super().__init__(client)
-        self.line_items = AsyncLineItems(client)
-        self.with_raw_response = AsyncTransactionsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AsyncTransactionsWithRawResponse:
+        return AsyncTransactionsWithRawResponse(self)
 
     async def create(
         self,

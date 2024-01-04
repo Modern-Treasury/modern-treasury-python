@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Optional
+from typing import Dict, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -21,6 +21,7 @@ from ..._types import (
     NotGiven,
 )
 from ..._utils import maybe_transform
+from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ...pagination import SyncPage, AsyncPage
@@ -36,20 +37,17 @@ from .balance_reports import (
     AsyncBalanceReportsWithRawResponse,
 )
 
-if TYPE_CHECKING:
-    from ..._client import ModernTreasury, AsyncModernTreasury
-
 __all__ = ["InternalAccounts", "AsyncInternalAccounts"]
 
 
 class InternalAccounts(SyncAPIResource):
-    balance_reports: BalanceReports
-    with_raw_response: InternalAccountsWithRawResponse
+    @cached_property
+    def balance_reports(self) -> BalanceReports:
+        return BalanceReports(self._client)
 
-    def __init__(self, client: ModernTreasury) -> None:
-        super().__init__(client)
-        self.balance_reports = BalanceReports(client)
-        self.with_raw_response = InternalAccountsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> InternalAccountsWithRawResponse:
+        return InternalAccountsWithRawResponse(self)
 
     def create(
         self,
@@ -321,13 +319,13 @@ class InternalAccounts(SyncAPIResource):
 
 
 class AsyncInternalAccounts(AsyncAPIResource):
-    balance_reports: AsyncBalanceReports
-    with_raw_response: AsyncInternalAccountsWithRawResponse
+    @cached_property
+    def balance_reports(self) -> AsyncBalanceReports:
+        return AsyncBalanceReports(self._client)
 
-    def __init__(self, client: AsyncModernTreasury) -> None:
-        super().__init__(client)
-        self.balance_reports = AsyncBalanceReports(client)
-        self.with_raw_response = AsyncInternalAccountsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AsyncInternalAccountsWithRawResponse:
+        return AsyncInternalAccountsWithRawResponse(self)
 
     async def create(
         self,

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Union, Optional
+from typing import Union, Optional
 from datetime import date
 
 import httpx
@@ -16,6 +16,7 @@ from .._types import (
     NotGiven,
 )
 from .._utils import maybe_transform
+from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
@@ -24,18 +25,13 @@ from .._base_client import (
     make_request_options,
 )
 
-if TYPE_CHECKING:
-    from .._client import ModernTreasury, AsyncModernTreasury
-
 __all__ = ["PaperItems", "AsyncPaperItems"]
 
 
 class PaperItems(SyncAPIResource):
-    with_raw_response: PaperItemsWithRawResponse
-
-    def __init__(self, client: ModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = PaperItemsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> PaperItemsWithRawResponse:
+        return PaperItemsWithRawResponse(self)
 
     def retrieve(
         self,
@@ -126,11 +122,9 @@ class PaperItems(SyncAPIResource):
 
 
 class AsyncPaperItems(AsyncAPIResource):
-    with_raw_response: AsyncPaperItemsWithRawResponse
-
-    def __init__(self, client: AsyncModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = AsyncPaperItemsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AsyncPaperItemsWithRawResponse:
+        return AsyncPaperItemsWithRawResponse(self)
 
     async def retrieve(
         self,

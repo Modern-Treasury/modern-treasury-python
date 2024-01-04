@@ -2,18 +2,13 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List, Union, Optional
+from typing import List, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
 import httpx
 
-from ...types import (
-    Invoice,
-    invoice_list_params,
-    invoice_create_params,
-    invoice_update_params,
-)
+from ...types import Invoice, invoice_list_params, invoice_create_params, invoice_update_params
 from ..._types import (
     NOT_GIVEN,
     Body,
@@ -23,6 +18,7 @@ from ..._types import (
     NotGiven,
 )
 from ..._utils import maybe_transform
+from ..._compat import cached_property
 from .line_items import LineItems, AsyncLineItems, LineItemsWithRawResponse, AsyncLineItemsWithRawResponse
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
@@ -33,20 +29,17 @@ from ..._base_client import (
 )
 from ...types.shared import Currency
 
-if TYPE_CHECKING:
-    from ..._client import ModernTreasury, AsyncModernTreasury
-
 __all__ = ["Invoices", "AsyncInvoices"]
 
 
 class Invoices(SyncAPIResource):
-    line_items: LineItems
-    with_raw_response: InvoicesWithRawResponse
+    @cached_property
+    def line_items(self) -> LineItems:
+        return LineItems(self._client)
 
-    def __init__(self, client: ModernTreasury) -> None:
-        super().__init__(client)
-        self.line_items = LineItems(client)
-        self.with_raw_response = InvoicesWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> InvoicesWithRawResponse:
+        return InvoicesWithRawResponse(self)
 
     def create(
         self,
@@ -503,13 +496,13 @@ class Invoices(SyncAPIResource):
 
 
 class AsyncInvoices(AsyncAPIResource):
-    line_items: AsyncLineItems
-    with_raw_response: AsyncInvoicesWithRawResponse
+    @cached_property
+    def line_items(self) -> AsyncLineItems:
+        return AsyncLineItems(self._client)
 
-    def __init__(self, client: AsyncModernTreasury) -> None:
-        super().__init__(client)
-        self.line_items = AsyncLineItems(client)
-        self.with_raw_response = AsyncInvoicesWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AsyncInvoicesWithRawResponse:
+        return AsyncInvoicesWithRawResponse(self)
 
     async def create(
         self,

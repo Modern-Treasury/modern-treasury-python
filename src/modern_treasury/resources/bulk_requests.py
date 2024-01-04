@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, List, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -16,6 +16,7 @@ from .._types import (
     NotGiven,
 )
 from .._utils import maybe_transform
+from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
@@ -24,18 +25,13 @@ from .._base_client import (
     make_request_options,
 )
 
-if TYPE_CHECKING:
-    from .._client import ModernTreasury, AsyncModernTreasury
-
 __all__ = ["BulkRequests", "AsyncBulkRequests"]
 
 
 class BulkRequests(SyncAPIResource):
-    with_raw_response: BulkRequestsWithRawResponse
-
-    def __init__(self, client: ModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = BulkRequestsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> BulkRequestsWithRawResponse:
+        return BulkRequestsWithRawResponse(self)
 
     def create(
         self,
@@ -191,11 +187,9 @@ class BulkRequests(SyncAPIResource):
 
 
 class AsyncBulkRequests(AsyncAPIResource):
-    with_raw_response: AsyncBulkRequestsWithRawResponse
-
-    def __init__(self, client: AsyncModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = AsyncBulkRequestsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AsyncBulkRequestsWithRawResponse:
+        return AsyncBulkRequestsWithRawResponse(self)
 
     async def create(
         self,

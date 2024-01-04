@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, List, Optional
+from typing import Dict, List, Optional
 
 import httpx
 
@@ -20,6 +20,7 @@ from .._types import (
     NotGiven,
 )
 from .._utils import maybe_transform
+from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
@@ -28,18 +29,13 @@ from .._base_client import (
     make_request_options,
 )
 
-if TYPE_CHECKING:
-    from .._client import ModernTreasury, AsyncModernTreasury
-
 __all__ = ["LedgerAccountBalanceMonitors", "AsyncLedgerAccountBalanceMonitors"]
 
 
 class LedgerAccountBalanceMonitors(SyncAPIResource):
-    with_raw_response: LedgerAccountBalanceMonitorsWithRawResponse
-
-    def __init__(self, client: ModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = LedgerAccountBalanceMonitorsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> LedgerAccountBalanceMonitorsWithRawResponse:
+        return LedgerAccountBalanceMonitorsWithRawResponse(self)
 
     def create(
         self,
@@ -281,11 +277,9 @@ class LedgerAccountBalanceMonitors(SyncAPIResource):
 
 
 class AsyncLedgerAccountBalanceMonitors(AsyncAPIResource):
-    with_raw_response: AsyncLedgerAccountBalanceMonitorsWithRawResponse
-
-    def __init__(self, client: AsyncModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = AsyncLedgerAccountBalanceMonitorsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AsyncLedgerAccountBalanceMonitorsWithRawResponse:
+        return AsyncLedgerAccountBalanceMonitorsWithRawResponse(self)
 
     async def create(
         self,

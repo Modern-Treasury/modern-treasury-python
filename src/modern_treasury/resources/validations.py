@@ -2,15 +2,11 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
 from typing_extensions import Literal
 
 import httpx
 
-from ..types import (
-    RoutingNumberLookupRequest,
-    validation_validate_routing_number_params,
-)
+from ..types import RoutingNumberLookupRequest, validation_validate_routing_number_params
 from .._types import (
     NOT_GIVEN,
     Body,
@@ -19,24 +15,20 @@ from .._types import (
     NotGiven,
 )
 from .._utils import maybe_transform
+from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from .._base_client import (
     make_request_options,
 )
 
-if TYPE_CHECKING:
-    from .._client import ModernTreasury, AsyncModernTreasury
-
 __all__ = ["Validations", "AsyncValidations"]
 
 
 class Validations(SyncAPIResource):
-    with_raw_response: ValidationsWithRawResponse
-
-    def __init__(self, client: ModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = ValidationsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> ValidationsWithRawResponse:
+        return ValidationsWithRawResponse(self)
 
     def validate_routing_number(
         self,
@@ -109,11 +101,9 @@ class Validations(SyncAPIResource):
 
 
 class AsyncValidations(AsyncAPIResource):
-    with_raw_response: AsyncValidationsWithRawResponse
-
-    def __init__(self, client: AsyncModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = AsyncValidationsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AsyncValidationsWithRawResponse:
+        return AsyncValidationsWithRawResponse(self)
 
     async def validate_routing_number(
         self,

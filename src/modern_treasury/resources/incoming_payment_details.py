@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Union, Optional
+from typing import Dict, Union, Optional
 from datetime import date
 from typing_extensions import Literal
 
@@ -22,6 +22,7 @@ from .._types import (
     NotGiven,
 )
 from .._utils import maybe_transform
+from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
@@ -29,24 +30,15 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.shared import (
-    Currency,
-    AsyncResponse,
-    TransactionDirection,
-)
-
-if TYPE_CHECKING:
-    from .._client import ModernTreasury, AsyncModernTreasury
+from ..types.shared import Currency, AsyncResponse, TransactionDirection
 
 __all__ = ["IncomingPaymentDetails", "AsyncIncomingPaymentDetails"]
 
 
 class IncomingPaymentDetails(SyncAPIResource):
-    with_raw_response: IncomingPaymentDetailsWithRawResponse
-
-    def __init__(self, client: ModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = IncomingPaymentDetailsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> IncomingPaymentDetailsWithRawResponse:
+        return IncomingPaymentDetailsWithRawResponse(self)
 
     def retrieve(
         self,
@@ -280,11 +272,9 @@ class IncomingPaymentDetails(SyncAPIResource):
 
 
 class AsyncIncomingPaymentDetails(AsyncAPIResource):
-    with_raw_response: AsyncIncomingPaymentDetailsWithRawResponse
-
-    def __init__(self, client: AsyncModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = AsyncIncomingPaymentDetailsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AsyncIncomingPaymentDetailsWithRawResponse:
+        return AsyncIncomingPaymentDetailsWithRawResponse(self)
 
     async def retrieve(
         self,
