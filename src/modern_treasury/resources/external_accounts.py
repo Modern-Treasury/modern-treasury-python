@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, List, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -25,6 +25,7 @@ from .._types import (
     NotGiven,
 )
 from .._utils import maybe_transform
+from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
@@ -34,18 +35,13 @@ from .._base_client import (
 )
 from ..types.shared import Currency
 
-if TYPE_CHECKING:
-    from .._client import ModernTreasury, AsyncModernTreasury
-
 __all__ = ["ExternalAccounts", "AsyncExternalAccounts"]
 
 
 class ExternalAccounts(SyncAPIResource):
-    with_raw_response: ExternalAccountsWithRawResponse
-
-    def __init__(self, client: ModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = ExternalAccountsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> ExternalAccountsWithRawResponse:
+        return ExternalAccountsWithRawResponse(self)
 
     def create(
         self,
@@ -464,11 +460,9 @@ class ExternalAccounts(SyncAPIResource):
 
 
 class AsyncExternalAccounts(AsyncAPIResource):
-    with_raw_response: AsyncExternalAccountsWithRawResponse
-
-    def __init__(self, client: AsyncModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = AsyncExternalAccountsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AsyncExternalAccountsWithRawResponse:
+        return AsyncExternalAccountsWithRawResponse(self)
 
     async def create(
         self,

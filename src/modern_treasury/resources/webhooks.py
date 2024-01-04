@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import hmac
-from typing import TYPE_CHECKING
 from hashlib import sha256
 
 from .._types import (
@@ -14,16 +13,10 @@ from .._utils import (
 )
 from .._resource import SyncAPIResource, AsyncAPIResource
 
-if TYPE_CHECKING:
-    from .._client import ModernTreasury, AsyncModernTreasury
-
 __all__ = ["Webhooks", "AsyncWebhooks"]
 
 
 class Webhooks(SyncAPIResource):
-    def __init__(self, client: ModernTreasury) -> None:
-        super().__init__(client)
-
     def get_signature(
         self,
         payload: str,
@@ -74,9 +67,6 @@ class Webhooks(SyncAPIResource):
 
 
 class AsyncWebhooks(AsyncAPIResource):
-    def __init__(self, client: AsyncModernTreasury) -> None:
-        super().__init__(client)
-
     def get_signature(
         self,
         payload: str,

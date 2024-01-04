@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Union, Optional
+from typing import Union, Optional
 from datetime import date
 from typing_extensions import Literal
 
@@ -16,6 +16,7 @@ from ..._types import (
     NotGiven,
 )
 from ..._utils import maybe_transform
+from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ...pagination import SyncPage, AsyncPage
@@ -25,18 +26,13 @@ from ..._base_client import (
 )
 from ...types.internal_accounts import BalanceReport, balance_report_list_params
 
-if TYPE_CHECKING:
-    from ..._client import ModernTreasury, AsyncModernTreasury
-
 __all__ = ["BalanceReports", "AsyncBalanceReports"]
 
 
 class BalanceReports(SyncAPIResource):
-    with_raw_response: BalanceReportsWithRawResponse
-
-    def __init__(self, client: ModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = BalanceReportsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> BalanceReportsWithRawResponse:
+        return BalanceReportsWithRawResponse(self)
 
     def retrieve(
         self,
@@ -125,11 +121,9 @@ class BalanceReports(SyncAPIResource):
 
 
 class AsyncBalanceReports(AsyncAPIResource):
-    with_raw_response: AsyncBalanceReportsWithRawResponse
-
-    def __init__(self, client: AsyncModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = AsyncBalanceReportsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AsyncBalanceReportsWithRawResponse:
+        return AsyncBalanceReportsWithRawResponse(self)
 
     async def retrieve(
         self,

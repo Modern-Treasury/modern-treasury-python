@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List, Optional
+from typing import List, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -21,6 +21,7 @@ from .._types import (
     NotGiven,
 )
 from .._utils import maybe_transform
+from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
@@ -29,18 +30,13 @@ from .._base_client import (
     make_request_options,
 )
 
-if TYPE_CHECKING:
-    from .._client import ModernTreasury, AsyncModernTreasury
-
 __all__ = ["AccountCollectionFlows", "AsyncAccountCollectionFlows"]
 
 
 class AccountCollectionFlows(SyncAPIResource):
-    with_raw_response: AccountCollectionFlowsWithRawResponse
-
-    def __init__(self, client: ModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = AccountCollectionFlowsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AccountCollectionFlowsWithRawResponse:
+        return AccountCollectionFlowsWithRawResponse(self)
 
     def create(
         self,
@@ -244,11 +240,9 @@ class AccountCollectionFlows(SyncAPIResource):
 
 
 class AsyncAccountCollectionFlows(AsyncAPIResource):
-    with_raw_response: AsyncAccountCollectionFlowsWithRawResponse
-
-    def __init__(self, client: AsyncModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = AsyncAccountCollectionFlowsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AsyncAccountCollectionFlowsWithRawResponse:
+        return AsyncAccountCollectionFlowsWithRawResponse(self)
 
     async def create(
         self,

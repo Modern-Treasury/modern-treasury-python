@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Union, Optional
+from typing import Union, Optional
 from datetime import date
 from typing_extensions import Literal
 
@@ -17,6 +17,7 @@ from .._types import (
     NotGiven,
 )
 from .._utils import maybe_transform
+from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
 from ..pagination import SyncPage, AsyncPage
@@ -25,18 +26,13 @@ from .._base_client import (
     make_request_options,
 )
 
-if TYPE_CHECKING:
-    from .._client import ModernTreasury, AsyncModernTreasury
-
 __all__ = ["Returns", "AsyncReturns"]
 
 
 class Returns(SyncAPIResource):
-    with_raw_response: ReturnsWithRawResponse
-
-    def __init__(self, client: ModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = ReturnsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> ReturnsWithRawResponse:
+        return ReturnsWithRawResponse(self)
 
     def create(
         self,
@@ -251,11 +247,9 @@ class Returns(SyncAPIResource):
 
 
 class AsyncReturns(AsyncAPIResource):
-    with_raw_response: AsyncReturnsWithRawResponse
-
-    def __init__(self, client: AsyncModernTreasury) -> None:
-        super().__init__(client)
-        self.with_raw_response = AsyncReturnsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AsyncReturnsWithRawResponse:
+        return AsyncReturnsWithRawResponse(self)
 
     async def create(
         self,
