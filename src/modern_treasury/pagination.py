@@ -5,7 +5,6 @@ from typing_extensions import override
 
 from httpx import Response
 
-from ._types import ModelT
 from ._utils import is_mapping, maybe_coerce_integer
 from ._models import BaseModel
 from ._base_client import BasePage, PageInfo, BaseSyncPage, BaseAsyncPage
@@ -14,14 +13,16 @@ __all__ = ["SyncPage", "AsyncPage"]
 
 _BaseModelT = TypeVar("_BaseModelT", bound=BaseModel)
 
+_T = TypeVar("_T")
 
-class SyncPage(BaseSyncPage[ModelT], BasePage[ModelT], Generic[ModelT]):
-    items: List[ModelT]
+
+class SyncPage(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
+    items: List[_T]
     per_page: Optional[int] = None
     after_cursor: Optional[str] = None
 
     @override
-    def _get_page_items(self) -> List[ModelT]:
+    def _get_page_items(self) -> List[_T]:
         items = self.items
         if not items:
             return []
@@ -47,13 +48,13 @@ class SyncPage(BaseSyncPage[ModelT], BasePage[ModelT], Generic[ModelT]):
         )
 
 
-class AsyncPage(BaseAsyncPage[ModelT], BasePage[ModelT], Generic[ModelT]):
-    items: List[ModelT]
+class AsyncPage(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
+    items: List[_T]
     per_page: Optional[int] = None
     after_cursor: Optional[str] = None
 
     @override
-    def _get_page_items(self) -> List[ModelT]:
+    def _get_page_items(self) -> List[_T]:
         items = self.items
         if not items:
             return []

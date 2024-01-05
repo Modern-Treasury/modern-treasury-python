@@ -8,13 +8,7 @@ from datetime import datetime
 import httpx
 
 from ..types import Ledger, ledger_list_params, ledger_create_params, ledger_update_params
-from .._types import (
-    NOT_GIVEN,
-    Body,
-    Query,
-    Headers,
-    NotGiven,
-)
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
