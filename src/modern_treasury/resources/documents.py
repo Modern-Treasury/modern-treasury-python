@@ -8,14 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import Document, document_list_params, document_create_params
-from .._types import (
-    NOT_GIVEN,
-    Body,
-    Query,
-    Headers,
-    NotGiven,
-    FileTypes,
-)
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
 from .._utils import extract_files, maybe_transform, deepcopy_minimal
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
