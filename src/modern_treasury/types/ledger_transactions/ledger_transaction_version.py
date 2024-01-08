@@ -268,8 +268,17 @@ class LedgerTransactionVersion(BaseModel):
     This is null if the ledger transaction is pending.
     """
 
+    reversed_by_ledger_transaction_id: Optional[str] = None
+    """The ID of the ledger transaction that reversed this ledger transaction."""
+
+    reverses_ledger_transaction_id: Optional[str] = None
+    """The ID of the original ledger transaction.
+
+    that this ledger transaction reverses.
+    """
+
     status: Literal["archived", "pending", "posted"]
-    """One of `pending`, `posted`, or `archived`"""
+    """One of `pending`, `posted`, or `archived`."""
 
     version: int
     """Version number of the ledger transaction."""
