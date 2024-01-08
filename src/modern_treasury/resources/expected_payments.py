@@ -47,6 +47,8 @@ class ExpectedPayments(SyncAPIResource):
         date_lower_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_upper_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        ledger_transaction: expected_payment_create_params.LedgerTransaction | NotGiven = NOT_GIVEN,
+        ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         line_items: List[expected_payment_create_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         reconciliation_filters: Optional[object] | NotGiven = NOT_GIVEN,
@@ -87,6 +89,16 @@ class ExpectedPayments(SyncAPIResource):
           date_upper_bound: The latest date the payment may come in. Format: yyyy-mm-dd
 
           description: An optional description for internal use.
+
+          ledger_transaction: Specifies a ledger transaction object that will be created with the expected
+              payment. If the ledger transaction cannot be created, then the expected payment
+              creation will fail. The resulting ledger transaction will mirror the status of
+              the expected payment.
+
+          ledger_transaction_id: Either ledger_transaction or ledger_transaction_id can be provided. Only a
+              pending ledger transaction can be attached upon expected payment creation. Once
+              the expected payment is created, the status of the ledger transaction tracks the
+              expected payment automatically.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -132,6 +144,8 @@ class ExpectedPayments(SyncAPIResource):
                     "date_lower_bound": date_lower_bound,
                     "date_upper_bound": date_upper_bound,
                     "description": description,
+                    "ledger_transaction": ledger_transaction,
+                    "ledger_transaction_id": ledger_transaction_id,
                     "line_items": line_items,
                     "metadata": metadata,
                     "reconciliation_filters": reconciliation_filters,
@@ -467,6 +481,8 @@ class AsyncExpectedPayments(AsyncAPIResource):
         date_lower_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_upper_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        ledger_transaction: expected_payment_create_params.LedgerTransaction | NotGiven = NOT_GIVEN,
+        ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         line_items: List[expected_payment_create_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         reconciliation_filters: Optional[object] | NotGiven = NOT_GIVEN,
@@ -507,6 +523,16 @@ class AsyncExpectedPayments(AsyncAPIResource):
           date_upper_bound: The latest date the payment may come in. Format: yyyy-mm-dd
 
           description: An optional description for internal use.
+
+          ledger_transaction: Specifies a ledger transaction object that will be created with the expected
+              payment. If the ledger transaction cannot be created, then the expected payment
+              creation will fail. The resulting ledger transaction will mirror the status of
+              the expected payment.
+
+          ledger_transaction_id: Either ledger_transaction or ledger_transaction_id can be provided. Only a
+              pending ledger transaction can be attached upon expected payment creation. Once
+              the expected payment is created, the status of the ledger transaction tracks the
+              expected payment automatically.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -552,6 +578,8 @@ class AsyncExpectedPayments(AsyncAPIResource):
                     "date_lower_bound": date_lower_bound,
                     "date_upper_bound": date_upper_bound,
                     "description": description,
+                    "ledger_transaction": ledger_transaction,
+                    "ledger_transaction_id": ledger_transaction_id,
                     "line_items": line_items,
                     "metadata": metadata,
                     "reconciliation_filters": reconciliation_filters,
