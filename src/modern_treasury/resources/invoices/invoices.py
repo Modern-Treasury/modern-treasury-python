@@ -47,7 +47,9 @@ class Invoices(SyncAPIResource):
         currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         fallback_payment_method: Optional[str] | NotGiven = NOT_GIVEN,
+        ingest_ledger_entries: Optional[bool] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_create_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
+        ledger_account_settlement_id: Optional[str] | NotGiven = NOT_GIVEN,
         notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
         notifications_enabled: bool | NotGiven = NOT_GIVEN,
         payment_effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
@@ -120,7 +122,13 @@ class Invoices(SyncAPIResource):
           fallback_payment_method: When payment_method is automatic, the fallback payment method to use when an
               automatic payment fails. One of `manual` or `ui`.
 
+          ingest_ledger_entries: Whether to ingest the ledger_entries to populate the invoice line items. If this
+              is false, then a line item must be provided. If this is true, line_items must be
+              empty. Ignored if ledger_account_settlement_id is empty.
+
           invoicer_address: The invoice issuer's business address.
+
+          ledger_account_settlement_id: The ID of the virtual account the invoice should be paid to.
 
           notification_email_addresses: Emails in addition to the counterparty email to send invoice status
               notifications to. At least one email is required if notifications are enabled
@@ -177,7 +185,9 @@ class Invoices(SyncAPIResource):
                     "currency": currency,
                     "description": description,
                     "fallback_payment_method": fallback_payment_method,
+                    "ingest_ledger_entries": ingest_ledger_entries,
                     "invoicer_address": invoicer_address,
+                    "ledger_account_settlement_id": ledger_account_settlement_id,
                     "notification_email_addresses": notification_email_addresses,
                     "notifications_enabled": notifications_enabled,
                     "payment_effective_date": payment_effective_date,
@@ -244,7 +254,9 @@ class Invoices(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         due_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
         fallback_payment_method: Optional[str] | NotGiven = NOT_GIVEN,
+        ingest_ledger_entries: Optional[bool] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_update_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
+        ledger_account_settlement_id: Optional[str] | NotGiven = NOT_GIVEN,
         notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
         notifications_enabled: bool | NotGiven = NOT_GIVEN,
         originating_account_id: str | NotGiven = NOT_GIVEN,
@@ -317,7 +329,13 @@ class Invoices(SyncAPIResource):
           fallback_payment_method: When payment_method is automatic, the fallback payment method to use when an
               automatic payment fails. One of `manual` or `ui`.
 
+          ingest_ledger_entries: Whether to ingest the ledger_entries to populate the invoice line items. If this
+              is false, then a line item must be provided. If this is true, line_items must be
+              empty. Ignored if ledger_account_settlement_id is empty.
+
           invoicer_address: The invoice issuer's business address.
+
+          ledger_account_settlement_id: The ID of the virtual account the invoice should be paid to.
 
           notification_email_addresses: Emails in addition to the counterparty email to send invoice status
               notifications to. At least one email is required if notifications are enabled
@@ -379,7 +397,9 @@ class Invoices(SyncAPIResource):
                     "description": description,
                     "due_date": due_date,
                     "fallback_payment_method": fallback_payment_method,
+                    "ingest_ledger_entries": ingest_ledger_entries,
                     "invoicer_address": invoicer_address,
+                    "ledger_account_settlement_id": ledger_account_settlement_id,
                     "notification_email_addresses": notification_email_addresses,
                     "notifications_enabled": notifications_enabled,
                     "originating_account_id": originating_account_id,
@@ -510,7 +530,9 @@ class AsyncInvoices(AsyncAPIResource):
         currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         fallback_payment_method: Optional[str] | NotGiven = NOT_GIVEN,
+        ingest_ledger_entries: Optional[bool] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_create_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
+        ledger_account_settlement_id: Optional[str] | NotGiven = NOT_GIVEN,
         notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
         notifications_enabled: bool | NotGiven = NOT_GIVEN,
         payment_effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
@@ -583,7 +605,13 @@ class AsyncInvoices(AsyncAPIResource):
           fallback_payment_method: When payment_method is automatic, the fallback payment method to use when an
               automatic payment fails. One of `manual` or `ui`.
 
+          ingest_ledger_entries: Whether to ingest the ledger_entries to populate the invoice line items. If this
+              is false, then a line item must be provided. If this is true, line_items must be
+              empty. Ignored if ledger_account_settlement_id is empty.
+
           invoicer_address: The invoice issuer's business address.
+
+          ledger_account_settlement_id: The ID of the virtual account the invoice should be paid to.
 
           notification_email_addresses: Emails in addition to the counterparty email to send invoice status
               notifications to. At least one email is required if notifications are enabled
@@ -640,7 +668,9 @@ class AsyncInvoices(AsyncAPIResource):
                     "currency": currency,
                     "description": description,
                     "fallback_payment_method": fallback_payment_method,
+                    "ingest_ledger_entries": ingest_ledger_entries,
                     "invoicer_address": invoicer_address,
+                    "ledger_account_settlement_id": ledger_account_settlement_id,
                     "notification_email_addresses": notification_email_addresses,
                     "notifications_enabled": notifications_enabled,
                     "payment_effective_date": payment_effective_date,
@@ -707,7 +737,9 @@ class AsyncInvoices(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         due_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
         fallback_payment_method: Optional[str] | NotGiven = NOT_GIVEN,
+        ingest_ledger_entries: Optional[bool] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_update_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
+        ledger_account_settlement_id: Optional[str] | NotGiven = NOT_GIVEN,
         notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
         notifications_enabled: bool | NotGiven = NOT_GIVEN,
         originating_account_id: str | NotGiven = NOT_GIVEN,
@@ -780,7 +812,13 @@ class AsyncInvoices(AsyncAPIResource):
           fallback_payment_method: When payment_method is automatic, the fallback payment method to use when an
               automatic payment fails. One of `manual` or `ui`.
 
+          ingest_ledger_entries: Whether to ingest the ledger_entries to populate the invoice line items. If this
+              is false, then a line item must be provided. If this is true, line_items must be
+              empty. Ignored if ledger_account_settlement_id is empty.
+
           invoicer_address: The invoice issuer's business address.
+
+          ledger_account_settlement_id: The ID of the virtual account the invoice should be paid to.
 
           notification_email_addresses: Emails in addition to the counterparty email to send invoice status
               notifications to. At least one email is required if notifications are enabled
@@ -842,7 +880,9 @@ class AsyncInvoices(AsyncAPIResource):
                     "description": description,
                     "due_date": due_date,
                     "fallback_payment_method": fallback_payment_method,
+                    "ingest_ledger_entries": ingest_ledger_entries,
                     "invoicer_address": invoicer_address,
+                    "ledger_account_settlement_id": ledger_account_settlement_id,
                     "notification_email_addresses": notification_email_addresses,
                     "notifications_enabled": notifications_enabled,
                     "originating_account_id": originating_account_id,
