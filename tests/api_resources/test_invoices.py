@@ -93,6 +93,7 @@ class TestInvoices:
             currency="AED",
             description="string",
             fallback_payment_method="string",
+            ingest_ledger_entries=True,
             invoicer_address={
                 "line1": "string",
                 "line2": "string",
@@ -101,6 +102,7 @@ class TestInvoices:
                 "postal_code": "string",
                 "country": "string",
             },
+            ledger_account_settlement_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             notification_email_addresses=["string", "string", "string"],
             notifications_enabled=True,
             payment_effective_date=parse_date("2019-12-27"),
@@ -109,7 +111,7 @@ class TestInvoices:
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             recipient_email="string",
             recipient_name="string",
-            virtual_account_id="string",
+            virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(Invoice, invoice, path=["response"])
 
@@ -204,6 +206,7 @@ class TestInvoices:
             description="string",
             due_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             fallback_payment_method="string",
+            ingest_ledger_entries=True,
             invoicer_address={
                 "line1": "string",
                 "line2": "string",
@@ -212,6 +215,7 @@ class TestInvoices:
                 "postal_code": "string",
                 "country": "string",
             },
+            ledger_account_settlement_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             notification_email_addresses=["string", "string", "string"],
             notifications_enabled=True,
             originating_account_id="string",
@@ -222,7 +226,7 @@ class TestInvoices:
             recipient_email="string",
             recipient_name="string",
             status="string",
-            virtual_account_id="string",
+            virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(Invoice, invoice, path=["response"])
 
@@ -349,6 +353,7 @@ class TestAsyncInvoices:
             currency="AED",
             description="string",
             fallback_payment_method="string",
+            ingest_ledger_entries=True,
             invoicer_address={
                 "line1": "string",
                 "line2": "string",
@@ -357,6 +362,7 @@ class TestAsyncInvoices:
                 "postal_code": "string",
                 "country": "string",
             },
+            ledger_account_settlement_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             notification_email_addresses=["string", "string", "string"],
             notifications_enabled=True,
             payment_effective_date=parse_date("2019-12-27"),
@@ -365,7 +371,7 @@ class TestAsyncInvoices:
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             recipient_email="string",
             recipient_name="string",
-            virtual_account_id="string",
+            virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(Invoice, invoice, path=["response"])
 
@@ -460,6 +466,7 @@ class TestAsyncInvoices:
             description="string",
             due_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             fallback_payment_method="string",
+            ingest_ledger_entries=True,
             invoicer_address={
                 "line1": "string",
                 "line2": "string",
@@ -468,6 +475,7 @@ class TestAsyncInvoices:
                 "postal_code": "string",
                 "country": "string",
             },
+            ledger_account_settlement_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             notification_email_addresses=["string", "string", "string"],
             notifications_enabled=True,
             originating_account_id="string",
@@ -478,7 +486,7 @@ class TestAsyncInvoices:
             recipient_email="string",
             recipient_name="string",
             status="string",
-            virtual_account_id="string",
+            virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(Invoice, invoice, path=["response"])
 

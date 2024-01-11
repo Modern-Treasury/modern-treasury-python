@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import List, Union, Optional
 from datetime import date
 from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -18,7 +18,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.internal_accounts import BalanceReport, balance_report_list_params
+from ...types.internal_accounts import BalanceReport, balance_report_list_params, balance_report_create_params
 
 __all__ = ["BalanceReports", "AsyncBalanceReports"]
 
@@ -27,6 +27,71 @@ class BalanceReports(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> BalanceReportsWithRawResponse:
         return BalanceReportsWithRawResponse(self)
+
+    def create(
+        self,
+        internal_account_id: str,
+        *,
+        amount: int,
+        as_of_date: Union[str, date],
+        as_of_time: str,
+        balance_report_type: Literal["intraday", "other", "previous_day", "real_time"],
+        balances: List[balance_report_create_params.Balance],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        idempotency_key: str | None = None,
+    ) -> BalanceReport:
+        """
+        create balance reports
+
+        Args:
+          amount: Value in specified currency's smallest unit. e.g. $10 would be represented
+              as 1000.
+
+          as_of_date: The date of the balance report in local time.
+
+          as_of_time: The time (24-hour clock) of the balance report in local time.
+
+          balance_report_type: The specific type of balance report. One of `intraday`, `previous_day`,
+              `real_time`, or `other`.
+
+          balances: An array of `Balance` objects.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        return self._post(
+            f"/api/internal_accounts/{internal_account_id}/balance_reports",
+            body=maybe_transform(
+                {
+                    "amount": amount,
+                    "as_of_date": as_of_date,
+                    "as_of_time": as_of_time,
+                    "balance_report_type": balance_report_type,
+                    "balances": balances,
+                },
+                balance_report_create_params.BalanceReportCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=BalanceReport,
+        )
 
     def retrieve(
         self,
@@ -113,11 +178,116 @@ class BalanceReports(SyncAPIResource):
             model=BalanceReport,
         )
 
+    def delete(
+        self,
+        id: str,
+        *,
+        internal_account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        idempotency_key: str | None = None,
+    ) -> None:
+        """
+        Deletes a given balance report.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._delete(
+            f"/api/internal_accounts/{internal_account_id}/balance_reports/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=NoneType,
+        )
+
 
 class AsyncBalanceReports(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncBalanceReportsWithRawResponse:
         return AsyncBalanceReportsWithRawResponse(self)
+
+    async def create(
+        self,
+        internal_account_id: str,
+        *,
+        amount: int,
+        as_of_date: Union[str, date],
+        as_of_time: str,
+        balance_report_type: Literal["intraday", "other", "previous_day", "real_time"],
+        balances: List[balance_report_create_params.Balance],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        idempotency_key: str | None = None,
+    ) -> BalanceReport:
+        """
+        create balance reports
+
+        Args:
+          amount: Value in specified currency's smallest unit. e.g. $10 would be represented
+              as 1000.
+
+          as_of_date: The date of the balance report in local time.
+
+          as_of_time: The time (24-hour clock) of the balance report in local time.
+
+          balance_report_type: The specific type of balance report. One of `intraday`, `previous_day`,
+              `real_time`, or `other`.
+
+          balances: An array of `Balance` objects.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        return await self._post(
+            f"/api/internal_accounts/{internal_account_id}/balance_reports",
+            body=maybe_transform(
+                {
+                    "amount": amount,
+                    "as_of_date": as_of_date,
+                    "as_of_time": as_of_time,
+                    "balance_report_type": balance_report_type,
+                    "balances": balances,
+                },
+                balance_report_create_params.BalanceReportCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=BalanceReport,
+        )
 
     async def retrieve(
         self,
@@ -204,22 +374,74 @@ class AsyncBalanceReports(AsyncAPIResource):
             model=BalanceReport,
         )
 
+    async def delete(
+        self,
+        id: str,
+        *,
+        internal_account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        idempotency_key: str | None = None,
+    ) -> None:
+        """
+        Deletes a given balance report.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._delete(
+            f"/api/internal_accounts/{internal_account_id}/balance_reports/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=NoneType,
+        )
+
 
 class BalanceReportsWithRawResponse:
     def __init__(self, balance_reports: BalanceReports) -> None:
+        self.create = to_raw_response_wrapper(
+            balance_reports.create,
+        )
         self.retrieve = to_raw_response_wrapper(
             balance_reports.retrieve,
         )
         self.list = to_raw_response_wrapper(
             balance_reports.list,
         )
+        self.delete = to_raw_response_wrapper(
+            balance_reports.delete,
+        )
 
 
 class AsyncBalanceReportsWithRawResponse:
     def __init__(self, balance_reports: AsyncBalanceReports) -> None:
+        self.create = async_to_raw_response_wrapper(
+            balance_reports.create,
+        )
         self.retrieve = async_to_raw_response_wrapper(
             balance_reports.retrieve,
         )
         self.list = async_to_raw_response_wrapper(
             balance_reports.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            balance_reports.delete,
         )

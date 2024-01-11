@@ -51,31 +51,13 @@ class Balance(BaseModel):
     vendor_code: str
     """The code used by the bank when reporting this specific balance."""
 
-    vendor_code_type: Optional[
-        Literal[
-            "bai2",
-            "bankprov",
-            "bnk_dev",
-            "cleartouch",
-            "column",
-            "cross_river",
-            "currencycloud",
-            "dc_bank",
-            "dwolla",
-            "evolve",
-            "goldman_sachs",
-            "iso20022",
-            "jpmc",
-            "mx",
-            "plaid",
-            "rspec_vendor",
-            "signet",
-            "silvergate",
-            "swift",
-            "us_bank",
-        ]
-    ] = None
-    """The code used by the bank when reporting this specific balance."""
+    vendor_code_type: Optional[str] = None
+    """The type of `vendor_code` being reported.
+
+    Can be one of `bai2`, `bankprov`, `bnk_dev`, `cleartouch`, `currencycloud`,
+    `cross_river`, `dc_bank`, `dwolla`, `evolve`, `goldman_sachs`, `iso20022`,
+    `jpmc`, `mx`, `signet`, `silvergate`, `swift`, or `us_bank`.
+    """
 
 
 Balances = Balance

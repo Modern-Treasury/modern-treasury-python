@@ -50,8 +50,18 @@ class InvoiceCreateParams(TypedDict, total=False):
     automatic payment fails. One of `manual` or `ui`.
     """
 
+    ingest_ledger_entries: Optional[bool]
+    """Whether to ingest the ledger_entries to populate the invoice line items.
+
+    If this is false, then a line item must be provided. If this is true, line_items
+    must be empty. Ignored if ledger_account_settlement_id is empty.
+    """
+
     invoicer_address: Optional[InvoicerAddress]
     """The invoice issuer's business address."""
+
+    ledger_account_settlement_id: Optional[str]
+    """The ID of the virtual account the invoice should be paid to."""
 
     notification_email_addresses: Optional[List[str]]
     """
