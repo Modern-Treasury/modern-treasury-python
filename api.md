@@ -223,8 +223,10 @@ from modern_treasury.types.internal_accounts import BalanceReport
 
 Methods:
 
+- <code title="post /api/internal_accounts/{internal_account_id}/balance_reports">client.internal_accounts.balance_reports.<a href="./src/modern_treasury/resources/internal_accounts/balance_reports.py">create</a>(internal_account_id, \*\*<a href="src/modern_treasury/types/internal_accounts/balance_report_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/internal_accounts/balance_report.py">BalanceReport</a></code>
 - <code title="get /api/internal_accounts/{internal_account_id}/balance_reports/{id}">client.internal_accounts.balance_reports.<a href="./src/modern_treasury/resources/internal_accounts/balance_reports.py">retrieve</a>(id, \*, internal_account_id) -> <a href="./src/modern_treasury/types/internal_accounts/balance_report.py">BalanceReport</a></code>
 - <code title="get /api/internal_accounts/{internal_account_id}/balance_reports">client.internal_accounts.balance_reports.<a href="./src/modern_treasury/resources/internal_accounts/balance_reports.py">list</a>(internal_account_id, \*\*<a href="src/modern_treasury/types/internal_accounts/balance_report_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/internal_accounts/balance_report.py">SyncPage[BalanceReport]</a></code>
+- <code title="delete /api/internal_accounts/{internal_account_id}/balance_reports/{id}">client.internal_accounts.balance_reports.<a href="./src/modern_treasury/resources/internal_accounts/balance_reports.py">delete</a>(id, \*, internal_account_id) -> None</code>
 
 # Ledgers
 

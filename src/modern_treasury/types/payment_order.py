@@ -109,6 +109,7 @@ class ReferenceNumber(BaseModel):
         "svb_transaction_held_for_sanctions_review",
         "swift_mir",
         "swift_uetr",
+        "umb_product_partner_account_number",
         "usbank_payment_id",
         "wells_fargo_payment_id",
         "wells_fargo_trace_number",
