@@ -10,7 +10,7 @@ https://user-images.githubusercontent.com/704302/216504942-09ed8dd7-7f44-40a6-a5
 
 ## Documentation
 
-The API documentation can be found [here](https://docs.moderntreasury.com).
+The REST API documentation can be found [on docs.moderntreasury.com](https://docs.moderntreasury.com). The full API of this library can be found in [api.md](https://www.github.com/Modern-Treasury/modern-treasury-python/blob/main/api.md).
 
 ## Installation
 
