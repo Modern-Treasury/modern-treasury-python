@@ -6,6 +6,7 @@ from typing import Dict, List, Optional
 
 import httpx
 
+from .. import _legacy_response
 from ..types import (
     LedgerAccountBalanceMonitor,
     ledger_account_balance_monitor_list_params,
@@ -16,7 +17,7 @@ from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import (
     AsyncPaginator,
@@ -30,6 +31,10 @@ class LedgerAccountBalanceMonitors(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> LedgerAccountBalanceMonitorsWithRawResponse:
         return LedgerAccountBalanceMonitorsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> LedgerAccountBalanceMonitorsWithStreamingResponse:
+        return LedgerAccountBalanceMonitorsWithStreamingResponse(self)
 
     def create(
         self,
@@ -275,6 +280,10 @@ class AsyncLedgerAccountBalanceMonitors(AsyncAPIResource):
     def with_raw_response(self) -> AsyncLedgerAccountBalanceMonitorsWithRawResponse:
         return AsyncLedgerAccountBalanceMonitorsWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> AsyncLedgerAccountBalanceMonitorsWithStreamingResponse:
+        return AsyncLedgerAccountBalanceMonitorsWithStreamingResponse(self)
+
     async def create(
         self,
         *,
@@ -516,37 +525,75 @@ class AsyncLedgerAccountBalanceMonitors(AsyncAPIResource):
 
 class LedgerAccountBalanceMonitorsWithRawResponse:
     def __init__(self, ledger_account_balance_monitors: LedgerAccountBalanceMonitors) -> None:
-        self.create = to_raw_response_wrapper(
+        self.create = _legacy_response.to_raw_response_wrapper(
             ledger_account_balance_monitors.create,
         )
-        self.retrieve = to_raw_response_wrapper(
+        self.retrieve = _legacy_response.to_raw_response_wrapper(
             ledger_account_balance_monitors.retrieve,
         )
-        self.update = to_raw_response_wrapper(
+        self.update = _legacy_response.to_raw_response_wrapper(
             ledger_account_balance_monitors.update,
         )
-        self.list = to_raw_response_wrapper(
+        self.list = _legacy_response.to_raw_response_wrapper(
             ledger_account_balance_monitors.list,
         )
-        self.delete = to_raw_response_wrapper(
+        self.delete = _legacy_response.to_raw_response_wrapper(
             ledger_account_balance_monitors.delete,
         )
 
 
 class AsyncLedgerAccountBalanceMonitorsWithRawResponse:
     def __init__(self, ledger_account_balance_monitors: AsyncLedgerAccountBalanceMonitors) -> None:
-        self.create = async_to_raw_response_wrapper(
+        self.create = _legacy_response.async_to_raw_response_wrapper(
             ledger_account_balance_monitors.create,
         )
-        self.retrieve = async_to_raw_response_wrapper(
+        self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             ledger_account_balance_monitors.retrieve,
         )
-        self.update = async_to_raw_response_wrapper(
+        self.update = _legacy_response.async_to_raw_response_wrapper(
             ledger_account_balance_monitors.update,
         )
-        self.list = async_to_raw_response_wrapper(
+        self.list = _legacy_response.async_to_raw_response_wrapper(
             ledger_account_balance_monitors.list,
         )
-        self.delete = async_to_raw_response_wrapper(
+        self.delete = _legacy_response.async_to_raw_response_wrapper(
+            ledger_account_balance_monitors.delete,
+        )
+
+
+class LedgerAccountBalanceMonitorsWithStreamingResponse:
+    def __init__(self, ledger_account_balance_monitors: LedgerAccountBalanceMonitors) -> None:
+        self.create = to_streamed_response_wrapper(
+            ledger_account_balance_monitors.create,
+        )
+        self.retrieve = to_streamed_response_wrapper(
+            ledger_account_balance_monitors.retrieve,
+        )
+        self.update = to_streamed_response_wrapper(
+            ledger_account_balance_monitors.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            ledger_account_balance_monitors.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            ledger_account_balance_monitors.delete,
+        )
+
+
+class AsyncLedgerAccountBalanceMonitorsWithStreamingResponse:
+    def __init__(self, ledger_account_balance_monitors: AsyncLedgerAccountBalanceMonitors) -> None:
+        self.create = async_to_streamed_response_wrapper(
+            ledger_account_balance_monitors.create,
+        )
+        self.retrieve = async_to_streamed_response_wrapper(
+            ledger_account_balance_monitors.retrieve,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            ledger_account_balance_monitors.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            ledger_account_balance_monitors.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
             ledger_account_balance_monitors.delete,
         )

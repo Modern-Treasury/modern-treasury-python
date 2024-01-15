@@ -9,7 +9,7 @@ from typing_extensions import Self, override
 
 import httpx
 
-from . import resources, _exceptions
+from . import resources, _exceptions, _legacy_response
 from ._qs import Querystring
 from .types import PingResponse
 from ._types import (
@@ -30,7 +30,7 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
-from ._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from ._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError, ModernTreasuryError
 from ._base_client import (
@@ -93,6 +93,7 @@ class ModernTreasury(SyncAPIClient):
     bulk_results: resources.BulkResults
     ledger_account_settlements: resources.LedgerAccountSettlements
     with_raw_response: ModernTreasuryWithRawResponse
+    with_streaming_response: ModernTreasuryWithStreamedResponse
 
     # client options
     api_key: str
@@ -212,6 +213,7 @@ class ModernTreasury(SyncAPIClient):
         self.bulk_results = resources.BulkResults(self)
         self.ledger_account_settlements = resources.LedgerAccountSettlements(self)
         self.with_raw_response = ModernTreasuryWithRawResponse(self)
+        self.with_streaming_response = ModernTreasuryWithStreamedResponse(self)
 
     @property
     @override
@@ -401,6 +403,7 @@ class AsyncModernTreasury(AsyncAPIClient):
     bulk_results: resources.AsyncBulkResults
     ledger_account_settlements: resources.AsyncLedgerAccountSettlements
     with_raw_response: AsyncModernTreasuryWithRawResponse
+    with_streaming_response: AsyncModernTreasuryWithStreamedResponse
 
     # client options
     api_key: str
@@ -520,6 +523,7 @@ class AsyncModernTreasury(AsyncAPIClient):
         self.bulk_results = resources.AsyncBulkResults(self)
         self.ledger_account_settlements = resources.AsyncLedgerAccountSettlements(self)
         self.with_raw_response = AsyncModernTreasuryWithRawResponse(self)
+        self.with_streaming_response = AsyncModernTreasuryWithStreamedResponse(self)
 
     @property
     @override
@@ -717,7 +721,7 @@ class ModernTreasuryWithRawResponse:
             client.ledger_account_settlements
         )
 
-        self.ping = to_raw_response_wrapper(
+        self.ping = _legacy_response.to_raw_response_wrapper(
             client.ping,
         )
 
@@ -771,7 +775,119 @@ class AsyncModernTreasuryWithRawResponse:
             client.ledger_account_settlements
         )
 
-        self.ping = async_to_raw_response_wrapper(
+        self.ping = _legacy_response.async_to_raw_response_wrapper(
+            client.ping,
+        )
+
+
+class ModernTreasuryWithStreamedResponse:
+    def __init__(self, client: ModernTreasury) -> None:
+        self.connections = resources.ConnectionsWithStreamingResponse(client.connections)
+        self.counterparties = resources.CounterpartiesWithStreamingResponse(client.counterparties)
+        self.events = resources.EventsWithStreamingResponse(client.events)
+        self.expected_payments = resources.ExpectedPaymentsWithStreamingResponse(client.expected_payments)
+        self.external_accounts = resources.ExternalAccountsWithStreamingResponse(client.external_accounts)
+        self.incoming_payment_details = resources.IncomingPaymentDetailsWithStreamingResponse(
+            client.incoming_payment_details
+        )
+        self.invoices = resources.InvoicesWithStreamingResponse(client.invoices)
+        self.documents = resources.DocumentsWithStreamingResponse(client.documents)
+        self.account_collection_flows = resources.AccountCollectionFlowsWithStreamingResponse(
+            client.account_collection_flows
+        )
+        self.account_details = resources.AccountDetailsWithStreamingResponse(client.account_details)
+        self.routing_details = resources.RoutingDetailsWithStreamingResponse(client.routing_details)
+        self.internal_accounts = resources.InternalAccountsWithStreamingResponse(client.internal_accounts)
+        self.ledgers = resources.LedgersWithStreamingResponse(client.ledgers)
+        self.ledgerable_events = resources.LedgerableEventsWithStreamingResponse(client.ledgerable_events)
+        self.ledger_account_categories = resources.LedgerAccountCategoriesWithStreamingResponse(
+            client.ledger_account_categories
+        )
+        self.ledger_accounts = resources.LedgerAccountsWithStreamingResponse(client.ledger_accounts)
+        self.ledger_account_balance_monitors = resources.LedgerAccountBalanceMonitorsWithStreamingResponse(
+            client.ledger_account_balance_monitors
+        )
+        self.ledger_account_payouts = resources.LedgerAccountPayoutsWithStreamingResponse(client.ledger_account_payouts)
+        self.ledger_account_statements = resources.LedgerAccountStatementsWithStreamingResponse(
+            client.ledger_account_statements
+        )
+        self.ledger_entries = resources.LedgerEntriesWithStreamingResponse(client.ledger_entries)
+        self.ledger_event_handlers = resources.LedgerEventHandlersWithStreamingResponse(client.ledger_event_handlers)
+        self.ledger_transactions = resources.LedgerTransactionsWithStreamingResponse(client.ledger_transactions)
+        self.line_items = resources.LineItemsWithStreamingResponse(client.line_items)
+        self.payment_flows = resources.PaymentFlowsWithStreamingResponse(client.payment_flows)
+        self.payment_orders = resources.PaymentOrdersWithStreamingResponse(client.payment_orders)
+        self.payment_references = resources.PaymentReferencesWithStreamingResponse(client.payment_references)
+        self.returns = resources.ReturnsWithStreamingResponse(client.returns)
+        self.transactions = resources.TransactionsWithStreamingResponse(client.transactions)
+        self.validations = resources.ValidationsWithStreamingResponse(client.validations)
+        self.paper_items = resources.PaperItemsWithStreamingResponse(client.paper_items)
+        self.virtual_accounts = resources.VirtualAccountsWithStreamingResponse(client.virtual_accounts)
+        self.bulk_requests = resources.BulkRequestsWithStreamingResponse(client.bulk_requests)
+        self.bulk_results = resources.BulkResultsWithStreamingResponse(client.bulk_results)
+        self.ledger_account_settlements = resources.LedgerAccountSettlementsWithStreamingResponse(
+            client.ledger_account_settlements
+        )
+
+        self.ping = to_streamed_response_wrapper(
+            client.ping,
+        )
+
+
+class AsyncModernTreasuryWithStreamedResponse:
+    def __init__(self, client: AsyncModernTreasury) -> None:
+        self.connections = resources.AsyncConnectionsWithStreamingResponse(client.connections)
+        self.counterparties = resources.AsyncCounterpartiesWithStreamingResponse(client.counterparties)
+        self.events = resources.AsyncEventsWithStreamingResponse(client.events)
+        self.expected_payments = resources.AsyncExpectedPaymentsWithStreamingResponse(client.expected_payments)
+        self.external_accounts = resources.AsyncExternalAccountsWithStreamingResponse(client.external_accounts)
+        self.incoming_payment_details = resources.AsyncIncomingPaymentDetailsWithStreamingResponse(
+            client.incoming_payment_details
+        )
+        self.invoices = resources.AsyncInvoicesWithStreamingResponse(client.invoices)
+        self.documents = resources.AsyncDocumentsWithStreamingResponse(client.documents)
+        self.account_collection_flows = resources.AsyncAccountCollectionFlowsWithStreamingResponse(
+            client.account_collection_flows
+        )
+        self.account_details = resources.AsyncAccountDetailsWithStreamingResponse(client.account_details)
+        self.routing_details = resources.AsyncRoutingDetailsWithStreamingResponse(client.routing_details)
+        self.internal_accounts = resources.AsyncInternalAccountsWithStreamingResponse(client.internal_accounts)
+        self.ledgers = resources.AsyncLedgersWithStreamingResponse(client.ledgers)
+        self.ledgerable_events = resources.AsyncLedgerableEventsWithStreamingResponse(client.ledgerable_events)
+        self.ledger_account_categories = resources.AsyncLedgerAccountCategoriesWithStreamingResponse(
+            client.ledger_account_categories
+        )
+        self.ledger_accounts = resources.AsyncLedgerAccountsWithStreamingResponse(client.ledger_accounts)
+        self.ledger_account_balance_monitors = resources.AsyncLedgerAccountBalanceMonitorsWithStreamingResponse(
+            client.ledger_account_balance_monitors
+        )
+        self.ledger_account_payouts = resources.AsyncLedgerAccountPayoutsWithStreamingResponse(
+            client.ledger_account_payouts
+        )
+        self.ledger_account_statements = resources.AsyncLedgerAccountStatementsWithStreamingResponse(
+            client.ledger_account_statements
+        )
+        self.ledger_entries = resources.AsyncLedgerEntriesWithStreamingResponse(client.ledger_entries)
+        self.ledger_event_handlers = resources.AsyncLedgerEventHandlersWithStreamingResponse(
+            client.ledger_event_handlers
+        )
+        self.ledger_transactions = resources.AsyncLedgerTransactionsWithStreamingResponse(client.ledger_transactions)
+        self.line_items = resources.AsyncLineItemsWithStreamingResponse(client.line_items)
+        self.payment_flows = resources.AsyncPaymentFlowsWithStreamingResponse(client.payment_flows)
+        self.payment_orders = resources.AsyncPaymentOrdersWithStreamingResponse(client.payment_orders)
+        self.payment_references = resources.AsyncPaymentReferencesWithStreamingResponse(client.payment_references)
+        self.returns = resources.AsyncReturnsWithStreamingResponse(client.returns)
+        self.transactions = resources.AsyncTransactionsWithStreamingResponse(client.transactions)
+        self.validations = resources.AsyncValidationsWithStreamingResponse(client.validations)
+        self.paper_items = resources.AsyncPaperItemsWithStreamingResponse(client.paper_items)
+        self.virtual_accounts = resources.AsyncVirtualAccountsWithStreamingResponse(client.virtual_accounts)
+        self.bulk_requests = resources.AsyncBulkRequestsWithStreamingResponse(client.bulk_requests)
+        self.bulk_results = resources.AsyncBulkResultsWithStreamingResponse(client.bulk_results)
+        self.ledger_account_settlements = resources.AsyncLedgerAccountSettlementsWithStreamingResponse(
+            client.ledger_account_settlements
+        )
+
+        self.ping = async_to_streamed_response_wrapper(
             client.ping,
         )
 

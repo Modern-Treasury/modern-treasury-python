@@ -7,12 +7,13 @@ from typing_extensions import Literal
 
 import httpx
 
+from .. import _legacy_response
 from ..types import RoutingDetail, routing_detail_list_params, routing_detail_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import (
     AsyncPaginator,
@@ -27,6 +28,10 @@ class RoutingDetails(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RoutingDetailsWithRawResponse:
         return RoutingDetailsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> RoutingDetailsWithStreamingResponse:
+        return RoutingDetailsWithStreamingResponse(self)
 
     def create(
         self,
@@ -265,6 +270,10 @@ class AsyncRoutingDetails(AsyncAPIResource):
     def with_raw_response(self) -> AsyncRoutingDetailsWithRawResponse:
         return AsyncRoutingDetailsWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> AsyncRoutingDetailsWithStreamingResponse:
+        return AsyncRoutingDetailsWithStreamingResponse(self)
+
     async def create(
         self,
         account_id: str,
@@ -499,31 +508,63 @@ class AsyncRoutingDetails(AsyncAPIResource):
 
 class RoutingDetailsWithRawResponse:
     def __init__(self, routing_details: RoutingDetails) -> None:
-        self.create = to_raw_response_wrapper(
+        self.create = _legacy_response.to_raw_response_wrapper(
             routing_details.create,
         )
-        self.retrieve = to_raw_response_wrapper(
+        self.retrieve = _legacy_response.to_raw_response_wrapper(
             routing_details.retrieve,
         )
-        self.list = to_raw_response_wrapper(
+        self.list = _legacy_response.to_raw_response_wrapper(
             routing_details.list,
         )
-        self.delete = to_raw_response_wrapper(
+        self.delete = _legacy_response.to_raw_response_wrapper(
             routing_details.delete,
         )
 
 
 class AsyncRoutingDetailsWithRawResponse:
     def __init__(self, routing_details: AsyncRoutingDetails) -> None:
-        self.create = async_to_raw_response_wrapper(
+        self.create = _legacy_response.async_to_raw_response_wrapper(
             routing_details.create,
         )
-        self.retrieve = async_to_raw_response_wrapper(
+        self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             routing_details.retrieve,
         )
-        self.list = async_to_raw_response_wrapper(
+        self.list = _legacy_response.async_to_raw_response_wrapper(
             routing_details.list,
         )
-        self.delete = async_to_raw_response_wrapper(
+        self.delete = _legacy_response.async_to_raw_response_wrapper(
+            routing_details.delete,
+        )
+
+
+class RoutingDetailsWithStreamingResponse:
+    def __init__(self, routing_details: RoutingDetails) -> None:
+        self.create = to_streamed_response_wrapper(
+            routing_details.create,
+        )
+        self.retrieve = to_streamed_response_wrapper(
+            routing_details.retrieve,
+        )
+        self.list = to_streamed_response_wrapper(
+            routing_details.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            routing_details.delete,
+        )
+
+
+class AsyncRoutingDetailsWithStreamingResponse:
+    def __init__(self, routing_details: AsyncRoutingDetails) -> None:
+        self.create = async_to_streamed_response_wrapper(
+            routing_details.create,
+        )
+        self.retrieve = async_to_streamed_response_wrapper(
+            routing_details.retrieve,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            routing_details.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
             routing_details.delete,
         )

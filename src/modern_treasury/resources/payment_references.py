@@ -8,12 +8,13 @@ from typing_extensions import Literal
 
 import httpx
 
+from .. import _legacy_response
 from ..types import PaymentReference, payment_reference_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import (
     AsyncPaginator,
@@ -27,6 +28,10 @@ class PaymentReferences(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PaymentReferencesWithRawResponse:
         return PaymentReferencesWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> PaymentReferencesWithStreamingResponse:
+        return PaymentReferencesWithStreamingResponse(self)
 
     def retrieve(
         self,
@@ -150,6 +155,10 @@ class AsyncPaymentReferences(AsyncAPIResource):
     def with_raw_response(self) -> AsyncPaymentReferencesWithRawResponse:
         return AsyncPaymentReferencesWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> AsyncPaymentReferencesWithStreamingResponse:
+        return AsyncPaymentReferencesWithStreamingResponse(self)
+
     async def retrieve(
         self,
         id: str,
@@ -269,25 +278,59 @@ class AsyncPaymentReferences(AsyncAPIResource):
 
 class PaymentReferencesWithRawResponse:
     def __init__(self, payment_references: PaymentReferences) -> None:
-        self.retrieve = to_raw_response_wrapper(
+        self.retrieve = _legacy_response.to_raw_response_wrapper(
             payment_references.retrieve,
         )
-        self.list = to_raw_response_wrapper(
+        self.list = _legacy_response.to_raw_response_wrapper(
             payment_references.list,
         )
-        self.retireve = to_raw_response_wrapper(  # pyright: ignore[reportDeprecated]
-            payment_references.retireve  # pyright: ignore[reportDeprecated],
+        self.retireve = (  # pyright: ignore[reportDeprecated]
+            _legacy_response.to_raw_response_wrapper(
+                payment_references.retireve  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
 class AsyncPaymentReferencesWithRawResponse:
     def __init__(self, payment_references: AsyncPaymentReferences) -> None:
-        self.retrieve = async_to_raw_response_wrapper(
+        self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             payment_references.retrieve,
         )
-        self.list = async_to_raw_response_wrapper(
+        self.list = _legacy_response.async_to_raw_response_wrapper(
             payment_references.list,
         )
-        self.retireve = async_to_raw_response_wrapper(  # pyright: ignore[reportDeprecated]
-            payment_references.retireve  # pyright: ignore[reportDeprecated],
+        self.retireve = (  # pyright: ignore[reportDeprecated]
+            _legacy_response.async_to_raw_response_wrapper(
+                payment_references.retireve  # pyright: ignore[reportDeprecated],
+            )
+        )
+
+
+class PaymentReferencesWithStreamingResponse:
+    def __init__(self, payment_references: PaymentReferences) -> None:
+        self.retrieve = to_streamed_response_wrapper(
+            payment_references.retrieve,
+        )
+        self.list = to_streamed_response_wrapper(
+            payment_references.list,
+        )
+        self.retireve = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                payment_references.retireve  # pyright: ignore[reportDeprecated],
+            )
+        )
+
+
+class AsyncPaymentReferencesWithStreamingResponse:
+    def __init__(self, payment_references: AsyncPaymentReferences) -> None:
+        self.retrieve = async_to_streamed_response_wrapper(
+            payment_references.retrieve,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            payment_references.list,
+        )
+        self.retireve = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                payment_references.retireve  # pyright: ignore[reportDeprecated],
+            )
         )

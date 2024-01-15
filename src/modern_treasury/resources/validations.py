@@ -6,12 +6,13 @@ from typing_extensions import Literal
 
 import httpx
 
+from .. import _legacy_response
 from ..types import RoutingNumberLookupRequest, validation_validate_routing_number_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from .._base_client import (
     make_request_options,
 )
@@ -23,6 +24,10 @@ class Validations(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ValidationsWithRawResponse:
         return ValidationsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ValidationsWithStreamingResponse:
+        return ValidationsWithStreamingResponse(self)
 
     def validate_routing_number(
         self,
@@ -99,6 +104,10 @@ class AsyncValidations(AsyncAPIResource):
     def with_raw_response(self) -> AsyncValidationsWithRawResponse:
         return AsyncValidationsWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> AsyncValidationsWithStreamingResponse:
+        return AsyncValidationsWithStreamingResponse(self)
+
     async def validate_routing_number(
         self,
         *,
@@ -171,13 +180,27 @@ class AsyncValidations(AsyncAPIResource):
 
 class ValidationsWithRawResponse:
     def __init__(self, validations: Validations) -> None:
-        self.validate_routing_number = to_raw_response_wrapper(
+        self.validate_routing_number = _legacy_response.to_raw_response_wrapper(
             validations.validate_routing_number,
         )
 
 
 class AsyncValidationsWithRawResponse:
     def __init__(self, validations: AsyncValidations) -> None:
-        self.validate_routing_number = async_to_raw_response_wrapper(
+        self.validate_routing_number = _legacy_response.async_to_raw_response_wrapper(
+            validations.validate_routing_number,
+        )
+
+
+class ValidationsWithStreamingResponse:
+    def __init__(self, validations: Validations) -> None:
+        self.validate_routing_number = to_streamed_response_wrapper(
+            validations.validate_routing_number,
+        )
+
+
+class AsyncValidationsWithStreamingResponse:
+    def __init__(self, validations: AsyncValidations) -> None:
+        self.validate_routing_number = async_to_streamed_response_wrapper(
             validations.validate_routing_number,
         )

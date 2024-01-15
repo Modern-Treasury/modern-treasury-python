@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from typing import Any, cast
 
 import pytest
 
@@ -38,9 +39,24 @@ class TestBulkResults:
         response = client.bulk_results.with_raw_response.retrieve(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bulk_result = response.parse()
         assert_matches_type(BulkResult, bulk_result, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
+        with client.bulk_results.with_streaming_response.retrieve(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            bulk_result = response.parse()
+            assert_matches_type(BulkResult, bulk_result, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -63,9 +79,22 @@ class TestBulkResults:
     @parametrize
     def test_raw_response_list(self, client: ModernTreasury) -> None:
         response = client.bulk_results.with_raw_response.list()
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bulk_result = response.parse()
         assert_matches_type(SyncPage[BulkResult], bulk_result, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list(self, client: ModernTreasury) -> None:
+        with client.bulk_results.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            bulk_result = response.parse()
+            assert_matches_type(SyncPage[BulkResult], bulk_result, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
 
 class TestAsyncBulkResults:
@@ -89,9 +118,24 @@ class TestAsyncBulkResults:
         response = await client.bulk_results.with_raw_response.retrieve(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bulk_result = response.parse()
         assert_matches_type(BulkResult, bulk_result, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        async with client.bulk_results.with_streaming_response.retrieve(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            bulk_result = await response.parse()
+            assert_matches_type(BulkResult, bulk_result, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -114,6 +158,19 @@ class TestAsyncBulkResults:
     @parametrize
     async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
         response = await client.bulk_results.with_raw_response.list()
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bulk_result = response.parse()
         assert_matches_type(AsyncPage[BulkResult], bulk_result, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list(self, client: AsyncModernTreasury) -> None:
+        async with client.bulk_results.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            bulk_result = await response.parse()
+            assert_matches_type(AsyncPage[BulkResult], bulk_result, path=["response"])
+
+        assert cast(Any, response.is_closed) is True

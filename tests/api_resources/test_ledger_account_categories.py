@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from typing import Any, cast
 
 import pytest
 
@@ -64,9 +65,27 @@ class TestLedgerAccountCategories:
             name="string",
             normal_balance="credit",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_account_category = response.parse()
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create(self, client: ModernTreasury) -> None:
+        with client.ledger_account_categories.with_streaming_response.create(
+            currency="string",
+            ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="string",
+            normal_balance="credit",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_account_category = response.parse()
+            assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
@@ -91,9 +110,24 @@ class TestLedgerAccountCategories:
         response = client.ledger_account_categories.with_raw_response.retrieve(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_account_category = response.parse()
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
+        with client.ledger_account_categories.with_streaming_response.retrieve(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_account_category = response.parse()
+            assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
@@ -121,9 +155,24 @@ class TestLedgerAccountCategories:
         response = client.ledger_account_categories.with_raw_response.update(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_account_category = response.parse()
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: ModernTreasury) -> None:
+        with client.ledger_account_categories.with_streaming_response.update(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_account_category = response.parse()
+            assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -148,9 +197,22 @@ class TestLedgerAccountCategories:
     @parametrize
     def test_raw_response_list(self, client: ModernTreasury) -> None:
         response = client.ledger_account_categories.with_raw_response.list()
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_account_category = response.parse()
         assert_matches_type(SyncPage[LedgerAccountCategory], ledger_account_category, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list(self, client: ModernTreasury) -> None:
+        with client.ledger_account_categories.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_account_category = response.parse()
+            assert_matches_type(SyncPage[LedgerAccountCategory], ledger_account_category, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
@@ -164,9 +226,24 @@ class TestLedgerAccountCategories:
         response = client.ledger_account_categories.with_raw_response.delete(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_account_category = response.parse()
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+    @parametrize
+    def test_streaming_response_delete(self, client: ModernTreasury) -> None:
+        with client.ledger_account_categories.with_streaming_response.delete(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_account_category = response.parse()
+            assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_add_ledger_account(self, client: ModernTreasury) -> None:
@@ -182,9 +259,25 @@ class TestLedgerAccountCategories:
             "string",
             id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_account_category = response.parse()
         assert ledger_account_category is None
+
+    @parametrize
+    def test_streaming_response_add_ledger_account(self, client: ModernTreasury) -> None:
+        with client.ledger_account_categories.with_streaming_response.add_ledger_account(
+            "string",
+            id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_account_category = response.parse()
+            assert ledger_account_category is None
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_add_nested_category(self, client: ModernTreasury) -> None:
@@ -200,9 +293,25 @@ class TestLedgerAccountCategories:
             "string",
             id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_account_category = response.parse()
         assert ledger_account_category is None
+
+    @parametrize
+    def test_streaming_response_add_nested_category(self, client: ModernTreasury) -> None:
+        with client.ledger_account_categories.with_streaming_response.add_nested_category(
+            "string",
+            id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_account_category = response.parse()
+            assert ledger_account_category is None
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_remove_ledger_account(self, client: ModernTreasury) -> None:
@@ -218,9 +327,25 @@ class TestLedgerAccountCategories:
             "string",
             id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_account_category = response.parse()
         assert ledger_account_category is None
+
+    @parametrize
+    def test_streaming_response_remove_ledger_account(self, client: ModernTreasury) -> None:
+        with client.ledger_account_categories.with_streaming_response.remove_ledger_account(
+            "string",
+            id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_account_category = response.parse()
+            assert ledger_account_category is None
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_remove_nested_category(self, client: ModernTreasury) -> None:
@@ -236,9 +361,25 @@ class TestLedgerAccountCategories:
             "string",
             id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_account_category = response.parse()
         assert ledger_account_category is None
+
+    @parametrize
+    def test_streaming_response_remove_nested_category(self, client: ModernTreasury) -> None:
+        with client.ledger_account_categories.with_streaming_response.remove_nested_category(
+            "string",
+            id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_account_category = response.parse()
+            assert ledger_account_category is None
+
+        assert cast(Any, response.is_closed) is True
 
 
 class TestAsyncLedgerAccountCategories:
@@ -285,9 +426,27 @@ class TestAsyncLedgerAccountCategories:
             name="string",
             normal_balance="credit",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_account_category = response.parse()
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create(self, client: AsyncModernTreasury) -> None:
+        async with client.ledger_account_categories.with_streaming_response.create(
+            currency="string",
+            ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="string",
+            normal_balance="credit",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_account_category = await response.parse()
+            assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
@@ -312,9 +471,24 @@ class TestAsyncLedgerAccountCategories:
         response = await client.ledger_account_categories.with_raw_response.retrieve(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_account_category = response.parse()
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        async with client.ledger_account_categories.with_streaming_response.retrieve(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_account_category = await response.parse()
+            assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
@@ -342,9 +516,24 @@ class TestAsyncLedgerAccountCategories:
         response = await client.ledger_account_categories.with_raw_response.update(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_account_category = response.parse()
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, client: AsyncModernTreasury) -> None:
+        async with client.ledger_account_categories.with_streaming_response.update(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_account_category = await response.parse()
+            assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -369,9 +558,22 @@ class TestAsyncLedgerAccountCategories:
     @parametrize
     async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
         response = await client.ledger_account_categories.with_raw_response.list()
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_account_category = response.parse()
         assert_matches_type(AsyncPage[LedgerAccountCategory], ledger_account_category, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list(self, client: AsyncModernTreasury) -> None:
+        async with client.ledger_account_categories.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_account_category = await response.parse()
+            assert_matches_type(AsyncPage[LedgerAccountCategory], ledger_account_category, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
@@ -385,9 +587,24 @@ class TestAsyncLedgerAccountCategories:
         response = await client.ledger_account_categories.with_raw_response.delete(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_account_category = response.parse()
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_delete(self, client: AsyncModernTreasury) -> None:
+        async with client.ledger_account_categories.with_streaming_response.delete(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_account_category = await response.parse()
+            assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_add_ledger_account(self, client: AsyncModernTreasury) -> None:
@@ -403,9 +620,25 @@ class TestAsyncLedgerAccountCategories:
             "string",
             id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_account_category = response.parse()
         assert ledger_account_category is None
+
+    @parametrize
+    async def test_streaming_response_add_ledger_account(self, client: AsyncModernTreasury) -> None:
+        async with client.ledger_account_categories.with_streaming_response.add_ledger_account(
+            "string",
+            id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_account_category = await response.parse()
+            assert ledger_account_category is None
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_add_nested_category(self, client: AsyncModernTreasury) -> None:
@@ -421,9 +654,25 @@ class TestAsyncLedgerAccountCategories:
             "string",
             id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_account_category = response.parse()
         assert ledger_account_category is None
+
+    @parametrize
+    async def test_streaming_response_add_nested_category(self, client: AsyncModernTreasury) -> None:
+        async with client.ledger_account_categories.with_streaming_response.add_nested_category(
+            "string",
+            id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_account_category = await response.parse()
+            assert ledger_account_category is None
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_remove_ledger_account(self, client: AsyncModernTreasury) -> None:
@@ -439,9 +688,25 @@ class TestAsyncLedgerAccountCategories:
             "string",
             id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_account_category = response.parse()
         assert ledger_account_category is None
+
+    @parametrize
+    async def test_streaming_response_remove_ledger_account(self, client: AsyncModernTreasury) -> None:
+        async with client.ledger_account_categories.with_streaming_response.remove_ledger_account(
+            "string",
+            id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_account_category = await response.parse()
+            assert ledger_account_category is None
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_remove_nested_category(self, client: AsyncModernTreasury) -> None:
@@ -457,6 +722,22 @@ class TestAsyncLedgerAccountCategories:
             "string",
             id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_account_category = response.parse()
         assert ledger_account_category is None
+
+    @parametrize
+    async def test_streaming_response_remove_nested_category(self, client: AsyncModernTreasury) -> None:
+        async with client.ledger_account_categories.with_streaming_response.remove_nested_category(
+            "string",
+            id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_account_category = await response.parse()
+            assert ledger_account_category is None
+
+        assert cast(Any, response.is_closed) is True

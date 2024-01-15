@@ -8,6 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
+from .. import _legacy_response
 from ..types import (
     Counterparty,
     CounterpartyCollectAccountResponse,
@@ -20,7 +21,7 @@ from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import (
     AsyncPaginator,
@@ -35,6 +36,10 @@ class Counterparties(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> CounterpartiesWithRawResponse:
         return CounterpartiesWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> CounterpartiesWithStreamingResponse:
+        return CounterpartiesWithStreamingResponse(self)
 
     def create(
         self,
@@ -425,6 +430,10 @@ class AsyncCounterparties(AsyncAPIResource):
     def with_raw_response(self) -> AsyncCounterpartiesWithRawResponse:
         return AsyncCounterpartiesWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> AsyncCounterpartiesWithStreamingResponse:
+        return AsyncCounterpartiesWithStreamingResponse(self)
+
     async def create(
         self,
         *,
@@ -811,43 +820,87 @@ class AsyncCounterparties(AsyncAPIResource):
 
 class CounterpartiesWithRawResponse:
     def __init__(self, counterparties: Counterparties) -> None:
-        self.create = to_raw_response_wrapper(
+        self.create = _legacy_response.to_raw_response_wrapper(
             counterparties.create,
         )
-        self.retrieve = to_raw_response_wrapper(
+        self.retrieve = _legacy_response.to_raw_response_wrapper(
             counterparties.retrieve,
         )
-        self.update = to_raw_response_wrapper(
+        self.update = _legacy_response.to_raw_response_wrapper(
             counterparties.update,
         )
-        self.list = to_raw_response_wrapper(
+        self.list = _legacy_response.to_raw_response_wrapper(
             counterparties.list,
         )
-        self.delete = to_raw_response_wrapper(
+        self.delete = _legacy_response.to_raw_response_wrapper(
             counterparties.delete,
         )
-        self.collect_account = to_raw_response_wrapper(
+        self.collect_account = _legacy_response.to_raw_response_wrapper(
             counterparties.collect_account,
         )
 
 
 class AsyncCounterpartiesWithRawResponse:
     def __init__(self, counterparties: AsyncCounterparties) -> None:
-        self.create = async_to_raw_response_wrapper(
+        self.create = _legacy_response.async_to_raw_response_wrapper(
             counterparties.create,
         )
-        self.retrieve = async_to_raw_response_wrapper(
+        self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             counterparties.retrieve,
         )
-        self.update = async_to_raw_response_wrapper(
+        self.update = _legacy_response.async_to_raw_response_wrapper(
             counterparties.update,
         )
-        self.list = async_to_raw_response_wrapper(
+        self.list = _legacy_response.async_to_raw_response_wrapper(
             counterparties.list,
         )
-        self.delete = async_to_raw_response_wrapper(
+        self.delete = _legacy_response.async_to_raw_response_wrapper(
             counterparties.delete,
         )
-        self.collect_account = async_to_raw_response_wrapper(
+        self.collect_account = _legacy_response.async_to_raw_response_wrapper(
+            counterparties.collect_account,
+        )
+
+
+class CounterpartiesWithStreamingResponse:
+    def __init__(self, counterparties: Counterparties) -> None:
+        self.create = to_streamed_response_wrapper(
+            counterparties.create,
+        )
+        self.retrieve = to_streamed_response_wrapper(
+            counterparties.retrieve,
+        )
+        self.update = to_streamed_response_wrapper(
+            counterparties.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            counterparties.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            counterparties.delete,
+        )
+        self.collect_account = to_streamed_response_wrapper(
+            counterparties.collect_account,
+        )
+
+
+class AsyncCounterpartiesWithStreamingResponse:
+    def __init__(self, counterparties: AsyncCounterparties) -> None:
+        self.create = async_to_streamed_response_wrapper(
+            counterparties.create,
+        )
+        self.retrieve = async_to_streamed_response_wrapper(
+            counterparties.retrieve,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            counterparties.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            counterparties.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            counterparties.delete,
+        )
+        self.collect_account = async_to_streamed_response_wrapper(
             counterparties.collect_account,
         )

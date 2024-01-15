@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from typing import Any, cast
 
 import pytest
 
@@ -167,9 +168,27 @@ class TestExpectedPayments:
             direction="credit",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         expected_payment = response.parse()
         assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create(self, client: ModernTreasury) -> None:
+        with client.expected_payments.with_streaming_response.create(
+            amount_lower_bound=0,
+            amount_upper_bound=0,
+            direction="credit",
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            expected_payment = response.parse()
+            assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
@@ -183,9 +202,24 @@ class TestExpectedPayments:
         response = client.expected_payments.with_raw_response.retrieve(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         expected_payment = response.parse()
         assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
+        with client.expected_payments.with_streaming_response.retrieve(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            expected_payment = response.parse()
+            assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
@@ -226,9 +260,24 @@ class TestExpectedPayments:
         response = client.expected_payments.with_raw_response.update(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         expected_payment = response.parse()
         assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: ModernTreasury) -> None:
+        with client.expected_payments.with_streaming_response.update(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            expected_payment = response.parse()
+            assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -254,9 +303,22 @@ class TestExpectedPayments:
     @parametrize
     def test_raw_response_list(self, client: ModernTreasury) -> None:
         response = client.expected_payments.with_raw_response.list()
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         expected_payment = response.parse()
         assert_matches_type(SyncPage[ExpectedPayment], expected_payment, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list(self, client: ModernTreasury) -> None:
+        with client.expected_payments.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            expected_payment = response.parse()
+            assert_matches_type(SyncPage[ExpectedPayment], expected_payment, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
@@ -270,9 +332,24 @@ class TestExpectedPayments:
         response = client.expected_payments.with_raw_response.delete(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         expected_payment = response.parse()
         assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+    @parametrize
+    def test_streaming_response_delete(self, client: ModernTreasury) -> None:
+        with client.expected_payments.with_streaming_response.delete(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            expected_payment = response.parse()
+            assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
 
 class TestAsyncExpectedPayments:
@@ -422,9 +499,27 @@ class TestAsyncExpectedPayments:
             direction="credit",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         expected_payment = response.parse()
         assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create(self, client: AsyncModernTreasury) -> None:
+        async with client.expected_payments.with_streaming_response.create(
+            amount_lower_bound=0,
+            amount_upper_bound=0,
+            direction="credit",
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            expected_payment = await response.parse()
+            assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
@@ -438,9 +533,24 @@ class TestAsyncExpectedPayments:
         response = await client.expected_payments.with_raw_response.retrieve(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         expected_payment = response.parse()
         assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        async with client.expected_payments.with_streaming_response.retrieve(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            expected_payment = await response.parse()
+            assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
@@ -481,9 +591,24 @@ class TestAsyncExpectedPayments:
         response = await client.expected_payments.with_raw_response.update(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         expected_payment = response.parse()
         assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, client: AsyncModernTreasury) -> None:
+        async with client.expected_payments.with_streaming_response.update(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            expected_payment = await response.parse()
+            assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -509,9 +634,22 @@ class TestAsyncExpectedPayments:
     @parametrize
     async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
         response = await client.expected_payments.with_raw_response.list()
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         expected_payment = response.parse()
         assert_matches_type(AsyncPage[ExpectedPayment], expected_payment, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list(self, client: AsyncModernTreasury) -> None:
+        async with client.expected_payments.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            expected_payment = await response.parse()
+            assert_matches_type(AsyncPage[ExpectedPayment], expected_payment, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
@@ -525,6 +663,21 @@ class TestAsyncExpectedPayments:
         response = await client.expected_payments.with_raw_response.delete(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         expected_payment = response.parse()
         assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_delete(self, client: AsyncModernTreasury) -> None:
+        async with client.expected_payments.with_streaming_response.delete(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            expected_payment = await response.parse()
+            assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
+
+        assert cast(Any, response.is_closed) is True

@@ -6,11 +6,12 @@ from typing import Optional
 
 import httpx
 
+from ... import _legacy_response
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import (
     AsyncPaginator,
@@ -25,6 +26,10 @@ class LineItems(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> LineItemsWithRawResponse:
         return LineItemsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> LineItemsWithStreamingResponse:
+        return LineItemsWithStreamingResponse(self)
 
     def create(
         self,
@@ -294,6 +299,10 @@ class AsyncLineItems(AsyncAPIResource):
     def with_raw_response(self) -> AsyncLineItemsWithRawResponse:
         return AsyncLineItemsWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> AsyncLineItemsWithStreamingResponse:
+        return AsyncLineItemsWithStreamingResponse(self)
+
     async def create(
         self,
         invoice_id: str,
@@ -559,37 +568,75 @@ class AsyncLineItems(AsyncAPIResource):
 
 class LineItemsWithRawResponse:
     def __init__(self, line_items: LineItems) -> None:
-        self.create = to_raw_response_wrapper(
+        self.create = _legacy_response.to_raw_response_wrapper(
             line_items.create,
         )
-        self.retrieve = to_raw_response_wrapper(
+        self.retrieve = _legacy_response.to_raw_response_wrapper(
             line_items.retrieve,
         )
-        self.update = to_raw_response_wrapper(
+        self.update = _legacy_response.to_raw_response_wrapper(
             line_items.update,
         )
-        self.list = to_raw_response_wrapper(
+        self.list = _legacy_response.to_raw_response_wrapper(
             line_items.list,
         )
-        self.delete = to_raw_response_wrapper(
+        self.delete = _legacy_response.to_raw_response_wrapper(
             line_items.delete,
         )
 
 
 class AsyncLineItemsWithRawResponse:
     def __init__(self, line_items: AsyncLineItems) -> None:
-        self.create = async_to_raw_response_wrapper(
+        self.create = _legacy_response.async_to_raw_response_wrapper(
             line_items.create,
         )
-        self.retrieve = async_to_raw_response_wrapper(
+        self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             line_items.retrieve,
         )
-        self.update = async_to_raw_response_wrapper(
+        self.update = _legacy_response.async_to_raw_response_wrapper(
             line_items.update,
         )
-        self.list = async_to_raw_response_wrapper(
+        self.list = _legacy_response.async_to_raw_response_wrapper(
             line_items.list,
         )
-        self.delete = async_to_raw_response_wrapper(
+        self.delete = _legacy_response.async_to_raw_response_wrapper(
+            line_items.delete,
+        )
+
+
+class LineItemsWithStreamingResponse:
+    def __init__(self, line_items: LineItems) -> None:
+        self.create = to_streamed_response_wrapper(
+            line_items.create,
+        )
+        self.retrieve = to_streamed_response_wrapper(
+            line_items.retrieve,
+        )
+        self.update = to_streamed_response_wrapper(
+            line_items.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            line_items.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            line_items.delete,
+        )
+
+
+class AsyncLineItemsWithStreamingResponse:
+    def __init__(self, line_items: AsyncLineItems) -> None:
+        self.create = async_to_streamed_response_wrapper(
+            line_items.create,
+        )
+        self.retrieve = async_to_streamed_response_wrapper(
+            line_items.retrieve,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            line_items.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            line_items.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
             line_items.delete,
         )

@@ -19,6 +19,8 @@ from pydantic import ValidationError
 from modern_treasury import ModernTreasury, AsyncModernTreasury, APIResponseValidationError
 from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury._models import BaseModel, FinalRequestOptions
+from modern_treasury._response import APIResponse, AsyncAPIResponse
+from modern_treasury._constants import RAW_RESPONSE_HEADER
 from modern_treasury._exceptions import APIStatusError, APITimeoutError, ModernTreasuryError, APIResponseValidationError
 from modern_treasury._base_client import (
     DEFAULT_TIMEOUT,
@@ -239,6 +241,7 @@ class TestModernTreasury:
                         # to_raw_response_wrapper leaks through the @functools.wraps() decorator.
                         #
                         # removing the decorator fixes the leak for reasons we don't understand.
+                        "modern_treasury/_legacy_response.py",
                         "modern_treasury/_response.py",
                         # pydantic.BaseModel.model_dump || pydantic.BaseModel.dict leak memory for some reason.
                         "modern_treasury/_compat.py",
@@ -874,6 +877,25 @@ class TestModernTreasury:
 
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
+    def test_streaming_response(self) -> None:
+        response = self.client.post(
+            "/api/external_accounts",
+            body=dict(counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a", name="my bank"),
+            cast_to=APIResponse[bytes],
+            options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
+        )
+
+        assert not cast(Any, response.is_closed)
+        assert _get_open_connections(self.client) == 1
+
+        for _ in response.iter_bytes():
+            ...
+
+        assert cast(Any, response.is_closed)
+        assert _get_open_connections(self.client) == 0
+
+    @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @pytest.mark.respx(base_url=base_url)
     def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.post("/api/external_accounts").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
@@ -882,7 +904,7 @@ class TestModernTreasury:
                 "/api/external_accounts",
                 body=dict(counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a", name="my bank"),
                 cast_to=httpx.Response,
-                options={"headers": {"X-Stainless-Streamed-Raw-Response": "true"}},
+                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
 
         assert _get_open_connections(self.client) == 0
@@ -897,7 +919,7 @@ class TestModernTreasury:
                 "/api/external_accounts",
                 body=dict(counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a", name="my bank"),
                 cast_to=httpx.Response,
-                options={"headers": {"X-Stainless-Streamed-Raw-Response": "true"}},
+                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
 
         assert _get_open_connections(self.client) == 0
@@ -1092,6 +1114,7 @@ class TestAsyncModernTreasury:
                         # to_raw_response_wrapper leaks through the @functools.wraps() decorator.
                         #
                         # removing the decorator fixes the leak for reasons we don't understand.
+                        "modern_treasury/_legacy_response.py",
                         "modern_treasury/_response.py",
                         # pydantic.BaseModel.model_dump || pydantic.BaseModel.dict leak memory for some reason.
                         "modern_treasury/_compat.py",
@@ -1733,6 +1756,25 @@ class TestAsyncModernTreasury:
 
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
+    async def test_streaming_response(self) -> None:
+        response = await self.client.post(
+            "/api/external_accounts",
+            body=dict(counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a", name="my bank"),
+            cast_to=AsyncAPIResponse[bytes],
+            options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
+        )
+
+        assert not cast(Any, response.is_closed)
+        assert _get_open_connections(self.client) == 1
+
+        async for _ in response.iter_bytes():
+            ...
+
+        assert cast(Any, response.is_closed)
+        assert _get_open_connections(self.client) == 0
+
+    @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.post("/api/external_accounts").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
@@ -1741,7 +1783,7 @@ class TestAsyncModernTreasury:
                 "/api/external_accounts",
                 body=dict(counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a", name="my bank"),
                 cast_to=httpx.Response,
-                options={"headers": {"X-Stainless-Streamed-Raw-Response": "true"}},
+                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
 
         assert _get_open_connections(self.client) == 0
@@ -1756,7 +1798,7 @@ class TestAsyncModernTreasury:
                 "/api/external_accounts",
                 body=dict(counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a", name="my bank"),
                 cast_to=httpx.Response,
-                options={"headers": {"X-Stainless-Streamed-Raw-Response": "true"}},
+                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
 
         assert _get_open_connections(self.client) == 0
