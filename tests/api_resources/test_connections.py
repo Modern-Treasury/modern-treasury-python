@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from typing import Any, cast
 
 import pytest
 
@@ -44,9 +45,22 @@ class TestConnections:
     @parametrize
     def test_raw_response_list(self, client: ModernTreasury) -> None:
         response = client.connections.with_raw_response.list()
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         connection = response.parse()
         assert_matches_type(SyncPage[Connection], connection, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list(self, client: ModernTreasury) -> None:
+        with client.connections.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            connection = response.parse()
+            assert_matches_type(SyncPage[Connection], connection, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
 
 class TestAsyncConnections:
@@ -76,6 +90,19 @@ class TestAsyncConnections:
     @parametrize
     async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
         response = await client.connections.with_raw_response.list()
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         connection = response.parse()
         assert_matches_type(AsyncPage[Connection], connection, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list(self, client: AsyncModernTreasury) -> None:
+        async with client.connections.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            connection = await response.parse()
+            assert_matches_type(AsyncPage[Connection], connection, path=["response"])
+
+        assert cast(Any, response.is_closed) is True

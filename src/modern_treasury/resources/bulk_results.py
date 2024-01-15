@@ -7,12 +7,13 @@ from typing_extensions import Literal
 
 import httpx
 
+from .. import _legacy_response
 from ..types import BulkResult, bulk_result_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import (
     AsyncPaginator,
@@ -26,6 +27,10 @@ class BulkResults(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> BulkResultsWithRawResponse:
         return BulkResultsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> BulkResultsWithStreamingResponse:
+        return BulkResultsWithStreamingResponse(self)
 
     def retrieve(
         self,
@@ -131,6 +136,10 @@ class AsyncBulkResults(AsyncAPIResource):
     def with_raw_response(self) -> AsyncBulkResultsWithRawResponse:
         return AsyncBulkResultsWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> AsyncBulkResultsWithStreamingResponse:
+        return AsyncBulkResultsWithStreamingResponse(self)
+
     async def retrieve(
         self,
         id: str,
@@ -232,19 +241,39 @@ class AsyncBulkResults(AsyncAPIResource):
 
 class BulkResultsWithRawResponse:
     def __init__(self, bulk_results: BulkResults) -> None:
-        self.retrieve = to_raw_response_wrapper(
+        self.retrieve = _legacy_response.to_raw_response_wrapper(
             bulk_results.retrieve,
         )
-        self.list = to_raw_response_wrapper(
+        self.list = _legacy_response.to_raw_response_wrapper(
             bulk_results.list,
         )
 
 
 class AsyncBulkResultsWithRawResponse:
     def __init__(self, bulk_results: AsyncBulkResults) -> None:
-        self.retrieve = async_to_raw_response_wrapper(
+        self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             bulk_results.retrieve,
         )
-        self.list = async_to_raw_response_wrapper(
+        self.list = _legacy_response.async_to_raw_response_wrapper(
+            bulk_results.list,
+        )
+
+
+class BulkResultsWithStreamingResponse:
+    def __init__(self, bulk_results: BulkResults) -> None:
+        self.retrieve = to_streamed_response_wrapper(
+            bulk_results.retrieve,
+        )
+        self.list = to_streamed_response_wrapper(
+            bulk_results.list,
+        )
+
+
+class AsyncBulkResultsWithStreamingResponse:
+    def __init__(self, bulk_results: AsyncBulkResults) -> None:
+        self.retrieve = async_to_streamed_response_wrapper(
+            bulk_results.retrieve,
+        )
+        self.list = async_to_streamed_response_wrapper(
             bulk_results.list,
         )

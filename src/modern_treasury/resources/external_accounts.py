@@ -7,6 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
+from .. import _legacy_response
 from ..types import (
     ExternalAccount,
     ExternalAccountType,
@@ -20,7 +21,7 @@ from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import (
     AsyncPaginator,
@@ -35,6 +36,10 @@ class ExternalAccounts(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ExternalAccountsWithRawResponse:
         return ExternalAccountsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ExternalAccountsWithStreamingResponse:
+        return ExternalAccountsWithStreamingResponse(self)
 
     def create(
         self,
@@ -457,6 +462,10 @@ class AsyncExternalAccounts(AsyncAPIResource):
     def with_raw_response(self) -> AsyncExternalAccountsWithRawResponse:
         return AsyncExternalAccountsWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> AsyncExternalAccountsWithStreamingResponse:
+        return AsyncExternalAccountsWithStreamingResponse(self)
+
     async def create(
         self,
         *,
@@ -875,49 +884,99 @@ class AsyncExternalAccounts(AsyncAPIResource):
 
 class ExternalAccountsWithRawResponse:
     def __init__(self, external_accounts: ExternalAccounts) -> None:
-        self.create = to_raw_response_wrapper(
+        self.create = _legacy_response.to_raw_response_wrapper(
             external_accounts.create,
         )
-        self.retrieve = to_raw_response_wrapper(
+        self.retrieve = _legacy_response.to_raw_response_wrapper(
             external_accounts.retrieve,
         )
-        self.update = to_raw_response_wrapper(
+        self.update = _legacy_response.to_raw_response_wrapper(
             external_accounts.update,
         )
-        self.list = to_raw_response_wrapper(
+        self.list = _legacy_response.to_raw_response_wrapper(
             external_accounts.list,
         )
-        self.delete = to_raw_response_wrapper(
+        self.delete = _legacy_response.to_raw_response_wrapper(
             external_accounts.delete,
         )
-        self.complete_verification = to_raw_response_wrapper(
+        self.complete_verification = _legacy_response.to_raw_response_wrapper(
             external_accounts.complete_verification,
         )
-        self.verify = to_raw_response_wrapper(
+        self.verify = _legacy_response.to_raw_response_wrapper(
             external_accounts.verify,
         )
 
 
 class AsyncExternalAccountsWithRawResponse:
     def __init__(self, external_accounts: AsyncExternalAccounts) -> None:
-        self.create = async_to_raw_response_wrapper(
+        self.create = _legacy_response.async_to_raw_response_wrapper(
             external_accounts.create,
         )
-        self.retrieve = async_to_raw_response_wrapper(
+        self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             external_accounts.retrieve,
         )
-        self.update = async_to_raw_response_wrapper(
+        self.update = _legacy_response.async_to_raw_response_wrapper(
             external_accounts.update,
         )
-        self.list = async_to_raw_response_wrapper(
+        self.list = _legacy_response.async_to_raw_response_wrapper(
             external_accounts.list,
         )
-        self.delete = async_to_raw_response_wrapper(
+        self.delete = _legacy_response.async_to_raw_response_wrapper(
             external_accounts.delete,
         )
-        self.complete_verification = async_to_raw_response_wrapper(
+        self.complete_verification = _legacy_response.async_to_raw_response_wrapper(
             external_accounts.complete_verification,
         )
-        self.verify = async_to_raw_response_wrapper(
+        self.verify = _legacy_response.async_to_raw_response_wrapper(
+            external_accounts.verify,
+        )
+
+
+class ExternalAccountsWithStreamingResponse:
+    def __init__(self, external_accounts: ExternalAccounts) -> None:
+        self.create = to_streamed_response_wrapper(
+            external_accounts.create,
+        )
+        self.retrieve = to_streamed_response_wrapper(
+            external_accounts.retrieve,
+        )
+        self.update = to_streamed_response_wrapper(
+            external_accounts.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            external_accounts.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            external_accounts.delete,
+        )
+        self.complete_verification = to_streamed_response_wrapper(
+            external_accounts.complete_verification,
+        )
+        self.verify = to_streamed_response_wrapper(
+            external_accounts.verify,
+        )
+
+
+class AsyncExternalAccountsWithStreamingResponse:
+    def __init__(self, external_accounts: AsyncExternalAccounts) -> None:
+        self.create = async_to_streamed_response_wrapper(
+            external_accounts.create,
+        )
+        self.retrieve = async_to_streamed_response_wrapper(
+            external_accounts.retrieve,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            external_accounts.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            external_accounts.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            external_accounts.delete,
+        )
+        self.complete_verification = async_to_streamed_response_wrapper(
+            external_accounts.complete_verification,
+        )
+        self.verify = async_to_streamed_response_wrapper(
             external_accounts.verify,
         )

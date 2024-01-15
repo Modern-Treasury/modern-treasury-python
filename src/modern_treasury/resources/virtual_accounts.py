@@ -6,6 +6,7 @@ from typing import Dict, List, Optional
 
 import httpx
 
+from .. import _legacy_response
 from ..types import (
     VirtualAccount,
     virtual_account_list_params,
@@ -16,7 +17,7 @@ from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import (
     AsyncPaginator,
@@ -30,6 +31,10 @@ class VirtualAccounts(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> VirtualAccountsWithRawResponse:
         return VirtualAccountsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> VirtualAccountsWithStreamingResponse:
+        return VirtualAccountsWithStreamingResponse(self)
 
     def create(
         self,
@@ -291,6 +296,10 @@ class AsyncVirtualAccounts(AsyncAPIResource):
     def with_raw_response(self) -> AsyncVirtualAccountsWithRawResponse:
         return AsyncVirtualAccountsWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> AsyncVirtualAccountsWithStreamingResponse:
+        return AsyncVirtualAccountsWithStreamingResponse(self)
+
     async def create(
         self,
         *,
@@ -548,37 +557,75 @@ class AsyncVirtualAccounts(AsyncAPIResource):
 
 class VirtualAccountsWithRawResponse:
     def __init__(self, virtual_accounts: VirtualAccounts) -> None:
-        self.create = to_raw_response_wrapper(
+        self.create = _legacy_response.to_raw_response_wrapper(
             virtual_accounts.create,
         )
-        self.retrieve = to_raw_response_wrapper(
+        self.retrieve = _legacy_response.to_raw_response_wrapper(
             virtual_accounts.retrieve,
         )
-        self.update = to_raw_response_wrapper(
+        self.update = _legacy_response.to_raw_response_wrapper(
             virtual_accounts.update,
         )
-        self.list = to_raw_response_wrapper(
+        self.list = _legacy_response.to_raw_response_wrapper(
             virtual_accounts.list,
         )
-        self.delete = to_raw_response_wrapper(
+        self.delete = _legacy_response.to_raw_response_wrapper(
             virtual_accounts.delete,
         )
 
 
 class AsyncVirtualAccountsWithRawResponse:
     def __init__(self, virtual_accounts: AsyncVirtualAccounts) -> None:
-        self.create = async_to_raw_response_wrapper(
+        self.create = _legacy_response.async_to_raw_response_wrapper(
             virtual_accounts.create,
         )
-        self.retrieve = async_to_raw_response_wrapper(
+        self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             virtual_accounts.retrieve,
         )
-        self.update = async_to_raw_response_wrapper(
+        self.update = _legacy_response.async_to_raw_response_wrapper(
             virtual_accounts.update,
         )
-        self.list = async_to_raw_response_wrapper(
+        self.list = _legacy_response.async_to_raw_response_wrapper(
             virtual_accounts.list,
         )
-        self.delete = async_to_raw_response_wrapper(
+        self.delete = _legacy_response.async_to_raw_response_wrapper(
+            virtual_accounts.delete,
+        )
+
+
+class VirtualAccountsWithStreamingResponse:
+    def __init__(self, virtual_accounts: VirtualAccounts) -> None:
+        self.create = to_streamed_response_wrapper(
+            virtual_accounts.create,
+        )
+        self.retrieve = to_streamed_response_wrapper(
+            virtual_accounts.retrieve,
+        )
+        self.update = to_streamed_response_wrapper(
+            virtual_accounts.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            virtual_accounts.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            virtual_accounts.delete,
+        )
+
+
+class AsyncVirtualAccountsWithStreamingResponse:
+    def __init__(self, virtual_accounts: AsyncVirtualAccounts) -> None:
+        self.create = async_to_streamed_response_wrapper(
+            virtual_accounts.create,
+        )
+        self.retrieve = async_to_streamed_response_wrapper(
+            virtual_accounts.retrieve,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            virtual_accounts.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            virtual_accounts.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
             virtual_accounts.delete,
         )

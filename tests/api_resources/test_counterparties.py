@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from typing import Any, cast
 
 import pytest
 
@@ -305,9 +306,24 @@ class TestCounterparties:
         response = client.counterparties.with_raw_response.create(
             name="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         counterparty = response.parse()
         assert_matches_type(Counterparty, counterparty, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create(self, client: ModernTreasury) -> None:
+        with client.counterparties.with_streaming_response.create(
+            name="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            counterparty = response.parse()
+            assert_matches_type(Counterparty, counterparty, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
@@ -321,9 +337,24 @@ class TestCounterparties:
         response = client.counterparties.with_raw_response.retrieve(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         counterparty = response.parse()
         assert_matches_type(Counterparty, counterparty, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
+        with client.counterparties.with_streaming_response.retrieve(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            counterparty = response.parse()
+            assert_matches_type(Counterparty, counterparty, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
@@ -349,9 +380,24 @@ class TestCounterparties:
         response = client.counterparties.with_raw_response.update(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         counterparty = response.parse()
         assert_matches_type(Counterparty, counterparty, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: ModernTreasury) -> None:
+        with client.counterparties.with_streaming_response.update(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            counterparty = response.parse()
+            assert_matches_type(Counterparty, counterparty, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -374,9 +420,22 @@ class TestCounterparties:
     @parametrize
     def test_raw_response_list(self, client: ModernTreasury) -> None:
         response = client.counterparties.with_raw_response.list()
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         counterparty = response.parse()
         assert_matches_type(SyncPage[Counterparty], counterparty, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list(self, client: ModernTreasury) -> None:
+        with client.counterparties.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            counterparty = response.parse()
+            assert_matches_type(SyncPage[Counterparty], counterparty, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
@@ -390,9 +449,24 @@ class TestCounterparties:
         response = client.counterparties.with_raw_response.delete(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         counterparty = response.parse()
         assert counterparty is None
+
+    @parametrize
+    def test_streaming_response_delete(self, client: ModernTreasury) -> None:
+        with client.counterparties.with_streaming_response.delete(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            counterparty = response.parse()
+            assert counterparty is None
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_collect_account(self, client: ModernTreasury) -> None:
@@ -419,9 +493,25 @@ class TestCounterparties:
             "string",
             direction="credit",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         counterparty = response.parse()
         assert_matches_type(CounterpartyCollectAccountResponse, counterparty, path=["response"])
+
+    @parametrize
+    def test_streaming_response_collect_account(self, client: ModernTreasury) -> None:
+        with client.counterparties.with_streaming_response.collect_account(
+            "string",
+            direction="credit",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            counterparty = response.parse()
+            assert_matches_type(CounterpartyCollectAccountResponse, counterparty, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
 
 class TestAsyncCounterparties:
@@ -708,9 +798,24 @@ class TestAsyncCounterparties:
         response = await client.counterparties.with_raw_response.create(
             name="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         counterparty = response.parse()
         assert_matches_type(Counterparty, counterparty, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create(self, client: AsyncModernTreasury) -> None:
+        async with client.counterparties.with_streaming_response.create(
+            name="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            counterparty = await response.parse()
+            assert_matches_type(Counterparty, counterparty, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
@@ -724,9 +829,24 @@ class TestAsyncCounterparties:
         response = await client.counterparties.with_raw_response.retrieve(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         counterparty = response.parse()
         assert_matches_type(Counterparty, counterparty, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        async with client.counterparties.with_streaming_response.retrieve(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            counterparty = await response.parse()
+            assert_matches_type(Counterparty, counterparty, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
@@ -752,9 +872,24 @@ class TestAsyncCounterparties:
         response = await client.counterparties.with_raw_response.update(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         counterparty = response.parse()
         assert_matches_type(Counterparty, counterparty, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, client: AsyncModernTreasury) -> None:
+        async with client.counterparties.with_streaming_response.update(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            counterparty = await response.parse()
+            assert_matches_type(Counterparty, counterparty, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -777,9 +912,22 @@ class TestAsyncCounterparties:
     @parametrize
     async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
         response = await client.counterparties.with_raw_response.list()
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         counterparty = response.parse()
         assert_matches_type(AsyncPage[Counterparty], counterparty, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list(self, client: AsyncModernTreasury) -> None:
+        async with client.counterparties.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            counterparty = await response.parse()
+            assert_matches_type(AsyncPage[Counterparty], counterparty, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
@@ -793,9 +941,24 @@ class TestAsyncCounterparties:
         response = await client.counterparties.with_raw_response.delete(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         counterparty = response.parse()
         assert counterparty is None
+
+    @parametrize
+    async def test_streaming_response_delete(self, client: AsyncModernTreasury) -> None:
+        async with client.counterparties.with_streaming_response.delete(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            counterparty = await response.parse()
+            assert counterparty is None
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_collect_account(self, client: AsyncModernTreasury) -> None:
@@ -822,6 +985,22 @@ class TestAsyncCounterparties:
             "string",
             direction="credit",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         counterparty = response.parse()
         assert_matches_type(CounterpartyCollectAccountResponse, counterparty, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_collect_account(self, client: AsyncModernTreasury) -> None:
+        async with client.counterparties.with_streaming_response.collect_account(
+            "string",
+            direction="credit",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            counterparty = await response.parse()
+            assert_matches_type(CounterpartyCollectAccountResponse, counterparty, path=["response"])
+
+        assert cast(Any, response.is_closed) is True

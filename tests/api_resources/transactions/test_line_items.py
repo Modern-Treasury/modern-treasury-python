@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from typing import Any, cast
 
 import pytest
 
@@ -38,9 +39,24 @@ class TestLineItems:
         response = client.transactions.line_items.with_raw_response.retrieve(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
         assert_matches_type(TransactionLineItem, line_item, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
+        with client.transactions.line_items.with_streaming_response.retrieve(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line_item = response.parse()
+            assert_matches_type(TransactionLineItem, line_item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -61,9 +77,22 @@ class TestLineItems:
     @parametrize
     def test_raw_response_list(self, client: ModernTreasury) -> None:
         response = client.transactions.line_items.with_raw_response.list()
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
         assert_matches_type(SyncPage[TransactionLineItem], line_item, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list(self, client: ModernTreasury) -> None:
+        with client.transactions.line_items.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line_item = response.parse()
+            assert_matches_type(SyncPage[TransactionLineItem], line_item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
 
 class TestAsyncLineItems:
@@ -87,9 +116,24 @@ class TestAsyncLineItems:
         response = await client.transactions.line_items.with_raw_response.retrieve(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
         assert_matches_type(TransactionLineItem, line_item, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        async with client.transactions.line_items.with_streaming_response.retrieve(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line_item = await response.parse()
+            assert_matches_type(TransactionLineItem, line_item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -110,6 +154,19 @@ class TestAsyncLineItems:
     @parametrize
     async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
         response = await client.transactions.line_items.with_raw_response.list()
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
         assert_matches_type(AsyncPage[TransactionLineItem], line_item, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list(self, client: AsyncModernTreasury) -> None:
+        async with client.transactions.line_items.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line_item = await response.parse()
+            assert_matches_type(AsyncPage[TransactionLineItem], line_item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True

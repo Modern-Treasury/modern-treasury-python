@@ -8,6 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
+from .. import _legacy_response
 from ..types import (
     ExpectedPayment,
     ExpectedPaymentType,
@@ -19,7 +20,7 @@ from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import (
     AsyncPaginator,
@@ -34,6 +35,10 @@ class ExpectedPayments(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ExpectedPaymentsWithRawResponse:
         return ExpectedPaymentsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ExpectedPaymentsWithStreamingResponse:
+        return ExpectedPaymentsWithStreamingResponse(self)
 
     def create(
         self,
@@ -469,6 +474,10 @@ class AsyncExpectedPayments(AsyncAPIResource):
     def with_raw_response(self) -> AsyncExpectedPaymentsWithRawResponse:
         return AsyncExpectedPaymentsWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> AsyncExpectedPaymentsWithStreamingResponse:
+        return AsyncExpectedPaymentsWithStreamingResponse(self)
+
     async def create(
         self,
         *,
@@ -900,37 +909,75 @@ class AsyncExpectedPayments(AsyncAPIResource):
 
 class ExpectedPaymentsWithRawResponse:
     def __init__(self, expected_payments: ExpectedPayments) -> None:
-        self.create = to_raw_response_wrapper(
+        self.create = _legacy_response.to_raw_response_wrapper(
             expected_payments.create,
         )
-        self.retrieve = to_raw_response_wrapper(
+        self.retrieve = _legacy_response.to_raw_response_wrapper(
             expected_payments.retrieve,
         )
-        self.update = to_raw_response_wrapper(
+        self.update = _legacy_response.to_raw_response_wrapper(
             expected_payments.update,
         )
-        self.list = to_raw_response_wrapper(
+        self.list = _legacy_response.to_raw_response_wrapper(
             expected_payments.list,
         )
-        self.delete = to_raw_response_wrapper(
+        self.delete = _legacy_response.to_raw_response_wrapper(
             expected_payments.delete,
         )
 
 
 class AsyncExpectedPaymentsWithRawResponse:
     def __init__(self, expected_payments: AsyncExpectedPayments) -> None:
-        self.create = async_to_raw_response_wrapper(
+        self.create = _legacy_response.async_to_raw_response_wrapper(
             expected_payments.create,
         )
-        self.retrieve = async_to_raw_response_wrapper(
+        self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             expected_payments.retrieve,
         )
-        self.update = async_to_raw_response_wrapper(
+        self.update = _legacy_response.async_to_raw_response_wrapper(
             expected_payments.update,
         )
-        self.list = async_to_raw_response_wrapper(
+        self.list = _legacy_response.async_to_raw_response_wrapper(
             expected_payments.list,
         )
-        self.delete = async_to_raw_response_wrapper(
+        self.delete = _legacy_response.async_to_raw_response_wrapper(
+            expected_payments.delete,
+        )
+
+
+class ExpectedPaymentsWithStreamingResponse:
+    def __init__(self, expected_payments: ExpectedPayments) -> None:
+        self.create = to_streamed_response_wrapper(
+            expected_payments.create,
+        )
+        self.retrieve = to_streamed_response_wrapper(
+            expected_payments.retrieve,
+        )
+        self.update = to_streamed_response_wrapper(
+            expected_payments.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            expected_payments.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            expected_payments.delete,
+        )
+
+
+class AsyncExpectedPaymentsWithStreamingResponse:
+    def __init__(self, expected_payments: AsyncExpectedPayments) -> None:
+        self.create = async_to_streamed_response_wrapper(
+            expected_payments.create,
+        )
+        self.retrieve = async_to_streamed_response_wrapper(
+            expected_payments.retrieve,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            expected_payments.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            expected_payments.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
             expected_payments.delete,
         )

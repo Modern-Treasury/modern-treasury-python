@@ -7,6 +7,7 @@ from datetime import datetime
 
 import httpx
 
+from .. import _legacy_response
 from ..types import (
     LedgerEventHandler,
     LedgerEventHandlerVariableParam,
@@ -17,7 +18,7 @@ from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import (
     AsyncPaginator,
@@ -31,6 +32,10 @@ class LedgerEventHandlers(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> LedgerEventHandlersWithRawResponse:
         return LedgerEventHandlersWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> LedgerEventHandlersWithStreamingResponse:
+        return LedgerEventHandlersWithStreamingResponse(self)
 
     def create(
         self,
@@ -229,6 +234,10 @@ class AsyncLedgerEventHandlers(AsyncAPIResource):
     def with_raw_response(self) -> AsyncLedgerEventHandlersWithRawResponse:
         return AsyncLedgerEventHandlersWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> AsyncLedgerEventHandlersWithStreamingResponse:
+        return AsyncLedgerEventHandlersWithStreamingResponse(self)
+
     async def create(
         self,
         *,
@@ -423,31 +432,63 @@ class AsyncLedgerEventHandlers(AsyncAPIResource):
 
 class LedgerEventHandlersWithRawResponse:
     def __init__(self, ledger_event_handlers: LedgerEventHandlers) -> None:
-        self.create = to_raw_response_wrapper(
+        self.create = _legacy_response.to_raw_response_wrapper(
             ledger_event_handlers.create,
         )
-        self.retrieve = to_raw_response_wrapper(
+        self.retrieve = _legacy_response.to_raw_response_wrapper(
             ledger_event_handlers.retrieve,
         )
-        self.list = to_raw_response_wrapper(
+        self.list = _legacy_response.to_raw_response_wrapper(
             ledger_event_handlers.list,
         )
-        self.delete = to_raw_response_wrapper(
+        self.delete = _legacy_response.to_raw_response_wrapper(
             ledger_event_handlers.delete,
         )
 
 
 class AsyncLedgerEventHandlersWithRawResponse:
     def __init__(self, ledger_event_handlers: AsyncLedgerEventHandlers) -> None:
-        self.create = async_to_raw_response_wrapper(
+        self.create = _legacy_response.async_to_raw_response_wrapper(
             ledger_event_handlers.create,
         )
-        self.retrieve = async_to_raw_response_wrapper(
+        self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             ledger_event_handlers.retrieve,
         )
-        self.list = async_to_raw_response_wrapper(
+        self.list = _legacy_response.async_to_raw_response_wrapper(
             ledger_event_handlers.list,
         )
-        self.delete = async_to_raw_response_wrapper(
+        self.delete = _legacy_response.async_to_raw_response_wrapper(
+            ledger_event_handlers.delete,
+        )
+
+
+class LedgerEventHandlersWithStreamingResponse:
+    def __init__(self, ledger_event_handlers: LedgerEventHandlers) -> None:
+        self.create = to_streamed_response_wrapper(
+            ledger_event_handlers.create,
+        )
+        self.retrieve = to_streamed_response_wrapper(
+            ledger_event_handlers.retrieve,
+        )
+        self.list = to_streamed_response_wrapper(
+            ledger_event_handlers.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            ledger_event_handlers.delete,
+        )
+
+
+class AsyncLedgerEventHandlersWithStreamingResponse:
+    def __init__(self, ledger_event_handlers: AsyncLedgerEventHandlers) -> None:
+        self.create = async_to_streamed_response_wrapper(
+            ledger_event_handlers.create,
+        )
+        self.retrieve = async_to_streamed_response_wrapper(
+            ledger_event_handlers.retrieve,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            ledger_event_handlers.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
             ledger_event_handlers.delete,
         )

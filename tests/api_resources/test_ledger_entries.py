@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from typing import Any, cast
 
 import pytest
 
@@ -49,9 +50,24 @@ class TestLedgerEntries:
         response = client.ledger_entries.with_raw_response.retrieve(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_entry = response.parse()
         assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
+        with client.ledger_entries.with_streaming_response.retrieve(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_entry = response.parse()
+            assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
@@ -77,9 +93,24 @@ class TestLedgerEntries:
         response = client.ledger_entries.with_raw_response.update(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_entry = response.parse()
         assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: ModernTreasury) -> None:
+        with client.ledger_entries.with_streaming_response.update(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_entry = response.parse()
+            assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -118,9 +149,22 @@ class TestLedgerEntries:
     @parametrize
     def test_raw_response_list(self, client: ModernTreasury) -> None:
         response = client.ledger_entries.with_raw_response.list()
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_entry = response.parse()
         assert_matches_type(SyncPage[LedgerEntry], ledger_entry, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list(self, client: ModernTreasury) -> None:
+        with client.ledger_entries.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_entry = response.parse()
+            assert_matches_type(SyncPage[LedgerEntry], ledger_entry, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
 
 class TestAsyncLedgerEntries:
@@ -152,9 +196,24 @@ class TestAsyncLedgerEntries:
         response = await client.ledger_entries.with_raw_response.retrieve(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_entry = response.parse()
         assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        async with client.ledger_entries.with_streaming_response.retrieve(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_entry = await response.parse()
+            assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
@@ -180,9 +239,24 @@ class TestAsyncLedgerEntries:
         response = await client.ledger_entries.with_raw_response.update(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_entry = response.parse()
         assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, client: AsyncModernTreasury) -> None:
+        async with client.ledger_entries.with_streaming_response.update(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_entry = await response.parse()
+            assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -221,6 +295,19 @@ class TestAsyncLedgerEntries:
     @parametrize
     async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
         response = await client.ledger_entries.with_raw_response.list()
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_entry = response.parse()
         assert_matches_type(AsyncPage[LedgerEntry], ledger_entry, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list(self, client: AsyncModernTreasury) -> None:
+        async with client.ledger_entries.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_entry = await response.parse()
+            assert_matches_type(AsyncPage[LedgerEntry], ledger_entry, path=["response"])
+
+        assert cast(Any, response.is_closed) is True

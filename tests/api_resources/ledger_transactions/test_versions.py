@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from typing import Any, cast
 
 import pytest
 
@@ -47,9 +48,22 @@ class TestVersions:
     @parametrize
     def test_raw_response_list(self, client: ModernTreasury) -> None:
         response = client.ledger_transactions.versions.with_raw_response.list()
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = response.parse()
         assert_matches_type(SyncPage[LedgerTransactionVersion], version, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list(self, client: ModernTreasury) -> None:
+        with client.ledger_transactions.versions.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            version = response.parse()
+            assert_matches_type(SyncPage[LedgerTransactionVersion], version, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
 
 class TestAsyncVersions:
@@ -81,6 +95,19 @@ class TestAsyncVersions:
     @parametrize
     async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
         response = await client.ledger_transactions.versions.with_raw_response.list()
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = response.parse()
         assert_matches_type(AsyncPage[LedgerTransactionVersion], version, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list(self, client: AsyncModernTreasury) -> None:
+        async with client.ledger_transactions.versions.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            version = await response.parse()
+            assert_matches_type(AsyncPage[LedgerTransactionVersion], version, path=["response"])
+
+        assert cast(Any, response.is_closed) is True

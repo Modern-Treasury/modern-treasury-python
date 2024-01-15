@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from typing import Any, cast
 
 import pytest
 
@@ -57,9 +58,26 @@ class TestLineItems:
             name="string",
             unit_amount=0,
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
         assert_matches_type(InvoiceLineItem, line_item, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create(self, client: ModernTreasury) -> None:
+        with client.invoices.line_items.with_streaming_response.create(
+            "string",
+            name="string",
+            unit_amount=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line_item = response.parse()
+            assert_matches_type(InvoiceLineItem, line_item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
@@ -75,9 +93,25 @@ class TestLineItems:
             "string",
             invoice_id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
         assert_matches_type(InvoiceLineItem, line_item, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
+        with client.invoices.line_items.with_streaming_response.retrieve(
+            "string",
+            invoice_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line_item = response.parse()
+            assert_matches_type(InvoiceLineItem, line_item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
@@ -107,9 +141,25 @@ class TestLineItems:
             "string",
             invoice_id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
         assert_matches_type(InvoiceLineItem, line_item, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: ModernTreasury) -> None:
+        with client.invoices.line_items.with_streaming_response.update(
+            "string",
+            invoice_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line_item = response.parse()
+            assert_matches_type(InvoiceLineItem, line_item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -132,9 +182,24 @@ class TestLineItems:
         response = client.invoices.line_items.with_raw_response.list(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
         assert_matches_type(SyncPage[InvoiceLineItem], line_item, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list(self, client: ModernTreasury) -> None:
+        with client.invoices.line_items.with_streaming_response.list(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line_item = response.parse()
+            assert_matches_type(SyncPage[InvoiceLineItem], line_item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
@@ -150,9 +215,25 @@ class TestLineItems:
             "string",
             invoice_id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
         assert_matches_type(InvoiceLineItem, line_item, path=["response"])
+
+    @parametrize
+    def test_streaming_response_delete(self, client: ModernTreasury) -> None:
+        with client.invoices.line_items.with_streaming_response.delete(
+            "string",
+            invoice_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line_item = response.parse()
+            assert_matches_type(InvoiceLineItem, line_item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
 
 class TestAsyncLineItems:
@@ -193,9 +274,26 @@ class TestAsyncLineItems:
             name="string",
             unit_amount=0,
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
         assert_matches_type(InvoiceLineItem, line_item, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create(self, client: AsyncModernTreasury) -> None:
+        async with client.invoices.line_items.with_streaming_response.create(
+            "string",
+            name="string",
+            unit_amount=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line_item = await response.parse()
+            assert_matches_type(InvoiceLineItem, line_item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
@@ -211,9 +309,25 @@ class TestAsyncLineItems:
             "string",
             invoice_id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
         assert_matches_type(InvoiceLineItem, line_item, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        async with client.invoices.line_items.with_streaming_response.retrieve(
+            "string",
+            invoice_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line_item = await response.parse()
+            assert_matches_type(InvoiceLineItem, line_item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
@@ -243,9 +357,25 @@ class TestAsyncLineItems:
             "string",
             invoice_id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
         assert_matches_type(InvoiceLineItem, line_item, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, client: AsyncModernTreasury) -> None:
+        async with client.invoices.line_items.with_streaming_response.update(
+            "string",
+            invoice_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line_item = await response.parse()
+            assert_matches_type(InvoiceLineItem, line_item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -268,9 +398,24 @@ class TestAsyncLineItems:
         response = await client.invoices.line_items.with_raw_response.list(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
         assert_matches_type(AsyncPage[InvoiceLineItem], line_item, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list(self, client: AsyncModernTreasury) -> None:
+        async with client.invoices.line_items.with_streaming_response.list(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line_item = await response.parse()
+            assert_matches_type(AsyncPage[InvoiceLineItem], line_item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
@@ -286,6 +431,22 @@ class TestAsyncLineItems:
             "string",
             invoice_id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
         assert_matches_type(InvoiceLineItem, line_item, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_delete(self, client: AsyncModernTreasury) -> None:
+        async with client.invoices.line_items.with_streaming_response.delete(
+            "string",
+            invoice_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line_item = await response.parse()
+            assert_matches_type(InvoiceLineItem, line_item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True

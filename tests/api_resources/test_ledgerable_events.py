@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from typing import Any, cast
 
 import pytest
 
@@ -51,9 +52,24 @@ class TestLedgerableEvents:
         response = client.ledgerable_events.with_raw_response.create(
             name="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledgerable_event = response.parse()
         assert_matches_type(LedgerableEvent, ledgerable_event, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create(self, client: ModernTreasury) -> None:
+        with client.ledgerable_events.with_streaming_response.create(
+            name="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledgerable_event = response.parse()
+            assert_matches_type(LedgerableEvent, ledgerable_event, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
@@ -67,9 +83,24 @@ class TestLedgerableEvents:
         response = client.ledgerable_events.with_raw_response.retrieve(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledgerable_event = response.parse()
         assert_matches_type(LedgerableEvent, ledgerable_event, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
+        with client.ledgerable_events.with_streaming_response.retrieve(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledgerable_event = response.parse()
+            assert_matches_type(LedgerableEvent, ledgerable_event, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
 
 class TestAsyncLedgerableEvents:
@@ -107,9 +138,24 @@ class TestAsyncLedgerableEvents:
         response = await client.ledgerable_events.with_raw_response.create(
             name="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledgerable_event = response.parse()
         assert_matches_type(LedgerableEvent, ledgerable_event, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create(self, client: AsyncModernTreasury) -> None:
+        async with client.ledgerable_events.with_streaming_response.create(
+            name="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledgerable_event = await response.parse()
+            assert_matches_type(LedgerableEvent, ledgerable_event, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
@@ -123,6 +169,21 @@ class TestAsyncLedgerableEvents:
         response = await client.ledgerable_events.with_raw_response.retrieve(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledgerable_event = response.parse()
         assert_matches_type(LedgerableEvent, ledgerable_event, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        async with client.ledgerable_events.with_streaming_response.retrieve(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledgerable_event = await response.parse()
+            assert_matches_type(LedgerableEvent, ledgerable_event, path=["response"])
+
+        assert cast(Any, response.is_closed) is True

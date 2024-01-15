@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from typing import Any, cast
 
 import pytest
 
@@ -55,9 +56,27 @@ class TestRoutingDetails:
             routing_number="string",
             routing_number_type="aba",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         routing_detail = response.parse()
         assert_matches_type(RoutingDetail, routing_detail, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create(self, client: ModernTreasury) -> None:
+        with client.routing_details.with_streaming_response.create(
+            "string",
+            accounts_type="external_accounts",
+            routing_number="string",
+            routing_number_type="aba",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            routing_detail = response.parse()
+            assert_matches_type(RoutingDetail, routing_detail, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
@@ -75,9 +94,26 @@ class TestRoutingDetails:
             accounts_type="external_accounts",
             account_id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         routing_detail = response.parse()
         assert_matches_type(RoutingDetail, routing_detail, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
+        with client.routing_details.with_streaming_response.retrieve(
+            "string",
+            accounts_type="external_accounts",
+            account_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            routing_detail = response.parse()
+            assert_matches_type(RoutingDetail, routing_detail, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -103,9 +139,25 @@ class TestRoutingDetails:
             "string",
             accounts_type="external_accounts",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         routing_detail = response.parse()
         assert_matches_type(SyncPage[RoutingDetail], routing_detail, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list(self, client: ModernTreasury) -> None:
+        with client.routing_details.with_streaming_response.list(
+            "string",
+            accounts_type="external_accounts",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            routing_detail = response.parse()
+            assert_matches_type(SyncPage[RoutingDetail], routing_detail, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
@@ -123,9 +175,26 @@ class TestRoutingDetails:
             accounts_type="external_accounts",
             account_id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         routing_detail = response.parse()
         assert routing_detail is None
+
+    @parametrize
+    def test_streaming_response_delete(self, client: ModernTreasury) -> None:
+        with client.routing_details.with_streaming_response.delete(
+            "string",
+            accounts_type="external_accounts",
+            account_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            routing_detail = response.parse()
+            assert routing_detail is None
+
+        assert cast(Any, response.is_closed) is True
 
 
 class TestAsyncRoutingDetails:
@@ -166,9 +235,27 @@ class TestAsyncRoutingDetails:
             routing_number="string",
             routing_number_type="aba",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         routing_detail = response.parse()
         assert_matches_type(RoutingDetail, routing_detail, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create(self, client: AsyncModernTreasury) -> None:
+        async with client.routing_details.with_streaming_response.create(
+            "string",
+            accounts_type="external_accounts",
+            routing_number="string",
+            routing_number_type="aba",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            routing_detail = await response.parse()
+            assert_matches_type(RoutingDetail, routing_detail, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
@@ -186,9 +273,26 @@ class TestAsyncRoutingDetails:
             accounts_type="external_accounts",
             account_id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         routing_detail = response.parse()
         assert_matches_type(RoutingDetail, routing_detail, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        async with client.routing_details.with_streaming_response.retrieve(
+            "string",
+            accounts_type="external_accounts",
+            account_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            routing_detail = await response.parse()
+            assert_matches_type(RoutingDetail, routing_detail, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -214,9 +318,25 @@ class TestAsyncRoutingDetails:
             "string",
             accounts_type="external_accounts",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         routing_detail = response.parse()
         assert_matches_type(AsyncPage[RoutingDetail], routing_detail, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list(self, client: AsyncModernTreasury) -> None:
+        async with client.routing_details.with_streaming_response.list(
+            "string",
+            accounts_type="external_accounts",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            routing_detail = await response.parse()
+            assert_matches_type(AsyncPage[RoutingDetail], routing_detail, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
@@ -234,6 +354,23 @@ class TestAsyncRoutingDetails:
             accounts_type="external_accounts",
             account_id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         routing_detail = response.parse()
         assert routing_detail is None
+
+    @parametrize
+    async def test_streaming_response_delete(self, client: AsyncModernTreasury) -> None:
+        async with client.routing_details.with_streaming_response.delete(
+            "string",
+            accounts_type="external_accounts",
+            account_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            routing_detail = await response.parse()
+            assert routing_detail is None
+
+        assert cast(Any, response.is_closed) is True

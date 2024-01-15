@@ -8,6 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
+from .. import _legacy_response
 from ..types import (
     PaymentFlow,
     payment_flow_list_params,
@@ -18,7 +19,7 @@ from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import (
     AsyncPaginator,
@@ -32,6 +33,10 @@ class PaymentFlows(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PaymentFlowsWithRawResponse:
         return PaymentFlowsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> PaymentFlowsWithStreamingResponse:
+        return PaymentFlowsWithStreamingResponse(self)
 
     def create(
         self,
@@ -241,6 +246,10 @@ class AsyncPaymentFlows(AsyncAPIResource):
     def with_raw_response(self) -> AsyncPaymentFlowsWithRawResponse:
         return AsyncPaymentFlowsWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> AsyncPaymentFlowsWithStreamingResponse:
+        return AsyncPaymentFlowsWithStreamingResponse(self)
+
     async def create(
         self,
         *,
@@ -446,31 +455,63 @@ class AsyncPaymentFlows(AsyncAPIResource):
 
 class PaymentFlowsWithRawResponse:
     def __init__(self, payment_flows: PaymentFlows) -> None:
-        self.create = to_raw_response_wrapper(
+        self.create = _legacy_response.to_raw_response_wrapper(
             payment_flows.create,
         )
-        self.retrieve = to_raw_response_wrapper(
+        self.retrieve = _legacy_response.to_raw_response_wrapper(
             payment_flows.retrieve,
         )
-        self.update = to_raw_response_wrapper(
+        self.update = _legacy_response.to_raw_response_wrapper(
             payment_flows.update,
         )
-        self.list = to_raw_response_wrapper(
+        self.list = _legacy_response.to_raw_response_wrapper(
             payment_flows.list,
         )
 
 
 class AsyncPaymentFlowsWithRawResponse:
     def __init__(self, payment_flows: AsyncPaymentFlows) -> None:
-        self.create = async_to_raw_response_wrapper(
+        self.create = _legacy_response.async_to_raw_response_wrapper(
             payment_flows.create,
         )
-        self.retrieve = async_to_raw_response_wrapper(
+        self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             payment_flows.retrieve,
         )
-        self.update = async_to_raw_response_wrapper(
+        self.update = _legacy_response.async_to_raw_response_wrapper(
             payment_flows.update,
         )
-        self.list = async_to_raw_response_wrapper(
+        self.list = _legacy_response.async_to_raw_response_wrapper(
+            payment_flows.list,
+        )
+
+
+class PaymentFlowsWithStreamingResponse:
+    def __init__(self, payment_flows: PaymentFlows) -> None:
+        self.create = to_streamed_response_wrapper(
+            payment_flows.create,
+        )
+        self.retrieve = to_streamed_response_wrapper(
+            payment_flows.retrieve,
+        )
+        self.update = to_streamed_response_wrapper(
+            payment_flows.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            payment_flows.list,
+        )
+
+
+class AsyncPaymentFlowsWithStreamingResponse:
+    def __init__(self, payment_flows: AsyncPaymentFlows) -> None:
+        self.create = async_to_streamed_response_wrapper(
+            payment_flows.create,
+        )
+        self.retrieve = async_to_streamed_response_wrapper(
+            payment_flows.retrieve,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            payment_flows.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
             payment_flows.list,
         )
