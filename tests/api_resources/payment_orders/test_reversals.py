@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from typing import Any, cast
 
 import pytest
 
@@ -115,9 +116,25 @@ class TestReversals:
             "string",
             reason="duplicate",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         reversal = response.parse()
         assert_matches_type(Reversal, reversal, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create(self, client: ModernTreasury) -> None:
+        with client.payment_orders.reversals.with_streaming_response.create(
+            "string",
+            reason="duplicate",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            reversal = response.parse()
+            assert_matches_type(Reversal, reversal, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
@@ -133,9 +150,25 @@ class TestReversals:
             "string",
             payment_order_id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         reversal = response.parse()
         assert_matches_type(Reversal, reversal, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
+        with client.payment_orders.reversals.with_streaming_response.retrieve(
+            "string",
+            payment_order_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            reversal = response.parse()
+            assert_matches_type(Reversal, reversal, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -158,9 +191,24 @@ class TestReversals:
         response = client.payment_orders.reversals.with_raw_response.list(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         reversal = response.parse()
         assert_matches_type(SyncPage[Reversal], reversal, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list(self, client: ModernTreasury) -> None:
+        with client.payment_orders.reversals.with_streaming_response.list(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            reversal = response.parse()
+            assert_matches_type(SyncPage[Reversal], reversal, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
 
 class TestAsyncReversals:
@@ -260,9 +308,25 @@ class TestAsyncReversals:
             "string",
             reason="duplicate",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         reversal = response.parse()
         assert_matches_type(Reversal, reversal, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create(self, client: AsyncModernTreasury) -> None:
+        async with client.payment_orders.reversals.with_streaming_response.create(
+            "string",
+            reason="duplicate",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            reversal = await response.parse()
+            assert_matches_type(Reversal, reversal, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
@@ -278,9 +342,25 @@ class TestAsyncReversals:
             "string",
             payment_order_id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         reversal = response.parse()
         assert_matches_type(Reversal, reversal, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        async with client.payment_orders.reversals.with_streaming_response.retrieve(
+            "string",
+            payment_order_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            reversal = await response.parse()
+            assert_matches_type(Reversal, reversal, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -303,6 +383,21 @@ class TestAsyncReversals:
         response = await client.payment_orders.reversals.with_raw_response.list(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         reversal = response.parse()
         assert_matches_type(AsyncPage[Reversal], reversal, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list(self, client: AsyncModernTreasury) -> None:
+        async with client.payment_orders.reversals.with_streaming_response.list(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            reversal = await response.parse()
+            assert_matches_type(AsyncPage[Reversal], reversal, path=["response"])
+
+        assert cast(Any, response.is_closed) is True

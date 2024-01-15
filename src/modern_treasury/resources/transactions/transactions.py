@@ -7,6 +7,7 @@ from datetime import date
 
 import httpx
 
+from ... import _legacy_response
 from ...types import (
     Transaction,
     transaction_list_params,
@@ -16,9 +17,16 @@ from ...types import (
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ..._utils import maybe_transform
 from ..._compat import cached_property
-from .line_items import LineItems, AsyncLineItems, LineItemsWithRawResponse, AsyncLineItemsWithRawResponse
+from .line_items import (
+    LineItems,
+    AsyncLineItems,
+    LineItemsWithRawResponse,
+    AsyncLineItemsWithRawResponse,
+    LineItemsWithStreamingResponse,
+    AsyncLineItemsWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import (
     AsyncPaginator,
@@ -36,6 +44,10 @@ class Transactions(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TransactionsWithRawResponse:
         return TransactionsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> TransactionsWithStreamingResponse:
+        return TransactionsWithStreamingResponse(self)
 
     def create(
         self,
@@ -333,6 +345,10 @@ class AsyncTransactions(AsyncAPIResource):
     def with_raw_response(self) -> AsyncTransactionsWithRawResponse:
         return AsyncTransactionsWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> AsyncTransactionsWithStreamingResponse:
+        return AsyncTransactionsWithStreamingResponse(self)
+
     async def create(
         self,
         *,
@@ -624,19 +640,19 @@ class TransactionsWithRawResponse:
     def __init__(self, transactions: Transactions) -> None:
         self.line_items = LineItemsWithRawResponse(transactions.line_items)
 
-        self.create = to_raw_response_wrapper(
+        self.create = _legacy_response.to_raw_response_wrapper(
             transactions.create,
         )
-        self.retrieve = to_raw_response_wrapper(
+        self.retrieve = _legacy_response.to_raw_response_wrapper(
             transactions.retrieve,
         )
-        self.update = to_raw_response_wrapper(
+        self.update = _legacy_response.to_raw_response_wrapper(
             transactions.update,
         )
-        self.list = to_raw_response_wrapper(
+        self.list = _legacy_response.to_raw_response_wrapper(
             transactions.list,
         )
-        self.delete = to_raw_response_wrapper(
+        self.delete = _legacy_response.to_raw_response_wrapper(
             transactions.delete,
         )
 
@@ -645,18 +661,60 @@ class AsyncTransactionsWithRawResponse:
     def __init__(self, transactions: AsyncTransactions) -> None:
         self.line_items = AsyncLineItemsWithRawResponse(transactions.line_items)
 
-        self.create = async_to_raw_response_wrapper(
+        self.create = _legacy_response.async_to_raw_response_wrapper(
             transactions.create,
         )
-        self.retrieve = async_to_raw_response_wrapper(
+        self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             transactions.retrieve,
         )
-        self.update = async_to_raw_response_wrapper(
+        self.update = _legacy_response.async_to_raw_response_wrapper(
             transactions.update,
         )
-        self.list = async_to_raw_response_wrapper(
+        self.list = _legacy_response.async_to_raw_response_wrapper(
             transactions.list,
         )
-        self.delete = async_to_raw_response_wrapper(
+        self.delete = _legacy_response.async_to_raw_response_wrapper(
+            transactions.delete,
+        )
+
+
+class TransactionsWithStreamingResponse:
+    def __init__(self, transactions: Transactions) -> None:
+        self.line_items = LineItemsWithStreamingResponse(transactions.line_items)
+
+        self.create = to_streamed_response_wrapper(
+            transactions.create,
+        )
+        self.retrieve = to_streamed_response_wrapper(
+            transactions.retrieve,
+        )
+        self.update = to_streamed_response_wrapper(
+            transactions.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            transactions.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            transactions.delete,
+        )
+
+
+class AsyncTransactionsWithStreamingResponse:
+    def __init__(self, transactions: AsyncTransactions) -> None:
+        self.line_items = AsyncLineItemsWithStreamingResponse(transactions.line_items)
+
+        self.create = async_to_streamed_response_wrapper(
+            transactions.create,
+        )
+        self.retrieve = async_to_streamed_response_wrapper(
+            transactions.retrieve,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            transactions.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            transactions.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
             transactions.delete,
         )

@@ -8,6 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
+from .. import _legacy_response
 from ..types import (
     LedgerEntry,
     ledger_entry_list_params,
@@ -18,7 +19,7 @@ from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import (
     AsyncPaginator,
@@ -33,6 +34,10 @@ class LedgerEntries(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> LedgerEntriesWithRawResponse:
         return LedgerEntriesWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> LedgerEntriesWithStreamingResponse:
+        return LedgerEntriesWithStreamingResponse(self)
 
     def retrieve(
         self,
@@ -251,6 +256,10 @@ class AsyncLedgerEntries(AsyncAPIResource):
     def with_raw_response(self) -> AsyncLedgerEntriesWithRawResponse:
         return AsyncLedgerEntriesWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> AsyncLedgerEntriesWithStreamingResponse:
+        return AsyncLedgerEntriesWithStreamingResponse(self)
+
     async def retrieve(
         self,
         id: str,
@@ -465,25 +474,51 @@ class AsyncLedgerEntries(AsyncAPIResource):
 
 class LedgerEntriesWithRawResponse:
     def __init__(self, ledger_entries: LedgerEntries) -> None:
-        self.retrieve = to_raw_response_wrapper(
+        self.retrieve = _legacy_response.to_raw_response_wrapper(
             ledger_entries.retrieve,
         )
-        self.update = to_raw_response_wrapper(
+        self.update = _legacy_response.to_raw_response_wrapper(
             ledger_entries.update,
         )
-        self.list = to_raw_response_wrapper(
+        self.list = _legacy_response.to_raw_response_wrapper(
             ledger_entries.list,
         )
 
 
 class AsyncLedgerEntriesWithRawResponse:
     def __init__(self, ledger_entries: AsyncLedgerEntries) -> None:
-        self.retrieve = async_to_raw_response_wrapper(
+        self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             ledger_entries.retrieve,
         )
-        self.update = async_to_raw_response_wrapper(
+        self.update = _legacy_response.async_to_raw_response_wrapper(
             ledger_entries.update,
         )
-        self.list = async_to_raw_response_wrapper(
+        self.list = _legacy_response.async_to_raw_response_wrapper(
+            ledger_entries.list,
+        )
+
+
+class LedgerEntriesWithStreamingResponse:
+    def __init__(self, ledger_entries: LedgerEntries) -> None:
+        self.retrieve = to_streamed_response_wrapper(
+            ledger_entries.retrieve,
+        )
+        self.update = to_streamed_response_wrapper(
+            ledger_entries.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            ledger_entries.list,
+        )
+
+
+class AsyncLedgerEntriesWithStreamingResponse:
+    def __init__(self, ledger_entries: AsyncLedgerEntries) -> None:
+        self.retrieve = async_to_streamed_response_wrapper(
+            ledger_entries.retrieve,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            ledger_entries.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
             ledger_entries.list,
         )

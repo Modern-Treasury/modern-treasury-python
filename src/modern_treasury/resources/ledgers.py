@@ -7,12 +7,13 @@ from datetime import datetime
 
 import httpx
 
+from .. import _legacy_response
 from ..types import Ledger, ledger_list_params, ledger_create_params, ledger_update_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import (
     AsyncPaginator,
@@ -26,6 +27,10 @@ class Ledgers(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> LedgersWithRawResponse:
         return LedgersWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> LedgersWithStreamingResponse:
+        return LedgersWithStreamingResponse(self)
 
     def create(
         self,
@@ -273,6 +278,10 @@ class AsyncLedgers(AsyncAPIResource):
     def with_raw_response(self) -> AsyncLedgersWithRawResponse:
         return AsyncLedgersWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> AsyncLedgersWithStreamingResponse:
+        return AsyncLedgersWithStreamingResponse(self)
+
     async def create(
         self,
         *,
@@ -516,37 +525,75 @@ class AsyncLedgers(AsyncAPIResource):
 
 class LedgersWithRawResponse:
     def __init__(self, ledgers: Ledgers) -> None:
-        self.create = to_raw_response_wrapper(
+        self.create = _legacy_response.to_raw_response_wrapper(
             ledgers.create,
         )
-        self.retrieve = to_raw_response_wrapper(
+        self.retrieve = _legacy_response.to_raw_response_wrapper(
             ledgers.retrieve,
         )
-        self.update = to_raw_response_wrapper(
+        self.update = _legacy_response.to_raw_response_wrapper(
             ledgers.update,
         )
-        self.list = to_raw_response_wrapper(
+        self.list = _legacy_response.to_raw_response_wrapper(
             ledgers.list,
         )
-        self.delete = to_raw_response_wrapper(
+        self.delete = _legacy_response.to_raw_response_wrapper(
             ledgers.delete,
         )
 
 
 class AsyncLedgersWithRawResponse:
     def __init__(self, ledgers: AsyncLedgers) -> None:
-        self.create = async_to_raw_response_wrapper(
+        self.create = _legacy_response.async_to_raw_response_wrapper(
             ledgers.create,
         )
-        self.retrieve = async_to_raw_response_wrapper(
+        self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             ledgers.retrieve,
         )
-        self.update = async_to_raw_response_wrapper(
+        self.update = _legacy_response.async_to_raw_response_wrapper(
             ledgers.update,
         )
-        self.list = async_to_raw_response_wrapper(
+        self.list = _legacy_response.async_to_raw_response_wrapper(
             ledgers.list,
         )
-        self.delete = async_to_raw_response_wrapper(
+        self.delete = _legacy_response.async_to_raw_response_wrapper(
+            ledgers.delete,
+        )
+
+
+class LedgersWithStreamingResponse:
+    def __init__(self, ledgers: Ledgers) -> None:
+        self.create = to_streamed_response_wrapper(
+            ledgers.create,
+        )
+        self.retrieve = to_streamed_response_wrapper(
+            ledgers.retrieve,
+        )
+        self.update = to_streamed_response_wrapper(
+            ledgers.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            ledgers.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            ledgers.delete,
+        )
+
+
+class AsyncLedgersWithStreamingResponse:
+    def __init__(self, ledgers: AsyncLedgers) -> None:
+        self.create = async_to_streamed_response_wrapper(
+            ledgers.create,
+        )
+        self.retrieve = async_to_streamed_response_wrapper(
+            ledgers.retrieve,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            ledgers.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            ledgers.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
             ledgers.delete,
         )

@@ -6,12 +6,13 @@ from typing import Dict, Optional
 
 import httpx
 
+from .. import _legacy_response
 from ..types import LedgerableEvent, ledgerable_event_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from .._base_client import (
     make_request_options,
 )
@@ -23,6 +24,10 @@ class LedgerableEvents(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> LedgerableEventsWithRawResponse:
         return LedgerableEventsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> LedgerableEventsWithStreamingResponse:
+        return LedgerableEventsWithStreamingResponse(self)
 
     def create(
         self,
@@ -120,6 +125,10 @@ class AsyncLedgerableEvents(AsyncAPIResource):
     def with_raw_response(self) -> AsyncLedgerableEventsWithRawResponse:
         return AsyncLedgerableEventsWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> AsyncLedgerableEventsWithStreamingResponse:
+        return AsyncLedgerableEventsWithStreamingResponse(self)
+
     async def create(
         self,
         *,
@@ -213,19 +222,39 @@ class AsyncLedgerableEvents(AsyncAPIResource):
 
 class LedgerableEventsWithRawResponse:
     def __init__(self, ledgerable_events: LedgerableEvents) -> None:
-        self.create = to_raw_response_wrapper(
+        self.create = _legacy_response.to_raw_response_wrapper(
             ledgerable_events.create,
         )
-        self.retrieve = to_raw_response_wrapper(
+        self.retrieve = _legacy_response.to_raw_response_wrapper(
             ledgerable_events.retrieve,
         )
 
 
 class AsyncLedgerableEventsWithRawResponse:
     def __init__(self, ledgerable_events: AsyncLedgerableEvents) -> None:
-        self.create = async_to_raw_response_wrapper(
+        self.create = _legacy_response.async_to_raw_response_wrapper(
             ledgerable_events.create,
         )
-        self.retrieve = async_to_raw_response_wrapper(
+        self.retrieve = _legacy_response.async_to_raw_response_wrapper(
+            ledgerable_events.retrieve,
+        )
+
+
+class LedgerableEventsWithStreamingResponse:
+    def __init__(self, ledgerable_events: LedgerableEvents) -> None:
+        self.create = to_streamed_response_wrapper(
+            ledgerable_events.create,
+        )
+        self.retrieve = to_streamed_response_wrapper(
+            ledgerable_events.retrieve,
+        )
+
+
+class AsyncLedgerableEventsWithStreamingResponse:
+    def __init__(self, ledgerable_events: AsyncLedgerableEvents) -> None:
+        self.create = async_to_streamed_response_wrapper(
+            ledgerable_events.create,
+        )
+        self.retrieve = async_to_streamed_response_wrapper(
             ledgerable_events.retrieve,
         )

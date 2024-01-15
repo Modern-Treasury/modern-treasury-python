@@ -7,11 +7,12 @@ from typing_extensions import Literal
 
 import httpx
 
+from ... import _legacy_response
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import (
     AsyncPaginator,
@@ -26,6 +27,10 @@ class Reversals(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ReversalsWithRawResponse:
         return ReversalsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ReversalsWithStreamingResponse:
+        return ReversalsWithStreamingResponse(self)
 
     def create(
         self,
@@ -177,6 +182,10 @@ class AsyncReversals(AsyncAPIResource):
     def with_raw_response(self) -> AsyncReversalsWithRawResponse:
         return AsyncReversalsWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> AsyncReversalsWithStreamingResponse:
+        return AsyncReversalsWithStreamingResponse(self)
+
     async def create(
         self,
         payment_order_id: str,
@@ -324,25 +333,51 @@ class AsyncReversals(AsyncAPIResource):
 
 class ReversalsWithRawResponse:
     def __init__(self, reversals: Reversals) -> None:
-        self.create = to_raw_response_wrapper(
+        self.create = _legacy_response.to_raw_response_wrapper(
             reversals.create,
         )
-        self.retrieve = to_raw_response_wrapper(
+        self.retrieve = _legacy_response.to_raw_response_wrapper(
             reversals.retrieve,
         )
-        self.list = to_raw_response_wrapper(
+        self.list = _legacy_response.to_raw_response_wrapper(
             reversals.list,
         )
 
 
 class AsyncReversalsWithRawResponse:
     def __init__(self, reversals: AsyncReversals) -> None:
-        self.create = async_to_raw_response_wrapper(
+        self.create = _legacy_response.async_to_raw_response_wrapper(
             reversals.create,
         )
-        self.retrieve = async_to_raw_response_wrapper(
+        self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             reversals.retrieve,
         )
-        self.list = async_to_raw_response_wrapper(
+        self.list = _legacy_response.async_to_raw_response_wrapper(
+            reversals.list,
+        )
+
+
+class ReversalsWithStreamingResponse:
+    def __init__(self, reversals: Reversals) -> None:
+        self.create = to_streamed_response_wrapper(
+            reversals.create,
+        )
+        self.retrieve = to_streamed_response_wrapper(
+            reversals.retrieve,
+        )
+        self.list = to_streamed_response_wrapper(
+            reversals.list,
+        )
+
+
+class AsyncReversalsWithStreamingResponse:
+    def __init__(self, reversals: AsyncReversals) -> None:
+        self.create = async_to_streamed_response_wrapper(
+            reversals.create,
+        )
+        self.retrieve = async_to_streamed_response_wrapper(
+            reversals.retrieve,
+        )
+        self.list = async_to_streamed_response_wrapper(
             reversals.list,
         )

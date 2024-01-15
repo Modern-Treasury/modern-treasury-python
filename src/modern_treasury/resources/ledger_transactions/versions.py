@@ -7,11 +7,12 @@ from datetime import datetime
 
 import httpx
 
+from ... import _legacy_response
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import (
     AsyncPaginator,
@@ -26,6 +27,10 @@ class Versions(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> VersionsWithRawResponse:
         return VersionsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> VersionsWithStreamingResponse:
+        return VersionsWithStreamingResponse(self)
 
     def list(
         self,
@@ -97,6 +102,10 @@ class AsyncVersions(AsyncAPIResource):
     def with_raw_response(self) -> AsyncVersionsWithRawResponse:
         return AsyncVersionsWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> AsyncVersionsWithStreamingResponse:
+        return AsyncVersionsWithStreamingResponse(self)
+
     def list(
         self,
         *,
@@ -164,13 +173,27 @@ class AsyncVersions(AsyncAPIResource):
 
 class VersionsWithRawResponse:
     def __init__(self, versions: Versions) -> None:
-        self.list = to_raw_response_wrapper(
+        self.list = _legacy_response.to_raw_response_wrapper(
             versions.list,
         )
 
 
 class AsyncVersionsWithRawResponse:
     def __init__(self, versions: AsyncVersions) -> None:
-        self.list = async_to_raw_response_wrapper(
+        self.list = _legacy_response.async_to_raw_response_wrapper(
+            versions.list,
+        )
+
+
+class VersionsWithStreamingResponse:
+    def __init__(self, versions: Versions) -> None:
+        self.list = to_streamed_response_wrapper(
+            versions.list,
+        )
+
+
+class AsyncVersionsWithStreamingResponse:
+    def __init__(self, versions: AsyncVersions) -> None:
+        self.list = async_to_streamed_response_wrapper(
             versions.list,
         )

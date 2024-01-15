@@ -300,7 +300,7 @@ if response.my_field is None:
 
 ### Accessing raw response data (e.g. headers)
 
-The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call.
+The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
 from modern_treasury import ModernTreasury
@@ -316,7 +316,35 @@ external_account = response.parse()  # get the object that `external_accounts.cr
 print(external_account.id)
 ```
 
-These methods return an [`APIResponse`](https://github.com/Modern-Treasury/modern-treasury-python/tree/main/src/modern_treasury/_response.py) object.
+These methods return an [`LegacyAPIResponse`](https://github.com/Modern-Treasury/modern-treasury-python/tree/main/src/modern_treasury/_legacy_response.py) object. This is a legacy class as we're changing it slightly in the next major version.
+
+For the sync client this will mostly be the same with the exception
+of `content` & `text` will be methods instead of properties. In the
+async client, all methods will be async.
+
+A migration script will be provided & the migration in general should
+be smooth.
+
+#### `.with_streaming_response`
+
+The above interface eagerly reads the full response body when you make the request, which may not always be what you want.
+
+To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
+
+As such, `.with_streaming_response` methods return a different [`APIResponse`](https://github.com/Modern-Treasury/modern-treasury-python/tree/main/src/modern_treasury/_response.py) object, and the async client returns an [`AsyncAPIResponse`](https://github.com/Modern-Treasury/modern-treasury-python/tree/main/src/modern_treasury/_response.py) object.
+
+```python
+with client.external_accounts.with_streaming_response.create(
+    counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a",
+    name="my bank",
+) as response:
+    print(response.headers.get("X-My-Header"))
+
+    for line in response.iter_lines():
+        print(line)
+```
+
+The context manager is required so that the response will reliably be closed.
 
 ### Configuring the HTTP client
 

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from typing import Any, cast
 
 import pytest
 
@@ -89,9 +90,48 @@ class TestBalanceReports:
                 },
             ],
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         balance_report = response.parse()
         assert_matches_type(BalanceReport, balance_report, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create(self, client: ModernTreasury) -> None:
+        with client.internal_accounts.balance_reports.with_streaming_response.create(
+            "string",
+            amount=0,
+            as_of_date=parse_date("2019-12-27"),
+            as_of_time="string",
+            balance_report_type="intraday",
+            balances=[
+                {
+                    "amount": 0,
+                    "balance_type": "closing_available",
+                    "vendor_code": "string",
+                    "vendor_code_type": "string",
+                },
+                {
+                    "amount": 0,
+                    "balance_type": "closing_available",
+                    "vendor_code": "string",
+                    "vendor_code_type": "string",
+                },
+                {
+                    "amount": 0,
+                    "balance_type": "closing_available",
+                    "vendor_code": "string",
+                    "vendor_code_type": "string",
+                },
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            balance_report = response.parse()
+            assert_matches_type(BalanceReport, balance_report, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
@@ -107,9 +147,25 @@ class TestBalanceReports:
             "string",
             internal_account_id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         balance_report = response.parse()
         assert_matches_type(BalanceReport, balance_report, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
+        with client.internal_accounts.balance_reports.with_streaming_response.retrieve(
+            "string",
+            internal_account_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            balance_report = response.parse()
+            assert_matches_type(BalanceReport, balance_report, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -134,9 +190,24 @@ class TestBalanceReports:
         response = client.internal_accounts.balance_reports.with_raw_response.list(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         balance_report = response.parse()
         assert_matches_type(SyncPage[BalanceReport], balance_report, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list(self, client: ModernTreasury) -> None:
+        with client.internal_accounts.balance_reports.with_streaming_response.list(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            balance_report = response.parse()
+            assert_matches_type(SyncPage[BalanceReport], balance_report, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
@@ -152,9 +223,25 @@ class TestBalanceReports:
             "string",
             internal_account_id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         balance_report = response.parse()
         assert balance_report is None
+
+    @parametrize
+    def test_streaming_response_delete(self, client: ModernTreasury) -> None:
+        with client.internal_accounts.balance_reports.with_streaming_response.delete(
+            "string",
+            internal_account_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            balance_report = response.parse()
+            assert balance_report is None
+
+        assert cast(Any, response.is_closed) is True
 
 
 class TestAsyncBalanceReports:
@@ -226,9 +313,48 @@ class TestAsyncBalanceReports:
                 },
             ],
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         balance_report = response.parse()
         assert_matches_type(BalanceReport, balance_report, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create(self, client: AsyncModernTreasury) -> None:
+        async with client.internal_accounts.balance_reports.with_streaming_response.create(
+            "string",
+            amount=0,
+            as_of_date=parse_date("2019-12-27"),
+            as_of_time="string",
+            balance_report_type="intraday",
+            balances=[
+                {
+                    "amount": 0,
+                    "balance_type": "closing_available",
+                    "vendor_code": "string",
+                    "vendor_code_type": "string",
+                },
+                {
+                    "amount": 0,
+                    "balance_type": "closing_available",
+                    "vendor_code": "string",
+                    "vendor_code_type": "string",
+                },
+                {
+                    "amount": 0,
+                    "balance_type": "closing_available",
+                    "vendor_code": "string",
+                    "vendor_code_type": "string",
+                },
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            balance_report = await response.parse()
+            assert_matches_type(BalanceReport, balance_report, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
@@ -244,9 +370,25 @@ class TestAsyncBalanceReports:
             "string",
             internal_account_id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         balance_report = response.parse()
         assert_matches_type(BalanceReport, balance_report, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        async with client.internal_accounts.balance_reports.with_streaming_response.retrieve(
+            "string",
+            internal_account_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            balance_report = await response.parse()
+            assert_matches_type(BalanceReport, balance_report, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -271,9 +413,24 @@ class TestAsyncBalanceReports:
         response = await client.internal_accounts.balance_reports.with_raw_response.list(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         balance_report = response.parse()
         assert_matches_type(AsyncPage[BalanceReport], balance_report, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list(self, client: AsyncModernTreasury) -> None:
+        async with client.internal_accounts.balance_reports.with_streaming_response.list(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            balance_report = await response.parse()
+            assert_matches_type(AsyncPage[BalanceReport], balance_report, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
@@ -289,6 +446,22 @@ class TestAsyncBalanceReports:
             "string",
             internal_account_id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         balance_report = response.parse()
         assert balance_report is None
+
+    @parametrize
+    async def test_streaming_response_delete(self, client: AsyncModernTreasury) -> None:
+        async with client.internal_accounts.balance_reports.with_streaming_response.delete(
+            "string",
+            internal_account_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            balance_report = await response.parse()
+            assert balance_report is None
+
+        assert cast(Any, response.is_closed) is True

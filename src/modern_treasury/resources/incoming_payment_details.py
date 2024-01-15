@@ -8,6 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
+from .. import _legacy_response
 from ..types import (
     IncomingPaymentDetail,
     incoming_payment_detail_list_params,
@@ -18,7 +19,7 @@ from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import (
     AsyncPaginator,
@@ -33,6 +34,10 @@ class IncomingPaymentDetails(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> IncomingPaymentDetailsWithRawResponse:
         return IncomingPaymentDetailsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> IncomingPaymentDetailsWithStreamingResponse:
+        return IncomingPaymentDetailsWithStreamingResponse(self)
 
     def retrieve(
         self,
@@ -270,6 +275,10 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
     def with_raw_response(self) -> AsyncIncomingPaymentDetailsWithRawResponse:
         return AsyncIncomingPaymentDetailsWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> AsyncIncomingPaymentDetailsWithStreamingResponse:
+        return AsyncIncomingPaymentDetailsWithStreamingResponse(self)
+
     async def retrieve(
         self,
         id: str,
@@ -503,31 +512,63 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
 
 class IncomingPaymentDetailsWithRawResponse:
     def __init__(self, incoming_payment_details: IncomingPaymentDetails) -> None:
-        self.retrieve = to_raw_response_wrapper(
+        self.retrieve = _legacy_response.to_raw_response_wrapper(
             incoming_payment_details.retrieve,
         )
-        self.update = to_raw_response_wrapper(
+        self.update = _legacy_response.to_raw_response_wrapper(
             incoming_payment_details.update,
         )
-        self.list = to_raw_response_wrapper(
+        self.list = _legacy_response.to_raw_response_wrapper(
             incoming_payment_details.list,
         )
-        self.create_async = to_raw_response_wrapper(
+        self.create_async = _legacy_response.to_raw_response_wrapper(
             incoming_payment_details.create_async,
         )
 
 
 class AsyncIncomingPaymentDetailsWithRawResponse:
     def __init__(self, incoming_payment_details: AsyncIncomingPaymentDetails) -> None:
-        self.retrieve = async_to_raw_response_wrapper(
+        self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             incoming_payment_details.retrieve,
         )
-        self.update = async_to_raw_response_wrapper(
+        self.update = _legacy_response.async_to_raw_response_wrapper(
             incoming_payment_details.update,
         )
-        self.list = async_to_raw_response_wrapper(
+        self.list = _legacy_response.async_to_raw_response_wrapper(
             incoming_payment_details.list,
         )
-        self.create_async = async_to_raw_response_wrapper(
+        self.create_async = _legacy_response.async_to_raw_response_wrapper(
+            incoming_payment_details.create_async,
+        )
+
+
+class IncomingPaymentDetailsWithStreamingResponse:
+    def __init__(self, incoming_payment_details: IncomingPaymentDetails) -> None:
+        self.retrieve = to_streamed_response_wrapper(
+            incoming_payment_details.retrieve,
+        )
+        self.update = to_streamed_response_wrapper(
+            incoming_payment_details.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            incoming_payment_details.list,
+        )
+        self.create_async = to_streamed_response_wrapper(
+            incoming_payment_details.create_async,
+        )
+
+
+class AsyncIncomingPaymentDetailsWithStreamingResponse:
+    def __init__(self, incoming_payment_details: AsyncIncomingPaymentDetails) -> None:
+        self.retrieve = async_to_streamed_response_wrapper(
+            incoming_payment_details.retrieve,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            incoming_payment_details.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            incoming_payment_details.list,
+        )
+        self.create_async = async_to_streamed_response_wrapper(
             incoming_payment_details.create_async,
         )

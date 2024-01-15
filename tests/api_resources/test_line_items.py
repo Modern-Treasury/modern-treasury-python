@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from typing import Any, cast
 
 import pytest
 
@@ -42,9 +43,26 @@ class TestLineItems:
             itemizable_type="expected_payments",
             itemizable_id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
         assert_matches_type(LineItem, line_item, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
+        with client.line_items.with_streaming_response.retrieve(
+            "string",
+            itemizable_type="expected_payments",
+            itemizable_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line_item = response.parse()
+            assert_matches_type(LineItem, line_item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
@@ -76,9 +94,26 @@ class TestLineItems:
             itemizable_type="expected_payments",
             itemizable_id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
         assert_matches_type(LineItem, line_item, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: ModernTreasury) -> None:
+        with client.line_items.with_streaming_response.update(
+            "string",
+            itemizable_type="expected_payments",
+            itemizable_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line_item = response.parse()
+            assert_matches_type(LineItem, line_item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
@@ -107,9 +142,26 @@ class TestLineItems:
             "string",
             itemizable_type="expected_payments",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
         assert_matches_type(SyncPage[LineItem], line_item, path=["response"])
+
+    @pytest.mark.skip(reason="Prism is broken in this case")
+    @parametrize
+    def test_streaming_response_list(self, client: ModernTreasury) -> None:
+        with client.line_items.with_streaming_response.list(
+            "string",
+            itemizable_type="expected_payments",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line_item = response.parse()
+            assert_matches_type(SyncPage[LineItem], line_item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
 
 class TestAsyncLineItems:
@@ -137,9 +189,26 @@ class TestAsyncLineItems:
             itemizable_type="expected_payments",
             itemizable_id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
         assert_matches_type(LineItem, line_item, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        async with client.line_items.with_streaming_response.retrieve(
+            "string",
+            itemizable_type="expected_payments",
+            itemizable_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line_item = await response.parse()
+            assert_matches_type(LineItem, line_item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
@@ -171,9 +240,26 @@ class TestAsyncLineItems:
             itemizable_type="expected_payments",
             itemizable_id="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
         assert_matches_type(LineItem, line_item, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, client: AsyncModernTreasury) -> None:
+        async with client.line_items.with_streaming_response.update(
+            "string",
+            itemizable_type="expected_payments",
+            itemizable_id="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line_item = await response.parse()
+            assert_matches_type(LineItem, line_item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
@@ -202,6 +288,23 @@ class TestAsyncLineItems:
             "string",
             itemizable_type="expected_payments",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
         assert_matches_type(AsyncPage[LineItem], line_item, path=["response"])
+
+    @pytest.mark.skip(reason="Prism is broken in this case")
+    @parametrize
+    async def test_streaming_response_list(self, client: AsyncModernTreasury) -> None:
+        async with client.line_items.with_streaming_response.list(
+            "string",
+            itemizable_type="expected_payments",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            line_item = await response.parse()
+            assert_matches_type(AsyncPage[LineItem], line_item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True

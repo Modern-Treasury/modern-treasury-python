@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from typing import Any, cast
 
 import pytest
 
@@ -136,9 +137,46 @@ class TestLedgerEventHandlers:
             },
             name="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_event_handler = response.parse()
         assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create(self, client: ModernTreasury) -> None:
+        with client.ledger_event_handlers.with_streaming_response.create(
+            ledger_transaction_template={
+                "description": "My Ledger Transaction Template Description",
+                "effective_at": "{{ledgerable_event.custom_data.effective_at}}",
+                "status": "posted",
+                "ledger_entries": [
+                    {
+                        "amount": "string",
+                        "direction": "string",
+                        "ledger_account_id": "string",
+                    },
+                    {
+                        "amount": "string",
+                        "direction": "string",
+                        "ledger_account_id": "string",
+                    },
+                    {
+                        "amount": "string",
+                        "direction": "string",
+                        "ledger_account_id": "string",
+                    },
+                ],
+            },
+            name="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_event_handler = response.parse()
+            assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
@@ -152,9 +190,24 @@ class TestLedgerEventHandlers:
         response = client.ledger_event_handlers.with_raw_response.retrieve(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_event_handler = response.parse()
         assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
+        with client.ledger_event_handlers.with_streaming_response.retrieve(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_event_handler = response.parse()
+            assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -175,9 +228,22 @@ class TestLedgerEventHandlers:
     @parametrize
     def test_raw_response_list(self, client: ModernTreasury) -> None:
         response = client.ledger_event_handlers.with_raw_response.list()
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_event_handler = response.parse()
         assert_matches_type(SyncPage[LedgerEventHandler], ledger_event_handler, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list(self, client: ModernTreasury) -> None:
+        with client.ledger_event_handlers.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_event_handler = response.parse()
+            assert_matches_type(SyncPage[LedgerEventHandler], ledger_event_handler, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
@@ -191,9 +257,24 @@ class TestLedgerEventHandlers:
         response = client.ledger_event_handlers.with_raw_response.delete(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_event_handler = response.parse()
         assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
+
+    @parametrize
+    def test_streaming_response_delete(self, client: ModernTreasury) -> None:
+        with client.ledger_event_handlers.with_streaming_response.delete(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_event_handler = response.parse()
+            assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
 
 class TestAsyncLedgerEventHandlers:
@@ -312,9 +393,46 @@ class TestAsyncLedgerEventHandlers:
             },
             name="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_event_handler = response.parse()
         assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create(self, client: AsyncModernTreasury) -> None:
+        async with client.ledger_event_handlers.with_streaming_response.create(
+            ledger_transaction_template={
+                "description": "My Ledger Transaction Template Description",
+                "effective_at": "{{ledgerable_event.custom_data.effective_at}}",
+                "status": "posted",
+                "ledger_entries": [
+                    {
+                        "amount": "string",
+                        "direction": "string",
+                        "ledger_account_id": "string",
+                    },
+                    {
+                        "amount": "string",
+                        "direction": "string",
+                        "ledger_account_id": "string",
+                    },
+                    {
+                        "amount": "string",
+                        "direction": "string",
+                        "ledger_account_id": "string",
+                    },
+                ],
+            },
+            name="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_event_handler = await response.parse()
+            assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
@@ -328,9 +446,24 @@ class TestAsyncLedgerEventHandlers:
         response = await client.ledger_event_handlers.with_raw_response.retrieve(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_event_handler = response.parse()
         assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        async with client.ledger_event_handlers.with_streaming_response.retrieve(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_event_handler = await response.parse()
+            assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -351,9 +484,22 @@ class TestAsyncLedgerEventHandlers:
     @parametrize
     async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
         response = await client.ledger_event_handlers.with_raw_response.list()
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_event_handler = response.parse()
         assert_matches_type(AsyncPage[LedgerEventHandler], ledger_event_handler, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list(self, client: AsyncModernTreasury) -> None:
+        async with client.ledger_event_handlers.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_event_handler = await response.parse()
+            assert_matches_type(AsyncPage[LedgerEventHandler], ledger_event_handler, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
@@ -367,6 +513,21 @@ class TestAsyncLedgerEventHandlers:
         response = await client.ledger_event_handlers.with_raw_response.delete(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ledger_event_handler = response.parse()
         assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_delete(self, client: AsyncModernTreasury) -> None:
+        async with client.ledger_event_handlers.with_streaming_response.delete(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_event_handler = await response.parse()
+            assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
+
+        assert cast(Any, response.is_closed) is True

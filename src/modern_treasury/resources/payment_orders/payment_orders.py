@@ -8,6 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
+from ... import _legacy_response
 from ...types import (
     PaymentOrder,
     PaymentOrderType,
@@ -20,9 +21,16 @@ from ...types import (
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import extract_files, maybe_transform, deepcopy_minimal
 from ..._compat import cached_property
-from .reversals import Reversals, AsyncReversals, ReversalsWithRawResponse, AsyncReversalsWithRawResponse
+from .reversals import (
+    Reversals,
+    AsyncReversals,
+    ReversalsWithRawResponse,
+    AsyncReversalsWithRawResponse,
+    ReversalsWithStreamingResponse,
+    AsyncReversalsWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import (
     AsyncPaginator,
@@ -41,6 +49,10 @@ class PaymentOrders(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PaymentOrdersWithRawResponse:
         return PaymentOrdersWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> PaymentOrdersWithStreamingResponse:
+        return PaymentOrdersWithStreamingResponse(self)
 
     def create(
         self,
@@ -918,6 +930,10 @@ class AsyncPaymentOrders(AsyncAPIResource):
     def with_raw_response(self) -> AsyncPaymentOrdersWithRawResponse:
         return AsyncPaymentOrdersWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> AsyncPaymentOrdersWithStreamingResponse:
+        return AsyncPaymentOrdersWithStreamingResponse(self)
+
     async def create(
         self,
         *,
@@ -1789,19 +1805,19 @@ class PaymentOrdersWithRawResponse:
     def __init__(self, payment_orders: PaymentOrders) -> None:
         self.reversals = ReversalsWithRawResponse(payment_orders.reversals)
 
-        self.create = to_raw_response_wrapper(
+        self.create = _legacy_response.to_raw_response_wrapper(
             payment_orders.create,
         )
-        self.retrieve = to_raw_response_wrapper(
+        self.retrieve = _legacy_response.to_raw_response_wrapper(
             payment_orders.retrieve,
         )
-        self.update = to_raw_response_wrapper(
+        self.update = _legacy_response.to_raw_response_wrapper(
             payment_orders.update,
         )
-        self.list = to_raw_response_wrapper(
+        self.list = _legacy_response.to_raw_response_wrapper(
             payment_orders.list,
         )
-        self.create_async = to_raw_response_wrapper(
+        self.create_async = _legacy_response.to_raw_response_wrapper(
             payment_orders.create_async,
         )
 
@@ -1810,18 +1826,60 @@ class AsyncPaymentOrdersWithRawResponse:
     def __init__(self, payment_orders: AsyncPaymentOrders) -> None:
         self.reversals = AsyncReversalsWithRawResponse(payment_orders.reversals)
 
-        self.create = async_to_raw_response_wrapper(
+        self.create = _legacy_response.async_to_raw_response_wrapper(
             payment_orders.create,
         )
-        self.retrieve = async_to_raw_response_wrapper(
+        self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             payment_orders.retrieve,
         )
-        self.update = async_to_raw_response_wrapper(
+        self.update = _legacy_response.async_to_raw_response_wrapper(
             payment_orders.update,
         )
-        self.list = async_to_raw_response_wrapper(
+        self.list = _legacy_response.async_to_raw_response_wrapper(
             payment_orders.list,
         )
-        self.create_async = async_to_raw_response_wrapper(
+        self.create_async = _legacy_response.async_to_raw_response_wrapper(
+            payment_orders.create_async,
+        )
+
+
+class PaymentOrdersWithStreamingResponse:
+    def __init__(self, payment_orders: PaymentOrders) -> None:
+        self.reversals = ReversalsWithStreamingResponse(payment_orders.reversals)
+
+        self.create = to_streamed_response_wrapper(
+            payment_orders.create,
+        )
+        self.retrieve = to_streamed_response_wrapper(
+            payment_orders.retrieve,
+        )
+        self.update = to_streamed_response_wrapper(
+            payment_orders.update,
+        )
+        self.list = to_streamed_response_wrapper(
+            payment_orders.list,
+        )
+        self.create_async = to_streamed_response_wrapper(
+            payment_orders.create_async,
+        )
+
+
+class AsyncPaymentOrdersWithStreamingResponse:
+    def __init__(self, payment_orders: AsyncPaymentOrders) -> None:
+        self.reversals = AsyncReversalsWithStreamingResponse(payment_orders.reversals)
+
+        self.create = async_to_streamed_response_wrapper(
+            payment_orders.create,
+        )
+        self.retrieve = async_to_streamed_response_wrapper(
+            payment_orders.retrieve,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            payment_orders.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            payment_orders.list,
+        )
+        self.create_async = async_to_streamed_response_wrapper(
             payment_orders.create_async,
         )

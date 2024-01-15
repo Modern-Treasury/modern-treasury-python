@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+from typing import Any, cast
 
 import pytest
 
@@ -86,9 +87,25 @@ class TestVirtualAccounts:
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             name="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_account = response.parse()
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create(self, client: ModernTreasury) -> None:
+        with client.virtual_accounts.with_streaming_response.create(
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            virtual_account = response.parse()
+            assert_matches_type(VirtualAccount, virtual_account, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
@@ -102,9 +119,24 @@ class TestVirtualAccounts:
         response = client.virtual_accounts.with_raw_response.retrieve(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_account = response.parse()
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
+        with client.virtual_accounts.with_streaming_response.retrieve(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            virtual_account = response.parse()
+            assert_matches_type(VirtualAccount, virtual_account, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
@@ -128,9 +160,24 @@ class TestVirtualAccounts:
         response = client.virtual_accounts.with_raw_response.update(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_account = response.parse()
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: ModernTreasury) -> None:
+        with client.virtual_accounts.with_streaming_response.update(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            virtual_account = response.parse()
+            assert_matches_type(VirtualAccount, virtual_account, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -151,9 +198,22 @@ class TestVirtualAccounts:
     @parametrize
     def test_raw_response_list(self, client: ModernTreasury) -> None:
         response = client.virtual_accounts.with_raw_response.list()
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_account = response.parse()
         assert_matches_type(SyncPage[VirtualAccount], virtual_account, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list(self, client: ModernTreasury) -> None:
+        with client.virtual_accounts.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            virtual_account = response.parse()
+            assert_matches_type(SyncPage[VirtualAccount], virtual_account, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
@@ -167,9 +227,24 @@ class TestVirtualAccounts:
         response = client.virtual_accounts.with_raw_response.delete(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_account = response.parse()
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
+
+    @parametrize
+    def test_streaming_response_delete(self, client: ModernTreasury) -> None:
+        with client.virtual_accounts.with_streaming_response.delete(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            virtual_account = response.parse()
+            assert_matches_type(VirtualAccount, virtual_account, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
 
 class TestAsyncVirtualAccounts:
@@ -239,9 +314,25 @@ class TestAsyncVirtualAccounts:
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             name="string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_account = response.parse()
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create(self, client: AsyncModernTreasury) -> None:
+        async with client.virtual_accounts.with_streaming_response.create(
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            name="string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            virtual_account = await response.parse()
+            assert_matches_type(VirtualAccount, virtual_account, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
@@ -255,9 +346,24 @@ class TestAsyncVirtualAccounts:
         response = await client.virtual_accounts.with_raw_response.retrieve(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_account = response.parse()
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve(self, client: AsyncModernTreasury) -> None:
+        async with client.virtual_accounts.with_streaming_response.retrieve(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            virtual_account = await response.parse()
+            assert_matches_type(VirtualAccount, virtual_account, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
@@ -281,9 +387,24 @@ class TestAsyncVirtualAccounts:
         response = await client.virtual_accounts.with_raw_response.update(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_account = response.parse()
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, client: AsyncModernTreasury) -> None:
+        async with client.virtual_accounts.with_streaming_response.update(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            virtual_account = await response.parse()
+            assert_matches_type(VirtualAccount, virtual_account, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -304,9 +425,22 @@ class TestAsyncVirtualAccounts:
     @parametrize
     async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
         response = await client.virtual_accounts.with_raw_response.list()
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_account = response.parse()
         assert_matches_type(AsyncPage[VirtualAccount], virtual_account, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list(self, client: AsyncModernTreasury) -> None:
+        async with client.virtual_accounts.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            virtual_account = await response.parse()
+            assert_matches_type(AsyncPage[VirtualAccount], virtual_account, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
@@ -320,6 +454,21 @@ class TestAsyncVirtualAccounts:
         response = await client.virtual_accounts.with_raw_response.delete(
             "string",
         )
+
+        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_account = response.parse()
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_delete(self, client: AsyncModernTreasury) -> None:
+        async with client.virtual_accounts.with_streaming_response.delete(
+            "string",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            virtual_account = await response.parse()
+            assert_matches_type(VirtualAccount, virtual_account, path=["response"])
+
+        assert cast(Any, response.is_closed) is True

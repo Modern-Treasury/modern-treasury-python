@@ -7,6 +7,7 @@ from datetime import datetime
 
 import httpx
 
+from .. import _legacy_response
 from ..types import (
     LedgerAccountStatementCreateResponse,
     LedgerAccountStatementRetrieveResponse,
@@ -16,7 +17,7 @@ from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from .._base_client import (
     make_request_options,
 )
@@ -28,6 +29,10 @@ class LedgerAccountStatements(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> LedgerAccountStatementsWithRawResponse:
         return LedgerAccountStatementsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> LedgerAccountStatementsWithStreamingResponse:
+        return LedgerAccountStatementsWithStreamingResponse(self)
 
     def create(
         self,
@@ -132,6 +137,10 @@ class AsyncLedgerAccountStatements(AsyncAPIResource):
     def with_raw_response(self) -> AsyncLedgerAccountStatementsWithRawResponse:
         return AsyncLedgerAccountStatementsWithRawResponse(self)
 
+    @cached_property
+    def with_streaming_response(self) -> AsyncLedgerAccountStatementsWithStreamingResponse:
+        return AsyncLedgerAccountStatementsWithStreamingResponse(self)
+
     async def create(
         self,
         *,
@@ -232,19 +241,39 @@ class AsyncLedgerAccountStatements(AsyncAPIResource):
 
 class LedgerAccountStatementsWithRawResponse:
     def __init__(self, ledger_account_statements: LedgerAccountStatements) -> None:
-        self.create = to_raw_response_wrapper(
+        self.create = _legacy_response.to_raw_response_wrapper(
             ledger_account_statements.create,
         )
-        self.retrieve = to_raw_response_wrapper(
+        self.retrieve = _legacy_response.to_raw_response_wrapper(
             ledger_account_statements.retrieve,
         )
 
 
 class AsyncLedgerAccountStatementsWithRawResponse:
     def __init__(self, ledger_account_statements: AsyncLedgerAccountStatements) -> None:
-        self.create = async_to_raw_response_wrapper(
+        self.create = _legacy_response.async_to_raw_response_wrapper(
             ledger_account_statements.create,
         )
-        self.retrieve = async_to_raw_response_wrapper(
+        self.retrieve = _legacy_response.async_to_raw_response_wrapper(
+            ledger_account_statements.retrieve,
+        )
+
+
+class LedgerAccountStatementsWithStreamingResponse:
+    def __init__(self, ledger_account_statements: LedgerAccountStatements) -> None:
+        self.create = to_streamed_response_wrapper(
+            ledger_account_statements.create,
+        )
+        self.retrieve = to_streamed_response_wrapper(
+            ledger_account_statements.retrieve,
+        )
+
+
+class AsyncLedgerAccountStatementsWithStreamingResponse:
+    def __init__(self, ledger_account_statements: AsyncLedgerAccountStatements) -> None:
+        self.create = async_to_streamed_response_wrapper(
+            ledger_account_statements.create,
+        )
+        self.retrieve = async_to_streamed_response_wrapper(
             ledger_account_statements.retrieve,
         )
