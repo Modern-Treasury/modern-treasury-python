@@ -158,6 +158,8 @@ class Transactions(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/api/transactions/{id}",
             options=make_request_options(
@@ -196,6 +198,8 @@ class Transactions(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
             f"/api/transactions/{id}",
             body=maybe_transform({"metadata": metadata}, transaction_update_params.TransactionUpdateParams),
@@ -322,6 +326,8 @@ class Transactions(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/api/transactions/{id}",
@@ -458,6 +464,8 @@ class AsyncTransactions(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/api/transactions/{id}",
             options=make_request_options(
@@ -496,6 +504,8 @@ class AsyncTransactions(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/transactions/{id}",
             body=maybe_transform({"metadata": metadata}, transaction_update_params.TransactionUpdateParams),
@@ -622,6 +632,8 @@ class AsyncTransactions(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/api/transactions/{id}",

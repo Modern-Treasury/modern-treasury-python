@@ -110,6 +110,8 @@ class Ledgers(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/api/ledgers/{id}",
             options=make_request_options(
@@ -154,6 +156,8 @@ class Ledgers(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
             f"/api/ledgers/{id}",
             body=maybe_transform(
@@ -260,6 +264,8 @@ class Ledgers(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
             f"/api/ledgers/{id}",
             options=make_request_options(
@@ -360,6 +366,8 @@ class AsyncLedgers(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/api/ledgers/{id}",
             options=make_request_options(
@@ -404,6 +412,8 @@ class AsyncLedgers(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/ledgers/{id}",
             body=maybe_transform(
@@ -510,6 +520,8 @@ class AsyncLedgers(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
             f"/api/ledgers/{id}",
             options=make_request_options(

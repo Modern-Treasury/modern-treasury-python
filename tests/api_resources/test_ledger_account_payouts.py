@@ -116,6 +116,13 @@ class TestLedgerAccountPayouts:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_path_params_retrieve(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.ledger_account_payouts.with_raw_response.retrieve(
+                "",
+            )
+
+    @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
         ledger_account_payout = client.ledger_account_payouts.update(
             "string",
@@ -159,6 +166,13 @@ class TestLedgerAccountPayouts:
             assert_matches_type(LedgerAccountPayout, ledger_account_payout, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.ledger_account_payouts.with_raw_response.update(
+                "",
+            )
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -231,6 +245,14 @@ class TestLedgerAccountPayouts:
                 assert_matches_type(LedgerAccountPayout, ledger_account_payout, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_retireve(self, client: ModernTreasury) -> None:
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+                client.ledger_account_payouts.with_raw_response.retireve(
+                    "",
+                )
 
 
 class TestAsyncLedgerAccountPayouts:
@@ -326,6 +348,13 @@ class TestAsyncLedgerAccountPayouts:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    async def test_path_params_retrieve(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.ledger_account_payouts.with_raw_response.retrieve(
+                "",
+            )
+
+    @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
         ledger_account_payout = await client.ledger_account_payouts.update(
             "string",
@@ -369,6 +398,13 @@ class TestAsyncLedgerAccountPayouts:
             assert_matches_type(LedgerAccountPayout, ledger_account_payout, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.ledger_account_payouts.with_raw_response.update(
+                "",
+            )
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -441,3 +477,11 @@ class TestAsyncLedgerAccountPayouts:
                 assert_matches_type(LedgerAccountPayout, ledger_account_payout, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_retireve(self, client: AsyncModernTreasury) -> None:
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+                await client.ledger_account_payouts.with_raw_response.retireve(
+                    "",
+                )

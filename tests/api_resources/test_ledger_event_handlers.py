@@ -210,6 +210,13 @@ class TestLedgerEventHandlers:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_path_params_retrieve(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.ledger_event_handlers.with_raw_response.retrieve(
+                "",
+            )
+
+    @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         ledger_event_handler = client.ledger_event_handlers.list()
         assert_matches_type(SyncPage[LedgerEventHandler], ledger_event_handler, path=["response"])
@@ -275,6 +282,13 @@ class TestLedgerEventHandlers:
             assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_delete(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.ledger_event_handlers.with_raw_response.delete(
+                "",
+            )
 
 
 class TestAsyncLedgerEventHandlers:
@@ -466,6 +480,13 @@ class TestAsyncLedgerEventHandlers:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    async def test_path_params_retrieve(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.ledger_event_handlers.with_raw_response.retrieve(
+                "",
+            )
+
+    @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
         ledger_event_handler = await client.ledger_event_handlers.list()
         assert_matches_type(AsyncPage[LedgerEventHandler], ledger_event_handler, path=["response"])
@@ -531,3 +552,10 @@ class TestAsyncLedgerEventHandlers:
             assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_delete(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.ledger_event_handlers.with_raw_response.delete(
+                "",
+            )

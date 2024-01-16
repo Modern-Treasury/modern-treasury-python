@@ -57,6 +57,12 @@ class LineItems(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not itemizable_type:
+            raise ValueError(f"Expected a non-empty value for `itemizable_type` but received {itemizable_type!r}")
+        if not itemizable_id:
+            raise ValueError(f"Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
             options=make_request_options(
@@ -97,6 +103,12 @@ class LineItems(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not itemizable_type:
+            raise ValueError(f"Expected a non-empty value for `itemizable_type` but received {itemizable_type!r}")
+        if not itemizable_id:
+            raise ValueError(f"Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
             f"/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
             body=maybe_transform({"metadata": metadata}, line_item_update_params.LineItemUpdateParams),
@@ -136,6 +148,10 @@ class LineItems(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not itemizable_type:
+            raise ValueError(f"Expected a non-empty value for `itemizable_type` but received {itemizable_type!r}")
+        if not itemizable_id:
+            raise ValueError(f"Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}")
         return self._get_api_list(
             f"/api/{itemizable_type}/{itemizable_id}/line_items",
             page=SyncPage[LineItem],
@@ -190,6 +206,12 @@ class AsyncLineItems(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not itemizable_type:
+            raise ValueError(f"Expected a non-empty value for `itemizable_type` but received {itemizable_type!r}")
+        if not itemizable_id:
+            raise ValueError(f"Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
             options=make_request_options(
@@ -230,6 +252,12 @@ class AsyncLineItems(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not itemizable_type:
+            raise ValueError(f"Expected a non-empty value for `itemizable_type` but received {itemizable_type!r}")
+        if not itemizable_id:
+            raise ValueError(f"Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
             body=maybe_transform({"metadata": metadata}, line_item_update_params.LineItemUpdateParams),
@@ -269,6 +297,10 @@ class AsyncLineItems(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not itemizable_type:
+            raise ValueError(f"Expected a non-empty value for `itemizable_type` but received {itemizable_type!r}")
+        if not itemizable_id:
+            raise ValueError(f"Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}")
         return self._get_api_list(
             f"/api/{itemizable_type}/{itemizable_id}/line_items",
             page=AsyncPage[LineItem],

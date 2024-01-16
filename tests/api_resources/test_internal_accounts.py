@@ -126,6 +126,13 @@ class TestInternalAccounts:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_path_params_retrieve(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.internal_accounts.with_raw_response.retrieve(
+                "",
+            )
+
+    @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
         internal_account = client.internal_accounts.update(
             "string",
@@ -167,6 +174,13 @@ class TestInternalAccounts:
             assert_matches_type(InternalAccount, internal_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.internal_accounts.with_raw_response.update(
+                "",
+            )
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -313,6 +327,13 @@ class TestAsyncInternalAccounts:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    async def test_path_params_retrieve(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.internal_accounts.with_raw_response.retrieve(
+                "",
+            )
+
+    @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
         internal_account = await client.internal_accounts.update(
             "string",
@@ -354,6 +375,13 @@ class TestAsyncInternalAccounts:
             assert_matches_type(InternalAccount, internal_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.internal_accounts.with_raw_response.update(
+                "",
+            )
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:

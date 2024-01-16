@@ -149,6 +149,8 @@ class InternalAccounts(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/api/internal_accounts/{id}",
             options=make_request_options(
@@ -199,6 +201,8 @@ class InternalAccounts(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
             f"/api/internal_accounts/{id}",
             body=maybe_transform(
@@ -431,6 +435,8 @@ class AsyncInternalAccounts(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/api/internal_accounts/{id}",
             options=make_request_options(
@@ -481,6 +487,8 @@ class AsyncInternalAccounts(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/internal_accounts/{id}",
             body=maybe_transform(

@@ -143,6 +143,8 @@ class Counterparties(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/api/counterparties/{id}",
             options=make_request_options(
@@ -194,6 +196,8 @@ class Counterparties(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
             f"/api/counterparties/{id}",
             body=maybe_transform(
@@ -309,6 +313,8 @@ class Counterparties(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/api/counterparties/{id}",
@@ -403,6 +409,8 @@ class Counterparties(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
             f"/api/counterparties/{id}/collect_account",
             body=maybe_transform(
@@ -536,6 +544,8 @@ class AsyncCounterparties(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/api/counterparties/{id}",
             options=make_request_options(
@@ -587,6 +597,8 @@ class AsyncCounterparties(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/counterparties/{id}",
             body=maybe_transform(
@@ -702,6 +714,8 @@ class AsyncCounterparties(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/api/counterparties/{id}",
@@ -796,6 +810,8 @@ class AsyncCounterparties(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
             f"/api/counterparties/{id}/collect_account",
             body=maybe_transform(

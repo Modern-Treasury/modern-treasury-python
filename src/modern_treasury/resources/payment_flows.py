@@ -133,6 +133,8 @@ class PaymentFlows(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/api/payment_flows/{id}",
             options=make_request_options(
@@ -172,6 +174,8 @@ class PaymentFlows(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
             f"/api/payment_flows/{id}",
             body=maybe_transform({"status": status}, payment_flow_update_params.PaymentFlowUpdateParams),
@@ -345,6 +349,8 @@ class AsyncPaymentFlows(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/api/payment_flows/{id}",
             options=make_request_options(
@@ -384,6 +390,8 @@ class AsyncPaymentFlows(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/payment_flows/{id}",
             body=maybe_transform({"status": status}, payment_flow_update_params.PaymentFlowUpdateParams),
