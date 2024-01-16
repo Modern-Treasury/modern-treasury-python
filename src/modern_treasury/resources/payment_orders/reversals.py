@@ -80,6 +80,8 @@ class Reversals(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not payment_order_id:
+            raise ValueError(f"Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}")
         return self._post(
             f"/api/payment_orders/{payment_order_id}/reversals",
             body=maybe_transform(
@@ -124,6 +126,10 @@ class Reversals(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not payment_order_id:
+            raise ValueError(f"Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}")
+        if not reversal_id:
+            raise ValueError(f"Expected a non-empty value for `reversal_id` but received {reversal_id!r}")
         return self._get(
             f"/api/payment_orders/{payment_order_id}/reversals/{reversal_id}",
             options=make_request_options(
@@ -157,6 +163,8 @@ class Reversals(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not payment_order_id:
+            raise ValueError(f"Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}")
         return self._get_api_list(
             f"/api/payment_orders/{payment_order_id}/reversals",
             page=SyncPage[Reversal],
@@ -234,6 +242,8 @@ class AsyncReversals(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not payment_order_id:
+            raise ValueError(f"Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}")
         return await self._post(
             f"/api/payment_orders/{payment_order_id}/reversals",
             body=maybe_transform(
@@ -278,6 +288,10 @@ class AsyncReversals(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not payment_order_id:
+            raise ValueError(f"Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}")
+        if not reversal_id:
+            raise ValueError(f"Expected a non-empty value for `reversal_id` but received {reversal_id!r}")
         return await self._get(
             f"/api/payment_orders/{payment_order_id}/reversals/{reversal_id}",
             options=make_request_options(
@@ -311,6 +325,8 @@ class AsyncReversals(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not payment_order_id:
+            raise ValueError(f"Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}")
         return self._get_api_list(
             f"/api/payment_orders/{payment_order_id}/reversals",
             page=AsyncPage[Reversal],

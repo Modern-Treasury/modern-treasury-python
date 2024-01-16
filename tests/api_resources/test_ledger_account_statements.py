@@ -117,6 +117,13 @@ class TestLedgerAccountStatements:
 
         assert cast(Any, response.is_closed) is True
 
+    @parametrize
+    def test_path_params_retrieve(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.ledger_account_statements.with_raw_response.retrieve(
+                "",
+            )
+
 
 class TestAsyncLedgerAccountStatements:
     strict_client = AsyncModernTreasury(
@@ -213,3 +220,10 @@ class TestAsyncLedgerAccountStatements:
             assert_matches_type(LedgerAccountStatementRetrieveResponse, ledger_account_statement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_retrieve(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.ledger_account_statements.with_raw_response.retrieve(
+                "",
+            )

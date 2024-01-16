@@ -59,6 +59,13 @@ class TestBulkResults:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_path_params_retrieve(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.bulk_results.with_raw_response.retrieve(
+                "",
+            )
+
+    @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         bulk_result = client.bulk_results.list()
         assert_matches_type(SyncPage[BulkResult], bulk_result, path=["response"])
@@ -136,6 +143,13 @@ class TestAsyncBulkResults:
             assert_matches_type(BulkResult, bulk_result, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_retrieve(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.bulk_results.with_raw_response.retrieve(
+                "",
+            )
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:

@@ -137,6 +137,8 @@ class LedgerAccountCategories(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/api/ledger_account_categories/{id}",
             options=make_request_options(
@@ -187,6 +189,8 @@ class LedgerAccountCategories(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
             f"/api/ledger_account_categories/{id}",
             body=maybe_transform(
@@ -306,6 +310,8 @@ class LedgerAccountCategories(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
             f"/api/ledger_account_categories/{id}",
             options=make_request_options(
@@ -345,6 +351,10 @@ class LedgerAccountCategories(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not ledger_account_id:
+            raise ValueError(f"Expected a non-empty value for `ledger_account_id` but received {ledger_account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
             f"/api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}",
@@ -385,6 +395,10 @@ class LedgerAccountCategories(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not sub_category_id:
+            raise ValueError(f"Expected a non-empty value for `sub_category_id` but received {sub_category_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
             f"/api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}",
@@ -425,6 +439,10 @@ class LedgerAccountCategories(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not ledger_account_id:
+            raise ValueError(f"Expected a non-empty value for `ledger_account_id` but received {ledger_account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}",
@@ -465,6 +483,10 @@ class LedgerAccountCategories(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not sub_category_id:
+            raise ValueError(f"Expected a non-empty value for `sub_category_id` but received {sub_category_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}",
@@ -587,6 +609,8 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/api/ledger_account_categories/{id}",
             options=make_request_options(
@@ -637,6 +661,8 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/ledger_account_categories/{id}",
             body=maybe_transform(
@@ -756,6 +782,8 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
             f"/api/ledger_account_categories/{id}",
             options=make_request_options(
@@ -795,6 +823,10 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not ledger_account_id:
+            raise ValueError(f"Expected a non-empty value for `ledger_account_id` but received {ledger_account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
             f"/api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}",
@@ -835,6 +867,10 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not sub_category_id:
+            raise ValueError(f"Expected a non-empty value for `sub_category_id` but received {sub_category_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
             f"/api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}",
@@ -875,6 +911,10 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not ledger_account_id:
+            raise ValueError(f"Expected a non-empty value for `ledger_account_id` but received {ledger_account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/api/ledger_account_categories/{id}/ledger_accounts/{ledger_account_id}",
@@ -915,6 +955,10 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not sub_category_id:
+            raise ValueError(f"Expected a non-empty value for `sub_category_id` but received {sub_category_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/api/ledger_account_categories/{id}/ledger_account_categories/{sub_category_id}",

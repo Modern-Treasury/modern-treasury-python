@@ -277,7 +277,6 @@ class PaymentOrders(SyncAPIResource):
             # sent to the server will contain a `boundary` parameter, e.g.
             # multipart/form-data; boundary=---abc--
             extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
-
         return self._post(
             "/api/payment_orders",
             body=maybe_transform(body, payment_order_create_params.PaymentOrderCreateParams),
@@ -315,6 +314,8 @@ class PaymentOrders(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/api/payment_orders/{id}",
             options=make_request_options(
@@ -511,6 +512,8 @@ class PaymentOrders(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
             f"/api/payment_orders/{id}",
             body=maybe_transform(
@@ -1157,7 +1160,6 @@ class AsyncPaymentOrders(AsyncAPIResource):
             # sent to the server will contain a `boundary` parameter, e.g.
             # multipart/form-data; boundary=---abc--
             extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
-
         return await self._post(
             "/api/payment_orders",
             body=maybe_transform(body, payment_order_create_params.PaymentOrderCreateParams),
@@ -1195,6 +1197,8 @@ class AsyncPaymentOrders(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/api/payment_orders/{id}",
             options=make_request_options(
@@ -1391,6 +1395,8 @@ class AsyncPaymentOrders(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/payment_orders/{id}",
             body=maybe_transform(

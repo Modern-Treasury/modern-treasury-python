@@ -178,6 +178,13 @@ class TestExternalAccounts:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_path_params_retrieve(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.external_accounts.with_raw_response.retrieve(
+                "",
+            )
+
+    @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
         external_account = client.external_accounts.update(
             "string",
@@ -228,6 +235,13 @@ class TestExternalAccounts:
             assert_matches_type(ExternalAccount, external_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.external_accounts.with_raw_response.update(
+                "",
+            )
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -297,6 +311,13 @@ class TestExternalAccounts:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_path_params_delete(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.external_accounts.with_raw_response.delete(
+                "",
+            )
+
+    @parametrize
     def test_method_complete_verification(self, client: ModernTreasury) -> None:
         external_account = client.external_accounts.complete_verification(
             "string",
@@ -334,6 +355,13 @@ class TestExternalAccounts:
             assert_matches_type(ExternalAccount, external_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_complete_verification(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.external_accounts.with_raw_response.complete_verification(
+                "",
+            )
 
     @parametrize
     def test_method_verify(self, client: ModernTreasury) -> None:
@@ -381,6 +409,15 @@ class TestExternalAccounts:
             assert_matches_type(ExternalAccount, external_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_verify(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.external_accounts.with_raw_response.verify(
+                "",
+                originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                payment_type="ach",
+            )
 
 
 class TestAsyncExternalAccounts:
@@ -541,6 +578,13 @@ class TestAsyncExternalAccounts:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    async def test_path_params_retrieve(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.external_accounts.with_raw_response.retrieve(
+                "",
+            )
+
+    @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
         external_account = await client.external_accounts.update(
             "string",
@@ -591,6 +635,13 @@ class TestAsyncExternalAccounts:
             assert_matches_type(ExternalAccount, external_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.external_accounts.with_raw_response.update(
+                "",
+            )
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -660,6 +711,13 @@ class TestAsyncExternalAccounts:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    async def test_path_params_delete(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.external_accounts.with_raw_response.delete(
+                "",
+            )
+
+    @parametrize
     async def test_method_complete_verification(self, client: AsyncModernTreasury) -> None:
         external_account = await client.external_accounts.complete_verification(
             "string",
@@ -697,6 +755,13 @@ class TestAsyncExternalAccounts:
             assert_matches_type(ExternalAccount, external_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_complete_verification(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.external_accounts.with_raw_response.complete_verification(
+                "",
+            )
 
     @parametrize
     async def test_method_verify(self, client: AsyncModernTreasury) -> None:
@@ -744,3 +809,12 @@ class TestAsyncExternalAccounts:
             assert_matches_type(ExternalAccount, external_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_verify(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.external_accounts.with_raw_response.verify(
+                "",
+                originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                payment_type="ach",
+            )

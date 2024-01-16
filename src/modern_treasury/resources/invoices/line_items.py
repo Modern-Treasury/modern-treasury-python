@@ -81,6 +81,8 @@ class LineItems(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not invoice_id:
+            raise ValueError(f"Expected a non-empty value for `invoice_id` but received {invoice_id!r}")
         return self._post(
             f"/api/invoices/{invoice_id}/invoice_line_items",
             body=maybe_transform(
@@ -128,6 +130,10 @@ class LineItems(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not invoice_id:
+            raise ValueError(f"Expected a non-empty value for `invoice_id` but received {invoice_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/api/invoices/{invoice_id}/invoice_line_items/{id}",
             options=make_request_options(
@@ -187,6 +193,10 @@ class LineItems(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not invoice_id:
+            raise ValueError(f"Expected a non-empty value for `invoice_id` but received {invoice_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
             f"/api/invoices/{invoice_id}/invoice_line_items/{id}",
             body=maybe_transform(
@@ -235,6 +245,8 @@ class LineItems(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not invoice_id:
+            raise ValueError(f"Expected a non-empty value for `invoice_id` but received {invoice_id!r}")
         return self._get_api_list(
             f"/api/invoices/{invoice_id}/invoice_line_items",
             page=SyncPage[InvoiceLineItem],
@@ -281,6 +293,10 @@ class LineItems(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not invoice_id:
+            raise ValueError(f"Expected a non-empty value for `invoice_id` but received {invoice_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
             f"/api/invoices/{invoice_id}/invoice_line_items/{id}",
             options=make_request_options(
@@ -353,6 +369,8 @@ class AsyncLineItems(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not invoice_id:
+            raise ValueError(f"Expected a non-empty value for `invoice_id` but received {invoice_id!r}")
         return await self._post(
             f"/api/invoices/{invoice_id}/invoice_line_items",
             body=maybe_transform(
@@ -400,6 +418,10 @@ class AsyncLineItems(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not invoice_id:
+            raise ValueError(f"Expected a non-empty value for `invoice_id` but received {invoice_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/api/invoices/{invoice_id}/invoice_line_items/{id}",
             options=make_request_options(
@@ -459,6 +481,10 @@ class AsyncLineItems(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not invoice_id:
+            raise ValueError(f"Expected a non-empty value for `invoice_id` but received {invoice_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/invoices/{invoice_id}/invoice_line_items/{id}",
             body=maybe_transform(
@@ -507,6 +533,8 @@ class AsyncLineItems(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not invoice_id:
+            raise ValueError(f"Expected a non-empty value for `invoice_id` but received {invoice_id!r}")
         return self._get_api_list(
             f"/api/invoices/{invoice_id}/invoice_line_items",
             page=AsyncPage[InvoiceLineItem],
@@ -553,6 +581,10 @@ class AsyncLineItems(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not invoice_id:
+            raise ValueError(f"Expected a non-empty value for `invoice_id` but received {invoice_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
             f"/api/invoices/{invoice_id}/invoice_line_items/{id}",
             options=make_request_options(

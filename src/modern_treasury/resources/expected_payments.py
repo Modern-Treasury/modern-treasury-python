@@ -195,6 +195,8 @@ class ExpectedPayments(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/api/expected_payments/{id}",
             options=make_request_options(
@@ -287,6 +289,8 @@ class ExpectedPayments(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
             f"/api/expected_payments/{id}",
             body=maybe_transform(
@@ -456,6 +460,8 @@ class ExpectedPayments(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
             f"/api/expected_payments/{id}",
             options=make_request_options(
@@ -633,6 +639,8 @@ class AsyncExpectedPayments(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/api/expected_payments/{id}",
             options=make_request_options(
@@ -725,6 +733,8 @@ class AsyncExpectedPayments(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/expected_payments/{id}",
             body=maybe_transform(
@@ -894,6 +904,8 @@ class AsyncExpectedPayments(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
             f"/api/expected_payments/{id}",
             options=make_request_options(

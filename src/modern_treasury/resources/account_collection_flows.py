@@ -132,6 +132,8 @@ class AccountCollectionFlows(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/api/account_collection_flows/{id}",
             options=make_request_options(
@@ -171,6 +173,8 @@ class AccountCollectionFlows(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
             f"/api/account_collection_flows/{id}",
             body=maybe_transform(
@@ -342,6 +346,8 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/api/account_collection_flows/{id}",
             options=make_request_options(
@@ -381,6 +387,8 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/account_collection_flows/{id}",
             body=maybe_transform(

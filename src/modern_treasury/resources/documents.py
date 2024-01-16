@@ -92,7 +92,6 @@ class Documents(SyncAPIResource):
             # sent to the server will contain a `boundary` parameter, e.g.
             # multipart/form-data; boundary=---abc--
             extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
-
         return self._post(
             "/api/documents",
             body=maybe_transform(body, document_create_params.DocumentCreateParams),
@@ -130,6 +129,8 @@ class Documents(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/api/documents/{id}",
             options=make_request_options(
@@ -275,7 +276,6 @@ class AsyncDocuments(AsyncAPIResource):
             # sent to the server will contain a `boundary` parameter, e.g.
             # multipart/form-data; boundary=---abc--
             extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
-
         return await self._post(
             "/api/documents",
             body=maybe_transform(body, document_create_params.DocumentCreateParams),
@@ -313,6 +313,8 @@ class AsyncDocuments(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/api/documents/{id}",
             options=make_request_options(

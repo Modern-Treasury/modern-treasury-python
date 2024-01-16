@@ -137,6 +137,14 @@ class TestReversals:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_path_params_create(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `payment_order_id` but received ''"):
+            client.payment_orders.reversals.with_raw_response.create(
+                "",
+                reason="duplicate",
+            )
+
+    @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         reversal = client.payment_orders.reversals.retrieve(
             "string",
@@ -169,6 +177,20 @@ class TestReversals:
             assert_matches_type(Reversal, reversal, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_retrieve(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `payment_order_id` but received ''"):
+            client.payment_orders.reversals.with_raw_response.retrieve(
+                "string",
+                payment_order_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `reversal_id` but received ''"):
+            client.payment_orders.reversals.with_raw_response.retrieve(
+                "",
+                payment_order_id="string",
+            )
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -209,6 +231,13 @@ class TestReversals:
             assert_matches_type(SyncPage[Reversal], reversal, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_list(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `payment_order_id` but received ''"):
+            client.payment_orders.reversals.with_raw_response.list(
+                "",
+            )
 
 
 class TestAsyncReversals:
@@ -329,6 +358,14 @@ class TestAsyncReversals:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    async def test_path_params_create(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `payment_order_id` but received ''"):
+            await client.payment_orders.reversals.with_raw_response.create(
+                "",
+                reason="duplicate",
+            )
+
+    @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         reversal = await client.payment_orders.reversals.retrieve(
             "string",
@@ -361,6 +398,20 @@ class TestAsyncReversals:
             assert_matches_type(Reversal, reversal, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_retrieve(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `payment_order_id` but received ''"):
+            await client.payment_orders.reversals.with_raw_response.retrieve(
+                "string",
+                payment_order_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `reversal_id` but received ''"):
+            await client.payment_orders.reversals.with_raw_response.retrieve(
+                "",
+                payment_order_id="string",
+            )
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -401,3 +452,10 @@ class TestAsyncReversals:
             assert_matches_type(AsyncPage[Reversal], reversal, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_list(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `payment_order_id` but received ''"):
+            await client.payment_orders.reversals.with_raw_response.list(
+                "",
+            )
