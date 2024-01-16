@@ -1,5 +1,37 @@
 # Changelog
 
+## 1.25.0 (2024-01-16)
+
+Full Changelog: [v1.24.0...v1.25.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.24.0...v1.25.0)
+
+### Features
+
+* add `None` default value to nullable response properties ([#334](https://github.com/Modern-Treasury/modern-treasury-python/issues/334)) ([93bd6c6](https://github.com/Modern-Treasury/modern-treasury-python/commit/93bd6c64387381e677b062fa3772f0b6e66f1a0c))
+* **api:** add `ledger_transactions` to expected payment request ([#337](https://github.com/Modern-Treasury/modern-treasury-python/issues/337)) ([ba1fe46](https://github.com/Modern-Treasury/modern-treasury-python/commit/ba1fe465e5eeaab3000f337b6eeea2bbd8bee281))
+* **api:** add create and delete operations for internal accounts balance reports ([#340](https://github.com/Modern-Treasury/modern-treasury-python/issues/340)) ([8ff1049](https://github.com/Modern-Treasury/modern-treasury-python/commit/8ff1049092ad68c1cfcdfd88a7e16f409bd04985))
+* **client:** add support for streaming raw responses ([#342](https://github.com/Modern-Treasury/modern-treasury-python/issues/342)) ([2fd8c94](https://github.com/Modern-Treasury/modern-treasury-python/commit/2fd8c94d2740a2c7835afe66265e76981ce0744d))
+
+
+### Bug Fixes
+
+* **client:** ensure path params are non-empty ([#343](https://github.com/Modern-Treasury/modern-treasury-python/issues/343)) ([10749e1](https://github.com/Modern-Treasury/modern-treasury-python/commit/10749e12124f0d7d8ce95f8012f2eb232be802aa))
+
+
+### Chores
+
+* add .keep files for examples and custom code directories ([#338](https://github.com/Modern-Treasury/modern-treasury-python/issues/338)) ([68d8ff1](https://github.com/Modern-Treasury/modern-treasury-python/commit/68d8ff19c1ba7d7e1970339a73ec21b831de0332))
+* add write_to_file binary helper method ([#345](https://github.com/Modern-Treasury/modern-treasury-python/issues/345)) ([50234bc](https://github.com/Modern-Treasury/modern-treasury-python/commit/50234bccc63ae60cfec784324f0aee1f5b508fc9))
+* **client:** improve debug logging for failed requests ([#339](https://github.com/Modern-Treasury/modern-treasury-python/issues/339)) ([0b0789f](https://github.com/Modern-Treasury/modern-treasury-python/commit/0b0789f6bd27e589941b46003d7b09f985312c60))
+* **internal:** loosen type var restrictions ([#336](https://github.com/Modern-Treasury/modern-treasury-python/issues/336)) ([8888141](https://github.com/Modern-Treasury/modern-treasury-python/commit/88881410674dc5cf4951b6a70ca6a8a1d88b8a81))
+* **internal:** replace isort with ruff ([#332](https://github.com/Modern-Treasury/modern-treasury-python/issues/332)) ([f4be664](https://github.com/Modern-Treasury/modern-treasury-python/commit/f4be664be3d5d302601fca0c04f7becb56172477))
+* **internal:** updates to proxy helper ([#344](https://github.com/Modern-Treasury/modern-treasury-python/issues/344)) ([4f12aac](https://github.com/Modern-Treasury/modern-treasury-python/commit/4f12aac161afbe3d78881446adb9be24bfc87e1e))
+* use property declarations for resource members ([#335](https://github.com/Modern-Treasury/modern-treasury-python/issues/335)) ([90e8951](https://github.com/Modern-Treasury/modern-treasury-python/commit/90e895185dada8bf39413d365e7cab7ccdce446c))
+
+
+### Documentation
+
+* **readme:** improve api reference ([#341](https://github.com/Modern-Treasury/modern-treasury-python/issues/341)) ([bea446e](https://github.com/Modern-Treasury/modern-treasury-python/commit/bea446e79c3ca23de88c15ab8ad8b748ef042e3a))
+
 ## 1.24.0 (2024-01-02)
 
 Full Changelog: [v1.23.1...v1.24.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.23.1...v1.24.0)
