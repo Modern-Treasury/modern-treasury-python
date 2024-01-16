@@ -117,6 +117,13 @@ class TestPaymentFlows:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_path_params_retrieve(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.payment_flows.with_raw_response.retrieve(
+                "",
+            )
+
+    @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
         payment_flow = client.payment_flows.update(
             "string",
@@ -149,6 +156,14 @@ class TestPaymentFlows:
             assert_matches_type(PaymentFlow, payment_flow, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.payment_flows.with_raw_response.update(
+                "",
+                status="cancelled",
+            )
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -286,6 +301,13 @@ class TestAsyncPaymentFlows:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    async def test_path_params_retrieve(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.payment_flows.with_raw_response.retrieve(
+                "",
+            )
+
+    @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
         payment_flow = await client.payment_flows.update(
             "string",
@@ -318,6 +340,14 @@ class TestAsyncPaymentFlows:
             assert_matches_type(PaymentFlow, payment_flow, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.payment_flows.with_raw_response.update(
+                "",
+                status="cancelled",
+            )
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:

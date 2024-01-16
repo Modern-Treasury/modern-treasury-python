@@ -66,6 +66,8 @@ class LedgerEntries(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/api/ledger_entries/{id}",
             options=make_request_options(
@@ -110,6 +112,8 @@ class LedgerEntries(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
             f"/api/ledger_entries/{id}",
             body=maybe_transform({"metadata": metadata}, ledger_entry_update_params.LedgerEntryUpdateParams),
@@ -287,6 +291,8 @@ class AsyncLedgerEntries(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/api/ledger_entries/{id}",
             options=make_request_options(
@@ -331,6 +337,8 @@ class AsyncLedgerEntries(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/ledger_entries/{id}",
             body=maybe_transform({"metadata": metadata}, ledger_entry_update_params.LedgerEntryUpdateParams),

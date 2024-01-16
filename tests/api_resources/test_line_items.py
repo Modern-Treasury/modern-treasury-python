@@ -65,6 +65,22 @@ class TestLineItems:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_path_params_retrieve(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `itemizable_id` but received ''"):
+            client.line_items.with_raw_response.retrieve(
+                "string",
+                itemizable_type="expected_payments",
+                itemizable_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.line_items.with_raw_response.retrieve(
+                "",
+                itemizable_type="expected_payments",
+                itemizable_id="string",
+            )
+
+    @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
         line_item = client.line_items.update(
             "string",
@@ -115,6 +131,22 @@ class TestLineItems:
 
         assert cast(Any, response.is_closed) is True
 
+    @parametrize
+    def test_path_params_update(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `itemizable_id` but received ''"):
+            client.line_items.with_raw_response.update(
+                "string",
+                itemizable_type="expected_payments",
+                itemizable_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.line_items.with_raw_response.update(
+                "",
+                itemizable_type="expected_payments",
+                itemizable_id="string",
+            )
+
     @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -163,6 +195,15 @@ class TestLineItems:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism is broken in this case")
+    @parametrize
+    def test_path_params_list(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `itemizable_id` but received ''"):
+            client.line_items.with_raw_response.list(
+                "",
+                itemizable_type="expected_payments",
+            )
+
 
 class TestAsyncLineItems:
     strict_client = AsyncModernTreasury(
@@ -209,6 +250,22 @@ class TestAsyncLineItems:
             assert_matches_type(LineItem, line_item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_retrieve(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `itemizable_id` but received ''"):
+            await client.line_items.with_raw_response.retrieve(
+                "string",
+                itemizable_type="expected_payments",
+                itemizable_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.line_items.with_raw_response.retrieve(
+                "",
+                itemizable_type="expected_payments",
+                itemizable_id="string",
+            )
 
     @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
@@ -261,6 +318,22 @@ class TestAsyncLineItems:
 
         assert cast(Any, response.is_closed) is True
 
+    @parametrize
+    async def test_path_params_update(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `itemizable_id` but received ''"):
+            await client.line_items.with_raw_response.update(
+                "string",
+                itemizable_type="expected_payments",
+                itemizable_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.line_items.with_raw_response.update(
+                "",
+                itemizable_type="expected_payments",
+                itemizable_id="string",
+            )
+
     @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -308,3 +381,12 @@ class TestAsyncLineItems:
             assert_matches_type(AsyncPage[LineItem], line_item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism is broken in this case")
+    @parametrize
+    async def test_path_params_list(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `itemizable_id` but received ''"):
+            await client.line_items.with_raw_response.list(
+                "",
+                itemizable_type="expected_payments",
+            )

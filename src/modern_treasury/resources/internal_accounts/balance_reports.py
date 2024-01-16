@@ -76,6 +76,10 @@ class BalanceReports(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not internal_account_id:
+            raise ValueError(
+                f"Expected a non-empty value for `internal_account_id` but received {internal_account_id!r}"
+            )
         return self._post(
             f"/api/internal_accounts/{internal_account_id}/balance_reports",
             body=maybe_transform(
@@ -122,6 +126,12 @@ class BalanceReports(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not internal_account_id:
+            raise ValueError(
+                f"Expected a non-empty value for `internal_account_id` but received {internal_account_id!r}"
+            )
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/api/internal_accounts/{internal_account_id}/balance_reports/{id}",
             options=make_request_options(
@@ -162,6 +172,10 @@ class BalanceReports(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not internal_account_id:
+            raise ValueError(
+                f"Expected a non-empty value for `internal_account_id` but received {internal_account_id!r}"
+            )
         return self._get_api_list(
             f"/api/internal_accounts/{internal_account_id}/balance_reports",
             page=SyncPage[BalanceReport],
@@ -210,6 +224,12 @@ class BalanceReports(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not internal_account_id:
+            raise ValueError(
+                f"Expected a non-empty value for `internal_account_id` but received {internal_account_id!r}"
+            )
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/api/internal_accounts/{internal_account_id}/balance_reports/{id}",
@@ -276,6 +296,10 @@ class AsyncBalanceReports(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not internal_account_id:
+            raise ValueError(
+                f"Expected a non-empty value for `internal_account_id` but received {internal_account_id!r}"
+            )
         return await self._post(
             f"/api/internal_accounts/{internal_account_id}/balance_reports",
             body=maybe_transform(
@@ -322,6 +346,12 @@ class AsyncBalanceReports(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not internal_account_id:
+            raise ValueError(
+                f"Expected a non-empty value for `internal_account_id` but received {internal_account_id!r}"
+            )
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/api/internal_accounts/{internal_account_id}/balance_reports/{id}",
             options=make_request_options(
@@ -362,6 +392,10 @@ class AsyncBalanceReports(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not internal_account_id:
+            raise ValueError(
+                f"Expected a non-empty value for `internal_account_id` but received {internal_account_id!r}"
+            )
         return self._get_api_list(
             f"/api/internal_accounts/{internal_account_id}/balance_reports",
             page=AsyncPage[BalanceReport],
@@ -410,6 +444,12 @@ class AsyncBalanceReports(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not internal_account_id:
+            raise ValueError(
+                f"Expected a non-empty value for `internal_account_id` but received {internal_account_id!r}"
+            )
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/api/internal_accounts/{internal_account_id}/balance_reports/{id}",

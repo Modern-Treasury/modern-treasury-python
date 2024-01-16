@@ -102,6 +102,13 @@ class TestLedgerableEvents:
 
         assert cast(Any, response.is_closed) is True
 
+    @parametrize
+    def test_path_params_retrieve(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.ledgerable_events.with_raw_response.retrieve(
+                "",
+            )
+
 
 class TestAsyncLedgerableEvents:
     strict_client = AsyncModernTreasury(
@@ -187,3 +194,10 @@ class TestAsyncLedgerableEvents:
             assert_matches_type(LedgerableEvent, ledgerable_event, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_retrieve(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.ledgerable_events.with_raw_response.retrieve(
+                "",
+            )

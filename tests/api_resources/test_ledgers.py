@@ -104,6 +104,13 @@ class TestLedgers:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_path_params_retrieve(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.ledgers.with_raw_response.retrieve(
+                "",
+            )
+
+    @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
         ledger = client.ledgers.update(
             "string",
@@ -147,6 +154,13 @@ class TestLedgers:
             assert_matches_type(Ledger, ledger, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.ledgers.with_raw_response.update(
+                "",
+            )
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -214,6 +228,13 @@ class TestLedgers:
             assert_matches_type(Ledger, ledger, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_delete(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.ledgers.with_raw_response.delete(
+                "",
+            )
 
 
 class TestAsyncLedgers:
@@ -301,6 +322,13 @@ class TestAsyncLedgers:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    async def test_path_params_retrieve(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.ledgers.with_raw_response.retrieve(
+                "",
+            )
+
+    @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
         ledger = await client.ledgers.update(
             "string",
@@ -344,6 +372,13 @@ class TestAsyncLedgers:
             assert_matches_type(Ledger, ledger, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.ledgers.with_raw_response.update(
+                "",
+            )
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -411,3 +446,10 @@ class TestAsyncLedgers:
             assert_matches_type(Ledger, ledger, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_delete(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.ledgers.with_raw_response.delete(
+                "",
+            )

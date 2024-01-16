@@ -125,6 +125,10 @@ class RoutingDetails(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not accounts_type:
+            raise ValueError(f"Expected a non-empty value for `accounts_type` but received {accounts_type!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/api/{accounts_type}/{account_id}/routing_details",
             body=maybe_transform(
@@ -170,6 +174,12 @@ class RoutingDetails(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not accounts_type:
+            raise ValueError(f"Expected a non-empty value for `accounts_type` but received {accounts_type!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/api/{accounts_type}/{account_id}/routing_details/{id}",
             options=make_request_options(
@@ -204,6 +214,10 @@ class RoutingDetails(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not accounts_type:
+            raise ValueError(f"Expected a non-empty value for `accounts_type` but received {accounts_type!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/api/{accounts_type}/{account_id}/routing_details",
             page=SyncPage[RoutingDetail],
@@ -251,6 +265,12 @@ class RoutingDetails(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not accounts_type:
+            raise ValueError(f"Expected a non-empty value for `accounts_type` but received {accounts_type!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/api/{accounts_type}/{account_id}/routing_details/{id}",
@@ -366,6 +386,10 @@ class AsyncRoutingDetails(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not accounts_type:
+            raise ValueError(f"Expected a non-empty value for `accounts_type` but received {accounts_type!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/api/{accounts_type}/{account_id}/routing_details",
             body=maybe_transform(
@@ -411,6 +435,12 @@ class AsyncRoutingDetails(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not accounts_type:
+            raise ValueError(f"Expected a non-empty value for `accounts_type` but received {accounts_type!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/api/{accounts_type}/{account_id}/routing_details/{id}",
             options=make_request_options(
@@ -445,6 +475,10 @@ class AsyncRoutingDetails(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not accounts_type:
+            raise ValueError(f"Expected a non-empty value for `accounts_type` but received {accounts_type!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/api/{accounts_type}/{account_id}/routing_details",
             page=AsyncPage[RoutingDetail],
@@ -492,6 +526,12 @@ class AsyncRoutingDetails(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not accounts_type:
+            raise ValueError(f"Expected a non-empty value for `accounts_type` but received {accounts_type!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/api/{accounts_type}/{account_id}/routing_details/{id}",

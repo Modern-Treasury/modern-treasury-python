@@ -56,6 +56,8 @@ class PaymentReferences(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/api/payment_references/{id}",
             options=make_request_options(
@@ -182,6 +184,8 @@ class AsyncPaymentReferences(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/api/payment_references/{id}",
             options=make_request_options(

@@ -155,6 +155,8 @@ class ExternalAccounts(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/api/external_accounts/{id}",
             options=make_request_options(
@@ -208,6 +210,8 @@ class ExternalAccounts(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
             f"/api/external_accounts/{id}",
             body=maybe_transform(
@@ -313,6 +317,8 @@ class ExternalAccounts(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/api/external_accounts/{id}",
@@ -353,6 +359,8 @@ class ExternalAccounts(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
             f"/api/external_accounts/{id}/complete_verification",
             body=maybe_transform(
@@ -436,6 +444,8 @@ class ExternalAccounts(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
             f"/api/external_accounts/{id}/verify",
             body=maybe_transform(
@@ -580,6 +590,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/api/external_accounts/{id}",
             options=make_request_options(
@@ -633,6 +645,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/external_accounts/{id}",
             body=maybe_transform(
@@ -738,6 +752,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/api/external_accounts/{id}",
@@ -778,6 +794,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
             f"/api/external_accounts/{id}/complete_verification",
             body=maybe_transform(
@@ -861,6 +879,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
             f"/api/external_accounts/{id}/verify",
             body=maybe_transform(

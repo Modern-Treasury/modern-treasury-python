@@ -55,6 +55,8 @@ class BulkResults(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/api/bulk_results/{id}",
             options=make_request_options(
@@ -163,6 +165,8 @@ class AsyncBulkResults(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/api/bulk_results/{id}",
             options=make_request_options(

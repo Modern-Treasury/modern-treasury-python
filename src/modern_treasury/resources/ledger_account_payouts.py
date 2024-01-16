@@ -144,6 +144,8 @@ class LedgerAccountPayouts(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/api/ledger_account_payouts/{id}",
             options=make_request_options(
@@ -189,6 +191,8 @@ class LedgerAccountPayouts(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
             f"/api/ledger_account_payouts/{id}",
             body=maybe_transform(
@@ -410,6 +414,8 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/api/ledger_account_payouts/{id}",
             options=make_request_options(
@@ -455,6 +461,8 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/ledger_account_payouts/{id}",
             body=maybe_transform(

@@ -222,6 +222,13 @@ class TestExpectedPayments:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_path_params_retrieve(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.expected_payments.with_raw_response.retrieve(
+                "",
+            )
+
+    @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
         expected_payment = client.expected_payments.update(
             "string",
@@ -278,6 +285,13 @@ class TestExpectedPayments:
             assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.expected_payments.with_raw_response.update(
+                "",
+            )
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
@@ -350,6 +364,13 @@ class TestExpectedPayments:
             assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_delete(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.expected_payments.with_raw_response.delete(
+                "",
+            )
 
 
 class TestAsyncExpectedPayments:
@@ -553,6 +574,13 @@ class TestAsyncExpectedPayments:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    async def test_path_params_retrieve(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.expected_payments.with_raw_response.retrieve(
+                "",
+            )
+
+    @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
         expected_payment = await client.expected_payments.update(
             "string",
@@ -609,6 +637,13 @@ class TestAsyncExpectedPayments:
             assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.expected_payments.with_raw_response.update(
+                "",
+            )
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -681,3 +716,10 @@ class TestAsyncExpectedPayments:
             assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_delete(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.expected_payments.with_raw_response.delete(
+                "",
+            )

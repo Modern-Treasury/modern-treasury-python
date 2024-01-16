@@ -61,6 +61,13 @@ class TestPaymentReferences:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_path_params_retrieve(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.payment_references.with_raw_response.retrieve(
+                "",
+            )
+
+    @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         payment_reference = client.payment_references.list()
         assert_matches_type(SyncPage[PaymentReference], payment_reference, path=["response"])
@@ -131,6 +138,14 @@ class TestPaymentReferences:
 
         assert cast(Any, response.is_closed) is True
 
+    @parametrize
+    def test_path_params_retireve(self, client: ModernTreasury) -> None:
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+                client.payment_references.with_raw_response.retireve(
+                    "",
+                )
+
 
 class TestAsyncPaymentReferences:
     strict_client = AsyncModernTreasury(
@@ -171,6 +186,13 @@ class TestAsyncPaymentReferences:
             assert_matches_type(PaymentReference, payment_reference, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_retrieve(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.payment_references.with_raw_response.retrieve(
+                "",
+            )
 
     @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
@@ -242,3 +264,11 @@ class TestAsyncPaymentReferences:
                 assert_matches_type(PaymentReference, payment_reference, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_retireve(self, client: AsyncModernTreasury) -> None:
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+                await client.payment_references.with_raw_response.retireve(
+                    "",
+                )

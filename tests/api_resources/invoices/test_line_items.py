@@ -80,6 +80,15 @@ class TestLineItems:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_path_params_create(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `invoice_id` but received ''"):
+            client.invoices.line_items.with_raw_response.create(
+                "",
+                name="string",
+                unit_amount=0,
+            )
+
+    @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         line_item = client.invoices.line_items.retrieve(
             "string",
@@ -112,6 +121,20 @@ class TestLineItems:
             assert_matches_type(InvoiceLineItem, line_item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_retrieve(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `invoice_id` but received ''"):
+            client.invoices.line_items.with_raw_response.retrieve(
+                "string",
+                invoice_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.invoices.line_items.with_raw_response.retrieve(
+                "",
+                invoice_id="string",
+            )
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
@@ -162,6 +185,20 @@ class TestLineItems:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_path_params_update(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `invoice_id` but received ''"):
+            client.invoices.line_items.with_raw_response.update(
+                "string",
+                invoice_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.invoices.line_items.with_raw_response.update(
+                "",
+                invoice_id="string",
+            )
+
+    @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         line_item = client.invoices.line_items.list(
             "string",
@@ -202,6 +239,13 @@ class TestLineItems:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_path_params_list(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `invoice_id` but received ''"):
+            client.invoices.line_items.with_raw_response.list(
+                "",
+            )
+
+    @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
         line_item = client.invoices.line_items.delete(
             "string",
@@ -234,6 +278,20 @@ class TestLineItems:
             assert_matches_type(InvoiceLineItem, line_item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_delete(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `invoice_id` but received ''"):
+            client.invoices.line_items.with_raw_response.delete(
+                "string",
+                invoice_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.invoices.line_items.with_raw_response.delete(
+                "",
+                invoice_id="string",
+            )
 
 
 class TestAsyncLineItems:
@@ -296,6 +354,15 @@ class TestAsyncLineItems:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    async def test_path_params_create(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `invoice_id` but received ''"):
+            await client.invoices.line_items.with_raw_response.create(
+                "",
+                name="string",
+                unit_amount=0,
+            )
+
+    @parametrize
     async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
         line_item = await client.invoices.line_items.retrieve(
             "string",
@@ -328,6 +395,20 @@ class TestAsyncLineItems:
             assert_matches_type(InvoiceLineItem, line_item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_retrieve(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `invoice_id` but received ''"):
+            await client.invoices.line_items.with_raw_response.retrieve(
+                "string",
+                invoice_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.invoices.line_items.with_raw_response.retrieve(
+                "",
+                invoice_id="string",
+            )
 
     @parametrize
     async def test_method_update(self, client: AsyncModernTreasury) -> None:
@@ -378,6 +459,20 @@ class TestAsyncLineItems:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    async def test_path_params_update(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `invoice_id` but received ''"):
+            await client.invoices.line_items.with_raw_response.update(
+                "string",
+                invoice_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.invoices.line_items.with_raw_response.update(
+                "",
+                invoice_id="string",
+            )
+
+    @parametrize
     async def test_method_list(self, client: AsyncModernTreasury) -> None:
         line_item = await client.invoices.line_items.list(
             "string",
@@ -418,6 +513,13 @@ class TestAsyncLineItems:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    async def test_path_params_list(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `invoice_id` but received ''"):
+            await client.invoices.line_items.with_raw_response.list(
+                "",
+            )
+
+    @parametrize
     async def test_method_delete(self, client: AsyncModernTreasury) -> None:
         line_item = await client.invoices.line_items.delete(
             "string",
@@ -450,3 +552,17 @@ class TestAsyncLineItems:
             assert_matches_type(InvoiceLineItem, line_item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_delete(self, client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `invoice_id` but received ''"):
+            await client.invoices.line_items.with_raw_response.delete(
+                "string",
+                invoice_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await client.invoices.line_items.with_raw_response.delete(
+                "",
+                invoice_id="string",
+            )
