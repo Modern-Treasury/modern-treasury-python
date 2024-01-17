@@ -472,6 +472,8 @@ class AsyncReturns(AsyncAPIResource):
 
 class ReturnsWithRawResponse:
     def __init__(self, returns: Returns) -> None:
+        self._returns = returns
+
         self.create = _legacy_response.to_raw_response_wrapper(
             returns.create,
         )
@@ -485,6 +487,8 @@ class ReturnsWithRawResponse:
 
 class AsyncReturnsWithRawResponse:
     def __init__(self, returns: AsyncReturns) -> None:
+        self._returns = returns
+
         self.create = _legacy_response.async_to_raw_response_wrapper(
             returns.create,
         )
@@ -498,6 +502,8 @@ class AsyncReturnsWithRawResponse:
 
 class ReturnsWithStreamingResponse:
     def __init__(self, returns: Returns) -> None:
+        self._returns = returns
+
         self.create = to_streamed_response_wrapper(
             returns.create,
         )
@@ -511,6 +517,8 @@ class ReturnsWithStreamingResponse:
 
 class AsyncReturnsWithStreamingResponse:
     def __init__(self, returns: AsyncReturns) -> None:
+        self._returns = returns
+
         self.create = async_to_streamed_response_wrapper(
             returns.create,
         )

@@ -537,6 +537,8 @@ class AsyncLedgerAccountBalanceMonitors(AsyncAPIResource):
 
 class LedgerAccountBalanceMonitorsWithRawResponse:
     def __init__(self, ledger_account_balance_monitors: LedgerAccountBalanceMonitors) -> None:
+        self._ledger_account_balance_monitors = ledger_account_balance_monitors
+
         self.create = _legacy_response.to_raw_response_wrapper(
             ledger_account_balance_monitors.create,
         )
@@ -556,6 +558,8 @@ class LedgerAccountBalanceMonitorsWithRawResponse:
 
 class AsyncLedgerAccountBalanceMonitorsWithRawResponse:
     def __init__(self, ledger_account_balance_monitors: AsyncLedgerAccountBalanceMonitors) -> None:
+        self._ledger_account_balance_monitors = ledger_account_balance_monitors
+
         self.create = _legacy_response.async_to_raw_response_wrapper(
             ledger_account_balance_monitors.create,
         )
@@ -575,6 +579,8 @@ class AsyncLedgerAccountBalanceMonitorsWithRawResponse:
 
 class LedgerAccountBalanceMonitorsWithStreamingResponse:
     def __init__(self, ledger_account_balance_monitors: LedgerAccountBalanceMonitors) -> None:
+        self._ledger_account_balance_monitors = ledger_account_balance_monitors
+
         self.create = to_streamed_response_wrapper(
             ledger_account_balance_monitors.create,
         )
@@ -594,6 +600,8 @@ class LedgerAccountBalanceMonitorsWithStreamingResponse:
 
 class AsyncLedgerAccountBalanceMonitorsWithStreamingResponse:
     def __init__(self, ledger_account_balance_monitors: AsyncLedgerAccountBalanceMonitors) -> None:
+        self._ledger_account_balance_monitors = ledger_account_balance_monitors
+
         self.create = async_to_streamed_response_wrapper(
             ledger_account_balance_monitors.create,
         )

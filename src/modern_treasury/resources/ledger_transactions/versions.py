@@ -173,6 +173,8 @@ class AsyncVersions(AsyncAPIResource):
 
 class VersionsWithRawResponse:
     def __init__(self, versions: Versions) -> None:
+        self._versions = versions
+
         self.list = _legacy_response.to_raw_response_wrapper(
             versions.list,
         )
@@ -180,6 +182,8 @@ class VersionsWithRawResponse:
 
 class AsyncVersionsWithRawResponse:
     def __init__(self, versions: AsyncVersions) -> None:
+        self._versions = versions
+
         self.list = _legacy_response.async_to_raw_response_wrapper(
             versions.list,
         )
@@ -187,6 +191,8 @@ class AsyncVersionsWithRawResponse:
 
 class VersionsWithStreamingResponse:
     def __init__(self, versions: Versions) -> None:
+        self._versions = versions
+
         self.list = to_streamed_response_wrapper(
             versions.list,
         )
@@ -194,6 +200,8 @@ class VersionsWithStreamingResponse:
 
 class AsyncVersionsWithStreamingResponse:
     def __init__(self, versions: AsyncVersions) -> None:
+        self._versions = versions
+
         self.list = async_to_streamed_response_wrapper(
             versions.list,
         )

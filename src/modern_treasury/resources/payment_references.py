@@ -282,6 +282,8 @@ class AsyncPaymentReferences(AsyncAPIResource):
 
 class PaymentReferencesWithRawResponse:
     def __init__(self, payment_references: PaymentReferences) -> None:
+        self._payment_references = payment_references
+
         self.retrieve = _legacy_response.to_raw_response_wrapper(
             payment_references.retrieve,
         )
@@ -297,6 +299,8 @@ class PaymentReferencesWithRawResponse:
 
 class AsyncPaymentReferencesWithRawResponse:
     def __init__(self, payment_references: AsyncPaymentReferences) -> None:
+        self._payment_references = payment_references
+
         self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             payment_references.retrieve,
         )
@@ -312,6 +316,8 @@ class AsyncPaymentReferencesWithRawResponse:
 
 class PaymentReferencesWithStreamingResponse:
     def __init__(self, payment_references: PaymentReferences) -> None:
+        self._payment_references = payment_references
+
         self.retrieve = to_streamed_response_wrapper(
             payment_references.retrieve,
         )
@@ -327,6 +333,8 @@ class PaymentReferencesWithStreamingResponse:
 
 class AsyncPaymentReferencesWithStreamingResponse:
     def __init__(self, payment_references: AsyncPaymentReferences) -> None:
+        self._payment_references = payment_references
+
         self.retrieve = async_to_streamed_response_wrapper(
             payment_references.retrieve,
         )

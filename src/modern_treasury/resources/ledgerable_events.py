@@ -226,6 +226,8 @@ class AsyncLedgerableEvents(AsyncAPIResource):
 
 class LedgerableEventsWithRawResponse:
     def __init__(self, ledgerable_events: LedgerableEvents) -> None:
+        self._ledgerable_events = ledgerable_events
+
         self.create = _legacy_response.to_raw_response_wrapper(
             ledgerable_events.create,
         )
@@ -236,6 +238,8 @@ class LedgerableEventsWithRawResponse:
 
 class AsyncLedgerableEventsWithRawResponse:
     def __init__(self, ledgerable_events: AsyncLedgerableEvents) -> None:
+        self._ledgerable_events = ledgerable_events
+
         self.create = _legacy_response.async_to_raw_response_wrapper(
             ledgerable_events.create,
         )
@@ -246,6 +250,8 @@ class AsyncLedgerableEventsWithRawResponse:
 
 class LedgerableEventsWithStreamingResponse:
     def __init__(self, ledgerable_events: LedgerableEvents) -> None:
+        self._ledgerable_events = ledgerable_events
+
         self.create = to_streamed_response_wrapper(
             ledgerable_events.create,
         )
@@ -256,6 +262,8 @@ class LedgerableEventsWithStreamingResponse:
 
 class AsyncLedgerableEventsWithStreamingResponse:
     def __init__(self, ledgerable_events: AsyncLedgerableEvents) -> None:
+        self._ledgerable_events = ledgerable_events
+
         self.create = async_to_streamed_response_wrapper(
             ledgerable_events.create,
         )

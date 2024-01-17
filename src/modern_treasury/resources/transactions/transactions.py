@@ -650,7 +650,7 @@ class AsyncTransactions(AsyncAPIResource):
 
 class TransactionsWithRawResponse:
     def __init__(self, transactions: Transactions) -> None:
-        self.line_items = LineItemsWithRawResponse(transactions.line_items)
+        self._transactions = transactions
 
         self.create = _legacy_response.to_raw_response_wrapper(
             transactions.create,
@@ -668,10 +668,14 @@ class TransactionsWithRawResponse:
             transactions.delete,
         )
 
+    @cached_property
+    def line_items(self) -> LineItemsWithRawResponse:
+        return LineItemsWithRawResponse(self._transactions.line_items)
+
 
 class AsyncTransactionsWithRawResponse:
     def __init__(self, transactions: AsyncTransactions) -> None:
-        self.line_items = AsyncLineItemsWithRawResponse(transactions.line_items)
+        self._transactions = transactions
 
         self.create = _legacy_response.async_to_raw_response_wrapper(
             transactions.create,
@@ -689,10 +693,14 @@ class AsyncTransactionsWithRawResponse:
             transactions.delete,
         )
 
+    @cached_property
+    def line_items(self) -> AsyncLineItemsWithRawResponse:
+        return AsyncLineItemsWithRawResponse(self._transactions.line_items)
+
 
 class TransactionsWithStreamingResponse:
     def __init__(self, transactions: Transactions) -> None:
-        self.line_items = LineItemsWithStreamingResponse(transactions.line_items)
+        self._transactions = transactions
 
         self.create = to_streamed_response_wrapper(
             transactions.create,
@@ -710,10 +718,14 @@ class TransactionsWithStreamingResponse:
             transactions.delete,
         )
 
+    @cached_property
+    def line_items(self) -> LineItemsWithStreamingResponse:
+        return LineItemsWithStreamingResponse(self._transactions.line_items)
+
 
 class AsyncTransactionsWithStreamingResponse:
     def __init__(self, transactions: AsyncTransactions) -> None:
-        self.line_items = AsyncLineItemsWithStreamingResponse(transactions.line_items)
+        self._transactions = transactions
 
         self.create = async_to_streamed_response_wrapper(
             transactions.create,
@@ -730,3 +742,7 @@ class AsyncTransactionsWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             transactions.delete,
         )
+
+    @cached_property
+    def line_items(self) -> AsyncLineItemsWithStreamingResponse:
+        return AsyncLineItemsWithStreamingResponse(self._transactions.line_items)

@@ -349,6 +349,8 @@ class AsyncReversals(AsyncAPIResource):
 
 class ReversalsWithRawResponse:
     def __init__(self, reversals: Reversals) -> None:
+        self._reversals = reversals
+
         self.create = _legacy_response.to_raw_response_wrapper(
             reversals.create,
         )
@@ -362,6 +364,8 @@ class ReversalsWithRawResponse:
 
 class AsyncReversalsWithRawResponse:
     def __init__(self, reversals: AsyncReversals) -> None:
+        self._reversals = reversals
+
         self.create = _legacy_response.async_to_raw_response_wrapper(
             reversals.create,
         )
@@ -375,6 +379,8 @@ class AsyncReversalsWithRawResponse:
 
 class ReversalsWithStreamingResponse:
     def __init__(self, reversals: Reversals) -> None:
+        self._reversals = reversals
+
         self.create = to_streamed_response_wrapper(
             reversals.create,
         )
@@ -388,6 +394,8 @@ class ReversalsWithStreamingResponse:
 
 class AsyncReversalsWithStreamingResponse:
     def __init__(self, reversals: AsyncReversals) -> None:
+        self._reversals = reversals
+
         self.create = async_to_streamed_response_wrapper(
             reversals.create,
         )

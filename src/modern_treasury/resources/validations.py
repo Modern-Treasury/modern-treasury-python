@@ -180,6 +180,8 @@ class AsyncValidations(AsyncAPIResource):
 
 class ValidationsWithRawResponse:
     def __init__(self, validations: Validations) -> None:
+        self._validations = validations
+
         self.validate_routing_number = _legacy_response.to_raw_response_wrapper(
             validations.validate_routing_number,
         )
@@ -187,6 +189,8 @@ class ValidationsWithRawResponse:
 
 class AsyncValidationsWithRawResponse:
     def __init__(self, validations: AsyncValidations) -> None:
+        self._validations = validations
+
         self.validate_routing_number = _legacy_response.async_to_raw_response_wrapper(
             validations.validate_routing_number,
         )
@@ -194,6 +198,8 @@ class AsyncValidationsWithRawResponse:
 
 class ValidationsWithStreamingResponse:
     def __init__(self, validations: Validations) -> None:
+        self._validations = validations
+
         self.validate_routing_number = to_streamed_response_wrapper(
             validations.validate_routing_number,
         )
@@ -201,6 +207,8 @@ class ValidationsWithStreamingResponse:
 
 class AsyncValidationsWithStreamingResponse:
     def __init__(self, validations: AsyncValidations) -> None:
+        self._validations = validations
+
         self.validate_routing_number = async_to_streamed_response_wrapper(
             validations.validate_routing_number,
         )

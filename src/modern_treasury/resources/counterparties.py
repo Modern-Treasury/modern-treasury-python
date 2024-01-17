@@ -836,6 +836,8 @@ class AsyncCounterparties(AsyncAPIResource):
 
 class CounterpartiesWithRawResponse:
     def __init__(self, counterparties: Counterparties) -> None:
+        self._counterparties = counterparties
+
         self.create = _legacy_response.to_raw_response_wrapper(
             counterparties.create,
         )
@@ -858,6 +860,8 @@ class CounterpartiesWithRawResponse:
 
 class AsyncCounterpartiesWithRawResponse:
     def __init__(self, counterparties: AsyncCounterparties) -> None:
+        self._counterparties = counterparties
+
         self.create = _legacy_response.async_to_raw_response_wrapper(
             counterparties.create,
         )
@@ -880,6 +884,8 @@ class AsyncCounterpartiesWithRawResponse:
 
 class CounterpartiesWithStreamingResponse:
     def __init__(self, counterparties: Counterparties) -> None:
+        self._counterparties = counterparties
+
         self.create = to_streamed_response_wrapper(
             counterparties.create,
         )
@@ -902,6 +908,8 @@ class CounterpartiesWithStreamingResponse:
 
 class AsyncCounterpartiesWithStreamingResponse:
     def __init__(self, counterparties: AsyncCounterparties) -> None:
+        self._counterparties = counterparties
+
         self.create = async_to_streamed_response_wrapper(
             counterparties.create,
         )

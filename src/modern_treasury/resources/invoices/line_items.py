@@ -600,6 +600,8 @@ class AsyncLineItems(AsyncAPIResource):
 
 class LineItemsWithRawResponse:
     def __init__(self, line_items: LineItems) -> None:
+        self._line_items = line_items
+
         self.create = _legacy_response.to_raw_response_wrapper(
             line_items.create,
         )
@@ -619,6 +621,8 @@ class LineItemsWithRawResponse:
 
 class AsyncLineItemsWithRawResponse:
     def __init__(self, line_items: AsyncLineItems) -> None:
+        self._line_items = line_items
+
         self.create = _legacy_response.async_to_raw_response_wrapper(
             line_items.create,
         )
@@ -638,6 +642,8 @@ class AsyncLineItemsWithRawResponse:
 
 class LineItemsWithStreamingResponse:
     def __init__(self, line_items: LineItems) -> None:
+        self._line_items = line_items
+
         self.create = to_streamed_response_wrapper(
             line_items.create,
         )
@@ -657,6 +663,8 @@ class LineItemsWithStreamingResponse:
 
 class AsyncLineItemsWithStreamingResponse:
     def __init__(self, line_items: AsyncLineItems) -> None:
+        self._line_items = line_items
+
         self.create = async_to_streamed_response_wrapper(
             line_items.create,
         )
