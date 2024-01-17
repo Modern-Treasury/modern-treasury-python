@@ -878,7 +878,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
 
 class LedgerTransactionsWithRawResponse:
     def __init__(self, ledger_transactions: LedgerTransactions) -> None:
-        self.versions = VersionsWithRawResponse(ledger_transactions.versions)
+        self._ledger_transactions = ledger_transactions
 
         self.create = _legacy_response.to_raw_response_wrapper(
             ledger_transactions.create,
@@ -896,10 +896,14 @@ class LedgerTransactionsWithRawResponse:
             ledger_transactions.create_reversal,
         )
 
+    @cached_property
+    def versions(self) -> VersionsWithRawResponse:
+        return VersionsWithRawResponse(self._ledger_transactions.versions)
+
 
 class AsyncLedgerTransactionsWithRawResponse:
     def __init__(self, ledger_transactions: AsyncLedgerTransactions) -> None:
-        self.versions = AsyncVersionsWithRawResponse(ledger_transactions.versions)
+        self._ledger_transactions = ledger_transactions
 
         self.create = _legacy_response.async_to_raw_response_wrapper(
             ledger_transactions.create,
@@ -917,10 +921,14 @@ class AsyncLedgerTransactionsWithRawResponse:
             ledger_transactions.create_reversal,
         )
 
+    @cached_property
+    def versions(self) -> AsyncVersionsWithRawResponse:
+        return AsyncVersionsWithRawResponse(self._ledger_transactions.versions)
+
 
 class LedgerTransactionsWithStreamingResponse:
     def __init__(self, ledger_transactions: LedgerTransactions) -> None:
-        self.versions = VersionsWithStreamingResponse(ledger_transactions.versions)
+        self._ledger_transactions = ledger_transactions
 
         self.create = to_streamed_response_wrapper(
             ledger_transactions.create,
@@ -938,10 +946,14 @@ class LedgerTransactionsWithStreamingResponse:
             ledger_transactions.create_reversal,
         )
 
+    @cached_property
+    def versions(self) -> VersionsWithStreamingResponse:
+        return VersionsWithStreamingResponse(self._ledger_transactions.versions)
+
 
 class AsyncLedgerTransactionsWithStreamingResponse:
     def __init__(self, ledger_transactions: AsyncLedgerTransactions) -> None:
-        self.versions = AsyncVersionsWithStreamingResponse(ledger_transactions.versions)
+        self._ledger_transactions = ledger_transactions
 
         self.create = async_to_streamed_response_wrapper(
             ledger_transactions.create,
@@ -958,3 +970,7 @@ class AsyncLedgerTransactionsWithStreamingResponse:
         self.create_reversal = async_to_streamed_response_wrapper(
             ledger_transactions.create_reversal,
         )
+
+    @cached_property
+    def versions(self) -> AsyncVersionsWithStreamingResponse:
+        return AsyncVersionsWithStreamingResponse(self._ledger_transactions.versions)

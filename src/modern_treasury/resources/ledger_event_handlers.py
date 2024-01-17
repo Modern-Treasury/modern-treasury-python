@@ -440,6 +440,8 @@ class AsyncLedgerEventHandlers(AsyncAPIResource):
 
 class LedgerEventHandlersWithRawResponse:
     def __init__(self, ledger_event_handlers: LedgerEventHandlers) -> None:
+        self._ledger_event_handlers = ledger_event_handlers
+
         self.create = _legacy_response.to_raw_response_wrapper(
             ledger_event_handlers.create,
         )
@@ -456,6 +458,8 @@ class LedgerEventHandlersWithRawResponse:
 
 class AsyncLedgerEventHandlersWithRawResponse:
     def __init__(self, ledger_event_handlers: AsyncLedgerEventHandlers) -> None:
+        self._ledger_event_handlers = ledger_event_handlers
+
         self.create = _legacy_response.async_to_raw_response_wrapper(
             ledger_event_handlers.create,
         )
@@ -472,6 +476,8 @@ class AsyncLedgerEventHandlersWithRawResponse:
 
 class LedgerEventHandlersWithStreamingResponse:
     def __init__(self, ledger_event_handlers: LedgerEventHandlers) -> None:
+        self._ledger_event_handlers = ledger_event_handlers
+
         self.create = to_streamed_response_wrapper(
             ledger_event_handlers.create,
         )
@@ -488,6 +494,8 @@ class LedgerEventHandlersWithStreamingResponse:
 
 class AsyncLedgerEventHandlersWithStreamingResponse:
     def __init__(self, ledger_event_handlers: AsyncLedgerEventHandlers) -> None:
+        self._ledger_event_handlers = ledger_event_handlers
+
         self.create = async_to_streamed_response_wrapper(
             ledger_event_handlers.create,
         )

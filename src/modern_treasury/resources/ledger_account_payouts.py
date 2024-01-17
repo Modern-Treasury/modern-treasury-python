@@ -572,6 +572,8 @@ class AsyncLedgerAccountPayouts(AsyncAPIResource):
 
 class LedgerAccountPayoutsWithRawResponse:
     def __init__(self, ledger_account_payouts: LedgerAccountPayouts) -> None:
+        self._ledger_account_payouts = ledger_account_payouts
+
         self.create = _legacy_response.to_raw_response_wrapper(
             ledger_account_payouts.create,
         )
@@ -593,6 +595,8 @@ class LedgerAccountPayoutsWithRawResponse:
 
 class AsyncLedgerAccountPayoutsWithRawResponse:
     def __init__(self, ledger_account_payouts: AsyncLedgerAccountPayouts) -> None:
+        self._ledger_account_payouts = ledger_account_payouts
+
         self.create = _legacy_response.async_to_raw_response_wrapper(
             ledger_account_payouts.create,
         )
@@ -614,6 +618,8 @@ class AsyncLedgerAccountPayoutsWithRawResponse:
 
 class LedgerAccountPayoutsWithStreamingResponse:
     def __init__(self, ledger_account_payouts: LedgerAccountPayouts) -> None:
+        self._ledger_account_payouts = ledger_account_payouts
+
         self.create = to_streamed_response_wrapper(
             ledger_account_payouts.create,
         )
@@ -635,6 +641,8 @@ class LedgerAccountPayoutsWithStreamingResponse:
 
 class AsyncLedgerAccountPayoutsWithStreamingResponse:
     def __init__(self, ledger_account_payouts: AsyncLedgerAccountPayouts) -> None:
+        self._ledger_account_payouts = ledger_account_payouts
+
         self.create = async_to_streamed_response_wrapper(
             ledger_account_payouts.create,
         )

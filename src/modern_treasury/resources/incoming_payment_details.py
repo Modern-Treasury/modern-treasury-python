@@ -520,6 +520,8 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
 
 class IncomingPaymentDetailsWithRawResponse:
     def __init__(self, incoming_payment_details: IncomingPaymentDetails) -> None:
+        self._incoming_payment_details = incoming_payment_details
+
         self.retrieve = _legacy_response.to_raw_response_wrapper(
             incoming_payment_details.retrieve,
         )
@@ -536,6 +538,8 @@ class IncomingPaymentDetailsWithRawResponse:
 
 class AsyncIncomingPaymentDetailsWithRawResponse:
     def __init__(self, incoming_payment_details: AsyncIncomingPaymentDetails) -> None:
+        self._incoming_payment_details = incoming_payment_details
+
         self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             incoming_payment_details.retrieve,
         )
@@ -552,6 +556,8 @@ class AsyncIncomingPaymentDetailsWithRawResponse:
 
 class IncomingPaymentDetailsWithStreamingResponse:
     def __init__(self, incoming_payment_details: IncomingPaymentDetails) -> None:
+        self._incoming_payment_details = incoming_payment_details
+
         self.retrieve = to_streamed_response_wrapper(
             incoming_payment_details.retrieve,
         )
@@ -568,6 +574,8 @@ class IncomingPaymentDetailsWithStreamingResponse:
 
 class AsyncIncomingPaymentDetailsWithStreamingResponse:
     def __init__(self, incoming_payment_details: AsyncIncomingPaymentDetails) -> None:
+        self._incoming_payment_details = incoming_payment_details
+
         self.retrieve = async_to_streamed_response_wrapper(
             incoming_payment_details.retrieve,
         )

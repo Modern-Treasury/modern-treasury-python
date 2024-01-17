@@ -245,6 +245,8 @@ class AsyncBulkResults(AsyncAPIResource):
 
 class BulkResultsWithRawResponse:
     def __init__(self, bulk_results: BulkResults) -> None:
+        self._bulk_results = bulk_results
+
         self.retrieve = _legacy_response.to_raw_response_wrapper(
             bulk_results.retrieve,
         )
@@ -255,6 +257,8 @@ class BulkResultsWithRawResponse:
 
 class AsyncBulkResultsWithRawResponse:
     def __init__(self, bulk_results: AsyncBulkResults) -> None:
+        self._bulk_results = bulk_results
+
         self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             bulk_results.retrieve,
         )
@@ -265,6 +269,8 @@ class AsyncBulkResultsWithRawResponse:
 
 class BulkResultsWithStreamingResponse:
     def __init__(self, bulk_results: BulkResults) -> None:
+        self._bulk_results = bulk_results
+
         self.retrieve = to_streamed_response_wrapper(
             bulk_results.retrieve,
         )
@@ -275,6 +281,8 @@ class BulkResultsWithStreamingResponse:
 
 class AsyncBulkResultsWithStreamingResponse:
     def __init__(self, bulk_results: AsyncBulkResults) -> None:
+        self._bulk_results = bulk_results
+
         self.retrieve = async_to_streamed_response_wrapper(
             bulk_results.retrieve,
         )

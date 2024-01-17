@@ -223,6 +223,8 @@ class AsyncPaperItems(AsyncAPIResource):
 
 class PaperItemsWithRawResponse:
     def __init__(self, paper_items: PaperItems) -> None:
+        self._paper_items = paper_items
+
         self.retrieve = _legacy_response.to_raw_response_wrapper(
             paper_items.retrieve,
         )
@@ -233,6 +235,8 @@ class PaperItemsWithRawResponse:
 
 class AsyncPaperItemsWithRawResponse:
     def __init__(self, paper_items: AsyncPaperItems) -> None:
+        self._paper_items = paper_items
+
         self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             paper_items.retrieve,
         )
@@ -243,6 +247,8 @@ class AsyncPaperItemsWithRawResponse:
 
 class PaperItemsWithStreamingResponse:
     def __init__(self, paper_items: PaperItems) -> None:
+        self._paper_items = paper_items
+
         self.retrieve = to_streamed_response_wrapper(
             paper_items.retrieve,
         )
@@ -253,6 +259,8 @@ class PaperItemsWithStreamingResponse:
 
 class AsyncPaperItemsWithStreamingResponse:
     def __init__(self, paper_items: AsyncPaperItems) -> None:
+        self._paper_items = paper_items
+
         self.retrieve = async_to_streamed_response_wrapper(
             paper_items.retrieve,
         )

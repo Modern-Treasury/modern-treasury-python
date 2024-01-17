@@ -975,6 +975,8 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
 
 class LedgerAccountCategoriesWithRawResponse:
     def __init__(self, ledger_account_categories: LedgerAccountCategories) -> None:
+        self._ledger_account_categories = ledger_account_categories
+
         self.create = _legacy_response.to_raw_response_wrapper(
             ledger_account_categories.create,
         )
@@ -1006,6 +1008,8 @@ class LedgerAccountCategoriesWithRawResponse:
 
 class AsyncLedgerAccountCategoriesWithRawResponse:
     def __init__(self, ledger_account_categories: AsyncLedgerAccountCategories) -> None:
+        self._ledger_account_categories = ledger_account_categories
+
         self.create = _legacy_response.async_to_raw_response_wrapper(
             ledger_account_categories.create,
         )
@@ -1037,6 +1041,8 @@ class AsyncLedgerAccountCategoriesWithRawResponse:
 
 class LedgerAccountCategoriesWithStreamingResponse:
     def __init__(self, ledger_account_categories: LedgerAccountCategories) -> None:
+        self._ledger_account_categories = ledger_account_categories
+
         self.create = to_streamed_response_wrapper(
             ledger_account_categories.create,
         )
@@ -1068,6 +1074,8 @@ class LedgerAccountCategoriesWithStreamingResponse:
 
 class AsyncLedgerAccountCategoriesWithStreamingResponse:
     def __init__(self, ledger_account_categories: AsyncLedgerAccountCategories) -> None:
+        self._ledger_account_categories = ledger_account_categories
+
         self.create = async_to_streamed_response_wrapper(
             ledger_account_categories.create,
         )
