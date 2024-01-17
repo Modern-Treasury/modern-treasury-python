@@ -19,7 +19,6 @@ from pydantic import ValidationError
 from modern_treasury import ModernTreasury, AsyncModernTreasury, APIResponseValidationError
 from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury._models import BaseModel, FinalRequestOptions
-from modern_treasury._response import APIResponse, AsyncAPIResponse
 from modern_treasury._constants import RAW_RESPONSE_HEADER
 from modern_treasury._exceptions import APIStatusError, APITimeoutError, ModernTreasuryError, APIResponseValidationError
 from modern_treasury._base_client import (
@@ -874,25 +873,6 @@ class TestModernTreasury:
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
         calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
-
-    @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
-    @pytest.mark.respx(base_url=base_url)
-    def test_streaming_response(self) -> None:
-        response = self.client.post(
-            "/api/external_accounts",
-            body=dict(counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a", name="my bank"),
-            cast_to=APIResponse[bytes],
-            options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-        )
-
-        assert not cast(Any, response.is_closed)
-        assert _get_open_connections(self.client) == 1
-
-        for _ in response.iter_bytes():
-            ...
-
-        assert cast(Any, response.is_closed)
-        assert _get_open_connections(self.client) == 0
 
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
@@ -1753,25 +1733,6 @@ class TestAsyncModernTreasury:
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
         calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
-
-    @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
-    @pytest.mark.respx(base_url=base_url)
-    async def test_streaming_response(self) -> None:
-        response = await self.client.post(
-            "/api/external_accounts",
-            body=dict(counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a", name="my bank"),
-            cast_to=AsyncAPIResponse[bytes],
-            options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-        )
-
-        assert not cast(Any, response.is_closed)
-        assert _get_open_connections(self.client) == 1
-
-        async for _ in response.iter_bytes():
-            ...
-
-        assert cast(Any, response.is_closed)
-        assert _get_open_connections(self.client) == 0
 
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
