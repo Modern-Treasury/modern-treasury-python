@@ -537,6 +537,8 @@ class AsyncLedgers(AsyncAPIResource):
 
 class LedgersWithRawResponse:
     def __init__(self, ledgers: Ledgers) -> None:
+        self._ledgers = ledgers
+
         self.create = _legacy_response.to_raw_response_wrapper(
             ledgers.create,
         )
@@ -556,6 +558,8 @@ class LedgersWithRawResponse:
 
 class AsyncLedgersWithRawResponse:
     def __init__(self, ledgers: AsyncLedgers) -> None:
+        self._ledgers = ledgers
+
         self.create = _legacy_response.async_to_raw_response_wrapper(
             ledgers.create,
         )
@@ -575,6 +579,8 @@ class AsyncLedgersWithRawResponse:
 
 class LedgersWithStreamingResponse:
     def __init__(self, ledgers: Ledgers) -> None:
+        self._ledgers = ledgers
+
         self.create = to_streamed_response_wrapper(
             ledgers.create,
         )
@@ -594,6 +600,8 @@ class LedgersWithStreamingResponse:
 
 class AsyncLedgersWithStreamingResponse:
     def __init__(self, ledgers: AsyncLedgers) -> None:
+        self._ledgers = ledgers
+
         self.create = async_to_streamed_response_wrapper(
             ledgers.create,
         )

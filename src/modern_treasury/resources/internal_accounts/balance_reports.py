@@ -466,6 +466,8 @@ class AsyncBalanceReports(AsyncAPIResource):
 
 class BalanceReportsWithRawResponse:
     def __init__(self, balance_reports: BalanceReports) -> None:
+        self._balance_reports = balance_reports
+
         self.create = _legacy_response.to_raw_response_wrapper(
             balance_reports.create,
         )
@@ -482,6 +484,8 @@ class BalanceReportsWithRawResponse:
 
 class AsyncBalanceReportsWithRawResponse:
     def __init__(self, balance_reports: AsyncBalanceReports) -> None:
+        self._balance_reports = balance_reports
+
         self.create = _legacy_response.async_to_raw_response_wrapper(
             balance_reports.create,
         )
@@ -498,6 +502,8 @@ class AsyncBalanceReportsWithRawResponse:
 
 class BalanceReportsWithStreamingResponse:
     def __init__(self, balance_reports: BalanceReports) -> None:
+        self._balance_reports = balance_reports
+
         self.create = to_streamed_response_wrapper(
             balance_reports.create,
         )
@@ -514,6 +520,8 @@ class BalanceReportsWithStreamingResponse:
 
 class AsyncBalanceReportsWithStreamingResponse:
     def __init__(self, balance_reports: AsyncBalanceReports) -> None:
+        self._balance_reports = balance_reports
+
         self.create = async_to_streamed_response_wrapper(
             balance_reports.create,
         )

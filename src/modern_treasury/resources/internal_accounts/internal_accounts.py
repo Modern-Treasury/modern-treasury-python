@@ -611,7 +611,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
 
 class InternalAccountsWithRawResponse:
     def __init__(self, internal_accounts: InternalAccounts) -> None:
-        self.balance_reports = BalanceReportsWithRawResponse(internal_accounts.balance_reports)
+        self._internal_accounts = internal_accounts
 
         self.create = _legacy_response.to_raw_response_wrapper(
             internal_accounts.create,
@@ -626,10 +626,14 @@ class InternalAccountsWithRawResponse:
             internal_accounts.list,
         )
 
+    @cached_property
+    def balance_reports(self) -> BalanceReportsWithRawResponse:
+        return BalanceReportsWithRawResponse(self._internal_accounts.balance_reports)
+
 
 class AsyncInternalAccountsWithRawResponse:
     def __init__(self, internal_accounts: AsyncInternalAccounts) -> None:
-        self.balance_reports = AsyncBalanceReportsWithRawResponse(internal_accounts.balance_reports)
+        self._internal_accounts = internal_accounts
 
         self.create = _legacy_response.async_to_raw_response_wrapper(
             internal_accounts.create,
@@ -644,10 +648,14 @@ class AsyncInternalAccountsWithRawResponse:
             internal_accounts.list,
         )
 
+    @cached_property
+    def balance_reports(self) -> AsyncBalanceReportsWithRawResponse:
+        return AsyncBalanceReportsWithRawResponse(self._internal_accounts.balance_reports)
+
 
 class InternalAccountsWithStreamingResponse:
     def __init__(self, internal_accounts: InternalAccounts) -> None:
-        self.balance_reports = BalanceReportsWithStreamingResponse(internal_accounts.balance_reports)
+        self._internal_accounts = internal_accounts
 
         self.create = to_streamed_response_wrapper(
             internal_accounts.create,
@@ -662,10 +670,14 @@ class InternalAccountsWithStreamingResponse:
             internal_accounts.list,
         )
 
+    @cached_property
+    def balance_reports(self) -> BalanceReportsWithStreamingResponse:
+        return BalanceReportsWithStreamingResponse(self._internal_accounts.balance_reports)
+
 
 class AsyncInternalAccountsWithStreamingResponse:
     def __init__(self, internal_accounts: AsyncInternalAccounts) -> None:
-        self.balance_reports = AsyncBalanceReportsWithStreamingResponse(internal_accounts.balance_reports)
+        self._internal_accounts = internal_accounts
 
         self.create = async_to_streamed_response_wrapper(
             internal_accounts.create,
@@ -679,3 +691,7 @@ class AsyncInternalAccountsWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             internal_accounts.list,
         )
+
+    @cached_property
+    def balance_reports(self) -> AsyncBalanceReportsWithStreamingResponse:
+        return AsyncBalanceReportsWithStreamingResponse(self._internal_accounts.balance_reports)

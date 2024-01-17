@@ -245,6 +245,8 @@ class AsyncLedgerAccountStatements(AsyncAPIResource):
 
 class LedgerAccountStatementsWithRawResponse:
     def __init__(self, ledger_account_statements: LedgerAccountStatements) -> None:
+        self._ledger_account_statements = ledger_account_statements
+
         self.create = _legacy_response.to_raw_response_wrapper(
             ledger_account_statements.create,
         )
@@ -255,6 +257,8 @@ class LedgerAccountStatementsWithRawResponse:
 
 class AsyncLedgerAccountStatementsWithRawResponse:
     def __init__(self, ledger_account_statements: AsyncLedgerAccountStatements) -> None:
+        self._ledger_account_statements = ledger_account_statements
+
         self.create = _legacy_response.async_to_raw_response_wrapper(
             ledger_account_statements.create,
         )
@@ -265,6 +269,8 @@ class AsyncLedgerAccountStatementsWithRawResponse:
 
 class LedgerAccountStatementsWithStreamingResponse:
     def __init__(self, ledger_account_statements: LedgerAccountStatements) -> None:
+        self._ledger_account_statements = ledger_account_statements
+
         self.create = to_streamed_response_wrapper(
             ledger_account_statements.create,
         )
@@ -275,6 +281,8 @@ class LedgerAccountStatementsWithStreamingResponse:
 
 class AsyncLedgerAccountStatementsWithStreamingResponse:
     def __init__(self, ledger_account_statements: AsyncLedgerAccountStatements) -> None:
+        self._ledger_account_statements = ledger_account_statements
+
         self.create = async_to_streamed_response_wrapper(
             ledger_account_statements.create,
         )

@@ -458,6 +458,8 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
 
 class AccountCollectionFlowsWithRawResponse:
     def __init__(self, account_collection_flows: AccountCollectionFlows) -> None:
+        self._account_collection_flows = account_collection_flows
+
         self.create = _legacy_response.to_raw_response_wrapper(
             account_collection_flows.create,
         )
@@ -474,6 +476,8 @@ class AccountCollectionFlowsWithRawResponse:
 
 class AsyncAccountCollectionFlowsWithRawResponse:
     def __init__(self, account_collection_flows: AsyncAccountCollectionFlows) -> None:
+        self._account_collection_flows = account_collection_flows
+
         self.create = _legacy_response.async_to_raw_response_wrapper(
             account_collection_flows.create,
         )
@@ -490,6 +494,8 @@ class AsyncAccountCollectionFlowsWithRawResponse:
 
 class AccountCollectionFlowsWithStreamingResponse:
     def __init__(self, account_collection_flows: AccountCollectionFlows) -> None:
+        self._account_collection_flows = account_collection_flows
+
         self.create = to_streamed_response_wrapper(
             account_collection_flows.create,
         )
@@ -506,6 +512,8 @@ class AccountCollectionFlowsWithStreamingResponse:
 
 class AsyncAccountCollectionFlowsWithStreamingResponse:
     def __init__(self, account_collection_flows: AsyncAccountCollectionFlows) -> None:
+        self._account_collection_flows = account_collection_flows
+
         self.create = async_to_streamed_response_wrapper(
             account_collection_flows.create,
         )

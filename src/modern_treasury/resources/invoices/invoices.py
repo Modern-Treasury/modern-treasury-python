@@ -1025,7 +1025,7 @@ class AsyncInvoices(AsyncAPIResource):
 
 class InvoicesWithRawResponse:
     def __init__(self, invoices: Invoices) -> None:
-        self.line_items = LineItemsWithRawResponse(invoices.line_items)
+        self._invoices = invoices
 
         self.create = _legacy_response.to_raw_response_wrapper(
             invoices.create,
@@ -1043,10 +1043,14 @@ class InvoicesWithRawResponse:
             invoices.add_payment_order,
         )
 
+    @cached_property
+    def line_items(self) -> LineItemsWithRawResponse:
+        return LineItemsWithRawResponse(self._invoices.line_items)
+
 
 class AsyncInvoicesWithRawResponse:
     def __init__(self, invoices: AsyncInvoices) -> None:
-        self.line_items = AsyncLineItemsWithRawResponse(invoices.line_items)
+        self._invoices = invoices
 
         self.create = _legacy_response.async_to_raw_response_wrapper(
             invoices.create,
@@ -1064,10 +1068,14 @@ class AsyncInvoicesWithRawResponse:
             invoices.add_payment_order,
         )
 
+    @cached_property
+    def line_items(self) -> AsyncLineItemsWithRawResponse:
+        return AsyncLineItemsWithRawResponse(self._invoices.line_items)
+
 
 class InvoicesWithStreamingResponse:
     def __init__(self, invoices: Invoices) -> None:
-        self.line_items = LineItemsWithStreamingResponse(invoices.line_items)
+        self._invoices = invoices
 
         self.create = to_streamed_response_wrapper(
             invoices.create,
@@ -1085,10 +1093,14 @@ class InvoicesWithStreamingResponse:
             invoices.add_payment_order,
         )
 
+    @cached_property
+    def line_items(self) -> LineItemsWithStreamingResponse:
+        return LineItemsWithStreamingResponse(self._invoices.line_items)
+
 
 class AsyncInvoicesWithStreamingResponse:
     def __init__(self, invoices: AsyncInvoices) -> None:
-        self.line_items = AsyncLineItemsWithStreamingResponse(invoices.line_items)
+        self._invoices = invoices
 
         self.create = async_to_streamed_response_wrapper(
             invoices.create,
@@ -1105,3 +1117,7 @@ class AsyncInvoicesWithStreamingResponse:
         self.add_payment_order = async_to_streamed_response_wrapper(
             invoices.add_payment_order,
         )
+
+    @cached_property
+    def line_items(self) -> AsyncLineItemsWithStreamingResponse:
+        return AsyncLineItemsWithStreamingResponse(self._invoices.line_items)

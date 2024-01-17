@@ -548,6 +548,8 @@ class AsyncRoutingDetails(AsyncAPIResource):
 
 class RoutingDetailsWithRawResponse:
     def __init__(self, routing_details: RoutingDetails) -> None:
+        self._routing_details = routing_details
+
         self.create = _legacy_response.to_raw_response_wrapper(
             routing_details.create,
         )
@@ -564,6 +566,8 @@ class RoutingDetailsWithRawResponse:
 
 class AsyncRoutingDetailsWithRawResponse:
     def __init__(self, routing_details: AsyncRoutingDetails) -> None:
+        self._routing_details = routing_details
+
         self.create = _legacy_response.async_to_raw_response_wrapper(
             routing_details.create,
         )
@@ -580,6 +584,8 @@ class AsyncRoutingDetailsWithRawResponse:
 
 class RoutingDetailsWithStreamingResponse:
     def __init__(self, routing_details: RoutingDetails) -> None:
+        self._routing_details = routing_details
+
         self.create = to_streamed_response_wrapper(
             routing_details.create,
         )
@@ -596,6 +602,8 @@ class RoutingDetailsWithStreamingResponse:
 
 class AsyncRoutingDetailsWithStreamingResponse:
     def __init__(self, routing_details: AsyncRoutingDetails) -> None:
+        self._routing_details = routing_details
+
         self.create = async_to_streamed_response_wrapper(
             routing_details.create,
         )

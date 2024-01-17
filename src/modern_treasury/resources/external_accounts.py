@@ -904,6 +904,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
 
 class ExternalAccountsWithRawResponse:
     def __init__(self, external_accounts: ExternalAccounts) -> None:
+        self._external_accounts = external_accounts
+
         self.create = _legacy_response.to_raw_response_wrapper(
             external_accounts.create,
         )
@@ -929,6 +931,8 @@ class ExternalAccountsWithRawResponse:
 
 class AsyncExternalAccountsWithRawResponse:
     def __init__(self, external_accounts: AsyncExternalAccounts) -> None:
+        self._external_accounts = external_accounts
+
         self.create = _legacy_response.async_to_raw_response_wrapper(
             external_accounts.create,
         )
@@ -954,6 +958,8 @@ class AsyncExternalAccountsWithRawResponse:
 
 class ExternalAccountsWithStreamingResponse:
     def __init__(self, external_accounts: ExternalAccounts) -> None:
+        self._external_accounts = external_accounts
+
         self.create = to_streamed_response_wrapper(
             external_accounts.create,
         )
@@ -979,6 +985,8 @@ class ExternalAccountsWithStreamingResponse:
 
 class AsyncExternalAccountsWithStreamingResponse:
     def __init__(self, external_accounts: AsyncExternalAccounts) -> None:
+        self._external_accounts = external_accounts
+
         self.create = async_to_streamed_response_wrapper(
             external_accounts.create,
         )

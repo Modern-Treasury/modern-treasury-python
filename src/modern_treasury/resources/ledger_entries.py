@@ -482,6 +482,8 @@ class AsyncLedgerEntries(AsyncAPIResource):
 
 class LedgerEntriesWithRawResponse:
     def __init__(self, ledger_entries: LedgerEntries) -> None:
+        self._ledger_entries = ledger_entries
+
         self.retrieve = _legacy_response.to_raw_response_wrapper(
             ledger_entries.retrieve,
         )
@@ -495,6 +497,8 @@ class LedgerEntriesWithRawResponse:
 
 class AsyncLedgerEntriesWithRawResponse:
     def __init__(self, ledger_entries: AsyncLedgerEntries) -> None:
+        self._ledger_entries = ledger_entries
+
         self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             ledger_entries.retrieve,
         )
@@ -508,6 +512,8 @@ class AsyncLedgerEntriesWithRawResponse:
 
 class LedgerEntriesWithStreamingResponse:
     def __init__(self, ledger_entries: LedgerEntries) -> None:
+        self._ledger_entries = ledger_entries
+
         self.retrieve = to_streamed_response_wrapper(
             ledger_entries.retrieve,
         )
@@ -521,6 +527,8 @@ class LedgerEntriesWithStreamingResponse:
 
 class AsyncLedgerEntriesWithStreamingResponse:
     def __init__(self, ledger_entries: AsyncLedgerEntries) -> None:
+        self._ledger_entries = ledger_entries
+
         self.retrieve = async_to_streamed_response_wrapper(
             ledger_entries.retrieve,
         )

@@ -146,6 +146,8 @@ class AsyncConnections(AsyncAPIResource):
 
 class ConnectionsWithRawResponse:
     def __init__(self, connections: Connections) -> None:
+        self._connections = connections
+
         self.list = _legacy_response.to_raw_response_wrapper(
             connections.list,
         )
@@ -153,6 +155,8 @@ class ConnectionsWithRawResponse:
 
 class AsyncConnectionsWithRawResponse:
     def __init__(self, connections: AsyncConnections) -> None:
+        self._connections = connections
+
         self.list = _legacy_response.async_to_raw_response_wrapper(
             connections.list,
         )
@@ -160,6 +164,8 @@ class AsyncConnectionsWithRawResponse:
 
 class ConnectionsWithStreamingResponse:
     def __init__(self, connections: Connections) -> None:
+        self._connections = connections
+
         self.list = to_streamed_response_wrapper(
             connections.list,
         )
@@ -167,6 +173,8 @@ class ConnectionsWithStreamingResponse:
 
 class AsyncConnectionsWithStreamingResponse:
     def __init__(self, connections: AsyncConnections) -> None:
+        self._connections = connections
+
         self.list = async_to_streamed_response_wrapper(
             connections.list,
         )

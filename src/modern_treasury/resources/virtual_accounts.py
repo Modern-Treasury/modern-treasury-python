@@ -569,6 +569,8 @@ class AsyncVirtualAccounts(AsyncAPIResource):
 
 class VirtualAccountsWithRawResponse:
     def __init__(self, virtual_accounts: VirtualAccounts) -> None:
+        self._virtual_accounts = virtual_accounts
+
         self.create = _legacy_response.to_raw_response_wrapper(
             virtual_accounts.create,
         )
@@ -588,6 +590,8 @@ class VirtualAccountsWithRawResponse:
 
 class AsyncVirtualAccountsWithRawResponse:
     def __init__(self, virtual_accounts: AsyncVirtualAccounts) -> None:
+        self._virtual_accounts = virtual_accounts
+
         self.create = _legacy_response.async_to_raw_response_wrapper(
             virtual_accounts.create,
         )
@@ -607,6 +611,8 @@ class AsyncVirtualAccountsWithRawResponse:
 
 class VirtualAccountsWithStreamingResponse:
     def __init__(self, virtual_accounts: VirtualAccounts) -> None:
+        self._virtual_accounts = virtual_accounts
+
         self.create = to_streamed_response_wrapper(
             virtual_accounts.create,
         )
@@ -626,6 +632,8 @@ class VirtualAccountsWithStreamingResponse:
 
 class AsyncVirtualAccountsWithStreamingResponse:
     def __init__(self, virtual_accounts: AsyncVirtualAccounts) -> None:
+        self._virtual_accounts = virtual_accounts
+
         self.create = async_to_streamed_response_wrapper(
             virtual_accounts.create,
         )
