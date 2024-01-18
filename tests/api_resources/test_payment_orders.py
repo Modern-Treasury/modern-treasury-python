@@ -13,23 +13,14 @@ from modern_treasury.types import (
     PaymentOrder,
 )
 from modern_treasury._utils import parse_date, parse_datetime
-from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 from modern_treasury.types.shared import AsyncResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
-api_key = "My API Key"
-organization_id = "my-organization-ID"
 
 
 class TestPaymentOrders:
-    strict_client = ModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-    )
-    loose_client = ModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=False
-    )
-    parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="Multiple values for nested arrays aren't supported yet")
     @parametrize
@@ -853,18 +844,12 @@ class TestPaymentOrders:
 
 
 class TestAsyncPaymentOrders:
-    strict_client = AsyncModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-    )
-    loose_client = AsyncModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=False
-    )
-    parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="Multiple values for nested arrays aren't supported yet")
     @parametrize
-    async def test_method_create(self, client: AsyncModernTreasury) -> None:
-        payment_order = await client.payment_orders.create(
+    async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
+        payment_order = await async_client.payment_orders.create(
             amount=0,
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -874,8 +859,8 @@ class TestAsyncPaymentOrders:
 
     @pytest.mark.skip(reason="Multiple values for nested arrays aren't supported yet")
     @parametrize
-    async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
-        payment_order = await client.payment_orders.create(
+    async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
+        payment_order = await async_client.payment_orders.create(
             amount=0,
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -1113,8 +1098,8 @@ class TestAsyncPaymentOrders:
 
     @pytest.mark.skip(reason="Multiple values for nested arrays aren't supported yet")
     @parametrize
-    async def test_raw_response_create(self, client: AsyncModernTreasury) -> None:
-        response = await client.payment_orders.with_raw_response.create(
+    async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.payment_orders.with_raw_response.create(
             amount=0,
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -1128,8 +1113,8 @@ class TestAsyncPaymentOrders:
 
     @pytest.mark.skip(reason="Multiple values for nested arrays aren't supported yet")
     @parametrize
-    async def test_streaming_response_create(self, client: AsyncModernTreasury) -> None:
-        async with client.payment_orders.with_streaming_response.create(
+    async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.payment_orders.with_streaming_response.create(
             amount=0,
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -1144,15 +1129,15 @@ class TestAsyncPaymentOrders:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
-        payment_order = await client.payment_orders.retrieve(
+    async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
+        payment_order = await async_client.payment_orders.retrieve(
             "string",
         )
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
-    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
-        response = await client.payment_orders.with_raw_response.retrieve(
+    async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.payment_orders.with_raw_response.retrieve(
             "string",
         )
 
@@ -1162,8 +1147,8 @@ class TestAsyncPaymentOrders:
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
-    async def test_streaming_response_retrieve(self, client: AsyncModernTreasury) -> None:
-        async with client.payment_orders.with_streaming_response.retrieve(
+    async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.payment_orders.with_streaming_response.retrieve(
             "string",
         ) as response:
             assert not response.is_closed
@@ -1175,22 +1160,22 @@ class TestAsyncPaymentOrders:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_retrieve(self, client: AsyncModernTreasury) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await client.payment_orders.with_raw_response.retrieve(
+            await async_client.payment_orders.with_raw_response.retrieve(
                 "",
             )
 
     @parametrize
-    async def test_method_update(self, client: AsyncModernTreasury) -> None:
-        payment_order = await client.payment_orders.update(
+    async def test_method_update(self, async_client: AsyncModernTreasury) -> None:
+        payment_order = await async_client.payment_orders.update(
             "string",
         )
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
-    async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
-        payment_order = await client.payment_orders.update(
+    async def test_method_update_with_all_params(self, async_client: AsyncModernTreasury) -> None:
+        payment_order = await async_client.payment_orders.update(
             "string",
             accounting={
                 "account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -1347,8 +1332,8 @@ class TestAsyncPaymentOrders:
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
-    async def test_raw_response_update(self, client: AsyncModernTreasury) -> None:
-        response = await client.payment_orders.with_raw_response.update(
+    async def test_raw_response_update(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.payment_orders.with_raw_response.update(
             "string",
         )
 
@@ -1358,8 +1343,8 @@ class TestAsyncPaymentOrders:
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
-    async def test_streaming_response_update(self, client: AsyncModernTreasury) -> None:
-        async with client.payment_orders.with_streaming_response.update(
+    async def test_streaming_response_update(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.payment_orders.with_streaming_response.update(
             "string",
         ) as response:
             assert not response.is_closed
@@ -1371,20 +1356,20 @@ class TestAsyncPaymentOrders:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_update(self, client: AsyncModernTreasury) -> None:
+    async def test_path_params_update(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await client.payment_orders.with_raw_response.update(
+            await async_client.payment_orders.with_raw_response.update(
                 "",
             )
 
     @parametrize
-    async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        payment_order = await client.payment_orders.list()
+    async def test_method_list(self, async_client: AsyncModernTreasury) -> None:
+        payment_order = await async_client.payment_orders.list()
         assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=["response"])
 
     @parametrize
-    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        payment_order = await client.payment_orders.list(
+    async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
+        payment_order = await async_client.payment_orders.list(
             after_cursor="string",
             counterparty_id="string",
             created_at_end=parse_date("2019-12-27"),
@@ -1404,8 +1389,8 @@ class TestAsyncPaymentOrders:
         assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=["response"])
 
     @parametrize
-    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
-        response = await client.payment_orders.with_raw_response.list()
+    async def test_raw_response_list(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.payment_orders.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1413,8 +1398,8 @@ class TestAsyncPaymentOrders:
         assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=["response"])
 
     @parametrize
-    async def test_streaming_response_list(self, client: AsyncModernTreasury) -> None:
-        async with client.payment_orders.with_streaming_response.list() as response:
+    async def test_streaming_response_list(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.payment_orders.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -1424,8 +1409,8 @@ class TestAsyncPaymentOrders:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_create_async(self, client: AsyncModernTreasury) -> None:
-        payment_order = await client.payment_orders.create_async(
+    async def test_method_create_async(self, async_client: AsyncModernTreasury) -> None:
+        payment_order = await async_client.payment_orders.create_async(
             amount=0,
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -1434,8 +1419,8 @@ class TestAsyncPaymentOrders:
         assert_matches_type(AsyncResponse, payment_order, path=["response"])
 
     @parametrize
-    async def test_method_create_async_with_all_params(self, client: AsyncModernTreasury) -> None:
-        payment_order = await client.payment_orders.create_async(
+    async def test_method_create_async_with_all_params(self, async_client: AsyncModernTreasury) -> None:
+        payment_order = await async_client.payment_orders.create_async(
             amount=0,
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -1652,8 +1637,8 @@ class TestAsyncPaymentOrders:
         assert_matches_type(AsyncResponse, payment_order, path=["response"])
 
     @parametrize
-    async def test_raw_response_create_async(self, client: AsyncModernTreasury) -> None:
-        response = await client.payment_orders.with_raw_response.create_async(
+    async def test_raw_response_create_async(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.payment_orders.with_raw_response.create_async(
             amount=0,
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -1666,8 +1651,8 @@ class TestAsyncPaymentOrders:
         assert_matches_type(AsyncResponse, payment_order, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create_async(self, client: AsyncModernTreasury) -> None:
-        async with client.payment_orders.with_streaming_response.create_async(
+    async def test_streaming_response_create_async(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.payment_orders.with_streaming_response.create_async(
             amount=0,
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",

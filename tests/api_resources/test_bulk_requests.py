@@ -11,22 +11,13 @@ from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import BulkRequest
 from modern_treasury._utils import parse_date, parse_datetime
-from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
-api_key = "My API Key"
-organization_id = "my-organization-ID"
 
 
 class TestBulkRequests:
-    strict_client = ModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-    )
-    loose_client = ModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=False
-    )
-    parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="Multipart documents aren't constructed properly yet")
     @parametrize
@@ -860,18 +851,12 @@ class TestBulkRequests:
 
 
 class TestAsyncBulkRequests:
-    strict_client = AsyncModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-    )
-    loose_client = AsyncModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=False
-    )
-    parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="Multipart documents aren't constructed properly yet")
     @parametrize
-    async def test_method_create(self, client: AsyncModernTreasury) -> None:
-        bulk_request = await client.bulk_requests.create(
+    async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
+        bulk_request = await async_client.bulk_requests.create(
             action_type="create",
             resource_type="payment_order",
             resources=[
@@ -899,8 +884,8 @@ class TestAsyncBulkRequests:
 
     @pytest.mark.skip(reason="Multipart documents aren't constructed properly yet")
     @parametrize
-    async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
-        bulk_request = await client.bulk_requests.create(
+    async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
+        bulk_request = await async_client.bulk_requests.create(
             action_type="create",
             resource_type="payment_order",
             resources=[
@@ -1557,8 +1542,8 @@ class TestAsyncBulkRequests:
 
     @pytest.mark.skip(reason="Multipart documents aren't constructed properly yet")
     @parametrize
-    async def test_raw_response_create(self, client: AsyncModernTreasury) -> None:
-        response = await client.bulk_requests.with_raw_response.create(
+    async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.bulk_requests.with_raw_response.create(
             action_type="create",
             resource_type="payment_order",
             resources=[
@@ -1590,8 +1575,8 @@ class TestAsyncBulkRequests:
 
     @pytest.mark.skip(reason="Multipart documents aren't constructed properly yet")
     @parametrize
-    async def test_streaming_response_create(self, client: AsyncModernTreasury) -> None:
-        async with client.bulk_requests.with_streaming_response.create(
+    async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.bulk_requests.with_streaming_response.create(
             action_type="create",
             resource_type="payment_order",
             resources=[
@@ -1624,15 +1609,15 @@ class TestAsyncBulkRequests:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
-        bulk_request = await client.bulk_requests.retrieve(
+    async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
+        bulk_request = await async_client.bulk_requests.retrieve(
             "string",
         )
         assert_matches_type(BulkRequest, bulk_request, path=["response"])
 
     @parametrize
-    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
-        response = await client.bulk_requests.with_raw_response.retrieve(
+    async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.bulk_requests.with_raw_response.retrieve(
             "string",
         )
 
@@ -1642,8 +1627,8 @@ class TestAsyncBulkRequests:
         assert_matches_type(BulkRequest, bulk_request, path=["response"])
 
     @parametrize
-    async def test_streaming_response_retrieve(self, client: AsyncModernTreasury) -> None:
-        async with client.bulk_requests.with_streaming_response.retrieve(
+    async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.bulk_requests.with_streaming_response.retrieve(
             "string",
         ) as response:
             assert not response.is_closed
@@ -1655,20 +1640,20 @@ class TestAsyncBulkRequests:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_retrieve(self, client: AsyncModernTreasury) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await client.bulk_requests.with_raw_response.retrieve(
+            await async_client.bulk_requests.with_raw_response.retrieve(
                 "",
             )
 
     @parametrize
-    async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        bulk_request = await client.bulk_requests.list()
+    async def test_method_list(self, async_client: AsyncModernTreasury) -> None:
+        bulk_request = await async_client.bulk_requests.list()
         assert_matches_type(AsyncPage[BulkRequest], bulk_request, path=["response"])
 
     @parametrize
-    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        bulk_request = await client.bulk_requests.list(
+    async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
+        bulk_request = await async_client.bulk_requests.list(
             action_type="create",
             after_cursor="string",
             metadata={"foo": "string"},
@@ -1679,8 +1664,8 @@ class TestAsyncBulkRequests:
         assert_matches_type(AsyncPage[BulkRequest], bulk_request, path=["response"])
 
     @parametrize
-    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
-        response = await client.bulk_requests.with_raw_response.list()
+    async def test_raw_response_list(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.bulk_requests.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1688,8 +1673,8 @@ class TestAsyncBulkRequests:
         assert_matches_type(AsyncPage[BulkRequest], bulk_request, path=["response"])
 
     @parametrize
-    async def test_streaming_response_list(self, client: AsyncModernTreasury) -> None:
-        async with client.bulk_requests.with_streaming_response.list() as response:
+    async def test_streaming_response_list(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.bulk_requests.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

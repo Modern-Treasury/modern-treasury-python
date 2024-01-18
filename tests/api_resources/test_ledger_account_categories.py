@@ -13,22 +13,13 @@ from modern_treasury.types import (
     LedgerAccountCategory,
 )
 from modern_treasury._utils import parse_date, parse_datetime
-from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
-api_key = "My API Key"
-organization_id = "my-organization-ID"
 
 
 class TestLedgerAccountCategories:
-    strict_client = ModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-    )
-    loose_client = ModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=False
-    )
-    parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
@@ -460,17 +451,11 @@ class TestLedgerAccountCategories:
 
 
 class TestAsyncLedgerAccountCategories:
-    strict_client = AsyncModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-    )
-    loose_client = AsyncModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=False
-    )
-    parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_create(self, client: AsyncModernTreasury) -> None:
-        ledger_account_category = await client.ledger_account_categories.create(
+    async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
+        ledger_account_category = await async_client.ledger_account_categories.create(
             currency="string",
             ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             name="string",
@@ -479,8 +464,8 @@ class TestAsyncLedgerAccountCategories:
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
-        ledger_account_category = await client.ledger_account_categories.create(
+    async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
+        ledger_account_category = await async_client.ledger_account_categories.create(
             currency="string",
             ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             name="string",
@@ -496,8 +481,8 @@ class TestAsyncLedgerAccountCategories:
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
-    async def test_raw_response_create(self, client: AsyncModernTreasury) -> None:
-        response = await client.ledger_account_categories.with_raw_response.create(
+    async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.ledger_account_categories.with_raw_response.create(
             currency="string",
             ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             name="string",
@@ -510,8 +495,8 @@ class TestAsyncLedgerAccountCategories:
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create(self, client: AsyncModernTreasury) -> None:
-        async with client.ledger_account_categories.with_streaming_response.create(
+    async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.ledger_account_categories.with_streaming_response.create(
             currency="string",
             ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             name="string",
@@ -526,15 +511,15 @@ class TestAsyncLedgerAccountCategories:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
-        ledger_account_category = await client.ledger_account_categories.retrieve(
+    async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
+        ledger_account_category = await async_client.ledger_account_categories.retrieve(
             "string",
         )
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
-    async def test_method_retrieve_with_all_params(self, client: AsyncModernTreasury) -> None:
-        ledger_account_category = await client.ledger_account_categories.retrieve(
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncModernTreasury) -> None:
+        ledger_account_category = await async_client.ledger_account_categories.retrieve(
             "string",
             balances={
                 "as_of_date": parse_date("2019-12-27"),
@@ -544,8 +529,8 @@ class TestAsyncLedgerAccountCategories:
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
-    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
-        response = await client.ledger_account_categories.with_raw_response.retrieve(
+    async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.ledger_account_categories.with_raw_response.retrieve(
             "string",
         )
 
@@ -555,8 +540,8 @@ class TestAsyncLedgerAccountCategories:
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
-    async def test_streaming_response_retrieve(self, client: AsyncModernTreasury) -> None:
-        async with client.ledger_account_categories.with_streaming_response.retrieve(
+    async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.ledger_account_categories.with_streaming_response.retrieve(
             "string",
         ) as response:
             assert not response.is_closed
@@ -568,22 +553,22 @@ class TestAsyncLedgerAccountCategories:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_retrieve(self, client: AsyncModernTreasury) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await client.ledger_account_categories.with_raw_response.retrieve(
+            await async_client.ledger_account_categories.with_raw_response.retrieve(
                 "",
             )
 
     @parametrize
-    async def test_method_update(self, client: AsyncModernTreasury) -> None:
-        ledger_account_category = await client.ledger_account_categories.update(
+    async def test_method_update(self, async_client: AsyncModernTreasury) -> None:
+        ledger_account_category = await async_client.ledger_account_categories.update(
             "string",
         )
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
-    async def test_method_update_with_all_params(self, client: AsyncModernTreasury) -> None:
-        ledger_account_category = await client.ledger_account_categories.update(
+    async def test_method_update_with_all_params(self, async_client: AsyncModernTreasury) -> None:
+        ledger_account_category = await async_client.ledger_account_categories.update(
             "string",
             description="string",
             metadata={
@@ -596,8 +581,8 @@ class TestAsyncLedgerAccountCategories:
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
-    async def test_raw_response_update(self, client: AsyncModernTreasury) -> None:
-        response = await client.ledger_account_categories.with_raw_response.update(
+    async def test_raw_response_update(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.ledger_account_categories.with_raw_response.update(
             "string",
         )
 
@@ -607,8 +592,8 @@ class TestAsyncLedgerAccountCategories:
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
-    async def test_streaming_response_update(self, client: AsyncModernTreasury) -> None:
-        async with client.ledger_account_categories.with_streaming_response.update(
+    async def test_streaming_response_update(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.ledger_account_categories.with_streaming_response.update(
             "string",
         ) as response:
             assert not response.is_closed
@@ -620,20 +605,20 @@ class TestAsyncLedgerAccountCategories:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_update(self, client: AsyncModernTreasury) -> None:
+    async def test_path_params_update(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await client.ledger_account_categories.with_raw_response.update(
+            await async_client.ledger_account_categories.with_raw_response.update(
                 "",
             )
 
     @parametrize
-    async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        ledger_account_category = await client.ledger_account_categories.list()
+    async def test_method_list(self, async_client: AsyncModernTreasury) -> None:
+        ledger_account_category = await async_client.ledger_account_categories.list()
         assert_matches_type(AsyncPage[LedgerAccountCategory], ledger_account_category, path=["response"])
 
     @parametrize
-    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        ledger_account_category = await client.ledger_account_categories.list(
+    async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
+        ledger_account_category = await async_client.ledger_account_categories.list(
             id=["string", "string", "string"],
             after_cursor="string",
             balances={"effective_at": parse_datetime("2019-12-27T18:11:19.117Z")},
@@ -647,8 +632,8 @@ class TestAsyncLedgerAccountCategories:
         assert_matches_type(AsyncPage[LedgerAccountCategory], ledger_account_category, path=["response"])
 
     @parametrize
-    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
-        response = await client.ledger_account_categories.with_raw_response.list()
+    async def test_raw_response_list(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.ledger_account_categories.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -656,8 +641,8 @@ class TestAsyncLedgerAccountCategories:
         assert_matches_type(AsyncPage[LedgerAccountCategory], ledger_account_category, path=["response"])
 
     @parametrize
-    async def test_streaming_response_list(self, client: AsyncModernTreasury) -> None:
-        async with client.ledger_account_categories.with_streaming_response.list() as response:
+    async def test_streaming_response_list(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.ledger_account_categories.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -667,15 +652,15 @@ class TestAsyncLedgerAccountCategories:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_delete(self, client: AsyncModernTreasury) -> None:
-        ledger_account_category = await client.ledger_account_categories.delete(
+    async def test_method_delete(self, async_client: AsyncModernTreasury) -> None:
+        ledger_account_category = await async_client.ledger_account_categories.delete(
             "string",
         )
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
-    async def test_raw_response_delete(self, client: AsyncModernTreasury) -> None:
-        response = await client.ledger_account_categories.with_raw_response.delete(
+    async def test_raw_response_delete(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.ledger_account_categories.with_raw_response.delete(
             "string",
         )
 
@@ -685,8 +670,8 @@ class TestAsyncLedgerAccountCategories:
         assert_matches_type(LedgerAccountCategory, ledger_account_category, path=["response"])
 
     @parametrize
-    async def test_streaming_response_delete(self, client: AsyncModernTreasury) -> None:
-        async with client.ledger_account_categories.with_streaming_response.delete(
+    async def test_streaming_response_delete(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.ledger_account_categories.with_streaming_response.delete(
             "string",
         ) as response:
             assert not response.is_closed
@@ -698,23 +683,23 @@ class TestAsyncLedgerAccountCategories:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_delete(self, client: AsyncModernTreasury) -> None:
+    async def test_path_params_delete(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await client.ledger_account_categories.with_raw_response.delete(
+            await async_client.ledger_account_categories.with_raw_response.delete(
                 "",
             )
 
     @parametrize
-    async def test_method_add_ledger_account(self, client: AsyncModernTreasury) -> None:
-        ledger_account_category = await client.ledger_account_categories.add_ledger_account(
+    async def test_method_add_ledger_account(self, async_client: AsyncModernTreasury) -> None:
+        ledger_account_category = await async_client.ledger_account_categories.add_ledger_account(
             "string",
             id="string",
         )
         assert ledger_account_category is None
 
     @parametrize
-    async def test_raw_response_add_ledger_account(self, client: AsyncModernTreasury) -> None:
-        response = await client.ledger_account_categories.with_raw_response.add_ledger_account(
+    async def test_raw_response_add_ledger_account(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.ledger_account_categories.with_raw_response.add_ledger_account(
             "string",
             id="string",
         )
@@ -725,8 +710,8 @@ class TestAsyncLedgerAccountCategories:
         assert ledger_account_category is None
 
     @parametrize
-    async def test_streaming_response_add_ledger_account(self, client: AsyncModernTreasury) -> None:
-        async with client.ledger_account_categories.with_streaming_response.add_ledger_account(
+    async def test_streaming_response_add_ledger_account(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.ledger_account_categories.with_streaming_response.add_ledger_account(
             "string",
             id="string",
         ) as response:
@@ -739,30 +724,30 @@ class TestAsyncLedgerAccountCategories:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_add_ledger_account(self, client: AsyncModernTreasury) -> None:
+    async def test_path_params_add_ledger_account(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await client.ledger_account_categories.with_raw_response.add_ledger_account(
+            await async_client.ledger_account_categories.with_raw_response.add_ledger_account(
                 "string",
                 id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ledger_account_id` but received ''"):
-            await client.ledger_account_categories.with_raw_response.add_ledger_account(
+            await async_client.ledger_account_categories.with_raw_response.add_ledger_account(
                 "",
                 id="string",
             )
 
     @parametrize
-    async def test_method_add_nested_category(self, client: AsyncModernTreasury) -> None:
-        ledger_account_category = await client.ledger_account_categories.add_nested_category(
+    async def test_method_add_nested_category(self, async_client: AsyncModernTreasury) -> None:
+        ledger_account_category = await async_client.ledger_account_categories.add_nested_category(
             "string",
             id="string",
         )
         assert ledger_account_category is None
 
     @parametrize
-    async def test_raw_response_add_nested_category(self, client: AsyncModernTreasury) -> None:
-        response = await client.ledger_account_categories.with_raw_response.add_nested_category(
+    async def test_raw_response_add_nested_category(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.ledger_account_categories.with_raw_response.add_nested_category(
             "string",
             id="string",
         )
@@ -773,8 +758,8 @@ class TestAsyncLedgerAccountCategories:
         assert ledger_account_category is None
 
     @parametrize
-    async def test_streaming_response_add_nested_category(self, client: AsyncModernTreasury) -> None:
-        async with client.ledger_account_categories.with_streaming_response.add_nested_category(
+    async def test_streaming_response_add_nested_category(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.ledger_account_categories.with_streaming_response.add_nested_category(
             "string",
             id="string",
         ) as response:
@@ -787,30 +772,30 @@ class TestAsyncLedgerAccountCategories:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_add_nested_category(self, client: AsyncModernTreasury) -> None:
+    async def test_path_params_add_nested_category(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await client.ledger_account_categories.with_raw_response.add_nested_category(
+            await async_client.ledger_account_categories.with_raw_response.add_nested_category(
                 "string",
                 id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sub_category_id` but received ''"):
-            await client.ledger_account_categories.with_raw_response.add_nested_category(
+            await async_client.ledger_account_categories.with_raw_response.add_nested_category(
                 "",
                 id="string",
             )
 
     @parametrize
-    async def test_method_remove_ledger_account(self, client: AsyncModernTreasury) -> None:
-        ledger_account_category = await client.ledger_account_categories.remove_ledger_account(
+    async def test_method_remove_ledger_account(self, async_client: AsyncModernTreasury) -> None:
+        ledger_account_category = await async_client.ledger_account_categories.remove_ledger_account(
             "string",
             id="string",
         )
         assert ledger_account_category is None
 
     @parametrize
-    async def test_raw_response_remove_ledger_account(self, client: AsyncModernTreasury) -> None:
-        response = await client.ledger_account_categories.with_raw_response.remove_ledger_account(
+    async def test_raw_response_remove_ledger_account(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.ledger_account_categories.with_raw_response.remove_ledger_account(
             "string",
             id="string",
         )
@@ -821,8 +806,8 @@ class TestAsyncLedgerAccountCategories:
         assert ledger_account_category is None
 
     @parametrize
-    async def test_streaming_response_remove_ledger_account(self, client: AsyncModernTreasury) -> None:
-        async with client.ledger_account_categories.with_streaming_response.remove_ledger_account(
+    async def test_streaming_response_remove_ledger_account(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.ledger_account_categories.with_streaming_response.remove_ledger_account(
             "string",
             id="string",
         ) as response:
@@ -835,30 +820,30 @@ class TestAsyncLedgerAccountCategories:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_remove_ledger_account(self, client: AsyncModernTreasury) -> None:
+    async def test_path_params_remove_ledger_account(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await client.ledger_account_categories.with_raw_response.remove_ledger_account(
+            await async_client.ledger_account_categories.with_raw_response.remove_ledger_account(
                 "string",
                 id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ledger_account_id` but received ''"):
-            await client.ledger_account_categories.with_raw_response.remove_ledger_account(
+            await async_client.ledger_account_categories.with_raw_response.remove_ledger_account(
                 "",
                 id="string",
             )
 
     @parametrize
-    async def test_method_remove_nested_category(self, client: AsyncModernTreasury) -> None:
-        ledger_account_category = await client.ledger_account_categories.remove_nested_category(
+    async def test_method_remove_nested_category(self, async_client: AsyncModernTreasury) -> None:
+        ledger_account_category = await async_client.ledger_account_categories.remove_nested_category(
             "string",
             id="string",
         )
         assert ledger_account_category is None
 
     @parametrize
-    async def test_raw_response_remove_nested_category(self, client: AsyncModernTreasury) -> None:
-        response = await client.ledger_account_categories.with_raw_response.remove_nested_category(
+    async def test_raw_response_remove_nested_category(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.ledger_account_categories.with_raw_response.remove_nested_category(
             "string",
             id="string",
         )
@@ -869,8 +854,8 @@ class TestAsyncLedgerAccountCategories:
         assert ledger_account_category is None
 
     @parametrize
-    async def test_streaming_response_remove_nested_category(self, client: AsyncModernTreasury) -> None:
-        async with client.ledger_account_categories.with_streaming_response.remove_nested_category(
+    async def test_streaming_response_remove_nested_category(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.ledger_account_categories.with_streaming_response.remove_nested_category(
             "string",
             id="string",
         ) as response:
@@ -883,15 +868,15 @@ class TestAsyncLedgerAccountCategories:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_remove_nested_category(self, client: AsyncModernTreasury) -> None:
+    async def test_path_params_remove_nested_category(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await client.ledger_account_categories.with_raw_response.remove_nested_category(
+            await async_client.ledger_account_categories.with_raw_response.remove_nested_category(
                 "string",
                 id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sub_category_id` but received ''"):
-            await client.ledger_account_categories.with_raw_response.remove_nested_category(
+            await async_client.ledger_account_categories.with_raw_response.remove_nested_category(
                 "",
                 id="string",
             )

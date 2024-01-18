@@ -10,22 +10,13 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import AccountDetail
-from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
-api_key = "My API Key"
-organization_id = "my-organization-ID"
 
 
 class TestAccountDetails:
-    strict_client = ModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-    )
-    loose_client = ModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=False
-    )
-    parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
@@ -243,17 +234,11 @@ class TestAccountDetails:
 
 
 class TestAsyncAccountDetails:
-    strict_client = AsyncModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-    )
-    loose_client = AsyncModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=False
-    )
-    parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_create(self, client: AsyncModernTreasury) -> None:
-        account_detail = await client.account_details.create(
+    async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
+        account_detail = await async_client.account_details.create(
             "string",
             accounts_type="external_accounts",
             account_number="string",
@@ -261,8 +246,8 @@ class TestAsyncAccountDetails:
         assert_matches_type(AccountDetail, account_detail, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
-        account_detail = await client.account_details.create(
+    async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
+        account_detail = await async_client.account_details.create(
             "string",
             accounts_type="external_accounts",
             account_number="string",
@@ -271,8 +256,8 @@ class TestAsyncAccountDetails:
         assert_matches_type(AccountDetail, account_detail, path=["response"])
 
     @parametrize
-    async def test_raw_response_create(self, client: AsyncModernTreasury) -> None:
-        response = await client.account_details.with_raw_response.create(
+    async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.account_details.with_raw_response.create(
             "string",
             accounts_type="external_accounts",
             account_number="string",
@@ -284,8 +269,8 @@ class TestAsyncAccountDetails:
         assert_matches_type(AccountDetail, account_detail, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create(self, client: AsyncModernTreasury) -> None:
-        async with client.account_details.with_streaming_response.create(
+    async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.account_details.with_streaming_response.create(
             "string",
             accounts_type="external_accounts",
             account_number="string",
@@ -299,17 +284,17 @@ class TestAsyncAccountDetails:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_create(self, client: AsyncModernTreasury) -> None:
+    async def test_path_params_create(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await client.account_details.with_raw_response.create(
+            await async_client.account_details.with_raw_response.create(
                 "",
                 accounts_type="external_accounts",
                 account_number="string",
             )
 
     @parametrize
-    async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
-        account_detail = await client.account_details.retrieve(
+    async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
+        account_detail = await async_client.account_details.retrieve(
             "string",
             accounts_type="external_accounts",
             account_id="string",
@@ -317,8 +302,8 @@ class TestAsyncAccountDetails:
         assert_matches_type(AccountDetail, account_detail, path=["response"])
 
     @parametrize
-    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
-        response = await client.account_details.with_raw_response.retrieve(
+    async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.account_details.with_raw_response.retrieve(
             "string",
             accounts_type="external_accounts",
             account_id="string",
@@ -330,8 +315,8 @@ class TestAsyncAccountDetails:
         assert_matches_type(AccountDetail, account_detail, path=["response"])
 
     @parametrize
-    async def test_streaming_response_retrieve(self, client: AsyncModernTreasury) -> None:
-        async with client.account_details.with_streaming_response.retrieve(
+    async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.account_details.with_streaming_response.retrieve(
             "string",
             accounts_type="external_accounts",
             account_id="string",
@@ -345,32 +330,32 @@ class TestAsyncAccountDetails:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_retrieve(self, client: AsyncModernTreasury) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await client.account_details.with_raw_response.retrieve(
+            await async_client.account_details.with_raw_response.retrieve(
                 "string",
                 accounts_type="external_accounts",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await client.account_details.with_raw_response.retrieve(
+            await async_client.account_details.with_raw_response.retrieve(
                 "",
                 accounts_type="external_accounts",
                 account_id="string",
             )
 
     @parametrize
-    async def test_method_list(self, client: AsyncModernTreasury) -> None:
-        account_detail = await client.account_details.list(
+    async def test_method_list(self, async_client: AsyncModernTreasury) -> None:
+        account_detail = await async_client.account_details.list(
             "string",
             accounts_type="external_accounts",
         )
         assert_matches_type(AsyncPage[AccountDetail], account_detail, path=["response"])
 
     @parametrize
-    async def test_method_list_with_all_params(self, client: AsyncModernTreasury) -> None:
-        account_detail = await client.account_details.list(
+    async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
+        account_detail = await async_client.account_details.list(
             "string",
             accounts_type="external_accounts",
             after_cursor="string",
@@ -379,8 +364,8 @@ class TestAsyncAccountDetails:
         assert_matches_type(AsyncPage[AccountDetail], account_detail, path=["response"])
 
     @parametrize
-    async def test_raw_response_list(self, client: AsyncModernTreasury) -> None:
-        response = await client.account_details.with_raw_response.list(
+    async def test_raw_response_list(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.account_details.with_raw_response.list(
             "string",
             accounts_type="external_accounts",
         )
@@ -391,8 +376,8 @@ class TestAsyncAccountDetails:
         assert_matches_type(AsyncPage[AccountDetail], account_detail, path=["response"])
 
     @parametrize
-    async def test_streaming_response_list(self, client: AsyncModernTreasury) -> None:
-        async with client.account_details.with_streaming_response.list(
+    async def test_streaming_response_list(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.account_details.with_streaming_response.list(
             "string",
             accounts_type="external_accounts",
         ) as response:
@@ -405,16 +390,16 @@ class TestAsyncAccountDetails:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_list(self, client: AsyncModernTreasury) -> None:
+    async def test_path_params_list(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await client.account_details.with_raw_response.list(
+            await async_client.account_details.with_raw_response.list(
                 "",
                 accounts_type="external_accounts",
             )
 
     @parametrize
-    async def test_method_delete(self, client: AsyncModernTreasury) -> None:
-        account_detail = await client.account_details.delete(
+    async def test_method_delete(self, async_client: AsyncModernTreasury) -> None:
+        account_detail = await async_client.account_details.delete(
             "string",
             accounts_type="external_accounts",
             account_id="string",
@@ -422,8 +407,8 @@ class TestAsyncAccountDetails:
         assert account_detail is None
 
     @parametrize
-    async def test_raw_response_delete(self, client: AsyncModernTreasury) -> None:
-        response = await client.account_details.with_raw_response.delete(
+    async def test_raw_response_delete(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.account_details.with_raw_response.delete(
             "string",
             accounts_type="external_accounts",
             account_id="string",
@@ -435,8 +420,8 @@ class TestAsyncAccountDetails:
         assert account_detail is None
 
     @parametrize
-    async def test_streaming_response_delete(self, client: AsyncModernTreasury) -> None:
-        async with client.account_details.with_streaming_response.delete(
+    async def test_streaming_response_delete(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.account_details.with_streaming_response.delete(
             "string",
             accounts_type="external_accounts",
             account_id="string",
@@ -450,16 +435,16 @@ class TestAsyncAccountDetails:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_delete(self, client: AsyncModernTreasury) -> None:
+    async def test_path_params_delete(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await client.account_details.with_raw_response.delete(
+            await async_client.account_details.with_raw_response.delete(
                 "string",
                 accounts_type="external_accounts",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await client.account_details.with_raw_response.delete(
+            await async_client.account_details.with_raw_response.delete(
                 "",
                 accounts_type="external_accounts",
                 account_id="string",
