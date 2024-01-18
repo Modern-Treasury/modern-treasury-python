@@ -8,21 +8,12 @@ from typing import Mapping
 import pytest
 
 from modern_treasury import ModernTreasury, AsyncModernTreasury
-from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
-api_key = "My API Key"
-organization_id = "my-organization-ID"
 
 
 class TestWebhooks:
-    strict_client = ModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-    )
-    loose_client = ModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=False
-    )
-    parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.parametrize(
         "payload,expected",
@@ -36,18 +27,18 @@ class TestWebhooks:
             ),
         ],
     )
-    def test_get_signature(self, payload: str, expected: str) -> None:
-        sig = self.strict_client.webhooks.get_signature(payload, key="foo")
+    def test_get_signature(self, payload: str, expected: str, client: ModernTreasury) -> None:
+        sig = client.webhooks.get_signature(payload, key="foo")
         assert sig == expected
 
-    def test_get_signature_key_not_set(self) -> None:
+    def test_get_signature_key_not_set(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match="webhook key"):
-            self.strict_client.webhooks.get_signature("foo")
+            client.webhooks.get_signature("foo")
 
-    def test_get_signature_client_key(self) -> None:
-        client = self.strict_client.__class__(
+    def test_get_signature_client_key(self, client: ModernTreasury) -> None:
+        client = client.__class__(
             base_url=base_url,
-            api_key=api_key,
+            api_key=client.api_key,
             organization_id="c40c0b40-11d3-42ee-8f2e-18ee8b8239aa",
             webhook_key="foo",
         )
@@ -60,13 +51,13 @@ class TestWebhooks:
         other_sig = client.webhooks.get_signature(payload, key="bar")
         assert sig != other_sig
 
-    def test_validate_signature_no_header(self) -> None:
+    def test_validate_signature_no_header(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match="Could not find X-Signature header"):
-            self.strict_client.webhooks.validate_signature("foo", headers={"foo": "bar"}, key="foo")
+            client.webhooks.validate_signature("foo", headers={"foo": "bar"}, key="foo")
 
-    def test_validate_signature(self) -> None:
+    def test_validate_signature(self, client: ModernTreasury) -> None:
         payload = '{"foo":"bar"}'
-        result = self.strict_client.webhooks.validate_signature(
+        result = client.webhooks.validate_signature(
             payload,
             headers={"X-Signature": "57e14f6f354543f0101fb06ea24df7731d90087b76651e3497345e22a3622940"},
             key="foo",
@@ -74,7 +65,7 @@ class TestWebhooks:
         assert result is True
 
         # lowercased header
-        result = self.strict_client.webhooks.validate_signature(
+        result = client.webhooks.validate_signature(
             payload,
             headers={"x-signature": "57e14f6f354543f0101fb06ea24df7731d90087b76651e3497345e22a3622940"},
             key="foo",
@@ -82,7 +73,7 @@ class TestWebhooks:
         assert result is True
 
         # modified payload
-        result = self.strict_client.webhooks.validate_signature(
+        result = client.webhooks.validate_signature(
             payload + "foo",
             headers={"X-Signature": "57e14f6f354543f0101fb06ea24df7731d90087b76651e3497345e22a3622940"},
             key="foo",
@@ -90,14 +81,14 @@ class TestWebhooks:
         assert result is False
 
         # modified signature
-        result = self.strict_client.webhooks.validate_signature(
+        result = client.webhooks.validate_signature(
             payload,
             headers={"X-Signature": "bar"},
             key="foo",
         )
         assert result is False
 
-    def test_validate_signature_custom_headers_class(self) -> None:
+    def test_validate_signature_custom_headers_class(self, client: ModernTreasury) -> None:
         class Headers:
             def __init__(self, raw: Mapping[str, str]) -> None:
                 self._raw = raw
@@ -105,7 +96,7 @@ class TestWebhooks:
             def get(self, key: str) -> str | None:
                 return self._raw.get(key)
 
-        result = self.strict_client.webhooks.validate_signature(
+        result = client.webhooks.validate_signature(
             '{"foo":"bar"}',
             headers=Headers({"X-Signature": "57e14f6f354543f0101fb06ea24df7731d90087b76651e3497345e22a3622940"}),
             key="foo",
@@ -113,7 +104,7 @@ class TestWebhooks:
         assert result is True
 
         with pytest.raises(ValueError, match="Could not find X-Signature header"):
-            self.strict_client.webhooks.validate_signature(
+            client.webhooks.validate_signature(
                 '{"foo":"bar"}',
                 headers=Headers({}),
                 key="foo",
@@ -121,13 +112,7 @@ class TestWebhooks:
 
 
 class TestAsyncWebhooks:
-    strict_client = AsyncModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-    )
-    loose_client = AsyncModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=False
-    )
-    parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.parametrize(
         "payload,expected",
@@ -141,18 +126,18 @@ class TestAsyncWebhooks:
             ),
         ],
     )
-    def test_get_signature(self, payload: str, expected: str) -> None:
-        sig = self.strict_client.webhooks.get_signature(payload, key="foo")
+    def test_get_signature(self, payload: str, expected: str, async_client: AsyncModernTreasury) -> None:
+        sig = async_client.webhooks.get_signature(payload, key="foo")
         assert sig == expected
 
-    def test_get_signature_key_not_set(self) -> None:
+    def test_get_signature_key_not_set(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match="webhook key"):
-            self.strict_client.webhooks.get_signature("foo")
+            async_client.webhooks.get_signature("foo")
 
-    def test_get_signature_client_key(self) -> None:
-        client = self.strict_client.__class__(
+    def test_get_signature_client_key(self, async_client: AsyncModernTreasury) -> None:
+        client = async_client.__class__(
             base_url=base_url,
-            api_key=api_key,
+            api_key=async_client.api_key,
             organization_id="c40c0b40-11d3-42ee-8f2e-18ee8b8239aa",
             webhook_key="foo",
         )
@@ -165,13 +150,13 @@ class TestAsyncWebhooks:
         other_sig = client.webhooks.get_signature(payload, key="bar")
         assert sig != other_sig
 
-    def test_validate_signature_no_header(self) -> None:
+    def test_validate_signature_no_header(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match="Could not find X-Signature header"):
-            self.strict_client.webhooks.validate_signature("foo", headers={"foo": "bar"}, key="foo")
+            async_client.webhooks.validate_signature("foo", headers={"foo": "bar"}, key="foo")
 
-    def test_validate_signature(self) -> None:
+    def test_validate_signature(self, async_client: AsyncModernTreasury) -> None:
         payload = '{"foo":"bar"}'
-        result = self.strict_client.webhooks.validate_signature(
+        result = async_client.webhooks.validate_signature(
             payload,
             headers={"X-Signature": "57e14f6f354543f0101fb06ea24df7731d90087b76651e3497345e22a3622940"},
             key="foo",
@@ -179,7 +164,7 @@ class TestAsyncWebhooks:
         assert result is True
 
         # lowercased header
-        result = self.strict_client.webhooks.validate_signature(
+        result = async_client.webhooks.validate_signature(
             payload,
             headers={"x-signature": "57e14f6f354543f0101fb06ea24df7731d90087b76651e3497345e22a3622940"},
             key="foo",
@@ -187,7 +172,7 @@ class TestAsyncWebhooks:
         assert result is True
 
         # modified payload
-        result = self.strict_client.webhooks.validate_signature(
+        result = async_client.webhooks.validate_signature(
             payload + "foo",
             headers={"X-Signature": "57e14f6f354543f0101fb06ea24df7731d90087b76651e3497345e22a3622940"},
             key="foo",
@@ -195,14 +180,14 @@ class TestAsyncWebhooks:
         assert result is False
 
         # modified signature
-        result = self.strict_client.webhooks.validate_signature(
+        result = async_client.webhooks.validate_signature(
             payload,
             headers={"X-Signature": "bar"},
             key="foo",
         )
         assert result is False
 
-    def test_validate_signature_custom_headers_class(self) -> None:
+    def test_validate_signature_custom_headers_class(self, async_client: AsyncModernTreasury) -> None:
         class Headers:
             def __init__(self, raw: Mapping[str, str]) -> None:
                 self._raw = raw
@@ -210,7 +195,7 @@ class TestAsyncWebhooks:
             def get(self, key: str) -> str | None:
                 return self._raw.get(key)
 
-        result = self.strict_client.webhooks.validate_signature(
+        result = async_client.webhooks.validate_signature(
             '{"foo":"bar"}',
             headers=Headers({"X-Signature": "57e14f6f354543f0101fb06ea24df7731d90087b76651e3497345e22a3622940"}),
             key="foo",
@@ -218,7 +203,7 @@ class TestAsyncWebhooks:
         assert result is True
 
         with pytest.raises(ValueError, match="Could not find X-Signature header"):
-            self.strict_client.webhooks.validate_signature(
+            async_client.webhooks.validate_signature(
                 '{"foo":"bar"}',
                 headers=Headers({}),
                 key="foo",
