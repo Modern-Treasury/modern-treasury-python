@@ -14,21 +14,12 @@ from modern_treasury.types import (
     LedgerAccountStatementRetrieveResponse,
 )
 from modern_treasury._utils import parse_datetime
-from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
-api_key = "My API Key"
-organization_id = "my-organization-ID"
 
 
 class TestLedgerAccountStatements:
-    strict_client = ModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-    )
-    loose_client = ModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=False
-    )
-    parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
@@ -126,18 +117,12 @@ class TestLedgerAccountStatements:
 
 
 class TestAsyncLedgerAccountStatements:
-    strict_client = AsyncModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-    )
-    loose_client = AsyncModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=False
-    )
-    parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
-    async def test_method_create(self, client: AsyncModernTreasury) -> None:
-        ledger_account_statement = await client.ledger_account_statements.create(
+    async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
+        ledger_account_statement = await async_client.ledger_account_statements.create(
             effective_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             effective_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -146,8 +131,8 @@ class TestAsyncLedgerAccountStatements:
 
     @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
-    async def test_method_create_with_all_params(self, client: AsyncModernTreasury) -> None:
-        ledger_account_statement = await client.ledger_account_statements.create(
+    async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
+        ledger_account_statement = await async_client.ledger_account_statements.create(
             effective_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             effective_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -162,8 +147,8 @@ class TestAsyncLedgerAccountStatements:
 
     @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
-    async def test_raw_response_create(self, client: AsyncModernTreasury) -> None:
-        response = await client.ledger_account_statements.with_raw_response.create(
+    async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.ledger_account_statements.with_raw_response.create(
             effective_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             effective_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -176,8 +161,8 @@ class TestAsyncLedgerAccountStatements:
 
     @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
-    async def test_streaming_response_create(self, client: AsyncModernTreasury) -> None:
-        async with client.ledger_account_statements.with_streaming_response.create(
+    async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.ledger_account_statements.with_streaming_response.create(
             effective_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             effective_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -191,15 +176,15 @@ class TestAsyncLedgerAccountStatements:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_retrieve(self, client: AsyncModernTreasury) -> None:
-        ledger_account_statement = await client.ledger_account_statements.retrieve(
+    async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
+        ledger_account_statement = await async_client.ledger_account_statements.retrieve(
             "string",
         )
         assert_matches_type(LedgerAccountStatementRetrieveResponse, ledger_account_statement, path=["response"])
 
     @parametrize
-    async def test_raw_response_retrieve(self, client: AsyncModernTreasury) -> None:
-        response = await client.ledger_account_statements.with_raw_response.retrieve(
+    async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.ledger_account_statements.with_raw_response.retrieve(
             "string",
         )
 
@@ -209,8 +194,8 @@ class TestAsyncLedgerAccountStatements:
         assert_matches_type(LedgerAccountStatementRetrieveResponse, ledger_account_statement, path=["response"])
 
     @parametrize
-    async def test_streaming_response_retrieve(self, client: AsyncModernTreasury) -> None:
-        async with client.ledger_account_statements.with_streaming_response.retrieve(
+    async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.ledger_account_statements.with_streaming_response.retrieve(
             "string",
         ) as response:
             assert not response.is_closed
@@ -222,8 +207,8 @@ class TestAsyncLedgerAccountStatements:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_retrieve(self, client: AsyncModernTreasury) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await client.ledger_account_statements.with_raw_response.retrieve(
+            await async_client.ledger_account_statements.with_raw_response.retrieve(
                 "",
             )

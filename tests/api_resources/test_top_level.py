@@ -10,21 +10,12 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import PingResponse
-from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
-api_key = "My API Key"
-organization_id = "my-organization-ID"
 
 
 class TestTopLevel:
-    strict_client = ModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-    )
-    loose_client = ModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=False
-    )
-    parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     def test_method_ping(self, client: ModernTreasury) -> None:
@@ -53,22 +44,16 @@ class TestTopLevel:
 
 
 class TestAsyncTopLevel:
-    strict_client = AsyncModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-    )
-    loose_client = AsyncModernTreasury(
-        base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=False
-    )
-    parametrize = pytest.mark.parametrize("client", [strict_client, loose_client], ids=["strict", "loose"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_ping(self, client: AsyncModernTreasury) -> None:
-        top_level = await client.ping()
+    async def test_method_ping(self, async_client: AsyncModernTreasury) -> None:
+        top_level = await async_client.ping()
         assert_matches_type(PingResponse, top_level, path=["response"])
 
     @parametrize
-    async def test_raw_response_ping(self, client: AsyncModernTreasury) -> None:
-        response = await client.with_raw_response.ping()
+    async def test_raw_response_ping(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.with_raw_response.ping()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -76,8 +61,8 @@ class TestAsyncTopLevel:
         assert_matches_type(PingResponse, top_level, path=["response"])
 
     @parametrize
-    async def test_streaming_response_ping(self, client: AsyncModernTreasury) -> None:
-        async with client.with_streaming_response.ping() as response:
+    async def test_streaming_response_ping(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.with_streaming_response.ping() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
