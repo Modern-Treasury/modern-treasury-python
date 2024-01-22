@@ -1,6 +1,5 @@
 # File generated from our OpenAPI spec by Stainless.
 
-import builtins
 from typing import Dict, Optional
 from datetime import datetime
 
@@ -14,7 +13,7 @@ class LedgerableEvent(BaseModel):
 
     created_at: datetime
 
-    custom_data: Optional[builtins.object] = None
+    custom_data: Optional[object] = None
     """Additionally data to be used by the Ledger Event Handler."""
 
     description: Optional[str] = None

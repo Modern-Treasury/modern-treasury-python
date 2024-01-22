@@ -1,6 +1,5 @@
 # File generated from our OpenAPI spec by Stainless.
 
-import builtins
 from typing import Dict, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
@@ -29,7 +28,7 @@ class IncomingPaymentDetail(BaseModel):
     currency: Optional[Currency] = None
     """The currency of the incoming payment detail."""
 
-    data: Dict[str, builtins.object]
+    data: Dict[str, object]
     """The raw data from the payment pre-notification file that we get from the bank."""
 
     direction: TransactionDirection
