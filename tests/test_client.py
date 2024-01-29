@@ -911,7 +911,7 @@ class TestModernTreasury:
         with pytest.raises(APITimeoutError):
             self.client.post(
                 "/api/external_accounts",
-                body=dict(counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a", name="my bank"),
+                body=cast(object, dict(counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a", name="my bank")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -926,7 +926,7 @@ class TestModernTreasury:
         with pytest.raises(APIStatusError):
             self.client.post(
                 "/api/external_accounts",
-                body=dict(counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a", name="my bank"),
+                body=cast(object, dict(counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a", name="my bank")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1800,7 +1800,7 @@ class TestAsyncModernTreasury:
         with pytest.raises(APITimeoutError):
             await self.client.post(
                 "/api/external_accounts",
-                body=dict(counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a", name="my bank"),
+                body=cast(object, dict(counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a", name="my bank")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1815,7 +1815,7 @@ class TestAsyncModernTreasury:
         with pytest.raises(APIStatusError):
             await self.client.post(
                 "/api/external_accounts",
-                body=dict(counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a", name="my bank"),
+                body=cast(object, dict(counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a", name="my bank")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
