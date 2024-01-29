@@ -14,6 +14,7 @@ from ._client import (
     RequestOptions,
     AsyncModernTreasury,
 )
+from ._models import BaseModel
 from ._version import __title__, __version__
 from ._response import APIResponse as APIResponse, AsyncAPIResponse as AsyncAPIResponse
 from ._exceptions import (
@@ -64,6 +65,7 @@ __all__ = [
     "ModernTreasury",
     "AsyncModernTreasury",
     "file_from_path",
+    "BaseModel",
 ]
 
 _setup_logging()
