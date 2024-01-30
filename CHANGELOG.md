@@ -1,5 +1,37 @@
 # Changelog
 
+## 1.26.0 (2024-01-30)
+
+Full Changelog: [v1.25.0...v1.26.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.25.0...v1.26.0)
+
+### Features
+
+* **client:** enable follow redirects by default ([#355](https://github.com/Modern-Treasury/modern-treasury-python/issues/355)) ([380e93d](https://github.com/Modern-Treasury/modern-treasury-python/commit/380e93d9fe7ec169c62ecaa4824369dca7e2b007))
+* **client:** support parsing custom response types ([#358](https://github.com/Modern-Treasury/modern-treasury-python/issues/358)) ([78a0c73](https://github.com/Modern-Treasury/modern-treasury-python/commit/78a0c737e144aea7cf731d75166a9d4f835c6e31))
+
+
+### Bug Fixes
+
+* **ci:** ignore stainless-app edits to release PR title ([#352](https://github.com/Modern-Treasury/modern-treasury-python/issues/352)) ([8ade5d0](https://github.com/Modern-Treasury/modern-treasury-python/commit/8ade5d02b45dbb782f6bceb3622cd2c8dd220d3f))
+
+
+### Chores
+
+* **internal:** add internal helpers ([#353](https://github.com/Modern-Treasury/modern-treasury-python/issues/353)) ([79e0db0](https://github.com/Modern-Treasury/modern-treasury-python/commit/79e0db01aa21b38c3abd09ae06d116ec5bbd1c31))
+* **internal:** cast type in mocked test ([#359](https://github.com/Modern-Treasury/modern-treasury-python/issues/359)) ([96f7655](https://github.com/Modern-Treasury/modern-treasury-python/commit/96f7655c4b96dfe1c78de3c26151ab9f9d298925))
+* **internal:** enable ruff type checking misuse lint rule ([#357](https://github.com/Modern-Treasury/modern-treasury-python/issues/357)) ([d9579f9](https://github.com/Modern-Treasury/modern-treasury-python/commit/d9579f952c9b7ddc435f88a016bf1a25f0d8323d))
+* **internal:** fix typing util function ([#346](https://github.com/Modern-Treasury/modern-treasury-python/issues/346)) ([3f69cab](https://github.com/Modern-Treasury/modern-treasury-python/commit/3f69cab2b0d0516349b0a01bb952a1aed59c914b))
+* **internal:** remove redundant client test ([#348](https://github.com/Modern-Treasury/modern-treasury-python/issues/348)) ([5e162a5](https://github.com/Modern-Treasury/modern-treasury-python/commit/5e162a54605af4d11013121afe786930407dc788))
+* **internal:** share client instances between all tests ([#351](https://github.com/Modern-Treasury/modern-treasury-python/issues/351)) ([1c66b08](https://github.com/Modern-Treasury/modern-treasury-python/commit/1c66b08ef8d302c33cc9cdf359a6972c07af0a73))
+* **internal:** speculative retry-after-ms support ([#349](https://github.com/Modern-Treasury/modern-treasury-python/issues/349)) ([bc16acf](https://github.com/Modern-Treasury/modern-treasury-python/commit/bc16acf2a4a378915b53d6005bc4c49b250e6b47))
+* **internal:** support multipart data with overlapping keys ([#356](https://github.com/Modern-Treasury/modern-treasury-python/issues/356)) ([c6ba152](https://github.com/Modern-Treasury/modern-treasury-python/commit/c6ba15253fba8b4bbed1e12da9456a6a9f18bc74))
+* lazy load raw resource class properties ([#350](https://github.com/Modern-Treasury/modern-treasury-python/issues/350)) ([53495ec](https://github.com/Modern-Treasury/modern-treasury-python/commit/53495ec71f45ef9124024fcee500702b6ca11da1))
+
+
+### Refactors
+
+* remove unnecessary builtin import ([#354](https://github.com/Modern-Treasury/modern-treasury-python/issues/354)) ([ddc8ffc](https://github.com/Modern-Treasury/modern-treasury-python/commit/ddc8ffc83a690c46471a71f01aeffe5e686bbd0b))
+
 ## 1.25.0 (2024-01-16)
 
 Full Changelog: [v1.24.0...v1.25.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.24.0...v1.25.0)
