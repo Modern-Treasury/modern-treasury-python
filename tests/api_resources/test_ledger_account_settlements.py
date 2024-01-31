@@ -173,6 +173,7 @@ class TestLedgerAccountSettlements:
         ledger_account_settlement = client.ledger_account_settlements.list(
             id=["string", "string", "string"],
             after_cursor="string",
+            ledger_transaction_id="string",
             metadata={"foo": "string"},
             per_page=0,
             settled_ledger_account_id="string",
@@ -356,6 +357,7 @@ class TestAsyncLedgerAccountSettlements:
         ledger_account_settlement = await async_client.ledger_account_settlements.list(
             id=["string", "string", "string"],
             after_cursor="string",
+            ledger_transaction_id="string",
             metadata={"foo": "string"},
             per_page=0,
             settled_ledger_account_id="string",

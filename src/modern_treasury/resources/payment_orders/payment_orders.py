@@ -80,6 +80,7 @@ class PaymentOrders(SyncAPIResource):
         nsf_protected: bool | NotGiven = NOT_GIVEN,
         originating_party_name: Optional[str] | NotGiven = NOT_GIVEN,
         priority: Literal["high", "normal"] | NotGiven = NOT_GIVEN,
+        process_after: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         purpose: Optional[str] | NotGiven = NOT_GIVEN,
         receiving_account: payment_order_create_params.ReceivingAccount | NotGiven = NOT_GIVEN,
         receiving_account_id: str | NotGiven = NOT_GIVEN,
@@ -179,6 +180,9 @@ class PaymentOrders(SyncAPIResource):
               same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
               an overnight check rather than standard mail.
 
+          process_after: If present, the time until which the payment may not be processed. Format is
+              ISO8601 timestamp.
+
           purpose: For `wire`, this is usually the purpose which is transmitted via the
               "InstrForDbtrAgt" field in the ISO20022 file. If you are using Currencycloud,
               this is the `payment.purpose_code` field. For `eft`, this field is the 3 digit
@@ -257,6 +261,7 @@ class PaymentOrders(SyncAPIResource):
                 "nsf_protected": nsf_protected,
                 "originating_party_name": originating_party_name,
                 "priority": priority,
+                "process_after": process_after,
                 "purpose": purpose,
                 "receiving_account": receiving_account,
                 "receiving_account_id": receiving_account_id,
@@ -348,6 +353,7 @@ class PaymentOrders(SyncAPIResource):
         originating_account_id: str | NotGiven = NOT_GIVEN,
         originating_party_name: Optional[str] | NotGiven = NOT_GIVEN,
         priority: Literal["high", "normal"] | NotGiven = NOT_GIVEN,
+        process_after: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         purpose: Optional[str] | NotGiven = NOT_GIVEN,
         receiving_account: payment_order_update_params.ReceivingAccount | NotGiven = NOT_GIVEN,
         receiving_account_id: str | NotGiven = NOT_GIVEN,
@@ -445,6 +451,9 @@ class PaymentOrders(SyncAPIResource):
           priority: Either `normal` or `high`. For ACH and EFT payments, `high` represents a
               same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
               an overnight check rather than standard mail.
+
+          process_after: If present, the time until which the payment may not be processed. Format is
+              ISO8601 timestamp.
 
           purpose: For `wire`, this is usually the purpose which is transmitted via the
               "InstrForDbtrAgt" field in the ISO20022 file. If you are using Currencycloud,
@@ -538,6 +547,7 @@ class PaymentOrders(SyncAPIResource):
                     "originating_account_id": originating_account_id,
                     "originating_party_name": originating_party_name,
                     "priority": priority,
+                    "process_after": process_after,
                     "purpose": purpose,
                     "receiving_account": receiving_account,
                     "receiving_account_id": receiving_account_id,
@@ -578,6 +588,8 @@ class PaymentOrders(SyncAPIResource):
         originating_account_id: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         priority: Literal["high", "normal"] | NotGiven = NOT_GIVEN,
+        process_after_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        process_after_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
         reference_number: str | NotGiven = NOT_GIVEN,
         status: Literal[
             "approved",
@@ -654,6 +666,10 @@ class PaymentOrders(SyncAPIResource):
               same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
               an overnight check rather than standard mail.
 
+          process_after_end: An inclusive upper bound for searching process_after
+
+          process_after_start: An inclusive lower bound for searching process_after
+
           reference_number: Query for records with the provided reference number
 
           transaction_id: The ID of a transaction that the payment order has been reconciled to.
@@ -687,6 +703,8 @@ class PaymentOrders(SyncAPIResource):
                         "originating_account_id": originating_account_id,
                         "per_page": per_page,
                         "priority": priority,
+                        "process_after_end": process_after_end,
+                        "process_after_start": process_after_start,
                         "reference_number": reference_number,
                         "status": status,
                         "transaction_id": transaction_id,
@@ -723,6 +741,7 @@ class PaymentOrders(SyncAPIResource):
         nsf_protected: bool | NotGiven = NOT_GIVEN,
         originating_party_name: Optional[str] | NotGiven = NOT_GIVEN,
         priority: Literal["high", "normal"] | NotGiven = NOT_GIVEN,
+        process_after: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         purpose: Optional[str] | NotGiven = NOT_GIVEN,
         receiving_account: payment_order_create_async_params.ReceivingAccount | NotGiven = NOT_GIVEN,
         receiving_account_id: str | NotGiven = NOT_GIVEN,
@@ -819,6 +838,9 @@ class PaymentOrders(SyncAPIResource):
               same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
               an overnight check rather than standard mail.
 
+          process_after: If present, the time until which the payment may not be processed. Format is
+              ISO8601 timestamp.
+
           purpose: For `wire`, this is usually the purpose which is transmitted via the
               "InstrForDbtrAgt" field in the ISO20022 file. If you are using Currencycloud,
               this is the `payment.purpose_code` field. For `eft`, this field is the 3 digit
@@ -898,6 +920,7 @@ class PaymentOrders(SyncAPIResource):
                     "nsf_protected": nsf_protected,
                     "originating_party_name": originating_party_name,
                     "priority": priority,
+                    "process_after": process_after,
                     "purpose": purpose,
                     "receiving_account": receiving_account,
                     "receiving_account_id": receiving_account_id,
@@ -963,6 +986,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         nsf_protected: bool | NotGiven = NOT_GIVEN,
         originating_party_name: Optional[str] | NotGiven = NOT_GIVEN,
         priority: Literal["high", "normal"] | NotGiven = NOT_GIVEN,
+        process_after: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         purpose: Optional[str] | NotGiven = NOT_GIVEN,
         receiving_account: payment_order_create_params.ReceivingAccount | NotGiven = NOT_GIVEN,
         receiving_account_id: str | NotGiven = NOT_GIVEN,
@@ -1062,6 +1086,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
               same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
               an overnight check rather than standard mail.
 
+          process_after: If present, the time until which the payment may not be processed. Format is
+              ISO8601 timestamp.
+
           purpose: For `wire`, this is usually the purpose which is transmitted via the
               "InstrForDbtrAgt" field in the ISO20022 file. If you are using Currencycloud,
               this is the `payment.purpose_code` field. For `eft`, this field is the 3 digit
@@ -1140,6 +1167,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
                 "nsf_protected": nsf_protected,
                 "originating_party_name": originating_party_name,
                 "priority": priority,
+                "process_after": process_after,
                 "purpose": purpose,
                 "receiving_account": receiving_account,
                 "receiving_account_id": receiving_account_id,
@@ -1231,6 +1259,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         originating_account_id: str | NotGiven = NOT_GIVEN,
         originating_party_name: Optional[str] | NotGiven = NOT_GIVEN,
         priority: Literal["high", "normal"] | NotGiven = NOT_GIVEN,
+        process_after: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         purpose: Optional[str] | NotGiven = NOT_GIVEN,
         receiving_account: payment_order_update_params.ReceivingAccount | NotGiven = NOT_GIVEN,
         receiving_account_id: str | NotGiven = NOT_GIVEN,
@@ -1329,6 +1358,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
               same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
               an overnight check rather than standard mail.
 
+          process_after: If present, the time until which the payment may not be processed. Format is
+              ISO8601 timestamp.
+
           purpose: For `wire`, this is usually the purpose which is transmitted via the
               "InstrForDbtrAgt" field in the ISO20022 file. If you are using Currencycloud,
               this is the `payment.purpose_code` field. For `eft`, this field is the 3 digit
@@ -1421,6 +1453,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
                     "originating_account_id": originating_account_id,
                     "originating_party_name": originating_party_name,
                     "priority": priority,
+                    "process_after": process_after,
                     "purpose": purpose,
                     "receiving_account": receiving_account,
                     "receiving_account_id": receiving_account_id,
@@ -1461,6 +1494,8 @@ class AsyncPaymentOrders(AsyncAPIResource):
         originating_account_id: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         priority: Literal["high", "normal"] | NotGiven = NOT_GIVEN,
+        process_after_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        process_after_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
         reference_number: str | NotGiven = NOT_GIVEN,
         status: Literal[
             "approved",
@@ -1537,6 +1572,10 @@ class AsyncPaymentOrders(AsyncAPIResource):
               same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
               an overnight check rather than standard mail.
 
+          process_after_end: An inclusive upper bound for searching process_after
+
+          process_after_start: An inclusive lower bound for searching process_after
+
           reference_number: Query for records with the provided reference number
 
           transaction_id: The ID of a transaction that the payment order has been reconciled to.
@@ -1570,6 +1609,8 @@ class AsyncPaymentOrders(AsyncAPIResource):
                         "originating_account_id": originating_account_id,
                         "per_page": per_page,
                         "priority": priority,
+                        "process_after_end": process_after_end,
+                        "process_after_start": process_after_start,
                         "reference_number": reference_number,
                         "status": status,
                         "transaction_id": transaction_id,
@@ -1606,6 +1647,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         nsf_protected: bool | NotGiven = NOT_GIVEN,
         originating_party_name: Optional[str] | NotGiven = NOT_GIVEN,
         priority: Literal["high", "normal"] | NotGiven = NOT_GIVEN,
+        process_after: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         purpose: Optional[str] | NotGiven = NOT_GIVEN,
         receiving_account: payment_order_create_async_params.ReceivingAccount | NotGiven = NOT_GIVEN,
         receiving_account_id: str | NotGiven = NOT_GIVEN,
@@ -1702,6 +1744,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
               same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
               an overnight check rather than standard mail.
 
+          process_after: If present, the time until which the payment may not be processed. Format is
+              ISO8601 timestamp.
+
           purpose: For `wire`, this is usually the purpose which is transmitted via the
               "InstrForDbtrAgt" field in the ISO20022 file. If you are using Currencycloud,
               this is the `payment.purpose_code` field. For `eft`, this field is the 3 digit
@@ -1781,6 +1826,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
                     "nsf_protected": nsf_protected,
                     "originating_party_name": originating_party_name,
                     "priority": priority,
+                    "process_after": process_after,
                     "purpose": purpose,
                     "receiving_account": receiving_account,
                     "receiving_account_id": receiving_account_id,

@@ -17,6 +17,8 @@ class LedgerAccountSettlementListParams(TypedDict, total=False):
 
     after_cursor: Optional[str]
 
+    ledger_transaction_id: str
+
     metadata: Dict[str, str]
     """
     For example, if you want to query for records with metadata key `Type` and value
