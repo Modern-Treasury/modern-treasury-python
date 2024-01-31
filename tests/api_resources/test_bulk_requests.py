@@ -74,6 +74,7 @@ class TestBulkRequests:
                     "description": "string",
                     "statement_descriptor": "string",
                     "remittance_information": "string",
+                    "process_after": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "purpose": "string",
                     "metadata": {
                         "key": "value",
@@ -149,6 +150,11 @@ class TestBulkRequests:
                             "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                             "currency": "string",
                             "currency_exponent": 0,
+                            "ledger_account_category_ids": [
+                                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                            ],
                             "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                             "ledgerable_type": "external_account",
                             "metadata": {
@@ -288,6 +294,7 @@ class TestBulkRequests:
                     "description": "string",
                     "statement_descriptor": "string",
                     "remittance_information": "string",
+                    "process_after": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "purpose": "string",
                     "metadata": {
                         "key": "value",
@@ -363,6 +370,11 @@ class TestBulkRequests:
                             "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                             "currency": "string",
                             "currency_exponent": 0,
+                            "ledger_account_category_ids": [
+                                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                            ],
                             "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                             "ledgerable_type": "external_account",
                             "metadata": {
@@ -502,6 +514,7 @@ class TestBulkRequests:
                     "description": "string",
                     "statement_descriptor": "string",
                     "remittance_information": "string",
+                    "process_after": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "purpose": "string",
                     "metadata": {
                         "key": "value",
@@ -577,6 +590,11 @@ class TestBulkRequests:
                             "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                             "currency": "string",
                             "currency_exponent": 0,
+                            "ledger_account_category_ids": [
+                                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                            ],
                             "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                             "ledgerable_type": "external_account",
                             "metadata": {
@@ -908,6 +926,7 @@ class TestAsyncBulkRequests:
                     "description": "string",
                     "statement_descriptor": "string",
                     "remittance_information": "string",
+                    "process_after": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "purpose": "string",
                     "metadata": {
                         "key": "value",
@@ -983,6 +1002,11 @@ class TestAsyncBulkRequests:
                             "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                             "currency": "string",
                             "currency_exponent": 0,
+                            "ledger_account_category_ids": [
+                                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                            ],
                             "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                             "ledgerable_type": "external_account",
                             "metadata": {
@@ -1122,6 +1146,7 @@ class TestAsyncBulkRequests:
                     "description": "string",
                     "statement_descriptor": "string",
                     "remittance_information": "string",
+                    "process_after": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "purpose": "string",
                     "metadata": {
                         "key": "value",
@@ -1197,6 +1222,11 @@ class TestAsyncBulkRequests:
                             "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                             "currency": "string",
                             "currency_exponent": 0,
+                            "ledger_account_category_ids": [
+                                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                            ],
                             "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                             "ledgerable_type": "external_account",
                             "metadata": {
@@ -1336,6 +1366,7 @@ class TestAsyncBulkRequests:
                     "description": "string",
                     "statement_descriptor": "string",
                     "remittance_information": "string",
+                    "process_after": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "purpose": "string",
                     "metadata": {
                         "key": "value",
@@ -1411,6 +1442,11 @@ class TestAsyncBulkRequests:
                             "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                             "currency": "string",
                             "currency_exponent": 0,
+                            "ledger_account_category_ids": [
+                                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                            ],
                             "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                             "ledgerable_type": "external_account",
                             "metadata": {

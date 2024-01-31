@@ -158,7 +158,7 @@ class Invoice(BaseModel):
     """The invoice issuer's business address."""
 
     ledger_account_settlement_id: Optional[str] = None
-    """The ledger account settlment object linked to the invoice."""
+    """The ledger account settlement object linked to the invoice."""
 
     live_mode: bool
     """

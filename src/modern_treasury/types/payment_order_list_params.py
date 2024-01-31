@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Union, Optional
-from datetime import date
+from datetime import date, datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
 from .shared import TransactionDirection
@@ -49,6 +49,12 @@ class PaymentOrderListParams(TypedDict, total=False):
     respectively. For check payments, `high` can mean an overnight check rather than
     standard mail.
     """
+
+    process_after_end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """An inclusive upper bound for searching process_after"""
+
+    process_after_start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """An inclusive lower bound for searching process_after"""
 
     reference_number: str
     """Query for records with the provided reference number"""

@@ -26,6 +26,7 @@ class ValidationValidateRoutingNumberParams(TypedDict, total=False):
             "id_sknbi_code",
             "in_ifsc",
             "jp_zengin_code",
+            "mx_bank_identifier",
             "my_branch_code",
             "nz_national_clearing_code",
             "pl_national_clearing_code",

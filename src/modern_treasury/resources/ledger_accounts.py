@@ -49,6 +49,7 @@ class LedgerAccounts(SyncAPIResource):
         normal_balance: TransactionDirection,
         currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        ledger_account_category_ids: List[str] | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal["external_account", "internal_account"] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -75,6 +76,9 @@ class LedgerAccounts(SyncAPIResource):
           currency_exponent: The currency exponent of the ledger account.
 
           description: The description of the ledger account.
+
+          ledger_account_category_ids: The array of ledger account category ids that this ledger account should be a
+              child of.
 
           ledgerable_id: If the ledger account links to another object in Modern Treasury, the id will be
               populated here, otherwise null.
@@ -106,6 +110,7 @@ class LedgerAccounts(SyncAPIResource):
                     "normal_balance": normal_balance,
                     "currency_exponent": currency_exponent,
                     "description": description,
+                    "ledger_account_category_ids": ledger_account_category_ids,
                     "ledgerable_id": ledgerable_id,
                     "ledgerable_type": ledgerable_type,
                     "metadata": metadata,
@@ -383,6 +388,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         normal_balance: TransactionDirection,
         currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        ledger_account_category_ids: List[str] | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal["external_account", "internal_account"] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -409,6 +415,9 @@ class AsyncLedgerAccounts(AsyncAPIResource):
           currency_exponent: The currency exponent of the ledger account.
 
           description: The description of the ledger account.
+
+          ledger_account_category_ids: The array of ledger account category ids that this ledger account should be a
+              child of.
 
           ledgerable_id: If the ledger account links to another object in Modern Treasury, the id will be
               populated here, otherwise null.
@@ -440,6 +449,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
                     "normal_balance": normal_balance,
                     "currency_exponent": currency_exponent,
                     "description": description,
+                    "ledger_account_category_ids": ledger_account_category_ids,
                     "ledgerable_id": ledgerable_id,
                     "ledgerable_type": ledgerable_type,
                     "metadata": metadata,
