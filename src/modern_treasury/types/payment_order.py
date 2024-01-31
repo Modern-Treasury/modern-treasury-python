@@ -267,6 +267,12 @@ class PaymentOrder(BaseModel):
     standard mail.
     """
 
+    process_after: Optional[datetime] = None
+    """If present, the time until which the payment may not be processed.
+
+    Format is ISO8601 timestamp.
+    """
+
     purpose: Optional[str] = None
     """
     For `wire`, this is usually the purpose which is transmitted via the

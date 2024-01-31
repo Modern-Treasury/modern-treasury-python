@@ -177,6 +177,7 @@ class TestPaymentOrders:
             nsf_protected=True,
             originating_party_name="string",
             priority="high",
+            process_after=parse_datetime("2019-12-27T18:11:19.117Z"),
             purpose="string",
             receiving_account={
                 "account_type": "cash",
@@ -235,6 +236,11 @@ class TestPaymentOrders:
                     "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "currency": "string",
                     "currency_exponent": 0,
+                    "ledger_account_category_ids": [
+                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    ],
                     "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "ledgerable_type": "external_account",
                     "metadata": {
@@ -411,6 +417,7 @@ class TestPaymentOrders:
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             originating_party_name="string",
             priority="high",
+            process_after=parse_datetime("2019-12-27T18:11:19.117Z"),
             purpose="string",
             receiving_account={
                 "account_type": "cash",
@@ -469,6 +476,11 @@ class TestPaymentOrders:
                     "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "currency": "string",
                     "currency_exponent": 0,
+                    "ledger_account_category_ids": [
+                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    ],
                     "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "ledgerable_type": "external_account",
                     "metadata": {
@@ -557,6 +569,8 @@ class TestPaymentOrders:
             originating_account_id="string",
             per_page=0,
             priority="high",
+            process_after_end=parse_datetime("2019-12-27T18:11:19.117Z"),
+            process_after_start=parse_datetime("2019-12-27T18:11:19.117Z"),
             reference_number="string",
             status="approved",
             transaction_id="string",
@@ -717,6 +731,7 @@ class TestPaymentOrders:
             nsf_protected=True,
             originating_party_name="string",
             priority="high",
+            process_after=parse_datetime("2019-12-27T18:11:19.117Z"),
             purpose="string",
             receiving_account={
                 "account_type": "cash",
@@ -775,6 +790,11 @@ class TestPaymentOrders:
                     "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "currency": "string",
                     "currency_exponent": 0,
+                    "ledger_account_category_ids": [
+                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    ],
                     "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "ledgerable_type": "external_account",
                     "metadata": {
@@ -1001,6 +1021,7 @@ class TestAsyncPaymentOrders:
             nsf_protected=True,
             originating_party_name="string",
             priority="high",
+            process_after=parse_datetime("2019-12-27T18:11:19.117Z"),
             purpose="string",
             receiving_account={
                 "account_type": "cash",
@@ -1059,6 +1080,11 @@ class TestAsyncPaymentOrders:
                     "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "currency": "string",
                     "currency_exponent": 0,
+                    "ledger_account_category_ids": [
+                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    ],
                     "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "ledgerable_type": "external_account",
                     "metadata": {
@@ -1235,6 +1261,7 @@ class TestAsyncPaymentOrders:
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             originating_party_name="string",
             priority="high",
+            process_after=parse_datetime("2019-12-27T18:11:19.117Z"),
             purpose="string",
             receiving_account={
                 "account_type": "cash",
@@ -1293,6 +1320,11 @@ class TestAsyncPaymentOrders:
                     "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "currency": "string",
                     "currency_exponent": 0,
+                    "ledger_account_category_ids": [
+                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    ],
                     "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "ledgerable_type": "external_account",
                     "metadata": {
@@ -1381,6 +1413,8 @@ class TestAsyncPaymentOrders:
             originating_account_id="string",
             per_page=0,
             priority="high",
+            process_after_end=parse_datetime("2019-12-27T18:11:19.117Z"),
+            process_after_start=parse_datetime("2019-12-27T18:11:19.117Z"),
             reference_number="string",
             status="approved",
             transaction_id="string",
@@ -1541,6 +1575,7 @@ class TestAsyncPaymentOrders:
             nsf_protected=True,
             originating_party_name="string",
             priority="high",
+            process_after=parse_datetime("2019-12-27T18:11:19.117Z"),
             purpose="string",
             receiving_account={
                 "account_type": "cash",
@@ -1599,6 +1634,11 @@ class TestAsyncPaymentOrders:
                     "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "currency": "string",
                     "currency_exponent": 0,
+                    "ledger_account_category_ids": [
+                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    ],
                     "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "ledgerable_type": "external_account",
                     "metadata": {

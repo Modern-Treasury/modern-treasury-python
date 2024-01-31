@@ -176,6 +176,12 @@ class PaymentOrderCreateParams(TypedDict, total=False):
     standard mail.
     """
 
+    process_after: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    """If present, the time until which the payment may not be processed.
+
+    Format is ISO8601 timestamp.
+    """
+
     purpose: Optional[str]
     """
     For `wire`, this is usually the purpose which is transmitted via the
@@ -502,6 +508,12 @@ class ReceivingAccountLedgerAccount(TypedDict, total=False):
     description: Optional[str]
     """The description of the ledger account."""
 
+    ledger_account_category_ids: List[str]
+    """
+    The array of ledger account category ids that this ledger account should be a
+    child of.
+    """
+
     ledgerable_id: str
     """
     If the ledger account links to another object in Modern Treasury, the id will be
@@ -559,6 +571,7 @@ class ReceivingAccountRoutingDetail(TypedDict, total=False):
             "in_ifsc",
             "jp_zengin_code",
             "my_branch_code",
+            "mx_bank_identifier",
             "nz_national_clearing_code",
             "pl_national_clearing_code",
             "se_bankgiro_clearing_code",
