@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Iterable, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
@@ -75,7 +75,7 @@ class ExpectedPaymentCreateParams(TypedDict, total=False):
     transaction tracks the expected payment automatically.
     """
 
-    line_items: List[LineItem]
+    line_items: Iterable[LineItem]
 
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.
@@ -89,7 +89,7 @@ class ExpectedPaymentCreateParams(TypedDict, total=False):
     reconciliation_groups: Optional[object]
     """The reconciliation groups you have for this payment."""
 
-    reconciliation_rule_variables: Optional[List[object]]
+    reconciliation_rule_variables: Optional[Iterable[object]]
     """An array of reconciliation rule variables for this payment."""
 
     remittance_information: Optional[str]
@@ -183,7 +183,7 @@ Please use LedgerTransactionLedgerEntry instead.
 
 
 class LedgerTransaction(TypedDict, total=False):
-    ledger_entries: Required[List[LedgerTransactionLedgerEntry]]
+    ledger_entries: Required[Iterable[LedgerTransactionLedgerEntry]]
     """An array of ledger entry objects."""
 
     description: Optional[str]

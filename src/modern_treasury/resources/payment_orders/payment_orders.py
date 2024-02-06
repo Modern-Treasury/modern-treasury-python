@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Mapping, Optional, cast
+from typing import Dict, Union, Mapping, Iterable, Optional, cast
 from datetime import date, datetime
 from typing_extensions import Literal
 
@@ -67,7 +67,7 @@ class PaymentOrders(SyncAPIResource):
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | NotGiven = NOT_GIVEN,
         currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
-        documents: List[payment_order_create_params.Document] | NotGiven = NOT_GIVEN,
+        documents: Iterable[payment_order_create_params.Document] | NotGiven = NOT_GIVEN,
         effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
         expires_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         fallback_type: Literal["ach"] | NotGiven = NOT_GIVEN,
@@ -75,7 +75,7 @@ class PaymentOrders(SyncAPIResource):
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | NotGiven = NOT_GIVEN,
         ledger_transaction: payment_order_create_params.LedgerTransaction | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
-        line_items: List[payment_order_create_params.LineItem] | NotGiven = NOT_GIVEN,
+        line_items: Iterable[payment_order_create_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         nsf_protected: bool | NotGiven = NOT_GIVEN,
         originating_party_name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -347,7 +347,7 @@ class PaymentOrders(SyncAPIResource):
         fallback_type: Literal["ach"] | NotGiven = NOT_GIVEN,
         foreign_exchange_contract: Optional[str] | NotGiven = NOT_GIVEN,
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | NotGiven = NOT_GIVEN,
-        line_items: List[payment_order_update_params.LineItem] | NotGiven = NOT_GIVEN,
+        line_items: Iterable[payment_order_update_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         nsf_protected: bool | NotGiven = NOT_GIVEN,
         originating_account_id: str | NotGiven = NOT_GIVEN,
@@ -736,7 +736,7 @@ class PaymentOrders(SyncAPIResource):
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | NotGiven = NOT_GIVEN,
         ledger_transaction: payment_order_create_async_params.LedgerTransaction | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
-        line_items: List[payment_order_create_async_params.LineItem] | NotGiven = NOT_GIVEN,
+        line_items: Iterable[payment_order_create_async_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         nsf_protected: bool | NotGiven = NOT_GIVEN,
         originating_party_name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -973,7 +973,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | NotGiven = NOT_GIVEN,
         currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
-        documents: List[payment_order_create_params.Document] | NotGiven = NOT_GIVEN,
+        documents: Iterable[payment_order_create_params.Document] | NotGiven = NOT_GIVEN,
         effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
         expires_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         fallback_type: Literal["ach"] | NotGiven = NOT_GIVEN,
@@ -981,7 +981,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | NotGiven = NOT_GIVEN,
         ledger_transaction: payment_order_create_params.LedgerTransaction | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
-        line_items: List[payment_order_create_params.LineItem] | NotGiven = NOT_GIVEN,
+        line_items: Iterable[payment_order_create_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         nsf_protected: bool | NotGiven = NOT_GIVEN,
         originating_party_name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -1253,7 +1253,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         fallback_type: Literal["ach"] | NotGiven = NOT_GIVEN,
         foreign_exchange_contract: Optional[str] | NotGiven = NOT_GIVEN,
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | NotGiven = NOT_GIVEN,
-        line_items: List[payment_order_update_params.LineItem] | NotGiven = NOT_GIVEN,
+        line_items: Iterable[payment_order_update_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         nsf_protected: bool | NotGiven = NOT_GIVEN,
         originating_account_id: str | NotGiven = NOT_GIVEN,
@@ -1642,7 +1642,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | NotGiven = NOT_GIVEN,
         ledger_transaction: payment_order_create_async_params.LedgerTransaction | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
-        line_items: List[payment_order_create_async_params.LineItem] | NotGiven = NOT_GIVEN,
+        line_items: Iterable[payment_order_create_async_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         nsf_protected: bool | NotGiven = NOT_GIVEN,
         originating_party_name: Optional[str] | NotGiven = NOT_GIVEN,
