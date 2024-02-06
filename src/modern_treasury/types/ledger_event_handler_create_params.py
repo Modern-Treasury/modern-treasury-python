@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Required, TypedDict
 
 from .ledger_event_handler_variable_param import LedgerEventHandlerVariableParam
@@ -67,7 +67,7 @@ class LedgerTransactionTemplate(TypedDict, total=False):
     reporting purposes.
     """
 
-    ledger_entries: Required[List[LedgerTransactionTemplateLedgerEntry]]
+    ledger_entries: Required[Iterable[LedgerTransactionTemplateLedgerEntry]]
     """An array of ledger entry objects."""
 
     status: Required[Optional[str]]

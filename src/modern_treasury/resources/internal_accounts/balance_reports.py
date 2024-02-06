@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
+from typing import Union, Iterable, Optional
 from datetime import date
 from typing_extensions import Literal
 
@@ -41,7 +41,7 @@ class BalanceReports(SyncAPIResource):
         as_of_date: Union[str, date],
         as_of_time: str,
         balance_report_type: Literal["intraday", "other", "previous_day", "real_time"],
-        balances: List[balance_report_create_params.Balance],
+        balances: Iterable[balance_report_create_params.Balance],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -261,7 +261,7 @@ class AsyncBalanceReports(AsyncAPIResource):
         as_of_date: Union[str, date],
         as_of_time: str,
         balance_report_type: Literal["intraday", "other", "previous_day", "real_time"],
-        balances: List[balance_report_create_params.Balance],
+        balances: Iterable[balance_report_create_params.Balance],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

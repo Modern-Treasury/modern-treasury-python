@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, List, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -46,7 +46,7 @@ class Counterparties(SyncAPIResource):
         *,
         name: Optional[str],
         accounting: counterparty_create_params.Accounting | NotGiven = NOT_GIVEN,
-        accounts: List[counterparty_create_params.Account] | NotGiven = NOT_GIVEN,
+        accounts: Iterable[counterparty_create_params.Account] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
         ledger_type: Literal["customer", "vendor"] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -447,7 +447,7 @@ class AsyncCounterparties(AsyncAPIResource):
         *,
         name: Optional[str],
         accounting: counterparty_create_params.Accounting | NotGiven = NOT_GIVEN,
-        accounts: List[counterparty_create_params.Account] | NotGiven = NOT_GIVEN,
+        accounts: Iterable[counterparty_create_params.Account] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
         ledger_type: Literal["customer", "vendor"] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,

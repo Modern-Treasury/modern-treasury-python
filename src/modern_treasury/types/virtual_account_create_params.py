@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["VirtualAccountCreateParams", "AccountDetails", "AccountDetail", "RoutingDetails", "RoutingDetail"]
@@ -15,7 +15,7 @@ class VirtualAccountCreateParams(TypedDict, total=False):
     name: Required[str]
     """The name of the virtual account."""
 
-    account_details: List[AccountDetail]
+    account_details: Iterable[AccountDetail]
     """An array of account detail objects."""
 
     counterparty_id: str
@@ -44,7 +44,7 @@ class VirtualAccountCreateParams(TypedDict, total=False):
     Both the key and value must be strings.
     """
 
-    routing_details: List[RoutingDetail]
+    routing_details: Iterable[RoutingDetail]
     """An array of routing detail objects."""
 
 

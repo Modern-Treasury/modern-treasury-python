@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 from .shared import TransactionDirection
@@ -32,7 +32,7 @@ class CounterpartyCreateParams(TypedDict, total=False):
 
     accounting: Accounting
 
-    accounts: List[Account]
+    accounts: Iterable[Account]
     """The accounts for this counterparty."""
 
     email: Optional[str]
@@ -243,12 +243,12 @@ Please use AccountRoutingDetail instead.
 
 
 class Account(TypedDict, total=False):
-    account_details: List[AccountAccountDetail]
+    account_details: Iterable[AccountAccountDetail]
 
     account_type: ExternalAccountType
     """Can be `checking`, `savings` or `other`."""
 
-    contact_details: List[AccountContactDetail]
+    contact_details: Iterable[AccountContactDetail]
 
     ledger_account: AccountLedgerAccount
     """Specifies a ledger account object that will be created with the external
@@ -291,7 +291,7 @@ class Account(TypedDict, total=False):
     you can pass the processor token in this field.
     """
 
-    routing_details: List[AccountRoutingDetail]
+    routing_details: Iterable[AccountRoutingDetail]
 
 
 Accounts = Account

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, List, Union, Iterable, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
@@ -91,7 +91,7 @@ class PaymentOrderCreateParams(TypedDict, total=False):
     description: Optional[str]
     """An optional description for internal use."""
 
-    documents: List[Document]
+    documents: Iterable[Document]
     """An array of documents to be attached to the payment order.
 
     Note that if you attach documents, the request's content type must be
@@ -144,7 +144,7 @@ class PaymentOrderCreateParams(TypedDict, total=False):
     the payment order automatically.
     """
 
-    line_items: List[LineItem]
+    line_items: Iterable[LineItem]
     """An array of line items that must sum up to the amount of the payment order."""
 
     metadata: Dict[str, str]
@@ -374,7 +374,7 @@ Please use LedgerTransactionLedgerEntry instead.
 
 
 class LedgerTransaction(TypedDict, total=False):
-    ledger_entries: Required[List[LedgerTransactionLedgerEntry]]
+    ledger_entries: Required[Iterable[LedgerTransactionLedgerEntry]]
     """An array of ledger entry objects."""
 
     description: Optional[str]
@@ -621,12 +621,12 @@ Please use ReceivingAccountRoutingDetail instead.
 
 
 class ReceivingAccount(TypedDict, total=False):
-    account_details: List[ReceivingAccountAccountDetail]
+    account_details: Iterable[ReceivingAccountAccountDetail]
 
     account_type: ExternalAccountType
     """Can be `checking`, `savings` or `other`."""
 
-    contact_details: List[ReceivingAccountContactDetail]
+    contact_details: Iterable[ReceivingAccountContactDetail]
 
     ledger_account: ReceivingAccountLedgerAccount
     """Specifies a ledger account object that will be created with the external
@@ -669,4 +669,4 @@ class ReceivingAccount(TypedDict, total=False):
     you can pass the processor token in this field.
     """
 
-    routing_details: List[ReceivingAccountRoutingDetail]
+    routing_details: Iterable[ReceivingAccountRoutingDetail]

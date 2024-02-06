@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -45,9 +45,9 @@ class ExternalAccounts(SyncAPIResource):
         self,
         *,
         counterparty_id: Optional[str],
-        account_details: List[external_account_create_params.AccountDetail] | NotGiven = NOT_GIVEN,
+        account_details: Iterable[external_account_create_params.AccountDetail] | NotGiven = NOT_GIVEN,
         account_type: ExternalAccountType | NotGiven = NOT_GIVEN,
-        contact_details: List[external_account_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
+        contact_details: Iterable[external_account_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
         ledger_account: external_account_create_params.LedgerAccount | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -56,7 +56,7 @@ class ExternalAccounts(SyncAPIResource):
         party_name: str | NotGiven = NOT_GIVEN,
         party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
         plaid_processor_token: str | NotGiven = NOT_GIVEN,
-        routing_details: List[external_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
+        routing_details: Iterable[external_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -336,7 +336,7 @@ class ExternalAccounts(SyncAPIResource):
         self,
         id: str,
         *,
-        amounts: List[int] | NotGiven = NOT_GIVEN,
+        amounts: Iterable[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -480,9 +480,9 @@ class AsyncExternalAccounts(AsyncAPIResource):
         self,
         *,
         counterparty_id: Optional[str],
-        account_details: List[external_account_create_params.AccountDetail] | NotGiven = NOT_GIVEN,
+        account_details: Iterable[external_account_create_params.AccountDetail] | NotGiven = NOT_GIVEN,
         account_type: ExternalAccountType | NotGiven = NOT_GIVEN,
-        contact_details: List[external_account_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
+        contact_details: Iterable[external_account_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
         ledger_account: external_account_create_params.LedgerAccount | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -491,7 +491,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
         party_name: str | NotGiven = NOT_GIVEN,
         party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
         plaid_processor_token: str | NotGiven = NOT_GIVEN,
-        routing_details: List[external_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
+        routing_details: Iterable[external_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -771,7 +771,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
         self,
         id: str,
         *,
-        amounts: List[int] | NotGiven = NOT_GIVEN,
+        amounts: Iterable[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

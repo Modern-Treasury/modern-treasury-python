@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
+from typing import List, Union, Iterable, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
@@ -52,7 +52,7 @@ class Invoices(SyncAPIResource):
         counterparty_id: str,
         due_date: Union[str, datetime],
         originating_account_id: str,
-        contact_details: List[invoice_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
+        contact_details: Iterable[invoice_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
         counterparty_billing_address: Optional[invoice_create_params.CounterpartyBillingAddress] | NotGiven = NOT_GIVEN,
         counterparty_shipping_address: Optional[invoice_create_params.CounterpartyShippingAddress]
         | NotGiven = NOT_GIVEN,
@@ -259,7 +259,7 @@ class Invoices(SyncAPIResource):
         self,
         id: str,
         *,
-        contact_details: List[invoice_update_params.ContactDetail] | NotGiven = NOT_GIVEN,
+        contact_details: Iterable[invoice_update_params.ContactDetail] | NotGiven = NOT_GIVEN,
         counterparty_billing_address: Optional[invoice_update_params.CounterpartyBillingAddress] | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
         counterparty_shipping_address: Optional[invoice_update_params.CounterpartyShippingAddress]
@@ -547,7 +547,7 @@ class AsyncInvoices(AsyncAPIResource):
         counterparty_id: str,
         due_date: Union[str, datetime],
         originating_account_id: str,
-        contact_details: List[invoice_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
+        contact_details: Iterable[invoice_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
         counterparty_billing_address: Optional[invoice_create_params.CounterpartyBillingAddress] | NotGiven = NOT_GIVEN,
         counterparty_shipping_address: Optional[invoice_create_params.CounterpartyShippingAddress]
         | NotGiven = NOT_GIVEN,
@@ -754,7 +754,7 @@ class AsyncInvoices(AsyncAPIResource):
         self,
         id: str,
         *,
-        contact_details: List[invoice_update_params.ContactDetail] | NotGiven = NOT_GIVEN,
+        contact_details: Iterable[invoice_update_params.ContactDetail] | NotGiven = NOT_GIVEN,
         counterparty_billing_address: Optional[invoice_update_params.CounterpartyBillingAddress] | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
         counterparty_shipping_address: Optional[invoice_update_params.CounterpartyShippingAddress]

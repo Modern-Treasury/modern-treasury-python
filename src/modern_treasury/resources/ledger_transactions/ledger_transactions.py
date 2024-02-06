@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, List, Union, Iterable, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
@@ -54,7 +54,7 @@ class LedgerTransactions(SyncAPIResource):
     def create(
         self,
         *,
-        ledger_entries: List[ledger_transaction_create_params.LedgerEntry],
+        ledger_entries: Iterable[ledger_transaction_create_params.LedgerEntry],
         description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
@@ -187,7 +187,7 @@ class LedgerTransactions(SyncAPIResource):
         *,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        ledger_entries: List[ledger_transaction_update_params.LedgerEntry] | NotGiven = NOT_GIVEN,
+        ledger_entries: Iterable[ledger_transaction_update_params.LedgerEntry] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -473,7 +473,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
     async def create(
         self,
         *,
-        ledger_entries: List[ledger_transaction_create_params.LedgerEntry],
+        ledger_entries: Iterable[ledger_transaction_create_params.LedgerEntry],
         description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
@@ -606,7 +606,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         *,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        ledger_entries: List[ledger_transaction_update_params.LedgerEntry] | NotGiven = NOT_GIVEN,
+        ledger_entries: Iterable[ledger_transaction_update_params.LedgerEntry] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
