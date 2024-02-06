@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, List, Union, Iterable, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
@@ -85,7 +85,7 @@ class BulkRequestCreateParams(TypedDict, total=False):
     resource_type: Required[Literal["payment_order", "ledger_transaction", "expected_payment"]]
     """One of payment_order, expected_payment, or ledger_transaction."""
 
-    resources: Required[List[Resource]]
+    resources: Required[Iterable[Resource]]
     """
     An array of objects where each object contains the input params for a single
     `action_type` request on a `resource_type` resource
@@ -193,7 +193,7 @@ Please use ResourcePaymentOrderAsyncCreateRequestLedgerTransactionLedgerEntry in
 
 
 class ResourcePaymentOrderAsyncCreateRequestLedgerTransaction(TypedDict, total=False):
-    ledger_entries: Required[List[ResourcePaymentOrderAsyncCreateRequestLedgerTransactionLedgerEntry]]
+    ledger_entries: Required[Iterable[ResourcePaymentOrderAsyncCreateRequestLedgerTransactionLedgerEntry]]
     """An array of ledger entry objects."""
 
     description: Optional[str]
@@ -471,12 +471,12 @@ Please use ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail i
 
 
 class ResourcePaymentOrderAsyncCreateRequestReceivingAccount(TypedDict, total=False):
-    account_details: List[ResourcePaymentOrderAsyncCreateRequestReceivingAccountAccountDetail]
+    account_details: Iterable[ResourcePaymentOrderAsyncCreateRequestReceivingAccountAccountDetail]
 
     account_type: ExternalAccountType
     """Can be `checking`, `savings` or `other`."""
 
-    contact_details: List[ResourcePaymentOrderAsyncCreateRequestReceivingAccountContactDetail]
+    contact_details: Iterable[ResourcePaymentOrderAsyncCreateRequestReceivingAccountContactDetail]
 
     ledger_account: ResourcePaymentOrderAsyncCreateRequestReceivingAccountLedgerAccount
     """Specifies a ledger account object that will be created with the external
@@ -519,7 +519,7 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccount(TypedDict, total=Fa
     you can pass the processor token in this field.
     """
 
-    routing_details: List[ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail]
+    routing_details: Iterable[ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail]
 
 
 ResourcesPaymentOrderAsyncCreateRequestReceivingAccount = ResourcePaymentOrderAsyncCreateRequestReceivingAccount
@@ -631,7 +631,7 @@ class ResourcePaymentOrderAsyncCreateRequest(TypedDict, total=False):
     the payment order automatically.
     """
 
-    line_items: List[ResourcePaymentOrderAsyncCreateRequestLineItem]
+    line_items: Iterable[ResourcePaymentOrderAsyncCreateRequestLineItem]
     """An array of line items that must sum up to the amount of the payment order."""
 
     metadata: Dict[str, str]
@@ -819,7 +819,7 @@ Please use ResourceExpectedPaymentCreateRequestLedgerTransactionLedgerEntry inst
 
 
 class ResourceExpectedPaymentCreateRequestLedgerTransaction(TypedDict, total=False):
-    ledger_entries: Required[List[ResourceExpectedPaymentCreateRequestLedgerTransactionLedgerEntry]]
+    ledger_entries: Required[Iterable[ResourceExpectedPaymentCreateRequestLedgerTransactionLedgerEntry]]
     """An array of ledger entry objects."""
 
     description: Optional[str]
@@ -970,7 +970,7 @@ class ResourceExpectedPaymentCreateRequest(TypedDict, total=False):
     transaction tracks the expected payment automatically.
     """
 
-    line_items: List[ResourceExpectedPaymentCreateRequestLineItem]
+    line_items: Iterable[ResourceExpectedPaymentCreateRequestLineItem]
 
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.
@@ -984,7 +984,7 @@ class ResourceExpectedPaymentCreateRequest(TypedDict, total=False):
     reconciliation_groups: Optional[object]
     """The reconciliation groups you have for this payment."""
 
-    reconciliation_rule_variables: Optional[List[object]]
+    reconciliation_rule_variables: Optional[Iterable[object]]
     """An array of reconciliation rule variables for this payment."""
 
     remittance_information: Optional[str]
@@ -1085,7 +1085,7 @@ Please use ResourceLedgerTransactionCreateRequestLedgerEntry instead.
 
 
 class ResourceLedgerTransactionCreateRequest(TypedDict, total=False):
-    ledger_entries: Required[List[ResourceLedgerTransactionCreateRequestLedgerEntry]]
+    ledger_entries: Required[Iterable[ResourceLedgerTransactionCreateRequestLedgerEntry]]
     """An array of ledger entry objects."""
 
     description: Optional[str]
@@ -1387,12 +1387,12 @@ Please use ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail 
 
 
 class ResourcePaymentOrderUpdateRequestWithIDReceivingAccount(TypedDict, total=False):
-    account_details: List[ResourcePaymentOrderUpdateRequestWithIDReceivingAccountAccountDetail]
+    account_details: Iterable[ResourcePaymentOrderUpdateRequestWithIDReceivingAccountAccountDetail]
 
     account_type: ExternalAccountType
     """Can be `checking`, `savings` or `other`."""
 
-    contact_details: List[ResourcePaymentOrderUpdateRequestWithIDReceivingAccountContactDetail]
+    contact_details: Iterable[ResourcePaymentOrderUpdateRequestWithIDReceivingAccountContactDetail]
 
     ledger_account: ResourcePaymentOrderUpdateRequestWithIDReceivingAccountLedgerAccount
     """Specifies a ledger account object that will be created with the external
@@ -1435,7 +1435,7 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccount(TypedDict, total=F
     you can pass the processor token in this field.
     """
 
-    routing_details: List[ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail]
+    routing_details: Iterable[ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail]
 
 
 ResourcesPaymentOrderUpdateRequestWithIDReceivingAccount = ResourcePaymentOrderUpdateRequestWithIDReceivingAccount
@@ -1526,7 +1526,7 @@ class ResourcePaymentOrderUpdateRequestWithID(TypedDict, total=False):
     currency matches the originating account currency.
     """
 
-    line_items: List[ResourcePaymentOrderUpdateRequestWithIDLineItem]
+    line_items: Iterable[ResourcePaymentOrderUpdateRequestWithIDLineItem]
     """An array of line items that must sum up to the amount of the payment order."""
 
     metadata: Dict[str, str]
@@ -1735,7 +1735,7 @@ class ResourceExpectedPaymentUpdateRequestWithID(TypedDict, total=False):
     reconciliation_groups: Optional[object]
     """The reconciliation groups you have for this payment."""
 
-    reconciliation_rule_variables: Optional[List[object]]
+    reconciliation_rule_variables: Optional[Iterable[object]]
     """An array of reconciliation rule variables for this payment."""
 
     remittance_information: Optional[str]
@@ -1847,7 +1847,7 @@ class ResourceLedgerTransactionUpdateRequestWithID(TypedDict, total=False):
     reporting purposes.
     """
 
-    ledger_entries: List[ResourceLedgerTransactionUpdateRequestWithIDLedgerEntry]
+    ledger_entries: Iterable[ResourceLedgerTransactionUpdateRequestWithIDLedgerEntry]
     """An array of ledger entry objects."""
 
     metadata: Dict[str, str]

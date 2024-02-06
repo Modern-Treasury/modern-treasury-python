@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -37,7 +37,7 @@ class BulkRequests(SyncAPIResource):
         *,
         action_type: Literal["create", "update"],
         resource_type: Literal["payment_order", "ledger_transaction", "expected_payment"],
-        resources: List[bulk_request_create_params.Resource],
+        resources: Iterable[bulk_request_create_params.Resource],
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -201,7 +201,7 @@ class AsyncBulkRequests(AsyncAPIResource):
         *,
         action_type: Literal["create", "update"],
         resource_type: Literal["payment_order", "ledger_transaction", "expected_payment"],
-        resources: List[bulk_request_create_params.Resource],
+        resources: Iterable[bulk_request_create_params.Resource],
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

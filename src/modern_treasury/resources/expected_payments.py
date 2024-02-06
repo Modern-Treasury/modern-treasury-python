@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Iterable, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
@@ -54,11 +54,11 @@ class ExpectedPayments(SyncAPIResource):
         description: Optional[str] | NotGiven = NOT_GIVEN,
         ledger_transaction: expected_payment_create_params.LedgerTransaction | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
-        line_items: List[expected_payment_create_params.LineItem] | NotGiven = NOT_GIVEN,
+        line_items: Iterable[expected_payment_create_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         reconciliation_filters: Optional[object] | NotGiven = NOT_GIVEN,
         reconciliation_groups: Optional[object] | NotGiven = NOT_GIVEN,
-        reconciliation_rule_variables: Optional[List[object]] | NotGiven = NOT_GIVEN,
+        reconciliation_rule_variables: Optional[Iterable[object]] | NotGiven = NOT_GIVEN,
         remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
         type: Optional[ExpectedPaymentType] | NotGiven = NOT_GIVEN,
@@ -221,7 +221,7 @@ class ExpectedPayments(SyncAPIResource):
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         reconciliation_filters: Optional[object] | NotGiven = NOT_GIVEN,
         reconciliation_groups: Optional[object] | NotGiven = NOT_GIVEN,
-        reconciliation_rule_variables: Optional[List[object]] | NotGiven = NOT_GIVEN,
+        reconciliation_rule_variables: Optional[Iterable[object]] | NotGiven = NOT_GIVEN,
         remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
         type: Optional[ExpectedPaymentType] | NotGiven = NOT_GIVEN,
@@ -498,11 +498,11 @@ class AsyncExpectedPayments(AsyncAPIResource):
         description: Optional[str] | NotGiven = NOT_GIVEN,
         ledger_transaction: expected_payment_create_params.LedgerTransaction | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
-        line_items: List[expected_payment_create_params.LineItem] | NotGiven = NOT_GIVEN,
+        line_items: Iterable[expected_payment_create_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         reconciliation_filters: Optional[object] | NotGiven = NOT_GIVEN,
         reconciliation_groups: Optional[object] | NotGiven = NOT_GIVEN,
-        reconciliation_rule_variables: Optional[List[object]] | NotGiven = NOT_GIVEN,
+        reconciliation_rule_variables: Optional[Iterable[object]] | NotGiven = NOT_GIVEN,
         remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
         type: Optional[ExpectedPaymentType] | NotGiven = NOT_GIVEN,
@@ -665,7 +665,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         reconciliation_filters: Optional[object] | NotGiven = NOT_GIVEN,
         reconciliation_groups: Optional[object] | NotGiven = NOT_GIVEN,
-        reconciliation_rule_variables: Optional[List[object]] | NotGiven = NOT_GIVEN,
+        reconciliation_rule_variables: Optional[Iterable[object]] | NotGiven = NOT_GIVEN,
         remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
         type: Optional[ExpectedPaymentType] | NotGiven = NOT_GIVEN,

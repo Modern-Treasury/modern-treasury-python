@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
+from typing import List, Union, Iterable, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
@@ -29,7 +29,7 @@ class InvoiceCreateParams(TypedDict, total=False):
     originating_account_id: Required[str]
     """The ID of the internal account the invoice should be paid to."""
 
-    contact_details: List[ContactDetail]
+    contact_details: Iterable[ContactDetail]
     """The invoicer's contact details displayed at the top of the invoice."""
 
     counterparty_billing_address: Optional[CounterpartyBillingAddress]

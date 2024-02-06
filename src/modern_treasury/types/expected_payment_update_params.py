@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Iterable, Optional
 from datetime import date
 from typing_extensions import Annotated, TypedDict
 
@@ -64,7 +64,7 @@ class ExpectedPaymentUpdateParams(TypedDict, total=False):
     reconciliation_groups: Optional[object]
     """The reconciliation groups you have for this payment."""
 
-    reconciliation_rule_variables: Optional[List[object]]
+    reconciliation_rule_variables: Optional[Iterable[object]]
     """An array of reconciliation rule variables for this payment."""
 
     remittance_information: Optional[str]

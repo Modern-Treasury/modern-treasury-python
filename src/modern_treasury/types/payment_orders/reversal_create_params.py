@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Iterable, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
@@ -116,7 +116,7 @@ Please use LedgerTransactionLedgerEntry instead.
 
 
 class LedgerTransaction(TypedDict, total=False):
-    ledger_entries: Required[List[LedgerTransactionLedgerEntry]]
+    ledger_entries: Required[Iterable[LedgerTransactionLedgerEntry]]
     """An array of ledger entry objects."""
 
     description: Optional[str]

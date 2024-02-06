@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
+from typing import Union, Iterable, Optional
 from datetime import date
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
@@ -30,7 +30,7 @@ class BalanceReportCreateParams(TypedDict, total=False):
     One of `intraday`, `previous_day`, `real_time`, or `other`.
     """
 
-    balances: Required[List[Balance]]
+    balances: Required[Iterable[Balance]]
     """An array of `Balance` objects."""
 
 
