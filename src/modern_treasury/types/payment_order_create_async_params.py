@@ -167,9 +167,12 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
     """
 
     process_after: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
-    """If present, the time until which the payment may not be processed.
+    """If present, Modern Treasury will not process the payment until after this time.
 
-    Format is ISO8601 timestamp.
+    If `process_after` is past the cutoff for `effective_date`, `process_after` will
+    take precedence and `effective_date` will automatically update to reflect the
+    earliest possible sending date after `process_after`. Format is ISO8601
+    timestamp.
     """
 
     purpose: Optional[str]
@@ -476,7 +479,7 @@ class ReceivingAccountLedgerAccount(TypedDict, total=False):
     populated here, otherwise null.
     """
 
-    ledgerable_type: Literal["external_account", "internal_account"]
+    ledgerable_type: Literal["external_account", "internal_account", "virtual_account"]
     """
     If the ledger account links to another object in Modern Treasury, the type will
     be populated here, otherwise null. The value is one of internal_account or

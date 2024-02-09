@@ -51,7 +51,7 @@ class LedgerAccounts(SyncAPIResource):
         description: Optional[str] | NotGiven = NOT_GIVEN,
         ledger_account_category_ids: List[str] | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
-        ledgerable_type: Literal["external_account", "internal_account"] | NotGiven = NOT_GIVEN,
+        ledgerable_type: Literal["external_account", "internal_account", "virtual_account"] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -390,7 +390,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         description: Optional[str] | NotGiven = NOT_GIVEN,
         ledger_account_category_ids: List[str] | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
-        ledgerable_type: Literal["external_account", "internal_account"] | NotGiven = NOT_GIVEN,
+        ledgerable_type: Literal["external_account", "internal_account", "virtual_account"] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
