@@ -225,6 +225,14 @@ from .ledger_account_payouts import (
     LedgerAccountPayoutsWithStreamingResponse,
     AsyncLedgerAccountPayoutsWithStreamingResponse,
 )
+from .foreign_exchange_quotes import (
+    ForeignExchangeQuotes,
+    AsyncForeignExchangeQuotes,
+    ForeignExchangeQuotesWithRawResponse,
+    AsyncForeignExchangeQuotesWithRawResponse,
+    ForeignExchangeQuotesWithStreamingResponse,
+    AsyncForeignExchangeQuotesWithStreamingResponse,
+)
 from .account_collection_flows import (
     AccountCollectionFlows,
     AsyncAccountCollectionFlows,
@@ -481,4 +489,10 @@ __all__ = [
     "AsyncLedgerAccountSettlementsWithRawResponse",
     "LedgerAccountSettlementsWithStreamingResponse",
     "AsyncLedgerAccountSettlementsWithStreamingResponse",
+    "ForeignExchangeQuotes",
+    "AsyncForeignExchangeQuotes",
+    "ForeignExchangeQuotesWithRawResponse",
+    "AsyncForeignExchangeQuotesWithRawResponse",
+    "ForeignExchangeQuotesWithStreamingResponse",
+    "AsyncForeignExchangeQuotesWithStreamingResponse",
 ]

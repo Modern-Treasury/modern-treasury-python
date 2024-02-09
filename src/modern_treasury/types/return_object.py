@@ -127,6 +127,16 @@ class ReturnObject(BaseModel):
             "911",
             "912",
             "914",
+            "C01",
+            "C02",
+            "C03",
+            "C05",
+            "C06",
+            "C07",
+            "C08",
+            "C09",
+            "C13",
+            "C14",
             "R01",
             "R02",
             "R03",
@@ -229,7 +239,19 @@ class ReturnObject(BaseModel):
     """The ID of the relevant Transaction Line Item or `null`."""
 
     type: Literal[
-        "ach", "ach_noc", "au_becs", "bacs", "book", "check", "eft", "interac", "manual", "paper_item", "sepa", "wire"
+        "ach",
+        "ach_noc",
+        "au_becs",
+        "bacs",
+        "book",
+        "check",
+        "cross_border",
+        "eft",
+        "interac",
+        "manual",
+        "paper_item",
+        "sepa",
+        "wire",
     ]
     """The type of return.
 

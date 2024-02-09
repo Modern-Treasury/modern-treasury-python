@@ -51,7 +51,9 @@ class InternalAccount(BaseModel):
     account_details: List[AccountDetail]
     """An array of account detail objects."""
 
-    account_type: Optional[Literal["cash", "checking", "loan", "non_resident", "other", "overdraft", "savings"]] = None
+    account_type: Optional[
+        Literal["cash", "checking", "general_ledger", "loan", "non_resident", "other", "overdraft", "savings"]
+    ] = None
     """Can be checking, savings or other."""
 
     connection: Connection

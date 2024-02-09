@@ -601,3 +601,17 @@ Methods:
 - <code title="get /api/ledger_account_settlements/{id}">client.ledger_account_settlements.<a href="./src/modern_treasury/resources/ledger_account_settlements.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/ledger_account_settlement.py">LedgerAccountSettlement</a></code>
 - <code title="patch /api/ledger_account_settlements/{id}">client.ledger_account_settlements.<a href="./src/modern_treasury/resources/ledger_account_settlements.py">update</a>(id, \*\*<a href="src/modern_treasury/types/ledger_account_settlement_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_settlement.py">LedgerAccountSettlement</a></code>
 - <code title="get /api/ledger_account_settlements">client.ledger_account_settlements.<a href="./src/modern_treasury/resources/ledger_account_settlements.py">list</a>(\*\*<a href="src/modern_treasury/types/ledger_account_settlement_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_settlement.py">SyncPage[LedgerAccountSettlement]</a></code>
+
+# ForeignExchangeQuotes
+
+Types:
+
+```python
+from modern_treasury.types import ForeignExchangeQuote
+```
+
+Methods:
+
+- <code title="post /api/foreign_exchange_quotes">client.foreign_exchange_quotes.<a href="./src/modern_treasury/resources/foreign_exchange_quotes.py">create</a>(\*\*<a href="src/modern_treasury/types/foreign_exchange_quote_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/foreign_exchange_quote.py">ForeignExchangeQuote</a></code>
+- <code title="get /api/foreign_exchange_quotes/{id}">client.foreign_exchange_quotes.<a href="./src/modern_treasury/resources/foreign_exchange_quotes.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/foreign_exchange_quote.py">ForeignExchangeQuote</a></code>
+- <code title="get /api/foreign_exchange_quotes">client.foreign_exchange_quotes.<a href="./src/modern_treasury/resources/foreign_exchange_quotes.py">list</a>(\*\*<a href="src/modern_treasury/types/foreign_exchange_quote_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/foreign_exchange_quote.py">SyncPage[ForeignExchangeQuote]</a></code>
