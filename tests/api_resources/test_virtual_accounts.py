@@ -51,6 +51,26 @@ class TestVirtualAccounts:
             credit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             debit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             description="string",
+            ledger_account={
+                "name": "string",
+                "description": "string",
+                "normal_balance": "credit",
+                "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "currency": "string",
+                "currency_exponent": 0,
+                "ledger_account_category_ids": [
+                    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                ],
+                "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "ledgerable_type": "external_account",
+                "metadata": {
+                    "key": "value",
+                    "foo": "bar",
+                    "modern": "treasury",
+                },
+            },
             metadata={"foo": "string"},
             routing_details=[
                 {
@@ -148,6 +168,7 @@ class TestVirtualAccounts:
         virtual_account = client.virtual_accounts.update(
             "string",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
             name="string",
         )
@@ -293,6 +314,26 @@ class TestAsyncVirtualAccounts:
             credit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             debit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             description="string",
+            ledger_account={
+                "name": "string",
+                "description": "string",
+                "normal_balance": "credit",
+                "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "currency": "string",
+                "currency_exponent": 0,
+                "ledger_account_category_ids": [
+                    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                ],
+                "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "ledgerable_type": "external_account",
+                "metadata": {
+                    "key": "value",
+                    "foo": "bar",
+                    "modern": "treasury",
+                },
+            },
             metadata={"foo": "string"},
             routing_details=[
                 {
@@ -390,6 +431,7 @@ class TestAsyncVirtualAccounts:
         virtual_account = await async_client.virtual_accounts.update(
             "string",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
             name="string",
         )

@@ -92,6 +92,7 @@ class ModernTreasury(SyncAPIClient):
     bulk_requests: resources.BulkRequests
     bulk_results: resources.BulkResults
     ledger_account_settlements: resources.LedgerAccountSettlements
+    foreign_exchange_quotes: resources.ForeignExchangeQuotes
     with_raw_response: ModernTreasuryWithRawResponse
     with_streaming_response: ModernTreasuryWithStreamedResponse
 
@@ -212,6 +213,7 @@ class ModernTreasury(SyncAPIClient):
         self.bulk_requests = resources.BulkRequests(self)
         self.bulk_results = resources.BulkResults(self)
         self.ledger_account_settlements = resources.LedgerAccountSettlements(self)
+        self.foreign_exchange_quotes = resources.ForeignExchangeQuotes(self)
         self.with_raw_response = ModernTreasuryWithRawResponse(self)
         self.with_streaming_response = ModernTreasuryWithStreamedResponse(self)
 
@@ -402,6 +404,7 @@ class AsyncModernTreasury(AsyncAPIClient):
     bulk_requests: resources.AsyncBulkRequests
     bulk_results: resources.AsyncBulkResults
     ledger_account_settlements: resources.AsyncLedgerAccountSettlements
+    foreign_exchange_quotes: resources.AsyncForeignExchangeQuotes
     with_raw_response: AsyncModernTreasuryWithRawResponse
     with_streaming_response: AsyncModernTreasuryWithStreamedResponse
 
@@ -522,6 +525,7 @@ class AsyncModernTreasury(AsyncAPIClient):
         self.bulk_requests = resources.AsyncBulkRequests(self)
         self.bulk_results = resources.AsyncBulkResults(self)
         self.ledger_account_settlements = resources.AsyncLedgerAccountSettlements(self)
+        self.foreign_exchange_quotes = resources.AsyncForeignExchangeQuotes(self)
         self.with_raw_response = AsyncModernTreasuryWithRawResponse(self)
         self.with_streaming_response = AsyncModernTreasuryWithStreamedResponse(self)
 
@@ -720,6 +724,7 @@ class ModernTreasuryWithRawResponse:
         self.ledger_account_settlements = resources.LedgerAccountSettlementsWithRawResponse(
             client.ledger_account_settlements
         )
+        self.foreign_exchange_quotes = resources.ForeignExchangeQuotesWithRawResponse(client.foreign_exchange_quotes)
 
         self.ping = _legacy_response.to_raw_response_wrapper(
             client.ping,
@@ -774,6 +779,9 @@ class AsyncModernTreasuryWithRawResponse:
         self.ledger_account_settlements = resources.AsyncLedgerAccountSettlementsWithRawResponse(
             client.ledger_account_settlements
         )
+        self.foreign_exchange_quotes = resources.AsyncForeignExchangeQuotesWithRawResponse(
+            client.foreign_exchange_quotes
+        )
 
         self.ping = _legacy_response.async_to_raw_response_wrapper(
             client.ping,
@@ -827,6 +835,9 @@ class ModernTreasuryWithStreamedResponse:
         self.bulk_results = resources.BulkResultsWithStreamingResponse(client.bulk_results)
         self.ledger_account_settlements = resources.LedgerAccountSettlementsWithStreamingResponse(
             client.ledger_account_settlements
+        )
+        self.foreign_exchange_quotes = resources.ForeignExchangeQuotesWithStreamingResponse(
+            client.foreign_exchange_quotes
         )
 
         self.ping = to_streamed_response_wrapper(
@@ -885,6 +896,9 @@ class AsyncModernTreasuryWithStreamedResponse:
         self.bulk_results = resources.AsyncBulkResultsWithStreamingResponse(client.bulk_results)
         self.ledger_account_settlements = resources.AsyncLedgerAccountSettlementsWithStreamingResponse(
             client.ledger_account_settlements
+        )
+        self.foreign_exchange_quotes = resources.AsyncForeignExchangeQuotesWithStreamingResponse(
+            client.foreign_exchange_quotes
         )
 
         self.ping = async_to_streamed_response_wrapper(

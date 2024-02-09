@@ -97,6 +97,7 @@ class Transaction(BaseModel):
         "sknbi",
         "wire",
         "zengin",
+        "other",
     ]
     """The type of the transaction.
 

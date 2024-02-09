@@ -46,6 +46,7 @@ class VirtualAccounts(SyncAPIResource):
         credit_ledger_account_id: str | NotGiven = NOT_GIVEN,
         debit_ledger_account_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
+        ledger_account: virtual_account_create_params.LedgerAccount | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         routing_details: Iterable[virtual_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -78,6 +79,10 @@ class VirtualAccounts(SyncAPIResource):
 
           description: An optional description for internal use.
 
+          ledger_account: Specifies a ledger account object that will be created with the virtual account.
+              The resulting ledger account is linked to the virtual account for auto-ledgering
+              IPDs.
+
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
@@ -104,6 +109,7 @@ class VirtualAccounts(SyncAPIResource):
                     "credit_ledger_account_id": credit_ledger_account_id,
                     "debit_ledger_account_id": debit_ledger_account_id,
                     "description": description,
+                    "ledger_account": ledger_account,
                     "metadata": metadata,
                     "routing_details": routing_details,
                 },
@@ -157,6 +163,7 @@ class VirtualAccounts(SyncAPIResource):
         id: str,
         *,
         counterparty_id: str | NotGiven = NOT_GIVEN,
+        ledger_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -171,6 +178,8 @@ class VirtualAccounts(SyncAPIResource):
         update virtual_account
 
         Args:
+          ledger_account_id: The ledger account that you'd like to link to the virtual account.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -188,6 +197,7 @@ class VirtualAccounts(SyncAPIResource):
             body=maybe_transform(
                 {
                     "counterparty_id": counterparty_id,
+                    "ledger_account_id": ledger_account_id,
                     "metadata": metadata,
                     "name": name,
                 },
@@ -316,6 +326,7 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         credit_ledger_account_id: str | NotGiven = NOT_GIVEN,
         debit_ledger_account_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
+        ledger_account: virtual_account_create_params.LedgerAccount | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         routing_details: Iterable[virtual_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -348,6 +359,10 @@ class AsyncVirtualAccounts(AsyncAPIResource):
 
           description: An optional description for internal use.
 
+          ledger_account: Specifies a ledger account object that will be created with the virtual account.
+              The resulting ledger account is linked to the virtual account for auto-ledgering
+              IPDs.
+
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
@@ -374,6 +389,7 @@ class AsyncVirtualAccounts(AsyncAPIResource):
                     "credit_ledger_account_id": credit_ledger_account_id,
                     "debit_ledger_account_id": debit_ledger_account_id,
                     "description": description,
+                    "ledger_account": ledger_account,
                     "metadata": metadata,
                     "routing_details": routing_details,
                 },
@@ -427,6 +443,7 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         id: str,
         *,
         counterparty_id: str | NotGiven = NOT_GIVEN,
+        ledger_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -441,6 +458,8 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         update virtual_account
 
         Args:
+          ledger_account_id: The ledger account that you'd like to link to the virtual account.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -458,6 +477,7 @@ class AsyncVirtualAccounts(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "counterparty_id": counterparty_id,
+                    "ledger_account_id": ledger_account_id,
                     "metadata": metadata,
                     "name": name,
                 },

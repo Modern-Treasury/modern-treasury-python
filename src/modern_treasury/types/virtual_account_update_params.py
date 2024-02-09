@@ -11,6 +11,9 @@ __all__ = ["VirtualAccountUpdateParams"]
 class VirtualAccountUpdateParams(TypedDict, total=False):
     counterparty_id: str
 
+    ledger_account_id: str
+    """The ledger account that you'd like to link to the virtual account."""
+
     metadata: Dict[str, str]
 
     name: Optional[str]

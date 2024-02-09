@@ -268,9 +268,12 @@ class PaymentOrder(BaseModel):
     """
 
     process_after: Optional[datetime] = None
-    """If present, the time until which the payment may not be processed.
+    """If present, Modern Treasury will not process the payment until after this time.
 
-    Format is ISO8601 timestamp.
+    If `process_after` is past the cutoff for `effective_date`, `process_after` will
+    take precedence and `effective_date` will automatically update to reflect the
+    earliest possible sending date after `process_after`. Format is ISO8601
+    timestamp.
     """
 
     purpose: Optional[str] = None
