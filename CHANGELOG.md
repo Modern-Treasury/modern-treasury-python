@@ -1,5 +1,33 @@
 # Changelog
 
+## 1.27.0 (2024-02-13)
+
+Full Changelog: [v1.26.0...v1.27.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.26.0...v1.27.0)
+
+### Features
+
+* **api:** updates ([#369](https://github.com/Modern-Treasury/modern-treasury-python/issues/369)) ([0a95ac5](https://github.com/Modern-Treasury/modern-treasury-python/commit/0a95ac5c75d2478d84ce3643c690448155d9b1ef))
+* **api:** updates parameters, error codes ([#362](https://github.com/Modern-Treasury/modern-treasury-python/issues/362)) ([045d575](https://github.com/Modern-Treasury/modern-treasury-python/commit/045d575759730f0c3f774575fa6120eb907f5a80))
+
+
+### Bug Fixes
+
+* prevent crash when platform.architecture() is not allowed ([#364](https://github.com/Modern-Treasury/modern-treasury-python/issues/364)) ([268998e](https://github.com/Modern-Treasury/modern-treasury-python/commit/268998e42ac22e4fe58b5644abe42e48ba583e1c))
+* **types:** loosen most List params types to Iterable ([#367](https://github.com/Modern-Treasury/modern-treasury-python/issues/367)) ([21b537b](https://github.com/Modern-Treasury/modern-treasury-python/commit/21b537b98fc22e5cbb17eab7962fe2c843e3d53d))
+
+
+### Chores
+
+* **interal:** make link to api.md relative ([#363](https://github.com/Modern-Treasury/modern-treasury-python/issues/363)) ([2aabaeb](https://github.com/Modern-Treasury/modern-treasury-python/commit/2aabaeb24bc0cdd63916bb6145fc6b382fb71732))
+* **internal:** add lint command ([#366](https://github.com/Modern-Treasury/modern-treasury-python/issues/366)) ([9a1cdab](https://github.com/Modern-Treasury/modern-treasury-python/commit/9a1cdab477de7ef6b59f032c49fb7e3e9488d6d3))
+* **internal:** support pre-release versioning ([#360](https://github.com/Modern-Treasury/modern-treasury-python/issues/360)) ([4d5f30f](https://github.com/Modern-Treasury/modern-treasury-python/commit/4d5f30f99381900a3af4844320524aa462aa2821))
+* **internal:** support serialising iterable types ([#365](https://github.com/Modern-Treasury/modern-treasury-python/issues/365)) ([a0a776a](https://github.com/Modern-Treasury/modern-treasury-python/commit/a0a776af45dadc42eaa2c41cdab8e9561aa32b99))
+
+
+### Documentation
+
+* add CONTRIBUTING.md ([#368](https://github.com/Modern-Treasury/modern-treasury-python/issues/368)) ([52070bd](https://github.com/Modern-Treasury/modern-treasury-python/commit/52070bd755d88e30586f821fdcaf31b9ac1dce4e))
+
 ## 1.26.0 (2024-01-30)
 
 Full Changelog: [v1.25.0...v1.26.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.25.0...v1.26.0)
