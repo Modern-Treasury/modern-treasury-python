@@ -1,5 +1,96 @@
 # Changelog
 
+## 0.0.1 (2024-02-15)
+
+Full Changelog: [...abc-v0.0.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/...abc-v0.0.1)
+
+### ⚠ BREAKING CHANGES
+
+* **types:** rename account connection flow to account collection flow ([#150](https://github.com/Modern-Treasury/modern-treasury-python/issues/150))
+* **api:** update parameters for virtual account create request ([#148](https://github.com/Modern-Treasury/modern-treasury-python/issues/148))
+
+### Features
+
+* add `None` default value to nullable response properties ([#334](https://github.com/Modern-Treasury/modern-treasury-python/issues/334)) ([d08edee](https://github.com/Modern-Treasury/modern-treasury-python/commit/d08edeed34870a2e225dcd6450a7139ec856c58a))
+* add support for Pydantic v2 ([#181](https://github.com/Modern-Treasury/modern-treasury-python/issues/181)) ([85709bb](https://github.com/Modern-Treasury/modern-treasury-python/commit/85709bbf02d619c3f3ee77164b3519fbc2caf14e))
+* allow a default timeout to be set for clients ([#176](https://github.com/Modern-Treasury/modern-treasury-python/issues/176)) ([1798742](https://github.com/Modern-Treasury/modern-treasury-python/commit/17987428b3be710b854e96967e3ebdbf42afa10e))
+* **api:** add `ledger_transactions` to expected payment request ([#337](https://github.com/Modern-Treasury/modern-treasury-python/issues/337)) ([eeeef79](https://github.com/Modern-Treasury/modern-treasury-python/commit/eeeef7967b4f6688a0bf38b7228614cf3c9f1517))
+* **api:** add `metadata` in several places it was missing; add `description` ([#163](https://github.com/Modern-Treasury/modern-treasury-python/issues/163)) ([8f5f131](https://github.com/Modern-Treasury/modern-treasury-python/commit/8f5f1314bd321742d971321cda1f01c6d37ff6b0))
+* **api:** add create and delete operations for internal accounts balance reports ([#340](https://github.com/Modern-Treasury/modern-treasury-python/issues/340)) ([7444dc0](https://github.com/Modern-Treasury/modern-treasury-python/commit/7444dc02d46456cf58c7cccf94516caf2ef14aef))
+* **api:** add dk_interbank_clearing_code and dk_nets enum members ([#276](https://github.com/Modern-Treasury/modern-treasury-python/issues/276)) ([8de6c57](https://github.com/Modern-Treasury/modern-treasury-python/commit/8de6c57f24fa2c259002abca800dfb4cee39fe7f))
+* **api:** remove reversed and reversing ledger account status type ([#322](https://github.com/Modern-Treasury/modern-treasury-python/issues/322)) ([9c86ec7](https://github.com/Modern-Treasury/modern-treasury-python/commit/9c86ec7011086d639a2e91c28b85afe51d2e8259))
+* **api:** support multiple `id`s in `ledger` `retrieve`/`list` endpoints ([#174](https://github.com/Modern-Treasury/modern-treasury-python/issues/174)) ([a6939c6](https://github.com/Modern-Treasury/modern-treasury-python/commit/a6939c604b57cc90b5308515e6cf4443f2411979))
+* **api:** update parameters for virtual account create request ([#148](https://github.com/Modern-Treasury/modern-treasury-python/issues/148)) ([3425e69](https://github.com/Modern-Treasury/modern-treasury-python/commit/3425e690f5bb0f91fea1ff14439e3552e2f8f55c))
+* **api:** updates ([#152](https://github.com/Modern-Treasury/modern-treasury-python/issues/152)) ([742738b](https://github.com/Modern-Treasury/modern-treasury-python/commit/742738b5846b0b8cb1d3b6fb25cbaa0148e03697))
+* **api:** updates ([#155](https://github.com/Modern-Treasury/modern-treasury-python/issues/155)) ([f25dc19](https://github.com/Modern-Treasury/modern-treasury-python/commit/f25dc19a8355d4dd76d46a3d4fab05ed511691ba))
+* **api:** updates ([#166](https://github.com/Modern-Treasury/modern-treasury-python/issues/166)) ([8d5c102](https://github.com/Modern-Treasury/modern-treasury-python/commit/8d5c102ad3d3e203302c8a19e2ddc56a472693c0))
+* **api:** updates ([#209](https://github.com/Modern-Treasury/modern-treasury-python/issues/209)) ([dc10a7c](https://github.com/Modern-Treasury/modern-treasury-python/commit/dc10a7c612fdb2a6a3f018986b049d262dbd3cae))
+* **api:** updates ([#245](https://github.com/Modern-Treasury/modern-treasury-python/issues/245)) ([c5ed7de](https://github.com/Modern-Treasury/modern-treasury-python/commit/c5ed7ded54f64905cd5174d1958da102e653c18c))
+* **api:** updates ([#253](https://github.com/Modern-Treasury/modern-treasury-python/issues/253)) ([a17dd72](https://github.com/Modern-Treasury/modern-treasury-python/commit/a17dd729334e2817ea0bd7218d53b2f1cc2665e3))
+* **api:** updates ([#272](https://github.com/Modern-Treasury/modern-treasury-python/issues/272)) ([79310cd](https://github.com/Modern-Treasury/modern-treasury-python/commit/79310cd35aaaadad80999fcc3281644c322129ed))
+* **api:** updates ([#290](https://github.com/Modern-Treasury/modern-treasury-python/issues/290)) ([285ac90](https://github.com/Modern-Treasury/modern-treasury-python/commit/285ac902dad59ad2513732e2d0a9e0e14823d3d0))
+* **api:** updates ([#315](https://github.com/Modern-Treasury/modern-treasury-python/issues/315)) ([f80056b](https://github.com/Modern-Treasury/modern-treasury-python/commit/f80056bedbe61ac320e76004abc84b23e59e75cb))
+* **api:** updates ([#369](https://github.com/Modern-Treasury/modern-treasury-python/issues/369)) ([507a091](https://github.com/Modern-Treasury/modern-treasury-python/commit/507a0918c11685acc23463c479def23cfc4ab71e))
+* **api:** updates parameters, error codes ([#362](https://github.com/Modern-Treasury/modern-treasury-python/issues/362)) ([6d9b4e8](https://github.com/Modern-Treasury/modern-treasury-python/commit/6d9b4e85a093d615b83f9655c19d4faf77696493))
+* **client:** add client close handlers ([#157](https://github.com/Modern-Treasury/modern-treasury-python/issues/157)) ([c0af2dd](https://github.com/Modern-Treasury/modern-treasury-python/commit/c0af2ddd92823af2c24fe1af6eeac559e4bf9ed4))
+* **client:** add forwards-compatible pydantic methods ([#219](https://github.com/Modern-Treasury/modern-treasury-python/issues/219)) ([ad8e3f0](https://github.com/Modern-Treasury/modern-treasury-python/commit/ad8e3f0651762b5bbfd27944420b26da1825c198))
+* **client:** add logging setup ([#224](https://github.com/Modern-Treasury/modern-treasury-python/issues/224)) ([23445af](https://github.com/Modern-Treasury/modern-treasury-python/commit/23445af75f3b334f001937e9c658c7760d3bdb00))
+* **client:** add support for passing in a httpx client ([#220](https://github.com/Modern-Treasury/modern-treasury-python/issues/220)) ([83776a0](https://github.com/Modern-Treasury/modern-treasury-python/commit/83776a0522314a3cf32a5e7558d3d50be1a85d50))
+* **client:** add support for streaming raw responses ([#342](https://github.com/Modern-Treasury/modern-treasury-python/issues/342)) ([26808a1](https://github.com/Modern-Treasury/modern-treasury-python/commit/26808a1dcea311c6d2884209caf4891e5a2aadef))
+* **client:** adjust retry behavior to be exponential backoff ([#247](https://github.com/Modern-Treasury/modern-treasury-python/issues/247)) ([607eeae](https://github.com/Modern-Treasury/modern-treasury-python/commit/607eeae311dec3a3b17f78e43ae0f5cae6b8ad22))
+* **client:** allow binary returns ([#261](https://github.com/Modern-Treasury/modern-treasury-python/issues/261)) ([fe224db](https://github.com/Modern-Treasury/modern-treasury-python/commit/fe224dbdc09f49c3e8da34fab631ded04929d587))
+* **client:** enable follow redirects by default ([#355](https://github.com/Modern-Treasury/modern-treasury-python/issues/355)) ([0eae34b](https://github.com/Modern-Treasury/modern-treasury-python/commit/0eae34b7ab74cfb2d1deeb51b79ba724ad6409c5))
+* **client:** handle retry-after header with a date format ([#216](https://github.com/Modern-Treasury/modern-treasury-python/issues/216)) ([b307141](https://github.com/Modern-Treasury/modern-treasury-python/commit/b3071410c0e63c23504f061009a91020e7fed295))
+* **client:** improve file upload types ([#246](https://github.com/Modern-Treasury/modern-treasury-python/issues/246)) ([5d7d587](https://github.com/Modern-Treasury/modern-treasury-python/commit/5d7d587294606324722ea121bad27644cf9254de))
+* **client:** support accessing raw response objects ([#256](https://github.com/Modern-Treasury/modern-treasury-python/issues/256)) ([52d0085](https://github.com/Modern-Treasury/modern-treasury-python/commit/52d0085bf8c977c133c26e8df16e4e92e79ea009))
+* **client:** support parsing custom response types ([#358](https://github.com/Modern-Treasury/modern-treasury-python/issues/358)) ([10c6418](https://github.com/Modern-Treasury/modern-treasury-python/commit/10c64186ca39203bc2f7578e74130ecf3803bd52))
+* **client:** support passing BaseModels to request params at runtime ([#263](https://github.com/Modern-Treasury/modern-treasury-python/issues/263)) ([1e814f1](https://github.com/Modern-Treasury/modern-treasury-python/commit/1e814f129566f2eb3eb641af9e75203350b623b4))
+* **client:** support passing chunk size for binary responses ([#275](https://github.com/Modern-Treasury/modern-treasury-python/issues/275)) ([4328ced](https://github.com/Modern-Treasury/modern-treasury-python/commit/4328cede3ab63df1a80429d85175d3a54eddc64c))
+* **client:** support passing httpx.Timeout to method timeout argument ([#269](https://github.com/Modern-Treasury/modern-treasury-python/issues/269)) ([b6c6a1a](https://github.com/Modern-Treasury/modern-treasury-python/commit/b6c6a1a6b99ace01da93061c39fa0e50f623e35f))
+* **client:** support passing httpx.URL instances to base_url ([#237](https://github.com/Modern-Treasury/modern-treasury-python/issues/237)) ([6db02dc](https://github.com/Modern-Treasury/modern-treasury-python/commit/6db02dcfb59425d8394a54523dde6d8ccaca1715))
+* **client:** support reading the base url from an env variable ([#285](https://github.com/Modern-Treasury/modern-treasury-python/issues/285)) ([8544e5a](https://github.com/Modern-Treasury/modern-treasury-python/commit/8544e5aa97f93017560e6f042a476ff11f1245dd))
+* fixes tests where an array has to have unique enum values ([#196](https://github.com/Modern-Treasury/modern-treasury-python/issues/196)) ([e9ca16b](https://github.com/Modern-Treasury/modern-treasury-python/commit/e9ca16b47928e7273a74a9556bb485751419e805))
+* **github:** include a devcontainer setup ([#260](https://github.com/Modern-Treasury/modern-treasury-python/issues/260)) ([f13f7df](https://github.com/Modern-Treasury/modern-treasury-python/commit/f13f7df6eee8ecc6805e0ff2c2f26ba419706a66))
+* make webhook headers case insensitive ([#227](https://github.com/Modern-Treasury/modern-treasury-python/issues/227)) ([2f41179](https://github.com/Modern-Treasury/modern-treasury-python/commit/2f41179f94538545a0bef0ee8f5d4485637d5108))
+* **package:** add classifiers ([#259](https://github.com/Modern-Treasury/modern-treasury-python/issues/259)) ([ecbb567](https://github.com/Modern-Treasury/modern-treasury-python/commit/ecbb5674faf3a6351f53f8dda620a6ad11ba71bc))
+* **package:** export a root error type ([#212](https://github.com/Modern-Treasury/modern-treasury-python/issues/212)) ([4be433d](https://github.com/Modern-Treasury/modern-treasury-python/commit/4be433d7139ccb538e74ac1bb9fdad4c2239a32f))
+* **test:** unskip file uploads tests ([#162](https://github.com/Modern-Treasury/modern-treasury-python/issues/162)) ([d79ce4b](https://github.com/Modern-Treasury/modern-treasury-python/commit/d79ce4b7f2d981e699cf41adaf63243fe9548aa6))
+* **types:** consolidate direction enums into a shared TransactionDirection type ([#231](https://github.com/Modern-Treasury/modern-treasury-python/issues/231)) ([fa73b42](https://github.com/Modern-Treasury/modern-treasury-python/commit/fa73b425ce8c4a76daeca7a1b5b9bb7e5cece695))
+
+
+### Bug Fixes
+
+* **api:** add response body to `VirtualAccounts.retrieve()` and update resources ([#146](https://github.com/Modern-Treasury/modern-treasury-python/issues/146)) ([3eaa8e4](https://github.com/Modern-Treasury/modern-treasury-python/commit/3eaa8e4863067787644e6864d3a1776fcddc5cd1))
+* **api:** use date-time for effective_at ([#242](https://github.com/Modern-Treasury/modern-treasury-python/issues/242)) ([18e8b75](https://github.com/Modern-Treasury/modern-treasury-python/commit/18e8b7516b921f1384a22d8d9ccc25c0cae3d813))
+* avoid leaking memory when Client.with_options is used ([#316](https://github.com/Modern-Treasury/modern-treasury-python/issues/316)) ([abf6406](https://github.com/Modern-Treasury/modern-treasury-python/commit/abf6406a74ee608dc79997feab996557b77837d9))
+* **binaries:** don't synchronously block in astream_to_file ([#264](https://github.com/Modern-Treasury/modern-treasury-python/issues/264)) ([6ed590c](https://github.com/Modern-Treasury/modern-treasury-python/commit/6ed590c21a2a7952dd8381b3523d46219f018380))
+* **ci:** ignore stainless-app edits to release PR title ([#352](https://github.com/Modern-Treasury/modern-treasury-python/issues/352)) ([e4d8fae](https://github.com/Modern-Treasury/modern-treasury-python/commit/e4d8faedf8f9f982ac0a3f3d510b33f911c5b4f6))
+* **client:** accept io.IOBase instances in file params ([#232](https://github.com/Modern-Treasury/modern-treasury-python/issues/232)) ([17e3759](https://github.com/Modern-Treasury/modern-treasury-python/commit/17e3759030506b51024ca1eab56ad4716fecc2c6))
+* **client:** attempt to parse unknown json content types ([#288](https://github.com/Modern-Treasury/modern-treasury-python/issues/288)) ([6434e82](https://github.com/Modern-Treasury/modern-treasury-python/commit/6434e826bf1a3ba51a88a9ab3f4dabef479ea515))
+* **client:** correct base_url setter implementation ([#304](https://github.com/Modern-Treasury/modern-treasury-python/issues/304)) ([7d47883](https://github.com/Modern-Treasury/modern-treasury-python/commit/7d47883eda697265bd5660596c08c13d365ad2e2))
+* **client:** correctly handle arguments with env vars ([#225](https://github.com/Modern-Treasury/modern-treasury-python/issues/225)) ([e06a0f0](https://github.com/Modern-Treasury/modern-treasury-python/commit/e06a0f0f26008e21154aa8f32591d3079a1afc2d))
+* **client:** correctly handle environment variable access ([#156](https://github.com/Modern-Treasury/modern-treasury-python/issues/156)) ([81d62ae](https://github.com/Modern-Treasury/modern-treasury-python/commit/81d62ae33834742c0f8384a3b339ffc5289112df))
+* **client:** correctly use custom http client auth ([#330](https://github.com/Modern-Treasury/modern-treasury-python/issues/330)) ([46544c3](https://github.com/Modern-Treasury/modern-treasury-python/commit/46544c34ab9c76bd34ff167d6ed58ea3ea37123c))
+* **client:** don't error by default for unexpected content types ([#210](https://github.com/Modern-Treasury/modern-treasury-python/issues/210)) ([b809c29](https://github.com/Modern-Treasury/modern-treasury-python/commit/b809c29377dc0e974c4a91a1404b1ed001910c93))
+* **client:** ensure path params are non-empty ([#343](https://github.com/Modern-Treasury/modern-treasury-python/issues/343)) ([13eaf8d](https://github.com/Modern-Treasury/modern-treasury-python/commit/13eaf8d346eaf27fb1e68fe69757ae951451452e))
+* **client:** ensure retried requests are closed ([#301](https://github.com/Modern-Treasury/modern-treasury-python/issues/301)) ([d65c303](https://github.com/Modern-Treasury/modern-treasury-python/commit/d65c3033ad0d0caa97c349e00391007c041611fe))
+* **client:** fix array query param serialization ([#175](https://github.com/Modern-Treasury/modern-treasury-python/issues/175)) ([7509dfe](https://github.com/Modern-Treasury/modern-treasury-python/commit/7509dfe1501036ea068f351080f9da2a7da28f61))
+* **client:** properly configure model set fields ([#205](https://github.com/Modern-Treasury/modern-treasury-python/issues/205)) ([dbbd394](https://github.com/Modern-Treasury/modern-treasury-python/commit/dbbd3947aeae5433603e1a67540b64c73216b4f9))
+* **client:** properly handle optional file params ([#194](https://github.com/Modern-Treasury/modern-treasury-python/issues/194)) ([2ff8b1e](https://github.com/Modern-Treasury/modern-treasury-python/commit/2ff8b1e7b58344baa166a08ea373a0915c5ae3cc))
+* **client:** retry if SSLWantReadError occurs in the async client ([#281](https://github.com/Modern-Treasury/modern-treasury-python/issues/281)) ([a1572b9](https://github.com/Modern-Treasury/modern-treasury-python/commit/a1572b9b6f50060dce7306393fed51815d69933b))
+* **client:** serialise pydantic v1 default fields correctly in params ([#280](https://github.com/Modern-Treasury/modern-treasury-python/issues/280)) ([6ef26fa](https://github.com/Modern-Treasury/modern-treasury-python/commit/6ef26fac9f224464c1939266939e0d732fe7edbf))
+* **deps:** pin pydantic to less than v2.0 ([#139](https://github.com/Modern-Treasury/modern-treasury-python/issues/139)) ([34535f4](https://github.com/Modern-Treasury/modern-treasury-python/commit/34535f484d614f9ddee3941ba958961c03029197))
+* **errors:** properly assign APIError.body ([#314](https://github.com/Modern-Treasury/modern-treasury-python/issues/314)) ([d42a990](https://github.com/Modern-Treasury/modern-treasury-python/commit/d42a990d800925ab1235dfc548d1ae0d3b415eda))
+* **models:** mark unknown fields as set in pydantic v1 ([#279](https://github.com/Modern-Treasury/modern-treasury-python/issues/279)) ([533d8b6](https://github.com/Modern-Treasury/modern-treasury-python/commit/533d8b6627f62e4b8371cd463a5ba5691be3743e))
+* prevent crash when platform.architecture() is not allowed ([#364](https://github.com/Modern-Treasury/modern-treasury-python/issues/364)) ([0a5c049](https://github.com/Modern-Treasury/modern-treasury-python/commit/0a5c049e418cca10d096d15d77d86ea47614752b))
+* prevent TypeError in Python 3.8 (ABC is not subscriptable) ([#268](https://github.com/Modern-Treasury/modern-treasury-python/issues/268)) ([da39faf](https://github.com/Modern-Treasury/modern-treasury-python/commit/da39faf8724ba830285bead9cc248acbcc510429))
+* **types:** loosen most List params types to Iterable ([#367](https://github.com/Modern-Treasury/modern-treasury-python/issues/367)) ([f9317c9](https://github.com/Modern-Treasury/modern-treasury-python/commit/f9317c9766c36cc84cb2cf39fd398f659dee41e4))
+
+
+### Code Refactoring
+
+* **types:** rename account connection flow to account collection flow ([#150](https://github.com/Modern-Treasury/modern-treasury-python/issues/150)) ([907bcf2](https://github.com/Modern-Treasury/modern-treasury-python/commit/907bcf2d54454aa48f6835b70d54654d88eecf18))
+
 ## 1.27.0 (2024-02-13)
 
 Full Changelog: [v1.26.0...v1.27.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.26.0...v1.27.0)
