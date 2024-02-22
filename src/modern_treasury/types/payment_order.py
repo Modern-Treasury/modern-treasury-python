@@ -14,7 +14,14 @@ from .internal_account import InternalAccount
 from .payment_order_type import PaymentOrderType
 from .payment_order_subtype import PaymentOrderSubtype
 
-__all__ = ["PaymentOrder", "Accounting", "ReferenceNumbers", "ReferenceNumber", "UltimateOriginatingAccount"]
+__all__ = [
+    "PaymentOrder",
+    "Accounting",
+    "ForeignExchangeRate",
+    "ReferenceNumbers",
+    "ReferenceNumber",
+    "UltimateOriginatingAccount",
+]
 
 
 class Accounting(BaseModel):
@@ -31,6 +38,41 @@ class Accounting(BaseModel):
     Class objects track segments of your business independent of client or project.
     Note that these will only be accessible if your accounting system has been
     connected.
+    """
+
+
+class ForeignExchangeRate(BaseModel):
+    base_amount: int
+    """
+    Amount in the lowest denomination of the `base_currency` to convert, often
+    called the "sell" amount.
+    """
+
+    base_currency: Optional[Currency] = None
+    """Currency to convert, often called the "sell" currency."""
+
+    exponent: int
+    """The exponent component of the rate.
+
+    The decimal is calculated as `value` / (10 ^ `exponent`).
+    """
+
+    rate_string: str
+    """A string representation of the rate."""
+
+    target_amount: int
+    """
+    Amount in the lowest denomination of the `target_currency`, often called the
+    "buy" amount.
+    """
+
+    target_currency: Optional[Currency] = None
+    """Currency to convert the `base_currency` to, often called the "buy" currency."""
+
+    value: int
+    """The whole number component of the rate.
+
+    The decimal is calculated as `value` / (10 ^ `exponent`).
     """
 
 
@@ -224,6 +266,9 @@ class PaymentOrder(BaseModel):
     currency matches the originating account currency.
     """
 
+    foreign_exchange_rate: Optional[ForeignExchangeRate] = None
+    """Associated serialized foreign exchange rate information."""
+
     ledger_transaction_id: Optional[str] = None
     """The ID of the ledger transaction linked to the payment order."""
 
@@ -397,8 +442,10 @@ from .return_object import ReturnObject
 if PYDANTIC_V2:
     PaymentOrder.model_rebuild()
     Accounting.model_rebuild()
+    ForeignExchangeRate.model_rebuild()
     ReferenceNumber.model_rebuild()
 else:
     PaymentOrder.update_forward_refs()  # type: ignore
     Accounting.update_forward_refs()  # type: ignore
+    ForeignExchangeRate.update_forward_refs()  # type: ignore
     ReferenceNumber.update_forward_refs()  # type: ignore
