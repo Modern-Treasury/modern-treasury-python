@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Union, Optional
-from datetime import datetime
+from datetime import date, datetime
 from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -17,8 +17,11 @@ class ForeignExchangeQuoteListParams(TypedDict, total=False):
     base_currency: str
     """Currency to convert, often called the "sell" currency."""
 
-    effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """The timestamp until when the quoted rate is valid."""
+    effective_at_end: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    """An inclusive upper bound for searching effective_at"""
+
+    effective_at_start: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    """An inclusive lower bound for searching effective_at"""
 
     expires_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The timestamp until which the quote must be booked by."""

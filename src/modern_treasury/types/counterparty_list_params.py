@@ -26,6 +26,9 @@ class CounterpartyListParams(TypedDict, total=False):
     This is also case insensitive.
     """
 
+    legal_entity_id: str
+    """Filters for counterparties with the given legal entity ID."""
+
     metadata: Dict[str, str]
     """
     For example, if you want to query for records with metadata key `Type` and value

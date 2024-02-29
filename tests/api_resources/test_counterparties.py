@@ -13,7 +13,7 @@ from modern_treasury.types import (
     Counterparty,
     CounterpartyCollectAccountResponse,
 )
-from modern_treasury._utils import parse_datetime
+from modern_treasury._utils import parse_date, parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -296,6 +296,69 @@ class TestCounterparties:
             ],
             email="dev@stainlessapi.com",
             ledger_type="customer",
+            legal_entity={
+                "legal_entity_type": "business",
+                "first_name": "string",
+                "last_name": "string",
+                "date_of_birth": parse_date("2019-12-27"),
+                "business_name": "string",
+                "doing_business_as_names": ["string", "string", "string"],
+                "phone_numbers": [{"phone_number": "string"}, {"phone_number": "string"}, {"phone_number": "string"}],
+                "email": "string",
+                "website": "string",
+                "metadata": {
+                    "key": "value",
+                    "foo": "bar",
+                    "modern": "treasury",
+                },
+                "addresses": [
+                    {
+                        "address_types": ["string", "string", "string"],
+                        "line1": "string",
+                        "line2": "string",
+                        "locality": "string",
+                        "region": "string",
+                        "postal_code": "string",
+                        "country": "string",
+                    },
+                    {
+                        "address_types": ["string", "string", "string"],
+                        "line1": "string",
+                        "line2": "string",
+                        "locality": "string",
+                        "region": "string",
+                        "postal_code": "string",
+                        "country": "string",
+                    },
+                    {
+                        "address_types": ["string", "string", "string"],
+                        "line1": "string",
+                        "line2": "string",
+                        "locality": "string",
+                        "region": "string",
+                        "postal_code": "string",
+                        "country": "string",
+                    },
+                ],
+                "identifications": [
+                    {
+                        "id_number": "string",
+                        "id_type": "ar_cuil",
+                        "issuing_country": "string",
+                    },
+                    {
+                        "id_number": "string",
+                        "id_type": "ar_cuil",
+                        "issuing_country": "string",
+                    },
+                    {
+                        "id_number": "string",
+                        "id_type": "ar_cuil",
+                        "issuing_country": "string",
+                    },
+                ],
+            },
+            legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -381,6 +444,7 @@ class TestCounterparties:
         counterparty = client.counterparties.update(
             "string",
             email="dev@stainlessapi.com",
+            legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
             name="string",
             send_remittance_advice=True,
@@ -431,6 +495,7 @@ class TestCounterparties:
             created_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             email="dev@stainlessapi.com",
+            legal_entity_id="string",
             metadata={"foo": "string"},
             name="string",
             per_page=0,
@@ -826,6 +891,69 @@ class TestAsyncCounterparties:
             ],
             email="dev@stainlessapi.com",
             ledger_type="customer",
+            legal_entity={
+                "legal_entity_type": "business",
+                "first_name": "string",
+                "last_name": "string",
+                "date_of_birth": parse_date("2019-12-27"),
+                "business_name": "string",
+                "doing_business_as_names": ["string", "string", "string"],
+                "phone_numbers": [{"phone_number": "string"}, {"phone_number": "string"}, {"phone_number": "string"}],
+                "email": "string",
+                "website": "string",
+                "metadata": {
+                    "key": "value",
+                    "foo": "bar",
+                    "modern": "treasury",
+                },
+                "addresses": [
+                    {
+                        "address_types": ["string", "string", "string"],
+                        "line1": "string",
+                        "line2": "string",
+                        "locality": "string",
+                        "region": "string",
+                        "postal_code": "string",
+                        "country": "string",
+                    },
+                    {
+                        "address_types": ["string", "string", "string"],
+                        "line1": "string",
+                        "line2": "string",
+                        "locality": "string",
+                        "region": "string",
+                        "postal_code": "string",
+                        "country": "string",
+                    },
+                    {
+                        "address_types": ["string", "string", "string"],
+                        "line1": "string",
+                        "line2": "string",
+                        "locality": "string",
+                        "region": "string",
+                        "postal_code": "string",
+                        "country": "string",
+                    },
+                ],
+                "identifications": [
+                    {
+                        "id_number": "string",
+                        "id_type": "ar_cuil",
+                        "issuing_country": "string",
+                    },
+                    {
+                        "id_number": "string",
+                        "id_type": "ar_cuil",
+                        "issuing_country": "string",
+                    },
+                    {
+                        "id_number": "string",
+                        "id_type": "ar_cuil",
+                        "issuing_country": "string",
+                    },
+                ],
+            },
+            legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -911,6 +1039,7 @@ class TestAsyncCounterparties:
         counterparty = await async_client.counterparties.update(
             "string",
             email="dev@stainlessapi.com",
+            legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
             name="string",
             send_remittance_advice=True,
@@ -961,6 +1090,7 @@ class TestAsyncCounterparties:
             created_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             email="dev@stainlessapi.com",
+            legal_entity_id="string",
             metadata={"foo": "string"},
             name="string",
             per_page=0,

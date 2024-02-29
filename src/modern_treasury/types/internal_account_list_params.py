@@ -14,10 +14,13 @@ class InternalAccountListParams(TypedDict, total=False):
     after_cursor: Optional[str]
 
     counterparty_id: str
-    """The counterparty associated with the internal account."""
+    """Only return internal accounts associated with this counterparty."""
 
     currency: Optional[Currency]
-    """The currency associated with the internal account."""
+    """Only return internal accounts with this currency."""
+
+    legal_entity_id: str
+    """Only return internal accounts associated with this legal entity."""
 
     metadata: Dict[str, str]
     """
@@ -27,7 +30,7 @@ class InternalAccountListParams(TypedDict, total=False):
     """
 
     payment_direction: TransactionDirection
-    """The direction of payments that can be made by internal account."""
+    """Only return internal accounts that can originate payments with this direction."""
 
     payment_type: Literal[
         "ach",
@@ -61,6 +64,6 @@ class InternalAccountListParams(TypedDict, total=False):
         "wire",
         "zengin",
     ]
-    """The type of payment that can be made by the internal account."""
+    """Only return internal accounts that can make this type of payment."""
 
     per_page: int

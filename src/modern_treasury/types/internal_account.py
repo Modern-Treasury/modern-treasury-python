@@ -73,6 +73,9 @@ class InternalAccount(BaseModel):
     the ledger account will be populated here.
     """
 
+    legal_entity_id: Optional[str] = None
+    """The Legal Entity associated to this account"""
+
     live_mode: bool
     """
     This field will be true if this object exists in the live environment or false

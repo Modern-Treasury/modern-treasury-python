@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Union, Optional
-from datetime import datetime
+from datetime import date, datetime
 
 import httpx
 
@@ -143,7 +143,8 @@ class ForeignExchangeQuotes(SyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         base_currency: str | NotGiven = NOT_GIVEN,
-        effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        effective_at_end: Union[str, date] | NotGiven = NOT_GIVEN,
+        effective_at_start: Union[str, date] | NotGiven = NOT_GIVEN,
         expires_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         internal_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -162,7 +163,9 @@ class ForeignExchangeQuotes(SyncAPIResource):
         Args:
           base_currency: Currency to convert, often called the "sell" currency.
 
-          effective_at: The timestamp until when the quoted rate is valid.
+          effective_at_end: An inclusive upper bound for searching effective_at
+
+          effective_at_start: An inclusive lower bound for searching effective_at
 
           expires_at: The timestamp until which the quote must be booked by.
 
@@ -194,7 +197,8 @@ class ForeignExchangeQuotes(SyncAPIResource):
                     {
                         "after_cursor": after_cursor,
                         "base_currency": base_currency,
-                        "effective_at": effective_at,
+                        "effective_at_end": effective_at_end,
+                        "effective_at_start": effective_at_start,
                         "expires_at": expires_at,
                         "internal_account_id": internal_account_id,
                         "metadata": metadata,
@@ -323,7 +327,8 @@ class AsyncForeignExchangeQuotes(AsyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         base_currency: str | NotGiven = NOT_GIVEN,
-        effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        effective_at_end: Union[str, date] | NotGiven = NOT_GIVEN,
+        effective_at_start: Union[str, date] | NotGiven = NOT_GIVEN,
         expires_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         internal_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -342,7 +347,9 @@ class AsyncForeignExchangeQuotes(AsyncAPIResource):
         Args:
           base_currency: Currency to convert, often called the "sell" currency.
 
-          effective_at: The timestamp until when the quoted rate is valid.
+          effective_at_end: An inclusive upper bound for searching effective_at
+
+          effective_at_start: An inclusive lower bound for searching effective_at
 
           expires_at: The timestamp until which the quote must be booked by.
 
@@ -374,7 +381,8 @@ class AsyncForeignExchangeQuotes(AsyncAPIResource):
                     {
                         "after_cursor": after_cursor,
                         "base_currency": base_currency,
-                        "effective_at": effective_at,
+                        "effective_at_end": effective_at_end,
+                        "effective_at_start": effective_at_start,
                         "expires_at": expires_at,
                         "internal_account_id": internal_account_id,
                         "metadata": metadata,
