@@ -164,6 +164,9 @@ class Counterparty(BaseModel):
     email: Optional[str] = None
     """The counterparty's email."""
 
+    legal_entity_id: Optional[str] = None
+    """The id of the legal entity."""
+
     live_mode: bool
     """
     This field will be true if this object exists in the live environment or false

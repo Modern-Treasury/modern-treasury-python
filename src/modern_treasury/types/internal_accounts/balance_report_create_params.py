@@ -12,12 +12,6 @@ __all__ = ["BalanceReportCreateParams", "Balances", "Balance"]
 
 
 class BalanceReportCreateParams(TypedDict, total=False):
-    amount: Required[int]
-    """Value in specified currency's smallest unit.
-
-    e.g. $10 would be represented as 1000.
-    """
-
     as_of_date: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]
     """The date of the balance report in local time."""
 

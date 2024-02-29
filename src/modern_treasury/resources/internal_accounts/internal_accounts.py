@@ -58,6 +58,7 @@ class InternalAccounts(SyncAPIResource):
         name: str,
         party_name: str,
         counterparty_id: str | NotGiven = NOT_GIVEN,
+        legal_entity_id: str | NotGiven = NOT_GIVEN,
         parent_account_id: str | NotGiven = NOT_GIVEN,
         party_address: internal_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
         vendor_attributes: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -83,6 +84,8 @@ class InternalAccounts(SyncAPIResource):
           party_name: The legal name of the entity which owns the account.
 
           counterparty_id: The Counterparty associated to this account.
+
+          legal_entity_id: The LegalEntity associated to this account.
 
           parent_account_id: The parent internal account of this new account.
 
@@ -110,6 +113,7 @@ class InternalAccounts(SyncAPIResource):
                     "name": name,
                     "party_name": party_name,
                     "counterparty_id": counterparty_id,
+                    "legal_entity_id": legal_entity_id,
                     "parent_account_id": parent_account_id,
                     "party_address": party_address,
                     "vendor_attributes": vendor_attributes,
@@ -231,6 +235,7 @@ class InternalAccounts(SyncAPIResource):
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
         currency: Optional[Currency] | NotGiven = NOT_GIVEN,
+        legal_entity_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_direction: TransactionDirection | NotGiven = NOT_GIVEN,
         payment_type: Literal[
@@ -278,17 +283,19 @@ class InternalAccounts(SyncAPIResource):
         list internal accounts
 
         Args:
-          counterparty_id: The counterparty associated with the internal account.
+          counterparty_id: Only return internal accounts associated with this counterparty.
 
-          currency: The currency associated with the internal account.
+          currency: Only return internal accounts with this currency.
+
+          legal_entity_id: Only return internal accounts associated with this legal entity.
 
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
 
-          payment_direction: The direction of payments that can be made by internal account.
+          payment_direction: Only return internal accounts that can originate payments with this direction.
 
-          payment_type: The type of payment that can be made by the internal account.
+          payment_type: Only return internal accounts that can make this type of payment.
 
           extra_headers: Send extra headers
 
@@ -311,6 +318,7 @@ class InternalAccounts(SyncAPIResource):
                         "after_cursor": after_cursor,
                         "counterparty_id": counterparty_id,
                         "currency": currency,
+                        "legal_entity_id": legal_entity_id,
                         "metadata": metadata,
                         "payment_direction": payment_direction,
                         "payment_type": payment_type,
@@ -344,6 +352,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         name: str,
         party_name: str,
         counterparty_id: str | NotGiven = NOT_GIVEN,
+        legal_entity_id: str | NotGiven = NOT_GIVEN,
         parent_account_id: str | NotGiven = NOT_GIVEN,
         party_address: internal_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
         vendor_attributes: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -369,6 +378,8 @@ class AsyncInternalAccounts(AsyncAPIResource):
           party_name: The legal name of the entity which owns the account.
 
           counterparty_id: The Counterparty associated to this account.
+
+          legal_entity_id: The LegalEntity associated to this account.
 
           parent_account_id: The parent internal account of this new account.
 
@@ -396,6 +407,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                     "name": name,
                     "party_name": party_name,
                     "counterparty_id": counterparty_id,
+                    "legal_entity_id": legal_entity_id,
                     "parent_account_id": parent_account_id,
                     "party_address": party_address,
                     "vendor_attributes": vendor_attributes,
@@ -517,6 +529,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
         currency: Optional[Currency] | NotGiven = NOT_GIVEN,
+        legal_entity_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         payment_direction: TransactionDirection | NotGiven = NOT_GIVEN,
         payment_type: Literal[
@@ -564,17 +577,19 @@ class AsyncInternalAccounts(AsyncAPIResource):
         list internal accounts
 
         Args:
-          counterparty_id: The counterparty associated with the internal account.
+          counterparty_id: Only return internal accounts associated with this counterparty.
 
-          currency: The currency associated with the internal account.
+          currency: Only return internal accounts with this currency.
+
+          legal_entity_id: Only return internal accounts associated with this legal entity.
 
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
 
-          payment_direction: The direction of payments that can be made by internal account.
+          payment_direction: Only return internal accounts that can originate payments with this direction.
 
-          payment_type: The type of payment that can be made by the internal account.
+          payment_type: Only return internal accounts that can make this type of payment.
 
           extra_headers: Send extra headers
 
@@ -597,6 +612,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                         "after_cursor": after_cursor,
                         "counterparty_id": counterparty_id,
                         "currency": currency,
+                        "legal_entity_id": legal_entity_id,
                         "metadata": metadata,
                         "payment_direction": payment_direction,
                         "payment_type": payment_type,

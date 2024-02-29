@@ -37,7 +37,6 @@ class BalanceReports(SyncAPIResource):
         self,
         internal_account_id: str,
         *,
-        amount: int,
         as_of_date: Union[str, date],
         as_of_time: str,
         balance_report_type: Literal["intraday", "other", "previous_day", "real_time"],
@@ -54,9 +53,6 @@ class BalanceReports(SyncAPIResource):
         create balance reports
 
         Args:
-          amount: Value in specified currency's smallest unit. e.g. $10 would be represented
-              as 1000.
-
           as_of_date: The date of the balance report in local time.
 
           as_of_time: The time (24-hour clock) of the balance report in local time.
@@ -84,7 +80,6 @@ class BalanceReports(SyncAPIResource):
             f"/api/internal_accounts/{internal_account_id}/balance_reports",
             body=maybe_transform(
                 {
-                    "amount": amount,
                     "as_of_date": as_of_date,
                     "as_of_time": as_of_time,
                     "balance_report_type": balance_report_type,
@@ -257,7 +252,6 @@ class AsyncBalanceReports(AsyncAPIResource):
         self,
         internal_account_id: str,
         *,
-        amount: int,
         as_of_date: Union[str, date],
         as_of_time: str,
         balance_report_type: Literal["intraday", "other", "previous_day", "real_time"],
@@ -274,9 +268,6 @@ class AsyncBalanceReports(AsyncAPIResource):
         create balance reports
 
         Args:
-          amount: Value in specified currency's smallest unit. e.g. $10 would be represented
-              as 1000.
-
           as_of_date: The date of the balance report in local time.
 
           as_of_time: The time (24-hour clock) of the balance report in local time.
@@ -304,7 +295,6 @@ class AsyncBalanceReports(AsyncAPIResource):
             f"/api/internal_accounts/{internal_account_id}/balance_reports",
             body=maybe_transform(
                 {
-                    "amount": amount,
                     "as_of_date": as_of_date,
                     "as_of_time": as_of_time,
                     "balance_report_type": balance_report_type,

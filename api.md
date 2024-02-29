@@ -615,3 +615,45 @@ Methods:
 - <code title="post /api/foreign_exchange_quotes">client.foreign_exchange_quotes.<a href="./src/modern_treasury/resources/foreign_exchange_quotes.py">create</a>(\*\*<a href="src/modern_treasury/types/foreign_exchange_quote_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/foreign_exchange_quote.py">ForeignExchangeQuote</a></code>
 - <code title="get /api/foreign_exchange_quotes/{id}">client.foreign_exchange_quotes.<a href="./src/modern_treasury/resources/foreign_exchange_quotes.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/foreign_exchange_quote.py">ForeignExchangeQuote</a></code>
 - <code title="get /api/foreign_exchange_quotes">client.foreign_exchange_quotes.<a href="./src/modern_treasury/resources/foreign_exchange_quotes.py">list</a>(\*\*<a href="src/modern_treasury/types/foreign_exchange_quote_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/foreign_exchange_quote.py">SyncPage[ForeignExchangeQuote]</a></code>
+
+# ConnectionLegalEntities
+
+Types:
+
+```python
+from modern_treasury.types import ConnectionLegalEntity
+```
+
+Methods:
+
+- <code title="post /api/connection_legal_entities">client.connection_legal_entities.<a href="./src/modern_treasury/resources/connection_legal_entities.py">create</a>(\*\*<a href="src/modern_treasury/types/connection_legal_entity_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/connection_legal_entity.py">ConnectionLegalEntity</a></code>
+- <code title="get /api/connection_legal_entities/{id}">client.connection_legal_entities.<a href="./src/modern_treasury/resources/connection_legal_entities.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/connection_legal_entity.py">ConnectionLegalEntity</a></code>
+- <code title="patch /api/connection_legal_entities/{id}">client.connection_legal_entities.<a href="./src/modern_treasury/resources/connection_legal_entities.py">update</a>(id, \*\*<a href="src/modern_treasury/types/connection_legal_entity_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/connection_legal_entity.py">ConnectionLegalEntity</a></code>
+- <code title="get /api/connection_legal_entities">client.connection_legal_entities.<a href="./src/modern_treasury/resources/connection_legal_entities.py">list</a>(\*\*<a href="src/modern_treasury/types/connection_legal_entity_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/connection_legal_entity.py">SyncPage[ConnectionLegalEntity]</a></code>
+
+# LegalEntities
+
+Types:
+
+```python
+from modern_treasury.types import LegalEntity
+```
+
+Methods:
+
+- <code title="post /api/legal_entities">client.legal_entities.<a href="./src/modern_treasury/resources/legal_entities.py">create</a>(\*\*<a href="src/modern_treasury/types/legal_entity_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/legal_entity.py">LegalEntity</a></code>
+- <code title="get /api/legal_entities/{id}">client.legal_entities.<a href="./src/modern_treasury/resources/legal_entities.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/legal_entity.py">LegalEntity</a></code>
+- <code title="patch /api/legal_entities/{id}">client.legal_entities.<a href="./src/modern_treasury/resources/legal_entities.py">update</a>(id, \*\*<a href="src/modern_treasury/types/legal_entity_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/legal_entity.py">LegalEntity</a></code>
+- <code title="get /api/legal_entities">client.legal_entities.<a href="./src/modern_treasury/resources/legal_entities.py">list</a>(\*\*<a href="src/modern_treasury/types/legal_entity_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/legal_entity.py">SyncPage[LegalEntity]</a></code>
+
+# LegalEntityAssociations
+
+Types:
+
+```python
+from modern_treasury.types import LegalEntityAssociation
+```
+
+Methods:
+
+- <code title="post /api/legal_entity_associations">client.legal_entity_associations.<a href="./src/modern_treasury/resources/legal_entity_associations.py">create</a>(\*\*<a href="src/modern_treasury/types/legal_entity_association_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/legal_entity_association.py">LegalEntityAssociation</a></code>

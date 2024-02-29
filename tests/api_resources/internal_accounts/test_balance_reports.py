@@ -25,7 +25,6 @@ class TestBalanceReports:
     def test_method_create(self, client: ModernTreasury) -> None:
         balance_report = client.internal_accounts.balance_reports.create(
             "string",
-            amount=0,
             as_of_date=parse_date("2019-12-27"),
             as_of_time="string",
             balance_report_type="intraday",
@@ -56,7 +55,6 @@ class TestBalanceReports:
     def test_raw_response_create(self, client: ModernTreasury) -> None:
         response = client.internal_accounts.balance_reports.with_raw_response.create(
             "string",
-            amount=0,
             as_of_date=parse_date("2019-12-27"),
             as_of_time="string",
             balance_report_type="intraday",
@@ -91,7 +89,6 @@ class TestBalanceReports:
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
         with client.internal_accounts.balance_reports.with_streaming_response.create(
             "string",
-            amount=0,
             as_of_date=parse_date("2019-12-27"),
             as_of_time="string",
             balance_report_type="intraday",
@@ -129,7 +126,6 @@ class TestBalanceReports:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `internal_account_id` but received ''"):
             client.internal_accounts.balance_reports.with_raw_response.create(
                 "",
-                amount=0,
                 as_of_date=parse_date("2019-12-27"),
                 as_of_time="string",
                 balance_report_type="intraday",
@@ -308,7 +304,6 @@ class TestAsyncBalanceReports:
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
         balance_report = await async_client.internal_accounts.balance_reports.create(
             "string",
-            amount=0,
             as_of_date=parse_date("2019-12-27"),
             as_of_time="string",
             balance_report_type="intraday",
@@ -339,7 +334,6 @@ class TestAsyncBalanceReports:
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.internal_accounts.balance_reports.with_raw_response.create(
             "string",
-            amount=0,
             as_of_date=parse_date("2019-12-27"),
             as_of_time="string",
             balance_report_type="intraday",
@@ -374,7 +368,6 @@ class TestAsyncBalanceReports:
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.internal_accounts.balance_reports.with_streaming_response.create(
             "string",
-            amount=0,
             as_of_date=parse_date("2019-12-27"),
             as_of_time="string",
             balance_report_type="intraday",
@@ -412,7 +405,6 @@ class TestAsyncBalanceReports:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `internal_account_id` but received ''"):
             await async_client.internal_accounts.balance_reports.with_raw_response.create(
                 "",
-                amount=0,
                 as_of_date=parse_date("2019-12-27"),
                 as_of_time="string",
                 balance_report_type="intraday",

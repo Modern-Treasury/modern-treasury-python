@@ -12,7 +12,7 @@ from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import (
     ForeignExchangeQuote,
 )
-from modern_treasury._utils import parse_datetime
+from modern_treasury._utils import parse_date, parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -115,7 +115,8 @@ class TestForeignExchangeQuotes:
         foreign_exchange_quote = client.foreign_exchange_quotes.list(
             after_cursor="string",
             base_currency="string",
-            effective_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            effective_at_end=parse_date("2019-12-27"),
+            effective_at_start=parse_date("2019-12-27"),
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             internal_account_id="string",
             metadata={"foo": "string"},
@@ -242,7 +243,8 @@ class TestAsyncForeignExchangeQuotes:
         foreign_exchange_quote = await async_client.foreign_exchange_quotes.list(
             after_cursor="string",
             base_currency="string",
-            effective_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            effective_at_end=parse_date("2019-12-27"),
+            effective_at_start=parse_date("2019-12-27"),
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             internal_account_id="string",
             metadata={"foo": "string"},
