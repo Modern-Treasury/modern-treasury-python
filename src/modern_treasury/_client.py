@@ -93,6 +93,9 @@ class ModernTreasury(SyncAPIClient):
     bulk_results: resources.BulkResults
     ledger_account_settlements: resources.LedgerAccountSettlements
     foreign_exchange_quotes: resources.ForeignExchangeQuotes
+    connection_legal_entities: resources.ConnectionLegalEntities
+    legal_entities: resources.LegalEntities
+    legal_entity_associations: resources.LegalEntityAssociations
     with_raw_response: ModernTreasuryWithRawResponse
     with_streaming_response: ModernTreasuryWithStreamedResponse
 
@@ -214,6 +217,9 @@ class ModernTreasury(SyncAPIClient):
         self.bulk_results = resources.BulkResults(self)
         self.ledger_account_settlements = resources.LedgerAccountSettlements(self)
         self.foreign_exchange_quotes = resources.ForeignExchangeQuotes(self)
+        self.connection_legal_entities = resources.ConnectionLegalEntities(self)
+        self.legal_entities = resources.LegalEntities(self)
+        self.legal_entity_associations = resources.LegalEntityAssociations(self)
         self.with_raw_response = ModernTreasuryWithRawResponse(self)
         self.with_streaming_response = ModernTreasuryWithStreamedResponse(self)
 
@@ -405,6 +411,9 @@ class AsyncModernTreasury(AsyncAPIClient):
     bulk_results: resources.AsyncBulkResults
     ledger_account_settlements: resources.AsyncLedgerAccountSettlements
     foreign_exchange_quotes: resources.AsyncForeignExchangeQuotes
+    connection_legal_entities: resources.AsyncConnectionLegalEntities
+    legal_entities: resources.AsyncLegalEntities
+    legal_entity_associations: resources.AsyncLegalEntityAssociations
     with_raw_response: AsyncModernTreasuryWithRawResponse
     with_streaming_response: AsyncModernTreasuryWithStreamedResponse
 
@@ -526,6 +535,9 @@ class AsyncModernTreasury(AsyncAPIClient):
         self.bulk_results = resources.AsyncBulkResults(self)
         self.ledger_account_settlements = resources.AsyncLedgerAccountSettlements(self)
         self.foreign_exchange_quotes = resources.AsyncForeignExchangeQuotes(self)
+        self.connection_legal_entities = resources.AsyncConnectionLegalEntities(self)
+        self.legal_entities = resources.AsyncLegalEntities(self)
+        self.legal_entity_associations = resources.AsyncLegalEntityAssociations(self)
         self.with_raw_response = AsyncModernTreasuryWithRawResponse(self)
         self.with_streaming_response = AsyncModernTreasuryWithStreamedResponse(self)
 
@@ -725,6 +737,13 @@ class ModernTreasuryWithRawResponse:
             client.ledger_account_settlements
         )
         self.foreign_exchange_quotes = resources.ForeignExchangeQuotesWithRawResponse(client.foreign_exchange_quotes)
+        self.connection_legal_entities = resources.ConnectionLegalEntitiesWithRawResponse(
+            client.connection_legal_entities
+        )
+        self.legal_entities = resources.LegalEntitiesWithRawResponse(client.legal_entities)
+        self.legal_entity_associations = resources.LegalEntityAssociationsWithRawResponse(
+            client.legal_entity_associations
+        )
 
         self.ping = _legacy_response.to_raw_response_wrapper(
             client.ping,
@@ -782,6 +801,13 @@ class AsyncModernTreasuryWithRawResponse:
         self.foreign_exchange_quotes = resources.AsyncForeignExchangeQuotesWithRawResponse(
             client.foreign_exchange_quotes
         )
+        self.connection_legal_entities = resources.AsyncConnectionLegalEntitiesWithRawResponse(
+            client.connection_legal_entities
+        )
+        self.legal_entities = resources.AsyncLegalEntitiesWithRawResponse(client.legal_entities)
+        self.legal_entity_associations = resources.AsyncLegalEntityAssociationsWithRawResponse(
+            client.legal_entity_associations
+        )
 
         self.ping = _legacy_response.async_to_raw_response_wrapper(
             client.ping,
@@ -838,6 +864,13 @@ class ModernTreasuryWithStreamedResponse:
         )
         self.foreign_exchange_quotes = resources.ForeignExchangeQuotesWithStreamingResponse(
             client.foreign_exchange_quotes
+        )
+        self.connection_legal_entities = resources.ConnectionLegalEntitiesWithStreamingResponse(
+            client.connection_legal_entities
+        )
+        self.legal_entities = resources.LegalEntitiesWithStreamingResponse(client.legal_entities)
+        self.legal_entity_associations = resources.LegalEntityAssociationsWithStreamingResponse(
+            client.legal_entity_associations
         )
 
         self.ping = to_streamed_response_wrapper(
@@ -899,6 +932,13 @@ class AsyncModernTreasuryWithStreamedResponse:
         )
         self.foreign_exchange_quotes = resources.AsyncForeignExchangeQuotesWithStreamingResponse(
             client.foreign_exchange_quotes
+        )
+        self.connection_legal_entities = resources.AsyncConnectionLegalEntitiesWithStreamingResponse(
+            client.connection_legal_entities
+        )
+        self.legal_entities = resources.AsyncLegalEntitiesWithStreamingResponse(client.legal_entities)
+        self.legal_entity_associations = resources.AsyncLegalEntityAssociationsWithStreamingResponse(
+            client.legal_entity_associations
         )
 
         self.ping = async_to_streamed_response_wrapper(

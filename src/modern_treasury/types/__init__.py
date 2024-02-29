@@ -20,6 +20,7 @@ from .transaction import Transaction as Transaction
 from .bulk_request import BulkRequest as BulkRequest
 from .counterparty import Counterparty as Counterparty
 from .ledger_entry import LedgerEntry as LedgerEntry
+from .legal_entity import LegalEntity as LegalEntity
 from .payment_flow import PaymentFlow as PaymentFlow
 from .payment_order import PaymentOrder as PaymentOrder
 from .ping_response import PingResponse as PingResponse
@@ -57,6 +58,7 @@ from .foreign_exchange_quote import ForeignExchangeQuote as ForeignExchangeQuote
 from .paper_item_list_params import PaperItemListParams as PaperItemListParams
 from .account_collection_flow import AccountCollectionFlow as AccountCollectionFlow
 from .bulk_result_list_params import BulkResultListParams as BulkResultListParams
+from .connection_legal_entity import ConnectionLegalEntity as ConnectionLegalEntity
 from .incoming_payment_detail import IncomingPaymentDetail as IncomingPaymentDetail
 from .ledger_account_category import LedgerAccountCategory as LedgerAccountCategory
 from .line_item_update_params import LineItemUpdateParams as LineItemUpdateParams
@@ -64,6 +66,8 @@ from .transaction_list_params import TransactionListParams as TransactionListPar
 from .bulk_request_list_params import BulkRequestListParams as BulkRequestListParams
 from .counterparty_list_params import CounterpartyListParams as CounterpartyListParams
 from .ledger_entry_list_params import LedgerEntryListParams as LedgerEntryListParams
+from .legal_entity_association import LegalEntityAssociation as LegalEntityAssociation
+from .legal_entity_list_params import LegalEntityListParams as LegalEntityListParams
 from .payment_flow_list_params import PaymentFlowListParams as PaymentFlowListParams
 from .ledger_account_settlement import LedgerAccountSettlement as LedgerAccountSettlement
 from .payment_order_list_params import PaymentOrderListParams as PaymentOrderListParams
@@ -75,6 +79,8 @@ from .counterparty_create_params import CounterpartyCreateParams as Counterparty
 from .counterparty_update_params import CounterpartyUpdateParams as CounterpartyUpdateParams
 from .ledger_account_list_params import LedgerAccountListParams as LedgerAccountListParams
 from .ledger_entry_update_params import LedgerEntryUpdateParams as LedgerEntryUpdateParams
+from .legal_entity_create_params import LegalEntityCreateParams as LegalEntityCreateParams
+from .legal_entity_update_params import LegalEntityUpdateParams as LegalEntityUpdateParams
 from .payment_flow_create_params import PaymentFlowCreateParams as PaymentFlowCreateParams
 from .payment_flow_update_params import PaymentFlowUpdateParams as PaymentFlowUpdateParams
 from .routing_detail_list_params import RoutingDetailListParams as RoutingDetailListParams
@@ -113,6 +119,7 @@ from .payment_order_create_async_params import PaymentOrderCreateAsyncParams as 
 from .foreign_exchange_quote_list_params import ForeignExchangeQuoteListParams as ForeignExchangeQuoteListParams
 from .ledger_event_handler_create_params import LedgerEventHandlerCreateParams as LedgerEventHandlerCreateParams
 from .account_collection_flow_list_params import AccountCollectionFlowListParams as AccountCollectionFlowListParams
+from .connection_legal_entity_list_params import ConnectionLegalEntityListParams as ConnectionLegalEntityListParams
 from .counterparty_collect_account_params import CounterpartyCollectAccountParams as CounterpartyCollectAccountParams
 from .incoming_payment_detail_list_params import IncomingPaymentDetailListParams as IncomingPaymentDetailListParams
 from .ledger_account_category_list_params import LedgerAccountCategoryListParams as LedgerAccountCategoryListParams
@@ -125,6 +132,12 @@ from .account_collection_flow_create_params import (
 )
 from .account_collection_flow_update_params import (
     AccountCollectionFlowUpdateParams as AccountCollectionFlowUpdateParams,
+)
+from .connection_legal_entity_create_params import (
+    ConnectionLegalEntityCreateParams as ConnectionLegalEntityCreateParams,
+)
+from .connection_legal_entity_update_params import (
+    ConnectionLegalEntityUpdateParams as ConnectionLegalEntityUpdateParams,
 )
 from .counterparty_collect_account_response import (
     CounterpartyCollectAccountResponse as CounterpartyCollectAccountResponse,
@@ -143,6 +156,9 @@ from .ledger_account_settlement_list_params import (
 )
 from .ledger_account_statement_create_params import (
     LedgerAccountStatementCreateParams as LedgerAccountStatementCreateParams,
+)
+from .legal_entity_association_create_params import (
+    LegalEntityAssociationCreateParams as LegalEntityAssociationCreateParams,
 )
 from .ledger_account_category_retrieve_params import (
     LedgerAccountCategoryRetrieveParams as LedgerAccountCategoryRetrieveParams,

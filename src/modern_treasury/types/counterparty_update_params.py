@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Optional
 from typing_extensions import TypedDict
 
 __all__ = ["CounterpartyUpdateParams"]
@@ -11,6 +11,9 @@ __all__ = ["CounterpartyUpdateParams"]
 class CounterpartyUpdateParams(TypedDict, total=False):
     email: str
     """A new email for the counterparty."""
+
+    legal_entity_id: Optional[str]
+    """The id of the legal entity."""
 
     metadata: Dict[str, str]
     """Additional data in the form of key-value pairs.

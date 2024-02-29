@@ -38,6 +38,7 @@ class TestInternalAccounts:
             name="string",
             party_name="string",
             counterparty_id="string",
+            legal_entity_id="string",
             parent_account_id="string",
             party_address={
                 "line1": "string",
@@ -184,6 +185,7 @@ class TestInternalAccounts:
             after_cursor="string",
             counterparty_id="string",
             currency="AED",
+            legal_entity_id="string",
             metadata={"foo": "string"},
             payment_direction="credit",
             payment_type="ach",
@@ -233,6 +235,7 @@ class TestAsyncInternalAccounts:
             name="string",
             party_name="string",
             counterparty_id="string",
+            legal_entity_id="string",
             parent_account_id="string",
             party_address={
                 "line1": "string",
@@ -379,6 +382,7 @@ class TestAsyncInternalAccounts:
             after_cursor="string",
             counterparty_id="string",
             currency="AED",
+            legal_entity_id="string",
             metadata={"foo": "string"},
             payment_direction="credit",
             payment_type="ach",

@@ -27,6 +27,9 @@ class InternalAccountCreateParams(TypedDict, total=False):
     counterparty_id: str
     """The Counterparty associated to this account."""
 
+    legal_entity_id: str
+    """The LegalEntity associated to this account."""
+
     parent_account_id: str
     """The parent internal account of this new account."""
 

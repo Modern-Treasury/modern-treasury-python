@@ -121,6 +121,14 @@ from .ledger_entries import (
     LedgerEntriesWithStreamingResponse,
     AsyncLedgerEntriesWithStreamingResponse,
 )
+from .legal_entities import (
+    LegalEntities,
+    AsyncLegalEntities,
+    LegalEntitiesWithRawResponse,
+    AsyncLegalEntitiesWithRawResponse,
+    LegalEntitiesWithStreamingResponse,
+    AsyncLegalEntitiesWithStreamingResponse,
+)
 from .payment_orders import (
     PaymentOrders,
     AsyncPaymentOrders,
@@ -249,6 +257,14 @@ from .incoming_payment_details import (
     IncomingPaymentDetailsWithStreamingResponse,
     AsyncIncomingPaymentDetailsWithStreamingResponse,
 )
+from .connection_legal_entities import (
+    ConnectionLegalEntities,
+    AsyncConnectionLegalEntities,
+    ConnectionLegalEntitiesWithRawResponse,
+    AsyncConnectionLegalEntitiesWithRawResponse,
+    ConnectionLegalEntitiesWithStreamingResponse,
+    AsyncConnectionLegalEntitiesWithStreamingResponse,
+)
 from .ledger_account_categories import (
     LedgerAccountCategories,
     AsyncLedgerAccountCategories,
@@ -264,6 +280,14 @@ from .ledger_account_statements import (
     AsyncLedgerAccountStatementsWithRawResponse,
     LedgerAccountStatementsWithStreamingResponse,
     AsyncLedgerAccountStatementsWithStreamingResponse,
+)
+from .legal_entity_associations import (
+    LegalEntityAssociations,
+    AsyncLegalEntityAssociations,
+    LegalEntityAssociationsWithRawResponse,
+    AsyncLegalEntityAssociationsWithRawResponse,
+    LegalEntityAssociationsWithStreamingResponse,
+    AsyncLegalEntityAssociationsWithStreamingResponse,
 )
 from .ledger_account_settlements import (
     LedgerAccountSettlements,
@@ -495,4 +519,22 @@ __all__ = [
     "AsyncForeignExchangeQuotesWithRawResponse",
     "ForeignExchangeQuotesWithStreamingResponse",
     "AsyncForeignExchangeQuotesWithStreamingResponse",
+    "ConnectionLegalEntities",
+    "AsyncConnectionLegalEntities",
+    "ConnectionLegalEntitiesWithRawResponse",
+    "AsyncConnectionLegalEntitiesWithRawResponse",
+    "ConnectionLegalEntitiesWithStreamingResponse",
+    "AsyncConnectionLegalEntitiesWithStreamingResponse",
+    "LegalEntities",
+    "AsyncLegalEntities",
+    "LegalEntitiesWithRawResponse",
+    "AsyncLegalEntitiesWithRawResponse",
+    "LegalEntitiesWithStreamingResponse",
+    "AsyncLegalEntitiesWithStreamingResponse",
+    "LegalEntityAssociations",
+    "AsyncLegalEntityAssociations",
+    "LegalEntityAssociationsWithRawResponse",
+    "AsyncLegalEntityAssociationsWithRawResponse",
+    "LegalEntityAssociationsWithStreamingResponse",
+    "AsyncLegalEntityAssociationsWithStreamingResponse",
 ]

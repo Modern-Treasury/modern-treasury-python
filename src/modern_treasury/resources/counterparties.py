@@ -49,6 +49,8 @@ class Counterparties(SyncAPIResource):
         accounts: Iterable[counterparty_create_params.Account] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
         ledger_type: Literal["customer", "vendor"] | NotGiven = NOT_GIVEN,
+        legal_entity: counterparty_create_params.LegalEntity | NotGiven = NOT_GIVEN,
+        legal_entity_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         send_remittance_advice: bool | NotGiven = NOT_GIVEN,
         taxpayer_identifier: str | NotGiven = NOT_GIVEN,
@@ -73,6 +75,8 @@ class Counterparties(SyncAPIResource):
 
           ledger_type: An optional type to auto-sync the counterparty to your ledger. Either `customer`
               or `vendor`.
+
+          legal_entity_id: The id of the legal entity.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -103,6 +107,8 @@ class Counterparties(SyncAPIResource):
                     "accounts": accounts,
                     "email": email,
                     "ledger_type": ledger_type,
+                    "legal_entity": legal_entity,
+                    "legal_entity_id": legal_entity_id,
                     "metadata": metadata,
                     "send_remittance_advice": send_remittance_advice,
                     "taxpayer_identifier": taxpayer_identifier,
@@ -158,6 +164,7 @@ class Counterparties(SyncAPIResource):
         id: str,
         *,
         email: str | NotGiven = NOT_GIVEN,
+        legal_entity_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         send_remittance_advice: bool | NotGiven = NOT_GIVEN,
@@ -175,6 +182,8 @@ class Counterparties(SyncAPIResource):
 
         Args:
           email: A new email for the counterparty.
+
+          legal_entity_id: The id of the legal entity.
 
           metadata: Additional data in the form of key-value pairs. Pairs can be removed by passing
               an empty string or `null` as the value.
@@ -203,6 +212,7 @@ class Counterparties(SyncAPIResource):
             body=maybe_transform(
                 {
                     "email": email,
+                    "legal_entity_id": legal_entity_id,
                     "metadata": metadata,
                     "name": name,
                     "send_remittance_advice": send_remittance_advice,
@@ -227,6 +237,7 @@ class Counterparties(SyncAPIResource):
         created_at_lower_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         created_at_upper_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         email: str | NotGiven = NOT_GIVEN,
+        legal_entity_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
@@ -247,6 +258,8 @@ class Counterparties(SyncAPIResource):
 
           email: Performs a partial string match of the email field. This is also case
               insensitive.
+
+          legal_entity_id: Filters for counterparties with the given legal entity ID.
 
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
@@ -277,6 +290,7 @@ class Counterparties(SyncAPIResource):
                         "created_at_lower_bound": created_at_lower_bound,
                         "created_at_upper_bound": created_at_upper_bound,
                         "email": email,
+                        "legal_entity_id": legal_entity_id,
                         "metadata": metadata,
                         "name": name,
                         "per_page": per_page,
@@ -450,6 +464,8 @@ class AsyncCounterparties(AsyncAPIResource):
         accounts: Iterable[counterparty_create_params.Account] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
         ledger_type: Literal["customer", "vendor"] | NotGiven = NOT_GIVEN,
+        legal_entity: counterparty_create_params.LegalEntity | NotGiven = NOT_GIVEN,
+        legal_entity_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         send_remittance_advice: bool | NotGiven = NOT_GIVEN,
         taxpayer_identifier: str | NotGiven = NOT_GIVEN,
@@ -474,6 +490,8 @@ class AsyncCounterparties(AsyncAPIResource):
 
           ledger_type: An optional type to auto-sync the counterparty to your ledger. Either `customer`
               or `vendor`.
+
+          legal_entity_id: The id of the legal entity.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -504,6 +522,8 @@ class AsyncCounterparties(AsyncAPIResource):
                     "accounts": accounts,
                     "email": email,
                     "ledger_type": ledger_type,
+                    "legal_entity": legal_entity,
+                    "legal_entity_id": legal_entity_id,
                     "metadata": metadata,
                     "send_remittance_advice": send_remittance_advice,
                     "taxpayer_identifier": taxpayer_identifier,
@@ -559,6 +579,7 @@ class AsyncCounterparties(AsyncAPIResource):
         id: str,
         *,
         email: str | NotGiven = NOT_GIVEN,
+        legal_entity_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         send_remittance_advice: bool | NotGiven = NOT_GIVEN,
@@ -576,6 +597,8 @@ class AsyncCounterparties(AsyncAPIResource):
 
         Args:
           email: A new email for the counterparty.
+
+          legal_entity_id: The id of the legal entity.
 
           metadata: Additional data in the form of key-value pairs. Pairs can be removed by passing
               an empty string or `null` as the value.
@@ -604,6 +627,7 @@ class AsyncCounterparties(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "email": email,
+                    "legal_entity_id": legal_entity_id,
                     "metadata": metadata,
                     "name": name,
                     "send_remittance_advice": send_remittance_advice,
@@ -628,6 +652,7 @@ class AsyncCounterparties(AsyncAPIResource):
         created_at_lower_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         created_at_upper_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         email: str | NotGiven = NOT_GIVEN,
+        legal_entity_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
@@ -648,6 +673,8 @@ class AsyncCounterparties(AsyncAPIResource):
 
           email: Performs a partial string match of the email field. This is also case
               insensitive.
+
+          legal_entity_id: Filters for counterparties with the given legal entity ID.
 
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
@@ -678,6 +705,7 @@ class AsyncCounterparties(AsyncAPIResource):
                         "created_at_lower_bound": created_at_lower_bound,
                         "created_at_upper_bound": created_at_upper_bound,
                         "email": email,
+                        "legal_entity_id": legal_entity_id,
                         "metadata": metadata,
                         "name": name,
                         "per_page": per_page,
