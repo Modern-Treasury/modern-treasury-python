@@ -1,5 +1,30 @@
 # Changelog
 
+## 1.28.0 (2024-02-29)
+
+Full Changelog: [v1.27.0...v1.28.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.27.0...v1.28.0)
+
+### Features
+
+* **api:** add legal_entities resource ([#381](https://github.com/Modern-Treasury/modern-treasury-python/issues/381)) ([57d6eb9](https://github.com/Modern-Treasury/modern-treasury-python/commit/57d6eb95d89254783b11ab9641df0c9801f46505))
+* **api:** added foreign exchange rate information ([#375](https://github.com/Modern-Treasury/modern-treasury-python/issues/375)) ([167dd4e](https://github.com/Modern-Treasury/modern-treasury-python/commit/167dd4e002560f3fd8d18b26c60c92be764bcede))
+
+
+### Chores
+
+* **ci:** uses Stainless GitHub App for releases ([#370](https://github.com/Modern-Treasury/modern-treasury-python/issues/370)) ([992d666](https://github.com/Modern-Treasury/modern-treasury-python/commit/992d66631b6fe1d6cab082fc8e0d7aa249f0059b))
+* **client:** use anyio.sleep instead of asyncio.sleep ([#378](https://github.com/Modern-Treasury/modern-treasury-python/issues/378)) ([b986304](https://github.com/Modern-Treasury/modern-treasury-python/commit/b9863040a36b02a9b4fae059b54101aba3b41ef1))
+* **internal:** bump pyright ([#377](https://github.com/Modern-Treasury/modern-treasury-python/issues/377)) ([5b09470](https://github.com/Modern-Treasury/modern-treasury-python/commit/5b09470d873db017a0d0f6dd656130187f102e21))
+* **internal:** bump rye to v0.24.0 ([#374](https://github.com/Modern-Treasury/modern-treasury-python/issues/374)) ([97ec7a1](https://github.com/Modern-Treasury/modern-treasury-python/commit/97ec7a19107a8cf1ebe349fc157e286d7e6bde02))
+* **internal:** minor core client restructuring ([#379](https://github.com/Modern-Treasury/modern-treasury-python/issues/379)) ([fbf04eb](https://github.com/Modern-Treasury/modern-treasury-python/commit/fbf04eb4a0f68c2a44d46d88bf99daba0b41f034))
+* **internal:** refactor release environment script ([#372](https://github.com/Modern-Treasury/modern-treasury-python/issues/372)) ([bc7ee03](https://github.com/Modern-Treasury/modern-treasury-python/commit/bc7ee034706701a91c821a1b7d34fd53f2fc25f4))
+* **internal:** update deps ([#376](https://github.com/Modern-Treasury/modern-treasury-python/issues/376)) ([ec2a9eb](https://github.com/Modern-Treasury/modern-treasury-python/commit/ec2a9eb7994e2358053a36c4cff3a3901b18279d))
+
+
+### Documentation
+
+* **contributing:** improve wording ([#380](https://github.com/Modern-Treasury/modern-treasury-python/issues/380)) ([d8eefa6](https://github.com/Modern-Treasury/modern-treasury-python/commit/d8eefa663af1e496a4cd68b2076fde44549cc1cf))
+
 ## 1.27.0 (2024-02-13)
 
 Full Changelog: [v1.26.0...v1.27.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.26.0...v1.27.0)
