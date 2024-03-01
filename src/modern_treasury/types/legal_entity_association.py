@@ -21,7 +21,7 @@ __all__ = [
 class AssociatedLegalEntityAddress(BaseModel):
     id: str
 
-    address_types: List[str]
+    address_types: List[Literal["business", "mailing", "other", "po_box", "residential"]]
     """The types of this address."""
 
     country: Optional[str] = None
@@ -153,6 +153,11 @@ class AssociatedLegalEntity(BaseModel):
 
     legal_entity_type: Optional[Literal["business", "individual", "joint"]] = None
     """The type of legal entity."""
+
+    legal_structure: Optional[
+        Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
+    ] = None
+    """The business's legal structure."""
 
     live_mode: Optional[bool] = None
     """

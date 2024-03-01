@@ -39,6 +39,7 @@ class TestConnectionLegalEntities:
                 "date_of_birth": parse_date("2019-12-27"),
                 "business_name": "string",
                 "doing_business_as_names": ["string", "string", "string"],
+                "legal_structure": "corporation",
                 "phone_numbers": [{"phone_number": "string"}, {"phone_number": "string"}, {"phone_number": "string"}],
                 "email": "string",
                 "website": "string",
@@ -49,7 +50,7 @@ class TestConnectionLegalEntities:
                 },
                 "addresses": [
                     {
-                        "address_types": ["string", "string", "string"],
+                        "address_types": ["business", "mailing", "other"],
                         "line1": "string",
                         "line2": "string",
                         "locality": "string",
@@ -58,7 +59,7 @@ class TestConnectionLegalEntities:
                         "country": "string",
                     },
                     {
-                        "address_types": ["string", "string", "string"],
+                        "address_types": ["business", "mailing", "other"],
                         "line1": "string",
                         "line2": "string",
                         "locality": "string",
@@ -67,7 +68,7 @@ class TestConnectionLegalEntities:
                         "country": "string",
                     },
                     {
-                        "address_types": ["string", "string", "string"],
+                        "address_types": ["business", "mailing", "other"],
                         "line1": "string",
                         "line2": "string",
                         "locality": "string",
@@ -264,6 +265,7 @@ class TestAsyncConnectionLegalEntities:
                 "date_of_birth": parse_date("2019-12-27"),
                 "business_name": "string",
                 "doing_business_as_names": ["string", "string", "string"],
+                "legal_structure": "corporation",
                 "phone_numbers": [{"phone_number": "string"}, {"phone_number": "string"}, {"phone_number": "string"}],
                 "email": "string",
                 "website": "string",
@@ -274,7 +276,7 @@ class TestAsyncConnectionLegalEntities:
                 },
                 "addresses": [
                     {
-                        "address_types": ["string", "string", "string"],
+                        "address_types": ["business", "mailing", "other"],
                         "line1": "string",
                         "line2": "string",
                         "locality": "string",
@@ -283,7 +285,7 @@ class TestAsyncConnectionLegalEntities:
                         "country": "string",
                     },
                     {
-                        "address_types": ["string", "string", "string"],
+                        "address_types": ["business", "mailing", "other"],
                         "line1": "string",
                         "line2": "string",
                         "locality": "string",
@@ -292,7 +294,7 @@ class TestAsyncConnectionLegalEntities:
                         "country": "string",
                     },
                     {
-                        "address_types": ["string", "string", "string"],
+                        "address_types": ["business", "mailing", "other"],
                         "line1": "string",
                         "line2": "string",
                         "locality": "string",

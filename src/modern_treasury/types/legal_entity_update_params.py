@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Dict, List, Union, Iterable, Optional
 from datetime import date
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
@@ -28,6 +28,11 @@ class LegalEntityUpdateParams(TypedDict, total=False):
 
     last_name: Optional[str]
     """An individual's last name."""
+
+    legal_structure: Optional[
+        Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
+    ]
+    """The business's legal structure."""
 
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.

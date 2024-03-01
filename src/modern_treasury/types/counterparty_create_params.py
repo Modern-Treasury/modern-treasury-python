@@ -330,7 +330,7 @@ class LegalEntityAddress(TypedDict, total=False):
     region: Required[Optional[str]]
     """Region or State."""
 
-    address_types: List[str]
+    address_types: List[Literal["business", "mailing", "other", "po_box", "residential"]]
     """The types of this address."""
 
     line2: Optional[str]
@@ -417,6 +417,11 @@ class LegalEntity(TypedDict, total=False):
 
     last_name: Optional[str]
     """An individual's last name."""
+
+    legal_structure: Optional[
+        Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
+    ]
+    """The business's legal structure."""
 
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.

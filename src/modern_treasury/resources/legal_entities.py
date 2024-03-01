@@ -50,6 +50,10 @@ class LegalEntities(SyncAPIResource):
         first_name: Optional[str] | NotGiven = NOT_GIVEN,
         identifications: Iterable[legal_entity_create_params.Identification] | NotGiven = NOT_GIVEN,
         last_name: Optional[str] | NotGiven = NOT_GIVEN,
+        legal_structure: Optional[
+            Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
+        ]
+        | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         phone_numbers: Iterable[legal_entity_create_params.PhoneNumber] | NotGiven = NOT_GIVEN,
         website: Optional[str] | NotGiven = NOT_GIVEN,
@@ -81,6 +85,8 @@ class LegalEntities(SyncAPIResource):
 
           last_name: An individual's last name.
 
+          legal_structure: The business's legal structure.
+
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
@@ -109,6 +115,7 @@ class LegalEntities(SyncAPIResource):
                     "first_name": first_name,
                     "identifications": identifications,
                     "last_name": last_name,
+                    "legal_structure": legal_structure,
                     "metadata": metadata,
                     "phone_numbers": phone_numbers,
                     "website": website,
@@ -168,6 +175,10 @@ class LegalEntities(SyncAPIResource):
         email: Optional[str] | NotGiven = NOT_GIVEN,
         first_name: Optional[str] | NotGiven = NOT_GIVEN,
         last_name: Optional[str] | NotGiven = NOT_GIVEN,
+        legal_structure: Optional[
+            Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
+        ]
+        | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         phone_numbers: Iterable[legal_entity_update_params.PhoneNumber] | NotGiven = NOT_GIVEN,
         website: Optional[str] | NotGiven = NOT_GIVEN,
@@ -192,6 +203,8 @@ class LegalEntities(SyncAPIResource):
           first_name: An individual's first name.
 
           last_name: An individual's last name.
+
+          legal_structure: The business's legal structure.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -220,6 +233,7 @@ class LegalEntities(SyncAPIResource):
                     "email": email,
                     "first_name": first_name,
                     "last_name": last_name,
+                    "legal_structure": legal_structure,
                     "metadata": metadata,
                     "phone_numbers": phone_numbers,
                     "website": website,
@@ -311,6 +325,10 @@ class AsyncLegalEntities(AsyncAPIResource):
         first_name: Optional[str] | NotGiven = NOT_GIVEN,
         identifications: Iterable[legal_entity_create_params.Identification] | NotGiven = NOT_GIVEN,
         last_name: Optional[str] | NotGiven = NOT_GIVEN,
+        legal_structure: Optional[
+            Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
+        ]
+        | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         phone_numbers: Iterable[legal_entity_create_params.PhoneNumber] | NotGiven = NOT_GIVEN,
         website: Optional[str] | NotGiven = NOT_GIVEN,
@@ -342,6 +360,8 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           last_name: An individual's last name.
 
+          legal_structure: The business's legal structure.
+
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
@@ -370,6 +390,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "first_name": first_name,
                     "identifications": identifications,
                     "last_name": last_name,
+                    "legal_structure": legal_structure,
                     "metadata": metadata,
                     "phone_numbers": phone_numbers,
                     "website": website,
@@ -429,6 +450,10 @@ class AsyncLegalEntities(AsyncAPIResource):
         email: Optional[str] | NotGiven = NOT_GIVEN,
         first_name: Optional[str] | NotGiven = NOT_GIVEN,
         last_name: Optional[str] | NotGiven = NOT_GIVEN,
+        legal_structure: Optional[
+            Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
+        ]
+        | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         phone_numbers: Iterable[legal_entity_update_params.PhoneNumber] | NotGiven = NOT_GIVEN,
         website: Optional[str] | NotGiven = NOT_GIVEN,
@@ -453,6 +478,8 @@ class AsyncLegalEntities(AsyncAPIResource):
           first_name: An individual's first name.
 
           last_name: An individual's last name.
+
+          legal_structure: The business's legal structure.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -481,6 +508,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "email": email,
                     "first_name": first_name,
                     "last_name": last_name,
+                    "legal_structure": legal_structure,
                     "metadata": metadata,
                     "phone_numbers": phone_numbers,
                     "website": website,
