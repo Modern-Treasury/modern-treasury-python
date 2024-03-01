@@ -15,6 +15,7 @@ The REST API documentation can be found [on docs.moderntreasury.com](https://doc
 ## Installation
 
 ```sh
+# install from PyPI
 pip install modern-treasury
 ```
 
