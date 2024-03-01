@@ -34,7 +34,7 @@ class TestLegalEntities:
             legal_entity_type="business",
             addresses=[
                 {
-                    "address_types": ["string", "string", "string"],
+                    "address_types": ["business", "mailing", "other"],
                     "line1": "string",
                     "line2": "string",
                     "locality": "string",
@@ -43,7 +43,7 @@ class TestLegalEntities:
                     "country": "string",
                 },
                 {
-                    "address_types": ["string", "string", "string"],
+                    "address_types": ["business", "mailing", "other"],
                     "line1": "string",
                     "line2": "string",
                     "locality": "string",
@@ -52,7 +52,7 @@ class TestLegalEntities:
                     "country": "string",
                 },
                 {
-                    "address_types": ["string", "string", "string"],
+                    "address_types": ["business", "mailing", "other"],
                     "line1": "string",
                     "line2": "string",
                     "locality": "string",
@@ -84,6 +84,7 @@ class TestLegalEntities:
                 },
             ],
             last_name="string",
+            legal_structure="corporation",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -173,6 +174,7 @@ class TestLegalEntities:
             email="string",
             first_name="string",
             last_name="string",
+            legal_structure="corporation",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -267,7 +269,7 @@ class TestAsyncLegalEntities:
             legal_entity_type="business",
             addresses=[
                 {
-                    "address_types": ["string", "string", "string"],
+                    "address_types": ["business", "mailing", "other"],
                     "line1": "string",
                     "line2": "string",
                     "locality": "string",
@@ -276,7 +278,7 @@ class TestAsyncLegalEntities:
                     "country": "string",
                 },
                 {
-                    "address_types": ["string", "string", "string"],
+                    "address_types": ["business", "mailing", "other"],
                     "line1": "string",
                     "line2": "string",
                     "locality": "string",
@@ -285,7 +287,7 @@ class TestAsyncLegalEntities:
                     "country": "string",
                 },
                 {
-                    "address_types": ["string", "string", "string"],
+                    "address_types": ["business", "mailing", "other"],
                     "line1": "string",
                     "line2": "string",
                     "locality": "string",
@@ -317,6 +319,7 @@ class TestAsyncLegalEntities:
                 },
             ],
             last_name="string",
+            legal_structure="corporation",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -406,6 +409,7 @@ class TestAsyncLegalEntities:
             email="string",
             first_name="string",
             last_name="string",
+            legal_structure="corporation",
             metadata={
                 "key": "value",
                 "foo": "bar",
