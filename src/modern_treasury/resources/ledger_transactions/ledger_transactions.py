@@ -17,7 +17,10 @@ from ...types import (
     ledger_transaction_create_reversal_params,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .versions import (
     Versions,
     AsyncVersions,
@@ -543,7 +546,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         """
         return await self._post(
             "/api/ledger_transactions",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "ledger_entries": ledger_entries,
                     "description": description,
@@ -647,7 +650,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/ledger_transactions/{id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "description": description,
                     "effective_at": effective_at,
@@ -853,7 +856,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
             f"/api/ledger_transactions/{id}/reversal",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "description": description,
                     "effective_at": effective_at,

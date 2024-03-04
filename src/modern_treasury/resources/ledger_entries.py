@@ -16,7 +16,10 @@ from ..types import (
     ledger_entry_retrieve_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import maybe_transform
+from .._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
@@ -300,7 +303,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {"show_balances": show_balances}, ledger_entry_retrieve_params.LedgerEntryRetrieveParams
                 ),
             ),
@@ -341,7 +344,9 @@ class AsyncLedgerEntries(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/ledger_entries/{id}",
-            body=maybe_transform({"metadata": metadata}, ledger_entry_update_params.LedgerEntryUpdateParams),
+            body=await async_maybe_transform(
+                {"metadata": metadata}, ledger_entry_update_params.LedgerEntryUpdateParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
