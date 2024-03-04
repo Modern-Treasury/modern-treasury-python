@@ -10,7 +10,10 @@ import httpx
 
 from ... import _legacy_response
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
@@ -293,7 +296,7 @@ class AsyncBalanceReports(AsyncAPIResource):
             )
         return await self._post(
             f"/api/internal_accounts/{internal_account_id}/balance_reports",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "as_of_date": as_of_date,
                     "as_of_time": as_of_time,

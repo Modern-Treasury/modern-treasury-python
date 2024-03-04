@@ -15,7 +15,10 @@ from ..types import (
     connection_legal_entity_update_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import maybe_transform
+from .._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
@@ -265,7 +268,7 @@ class AsyncConnectionLegalEntities(AsyncAPIResource):
         """
         return await self._post(
             "/api/connection_legal_entities",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "connection_id": connection_id,
                     "legal_entity": legal_entity,
@@ -349,7 +352,7 @@ class AsyncConnectionLegalEntities(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/connection_legal_entities/{id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {"status": status}, connection_legal_entity_update_params.ConnectionLegalEntityUpdateParams
             ),
             options=make_request_options(

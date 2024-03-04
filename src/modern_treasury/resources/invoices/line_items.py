@@ -8,7 +8,10 @@ import httpx
 
 from ... import _legacy_response
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
@@ -373,7 +376,7 @@ class AsyncLineItems(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `invoice_id` but received {invoice_id!r}")
         return await self._post(
             f"/api/invoices/{invoice_id}/invoice_line_items",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "name": name,
                     "unit_amount": unit_amount,
@@ -487,7 +490,7 @@ class AsyncLineItems(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/invoices/{invoice_id}/invoice_line_items/{id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "description": description,
                     "direction": direction,

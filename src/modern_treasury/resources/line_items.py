@@ -10,7 +10,10 @@ import httpx
 from .. import _legacy_response
 from ..types import LineItem, line_item_list_params, line_item_update_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import maybe_transform
+from .._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
@@ -260,7 +263,7 @@ class AsyncLineItems(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
-            body=maybe_transform({"metadata": metadata}, line_item_update_params.LineItemUpdateParams),
+            body=await async_maybe_transform({"metadata": metadata}, line_item_update_params.LineItemUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

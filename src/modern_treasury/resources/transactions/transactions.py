@@ -15,7 +15,10 @@ from ...types import (
     transaction_update_params,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from .line_items import (
     LineItems,
@@ -417,7 +420,7 @@ class AsyncTransactions(AsyncAPIResource):
         """
         return await self._post(
             "/api/transactions",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "amount": amount,
                     "as_of_date": as_of_date,
@@ -508,7 +511,7 @@ class AsyncTransactions(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/transactions/{id}",
-            body=maybe_transform({"metadata": metadata}, transaction_update_params.TransactionUpdateParams),
+            body=await async_maybe_transform({"metadata": metadata}, transaction_update_params.TransactionUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
