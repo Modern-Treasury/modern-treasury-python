@@ -11,7 +11,10 @@ import httpx
 from ... import _legacy_response
 from ...types import Invoice, invoice_list_params, invoice_create_params, invoice_update_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ..._utils import maybe_transform
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from .line_items import (
     LineItems,
@@ -681,7 +684,7 @@ class AsyncInvoices(AsyncAPIResource):
         """
         return await self._post(
             "/api/invoices",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "counterparty_id": counterparty_id,
                     "due_date": due_date,
@@ -898,7 +901,7 @@ class AsyncInvoices(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/invoices/{id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "contact_details": contact_details,
                     "counterparty_billing_address": counterparty_billing_address,

@@ -9,7 +9,10 @@ import httpx
 from .. import _legacy_response
 from ..types import RoutingNumberLookupRequest, validation_validate_routing_number_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import maybe_transform
+from .._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
@@ -168,7 +171,7 @@ class AsyncValidations(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "routing_number": routing_number,
                         "routing_number_type": routing_number_type,

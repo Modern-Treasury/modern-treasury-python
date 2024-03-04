@@ -10,7 +10,10 @@ import httpx
 from .. import _legacy_response
 from ..types import RoutingDetail, routing_detail_list_params, routing_detail_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from .._utils import maybe_transform
+from .._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
@@ -394,7 +397,7 @@ class AsyncRoutingDetails(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/api/{accounts_type}/{account_id}/routing_details",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "routing_number": routing_number,
                     "routing_number_type": routing_number_type,

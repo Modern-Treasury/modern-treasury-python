@@ -19,7 +19,12 @@ from ...types import (
     payment_order_create_async_params,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import extract_files, maybe_transform, deepcopy_minimal
+from ..._utils import (
+    extract_files,
+    maybe_transform,
+    deepcopy_minimal,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from .reversals import (
     Reversals,
@@ -1202,7 +1207,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
             extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             "/api/payment_orders",
-            body=maybe_transform(body, payment_order_create_params.PaymentOrderCreateParams),
+            body=await async_maybe_transform(body, payment_order_create_params.PaymentOrderCreateParams),
             files=files,
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1446,7 +1451,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/api/payment_orders/{id}",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "accounting": accounting,
                     "accounting_category_id": accounting_category_id,
@@ -1820,7 +1825,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         """
         return await self._post(
             "/api/payment_orders/create_async",
-            body=maybe_transform(
+            body=await async_maybe_transform(
                 {
                     "amount": amount,
                     "direction": direction,
