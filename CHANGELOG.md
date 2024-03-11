@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.29.0 (2024-03-11)
+
+Full Changelog: [v1.28.0...v1.29.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.28.0...v1.29.0)
+
+### Features
+
+* **api:** add legal_structure enum member ([#384](https://github.com/Modern-Treasury/modern-treasury-python/issues/384)) ([57666b1](https://github.com/Modern-Treasury/modern-treasury-python/commit/57666b1863ac06848b3c3f87f7513eddc8134a68))
+
+
+### Chores
+
+* **client:** improve error message for invalid http_client argument ([#387](https://github.com/Modern-Treasury/modern-treasury-python/issues/387)) ([2e3952e](https://github.com/Modern-Treasury/modern-treasury-python/commit/2e3952e0690e173f1866fef46989bba4ca20429d))
+* **docs:** mention install from git repo ([#382](https://github.com/Modern-Treasury/modern-treasury-python/issues/382)) ([0ee2ab5](https://github.com/Modern-Treasury/modern-treasury-python/commit/0ee2ab53f2ceb52584703b1cde3a15ba9127aa61))
+* export NOT_GIVEN sentinel value ([#391](https://github.com/Modern-Treasury/modern-treasury-python/issues/391)) ([1972ed3](https://github.com/Modern-Treasury/modern-treasury-python/commit/1972ed3c47e1b98a314d92dbdfa7c7bc409a052d))
+* **internal:** add core support for deserializing into number response ([#388](https://github.com/Modern-Treasury/modern-treasury-python/issues/388)) ([7b2214a](https://github.com/Modern-Treasury/modern-treasury-python/commit/7b2214a6d6d7cc8a8147d119b39393b7dd9f34fa))
+* **internal:** bump pyright ([#389](https://github.com/Modern-Treasury/modern-treasury-python/issues/389)) ([30782dc](https://github.com/Modern-Treasury/modern-treasury-python/commit/30782dc6a380cb5b378237ec85aa42b881d8d92a))
+* **internal:** improve deserialisation of discriminated unions ([#392](https://github.com/Modern-Treasury/modern-treasury-python/issues/392)) ([85eed8c](https://github.com/Modern-Treasury/modern-treasury-python/commit/85eed8cf4dd70e1169acc70857dd8950bbd831df))
+* **internal:** split up transforms into sync / async ([#385](https://github.com/Modern-Treasury/modern-treasury-python/issues/385)) ([b7c4c48](https://github.com/Modern-Treasury/modern-treasury-python/commit/b7c4c48dd6cdeafd7bce20cae73acddeb3e2bf68))
+* **internal:** support more input types ([#386](https://github.com/Modern-Treasury/modern-treasury-python/issues/386)) ([79f79ed](https://github.com/Modern-Treasury/modern-treasury-python/commit/79f79edee7113b9631364a54be3e8642d31965fa))
+* **internal:** support parsing Annotated types ([#390](https://github.com/Modern-Treasury/modern-treasury-python/issues/390)) ([0dc04be](https://github.com/Modern-Treasury/modern-treasury-python/commit/0dc04be6ab1df54aaf67240c29af3a3bd29ca544))
+
 ## 1.28.0 (2024-02-29)
 
 Full Changelog: [v1.27.0...v1.28.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.27.0...v1.28.0)
