@@ -47,6 +47,7 @@ class LegalEntities(SyncAPIResource):
         legal_entity_type: Literal["business", "individual"],
         addresses: Iterable[legal_entity_create_params.Address] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
+        date_formed: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_of_birth: Union[str, date, None] | NotGiven = NOT_GIVEN,
         doing_business_as_names: List[str] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
@@ -78,7 +79,9 @@ class LegalEntities(SyncAPIResource):
 
           business_name: The business's legal business name.
 
-          date_of_birth: An individual's data of birth (YYYY-MM-DD).
+          date_formed: A business's formation date (YYYY-MM-DD).
+
+          date_of_birth: An individual's date of birth (YYYY-MM-DD).
 
           email: The entity's primary email.
 
@@ -112,6 +115,7 @@ class LegalEntities(SyncAPIResource):
                     "legal_entity_type": legal_entity_type,
                     "addresses": addresses,
                     "business_name": business_name,
+                    "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
                     "doing_business_as_names": doing_business_as_names,
                     "email": email,
@@ -173,6 +177,7 @@ class LegalEntities(SyncAPIResource):
         id: str,
         *,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
+        date_formed: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_of_birth: Union[str, date, None] | NotGiven = NOT_GIVEN,
         doing_business_as_names: List[str] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
@@ -199,7 +204,9 @@ class LegalEntities(SyncAPIResource):
         Args:
           business_name: The business's legal business name.
 
-          date_of_birth: An individual's data of birth (YYYY-MM-DD).
+          date_formed: A business's formation date (YYYY-MM-DD).
+
+          date_of_birth: An individual's date of birth (YYYY-MM-DD).
 
           email: The entity's primary email.
 
@@ -231,6 +238,7 @@ class LegalEntities(SyncAPIResource):
             body=maybe_transform(
                 {
                     "business_name": business_name,
+                    "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
                     "doing_business_as_names": doing_business_as_names,
                     "email": email,
@@ -322,6 +330,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         legal_entity_type: Literal["business", "individual"],
         addresses: Iterable[legal_entity_create_params.Address] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
+        date_formed: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_of_birth: Union[str, date, None] | NotGiven = NOT_GIVEN,
         doing_business_as_names: List[str] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
@@ -353,7 +362,9 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           business_name: The business's legal business name.
 
-          date_of_birth: An individual's data of birth (YYYY-MM-DD).
+          date_formed: A business's formation date (YYYY-MM-DD).
+
+          date_of_birth: An individual's date of birth (YYYY-MM-DD).
 
           email: The entity's primary email.
 
@@ -387,6 +398,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "legal_entity_type": legal_entity_type,
                     "addresses": addresses,
                     "business_name": business_name,
+                    "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
                     "doing_business_as_names": doing_business_as_names,
                     "email": email,
@@ -448,6 +460,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         id: str,
         *,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
+        date_formed: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_of_birth: Union[str, date, None] | NotGiven = NOT_GIVEN,
         doing_business_as_names: List[str] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
@@ -474,7 +487,9 @@ class AsyncLegalEntities(AsyncAPIResource):
         Args:
           business_name: The business's legal business name.
 
-          date_of_birth: An individual's data of birth (YYYY-MM-DD).
+          date_formed: A business's formation date (YYYY-MM-DD).
+
+          date_of_birth: An individual's date of birth (YYYY-MM-DD).
 
           email: The entity's primary email.
 
@@ -506,6 +521,7 @@ class AsyncLegalEntities(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "business_name": business_name,
+                    "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
                     "doing_business_as_names": doing_business_as_names,
                     "email": email,

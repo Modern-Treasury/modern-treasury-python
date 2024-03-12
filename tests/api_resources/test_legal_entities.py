@@ -62,6 +62,7 @@ class TestLegalEntities:
                 },
             ],
             business_name="string",
+            date_formed=parse_date("2019-12-27"),
             date_of_birth=parse_date("2019-12-27"),
             doing_business_as_names=["string", "string", "string"],
             email="string",
@@ -169,6 +170,7 @@ class TestLegalEntities:
         legal_entity = client.legal_entities.update(
             "string",
             business_name="string",
+            date_formed=parse_date("2019-12-27"),
             date_of_birth=parse_date("2019-12-27"),
             doing_business_as_names=["string", "string", "string"],
             email="string",
@@ -297,6 +299,7 @@ class TestAsyncLegalEntities:
                 },
             ],
             business_name="string",
+            date_formed=parse_date("2019-12-27"),
             date_of_birth=parse_date("2019-12-27"),
             doing_business_as_names=["string", "string", "string"],
             email="string",
@@ -404,6 +407,7 @@ class TestAsyncLegalEntities:
         legal_entity = await async_client.legal_entities.update(
             "string",
             business_name="string",
+            date_formed=parse_date("2019-12-27"),
             date_of_birth=parse_date("2019-12-27"),
             doing_business_as_names=["string", "string", "string"],
             email="string",
