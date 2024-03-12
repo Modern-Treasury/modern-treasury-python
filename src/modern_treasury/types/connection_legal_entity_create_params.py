@@ -114,8 +114,11 @@ class LegalEntity(TypedDict, total=False):
     business_name: Optional[str]
     """The business's legal business name."""
 
+    date_formed: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
+    """A business's formation date (YYYY-MM-DD)."""
+
     date_of_birth: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
-    """An individual's data of birth (YYYY-MM-DD)."""
+    """An individual's date of birth (YYYY-MM-DD)."""
 
     doing_business_as_names: List[str]
 
