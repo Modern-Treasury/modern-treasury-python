@@ -123,8 +123,11 @@ class LegalEntity(BaseModel):
 
     created_at: Optional[datetime] = None
 
+    date_formed: Optional[date] = None
+    """A business's formation date (YYYY-MM-DD)."""
+
     date_of_birth: Optional[date] = None
-    """An individual's data of birth (YYYY-MM-DD)."""
+    """An individual's date of birth (YYYY-MM-DD)."""
 
     discarded_at: Optional[datetime] = None
 
