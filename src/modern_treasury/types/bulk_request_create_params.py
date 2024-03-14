@@ -350,7 +350,7 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccountLedgerAccount(TypedD
     populated here, otherwise null.
     """
 
-    ledgerable_type: Literal["external_account", "internal_account", "virtual_account"]
+    ledgerable_type: Literal["counterparty", "external_account", "internal_account", "virtual_account"]
     """
     If the ledger account links to another object in Modern Treasury, the type will
     be populated here, otherwise null. The value is one of internal_account or
@@ -987,7 +987,7 @@ class ResourceExpectedPaymentCreateRequest(TypedDict, total=False):
     reconciliation_groups: Optional[object]
     """The reconciliation groups you have for this payment."""
 
-    reconciliation_rule_variables: Optional[Iterable[object]]
+    reconciliation_rule_variables: Optional[Iterable[Dict[str, str]]]
     """An array of reconciliation rule variables for this payment."""
 
     remittance_information: Optional[str]
@@ -1269,7 +1269,7 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountLedgerAccount(Typed
     populated here, otherwise null.
     """
 
-    ledgerable_type: Literal["external_account", "internal_account", "virtual_account"]
+    ledgerable_type: Literal["counterparty", "external_account", "internal_account", "virtual_account"]
     """
     If the ledger account links to another object in Modern Treasury, the type will
     be populated here, otherwise null. The value is one of internal_account or
@@ -1741,7 +1741,7 @@ class ResourceExpectedPaymentUpdateRequestWithID(TypedDict, total=False):
     reconciliation_groups: Optional[object]
     """The reconciliation groups you have for this payment."""
 
-    reconciliation_rule_variables: Optional[Iterable[object]]
+    reconciliation_rule_variables: Optional[Iterable[Dict[str, str]]]
     """An array of reconciliation rule variables for this payment."""
 
     remittance_information: Optional[str]

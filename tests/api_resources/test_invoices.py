@@ -301,7 +301,16 @@ class TestInvoices:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         invoice = client.invoices.list(
             after_cursor="string",
+            counterparty_id="string",
+            due_date_end=parse_date("2019-12-27"),
+            due_date_start=parse_date("2019-12-27"),
+            expected_payment_id="string",
+            metadata={"foo": "string"},
+            number="string",
+            originating_account_id="string",
+            payment_order_id="string",
             per_page=0,
+            status="draft",
         )
         assert_matches_type(SyncPage[Invoice], invoice, path=["response"])
 
@@ -659,7 +668,16 @@ class TestAsyncInvoices:
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         invoice = await async_client.invoices.list(
             after_cursor="string",
+            counterparty_id="string",
+            due_date_end=parse_date("2019-12-27"),
+            due_date_start=parse_date("2019-12-27"),
+            expected_payment_id="string",
+            metadata={"foo": "string"},
+            number="string",
+            originating_account_id="string",
+            payment_order_id="string",
             per_page=0,
+            status="draft",
         )
         assert_matches_type(AsyncPage[Invoice], invoice, path=["response"])
 

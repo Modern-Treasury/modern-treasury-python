@@ -89,7 +89,7 @@ class ExpectedPaymentCreateParams(TypedDict, total=False):
     reconciliation_groups: Optional[object]
     """The reconciliation groups you have for this payment."""
 
-    reconciliation_rule_variables: Optional[Iterable[object]]
+    reconciliation_rule_variables: Optional[Iterable[Dict[str, str]]]
     """An array of reconciliation rule variables for this payment."""
 
     remittance_information: Optional[str]
