@@ -85,7 +85,7 @@ class ExpectedPayment(BaseModel):
     is unreconciled.
     """
 
-    reconciliation_rule_variables: Optional[List[builtins.object]] = None
+    reconciliation_rule_variables: Optional[List[Dict[str, str]]] = None
     """An array of reconciliation rule variables for this payment."""
 
     remittance_information: Optional[str] = None

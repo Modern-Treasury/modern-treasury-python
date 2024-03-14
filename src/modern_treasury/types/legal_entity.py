@@ -5,6 +5,7 @@ from datetime import date, datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .legal_entity_association import LegalEntityAssociation
 
 __all__ = ["LegalEntity", "Addresses", "Address", "Identifications", "Identification", "PhoneNumbers", "PhoneNumber"]
 
@@ -144,6 +145,9 @@ class LegalEntity(BaseModel):
 
     last_name: Optional[str] = None
     """An individual's last name."""
+
+    legal_entity_associations: Optional[List[LegalEntityAssociation]] = None
+    """The legal entity associations and its associated legal entities."""
 
     legal_entity_type: Optional[Literal["business", "individual", "joint"]] = None
     """The type of legal entity."""

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+from typing import Dict, List, Union, Iterable, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
@@ -447,7 +447,17 @@ class Invoices(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        counterparty_id: str | NotGiven = NOT_GIVEN,
+        due_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
+        due_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
+        expected_payment_id: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        number: str | NotGiven = NOT_GIVEN,
+        originating_account_id: str | NotGiven = NOT_GIVEN,
+        payment_order_id: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        status: Literal["draft", "paid", "partially_paid", "payment_pending", "unpaid", "voided"]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -459,6 +469,16 @@ class Invoices(SyncAPIResource):
         list invoices
 
         Args:
+          due_date_end: An inclusive upper bound for searching due_date
+
+          due_date_start: An inclusive lower bound for searching due_date
+
+          metadata: For example, if you want to query for records with metadata key `Type` and value
+              `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+              parameters.
+
+          number: A unique record number assigned to each invoice that is issued.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -478,7 +498,16 @@ class Invoices(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
+                        "counterparty_id": counterparty_id,
+                        "due_date_end": due_date_end,
+                        "due_date_start": due_date_start,
+                        "expected_payment_id": expected_payment_id,
+                        "metadata": metadata,
+                        "number": number,
+                        "originating_account_id": originating_account_id,
+                        "payment_order_id": payment_order_id,
                         "per_page": per_page,
+                        "status": status,
                     },
                     invoice_list_params.InvoiceListParams,
                 ),
@@ -942,7 +971,17 @@ class AsyncInvoices(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        counterparty_id: str | NotGiven = NOT_GIVEN,
+        due_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
+        due_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
+        expected_payment_id: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        number: str | NotGiven = NOT_GIVEN,
+        originating_account_id: str | NotGiven = NOT_GIVEN,
+        payment_order_id: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        status: Literal["draft", "paid", "partially_paid", "payment_pending", "unpaid", "voided"]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -954,6 +993,16 @@ class AsyncInvoices(AsyncAPIResource):
         list invoices
 
         Args:
+          due_date_end: An inclusive upper bound for searching due_date
+
+          due_date_start: An inclusive lower bound for searching due_date
+
+          metadata: For example, if you want to query for records with metadata key `Type` and value
+              `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
+              parameters.
+
+          number: A unique record number assigned to each invoice that is issued.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -973,7 +1022,16 @@ class AsyncInvoices(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
+                        "counterparty_id": counterparty_id,
+                        "due_date_end": due_date_end,
+                        "due_date_start": due_date_start,
+                        "expected_payment_id": expected_payment_id,
+                        "metadata": metadata,
+                        "number": number,
+                        "originating_account_id": originating_account_id,
+                        "payment_order_id": payment_order_id,
                         "per_page": per_page,
+                        "status": status,
                     },
                     invoice_list_params.InvoiceListParams,
                 ),
