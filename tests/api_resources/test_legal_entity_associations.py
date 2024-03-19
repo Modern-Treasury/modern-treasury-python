@@ -29,7 +29,7 @@ class TestLegalEntityAssociations:
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         legal_entity_association = client.legal_entity_associations.create(
             relationship_types=["beneficial_owner", "control_person"],
-            associated_legal_entity={
+            child_legal_entity={
                 "legal_entity_type": "business",
                 "first_name": "string",
                 "last_name": "string",
@@ -93,9 +93,9 @@ class TestLegalEntityAssociations:
                     },
                 ],
             },
-            associated_legal_entity_id="string",
-            associator_legal_entity_id="string",
+            child_legal_entity_id="string",
             ownership_percentage=0,
+            parent_legal_entity_id="string",
             title="string",
         )
         assert_matches_type(LegalEntityAssociation, legal_entity_association, path=["response"])
@@ -139,7 +139,7 @@ class TestAsyncLegalEntityAssociations:
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         legal_entity_association = await async_client.legal_entity_associations.create(
             relationship_types=["beneficial_owner", "control_person"],
-            associated_legal_entity={
+            child_legal_entity={
                 "legal_entity_type": "business",
                 "first_name": "string",
                 "last_name": "string",
@@ -203,9 +203,9 @@ class TestAsyncLegalEntityAssociations:
                     },
                 ],
             },
-            associated_legal_entity_id="string",
-            associator_legal_entity_id="string",
+            child_legal_entity_id="string",
             ownership_percentage=0,
+            parent_legal_entity_id="string",
             title="string",
         )
         assert_matches_type(LegalEntityAssociation, legal_entity_association, path=["response"])

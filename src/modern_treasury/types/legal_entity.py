@@ -66,7 +66,7 @@ class Identification(BaseModel):
         "ar_cuit",
         "br_cnpj",
         "br_cpf",
-        "cl_nut",
+        "cl_rut",
         "co_cedulas",
         "co_nit",
         "hn_id",
@@ -147,7 +147,7 @@ class LegalEntity(BaseModel):
     """An individual's last name."""
 
     legal_entity_associations: Optional[List[LegalEntityAssociation]] = None
-    """The legal entity associations and its associated legal entities."""
+    """The legal entity associations and its child legal entities."""
 
     legal_entity_type: Optional[Literal["business", "individual", "joint"]] = None
     """The type of legal entity."""

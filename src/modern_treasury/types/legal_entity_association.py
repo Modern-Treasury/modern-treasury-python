@@ -8,17 +8,17 @@ from .._models import BaseModel
 
 __all__ = [
     "LegalEntityAssociation",
-    "AssociatedLegalEntity",
-    "AssociatedLegalEntityAddresses",
-    "AssociatedLegalEntityAddress",
-    "AssociatedLegalEntityIdentifications",
-    "AssociatedLegalEntityIdentification",
-    "AssociatedLegalEntityPhoneNumbers",
-    "AssociatedLegalEntityPhoneNumber",
+    "ChildLegalEntity",
+    "ChildLegalEntityAddresses",
+    "ChildLegalEntityAddress",
+    "ChildLegalEntityIdentifications",
+    "ChildLegalEntityIdentification",
+    "ChildLegalEntityPhoneNumbers",
+    "ChildLegalEntityPhoneNumber",
 ]
 
 
-class AssociatedLegalEntityAddress(BaseModel):
+class ChildLegalEntityAddress(BaseModel):
     id: str
 
     address_types: List[Literal["business", "mailing", "other", "po_box", "residential"]]
@@ -55,14 +55,14 @@ class AssociatedLegalEntityAddress(BaseModel):
     updated_at: datetime
 
 
-AssociatedLegalEntityAddresses = AssociatedLegalEntityAddress
+ChildLegalEntityAddresses = ChildLegalEntityAddress
 """This type is deprecated and will be removed in a future release.
 
-Please use AssociatedLegalEntityAddress instead.
+Please use ChildLegalEntityAddress instead.
 """
 
 
-class AssociatedLegalEntityIdentification(BaseModel):
+class ChildLegalEntityIdentification(BaseModel):
     id: str
 
     created_at: datetime
@@ -74,7 +74,7 @@ class AssociatedLegalEntityIdentification(BaseModel):
         "ar_cuit",
         "br_cnpj",
         "br_cpf",
-        "cl_nut",
+        "cl_rut",
         "co_cedulas",
         "co_nit",
         "hn_id",
@@ -103,28 +103,28 @@ class AssociatedLegalEntityIdentification(BaseModel):
     updated_at: datetime
 
 
-AssociatedLegalEntityIdentifications = AssociatedLegalEntityIdentification
+ChildLegalEntityIdentifications = ChildLegalEntityIdentification
 """This type is deprecated and will be removed in a future release.
 
-Please use AssociatedLegalEntityIdentification instead.
+Please use ChildLegalEntityIdentification instead.
 """
 
 
-class AssociatedLegalEntityPhoneNumber(BaseModel):
+class ChildLegalEntityPhoneNumber(BaseModel):
     phone_number: Optional[str] = None
 
 
-AssociatedLegalEntityPhoneNumbers = AssociatedLegalEntityPhoneNumber
+ChildLegalEntityPhoneNumbers = ChildLegalEntityPhoneNumber
 """This type is deprecated and will be removed in a future release.
 
-Please use AssociatedLegalEntityPhoneNumber instead.
+Please use ChildLegalEntityPhoneNumber instead.
 """
 
 
-class AssociatedLegalEntity(BaseModel):
+class ChildLegalEntity(BaseModel):
     id: Optional[str] = None
 
-    addresses: Optional[List[AssociatedLegalEntityAddress]] = None
+    addresses: Optional[List[ChildLegalEntityAddress]] = None
     """A list of addresses for the entity."""
 
     business_name: Optional[str] = None
@@ -148,7 +148,7 @@ class AssociatedLegalEntity(BaseModel):
     first_name: Optional[str] = None
     """An individual's first name."""
 
-    identifications: Optional[List[AssociatedLegalEntityIdentification]] = None
+    identifications: Optional[List[ChildLegalEntityIdentification]] = None
     """A list of identifications for the legal entity."""
 
     last_name: Optional[str] = None
@@ -176,7 +176,7 @@ class AssociatedLegalEntity(BaseModel):
 
     object: Optional[str] = None
 
-    phone_numbers: Optional[List[AssociatedLegalEntityPhoneNumber]] = None
+    phone_numbers: Optional[List[ChildLegalEntityPhoneNumber]] = None
 
     updated_at: Optional[datetime] = None
 
@@ -187,14 +187,8 @@ class AssociatedLegalEntity(BaseModel):
 class LegalEntityAssociation(BaseModel):
     id: Optional[str] = None
 
-    associated_legal_entity: Optional[AssociatedLegalEntity] = None
-    """The associated legal entity."""
-
-    associator_legal_entity_id: Optional[str] = None
-    """The ID of the associator legal entity.
-
-    This must be a business or joint legal entity.
-    """
+    child_legal_entity: Optional[ChildLegalEntity] = None
+    """The child legal entity."""
 
     created_at: Optional[datetime] = None
 
@@ -209,11 +203,17 @@ class LegalEntityAssociation(BaseModel):
     object: Optional[str] = None
 
     ownership_percentage: Optional[int] = None
-    """The associated entity's ownership percentage iff they are a beneficial owner."""
+    """The child entity's ownership percentage iff they are a beneficial owner."""
+
+    parent_legal_entity_id: Optional[str] = None
+    """The ID of the parent legal entity.
+
+    This must be a business or joint legal entity.
+    """
 
     relationship_types: Optional[List[Literal["beneficial_owner", "control_person"]]] = None
 
     title: Optional[str] = None
-    """The job title of the associated entity at the associator entity."""
+    """The job title of the child entity at the parent entity."""
 
     updated_at: Optional[datetime] = None

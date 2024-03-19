@@ -364,7 +364,7 @@ class TestCounterparties:
                         "relationship_types": ["beneficial_owner", "control_person"],
                         "title": "string",
                         "ownership_percentage": 0,
-                        "associated_legal_entity": {
+                        "child_legal_entity": {
                             "legal_entity_type": "business",
                             "first_name": "string",
                             "last_name": "string",
@@ -432,13 +432,13 @@ class TestCounterparties:
                                 },
                             ],
                         },
-                        "associated_legal_entity_id": "string",
+                        "child_legal_entity_id": "string",
                     },
                     {
                         "relationship_types": ["beneficial_owner", "control_person"],
                         "title": "string",
                         "ownership_percentage": 0,
-                        "associated_legal_entity": {
+                        "child_legal_entity": {
                             "legal_entity_type": "business",
                             "first_name": "string",
                             "last_name": "string",
@@ -506,13 +506,13 @@ class TestCounterparties:
                                 },
                             ],
                         },
-                        "associated_legal_entity_id": "string",
+                        "child_legal_entity_id": "string",
                     },
                     {
                         "relationship_types": ["beneficial_owner", "control_person"],
                         "title": "string",
                         "ownership_percentage": 0,
-                        "associated_legal_entity": {
+                        "child_legal_entity": {
                             "legal_entity_type": "business",
                             "first_name": "string",
                             "last_name": "string",
@@ -580,7 +580,7 @@ class TestCounterparties:
                                 },
                             ],
                         },
-                        "associated_legal_entity_id": "string",
+                        "child_legal_entity_id": "string",
                     },
                 ],
             },
@@ -1185,7 +1185,7 @@ class TestAsyncCounterparties:
                         "relationship_types": ["beneficial_owner", "control_person"],
                         "title": "string",
                         "ownership_percentage": 0,
-                        "associated_legal_entity": {
+                        "child_legal_entity": {
                             "legal_entity_type": "business",
                             "first_name": "string",
                             "last_name": "string",
@@ -1253,13 +1253,13 @@ class TestAsyncCounterparties:
                                 },
                             ],
                         },
-                        "associated_legal_entity_id": "string",
+                        "child_legal_entity_id": "string",
                     },
                     {
                         "relationship_types": ["beneficial_owner", "control_person"],
                         "title": "string",
                         "ownership_percentage": 0,
-                        "associated_legal_entity": {
+                        "child_legal_entity": {
                             "legal_entity_type": "business",
                             "first_name": "string",
                             "last_name": "string",
@@ -1327,13 +1327,13 @@ class TestAsyncCounterparties:
                                 },
                             ],
                         },
-                        "associated_legal_entity_id": "string",
+                        "child_legal_entity_id": "string",
                     },
                     {
                         "relationship_types": ["beneficial_owner", "control_person"],
                         "title": "string",
                         "ownership_percentage": 0,
-                        "associated_legal_entity": {
+                        "child_legal_entity": {
                             "legal_entity_type": "business",
                             "first_name": "string",
                             "last_name": "string",
@@ -1401,7 +1401,7 @@ class TestAsyncCounterparties:
                                 },
                             ],
                         },
-                        "associated_legal_entity_id": "string",
+                        "child_legal_entity_id": "string",
                     },
                 ],
             },
