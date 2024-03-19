@@ -16,14 +16,14 @@ __all__ = [
     "Identification",
     "LegalEntityAssociations",
     "LegalEntityAssociation",
-    "LegalEntityAssociationsAssociatedLegalEntity",
-    "LegalEntityAssociationAssociatedLegalEntity",
-    "LegalEntityAssociationsAssociatedLegalEntityAddresses",
-    "LegalEntityAssociationAssociatedLegalEntityAddress",
-    "LegalEntityAssociationsAssociatedLegalEntityIdentifications",
-    "LegalEntityAssociationAssociatedLegalEntityIdentification",
-    "LegalEntityAssociationsAssociatedLegalEntityPhoneNumbers",
-    "LegalEntityAssociationAssociatedLegalEntityPhoneNumber",
+    "LegalEntityAssociationsChildLegalEntity",
+    "LegalEntityAssociationChildLegalEntity",
+    "LegalEntityAssociationsChildLegalEntityAddresses",
+    "LegalEntityAssociationChildLegalEntityAddress",
+    "LegalEntityAssociationsChildLegalEntityIdentifications",
+    "LegalEntityAssociationChildLegalEntityIdentification",
+    "LegalEntityAssociationsChildLegalEntityPhoneNumbers",
+    "LegalEntityAssociationChildLegalEntityPhoneNumber",
     "PhoneNumbers",
     "PhoneNumber",
 ]
@@ -60,7 +60,7 @@ class LegalEntityCreateParams(TypedDict, total=False):
     """An individual's last name."""
 
     legal_entity_associations: Optional[Iterable[LegalEntityAssociation]]
-    """The legal entity associations and its associated legal entities."""
+    """The legal entity associations and its child legal entities."""
 
     legal_structure: Optional[
         Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
@@ -117,7 +117,7 @@ class Identification(TypedDict, total=False):
             "ar_cuit",
             "br_cnpj",
             "br_cpf",
-            "cl_nut",
+            "cl_rut",
             "co_cedulas",
             "co_nit",
             "hn_id",
@@ -144,7 +144,7 @@ Please use Identification instead.
 """
 
 
-class LegalEntityAssociationAssociatedLegalEntityAddress(TypedDict, total=False):
+class LegalEntityAssociationChildLegalEntityAddress(TypedDict, total=False):
     country: Required[Optional[str]]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
@@ -165,14 +165,14 @@ class LegalEntityAssociationAssociatedLegalEntityAddress(TypedDict, total=False)
     line2: Optional[str]
 
 
-LegalEntityAssociationsAssociatedLegalEntityAddresses = LegalEntityAssociationAssociatedLegalEntityAddress
+LegalEntityAssociationsChildLegalEntityAddresses = LegalEntityAssociationChildLegalEntityAddress
 """This type is deprecated and will be removed in a future release.
 
-Please use LegalEntityAssociationAssociatedLegalEntityAddress instead.
+Please use LegalEntityAssociationChildLegalEntityAddress instead.
 """
 
 
-class LegalEntityAssociationAssociatedLegalEntityIdentification(TypedDict, total=False):
+class LegalEntityAssociationChildLegalEntityIdentification(TypedDict, total=False):
     id_number: Required[str]
     """The ID number of identification document."""
 
@@ -182,7 +182,7 @@ class LegalEntityAssociationAssociatedLegalEntityIdentification(TypedDict, total
             "ar_cuit",
             "br_cnpj",
             "br_cpf",
-            "cl_nut",
+            "cl_rut",
             "co_cedulas",
             "co_nit",
             "hn_id",
@@ -202,26 +202,26 @@ class LegalEntityAssociationAssociatedLegalEntityIdentification(TypedDict, total
     """
 
 
-LegalEntityAssociationsAssociatedLegalEntityIdentifications = LegalEntityAssociationAssociatedLegalEntityIdentification
+LegalEntityAssociationsChildLegalEntityIdentifications = LegalEntityAssociationChildLegalEntityIdentification
 """This type is deprecated and will be removed in a future release.
 
-Please use LegalEntityAssociationAssociatedLegalEntityIdentification instead.
+Please use LegalEntityAssociationChildLegalEntityIdentification instead.
 """
 
 
-class LegalEntityAssociationAssociatedLegalEntityPhoneNumber(TypedDict, total=False):
+class LegalEntityAssociationChildLegalEntityPhoneNumber(TypedDict, total=False):
     phone_number: str
 
 
-LegalEntityAssociationsAssociatedLegalEntityPhoneNumbers = LegalEntityAssociationAssociatedLegalEntityPhoneNumber
+LegalEntityAssociationsChildLegalEntityPhoneNumbers = LegalEntityAssociationChildLegalEntityPhoneNumber
 """This type is deprecated and will be removed in a future release.
 
-Please use LegalEntityAssociationAssociatedLegalEntityPhoneNumber instead.
+Please use LegalEntityAssociationChildLegalEntityPhoneNumber instead.
 """
 
 
-class LegalEntityAssociationAssociatedLegalEntity(TypedDict, total=False):
-    addresses: Iterable[LegalEntityAssociationAssociatedLegalEntityAddress]
+class LegalEntityAssociationChildLegalEntity(TypedDict, total=False):
+    addresses: Iterable[LegalEntityAssociationChildLegalEntityAddress]
     """A list of addresses for the entity."""
 
     business_name: Optional[str]
@@ -241,7 +241,7 @@ class LegalEntityAssociationAssociatedLegalEntity(TypedDict, total=False):
     first_name: Optional[str]
     """An individual's first name."""
 
-    identifications: Iterable[LegalEntityAssociationAssociatedLegalEntityIdentification]
+    identifications: Iterable[LegalEntityAssociationChildLegalEntityIdentification]
     """A list of identifications for the legal entity."""
 
     last_name: Optional[str]
@@ -261,33 +261,33 @@ class LegalEntityAssociationAssociatedLegalEntity(TypedDict, total=False):
     Both the key and value must be strings.
     """
 
-    phone_numbers: Iterable[LegalEntityAssociationAssociatedLegalEntityPhoneNumber]
+    phone_numbers: Iterable[LegalEntityAssociationChildLegalEntityPhoneNumber]
 
     website: Optional[str]
     """The entity's primary website URL."""
 
 
-LegalEntityAssociationsAssociatedLegalEntity = LegalEntityAssociationAssociatedLegalEntity
+LegalEntityAssociationsChildLegalEntity = LegalEntityAssociationChildLegalEntity
 """This type is deprecated and will be removed in a future release.
 
-Please use LegalEntityAssociationAssociatedLegalEntity instead.
+Please use LegalEntityAssociationChildLegalEntity instead.
 """
 
 
 class LegalEntityAssociation(TypedDict, total=False):
     relationship_types: Required[List[Literal["beneficial_owner", "control_person"]]]
 
-    associated_legal_entity: LegalEntityAssociationAssociatedLegalEntity
-    """The associated legal entity."""
+    child_legal_entity: LegalEntityAssociationChildLegalEntity
+    """The child legal entity."""
 
-    associated_legal_entity_id: str
-    """The ID of the associated legal entity."""
+    child_legal_entity_id: str
+    """The ID of the child legal entity."""
 
     ownership_percentage: Optional[int]
-    """The associated entity's ownership percentage iff they are a beneficial owner."""
+    """The child entity's ownership percentage iff they are a beneficial owner."""
 
     title: Optional[str]
-    """The job title of the associated entity at the associator entity."""
+    """The job title of the child entity at the parent entity."""
 
 
 LegalEntityAssociations = LegalEntityAssociation

@@ -93,7 +93,7 @@ class LegalEntities(SyncAPIResource):
 
           last_name: An individual's last name.
 
-          legal_entity_associations: The legal entity associations and its associated legal entities.
+          legal_entity_associations: The legal entity associations and its child legal entities.
 
           legal_structure: The business's legal structure.
 
@@ -381,7 +381,7 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           last_name: An individual's last name.
 
-          legal_entity_associations: The legal entity associations and its associated legal entities.
+          legal_entity_associations: The legal entity associations and its child legal entities.
 
           legal_structure: The business's legal structure.
 

@@ -10,39 +10,39 @@ from .._utils import PropertyInfo
 
 __all__ = [
     "LegalEntityAssociationCreateParams",
-    "AssociatedLegalEntity",
-    "AssociatedLegalEntityAddresses",
-    "AssociatedLegalEntityAddress",
-    "AssociatedLegalEntityIdentifications",
-    "AssociatedLegalEntityIdentification",
-    "AssociatedLegalEntityPhoneNumbers",
-    "AssociatedLegalEntityPhoneNumber",
+    "ChildLegalEntity",
+    "ChildLegalEntityAddresses",
+    "ChildLegalEntityAddress",
+    "ChildLegalEntityIdentifications",
+    "ChildLegalEntityIdentification",
+    "ChildLegalEntityPhoneNumbers",
+    "ChildLegalEntityPhoneNumber",
 ]
 
 
 class LegalEntityAssociationCreateParams(TypedDict, total=False):
     relationship_types: Required[List[Literal["beneficial_owner", "control_person"]]]
 
-    associated_legal_entity: AssociatedLegalEntity
-    """The associated legal entity."""
+    child_legal_entity: ChildLegalEntity
+    """The child legal entity."""
 
-    associated_legal_entity_id: str
-    """The ID of the associated legal entity."""
+    child_legal_entity_id: str
+    """The ID of the child legal entity."""
 
-    associator_legal_entity_id: str
-    """The ID of the associator legal entity.
+    ownership_percentage: Optional[int]
+    """The child entity's ownership percentage iff they are a beneficial owner."""
+
+    parent_legal_entity_id: str
+    """The ID of the parent legal entity.
 
     This must be a business or joint legal entity.
     """
 
-    ownership_percentage: Optional[int]
-    """The associated entity's ownership percentage iff they are a beneficial owner."""
-
     title: Optional[str]
-    """The job title of the associated entity at the associator entity."""
+    """The job title of the child entity at the parent entity."""
 
 
-class AssociatedLegalEntityAddress(TypedDict, total=False):
+class ChildLegalEntityAddress(TypedDict, total=False):
     country: Required[Optional[str]]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
@@ -63,14 +63,14 @@ class AssociatedLegalEntityAddress(TypedDict, total=False):
     line2: Optional[str]
 
 
-AssociatedLegalEntityAddresses = AssociatedLegalEntityAddress
+ChildLegalEntityAddresses = ChildLegalEntityAddress
 """This type is deprecated and will be removed in a future release.
 
-Please use AssociatedLegalEntityAddress instead.
+Please use ChildLegalEntityAddress instead.
 """
 
 
-class AssociatedLegalEntityIdentification(TypedDict, total=False):
+class ChildLegalEntityIdentification(TypedDict, total=False):
     id_number: Required[str]
     """The ID number of identification document."""
 
@@ -80,7 +80,7 @@ class AssociatedLegalEntityIdentification(TypedDict, total=False):
             "ar_cuit",
             "br_cnpj",
             "br_cpf",
-            "cl_nut",
+            "cl_rut",
             "co_cedulas",
             "co_nit",
             "hn_id",
@@ -100,26 +100,26 @@ class AssociatedLegalEntityIdentification(TypedDict, total=False):
     """
 
 
-AssociatedLegalEntityIdentifications = AssociatedLegalEntityIdentification
+ChildLegalEntityIdentifications = ChildLegalEntityIdentification
 """This type is deprecated and will be removed in a future release.
 
-Please use AssociatedLegalEntityIdentification instead.
+Please use ChildLegalEntityIdentification instead.
 """
 
 
-class AssociatedLegalEntityPhoneNumber(TypedDict, total=False):
+class ChildLegalEntityPhoneNumber(TypedDict, total=False):
     phone_number: str
 
 
-AssociatedLegalEntityPhoneNumbers = AssociatedLegalEntityPhoneNumber
+ChildLegalEntityPhoneNumbers = ChildLegalEntityPhoneNumber
 """This type is deprecated and will be removed in a future release.
 
-Please use AssociatedLegalEntityPhoneNumber instead.
+Please use ChildLegalEntityPhoneNumber instead.
 """
 
 
-class AssociatedLegalEntity(TypedDict, total=False):
-    addresses: Iterable[AssociatedLegalEntityAddress]
+class ChildLegalEntity(TypedDict, total=False):
+    addresses: Iterable[ChildLegalEntityAddress]
     """A list of addresses for the entity."""
 
     business_name: Optional[str]
@@ -139,7 +139,7 @@ class AssociatedLegalEntity(TypedDict, total=False):
     first_name: Optional[str]
     """An individual's first name."""
 
-    identifications: Iterable[AssociatedLegalEntityIdentification]
+    identifications: Iterable[ChildLegalEntityIdentification]
     """A list of identifications for the legal entity."""
 
     last_name: Optional[str]
@@ -159,7 +159,7 @@ class AssociatedLegalEntity(TypedDict, total=False):
     Both the key and value must be strings.
     """
 
-    phone_numbers: Iterable[AssociatedLegalEntityPhoneNumber]
+    phone_numbers: Iterable[ChildLegalEntityPhoneNumber]
 
     website: Optional[str]
     """The entity's primary website URL."""
