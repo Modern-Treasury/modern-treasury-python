@@ -163,7 +163,7 @@ external_account = client.external_accounts.create(
 print(external_account.id)
 ```
 
-## File Uploads
+## File uploads
 
 Request parameters that correspond to file uploads can be passed as `bytes`, a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.
 
