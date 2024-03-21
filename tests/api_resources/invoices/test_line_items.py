@@ -37,6 +37,11 @@ class TestLineItems:
             unit_amount=0,
             description="string",
             direction="string",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
             quantity=0,
             unit_amount_decimal="string",
         )
@@ -142,6 +147,11 @@ class TestLineItems:
             invoice_id="string",
             description="string",
             direction="string",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
             name="string",
             quantity=0,
             unit_amount=0,
@@ -305,6 +315,11 @@ class TestAsyncLineItems:
             unit_amount=0,
             description="string",
             direction="string",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
             quantity=0,
             unit_amount_decimal="string",
         )
@@ -410,6 +425,11 @@ class TestAsyncLineItems:
             invoice_id="string",
             description="string",
             direction="string",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
             name="string",
             quantity=0,
             unit_amount=0,

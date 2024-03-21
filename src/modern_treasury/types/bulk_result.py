@@ -8,6 +8,7 @@ from typing_extensions import Literal
 
 from .._compat import PYDANTIC_V2
 from .._models import BaseModel
+from .transaction import Transaction
 from .expected_payment import ExpectedPayment
 from .ledger_transaction import LedgerTransaction
 
@@ -47,7 +48,7 @@ class EntityBulkError(BaseModel):
     updated_at: datetime
 
 
-Entity = Union["PaymentOrder", ExpectedPayment, LedgerTransaction, EntityBulkError]
+Entity = Union["PaymentOrder", ExpectedPayment, LedgerTransaction, Transaction, EntityBulkError]
 
 
 class BulkResult(BaseModel):
@@ -65,7 +66,7 @@ class BulkResult(BaseModel):
     entity_id: str
     """Unique identifier for the result entity object."""
 
-    entity_type: Literal["payment_order", "ledger_transaction", "expected_payment", "bulk_error"]
+    entity_type: Literal["payment_order", "ledger_transaction", "transaction", "expected_payment", "bulk_error"]
     """The type of the result entity object.
 
     For a successful bulk result, this is the same as the `resource_type` of the

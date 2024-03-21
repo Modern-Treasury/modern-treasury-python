@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Dict
 from typing_extensions import Required, TypedDict
 
 __all__ = ["LineItemCreateParams"]
@@ -25,6 +26,12 @@ class LineItemCreateParams(TypedDict, total=False):
 
     `debit` indicates that a client owes the business money and increases the
     invoice's `total_amount` due. `credit` has the opposite intention and effect.
+    """
+
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
     """
 
     quantity: int
