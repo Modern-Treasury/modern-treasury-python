@@ -23,7 +23,7 @@ class BulkRequestListParams(TypedDict, total=False):
 
     per_page: int
 
-    resource_type: Literal["payment_order", "ledger_transaction", "expected_payment"]
+    resource_type: Literal["payment_order", "ledger_transaction", "transaction", "expected_payment"]
     """One of payment_order, expected_payment, or ledger_transaction."""
 
     status: Literal["pending", "processing", "completed"]

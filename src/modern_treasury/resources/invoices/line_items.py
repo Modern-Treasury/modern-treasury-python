@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Dict, Optional
 
 import httpx
 
@@ -42,6 +42,7 @@ class LineItems(SyncAPIResource):
         unit_amount: int,
         description: str | NotGiven = NOT_GIVEN,
         direction: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         quantity: int | NotGiven = NOT_GIVEN,
         unit_amount_decimal: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -66,6 +67,9 @@ class LineItems(SyncAPIResource):
           direction: Either `debit` or `credit`. `debit` indicates that a client owes the business
               money and increases the invoice's `total_amount` due. `credit` has the opposite
               intention and effect.
+
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
 
           quantity: The number of units of a product or service that this line item is for. Must be
               a whole number. Defaults to 1 if not provided.
@@ -94,6 +98,7 @@ class LineItems(SyncAPIResource):
                     "unit_amount": unit_amount,
                     "description": description,
                     "direction": direction,
+                    "metadata": metadata,
                     "quantity": quantity,
                     "unit_amount_decimal": unit_amount_decimal,
                 },
@@ -152,6 +157,7 @@ class LineItems(SyncAPIResource):
         invoice_id: str,
         description: str | NotGiven = NOT_GIVEN,
         direction: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         quantity: int | NotGiven = NOT_GIVEN,
         unit_amount: int | NotGiven = NOT_GIVEN,
@@ -173,6 +179,9 @@ class LineItems(SyncAPIResource):
           direction: Either `debit` or `credit`. `debit` indicates that a client owes the business
               money and increases the invoice's `total_amount` due. `credit` has the opposite
               intention and effect.
+
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
 
           name: The name of the line item, typically a product or SKU name.
 
@@ -206,6 +215,7 @@ class LineItems(SyncAPIResource):
                 {
                     "description": description,
                     "direction": direction,
+                    "metadata": metadata,
                     "name": name,
                     "quantity": quantity,
                     "unit_amount": unit_amount,
@@ -330,6 +340,7 @@ class AsyncLineItems(AsyncAPIResource):
         unit_amount: int,
         description: str | NotGiven = NOT_GIVEN,
         direction: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         quantity: int | NotGiven = NOT_GIVEN,
         unit_amount_decimal: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -354,6 +365,9 @@ class AsyncLineItems(AsyncAPIResource):
           direction: Either `debit` or `credit`. `debit` indicates that a client owes the business
               money and increases the invoice's `total_amount` due. `credit` has the opposite
               intention and effect.
+
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
 
           quantity: The number of units of a product or service that this line item is for. Must be
               a whole number. Defaults to 1 if not provided.
@@ -382,6 +396,7 @@ class AsyncLineItems(AsyncAPIResource):
                     "unit_amount": unit_amount,
                     "description": description,
                     "direction": direction,
+                    "metadata": metadata,
                     "quantity": quantity,
                     "unit_amount_decimal": unit_amount_decimal,
                 },
@@ -440,6 +455,7 @@ class AsyncLineItems(AsyncAPIResource):
         invoice_id: str,
         description: str | NotGiven = NOT_GIVEN,
         direction: str | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         quantity: int | NotGiven = NOT_GIVEN,
         unit_amount: int | NotGiven = NOT_GIVEN,
@@ -461,6 +477,9 @@ class AsyncLineItems(AsyncAPIResource):
           direction: Either `debit` or `credit`. `debit` indicates that a client owes the business
               money and increases the invoice's `total_amount` due. `credit` has the opposite
               intention and effect.
+
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
 
           name: The name of the line item, typically a product or SKU name.
 
@@ -494,6 +513,7 @@ class AsyncLineItems(AsyncAPIResource):
                 {
                     "description": description,
                     "direction": direction,
+                    "metadata": metadata,
                     "name": name,
                     "quantity": quantity,
                     "unit_amount": unit_amount,

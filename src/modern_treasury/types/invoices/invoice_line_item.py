@@ -1,5 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Dict
 from datetime import datetime
 
 from ..._models import BaseModel
@@ -32,6 +33,12 @@ class InvoiceLineItem(BaseModel):
     """
     This field will be true if this object exists in the live environment or false
     if it exists in the test environment.
+    """
+
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
     """
 
     name: str
