@@ -85,9 +85,12 @@ class LegalEntityIdentification(TypedDict, total=False):
             "hn_id",
             "hn_rtn",
             "passport",
+            "sa_tin",
+            "sa_vat",
             "us_ein",
             "us_itin",
             "us_ssn",
+            "vn_tin",
         ]
     ]
     """The type of ID number."""
@@ -150,9 +153,12 @@ class LegalEntityLegalEntityAssociationChildLegalEntityIdentification(TypedDict,
             "hn_id",
             "hn_rtn",
             "passport",
+            "sa_tin",
+            "sa_vat",
             "us_ein",
             "us_itin",
             "us_ssn",
+            "vn_tin",
         ]
     ]
     """The type of ID number."""
