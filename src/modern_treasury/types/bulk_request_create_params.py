@@ -53,6 +53,8 @@ __all__ = [
     "ResourceLedgerTransactionCreateRequestLedgerEntry",
     "ResourcesTransactionCreateRequest",
     "ResourceTransactionCreateRequest",
+    "ResourcesID",
+    "ResourceID",
     "ResourcesPaymentOrderUpdateRequestWithID",
     "ResourcePaymentOrderUpdateRequestWithID",
     "ResourcesPaymentOrderUpdateRequestWithIDAccounting",
@@ -73,6 +75,8 @@ __all__ = [
     "ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail",
     "ResourcesExpectedPaymentUpdateRequestWithID",
     "ResourceExpectedPaymentUpdateRequestWithID",
+    "ResourcesTransactionUpdateRequestWithID",
+    "ResourceTransactionUpdateRequestWithID",
     "ResourcesLedgerTransactionUpdateRequestWithID",
     "ResourceLedgerTransactionUpdateRequestWithID",
     "ResourcesLedgerTransactionUpdateRequestWithIDLedgerEntries",
@@ -1208,6 +1212,17 @@ Please use ResourceTransactionCreateRequest instead.
 """
 
 
+class ResourceID(TypedDict, total=False):
+    id: str
+
+
+ResourcesID = ResourceID
+"""This type is deprecated and will be removed in a future release.
+
+Please use ResourceID instead.
+"""
+
+
 class ResourcePaymentOrderUpdateRequestWithIDAccounting(TypedDict, total=False):
     account_id: Optional[str]
     """The ID of one of your accounting categories.
@@ -1828,6 +1843,23 @@ Please use ResourceExpectedPaymentUpdateRequestWithID instead.
 """
 
 
+class ResourceTransactionUpdateRequestWithID(TypedDict, total=False):
+    id: str
+
+    metadata: Dict[str, str]
+    """Additional data in the form of key-value pairs.
+
+    Pairs can be removed by passing an empty string or `null` as the value.
+    """
+
+
+ResourcesTransactionUpdateRequestWithID = ResourceTransactionUpdateRequestWithID
+"""This type is deprecated and will be removed in a future release.
+
+Please use ResourceTransactionUpdateRequestWithID instead.
+"""
+
+
 class ResourceLedgerTransactionUpdateRequestWithIDLedgerEntry(TypedDict, total=False):
     amount: Required[int]
     """Value in specified currency's smallest unit.
@@ -1932,8 +1964,10 @@ Resource = Union[
     ResourceExpectedPaymentCreateRequest,
     ResourceLedgerTransactionCreateRequest,
     ResourceTransactionCreateRequest,
+    ResourceID,
     ResourcePaymentOrderUpdateRequestWithID,
     ResourceExpectedPaymentUpdateRequestWithID,
+    ResourceTransactionUpdateRequestWithID,
     ResourceLedgerTransactionUpdateRequestWithID,
 ]
 
