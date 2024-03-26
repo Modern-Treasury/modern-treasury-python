@@ -1,5 +1,47 @@
 # Changelog
 
+## 1.30.0 (2024-03-26)
+
+Full Changelog: [v1.29.0...v1.30.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.29.0...v1.30.0)
+
+### Features
+
+* **api:** add citibank enums ([#408](https://github.com/Modern-Treasury/modern-treasury-python/issues/408)) ([43766ea](https://github.com/Modern-Treasury/modern-treasury-python/commit/43766eaf8d15a39612556c7484f8df1898a5bef0))
+* **api:** add date_formed property to legal entities ([#393](https://github.com/Modern-Treasury/modern-treasury-python/issues/393)) ([9a4b35d](https://github.com/Modern-Treasury/modern-treasury-python/commit/9a4b35d269e834123d127d440f6698de0fa0cb97))
+* **api:** add line item metadata ([435ed52](https://github.com/Modern-Treasury/modern-treasury-python/commit/435ed52182687b264a67f515dd8c598d51effabe))
+* **api:** extend list invoices query params ([#395](https://github.com/Modern-Treasury/modern-treasury-python/issues/395)) ([96b0eb8](https://github.com/Modern-Treasury/modern-treasury-python/commit/96b0eb8b989b29052617f2a8d4c84ae7d5b2d68e))
+* **api:** introduce bulk transaction create ([#403](https://github.com/Modern-Treasury/modern-treasury-python/issues/403)) ([435ed52](https://github.com/Modern-Treasury/modern-treasury-python/commit/435ed52182687b264a67f515dd8c598d51effabe))
+* **api:** rename `associated_legal_entity` to `child_legal_entity` ([#399](https://github.com/Modern-Treasury/modern-treasury-python/issues/399)) ([6c3404b](https://github.com/Modern-Treasury/modern-treasury-python/commit/6c3404b43c328ed586402853bf0b265e8c9eebe3))
+* **api:** rename `id_type` enum from `cl_nut` to `cl_rut` ([6c3404b](https://github.com/Modern-Treasury/modern-treasury-python/commit/6c3404b43c328ed586402853bf0b265e8c9eebe3))
+* **api:** updates ([#407](https://github.com/Modern-Treasury/modern-treasury-python/issues/407)) ([1d6a2f7](https://github.com/Modern-Treasury/modern-treasury-python/commit/1d6a2f735331837eb8cd0bdff5247e80a2f511a8))
+
+
+### Bug Fixes
+
+* revert regression with 3.7 support ([#406](https://github.com/Modern-Treasury/modern-treasury-python/issues/406)) ([9c0d235](https://github.com/Modern-Treasury/modern-treasury-python/commit/9c0d235b6e898b1aff433fac24632c5c0606c52a))
+
+
+### Performance Improvements
+
+* cache TypeAdapters ([#396](https://github.com/Modern-Treasury/modern-treasury-python/issues/396)) ([4e3f737](https://github.com/Modern-Treasury/modern-treasury-python/commit/4e3f737f25bd9eb55a4f3780e73394e215540039))
+
+
+### Chores
+
+* add back removed code ([b004844](https://github.com/Modern-Treasury/modern-treasury-python/commit/b004844d3aae539cc2eac22d957101afee2df2e2))
+* **internal:** formatting change ([#404](https://github.com/Modern-Treasury/modern-treasury-python/issues/404)) ([dc0dcca](https://github.com/Modern-Treasury/modern-treasury-python/commit/dc0dccad5b41530f8246d8b457176f883a396725))
+* **internal:** loosen input type for util function ([#400](https://github.com/Modern-Treasury/modern-treasury-python/issues/400)) ([b9152e1](https://github.com/Modern-Treasury/modern-treasury-python/commit/b9152e1462045e5ed6805b4066274ad2ca47c54b))
+* **internal:** temporary commit ([1c3fcba](https://github.com/Modern-Treasury/modern-treasury-python/commit/1c3fcba29db3a35c70817ff8e0a61a922d3982e8))
+* **internal:** update generated pragma comment ([#398](https://github.com/Modern-Treasury/modern-treasury-python/issues/398)) ([079cd15](https://github.com/Modern-Treasury/modern-treasury-python/commit/079cd156d88cf8b8a966d09cd07c5615194421ab))
+
+
+### Documentation
+
+* **contributing:** fix typo ([#405](https://github.com/Modern-Treasury/modern-treasury-python/issues/405)) ([85daac6](https://github.com/Modern-Treasury/modern-treasury-python/commit/85daac67182549dcaef4408f51bb634cf48450ba))
+* fix typo in CONTRIBUTING.md ([#397](https://github.com/Modern-Treasury/modern-treasury-python/issues/397)) ([6bf2e54](https://github.com/Modern-Treasury/modern-treasury-python/commit/6bf2e5454e8dc68011b7cf8cf6b7f1feb1ee4240))
+* **readme:** consistent use of sentence case in headings ([#401](https://github.com/Modern-Treasury/modern-treasury-python/issues/401)) ([83c0b59](https://github.com/Modern-Treasury/modern-treasury-python/commit/83c0b596aea61df02b0998d474113e7d9c0c4408))
+* **readme:** document how to make undocumented requests ([#402](https://github.com/Modern-Treasury/modern-treasury-python/issues/402)) ([e6b9cec](https://github.com/Modern-Treasury/modern-treasury-python/commit/e6b9cec23184cbf8e536957f899d2a63b9cb19ee))
+
 ## 1.29.0 (2024-03-11)
 
 Full Changelog: [v1.28.0...v1.29.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.28.0...v1.29.0)
