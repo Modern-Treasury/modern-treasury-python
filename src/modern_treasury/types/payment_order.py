@@ -102,6 +102,8 @@ class ReferenceNumber(BaseModel):
         "bofa_end_to_end_id",
         "bofa_transaction_id",
         "check_number",
+        "citibank_reference_number",
+        "citibank_worldlink_clearing_system_reference_number",
         "column_fx_quote_id",
         "column_reversal_pair_transfer_id",
         "column_transfer_id",
