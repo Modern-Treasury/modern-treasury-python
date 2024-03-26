@@ -32,7 +32,6 @@ from .invoices import (
     InvoicesWithStreamingResponse,
     AsyncInvoicesWithStreamingResponse,
 )
-from .webhooks import Webhooks, AsyncWebhooks
 from .documents import (
     Documents,
     AsyncDocuments,
@@ -487,8 +486,6 @@ __all__ = [
     "AsyncPaperItemsWithRawResponse",
     "PaperItemsWithStreamingResponse",
     "AsyncPaperItemsWithStreamingResponse",
-    "Webhooks",
-    "AsyncWebhooks",
     "VirtualAccounts",
     "AsyncVirtualAccounts",
     "VirtualAccountsWithRawResponse",
