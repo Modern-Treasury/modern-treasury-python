@@ -87,6 +87,7 @@ class ModernTreasury(SyncAPIClient):
     transactions: resources.Transactions
     validations: resources.Validations
     paper_items: resources.PaperItems
+    webhooks: resources.Webhooks
     virtual_accounts: resources.VirtualAccounts
     bulk_requests: resources.BulkRequests
     bulk_results: resources.BulkResults
@@ -210,6 +211,7 @@ class ModernTreasury(SyncAPIClient):
         self.transactions = resources.Transactions(self)
         self.validations = resources.Validations(self)
         self.paper_items = resources.PaperItems(self)
+        self.webhooks = resources.Webhooks(self)
         self.virtual_accounts = resources.VirtualAccounts(self)
         self.bulk_requests = resources.BulkRequests(self)
         self.bulk_results = resources.BulkResults(self)
@@ -403,6 +405,7 @@ class AsyncModernTreasury(AsyncAPIClient):
     transactions: resources.AsyncTransactions
     validations: resources.AsyncValidations
     paper_items: resources.AsyncPaperItems
+    webhooks: resources.AsyncWebhooks
     virtual_accounts: resources.AsyncVirtualAccounts
     bulk_requests: resources.AsyncBulkRequests
     bulk_results: resources.AsyncBulkResults
@@ -526,6 +529,7 @@ class AsyncModernTreasury(AsyncAPIClient):
         self.transactions = resources.AsyncTransactions(self)
         self.validations = resources.AsyncValidations(self)
         self.paper_items = resources.AsyncPaperItems(self)
+        self.webhooks = resources.AsyncWebhooks(self)
         self.virtual_accounts = resources.AsyncVirtualAccounts(self)
         self.bulk_requests = resources.AsyncBulkRequests(self)
         self.bulk_results = resources.AsyncBulkResults(self)

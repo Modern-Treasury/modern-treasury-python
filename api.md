@@ -537,6 +537,13 @@ Methods:
 - <code title="get /api/paper_items/{id}">client.paper_items.<a href="./src/modern_treasury/resources/paper_items.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/paper_item.py">PaperItem</a></code>
 - <code title="get /api/paper_items">client.paper_items.<a href="./src/modern_treasury/resources/paper_items.py">list</a>(\*\*<a href="src/modern_treasury/types/paper_item_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/paper_item.py">SyncPage[PaperItem]</a></code>
 
+# Webhooks
+
+Methods:
+
+- <code>client.webhooks.<a href="./src/modern_treasury/resources/webhooks.py">get_signature</a>(\*args) -> str</code>
+- <code>client.webhooks.<a href="./src/modern_treasury/resources/webhooks.py">validate_signature</a>(\*args) -> bool</code>
+
 # VirtualAccounts
 
 Types:
