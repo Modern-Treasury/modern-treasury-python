@@ -68,7 +68,7 @@ class AccountDetail(TypedDict, total=False):
     account_number: Required[str]
     """The account number for the bank account."""
 
-    account_number_type: Literal["clabe", "hk_number", "iban", "other", "pan", "wallet_address"]
+    account_number_type: Literal["clabe", "hk_number", "iban", "nz_number", "other", "pan", "wallet_address"]
     """One of `iban`, `clabe`, `wallet_address`, or `other`.
 
     Use `other` if the bank account number is in a generic format.
