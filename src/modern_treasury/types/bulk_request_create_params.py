@@ -298,7 +298,7 @@ Please use ResourcePaymentOrderAsyncCreateRequestLineItem instead.
 class ResourcePaymentOrderAsyncCreateRequestReceivingAccountAccountDetail(TypedDict, total=False):
     account_number: Required[str]
 
-    account_number_type: Literal["iban", "hk_number", "clabe", "wallet_address", "pan", "other"]
+    account_number_type: Literal["iban", "hk_number", "clabe", "nz_number", "wallet_address", "pan", "other"]
 
 
 ResourcesPaymentOrderAsyncCreateRequestReceivingAccountAccountDetails = (
@@ -1281,7 +1281,7 @@ Please use ResourcePaymentOrderUpdateRequestWithIDLineItem instead.
 class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountAccountDetail(TypedDict, total=False):
     account_number: Required[str]
 
-    account_number_type: Literal["iban", "hk_number", "clabe", "wallet_address", "pan", "other"]
+    account_number_type: Literal["iban", "hk_number", "clabe", "nz_number", "wallet_address", "pan", "other"]
 
 
 ResourcesPaymentOrderUpdateRequestWithIDReceivingAccountAccountDetails = (

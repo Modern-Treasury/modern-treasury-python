@@ -425,7 +425,7 @@ Please use LineItem instead.
 class ReceivingAccountAccountDetail(TypedDict, total=False):
     account_number: Required[str]
 
-    account_number_type: Literal["iban", "hk_number", "clabe", "wallet_address", "pan", "other"]
+    account_number_type: Literal["iban", "hk_number", "clabe", "nz_number", "wallet_address", "pan", "other"]
 
 
 ReceivingAccountAccountDetails = ReceivingAccountAccountDetail

@@ -67,7 +67,7 @@ class IncomingPaymentDetail(BaseModel):
     """
 
     originating_account_number_type: Optional[
-        Literal["clabe", "hk_number", "iban", "other", "pan", "wallet_address"]
+        Literal["clabe", "hk_number", "iban", "nz_number", "other", "pan", "wallet_address"]
     ] = None
     """The type of the originating account number for the incoming payment detail."""
 
