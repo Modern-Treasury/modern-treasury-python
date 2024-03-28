@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.31.0 (2024-03-28)
+
+Full Changelog: [v1.30.0...v1.31.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.30.0...v1.31.0)
+
+### Features
+
+* **package:** export default constants ([#409](https://github.com/Modern-Treasury/modern-treasury-python/issues/409)) ([7f7ede1](https://github.com/Modern-Treasury/modern-treasury-python/commit/7f7ede13ae026f7dc01a2b816634df6b8d118865))
+
 ## 1.30.0 (2024-03-26)
 
 Full Changelog: [v1.29.0...v1.30.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.29.0...v1.30.0)
