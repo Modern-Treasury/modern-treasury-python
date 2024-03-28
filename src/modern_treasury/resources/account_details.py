@@ -42,7 +42,7 @@ class AccountDetails(SyncAPIResource):
         *,
         accounts_type: Literal["external_accounts"],
         account_number: str,
-        account_number_type: Literal["clabe", "hk_number", "iban", "other", "pan", "wallet_address"]
+        account_number_type: Literal["clabe", "hk_number", "iban", "nz_number", "other", "pan", "wallet_address"]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -245,7 +245,7 @@ class AsyncAccountDetails(AsyncAPIResource):
         *,
         accounts_type: Literal["external_accounts"],
         account_number: str,
-        account_number_type: Literal["clabe", "hk_number", "iban", "other", "pan", "wallet_address"]
+        account_number_type: Literal["clabe", "hk_number", "iban", "nz_number", "other", "pan", "wallet_address"]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
