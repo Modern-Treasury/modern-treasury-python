@@ -79,6 +79,7 @@ class ChildLegalEntityIdentification(BaseModel):
         "co_nit",
         "hn_id",
         "hn_rtn",
+        "in_lei",
         "passport",
         "sa_tin",
         "sa_vat",
