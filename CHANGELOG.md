@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.31.0 (2024-04-09)
+
+Full Changelog: [v1.30.0...v1.31.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.30.0...v1.31.0)
+
+### Features
+
+* **api:** add id type in_lei ([#417](https://github.com/Modern-Treasury/modern-treasury-python/issues/417)) ([eb4fff9](https://github.com/Modern-Treasury/modern-treasury-python/commit/eb4fff988eba220a827abd6bc7888b5222ee3199))
+* **api:** update account number type enum ([#411](https://github.com/Modern-Treasury/modern-treasury-python/issues/411)) ([0dc3b7d](https://github.com/Modern-Treasury/modern-treasury-python/commit/0dc3b7dd682fed48f6880658b65310a7828709dc))
+* **client:** add DefaultHttpxClient and DefaultAsyncHttpxClient ([#418](https://github.com/Modern-Treasury/modern-treasury-python/issues/418)) ([843bdcf](https://github.com/Modern-Treasury/modern-treasury-python/commit/843bdcf67446d16ad1e31d8fb7bc038adfb338d3))
+* **models:** add to_dict & to_json helper methods ([#419](https://github.com/Modern-Treasury/modern-treasury-python/issues/419)) ([472e346](https://github.com/Modern-Treasury/modern-treasury-python/commit/472e3463dcb60ec0922a2428cef0f5951ae7c489))
+* **package:** export default constants ([#409](https://github.com/Modern-Treasury/modern-treasury-python/issues/409)) ([7f7ede1](https://github.com/Modern-Treasury/modern-treasury-python/commit/7f7ede13ae026f7dc01a2b816634df6b8d118865))
+
+
+### Bug Fixes
+
+* **project:** use absolute github links on PyPi ([#412](https://github.com/Modern-Treasury/modern-treasury-python/issues/412)) ([d5a5578](https://github.com/Modern-Treasury/modern-treasury-python/commit/d5a5578acd518a5dfd04c5d8d3e22bf5d26dca06))
+
+
+### Chores
+
+* **client:** validate that max_retries is not None ([#414](https://github.com/Modern-Treasury/modern-treasury-python/issues/414)) ([f8d0405](https://github.com/Modern-Treasury/modern-treasury-python/commit/f8d04054145c254f05da10af70801a2b24aa0ff8))
+* **internal:** defer model build for import latency ([#415](https://github.com/Modern-Treasury/modern-treasury-python/issues/415)) ([ada3d43](https://github.com/Modern-Treasury/modern-treasury-python/commit/ada3d43770506a53b0a2bcbfe95547efd4ff77c3))
+* **internal:** streaming updates ([#416](https://github.com/Modern-Treasury/modern-treasury-python/issues/416)) ([c8da517](https://github.com/Modern-Treasury/modern-treasury-python/commit/c8da517d93c09964b3f4712b45eefa4c2e19264a))
+
 ## 1.30.0 (2024-03-26)
 
 Full Changelog: [v1.29.0...v1.30.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.29.0...v1.30.0)
