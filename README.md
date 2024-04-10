@@ -34,11 +34,10 @@ client = ModernTreasury(
     api_key=os.environ.get("MODERN_TREASURY_API_KEY"),
 )
 
-external_account = client.external_accounts.create(
-    counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a",
-    name="my bank",
+counterparty = client.counterparties.create(
+    name="my first counterparty",
 )
-print(external_account.id)
+print(counterparty.id)
 ```
 
 While you can provide a `organization_id` keyword argument,
@@ -64,11 +63,10 @@ client = AsyncModernTreasury(
 
 
 async def main() -> None:
-    external_account = await client.external_accounts.create(
-        counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a",
-        name="my bank",
+    counterparty = await client.counterparties.create(
+        name="my first counterparty",
     )
-    print(external_account.id)
+    print(counterparty.id)
 
 
 asyncio.run(main())
@@ -96,12 +94,12 @@ import modern_treasury
 
 client = ModernTreasury()
 
-all_external_accounts = []
+all_counterparties = []
 # Automatically fetches more pages as needed.
-for external_account in client.external_accounts.list():
-    # Do something with external_account here
-    all_external_accounts.append(external_account)
-print(all_external_accounts)
+for counterparty in client.counterparties.list():
+    # Do something with counterparty here
+    all_counterparties.append(counterparty)
+print(all_counterparties)
 ```
 
 Or, asynchronously:
@@ -114,11 +112,11 @@ client = AsyncModernTreasury()
 
 
 async def main() -> None:
-    all_external_accounts = []
+    all_counterparties = []
     # Iterate through items across all pages, issuing requests as needed.
-    async for external_account in client.external_accounts.list():
-        all_external_accounts.append(external_account)
-    print(all_external_accounts)
+    async for counterparty in client.counterparties.list():
+        all_counterparties.append(counterparty)
+    print(all_counterparties)
 
 
 asyncio.run(main())
@@ -127,7 +125,7 @@ asyncio.run(main())
 Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get_next_page()` methods for more granular control working with pages:
 
 ```python
-first_page = await client.external_accounts.list()
+first_page = await client.counterparties.list()
 if first_page.has_next_page():
     print(f"will fetch next page using these details: {first_page.next_page_info()}")
     next_page = await first_page.get_next_page()
@@ -139,11 +137,11 @@ if first_page.has_next_page():
 Or just work directly with the returned data:
 
 ```python
-first_page = await client.external_accounts.list()
+first_page = await client.counterparties.list()
 
 print(f"next page cursor: {first_page.after_cursor}")  # => "next page cursor: ..."
-for external_account in first_page.items:
-    print(external_account.id)
+for counterparty in first_page.items:
+    print(counterparty.id)
 
 # Remove `await` for non-async usage.
 ```
@@ -243,7 +241,9 @@ client = ModernTreasury(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).external_accounts.list()
+client.with_options(max_retries=5).counterparties.create(
+    name="my first counterparty",
+)
 ```
 
 ### Timeouts
@@ -266,8 +266,8 @@ client = ModernTreasury(
 )
 
 # Override per-request:
-client.with_options(timeout=5 * 1000).external_accounts.list(
-    party_name="my bank",
+client.with_options(timeout=5 * 1000).counterparties.create(
+    name="my first counterparty",
 )
 ```
 
@@ -307,14 +307,13 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from modern_treasury import ModernTreasury
 
 client = ModernTreasury()
-response = client.external_accounts.with_raw_response.create(
-    counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a",
-    name="my bank",
+response = client.counterparties.with_raw_response.create(
+    name="my first counterparty",
 )
 print(response.headers.get('X-My-Header'))
 
-external_account = response.parse()  # get the object that `external_accounts.create()` would have returned
-print(external_account.id)
+counterparty = response.parse()  # get the object that `counterparties.create()` would have returned
+print(counterparty.id)
 ```
 
 These methods return an [`LegacyAPIResponse`](https://github.com/Modern-Treasury/modern-treasury-python/tree/main/src/modern_treasury/_legacy_response.py) object. This is a legacy class as we're changing it slightly in the next major version.
@@ -335,9 +334,8 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 As such, `.with_streaming_response` methods return a different [`APIResponse`](https://github.com/Modern-Treasury/modern-treasury-python/tree/main/src/modern_treasury/_response.py) object, and the async client returns an [`AsyncAPIResponse`](https://github.com/Modern-Treasury/modern-treasury-python/tree/main/src/modern_treasury/_response.py) object.
 
 ```python
-with client.external_accounts.with_streaming_response.create(
-    counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a",
-    name="my bank",
+with client.counterparties.with_streaming_response.create(
+    name="my first counterparty",
 ) as response:
     print(response.headers.get("X-My-Header"))
 
