@@ -927,12 +927,12 @@ class TestModernTreasury:
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/api/external_accounts").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.post("/api/counterparties").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
             self.client.post(
-                "/api/external_accounts",
-                body=cast(object, dict(counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a", name="my bank")),
+                "/api/counterparties",
+                body=cast(object, dict(name="my first counterparty")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -942,12 +942,12 @@ class TestModernTreasury:
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/api/external_accounts").mock(return_value=httpx.Response(500))
+        respx_mock.post("/api/counterparties").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
             self.client.post(
-                "/api/external_accounts",
-                body=cast(object, dict(counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a", name="my bank")),
+                "/api/counterparties",
+                body=cast(object, dict(name="my first counterparty")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1837,12 +1837,12 @@ class TestAsyncModernTreasury:
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/api/external_accounts").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.post("/api/counterparties").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
             await self.client.post(
-                "/api/external_accounts",
-                body=cast(object, dict(counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a", name="my bank")),
+                "/api/counterparties",
+                body=cast(object, dict(name="my first counterparty")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1852,12 +1852,12 @@ class TestAsyncModernTreasury:
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/api/external_accounts").mock(return_value=httpx.Response(500))
+        respx_mock.post("/api/counterparties").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
             await self.client.post(
-                "/api/external_accounts",
-                body=cast(object, dict(counterparty_id="9eba513a-53fd-4d6d-ad52-ccce122ab92a", name="my bank")),
+                "/api/counterparties",
+                body=cast(object, dict(name="my first counterparty")),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
