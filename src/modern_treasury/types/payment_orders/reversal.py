@@ -14,6 +14,9 @@ class Reversal(BaseModel):
 
     created_at: datetime
 
+    ledger_transaction_id: Optional[str] = None
+    """The ID of the ledger transaction linked to the reversal."""
+
     live_mode: bool
     """
     This field will be true if this object exists in the live environment or false
