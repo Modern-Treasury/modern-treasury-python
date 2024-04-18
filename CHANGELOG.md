@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.32.0 (2024-04-18)
+
+Full Changelog: [v1.31.0...v1.32.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.31.0...v1.32.0)
+
+### Features
+
+* **api:** add ledger_transaction_id field to reversal ([#424](https://github.com/Modern-Treasury/modern-treasury-python/issues/424)) ([eaf6933](https://github.com/Modern-Treasury/modern-treasury-python/commit/eaf6933acf6d7ad8d09034beb03f5a23f11013d7))
+
+
+### Chores
+
+* fix typo ([#420](https://github.com/Modern-Treasury/modern-treasury-python/issues/420)) ([92296ad](https://github.com/Modern-Treasury/modern-treasury-python/commit/92296adc82dda45efd0111ebc896865f57efa154))
+* **internal:** add lru_cache helper function ([#425](https://github.com/Modern-Treasury/modern-treasury-python/issues/425)) ([50024ed](https://github.com/Modern-Treasury/modern-treasury-python/commit/50024edaace4cc7de0bd9125cc51a0376ff49e59))
+* **internal:** ban usage of lru_cache ([#426](https://github.com/Modern-Treasury/modern-treasury-python/issues/426)) ([8512ca1](https://github.com/Modern-Treasury/modern-treasury-python/commit/8512ca158be9439f06dbf7fb6f9602caab102ac4))
+* **internal:** bump pyright to 1.1.359 ([#427](https://github.com/Modern-Treasury/modern-treasury-python/issues/427)) ([6791ec6](https://github.com/Modern-Treasury/modern-treasury-python/commit/6791ec655d33bf9169ac09606999c8df0627ac60))
+* **internal:** formatting ([#423](https://github.com/Modern-Treasury/modern-treasury-python/issues/423)) ([6a75f13](https://github.com/Modern-Treasury/modern-treasury-python/commit/6a75f13793006071c956bbb9c7f072c8f08be1ac))
+
+
+### Documentation
+
+* **examples:** use counterparties in snippets ([#422](https://github.com/Modern-Treasury/modern-treasury-python/issues/422)) ([3e04d72](https://github.com/Modern-Treasury/modern-treasury-python/commit/3e04d729bd3344bad99bbb3969a117fe9ee74dc6))
+
 ## 1.31.0 (2024-04-09)
 
 Full Changelog: [v1.30.0...v1.31.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.30.0...v1.31.0)
