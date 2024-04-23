@@ -9,7 +9,6 @@ import httpx
 
 from ... import _legacy_response
 from ...types import (
-    InternalAccount,
     internal_account_list_params,
     internal_account_create_params,
     internal_account_update_params,
@@ -27,7 +26,6 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.shared import Currency, TransactionDirection
 from .balance_reports import (
     BalanceReports,
     AsyncBalanceReports,
@@ -36,6 +34,9 @@ from .balance_reports import (
     BalanceReportsWithStreamingResponse,
     AsyncBalanceReportsWithStreamingResponse,
 )
+from ...types.shared.currency import Currency
+from ...types.internal_account import InternalAccount
+from ...types.shared.transaction_direction import TransactionDirection
 
 __all__ = ["InternalAccounts", "AsyncInternalAccounts"]
 

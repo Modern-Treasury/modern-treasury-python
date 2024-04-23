@@ -6,9 +6,10 @@ from typing import Dict, Union, Iterable, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from .shared import Currency, TransactionDirection
 from .._utils import PropertyInfo
+from .shared.currency import Currency
 from .expected_payment_type import ExpectedPaymentType
+from .shared.transaction_direction import TransactionDirection
 
 __all__ = [
     "ExpectedPaymentCreateParams",

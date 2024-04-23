@@ -11,7 +11,6 @@ import httpx
 
 from . import resources, _exceptions, _legacy_response
 from ._qs import Querystring
-from .types import PingResponse
 from ._types import (
     NOT_GIVEN,
     Body,
@@ -42,6 +41,7 @@ from ._base_client import (
     AsyncHttpxClientWrapper,
     make_request_options,
 )
+from .types.ping_response import PingResponse
 
 __all__ = [
     "Timeout",

@@ -5,9 +5,10 @@ from typing import Dict, List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
-from .shared import Currency, TransactionDirection
 from .._models import BaseModel
+from .shared.currency import Currency
 from .expected_payment_type import ExpectedPaymentType
+from .shared.transaction_direction import TransactionDirection
 
 __all__ = ["ExpectedPayment"]
 

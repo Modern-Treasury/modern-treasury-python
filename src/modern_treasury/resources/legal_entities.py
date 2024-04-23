@@ -9,12 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from .. import _legacy_response
-from ..types import (
-    LegalEntity,
-    legal_entity_list_params,
-    legal_entity_create_params,
-    legal_entity_update_params,
-)
+from ..types import legal_entity_list_params, legal_entity_create_params, legal_entity_update_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -28,6 +23,7 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ..types.legal_entity import LegalEntity
 
 __all__ = ["LegalEntities", "AsyncLegalEntities"]
 

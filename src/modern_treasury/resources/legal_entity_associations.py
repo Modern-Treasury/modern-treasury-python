@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from .. import _legacy_response
-from ..types import LegalEntityAssociation, legal_entity_association_create_params
+from ..types import legal_entity_association_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -20,6 +20,7 @@ from .._response import to_streamed_response_wrapper, async_to_streamed_response
 from .._base_client import (
     make_request_options,
 )
+from ..types.legal_entity_association import LegalEntityAssociation
 
 __all__ = ["LegalEntityAssociations", "AsyncLegalEntityAssociations"]
 

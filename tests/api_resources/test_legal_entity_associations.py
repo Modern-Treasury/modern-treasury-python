@@ -9,8 +9,8 @@ import pytest
 
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
-from modern_treasury.types import LegalEntityAssociation
 from modern_treasury._utils import parse_date
+from modern_treasury.types.legal_entity_association import LegalEntityAssociation
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from .. import _legacy_response
-from ..types import LineItem, line_item_list_params, line_item_update_params
+from ..types import line_item_list_params, line_item_update_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -22,6 +22,7 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ..types.line_item import LineItem
 
 __all__ = ["LineItems", "AsyncLineItems"]
 

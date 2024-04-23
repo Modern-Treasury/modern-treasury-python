@@ -3,8 +3,8 @@
 from typing import Dict, Optional
 from datetime import datetime
 
-from .shared import Currency
 from .._models import BaseModel
+from .shared.currency import Currency
 
 __all__ = ["ForeignExchangeQuote", "ForeignExchangeRate"]
 

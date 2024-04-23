@@ -6,8 +6,8 @@ from typing import Dict, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
-from .shared import TransactionDirection
 from .._utils import PropertyInfo
+from .shared.transaction_direction import TransactionDirection
 
 __all__ = ["PaymentOrderListParams"]
 

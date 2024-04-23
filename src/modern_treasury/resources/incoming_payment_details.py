@@ -10,7 +10,6 @@ import httpx
 
 from .. import _legacy_response
 from ..types import (
-    IncomingPaymentDetail,
     incoming_payment_detail_list_params,
     incoming_payment_detail_update_params,
     incoming_payment_detail_create_async_params,
@@ -28,7 +27,10 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.shared import Currency, AsyncResponse, TransactionDirection
+from ..types.shared.currency import Currency
+from ..types.shared.async_response import AsyncResponse
+from ..types.incoming_payment_detail import IncomingPaymentDetail
+from ..types.shared.transaction_direction import TransactionDirection
 
 __all__ = ["IncomingPaymentDetails", "AsyncIncomingPaymentDetails"]
 

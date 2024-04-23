@@ -6,8 +6,8 @@ from typing import Union, Optional
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
-from .shared import Currency
 from .._utils import PropertyInfo
+from .shared.currency import Currency
 
 __all__ = ["ForeignExchangeQuoteCreateParams"]
 

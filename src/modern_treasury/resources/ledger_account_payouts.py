@@ -11,7 +11,6 @@ import httpx
 
 from .. import _legacy_response
 from ..types import (
-    LedgerAccountPayout,
     ledger_account_payout_list_params,
     ledger_account_payout_create_params,
     ledger_account_payout_update_params,
@@ -29,6 +28,7 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ..types.ledger_account_payout import LedgerAccountPayout
 
 __all__ = ["LedgerAccountPayouts", "AsyncLedgerAccountPayouts"]
 
