@@ -18,7 +18,8 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.transactions import TransactionLineItem, line_item_list_params
+from ...types.transactions import line_item_list_params
+from ...types.transactions.transaction_line_item import TransactionLineItem
 
 __all__ = ["LineItems", "AsyncLineItems"]
 

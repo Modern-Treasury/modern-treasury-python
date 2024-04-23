@@ -10,7 +10,6 @@ import httpx
 
 from .. import _legacy_response
 from ..types import (
-    LedgerAccountSettlement,
     ledger_account_settlement_list_params,
     ledger_account_settlement_create_params,
     ledger_account_settlement_update_params,
@@ -28,6 +27,7 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ..types.ledger_account_settlement import LedgerAccountSettlement
 
 __all__ = ["LedgerAccountSettlements", "AsyncLedgerAccountSettlements"]
 

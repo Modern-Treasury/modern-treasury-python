@@ -5,7 +5,8 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import Literal, TypedDict
 
-from .shared import Currency, TransactionDirection
+from .shared.currency import Currency
+from .shared.transaction_direction import TransactionDirection
 
 __all__ = ["InternalAccountListParams"]
 

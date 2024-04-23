@@ -8,7 +8,7 @@ from datetime import datetime
 import httpx
 
 from .. import _legacy_response
-from ..types import Ledger, ledger_list_params, ledger_create_params, ledger_update_params
+from ..types import ledger_list_params, ledger_create_params, ledger_update_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -22,6 +22,7 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ..types.ledger import Ledger
 
 __all__ = ["Ledgers", "AsyncLedgers"]
 

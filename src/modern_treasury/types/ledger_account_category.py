@@ -3,8 +3,8 @@
 from typing import Dict, Optional
 from datetime import datetime
 
-from .shared import TransactionDirection
 from .._models import BaseModel
+from .shared.transaction_direction import TransactionDirection
 
 __all__ = [
     "LedgerAccountCategory",

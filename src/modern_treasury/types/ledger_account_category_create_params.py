@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import Required, TypedDict
 
-from .shared import TransactionDirection
+from .shared.transaction_direction import TransactionDirection
 
 __all__ = ["LedgerAccountCategoryCreateParams"]
 

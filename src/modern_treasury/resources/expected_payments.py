@@ -10,7 +10,6 @@ import httpx
 
 from .. import _legacy_response
 from ..types import (
-    ExpectedPayment,
     ExpectedPaymentType,
     expected_payment_list_params,
     expected_payment_create_params,
@@ -29,7 +28,10 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.shared import Currency, TransactionDirection
+from ..types.shared.currency import Currency
+from ..types.expected_payment import ExpectedPayment
+from ..types.expected_payment_type import ExpectedPaymentType
+from ..types.shared.transaction_direction import TransactionDirection
 
 __all__ = ["ExpectedPayments", "AsyncExpectedPayments"]
 

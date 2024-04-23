@@ -8,7 +8,7 @@ from datetime import date
 import httpx
 
 from .. import _legacy_response
-from ..types import PaperItem, paper_item_list_params
+from ..types import paper_item_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform
 from .._compat import cached_property
@@ -19,6 +19,7 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ..types.paper_item import PaperItem
 
 __all__ = ["PaperItems", "AsyncPaperItems"]
 

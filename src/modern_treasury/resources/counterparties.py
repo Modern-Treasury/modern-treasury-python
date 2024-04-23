@@ -10,8 +10,6 @@ import httpx
 
 from .. import _legacy_response
 from ..types import (
-    Counterparty,
-    CounterpartyCollectAccountResponse,
     counterparty_list_params,
     counterparty_create_params,
     counterparty_update_params,
@@ -30,7 +28,9 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.shared import TransactionDirection
+from ..types.counterparty import Counterparty
+from ..types.shared.transaction_direction import TransactionDirection
+from ..types.counterparty_collect_account_response import CounterpartyCollectAccountResponse
 
 __all__ = ["Counterparties", "AsyncCounterparties"]
 

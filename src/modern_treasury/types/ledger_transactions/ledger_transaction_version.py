@@ -4,8 +4,8 @@ from typing import Dict, List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
-from ..shared import TransactionDirection
 from ..._models import BaseModel
+from ..shared.transaction_direction import TransactionDirection
 
 __all__ = [
     "LedgerTransactionVersion",

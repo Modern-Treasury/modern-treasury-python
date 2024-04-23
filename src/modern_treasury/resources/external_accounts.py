@@ -9,7 +9,6 @@ import httpx
 
 from .. import _legacy_response
 from ..types import (
-    ExternalAccount,
     ExternalAccountType,
     external_account_list_params,
     external_account_create_params,
@@ -30,7 +29,9 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.shared import Currency
+from ..types.shared.currency import Currency
+from ..types.external_account import ExternalAccount
+from ..types.external_account_type import ExternalAccountType
 
 __all__ = ["ExternalAccounts", "AsyncExternalAccounts"]
 

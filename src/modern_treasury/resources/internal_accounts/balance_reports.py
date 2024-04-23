@@ -22,7 +22,8 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.internal_accounts import BalanceReport, balance_report_list_params, balance_report_create_params
+from ...types.internal_accounts import balance_report_list_params, balance_report_create_params
+from ...types.internal_accounts.balance_report import BalanceReport
 
 __all__ = ["BalanceReports", "AsyncBalanceReports"]
 

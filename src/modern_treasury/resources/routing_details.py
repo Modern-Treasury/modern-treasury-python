@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from .. import _legacy_response
-from ..types import RoutingDetail, routing_detail_list_params, routing_detail_create_params
+from ..types import routing_detail_list_params, routing_detail_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._utils import (
     maybe_transform,
@@ -22,7 +22,8 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.shared import AccountsType
+from ..types.routing_detail import RoutingDetail
+from ..types.shared.accounts_type import AccountsType
 
 __all__ = ["RoutingDetails", "AsyncRoutingDetails"]
 
