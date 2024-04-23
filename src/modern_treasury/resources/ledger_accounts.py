@@ -10,7 +10,6 @@ import httpx
 
 from .. import _legacy_response
 from ..types import (
-    LedgerAccount,
     ledger_account_list_params,
     ledger_account_create_params,
     ledger_account_update_params,
@@ -29,7 +28,8 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.shared import TransactionDirection
+from ..types.ledger_account import LedgerAccount
+from ..types.shared.transaction_direction import TransactionDirection
 
 __all__ = ["LedgerAccounts", "AsyncLedgerAccounts"]
 

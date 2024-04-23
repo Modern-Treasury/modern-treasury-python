@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Required, TypedDict
 
-from .shared import AccountsType
+from .shared.accounts_type import AccountsType
 
 __all__ = ["RoutingDetailListParams"]
 

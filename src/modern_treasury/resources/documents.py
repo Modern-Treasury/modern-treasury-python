@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from .. import _legacy_response
-from ..types import Document, document_list_params, document_create_params
+from ..types import document_list_params, document_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
 from .._utils import (
     extract_files,
@@ -24,6 +24,7 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ..types.document import Document
 
 __all__ = ["Documents", "AsyncDocuments"]
 

@@ -20,7 +20,8 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.invoices import InvoiceLineItem, line_item_list_params, line_item_create_params, line_item_update_params
+from ...types.invoices import line_item_list_params, line_item_create_params, line_item_update_params
+from ...types.invoices.invoice_line_item import InvoiceLineItem
 
 __all__ = ["LineItems", "AsyncLineItems"]
 

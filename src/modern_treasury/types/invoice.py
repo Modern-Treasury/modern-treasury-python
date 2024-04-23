@@ -6,9 +6,9 @@ from typing import Dict, List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
-from .shared import Currency
 from .._compat import PYDANTIC_V2
 from .._models import BaseModel
+from .shared.currency import Currency
 from .expected_payment import ExpectedPayment
 
 __all__ = [

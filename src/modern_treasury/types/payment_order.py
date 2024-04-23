@@ -6,9 +6,9 @@ from typing import Dict, List, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
-from .shared import Currency
 from .._compat import PYDANTIC_V2
 from .._models import BaseModel
+from .shared.currency import Currency
 from .virtual_account import VirtualAccount
 from .internal_account import InternalAccount
 from .payment_order_type import PaymentOrderType

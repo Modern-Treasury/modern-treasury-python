@@ -8,11 +8,7 @@ from datetime import date, datetime
 import httpx
 
 from .. import _legacy_response
-from ..types import (
-    ForeignExchangeQuote,
-    foreign_exchange_quote_list_params,
-    foreign_exchange_quote_create_params,
-)
+from ..types import foreign_exchange_quote_list_params, foreign_exchange_quote_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -26,7 +22,8 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.shared import Currency
+from ..types.shared.currency import Currency
+from ..types.foreign_exchange_quote import ForeignExchangeQuote
 
 __all__ = ["ForeignExchangeQuotes", "AsyncForeignExchangeQuotes"]
 

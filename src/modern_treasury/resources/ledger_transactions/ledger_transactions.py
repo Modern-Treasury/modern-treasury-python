@@ -10,7 +10,6 @@ import httpx
 
 from ... import _legacy_response
 from ...types import (
-    LedgerTransaction,
     ledger_transaction_list_params,
     ledger_transaction_create_params,
     ledger_transaction_update_params,
@@ -37,6 +36,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.ledger_transaction import LedgerTransaction
 
 __all__ = ["LedgerTransactions", "AsyncLedgerTransactions"]
 

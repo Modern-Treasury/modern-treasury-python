@@ -8,7 +8,6 @@ import httpx
 
 from .. import _legacy_response
 from ..types import (
-    VirtualAccount,
     virtual_account_list_params,
     virtual_account_create_params,
     virtual_account_update_params,
@@ -26,6 +25,7 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ..types.virtual_account import VirtualAccount
 
 __all__ = ["VirtualAccounts", "AsyncVirtualAccounts"]
 

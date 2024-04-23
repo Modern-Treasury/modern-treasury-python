@@ -18,7 +18,8 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.ledger_transactions import LedgerTransactionVersion, version_list_params
+from ...types.ledger_transactions import version_list_params
+from ...types.ledger_transactions.ledger_transaction_version import LedgerTransactionVersion
 
 __all__ = ["Versions", "AsyncVersions"]
 
