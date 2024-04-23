@@ -4,11 +4,11 @@ from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .shared import Currency
 from .._models import BaseModel
 from .connection import Connection
 from .account_detail import AccountDetail
 from .routing_detail import RoutingDetail
+from .shared.currency import Currency
 
 __all__ = ["InternalAccount", "PartyAddress"]
 

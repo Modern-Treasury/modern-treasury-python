@@ -5,8 +5,8 @@ from __future__ import annotations
 from typing import Dict, List, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
-from .shared import TransactionDirection
 from .external_account_type import ExternalAccountType
+from .shared.transaction_direction import TransactionDirection
 
 __all__ = [
     "ExternalAccountCreateParams",

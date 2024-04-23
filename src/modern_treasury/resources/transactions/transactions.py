@@ -8,12 +8,7 @@ from datetime import date
 import httpx
 
 from ... import _legacy_response
-from ...types import (
-    Transaction,
-    transaction_list_params,
-    transaction_create_params,
-    transaction_update_params,
-)
+from ...types import transaction_list_params, transaction_create_params, transaction_update_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -35,6 +30,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.transaction import Transaction
 
 __all__ = ["Transactions", "AsyncTransactions"]
 

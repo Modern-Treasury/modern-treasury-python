@@ -9,8 +9,8 @@ import pytest
 
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
-from modern_treasury.types import Connection
 from modern_treasury.pagination import SyncPage, AsyncPage
+from modern_treasury.types.connection import Connection
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

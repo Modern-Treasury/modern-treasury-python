@@ -10,7 +10,6 @@ import httpx
 
 from ... import _legacy_response
 from ...types import (
-    PaymentOrder,
     PaymentOrderType,
     PaymentOrderSubtype,
     payment_order_list_params,
@@ -41,7 +40,12 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.shared import Currency, AsyncResponse, TransactionDirection
+from ...types.payment_order import PaymentOrder
+from ...types.shared.currency import Currency
+from ...types.payment_order_type import PaymentOrderType
+from ...types.payment_order_subtype import PaymentOrderSubtype
+from ...types.shared.async_response import AsyncResponse
+from ...types.shared.transaction_direction import TransactionDirection
 
 __all__ = ["PaymentOrders", "AsyncPaymentOrders"]
 

@@ -9,7 +9,6 @@ import httpx
 
 from .. import _legacy_response
 from ..types import (
-    ConnectionLegalEntity,
     connection_legal_entity_list_params,
     connection_legal_entity_create_params,
     connection_legal_entity_update_params,
@@ -27,6 +26,7 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ..types.connection_legal_entity import ConnectionLegalEntity
 
 __all__ = ["ConnectionLegalEntities", "AsyncConnectionLegalEntities"]
 

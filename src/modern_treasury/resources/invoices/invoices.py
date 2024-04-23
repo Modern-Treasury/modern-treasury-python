@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ... import _legacy_response
-from ...types import Invoice, invoice_list_params, invoice_create_params, invoice_update_params
+from ...types import invoice_list_params, invoice_create_params, invoice_update_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -31,7 +31,8 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.shared import Currency
+from ...types.invoice import Invoice
+from ...types.shared.currency import Currency
 
 __all__ = ["Invoices", "AsyncInvoices"]
 

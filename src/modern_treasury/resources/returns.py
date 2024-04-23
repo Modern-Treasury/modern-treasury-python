@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from .. import _legacy_response
-from ..types import ReturnObject, return_list_params, return_create_params
+from ..types import return_list_params, return_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -23,6 +23,7 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ..types.return_object import ReturnObject
 
 __all__ = ["Returns", "AsyncReturns"]
 

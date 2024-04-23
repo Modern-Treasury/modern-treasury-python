@@ -6,8 +6,8 @@ from typing import List, Union, Iterable, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from .shared import Currency
 from .._utils import PropertyInfo
+from .shared.currency import Currency
 
 __all__ = [
     "InvoiceUpdateParams",

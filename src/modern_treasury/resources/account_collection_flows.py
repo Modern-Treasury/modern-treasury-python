@@ -9,7 +9,6 @@ import httpx
 
 from .. import _legacy_response
 from ..types import (
-    AccountCollectionFlow,
     account_collection_flow_list_params,
     account_collection_flow_create_params,
     account_collection_flow_update_params,
@@ -27,6 +26,7 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ..types.account_collection_flow import AccountCollectionFlow
 
 __all__ = ["AccountCollectionFlows", "AsyncAccountCollectionFlows"]
 

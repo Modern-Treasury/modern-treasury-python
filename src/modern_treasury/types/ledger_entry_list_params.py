@@ -6,7 +6,7 @@ from typing import Dict, List, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, TypedDict
 
-from .shared import TransactionDirection
+from .shared.transaction_direction import TransactionDirection
 
 __all__ = ["LedgerEntryListParams", "OrderBy"]
 

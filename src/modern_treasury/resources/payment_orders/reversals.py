@@ -21,7 +21,8 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.payment_orders import Reversal, reversal_list_params, reversal_create_params
+from ...types.payment_orders import reversal_list_params, reversal_create_params
+from ...types.payment_orders.reversal import Reversal
 
 __all__ = ["Reversals", "AsyncReversals"]
 

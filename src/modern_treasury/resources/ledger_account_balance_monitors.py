@@ -8,7 +8,6 @@ import httpx
 
 from .. import _legacy_response
 from ..types import (
-    LedgerAccountBalanceMonitor,
     ledger_account_balance_monitor_list_params,
     ledger_account_balance_monitor_create_params,
     ledger_account_balance_monitor_update_params,
@@ -26,6 +25,7 @@ from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ..types.ledger_account_balance_monitor import LedgerAccountBalanceMonitor
 
 __all__ = ["LedgerAccountBalanceMonitors", "AsyncLedgerAccountBalanceMonitors"]
 

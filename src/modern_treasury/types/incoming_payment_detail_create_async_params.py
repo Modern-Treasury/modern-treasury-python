@@ -6,8 +6,8 @@ from typing import Union, Optional
 from datetime import date
 from typing_extensions import Literal, Annotated, TypedDict
 
-from .shared import Currency
 from .._utils import PropertyInfo
+from .shared.currency import Currency
 
 __all__ = ["IncomingPaymentDetailCreateAsyncParams"]
 
