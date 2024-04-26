@@ -90,7 +90,7 @@ class TestReversals:
                     },
                 ],
                 "external_id": "string",
-                "ledgerable_type": "counterparty",
+                "ledgerable_type": "expected_payment",
                 "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             },
             metadata={
@@ -305,7 +305,7 @@ class TestAsyncReversals:
                     },
                 ],
                 "external_id": "string",
-                "ledgerable_type": "counterparty",
+                "ledgerable_type": "expected_payment",
                 "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             },
             metadata={

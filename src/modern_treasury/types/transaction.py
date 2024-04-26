@@ -139,7 +139,7 @@ class Transaction(BaseModel):
     ]
     """The type of the transaction.
 
-    Can be one of `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
+    Examples could be `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
     """
 
     updated_at: datetime
@@ -172,6 +172,7 @@ class Transaction(BaseModel):
             "silvergate",
             "swift",
             "us_bank",
+            "user",
         ]
     ] = None
     """The type of `vendor_code` being reported.

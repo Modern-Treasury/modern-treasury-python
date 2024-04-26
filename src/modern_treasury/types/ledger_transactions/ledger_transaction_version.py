@@ -229,18 +229,7 @@ class LedgerTransactionVersion(BaseModel):
     """
 
     ledgerable_type: Optional[
-        Literal[
-            "counterparty",
-            "expected_payment",
-            "incoming_payment_detail",
-            "internal_account",
-            "line_item",
-            "paper_item",
-            "payment_order",
-            "payment_order_attempt",
-            "return",
-            "reversal",
-        ]
+        Literal["expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"]
     ] = None
     """
     If the ledger transaction can be reconciled to another object in Modern
