@@ -1,5 +1,28 @@
 # Changelog
 
+## 1.33.0 (2024-04-26)
+
+Full Changelog: [v1.32.0...v1.33.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.32.0...v1.33.0)
+
+### Features
+
+* **api:** various API updates ([#436](https://github.com/Modern-Treasury/modern-treasury-python/issues/436)) ([b9a26a2](https://github.com/Modern-Treasury/modern-treasury-python/commit/b9a26a2546132ac6213099772d75ac4471b351cb))
+
+
+### Bug Fixes
+
+* **docs:** doc improvements ([#430](https://github.com/Modern-Treasury/modern-treasury-python/issues/430)) ([0963b2b](https://github.com/Modern-Treasury/modern-treasury-python/commit/0963b2b94e06f4d53aaf9432f43f3ca5b43b9240))
+
+
+### Chores
+
+* **internal:** minor reformatting ([#435](https://github.com/Modern-Treasury/modern-treasury-python/issues/435)) ([d6143ed](https://github.com/Modern-Treasury/modern-treasury-python/commit/d6143ed612c5e32d9d3dd6d7643cf17ffee7c304))
+* **internal:** reformat imports ([#434](https://github.com/Modern-Treasury/modern-treasury-python/issues/434)) ([1e7d696](https://github.com/Modern-Treasury/modern-treasury-python/commit/1e7d696d6b00c72050a44be74ba3c2b3d4041a34))
+* **internal:** restructure imports ([#428](https://github.com/Modern-Treasury/modern-treasury-python/issues/428)) ([d5922d0](https://github.com/Modern-Treasury/modern-treasury-python/commit/d5922d0d126d8ec41f819154d3b7da7c16fba165))
+* **internal:** update test helper function ([#433](https://github.com/Modern-Treasury/modern-treasury-python/issues/433)) ([7f9b5d6](https://github.com/Modern-Treasury/modern-treasury-python/commit/7f9b5d6c2040221fc4b1471a14ab7b240026db66))
+* **internal:** use actions/checkout@v4 for codeflow ([#432](https://github.com/Modern-Treasury/modern-treasury-python/issues/432)) ([2f6b101](https://github.com/Modern-Treasury/modern-treasury-python/commit/2f6b101a8b9971340cfeac5a05862287f0aa5ce5))
+* **tests:** rename test file ([#431](https://github.com/Modern-Treasury/modern-treasury-python/issues/431)) ([ddfc581](https://github.com/Modern-Treasury/modern-treasury-python/commit/ddfc581d5f8320050fd3c89ce4178eaac47377e4))
+
 ## 1.32.0 (2024-04-18)
 
 Full Changelog: [v1.31.0...v1.32.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.31.0...v1.32.0)
