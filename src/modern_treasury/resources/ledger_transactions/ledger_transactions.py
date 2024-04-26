@@ -64,16 +64,7 @@ class LedgerTransactions(SyncAPIResource):
         external_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
-            "counterparty",
-            "expected_payment",
-            "incoming_payment_detail",
-            "internal_account",
-            "line_item",
-            "paper_item",
-            "payment_order",
-            "payment_order_attempt",
-            "return",
-            "reversal",
+            "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
         ]
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -108,7 +99,8 @@ class LedgerTransactions(SyncAPIResource):
 
           ledgerable_type: If the ledger transaction can be reconciled to another object in Modern
               Treasury, the type will be populated here, otherwise null. This can be one of
-              payment_order, incoming_payment_detail, expected_payment, return, or reversal.
+              payment_order, incoming_payment_detail, expected_payment, return, paper_item, or
+              reversal.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -191,6 +183,11 @@ class LedgerTransactions(SyncAPIResource):
         description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         ledger_entries: Iterable[ledger_transaction_update_params.LedgerEntry] | NotGiven = NOT_GIVEN,
+        ledgerable_id: str | NotGiven = NOT_GIVEN,
+        ledgerable_type: Literal[
+            "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
+        ]
+        | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -211,6 +208,14 @@ class LedgerTransactions(SyncAPIResource):
               reporting purposes.
 
           ledger_entries: An array of ledger entry objects.
+
+          ledgerable_id: If the ledger transaction can be reconciled to another object in Modern
+              Treasury, the id will be populated here, otherwise null.
+
+          ledgerable_type: If the ledger transaction can be reconciled to another object in Modern
+              Treasury, the type will be populated here, otherwise null. This can be one of
+              payment_order, incoming_payment_detail, expected_payment, return, paper_item, or
+              reversal.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -236,6 +241,8 @@ class LedgerTransactions(SyncAPIResource):
                     "description": description,
                     "effective_at": effective_at,
                     "ledger_entries": ledger_entries,
+                    "ledgerable_id": ledgerable_id,
+                    "ledgerable_type": ledgerable_type,
                     "metadata": metadata,
                     "status": status,
                 },
@@ -266,16 +273,7 @@ class LedgerTransactions(SyncAPIResource):
         ledger_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
-            "counterparty",
-            "expected_payment",
-            "incoming_payment_detail",
-            "internal_account",
-            "line_item",
-            "paper_item",
-            "payment_order",
-            "payment_order_attempt",
-            "return",
-            "reversal",
+            "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
         ]
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -376,16 +374,7 @@ class LedgerTransactions(SyncAPIResource):
         external_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
-            "counterparty",
-            "expected_payment",
-            "incoming_payment_detail",
-            "internal_account",
-            "line_item",
-            "paper_item",
-            "payment_order",
-            "payment_order_attempt",
-            "return",
-            "reversal",
+            "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
         ]
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -483,16 +472,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         external_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
-            "counterparty",
-            "expected_payment",
-            "incoming_payment_detail",
-            "internal_account",
-            "line_item",
-            "paper_item",
-            "payment_order",
-            "payment_order_attempt",
-            "return",
-            "reversal",
+            "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
         ]
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -527,7 +507,8 @@ class AsyncLedgerTransactions(AsyncAPIResource):
 
           ledgerable_type: If the ledger transaction can be reconciled to another object in Modern
               Treasury, the type will be populated here, otherwise null. This can be one of
-              payment_order, incoming_payment_detail, expected_payment, return, or reversal.
+              payment_order, incoming_payment_detail, expected_payment, return, paper_item, or
+              reversal.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -610,6 +591,11 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         ledger_entries: Iterable[ledger_transaction_update_params.LedgerEntry] | NotGiven = NOT_GIVEN,
+        ledgerable_id: str | NotGiven = NOT_GIVEN,
+        ledgerable_type: Literal[
+            "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
+        ]
+        | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -630,6 +616,14 @@ class AsyncLedgerTransactions(AsyncAPIResource):
               reporting purposes.
 
           ledger_entries: An array of ledger entry objects.
+
+          ledgerable_id: If the ledger transaction can be reconciled to another object in Modern
+              Treasury, the id will be populated here, otherwise null.
+
+          ledgerable_type: If the ledger transaction can be reconciled to another object in Modern
+              Treasury, the type will be populated here, otherwise null. This can be one of
+              payment_order, incoming_payment_detail, expected_payment, return, paper_item, or
+              reversal.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -655,6 +649,8 @@ class AsyncLedgerTransactions(AsyncAPIResource):
                     "description": description,
                     "effective_at": effective_at,
                     "ledger_entries": ledger_entries,
+                    "ledgerable_id": ledgerable_id,
+                    "ledgerable_type": ledgerable_type,
                     "metadata": metadata,
                     "status": status,
                 },
@@ -685,16 +681,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         ledger_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
-            "counterparty",
-            "expected_payment",
-            "incoming_payment_detail",
-            "internal_account",
-            "line_item",
-            "paper_item",
-            "payment_order",
-            "payment_order_attempt",
-            "return",
-            "reversal",
+            "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
         ]
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -795,16 +782,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         external_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
-            "counterparty",
-            "expected_payment",
-            "incoming_payment_detail",
-            "internal_account",
-            "line_item",
-            "paper_item",
-            "payment_order",
-            "payment_order_attempt",
-            "return",
-            "reversal",
+            "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
         ]
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import Dict, Union, Optional
 from datetime import date
+from typing_extensions import Literal
 
 import httpx
 
@@ -55,10 +56,46 @@ class Transactions(SyncAPIResource):
         as_of_date: Union[str, date, None],
         direction: str,
         internal_account_id: str,
-        vendor_code: str,
-        vendor_code_type: str,
+        vendor_code: Optional[str],
+        vendor_code_type: Optional[str],
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         posted: bool | NotGiven = NOT_GIVEN,
+        type: Optional[
+            Literal[
+                "ach",
+                "au_becs",
+                "bacs",
+                "book",
+                "card",
+                "chats",
+                "check",
+                "cross_border",
+                "dk_nets",
+                "eft",
+                "hu_ics",
+                "interac",
+                "masav",
+                "mx_ccen",
+                "neft",
+                "nics",
+                "nz_becs",
+                "pl_elixir",
+                "provxchange",
+                "ro_sent",
+                "rtp",
+                "se_bankgirot",
+                "sen",
+                "sepa",
+                "sg_giro",
+                "sic",
+                "signet",
+                "sknbi",
+                "wire",
+                "zengin",
+                "other",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         vendor_description: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -95,6 +132,9 @@ class Transactions(SyncAPIResource):
 
           posted: This field will be `true` if the transaction has posted to the account.
 
+          type: The type of the transaction. Examples could be
+              `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
+
           vendor_description: The transaction detail text that often appears in on your bank statement and in
               your banking portal.
 
@@ -120,6 +160,7 @@ class Transactions(SyncAPIResource):
                     "vendor_code_type": vendor_code_type,
                     "metadata": metadata,
                     "posted": posted,
+                    "type": type,
                     "vendor_description": vendor_description,
                 },
                 transaction_create_params.TransactionCreateParams,
@@ -361,10 +402,46 @@ class AsyncTransactions(AsyncAPIResource):
         as_of_date: Union[str, date, None],
         direction: str,
         internal_account_id: str,
-        vendor_code: str,
-        vendor_code_type: str,
+        vendor_code: Optional[str],
+        vendor_code_type: Optional[str],
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         posted: bool | NotGiven = NOT_GIVEN,
+        type: Optional[
+            Literal[
+                "ach",
+                "au_becs",
+                "bacs",
+                "book",
+                "card",
+                "chats",
+                "check",
+                "cross_border",
+                "dk_nets",
+                "eft",
+                "hu_ics",
+                "interac",
+                "masav",
+                "mx_ccen",
+                "neft",
+                "nics",
+                "nz_becs",
+                "pl_elixir",
+                "provxchange",
+                "ro_sent",
+                "rtp",
+                "se_bankgirot",
+                "sen",
+                "sepa",
+                "sg_giro",
+                "sic",
+                "signet",
+                "sknbi",
+                "wire",
+                "zengin",
+                "other",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         vendor_description: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -401,6 +478,9 @@ class AsyncTransactions(AsyncAPIResource):
 
           posted: This field will be `true` if the transaction has posted to the account.
 
+          type: The type of the transaction. Examples could be
+              `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
+
           vendor_description: The transaction detail text that often appears in on your bank statement and in
               your banking portal.
 
@@ -426,6 +506,7 @@ class AsyncTransactions(AsyncAPIResource):
                     "vendor_code_type": vendor_code_type,
                     "metadata": metadata,
                     "posted": posted,
+                    "type": type,
                     "vendor_description": vendor_description,
                 },
                 transaction_create_params.TransactionCreateParams,

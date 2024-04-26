@@ -47,16 +47,7 @@ class LedgerTransactionListParams(TypedDict, total=False):
     ledgerable_id: str
 
     ledgerable_type: Literal[
-        "counterparty",
-        "expected_payment",
-        "incoming_payment_detail",
-        "internal_account",
-        "line_item",
-        "paper_item",
-        "payment_order",
-        "payment_order_attempt",
-        "return",
-        "reversal",
+        "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
     ]
 
     metadata: Dict[str, str]

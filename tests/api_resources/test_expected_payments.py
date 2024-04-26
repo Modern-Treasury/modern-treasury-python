@@ -101,7 +101,7 @@ class TestExpectedPayments:
                     },
                 ],
                 "external_id": "string",
-                "ledgerable_type": "counterparty",
+                "ledgerable_type": "expected_payment",
                 "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             },
             ledger_transaction_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -249,6 +249,7 @@ class TestExpectedPayments:
             reconciliation_rule_variables=[{"foo": "string"}, {"foo": "string"}, {"foo": "string"}],
             remittance_information="string",
             statement_descriptor="string",
+            status="reconciled",
             type="ach",
         )
         assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
@@ -447,7 +448,7 @@ class TestAsyncExpectedPayments:
                     },
                 ],
                 "external_id": "string",
-                "ledgerable_type": "counterparty",
+                "ledgerable_type": "expected_payment",
                 "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             },
             ledger_transaction_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -595,6 +596,7 @@ class TestAsyncExpectedPayments:
             reconciliation_rule_variables=[{"foo": "string"}, {"foo": "string"}, {"foo": "string"}],
             remittance_information="string",
             statement_descriptor="string",
+            status="reconciled",
             type="ach",
         )
         assert_matches_type(ExpectedPayment, expected_payment, path=["response"])

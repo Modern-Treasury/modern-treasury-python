@@ -509,8 +509,10 @@ from modern_treasury.types.transactions import TransactionLineItem
 
 Methods:
 
+- <code title="post /api/transaction_line_items">client.transactions.line_items.<a href="./src/modern_treasury/resources/transactions/line_items.py">create</a>(\*\*<a href="src/modern_treasury/types/transactions/line_item_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/transactions/transaction_line_item.py">TransactionLineItem</a></code>
 - <code title="get /api/transaction_line_items/{id}">client.transactions.line_items.<a href="./src/modern_treasury/resources/transactions/line_items.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/transactions/transaction_line_item.py">TransactionLineItem</a></code>
 - <code title="get /api/transaction_line_items">client.transactions.line_items.<a href="./src/modern_treasury/resources/transactions/line_items.py">list</a>(\*\*<a href="src/modern_treasury/types/transactions/line_item_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/transactions/transaction_line_item.py">SyncPage[TransactionLineItem]</a></code>
+- <code title="delete /api/transaction_line_items/{id}">client.transactions.line_items.<a href="./src/modern_treasury/resources/transactions/line_items.py">delete</a>(id) -> None</code>
 
 # Validations
 

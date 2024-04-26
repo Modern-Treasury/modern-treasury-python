@@ -48,6 +48,7 @@ class TestTransactions:
                 "modern": "treasury",
             },
             posted=True,
+            type="ach",
             vendor_description="string",
         )
         assert_matches_type(Transaction, transaction, path=["response"])
@@ -284,6 +285,7 @@ class TestAsyncTransactions:
                 "modern": "treasury",
             },
             posted=True,
+            type="ach",
             vendor_description="string",
         )
         assert_matches_type(Transaction, transaction, path=["response"])

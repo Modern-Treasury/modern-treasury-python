@@ -99,7 +99,7 @@ class TestLedgerTransactions:
             effective_date=parse_date("2019-12-27"),
             external_id="string",
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            ledgerable_type="counterparty",
+            ledgerable_type="expected_payment",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -263,6 +263,8 @@ class TestLedgerTransactions:
                     },
                 },
             ],
+            ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            ledgerable_type="expected_payment",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -322,7 +324,7 @@ class TestLedgerTransactions:
             ledger_account_settlement_id="string",
             ledger_id="string",
             ledgerable_id="string",
-            ledgerable_type="counterparty",
+            ledgerable_type="expected_payment",
             metadata={"foo": "string"},
             order_by={
                 "created_at": "asc",
@@ -371,7 +373,7 @@ class TestLedgerTransactions:
             effective_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             external_id="string",
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            ledgerable_type="counterparty",
+            ledgerable_type="expected_payment",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -494,7 +496,7 @@ class TestAsyncLedgerTransactions:
             effective_date=parse_date("2019-12-27"),
             external_id="string",
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            ledgerable_type="counterparty",
+            ledgerable_type="expected_payment",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -658,6 +660,8 @@ class TestAsyncLedgerTransactions:
                     },
                 },
             ],
+            ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            ledgerable_type="expected_payment",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -717,7 +721,7 @@ class TestAsyncLedgerTransactions:
             ledger_account_settlement_id="string",
             ledger_id="string",
             ledgerable_id="string",
-            ledgerable_type="counterparty",
+            ledgerable_type="expected_payment",
             metadata={"foo": "string"},
             order_by={
                 "created_at": "asc",
@@ -766,7 +770,7 @@ class TestAsyncLedgerTransactions:
             effective_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             external_id="string",
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            ledgerable_type="counterparty",
+            ledgerable_type="expected_payment",
             metadata={
                 "key": "value",
                 "foo": "bar",

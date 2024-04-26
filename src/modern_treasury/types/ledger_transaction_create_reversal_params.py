@@ -35,16 +35,7 @@ class LedgerTransactionCreateReversalParams(TypedDict, total=False):
     """
 
     ledgerable_type: Literal[
-        "counterparty",
-        "expected_payment",
-        "incoming_payment_detail",
-        "internal_account",
-        "line_item",
-        "paper_item",
-        "payment_order",
-        "payment_order_attempt",
-        "return",
-        "reversal",
+        "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
     ]
     """
     Specify this if you'd like to link the reversal ledger transaction to a Payment
