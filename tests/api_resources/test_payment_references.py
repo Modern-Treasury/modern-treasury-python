@@ -9,8 +9,8 @@ import pytest
 
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
+from modern_treasury.types import PaymentReference
 from modern_treasury.pagination import SyncPage, AsyncPage
-from modern_treasury.types.payment_reference import PaymentReference
 
 # pyright: reportDeprecated=false
 
