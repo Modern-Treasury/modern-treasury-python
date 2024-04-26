@@ -17,7 +17,6 @@ from respx import MockRouter
 from pydantic import ValidationError
 
 from modern_treasury import ModernTreasury, AsyncModernTreasury, APIResponseValidationError
-from modern_treasury._client import ModernTreasury, AsyncModernTreasury
 from modern_treasury._models import BaseModel, FinalRequestOptions
 from modern_treasury._constants import RAW_RESPONSE_HEADER
 from modern_treasury._exceptions import APIStatusError, APITimeoutError, ModernTreasuryError, APIResponseValidationError
