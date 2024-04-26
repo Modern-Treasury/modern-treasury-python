@@ -9,9 +9,11 @@ import pytest
 
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
+from modern_treasury.types import (
+    LedgerAccountStatementCreateResponse,
+    LedgerAccountStatementRetrieveResponse,
+)
 from modern_treasury._utils import parse_datetime
-from modern_treasury.types.ledger_account_statement_create_response import LedgerAccountStatementCreateResponse
-from modern_treasury.types.ledger_account_statement_retrieve_response import LedgerAccountStatementRetrieveResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

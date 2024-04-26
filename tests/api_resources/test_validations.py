@@ -9,7 +9,7 @@ import pytest
 
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
-from modern_treasury.types.routing_number_lookup_request import RoutingNumberLookupRequest
+from modern_treasury.types import RoutingNumberLookupRequest
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
