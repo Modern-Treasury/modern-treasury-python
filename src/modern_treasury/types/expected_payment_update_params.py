@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Dict, Union, Iterable, Optional
 from datetime import date
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 from .shared.currency import Currency
@@ -81,6 +81,12 @@ class ExpectedPaymentUpdateParams(TypedDict, total=False):
     For ACH payments, this will be the full line item passed from the bank. For wire
     payments, this will be the OBI field on the wire. For check payments, this will
     be the memo field.
+    """
+
+    status: Optional[Literal["reconciled"]]
+    """
+    The Expected Payment's status can be updated from partially_reconciled to
+    reconciled.
     """
 
     type: Optional[ExpectedPaymentType]

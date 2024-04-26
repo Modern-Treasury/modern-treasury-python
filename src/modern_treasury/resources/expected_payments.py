@@ -229,6 +229,7 @@ class ExpectedPayments(SyncAPIResource):
         reconciliation_rule_variables: Optional[Iterable[Dict[str, str]]] | NotGiven = NOT_GIVEN,
         remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
+        status: Optional[Literal["reconciled"]] | NotGiven = NOT_GIVEN,
         type: Optional[ExpectedPaymentType] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -281,6 +282,9 @@ class ExpectedPayments(SyncAPIResource):
               payments, this will be the OBI field on the wire. For check payments, this will
               be the memo field.
 
+          status: The Expected Payment's status can be updated from partially_reconciled to
+              reconciled.
+
           type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
               sepa, signet, wire.
 
@@ -315,6 +319,7 @@ class ExpectedPayments(SyncAPIResource):
                     "reconciliation_rule_variables": reconciliation_rule_variables,
                     "remittance_information": remittance_information,
                     "statement_descriptor": statement_descriptor,
+                    "status": status,
                     "type": type,
                 },
                 expected_payment_update_params.ExpectedPaymentUpdateParams,
@@ -673,6 +678,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
         reconciliation_rule_variables: Optional[Iterable[Dict[str, str]]] | NotGiven = NOT_GIVEN,
         remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
+        status: Optional[Literal["reconciled"]] | NotGiven = NOT_GIVEN,
         type: Optional[ExpectedPaymentType] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -725,6 +731,9 @@ class AsyncExpectedPayments(AsyncAPIResource):
               payments, this will be the OBI field on the wire. For check payments, this will
               be the memo field.
 
+          status: The Expected Payment's status can be updated from partially_reconciled to
+              reconciled.
+
           type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
               sepa, signet, wire.
 
@@ -759,6 +768,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
                     "reconciliation_rule_variables": reconciliation_rule_variables,
                     "remittance_information": remittance_information,
                     "statement_descriptor": statement_descriptor,
+                    "status": status,
                     "type": type,
                 },
                 expected_payment_update_params.ExpectedPaymentUpdateParams,

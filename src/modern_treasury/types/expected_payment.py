@@ -105,7 +105,7 @@ class ExpectedPayment(BaseModel):
     """
 
     status: Literal["archived", "partially_reconciled", "reconciled", "unreconciled"]
-    """One of unreconciled, reconciled, or archived."""
+    """One of unreconciled, partially_reconciled, reconciled, or archived."""
 
     transaction_id: Optional[str] = None
     """The ID of the Transaction this expected payment object has been matched to."""

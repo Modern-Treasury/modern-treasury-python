@@ -64,6 +64,7 @@ class Invoices(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         fallback_payment_method: Optional[str] | NotGiven = NOT_GIVEN,
         ingest_ledger_entries: Optional[bool] | NotGiven = NOT_GIVEN,
+        invoice_line_items: Optional[Iterable[invoice_create_params.InvoiceLineItem]] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_create_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
         ledger_account_settlement_id: Optional[str] | NotGiven = NOT_GIVEN,
         notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
@@ -142,6 +143,10 @@ class Invoices(SyncAPIResource):
               is false, then a line item must be provided. If this is true, line_items must be
               empty. Ignored if ledger_account_settlement_id is empty.
 
+          invoice_line_items: An array of invoice line items. The API supports a maximum of 50 invoice line
+              items per invoice. If a greater number of invoice line items is required, please
+              contact support.
+
           invoicer_address: The invoice issuer's business address.
 
           ledger_account_settlement_id: The ID of the virtual account the invoice should be paid to.
@@ -202,6 +207,7 @@ class Invoices(SyncAPIResource):
                     "description": description,
                     "fallback_payment_method": fallback_payment_method,
                     "ingest_ledger_entries": ingest_ledger_entries,
+                    "invoice_line_items": invoice_line_items,
                     "invoicer_address": invoicer_address,
                     "ledger_account_settlement_id": ledger_account_settlement_id,
                     "notification_email_addresses": notification_email_addresses,
@@ -273,6 +279,7 @@ class Invoices(SyncAPIResource):
         due_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
         fallback_payment_method: Optional[str] | NotGiven = NOT_GIVEN,
         ingest_ledger_entries: Optional[bool] | NotGiven = NOT_GIVEN,
+        invoice_line_items: Optional[Iterable[invoice_update_params.InvoiceLineItem]] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_update_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
         ledger_account_settlement_id: Optional[str] | NotGiven = NOT_GIVEN,
         notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
@@ -351,6 +358,10 @@ class Invoices(SyncAPIResource):
               is false, then a line item must be provided. If this is true, line_items must be
               empty. Ignored if ledger_account_settlement_id is empty.
 
+          invoice_line_items: An array of invoice line items. The API supports a maximum of 50 invoice line
+              items per invoice. If a greater number of invoice line items is required, please
+              contact support.
+
           invoicer_address: The invoice issuer's business address.
 
           ledger_account_settlement_id: The ID of the virtual account the invoice should be paid to.
@@ -418,6 +429,7 @@ class Invoices(SyncAPIResource):
                     "due_date": due_date,
                     "fallback_payment_method": fallback_payment_method,
                     "ingest_ledger_entries": ingest_ledger_entries,
+                    "invoice_line_items": invoice_line_items,
                     "invoicer_address": invoicer_address,
                     "ledger_account_settlement_id": ledger_account_settlement_id,
                     "notification_email_addresses": notification_email_addresses,
@@ -588,6 +600,7 @@ class AsyncInvoices(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         fallback_payment_method: Optional[str] | NotGiven = NOT_GIVEN,
         ingest_ledger_entries: Optional[bool] | NotGiven = NOT_GIVEN,
+        invoice_line_items: Optional[Iterable[invoice_create_params.InvoiceLineItem]] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_create_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
         ledger_account_settlement_id: Optional[str] | NotGiven = NOT_GIVEN,
         notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
@@ -666,6 +679,10 @@ class AsyncInvoices(AsyncAPIResource):
               is false, then a line item must be provided. If this is true, line_items must be
               empty. Ignored if ledger_account_settlement_id is empty.
 
+          invoice_line_items: An array of invoice line items. The API supports a maximum of 50 invoice line
+              items per invoice. If a greater number of invoice line items is required, please
+              contact support.
+
           invoicer_address: The invoice issuer's business address.
 
           ledger_account_settlement_id: The ID of the virtual account the invoice should be paid to.
@@ -726,6 +743,7 @@ class AsyncInvoices(AsyncAPIResource):
                     "description": description,
                     "fallback_payment_method": fallback_payment_method,
                     "ingest_ledger_entries": ingest_ledger_entries,
+                    "invoice_line_items": invoice_line_items,
                     "invoicer_address": invoicer_address,
                     "ledger_account_settlement_id": ledger_account_settlement_id,
                     "notification_email_addresses": notification_email_addresses,
@@ -797,6 +815,7 @@ class AsyncInvoices(AsyncAPIResource):
         due_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
         fallback_payment_method: Optional[str] | NotGiven = NOT_GIVEN,
         ingest_ledger_entries: Optional[bool] | NotGiven = NOT_GIVEN,
+        invoice_line_items: Optional[Iterable[invoice_update_params.InvoiceLineItem]] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_update_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
         ledger_account_settlement_id: Optional[str] | NotGiven = NOT_GIVEN,
         notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
@@ -875,6 +894,10 @@ class AsyncInvoices(AsyncAPIResource):
               is false, then a line item must be provided. If this is true, line_items must be
               empty. Ignored if ledger_account_settlement_id is empty.
 
+          invoice_line_items: An array of invoice line items. The API supports a maximum of 50 invoice line
+              items per invoice. If a greater number of invoice line items is required, please
+              contact support.
+
           invoicer_address: The invoice issuer's business address.
 
           ledger_account_settlement_id: The ID of the virtual account the invoice should be paid to.
@@ -942,6 +965,7 @@ class AsyncInvoices(AsyncAPIResource):
                     "due_date": due_date,
                     "fallback_payment_method": fallback_payment_method,
                     "ingest_ledger_entries": ingest_ledger_entries,
+                    "invoice_line_items": invoice_line_items,
                     "invoicer_address": invoicer_address,
                     "ledger_account_settlement_id": ledger_account_settlement_id,
                     "notification_email_addresses": notification_email_addresses,
