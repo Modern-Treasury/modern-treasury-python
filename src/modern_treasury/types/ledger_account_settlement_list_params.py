@@ -17,6 +17,8 @@ class LedgerAccountSettlementListParams(TypedDict, total=False):
 
     after_cursor: Optional[str]
 
+    ledger_id: str
+
     ledger_transaction_id: str
 
     metadata: Dict[str, str]
