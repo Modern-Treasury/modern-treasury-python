@@ -221,6 +221,7 @@ class LedgerAccountSettlements(SyncAPIResource):
         *,
         id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        ledger_id: str | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
@@ -264,6 +265,7 @@ class LedgerAccountSettlements(SyncAPIResource):
                     {
                         "id": id,
                         "after_cursor": after_cursor,
+                        "ledger_id": ledger_id,
                         "ledger_transaction_id": ledger_transaction_id,
                         "metadata": metadata,
                         "per_page": per_page,
@@ -466,6 +468,7 @@ class AsyncLedgerAccountSettlements(AsyncAPIResource):
         *,
         id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        ledger_id: str | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
@@ -509,6 +512,7 @@ class AsyncLedgerAccountSettlements(AsyncAPIResource):
                     {
                         "id": id,
                         "after_cursor": after_cursor,
+                        "ledger_id": ledger_id,
                         "ledger_transaction_id": ledger_transaction_id,
                         "metadata": metadata,
                         "per_page": per_page,
