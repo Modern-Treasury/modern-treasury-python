@@ -266,7 +266,7 @@ client = ModernTreasury(
 )
 
 # Override per-request:
-client.with_options(timeout=5 * 1000).counterparties.create(
+client.with_options(timeout=5.0).counterparties.create(
     name="my first counterparty",
 )
 ```
