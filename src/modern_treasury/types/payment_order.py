@@ -327,9 +327,8 @@ class PaymentOrder(BaseModel):
     purpose: Optional[str] = None
     """
     For `wire`, this is usually the purpose which is transmitted via the
-    "InstrForDbtrAgt" field in the ISO20022 file. If you are using Currencycloud,
-    this is the `payment.purpose_code` field. For `eft`, this field is the 3 digit
-    CPA Code that will be attached to the payment.
+    "InstrForDbtrAgt" field in the ISO20022 file. For `eft`, this field is the 3
+    digit CPA Code that will be attached to the payment.
     """
 
     receiving_account_id: str
@@ -433,10 +432,9 @@ class PaymentOrder(BaseModel):
     updated_at: datetime
 
     vendor_failure_reason: Optional[str] = None
-    """This field will be populated if a vendor (e.g.
+    """This field will be populated if a vendor failure occurs.
 
-    Currencycloud) failure occurs. Logic shouldn't be built on its value as it is
-    free-form.
+    Logic shouldn't be built on its value as it is free-form.
     """
 
 
