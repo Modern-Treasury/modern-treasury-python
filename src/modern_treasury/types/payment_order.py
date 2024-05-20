@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import builtins
 from typing import Dict, List, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
@@ -430,6 +431,12 @@ class PaymentOrder(BaseModel):
     ultimate_receiving_party_name: Optional[str] = None
 
     updated_at: datetime
+
+    vendor_attributes: Optional[builtins.object] = None
+    """Additional vendor specific fields for this payment.
+
+    Data must be represented as key-value pairs.
+    """
 
     vendor_failure_reason: Optional[str] = None
     """This field will be populated if a vendor failure occurs.
