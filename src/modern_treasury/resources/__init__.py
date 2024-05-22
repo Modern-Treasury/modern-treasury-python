@@ -225,14 +225,6 @@ from .ledger_event_handlers import (
     LedgerEventHandlersWithStreamingResponse,
     AsyncLedgerEventHandlersWithStreamingResponse,
 )
-from .ledger_account_payouts import (
-    LedgerAccountPayouts,
-    AsyncLedgerAccountPayouts,
-    LedgerAccountPayoutsWithRawResponse,
-    AsyncLedgerAccountPayoutsWithRawResponse,
-    LedgerAccountPayoutsWithStreamingResponse,
-    AsyncLedgerAccountPayoutsWithStreamingResponse,
-)
 from .foreign_exchange_quotes import (
     ForeignExchangeQuotes,
     AsyncForeignExchangeQuotes,
@@ -409,12 +401,6 @@ __all__ = [
     "AsyncLedgerAccountBalanceMonitorsWithRawResponse",
     "LedgerAccountBalanceMonitorsWithStreamingResponse",
     "AsyncLedgerAccountBalanceMonitorsWithStreamingResponse",
-    "LedgerAccountPayouts",
-    "AsyncLedgerAccountPayouts",
-    "LedgerAccountPayoutsWithRawResponse",
-    "AsyncLedgerAccountPayoutsWithRawResponse",
-    "LedgerAccountPayoutsWithStreamingResponse",
-    "AsyncLedgerAccountPayoutsWithStreamingResponse",
     "LedgerAccountStatements",
     "AsyncLedgerAccountStatements",
     "LedgerAccountStatementsWithRawResponse",
