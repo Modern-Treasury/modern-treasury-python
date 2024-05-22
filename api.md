@@ -309,21 +309,6 @@ Methods:
 - <code title="get /api/ledger_account_balance_monitors">client.ledger_account_balance_monitors.<a href="./src/modern_treasury/resources/ledger_account_balance_monitors.py">list</a>(\*\*<a href="src/modern_treasury/types/ledger_account_balance_monitor_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_balance_monitor.py">SyncPage[LedgerAccountBalanceMonitor]</a></code>
 - <code title="delete /api/ledger_account_balance_monitors/{id}">client.ledger_account_balance_monitors.<a href="./src/modern_treasury/resources/ledger_account_balance_monitors.py">delete</a>(id) -> <a href="./src/modern_treasury/types/ledger_account_balance_monitor.py">LedgerAccountBalanceMonitor</a></code>
 
-# LedgerAccountPayouts
-
-Types:
-
-```python
-from modern_treasury.types import LedgerAccountPayout
-```
-
-Methods:
-
-- <code title="post /api/ledger_account_payouts">client.ledger_account_payouts.<a href="./src/modern_treasury/resources/ledger_account_payouts.py">create</a>(\*\*<a href="src/modern_treasury/types/ledger_account_payout_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_payout.py">LedgerAccountPayout</a></code>
-- <code title="get /api/ledger_account_payouts/{id}">client.ledger_account_payouts.<a href="./src/modern_treasury/resources/ledger_account_payouts.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/ledger_account_payout.py">LedgerAccountPayout</a></code>
-- <code title="patch /api/ledger_account_payouts/{id}">client.ledger_account_payouts.<a href="./src/modern_treasury/resources/ledger_account_payouts.py">update</a>(id, \*\*<a href="src/modern_treasury/types/ledger_account_payout_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_payout.py">LedgerAccountPayout</a></code>
-- <code title="get /api/ledger_account_payouts">client.ledger_account_payouts.<a href="./src/modern_treasury/resources/ledger_account_payouts.py">list</a>(\*\*<a href="src/modern_treasury/types/ledger_account_payout_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_payout.py">SyncPage[LedgerAccountPayout]</a></code>
-
 # LedgerAccountStatements
 
 Types:
