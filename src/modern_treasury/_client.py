@@ -74,7 +74,6 @@ class ModernTreasury(SyncAPIClient):
     ledger_account_categories: resources.LedgerAccountCategories
     ledger_accounts: resources.LedgerAccounts
     ledger_account_balance_monitors: resources.LedgerAccountBalanceMonitors
-    ledger_account_payouts: resources.LedgerAccountPayouts
     ledger_account_statements: resources.LedgerAccountStatements
     ledger_entries: resources.LedgerEntries
     ledger_event_handlers: resources.LedgerEventHandlers
@@ -199,7 +198,6 @@ class ModernTreasury(SyncAPIClient):
         self.ledger_account_categories = resources.LedgerAccountCategories(self)
         self.ledger_accounts = resources.LedgerAccounts(self)
         self.ledger_account_balance_monitors = resources.LedgerAccountBalanceMonitors(self)
-        self.ledger_account_payouts = resources.LedgerAccountPayouts(self)
         self.ledger_account_statements = resources.LedgerAccountStatements(self)
         self.ledger_entries = resources.LedgerEntries(self)
         self.ledger_event_handlers = resources.LedgerEventHandlers(self)
@@ -392,7 +390,6 @@ class AsyncModernTreasury(AsyncAPIClient):
     ledger_account_categories: resources.AsyncLedgerAccountCategories
     ledger_accounts: resources.AsyncLedgerAccounts
     ledger_account_balance_monitors: resources.AsyncLedgerAccountBalanceMonitors
-    ledger_account_payouts: resources.AsyncLedgerAccountPayouts
     ledger_account_statements: resources.AsyncLedgerAccountStatements
     ledger_entries: resources.AsyncLedgerEntries
     ledger_event_handlers: resources.AsyncLedgerEventHandlers
@@ -517,7 +514,6 @@ class AsyncModernTreasury(AsyncAPIClient):
         self.ledger_account_categories = resources.AsyncLedgerAccountCategories(self)
         self.ledger_accounts = resources.AsyncLedgerAccounts(self)
         self.ledger_account_balance_monitors = resources.AsyncLedgerAccountBalanceMonitors(self)
-        self.ledger_account_payouts = resources.AsyncLedgerAccountPayouts(self)
         self.ledger_account_statements = resources.AsyncLedgerAccountStatements(self)
         self.ledger_entries = resources.AsyncLedgerEntries(self)
         self.ledger_event_handlers = resources.AsyncLedgerEventHandlers(self)
@@ -715,7 +711,6 @@ class ModernTreasuryWithRawResponse:
         self.ledger_account_balance_monitors = resources.LedgerAccountBalanceMonitorsWithRawResponse(
             client.ledger_account_balance_monitors
         )
-        self.ledger_account_payouts = resources.LedgerAccountPayoutsWithRawResponse(client.ledger_account_payouts)
         self.ledger_account_statements = resources.LedgerAccountStatementsWithRawResponse(
             client.ledger_account_statements
         )
@@ -777,7 +772,6 @@ class AsyncModernTreasuryWithRawResponse:
         self.ledger_account_balance_monitors = resources.AsyncLedgerAccountBalanceMonitorsWithRawResponse(
             client.ledger_account_balance_monitors
         )
-        self.ledger_account_payouts = resources.AsyncLedgerAccountPayoutsWithRawResponse(client.ledger_account_payouts)
         self.ledger_account_statements = resources.AsyncLedgerAccountStatementsWithRawResponse(
             client.ledger_account_statements
         )
@@ -841,7 +835,6 @@ class ModernTreasuryWithStreamedResponse:
         self.ledger_account_balance_monitors = resources.LedgerAccountBalanceMonitorsWithStreamingResponse(
             client.ledger_account_balance_monitors
         )
-        self.ledger_account_payouts = resources.LedgerAccountPayoutsWithStreamingResponse(client.ledger_account_payouts)
         self.ledger_account_statements = resources.LedgerAccountStatementsWithStreamingResponse(
             client.ledger_account_statements
         )
@@ -904,9 +897,6 @@ class AsyncModernTreasuryWithStreamedResponse:
         self.ledger_accounts = resources.AsyncLedgerAccountsWithStreamingResponse(client.ledger_accounts)
         self.ledger_account_balance_monitors = resources.AsyncLedgerAccountBalanceMonitorsWithStreamingResponse(
             client.ledger_account_balance_monitors
-        )
-        self.ledger_account_payouts = resources.AsyncLedgerAccountPayoutsWithStreamingResponse(
-            client.ledger_account_payouts
         )
         self.ledger_account_statements = resources.AsyncLedgerAccountStatementsWithStreamingResponse(
             client.ledger_account_statements

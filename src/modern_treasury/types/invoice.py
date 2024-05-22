@@ -233,6 +233,12 @@ class Invoice(BaseModel):
     Leaving this value as null will fallback to using the counterparty's name.
     """
 
+    remind_after_overdue_days: Optional[List[int]] = None
+    """
+    Number of days after due date when overdue reminder emails will be sent out to
+    invoice recipients.
+    """
+
     status: Literal["draft", "paid", "partially_paid", "payment_pending", "unpaid", "voided"]
     """The status of the invoice."""
 

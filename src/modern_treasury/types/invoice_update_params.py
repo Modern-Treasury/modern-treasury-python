@@ -156,6 +156,12 @@ class InvoiceUpdateParams(TypedDict, total=False):
     Leaving this value as null will fallback to using the counterparty's name.
     """
 
+    remind_after_overdue_days: Optional[Iterable[int]]
+    """
+    Number of days after due date when overdue reminder emails will be sent out to
+    invoice recipients.
+    """
+
     status: str
     """
     Invoice status must be updated in a `PATCH` request that does not modify any

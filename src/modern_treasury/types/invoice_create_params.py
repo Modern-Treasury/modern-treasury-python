@@ -156,6 +156,12 @@ class InvoiceCreateParams(TypedDict, total=False):
     Leaving this value as null will fallback to using the counterparty's name.
     """
 
+    remind_after_overdue_days: Optional[Iterable[int]]
+    """
+    Number of days after due date when overdue reminder emails will be sent out to
+    invoice recipients.
+    """
+
     virtual_account_id: Optional[str]
     """The ID of the virtual account the invoice should be paid to."""
 

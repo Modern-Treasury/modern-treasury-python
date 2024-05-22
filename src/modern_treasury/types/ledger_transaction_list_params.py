@@ -38,8 +38,6 @@ class LedgerTransactionListParams(TypedDict, total=False):
 
     ledger_account_id: str
 
-    ledger_account_payout_id: str
-
     ledger_account_settlement_id: str
 
     ledger_id: str
