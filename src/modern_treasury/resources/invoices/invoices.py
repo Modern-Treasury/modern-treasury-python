@@ -107,6 +107,7 @@ class Invoices(SyncAPIResource):
         receiving_account_id: str | NotGiven = NOT_GIVEN,
         recipient_email: Optional[str] | NotGiven = NOT_GIVEN,
         recipient_name: Optional[str] | NotGiven = NOT_GIVEN,
+        remind_after_overdue_days: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
         virtual_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -181,6 +182,9 @@ class Invoices(SyncAPIResource):
           recipient_name: The name of the recipient of the invoice. Leaving this value as null will
               fallback to using the counterparty's name.
 
+          remind_after_overdue_days: Number of days after due date when overdue reminder emails will be sent out to
+              invoice recipients.
+
           virtual_account_id: The ID of the virtual account the invoice should be paid to.
 
           extra_headers: Send extra headers
@@ -218,6 +222,7 @@ class Invoices(SyncAPIResource):
                     "receiving_account_id": receiving_account_id,
                     "recipient_email": recipient_email,
                     "recipient_name": recipient_name,
+                    "remind_after_overdue_days": remind_after_overdue_days,
                     "virtual_account_id": virtual_account_id,
                 },
                 invoice_create_params.InvoiceCreateParams,
@@ -323,6 +328,7 @@ class Invoices(SyncAPIResource):
         receiving_account_id: str | NotGiven = NOT_GIVEN,
         recipient_email: Optional[str] | NotGiven = NOT_GIVEN,
         recipient_name: Optional[str] | NotGiven = NOT_GIVEN,
+        remind_after_overdue_days: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
         status: str | NotGiven = NOT_GIVEN,
         virtual_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -398,6 +404,9 @@ class Invoices(SyncAPIResource):
           recipient_name: The name of the recipient of the invoice. Leaving this value as null will
               fallback to using the counterparty's name.
 
+          remind_after_overdue_days: Number of days after due date when overdue reminder emails will be sent out to
+              invoice recipients.
+
           status: Invoice status must be updated in a `PATCH` request that does not modify any
               other invoice attributes. Valid state transitions are `draft` to `unpaid`,
               `draft` or `unpaid` to `voided`, and `draft` or `unpaid` to `paid`.
@@ -441,6 +450,7 @@ class Invoices(SyncAPIResource):
                     "receiving_account_id": receiving_account_id,
                     "recipient_email": recipient_email,
                     "recipient_name": recipient_name,
+                    "remind_after_overdue_days": remind_after_overdue_days,
                     "status": status,
                     "virtual_account_id": virtual_account_id,
                 },
@@ -643,6 +653,7 @@ class AsyncInvoices(AsyncAPIResource):
         receiving_account_id: str | NotGiven = NOT_GIVEN,
         recipient_email: Optional[str] | NotGiven = NOT_GIVEN,
         recipient_name: Optional[str] | NotGiven = NOT_GIVEN,
+        remind_after_overdue_days: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
         virtual_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -717,6 +728,9 @@ class AsyncInvoices(AsyncAPIResource):
           recipient_name: The name of the recipient of the invoice. Leaving this value as null will
               fallback to using the counterparty's name.
 
+          remind_after_overdue_days: Number of days after due date when overdue reminder emails will be sent out to
+              invoice recipients.
+
           virtual_account_id: The ID of the virtual account the invoice should be paid to.
 
           extra_headers: Send extra headers
@@ -754,6 +768,7 @@ class AsyncInvoices(AsyncAPIResource):
                     "receiving_account_id": receiving_account_id,
                     "recipient_email": recipient_email,
                     "recipient_name": recipient_name,
+                    "remind_after_overdue_days": remind_after_overdue_days,
                     "virtual_account_id": virtual_account_id,
                 },
                 invoice_create_params.InvoiceCreateParams,
@@ -859,6 +874,7 @@ class AsyncInvoices(AsyncAPIResource):
         receiving_account_id: str | NotGiven = NOT_GIVEN,
         recipient_email: Optional[str] | NotGiven = NOT_GIVEN,
         recipient_name: Optional[str] | NotGiven = NOT_GIVEN,
+        remind_after_overdue_days: Optional[Iterable[int]] | NotGiven = NOT_GIVEN,
         status: str | NotGiven = NOT_GIVEN,
         virtual_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -934,6 +950,9 @@ class AsyncInvoices(AsyncAPIResource):
           recipient_name: The name of the recipient of the invoice. Leaving this value as null will
               fallback to using the counterparty's name.
 
+          remind_after_overdue_days: Number of days after due date when overdue reminder emails will be sent out to
+              invoice recipients.
+
           status: Invoice status must be updated in a `PATCH` request that does not modify any
               other invoice attributes. Valid state transitions are `draft` to `unpaid`,
               `draft` or `unpaid` to `voided`, and `draft` or `unpaid` to `paid`.
@@ -977,6 +996,7 @@ class AsyncInvoices(AsyncAPIResource):
                     "receiving_account_id": receiving_account_id,
                     "recipient_email": recipient_email,
                     "recipient_name": recipient_name,
+                    "remind_after_overdue_days": remind_after_overdue_days,
                     "status": status,
                     "virtual_account_id": virtual_account_id,
                 },
