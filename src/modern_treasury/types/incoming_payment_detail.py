@@ -96,6 +96,7 @@ class IncomingPaymentDetail(BaseModel):
             "pl_national_clearing_code",
             "se_bankgiro_clearing_code",
             "swift",
+            "za_national_clearing_code",
         ]
     ] = None
     """The type of the originating routing number for the incoming payment detail."""

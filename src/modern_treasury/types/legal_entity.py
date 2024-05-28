@@ -118,15 +118,15 @@ Please use PhoneNumber instead.
 
 
 class LegalEntity(BaseModel):
-    id: Optional[str] = None
+    id: str
 
-    addresses: Optional[List[Address]] = None
+    addresses: List[Address]
     """A list of addresses for the entity."""
 
     business_name: Optional[str] = None
     """The business's legal business name."""
 
-    created_at: Optional[datetime] = None
+    created_at: datetime
 
     date_formed: Optional[date] = None
     """A business's formation date (YYYY-MM-DD)."""
@@ -136,7 +136,7 @@ class LegalEntity(BaseModel):
 
     discarded_at: Optional[datetime] = None
 
-    doing_business_as_names: Optional[List[str]] = None
+    doing_business_as_names: List[str]
 
     email: Optional[str] = None
     """The entity's primary email."""
@@ -144,7 +144,7 @@ class LegalEntity(BaseModel):
     first_name: Optional[str] = None
     """An individual's first name."""
 
-    identifications: Optional[List[Identification]] = None
+    identifications: List[Identification]
     """A list of identifications for the legal entity."""
 
     last_name: Optional[str] = None
@@ -153,7 +153,7 @@ class LegalEntity(BaseModel):
     legal_entity_associations: Optional[List[LegalEntityAssociation]] = None
     """The legal entity associations and its child legal entities."""
 
-    legal_entity_type: Optional[Literal["business", "individual", "joint"]] = None
+    legal_entity_type: Literal["business", "individual", "joint"]
     """The type of legal entity."""
 
     legal_structure: Optional[
@@ -161,23 +161,23 @@ class LegalEntity(BaseModel):
     ] = None
     """The business's legal structure."""
 
-    live_mode: Optional[bool] = None
+    live_mode: bool
     """
     This field will be true if this object exists in the live environment or false
     if it exists in the test environment.
     """
 
-    metadata: Optional[Dict[str, str]] = None
+    metadata: Dict[str, str]
     """Additional data represented as key-value pairs.
 
     Both the key and value must be strings.
     """
 
-    object: Optional[str] = None
+    object: str
 
-    phone_numbers: Optional[List[PhoneNumber]] = None
+    phone_numbers: List[PhoneNumber]
 
-    updated_at: Optional[datetime] = None
+    updated_at: datetime
 
     website: Optional[str] = None
     """The entity's primary website URL."""

@@ -37,11 +37,11 @@ class LegalEntityAssociations(SyncAPIResource):
     def create(
         self,
         *,
+        parent_legal_entity_id: str,
         relationship_types: List[Literal["beneficial_owner", "control_person"]],
         child_legal_entity: legal_entity_association_create_params.ChildLegalEntity | NotGiven = NOT_GIVEN,
         child_legal_entity_id: str | NotGiven = NOT_GIVEN,
         ownership_percentage: Optional[int] | NotGiven = NOT_GIVEN,
-        parent_legal_entity_id: str | NotGiven = NOT_GIVEN,
         title: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -55,14 +55,14 @@ class LegalEntityAssociations(SyncAPIResource):
         create legal_entity_association
 
         Args:
+          parent_legal_entity_id: The ID of the parent legal entity. This must be a business or joint legal
+              entity.
+
           child_legal_entity: The child legal entity.
 
           child_legal_entity_id: The ID of the child legal entity.
 
           ownership_percentage: The child entity's ownership percentage iff they are a beneficial owner.
-
-          parent_legal_entity_id: The ID of the parent legal entity. This must be a business or joint legal
-              entity.
 
           title: The job title of the child entity at the parent entity.
 
@@ -80,11 +80,11 @@ class LegalEntityAssociations(SyncAPIResource):
             "/api/legal_entity_associations",
             body=maybe_transform(
                 {
+                    "parent_legal_entity_id": parent_legal_entity_id,
                     "relationship_types": relationship_types,
                     "child_legal_entity": child_legal_entity,
                     "child_legal_entity_id": child_legal_entity_id,
                     "ownership_percentage": ownership_percentage,
-                    "parent_legal_entity_id": parent_legal_entity_id,
                     "title": title,
                 },
                 legal_entity_association_create_params.LegalEntityAssociationCreateParams,
@@ -112,11 +112,11 @@ class AsyncLegalEntityAssociations(AsyncAPIResource):
     async def create(
         self,
         *,
+        parent_legal_entity_id: str,
         relationship_types: List[Literal["beneficial_owner", "control_person"]],
         child_legal_entity: legal_entity_association_create_params.ChildLegalEntity | NotGiven = NOT_GIVEN,
         child_legal_entity_id: str | NotGiven = NOT_GIVEN,
         ownership_percentage: Optional[int] | NotGiven = NOT_GIVEN,
-        parent_legal_entity_id: str | NotGiven = NOT_GIVEN,
         title: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -130,14 +130,14 @@ class AsyncLegalEntityAssociations(AsyncAPIResource):
         create legal_entity_association
 
         Args:
+          parent_legal_entity_id: The ID of the parent legal entity. This must be a business or joint legal
+              entity.
+
           child_legal_entity: The child legal entity.
 
           child_legal_entity_id: The ID of the child legal entity.
 
           ownership_percentage: The child entity's ownership percentage iff they are a beneficial owner.
-
-          parent_legal_entity_id: The ID of the parent legal entity. This must be a business or joint legal
-              entity.
 
           title: The job title of the child entity at the parent entity.
 
@@ -155,11 +155,11 @@ class AsyncLegalEntityAssociations(AsyncAPIResource):
             "/api/legal_entity_associations",
             body=await async_maybe_transform(
                 {
+                    "parent_legal_entity_id": parent_legal_entity_id,
                     "relationship_types": relationship_types,
                     "child_legal_entity": child_legal_entity,
                     "child_legal_entity_id": child_legal_entity_id,
                     "ownership_percentage": ownership_percentage,
-                    "parent_legal_entity_id": parent_legal_entity_id,
                     "title": title,
                 },
                 legal_entity_association_create_params.LegalEntityAssociationCreateParams,

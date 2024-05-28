@@ -51,7 +51,21 @@ class ExternalAccountVerifyParams(TypedDict, total=False):
             "zengin",
         ]
     ]
-    """Both ach and eft are supported payment types."""
+    """Can be `ach`, `eft`, or `rtp`."""
 
     currency: Optional[Currency]
     """Defaults to the currency of the originating account."""
+
+    fallback_type: Literal["ach"]
+    """
+    A payment type to fallback to if the original type is not valid for the
+    receiving account. Currently, this only supports falling back from RTP to ACH
+    (payment_type=rtp and fallback_type=ach)
+    """
+
+    priority: Literal["high", "normal"]
+    """Either `normal` or `high`.
+
+    For ACH payments, `high` represents a same-day ACH transfer. This will apply to
+    both `payment_type` and `fallback_type`.
+    """
