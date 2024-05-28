@@ -419,6 +419,8 @@ class ExternalAccounts(SyncAPIResource):
             "zengin",
         ],
         currency: Optional[Currency] | NotGiven = NOT_GIVEN,
+        fallback_type: Literal["ach"] | NotGiven = NOT_GIVEN,
+        priority: Literal["high", "normal"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -434,9 +436,16 @@ class ExternalAccounts(SyncAPIResource):
           originating_account_id: The ID of the internal account where the micro-deposits originate from. Both
               credit and debit capabilities must be enabled.
 
-          payment_type: Both ach and eft are supported payment types.
+          payment_type: Can be `ach`, `eft`, or `rtp`.
 
           currency: Defaults to the currency of the originating account.
+
+          fallback_type: A payment type to fallback to if the original type is not valid for the
+              receiving account. Currently, this only supports falling back from RTP to ACH
+              (payment_type=rtp and fallback_type=ach)
+
+          priority: Either `normal` or `high`. For ACH payments, `high` represents a same-day ACH
+              transfer. This will apply to both `payment_type` and `fallback_type`.
 
           extra_headers: Send extra headers
 
@@ -457,6 +466,8 @@ class ExternalAccounts(SyncAPIResource):
                     "originating_account_id": originating_account_id,
                     "payment_type": payment_type,
                     "currency": currency,
+                    "fallback_type": fallback_type,
+                    "priority": priority,
                 },
                 external_account_verify_params.ExternalAccountVerifyParams,
             ),
@@ -854,6 +865,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
             "zengin",
         ],
         currency: Optional[Currency] | NotGiven = NOT_GIVEN,
+        fallback_type: Literal["ach"] | NotGiven = NOT_GIVEN,
+        priority: Literal["high", "normal"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -869,9 +882,16 @@ class AsyncExternalAccounts(AsyncAPIResource):
           originating_account_id: The ID of the internal account where the micro-deposits originate from. Both
               credit and debit capabilities must be enabled.
 
-          payment_type: Both ach and eft are supported payment types.
+          payment_type: Can be `ach`, `eft`, or `rtp`.
 
           currency: Defaults to the currency of the originating account.
+
+          fallback_type: A payment type to fallback to if the original type is not valid for the
+              receiving account. Currently, this only supports falling back from RTP to ACH
+              (payment_type=rtp and fallback_type=ach)
+
+          priority: Either `normal` or `high`. For ACH payments, `high` represents a same-day ACH
+              transfer. This will apply to both `payment_type` and `fallback_type`.
 
           extra_headers: Send extra headers
 
@@ -892,6 +912,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
                     "originating_account_id": originating_account_id,
                     "payment_type": payment_type,
                     "currency": currency,
+                    "fallback_type": fallback_type,
+                    "priority": priority,
                 },
                 external_account_verify_params.ExternalAccountVerifyParams,
             ),
