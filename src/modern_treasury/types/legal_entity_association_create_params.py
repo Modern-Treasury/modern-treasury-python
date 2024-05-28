@@ -21,6 +21,12 @@ __all__ = [
 
 
 class LegalEntityAssociationCreateParams(TypedDict, total=False):
+    parent_legal_entity_id: Required[str]
+    """The ID of the parent legal entity.
+
+    This must be a business or joint legal entity.
+    """
+
     relationship_types: Required[List[Literal["beneficial_owner", "control_person"]]]
 
     child_legal_entity: ChildLegalEntity
@@ -31,12 +37,6 @@ class LegalEntityAssociationCreateParams(TypedDict, total=False):
 
     ownership_percentage: Optional[int]
     """The child entity's ownership percentage iff they are a beneficial owner."""
-
-    parent_legal_entity_id: str
-    """The ID of the parent legal entity.
-
-    This must be a business or joint legal entity.
-    """
 
     title: Optional[str]
     """The job title of the child entity at the parent entity."""

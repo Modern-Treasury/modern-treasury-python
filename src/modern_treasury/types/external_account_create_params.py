@@ -188,6 +188,7 @@ class RoutingDetail(TypedDict, total=False):
             "pl_national_clearing_code",
             "se_bankgiro_clearing_code",
             "swift",
+            "za_national_clearing_code",
         ]
     ]
 
@@ -213,10 +214,10 @@ class RoutingDetail(TypedDict, total=False):
         "provxchange",
         "ro_sent",
         "rtp",
-        "sg_giro",
         "se_bankgirot",
         "sen",
         "sepa",
+        "sg_giro",
         "sic",
         "signet",
         "sknbi",

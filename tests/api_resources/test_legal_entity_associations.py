@@ -21,6 +21,7 @@ class TestLegalEntityAssociations:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         legal_entity_association = client.legal_entity_associations.create(
+            parent_legal_entity_id="string",
             relationship_types=["beneficial_owner", "control_person"],
         )
         assert_matches_type(LegalEntityAssociation, legal_entity_association, path=["response"])
@@ -28,6 +29,7 @@ class TestLegalEntityAssociations:
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         legal_entity_association = client.legal_entity_associations.create(
+            parent_legal_entity_id="string",
             relationship_types=["beneficial_owner", "control_person"],
             child_legal_entity={
                 "legal_entity_type": "business",
@@ -95,7 +97,6 @@ class TestLegalEntityAssociations:
             },
             child_legal_entity_id="string",
             ownership_percentage=0,
-            parent_legal_entity_id="string",
             title="string",
         )
         assert_matches_type(LegalEntityAssociation, legal_entity_association, path=["response"])
@@ -103,6 +104,7 @@ class TestLegalEntityAssociations:
     @parametrize
     def test_raw_response_create(self, client: ModernTreasury) -> None:
         response = client.legal_entity_associations.with_raw_response.create(
+            parent_legal_entity_id="string",
             relationship_types=["beneficial_owner", "control_person"],
         )
 
@@ -114,6 +116,7 @@ class TestLegalEntityAssociations:
     @parametrize
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
         with client.legal_entity_associations.with_streaming_response.create(
+            parent_legal_entity_id="string",
             relationship_types=["beneficial_owner", "control_person"],
         ) as response:
             assert not response.is_closed
@@ -131,6 +134,7 @@ class TestAsyncLegalEntityAssociations:
     @parametrize
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
         legal_entity_association = await async_client.legal_entity_associations.create(
+            parent_legal_entity_id="string",
             relationship_types=["beneficial_owner", "control_person"],
         )
         assert_matches_type(LegalEntityAssociation, legal_entity_association, path=["response"])
@@ -138,6 +142,7 @@ class TestAsyncLegalEntityAssociations:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         legal_entity_association = await async_client.legal_entity_associations.create(
+            parent_legal_entity_id="string",
             relationship_types=["beneficial_owner", "control_person"],
             child_legal_entity={
                 "legal_entity_type": "business",
@@ -205,7 +210,6 @@ class TestAsyncLegalEntityAssociations:
             },
             child_legal_entity_id="string",
             ownership_percentage=0,
-            parent_legal_entity_id="string",
             title="string",
         )
         assert_matches_type(LegalEntityAssociation, legal_entity_association, path=["response"])
@@ -213,6 +217,7 @@ class TestAsyncLegalEntityAssociations:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.legal_entity_associations.with_raw_response.create(
+            parent_legal_entity_id="string",
             relationship_types=["beneficial_owner", "control_person"],
         )
 
@@ -224,6 +229,7 @@ class TestAsyncLegalEntityAssociations:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.legal_entity_associations.with_streaming_response.create(
+            parent_legal_entity_id="string",
             relationship_types=["beneficial_owner", "control_person"],
         ) as response:
             assert not response.is_closed

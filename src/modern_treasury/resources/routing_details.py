@@ -63,6 +63,7 @@ class RoutingDetails(SyncAPIResource):
             "pl_national_clearing_code",
             "se_bankgiro_clearing_code",
             "swift",
+            "za_national_clearing_code",
         ],
         payment_type: Optional[
             Literal[
@@ -325,6 +326,7 @@ class AsyncRoutingDetails(AsyncAPIResource):
             "pl_national_clearing_code",
             "se_bankgiro_clearing_code",
             "swift",
+            "za_national_clearing_code",
         ],
         payment_type: Optional[
             Literal[

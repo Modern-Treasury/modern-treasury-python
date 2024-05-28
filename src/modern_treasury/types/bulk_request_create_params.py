@@ -423,6 +423,7 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail(TypedD
             "pl_national_clearing_code",
             "se_bankgiro_clearing_code",
             "swift",
+            "za_national_clearing_code",
         ]
     ]
 
@@ -448,10 +449,10 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail(TypedD
         "provxchange",
         "ro_sent",
         "rtp",
-        "sg_giro",
         "se_bankgirot",
         "sen",
         "sepa",
+        "sg_giro",
         "sic",
         "signet",
         "sknbi",
@@ -1429,6 +1430,7 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail(Typed
             "pl_national_clearing_code",
             "se_bankgiro_clearing_code",
             "swift",
+            "za_national_clearing_code",
         ]
     ]
 
@@ -1454,10 +1456,10 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail(Typed
         "provxchange",
         "ro_sent",
         "rtp",
-        "sg_giro",
         "se_bankgirot",
         "sen",
         "sepa",
+        "sg_giro",
         "sic",
         "signet",
         "sknbi",

@@ -126,15 +126,15 @@ Please use ChildLegalEntityPhoneNumber instead.
 
 
 class ChildLegalEntity(BaseModel):
-    id: Optional[str] = None
+    id: str
 
-    addresses: Optional[List[ChildLegalEntityAddress]] = None
+    addresses: List[ChildLegalEntityAddress]
     """A list of addresses for the entity."""
 
     business_name: Optional[str] = None
     """The business's legal business name."""
 
-    created_at: Optional[datetime] = None
+    created_at: datetime
 
     date_formed: Optional[date] = None
     """A business's formation date (YYYY-MM-DD)."""
@@ -144,7 +144,7 @@ class ChildLegalEntity(BaseModel):
 
     discarded_at: Optional[datetime] = None
 
-    doing_business_as_names: Optional[List[str]] = None
+    doing_business_as_names: List[str]
 
     email: Optional[str] = None
     """The entity's primary email."""
@@ -152,13 +152,13 @@ class ChildLegalEntity(BaseModel):
     first_name: Optional[str] = None
     """An individual's first name."""
 
-    identifications: Optional[List[ChildLegalEntityIdentification]] = None
+    identifications: List[ChildLegalEntityIdentification]
     """A list of identifications for the legal entity."""
 
     last_name: Optional[str] = None
     """An individual's last name."""
 
-    legal_entity_type: Optional[Literal["business", "individual", "joint"]] = None
+    legal_entity_type: Literal["business", "individual", "joint"]
     """The type of legal entity."""
 
     legal_structure: Optional[
@@ -166,58 +166,58 @@ class ChildLegalEntity(BaseModel):
     ] = None
     """The business's legal structure."""
 
-    live_mode: Optional[bool] = None
+    live_mode: bool
     """
     This field will be true if this object exists in the live environment or false
     if it exists in the test environment.
     """
 
-    metadata: Optional[Dict[str, str]] = None
+    metadata: Dict[str, str]
     """Additional data represented as key-value pairs.
 
     Both the key and value must be strings.
     """
 
-    object: Optional[str] = None
+    object: str
 
-    phone_numbers: Optional[List[ChildLegalEntityPhoneNumber]] = None
+    phone_numbers: List[ChildLegalEntityPhoneNumber]
 
-    updated_at: Optional[datetime] = None
+    updated_at: datetime
 
     website: Optional[str] = None
     """The entity's primary website URL."""
 
 
 class LegalEntityAssociation(BaseModel):
-    id: Optional[str] = None
+    id: str
 
-    child_legal_entity: Optional[ChildLegalEntity] = None
+    child_legal_entity: ChildLegalEntity
     """The child legal entity."""
 
-    created_at: Optional[datetime] = None
+    created_at: datetime
 
     discarded_at: Optional[datetime] = None
 
-    live_mode: Optional[bool] = None
+    live_mode: bool
     """
     This field will be true if this object exists in the live environment or false
     if it exists in the test environment.
     """
 
-    object: Optional[str] = None
+    object: str
 
     ownership_percentage: Optional[int] = None
     """The child entity's ownership percentage iff they are a beneficial owner."""
 
-    parent_legal_entity_id: Optional[str] = None
+    parent_legal_entity_id: str
     """The ID of the parent legal entity.
 
     This must be a business or joint legal entity.
     """
 
-    relationship_types: Optional[List[Literal["beneficial_owner", "control_person"]]] = None
+    relationship_types: List[Literal["beneficial_owner", "control_person"]]
 
     title: Optional[str] = None
     """The job title of the child entity at the parent entity."""
 
-    updated_at: Optional[datetime] = None
+    updated_at: datetime

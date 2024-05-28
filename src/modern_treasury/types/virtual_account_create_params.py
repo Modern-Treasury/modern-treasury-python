@@ -152,6 +152,7 @@ class RoutingDetail(TypedDict, total=False):
             "pl_national_clearing_code",
             "se_bankgiro_clearing_code",
             "swift",
+            "za_national_clearing_code",
         ]
     ]
     """The type of routing number.

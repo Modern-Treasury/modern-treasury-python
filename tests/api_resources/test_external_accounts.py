@@ -375,6 +375,8 @@ class TestExternalAccounts:
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payment_type="ach",
             currency="AED",
+            fallback_type="ach",
+            priority="high",
         )
         assert_matches_type(ExternalAccount, external_account, path=["response"])
 
@@ -774,6 +776,8 @@ class TestAsyncExternalAccounts:
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payment_type="ach",
             currency="AED",
+            fallback_type="ach",
+            priority="high",
         )
         assert_matches_type(ExternalAccount, external_account, path=["response"])
 
