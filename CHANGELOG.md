@@ -1,5 +1,39 @@
 # Changelog
 
+## 1.34.0 (2024-05-28)
+
+Full Changelog: [v1.33.0...v1.34.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.33.0...v1.34.0)
+
+### Features
+
+* **api:** add currency to ledger account categories ([#449](https://github.com/Modern-Treasury/modern-treasury-python/issues/449)) ([b50317b](https://github.com/Modern-Treasury/modern-treasury-python/commit/b50317bde4b2733bc522ff126e83ecfb3650c86b))
+* **api:** invoice overdue reminders ([fbf7499](https://github.com/Modern-Treasury/modern-treasury-python/commit/fbf7499d4c69f8481ffb69b248deec8101f9341f))
+* **api:** mark ConnectionLegalEntity response properties as required ([#455](https://github.com/Modern-Treasury/modern-treasury-python/issues/455)) ([2e7fe0d](https://github.com/Modern-Treasury/modern-treasury-python/commit/2e7fe0d773bf553161073cc8cddd722542de16e0))
+* **api:** remove deprecated ledger account payouts ([#450](https://github.com/Modern-Treasury/modern-treasury-python/issues/450)) ([fbf7499](https://github.com/Modern-Treasury/modern-treasury-python/commit/fbf7499d4c69f8481ffb69b248deec8101f9341f))
+* **api:** updates ([#442](https://github.com/Modern-Treasury/modern-treasury-python/issues/442)) ([084e590](https://github.com/Modern-Treasury/modern-treasury-python/commit/084e590c64073403f80708bfb4c81382f05837cd))
+
+
+### Chores
+
+* **ci:** update rye install location ([#451](https://github.com/Modern-Treasury/modern-treasury-python/issues/451)) ([4cc0291](https://github.com/Modern-Treasury/modern-treasury-python/commit/4cc02915977f06d7e2cdf9f91e8beff2c11d5e79))
+* **ci:** update rye install location ([#452](https://github.com/Modern-Treasury/modern-treasury-python/issues/452)) ([75d3c8b](https://github.com/Modern-Treasury/modern-treasury-python/commit/75d3c8b11a45f6447351acd16e5f40b8c5841ee6))
+* **client:** log response headers in debug mode ([#437](https://github.com/Modern-Treasury/modern-treasury-python/issues/437)) ([6ec701a](https://github.com/Modern-Treasury/modern-treasury-python/commit/6ec701ac602595030226a907d4932b1272d81f61))
+* **docs:** add SECURITY.md ([#445](https://github.com/Modern-Treasury/modern-treasury-python/issues/445)) ([5fc4854](https://github.com/Modern-Treasury/modern-treasury-python/commit/5fc4854c77d2246e329b89d83011854d66c0a0f6))
+* **docs:** streamline payment purpose and vendor failure handling ([#446](https://github.com/Modern-Treasury/modern-treasury-python/issues/446)) ([9049e1d](https://github.com/Modern-Treasury/modern-treasury-python/commit/9049e1ddbf10f8b28ed32bea6098d4dd7871e83e))
+* **internal:** add link to openapi spec ([#439](https://github.com/Modern-Treasury/modern-treasury-python/issues/439)) ([53c0a71](https://github.com/Modern-Treasury/modern-treasury-python/commit/53c0a71785d407edc2d7efb8f145e8cb98d2ed71))
+* **internal:** add scripts/test, scripts/mock and add ci job ([#440](https://github.com/Modern-Treasury/modern-treasury-python/issues/440)) ([8b138be](https://github.com/Modern-Treasury/modern-treasury-python/commit/8b138bed242b523a41e08966ab6bd498059b3500))
+* **internal:** add slightly better logging to scripts ([#448](https://github.com/Modern-Treasury/modern-treasury-python/issues/448)) ([dec98a7](https://github.com/Modern-Treasury/modern-treasury-python/commit/dec98a746a5c1f9261527b7aaffbc70c2910df80))
+* **internal:** bump mock server version to ~5.8.0 ([#441](https://github.com/Modern-Treasury/modern-treasury-python/issues/441)) ([0421e0e](https://github.com/Modern-Treasury/modern-treasury-python/commit/0421e0ee321ddfbb1027ce05094267fddf1daae3))
+* **internal:** bump pydantic dependency ([#447](https://github.com/Modern-Treasury/modern-treasury-python/issues/447)) ([b2a507d](https://github.com/Modern-Treasury/modern-treasury-python/commit/b2a507de3e5fb4a4ddcd41776ea190c77723dd3b))
+* **internal:** bump pyright ([#453](https://github.com/Modern-Treasury/modern-treasury-python/issues/453)) ([14e0e35](https://github.com/Modern-Treasury/modern-treasury-python/commit/14e0e35b37aef4926513638198937767942b03c1))
+* **internal:** update bootstrap script ([#456](https://github.com/Modern-Treasury/modern-treasury-python/issues/456)) ([7e949cc](https://github.com/Modern-Treasury/modern-treasury-python/commit/7e949cc5987befd7efaa18ffb60408b6b4ba5ed9))
+
+
+### Documentation
+
+* **contributing:** update references to rye-up.com ([#454](https://github.com/Modern-Treasury/modern-treasury-python/issues/454)) ([3ccb5ff](https://github.com/Modern-Treasury/modern-treasury-python/commit/3ccb5ff96a80f1ff3040b53bfdfeaaaa7c0faddc))
+* **readme:** fix misleading timeout example value ([#443](https://github.com/Modern-Treasury/modern-treasury-python/issues/443)) ([2f2efaa](https://github.com/Modern-Treasury/modern-treasury-python/commit/2f2efaa3409cff2095ef2901322b68d6adea402f))
+
 ## 1.33.0 (2024-04-26)
 
 Full Changelog: [v1.32.0...v1.33.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.32.0...v1.33.0)
