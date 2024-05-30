@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.34.1 (2024-05-30)
+
+Full Changelog: [v1.34.0...v1.34.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.34.0...v1.34.1)
+
+### Chores
+
+* **internal:** add code reviewer ([#457](https://github.com/Modern-Treasury/modern-treasury-python/issues/457)) ([4ca3d0b](https://github.com/Modern-Treasury/modern-treasury-python/commit/4ca3d0b340db5b4e7199576d73016526a37d30bf))
+
 ## 1.34.0 (2024-05-28)
 
 Full Changelog: [v1.33.0...v1.34.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.33.0...v1.34.0)
