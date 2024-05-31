@@ -298,6 +298,7 @@ class TestCounterparties:
             ledger_type="customer",
             legal_entity={
                 "legal_entity_type": "business",
+                "risk_rating": "low",
                 "first_name": "string",
                 "last_name": "string",
                 "date_of_birth": parse_date("2019-12-27"),
@@ -366,6 +367,7 @@ class TestCounterparties:
                         "ownership_percentage": 0,
                         "child_legal_entity": {
                             "legal_entity_type": "business",
+                            "risk_rating": "low",
                             "first_name": "string",
                             "last_name": "string",
                             "date_of_birth": parse_date("2019-12-27"),
@@ -440,6 +442,7 @@ class TestCounterparties:
                         "ownership_percentage": 0,
                         "child_legal_entity": {
                             "legal_entity_type": "business",
+                            "risk_rating": "low",
                             "first_name": "string",
                             "last_name": "string",
                             "date_of_birth": parse_date("2019-12-27"),
@@ -514,6 +517,7 @@ class TestCounterparties:
                         "ownership_percentage": 0,
                         "child_legal_entity": {
                             "legal_entity_type": "business",
+                            "risk_rating": "low",
                             "first_name": "string",
                             "last_name": "string",
                             "date_of_birth": parse_date("2019-12-27"),
@@ -1119,6 +1123,7 @@ class TestAsyncCounterparties:
             ledger_type="customer",
             legal_entity={
                 "legal_entity_type": "business",
+                "risk_rating": "low",
                 "first_name": "string",
                 "last_name": "string",
                 "date_of_birth": parse_date("2019-12-27"),
@@ -1187,6 +1192,7 @@ class TestAsyncCounterparties:
                         "ownership_percentage": 0,
                         "child_legal_entity": {
                             "legal_entity_type": "business",
+                            "risk_rating": "low",
                             "first_name": "string",
                             "last_name": "string",
                             "date_of_birth": parse_date("2019-12-27"),
@@ -1261,6 +1267,7 @@ class TestAsyncCounterparties:
                         "ownership_percentage": 0,
                         "child_legal_entity": {
                             "legal_entity_type": "business",
+                            "risk_rating": "low",
                             "first_name": "string",
                             "last_name": "string",
                             "date_of_birth": parse_date("2019-12-27"),
@@ -1335,6 +1342,7 @@ class TestAsyncCounterparties:
                         "ownership_percentage": 0,
                         "child_legal_entity": {
                             "legal_entity_type": "business",
+                            "risk_rating": "low",
                             "first_name": "string",
                             "last_name": "string",
                             "date_of_birth": parse_date("2019-12-27"),
