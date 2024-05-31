@@ -58,6 +58,7 @@ class LegalEntities(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         phone_numbers: Iterable[legal_entity_create_params.PhoneNumber] | NotGiven = NOT_GIVEN,
+        risk_rating: Optional[Literal["low", "medium", "high"]] | NotGiven = NOT_GIVEN,
         website: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -96,6 +97,8 @@ class LegalEntities(SyncAPIResource):
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
+          risk_rating: Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+
           website: The entity's primary website URL.
 
           extra_headers: Send extra headers
@@ -126,6 +129,7 @@ class LegalEntities(SyncAPIResource):
                     "legal_structure": legal_structure,
                     "metadata": metadata,
                     "phone_numbers": phone_numbers,
+                    "risk_rating": risk_rating,
                     "website": website,
                 },
                 legal_entity_create_params.LegalEntityCreateParams,
@@ -190,6 +194,7 @@ class LegalEntities(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         phone_numbers: Iterable[legal_entity_update_params.PhoneNumber] | NotGiven = NOT_GIVEN,
+        risk_rating: Optional[Literal["low", "medium", "high"]] | NotGiven = NOT_GIVEN,
         website: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -220,6 +225,8 @@ class LegalEntities(SyncAPIResource):
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
+          risk_rating: Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+
           website: The entity's primary website URL.
 
           extra_headers: Send extra headers
@@ -248,6 +255,7 @@ class LegalEntities(SyncAPIResource):
                     "legal_structure": legal_structure,
                     "metadata": metadata,
                     "phone_numbers": phone_numbers,
+                    "risk_rating": risk_rating,
                     "website": website,
                 },
                 legal_entity_update_params.LegalEntityUpdateParams,
@@ -346,6 +354,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         phone_numbers: Iterable[legal_entity_create_params.PhoneNumber] | NotGiven = NOT_GIVEN,
+        risk_rating: Optional[Literal["low", "medium", "high"]] | NotGiven = NOT_GIVEN,
         website: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -384,6 +393,8 @@ class AsyncLegalEntities(AsyncAPIResource):
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
+          risk_rating: Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+
           website: The entity's primary website URL.
 
           extra_headers: Send extra headers
@@ -414,6 +425,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "legal_structure": legal_structure,
                     "metadata": metadata,
                     "phone_numbers": phone_numbers,
+                    "risk_rating": risk_rating,
                     "website": website,
                 },
                 legal_entity_create_params.LegalEntityCreateParams,
@@ -478,6 +490,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         phone_numbers: Iterable[legal_entity_update_params.PhoneNumber] | NotGiven = NOT_GIVEN,
+        risk_rating: Optional[Literal["low", "medium", "high"]] | NotGiven = NOT_GIVEN,
         website: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -508,6 +521,8 @@ class AsyncLegalEntities(AsyncAPIResource):
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
+          risk_rating: Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+
           website: The entity's primary website URL.
 
           extra_headers: Send extra headers
@@ -536,6 +551,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "legal_structure": legal_structure,
                     "metadata": metadata,
                     "phone_numbers": phone_numbers,
+                    "risk_rating": risk_rating,
                     "website": website,
                 },
                 legal_entity_update_params.LegalEntityUpdateParams,

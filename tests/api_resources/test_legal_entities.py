@@ -92,6 +92,7 @@ class TestLegalEntities:
                     "ownership_percentage": 0,
                     "child_legal_entity": {
                         "legal_entity_type": "business",
+                        "risk_rating": "low",
                         "first_name": "string",
                         "last_name": "string",
                         "date_of_birth": parse_date("2019-12-27"),
@@ -166,6 +167,7 @@ class TestLegalEntities:
                     "ownership_percentage": 0,
                     "child_legal_entity": {
                         "legal_entity_type": "business",
+                        "risk_rating": "low",
                         "first_name": "string",
                         "last_name": "string",
                         "date_of_birth": parse_date("2019-12-27"),
@@ -240,6 +242,7 @@ class TestLegalEntities:
                     "ownership_percentage": 0,
                     "child_legal_entity": {
                         "legal_entity_type": "business",
+                        "risk_rating": "low",
                         "first_name": "string",
                         "last_name": "string",
                         "date_of_birth": parse_date("2019-12-27"),
@@ -316,6 +319,7 @@ class TestLegalEntities:
                 "modern": "treasury",
             },
             phone_numbers=[{"phone_number": "string"}, {"phone_number": "string"}, {"phone_number": "string"}],
+            risk_rating="low",
             website="string",
         )
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
@@ -407,6 +411,7 @@ class TestLegalEntities:
                 "modern": "treasury",
             },
             phone_numbers=[{"phone_number": "string"}, {"phone_number": "string"}, {"phone_number": "string"}],
+            risk_rating="low",
             website="string",
         )
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
@@ -553,6 +558,7 @@ class TestAsyncLegalEntities:
                     "ownership_percentage": 0,
                     "child_legal_entity": {
                         "legal_entity_type": "business",
+                        "risk_rating": "low",
                         "first_name": "string",
                         "last_name": "string",
                         "date_of_birth": parse_date("2019-12-27"),
@@ -627,6 +633,7 @@ class TestAsyncLegalEntities:
                     "ownership_percentage": 0,
                     "child_legal_entity": {
                         "legal_entity_type": "business",
+                        "risk_rating": "low",
                         "first_name": "string",
                         "last_name": "string",
                         "date_of_birth": parse_date("2019-12-27"),
@@ -701,6 +708,7 @@ class TestAsyncLegalEntities:
                     "ownership_percentage": 0,
                     "child_legal_entity": {
                         "legal_entity_type": "business",
+                        "risk_rating": "low",
                         "first_name": "string",
                         "last_name": "string",
                         "date_of_birth": parse_date("2019-12-27"),
@@ -777,6 +785,7 @@ class TestAsyncLegalEntities:
                 "modern": "treasury",
             },
             phone_numbers=[{"phone_number": "string"}, {"phone_number": "string"}, {"phone_number": "string"}],
+            risk_rating="low",
             website="string",
         )
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
@@ -868,6 +877,7 @@ class TestAsyncLegalEntities:
                 "modern": "treasury",
             },
             phone_numbers=[{"phone_number": "string"}, {"phone_number": "string"}, {"phone_number": "string"}],
+            risk_rating="low",
             website="string",
         )
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
