@@ -185,6 +185,9 @@ class ChildLegalEntity(BaseModel):
 
     phone_numbers: List[ChildLegalEntityPhoneNumber]
 
+    risk_rating: Optional[Literal["low", "medium", "high"]] = None
+    """Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating"""
+
     updated_at: datetime
 
     website: Optional[str] = None
