@@ -168,5 +168,8 @@ class ChildLegalEntity(TypedDict, total=False):
 
     phone_numbers: Iterable[ChildLegalEntityPhoneNumber]
 
+    risk_rating: Optional[Literal["low", "medium", "high"]]
+    """Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating"""
+
     website: Optional[str]
     """The entity's primary website URL."""
