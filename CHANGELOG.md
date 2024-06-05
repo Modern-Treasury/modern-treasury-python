@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.35.0 (2024-06-05)
+
+Full Changelog: [v1.34.1...v1.35.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.34.1...v1.35.0)
+
+### Features
+
+* **api:** add kr_brn kr_crn kr_rrn enum values ([#459](https://github.com/Modern-Treasury/modern-treasury-python/issues/459)) ([cf93671](https://github.com/Modern-Treasury/modern-treasury-python/commit/cf93671a40644aaa3882bebf47c894e4b8904886))
+* **api:** add risk rating field ([#461](https://github.com/Modern-Treasury/modern-treasury-python/issues/461)) ([439a96d](https://github.com/Modern-Treasury/modern-treasury-python/commit/439a96d019ec6cd82694f3a85d15834db0c094b4))
+
+
+### Bug Fixes
+
+* fix enum type to be non nullable ([#463](https://github.com/Modern-Treasury/modern-treasury-python/issues/463)) ([c3eaca4](https://github.com/Modern-Treasury/modern-treasury-python/commit/c3eaca4631c0f6d927c3cd6c8ad27def0f93861f))
+
+
+### Chores
+
+* **internal:** sync urls ([#462](https://github.com/Modern-Treasury/modern-treasury-python/issues/462)) ([8b3f81a](https://github.com/Modern-Treasury/modern-treasury-python/commit/8b3f81ac4e57fe7b258e7bc298fc0b16339a50b1))
+
 ## 1.34.1 (2024-05-30)
 
 Full Changelog: [v1.34.0...v1.34.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.34.0...v1.34.1)
