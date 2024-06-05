@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
 from .shared.currency import Currency
@@ -53,7 +52,7 @@ class ExternalAccountVerifyParams(TypedDict, total=False):
     ]
     """Can be `ach`, `eft`, or `rtp`."""
 
-    currency: Optional[Currency]
+    currency: Currency
     """Defaults to the currency of the originating account."""
 
     fallback_type: Literal["ach"]

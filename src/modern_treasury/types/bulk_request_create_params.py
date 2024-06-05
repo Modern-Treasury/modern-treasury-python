@@ -579,7 +579,7 @@ class ResourcePaymentOrderAsyncCreateRequest(TypedDict, total=False):
     which correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
     """
 
-    currency: Optional[Currency]
+    currency: Currency
     """Defaults to the currency of the originating account."""
 
     description: Optional[str]
@@ -936,7 +936,7 @@ class ResourceExpectedPaymentCreateRequest(TypedDict, total=False):
     counterparty_id: Optional[str]
     """The ID of the counterparty you expect for this payment."""
 
-    currency: Optional[Currency]
+    currency: Currency
     """Must conform to ISO 4217. Defaults to the currency of the internal account."""
 
     date_lower_bound: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
@@ -1572,7 +1572,7 @@ class ResourcePaymentOrderUpdateRequestWithID(TypedDict, total=False):
     counterparty_id: Optional[str]
     """Required when receiving_account_id is passed the ID of an external account."""
 
-    currency: Optional[Currency]
+    currency: Currency
     """Defaults to the currency of the originating account."""
 
     description: Optional[str]
@@ -1795,7 +1795,7 @@ class ResourceExpectedPaymentUpdateRequestWithID(TypedDict, total=False):
     counterparty_id: Optional[str]
     """The ID of the counterparty you expect for this payment."""
 
-    currency: Optional[Currency]
+    currency: Currency
     """Must conform to ISO 4217. Defaults to the currency of the internal account."""
 
     date_lower_bound: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]

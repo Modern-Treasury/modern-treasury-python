@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import Union
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
@@ -16,7 +16,7 @@ class ForeignExchangeQuoteCreateParams(TypedDict, total=False):
     internal_account_id: Required[str]
     """The ID for the `InternalAccount` this quote is associated with."""
 
-    target_currency: Required[Optional[Currency]]
+    target_currency: Required[Currency]
     """Currency to convert the `base_currency` to, often called the "buy" currency."""
 
     base_amount: int
@@ -25,7 +25,7 @@ class ForeignExchangeQuoteCreateParams(TypedDict, total=False):
     called the "sell" amount.
     """
 
-    base_currency: Optional[Currency]
+    base_currency: Currency
     """Currency to convert, often called the "sell" currency."""
 
     effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
