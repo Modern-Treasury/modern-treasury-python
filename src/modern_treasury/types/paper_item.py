@@ -27,7 +27,7 @@ class PaperItem(BaseModel):
 
     created_at: datetime
 
-    currency: Optional[Currency] = None
+    currency: Currency
     """The currency of the paper item."""
 
     deposit_date: date

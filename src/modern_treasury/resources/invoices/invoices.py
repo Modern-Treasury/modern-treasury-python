@@ -66,7 +66,7 @@ class Invoices(SyncAPIResource):
         counterparty_billing_address: Optional[invoice_create_params.CounterpartyBillingAddress] | NotGiven = NOT_GIVEN,
         counterparty_shipping_address: Optional[invoice_create_params.CounterpartyShippingAddress]
         | NotGiven = NOT_GIVEN,
-        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
+        currency: Currency | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         fallback_payment_method: Optional[str] | NotGiven = NOT_GIVEN,
         ingest_ledger_entries: Optional[bool] | NotGiven = NOT_GIVEN,
@@ -253,7 +253,7 @@ class Invoices(SyncAPIResource):
         counterparty_id: str | NotGiven = NOT_GIVEN,
         counterparty_shipping_address: Optional[invoice_update_params.CounterpartyShippingAddress]
         | NotGiven = NOT_GIVEN,
-        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
+        currency: Currency | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         due_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
         fallback_payment_method: Optional[str] | NotGiven = NOT_GIVEN,
@@ -548,7 +548,7 @@ class AsyncInvoices(AsyncAPIResource):
         counterparty_billing_address: Optional[invoice_create_params.CounterpartyBillingAddress] | NotGiven = NOT_GIVEN,
         counterparty_shipping_address: Optional[invoice_create_params.CounterpartyShippingAddress]
         | NotGiven = NOT_GIVEN,
-        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
+        currency: Currency | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         fallback_payment_method: Optional[str] | NotGiven = NOT_GIVEN,
         ingest_ledger_entries: Optional[bool] | NotGiven = NOT_GIVEN,
@@ -735,7 +735,7 @@ class AsyncInvoices(AsyncAPIResource):
         counterparty_id: str | NotGiven = NOT_GIVEN,
         counterparty_shipping_address: Optional[invoice_update_params.CounterpartyShippingAddress]
         | NotGiven = NOT_GIVEN,
-        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
+        currency: Currency | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         due_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
         fallback_payment_method: Optional[str] | NotGiven = NOT_GIVEN,

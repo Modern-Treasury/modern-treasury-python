@@ -41,9 +41,9 @@ class ForeignExchangeQuotes(SyncAPIResource):
         self,
         *,
         internal_account_id: str,
-        target_currency: Optional[Currency],
+        target_currency: Currency,
         base_amount: int | NotGiven = NOT_GIVEN,
-        base_currency: Optional[Currency] | NotGiven = NOT_GIVEN,
+        base_currency: Currency | NotGiven = NOT_GIVEN,
         effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         target_amount: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -225,9 +225,9 @@ class AsyncForeignExchangeQuotes(AsyncAPIResource):
         self,
         *,
         internal_account_id: str,
-        target_currency: Optional[Currency],
+        target_currency: Currency,
         base_amount: int | NotGiven = NOT_GIVEN,
-        base_currency: Optional[Currency] | NotGiven = NOT_GIVEN,
+        base_currency: Currency | NotGiven = NOT_GIVEN,
         effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         target_amount: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

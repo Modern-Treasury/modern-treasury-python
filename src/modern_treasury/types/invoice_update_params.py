@@ -35,7 +35,7 @@ class InvoiceUpdateParams(TypedDict, total=False):
     counterparty_shipping_address: Optional[CounterpartyShippingAddress]
     """The counterparty's shipping address where physical goods should be delivered."""
 
-    currency: Optional[Currency]
+    currency: Currency
     """Currency that the invoice is denominated in. Defaults to `USD` if not provided."""
 
     description: str

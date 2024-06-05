@@ -418,7 +418,7 @@ class ExternalAccounts(SyncAPIResource):
             "wire",
             "zengin",
         ],
-        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
+        currency: Currency | NotGiven = NOT_GIVEN,
         fallback_type: Literal["ach"] | NotGiven = NOT_GIVEN,
         priority: Literal["high", "normal"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -864,7 +864,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
             "wire",
             "zengin",
         ],
-        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
+        currency: Currency | NotGiven = NOT_GIVEN,
         fallback_type: Literal["ach"] | NotGiven = NOT_GIVEN,
         priority: Literal["high", "normal"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

@@ -35,7 +35,7 @@ class Balance(BaseModel):
 
     created_at: datetime
 
-    currency: Optional[Currency] = None
+    currency: Currency
     """The currency of the balance."""
 
     live_mode: bool
