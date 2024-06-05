@@ -177,7 +177,7 @@ class ReturnObject(BaseModel):
 
     created_at: datetime
 
-    currency: Optional[Currency] = None
+    currency: Currency
     """Currency that this transaction is denominated in."""
 
     current_return: Optional[ReturnObject] = None

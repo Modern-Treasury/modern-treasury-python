@@ -86,7 +86,7 @@ class PaymentOrderCreateParams(TypedDict, total=False):
     which correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
     """
 
-    currency: Optional[Currency]
+    currency: Currency
     """Defaults to the currency of the originating account."""
 
     description: Optional[str]

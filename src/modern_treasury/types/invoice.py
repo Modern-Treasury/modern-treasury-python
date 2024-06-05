@@ -133,7 +133,7 @@ class Invoice(BaseModel):
 
     created_at: datetime
 
-    currency: Optional[Currency] = None
+    currency: Currency
     """Currency that the invoice is denominated in. Defaults to `USD` if not provided."""
 
     description: str

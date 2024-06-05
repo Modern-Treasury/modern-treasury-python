@@ -64,7 +64,7 @@ class PaymentOrderUpdateParams(TypedDict, total=False):
     counterparty_id: Optional[str]
     """Required when receiving_account_id is passed the ID of an external account."""
 
-    currency: Optional[Currency]
+    currency: Currency
     """Defaults to the currency of the originating account."""
 
     description: Optional[str]

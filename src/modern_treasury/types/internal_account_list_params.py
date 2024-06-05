@@ -17,7 +17,7 @@ class InternalAccountListParams(TypedDict, total=False):
     counterparty_id: str
     """Only return internal accounts associated with this counterparty."""
 
-    currency: Optional[Currency]
+    currency: Currency
     """Only return internal accounts with this currency."""
 
     legal_entity_id: str
