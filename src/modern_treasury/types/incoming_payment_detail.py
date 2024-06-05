@@ -26,7 +26,7 @@ class IncomingPaymentDetail(BaseModel):
 
     created_at: datetime
 
-    currency: Optional[Currency] = None
+    currency: Currency
     """The currency of the incoming payment detail."""
 
     data: Dict[str, object]

@@ -49,7 +49,7 @@ class ForeignExchangeRate(BaseModel):
     called the "sell" amount.
     """
 
-    base_currency: Optional[Currency] = None
+    base_currency: Currency
     """Currency to convert, often called the "sell" currency."""
 
     exponent: int
@@ -67,7 +67,7 @@ class ForeignExchangeRate(BaseModel):
     "buy" amount.
     """
 
-    target_currency: Optional[Currency] = None
+    target_currency: Currency
     """Currency to convert the `base_currency` to, often called the "buy" currency."""
 
     value: int
@@ -220,7 +220,7 @@ class PaymentOrder(BaseModel):
 
     created_at: datetime
 
-    currency: Optional[Currency] = None
+    currency: Currency
     """Defaults to the currency of the originating account."""
 
     current_return: Optional["ReturnObject"] = None

@@ -48,7 +48,7 @@ class ExpectedPaymentCreateParams(TypedDict, total=False):
     counterparty_id: Optional[str]
     """The ID of the counterparty you expect for this payment."""
 
-    currency: Optional[Currency]
+    currency: Currency
     """Must conform to ISO 4217. Defaults to the currency of the internal account."""
 
     date_lower_bound: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]

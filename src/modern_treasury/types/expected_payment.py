@@ -35,7 +35,7 @@ class ExpectedPayment(BaseModel):
 
     created_at: datetime
 
-    currency: Optional[Currency] = None
+    currency: Currency
     """Must conform to ISO 4217. Defaults to the currency of the internal account."""
 
     date_lower_bound: Optional[date] = None

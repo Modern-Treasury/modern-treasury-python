@@ -64,7 +64,7 @@ class InternalAccount(BaseModel):
 
     created_at: datetime
 
-    currency: Optional[Currency] = None
+    currency: Currency
     """The currency of the account."""
 
     ledger_account_id: Optional[str] = None
