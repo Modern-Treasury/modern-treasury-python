@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.35.1 (2024-06-17)
+
+Full Changelog: [v1.35.0...v1.35.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.35.0...v1.35.1)
+
+### Chores
+
+* **internal:** add a `default_query` method ([#464](https://github.com/Modern-Treasury/modern-treasury-python/issues/464)) ([fe49309](https://github.com/Modern-Treasury/modern-treasury-python/commit/fe493098f94124def0de7dc9f6d6a2611240b042))
+
 ## 1.35.0 (2024-06-05)
 
 Full Changelog: [v1.34.1...v1.35.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.34.1...v1.35.0)
