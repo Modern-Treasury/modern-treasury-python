@@ -50,15 +50,15 @@ class TestCounterparties:
                     "account_details": [
                         {
                             "account_number": "string",
-                            "account_number_type": "iban",
+                            "account_number_type": "au_number",
                         },
                         {
                             "account_number": "string",
-                            "account_number_type": "iban",
+                            "account_number_type": "au_number",
                         },
                         {
                             "account_number": "string",
-                            "account_number_type": "iban",
+                            "account_number_type": "au_number",
                         },
                     ],
                     "routing_details": [
@@ -136,15 +136,15 @@ class TestCounterparties:
                     "account_details": [
                         {
                             "account_number": "string",
-                            "account_number_type": "iban",
+                            "account_number_type": "au_number",
                         },
                         {
                             "account_number": "string",
-                            "account_number_type": "iban",
+                            "account_number_type": "au_number",
                         },
                         {
                             "account_number": "string",
-                            "account_number_type": "iban",
+                            "account_number_type": "au_number",
                         },
                     ],
                     "routing_details": [
@@ -222,15 +222,15 @@ class TestCounterparties:
                     "account_details": [
                         {
                             "account_number": "string",
-                            "account_number_type": "iban",
+                            "account_number_type": "au_number",
                         },
                         {
                             "account_number": "string",
-                            "account_number_type": "iban",
+                            "account_number_type": "au_number",
                         },
                         {
                             "account_number": "string",
-                            "account_number_type": "iban",
+                            "account_number_type": "au_number",
                         },
                     ],
                     "routing_details": [
@@ -875,15 +875,15 @@ class TestAsyncCounterparties:
                     "account_details": [
                         {
                             "account_number": "string",
-                            "account_number_type": "iban",
+                            "account_number_type": "au_number",
                         },
                         {
                             "account_number": "string",
-                            "account_number_type": "iban",
+                            "account_number_type": "au_number",
                         },
                         {
                             "account_number": "string",
-                            "account_number_type": "iban",
+                            "account_number_type": "au_number",
                         },
                     ],
                     "routing_details": [
@@ -961,15 +961,15 @@ class TestAsyncCounterparties:
                     "account_details": [
                         {
                             "account_number": "string",
-                            "account_number_type": "iban",
+                            "account_number_type": "au_number",
                         },
                         {
                             "account_number": "string",
-                            "account_number_type": "iban",
+                            "account_number_type": "au_number",
                         },
                         {
                             "account_number": "string",
-                            "account_number_type": "iban",
+                            "account_number_type": "au_number",
                         },
                     ],
                     "routing_details": [
@@ -1047,15 +1047,15 @@ class TestAsyncCounterparties:
                     "account_details": [
                         {
                             "account_number": "string",
-                            "account_number_type": "iban",
+                            "account_number_type": "au_number",
                         },
                         {
                             "account_number": "string",
-                            "account_number_type": "iban",
+                            "account_number_type": "au_number",
                         },
                         {
                             "account_number": "string",
-                            "account_number_type": "iban",
+                            "account_number_type": "au_number",
                         },
                     ],
                     "routing_details": [

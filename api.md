@@ -79,7 +79,11 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import ExternalAccount, ExternalAccountType
+from modern_treasury.types import (
+    ExternalAccount,
+    ExternalAccountType,
+    ExternalAccountVerifyResponse,
+)
 ```
 
 Methods:
@@ -90,7 +94,7 @@ Methods:
 - <code title="get /api/external_accounts">client.external_accounts.<a href="./src/modern_treasury/resources/external_accounts.py">list</a>(\*\*<a href="src/modern_treasury/types/external_account_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/external_account.py">SyncPage[ExternalAccount]</a></code>
 - <code title="delete /api/external_accounts/{id}">client.external_accounts.<a href="./src/modern_treasury/resources/external_accounts.py">delete</a>(id) -> None</code>
 - <code title="post /api/external_accounts/{id}/complete_verification">client.external_accounts.<a href="./src/modern_treasury/resources/external_accounts.py">complete_verification</a>(id, \*\*<a href="src/modern_treasury/types/external_account_complete_verification_params.py">params</a>) -> <a href="./src/modern_treasury/types/external_account.py">ExternalAccount</a></code>
-- <code title="post /api/external_accounts/{id}/verify">client.external_accounts.<a href="./src/modern_treasury/resources/external_accounts.py">verify</a>(id, \*\*<a href="src/modern_treasury/types/external_account_verify_params.py">params</a>) -> <a href="./src/modern_treasury/types/external_account.py">ExternalAccount</a></code>
+- <code title="post /api/external_accounts/{id}/verify">client.external_accounts.<a href="./src/modern_treasury/resources/external_accounts.py">verify</a>(id, \*\*<a href="src/modern_treasury/types/external_account_verify_params.py">params</a>) -> <a href="./src/modern_treasury/types/external_account_verify_response.py">ExternalAccountVerifyResponse</a></code>
 
 # IncomingPaymentDetails
 

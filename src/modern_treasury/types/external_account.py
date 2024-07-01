@@ -128,4 +128,6 @@ class ExternalAccount(BaseModel):
 
     updated_at: datetime
 
+    verification_source: Optional[Literal["ach_prenote", "microdeposits", "plaid"]] = None
+
     verification_status: Literal["pending_verification", "unverified", "verified"]

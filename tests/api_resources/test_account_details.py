@@ -33,7 +33,7 @@ class TestAccountDetails:
             "string",
             accounts_type="external_accounts",
             account_number="string",
-            account_number_type="clabe",
+            account_number_type="au_number",
         )
         assert_matches_type(AccountDetail, account_detail, path=["response"])
 
@@ -251,7 +251,7 @@ class TestAsyncAccountDetails:
             "string",
             accounts_type="external_accounts",
             account_number="string",
-            account_number_type="clabe",
+            account_number_type="au_number",
         )
         assert_matches_type(AccountDetail, account_detail, path=["response"])
 

@@ -11,6 +11,7 @@ from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import (
     ExternalAccount,
+    ExternalAccountVerifyResponse,
 )
 from modern_treasury.pagination import SyncPage, AsyncPage
 
@@ -34,15 +35,15 @@ class TestExternalAccounts:
             account_details=[
                 {
                     "account_number": "string",
-                    "account_number_type": "iban",
+                    "account_number_type": "au_number",
                 },
                 {
                     "account_number": "string",
-                    "account_number_type": "iban",
+                    "account_number_type": "au_number",
                 },
                 {
                     "account_number": "string",
-                    "account_number_type": "iban",
+                    "account_number_type": "au_number",
                 },
             ],
             account_type="cash",
@@ -366,7 +367,7 @@ class TestExternalAccounts:
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payment_type="ach",
         )
-        assert_matches_type(ExternalAccount, external_account, path=["response"])
+        assert_matches_type(ExternalAccountVerifyResponse, external_account, path=["response"])
 
     @parametrize
     def test_method_verify_with_all_params(self, client: ModernTreasury) -> None:
@@ -378,7 +379,7 @@ class TestExternalAccounts:
             fallback_type="ach",
             priority="high",
         )
-        assert_matches_type(ExternalAccount, external_account, path=["response"])
+        assert_matches_type(ExternalAccountVerifyResponse, external_account, path=["response"])
 
     @parametrize
     def test_raw_response_verify(self, client: ModernTreasury) -> None:
@@ -391,7 +392,7 @@ class TestExternalAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         external_account = response.parse()
-        assert_matches_type(ExternalAccount, external_account, path=["response"])
+        assert_matches_type(ExternalAccountVerifyResponse, external_account, path=["response"])
 
     @parametrize
     def test_streaming_response_verify(self, client: ModernTreasury) -> None:
@@ -404,7 +405,7 @@ class TestExternalAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             external_account = response.parse()
-            assert_matches_type(ExternalAccount, external_account, path=["response"])
+            assert_matches_type(ExternalAccountVerifyResponse, external_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -435,15 +436,15 @@ class TestAsyncExternalAccounts:
             account_details=[
                 {
                     "account_number": "string",
-                    "account_number_type": "iban",
+                    "account_number_type": "au_number",
                 },
                 {
                     "account_number": "string",
-                    "account_number_type": "iban",
+                    "account_number_type": "au_number",
                 },
                 {
                     "account_number": "string",
-                    "account_number_type": "iban",
+                    "account_number_type": "au_number",
                 },
             ],
             account_type="cash",
@@ -767,7 +768,7 @@ class TestAsyncExternalAccounts:
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payment_type="ach",
         )
-        assert_matches_type(ExternalAccount, external_account, path=["response"])
+        assert_matches_type(ExternalAccountVerifyResponse, external_account, path=["response"])
 
     @parametrize
     async def test_method_verify_with_all_params(self, async_client: AsyncModernTreasury) -> None:
@@ -779,7 +780,7 @@ class TestAsyncExternalAccounts:
             fallback_type="ach",
             priority="high",
         )
-        assert_matches_type(ExternalAccount, external_account, path=["response"])
+        assert_matches_type(ExternalAccountVerifyResponse, external_account, path=["response"])
 
     @parametrize
     async def test_raw_response_verify(self, async_client: AsyncModernTreasury) -> None:
@@ -792,7 +793,7 @@ class TestAsyncExternalAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         external_account = response.parse()
-        assert_matches_type(ExternalAccount, external_account, path=["response"])
+        assert_matches_type(ExternalAccountVerifyResponse, external_account, path=["response"])
 
     @parametrize
     async def test_streaming_response_verify(self, async_client: AsyncModernTreasury) -> None:
@@ -805,7 +806,7 @@ class TestAsyncExternalAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             external_account = await response.parse()
-            assert_matches_type(ExternalAccount, external_account, path=["response"])
+            assert_matches_type(ExternalAccountVerifyResponse, external_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
