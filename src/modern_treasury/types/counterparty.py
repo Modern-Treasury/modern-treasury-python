@@ -141,6 +141,8 @@ class Account(BaseModel):
 
     updated_at: Optional[datetime] = None
 
+    verification_source: Optional[Literal["ach_prenote", "microdeposits", "plaid"]] = None
+
     verification_status: Optional[Literal["pending_verification", "unverified", "verified"]] = None
 
 

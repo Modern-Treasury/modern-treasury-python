@@ -36,15 +36,15 @@ class TestVirtualAccounts:
             account_details=[
                 {
                     "account_number": "string",
-                    "account_number_type": "clabe",
+                    "account_number_type": "au_number",
                 },
                 {
                     "account_number": "string",
-                    "account_number_type": "clabe",
+                    "account_number_type": "au_number",
                 },
                 {
                     "account_number": "string",
-                    "account_number_type": "clabe",
+                    "account_number_type": "au_number",
                 },
             ],
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -299,15 +299,15 @@ class TestAsyncVirtualAccounts:
             account_details=[
                 {
                     "account_number": "string",
-                    "account_number_type": "clabe",
+                    "account_number_type": "au_number",
                 },
                 {
                     "account_number": "string",
-                    "account_number_type": "clabe",
+                    "account_number_type": "au_number",
                 },
                 {
                     "account_number": "string",
-                    "account_number_type": "clabe",
+                    "account_number_type": "au_number",
                 },
             ],
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",

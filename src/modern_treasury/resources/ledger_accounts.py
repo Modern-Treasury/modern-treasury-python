@@ -248,7 +248,7 @@ class LedgerAccounts(SyncAPIResource):
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
         pending_balance_amount: ledger_account_list_params.PendingBalanceAmount | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         posted_balance_amount: ledger_account_list_params.PostedBalanceAmount | NotGiven = NOT_GIVEN,
@@ -283,6 +283,9 @@ class LedgerAccounts(SyncAPIResource):
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
+
+          name: If you have specific names to retrieve in bulk, you can pass them as query
+              parameters delimited with `name[]=`, for example `?name[]=123&name[]=abc`.
 
           pending_balance_amount: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to
               filter by balance amount.
@@ -588,7 +591,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
         pending_balance_amount: ledger_account_list_params.PendingBalanceAmount | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         posted_balance_amount: ledger_account_list_params.PostedBalanceAmount | NotGiven = NOT_GIVEN,
@@ -623,6 +626,9 @@ class AsyncLedgerAccounts(AsyncAPIResource):
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
+
+          name: If you have specific names to retrieve in bulk, you can pass them as query
+              parameters delimited with `name[]=`, for example `?name[]=123&name[]=abc`.
 
           pending_balance_amount: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to
               filter by balance amount.

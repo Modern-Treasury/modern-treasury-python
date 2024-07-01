@@ -61,7 +61,11 @@ class LedgerAccountListParams(TypedDict, total=False):
     parameters.
     """
 
-    name: str
+    name: List[str]
+    """
+    If you have specific names to retrieve in bulk, you can pass them as query
+    parameters delimited with `name[]=`, for example `?name[]=123&name[]=abc`.
+    """
 
     pending_balance_amount: PendingBalanceAmount
     """

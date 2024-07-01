@@ -98,7 +98,18 @@ class Accounting(TypedDict, total=False):
 class AccountAccountDetail(TypedDict, total=False):
     account_number: Required[str]
 
-    account_number_type: Literal["iban", "hk_number", "clabe", "nz_number", "wallet_address", "pan", "other"]
+    account_number_type: Literal[
+        "au_number",
+        "clabe",
+        "hk_number",
+        "iban",
+        "id_number",
+        "nz_number",
+        "other",
+        "pan",
+        "sg_number",
+        "wallet_address",
+    ]
 
 
 AccountsAccountDetails = AccountAccountDetail
