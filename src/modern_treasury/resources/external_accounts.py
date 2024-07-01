@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
+from typing import Any, Dict, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -32,6 +32,7 @@ from .._base_client import (
 from ..types.shared.currency import Currency
 from ..types.external_account import ExternalAccount
 from ..types.external_account_type import ExternalAccountType
+from ..types.external_account_verify_response import ExternalAccountVerifyResponse
 
 __all__ = ["ExternalAccounts", "AsyncExternalAccounts"]
 
@@ -428,7 +429,7 @@ class ExternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> ExternalAccount:
+    ) -> ExternalAccountVerifyResponse:
         """
         verify external account
 
@@ -459,26 +460,31 @@ class ExternalAccounts(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._post(
-            f"/api/external_accounts/{id}/verify",
-            body=maybe_transform(
-                {
-                    "originating_account_id": originating_account_id,
-                    "payment_type": payment_type,
-                    "currency": currency,
-                    "fallback_type": fallback_type,
-                    "priority": priority,
-                },
-                external_account_verify_params.ExternalAccountVerifyParams,
+        return cast(
+            ExternalAccountVerifyResponse,
+            self._post(
+                f"/api/external_accounts/{id}/verify",
+                body=maybe_transform(
+                    {
+                        "originating_account_id": originating_account_id,
+                        "payment_type": payment_type,
+                        "currency": currency,
+                        "fallback_type": fallback_type,
+                        "priority": priority,
+                    },
+                    external_account_verify_params.ExternalAccountVerifyParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    idempotency_key=idempotency_key,
+                ),
+                cast_to=cast(
+                    Any, ExternalAccountVerifyResponse
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
-            cast_to=ExternalAccount,
         )
 
 
@@ -874,7 +880,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
         idempotency_key: str | None = None,
-    ) -> ExternalAccount:
+    ) -> ExternalAccountVerifyResponse:
         """
         verify external account
 
@@ -905,26 +911,31 @@ class AsyncExternalAccounts(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._post(
-            f"/api/external_accounts/{id}/verify",
-            body=await async_maybe_transform(
-                {
-                    "originating_account_id": originating_account_id,
-                    "payment_type": payment_type,
-                    "currency": currency,
-                    "fallback_type": fallback_type,
-                    "priority": priority,
-                },
-                external_account_verify_params.ExternalAccountVerifyParams,
+        return cast(
+            ExternalAccountVerifyResponse,
+            await self._post(
+                f"/api/external_accounts/{id}/verify",
+                body=await async_maybe_transform(
+                    {
+                        "originating_account_id": originating_account_id,
+                        "payment_type": payment_type,
+                        "currency": currency,
+                        "fallback_type": fallback_type,
+                        "priority": priority,
+                    },
+                    external_account_verify_params.ExternalAccountVerifyParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    idempotency_key=idempotency_key,
+                ),
+                cast_to=cast(
+                    Any, ExternalAccountVerifyResponse
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
-            cast_to=ExternalAccount,
         )
 
 
