@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.36.0 (2024-07-01)
+
+Full Changelog: [v1.35.1...v1.36.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.35.1...v1.36.0)
+
+### Features
+
+* **api:** updates ([#475](https://github.com/Modern-Treasury/modern-treasury-python/issues/475)) ([e71c1fe](https://github.com/Modern-Treasury/modern-treasury-python/commit/e71c1fe5bdcdab1232308bf8a8a840a23f572783))
+
+
+### Bug Fixes
+
+* **build:** include more files in sdist builds ([#470](https://github.com/Modern-Treasury/modern-treasury-python/issues/470)) ([e1a1296](https://github.com/Modern-Treasury/modern-treasury-python/commit/e1a1296002b6c093a4131f9361f9e8c3538e91b9))
+* **client/async:** avoid blocking io call for platform headers ([#466](https://github.com/Modern-Treasury/modern-treasury-python/issues/466)) ([3223606](https://github.com/Modern-Treasury/modern-treasury-python/commit/322360602be73549eb8801b21cb7c05f4ffbbdf9))
+* **docs:** fix link to advanced python httpx docs ([#468](https://github.com/Modern-Treasury/modern-treasury-python/issues/468)) ([77777f3](https://github.com/Modern-Treasury/modern-treasury-python/commit/77777f36cd3aceb12ef3b97d4ee7b2bc19070cf4))
+* temporarily patch upstream version to fix broken release flow ([#469](https://github.com/Modern-Treasury/modern-treasury-python/issues/469)) ([6b9a431](https://github.com/Modern-Treasury/modern-treasury-python/commit/6b9a431974577316e563208e03bfc12e32f89338))
+
+
+### Chores
+
+* **deps:** bump anyio to v4.4.0 ([#471](https://github.com/Modern-Treasury/modern-treasury-python/issues/471)) ([d5f2656](https://github.com/Modern-Treasury/modern-treasury-python/commit/d5f2656dfe9847911b117e043d9f409569afce5d))
+* gitignore test server logs ([#473](https://github.com/Modern-Treasury/modern-treasury-python/issues/473)) ([7816cbd](https://github.com/Modern-Treasury/modern-treasury-python/commit/7816cbd7e8136e18741bc974a53968baa660c8f9))
+* **internal:** add reflection helper function ([#472](https://github.com/Modern-Treasury/modern-treasury-python/issues/472)) ([7622150](https://github.com/Modern-Treasury/modern-treasury-python/commit/7622150a2b0dcd4c464b6e50d0efb48760c1c403))
+* **internal:** add rich as a dev dependency ([#474](https://github.com/Modern-Treasury/modern-treasury-python/issues/474)) ([1baa3f7](https://github.com/Modern-Treasury/modern-treasury-python/commit/1baa3f729889adb0b29a198409c13c56ed30faed))
+
 ## 1.35.1 (2024-06-17)
 
 Full Changelog: [v1.35.0...v1.35.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.35.0...v1.35.1)
