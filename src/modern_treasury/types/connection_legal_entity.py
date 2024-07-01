@@ -34,3 +34,6 @@ class ConnectionLegalEntity(BaseModel):
     """The status of the connection legal entity."""
 
     updated_at: datetime
+
+    vendor_id: str
+    """The ID of the legal entity at the vendor."""

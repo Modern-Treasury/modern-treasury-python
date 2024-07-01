@@ -108,15 +108,15 @@ class TestBulkRequests:
                         "account_details": [
                             {
                                 "account_number": "string",
-                                "account_number_type": "iban",
+                                "account_number_type": "au_number",
                             },
                             {
                                 "account_number": "string",
-                                "account_number_type": "iban",
+                                "account_number_type": "au_number",
                             },
                             {
                                 "account_number": "string",
-                                "account_number_type": "iban",
+                                "account_number_type": "au_number",
                             },
                         ],
                         "routing_details": [
@@ -328,15 +328,15 @@ class TestBulkRequests:
                         "account_details": [
                             {
                                 "account_number": "string",
-                                "account_number_type": "iban",
+                                "account_number_type": "au_number",
                             },
                             {
                                 "account_number": "string",
-                                "account_number_type": "iban",
+                                "account_number_type": "au_number",
                             },
                             {
                                 "account_number": "string",
-                                "account_number_type": "iban",
+                                "account_number_type": "au_number",
                             },
                         ],
                         "routing_details": [
@@ -548,15 +548,15 @@ class TestBulkRequests:
                         "account_details": [
                             {
                                 "account_number": "string",
-                                "account_number_type": "iban",
+                                "account_number_type": "au_number",
                             },
                             {
                                 "account_number": "string",
-                                "account_number_type": "iban",
+                                "account_number_type": "au_number",
                             },
                             {
                                 "account_number": "string",
-                                "account_number_type": "iban",
+                                "account_number_type": "au_number",
                             },
                         ],
                         "routing_details": [
@@ -960,15 +960,15 @@ class TestAsyncBulkRequests:
                         "account_details": [
                             {
                                 "account_number": "string",
-                                "account_number_type": "iban",
+                                "account_number_type": "au_number",
                             },
                             {
                                 "account_number": "string",
-                                "account_number_type": "iban",
+                                "account_number_type": "au_number",
                             },
                             {
                                 "account_number": "string",
-                                "account_number_type": "iban",
+                                "account_number_type": "au_number",
                             },
                         ],
                         "routing_details": [
@@ -1180,15 +1180,15 @@ class TestAsyncBulkRequests:
                         "account_details": [
                             {
                                 "account_number": "string",
-                                "account_number_type": "iban",
+                                "account_number_type": "au_number",
                             },
                             {
                                 "account_number": "string",
-                                "account_number_type": "iban",
+                                "account_number_type": "au_number",
                             },
                             {
                                 "account_number": "string",
-                                "account_number_type": "iban",
+                                "account_number_type": "au_number",
                             },
                         ],
                         "routing_details": [
@@ -1400,15 +1400,15 @@ class TestAsyncBulkRequests:
                         "account_details": [
                             {
                                 "account_number": "string",
-                                "account_number_type": "iban",
+                                "account_number_type": "au_number",
                             },
                             {
                                 "account_number": "string",
-                                "account_number_type": "iban",
+                                "account_number_type": "au_number",
                             },
                             {
                                 "account_number": "string",
-                                "account_number_type": "iban",
+                                "account_number_type": "au_number",
                             },
                         ],
                         "routing_details": [

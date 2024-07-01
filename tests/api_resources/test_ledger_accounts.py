@@ -218,7 +218,7 @@ class TestLedgerAccounts:
             ledger_account_category_id="string",
             ledger_id="string",
             metadata={"foo": "string"},
-            name="string",
+            name=["string", "string", "string"],
             pending_balance_amount={
                 "gt": 0,
                 "lt": 0,
@@ -499,7 +499,7 @@ class TestAsyncLedgerAccounts:
             ledger_account_category_id="string",
             ledger_id="string",
             metadata={"foo": "string"},
-            name="string",
+            name=["string", "string", "string"],
             pending_balance_amount={
                 "gt": 0,
                 "lt": 0,
