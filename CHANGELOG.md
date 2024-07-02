@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.36.1 (2024-07-02)
+
+Full Changelog: [v1.36.0...v1.36.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.36.0...v1.36.1)
+
+### Chores
+
+* **internal:** add helper method for constructing `BaseModel`s ([#476](https://github.com/Modern-Treasury/modern-treasury-python/issues/476)) ([2502b91](https://github.com/Modern-Treasury/modern-treasury-python/commit/2502b9145e4c7d387a66c69014221c76ea8cc6de))
+
 ## 1.36.0 (2024-07-01)
 
 Full Changelog: [v1.35.1...v1.36.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.35.1...v1.36.0)
