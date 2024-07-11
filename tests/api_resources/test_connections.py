@@ -26,10 +26,10 @@ class TestConnections:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         connection = client.connections.list(
-            after_cursor="string",
-            entity="string",
+            after_cursor="after_cursor",
+            entity="entity",
             per_page=0,
-            vendor_customer_id="string",
+            vendor_customer_id="vendor_customer_id",
         )
         assert_matches_type(SyncPage[Connection], connection, path=["response"])
 
@@ -65,10 +65,10 @@ class TestAsyncConnections:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         connection = await async_client.connections.list(
-            after_cursor="string",
-            entity="string",
+            after_cursor="after_cursor",
+            entity="entity",
             per_page=0,
-            vendor_customer_id="string",
+            vendor_customer_id="vendor_customer_id",
         )
         assert_matches_type(AsyncPage[Connection], connection, path=["response"])
 

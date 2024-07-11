@@ -30,23 +30,23 @@ class TestLedgerEventHandlers:
                 "status": "posted",
                 "ledger_entries": [
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                 ],
             },
-            name="string",
+            name="name",
         )
         assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
 
@@ -59,29 +59,29 @@ class TestLedgerEventHandlers:
                 "status": "posted",
                 "ledger_entries": [
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                 ],
             },
-            name="string",
+            name="name",
             conditions={
                 "field": "ledgerable_event.name",
                 "operator": "equals",
                 "value": "credit_card_swipe",
             },
-            description="string",
+            description="description",
             ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={
                 "key": "value",
@@ -110,23 +110,23 @@ class TestLedgerEventHandlers:
                 "status": "posted",
                 "ledger_entries": [
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                 ],
             },
-            name="string",
+            name="name",
         )
 
         assert response.is_closed is True
@@ -143,23 +143,23 @@ class TestLedgerEventHandlers:
                 "status": "posted",
                 "ledger_entries": [
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                 ],
             },
-            name="string",
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -172,14 +172,14 @@ class TestLedgerEventHandlers:
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         ledger_event_handler = client.ledger_event_handlers.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
         response = client.ledger_event_handlers.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -190,7 +190,7 @@ class TestLedgerEventHandlers:
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.ledger_event_handlers.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -215,10 +215,10 @@ class TestLedgerEventHandlers:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger_event_handler = client.ledger_event_handlers.list(
-            after_cursor="string",
+            after_cursor="after_cursor",
             created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             metadata={"foo": "string"},
-            name="string",
+            name="name",
             per_page=0,
         )
         assert_matches_type(SyncPage[LedgerEventHandler], ledger_event_handler, path=["response"])
@@ -246,14 +246,14 @@ class TestLedgerEventHandlers:
     @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
         ledger_event_handler = client.ledger_event_handlers.delete(
-            "string",
+            "id",
         )
         assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: ModernTreasury) -> None:
         response = client.ledger_event_handlers.with_raw_response.delete(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -264,7 +264,7 @@ class TestLedgerEventHandlers:
     @parametrize
     def test_streaming_response_delete(self, client: ModernTreasury) -> None:
         with client.ledger_event_handlers.with_streaming_response.delete(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -294,23 +294,23 @@ class TestAsyncLedgerEventHandlers:
                 "status": "posted",
                 "ledger_entries": [
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                 ],
             },
-            name="string",
+            name="name",
         )
         assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
 
@@ -323,29 +323,29 @@ class TestAsyncLedgerEventHandlers:
                 "status": "posted",
                 "ledger_entries": [
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                 ],
             },
-            name="string",
+            name="name",
             conditions={
                 "field": "ledgerable_event.name",
                 "operator": "equals",
                 "value": "credit_card_swipe",
             },
-            description="string",
+            description="description",
             ledger_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={
                 "key": "value",
@@ -374,23 +374,23 @@ class TestAsyncLedgerEventHandlers:
                 "status": "posted",
                 "ledger_entries": [
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                 ],
             },
-            name="string",
+            name="name",
         )
 
         assert response.is_closed is True
@@ -407,23 +407,23 @@ class TestAsyncLedgerEventHandlers:
                 "status": "posted",
                 "ledger_entries": [
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                     {
-                        "amount": "string",
-                        "direction": "string",
-                        "ledger_account_id": "string",
+                        "amount": "amount",
+                        "direction": "direction",
+                        "ledger_account_id": "ledger_account_id",
                     },
                 ],
             },
-            name="string",
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -436,14 +436,14 @@ class TestAsyncLedgerEventHandlers:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
         ledger_event_handler = await async_client.ledger_event_handlers.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.ledger_event_handlers.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -454,7 +454,7 @@ class TestAsyncLedgerEventHandlers:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.ledger_event_handlers.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -479,10 +479,10 @@ class TestAsyncLedgerEventHandlers:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         ledger_event_handler = await async_client.ledger_event_handlers.list(
-            after_cursor="string",
+            after_cursor="after_cursor",
             created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             metadata={"foo": "string"},
-            name="string",
+            name="name",
             per_page=0,
         )
         assert_matches_type(AsyncPage[LedgerEventHandler], ledger_event_handler, path=["response"])
@@ -510,14 +510,14 @@ class TestAsyncLedgerEventHandlers:
     @parametrize
     async def test_method_delete(self, async_client: AsyncModernTreasury) -> None:
         ledger_event_handler = await async_client.ledger_event_handlers.delete(
-            "string",
+            "id",
         )
         assert_matches_type(LedgerEventHandler, ledger_event_handler, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.ledger_event_handlers.with_raw_response.delete(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -528,7 +528,7 @@ class TestAsyncLedgerEventHandlers:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.ledger_event_handlers.with_streaming_response.delete(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

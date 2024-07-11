@@ -24,11 +24,11 @@ class TestLedgerAccountBalanceMonitors:
     def test_method_create(self, client: ModernTreasury) -> None:
         ledger_account_balance_monitor = client.ledger_account_balance_monitors.create(
             alert_condition={
-                "field": "string",
-                "operator": "string",
+                "field": "field",
+                "operator": "operator",
                 "value": 0,
             },
-            ledger_account_id="string",
+            ledger_account_id="ledger_account_id",
         )
         assert_matches_type(LedgerAccountBalanceMonitor, ledger_account_balance_monitor, path=["response"])
 
@@ -36,12 +36,12 @@ class TestLedgerAccountBalanceMonitors:
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account_balance_monitor = client.ledger_account_balance_monitors.create(
             alert_condition={
-                "field": "string",
-                "operator": "string",
+                "field": "field",
+                "operator": "operator",
                 "value": 0,
             },
-            ledger_account_id="string",
-            description="string",
+            ledger_account_id="ledger_account_id",
+            description="description",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -54,11 +54,11 @@ class TestLedgerAccountBalanceMonitors:
     def test_raw_response_create(self, client: ModernTreasury) -> None:
         response = client.ledger_account_balance_monitors.with_raw_response.create(
             alert_condition={
-                "field": "string",
-                "operator": "string",
+                "field": "field",
+                "operator": "operator",
                 "value": 0,
             },
-            ledger_account_id="string",
+            ledger_account_id="ledger_account_id",
         )
 
         assert response.is_closed is True
@@ -70,11 +70,11 @@ class TestLedgerAccountBalanceMonitors:
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
         with client.ledger_account_balance_monitors.with_streaming_response.create(
             alert_condition={
-                "field": "string",
-                "operator": "string",
+                "field": "field",
+                "operator": "operator",
                 "value": 0,
             },
-            ledger_account_id="string",
+            ledger_account_id="ledger_account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -87,14 +87,14 @@ class TestLedgerAccountBalanceMonitors:
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         ledger_account_balance_monitor = client.ledger_account_balance_monitors.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(LedgerAccountBalanceMonitor, ledger_account_balance_monitor, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
         response = client.ledger_account_balance_monitors.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -105,7 +105,7 @@ class TestLedgerAccountBalanceMonitors:
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.ledger_account_balance_monitors.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -125,15 +125,15 @@ class TestLedgerAccountBalanceMonitors:
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
         ledger_account_balance_monitor = client.ledger_account_balance_monitors.update(
-            "string",
+            id="id",
         )
         assert_matches_type(LedgerAccountBalanceMonitor, ledger_account_balance_monitor, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account_balance_monitor = client.ledger_account_balance_monitors.update(
-            "string",
-            description="string",
+            id="id",
+            description="description",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -145,7 +145,7 @@ class TestLedgerAccountBalanceMonitors:
     @parametrize
     def test_raw_response_update(self, client: ModernTreasury) -> None:
         response = client.ledger_account_balance_monitors.with_raw_response.update(
-            "string",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -156,7 +156,7 @@ class TestLedgerAccountBalanceMonitors:
     @parametrize
     def test_streaming_response_update(self, client: ModernTreasury) -> None:
         with client.ledger_account_balance_monitors.with_streaming_response.update(
-            "string",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -170,7 +170,7 @@ class TestLedgerAccountBalanceMonitors:
     def test_path_params_update(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.ledger_account_balance_monitors.with_raw_response.update(
-                "",
+                id="",
             )
 
     @parametrize
@@ -182,8 +182,8 @@ class TestLedgerAccountBalanceMonitors:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account_balance_monitor = client.ledger_account_balance_monitors.list(
             id=["string", "string", "string"],
-            after_cursor="string",
-            ledger_account_id="string",
+            after_cursor="after_cursor",
+            ledger_account_id="ledger_account_id",
             metadata={"foo": "string"},
             per_page=0,
         )
@@ -214,14 +214,14 @@ class TestLedgerAccountBalanceMonitors:
     @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
         ledger_account_balance_monitor = client.ledger_account_balance_monitors.delete(
-            "string",
+            "id",
         )
         assert_matches_type(LedgerAccountBalanceMonitor, ledger_account_balance_monitor, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: ModernTreasury) -> None:
         response = client.ledger_account_balance_monitors.with_raw_response.delete(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -232,7 +232,7 @@ class TestLedgerAccountBalanceMonitors:
     @parametrize
     def test_streaming_response_delete(self, client: ModernTreasury) -> None:
         with client.ledger_account_balance_monitors.with_streaming_response.delete(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -257,11 +257,11 @@ class TestAsyncLedgerAccountBalanceMonitors:
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
         ledger_account_balance_monitor = await async_client.ledger_account_balance_monitors.create(
             alert_condition={
-                "field": "string",
-                "operator": "string",
+                "field": "field",
+                "operator": "operator",
                 "value": 0,
             },
-            ledger_account_id="string",
+            ledger_account_id="ledger_account_id",
         )
         assert_matches_type(LedgerAccountBalanceMonitor, ledger_account_balance_monitor, path=["response"])
 
@@ -269,12 +269,12 @@ class TestAsyncLedgerAccountBalanceMonitors:
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         ledger_account_balance_monitor = await async_client.ledger_account_balance_monitors.create(
             alert_condition={
-                "field": "string",
-                "operator": "string",
+                "field": "field",
+                "operator": "operator",
                 "value": 0,
             },
-            ledger_account_id="string",
-            description="string",
+            ledger_account_id="ledger_account_id",
+            description="description",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -287,11 +287,11 @@ class TestAsyncLedgerAccountBalanceMonitors:
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.ledger_account_balance_monitors.with_raw_response.create(
             alert_condition={
-                "field": "string",
-                "operator": "string",
+                "field": "field",
+                "operator": "operator",
                 "value": 0,
             },
-            ledger_account_id="string",
+            ledger_account_id="ledger_account_id",
         )
 
         assert response.is_closed is True
@@ -303,11 +303,11 @@ class TestAsyncLedgerAccountBalanceMonitors:
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.ledger_account_balance_monitors.with_streaming_response.create(
             alert_condition={
-                "field": "string",
-                "operator": "string",
+                "field": "field",
+                "operator": "operator",
                 "value": 0,
             },
-            ledger_account_id="string",
+            ledger_account_id="ledger_account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -320,14 +320,14 @@ class TestAsyncLedgerAccountBalanceMonitors:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
         ledger_account_balance_monitor = await async_client.ledger_account_balance_monitors.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(LedgerAccountBalanceMonitor, ledger_account_balance_monitor, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.ledger_account_balance_monitors.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -338,7 +338,7 @@ class TestAsyncLedgerAccountBalanceMonitors:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.ledger_account_balance_monitors.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -358,15 +358,15 @@ class TestAsyncLedgerAccountBalanceMonitors:
     @parametrize
     async def test_method_update(self, async_client: AsyncModernTreasury) -> None:
         ledger_account_balance_monitor = await async_client.ledger_account_balance_monitors.update(
-            "string",
+            id="id",
         )
         assert_matches_type(LedgerAccountBalanceMonitor, ledger_account_balance_monitor, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         ledger_account_balance_monitor = await async_client.ledger_account_balance_monitors.update(
-            "string",
-            description="string",
+            id="id",
+            description="description",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -378,7 +378,7 @@ class TestAsyncLedgerAccountBalanceMonitors:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.ledger_account_balance_monitors.with_raw_response.update(
-            "string",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -389,7 +389,7 @@ class TestAsyncLedgerAccountBalanceMonitors:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.ledger_account_balance_monitors.with_streaming_response.update(
-            "string",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -403,7 +403,7 @@ class TestAsyncLedgerAccountBalanceMonitors:
     async def test_path_params_update(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.ledger_account_balance_monitors.with_raw_response.update(
-                "",
+                id="",
             )
 
     @parametrize
@@ -415,8 +415,8 @@ class TestAsyncLedgerAccountBalanceMonitors:
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         ledger_account_balance_monitor = await async_client.ledger_account_balance_monitors.list(
             id=["string", "string", "string"],
-            after_cursor="string",
-            ledger_account_id="string",
+            after_cursor="after_cursor",
+            ledger_account_id="ledger_account_id",
             metadata={"foo": "string"},
             per_page=0,
         )
@@ -447,14 +447,14 @@ class TestAsyncLedgerAccountBalanceMonitors:
     @parametrize
     async def test_method_delete(self, async_client: AsyncModernTreasury) -> None:
         ledger_account_balance_monitor = await async_client.ledger_account_balance_monitors.delete(
-            "string",
+            "id",
         )
         assert_matches_type(LedgerAccountBalanceMonitor, ledger_account_balance_monitor, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.ledger_account_balance_monitors.with_raw_response.delete(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -465,7 +465,7 @@ class TestAsyncLedgerAccountBalanceMonitors:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.ledger_account_balance_monitors.with_streaming_response.delete(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

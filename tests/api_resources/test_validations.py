@@ -20,7 +20,7 @@ class TestValidations:
     @parametrize
     def test_method_validate_routing_number(self, client: ModernTreasury) -> None:
         validation = client.validations.validate_routing_number(
-            routing_number="string",
+            routing_number="routing_number",
             routing_number_type="aba",
         )
         assert_matches_type(RoutingNumberLookupRequest, validation, path=["response"])
@@ -28,7 +28,7 @@ class TestValidations:
     @parametrize
     def test_raw_response_validate_routing_number(self, client: ModernTreasury) -> None:
         response = client.validations.with_raw_response.validate_routing_number(
-            routing_number="string",
+            routing_number="routing_number",
             routing_number_type="aba",
         )
 
@@ -40,7 +40,7 @@ class TestValidations:
     @parametrize
     def test_streaming_response_validate_routing_number(self, client: ModernTreasury) -> None:
         with client.validations.with_streaming_response.validate_routing_number(
-            routing_number="string",
+            routing_number="routing_number",
             routing_number_type="aba",
         ) as response:
             assert not response.is_closed
@@ -58,7 +58,7 @@ class TestAsyncValidations:
     @parametrize
     async def test_method_validate_routing_number(self, async_client: AsyncModernTreasury) -> None:
         validation = await async_client.validations.validate_routing_number(
-            routing_number="string",
+            routing_number="routing_number",
             routing_number_type="aba",
         )
         assert_matches_type(RoutingNumberLookupRequest, validation, path=["response"])
@@ -66,7 +66,7 @@ class TestAsyncValidations:
     @parametrize
     async def test_raw_response_validate_routing_number(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.validations.with_raw_response.validate_routing_number(
-            routing_number="string",
+            routing_number="routing_number",
             routing_number_type="aba",
         )
 
@@ -78,7 +78,7 @@ class TestAsyncValidations:
     @parametrize
     async def test_streaming_response_validate_routing_number(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.validations.with_streaming_response.validate_routing_number(
-            routing_number="string",
+            routing_number="routing_number",
             routing_number_type="aba",
         ) as response:
             assert not response.is_closed

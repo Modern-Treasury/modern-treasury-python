@@ -23,14 +23,14 @@ class TestPaymentReferences:
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         payment_reference = client.payment_references.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(PaymentReference, payment_reference, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
         response = client.payment_references.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -41,7 +41,7 @@ class TestPaymentReferences:
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.payment_references.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -66,10 +66,10 @@ class TestPaymentReferences:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         payment_reference = client.payment_references.list(
-            after_cursor="string",
+            after_cursor="after_cursor",
             per_page=0,
-            reference_number="string",
-            referenceable_id="string",
+            reference_number="reference_number",
+            referenceable_id="referenceable_id",
             referenceable_type="payment_order",
         )
         assert_matches_type(SyncPage[PaymentReference], payment_reference, path=["response"])
@@ -98,7 +98,7 @@ class TestPaymentReferences:
     def test_method_retireve(self, client: ModernTreasury) -> None:
         with pytest.warns(DeprecationWarning):
             payment_reference = client.payment_references.retireve(
-                "string",
+                "id",
             )
 
         assert_matches_type(PaymentReference, payment_reference, path=["response"])
@@ -107,7 +107,7 @@ class TestPaymentReferences:
     def test_raw_response_retireve(self, client: ModernTreasury) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.payment_references.with_raw_response.retireve(
-                "string",
+                "id",
             )
 
         assert response.is_closed is True
@@ -119,7 +119,7 @@ class TestPaymentReferences:
     def test_streaming_response_retireve(self, client: ModernTreasury) -> None:
         with pytest.warns(DeprecationWarning):
             with client.payment_references.with_streaming_response.retireve(
-                "string",
+                "id",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -144,14 +144,14 @@ class TestAsyncPaymentReferences:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
         payment_reference = await async_client.payment_references.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(PaymentReference, payment_reference, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.payment_references.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -162,7 +162,7 @@ class TestAsyncPaymentReferences:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.payment_references.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -187,10 +187,10 @@ class TestAsyncPaymentReferences:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         payment_reference = await async_client.payment_references.list(
-            after_cursor="string",
+            after_cursor="after_cursor",
             per_page=0,
-            reference_number="string",
-            referenceable_id="string",
+            reference_number="reference_number",
+            referenceable_id="referenceable_id",
             referenceable_type="payment_order",
         )
         assert_matches_type(AsyncPage[PaymentReference], payment_reference, path=["response"])
@@ -219,7 +219,7 @@ class TestAsyncPaymentReferences:
     async def test_method_retireve(self, async_client: AsyncModernTreasury) -> None:
         with pytest.warns(DeprecationWarning):
             payment_reference = await async_client.payment_references.retireve(
-                "string",
+                "id",
             )
 
         assert_matches_type(PaymentReference, payment_reference, path=["response"])
@@ -228,7 +228,7 @@ class TestAsyncPaymentReferences:
     async def test_raw_response_retireve(self, async_client: AsyncModernTreasury) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.payment_references.with_raw_response.retireve(
-                "string",
+                "id",
             )
 
         assert response.is_closed is True
@@ -240,7 +240,7 @@ class TestAsyncPaymentReferences:
     async def test_streaming_response_retireve(self, async_client: AsyncModernTreasury) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.payment_references.with_streaming_response.retireve(
-                "string",
+                "id",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
