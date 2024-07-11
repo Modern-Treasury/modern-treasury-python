@@ -22,14 +22,14 @@ class TestPaperItems:
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         paper_item = client.paper_items.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(PaperItem, paper_item, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
         response = client.paper_items.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -40,7 +40,7 @@ class TestPaperItems:
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.paper_items.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -65,10 +65,10 @@ class TestPaperItems:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         paper_item = client.paper_items.list(
-            after_cursor="string",
+            after_cursor="after_cursor",
             deposit_date_end=parse_date("2019-12-27"),
             deposit_date_start=parse_date("2019-12-27"),
-            lockbox_number="string",
+            lockbox_number="lockbox_number",
             per_page=0,
         )
         assert_matches_type(SyncPage[PaperItem], paper_item, path=["response"])
@@ -100,14 +100,14 @@ class TestAsyncPaperItems:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
         paper_item = await async_client.paper_items.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(PaperItem, paper_item, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.paper_items.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -118,7 +118,7 @@ class TestAsyncPaperItems:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.paper_items.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -143,10 +143,10 @@ class TestAsyncPaperItems:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         paper_item = await async_client.paper_items.list(
-            after_cursor="string",
+            after_cursor="after_cursor",
             deposit_date_end=parse_date("2019-12-27"),
             deposit_date_start=parse_date("2019-12-27"),
-            lockbox_number="string",
+            lockbox_number="lockbox_number",
             per_page=0,
         )
         assert_matches_type(AsyncPage[PaperItem], paper_item, path=["response"])

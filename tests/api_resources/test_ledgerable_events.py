@@ -20,16 +20,16 @@ class TestLedgerableEvents:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         ledgerable_event = client.ledgerable_events.create(
-            name="string",
+            name="name",
         )
         assert_matches_type(LedgerableEvent, ledgerable_event, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         ledgerable_event = client.ledgerable_events.create(
-            name="string",
+            name="name",
             custom_data={},
-            description="string",
+            description="description",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -41,7 +41,7 @@ class TestLedgerableEvents:
     @parametrize
     def test_raw_response_create(self, client: ModernTreasury) -> None:
         response = client.ledgerable_events.with_raw_response.create(
-            name="string",
+            name="name",
         )
 
         assert response.is_closed is True
@@ -52,7 +52,7 @@ class TestLedgerableEvents:
     @parametrize
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
         with client.ledgerable_events.with_streaming_response.create(
-            name="string",
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -65,14 +65,14 @@ class TestLedgerableEvents:
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         ledgerable_event = client.ledgerable_events.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(LedgerableEvent, ledgerable_event, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
         response = client.ledgerable_events.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -83,7 +83,7 @@ class TestLedgerableEvents:
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.ledgerable_events.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -107,16 +107,16 @@ class TestAsyncLedgerableEvents:
     @parametrize
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
         ledgerable_event = await async_client.ledgerable_events.create(
-            name="string",
+            name="name",
         )
         assert_matches_type(LedgerableEvent, ledgerable_event, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         ledgerable_event = await async_client.ledgerable_events.create(
-            name="string",
+            name="name",
             custom_data={},
-            description="string",
+            description="description",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -128,7 +128,7 @@ class TestAsyncLedgerableEvents:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.ledgerable_events.with_raw_response.create(
-            name="string",
+            name="name",
         )
 
         assert response.is_closed is True
@@ -139,7 +139,7 @@ class TestAsyncLedgerableEvents:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.ledgerable_events.with_streaming_response.create(
-            name="string",
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -152,14 +152,14 @@ class TestAsyncLedgerableEvents:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
         ledgerable_event = await async_client.ledgerable_events.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(LedgerableEvent, ledgerable_event, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.ledgerable_events.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -170,7 +170,7 @@ class TestAsyncLedgerableEvents:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.ledgerable_events.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

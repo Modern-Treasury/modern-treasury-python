@@ -24,7 +24,7 @@ class TestVirtualAccounts:
     def test_method_create(self, client: ModernTreasury) -> None:
         virtual_account = client.virtual_accounts.create(
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="string",
+            name="name",
         )
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
@@ -32,31 +32,31 @@ class TestVirtualAccounts:
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         virtual_account = client.virtual_accounts.create(
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="string",
+            name="name",
             account_details=[
                 {
-                    "account_number": "string",
+                    "account_number": "account_number",
                     "account_number_type": "au_number",
                 },
                 {
-                    "account_number": "string",
+                    "account_number": "account_number",
                     "account_number_type": "au_number",
                 },
                 {
-                    "account_number": "string",
+                    "account_number": "account_number",
                     "account_number_type": "au_number",
                 },
             ],
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             credit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             debit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            description="string",
+            description="description",
             ledger_account={
-                "name": "string",
-                "description": "string",
+                "name": "name",
+                "description": "description",
                 "normal_balance": "credit",
                 "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "currency": "string",
+                "currency": "currency",
                 "currency_exponent": 0,
                 "ledger_account_category_ids": [
                     "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -74,17 +74,17 @@ class TestVirtualAccounts:
             metadata={"foo": "string"},
             routing_details=[
                 {
-                    "routing_number": "string",
+                    "routing_number": "routing_number",
                     "routing_number_type": "aba",
                     "payment_type": "ach",
                 },
                 {
-                    "routing_number": "string",
+                    "routing_number": "routing_number",
                     "routing_number_type": "aba",
                     "payment_type": "ach",
                 },
                 {
-                    "routing_number": "string",
+                    "routing_number": "routing_number",
                     "routing_number_type": "aba",
                     "payment_type": "ach",
                 },
@@ -96,7 +96,7 @@ class TestVirtualAccounts:
     def test_raw_response_create(self, client: ModernTreasury) -> None:
         response = client.virtual_accounts.with_raw_response.create(
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="string",
+            name="name",
         )
 
         assert response.is_closed is True
@@ -108,7 +108,7 @@ class TestVirtualAccounts:
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
         with client.virtual_accounts.with_streaming_response.create(
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="string",
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -121,14 +121,14 @@ class TestVirtualAccounts:
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         virtual_account = client.virtual_accounts.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
         response = client.virtual_accounts.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -139,7 +139,7 @@ class TestVirtualAccounts:
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.virtual_accounts.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -159,25 +159,25 @@ class TestVirtualAccounts:
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
         virtual_account = client.virtual_accounts.update(
-            "string",
+            id="id",
         )
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         virtual_account = client.virtual_accounts.update(
-            "string",
+            id="id",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
-            name="string",
+            name="name",
         )
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: ModernTreasury) -> None:
         response = client.virtual_accounts.with_raw_response.update(
-            "string",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -188,7 +188,7 @@ class TestVirtualAccounts:
     @parametrize
     def test_streaming_response_update(self, client: ModernTreasury) -> None:
         with client.virtual_accounts.with_streaming_response.update(
-            "string",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -202,7 +202,7 @@ class TestVirtualAccounts:
     def test_path_params_update(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.virtual_accounts.with_raw_response.update(
-                "",
+                id="",
             )
 
     @parametrize
@@ -213,9 +213,9 @@ class TestVirtualAccounts:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         virtual_account = client.virtual_accounts.list(
-            after_cursor="string",
-            counterparty_id="string",
-            internal_account_id="string",
+            after_cursor="after_cursor",
+            counterparty_id="counterparty_id",
+            internal_account_id="internal_account_id",
             metadata={"foo": "string"},
             per_page=0,
         )
@@ -244,14 +244,14 @@ class TestVirtualAccounts:
     @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
         virtual_account = client.virtual_accounts.delete(
-            "string",
+            "id",
         )
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: ModernTreasury) -> None:
         response = client.virtual_accounts.with_raw_response.delete(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -262,7 +262,7 @@ class TestVirtualAccounts:
     @parametrize
     def test_streaming_response_delete(self, client: ModernTreasury) -> None:
         with client.virtual_accounts.with_streaming_response.delete(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -287,7 +287,7 @@ class TestAsyncVirtualAccounts:
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
         virtual_account = await async_client.virtual_accounts.create(
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="string",
+            name="name",
         )
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
@@ -295,31 +295,31 @@ class TestAsyncVirtualAccounts:
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         virtual_account = await async_client.virtual_accounts.create(
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="string",
+            name="name",
             account_details=[
                 {
-                    "account_number": "string",
+                    "account_number": "account_number",
                     "account_number_type": "au_number",
                 },
                 {
-                    "account_number": "string",
+                    "account_number": "account_number",
                     "account_number_type": "au_number",
                 },
                 {
-                    "account_number": "string",
+                    "account_number": "account_number",
                     "account_number_type": "au_number",
                 },
             ],
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             credit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             debit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            description="string",
+            description="description",
             ledger_account={
-                "name": "string",
-                "description": "string",
+                "name": "name",
+                "description": "description",
                 "normal_balance": "credit",
                 "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "currency": "string",
+                "currency": "currency",
                 "currency_exponent": 0,
                 "ledger_account_category_ids": [
                     "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -337,17 +337,17 @@ class TestAsyncVirtualAccounts:
             metadata={"foo": "string"},
             routing_details=[
                 {
-                    "routing_number": "string",
+                    "routing_number": "routing_number",
                     "routing_number_type": "aba",
                     "payment_type": "ach",
                 },
                 {
-                    "routing_number": "string",
+                    "routing_number": "routing_number",
                     "routing_number_type": "aba",
                     "payment_type": "ach",
                 },
                 {
-                    "routing_number": "string",
+                    "routing_number": "routing_number",
                     "routing_number_type": "aba",
                     "payment_type": "ach",
                 },
@@ -359,7 +359,7 @@ class TestAsyncVirtualAccounts:
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.virtual_accounts.with_raw_response.create(
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="string",
+            name="name",
         )
 
         assert response.is_closed is True
@@ -371,7 +371,7 @@ class TestAsyncVirtualAccounts:
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.virtual_accounts.with_streaming_response.create(
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            name="string",
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -384,14 +384,14 @@ class TestAsyncVirtualAccounts:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
         virtual_account = await async_client.virtual_accounts.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.virtual_accounts.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -402,7 +402,7 @@ class TestAsyncVirtualAccounts:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.virtual_accounts.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -422,25 +422,25 @@ class TestAsyncVirtualAccounts:
     @parametrize
     async def test_method_update(self, async_client: AsyncModernTreasury) -> None:
         virtual_account = await async_client.virtual_accounts.update(
-            "string",
+            id="id",
         )
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         virtual_account = await async_client.virtual_accounts.update(
-            "string",
+            id="id",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
-            name="string",
+            name="name",
         )
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.virtual_accounts.with_raw_response.update(
-            "string",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -451,7 +451,7 @@ class TestAsyncVirtualAccounts:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.virtual_accounts.with_streaming_response.update(
-            "string",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -465,7 +465,7 @@ class TestAsyncVirtualAccounts:
     async def test_path_params_update(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.virtual_accounts.with_raw_response.update(
-                "",
+                id="",
             )
 
     @parametrize
@@ -476,9 +476,9 @@ class TestAsyncVirtualAccounts:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         virtual_account = await async_client.virtual_accounts.list(
-            after_cursor="string",
-            counterparty_id="string",
-            internal_account_id="string",
+            after_cursor="after_cursor",
+            counterparty_id="counterparty_id",
+            internal_account_id="internal_account_id",
             metadata={"foo": "string"},
             per_page=0,
         )
@@ -507,14 +507,14 @@ class TestAsyncVirtualAccounts:
     @parametrize
     async def test_method_delete(self, async_client: AsyncModernTreasury) -> None:
         virtual_account = await async_client.virtual_accounts.delete(
-            "string",
+            "id",
         )
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.virtual_accounts.with_raw_response.delete(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -525,7 +525,7 @@ class TestAsyncVirtualAccounts:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.virtual_accounts.with_streaming_response.delete(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

@@ -24,27 +24,31 @@ class TestConnectionLegalEntities:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         connection_legal_entity = client.connection_legal_entities.create(
-            connection_id="string",
+            connection_id="connection_id",
         )
         assert_matches_type(ConnectionLegalEntity, connection_legal_entity, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         connection_legal_entity = client.connection_legal_entities.create(
-            connection_id="string",
+            connection_id="connection_id",
             legal_entity={
                 "legal_entity_type": "business",
                 "risk_rating": "low",
-                "first_name": "string",
-                "last_name": "string",
+                "first_name": "first_name",
+                "last_name": "last_name",
                 "date_of_birth": parse_date("2019-12-27"),
                 "date_formed": parse_date("2019-12-27"),
-                "business_name": "string",
+                "business_name": "business_name",
                 "doing_business_as_names": ["string", "string", "string"],
                 "legal_structure": "corporation",
-                "phone_numbers": [{"phone_number": "string"}, {"phone_number": "string"}, {"phone_number": "string"}],
-                "email": "string",
-                "website": "string",
+                "phone_numbers": [
+                    {"phone_number": "phone_number"},
+                    {"phone_number": "phone_number"},
+                    {"phone_number": "phone_number"},
+                ],
+                "email": "email",
+                "website": "website",
                 "metadata": {
                     "key": "value",
                     "foo": "bar",
@@ -53,71 +57,71 @@ class TestConnectionLegalEntities:
                 "addresses": [
                     {
                         "address_types": ["business", "mailing", "other"],
-                        "line1": "string",
-                        "line2": "string",
-                        "locality": "string",
-                        "region": "string",
-                        "postal_code": "string",
-                        "country": "string",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "locality": "locality",
+                        "region": "region",
+                        "postal_code": "postal_code",
+                        "country": "country",
                     },
                     {
                         "address_types": ["business", "mailing", "other"],
-                        "line1": "string",
-                        "line2": "string",
-                        "locality": "string",
-                        "region": "string",
-                        "postal_code": "string",
-                        "country": "string",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "locality": "locality",
+                        "region": "region",
+                        "postal_code": "postal_code",
+                        "country": "country",
                     },
                     {
                         "address_types": ["business", "mailing", "other"],
-                        "line1": "string",
-                        "line2": "string",
-                        "locality": "string",
-                        "region": "string",
-                        "postal_code": "string",
-                        "country": "string",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "locality": "locality",
+                        "region": "region",
+                        "postal_code": "postal_code",
+                        "country": "country",
                     },
                 ],
                 "identifications": [
                     {
-                        "id_number": "string",
+                        "id_number": "id_number",
                         "id_type": "ar_cuil",
-                        "issuing_country": "string",
+                        "issuing_country": "issuing_country",
                     },
                     {
-                        "id_number": "string",
+                        "id_number": "id_number",
                         "id_type": "ar_cuil",
-                        "issuing_country": "string",
+                        "issuing_country": "issuing_country",
                     },
                     {
-                        "id_number": "string",
+                        "id_number": "id_number",
                         "id_type": "ar_cuil",
-                        "issuing_country": "string",
+                        "issuing_country": "issuing_country",
                     },
                 ],
                 "legal_entity_associations": [
                     {
                         "relationship_types": ["beneficial_owner", "control_person"],
-                        "title": "string",
+                        "title": "title",
                         "ownership_percentage": 0,
                         "child_legal_entity": {
                             "legal_entity_type": "business",
                             "risk_rating": "low",
-                            "first_name": "string",
-                            "last_name": "string",
+                            "first_name": "first_name",
+                            "last_name": "last_name",
                             "date_of_birth": parse_date("2019-12-27"),
                             "date_formed": parse_date("2019-12-27"),
-                            "business_name": "string",
+                            "business_name": "business_name",
                             "doing_business_as_names": ["string", "string", "string"],
                             "legal_structure": "corporation",
                             "phone_numbers": [
-                                {"phone_number": "string"},
-                                {"phone_number": "string"},
-                                {"phone_number": "string"},
+                                {"phone_number": "phone_number"},
+                                {"phone_number": "phone_number"},
+                                {"phone_number": "phone_number"},
                             ],
-                            "email": "string",
-                            "website": "string",
+                            "email": "email",
+                            "website": "website",
                             "metadata": {
                                 "key": "value",
                                 "foo": "bar",
@@ -126,73 +130,73 @@ class TestConnectionLegalEntities:
                             "addresses": [
                                 {
                                     "address_types": ["business", "mailing", "other"],
-                                    "line1": "string",
-                                    "line2": "string",
-                                    "locality": "string",
-                                    "region": "string",
-                                    "postal_code": "string",
-                                    "country": "string",
+                                    "line1": "line1",
+                                    "line2": "line2",
+                                    "locality": "locality",
+                                    "region": "region",
+                                    "postal_code": "postal_code",
+                                    "country": "country",
                                 },
                                 {
                                     "address_types": ["business", "mailing", "other"],
-                                    "line1": "string",
-                                    "line2": "string",
-                                    "locality": "string",
-                                    "region": "string",
-                                    "postal_code": "string",
-                                    "country": "string",
+                                    "line1": "line1",
+                                    "line2": "line2",
+                                    "locality": "locality",
+                                    "region": "region",
+                                    "postal_code": "postal_code",
+                                    "country": "country",
                                 },
                                 {
                                     "address_types": ["business", "mailing", "other"],
-                                    "line1": "string",
-                                    "line2": "string",
-                                    "locality": "string",
-                                    "region": "string",
-                                    "postal_code": "string",
-                                    "country": "string",
+                                    "line1": "line1",
+                                    "line2": "line2",
+                                    "locality": "locality",
+                                    "region": "region",
+                                    "postal_code": "postal_code",
+                                    "country": "country",
                                 },
                             ],
                             "identifications": [
                                 {
-                                    "id_number": "string",
+                                    "id_number": "id_number",
                                     "id_type": "ar_cuil",
-                                    "issuing_country": "string",
+                                    "issuing_country": "issuing_country",
                                 },
                                 {
-                                    "id_number": "string",
+                                    "id_number": "id_number",
                                     "id_type": "ar_cuil",
-                                    "issuing_country": "string",
+                                    "issuing_country": "issuing_country",
                                 },
                                 {
-                                    "id_number": "string",
+                                    "id_number": "id_number",
                                     "id_type": "ar_cuil",
-                                    "issuing_country": "string",
+                                    "issuing_country": "issuing_country",
                                 },
                             ],
                         },
-                        "child_legal_entity_id": "string",
+                        "child_legal_entity_id": "child_legal_entity_id",
                     },
                     {
                         "relationship_types": ["beneficial_owner", "control_person"],
-                        "title": "string",
+                        "title": "title",
                         "ownership_percentage": 0,
                         "child_legal_entity": {
                             "legal_entity_type": "business",
                             "risk_rating": "low",
-                            "first_name": "string",
-                            "last_name": "string",
+                            "first_name": "first_name",
+                            "last_name": "last_name",
                             "date_of_birth": parse_date("2019-12-27"),
                             "date_formed": parse_date("2019-12-27"),
-                            "business_name": "string",
+                            "business_name": "business_name",
                             "doing_business_as_names": ["string", "string", "string"],
                             "legal_structure": "corporation",
                             "phone_numbers": [
-                                {"phone_number": "string"},
-                                {"phone_number": "string"},
-                                {"phone_number": "string"},
+                                {"phone_number": "phone_number"},
+                                {"phone_number": "phone_number"},
+                                {"phone_number": "phone_number"},
                             ],
-                            "email": "string",
-                            "website": "string",
+                            "email": "email",
+                            "website": "website",
                             "metadata": {
                                 "key": "value",
                                 "foo": "bar",
@@ -201,73 +205,73 @@ class TestConnectionLegalEntities:
                             "addresses": [
                                 {
                                     "address_types": ["business", "mailing", "other"],
-                                    "line1": "string",
-                                    "line2": "string",
-                                    "locality": "string",
-                                    "region": "string",
-                                    "postal_code": "string",
-                                    "country": "string",
+                                    "line1": "line1",
+                                    "line2": "line2",
+                                    "locality": "locality",
+                                    "region": "region",
+                                    "postal_code": "postal_code",
+                                    "country": "country",
                                 },
                                 {
                                     "address_types": ["business", "mailing", "other"],
-                                    "line1": "string",
-                                    "line2": "string",
-                                    "locality": "string",
-                                    "region": "string",
-                                    "postal_code": "string",
-                                    "country": "string",
+                                    "line1": "line1",
+                                    "line2": "line2",
+                                    "locality": "locality",
+                                    "region": "region",
+                                    "postal_code": "postal_code",
+                                    "country": "country",
                                 },
                                 {
                                     "address_types": ["business", "mailing", "other"],
-                                    "line1": "string",
-                                    "line2": "string",
-                                    "locality": "string",
-                                    "region": "string",
-                                    "postal_code": "string",
-                                    "country": "string",
+                                    "line1": "line1",
+                                    "line2": "line2",
+                                    "locality": "locality",
+                                    "region": "region",
+                                    "postal_code": "postal_code",
+                                    "country": "country",
                                 },
                             ],
                             "identifications": [
                                 {
-                                    "id_number": "string",
+                                    "id_number": "id_number",
                                     "id_type": "ar_cuil",
-                                    "issuing_country": "string",
+                                    "issuing_country": "issuing_country",
                                 },
                                 {
-                                    "id_number": "string",
+                                    "id_number": "id_number",
                                     "id_type": "ar_cuil",
-                                    "issuing_country": "string",
+                                    "issuing_country": "issuing_country",
                                 },
                                 {
-                                    "id_number": "string",
+                                    "id_number": "id_number",
                                     "id_type": "ar_cuil",
-                                    "issuing_country": "string",
+                                    "issuing_country": "issuing_country",
                                 },
                             ],
                         },
-                        "child_legal_entity_id": "string",
+                        "child_legal_entity_id": "child_legal_entity_id",
                     },
                     {
                         "relationship_types": ["beneficial_owner", "control_person"],
-                        "title": "string",
+                        "title": "title",
                         "ownership_percentage": 0,
                         "child_legal_entity": {
                             "legal_entity_type": "business",
                             "risk_rating": "low",
-                            "first_name": "string",
-                            "last_name": "string",
+                            "first_name": "first_name",
+                            "last_name": "last_name",
                             "date_of_birth": parse_date("2019-12-27"),
                             "date_formed": parse_date("2019-12-27"),
-                            "business_name": "string",
+                            "business_name": "business_name",
                             "doing_business_as_names": ["string", "string", "string"],
                             "legal_structure": "corporation",
                             "phone_numbers": [
-                                {"phone_number": "string"},
-                                {"phone_number": "string"},
-                                {"phone_number": "string"},
+                                {"phone_number": "phone_number"},
+                                {"phone_number": "phone_number"},
+                                {"phone_number": "phone_number"},
                             ],
-                            "email": "string",
-                            "website": "string",
+                            "email": "email",
+                            "website": "website",
                             "metadata": {
                                 "key": "value",
                                 "foo": "bar",
@@ -276,62 +280,62 @@ class TestConnectionLegalEntities:
                             "addresses": [
                                 {
                                     "address_types": ["business", "mailing", "other"],
-                                    "line1": "string",
-                                    "line2": "string",
-                                    "locality": "string",
-                                    "region": "string",
-                                    "postal_code": "string",
-                                    "country": "string",
+                                    "line1": "line1",
+                                    "line2": "line2",
+                                    "locality": "locality",
+                                    "region": "region",
+                                    "postal_code": "postal_code",
+                                    "country": "country",
                                 },
                                 {
                                     "address_types": ["business", "mailing", "other"],
-                                    "line1": "string",
-                                    "line2": "string",
-                                    "locality": "string",
-                                    "region": "string",
-                                    "postal_code": "string",
-                                    "country": "string",
+                                    "line1": "line1",
+                                    "line2": "line2",
+                                    "locality": "locality",
+                                    "region": "region",
+                                    "postal_code": "postal_code",
+                                    "country": "country",
                                 },
                                 {
                                     "address_types": ["business", "mailing", "other"],
-                                    "line1": "string",
-                                    "line2": "string",
-                                    "locality": "string",
-                                    "region": "string",
-                                    "postal_code": "string",
-                                    "country": "string",
+                                    "line1": "line1",
+                                    "line2": "line2",
+                                    "locality": "locality",
+                                    "region": "region",
+                                    "postal_code": "postal_code",
+                                    "country": "country",
                                 },
                             ],
                             "identifications": [
                                 {
-                                    "id_number": "string",
+                                    "id_number": "id_number",
                                     "id_type": "ar_cuil",
-                                    "issuing_country": "string",
+                                    "issuing_country": "issuing_country",
                                 },
                                 {
-                                    "id_number": "string",
+                                    "id_number": "id_number",
                                     "id_type": "ar_cuil",
-                                    "issuing_country": "string",
+                                    "issuing_country": "issuing_country",
                                 },
                                 {
-                                    "id_number": "string",
+                                    "id_number": "id_number",
                                     "id_type": "ar_cuil",
-                                    "issuing_country": "string",
+                                    "issuing_country": "issuing_country",
                                 },
                             ],
                         },
-                        "child_legal_entity_id": "string",
+                        "child_legal_entity_id": "child_legal_entity_id",
                     },
                 ],
             },
-            legal_entity_id="string",
+            legal_entity_id="legal_entity_id",
         )
         assert_matches_type(ConnectionLegalEntity, connection_legal_entity, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: ModernTreasury) -> None:
         response = client.connection_legal_entities.with_raw_response.create(
-            connection_id="string",
+            connection_id="connection_id",
         )
 
         assert response.is_closed is True
@@ -342,7 +346,7 @@ class TestConnectionLegalEntities:
     @parametrize
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
         with client.connection_legal_entities.with_streaming_response.create(
-            connection_id="string",
+            connection_id="connection_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -355,14 +359,14 @@ class TestConnectionLegalEntities:
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         connection_legal_entity = client.connection_legal_entities.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(ConnectionLegalEntity, connection_legal_entity, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
         response = client.connection_legal_entities.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -373,7 +377,7 @@ class TestConnectionLegalEntities:
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.connection_legal_entities.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -393,14 +397,14 @@ class TestConnectionLegalEntities:
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
         connection_legal_entity = client.connection_legal_entities.update(
-            "string",
+            id="id",
         )
         assert_matches_type(ConnectionLegalEntity, connection_legal_entity, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         connection_legal_entity = client.connection_legal_entities.update(
-            "string",
+            id="id",
             status="processing",
         )
         assert_matches_type(ConnectionLegalEntity, connection_legal_entity, path=["response"])
@@ -408,7 +412,7 @@ class TestConnectionLegalEntities:
     @parametrize
     def test_raw_response_update(self, client: ModernTreasury) -> None:
         response = client.connection_legal_entities.with_raw_response.update(
-            "string",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -419,7 +423,7 @@ class TestConnectionLegalEntities:
     @parametrize
     def test_streaming_response_update(self, client: ModernTreasury) -> None:
         with client.connection_legal_entities.with_streaming_response.update(
-            "string",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -433,7 +437,7 @@ class TestConnectionLegalEntities:
     def test_path_params_update(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.connection_legal_entities.with_raw_response.update(
-                "",
+                id="",
             )
 
     @parametrize
@@ -444,9 +448,9 @@ class TestConnectionLegalEntities:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         connection_legal_entity = client.connection_legal_entities.list(
-            after_cursor="string",
-            connection_id="string",
-            legal_entity_id="string",
+            after_cursor="after_cursor",
+            connection_id="connection_id",
+            legal_entity_id="legal_entity_id",
             per_page=0,
             status="completed",
         )
@@ -479,27 +483,31 @@ class TestAsyncConnectionLegalEntities:
     @parametrize
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
         connection_legal_entity = await async_client.connection_legal_entities.create(
-            connection_id="string",
+            connection_id="connection_id",
         )
         assert_matches_type(ConnectionLegalEntity, connection_legal_entity, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         connection_legal_entity = await async_client.connection_legal_entities.create(
-            connection_id="string",
+            connection_id="connection_id",
             legal_entity={
                 "legal_entity_type": "business",
                 "risk_rating": "low",
-                "first_name": "string",
-                "last_name": "string",
+                "first_name": "first_name",
+                "last_name": "last_name",
                 "date_of_birth": parse_date("2019-12-27"),
                 "date_formed": parse_date("2019-12-27"),
-                "business_name": "string",
+                "business_name": "business_name",
                 "doing_business_as_names": ["string", "string", "string"],
                 "legal_structure": "corporation",
-                "phone_numbers": [{"phone_number": "string"}, {"phone_number": "string"}, {"phone_number": "string"}],
-                "email": "string",
-                "website": "string",
+                "phone_numbers": [
+                    {"phone_number": "phone_number"},
+                    {"phone_number": "phone_number"},
+                    {"phone_number": "phone_number"},
+                ],
+                "email": "email",
+                "website": "website",
                 "metadata": {
                     "key": "value",
                     "foo": "bar",
@@ -508,71 +516,71 @@ class TestAsyncConnectionLegalEntities:
                 "addresses": [
                     {
                         "address_types": ["business", "mailing", "other"],
-                        "line1": "string",
-                        "line2": "string",
-                        "locality": "string",
-                        "region": "string",
-                        "postal_code": "string",
-                        "country": "string",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "locality": "locality",
+                        "region": "region",
+                        "postal_code": "postal_code",
+                        "country": "country",
                     },
                     {
                         "address_types": ["business", "mailing", "other"],
-                        "line1": "string",
-                        "line2": "string",
-                        "locality": "string",
-                        "region": "string",
-                        "postal_code": "string",
-                        "country": "string",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "locality": "locality",
+                        "region": "region",
+                        "postal_code": "postal_code",
+                        "country": "country",
                     },
                     {
                         "address_types": ["business", "mailing", "other"],
-                        "line1": "string",
-                        "line2": "string",
-                        "locality": "string",
-                        "region": "string",
-                        "postal_code": "string",
-                        "country": "string",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "locality": "locality",
+                        "region": "region",
+                        "postal_code": "postal_code",
+                        "country": "country",
                     },
                 ],
                 "identifications": [
                     {
-                        "id_number": "string",
+                        "id_number": "id_number",
                         "id_type": "ar_cuil",
-                        "issuing_country": "string",
+                        "issuing_country": "issuing_country",
                     },
                     {
-                        "id_number": "string",
+                        "id_number": "id_number",
                         "id_type": "ar_cuil",
-                        "issuing_country": "string",
+                        "issuing_country": "issuing_country",
                     },
                     {
-                        "id_number": "string",
+                        "id_number": "id_number",
                         "id_type": "ar_cuil",
-                        "issuing_country": "string",
+                        "issuing_country": "issuing_country",
                     },
                 ],
                 "legal_entity_associations": [
                     {
                         "relationship_types": ["beneficial_owner", "control_person"],
-                        "title": "string",
+                        "title": "title",
                         "ownership_percentage": 0,
                         "child_legal_entity": {
                             "legal_entity_type": "business",
                             "risk_rating": "low",
-                            "first_name": "string",
-                            "last_name": "string",
+                            "first_name": "first_name",
+                            "last_name": "last_name",
                             "date_of_birth": parse_date("2019-12-27"),
                             "date_formed": parse_date("2019-12-27"),
-                            "business_name": "string",
+                            "business_name": "business_name",
                             "doing_business_as_names": ["string", "string", "string"],
                             "legal_structure": "corporation",
                             "phone_numbers": [
-                                {"phone_number": "string"},
-                                {"phone_number": "string"},
-                                {"phone_number": "string"},
+                                {"phone_number": "phone_number"},
+                                {"phone_number": "phone_number"},
+                                {"phone_number": "phone_number"},
                             ],
-                            "email": "string",
-                            "website": "string",
+                            "email": "email",
+                            "website": "website",
                             "metadata": {
                                 "key": "value",
                                 "foo": "bar",
@@ -581,73 +589,73 @@ class TestAsyncConnectionLegalEntities:
                             "addresses": [
                                 {
                                     "address_types": ["business", "mailing", "other"],
-                                    "line1": "string",
-                                    "line2": "string",
-                                    "locality": "string",
-                                    "region": "string",
-                                    "postal_code": "string",
-                                    "country": "string",
+                                    "line1": "line1",
+                                    "line2": "line2",
+                                    "locality": "locality",
+                                    "region": "region",
+                                    "postal_code": "postal_code",
+                                    "country": "country",
                                 },
                                 {
                                     "address_types": ["business", "mailing", "other"],
-                                    "line1": "string",
-                                    "line2": "string",
-                                    "locality": "string",
-                                    "region": "string",
-                                    "postal_code": "string",
-                                    "country": "string",
+                                    "line1": "line1",
+                                    "line2": "line2",
+                                    "locality": "locality",
+                                    "region": "region",
+                                    "postal_code": "postal_code",
+                                    "country": "country",
                                 },
                                 {
                                     "address_types": ["business", "mailing", "other"],
-                                    "line1": "string",
-                                    "line2": "string",
-                                    "locality": "string",
-                                    "region": "string",
-                                    "postal_code": "string",
-                                    "country": "string",
+                                    "line1": "line1",
+                                    "line2": "line2",
+                                    "locality": "locality",
+                                    "region": "region",
+                                    "postal_code": "postal_code",
+                                    "country": "country",
                                 },
                             ],
                             "identifications": [
                                 {
-                                    "id_number": "string",
+                                    "id_number": "id_number",
                                     "id_type": "ar_cuil",
-                                    "issuing_country": "string",
+                                    "issuing_country": "issuing_country",
                                 },
                                 {
-                                    "id_number": "string",
+                                    "id_number": "id_number",
                                     "id_type": "ar_cuil",
-                                    "issuing_country": "string",
+                                    "issuing_country": "issuing_country",
                                 },
                                 {
-                                    "id_number": "string",
+                                    "id_number": "id_number",
                                     "id_type": "ar_cuil",
-                                    "issuing_country": "string",
+                                    "issuing_country": "issuing_country",
                                 },
                             ],
                         },
-                        "child_legal_entity_id": "string",
+                        "child_legal_entity_id": "child_legal_entity_id",
                     },
                     {
                         "relationship_types": ["beneficial_owner", "control_person"],
-                        "title": "string",
+                        "title": "title",
                         "ownership_percentage": 0,
                         "child_legal_entity": {
                             "legal_entity_type": "business",
                             "risk_rating": "low",
-                            "first_name": "string",
-                            "last_name": "string",
+                            "first_name": "first_name",
+                            "last_name": "last_name",
                             "date_of_birth": parse_date("2019-12-27"),
                             "date_formed": parse_date("2019-12-27"),
-                            "business_name": "string",
+                            "business_name": "business_name",
                             "doing_business_as_names": ["string", "string", "string"],
                             "legal_structure": "corporation",
                             "phone_numbers": [
-                                {"phone_number": "string"},
-                                {"phone_number": "string"},
-                                {"phone_number": "string"},
+                                {"phone_number": "phone_number"},
+                                {"phone_number": "phone_number"},
+                                {"phone_number": "phone_number"},
                             ],
-                            "email": "string",
-                            "website": "string",
+                            "email": "email",
+                            "website": "website",
                             "metadata": {
                                 "key": "value",
                                 "foo": "bar",
@@ -656,73 +664,73 @@ class TestAsyncConnectionLegalEntities:
                             "addresses": [
                                 {
                                     "address_types": ["business", "mailing", "other"],
-                                    "line1": "string",
-                                    "line2": "string",
-                                    "locality": "string",
-                                    "region": "string",
-                                    "postal_code": "string",
-                                    "country": "string",
+                                    "line1": "line1",
+                                    "line2": "line2",
+                                    "locality": "locality",
+                                    "region": "region",
+                                    "postal_code": "postal_code",
+                                    "country": "country",
                                 },
                                 {
                                     "address_types": ["business", "mailing", "other"],
-                                    "line1": "string",
-                                    "line2": "string",
-                                    "locality": "string",
-                                    "region": "string",
-                                    "postal_code": "string",
-                                    "country": "string",
+                                    "line1": "line1",
+                                    "line2": "line2",
+                                    "locality": "locality",
+                                    "region": "region",
+                                    "postal_code": "postal_code",
+                                    "country": "country",
                                 },
                                 {
                                     "address_types": ["business", "mailing", "other"],
-                                    "line1": "string",
-                                    "line2": "string",
-                                    "locality": "string",
-                                    "region": "string",
-                                    "postal_code": "string",
-                                    "country": "string",
+                                    "line1": "line1",
+                                    "line2": "line2",
+                                    "locality": "locality",
+                                    "region": "region",
+                                    "postal_code": "postal_code",
+                                    "country": "country",
                                 },
                             ],
                             "identifications": [
                                 {
-                                    "id_number": "string",
+                                    "id_number": "id_number",
                                     "id_type": "ar_cuil",
-                                    "issuing_country": "string",
+                                    "issuing_country": "issuing_country",
                                 },
                                 {
-                                    "id_number": "string",
+                                    "id_number": "id_number",
                                     "id_type": "ar_cuil",
-                                    "issuing_country": "string",
+                                    "issuing_country": "issuing_country",
                                 },
                                 {
-                                    "id_number": "string",
+                                    "id_number": "id_number",
                                     "id_type": "ar_cuil",
-                                    "issuing_country": "string",
+                                    "issuing_country": "issuing_country",
                                 },
                             ],
                         },
-                        "child_legal_entity_id": "string",
+                        "child_legal_entity_id": "child_legal_entity_id",
                     },
                     {
                         "relationship_types": ["beneficial_owner", "control_person"],
-                        "title": "string",
+                        "title": "title",
                         "ownership_percentage": 0,
                         "child_legal_entity": {
                             "legal_entity_type": "business",
                             "risk_rating": "low",
-                            "first_name": "string",
-                            "last_name": "string",
+                            "first_name": "first_name",
+                            "last_name": "last_name",
                             "date_of_birth": parse_date("2019-12-27"),
                             "date_formed": parse_date("2019-12-27"),
-                            "business_name": "string",
+                            "business_name": "business_name",
                             "doing_business_as_names": ["string", "string", "string"],
                             "legal_structure": "corporation",
                             "phone_numbers": [
-                                {"phone_number": "string"},
-                                {"phone_number": "string"},
-                                {"phone_number": "string"},
+                                {"phone_number": "phone_number"},
+                                {"phone_number": "phone_number"},
+                                {"phone_number": "phone_number"},
                             ],
-                            "email": "string",
-                            "website": "string",
+                            "email": "email",
+                            "website": "website",
                             "metadata": {
                                 "key": "value",
                                 "foo": "bar",
@@ -731,62 +739,62 @@ class TestAsyncConnectionLegalEntities:
                             "addresses": [
                                 {
                                     "address_types": ["business", "mailing", "other"],
-                                    "line1": "string",
-                                    "line2": "string",
-                                    "locality": "string",
-                                    "region": "string",
-                                    "postal_code": "string",
-                                    "country": "string",
+                                    "line1": "line1",
+                                    "line2": "line2",
+                                    "locality": "locality",
+                                    "region": "region",
+                                    "postal_code": "postal_code",
+                                    "country": "country",
                                 },
                                 {
                                     "address_types": ["business", "mailing", "other"],
-                                    "line1": "string",
-                                    "line2": "string",
-                                    "locality": "string",
-                                    "region": "string",
-                                    "postal_code": "string",
-                                    "country": "string",
+                                    "line1": "line1",
+                                    "line2": "line2",
+                                    "locality": "locality",
+                                    "region": "region",
+                                    "postal_code": "postal_code",
+                                    "country": "country",
                                 },
                                 {
                                     "address_types": ["business", "mailing", "other"],
-                                    "line1": "string",
-                                    "line2": "string",
-                                    "locality": "string",
-                                    "region": "string",
-                                    "postal_code": "string",
-                                    "country": "string",
+                                    "line1": "line1",
+                                    "line2": "line2",
+                                    "locality": "locality",
+                                    "region": "region",
+                                    "postal_code": "postal_code",
+                                    "country": "country",
                                 },
                             ],
                             "identifications": [
                                 {
-                                    "id_number": "string",
+                                    "id_number": "id_number",
                                     "id_type": "ar_cuil",
-                                    "issuing_country": "string",
+                                    "issuing_country": "issuing_country",
                                 },
                                 {
-                                    "id_number": "string",
+                                    "id_number": "id_number",
                                     "id_type": "ar_cuil",
-                                    "issuing_country": "string",
+                                    "issuing_country": "issuing_country",
                                 },
                                 {
-                                    "id_number": "string",
+                                    "id_number": "id_number",
                                     "id_type": "ar_cuil",
-                                    "issuing_country": "string",
+                                    "issuing_country": "issuing_country",
                                 },
                             ],
                         },
-                        "child_legal_entity_id": "string",
+                        "child_legal_entity_id": "child_legal_entity_id",
                     },
                 ],
             },
-            legal_entity_id="string",
+            legal_entity_id="legal_entity_id",
         )
         assert_matches_type(ConnectionLegalEntity, connection_legal_entity, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.connection_legal_entities.with_raw_response.create(
-            connection_id="string",
+            connection_id="connection_id",
         )
 
         assert response.is_closed is True
@@ -797,7 +805,7 @@ class TestAsyncConnectionLegalEntities:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.connection_legal_entities.with_streaming_response.create(
-            connection_id="string",
+            connection_id="connection_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -810,14 +818,14 @@ class TestAsyncConnectionLegalEntities:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
         connection_legal_entity = await async_client.connection_legal_entities.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(ConnectionLegalEntity, connection_legal_entity, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.connection_legal_entities.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -828,7 +836,7 @@ class TestAsyncConnectionLegalEntities:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.connection_legal_entities.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -848,14 +856,14 @@ class TestAsyncConnectionLegalEntities:
     @parametrize
     async def test_method_update(self, async_client: AsyncModernTreasury) -> None:
         connection_legal_entity = await async_client.connection_legal_entities.update(
-            "string",
+            id="id",
         )
         assert_matches_type(ConnectionLegalEntity, connection_legal_entity, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         connection_legal_entity = await async_client.connection_legal_entities.update(
-            "string",
+            id="id",
             status="processing",
         )
         assert_matches_type(ConnectionLegalEntity, connection_legal_entity, path=["response"])
@@ -863,7 +871,7 @@ class TestAsyncConnectionLegalEntities:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.connection_legal_entities.with_raw_response.update(
-            "string",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -874,7 +882,7 @@ class TestAsyncConnectionLegalEntities:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.connection_legal_entities.with_streaming_response.update(
-            "string",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -888,7 +896,7 @@ class TestAsyncConnectionLegalEntities:
     async def test_path_params_update(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.connection_legal_entities.with_raw_response.update(
-                "",
+                id="",
             )
 
     @parametrize
@@ -899,9 +907,9 @@ class TestAsyncConnectionLegalEntities:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         connection_legal_entity = await async_client.connection_legal_entities.list(
-            after_cursor="string",
-            connection_id="string",
-            legal_entity_id="string",
+            after_cursor="after_cursor",
+            connection_id="connection_id",
+            legal_entity_id="legal_entity_id",
             per_page=0,
             status="completed",
         )

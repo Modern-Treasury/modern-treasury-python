@@ -49,34 +49,34 @@ class TestPaymentOrders:
             accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             charge_bearer="shared",
             currency="AED",
-            description="string",
+            description="description",
             documents=[
                 {
-                    "documentable_id": "string",
+                    "documentable_id": "documentable_id",
                     "documentable_type": "cases",
-                    "document_type": "string",
+                    "document_type": "document_type",
                     "file": b"raw file contents",
                 },
                 {
-                    "documentable_id": "string",
+                    "documentable_id": "documentable_id",
                     "documentable_type": "cases",
-                    "document_type": "string",
+                    "document_type": "document_type",
                     "file": b"raw file contents",
                 },
                 {
-                    "documentable_id": "string",
+                    "documentable_id": "documentable_id",
                     "documentable_type": "cases",
-                    "document_type": "string",
+                    "document_type": "document_type",
                     "file": b"raw file contents",
                 },
             ],
             effective_date=parse_date("2019-12-27"),
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             fallback_type="ach",
-            foreign_exchange_contract="string",
+            foreign_exchange_contract="foreign_exchange_contract",
             foreign_exchange_indicator="fixed_to_variable",
             ledger_transaction={
-                "description": "string",
+                "description": "description",
                 "status": "archived",
                 "metadata": {
                     "key": "value",
@@ -132,7 +132,7 @@ class TestPaymentOrders:
                         },
                     },
                 ],
-                "external_id": "string",
+                "external_id": "external_id",
                 "ledgerable_type": "expected_payment",
                 "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             },
@@ -145,8 +145,8 @@ class TestPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                    "description": "string",
-                    "accounting_category_id": "string",
+                    "description": "description",
+                    "accounting_category_id": "accounting_category_id",
                 },
                 {
                     "amount": 0,
@@ -155,8 +155,8 @@ class TestPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                    "description": "string",
-                    "accounting_category_id": "string",
+                    "description": "description",
+                    "accounting_category_id": "accounting_category_id",
                 },
                 {
                     "amount": 0,
@@ -165,8 +165,8 @@ class TestPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                    "description": "string",
-                    "accounting_category_id": "string",
+                    "description": "description",
+                    "accounting_category_id": "accounting_category_id",
                 },
             ],
             metadata={
@@ -175,49 +175,49 @@ class TestPaymentOrders:
                 "modern": "treasury",
             },
             nsf_protected=True,
-            originating_party_name="string",
+            originating_party_name="originating_party_name",
             priority="high",
             process_after=parse_datetime("2019-12-27T18:11:19.117Z"),
-            purpose="string",
+            purpose="purpose",
             receiving_account={
                 "account_type": "cash",
                 "party_type": "business",
                 "party_address": {
-                    "line1": "string",
-                    "line2": "string",
-                    "locality": "string",
-                    "region": "string",
-                    "postal_code": "string",
-                    "country": "string",
+                    "line1": "line1",
+                    "line2": "line2",
+                    "locality": "locality",
+                    "region": "region",
+                    "postal_code": "postal_code",
+                    "country": "country",
                 },
-                "name": "string",
+                "name": "name",
                 "account_details": [
                     {
-                        "account_number": "string",
+                        "account_number": "account_number",
                         "account_number_type": "au_number",
                     },
                     {
-                        "account_number": "string",
+                        "account_number": "account_number",
                         "account_number_type": "au_number",
                     },
                     {
-                        "account_number": "string",
+                        "account_number": "account_number",
                         "account_number_type": "au_number",
                     },
                 ],
                 "routing_details": [
                     {
-                        "routing_number": "string",
+                        "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
                     },
                     {
-                        "routing_number": "string",
+                        "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
                     },
                     {
-                        "routing_number": "string",
+                        "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
                     },
@@ -227,14 +227,14 @@ class TestPaymentOrders:
                     "foo": "bar",
                     "modern": "treasury",
                 },
-                "party_name": "string",
-                "party_identifier": "string",
+                "party_name": "party_name",
+                "party_identifier": "party_identifier",
                 "ledger_account": {
-                    "name": "string",
-                    "description": "string",
+                    "name": "name",
+                    "description": "description",
                     "normal_balance": "credit",
                     "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "currency": "string",
+                    "currency": "currency",
                     "currency_exponent": 0,
                     "ledger_account_category_ids": [
                         "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -249,32 +249,32 @@ class TestPaymentOrders:
                         "modern": "treasury",
                     },
                 },
-                "plaid_processor_token": "string",
+                "plaid_processor_token": "plaid_processor_token",
                 "contact_details": [
                     {
-                        "contact_identifier": "string",
+                        "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
                     },
                     {
-                        "contact_identifier": "string",
+                        "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
                     },
                     {
-                        "contact_identifier": "string",
+                        "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
                     },
                 ],
             },
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            remittance_information="string",
+            remittance_information="remittance_information",
             send_remittance_advice=True,
-            statement_descriptor="string",
+            statement_descriptor="statement_descriptor",
             subtype="0C",
             transaction_monitoring_enabled=True,
-            ultimate_originating_party_identifier="string",
-            ultimate_originating_party_name="string",
-            ultimate_receiving_party_identifier="string",
-            ultimate_receiving_party_name="string",
+            ultimate_originating_party_identifier="ultimate_originating_party_identifier",
+            ultimate_originating_party_name="ultimate_originating_party_name",
+            ultimate_receiving_party_identifier="ultimate_receiving_party_identifier",
+            ultimate_receiving_party_name="ultimate_receiving_party_name",
         )
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
@@ -313,14 +313,14 @@ class TestPaymentOrders:
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         payment_order = client.payment_orders.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
         response = client.payment_orders.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -331,7 +331,7 @@ class TestPaymentOrders:
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.payment_orders.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -351,14 +351,14 @@ class TestPaymentOrders:
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
         payment_order = client.payment_orders.update(
-            "string",
+            id="id",
         )
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         payment_order = client.payment_orders.update(
-            "string",
+            id="id",
             accounting={
                 "account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "class_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -369,12 +369,12 @@ class TestPaymentOrders:
             charge_bearer="shared",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="AED",
-            description="string",
+            description="description",
             direction="credit",
             effective_date=parse_date("2019-12-27"),
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             fallback_type="ach",
-            foreign_exchange_contract="string",
+            foreign_exchange_contract="foreign_exchange_contract",
             foreign_exchange_indicator="fixed_to_variable",
             line_items=[
                 {
@@ -384,8 +384,8 @@ class TestPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                    "description": "string",
-                    "accounting_category_id": "string",
+                    "description": "description",
+                    "accounting_category_id": "accounting_category_id",
                 },
                 {
                     "amount": 0,
@@ -394,8 +394,8 @@ class TestPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                    "description": "string",
-                    "accounting_category_id": "string",
+                    "description": "description",
+                    "accounting_category_id": "accounting_category_id",
                 },
                 {
                     "amount": 0,
@@ -404,8 +404,8 @@ class TestPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                    "description": "string",
-                    "accounting_category_id": "string",
+                    "description": "description",
+                    "accounting_category_id": "accounting_category_id",
                 },
             ],
             metadata={
@@ -415,49 +415,49 @@ class TestPaymentOrders:
             },
             nsf_protected=True,
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            originating_party_name="string",
+            originating_party_name="originating_party_name",
             priority="high",
             process_after=parse_datetime("2019-12-27T18:11:19.117Z"),
-            purpose="string",
+            purpose="purpose",
             receiving_account={
                 "account_type": "cash",
                 "party_type": "business",
                 "party_address": {
-                    "line1": "string",
-                    "line2": "string",
-                    "locality": "string",
-                    "region": "string",
-                    "postal_code": "string",
-                    "country": "string",
+                    "line1": "line1",
+                    "line2": "line2",
+                    "locality": "locality",
+                    "region": "region",
+                    "postal_code": "postal_code",
+                    "country": "country",
                 },
-                "name": "string",
+                "name": "name",
                 "account_details": [
                     {
-                        "account_number": "string",
+                        "account_number": "account_number",
                         "account_number_type": "au_number",
                     },
                     {
-                        "account_number": "string",
+                        "account_number": "account_number",
                         "account_number_type": "au_number",
                     },
                     {
-                        "account_number": "string",
+                        "account_number": "account_number",
                         "account_number_type": "au_number",
                     },
                 ],
                 "routing_details": [
                     {
-                        "routing_number": "string",
+                        "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
                     },
                     {
-                        "routing_number": "string",
+                        "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
                     },
                     {
-                        "routing_number": "string",
+                        "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
                     },
@@ -467,14 +467,14 @@ class TestPaymentOrders:
                     "foo": "bar",
                     "modern": "treasury",
                 },
-                "party_name": "string",
-                "party_identifier": "string",
+                "party_name": "party_name",
+                "party_identifier": "party_identifier",
                 "ledger_account": {
-                    "name": "string",
-                    "description": "string",
+                    "name": "name",
+                    "description": "description",
                     "normal_balance": "credit",
                     "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "currency": "string",
+                    "currency": "currency",
                     "currency_exponent": 0,
                     "ledger_account_category_ids": [
                         "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -489,40 +489,40 @@ class TestPaymentOrders:
                         "modern": "treasury",
                     },
                 },
-                "plaid_processor_token": "string",
+                "plaid_processor_token": "plaid_processor_token",
                 "contact_details": [
                     {
-                        "contact_identifier": "string",
+                        "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
                     },
                     {
-                        "contact_identifier": "string",
+                        "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
                     },
                     {
-                        "contact_identifier": "string",
+                        "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
                     },
                 ],
             },
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            remittance_information="string",
+            remittance_information="remittance_information",
             send_remittance_advice=True,
-            statement_descriptor="string",
+            statement_descriptor="statement_descriptor",
             status="approved",
             subtype="0C",
             type="ach",
-            ultimate_originating_party_identifier="string",
-            ultimate_originating_party_name="string",
-            ultimate_receiving_party_identifier="string",
-            ultimate_receiving_party_name="string",
+            ultimate_originating_party_identifier="ultimate_originating_party_identifier",
+            ultimate_originating_party_name="ultimate_originating_party_name",
+            ultimate_receiving_party_identifier="ultimate_receiving_party_identifier",
+            ultimate_receiving_party_name="ultimate_receiving_party_name",
         )
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: ModernTreasury) -> None:
         response = client.payment_orders.with_raw_response.update(
-            "string",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -533,7 +533,7 @@ class TestPaymentOrders:
     @parametrize
     def test_streaming_response_update(self, client: ModernTreasury) -> None:
         with client.payment_orders.with_streaming_response.update(
-            "string",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -547,7 +547,7 @@ class TestPaymentOrders:
     def test_path_params_update(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.payment_orders.with_raw_response.update(
-                "",
+                id="",
             )
 
     @parametrize
@@ -558,22 +558,22 @@ class TestPaymentOrders:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         payment_order = client.payment_orders.list(
-            after_cursor="string",
-            counterparty_id="string",
+            after_cursor="after_cursor",
+            counterparty_id="counterparty_id",
             created_at_end=parse_date("2019-12-27"),
             created_at_start=parse_date("2019-12-27"),
             direction="credit",
             effective_date_end=parse_date("2019-12-27"),
             effective_date_start=parse_date("2019-12-27"),
             metadata={"foo": "string"},
-            originating_account_id="string",
+            originating_account_id="originating_account_id",
             per_page=0,
             priority="high",
             process_after_end=parse_datetime("2019-12-27T18:11:19.117Z"),
             process_after_start=parse_datetime("2019-12-27T18:11:19.117Z"),
-            reference_number="string",
+            reference_number="reference_number",
             status="approved",
-            transaction_id="string",
+            transaction_id="transaction_id",
             type="ach",
         )
         assert_matches_type(SyncPage[PaymentOrder], payment_order, path=["response"])
@@ -623,14 +623,14 @@ class TestPaymentOrders:
             accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             charge_bearer="shared",
             currency="AED",
-            description="string",
+            description="description",
             effective_date=parse_date("2019-12-27"),
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             fallback_type="ach",
-            foreign_exchange_contract="string",
+            foreign_exchange_contract="foreign_exchange_contract",
             foreign_exchange_indicator="fixed_to_variable",
             ledger_transaction={
-                "description": "string",
+                "description": "description",
                 "status": "archived",
                 "metadata": {
                     "key": "value",
@@ -686,7 +686,7 @@ class TestPaymentOrders:
                         },
                     },
                 ],
-                "external_id": "string",
+                "external_id": "external_id",
                 "ledgerable_type": "expected_payment",
                 "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             },
@@ -699,8 +699,8 @@ class TestPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                    "description": "string",
-                    "accounting_category_id": "string",
+                    "description": "description",
+                    "accounting_category_id": "accounting_category_id",
                 },
                 {
                     "amount": 0,
@@ -709,8 +709,8 @@ class TestPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                    "description": "string",
-                    "accounting_category_id": "string",
+                    "description": "description",
+                    "accounting_category_id": "accounting_category_id",
                 },
                 {
                     "amount": 0,
@@ -719,8 +719,8 @@ class TestPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                    "description": "string",
-                    "accounting_category_id": "string",
+                    "description": "description",
+                    "accounting_category_id": "accounting_category_id",
                 },
             ],
             metadata={
@@ -729,49 +729,49 @@ class TestPaymentOrders:
                 "modern": "treasury",
             },
             nsf_protected=True,
-            originating_party_name="string",
+            originating_party_name="originating_party_name",
             priority="high",
             process_after=parse_datetime("2019-12-27T18:11:19.117Z"),
-            purpose="string",
+            purpose="purpose",
             receiving_account={
                 "account_type": "cash",
                 "party_type": "business",
                 "party_address": {
-                    "line1": "string",
-                    "line2": "string",
-                    "locality": "string",
-                    "region": "string",
-                    "postal_code": "string",
-                    "country": "string",
+                    "line1": "line1",
+                    "line2": "line2",
+                    "locality": "locality",
+                    "region": "region",
+                    "postal_code": "postal_code",
+                    "country": "country",
                 },
-                "name": "string",
+                "name": "name",
                 "account_details": [
                     {
-                        "account_number": "string",
+                        "account_number": "account_number",
                         "account_number_type": "au_number",
                     },
                     {
-                        "account_number": "string",
+                        "account_number": "account_number",
                         "account_number_type": "au_number",
                     },
                     {
-                        "account_number": "string",
+                        "account_number": "account_number",
                         "account_number_type": "au_number",
                     },
                 ],
                 "routing_details": [
                     {
-                        "routing_number": "string",
+                        "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
                     },
                     {
-                        "routing_number": "string",
+                        "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
                     },
                     {
-                        "routing_number": "string",
+                        "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
                     },
@@ -781,14 +781,14 @@ class TestPaymentOrders:
                     "foo": "bar",
                     "modern": "treasury",
                 },
-                "party_name": "string",
-                "party_identifier": "string",
+                "party_name": "party_name",
+                "party_identifier": "party_identifier",
                 "ledger_account": {
-                    "name": "string",
-                    "description": "string",
+                    "name": "name",
+                    "description": "description",
                     "normal_balance": "credit",
                     "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "currency": "string",
+                    "currency": "currency",
                     "currency_exponent": 0,
                     "ledger_account_category_ids": [
                         "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -803,32 +803,32 @@ class TestPaymentOrders:
                         "modern": "treasury",
                     },
                 },
-                "plaid_processor_token": "string",
+                "plaid_processor_token": "plaid_processor_token",
                 "contact_details": [
                     {
-                        "contact_identifier": "string",
+                        "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
                     },
                     {
-                        "contact_identifier": "string",
+                        "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
                     },
                     {
-                        "contact_identifier": "string",
+                        "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
                     },
                 ],
             },
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            remittance_information="string",
+            remittance_information="remittance_information",
             send_remittance_advice=True,
-            statement_descriptor="string",
+            statement_descriptor="statement_descriptor",
             subtype="0C",
             transaction_monitoring_enabled=True,
-            ultimate_originating_party_identifier="string",
-            ultimate_originating_party_name="string",
-            ultimate_receiving_party_identifier="string",
-            ultimate_receiving_party_name="string",
+            ultimate_originating_party_identifier="ultimate_originating_party_identifier",
+            ultimate_originating_party_name="ultimate_originating_party_name",
+            ultimate_receiving_party_identifier="ultimate_receiving_party_identifier",
+            ultimate_receiving_party_name="ultimate_receiving_party_name",
         )
         assert_matches_type(AsyncResponse, payment_order, path=["response"])
 
@@ -893,34 +893,34 @@ class TestAsyncPaymentOrders:
             accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             charge_bearer="shared",
             currency="AED",
-            description="string",
+            description="description",
             documents=[
                 {
-                    "documentable_id": "string",
+                    "documentable_id": "documentable_id",
                     "documentable_type": "cases",
-                    "document_type": "string",
+                    "document_type": "document_type",
                     "file": b"raw file contents",
                 },
                 {
-                    "documentable_id": "string",
+                    "documentable_id": "documentable_id",
                     "documentable_type": "cases",
-                    "document_type": "string",
+                    "document_type": "document_type",
                     "file": b"raw file contents",
                 },
                 {
-                    "documentable_id": "string",
+                    "documentable_id": "documentable_id",
                     "documentable_type": "cases",
-                    "document_type": "string",
+                    "document_type": "document_type",
                     "file": b"raw file contents",
                 },
             ],
             effective_date=parse_date("2019-12-27"),
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             fallback_type="ach",
-            foreign_exchange_contract="string",
+            foreign_exchange_contract="foreign_exchange_contract",
             foreign_exchange_indicator="fixed_to_variable",
             ledger_transaction={
-                "description": "string",
+                "description": "description",
                 "status": "archived",
                 "metadata": {
                     "key": "value",
@@ -976,7 +976,7 @@ class TestAsyncPaymentOrders:
                         },
                     },
                 ],
-                "external_id": "string",
+                "external_id": "external_id",
                 "ledgerable_type": "expected_payment",
                 "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             },
@@ -989,8 +989,8 @@ class TestAsyncPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                    "description": "string",
-                    "accounting_category_id": "string",
+                    "description": "description",
+                    "accounting_category_id": "accounting_category_id",
                 },
                 {
                     "amount": 0,
@@ -999,8 +999,8 @@ class TestAsyncPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                    "description": "string",
-                    "accounting_category_id": "string",
+                    "description": "description",
+                    "accounting_category_id": "accounting_category_id",
                 },
                 {
                     "amount": 0,
@@ -1009,8 +1009,8 @@ class TestAsyncPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                    "description": "string",
-                    "accounting_category_id": "string",
+                    "description": "description",
+                    "accounting_category_id": "accounting_category_id",
                 },
             ],
             metadata={
@@ -1019,49 +1019,49 @@ class TestAsyncPaymentOrders:
                 "modern": "treasury",
             },
             nsf_protected=True,
-            originating_party_name="string",
+            originating_party_name="originating_party_name",
             priority="high",
             process_after=parse_datetime("2019-12-27T18:11:19.117Z"),
-            purpose="string",
+            purpose="purpose",
             receiving_account={
                 "account_type": "cash",
                 "party_type": "business",
                 "party_address": {
-                    "line1": "string",
-                    "line2": "string",
-                    "locality": "string",
-                    "region": "string",
-                    "postal_code": "string",
-                    "country": "string",
+                    "line1": "line1",
+                    "line2": "line2",
+                    "locality": "locality",
+                    "region": "region",
+                    "postal_code": "postal_code",
+                    "country": "country",
                 },
-                "name": "string",
+                "name": "name",
                 "account_details": [
                     {
-                        "account_number": "string",
+                        "account_number": "account_number",
                         "account_number_type": "au_number",
                     },
                     {
-                        "account_number": "string",
+                        "account_number": "account_number",
                         "account_number_type": "au_number",
                     },
                     {
-                        "account_number": "string",
+                        "account_number": "account_number",
                         "account_number_type": "au_number",
                     },
                 ],
                 "routing_details": [
                     {
-                        "routing_number": "string",
+                        "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
                     },
                     {
-                        "routing_number": "string",
+                        "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
                     },
                     {
-                        "routing_number": "string",
+                        "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
                     },
@@ -1071,14 +1071,14 @@ class TestAsyncPaymentOrders:
                     "foo": "bar",
                     "modern": "treasury",
                 },
-                "party_name": "string",
-                "party_identifier": "string",
+                "party_name": "party_name",
+                "party_identifier": "party_identifier",
                 "ledger_account": {
-                    "name": "string",
-                    "description": "string",
+                    "name": "name",
+                    "description": "description",
                     "normal_balance": "credit",
                     "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "currency": "string",
+                    "currency": "currency",
                     "currency_exponent": 0,
                     "ledger_account_category_ids": [
                         "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -1093,32 +1093,32 @@ class TestAsyncPaymentOrders:
                         "modern": "treasury",
                     },
                 },
-                "plaid_processor_token": "string",
+                "plaid_processor_token": "plaid_processor_token",
                 "contact_details": [
                     {
-                        "contact_identifier": "string",
+                        "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
                     },
                     {
-                        "contact_identifier": "string",
+                        "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
                     },
                     {
-                        "contact_identifier": "string",
+                        "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
                     },
                 ],
             },
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            remittance_information="string",
+            remittance_information="remittance_information",
             send_remittance_advice=True,
-            statement_descriptor="string",
+            statement_descriptor="statement_descriptor",
             subtype="0C",
             transaction_monitoring_enabled=True,
-            ultimate_originating_party_identifier="string",
-            ultimate_originating_party_name="string",
-            ultimate_receiving_party_identifier="string",
-            ultimate_receiving_party_name="string",
+            ultimate_originating_party_identifier="ultimate_originating_party_identifier",
+            ultimate_originating_party_name="ultimate_originating_party_name",
+            ultimate_receiving_party_identifier="ultimate_receiving_party_identifier",
+            ultimate_receiving_party_name="ultimate_receiving_party_name",
         )
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
@@ -1157,14 +1157,14 @@ class TestAsyncPaymentOrders:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
         payment_order = await async_client.payment_orders.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.payment_orders.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -1175,7 +1175,7 @@ class TestAsyncPaymentOrders:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.payment_orders.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1195,14 +1195,14 @@ class TestAsyncPaymentOrders:
     @parametrize
     async def test_method_update(self, async_client: AsyncModernTreasury) -> None:
         payment_order = await async_client.payment_orders.update(
-            "string",
+            id="id",
         )
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         payment_order = await async_client.payment_orders.update(
-            "string",
+            id="id",
             accounting={
                 "account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "class_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -1213,12 +1213,12 @@ class TestAsyncPaymentOrders:
             charge_bearer="shared",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="AED",
-            description="string",
+            description="description",
             direction="credit",
             effective_date=parse_date("2019-12-27"),
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             fallback_type="ach",
-            foreign_exchange_contract="string",
+            foreign_exchange_contract="foreign_exchange_contract",
             foreign_exchange_indicator="fixed_to_variable",
             line_items=[
                 {
@@ -1228,8 +1228,8 @@ class TestAsyncPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                    "description": "string",
-                    "accounting_category_id": "string",
+                    "description": "description",
+                    "accounting_category_id": "accounting_category_id",
                 },
                 {
                     "amount": 0,
@@ -1238,8 +1238,8 @@ class TestAsyncPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                    "description": "string",
-                    "accounting_category_id": "string",
+                    "description": "description",
+                    "accounting_category_id": "accounting_category_id",
                 },
                 {
                     "amount": 0,
@@ -1248,8 +1248,8 @@ class TestAsyncPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                    "description": "string",
-                    "accounting_category_id": "string",
+                    "description": "description",
+                    "accounting_category_id": "accounting_category_id",
                 },
             ],
             metadata={
@@ -1259,49 +1259,49 @@ class TestAsyncPaymentOrders:
             },
             nsf_protected=True,
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            originating_party_name="string",
+            originating_party_name="originating_party_name",
             priority="high",
             process_after=parse_datetime("2019-12-27T18:11:19.117Z"),
-            purpose="string",
+            purpose="purpose",
             receiving_account={
                 "account_type": "cash",
                 "party_type": "business",
                 "party_address": {
-                    "line1": "string",
-                    "line2": "string",
-                    "locality": "string",
-                    "region": "string",
-                    "postal_code": "string",
-                    "country": "string",
+                    "line1": "line1",
+                    "line2": "line2",
+                    "locality": "locality",
+                    "region": "region",
+                    "postal_code": "postal_code",
+                    "country": "country",
                 },
-                "name": "string",
+                "name": "name",
                 "account_details": [
                     {
-                        "account_number": "string",
+                        "account_number": "account_number",
                         "account_number_type": "au_number",
                     },
                     {
-                        "account_number": "string",
+                        "account_number": "account_number",
                         "account_number_type": "au_number",
                     },
                     {
-                        "account_number": "string",
+                        "account_number": "account_number",
                         "account_number_type": "au_number",
                     },
                 ],
                 "routing_details": [
                     {
-                        "routing_number": "string",
+                        "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
                     },
                     {
-                        "routing_number": "string",
+                        "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
                     },
                     {
-                        "routing_number": "string",
+                        "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
                     },
@@ -1311,14 +1311,14 @@ class TestAsyncPaymentOrders:
                     "foo": "bar",
                     "modern": "treasury",
                 },
-                "party_name": "string",
-                "party_identifier": "string",
+                "party_name": "party_name",
+                "party_identifier": "party_identifier",
                 "ledger_account": {
-                    "name": "string",
-                    "description": "string",
+                    "name": "name",
+                    "description": "description",
                     "normal_balance": "credit",
                     "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "currency": "string",
+                    "currency": "currency",
                     "currency_exponent": 0,
                     "ledger_account_category_ids": [
                         "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -1333,40 +1333,40 @@ class TestAsyncPaymentOrders:
                         "modern": "treasury",
                     },
                 },
-                "plaid_processor_token": "string",
+                "plaid_processor_token": "plaid_processor_token",
                 "contact_details": [
                     {
-                        "contact_identifier": "string",
+                        "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
                     },
                     {
-                        "contact_identifier": "string",
+                        "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
                     },
                     {
-                        "contact_identifier": "string",
+                        "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
                     },
                 ],
             },
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            remittance_information="string",
+            remittance_information="remittance_information",
             send_remittance_advice=True,
-            statement_descriptor="string",
+            statement_descriptor="statement_descriptor",
             status="approved",
             subtype="0C",
             type="ach",
-            ultimate_originating_party_identifier="string",
-            ultimate_originating_party_name="string",
-            ultimate_receiving_party_identifier="string",
-            ultimate_receiving_party_name="string",
+            ultimate_originating_party_identifier="ultimate_originating_party_identifier",
+            ultimate_originating_party_name="ultimate_originating_party_name",
+            ultimate_receiving_party_identifier="ultimate_receiving_party_identifier",
+            ultimate_receiving_party_name="ultimate_receiving_party_name",
         )
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.payment_orders.with_raw_response.update(
-            "string",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -1377,7 +1377,7 @@ class TestAsyncPaymentOrders:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.payment_orders.with_streaming_response.update(
-            "string",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1391,7 +1391,7 @@ class TestAsyncPaymentOrders:
     async def test_path_params_update(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.payment_orders.with_raw_response.update(
-                "",
+                id="",
             )
 
     @parametrize
@@ -1402,22 +1402,22 @@ class TestAsyncPaymentOrders:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         payment_order = await async_client.payment_orders.list(
-            after_cursor="string",
-            counterparty_id="string",
+            after_cursor="after_cursor",
+            counterparty_id="counterparty_id",
             created_at_end=parse_date("2019-12-27"),
             created_at_start=parse_date("2019-12-27"),
             direction="credit",
             effective_date_end=parse_date("2019-12-27"),
             effective_date_start=parse_date("2019-12-27"),
             metadata={"foo": "string"},
-            originating_account_id="string",
+            originating_account_id="originating_account_id",
             per_page=0,
             priority="high",
             process_after_end=parse_datetime("2019-12-27T18:11:19.117Z"),
             process_after_start=parse_datetime("2019-12-27T18:11:19.117Z"),
-            reference_number="string",
+            reference_number="reference_number",
             status="approved",
-            transaction_id="string",
+            transaction_id="transaction_id",
             type="ach",
         )
         assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=["response"])
@@ -1467,14 +1467,14 @@ class TestAsyncPaymentOrders:
             accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             charge_bearer="shared",
             currency="AED",
-            description="string",
+            description="description",
             effective_date=parse_date("2019-12-27"),
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             fallback_type="ach",
-            foreign_exchange_contract="string",
+            foreign_exchange_contract="foreign_exchange_contract",
             foreign_exchange_indicator="fixed_to_variable",
             ledger_transaction={
-                "description": "string",
+                "description": "description",
                 "status": "archived",
                 "metadata": {
                     "key": "value",
@@ -1530,7 +1530,7 @@ class TestAsyncPaymentOrders:
                         },
                     },
                 ],
-                "external_id": "string",
+                "external_id": "external_id",
                 "ledgerable_type": "expected_payment",
                 "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             },
@@ -1543,8 +1543,8 @@ class TestAsyncPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                    "description": "string",
-                    "accounting_category_id": "string",
+                    "description": "description",
+                    "accounting_category_id": "accounting_category_id",
                 },
                 {
                     "amount": 0,
@@ -1553,8 +1553,8 @@ class TestAsyncPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                    "description": "string",
-                    "accounting_category_id": "string",
+                    "description": "description",
+                    "accounting_category_id": "accounting_category_id",
                 },
                 {
                     "amount": 0,
@@ -1563,8 +1563,8 @@ class TestAsyncPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                    "description": "string",
-                    "accounting_category_id": "string",
+                    "description": "description",
+                    "accounting_category_id": "accounting_category_id",
                 },
             ],
             metadata={
@@ -1573,49 +1573,49 @@ class TestAsyncPaymentOrders:
                 "modern": "treasury",
             },
             nsf_protected=True,
-            originating_party_name="string",
+            originating_party_name="originating_party_name",
             priority="high",
             process_after=parse_datetime("2019-12-27T18:11:19.117Z"),
-            purpose="string",
+            purpose="purpose",
             receiving_account={
                 "account_type": "cash",
                 "party_type": "business",
                 "party_address": {
-                    "line1": "string",
-                    "line2": "string",
-                    "locality": "string",
-                    "region": "string",
-                    "postal_code": "string",
-                    "country": "string",
+                    "line1": "line1",
+                    "line2": "line2",
+                    "locality": "locality",
+                    "region": "region",
+                    "postal_code": "postal_code",
+                    "country": "country",
                 },
-                "name": "string",
+                "name": "name",
                 "account_details": [
                     {
-                        "account_number": "string",
+                        "account_number": "account_number",
                         "account_number_type": "au_number",
                     },
                     {
-                        "account_number": "string",
+                        "account_number": "account_number",
                         "account_number_type": "au_number",
                     },
                     {
-                        "account_number": "string",
+                        "account_number": "account_number",
                         "account_number_type": "au_number",
                     },
                 ],
                 "routing_details": [
                     {
-                        "routing_number": "string",
+                        "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
                     },
                     {
-                        "routing_number": "string",
+                        "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
                     },
                     {
-                        "routing_number": "string",
+                        "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
                     },
@@ -1625,14 +1625,14 @@ class TestAsyncPaymentOrders:
                     "foo": "bar",
                     "modern": "treasury",
                 },
-                "party_name": "string",
-                "party_identifier": "string",
+                "party_name": "party_name",
+                "party_identifier": "party_identifier",
                 "ledger_account": {
-                    "name": "string",
-                    "description": "string",
+                    "name": "name",
+                    "description": "description",
                     "normal_balance": "credit",
                     "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "currency": "string",
+                    "currency": "currency",
                     "currency_exponent": 0,
                     "ledger_account_category_ids": [
                         "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -1647,32 +1647,32 @@ class TestAsyncPaymentOrders:
                         "modern": "treasury",
                     },
                 },
-                "plaid_processor_token": "string",
+                "plaid_processor_token": "plaid_processor_token",
                 "contact_details": [
                     {
-                        "contact_identifier": "string",
+                        "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
                     },
                     {
-                        "contact_identifier": "string",
+                        "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
                     },
                     {
-                        "contact_identifier": "string",
+                        "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
                     },
                 ],
             },
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            remittance_information="string",
+            remittance_information="remittance_information",
             send_remittance_advice=True,
-            statement_descriptor="string",
+            statement_descriptor="statement_descriptor",
             subtype="0C",
             transaction_monitoring_enabled=True,
-            ultimate_originating_party_identifier="string",
-            ultimate_originating_party_name="string",
-            ultimate_receiving_party_identifier="string",
-            ultimate_receiving_party_name="string",
+            ultimate_originating_party_identifier="ultimate_originating_party_identifier",
+            ultimate_originating_party_name="ultimate_originating_party_name",
+            ultimate_receiving_party_identifier="ultimate_receiving_party_identifier",
+            ultimate_receiving_party_name="ultimate_receiving_party_name",
         )
         assert_matches_type(AsyncResponse, payment_order, path=["response"])
 

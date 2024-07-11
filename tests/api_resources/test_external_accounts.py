@@ -34,39 +34,39 @@ class TestExternalAccounts:
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_details=[
                 {
-                    "account_number": "string",
+                    "account_number": "account_number",
                     "account_number_type": "au_number",
                 },
                 {
-                    "account_number": "string",
+                    "account_number": "account_number",
                     "account_number_type": "au_number",
                 },
                 {
-                    "account_number": "string",
+                    "account_number": "account_number",
                     "account_number_type": "au_number",
                 },
             ],
             account_type="cash",
             contact_details=[
                 {
-                    "contact_identifier": "string",
+                    "contact_identifier": "contact_identifier",
                     "contact_identifier_type": "email",
                 },
                 {
-                    "contact_identifier": "string",
+                    "contact_identifier": "contact_identifier",
                     "contact_identifier_type": "email",
                 },
                 {
-                    "contact_identifier": "string",
+                    "contact_identifier": "contact_identifier",
                     "contact_identifier_type": "email",
                 },
             ],
             ledger_account={
-                "name": "string",
-                "description": "string",
+                "name": "name",
+                "description": "description",
                 "normal_balance": "credit",
                 "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "currency": "string",
+                "currency": "currency",
                 "currency_exponent": 0,
                 "ledger_account_category_ids": [
                     "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -86,32 +86,32 @@ class TestExternalAccounts:
                 "foo": "bar",
                 "modern": "treasury",
             },
-            name="string",
+            name="name",
             party_address={
-                "line1": "string",
-                "line2": "string",
-                "locality": "string",
-                "region": "string",
-                "postal_code": "string",
-                "country": "string",
+                "line1": "line1",
+                "line2": "line2",
+                "locality": "locality",
+                "region": "region",
+                "postal_code": "postal_code",
+                "country": "country",
             },
-            party_identifier="string",
-            party_name="string",
+            party_identifier="party_identifier",
+            party_name="party_name",
             party_type="business",
-            plaid_processor_token="string",
+            plaid_processor_token="plaid_processor_token",
             routing_details=[
                 {
-                    "routing_number": "string",
+                    "routing_number": "routing_number",
                     "routing_number_type": "aba",
                     "payment_type": "ach",
                 },
                 {
-                    "routing_number": "string",
+                    "routing_number": "routing_number",
                     "routing_number_type": "aba",
                     "payment_type": "ach",
                 },
                 {
-                    "routing_number": "string",
+                    "routing_number": "routing_number",
                     "routing_number_type": "aba",
                     "payment_type": "ach",
                 },
@@ -146,14 +146,14 @@ class TestExternalAccounts:
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         external_account = client.external_accounts.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
         response = client.external_accounts.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -164,7 +164,7 @@ class TestExternalAccounts:
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.external_accounts.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -184,27 +184,27 @@ class TestExternalAccounts:
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
         external_account = client.external_accounts.update(
-            "string",
+            id="id",
         )
         assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         external_account = client.external_accounts.update(
-            "string",
+            id="id",
             account_type="cash",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
-            name="string",
+            name="name",
             party_address={
-                "line1": "string",
-                "line2": "string",
-                "locality": "string",
-                "region": "string",
-                "postal_code": "string",
-                "country": "string",
+                "line1": "line1",
+                "line2": "line2",
+                "locality": "locality",
+                "region": "region",
+                "postal_code": "postal_code",
+                "country": "country",
             },
-            party_name="string",
+            party_name="party_name",
             party_type="business",
         )
         assert_matches_type(ExternalAccount, external_account, path=["response"])
@@ -212,7 +212,7 @@ class TestExternalAccounts:
     @parametrize
     def test_raw_response_update(self, client: ModernTreasury) -> None:
         response = client.external_accounts.with_raw_response.update(
-            "string",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -223,7 +223,7 @@ class TestExternalAccounts:
     @parametrize
     def test_streaming_response_update(self, client: ModernTreasury) -> None:
         with client.external_accounts.with_streaming_response.update(
-            "string",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -237,7 +237,7 @@ class TestExternalAccounts:
     def test_path_params_update(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.external_accounts.with_raw_response.update(
-                "",
+                id="",
             )
 
     @parametrize
@@ -248,10 +248,10 @@ class TestExternalAccounts:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         external_account = client.external_accounts.list(
-            after_cursor="string",
-            counterparty_id="string",
+            after_cursor="after_cursor",
+            counterparty_id="counterparty_id",
             metadata={"foo": "string"},
-            party_name="string",
+            party_name="party_name",
             per_page=0,
         )
         assert_matches_type(SyncPage[ExternalAccount], external_account, path=["response"])
@@ -279,14 +279,14 @@ class TestExternalAccounts:
     @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
         external_account = client.external_accounts.delete(
-            "string",
+            "id",
         )
         assert external_account is None
 
     @parametrize
     def test_raw_response_delete(self, client: ModernTreasury) -> None:
         response = client.external_accounts.with_raw_response.delete(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -297,7 +297,7 @@ class TestExternalAccounts:
     @parametrize
     def test_streaming_response_delete(self, client: ModernTreasury) -> None:
         with client.external_accounts.with_streaming_response.delete(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -317,14 +317,14 @@ class TestExternalAccounts:
     @parametrize
     def test_method_complete_verification(self, client: ModernTreasury) -> None:
         external_account = client.external_accounts.complete_verification(
-            "string",
+            id="id",
         )
         assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     def test_method_complete_verification_with_all_params(self, client: ModernTreasury) -> None:
         external_account = client.external_accounts.complete_verification(
-            "string",
+            id="id",
             amounts=[2, 4],
         )
         assert_matches_type(ExternalAccount, external_account, path=["response"])
@@ -332,7 +332,7 @@ class TestExternalAccounts:
     @parametrize
     def test_raw_response_complete_verification(self, client: ModernTreasury) -> None:
         response = client.external_accounts.with_raw_response.complete_verification(
-            "string",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -343,7 +343,7 @@ class TestExternalAccounts:
     @parametrize
     def test_streaming_response_complete_verification(self, client: ModernTreasury) -> None:
         with client.external_accounts.with_streaming_response.complete_verification(
-            "string",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -357,13 +357,13 @@ class TestExternalAccounts:
     def test_path_params_complete_verification(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.external_accounts.with_raw_response.complete_verification(
-                "",
+                id="",
             )
 
     @parametrize
     def test_method_verify(self, client: ModernTreasury) -> None:
         external_account = client.external_accounts.verify(
-            "string",
+            id="id",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payment_type="ach",
         )
@@ -372,7 +372,7 @@ class TestExternalAccounts:
     @parametrize
     def test_method_verify_with_all_params(self, client: ModernTreasury) -> None:
         external_account = client.external_accounts.verify(
-            "string",
+            id="id",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payment_type="ach",
             currency="AED",
@@ -384,7 +384,7 @@ class TestExternalAccounts:
     @parametrize
     def test_raw_response_verify(self, client: ModernTreasury) -> None:
         response = client.external_accounts.with_raw_response.verify(
-            "string",
+            id="id",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payment_type="ach",
         )
@@ -397,7 +397,7 @@ class TestExternalAccounts:
     @parametrize
     def test_streaming_response_verify(self, client: ModernTreasury) -> None:
         with client.external_accounts.with_streaming_response.verify(
-            "string",
+            id="id",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payment_type="ach",
         ) as response:
@@ -413,7 +413,7 @@ class TestExternalAccounts:
     def test_path_params_verify(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.external_accounts.with_raw_response.verify(
-                "",
+                id="",
                 originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 payment_type="ach",
             )
@@ -435,39 +435,39 @@ class TestAsyncExternalAccounts:
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_details=[
                 {
-                    "account_number": "string",
+                    "account_number": "account_number",
                     "account_number_type": "au_number",
                 },
                 {
-                    "account_number": "string",
+                    "account_number": "account_number",
                     "account_number_type": "au_number",
                 },
                 {
-                    "account_number": "string",
+                    "account_number": "account_number",
                     "account_number_type": "au_number",
                 },
             ],
             account_type="cash",
             contact_details=[
                 {
-                    "contact_identifier": "string",
+                    "contact_identifier": "contact_identifier",
                     "contact_identifier_type": "email",
                 },
                 {
-                    "contact_identifier": "string",
+                    "contact_identifier": "contact_identifier",
                     "contact_identifier_type": "email",
                 },
                 {
-                    "contact_identifier": "string",
+                    "contact_identifier": "contact_identifier",
                     "contact_identifier_type": "email",
                 },
             ],
             ledger_account={
-                "name": "string",
-                "description": "string",
+                "name": "name",
+                "description": "description",
                 "normal_balance": "credit",
                 "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "currency": "string",
+                "currency": "currency",
                 "currency_exponent": 0,
                 "ledger_account_category_ids": [
                     "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -487,32 +487,32 @@ class TestAsyncExternalAccounts:
                 "foo": "bar",
                 "modern": "treasury",
             },
-            name="string",
+            name="name",
             party_address={
-                "line1": "string",
-                "line2": "string",
-                "locality": "string",
-                "region": "string",
-                "postal_code": "string",
-                "country": "string",
+                "line1": "line1",
+                "line2": "line2",
+                "locality": "locality",
+                "region": "region",
+                "postal_code": "postal_code",
+                "country": "country",
             },
-            party_identifier="string",
-            party_name="string",
+            party_identifier="party_identifier",
+            party_name="party_name",
             party_type="business",
-            plaid_processor_token="string",
+            plaid_processor_token="plaid_processor_token",
             routing_details=[
                 {
-                    "routing_number": "string",
+                    "routing_number": "routing_number",
                     "routing_number_type": "aba",
                     "payment_type": "ach",
                 },
                 {
-                    "routing_number": "string",
+                    "routing_number": "routing_number",
                     "routing_number_type": "aba",
                     "payment_type": "ach",
                 },
                 {
-                    "routing_number": "string",
+                    "routing_number": "routing_number",
                     "routing_number_type": "aba",
                     "payment_type": "ach",
                 },
@@ -547,14 +547,14 @@ class TestAsyncExternalAccounts:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
         external_account = await async_client.external_accounts.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.external_accounts.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -565,7 +565,7 @@ class TestAsyncExternalAccounts:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.external_accounts.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -585,27 +585,27 @@ class TestAsyncExternalAccounts:
     @parametrize
     async def test_method_update(self, async_client: AsyncModernTreasury) -> None:
         external_account = await async_client.external_accounts.update(
-            "string",
+            id="id",
         )
         assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         external_account = await async_client.external_accounts.update(
-            "string",
+            id="id",
             account_type="cash",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
-            name="string",
+            name="name",
             party_address={
-                "line1": "string",
-                "line2": "string",
-                "locality": "string",
-                "region": "string",
-                "postal_code": "string",
-                "country": "string",
+                "line1": "line1",
+                "line2": "line2",
+                "locality": "locality",
+                "region": "region",
+                "postal_code": "postal_code",
+                "country": "country",
             },
-            party_name="string",
+            party_name="party_name",
             party_type="business",
         )
         assert_matches_type(ExternalAccount, external_account, path=["response"])
@@ -613,7 +613,7 @@ class TestAsyncExternalAccounts:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.external_accounts.with_raw_response.update(
-            "string",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -624,7 +624,7 @@ class TestAsyncExternalAccounts:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.external_accounts.with_streaming_response.update(
-            "string",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -638,7 +638,7 @@ class TestAsyncExternalAccounts:
     async def test_path_params_update(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.external_accounts.with_raw_response.update(
-                "",
+                id="",
             )
 
     @parametrize
@@ -649,10 +649,10 @@ class TestAsyncExternalAccounts:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         external_account = await async_client.external_accounts.list(
-            after_cursor="string",
-            counterparty_id="string",
+            after_cursor="after_cursor",
+            counterparty_id="counterparty_id",
             metadata={"foo": "string"},
-            party_name="string",
+            party_name="party_name",
             per_page=0,
         )
         assert_matches_type(AsyncPage[ExternalAccount], external_account, path=["response"])
@@ -680,14 +680,14 @@ class TestAsyncExternalAccounts:
     @parametrize
     async def test_method_delete(self, async_client: AsyncModernTreasury) -> None:
         external_account = await async_client.external_accounts.delete(
-            "string",
+            "id",
         )
         assert external_account is None
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.external_accounts.with_raw_response.delete(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -698,7 +698,7 @@ class TestAsyncExternalAccounts:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.external_accounts.with_streaming_response.delete(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -718,14 +718,14 @@ class TestAsyncExternalAccounts:
     @parametrize
     async def test_method_complete_verification(self, async_client: AsyncModernTreasury) -> None:
         external_account = await async_client.external_accounts.complete_verification(
-            "string",
+            id="id",
         )
         assert_matches_type(ExternalAccount, external_account, path=["response"])
 
     @parametrize
     async def test_method_complete_verification_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         external_account = await async_client.external_accounts.complete_verification(
-            "string",
+            id="id",
             amounts=[2, 4],
         )
         assert_matches_type(ExternalAccount, external_account, path=["response"])
@@ -733,7 +733,7 @@ class TestAsyncExternalAccounts:
     @parametrize
     async def test_raw_response_complete_verification(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.external_accounts.with_raw_response.complete_verification(
-            "string",
+            id="id",
         )
 
         assert response.is_closed is True
@@ -744,7 +744,7 @@ class TestAsyncExternalAccounts:
     @parametrize
     async def test_streaming_response_complete_verification(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.external_accounts.with_streaming_response.complete_verification(
-            "string",
+            id="id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -758,13 +758,13 @@ class TestAsyncExternalAccounts:
     async def test_path_params_complete_verification(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.external_accounts.with_raw_response.complete_verification(
-                "",
+                id="",
             )
 
     @parametrize
     async def test_method_verify(self, async_client: AsyncModernTreasury) -> None:
         external_account = await async_client.external_accounts.verify(
-            "string",
+            id="id",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payment_type="ach",
         )
@@ -773,7 +773,7 @@ class TestAsyncExternalAccounts:
     @parametrize
     async def test_method_verify_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         external_account = await async_client.external_accounts.verify(
-            "string",
+            id="id",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payment_type="ach",
             currency="AED",
@@ -785,7 +785,7 @@ class TestAsyncExternalAccounts:
     @parametrize
     async def test_raw_response_verify(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.external_accounts.with_raw_response.verify(
-            "string",
+            id="id",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payment_type="ach",
         )
@@ -798,7 +798,7 @@ class TestAsyncExternalAccounts:
     @parametrize
     async def test_streaming_response_verify(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.external_accounts.with_streaming_response.verify(
-            "string",
+            id="id",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             payment_type="ach",
         ) as response:
@@ -814,7 +814,7 @@ class TestAsyncExternalAccounts:
     async def test_path_params_verify(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.external_accounts.with_raw_response.verify(
-                "",
+                id="",
                 originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 payment_type="ach",
             )
