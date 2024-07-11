@@ -16,10 +16,7 @@ from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from ..types.event import Event
-from .._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from .._base_client import AsyncPaginator, make_request_options
 
 __all__ = ["Events", "AsyncEvents"]
 
