@@ -58,14 +58,14 @@ class TestLineItems:
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         line_item = client.transactions.line_items.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(TransactionLineItem, line_item, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
         response = client.transactions.line_items.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -76,7 +76,7 @@ class TestLineItems:
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.transactions.line_items.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -102,9 +102,9 @@ class TestLineItems:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         line_item = client.transactions.line_items.list(
             id={"foo": "string"},
-            after_cursor="string",
+            after_cursor="after_cursor",
             per_page=0,
-            transaction_id="string",
+            transaction_id="transaction_id",
             type="originating",
         )
         assert_matches_type(SyncPage[TransactionLineItem], line_item, path=["response"])
@@ -132,14 +132,14 @@ class TestLineItems:
     @parametrize
     def test_method_delete(self, client: ModernTreasury) -> None:
         line_item = client.transactions.line_items.delete(
-            "string",
+            "id",
         )
         assert line_item is None
 
     @parametrize
     def test_raw_response_delete(self, client: ModernTreasury) -> None:
         response = client.transactions.line_items.with_raw_response.delete(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -150,7 +150,7 @@ class TestLineItems:
     @parametrize
     def test_streaming_response_delete(self, client: ModernTreasury) -> None:
         with client.transactions.line_items.with_streaming_response.delete(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -211,14 +211,14 @@ class TestAsyncLineItems:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
         line_item = await async_client.transactions.line_items.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(TransactionLineItem, line_item, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.transactions.line_items.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -229,7 +229,7 @@ class TestAsyncLineItems:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.transactions.line_items.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -255,9 +255,9 @@ class TestAsyncLineItems:
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         line_item = await async_client.transactions.line_items.list(
             id={"foo": "string"},
-            after_cursor="string",
+            after_cursor="after_cursor",
             per_page=0,
-            transaction_id="string",
+            transaction_id="transaction_id",
             type="originating",
         )
         assert_matches_type(AsyncPage[TransactionLineItem], line_item, path=["response"])
@@ -285,14 +285,14 @@ class TestAsyncLineItems:
     @parametrize
     async def test_method_delete(self, async_client: AsyncModernTreasury) -> None:
         line_item = await async_client.transactions.line_items.delete(
-            "string",
+            "id",
         )
         assert line_item is None
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.transactions.line_items.with_raw_response.delete(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -303,7 +303,7 @@ class TestAsyncLineItems:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.transactions.line_items.with_streaming_response.delete(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

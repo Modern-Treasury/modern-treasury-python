@@ -38,7 +38,7 @@ class TestLedgerAccountStatements:
             effective_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             effective_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            description="string",
+            description="description",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -80,14 +80,14 @@ class TestLedgerAccountStatements:
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         ledger_account_statement = client.ledger_account_statements.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(LedgerAccountStatementRetrieveResponse, ledger_account_statement, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
         response = client.ledger_account_statements.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -98,7 +98,7 @@ class TestLedgerAccountStatements:
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.ledger_account_statements.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -136,7 +136,7 @@ class TestAsyncLedgerAccountStatements:
             effective_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             effective_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            description="string",
+            description="description",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -178,14 +178,14 @@ class TestAsyncLedgerAccountStatements:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
         ledger_account_statement = await async_client.ledger_account_statements.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(LedgerAccountStatementRetrieveResponse, ledger_account_statement, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.ledger_account_statements.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -196,7 +196,7 @@ class TestAsyncLedgerAccountStatements:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.ledger_account_statements.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
