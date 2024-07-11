@@ -21,7 +21,7 @@ class TestLegalEntityAssociations:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         legal_entity_association = client.legal_entity_associations.create(
-            parent_legal_entity_id="string",
+            parent_legal_entity_id="parent_legal_entity_id",
             relationship_types=["beneficial_owner", "control_person"],
         )
         assert_matches_type(LegalEntityAssociation, legal_entity_association, path=["response"])
@@ -29,21 +29,25 @@ class TestLegalEntityAssociations:
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         legal_entity_association = client.legal_entity_associations.create(
-            parent_legal_entity_id="string",
+            parent_legal_entity_id="parent_legal_entity_id",
             relationship_types=["beneficial_owner", "control_person"],
             child_legal_entity={
                 "legal_entity_type": "business",
                 "risk_rating": "low",
-                "first_name": "string",
-                "last_name": "string",
+                "first_name": "first_name",
+                "last_name": "last_name",
                 "date_of_birth": parse_date("2019-12-27"),
                 "date_formed": parse_date("2019-12-27"),
-                "business_name": "string",
+                "business_name": "business_name",
                 "doing_business_as_names": ["string", "string", "string"],
                 "legal_structure": "corporation",
-                "phone_numbers": [{"phone_number": "string"}, {"phone_number": "string"}, {"phone_number": "string"}],
-                "email": "string",
-                "website": "string",
+                "phone_numbers": [
+                    {"phone_number": "phone_number"},
+                    {"phone_number": "phone_number"},
+                    {"phone_number": "phone_number"},
+                ],
+                "email": "email",
+                "website": "website",
                 "metadata": {
                     "key": "value",
                     "foo": "bar",
@@ -52,60 +56,60 @@ class TestLegalEntityAssociations:
                 "addresses": [
                     {
                         "address_types": ["business", "mailing", "other"],
-                        "line1": "string",
-                        "line2": "string",
-                        "locality": "string",
-                        "region": "string",
-                        "postal_code": "string",
-                        "country": "string",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "locality": "locality",
+                        "region": "region",
+                        "postal_code": "postal_code",
+                        "country": "country",
                     },
                     {
                         "address_types": ["business", "mailing", "other"],
-                        "line1": "string",
-                        "line2": "string",
-                        "locality": "string",
-                        "region": "string",
-                        "postal_code": "string",
-                        "country": "string",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "locality": "locality",
+                        "region": "region",
+                        "postal_code": "postal_code",
+                        "country": "country",
                     },
                     {
                         "address_types": ["business", "mailing", "other"],
-                        "line1": "string",
-                        "line2": "string",
-                        "locality": "string",
-                        "region": "string",
-                        "postal_code": "string",
-                        "country": "string",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "locality": "locality",
+                        "region": "region",
+                        "postal_code": "postal_code",
+                        "country": "country",
                     },
                 ],
                 "identifications": [
                     {
-                        "id_number": "string",
+                        "id_number": "id_number",
                         "id_type": "ar_cuil",
-                        "issuing_country": "string",
+                        "issuing_country": "issuing_country",
                     },
                     {
-                        "id_number": "string",
+                        "id_number": "id_number",
                         "id_type": "ar_cuil",
-                        "issuing_country": "string",
+                        "issuing_country": "issuing_country",
                     },
                     {
-                        "id_number": "string",
+                        "id_number": "id_number",
                         "id_type": "ar_cuil",
-                        "issuing_country": "string",
+                        "issuing_country": "issuing_country",
                     },
                 ],
             },
-            child_legal_entity_id="string",
+            child_legal_entity_id="child_legal_entity_id",
             ownership_percentage=0,
-            title="string",
+            title="title",
         )
         assert_matches_type(LegalEntityAssociation, legal_entity_association, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: ModernTreasury) -> None:
         response = client.legal_entity_associations.with_raw_response.create(
-            parent_legal_entity_id="string",
+            parent_legal_entity_id="parent_legal_entity_id",
             relationship_types=["beneficial_owner", "control_person"],
         )
 
@@ -117,7 +121,7 @@ class TestLegalEntityAssociations:
     @parametrize
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
         with client.legal_entity_associations.with_streaming_response.create(
-            parent_legal_entity_id="string",
+            parent_legal_entity_id="parent_legal_entity_id",
             relationship_types=["beneficial_owner", "control_person"],
         ) as response:
             assert not response.is_closed
@@ -135,7 +139,7 @@ class TestAsyncLegalEntityAssociations:
     @parametrize
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
         legal_entity_association = await async_client.legal_entity_associations.create(
-            parent_legal_entity_id="string",
+            parent_legal_entity_id="parent_legal_entity_id",
             relationship_types=["beneficial_owner", "control_person"],
         )
         assert_matches_type(LegalEntityAssociation, legal_entity_association, path=["response"])
@@ -143,21 +147,25 @@ class TestAsyncLegalEntityAssociations:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         legal_entity_association = await async_client.legal_entity_associations.create(
-            parent_legal_entity_id="string",
+            parent_legal_entity_id="parent_legal_entity_id",
             relationship_types=["beneficial_owner", "control_person"],
             child_legal_entity={
                 "legal_entity_type": "business",
                 "risk_rating": "low",
-                "first_name": "string",
-                "last_name": "string",
+                "first_name": "first_name",
+                "last_name": "last_name",
                 "date_of_birth": parse_date("2019-12-27"),
                 "date_formed": parse_date("2019-12-27"),
-                "business_name": "string",
+                "business_name": "business_name",
                 "doing_business_as_names": ["string", "string", "string"],
                 "legal_structure": "corporation",
-                "phone_numbers": [{"phone_number": "string"}, {"phone_number": "string"}, {"phone_number": "string"}],
-                "email": "string",
-                "website": "string",
+                "phone_numbers": [
+                    {"phone_number": "phone_number"},
+                    {"phone_number": "phone_number"},
+                    {"phone_number": "phone_number"},
+                ],
+                "email": "email",
+                "website": "website",
                 "metadata": {
                     "key": "value",
                     "foo": "bar",
@@ -166,60 +174,60 @@ class TestAsyncLegalEntityAssociations:
                 "addresses": [
                     {
                         "address_types": ["business", "mailing", "other"],
-                        "line1": "string",
-                        "line2": "string",
-                        "locality": "string",
-                        "region": "string",
-                        "postal_code": "string",
-                        "country": "string",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "locality": "locality",
+                        "region": "region",
+                        "postal_code": "postal_code",
+                        "country": "country",
                     },
                     {
                         "address_types": ["business", "mailing", "other"],
-                        "line1": "string",
-                        "line2": "string",
-                        "locality": "string",
-                        "region": "string",
-                        "postal_code": "string",
-                        "country": "string",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "locality": "locality",
+                        "region": "region",
+                        "postal_code": "postal_code",
+                        "country": "country",
                     },
                     {
                         "address_types": ["business", "mailing", "other"],
-                        "line1": "string",
-                        "line2": "string",
-                        "locality": "string",
-                        "region": "string",
-                        "postal_code": "string",
-                        "country": "string",
+                        "line1": "line1",
+                        "line2": "line2",
+                        "locality": "locality",
+                        "region": "region",
+                        "postal_code": "postal_code",
+                        "country": "country",
                     },
                 ],
                 "identifications": [
                     {
-                        "id_number": "string",
+                        "id_number": "id_number",
                         "id_type": "ar_cuil",
-                        "issuing_country": "string",
+                        "issuing_country": "issuing_country",
                     },
                     {
-                        "id_number": "string",
+                        "id_number": "id_number",
                         "id_type": "ar_cuil",
-                        "issuing_country": "string",
+                        "issuing_country": "issuing_country",
                     },
                     {
-                        "id_number": "string",
+                        "id_number": "id_number",
                         "id_type": "ar_cuil",
-                        "issuing_country": "string",
+                        "issuing_country": "issuing_country",
                     },
                 ],
             },
-            child_legal_entity_id="string",
+            child_legal_entity_id="child_legal_entity_id",
             ownership_percentage=0,
-            title="string",
+            title="title",
         )
         assert_matches_type(LegalEntityAssociation, legal_entity_association, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.legal_entity_associations.with_raw_response.create(
-            parent_legal_entity_id="string",
+            parent_legal_entity_id="parent_legal_entity_id",
             relationship_types=["beneficial_owner", "control_person"],
         )
 
@@ -231,7 +239,7 @@ class TestAsyncLegalEntityAssociations:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.legal_entity_associations.with_streaming_response.create(
-            parent_legal_entity_id="string",
+            parent_legal_entity_id="parent_legal_entity_id",
             relationship_types=["beneficial_owner", "control_person"],
         ) as response:
             assert not response.is_closed

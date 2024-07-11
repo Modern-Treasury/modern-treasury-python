@@ -70,14 +70,14 @@ class TestForeignExchangeQuotes:
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         foreign_exchange_quote = client.foreign_exchange_quotes.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(ForeignExchangeQuote, foreign_exchange_quote, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
         response = client.foreign_exchange_quotes.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -88,7 +88,7 @@ class TestForeignExchangeQuotes:
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.foreign_exchange_quotes.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -113,15 +113,15 @@ class TestForeignExchangeQuotes:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         foreign_exchange_quote = client.foreign_exchange_quotes.list(
-            after_cursor="string",
-            base_currency="string",
+            after_cursor="after_cursor",
+            base_currency="base_currency",
             effective_at_end=parse_date("2019-12-27"),
             effective_at_start=parse_date("2019-12-27"),
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            internal_account_id="string",
+            internal_account_id="internal_account_id",
             metadata={"foo": "string"},
             per_page=0,
-            target_currency="string",
+            target_currency="target_currency",
         )
         assert_matches_type(SyncPage[ForeignExchangeQuote], foreign_exchange_quote, path=["response"])
 
@@ -198,14 +198,14 @@ class TestAsyncForeignExchangeQuotes:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
         foreign_exchange_quote = await async_client.foreign_exchange_quotes.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(ForeignExchangeQuote, foreign_exchange_quote, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.foreign_exchange_quotes.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -216,7 +216,7 @@ class TestAsyncForeignExchangeQuotes:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.foreign_exchange_quotes.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -241,15 +241,15 @@ class TestAsyncForeignExchangeQuotes:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         foreign_exchange_quote = await async_client.foreign_exchange_quotes.list(
-            after_cursor="string",
-            base_currency="string",
+            after_cursor="after_cursor",
+            base_currency="base_currency",
             effective_at_end=parse_date("2019-12-27"),
             effective_at_start=parse_date("2019-12-27"),
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
-            internal_account_id="string",
+            internal_account_id="internal_account_id",
             metadata={"foo": "string"},
             per_page=0,
-            target_currency="string",
+            target_currency="target_currency",
         )
         assert_matches_type(AsyncPage[ForeignExchangeQuote], foreign_exchange_quote, path=["response"])
 

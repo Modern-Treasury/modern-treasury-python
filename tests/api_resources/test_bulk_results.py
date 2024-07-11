@@ -21,14 +21,14 @@ class TestBulkResults:
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         bulk_result = client.bulk_results.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(BulkResult, bulk_result, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
         response = client.bulk_results.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -39,7 +39,7 @@ class TestBulkResults:
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.bulk_results.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -64,11 +64,11 @@ class TestBulkResults:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         bulk_result = client.bulk_results.list(
-            after_cursor="string",
-            entity_id="string",
+            after_cursor="after_cursor",
+            entity_id="entity_id",
             entity_type="payment_order",
             per_page=0,
-            request_id="string",
+            request_id="request_id",
             request_type="bulk_request",
             status="pending",
         )
@@ -101,14 +101,14 @@ class TestAsyncBulkResults:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
         bulk_result = await async_client.bulk_results.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(BulkResult, bulk_result, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.bulk_results.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -119,7 +119,7 @@ class TestAsyncBulkResults:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.bulk_results.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -144,11 +144,11 @@ class TestAsyncBulkResults:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         bulk_result = await async_client.bulk_results.list(
-            after_cursor="string",
-            entity_id="string",
+            after_cursor="after_cursor",
+            entity_id="entity_id",
             entity_type="payment_order",
             per_page=0,
-            request_id="string",
+            request_id="request_id",
             request_type="bulk_request",
             status="pending",
         )

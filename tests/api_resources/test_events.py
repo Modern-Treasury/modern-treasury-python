@@ -22,14 +22,14 @@ class TestEvents:
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         event = client.events.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(Event, event, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
         response = client.events.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -40,7 +40,7 @@ class TestEvents:
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.events.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -65,13 +65,13 @@ class TestEvents:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         event = client.events.list(
-            after_cursor="string",
-            entity_id="string",
-            event_name="string",
+            after_cursor="after_cursor",
+            entity_id="entity_id",
+            event_name="event_name",
             event_time_end=parse_datetime("2019-12-27T18:11:19.117Z"),
             event_time_start=parse_datetime("2019-12-27T18:11:19.117Z"),
             per_page=0,
-            resource="string",
+            resource="resource",
         )
         assert_matches_type(SyncPage[Event], event, path=["response"])
 
@@ -102,14 +102,14 @@ class TestAsyncEvents:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
         event = await async_client.events.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(Event, event, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.events.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -120,7 +120,7 @@ class TestAsyncEvents:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.events.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -145,13 +145,13 @@ class TestAsyncEvents:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         event = await async_client.events.list(
-            after_cursor="string",
-            entity_id="string",
-            event_name="string",
+            after_cursor="after_cursor",
+            entity_id="entity_id",
+            event_name="event_name",
             event_time_end=parse_datetime("2019-12-27T18:11:19.117Z"),
             event_time_start=parse_datetime("2019-12-27T18:11:19.117Z"),
             per_page=0,
-            resource="string",
+            resource="resource",
         )
         assert_matches_type(AsyncPage[Event], event, path=["response"])
 

@@ -27,10 +27,10 @@ class TestVersions:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         version = client.ledger_transactions.versions.list(
-            after_cursor="string",
+            after_cursor="after_cursor",
             created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
-            ledger_account_statement_id="string",
-            ledger_transaction_id="string",
+            ledger_account_statement_id="ledger_account_statement_id",
+            ledger_transaction_id="ledger_transaction_id",
             per_page=0,
             version={"foo": 0},
         )
@@ -68,10 +68,10 @@ class TestAsyncVersions:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         version = await async_client.ledger_transactions.versions.list(
-            after_cursor="string",
+            after_cursor="after_cursor",
             created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
-            ledger_account_statement_id="string",
-            ledger_transaction_id="string",
+            ledger_account_statement_id="ledger_account_statement_id",
+            ledger_transaction_id="ledger_transaction_id",
             per_page=0,
             version={"foo": 0},
         )

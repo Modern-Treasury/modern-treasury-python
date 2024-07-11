@@ -32,10 +32,10 @@ class TestReturns:
         return_ = client.returns.create(
             returnable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             returnable_type="incoming_payment_detail",
-            additional_information="string",
+            additional_information="additional_information",
             code="901",
             date_of_death=parse_date("2019-12-27"),
-            reason="string",
+            reason="reason",
         )
         assert_matches_type(ReturnObject, return_, path=["response"])
 
@@ -68,14 +68,14 @@ class TestReturns:
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         return_ = client.returns.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(ReturnObject, return_, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
         response = client.returns.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -86,7 +86,7 @@ class TestReturns:
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.returns.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -111,11 +111,11 @@ class TestReturns:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         return_ = client.returns.list(
-            after_cursor="string",
-            counterparty_id="string",
-            internal_account_id="string",
+            after_cursor="after_cursor",
+            counterparty_id="counterparty_id",
+            internal_account_id="internal_account_id",
             per_page=0,
-            returnable_id="string",
+            returnable_id="returnable_id",
             returnable_type="incoming_payment_detail",
         )
         assert_matches_type(SyncPage[ReturnObject], return_, path=["response"])
@@ -157,10 +157,10 @@ class TestAsyncReturns:
         return_ = await async_client.returns.create(
             returnable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             returnable_type="incoming_payment_detail",
-            additional_information="string",
+            additional_information="additional_information",
             code="901",
             date_of_death=parse_date("2019-12-27"),
-            reason="string",
+            reason="reason",
         )
         assert_matches_type(ReturnObject, return_, path=["response"])
 
@@ -193,14 +193,14 @@ class TestAsyncReturns:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
         return_ = await async_client.returns.retrieve(
-            "string",
+            "id",
         )
         assert_matches_type(ReturnObject, return_, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.returns.with_raw_response.retrieve(
-            "string",
+            "id",
         )
 
         assert response.is_closed is True
@@ -211,7 +211,7 @@ class TestAsyncReturns:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.returns.with_streaming_response.retrieve(
-            "string",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -236,11 +236,11 @@ class TestAsyncReturns:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         return_ = await async_client.returns.list(
-            after_cursor="string",
-            counterparty_id="string",
-            internal_account_id="string",
+            after_cursor="after_cursor",
+            counterparty_id="counterparty_id",
+            internal_account_id="internal_account_id",
             per_page=0,
-            returnable_id="string",
+            returnable_id="returnable_id",
             returnable_type="incoming_payment_detail",
         )
         assert_matches_type(AsyncPage[ReturnObject], return_, path=["response"])
