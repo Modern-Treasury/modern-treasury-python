@@ -1,5 +1,37 @@
 # Changelog
 
+## 1.37.0 (2024-07-16)
+
+Full Changelog: [v1.36.0...v1.37.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.36.0...v1.37.0)
+
+### Features
+
+* **api:** updates ([#487](https://github.com/Modern-Treasury/modern-treasury-python/issues/487)) ([2d456bc](https://github.com/Modern-Treasury/modern-treasury-python/commit/2d456bc0eb242ad4b80488e8f728d6f0c9a44ffa))
+
+
+### Bug Fixes
+
+* **client:** always respect content-type multipart/form-data if provided ([#478](https://github.com/Modern-Treasury/modern-treasury-python/issues/478)) ([f6b7b9e](https://github.com/Modern-Treasury/modern-treasury-python/commit/f6b7b9efc341e07e01102b1e63f175700c47b506))
+
+
+### Chores
+
+* **ci:** also run workflows for PRs targeting `next` ([#483](https://github.com/Modern-Treasury/modern-treasury-python/issues/483)) ([01ef021](https://github.com/Modern-Treasury/modern-treasury-python/commit/01ef02159c9c9bbd7fdbfba892d211b6225a41a9))
+* **ci:** update rye to v0.35.0 ([#479](https://github.com/Modern-Treasury/modern-treasury-python/issues/479)) ([597c92c](https://github.com/Modern-Treasury/modern-treasury-python/commit/597c92cbd9fc918d846e9f999f83910dd9267e1f))
+* **docs:** minor update to formatting of API link in README ([#488](https://github.com/Modern-Treasury/modern-treasury-python/issues/488)) ([ad63bdf](https://github.com/Modern-Treasury/modern-treasury-python/commit/ad63bdfcea5137f9065f8d7cdd15065e0f7295d5))
+* **internal:** add helper function ([#481](https://github.com/Modern-Treasury/modern-treasury-python/issues/481)) ([ecd8aab](https://github.com/Modern-Treasury/modern-treasury-python/commit/ecd8aabfd60ad6fd622cea3502e842c261864c23))
+* **internal:** add helper method for constructing `BaseModel`s ([#476](https://github.com/Modern-Treasury/modern-treasury-python/issues/476)) ([2502b91](https://github.com/Modern-Treasury/modern-treasury-python/commit/2502b9145e4c7d387a66c69014221c76ea8cc6de))
+* **internal:** minor import restructuring ([#484](https://github.com/Modern-Treasury/modern-treasury-python/issues/484)) ([a62e05a](https://github.com/Modern-Treasury/modern-treasury-python/commit/a62e05a35880c001694ba73ff1d62fafc3d86950))
+* **internal:** minor options / compat functions updates ([#486](https://github.com/Modern-Treasury/modern-treasury-python/issues/486)) ([0d66343](https://github.com/Modern-Treasury/modern-treasury-python/commit/0d663439e1977ae9add0160b07aa9221eb1ddcb9))
+* **internal:** minor request options handling changes ([#480](https://github.com/Modern-Treasury/modern-treasury-python/issues/480)) ([00bc2b8](https://github.com/Modern-Treasury/modern-treasury-python/commit/00bc2b89afb6e98246d4025eaecfa1390fb4dfcb))
+* **internal:** update formatting ([#489](https://github.com/Modern-Treasury/modern-treasury-python/issues/489)) ([baf8626](https://github.com/Modern-Treasury/modern-treasury-python/commit/baf86260d29a832f6ceb99101dfdf3342563df95))
+* **internal:** update mypy ([#482](https://github.com/Modern-Treasury/modern-treasury-python/issues/482)) ([01781f2](https://github.com/Modern-Treasury/modern-treasury-python/commit/01781f2c47c23eb1be869ff08a9151b4accd8088))
+
+
+### Documentation
+
+* **examples:** use named params more ([#485](https://github.com/Modern-Treasury/modern-treasury-python/issues/485)) ([dddb80d](https://github.com/Modern-Treasury/modern-treasury-python/commit/dddb80db249a3d70cb610e1e9575d0983b4635cd))
+
 ## 1.36.0 (2024-07-01)
 
 Full Changelog: [v1.35.1...v1.36.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.35.1...v1.36.0)
