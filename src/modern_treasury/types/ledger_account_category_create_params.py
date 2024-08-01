@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Required, TypedDict
 
 from .shared.transaction_direction import TransactionDirection
@@ -28,6 +28,12 @@ class LedgerAccountCategoryCreateParams(TypedDict, total=False):
 
     description: Optional[str]
     """The description of the ledger account category."""
+
+    ledger_account_category_ids: List[str]
+    """
+    The array of ledger account category ids that this ledger account category
+    should be a child of.
+    """
 
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.
