@@ -47,6 +47,7 @@ class LedgerAccountCategories(SyncAPIResource):
         normal_balance: TransactionDirection,
         currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        ledger_account_category_ids: List[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -72,6 +73,9 @@ class LedgerAccountCategories(SyncAPIResource):
 
           description: The description of the ledger account category.
 
+          ledger_account_category_ids: The array of ledger account category ids that this ledger account category
+              should be a child of.
+
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
@@ -95,6 +99,7 @@ class LedgerAccountCategories(SyncAPIResource):
                     "normal_balance": normal_balance,
                     "currency_exponent": currency_exponent,
                     "description": description,
+                    "ledger_account_category_ids": ledger_account_category_ids,
                     "metadata": metadata,
                 },
                 ledger_account_category_create_params.LedgerAccountCategoryCreateParams,
@@ -521,6 +526,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         normal_balance: TransactionDirection,
         currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        ledger_account_category_ids: List[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -546,6 +552,9 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
 
           description: The description of the ledger account category.
 
+          ledger_account_category_ids: The array of ledger account category ids that this ledger account category
+              should be a child of.
+
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
@@ -569,6 +578,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
                     "normal_balance": normal_balance,
                     "currency_exponent": currency_exponent,
                     "description": description,
+                    "ledger_account_category_ids": ledger_account_category_ids,
                     "metadata": metadata,
                 },
                 ledger_account_category_create_params.LedgerAccountCategoryCreateParams,
