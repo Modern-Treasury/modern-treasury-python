@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Dict, List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from .._compat import PYDANTIC_V2
 from .._models import BaseModel
@@ -48,7 +48,7 @@ class EntityBulkError(BaseModel):
     updated_at: datetime
 
 
-Entity = Union["PaymentOrder", ExpectedPayment, LedgerTransaction, Transaction, EntityBulkError]
+Entity: TypeAlias = Union["PaymentOrder", ExpectedPayment, LedgerTransaction, Transaction, EntityBulkError]
 
 
 class BulkResult(BaseModel):

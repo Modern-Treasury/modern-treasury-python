@@ -2,7 +2,7 @@
 
 from typing import Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from .._models import BaseModel
 from .external_account import ExternalAccount
@@ -78,4 +78,4 @@ class ExternalAccountVerificationAttempt(BaseModel):
     updated_at: datetime
 
 
-ExternalAccountVerifyResponse = Union[ExternalAccount, ExternalAccountVerificationAttempt]
+ExternalAccountVerifyResponse: TypeAlias = Union[ExternalAccount, ExternalAccountVerificationAttempt]

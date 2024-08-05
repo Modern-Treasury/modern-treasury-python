@@ -5,7 +5,7 @@ from __future__ import annotations
 import builtins
 from typing import Dict, List, Union, Optional
 from datetime import date, datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from .._compat import PYDANTIC_V2
 from .._models import BaseModel
@@ -170,7 +170,7 @@ ReferenceNumbers = ReferenceNumber
 Please use ReferenceNumber instead.
 """
 
-UltimateOriginatingAccount = Union[VirtualAccount, InternalAccount, None]
+UltimateOriginatingAccount: TypeAlias = Union[VirtualAccount, InternalAccount, None]
 
 
 class PaymentOrder(BaseModel):

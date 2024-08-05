@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 __all__ = ["TransactionDirection"]
 
-TransactionDirection = Literal["credit", "debit"]
+TransactionDirection: TypeAlias = Literal["credit", "debit"]
