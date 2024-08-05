@@ -17,6 +17,7 @@ from respx import MockRouter
 from pydantic import ValidationError
 
 from modern_treasury import ModernTreasury, AsyncModernTreasury, APIResponseValidationError
+from modern_treasury._types import Omit
 from modern_treasury._models import BaseModel, FinalRequestOptions
 from modern_treasury._constants import RAW_RESPONSE_HEADER
 from modern_treasury._exceptions import APIStatusError, APITimeoutError, ModernTreasuryError, APIResponseValidationError
@@ -373,9 +374,15 @@ class TestModernTreasury:
         assert "Basic" in request.headers.get("Authorization")
 
         with pytest.raises(ModernTreasuryError):
-            client2 = ModernTreasury(
-                base_url=base_url, api_key=None, organization_id=None, _strict_response_validation=True
-            )
+            with update_env(
+                **{
+                    "MODERN_TREASURY_ORGANIZATION_ID": Omit(),
+                    "MODERN_TREASURY_API_KEY": Omit(),
+                }
+            ):
+                client2 = ModernTreasury(
+                    base_url=base_url, api_key=None, organization_id=None, _strict_response_validation=True
+                )
             _ = client2
 
     def test_default_query_option(self) -> None:
@@ -1320,9 +1327,15 @@ class TestAsyncModernTreasury:
         assert "Basic" in request.headers.get("Authorization")
 
         with pytest.raises(ModernTreasuryError):
-            client2 = AsyncModernTreasury(
-                base_url=base_url, api_key=None, organization_id=None, _strict_response_validation=True
-            )
+            with update_env(
+                **{
+                    "MODERN_TREASURY_ORGANIZATION_ID": Omit(),
+                    "MODERN_TREASURY_API_KEY": Omit(),
+                }
+            ):
+                client2 = AsyncModernTreasury(
+                    base_url=base_url, api_key=None, organization_id=None, _strict_response_validation=True
+                )
             _ = client2
 
     def test_default_query_option(self) -> None:
