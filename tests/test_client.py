@@ -953,6 +953,49 @@ class TestModernTreasury:
 
         assert _get_open_connections(self.client) == 0
 
+    @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
+    @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @pytest.mark.respx(base_url=base_url)
+    def test_retries_taken(self, client: ModernTreasury, failures_before_success: int, respx_mock: MockRouter) -> None:
+        client = client.with_options(max_retries=4)
+
+        nb_retries = 0
+
+        def retry_handler(_request: httpx.Request) -> httpx.Response:
+            nonlocal nb_retries
+            if nb_retries < failures_before_success:
+                nb_retries += 1
+                return httpx.Response(500)
+            return httpx.Response(200)
+
+        respx_mock.post("/api/counterparties").mock(side_effect=retry_handler)
+
+        response = client.counterparties.with_raw_response.create(name="name")
+
+        assert response.retries_taken == failures_before_success
+
+    @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
+    @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @pytest.mark.respx(base_url=base_url)
+    def test_retries_taken_new_response_class(
+        self, client: ModernTreasury, failures_before_success: int, respx_mock: MockRouter
+    ) -> None:
+        client = client.with_options(max_retries=4)
+
+        nb_retries = 0
+
+        def retry_handler(_request: httpx.Request) -> httpx.Response:
+            nonlocal nb_retries
+            if nb_retries < failures_before_success:
+                nb_retries += 1
+                return httpx.Response(500)
+            return httpx.Response(200)
+
+        respx_mock.post("/api/counterparties").mock(side_effect=retry_handler)
+
+        with client.counterparties.with_streaming_response.create(name="name") as response:
+            assert response.retries_taken == failures_before_success
+
 
 class TestAsyncModernTreasury:
     client = AsyncModernTreasury(
@@ -1862,3 +1905,50 @@ class TestAsyncModernTreasury:
             )
 
         assert _get_open_connections(self.client) == 0
+
+    @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
+    @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @pytest.mark.respx(base_url=base_url)
+    @pytest.mark.asyncio
+    async def test_retries_taken(
+        self, async_client: AsyncModernTreasury, failures_before_success: int, respx_mock: MockRouter
+    ) -> None:
+        client = async_client.with_options(max_retries=4)
+
+        nb_retries = 0
+
+        def retry_handler(_request: httpx.Request) -> httpx.Response:
+            nonlocal nb_retries
+            if nb_retries < failures_before_success:
+                nb_retries += 1
+                return httpx.Response(500)
+            return httpx.Response(200)
+
+        respx_mock.post("/api/counterparties").mock(side_effect=retry_handler)
+
+        response = await client.counterparties.with_raw_response.create(name="name")
+
+        assert response.retries_taken == failures_before_success
+
+    @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
+    @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @pytest.mark.respx(base_url=base_url)
+    @pytest.mark.asyncio
+    async def test_retries_taken_new_response_class(
+        self, async_client: AsyncModernTreasury, failures_before_success: int, respx_mock: MockRouter
+    ) -> None:
+        client = async_client.with_options(max_retries=4)
+
+        nb_retries = 0
+
+        def retry_handler(_request: httpx.Request) -> httpx.Response:
+            nonlocal nb_retries
+            if nb_retries < failures_before_success:
+                nb_retries += 1
+                return httpx.Response(500)
+            return httpx.Response(200)
+
+        respx_mock.post("/api/counterparties").mock(side_effect=retry_handler)
+
+        async with client.counterparties.with_streaming_response.create(name="name") as response:
+            assert response.retries_taken == failures_before_success
