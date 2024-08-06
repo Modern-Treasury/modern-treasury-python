@@ -12,8 +12,7 @@ from modern_treasury._base_client import FinalRequestOptions
 from modern_treasury._legacy_response import LegacyAPIResponse
 
 
-class PydanticModel(pydantic.BaseModel):
-    ...
+class PydanticModel(pydantic.BaseModel): ...
 
 
 def test_response_parse_mismatched_basemodel(client: ModernTreasury) -> None:
