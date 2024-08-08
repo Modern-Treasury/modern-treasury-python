@@ -173,12 +173,14 @@ class TestLedgerAccountSettlements:
         ledger_account_settlement = client.ledger_account_settlements.list(
             id=["string", "string", "string"],
             after_cursor="after_cursor",
+            created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             ledger_id="ledger_id",
             ledger_transaction_id="ledger_transaction_id",
             metadata={"foo": "string"},
             per_page=0,
             settled_ledger_account_id="settled_ledger_account_id",
             settlement_entry_direction="settlement_entry_direction",
+            updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
         )
         assert_matches_type(SyncPage[LedgerAccountSettlement], ledger_account_settlement, path=["response"])
 
@@ -358,12 +360,14 @@ class TestAsyncLedgerAccountSettlements:
         ledger_account_settlement = await async_client.ledger_account_settlements.list(
             id=["string", "string", "string"],
             after_cursor="after_cursor",
+            created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             ledger_id="ledger_id",
             ledger_transaction_id="ledger_transaction_id",
             metadata={"foo": "string"},
             per_page=0,
             settled_ledger_account_id="settled_ledger_account_id",
             settlement_entry_direction="settlement_entry_direction",
+            updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
         )
         assert_matches_type(AsyncPage[LedgerAccountSettlement], ledger_account_settlement, path=["response"])
 

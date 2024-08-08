@@ -56,6 +56,7 @@ class CounterpartyCollectAccountParams(TypedDict, total=False):
             "huInterbankClearingCode",
             "dkInterbankClearingCode",
             "idSknbiCode",
+            "za_national_clearing_code",
         ]
     ]
     """The list of fields you want on the form.

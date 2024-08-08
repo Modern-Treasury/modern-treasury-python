@@ -218,12 +218,14 @@ class LedgerAccountSettlements(SyncAPIResource):
         *,
         id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         settled_ledger_account_id: str | NotGiven = NOT_GIVEN,
         settlement_entry_direction: str | NotGiven = NOT_GIVEN,
+        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -238,9 +240,17 @@ class LedgerAccountSettlements(SyncAPIResource):
           id: If you have specific IDs to retrieve in bulk, you can pass them as query
               parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
 
+          created_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
+              created at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
+              created_at%5Bgt%5D=2000-01-01T12:00:00Z.
+
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
+
+          updated_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
+              updated at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
+              updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
 
           extra_headers: Send extra headers
 
@@ -262,12 +272,14 @@ class LedgerAccountSettlements(SyncAPIResource):
                     {
                         "id": id,
                         "after_cursor": after_cursor,
+                        "created_at": created_at,
                         "ledger_id": ledger_id,
                         "ledger_transaction_id": ledger_transaction_id,
                         "metadata": metadata,
                         "per_page": per_page,
                         "settled_ledger_account_id": settled_ledger_account_id,
                         "settlement_entry_direction": settlement_entry_direction,
+                        "updated_at": updated_at,
                     },
                     ledger_account_settlement_list_params.LedgerAccountSettlementListParams,
                 ),
@@ -465,12 +477,14 @@ class AsyncLedgerAccountSettlements(AsyncAPIResource):
         *,
         id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         settled_ledger_account_id: str | NotGiven = NOT_GIVEN,
         settlement_entry_direction: str | NotGiven = NOT_GIVEN,
+        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -485,9 +499,17 @@ class AsyncLedgerAccountSettlements(AsyncAPIResource):
           id: If you have specific IDs to retrieve in bulk, you can pass them as query
               parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
 
+          created_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
+              created at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
+              created_at%5Bgt%5D=2000-01-01T12:00:00Z.
+
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
+
+          updated_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
+              updated at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
+              updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
 
           extra_headers: Send extra headers
 
@@ -509,12 +531,14 @@ class AsyncLedgerAccountSettlements(AsyncAPIResource):
                     {
                         "id": id,
                         "after_cursor": after_cursor,
+                        "created_at": created_at,
                         "ledger_id": ledger_id,
                         "ledger_transaction_id": ledger_transaction_id,
                         "metadata": metadata,
                         "per_page": per_page,
                         "settled_ledger_account_id": settled_ledger_account_id,
                         "settlement_entry_direction": settlement_entry_direction,
+                        "updated_at": updated_at,
                     },
                     ledger_account_settlement_list_params.LedgerAccountSettlementListParams,
                 ),

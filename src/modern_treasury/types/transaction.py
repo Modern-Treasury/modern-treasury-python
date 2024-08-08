@@ -69,6 +69,12 @@ class Transaction(BaseModel):
     currency: Currency
     """Currency that this transaction is denominated in."""
 
+    custom_identifiers: Dict[str, str]
+    """
+    An object containing key-value pairs, each with a custom identifier as the key
+    and a string value.
+    """
+
     direction: str
     """Either `credit` or `debit`."""
 

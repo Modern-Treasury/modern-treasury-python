@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Dict, List, Union, Iterable, Optional
 from datetime import date, datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
 from .shared.currency import Currency
@@ -2020,7 +2020,7 @@ ResourcesLedgerTransactionUpdateRequestWithID = ResourceLedgerTransactionUpdateR
 Please use ResourceLedgerTransactionUpdateRequestWithID instead.
 """
 
-Resource = Union[
+Resource: TypeAlias = Union[
     ResourcePaymentOrderAsyncCreateRequest,
     ResourceExpectedPaymentCreateRequest,
     ResourceLedgerTransactionCreateRequest,

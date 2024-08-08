@@ -42,5 +42,4 @@ class Ledger(BaseModel):
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
         # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> builtins.object:
-            ...
+        def __getattr__(self, attr: str) -> builtins.object: ...

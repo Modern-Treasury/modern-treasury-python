@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 __all__ = ["AccountsType"]
 
-AccountsType = Literal["external_accounts", "internal_accounts"]
+AccountsType: TypeAlias = Literal["external_accounts", "internal_accounts"]

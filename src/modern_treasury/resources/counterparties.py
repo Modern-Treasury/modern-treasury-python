@@ -378,6 +378,7 @@ class Counterparties(SyncAPIResource):
                 "huInterbankClearingCode",
                 "dkInterbankClearingCode",
                 "idSknbiCode",
+                "za_national_clearing_code",
             ]
         ]
         | NotGiven = NOT_GIVEN,
@@ -793,6 +794,7 @@ class AsyncCounterparties(AsyncAPIResource):
                 "huInterbankClearingCode",
                 "dkInterbankClearingCode",
                 "idSknbiCode",
+                "za_national_clearing_code",
             ]
         ]
         | NotGiven = NOT_GIVEN,

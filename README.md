@@ -90,7 +90,7 @@ List methods in the Modern Treasury API are paginated.
 This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
 
 ```python
-import modern_treasury
+from modern_treasury import ModernTreasury
 
 client = ModernTreasury()
 
@@ -106,7 +106,7 @@ Or, asynchronously:
 
 ```python
 import asyncio
-import modern_treasury
+from modern_treasury import AsyncModernTreasury
 
 client = AsyncModernTreasury()
 
@@ -399,6 +399,12 @@ client = ModernTreasury(
         transport=httpx.HTTPTransport(local_address="0.0.0.0"),
     ),
 )
+```
+
+You can also customize the client on a per-request basis by using `with_options()`:
+
+```python
+client.with_options(http_client=DefaultHttpxClient(...))
 ```
 
 ### Managing HTTP resources

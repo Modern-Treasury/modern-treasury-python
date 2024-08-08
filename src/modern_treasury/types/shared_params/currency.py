@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 __all__ = ["Currency"]
 
-Currency = Literal[
+Currency: TypeAlias = Literal[
     "AED",
     "AFN",
     "ALL",
