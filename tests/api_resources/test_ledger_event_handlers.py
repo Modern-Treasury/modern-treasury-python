@@ -27,7 +27,6 @@ class TestLedgerEventHandlers:
             ledger_transaction_template={
                 "description": "My Ledger Transaction Template Description",
                 "effective_at": "{{ledgerable_event.custom_data.effective_at}}",
-                "status": "posted",
                 "ledger_entries": [
                     {
                         "amount": "amount",
@@ -45,6 +44,7 @@ class TestLedgerEventHandlers:
                         "ledger_account_id": "ledger_account_id",
                     },
                 ],
+                "status": "posted",
             },
             name="name",
         )
@@ -56,7 +56,6 @@ class TestLedgerEventHandlers:
             ledger_transaction_template={
                 "description": "My Ledger Transaction Template Description",
                 "effective_at": "{{ledgerable_event.custom_data.effective_at}}",
-                "status": "posted",
                 "ledger_entries": [
                     {
                         "amount": "amount",
@@ -74,6 +73,7 @@ class TestLedgerEventHandlers:
                         "ledger_account_id": "ledger_account_id",
                     },
                 ],
+                "status": "posted",
             },
             name="name",
             conditions={
@@ -90,12 +90,12 @@ class TestLedgerEventHandlers:
             },
             variables={
                 "credit_account": {
-                    "type": "ledger_account",
                     "query": {
                         "field": "name",
                         "operator": "equals",
                         "value": "my_credit_account",
                     },
+                    "type": "ledger_account",
                 }
             },
         )
@@ -107,7 +107,6 @@ class TestLedgerEventHandlers:
             ledger_transaction_template={
                 "description": "My Ledger Transaction Template Description",
                 "effective_at": "{{ledgerable_event.custom_data.effective_at}}",
-                "status": "posted",
                 "ledger_entries": [
                     {
                         "amount": "amount",
@@ -125,6 +124,7 @@ class TestLedgerEventHandlers:
                         "ledger_account_id": "ledger_account_id",
                     },
                 ],
+                "status": "posted",
             },
             name="name",
         )
@@ -140,7 +140,6 @@ class TestLedgerEventHandlers:
             ledger_transaction_template={
                 "description": "My Ledger Transaction Template Description",
                 "effective_at": "{{ledgerable_event.custom_data.effective_at}}",
-                "status": "posted",
                 "ledger_entries": [
                     {
                         "amount": "amount",
@@ -158,6 +157,7 @@ class TestLedgerEventHandlers:
                         "ledger_account_id": "ledger_account_id",
                     },
                 ],
+                "status": "posted",
             },
             name="name",
         ) as response:
@@ -291,7 +291,6 @@ class TestAsyncLedgerEventHandlers:
             ledger_transaction_template={
                 "description": "My Ledger Transaction Template Description",
                 "effective_at": "{{ledgerable_event.custom_data.effective_at}}",
-                "status": "posted",
                 "ledger_entries": [
                     {
                         "amount": "amount",
@@ -309,6 +308,7 @@ class TestAsyncLedgerEventHandlers:
                         "ledger_account_id": "ledger_account_id",
                     },
                 ],
+                "status": "posted",
             },
             name="name",
         )
@@ -320,7 +320,6 @@ class TestAsyncLedgerEventHandlers:
             ledger_transaction_template={
                 "description": "My Ledger Transaction Template Description",
                 "effective_at": "{{ledgerable_event.custom_data.effective_at}}",
-                "status": "posted",
                 "ledger_entries": [
                     {
                         "amount": "amount",
@@ -338,6 +337,7 @@ class TestAsyncLedgerEventHandlers:
                         "ledger_account_id": "ledger_account_id",
                     },
                 ],
+                "status": "posted",
             },
             name="name",
             conditions={
@@ -354,12 +354,12 @@ class TestAsyncLedgerEventHandlers:
             },
             variables={
                 "credit_account": {
-                    "type": "ledger_account",
                     "query": {
                         "field": "name",
                         "operator": "equals",
                         "value": "my_credit_account",
                     },
+                    "type": "ledger_account",
                 }
             },
         )
@@ -371,7 +371,6 @@ class TestAsyncLedgerEventHandlers:
             ledger_transaction_template={
                 "description": "My Ledger Transaction Template Description",
                 "effective_at": "{{ledgerable_event.custom_data.effective_at}}",
-                "status": "posted",
                 "ledger_entries": [
                     {
                         "amount": "amount",
@@ -389,6 +388,7 @@ class TestAsyncLedgerEventHandlers:
                         "ledger_account_id": "ledger_account_id",
                     },
                 ],
+                "status": "posted",
             },
             name="name",
         )
@@ -404,7 +404,6 @@ class TestAsyncLedgerEventHandlers:
             ledger_transaction_template={
                 "description": "My Ledger Transaction Template Description",
                 "effective_at": "{{ledgerable_event.custom_data.effective_at}}",
-                "status": "posted",
                 "ledger_entries": [
                     {
                         "amount": "amount",
@@ -422,6 +421,7 @@ class TestAsyncLedgerEventHandlers:
                         "ledger_account_id": "ledger_account_id",
                     },
                 ],
+                "status": "posted",
             },
             name="name",
         ) as response:
