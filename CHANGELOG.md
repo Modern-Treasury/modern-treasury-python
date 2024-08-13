@@ -1,5 +1,39 @@
 # Changelog
 
+## 1.38.0 (2024-08-13)
+
+Full Changelog: [v1.37.0...v1.38.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.37.0...v1.38.0)
+
+### Features
+
+* **api:** add pagination params 'created at' and 'updated at' ([#498](https://github.com/Modern-Treasury/modern-treasury-python/issues/498)) ([049b023](https://github.com/Modern-Treasury/modern-treasury-python/commit/049b0239140f8a8b4f475b033d5345896e5da7cc))
+* **api:** updates ([#509](https://github.com/Modern-Treasury/modern-treasury-python/issues/509)) ([8bd91e1](https://github.com/Modern-Treasury/modern-treasury-python/commit/8bd91e10afe7d35cc93009aed78227f83e09ddfd))
+* **client:** add `retries_taken` to raw response class ([#501](https://github.com/Modern-Treasury/modern-treasury-python/issues/501)) ([d34ae60](https://github.com/Modern-Treasury/modern-treasury-python/commit/d34ae608cc6ef1640f67a1fd1354ea0079bb6152))
+
+
+### Chores
+
+* **ci:** bump prism mock server version ([#506](https://github.com/Modern-Treasury/modern-treasury-python/issues/506)) ([336af40](https://github.com/Modern-Treasury/modern-treasury-python/commit/336af400e5062db05c279ae2678163a651bc935d))
+* **ci:** limit release doctor target branches ([#493](https://github.com/Modern-Treasury/modern-treasury-python/issues/493)) ([80695d6](https://github.com/Modern-Treasury/modern-treasury-python/commit/80695d6f40a9ba1376a550e79430340751138b57))
+* **docs:** document how to do per-request http client customization ([#492](https://github.com/Modern-Treasury/modern-treasury-python/issues/492)) ([8f53e57](https://github.com/Modern-Treasury/modern-treasury-python/commit/8f53e57ecb54eda4effd8b9b8228b3ec0bf57b98))
+* **examples:** minor formatting changes ([#508](https://github.com/Modern-Treasury/modern-treasury-python/issues/508)) ([9a61853](https://github.com/Modern-Treasury/modern-treasury-python/commit/9a6185303f834fcc9422be0269eb47bf9da80da8))
+* fix error message import example ([#496](https://github.com/Modern-Treasury/modern-treasury-python/issues/496)) ([1823f4f](https://github.com/Modern-Treasury/modern-treasury-python/commit/1823f4f4df8a7cbfe764c64d4e4b2de56805ab65))
+* **internal:** add type construction helper ([#497](https://github.com/Modern-Treasury/modern-treasury-python/issues/497)) ([7c83312](https://github.com/Modern-Treasury/modern-treasury-python/commit/7c833121944592e2f73f80f299407a5681a2ff23))
+* **internal:** bump pyright ([#500](https://github.com/Modern-Treasury/modern-treasury-python/issues/500)) ([3833a6f](https://github.com/Modern-Treasury/modern-treasury-python/commit/3833a6ff5423f8464fc29b717198db0129b50f0b))
+* **internal:** bump ruff version ([#503](https://github.com/Modern-Treasury/modern-treasury-python/issues/503)) ([7ed0f1a](https://github.com/Modern-Treasury/modern-treasury-python/commit/7ed0f1aa7798b74f0edffe2e7503308f93df1290))
+* **internal:** ensure package is importable in lint cmd ([#507](https://github.com/Modern-Treasury/modern-treasury-python/issues/507)) ([87614ea](https://github.com/Modern-Treasury/modern-treasury-python/commit/87614ea8e18cdfd80593dd8565121dd9023c76c2))
+* **internal:** test updates ([#502](https://github.com/Modern-Treasury/modern-treasury-python/issues/502)) ([0be7d00](https://github.com/Modern-Treasury/modern-treasury-python/commit/0be7d00365a503ce955104b2e27677864fadaec0))
+* **internal:** update formatting ([#490](https://github.com/Modern-Treasury/modern-treasury-python/issues/490)) ([7fb8bcb](https://github.com/Modern-Treasury/modern-treasury-python/commit/7fb8bcbb19ec6285eff4af565922d4f6a0e8cb4c))
+* **internal:** update pydantic compat helper function ([#504](https://github.com/Modern-Treasury/modern-treasury-python/issues/504)) ([dfd567f](https://github.com/Modern-Treasury/modern-treasury-python/commit/dfd567f39c885a0ed7f8161e9a0e299fb4ee5c58))
+* **internal:** updates ([#505](https://github.com/Modern-Treasury/modern-treasury-python/issues/505)) ([0335ce3](https://github.com/Modern-Treasury/modern-treasury-python/commit/0335ce3180aa6607f0a20345d5ad2828a340be1a))
+* **internal:** use `TypeAlias` marker for type assignments ([#499](https://github.com/Modern-Treasury/modern-treasury-python/issues/499)) ([c4b61c9](https://github.com/Modern-Treasury/modern-treasury-python/commit/c4b61c9995261e3faf2536038c8a9b64e17ba164))
+* **tests:** update prism version ([#495](https://github.com/Modern-Treasury/modern-treasury-python/issues/495)) ([1855ddc](https://github.com/Modern-Treasury/modern-treasury-python/commit/1855ddcf03505e1346ec9392e1bc24863651ba34))
+
+
+### Documentation
+
+* **readme:** fix example snippet imports ([#494](https://github.com/Modern-Treasury/modern-treasury-python/issues/494)) ([bcdb312](https://github.com/Modern-Treasury/modern-treasury-python/commit/bcdb312f5f125122a3d01b496529a7a8f55f3c10))
+
 ## 1.37.0 (2024-07-16)
 
 Full Changelog: [v1.36.0...v1.37.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.36.0...v1.37.0)
