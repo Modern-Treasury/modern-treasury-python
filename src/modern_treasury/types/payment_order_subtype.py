@@ -23,7 +23,6 @@ PaymentOrderSubtype: TypeAlias = Optional[
         "dk_nets",
         "eft",
         "hu_ics",
-        "interac",
         "masav",
         "mx_ccen",
         "neft",
