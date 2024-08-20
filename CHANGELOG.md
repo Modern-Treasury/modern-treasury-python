@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.39.0 (2024-08-20)
+
+Full Changelog: [v1.38.0...v1.39.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.38.0...v1.39.0)
+
+### Features
+
+* **api:** add wells fargo reference number types ([#514](https://github.com/Modern-Treasury/modern-treasury-python/issues/514)) ([5789d00](https://github.com/Modern-Treasury/modern-treasury-python/commit/5789d008196c2a69f07517a5b5686b49c1081252))
+
+
+### Chores
+
+* **ci:** also run pydantic v1 tests ([#513](https://github.com/Modern-Treasury/modern-treasury-python/issues/513)) ([4ef2953](https://github.com/Modern-Treasury/modern-treasury-python/commit/4ef2953695e0676adc39971433dd7f68253d60c6))
+* **client:** fix parsing union responses when non-json is returned ([#512](https://github.com/Modern-Treasury/modern-treasury-python/issues/512)) ([4981f38](https://github.com/Modern-Treasury/modern-treasury-python/commit/4981f383909156af097baf6384f52457691119c7))
+* **internal:** use different 32bit detection method ([#510](https://github.com/Modern-Treasury/modern-treasury-python/issues/510)) ([8becaf4](https://github.com/Modern-Treasury/modern-treasury-python/commit/8becaf4a50782394e8be83bcee83c367061f7aff))
+
 ## 1.38.0 (2024-08-13)
 
 Full Changelog: [v1.37.0...v1.38.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.37.0...v1.38.0)
