@@ -31,10 +31,21 @@ __all__ = ["AccountCollectionFlows", "AsyncAccountCollectionFlows"]
 class AccountCollectionFlows(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AccountCollectionFlowsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return AccountCollectionFlowsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AccountCollectionFlowsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return AccountCollectionFlowsWithStreamingResponse(self)
 
     def create(
@@ -245,10 +256,21 @@ class AccountCollectionFlows(SyncAPIResource):
 class AsyncAccountCollectionFlows(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAccountCollectionFlowsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncAccountCollectionFlowsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncAccountCollectionFlowsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return AsyncAccountCollectionFlowsWithStreamingResponse(self)
 
     async def create(

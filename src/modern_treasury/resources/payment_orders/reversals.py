@@ -27,10 +27,21 @@ __all__ = ["Reversals", "AsyncReversals"]
 class Reversals(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ReversalsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return ReversalsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ReversalsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return ReversalsWithStreamingResponse(self)
 
     def create(
@@ -189,10 +200,21 @@ class Reversals(SyncAPIResource):
 class AsyncReversals(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncReversalsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncReversalsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncReversalsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return AsyncReversalsWithStreamingResponse(self)
 
     async def create(

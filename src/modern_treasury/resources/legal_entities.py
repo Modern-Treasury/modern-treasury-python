@@ -28,10 +28,21 @@ __all__ = ["LegalEntities", "AsyncLegalEntities"]
 class LegalEntities(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> LegalEntitiesWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return LegalEntitiesWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> LegalEntitiesWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return LegalEntitiesWithStreamingResponse(self)
 
     def create(
@@ -324,10 +335,21 @@ class LegalEntities(SyncAPIResource):
 class AsyncLegalEntities(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncLegalEntitiesWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncLegalEntitiesWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncLegalEntitiesWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return AsyncLegalEntitiesWithStreamingResponse(self)
 
     async def create(

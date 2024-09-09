@@ -28,10 +28,21 @@ __all__ = ["ForeignExchangeQuotes", "AsyncForeignExchangeQuotes"]
 class ForeignExchangeQuotes(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ForeignExchangeQuotesWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return ForeignExchangeQuotesWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ForeignExchangeQuotesWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return ForeignExchangeQuotesWithStreamingResponse(self)
 
     def create(
@@ -212,10 +223,21 @@ class ForeignExchangeQuotes(SyncAPIResource):
 class AsyncForeignExchangeQuotes(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncForeignExchangeQuotesWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncForeignExchangeQuotesWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncForeignExchangeQuotesWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return AsyncForeignExchangeQuotesWithStreamingResponse(self)
 
     async def create(

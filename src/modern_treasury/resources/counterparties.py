@@ -35,10 +35,21 @@ __all__ = ["Counterparties", "AsyncCounterparties"]
 class Counterparties(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> CounterpartiesWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return CounterpartiesWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> CounterpartiesWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return CounterpartiesWithStreamingResponse(self)
 
     def create(
@@ -451,10 +462,21 @@ class Counterparties(SyncAPIResource):
 class AsyncCounterparties(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncCounterpartiesWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncCounterpartiesWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncCounterpartiesWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return AsyncCounterpartiesWithStreamingResponse(self)
 
     async def create(

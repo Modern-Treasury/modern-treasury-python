@@ -28,10 +28,21 @@ __all__ = ["Returns", "AsyncReturns"]
 class Returns(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ReturnsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return ReturnsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ReturnsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return ReturnsWithStreamingResponse(self)
 
     def create(
@@ -261,10 +272,21 @@ class Returns(SyncAPIResource):
 class AsyncReturns(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncReturnsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncReturnsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncReturnsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return AsyncReturnsWithStreamingResponse(self)
 
     async def create(
