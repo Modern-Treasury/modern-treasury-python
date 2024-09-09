@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.40.0 (2024-09-09)
+
+Full Changelog: [v1.39.0...v1.40.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.39.0...v1.40.0)
+
+### Features
+
+* **api:** add us_bank RTP ID's as reference_number_type ([#518](https://github.com/Modern-Treasury/modern-treasury-python/issues/518)) ([751a5fa](https://github.com/Modern-Treasury/modern-treasury-python/commit/751a5fa764bc85b1ebdc7dd3895bd6d993ba78b1))
+
+
+### Chores
+
+* add docstrings to raw response properties ([#519](https://github.com/Modern-Treasury/modern-treasury-python/issues/519)) ([d0f8b63](https://github.com/Modern-Treasury/modern-treasury-python/commit/d0f8b6335fdf9a5ec16d3c239d17b69b841c1fbf))
+* **docs:** update description of `bankgirot` to `se_bankgirot` ([#521](https://github.com/Modern-Treasury/modern-treasury-python/issues/521)) ([8ce5255](https://github.com/Modern-Treasury/modern-treasury-python/commit/8ce52554524f1cd4f2e44edfaedddee13c84bb5b))
+* pyproject.toml formatting changes ([#515](https://github.com/Modern-Treasury/modern-treasury-python/issues/515)) ([7b4ca37](https://github.com/Modern-Treasury/modern-treasury-python/commit/7b4ca373abed17c2d28e7a062d32f34e9d39d6b9))
+* **test:** change test name ([#517](https://github.com/Modern-Treasury/modern-treasury-python/issues/517)) ([7ccc82b](https://github.com/Modern-Treasury/modern-treasury-python/commit/7ccc82b7ea65457fdeeddd1f9d978452be8218e8))
+
+
+### Documentation
+
+* **readme:** add section on determining installed version ([#520](https://github.com/Modern-Treasury/modern-treasury-python/issues/520)) ([b146e00](https://github.com/Modern-Treasury/modern-treasury-python/commit/b146e003bcb03b2a34934e07ae23319288fe1514))
+
 ## 1.39.0 (2024-08-20)
 
 Full Changelog: [v1.38.0...v1.39.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.38.0...v1.39.0)
