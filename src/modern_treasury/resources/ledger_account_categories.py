@@ -32,10 +32,21 @@ __all__ = ["LedgerAccountCategories", "AsyncLedgerAccountCategories"]
 class LedgerAccountCategories(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> LedgerAccountCategoriesWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return LedgerAccountCategoriesWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> LedgerAccountCategoriesWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return LedgerAccountCategoriesWithStreamingResponse(self)
 
     def create(
@@ -511,10 +522,21 @@ class LedgerAccountCategories(SyncAPIResource):
 class AsyncLedgerAccountCategories(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncLedgerAccountCategoriesWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncLedgerAccountCategoriesWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncLedgerAccountCategoriesWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return AsyncLedgerAccountCategoriesWithStreamingResponse(self)
 
     async def create(

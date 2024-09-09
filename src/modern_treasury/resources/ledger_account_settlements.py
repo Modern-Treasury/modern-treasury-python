@@ -32,10 +32,21 @@ __all__ = ["LedgerAccountSettlements", "AsyncLedgerAccountSettlements"]
 class LedgerAccountSettlements(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> LedgerAccountSettlementsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return LedgerAccountSettlementsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> LedgerAccountSettlementsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return LedgerAccountSettlementsWithStreamingResponse(self)
 
     def create(
@@ -291,10 +302,21 @@ class LedgerAccountSettlements(SyncAPIResource):
 class AsyncLedgerAccountSettlements(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncLedgerAccountSettlementsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncLedgerAccountSettlementsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncLedgerAccountSettlementsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return AsyncLedgerAccountSettlementsWithStreamingResponse(self)
 
     async def create(

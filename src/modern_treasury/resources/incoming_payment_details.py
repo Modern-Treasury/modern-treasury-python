@@ -35,10 +35,21 @@ __all__ = ["IncomingPaymentDetails", "AsyncIncomingPaymentDetails"]
 class IncomingPaymentDetails(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> IncomingPaymentDetailsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return IncomingPaymentDetailsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> IncomingPaymentDetailsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return IncomingPaymentDetailsWithStreamingResponse(self)
 
     def retrieve(
@@ -279,10 +290,21 @@ class IncomingPaymentDetails(SyncAPIResource):
 class AsyncIncomingPaymentDetails(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncIncomingPaymentDetailsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncIncomingPaymentDetailsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncIncomingPaymentDetailsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return AsyncIncomingPaymentDetailsWithStreamingResponse(self)
 
     async def retrieve(

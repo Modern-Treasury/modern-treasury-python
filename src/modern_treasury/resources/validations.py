@@ -25,10 +25,21 @@ __all__ = ["Validations", "AsyncValidations"]
 class Validations(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ValidationsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return ValidationsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ValidationsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return ValidationsWithStreamingResponse(self)
 
     def validate_routing_number(
@@ -106,10 +117,21 @@ class Validations(SyncAPIResource):
 class AsyncValidations(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncValidationsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncValidationsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncValidationsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return AsyncValidationsWithStreamingResponse(self)
 
     async def validate_routing_number(
