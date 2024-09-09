@@ -26,10 +26,21 @@ __all__ = ["LegalEntityAssociations", "AsyncLegalEntityAssociations"]
 class LegalEntityAssociations(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> LegalEntityAssociationsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return LegalEntityAssociationsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> LegalEntityAssociationsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return LegalEntityAssociationsWithStreamingResponse(self)
 
     def create(
@@ -101,10 +112,21 @@ class LegalEntityAssociations(SyncAPIResource):
 class AsyncLegalEntityAssociations(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncLegalEntityAssociationsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncLegalEntityAssociationsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncLegalEntityAssociationsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return AsyncLegalEntityAssociationsWithStreamingResponse(self)
 
     async def create(

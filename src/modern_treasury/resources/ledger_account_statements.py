@@ -27,10 +27,21 @@ __all__ = ["LedgerAccountStatements", "AsyncLedgerAccountStatements"]
 class LedgerAccountStatements(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> LedgerAccountStatementsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return LedgerAccountStatementsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> LedgerAccountStatementsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return LedgerAccountStatementsWithStreamingResponse(self)
 
     def create(
@@ -136,10 +147,21 @@ class LedgerAccountStatements(SyncAPIResource):
 class AsyncLedgerAccountStatements(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncLedgerAccountStatementsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncLedgerAccountStatementsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncLedgerAccountStatementsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return AsyncLedgerAccountStatementsWithStreamingResponse(self)
 
     async def create(
