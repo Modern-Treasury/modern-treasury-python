@@ -45,10 +45,21 @@ class InternalAccounts(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> InternalAccountsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return InternalAccountsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> InternalAccountsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return InternalAccountsWithStreamingResponse(self)
 
     def create(
@@ -339,10 +350,21 @@ class AsyncInternalAccounts(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncInternalAccountsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncInternalAccountsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncInternalAccountsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return AsyncInternalAccountsWithStreamingResponse(self)
 
     async def create(

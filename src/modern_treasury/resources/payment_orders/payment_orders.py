@@ -54,10 +54,21 @@ class PaymentOrders(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> PaymentOrdersWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return PaymentOrdersWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PaymentOrdersWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return PaymentOrdersWithStreamingResponse(self)
 
     def create(
@@ -966,10 +977,21 @@ class AsyncPaymentOrders(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncPaymentOrdersWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPaymentOrdersWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPaymentOrdersWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return AsyncPaymentOrdersWithStreamingResponse(self)
 
     async def create(

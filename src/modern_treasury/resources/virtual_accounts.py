@@ -30,10 +30,21 @@ __all__ = ["VirtualAccounts", "AsyncVirtualAccounts"]
 class VirtualAccounts(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> VirtualAccountsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return VirtualAccountsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> VirtualAccountsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return VirtualAccountsWithStreamingResponse(self)
 
     def create(
@@ -310,10 +321,21 @@ class VirtualAccounts(SyncAPIResource):
 class AsyncVirtualAccounts(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncVirtualAccountsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncVirtualAccountsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncVirtualAccountsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return AsyncVirtualAccountsWithStreamingResponse(self)
 
     async def create(

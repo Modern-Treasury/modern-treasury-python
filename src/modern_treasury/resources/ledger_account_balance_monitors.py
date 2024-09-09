@@ -30,10 +30,21 @@ __all__ = ["LedgerAccountBalanceMonitors", "AsyncLedgerAccountBalanceMonitors"]
 class LedgerAccountBalanceMonitors(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> LedgerAccountBalanceMonitorsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return LedgerAccountBalanceMonitorsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> LedgerAccountBalanceMonitorsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return LedgerAccountBalanceMonitorsWithStreamingResponse(self)
 
     def create(
@@ -284,10 +295,21 @@ class LedgerAccountBalanceMonitors(SyncAPIResource):
 class AsyncLedgerAccountBalanceMonitors(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncLedgerAccountBalanceMonitorsWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncLedgerAccountBalanceMonitorsWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncLedgerAccountBalanceMonitorsWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#with_streaming_response
+        """
         return AsyncLedgerAccountBalanceMonitorsWithStreamingResponse(self)
 
     async def create(
