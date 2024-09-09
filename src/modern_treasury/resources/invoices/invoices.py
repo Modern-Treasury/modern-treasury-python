@@ -152,9 +152,9 @@ class Invoices(SyncAPIResource):
               invoice amount is negative, the automatically initiated payment order's
               direction will be credit. One of `manual`, `ui`, or `automatic`.
 
-          payment_type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
-              `sic`, `signet`, `provexchange`, `zengin`.
+          payment_type: One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
+              `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
+              `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
 
           receiving_account_id: The receiving account ID. Can be an `external_account`.
 
@@ -342,9 +342,9 @@ class Invoices(SyncAPIResource):
               invoice amount is negative, the automatically initiated payment order's
               direction will be credit. One of `manual`, `ui`, or `automatic`.
 
-          payment_type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
-              `sic`, `signet`, `provexchange`, `zengin`.
+          payment_type: One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
+              `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
+              `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
 
           receiving_account_id: The receiving account ID. Can be an `external_account`.
 
@@ -645,9 +645,9 @@ class AsyncInvoices(AsyncAPIResource):
               invoice amount is negative, the automatically initiated payment order's
               direction will be credit. One of `manual`, `ui`, or `automatic`.
 
-          payment_type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
-              `sic`, `signet`, `provexchange`, `zengin`.
+          payment_type: One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
+              `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
+              `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
 
           receiving_account_id: The receiving account ID. Can be an `external_account`.
 
@@ -835,9 +835,9 @@ class AsyncInvoices(AsyncAPIResource):
               invoice amount is negative, the automatically initiated payment order's
               direction will be credit. One of `manual`, `ui`, or `automatic`.
 
-          payment_type: One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-              `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
-              `sic`, `signet`, `provexchange`, `zengin`.
+          payment_type: One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
+              `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
+              `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
 
           receiving_account_id: The receiving account ID. Can be an `external_account`.
 

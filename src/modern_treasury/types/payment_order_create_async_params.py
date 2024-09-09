@@ -55,9 +55,9 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
 
     type: Required[PaymentOrderType]
     """
-    One of `ach`, `bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`,
-    `bacs`, `au_becs`, `interac`, `neft`, `nics`, `nz_national_clearing_code`,
-    `sic`, `signet`, `provexchange`, `zengin`.
+    One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
+    `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
+    `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
     """
 
     accounting: Accounting
