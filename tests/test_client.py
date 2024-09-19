@@ -980,6 +980,7 @@ class TestModernTreasury:
         response = client.counterparties.with_raw_response.create(name="name")
 
         assert response.retries_taken == failures_before_success
+        assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
@@ -1002,6 +1003,7 @@ class TestModernTreasury:
 
         with client.counterparties.with_streaming_response.create(name="name") as response:
             assert response.retries_taken == failures_before_success
+            assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
 
 
 class TestAsyncModernTreasury:
@@ -1942,6 +1944,7 @@ class TestAsyncModernTreasury:
         response = await client.counterparties.with_raw_response.create(name="name")
 
         assert response.retries_taken == failures_before_success
+        assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
@@ -1965,3 +1968,4 @@ class TestAsyncModernTreasury:
 
         async with client.counterparties.with_streaming_response.create(name="name") as response:
             assert response.retries_taken == failures_before_success
+            assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
