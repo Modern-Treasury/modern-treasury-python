@@ -12,7 +12,7 @@ __all__ = ["BulkRequest"]
 class BulkRequest(BaseModel):
     id: str
 
-    action_type: Literal["create", "update"]
+    action_type: Literal["create", "update", "delete"]
     """One of create, or update."""
 
     created_at: datetime

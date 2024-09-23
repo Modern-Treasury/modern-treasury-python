@@ -70,6 +70,12 @@ class InvoiceUpdateParams(TypedDict, total=False):
     ledger_account_settlement_id: Optional[str]
     """The ID of the virtual account the invoice should be paid to."""
 
+    metadata: Optional[Dict[str, str]]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
+
     notification_email_addresses: Optional[List[str]]
     """
     Emails in addition to the counterparty email to send invoice status
