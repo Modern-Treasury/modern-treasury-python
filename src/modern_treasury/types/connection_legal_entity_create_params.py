@@ -79,6 +79,7 @@ class LegalEntityIdentification(TypedDict, total=False):
             "ar_cuit",
             "br_cnpj",
             "br_cpf",
+            "cl_run",
             "cl_rut",
             "co_cedulas",
             "co_nit",
@@ -151,6 +152,7 @@ class LegalEntityLegalEntityAssociationChildLegalEntityIdentification(TypedDict,
             "ar_cuit",
             "br_cnpj",
             "br_cpf",
+            "cl_run",
             "cl_rut",
             "co_cedulas",
             "co_nit",
@@ -244,7 +246,7 @@ class LegalEntityLegalEntityAssociationChildLegalEntity(TypedDict, total=False):
     phone_numbers: Iterable[LegalEntityLegalEntityAssociationChildLegalEntityPhoneNumber]
 
     risk_rating: Optional[Literal["low", "medium", "high"]]
-    """Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating"""
+    """The risk rating of the legal entity. One of low, medium, high."""
 
     website: Optional[str]
     """The entity's primary website URL."""
@@ -338,7 +340,7 @@ class LegalEntity(TypedDict, total=False):
     phone_numbers: Iterable[LegalEntityPhoneNumber]
 
     risk_rating: Optional[Literal["low", "medium", "high"]]
-    """Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating"""
+    """The risk rating of the legal entity. One of low, medium, high."""
 
     website: Optional[str]
     """The entity's primary website URL."""

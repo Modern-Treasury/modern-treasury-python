@@ -105,7 +105,7 @@ class LegalEntities(SyncAPIResource):
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
-          risk_rating: Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+          risk_rating: The risk rating of the legal entity. One of low, medium, high.
 
           website: The entity's primary website URL.
 
@@ -233,7 +233,7 @@ class LegalEntities(SyncAPIResource):
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
-          risk_rating: Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+          risk_rating: The risk rating of the legal entity. One of low, medium, high.
 
           website: The entity's primary website URL.
 
@@ -412,7 +412,7 @@ class AsyncLegalEntities(AsyncAPIResource):
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
-          risk_rating: Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+          risk_rating: The risk rating of the legal entity. One of low, medium, high.
 
           website: The entity's primary website URL.
 
@@ -540,7 +540,7 @@ class AsyncLegalEntities(AsyncAPIResource):
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
-          risk_rating: Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating
+          risk_rating: The risk rating of the legal entity. One of low, medium, high.
 
           website: The entity's primary website URL.
 

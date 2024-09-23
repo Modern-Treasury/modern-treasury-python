@@ -47,7 +47,7 @@ class BulkRequests(SyncAPIResource):
     def create(
         self,
         *,
-        action_type: Literal["create", "update"],
+        action_type: Literal["create", "update", "delete"],
         resource_type: Literal["payment_order", "ledger_transaction", "transaction", "expected_payment"],
         resources: Iterable[bulk_request_create_params.Resource],
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -140,7 +140,7 @@ class BulkRequests(SyncAPIResource):
     def list(
         self,
         *,
-        action_type: Literal["create", "update"] | NotGiven = NOT_GIVEN,
+        action_type: Literal["create", "update", "delete"] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
@@ -223,7 +223,7 @@ class AsyncBulkRequests(AsyncAPIResource):
     async def create(
         self,
         *,
-        action_type: Literal["create", "update"],
+        action_type: Literal["create", "update", "delete"],
         resource_type: Literal["payment_order", "ledger_transaction", "transaction", "expected_payment"],
         resources: Iterable[bulk_request_create_params.Resource],
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -316,7 +316,7 @@ class AsyncBulkRequests(AsyncAPIResource):
     def list(
         self,
         *,
-        action_type: Literal["create", "update"] | NotGiven = NOT_GIVEN,
+        action_type: Literal["create", "update", "delete"] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,

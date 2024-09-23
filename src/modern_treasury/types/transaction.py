@@ -64,6 +64,12 @@ class Transaction(BaseModel):
     bank, it may be `null`.
     """
 
+    as_of_timezone: Optional[str] = None
+    """The timezone in which the `as_of_time` is represented.
+
+    Can be `null` if the bank does not provide timezone info.
+    """
+
     created_at: datetime
 
     currency: Currency
