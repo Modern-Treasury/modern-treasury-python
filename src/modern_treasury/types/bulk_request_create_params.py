@@ -86,7 +86,7 @@ __all__ = [
 
 
 class BulkRequestCreateParams(TypedDict, total=False):
-    action_type: Required[Literal["create", "update"]]
+    action_type: Required[Literal["create", "update", "delete"]]
     """One of create, or update."""
 
     resource_type: Required[Literal["payment_order", "ledger_transaction", "transaction", "expected_payment"]]

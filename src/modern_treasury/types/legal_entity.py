@@ -66,6 +66,7 @@ class Identification(BaseModel):
         "ar_cuit",
         "br_cnpj",
         "br_cpf",
+        "cl_run",
         "cl_rut",
         "co_cedulas",
         "co_nit",
@@ -181,7 +182,7 @@ class LegalEntity(BaseModel):
     phone_numbers: List[PhoneNumber]
 
     risk_rating: Optional[Literal["low", "medium", "high"]] = None
-    """Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating"""
+    """The risk rating of the legal entity. One of low, medium, high."""
 
     updated_at: datetime
 

@@ -166,7 +166,7 @@ class Invoice(BaseModel):
     if it exists in the test environment.
     """
 
-    metadata: Dict[str, str]
+    metadata: Optional[Dict[str, str]] = None
     """Additional data represented as key-value pairs.
 
     Both the key and value must be strings.

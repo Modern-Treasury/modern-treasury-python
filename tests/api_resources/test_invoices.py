@@ -36,6 +36,7 @@ class TestInvoices:
             counterparty_id="counterparty_id",
             due_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             originating_account_id="originating_account_id",
+            auto_advance=True,
             contact_details=[
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -138,6 +139,11 @@ class TestInvoices:
                 "line2": "line2",
             },
             ledger_account_settlement_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
             notification_email_addresses=["string", "string", "string"],
             notifications_enabled=True,
             payment_effective_date=parse_date("2019-12-27"),
@@ -332,6 +338,11 @@ class TestInvoices:
                 "line2": "line2",
             },
             ledger_account_settlement_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
             notification_email_addresses=["string", "string", "string"],
             notifications_enabled=True,
             originating_account_id="originating_account_id",
@@ -487,6 +498,7 @@ class TestAsyncInvoices:
             counterparty_id="counterparty_id",
             due_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             originating_account_id="originating_account_id",
+            auto_advance=True,
             contact_details=[
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -589,6 +601,11 @@ class TestAsyncInvoices:
                 "line2": "line2",
             },
             ledger_account_settlement_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
             notification_email_addresses=["string", "string", "string"],
             notifications_enabled=True,
             payment_effective_date=parse_date("2019-12-27"),
@@ -783,6 +800,11 @@ class TestAsyncInvoices:
                 "line2": "line2",
             },
             ledger_account_settlement_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
             notification_email_addresses=["string", "string", "string"],
             notifications_enabled=True,
             originating_account_id="originating_account_id",
