@@ -32,6 +32,13 @@ class InvoiceCreateParams(TypedDict, total=False):
     originating_account_id: Required[str]
     """The ID of the internal account the invoice should be paid to."""
 
+    auto_advance: Optional[bool]
+    """
+    When true, the invoice will progress to unpaid automatically and cannot be
+    edited after entering that state. If the invoice fails to progress to unpaid,
+    the errors will be returned and the invoice will not be created.
+    """
+
     contact_details: Iterable[ContactDetail]
     """The invoicer's contact details displayed at the top of the invoice."""
 
@@ -72,6 +79,12 @@ class InvoiceCreateParams(TypedDict, total=False):
 
     ledger_account_settlement_id: Optional[str]
     """The ID of the virtual account the invoice should be paid to."""
+
+    metadata: Optional[Dict[str, str]]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
 
     notification_email_addresses: Optional[List[str]]
     """

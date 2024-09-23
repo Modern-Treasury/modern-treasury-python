@@ -70,6 +70,7 @@ class Invoices(SyncAPIResource):
         counterparty_id: str,
         due_date: Union[str, datetime],
         originating_account_id: str,
+        auto_advance: Optional[bool] | NotGiven = NOT_GIVEN,
         contact_details: Iterable[invoice_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
         counterparty_billing_address: Optional[invoice_create_params.CounterpartyBillingAddress] | NotGiven = NOT_GIVEN,
         counterparty_shipping_address: Optional[invoice_create_params.CounterpartyShippingAddress]
@@ -81,6 +82,7 @@ class Invoices(SyncAPIResource):
         invoice_line_items: Optional[Iterable[invoice_create_params.InvoiceLineItem]] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_create_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
         ledger_account_settlement_id: Optional[str] | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
         notifications_enabled: bool | NotGiven = NOT_GIVEN,
         payment_effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
@@ -109,6 +111,10 @@ class Invoices(SyncAPIResource):
 
           originating_account_id: The ID of the internal account the invoice should be paid to.
 
+          auto_advance: When true, the invoice will progress to unpaid automatically and cannot be
+              edited after entering that state. If the invoice fails to progress to unpaid,
+              the errors will be returned and the invoice will not be created.
+
           contact_details: The invoicer's contact details displayed at the top of the invoice.
 
           counterparty_billing_address: The counterparty's billing address.
@@ -133,6 +139,9 @@ class Invoices(SyncAPIResource):
           invoicer_address: The invoice issuer's business address.
 
           ledger_account_settlement_id: The ID of the virtual account the invoice should be paid to.
+
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
 
           notification_email_addresses: Emails in addition to the counterparty email to send invoice status
               notifications to. At least one email is required if notifications are enabled
@@ -186,6 +195,7 @@ class Invoices(SyncAPIResource):
                     "counterparty_id": counterparty_id,
                     "due_date": due_date,
                     "originating_account_id": originating_account_id,
+                    "auto_advance": auto_advance,
                     "contact_details": contact_details,
                     "counterparty_billing_address": counterparty_billing_address,
                     "counterparty_shipping_address": counterparty_shipping_address,
@@ -196,6 +206,7 @@ class Invoices(SyncAPIResource):
                     "invoice_line_items": invoice_line_items,
                     "invoicer_address": invoicer_address,
                     "ledger_account_settlement_id": ledger_account_settlement_id,
+                    "metadata": metadata,
                     "notification_email_addresses": notification_email_addresses,
                     "notifications_enabled": notifications_enabled,
                     "payment_effective_date": payment_effective_date,
@@ -269,6 +280,7 @@ class Invoices(SyncAPIResource):
         invoice_line_items: Optional[Iterable[invoice_update_params.InvoiceLineItem]] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_update_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
         ledger_account_settlement_id: Optional[str] | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
         notifications_enabled: bool | NotGiven = NOT_GIVEN,
         originating_account_id: str | NotGiven = NOT_GIVEN,
@@ -321,6 +333,9 @@ class Invoices(SyncAPIResource):
           invoicer_address: The invoice issuer's business address.
 
           ledger_account_settlement_id: The ID of the virtual account the invoice should be paid to.
+
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
 
           notification_email_addresses: Emails in addition to the counterparty email to send invoice status
               notifications to. At least one email is required if notifications are enabled
@@ -391,6 +406,7 @@ class Invoices(SyncAPIResource):
                     "invoice_line_items": invoice_line_items,
                     "invoicer_address": invoicer_address,
                     "ledger_account_settlement_id": ledger_account_settlement_id,
+                    "metadata": metadata,
                     "notification_email_addresses": notification_email_addresses,
                     "notifications_enabled": notifications_enabled,
                     "originating_account_id": originating_account_id,
@@ -563,6 +579,7 @@ class AsyncInvoices(AsyncAPIResource):
         counterparty_id: str,
         due_date: Union[str, datetime],
         originating_account_id: str,
+        auto_advance: Optional[bool] | NotGiven = NOT_GIVEN,
         contact_details: Iterable[invoice_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
         counterparty_billing_address: Optional[invoice_create_params.CounterpartyBillingAddress] | NotGiven = NOT_GIVEN,
         counterparty_shipping_address: Optional[invoice_create_params.CounterpartyShippingAddress]
@@ -574,6 +591,7 @@ class AsyncInvoices(AsyncAPIResource):
         invoice_line_items: Optional[Iterable[invoice_create_params.InvoiceLineItem]] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_create_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
         ledger_account_settlement_id: Optional[str] | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
         notifications_enabled: bool | NotGiven = NOT_GIVEN,
         payment_effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
@@ -602,6 +620,10 @@ class AsyncInvoices(AsyncAPIResource):
 
           originating_account_id: The ID of the internal account the invoice should be paid to.
 
+          auto_advance: When true, the invoice will progress to unpaid automatically and cannot be
+              edited after entering that state. If the invoice fails to progress to unpaid,
+              the errors will be returned and the invoice will not be created.
+
           contact_details: The invoicer's contact details displayed at the top of the invoice.
 
           counterparty_billing_address: The counterparty's billing address.
@@ -626,6 +648,9 @@ class AsyncInvoices(AsyncAPIResource):
           invoicer_address: The invoice issuer's business address.
 
           ledger_account_settlement_id: The ID of the virtual account the invoice should be paid to.
+
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
 
           notification_email_addresses: Emails in addition to the counterparty email to send invoice status
               notifications to. At least one email is required if notifications are enabled
@@ -679,6 +704,7 @@ class AsyncInvoices(AsyncAPIResource):
                     "counterparty_id": counterparty_id,
                     "due_date": due_date,
                     "originating_account_id": originating_account_id,
+                    "auto_advance": auto_advance,
                     "contact_details": contact_details,
                     "counterparty_billing_address": counterparty_billing_address,
                     "counterparty_shipping_address": counterparty_shipping_address,
@@ -689,6 +715,7 @@ class AsyncInvoices(AsyncAPIResource):
                     "invoice_line_items": invoice_line_items,
                     "invoicer_address": invoicer_address,
                     "ledger_account_settlement_id": ledger_account_settlement_id,
+                    "metadata": metadata,
                     "notification_email_addresses": notification_email_addresses,
                     "notifications_enabled": notifications_enabled,
                     "payment_effective_date": payment_effective_date,
@@ -762,6 +789,7 @@ class AsyncInvoices(AsyncAPIResource):
         invoice_line_items: Optional[Iterable[invoice_update_params.InvoiceLineItem]] | NotGiven = NOT_GIVEN,
         invoicer_address: Optional[invoice_update_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
         ledger_account_settlement_id: Optional[str] | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
         notifications_enabled: bool | NotGiven = NOT_GIVEN,
         originating_account_id: str | NotGiven = NOT_GIVEN,
@@ -814,6 +842,9 @@ class AsyncInvoices(AsyncAPIResource):
           invoicer_address: The invoice issuer's business address.
 
           ledger_account_settlement_id: The ID of the virtual account the invoice should be paid to.
+
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
 
           notification_email_addresses: Emails in addition to the counterparty email to send invoice status
               notifications to. At least one email is required if notifications are enabled
@@ -884,6 +915,7 @@ class AsyncInvoices(AsyncAPIResource):
                     "invoice_line_items": invoice_line_items,
                     "invoicer_address": invoicer_address,
                     "ledger_account_settlement_id": ledger_account_settlement_id,
+                    "metadata": metadata,
                     "notification_email_addresses": notification_email_addresses,
                     "notifications_enabled": notifications_enabled,
                     "originating_account_id": originating_account_id,

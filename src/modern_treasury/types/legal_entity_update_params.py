@@ -46,7 +46,7 @@ class LegalEntityUpdateParams(TypedDict, total=False):
     phone_numbers: Iterable[PhoneNumber]
 
     risk_rating: Optional[Literal["low", "medium", "high"]]
-    """Translation missing: en.openapi.descriptions.legal_entity.schema.risk_rating"""
+    """The risk rating of the legal entity. One of low, medium, high."""
 
     website: Optional[str]
     """The entity's primary website URL."""

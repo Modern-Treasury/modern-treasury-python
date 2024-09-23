@@ -9,7 +9,7 @@ __all__ = ["BulkRequestListParams"]
 
 
 class BulkRequestListParams(TypedDict, total=False):
-    action_type: Literal["create", "update"]
+    action_type: Literal["create", "update", "delete"]
     """One of create, or update."""
 
     after_cursor: Optional[str]
