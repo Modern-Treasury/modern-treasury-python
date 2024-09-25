@@ -1,5 +1,33 @@
 # Changelog
 
+## 1.41.0 (2024-09-25)
+
+Full Changelog: [v1.40.0...v1.41.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.40.0...v1.41.0)
+
+### Features
+
+* **api:** add `usbank_payment_application_reference_id` to `reference_number_type` ([#522](https://github.com/Modern-Treasury/modern-treasury-python/issues/522)) ([8544c6e](https://github.com/Modern-Treasury/modern-treasury-python/commit/8544c6e38e2daa025e642e890967e04712f2a3ff))
+* **client:** allow overriding retry count header ([#531](https://github.com/Modern-Treasury/modern-treasury-python/issues/531)) ([b084527](https://github.com/Modern-Treasury/modern-treasury-python/commit/b084527d83ba13d404c0e6684e502fbc2ace00fb))
+* **client:** send retry count header ([#528](https://github.com/Modern-Treasury/modern-treasury-python/issues/528)) ([5a85f89](https://github.com/Modern-Treasury/modern-treasury-python/commit/5a85f8960f530f7ad0cc7bb2af23ad538ee8a8cd))
+
+
+### Bug Fixes
+
+* **client:** handle domains with underscores ([#527](https://github.com/Modern-Treasury/modern-treasury-python/issues/527)) ([b19a0e8](https://github.com/Modern-Treasury/modern-treasury-python/commit/b19a0e8edd7946cd9e13a3b08d21eeb4fefdefea))
+
+
+### Chores
+
+* **api:** fields and parameters added to bulk actions, transactions and invoice creation ([#530](https://github.com/Modern-Treasury/modern-treasury-python/issues/530)) ([5221bfa](https://github.com/Modern-Treasury/modern-treasury-python/commit/5221bfa385fdf21c246509df64c3ae9ced50e8c6))
+* **internal:** bump pyright / mypy version ([#526](https://github.com/Modern-Treasury/modern-treasury-python/issues/526)) ([7aa949b](https://github.com/Modern-Treasury/modern-treasury-python/commit/7aa949b62976095a0157431b7d9750e6b608d455))
+* **internal:** bump ruff ([#525](https://github.com/Modern-Treasury/modern-treasury-python/issues/525)) ([0816f05](https://github.com/Modern-Treasury/modern-treasury-python/commit/0816f0516839b542c31b9938b30aa7e9affa4592))
+* **internal:** update pydantic v1 compat helpers ([#529](https://github.com/Modern-Treasury/modern-treasury-python/issues/529)) ([1f9d3ae](https://github.com/Modern-Treasury/modern-treasury-python/commit/1f9d3aead62ea195e3d7f39a3dea3963428d71c7))
+
+
+### Documentation
+
+* update CONTRIBUTING.md ([#524](https://github.com/Modern-Treasury/modern-treasury-python/issues/524)) ([dfcbfa4](https://github.com/Modern-Treasury/modern-treasury-python/commit/dfcbfa4289958d7e9c8d28342bbb32434b828cf4))
+
 ## 1.40.0 (2024-09-09)
 
 Full Changelog: [v1.39.0...v1.40.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.39.0...v1.40.0)
