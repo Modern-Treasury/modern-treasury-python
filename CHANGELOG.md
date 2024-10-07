@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.41.1 (2024-10-07)
+
+Full Changelog: [v1.41.0...v1.41.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.41.0...v1.41.1)
+
+### Bug Fixes
+
+* **client:** avoid OverflowError with very large retry counts ([#536](https://github.com/Modern-Treasury/modern-treasury-python/issues/536)) ([692bec5](https://github.com/Modern-Treasury/modern-treasury-python/commit/692bec55de1f314b13a93ebdcbc587c89103cad0))
+
+
+### Chores
+
+* add repr to PageInfo class ([#537](https://github.com/Modern-Treasury/modern-treasury-python/issues/537)) ([175fd3b](https://github.com/Modern-Treasury/modern-treasury-python/commit/175fd3bb8e69163bdc1ef6917d7611ad1e7609d3))
+* **internal:** add support for parsing bool response content ([#535](https://github.com/Modern-Treasury/modern-treasury-python/issues/535)) ([c20fe34](https://github.com/Modern-Treasury/modern-treasury-python/commit/c20fe3435adf41ba9cc3ddc2aaa44b0a94f690ac))
+
+
+### Documentation
+
+* fix typo in fenced code block language ([#534](https://github.com/Modern-Treasury/modern-treasury-python/issues/534)) ([23d51a7](https://github.com/Modern-Treasury/modern-treasury-python/commit/23d51a72f010177a69231cc8feebbdac67626aa8))
+* improve and reference contributing documentation ([#532](https://github.com/Modern-Treasury/modern-treasury-python/issues/532)) ([e991a66](https://github.com/Modern-Treasury/modern-treasury-python/commit/e991a66e853311397f1a877c90ae17ef0b7f10ca))
+
 ## 1.41.0 (2024-09-25)
 
 Full Changelog: [v1.40.0...v1.41.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.40.0...v1.41.0)
