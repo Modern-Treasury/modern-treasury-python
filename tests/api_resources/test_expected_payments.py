@@ -23,12 +23,7 @@ class TestExpectedPayments:
 
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
-        expected_payment = client.expected_payments.create(
-            amount_lower_bound=0,
-            amount_upper_bound=0,
-            direction="credit",
-            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        )
+        expected_payment = client.expected_payments.create()
         assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
 
     @parametrize
@@ -36,13 +31,13 @@ class TestExpectedPayments:
         expected_payment = client.expected_payments.create(
             amount_lower_bound=0,
             amount_upper_bound=0,
-            direction="credit",
-            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="AED",
             date_lower_bound=parse_date("2019-12-27"),
             date_upper_bound=parse_date("2019-12-27"),
             description="description",
+            direction="credit",
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledger_transaction={
                 "ledger_entries": [
                     {
@@ -144,7 +139,44 @@ class TestExpectedPayments:
             },
             reconciliation_filters={},
             reconciliation_groups={},
-            reconciliation_rule_variables=[{"foo": "string"}, {"foo": "string"}, {"foo": "string"}],
+            reconciliation_rule_variables=[
+                {
+                    "amount_lower_bound": 0,
+                    "amount_upper_bound": 0,
+                    "direction": "credit",
+                    "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "currency": "AED",
+                    "custom_identifiers": {"foo": "string"},
+                    "date_lower_bound": parse_date("2019-12-27"),
+                    "date_upper_bound": parse_date("2019-12-27"),
+                    "type": "ach",
+                },
+                {
+                    "amount_lower_bound": 0,
+                    "amount_upper_bound": 0,
+                    "direction": "credit",
+                    "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "currency": "AED",
+                    "custom_identifiers": {"foo": "string"},
+                    "date_lower_bound": parse_date("2019-12-27"),
+                    "date_upper_bound": parse_date("2019-12-27"),
+                    "type": "ach",
+                },
+                {
+                    "amount_lower_bound": 0,
+                    "amount_upper_bound": 0,
+                    "direction": "credit",
+                    "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "currency": "AED",
+                    "custom_identifiers": {"foo": "string"},
+                    "date_lower_bound": parse_date("2019-12-27"),
+                    "date_upper_bound": parse_date("2019-12-27"),
+                    "type": "ach",
+                },
+            ],
             remittance_information="remittance_information",
             statement_descriptor="statement_descriptor",
             type="ach",
@@ -153,12 +185,7 @@ class TestExpectedPayments:
 
     @parametrize
     def test_raw_response_create(self, client: ModernTreasury) -> None:
-        response = client.expected_payments.with_raw_response.create(
-            amount_lower_bound=0,
-            amount_upper_bound=0,
-            direction="credit",
-            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        )
+        response = client.expected_payments.with_raw_response.create()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -167,12 +194,7 @@ class TestExpectedPayments:
 
     @parametrize
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
-        with client.expected_payments.with_streaming_response.create(
-            amount_lower_bound=0,
-            amount_upper_bound=0,
-            direction="credit",
-            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        ) as response:
+        with client.expected_payments.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -246,7 +268,44 @@ class TestExpectedPayments:
             },
             reconciliation_filters={},
             reconciliation_groups={},
-            reconciliation_rule_variables=[{"foo": "string"}, {"foo": "string"}, {"foo": "string"}],
+            reconciliation_rule_variables=[
+                {
+                    "amount_lower_bound": 0,
+                    "amount_upper_bound": 0,
+                    "direction": "credit",
+                    "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "currency": "AED",
+                    "custom_identifiers": {"foo": "string"},
+                    "date_lower_bound": parse_date("2019-12-27"),
+                    "date_upper_bound": parse_date("2019-12-27"),
+                    "type": "ach",
+                },
+                {
+                    "amount_lower_bound": 0,
+                    "amount_upper_bound": 0,
+                    "direction": "credit",
+                    "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "currency": "AED",
+                    "custom_identifiers": {"foo": "string"},
+                    "date_lower_bound": parse_date("2019-12-27"),
+                    "date_upper_bound": parse_date("2019-12-27"),
+                    "type": "ach",
+                },
+                {
+                    "amount_lower_bound": 0,
+                    "amount_upper_bound": 0,
+                    "direction": "credit",
+                    "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "currency": "AED",
+                    "custom_identifiers": {"foo": "string"},
+                    "date_lower_bound": parse_date("2019-12-27"),
+                    "date_upper_bound": parse_date("2019-12-27"),
+                    "type": "ach",
+                },
+            ],
             remittance_information="remittance_information",
             statement_descriptor="statement_descriptor",
             status="reconciled",
@@ -370,12 +429,7 @@ class TestAsyncExpectedPayments:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
-        expected_payment = await async_client.expected_payments.create(
-            amount_lower_bound=0,
-            amount_upper_bound=0,
-            direction="credit",
-            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        )
+        expected_payment = await async_client.expected_payments.create()
         assert_matches_type(ExpectedPayment, expected_payment, path=["response"])
 
     @parametrize
@@ -383,13 +437,13 @@ class TestAsyncExpectedPayments:
         expected_payment = await async_client.expected_payments.create(
             amount_lower_bound=0,
             amount_upper_bound=0,
-            direction="credit",
-            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="AED",
             date_lower_bound=parse_date("2019-12-27"),
             date_upper_bound=parse_date("2019-12-27"),
             description="description",
+            direction="credit",
+            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledger_transaction={
                 "ledger_entries": [
                     {
@@ -491,7 +545,44 @@ class TestAsyncExpectedPayments:
             },
             reconciliation_filters={},
             reconciliation_groups={},
-            reconciliation_rule_variables=[{"foo": "string"}, {"foo": "string"}, {"foo": "string"}],
+            reconciliation_rule_variables=[
+                {
+                    "amount_lower_bound": 0,
+                    "amount_upper_bound": 0,
+                    "direction": "credit",
+                    "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "currency": "AED",
+                    "custom_identifiers": {"foo": "string"},
+                    "date_lower_bound": parse_date("2019-12-27"),
+                    "date_upper_bound": parse_date("2019-12-27"),
+                    "type": "ach",
+                },
+                {
+                    "amount_lower_bound": 0,
+                    "amount_upper_bound": 0,
+                    "direction": "credit",
+                    "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "currency": "AED",
+                    "custom_identifiers": {"foo": "string"},
+                    "date_lower_bound": parse_date("2019-12-27"),
+                    "date_upper_bound": parse_date("2019-12-27"),
+                    "type": "ach",
+                },
+                {
+                    "amount_lower_bound": 0,
+                    "amount_upper_bound": 0,
+                    "direction": "credit",
+                    "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "currency": "AED",
+                    "custom_identifiers": {"foo": "string"},
+                    "date_lower_bound": parse_date("2019-12-27"),
+                    "date_upper_bound": parse_date("2019-12-27"),
+                    "type": "ach",
+                },
+            ],
             remittance_information="remittance_information",
             statement_descriptor="statement_descriptor",
             type="ach",
@@ -500,12 +591,7 @@ class TestAsyncExpectedPayments:
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
-        response = await async_client.expected_payments.with_raw_response.create(
-            amount_lower_bound=0,
-            amount_upper_bound=0,
-            direction="credit",
-            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        )
+        response = await async_client.expected_payments.with_raw_response.create()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -514,12 +600,7 @@ class TestAsyncExpectedPayments:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
-        async with async_client.expected_payments.with_streaming_response.create(
-            amount_lower_bound=0,
-            amount_upper_bound=0,
-            direction="credit",
-            internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        ) as response:
+        async with async_client.expected_payments.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -593,7 +674,44 @@ class TestAsyncExpectedPayments:
             },
             reconciliation_filters={},
             reconciliation_groups={},
-            reconciliation_rule_variables=[{"foo": "string"}, {"foo": "string"}, {"foo": "string"}],
+            reconciliation_rule_variables=[
+                {
+                    "amount_lower_bound": 0,
+                    "amount_upper_bound": 0,
+                    "direction": "credit",
+                    "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "currency": "AED",
+                    "custom_identifiers": {"foo": "string"},
+                    "date_lower_bound": parse_date("2019-12-27"),
+                    "date_upper_bound": parse_date("2019-12-27"),
+                    "type": "ach",
+                },
+                {
+                    "amount_lower_bound": 0,
+                    "amount_upper_bound": 0,
+                    "direction": "credit",
+                    "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "currency": "AED",
+                    "custom_identifiers": {"foo": "string"},
+                    "date_lower_bound": parse_date("2019-12-27"),
+                    "date_upper_bound": parse_date("2019-12-27"),
+                    "type": "ach",
+                },
+                {
+                    "amount_lower_bound": 0,
+                    "amount_upper_bound": 0,
+                    "direction": "credit",
+                    "internal_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "currency": "AED",
+                    "custom_identifiers": {"foo": "string"},
+                    "date_lower_bound": parse_date("2019-12-27"),
+                    "date_upper_bound": parse_date("2019-12-27"),
+                    "type": "ach",
+                },
+            ],
             remittance_information="remittance_information",
             statement_descriptor="statement_descriptor",
             status="reconciled",

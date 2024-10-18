@@ -9,20 +9,20 @@ from typing_extensions import Literal, Annotated, TypedDict
 from .._utils import PropertyInfo
 from .shared.currency import Currency
 from .expected_payment_type import ExpectedPaymentType
-from .shared.transaction_direction import TransactionDirection
+from .reconciliation_rule_param import ReconciliationRuleParam
 
 __all__ = ["ExpectedPaymentUpdateParams"]
 
 
 class ExpectedPaymentUpdateParams(TypedDict, total=False):
-    amount_lower_bound: int
+    amount_lower_bound: Optional[int]
     """The lowest amount this expected payment may be equal to.
 
     Value in specified currency's smallest unit. e.g. $10 would be represented
     as 1000.
     """
 
-    amount_upper_bound: int
+    amount_upper_bound: Optional[int]
     """The highest amount this expected payment may be equal to.
 
     Value in specified currency's smallest unit. e.g. $10 would be represented
@@ -32,7 +32,7 @@ class ExpectedPaymentUpdateParams(TypedDict, total=False):
     counterparty_id: Optional[str]
     """The ID of the counterparty you expect for this payment."""
 
-    currency: Currency
+    currency: Optional[Currency]
     """Must conform to ISO 4217. Defaults to the currency of the internal account."""
 
     date_lower_bound: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
@@ -44,13 +44,13 @@ class ExpectedPaymentUpdateParams(TypedDict, total=False):
     description: Optional[str]
     """An optional description for internal use."""
 
-    direction: TransactionDirection
+    direction: Optional[Literal["credit", "debit"]]
     """One of credit or debit.
 
     When you are receiving money, use credit. When you are being charged, use debit.
     """
 
-    internal_account_id: str
+    internal_account_id: Optional[str]
     """The ID of the Internal Account for the expected payment."""
 
     metadata: Dict[str, str]
@@ -65,7 +65,7 @@ class ExpectedPaymentUpdateParams(TypedDict, total=False):
     reconciliation_groups: Optional[object]
     """The reconciliation groups you have for this payment."""
 
-    reconciliation_rule_variables: Optional[Iterable[Dict[str, str]]]
+    reconciliation_rule_variables: Optional[Iterable[ReconciliationRuleParam]]
     """An array of reconciliation rule variables for this payment."""
 
     remittance_information: Optional[str]

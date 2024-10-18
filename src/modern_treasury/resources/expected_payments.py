@@ -28,6 +28,7 @@ from .._base_client import AsyncPaginator, make_request_options
 from ..types.shared.currency import Currency
 from ..types.expected_payment import ExpectedPayment
 from ..types.expected_payment_type import ExpectedPaymentType
+from ..types.reconciliation_rule_param import ReconciliationRuleParam
 from ..types.shared.transaction_direction import TransactionDirection
 
 __all__ = ["ExpectedPayments", "AsyncExpectedPayments"]
@@ -56,22 +57,22 @@ class ExpectedPayments(SyncAPIResource):
     def create(
         self,
         *,
-        amount_lower_bound: int,
-        amount_upper_bound: int,
-        direction: TransactionDirection,
-        internal_account_id: str,
+        amount_lower_bound: Optional[int] | NotGiven = NOT_GIVEN,
+        amount_upper_bound: Optional[int] | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
-        currency: Currency | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         date_lower_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_upper_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        direction: Optional[Literal["credit", "debit"]] | NotGiven = NOT_GIVEN,
+        internal_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         ledger_transaction: expected_payment_create_params.LedgerTransaction | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         line_items: Iterable[expected_payment_create_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         reconciliation_filters: Optional[object] | NotGiven = NOT_GIVEN,
         reconciliation_groups: Optional[object] | NotGiven = NOT_GIVEN,
-        reconciliation_rule_variables: Optional[Iterable[Dict[str, str]]] | NotGiven = NOT_GIVEN,
+        reconciliation_rule_variables: Optional[Iterable[ReconciliationRuleParam]] | NotGiven = NOT_GIVEN,
         remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
         type: Optional[ExpectedPaymentType] | NotGiven = NOT_GIVEN,
@@ -93,11 +94,6 @@ class ExpectedPayments(SyncAPIResource):
           amount_upper_bound: The highest amount this expected payment may be equal to. Value in specified
               currency's smallest unit. e.g. $10 would be represented as 1000.
 
-          direction: One of credit or debit. When you are receiving money, use credit. When you are
-              being charged, use debit.
-
-          internal_account_id: The ID of the Internal Account for the expected payment.
-
           counterparty_id: The ID of the counterparty you expect for this payment.
 
           currency: Must conform to ISO 4217. Defaults to the currency of the internal account.
@@ -107,6 +103,11 @@ class ExpectedPayments(SyncAPIResource):
           date_upper_bound: The latest date the payment may come in. Format: yyyy-mm-dd
 
           description: An optional description for internal use.
+
+          direction: One of credit or debit. When you are receiving money, use credit. When you are
+              being charged, use debit.
+
+          internal_account_id: The ID of the Internal Account for the expected payment.
 
           ledger_transaction: Specifies a ledger transaction object that will be created with the expected
               payment. If the ledger transaction cannot be created, then the expected payment
@@ -155,13 +156,13 @@ class ExpectedPayments(SyncAPIResource):
                 {
                     "amount_lower_bound": amount_lower_bound,
                     "amount_upper_bound": amount_upper_bound,
-                    "direction": direction,
-                    "internal_account_id": internal_account_id,
                     "counterparty_id": counterparty_id,
                     "currency": currency,
                     "date_lower_bound": date_lower_bound,
                     "date_upper_bound": date_upper_bound,
                     "description": description,
+                    "direction": direction,
+                    "internal_account_id": internal_account_id,
                     "ledger_transaction": ledger_transaction,
                     "ledger_transaction_id": ledger_transaction_id,
                     "line_items": line_items,
@@ -222,19 +223,19 @@ class ExpectedPayments(SyncAPIResource):
         self,
         id: str,
         *,
-        amount_lower_bound: int | NotGiven = NOT_GIVEN,
-        amount_upper_bound: int | NotGiven = NOT_GIVEN,
+        amount_lower_bound: Optional[int] | NotGiven = NOT_GIVEN,
+        amount_upper_bound: Optional[int] | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
-        currency: Currency | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         date_lower_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_upper_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
-        direction: TransactionDirection | NotGiven = NOT_GIVEN,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
+        direction: Optional[Literal["credit", "debit"]] | NotGiven = NOT_GIVEN,
+        internal_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         reconciliation_filters: Optional[object] | NotGiven = NOT_GIVEN,
         reconciliation_groups: Optional[object] | NotGiven = NOT_GIVEN,
-        reconciliation_rule_variables: Optional[Iterable[Dict[str, str]]] | NotGiven = NOT_GIVEN,
+        reconciliation_rule_variables: Optional[Iterable[ReconciliationRuleParam]] | NotGiven = NOT_GIVEN,
         remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
         status: Optional[Literal["reconciled"]] | NotGiven = NOT_GIVEN,
@@ -516,22 +517,22 @@ class AsyncExpectedPayments(AsyncAPIResource):
     async def create(
         self,
         *,
-        amount_lower_bound: int,
-        amount_upper_bound: int,
-        direction: TransactionDirection,
-        internal_account_id: str,
+        amount_lower_bound: Optional[int] | NotGiven = NOT_GIVEN,
+        amount_upper_bound: Optional[int] | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
-        currency: Currency | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         date_lower_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_upper_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        direction: Optional[Literal["credit", "debit"]] | NotGiven = NOT_GIVEN,
+        internal_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         ledger_transaction: expected_payment_create_params.LedgerTransaction | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         line_items: Iterable[expected_payment_create_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         reconciliation_filters: Optional[object] | NotGiven = NOT_GIVEN,
         reconciliation_groups: Optional[object] | NotGiven = NOT_GIVEN,
-        reconciliation_rule_variables: Optional[Iterable[Dict[str, str]]] | NotGiven = NOT_GIVEN,
+        reconciliation_rule_variables: Optional[Iterable[ReconciliationRuleParam]] | NotGiven = NOT_GIVEN,
         remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
         type: Optional[ExpectedPaymentType] | NotGiven = NOT_GIVEN,
@@ -553,11 +554,6 @@ class AsyncExpectedPayments(AsyncAPIResource):
           amount_upper_bound: The highest amount this expected payment may be equal to. Value in specified
               currency's smallest unit. e.g. $10 would be represented as 1000.
 
-          direction: One of credit or debit. When you are receiving money, use credit. When you are
-              being charged, use debit.
-
-          internal_account_id: The ID of the Internal Account for the expected payment.
-
           counterparty_id: The ID of the counterparty you expect for this payment.
 
           currency: Must conform to ISO 4217. Defaults to the currency of the internal account.
@@ -567,6 +563,11 @@ class AsyncExpectedPayments(AsyncAPIResource):
           date_upper_bound: The latest date the payment may come in. Format: yyyy-mm-dd
 
           description: An optional description for internal use.
+
+          direction: One of credit or debit. When you are receiving money, use credit. When you are
+              being charged, use debit.
+
+          internal_account_id: The ID of the Internal Account for the expected payment.
 
           ledger_transaction: Specifies a ledger transaction object that will be created with the expected
               payment. If the ledger transaction cannot be created, then the expected payment
@@ -615,13 +616,13 @@ class AsyncExpectedPayments(AsyncAPIResource):
                 {
                     "amount_lower_bound": amount_lower_bound,
                     "amount_upper_bound": amount_upper_bound,
-                    "direction": direction,
-                    "internal_account_id": internal_account_id,
                     "counterparty_id": counterparty_id,
                     "currency": currency,
                     "date_lower_bound": date_lower_bound,
                     "date_upper_bound": date_upper_bound,
                     "description": description,
+                    "direction": direction,
+                    "internal_account_id": internal_account_id,
                     "ledger_transaction": ledger_transaction,
                     "ledger_transaction_id": ledger_transaction_id,
                     "line_items": line_items,
@@ -682,19 +683,19 @@ class AsyncExpectedPayments(AsyncAPIResource):
         self,
         id: str,
         *,
-        amount_lower_bound: int | NotGiven = NOT_GIVEN,
-        amount_upper_bound: int | NotGiven = NOT_GIVEN,
+        amount_lower_bound: Optional[int] | NotGiven = NOT_GIVEN,
+        amount_upper_bound: Optional[int] | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
-        currency: Currency | NotGiven = NOT_GIVEN,
+        currency: Optional[Currency] | NotGiven = NOT_GIVEN,
         date_lower_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_upper_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
-        direction: TransactionDirection | NotGiven = NOT_GIVEN,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
+        direction: Optional[Literal["credit", "debit"]] | NotGiven = NOT_GIVEN,
+        internal_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         reconciliation_filters: Optional[object] | NotGiven = NOT_GIVEN,
         reconciliation_groups: Optional[object] | NotGiven = NOT_GIVEN,
-        reconciliation_rule_variables: Optional[Iterable[Dict[str, str]]] | NotGiven = NOT_GIVEN,
+        reconciliation_rule_variables: Optional[Iterable[ReconciliationRuleParam]] | NotGiven = NOT_GIVEN,
         remittance_information: Optional[str] | NotGiven = NOT_GIVEN,
         statement_descriptor: Optional[str] | NotGiven = NOT_GIVEN,
         status: Optional[Literal["reconciled"]] | NotGiven = NOT_GIVEN,
