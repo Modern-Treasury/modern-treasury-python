@@ -63,7 +63,7 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import ExpectedPayment, ExpectedPaymentType
+from modern_treasury.types import ExpectedPayment, ExpectedPaymentType, ReconciliationRule
 ```
 
 Methods:

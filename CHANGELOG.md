@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.42.0 (2024-10-21)
+
+Full Changelog: [v1.41.1...v1.42.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.41.1...v1.42.0)
+
+### Features
+
+* **api:** updates to required fields for ExpectedPayments ([#538](https://github.com/Modern-Treasury/modern-treasury-python/issues/538)) ([883df1a](https://github.com/Modern-Treasury/modern-treasury-python/commit/883df1a347923fe3425025f06c9c6bb11b54f0e8))
+
+
+### Bug Fixes
+
+* **client/async:** correctly retry in all cases ([#542](https://github.com/Modern-Treasury/modern-treasury-python/issues/542)) ([59612c4](https://github.com/Modern-Treasury/modern-treasury-python/commit/59612c41ca12c4ef8cb2a75fe9a6e5437d7cfcf3))
+
+
+### Chores
+
+* **internal:** bump ruff dependency ([#541](https://github.com/Modern-Treasury/modern-treasury-python/issues/541)) ([75fcd9a](https://github.com/Modern-Treasury/modern-treasury-python/commit/75fcd9acd5ab11f06671c6163103568875e753e7))
+* **internal:** remove unused black config ([#543](https://github.com/Modern-Treasury/modern-treasury-python/issues/543)) ([a7b01a4](https://github.com/Modern-Treasury/modern-treasury-python/commit/a7b01a479f8ac8546460048281c716ec7cb9ede7))
+* **internal:** update test syntax ([#540](https://github.com/Modern-Treasury/modern-treasury-python/issues/540)) ([9801e21](https://github.com/Modern-Treasury/modern-treasury-python/commit/9801e2114323e964ef357dac55a32b2d96ab9062))
+
 ## 1.41.1 (2024-10-07)
 
 Full Changelog: [v1.41.0...v1.41.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.41.0...v1.41.1)
