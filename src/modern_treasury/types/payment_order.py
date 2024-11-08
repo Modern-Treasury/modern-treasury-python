@@ -9,6 +9,7 @@ from typing_extensions import Literal, TypeAlias
 
 from .._compat import PYDANTIC_V2
 from .._models import BaseModel
+from .return_object import ReturnObject
 from .shared.currency import Currency
 from .virtual_account import VirtualAccount
 from .internal_account import InternalAccount
@@ -230,7 +231,7 @@ class PaymentOrder(BaseModel):
     currency: Currency
     """Defaults to the currency of the originating account."""
 
-    current_return: Optional["ReturnObject"] = None
+    current_return: Optional[ReturnObject] = None
     """
     If the payment order's status is `returned`, this will include the return
     object's data.
@@ -451,8 +452,6 @@ class PaymentOrder(BaseModel):
     Logic shouldn't be built on its value as it is free-form.
     """
 
-
-from .return_object import ReturnObject
 
 if PYDANTIC_V2:
     PaymentOrder.model_rebuild()
