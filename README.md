@@ -28,10 +28,10 @@ import os
 from modern_treasury import ModernTreasury
 
 client = ModernTreasury(
-    # This is the default and can be omitted
-    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),
-    # This is the default and can be omitted
-    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),
+    organization_id=os.environ.get(
+        "MODERN_TREASURY_ORGANIZATION_ID"
+    ),  # This is the default and can be omitted
+    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted
 )
 
 counterparty = client.counterparties.create(
@@ -55,10 +55,10 @@ import asyncio
 from modern_treasury import AsyncModernTreasury
 
 client = AsyncModernTreasury(
-    # This is the default and can be omitted
-    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),
-    # This is the default and can be omitted
-    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),
+    organization_id=os.environ.get(
+        "MODERN_TREASURY_ORGANIZATION_ID"
+    ),  # This is the default and can be omitted
+    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted
 )
 
 
