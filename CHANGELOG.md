@@ -1,5 +1,33 @@
 # Changelog
 
+## 1.43.0 (2024-11-12)
+
+Full Changelog: [v1.42.0...v1.43.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.42.0...v1.43.0)
+
+### Features
+
+* **project:** drop support for Python 3.7 ([#549](https://github.com/Modern-Treasury/modern-treasury-python/issues/549)) ([0f5bcc4](https://github.com/Modern-Treasury/modern-treasury-python/commit/0f5bcc49e99575ad3fb93515893dca2f84e00794))
+
+
+### Bug Fixes
+
+* don't use dicts as iterables in transform ([#547](https://github.com/Modern-Treasury/modern-treasury-python/issues/547)) ([42b1816](https://github.com/Modern-Treasury/modern-treasury-python/commit/42b1816a2ea7be3da1f26840d7fd306c130252f8))
+* don't use dicts as iterables in transform ([#553](https://github.com/Modern-Treasury/modern-treasury-python/issues/553)) ([c23d201](https://github.com/Modern-Treasury/modern-treasury-python/commit/c23d201ba62cc5dfe9cb68132aab4eb1ecc1e4bb))
+* support json safe serialization for basemodel subclasses ([#548](https://github.com/Modern-Treasury/modern-treasury-python/issues/548)) ([4a1905a](https://github.com/Modern-Treasury/modern-treasury-python/commit/4a1905a0896be876f316824255df8199184e32db))
+
+
+### Chores
+
+* **internal:** bump mypy ([#546](https://github.com/Modern-Treasury/modern-treasury-python/issues/546)) ([5bd9a84](https://github.com/Modern-Treasury/modern-treasury-python/commit/5bd9a84c360a6914f2874eb78fb548b9a3167324))
+* **internal:** bump pytest to v8 & pydantic ([#544](https://github.com/Modern-Treasury/modern-treasury-python/issues/544)) ([2f4f9f3](https://github.com/Modern-Treasury/modern-treasury-python/commit/2f4f9f32ad0052e13cc8e0e3aca6c8de099b1966))
+* **internal:** cleanup redundant cyclical import ([#551](https://github.com/Modern-Treasury/modern-treasury-python/issues/551)) ([212d322](https://github.com/Modern-Treasury/modern-treasury-python/commit/212d322d7dc9f318ec9b2290e1bc340867da848c))
+* **tests:** adjust retry timeout values ([#550](https://github.com/Modern-Treasury/modern-treasury-python/issues/550)) ([dc1258e](https://github.com/Modern-Treasury/modern-treasury-python/commit/dc1258e01af33cd960eacaa8f5db7634723e387f))
+
+
+### Documentation
+
+* move comments in example snippets ([#552](https://github.com/Modern-Treasury/modern-treasury-python/issues/552)) ([b751366](https://github.com/Modern-Treasury/modern-treasury-python/commit/b751366255b55f2ae426d7d780396d42236b6e7f))
+
 ## 1.42.0 (2024-10-21)
 
 Full Changelog: [v1.41.1...v1.42.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.41.1...v1.42.0)
