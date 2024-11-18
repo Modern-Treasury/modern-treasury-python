@@ -32,17 +32,7 @@ class TestLedgerEventHandlers:
                         "amount": "amount",
                         "direction": "direction",
                         "ledger_account_id": "ledger_account_id",
-                    },
-                    {
-                        "amount": "amount",
-                        "direction": "direction",
-                        "ledger_account_id": "ledger_account_id",
-                    },
-                    {
-                        "amount": "amount",
-                        "direction": "direction",
-                        "ledger_account_id": "ledger_account_id",
-                    },
+                    }
                 ],
                 "status": "posted",
             },
@@ -61,17 +51,7 @@ class TestLedgerEventHandlers:
                         "amount": "amount",
                         "direction": "direction",
                         "ledger_account_id": "ledger_account_id",
-                    },
-                    {
-                        "amount": "amount",
-                        "direction": "direction",
-                        "ledger_account_id": "ledger_account_id",
-                    },
-                    {
-                        "amount": "amount",
-                        "direction": "direction",
-                        "ledger_account_id": "ledger_account_id",
-                    },
+                    }
                 ],
                 "status": "posted",
             },
@@ -112,17 +92,7 @@ class TestLedgerEventHandlers:
                         "amount": "amount",
                         "direction": "direction",
                         "ledger_account_id": "ledger_account_id",
-                    },
-                    {
-                        "amount": "amount",
-                        "direction": "direction",
-                        "ledger_account_id": "ledger_account_id",
-                    },
-                    {
-                        "amount": "amount",
-                        "direction": "direction",
-                        "ledger_account_id": "ledger_account_id",
-                    },
+                    }
                 ],
                 "status": "posted",
             },
@@ -145,17 +115,7 @@ class TestLedgerEventHandlers:
                         "amount": "amount",
                         "direction": "direction",
                         "ledger_account_id": "ledger_account_id",
-                    },
-                    {
-                        "amount": "amount",
-                        "direction": "direction",
-                        "ledger_account_id": "ledger_account_id",
-                    },
-                    {
-                        "amount": "amount",
-                        "direction": "direction",
-                        "ledger_account_id": "ledger_account_id",
-                    },
+                    }
                 ],
                 "status": "posted",
             },
@@ -296,17 +256,7 @@ class TestAsyncLedgerEventHandlers:
                         "amount": "amount",
                         "direction": "direction",
                         "ledger_account_id": "ledger_account_id",
-                    },
-                    {
-                        "amount": "amount",
-                        "direction": "direction",
-                        "ledger_account_id": "ledger_account_id",
-                    },
-                    {
-                        "amount": "amount",
-                        "direction": "direction",
-                        "ledger_account_id": "ledger_account_id",
-                    },
+                    }
                 ],
                 "status": "posted",
             },
@@ -325,17 +275,7 @@ class TestAsyncLedgerEventHandlers:
                         "amount": "amount",
                         "direction": "direction",
                         "ledger_account_id": "ledger_account_id",
-                    },
-                    {
-                        "amount": "amount",
-                        "direction": "direction",
-                        "ledger_account_id": "ledger_account_id",
-                    },
-                    {
-                        "amount": "amount",
-                        "direction": "direction",
-                        "ledger_account_id": "ledger_account_id",
-                    },
+                    }
                 ],
                 "status": "posted",
             },
@@ -376,17 +316,7 @@ class TestAsyncLedgerEventHandlers:
                         "amount": "amount",
                         "direction": "direction",
                         "ledger_account_id": "ledger_account_id",
-                    },
-                    {
-                        "amount": "amount",
-                        "direction": "direction",
-                        "ledger_account_id": "ledger_account_id",
-                    },
-                    {
-                        "amount": "amount",
-                        "direction": "direction",
-                        "ledger_account_id": "ledger_account_id",
-                    },
+                    }
                 ],
                 "status": "posted",
             },
@@ -409,17 +339,7 @@ class TestAsyncLedgerEventHandlers:
                         "amount": "amount",
                         "direction": "direction",
                         "ledger_account_id": "ledger_account_id",
-                    },
-                    {
-                        "amount": "amount",
-                        "direction": "direction",
-                        "ledger_account_id": "ledger_account_id",
-                    },
-                    {
-                        "amount": "amount",
-                        "direction": "direction",
-                        "ledger_account_id": "ledger_account_id",
-                    },
+                    }
                 ],
                 "status": "posted",
             },
