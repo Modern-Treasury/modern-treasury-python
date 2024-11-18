@@ -40,11 +40,7 @@ class TestLedgerAccountCategories:
             normal_balance="credit",
             currency_exponent=0,
             description="description",
-            ledger_account_category_ids=[
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            ],
+            ledger_account_category_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -192,7 +188,7 @@ class TestLedgerAccountCategories:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account_category = client.ledger_account_categories.list(
-            id=["string", "string", "string"],
+            id=["string"],
             after_cursor="after_cursor",
             balances={"effective_at": parse_datetime("2019-12-27T18:11:19.117Z")},
             currency="currency",
@@ -478,11 +474,7 @@ class TestAsyncLedgerAccountCategories:
             normal_balance="credit",
             currency_exponent=0,
             description="description",
-            ledger_account_category_ids=[
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            ],
+            ledger_account_category_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -630,7 +622,7 @@ class TestAsyncLedgerAccountCategories:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         ledger_account_category = await async_client.ledger_account_categories.list(
-            id=["string", "string", "string"],
+            id=["string"],
             after_cursor="after_cursor",
             balances={"effective_at": parse_datetime("2019-12-27T18:11:19.117Z")},
             currency="currency",

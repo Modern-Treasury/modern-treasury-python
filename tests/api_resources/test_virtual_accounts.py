@@ -37,15 +37,7 @@ class TestVirtualAccounts:
                 {
                     "account_number": "account_number",
                     "account_number_type": "au_number",
-                },
-                {
-                    "account_number": "account_number",
-                    "account_number_type": "au_number",
-                },
-                {
-                    "account_number": "account_number",
-                    "account_number_type": "au_number",
-                },
+                }
             ],
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             credit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -58,11 +50,7 @@ class TestVirtualAccounts:
                 "normal_balance": "credit",
                 "currency_exponent": 0,
                 "description": "description",
-                "ledger_account_category_ids": [
-                    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                ],
+                "ledger_account_category_ids": ["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
                 "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "ledgerable_type": "counterparty",
                 "metadata": {
@@ -77,17 +65,7 @@ class TestVirtualAccounts:
                     "routing_number": "routing_number",
                     "routing_number_type": "aba",
                     "payment_type": "ach",
-                },
-                {
-                    "routing_number": "routing_number",
-                    "routing_number_type": "aba",
-                    "payment_type": "ach",
-                },
-                {
-                    "routing_number": "routing_number",
-                    "routing_number_type": "aba",
-                    "payment_type": "ach",
-                },
+                }
             ],
         )
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
@@ -300,15 +278,7 @@ class TestAsyncVirtualAccounts:
                 {
                     "account_number": "account_number",
                     "account_number_type": "au_number",
-                },
-                {
-                    "account_number": "account_number",
-                    "account_number_type": "au_number",
-                },
-                {
-                    "account_number": "account_number",
-                    "account_number_type": "au_number",
-                },
+                }
             ],
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             credit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -321,11 +291,7 @@ class TestAsyncVirtualAccounts:
                 "normal_balance": "credit",
                 "currency_exponent": 0,
                 "description": "description",
-                "ledger_account_category_ids": [
-                    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                ],
+                "ledger_account_category_ids": ["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
                 "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "ledgerable_type": "counterparty",
                 "metadata": {
@@ -340,17 +306,7 @@ class TestAsyncVirtualAccounts:
                     "routing_number": "routing_number",
                     "routing_number_type": "aba",
                     "payment_type": "ach",
-                },
-                {
-                    "routing_number": "routing_number",
-                    "routing_number_type": "aba",
-                    "payment_type": "ach",
-                },
-                {
-                    "routing_number": "routing_number",
-                    "routing_number_type": "aba",
-                    "payment_type": "ach",
-                },
+                }
             ],
         )
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])

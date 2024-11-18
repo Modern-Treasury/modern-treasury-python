@@ -56,19 +56,7 @@ class TestPaymentOrders:
                     "documentable_type": "cases",
                     "file": b"raw file contents",
                     "document_type": "document_type",
-                },
-                {
-                    "documentable_id": "documentable_id",
-                    "documentable_type": "cases",
-                    "file": b"raw file contents",
-                    "document_type": "document_type",
-                },
-                {
-                    "documentable_id": "documentable_id",
-                    "documentable_type": "cases",
-                    "file": b"raw file contents",
-                    "document_type": "document_type",
-                },
+                }
             ],
             effective_date=parse_date("2019-12-27"),
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -91,37 +79,7 @@ class TestPaymentOrders:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "show_resulting_ledger_account_balances": True,
-                    },
-                    {
-                        "amount": 0,
-                        "direction": "credit",
-                        "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "available_balance_amount": {"foo": 0},
-                        "lock_version": 0,
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
-                        },
-                        "pending_balance_amount": {"foo": 0},
-                        "posted_balance_amount": {"foo": 0},
-                        "show_resulting_ledger_account_balances": True,
-                    },
-                    {
-                        "amount": 0,
-                        "direction": "credit",
-                        "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "available_balance_amount": {"foo": 0},
-                        "lock_version": 0,
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
-                        },
-                        "pending_balance_amount": {"foo": 0},
-                        "posted_balance_amount": {"foo": 0},
-                        "show_resulting_ledger_account_balances": True,
-                    },
+                    }
                 ],
                 "description": "description",
                 "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -147,27 +105,7 @@ class TestPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                },
-                {
-                    "amount": 0,
-                    "accounting_category_id": "accounting_category_id",
-                    "description": "description",
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                },
-                {
-                    "amount": 0,
-                    "accounting_category_id": "accounting_category_id",
-                    "description": "description",
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                },
+                }
             ],
             metadata={
                 "key": "value",
@@ -184,30 +122,14 @@ class TestPaymentOrders:
                     {
                         "account_number": "account_number",
                         "account_number_type": "au_number",
-                    },
-                    {
-                        "account_number": "account_number",
-                        "account_number_type": "au_number",
-                    },
-                    {
-                        "account_number": "account_number",
-                        "account_number_type": "au_number",
-                    },
+                    }
                 ],
                 "account_type": "cash",
                 "contact_details": [
                     {
                         "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "contact_identifier",
-                        "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "contact_identifier",
-                        "contact_identifier_type": "email",
-                    },
+                    }
                 ],
                 "ledger_account": {
                     "currency": "currency",
@@ -216,11 +138,7 @@ class TestPaymentOrders:
                     "normal_balance": "credit",
                     "currency_exponent": 0,
                     "description": "description",
-                    "ledger_account_category_ids": [
-                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    ],
+                    "ledger_account_category_ids": ["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
                     "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "ledgerable_type": "counterparty",
                     "metadata": {
@@ -252,17 +170,7 @@ class TestPaymentOrders:
                         "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "routing_number",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "routing_number",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
+                    }
                 ],
             },
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -386,27 +294,7 @@ class TestPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                },
-                {
-                    "amount": 0,
-                    "accounting_category_id": "accounting_category_id",
-                    "description": "description",
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                },
-                {
-                    "amount": 0,
-                    "accounting_category_id": "accounting_category_id",
-                    "description": "description",
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                },
+                }
             ],
             metadata={
                 "key": "value",
@@ -424,30 +312,14 @@ class TestPaymentOrders:
                     {
                         "account_number": "account_number",
                         "account_number_type": "au_number",
-                    },
-                    {
-                        "account_number": "account_number",
-                        "account_number_type": "au_number",
-                    },
-                    {
-                        "account_number": "account_number",
-                        "account_number_type": "au_number",
-                    },
+                    }
                 ],
                 "account_type": "cash",
                 "contact_details": [
                     {
                         "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "contact_identifier",
-                        "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "contact_identifier",
-                        "contact_identifier_type": "email",
-                    },
+                    }
                 ],
                 "ledger_account": {
                     "currency": "currency",
@@ -456,11 +328,7 @@ class TestPaymentOrders:
                     "normal_balance": "credit",
                     "currency_exponent": 0,
                     "description": "description",
-                    "ledger_account_category_ids": [
-                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    ],
+                    "ledger_account_category_ids": ["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
                     "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "ledgerable_type": "counterparty",
                     "metadata": {
@@ -492,17 +360,7 @@ class TestPaymentOrders:
                         "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "routing_number",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "routing_number",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
+                    }
                 ],
             },
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -645,37 +503,7 @@ class TestPaymentOrders:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "show_resulting_ledger_account_balances": True,
-                    },
-                    {
-                        "amount": 0,
-                        "direction": "credit",
-                        "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "available_balance_amount": {"foo": 0},
-                        "lock_version": 0,
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
-                        },
-                        "pending_balance_amount": {"foo": 0},
-                        "posted_balance_amount": {"foo": 0},
-                        "show_resulting_ledger_account_balances": True,
-                    },
-                    {
-                        "amount": 0,
-                        "direction": "credit",
-                        "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "available_balance_amount": {"foo": 0},
-                        "lock_version": 0,
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
-                        },
-                        "pending_balance_amount": {"foo": 0},
-                        "posted_balance_amount": {"foo": 0},
-                        "show_resulting_ledger_account_balances": True,
-                    },
+                    }
                 ],
                 "description": "description",
                 "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -701,27 +529,7 @@ class TestPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                },
-                {
-                    "amount": 0,
-                    "accounting_category_id": "accounting_category_id",
-                    "description": "description",
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                },
-                {
-                    "amount": 0,
-                    "accounting_category_id": "accounting_category_id",
-                    "description": "description",
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                },
+                }
             ],
             metadata={
                 "key": "value",
@@ -738,30 +546,14 @@ class TestPaymentOrders:
                     {
                         "account_number": "account_number",
                         "account_number_type": "au_number",
-                    },
-                    {
-                        "account_number": "account_number",
-                        "account_number_type": "au_number",
-                    },
-                    {
-                        "account_number": "account_number",
-                        "account_number_type": "au_number",
-                    },
+                    }
                 ],
                 "account_type": "cash",
                 "contact_details": [
                     {
                         "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "contact_identifier",
-                        "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "contact_identifier",
-                        "contact_identifier_type": "email",
-                    },
+                    }
                 ],
                 "ledger_account": {
                     "currency": "currency",
@@ -770,11 +562,7 @@ class TestPaymentOrders:
                     "normal_balance": "credit",
                     "currency_exponent": 0,
                     "description": "description",
-                    "ledger_account_category_ids": [
-                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    ],
+                    "ledger_account_category_ids": ["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
                     "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "ledgerable_type": "counterparty",
                     "metadata": {
@@ -806,17 +594,7 @@ class TestPaymentOrders:
                         "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "routing_number",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "routing_number",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
+                    }
                 ],
             },
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -900,19 +678,7 @@ class TestAsyncPaymentOrders:
                     "documentable_type": "cases",
                     "file": b"raw file contents",
                     "document_type": "document_type",
-                },
-                {
-                    "documentable_id": "documentable_id",
-                    "documentable_type": "cases",
-                    "file": b"raw file contents",
-                    "document_type": "document_type",
-                },
-                {
-                    "documentable_id": "documentable_id",
-                    "documentable_type": "cases",
-                    "file": b"raw file contents",
-                    "document_type": "document_type",
-                },
+                }
             ],
             effective_date=parse_date("2019-12-27"),
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -935,37 +701,7 @@ class TestAsyncPaymentOrders:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "show_resulting_ledger_account_balances": True,
-                    },
-                    {
-                        "amount": 0,
-                        "direction": "credit",
-                        "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "available_balance_amount": {"foo": 0},
-                        "lock_version": 0,
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
-                        },
-                        "pending_balance_amount": {"foo": 0},
-                        "posted_balance_amount": {"foo": 0},
-                        "show_resulting_ledger_account_balances": True,
-                    },
-                    {
-                        "amount": 0,
-                        "direction": "credit",
-                        "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "available_balance_amount": {"foo": 0},
-                        "lock_version": 0,
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
-                        },
-                        "pending_balance_amount": {"foo": 0},
-                        "posted_balance_amount": {"foo": 0},
-                        "show_resulting_ledger_account_balances": True,
-                    },
+                    }
                 ],
                 "description": "description",
                 "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -991,27 +727,7 @@ class TestAsyncPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                },
-                {
-                    "amount": 0,
-                    "accounting_category_id": "accounting_category_id",
-                    "description": "description",
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                },
-                {
-                    "amount": 0,
-                    "accounting_category_id": "accounting_category_id",
-                    "description": "description",
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                },
+                }
             ],
             metadata={
                 "key": "value",
@@ -1028,30 +744,14 @@ class TestAsyncPaymentOrders:
                     {
                         "account_number": "account_number",
                         "account_number_type": "au_number",
-                    },
-                    {
-                        "account_number": "account_number",
-                        "account_number_type": "au_number",
-                    },
-                    {
-                        "account_number": "account_number",
-                        "account_number_type": "au_number",
-                    },
+                    }
                 ],
                 "account_type": "cash",
                 "contact_details": [
                     {
                         "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "contact_identifier",
-                        "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "contact_identifier",
-                        "contact_identifier_type": "email",
-                    },
+                    }
                 ],
                 "ledger_account": {
                     "currency": "currency",
@@ -1060,11 +760,7 @@ class TestAsyncPaymentOrders:
                     "normal_balance": "credit",
                     "currency_exponent": 0,
                     "description": "description",
-                    "ledger_account_category_ids": [
-                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    ],
+                    "ledger_account_category_ids": ["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
                     "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "ledgerable_type": "counterparty",
                     "metadata": {
@@ -1096,17 +792,7 @@ class TestAsyncPaymentOrders:
                         "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "routing_number",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "routing_number",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
+                    }
                 ],
             },
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -1230,27 +916,7 @@ class TestAsyncPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                },
-                {
-                    "amount": 0,
-                    "accounting_category_id": "accounting_category_id",
-                    "description": "description",
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                },
-                {
-                    "amount": 0,
-                    "accounting_category_id": "accounting_category_id",
-                    "description": "description",
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                },
+                }
             ],
             metadata={
                 "key": "value",
@@ -1268,30 +934,14 @@ class TestAsyncPaymentOrders:
                     {
                         "account_number": "account_number",
                         "account_number_type": "au_number",
-                    },
-                    {
-                        "account_number": "account_number",
-                        "account_number_type": "au_number",
-                    },
-                    {
-                        "account_number": "account_number",
-                        "account_number_type": "au_number",
-                    },
+                    }
                 ],
                 "account_type": "cash",
                 "contact_details": [
                     {
                         "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "contact_identifier",
-                        "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "contact_identifier",
-                        "contact_identifier_type": "email",
-                    },
+                    }
                 ],
                 "ledger_account": {
                     "currency": "currency",
@@ -1300,11 +950,7 @@ class TestAsyncPaymentOrders:
                     "normal_balance": "credit",
                     "currency_exponent": 0,
                     "description": "description",
-                    "ledger_account_category_ids": [
-                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    ],
+                    "ledger_account_category_ids": ["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
                     "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "ledgerable_type": "counterparty",
                     "metadata": {
@@ -1336,17 +982,7 @@ class TestAsyncPaymentOrders:
                         "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "routing_number",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "routing_number",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
+                    }
                 ],
             },
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -1489,37 +1125,7 @@ class TestAsyncPaymentOrders:
                         "pending_balance_amount": {"foo": 0},
                         "posted_balance_amount": {"foo": 0},
                         "show_resulting_ledger_account_balances": True,
-                    },
-                    {
-                        "amount": 0,
-                        "direction": "credit",
-                        "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "available_balance_amount": {"foo": 0},
-                        "lock_version": 0,
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
-                        },
-                        "pending_balance_amount": {"foo": 0},
-                        "posted_balance_amount": {"foo": 0},
-                        "show_resulting_ledger_account_balances": True,
-                    },
-                    {
-                        "amount": 0,
-                        "direction": "credit",
-                        "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "available_balance_amount": {"foo": 0},
-                        "lock_version": 0,
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
-                        },
-                        "pending_balance_amount": {"foo": 0},
-                        "posted_balance_amount": {"foo": 0},
-                        "show_resulting_ledger_account_balances": True,
-                    },
+                    }
                 ],
                 "description": "description",
                 "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -1545,27 +1151,7 @@ class TestAsyncPaymentOrders:
                         "foo": "bar",
                         "modern": "treasury",
                     },
-                },
-                {
-                    "amount": 0,
-                    "accounting_category_id": "accounting_category_id",
-                    "description": "description",
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                },
-                {
-                    "amount": 0,
-                    "accounting_category_id": "accounting_category_id",
-                    "description": "description",
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                },
+                }
             ],
             metadata={
                 "key": "value",
@@ -1582,30 +1168,14 @@ class TestAsyncPaymentOrders:
                     {
                         "account_number": "account_number",
                         "account_number_type": "au_number",
-                    },
-                    {
-                        "account_number": "account_number",
-                        "account_number_type": "au_number",
-                    },
-                    {
-                        "account_number": "account_number",
-                        "account_number_type": "au_number",
-                    },
+                    }
                 ],
                 "account_type": "cash",
                 "contact_details": [
                     {
                         "contact_identifier": "contact_identifier",
                         "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "contact_identifier",
-                        "contact_identifier_type": "email",
-                    },
-                    {
-                        "contact_identifier": "contact_identifier",
-                        "contact_identifier_type": "email",
-                    },
+                    }
                 ],
                 "ledger_account": {
                     "currency": "currency",
@@ -1614,11 +1184,7 @@ class TestAsyncPaymentOrders:
                     "normal_balance": "credit",
                     "currency_exponent": 0,
                     "description": "description",
-                    "ledger_account_category_ids": [
-                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    ],
+                    "ledger_account_category_ids": ["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
                     "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "ledgerable_type": "counterparty",
                     "metadata": {
@@ -1650,17 +1216,7 @@ class TestAsyncPaymentOrders:
                         "routing_number": "routing_number",
                         "routing_number_type": "aba",
                         "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "routing_number",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
-                    {
-                        "routing_number": "routing_number",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    },
+                    }
                 ],
             },
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",

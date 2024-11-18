@@ -36,30 +36,14 @@ class TestExternalAccounts:
                 {
                     "account_number": "account_number",
                     "account_number_type": "au_number",
-                },
-                {
-                    "account_number": "account_number",
-                    "account_number_type": "au_number",
-                },
-                {
-                    "account_number": "account_number",
-                    "account_number_type": "au_number",
-                },
+                }
             ],
             account_type="cash",
             contact_details=[
                 {
                     "contact_identifier": "contact_identifier",
                     "contact_identifier_type": "email",
-                },
-                {
-                    "contact_identifier": "contact_identifier",
-                    "contact_identifier_type": "email",
-                },
-                {
-                    "contact_identifier": "contact_identifier",
-                    "contact_identifier_type": "email",
-                },
+                }
             ],
             ledger_account={
                 "currency": "currency",
@@ -68,11 +52,7 @@ class TestExternalAccounts:
                 "normal_balance": "credit",
                 "currency_exponent": 0,
                 "description": "description",
-                "ledger_account_category_ids": [
-                    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                ],
+                "ledger_account_category_ids": ["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
                 "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "ledgerable_type": "counterparty",
                 "metadata": {
@@ -104,17 +84,7 @@ class TestExternalAccounts:
                     "routing_number": "routing_number",
                     "routing_number_type": "aba",
                     "payment_type": "ach",
-                },
-                {
-                    "routing_number": "routing_number",
-                    "routing_number_type": "aba",
-                    "payment_type": "ach",
-                },
-                {
-                    "routing_number": "routing_number",
-                    "routing_number_type": "aba",
-                    "payment_type": "ach",
-                },
+                }
             ],
         )
         assert_matches_type(ExternalAccount, external_account, path=["response"])
@@ -437,30 +407,14 @@ class TestAsyncExternalAccounts:
                 {
                     "account_number": "account_number",
                     "account_number_type": "au_number",
-                },
-                {
-                    "account_number": "account_number",
-                    "account_number_type": "au_number",
-                },
-                {
-                    "account_number": "account_number",
-                    "account_number_type": "au_number",
-                },
+                }
             ],
             account_type="cash",
             contact_details=[
                 {
                     "contact_identifier": "contact_identifier",
                     "contact_identifier_type": "email",
-                },
-                {
-                    "contact_identifier": "contact_identifier",
-                    "contact_identifier_type": "email",
-                },
-                {
-                    "contact_identifier": "contact_identifier",
-                    "contact_identifier_type": "email",
-                },
+                }
             ],
             ledger_account={
                 "currency": "currency",
@@ -469,11 +423,7 @@ class TestAsyncExternalAccounts:
                 "normal_balance": "credit",
                 "currency_exponent": 0,
                 "description": "description",
-                "ledger_account_category_ids": [
-                    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                ],
+                "ledger_account_category_ids": ["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
                 "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "ledgerable_type": "counterparty",
                 "metadata": {
@@ -505,17 +455,7 @@ class TestAsyncExternalAccounts:
                     "routing_number": "routing_number",
                     "routing_number_type": "aba",
                     "payment_type": "ach",
-                },
-                {
-                    "routing_number": "routing_number",
-                    "routing_number_type": "aba",
-                    "payment_type": "ach",
-                },
-                {
-                    "routing_number": "routing_number",
-                    "routing_number_type": "aba",
-                    "payment_type": "ach",
-                },
+                }
             ],
         )
         assert_matches_type(ExternalAccount, external_account, path=["response"])

@@ -40,30 +40,14 @@ class TestCounterparties:
                         {
                             "account_number": "account_number",
                             "account_number_type": "au_number",
-                        },
-                        {
-                            "account_number": "account_number",
-                            "account_number_type": "au_number",
-                        },
-                        {
-                            "account_number": "account_number",
-                            "account_number_type": "au_number",
-                        },
+                        }
                     ],
                     "account_type": "cash",
                     "contact_details": [
                         {
                             "contact_identifier": "contact_identifier",
                             "contact_identifier_type": "email",
-                        },
-                        {
-                            "contact_identifier": "contact_identifier",
-                            "contact_identifier_type": "email",
-                        },
-                        {
-                            "contact_identifier": "contact_identifier",
-                            "contact_identifier_type": "email",
-                        },
+                        }
                     ],
                     "ledger_account": {
                         "currency": "currency",
@@ -72,11 +56,7 @@ class TestCounterparties:
                         "normal_balance": "credit",
                         "currency_exponent": 0,
                         "description": "description",
-                        "ledger_account_category_ids": [
-                            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        ],
+                        "ledger_account_category_ids": ["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
                         "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "ledgerable_type": "counterparty",
                         "metadata": {
@@ -108,191 +88,9 @@ class TestCounterparties:
                             "routing_number": "routing_number",
                             "routing_number_type": "aba",
                             "payment_type": "ach",
-                        },
-                        {
-                            "routing_number": "routing_number",
-                            "routing_number_type": "aba",
-                            "payment_type": "ach",
-                        },
-                        {
-                            "routing_number": "routing_number",
-                            "routing_number_type": "aba",
-                            "payment_type": "ach",
-                        },
+                        }
                     ],
-                },
-                {
-                    "account_details": [
-                        {
-                            "account_number": "account_number",
-                            "account_number_type": "au_number",
-                        },
-                        {
-                            "account_number": "account_number",
-                            "account_number_type": "au_number",
-                        },
-                        {
-                            "account_number": "account_number",
-                            "account_number_type": "au_number",
-                        },
-                    ],
-                    "account_type": "cash",
-                    "contact_details": [
-                        {
-                            "contact_identifier": "contact_identifier",
-                            "contact_identifier_type": "email",
-                        },
-                        {
-                            "contact_identifier": "contact_identifier",
-                            "contact_identifier_type": "email",
-                        },
-                        {
-                            "contact_identifier": "contact_identifier",
-                            "contact_identifier_type": "email",
-                        },
-                    ],
-                    "ledger_account": {
-                        "currency": "currency",
-                        "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "name": "name",
-                        "normal_balance": "credit",
-                        "currency_exponent": 0,
-                        "description": "description",
-                        "ledger_account_category_ids": [
-                            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        ],
-                        "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "ledgerable_type": "counterparty",
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
-                        },
-                    },
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                    "name": "name",
-                    "party_address": {
-                        "country": "country",
-                        "line1": "line1",
-                        "line2": "line2",
-                        "locality": "locality",
-                        "postal_code": "postal_code",
-                        "region": "region",
-                    },
-                    "party_identifier": "party_identifier",
-                    "party_name": "party_name",
-                    "party_type": "business",
-                    "plaid_processor_token": "plaid_processor_token",
-                    "routing_details": [
-                        {
-                            "routing_number": "routing_number",
-                            "routing_number_type": "aba",
-                            "payment_type": "ach",
-                        },
-                        {
-                            "routing_number": "routing_number",
-                            "routing_number_type": "aba",
-                            "payment_type": "ach",
-                        },
-                        {
-                            "routing_number": "routing_number",
-                            "routing_number_type": "aba",
-                            "payment_type": "ach",
-                        },
-                    ],
-                },
-                {
-                    "account_details": [
-                        {
-                            "account_number": "account_number",
-                            "account_number_type": "au_number",
-                        },
-                        {
-                            "account_number": "account_number",
-                            "account_number_type": "au_number",
-                        },
-                        {
-                            "account_number": "account_number",
-                            "account_number_type": "au_number",
-                        },
-                    ],
-                    "account_type": "cash",
-                    "contact_details": [
-                        {
-                            "contact_identifier": "contact_identifier",
-                            "contact_identifier_type": "email",
-                        },
-                        {
-                            "contact_identifier": "contact_identifier",
-                            "contact_identifier_type": "email",
-                        },
-                        {
-                            "contact_identifier": "contact_identifier",
-                            "contact_identifier_type": "email",
-                        },
-                    ],
-                    "ledger_account": {
-                        "currency": "currency",
-                        "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "name": "name",
-                        "normal_balance": "credit",
-                        "currency_exponent": 0,
-                        "description": "description",
-                        "ledger_account_category_ids": [
-                            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        ],
-                        "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "ledgerable_type": "counterparty",
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
-                        },
-                    },
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                    "name": "name",
-                    "party_address": {
-                        "country": "country",
-                        "line1": "line1",
-                        "line2": "line2",
-                        "locality": "locality",
-                        "postal_code": "postal_code",
-                        "region": "region",
-                    },
-                    "party_identifier": "party_identifier",
-                    "party_name": "party_name",
-                    "party_type": "business",
-                    "plaid_processor_token": "plaid_processor_token",
-                    "routing_details": [
-                        {
-                            "routing_number": "routing_number",
-                            "routing_number_type": "aba",
-                            "payment_type": "ach",
-                        },
-                        {
-                            "routing_number": "routing_number",
-                            "routing_number_type": "aba",
-                            "payment_type": "ach",
-                        },
-                        {
-                            "routing_number": "routing_number",
-                            "routing_number_type": "aba",
-                            "payment_type": "ach",
-                        },
-                    ],
-                },
+                }
             ],
             email="dev@stainlessapi.com",
             ledger_type="customer",
@@ -305,32 +103,14 @@ class TestCounterparties:
                         "locality": "locality",
                         "postal_code": "postal_code",
                         "region": "region",
-                        "address_types": ["business", "mailing", "other"],
+                        "address_types": ["business"],
                         "line2": "line2",
-                    },
-                    {
-                        "country": "country",
-                        "line1": "line1",
-                        "locality": "locality",
-                        "postal_code": "postal_code",
-                        "region": "region",
-                        "address_types": ["business", "mailing", "other"],
-                        "line2": "line2",
-                    },
-                    {
-                        "country": "country",
-                        "line1": "line1",
-                        "locality": "locality",
-                        "postal_code": "postal_code",
-                        "region": "region",
-                        "address_types": ["business", "mailing", "other"],
-                        "line2": "line2",
-                    },
+                    }
                 ],
                 "business_name": "business_name",
                 "date_formed": parse_date("2019-12-27"),
                 "date_of_birth": parse_date("2019-12-27"),
-                "doing_business_as_names": ["string", "string", "string"],
+                "doing_business_as_names": ["string"],
                 "email": "email",
                 "first_name": "first_name",
                 "identifications": [
@@ -338,22 +118,12 @@ class TestCounterparties:
                         "id_number": "id_number",
                         "id_type": "ar_cuil",
                         "issuing_country": "issuing_country",
-                    },
-                    {
-                        "id_number": "id_number",
-                        "id_type": "ar_cuil",
-                        "issuing_country": "issuing_country",
-                    },
-                    {
-                        "id_number": "id_number",
-                        "id_type": "ar_cuil",
-                        "issuing_country": "issuing_country",
-                    },
+                    }
                 ],
                 "last_name": "last_name",
                 "legal_entity_associations": [
                     {
-                        "relationship_types": ["beneficial_owner", "control_person"],
+                        "relationship_types": ["beneficial_owner"],
                         "child_legal_entity": {
                             "addresses": [
                                 {
@@ -362,32 +132,14 @@ class TestCounterparties:
                                     "locality": "locality",
                                     "postal_code": "postal_code",
                                     "region": "region",
-                                    "address_types": ["business", "mailing", "other"],
+                                    "address_types": ["business"],
                                     "line2": "line2",
-                                },
-                                {
-                                    "country": "country",
-                                    "line1": "line1",
-                                    "locality": "locality",
-                                    "postal_code": "postal_code",
-                                    "region": "region",
-                                    "address_types": ["business", "mailing", "other"],
-                                    "line2": "line2",
-                                },
-                                {
-                                    "country": "country",
-                                    "line1": "line1",
-                                    "locality": "locality",
-                                    "postal_code": "postal_code",
-                                    "region": "region",
-                                    "address_types": ["business", "mailing", "other"],
-                                    "line2": "line2",
-                                },
+                                }
                             ],
                             "business_name": "business_name",
                             "date_formed": parse_date("2019-12-27"),
                             "date_of_birth": parse_date("2019-12-27"),
-                            "doing_business_as_names": ["string", "string", "string"],
+                            "doing_business_as_names": ["string"],
                             "email": "email",
                             "first_name": "first_name",
                             "identifications": [
@@ -395,17 +147,7 @@ class TestCounterparties:
                                     "id_number": "id_number",
                                     "id_type": "ar_cuil",
                                     "issuing_country": "issuing_country",
-                                },
-                                {
-                                    "id_number": "id_number",
-                                    "id_type": "ar_cuil",
-                                    "issuing_country": "issuing_country",
-                                },
-                                {
-                                    "id_number": "id_number",
-                                    "id_type": "ar_cuil",
-                                    "issuing_country": "issuing_country",
-                                },
+                                }
                             ],
                             "last_name": "last_name",
                             "legal_entity_type": "business",
@@ -415,168 +157,14 @@ class TestCounterparties:
                                 "foo": "bar",
                                 "modern": "treasury",
                             },
-                            "phone_numbers": [
-                                {"phone_number": "phone_number"},
-                                {"phone_number": "phone_number"},
-                                {"phone_number": "phone_number"},
-                            ],
+                            "phone_numbers": [{"phone_number": "phone_number"}],
                             "risk_rating": "low",
                             "website": "website",
                         },
                         "child_legal_entity_id": "child_legal_entity_id",
                         "ownership_percentage": 0,
                         "title": "title",
-                    },
-                    {
-                        "relationship_types": ["beneficial_owner", "control_person"],
-                        "child_legal_entity": {
-                            "addresses": [
-                                {
-                                    "country": "country",
-                                    "line1": "line1",
-                                    "locality": "locality",
-                                    "postal_code": "postal_code",
-                                    "region": "region",
-                                    "address_types": ["business", "mailing", "other"],
-                                    "line2": "line2",
-                                },
-                                {
-                                    "country": "country",
-                                    "line1": "line1",
-                                    "locality": "locality",
-                                    "postal_code": "postal_code",
-                                    "region": "region",
-                                    "address_types": ["business", "mailing", "other"],
-                                    "line2": "line2",
-                                },
-                                {
-                                    "country": "country",
-                                    "line1": "line1",
-                                    "locality": "locality",
-                                    "postal_code": "postal_code",
-                                    "region": "region",
-                                    "address_types": ["business", "mailing", "other"],
-                                    "line2": "line2",
-                                },
-                            ],
-                            "business_name": "business_name",
-                            "date_formed": parse_date("2019-12-27"),
-                            "date_of_birth": parse_date("2019-12-27"),
-                            "doing_business_as_names": ["string", "string", "string"],
-                            "email": "email",
-                            "first_name": "first_name",
-                            "identifications": [
-                                {
-                                    "id_number": "id_number",
-                                    "id_type": "ar_cuil",
-                                    "issuing_country": "issuing_country",
-                                },
-                                {
-                                    "id_number": "id_number",
-                                    "id_type": "ar_cuil",
-                                    "issuing_country": "issuing_country",
-                                },
-                                {
-                                    "id_number": "id_number",
-                                    "id_type": "ar_cuil",
-                                    "issuing_country": "issuing_country",
-                                },
-                            ],
-                            "last_name": "last_name",
-                            "legal_entity_type": "business",
-                            "legal_structure": "corporation",
-                            "metadata": {
-                                "key": "value",
-                                "foo": "bar",
-                                "modern": "treasury",
-                            },
-                            "phone_numbers": [
-                                {"phone_number": "phone_number"},
-                                {"phone_number": "phone_number"},
-                                {"phone_number": "phone_number"},
-                            ],
-                            "risk_rating": "low",
-                            "website": "website",
-                        },
-                        "child_legal_entity_id": "child_legal_entity_id",
-                        "ownership_percentage": 0,
-                        "title": "title",
-                    },
-                    {
-                        "relationship_types": ["beneficial_owner", "control_person"],
-                        "child_legal_entity": {
-                            "addresses": [
-                                {
-                                    "country": "country",
-                                    "line1": "line1",
-                                    "locality": "locality",
-                                    "postal_code": "postal_code",
-                                    "region": "region",
-                                    "address_types": ["business", "mailing", "other"],
-                                    "line2": "line2",
-                                },
-                                {
-                                    "country": "country",
-                                    "line1": "line1",
-                                    "locality": "locality",
-                                    "postal_code": "postal_code",
-                                    "region": "region",
-                                    "address_types": ["business", "mailing", "other"],
-                                    "line2": "line2",
-                                },
-                                {
-                                    "country": "country",
-                                    "line1": "line1",
-                                    "locality": "locality",
-                                    "postal_code": "postal_code",
-                                    "region": "region",
-                                    "address_types": ["business", "mailing", "other"],
-                                    "line2": "line2",
-                                },
-                            ],
-                            "business_name": "business_name",
-                            "date_formed": parse_date("2019-12-27"),
-                            "date_of_birth": parse_date("2019-12-27"),
-                            "doing_business_as_names": ["string", "string", "string"],
-                            "email": "email",
-                            "first_name": "first_name",
-                            "identifications": [
-                                {
-                                    "id_number": "id_number",
-                                    "id_type": "ar_cuil",
-                                    "issuing_country": "issuing_country",
-                                },
-                                {
-                                    "id_number": "id_number",
-                                    "id_type": "ar_cuil",
-                                    "issuing_country": "issuing_country",
-                                },
-                                {
-                                    "id_number": "id_number",
-                                    "id_type": "ar_cuil",
-                                    "issuing_country": "issuing_country",
-                                },
-                            ],
-                            "last_name": "last_name",
-                            "legal_entity_type": "business",
-                            "legal_structure": "corporation",
-                            "metadata": {
-                                "key": "value",
-                                "foo": "bar",
-                                "modern": "treasury",
-                            },
-                            "phone_numbers": [
-                                {"phone_number": "phone_number"},
-                                {"phone_number": "phone_number"},
-                                {"phone_number": "phone_number"},
-                            ],
-                            "risk_rating": "low",
-                            "website": "website",
-                        },
-                        "child_legal_entity_id": "child_legal_entity_id",
-                        "ownership_percentage": 0,
-                        "title": "title",
-                    },
+                    }
                 ],
                 "legal_structure": "corporation",
                 "metadata": {
@@ -584,11 +172,7 @@ class TestCounterparties:
                     "foo": "bar",
                     "modern": "treasury",
                 },
-                "phone_numbers": [
-                    {"phone_number": "phone_number"},
-                    {"phone_number": "phone_number"},
-                    {"phone_number": "phone_number"},
-                ],
+                "phone_numbers": [{"phone_number": "phone_number"}],
                 "risk_rating": "low",
                 "website": "website",
             },
@@ -808,7 +392,7 @@ class TestCounterparties:
             id="id",
             direction="credit",
             custom_redirect="https://example.com",
-            fields=["name", "nameOnAccount", "taxpayerIdentifier"],
+            fields=["name"],
             send_email=True,
         )
         assert_matches_type(CounterpartyCollectAccountResponse, counterparty, path=["response"])
@@ -869,30 +453,14 @@ class TestAsyncCounterparties:
                         {
                             "account_number": "account_number",
                             "account_number_type": "au_number",
-                        },
-                        {
-                            "account_number": "account_number",
-                            "account_number_type": "au_number",
-                        },
-                        {
-                            "account_number": "account_number",
-                            "account_number_type": "au_number",
-                        },
+                        }
                     ],
                     "account_type": "cash",
                     "contact_details": [
                         {
                             "contact_identifier": "contact_identifier",
                             "contact_identifier_type": "email",
-                        },
-                        {
-                            "contact_identifier": "contact_identifier",
-                            "contact_identifier_type": "email",
-                        },
-                        {
-                            "contact_identifier": "contact_identifier",
-                            "contact_identifier_type": "email",
-                        },
+                        }
                     ],
                     "ledger_account": {
                         "currency": "currency",
@@ -901,11 +469,7 @@ class TestAsyncCounterparties:
                         "normal_balance": "credit",
                         "currency_exponent": 0,
                         "description": "description",
-                        "ledger_account_category_ids": [
-                            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        ],
+                        "ledger_account_category_ids": ["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
                         "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "ledgerable_type": "counterparty",
                         "metadata": {
@@ -937,191 +501,9 @@ class TestAsyncCounterparties:
                             "routing_number": "routing_number",
                             "routing_number_type": "aba",
                             "payment_type": "ach",
-                        },
-                        {
-                            "routing_number": "routing_number",
-                            "routing_number_type": "aba",
-                            "payment_type": "ach",
-                        },
-                        {
-                            "routing_number": "routing_number",
-                            "routing_number_type": "aba",
-                            "payment_type": "ach",
-                        },
+                        }
                     ],
-                },
-                {
-                    "account_details": [
-                        {
-                            "account_number": "account_number",
-                            "account_number_type": "au_number",
-                        },
-                        {
-                            "account_number": "account_number",
-                            "account_number_type": "au_number",
-                        },
-                        {
-                            "account_number": "account_number",
-                            "account_number_type": "au_number",
-                        },
-                    ],
-                    "account_type": "cash",
-                    "contact_details": [
-                        {
-                            "contact_identifier": "contact_identifier",
-                            "contact_identifier_type": "email",
-                        },
-                        {
-                            "contact_identifier": "contact_identifier",
-                            "contact_identifier_type": "email",
-                        },
-                        {
-                            "contact_identifier": "contact_identifier",
-                            "contact_identifier_type": "email",
-                        },
-                    ],
-                    "ledger_account": {
-                        "currency": "currency",
-                        "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "name": "name",
-                        "normal_balance": "credit",
-                        "currency_exponent": 0,
-                        "description": "description",
-                        "ledger_account_category_ids": [
-                            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        ],
-                        "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "ledgerable_type": "counterparty",
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
-                        },
-                    },
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                    "name": "name",
-                    "party_address": {
-                        "country": "country",
-                        "line1": "line1",
-                        "line2": "line2",
-                        "locality": "locality",
-                        "postal_code": "postal_code",
-                        "region": "region",
-                    },
-                    "party_identifier": "party_identifier",
-                    "party_name": "party_name",
-                    "party_type": "business",
-                    "plaid_processor_token": "plaid_processor_token",
-                    "routing_details": [
-                        {
-                            "routing_number": "routing_number",
-                            "routing_number_type": "aba",
-                            "payment_type": "ach",
-                        },
-                        {
-                            "routing_number": "routing_number",
-                            "routing_number_type": "aba",
-                            "payment_type": "ach",
-                        },
-                        {
-                            "routing_number": "routing_number",
-                            "routing_number_type": "aba",
-                            "payment_type": "ach",
-                        },
-                    ],
-                },
-                {
-                    "account_details": [
-                        {
-                            "account_number": "account_number",
-                            "account_number_type": "au_number",
-                        },
-                        {
-                            "account_number": "account_number",
-                            "account_number_type": "au_number",
-                        },
-                        {
-                            "account_number": "account_number",
-                            "account_number_type": "au_number",
-                        },
-                    ],
-                    "account_type": "cash",
-                    "contact_details": [
-                        {
-                            "contact_identifier": "contact_identifier",
-                            "contact_identifier_type": "email",
-                        },
-                        {
-                            "contact_identifier": "contact_identifier",
-                            "contact_identifier_type": "email",
-                        },
-                        {
-                            "contact_identifier": "contact_identifier",
-                            "contact_identifier_type": "email",
-                        },
-                    ],
-                    "ledger_account": {
-                        "currency": "currency",
-                        "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "name": "name",
-                        "normal_balance": "credit",
-                        "currency_exponent": 0,
-                        "description": "description",
-                        "ledger_account_category_ids": [
-                            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        ],
-                        "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "ledgerable_type": "counterparty",
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
-                        },
-                    },
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                    "name": "name",
-                    "party_address": {
-                        "country": "country",
-                        "line1": "line1",
-                        "line2": "line2",
-                        "locality": "locality",
-                        "postal_code": "postal_code",
-                        "region": "region",
-                    },
-                    "party_identifier": "party_identifier",
-                    "party_name": "party_name",
-                    "party_type": "business",
-                    "plaid_processor_token": "plaid_processor_token",
-                    "routing_details": [
-                        {
-                            "routing_number": "routing_number",
-                            "routing_number_type": "aba",
-                            "payment_type": "ach",
-                        },
-                        {
-                            "routing_number": "routing_number",
-                            "routing_number_type": "aba",
-                            "payment_type": "ach",
-                        },
-                        {
-                            "routing_number": "routing_number",
-                            "routing_number_type": "aba",
-                            "payment_type": "ach",
-                        },
-                    ],
-                },
+                }
             ],
             email="dev@stainlessapi.com",
             ledger_type="customer",
@@ -1134,32 +516,14 @@ class TestAsyncCounterparties:
                         "locality": "locality",
                         "postal_code": "postal_code",
                         "region": "region",
-                        "address_types": ["business", "mailing", "other"],
+                        "address_types": ["business"],
                         "line2": "line2",
-                    },
-                    {
-                        "country": "country",
-                        "line1": "line1",
-                        "locality": "locality",
-                        "postal_code": "postal_code",
-                        "region": "region",
-                        "address_types": ["business", "mailing", "other"],
-                        "line2": "line2",
-                    },
-                    {
-                        "country": "country",
-                        "line1": "line1",
-                        "locality": "locality",
-                        "postal_code": "postal_code",
-                        "region": "region",
-                        "address_types": ["business", "mailing", "other"],
-                        "line2": "line2",
-                    },
+                    }
                 ],
                 "business_name": "business_name",
                 "date_formed": parse_date("2019-12-27"),
                 "date_of_birth": parse_date("2019-12-27"),
-                "doing_business_as_names": ["string", "string", "string"],
+                "doing_business_as_names": ["string"],
                 "email": "email",
                 "first_name": "first_name",
                 "identifications": [
@@ -1167,22 +531,12 @@ class TestAsyncCounterparties:
                         "id_number": "id_number",
                         "id_type": "ar_cuil",
                         "issuing_country": "issuing_country",
-                    },
-                    {
-                        "id_number": "id_number",
-                        "id_type": "ar_cuil",
-                        "issuing_country": "issuing_country",
-                    },
-                    {
-                        "id_number": "id_number",
-                        "id_type": "ar_cuil",
-                        "issuing_country": "issuing_country",
-                    },
+                    }
                 ],
                 "last_name": "last_name",
                 "legal_entity_associations": [
                     {
-                        "relationship_types": ["beneficial_owner", "control_person"],
+                        "relationship_types": ["beneficial_owner"],
                         "child_legal_entity": {
                             "addresses": [
                                 {
@@ -1191,32 +545,14 @@ class TestAsyncCounterparties:
                                     "locality": "locality",
                                     "postal_code": "postal_code",
                                     "region": "region",
-                                    "address_types": ["business", "mailing", "other"],
+                                    "address_types": ["business"],
                                     "line2": "line2",
-                                },
-                                {
-                                    "country": "country",
-                                    "line1": "line1",
-                                    "locality": "locality",
-                                    "postal_code": "postal_code",
-                                    "region": "region",
-                                    "address_types": ["business", "mailing", "other"],
-                                    "line2": "line2",
-                                },
-                                {
-                                    "country": "country",
-                                    "line1": "line1",
-                                    "locality": "locality",
-                                    "postal_code": "postal_code",
-                                    "region": "region",
-                                    "address_types": ["business", "mailing", "other"],
-                                    "line2": "line2",
-                                },
+                                }
                             ],
                             "business_name": "business_name",
                             "date_formed": parse_date("2019-12-27"),
                             "date_of_birth": parse_date("2019-12-27"),
-                            "doing_business_as_names": ["string", "string", "string"],
+                            "doing_business_as_names": ["string"],
                             "email": "email",
                             "first_name": "first_name",
                             "identifications": [
@@ -1224,17 +560,7 @@ class TestAsyncCounterparties:
                                     "id_number": "id_number",
                                     "id_type": "ar_cuil",
                                     "issuing_country": "issuing_country",
-                                },
-                                {
-                                    "id_number": "id_number",
-                                    "id_type": "ar_cuil",
-                                    "issuing_country": "issuing_country",
-                                },
-                                {
-                                    "id_number": "id_number",
-                                    "id_type": "ar_cuil",
-                                    "issuing_country": "issuing_country",
-                                },
+                                }
                             ],
                             "last_name": "last_name",
                             "legal_entity_type": "business",
@@ -1244,168 +570,14 @@ class TestAsyncCounterparties:
                                 "foo": "bar",
                                 "modern": "treasury",
                             },
-                            "phone_numbers": [
-                                {"phone_number": "phone_number"},
-                                {"phone_number": "phone_number"},
-                                {"phone_number": "phone_number"},
-                            ],
+                            "phone_numbers": [{"phone_number": "phone_number"}],
                             "risk_rating": "low",
                             "website": "website",
                         },
                         "child_legal_entity_id": "child_legal_entity_id",
                         "ownership_percentage": 0,
                         "title": "title",
-                    },
-                    {
-                        "relationship_types": ["beneficial_owner", "control_person"],
-                        "child_legal_entity": {
-                            "addresses": [
-                                {
-                                    "country": "country",
-                                    "line1": "line1",
-                                    "locality": "locality",
-                                    "postal_code": "postal_code",
-                                    "region": "region",
-                                    "address_types": ["business", "mailing", "other"],
-                                    "line2": "line2",
-                                },
-                                {
-                                    "country": "country",
-                                    "line1": "line1",
-                                    "locality": "locality",
-                                    "postal_code": "postal_code",
-                                    "region": "region",
-                                    "address_types": ["business", "mailing", "other"],
-                                    "line2": "line2",
-                                },
-                                {
-                                    "country": "country",
-                                    "line1": "line1",
-                                    "locality": "locality",
-                                    "postal_code": "postal_code",
-                                    "region": "region",
-                                    "address_types": ["business", "mailing", "other"],
-                                    "line2": "line2",
-                                },
-                            ],
-                            "business_name": "business_name",
-                            "date_formed": parse_date("2019-12-27"),
-                            "date_of_birth": parse_date("2019-12-27"),
-                            "doing_business_as_names": ["string", "string", "string"],
-                            "email": "email",
-                            "first_name": "first_name",
-                            "identifications": [
-                                {
-                                    "id_number": "id_number",
-                                    "id_type": "ar_cuil",
-                                    "issuing_country": "issuing_country",
-                                },
-                                {
-                                    "id_number": "id_number",
-                                    "id_type": "ar_cuil",
-                                    "issuing_country": "issuing_country",
-                                },
-                                {
-                                    "id_number": "id_number",
-                                    "id_type": "ar_cuil",
-                                    "issuing_country": "issuing_country",
-                                },
-                            ],
-                            "last_name": "last_name",
-                            "legal_entity_type": "business",
-                            "legal_structure": "corporation",
-                            "metadata": {
-                                "key": "value",
-                                "foo": "bar",
-                                "modern": "treasury",
-                            },
-                            "phone_numbers": [
-                                {"phone_number": "phone_number"},
-                                {"phone_number": "phone_number"},
-                                {"phone_number": "phone_number"},
-                            ],
-                            "risk_rating": "low",
-                            "website": "website",
-                        },
-                        "child_legal_entity_id": "child_legal_entity_id",
-                        "ownership_percentage": 0,
-                        "title": "title",
-                    },
-                    {
-                        "relationship_types": ["beneficial_owner", "control_person"],
-                        "child_legal_entity": {
-                            "addresses": [
-                                {
-                                    "country": "country",
-                                    "line1": "line1",
-                                    "locality": "locality",
-                                    "postal_code": "postal_code",
-                                    "region": "region",
-                                    "address_types": ["business", "mailing", "other"],
-                                    "line2": "line2",
-                                },
-                                {
-                                    "country": "country",
-                                    "line1": "line1",
-                                    "locality": "locality",
-                                    "postal_code": "postal_code",
-                                    "region": "region",
-                                    "address_types": ["business", "mailing", "other"],
-                                    "line2": "line2",
-                                },
-                                {
-                                    "country": "country",
-                                    "line1": "line1",
-                                    "locality": "locality",
-                                    "postal_code": "postal_code",
-                                    "region": "region",
-                                    "address_types": ["business", "mailing", "other"],
-                                    "line2": "line2",
-                                },
-                            ],
-                            "business_name": "business_name",
-                            "date_formed": parse_date("2019-12-27"),
-                            "date_of_birth": parse_date("2019-12-27"),
-                            "doing_business_as_names": ["string", "string", "string"],
-                            "email": "email",
-                            "first_name": "first_name",
-                            "identifications": [
-                                {
-                                    "id_number": "id_number",
-                                    "id_type": "ar_cuil",
-                                    "issuing_country": "issuing_country",
-                                },
-                                {
-                                    "id_number": "id_number",
-                                    "id_type": "ar_cuil",
-                                    "issuing_country": "issuing_country",
-                                },
-                                {
-                                    "id_number": "id_number",
-                                    "id_type": "ar_cuil",
-                                    "issuing_country": "issuing_country",
-                                },
-                            ],
-                            "last_name": "last_name",
-                            "legal_entity_type": "business",
-                            "legal_structure": "corporation",
-                            "metadata": {
-                                "key": "value",
-                                "foo": "bar",
-                                "modern": "treasury",
-                            },
-                            "phone_numbers": [
-                                {"phone_number": "phone_number"},
-                                {"phone_number": "phone_number"},
-                                {"phone_number": "phone_number"},
-                            ],
-                            "risk_rating": "low",
-                            "website": "website",
-                        },
-                        "child_legal_entity_id": "child_legal_entity_id",
-                        "ownership_percentage": 0,
-                        "title": "title",
-                    },
+                    }
                 ],
                 "legal_structure": "corporation",
                 "metadata": {
@@ -1413,11 +585,7 @@ class TestAsyncCounterparties:
                     "foo": "bar",
                     "modern": "treasury",
                 },
-                "phone_numbers": [
-                    {"phone_number": "phone_number"},
-                    {"phone_number": "phone_number"},
-                    {"phone_number": "phone_number"},
-                ],
+                "phone_numbers": [{"phone_number": "phone_number"}],
                 "risk_rating": "low",
                 "website": "website",
             },
@@ -1637,7 +805,7 @@ class TestAsyncCounterparties:
             id="id",
             direction="credit",
             custom_redirect="https://example.com",
-            fields=["name", "nameOnAccount", "taxpayerIdentifier"],
+            fields=["name"],
             send_email=True,
         )
         assert_matches_type(CounterpartyCollectAccountResponse, counterparty, path=["response"])
