@@ -5,7 +5,9 @@ from datetime import date, datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .bank_settings import BankSettings
 from .legal_entity_association import LegalEntityAssociation
+from .wealth_and_employment_details import WealthAndEmploymentDetails
 
 __all__ = ["LegalEntity", "Addresses", "Address", "Identifications", "Identification", "PhoneNumbers", "PhoneNumber"]
 
@@ -127,8 +129,13 @@ class LegalEntity(BaseModel):
     addresses: List[Address]
     """A list of addresses for the entity."""
 
+    bank_settings: Optional[BankSettings] = None
+
     business_name: Optional[str] = None
     """The business's legal business name."""
+
+    citizenship_country: Optional[str] = None
+    """The country of citizenship for an individual."""
 
     created_at: datetime
 
@@ -177,14 +184,31 @@ class LegalEntity(BaseModel):
     Both the key and value must be strings.
     """
 
+    middle_name: Optional[str] = None
+    """An individual's middle name."""
+
     object: str
 
     phone_numbers: List[PhoneNumber]
 
+    politically_exposed_person: Optional[bool] = None
+    """Whether the individual is a politically exposed person."""
+
+    preferred_name: Optional[str] = None
+    """An individual's preferred name."""
+
+    prefix: Optional[str] = None
+    """An individual's prefix."""
+
     risk_rating: Optional[Literal["low", "medium", "high"]] = None
     """The risk rating of the legal entity. One of low, medium, high."""
 
+    suffix: Optional[str] = None
+    """An individual's suffix."""
+
     updated_at: datetime
+
+    wealth_and_employment_details: Optional[WealthAndEmploymentDetails] = None
 
     website: Optional[str] = None
     """The entity's primary website URL."""

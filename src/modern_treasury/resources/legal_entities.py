@@ -9,7 +9,11 @@ from typing_extensions import Literal
 import httpx
 
 from .. import _legacy_response
-from ..types import legal_entity_list_params, legal_entity_create_params, legal_entity_update_params
+from ..types import (
+    legal_entity_list_params,
+    legal_entity_create_params,
+    legal_entity_update_params,
+)
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -21,6 +25,8 @@ from .._response import to_streamed_response_wrapper, async_to_streamed_response
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.legal_entity import LegalEntity
+from ..types.bank_settings_param import BankSettingsParam
+from ..types.wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
 
 __all__ = ["LegalEntities", "AsyncLegalEntities"]
 
@@ -50,7 +56,9 @@ class LegalEntities(SyncAPIResource):
         *,
         legal_entity_type: Literal["business", "individual"],
         addresses: Iterable[legal_entity_create_params.Address] | NotGiven = NOT_GIVEN,
+        bank_settings: Optional[BankSettingsParam] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
+        citizenship_country: Optional[str] | NotGiven = NOT_GIVEN,
         date_formed: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_of_birth: Union[str, date, None] | NotGiven = NOT_GIVEN,
         doing_business_as_names: List[str] | NotGiven = NOT_GIVEN,
@@ -65,8 +73,14 @@ class LegalEntities(SyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        middle_name: Optional[str] | NotGiven = NOT_GIVEN,
         phone_numbers: Iterable[legal_entity_create_params.PhoneNumber] | NotGiven = NOT_GIVEN,
+        politically_exposed_person: Optional[bool] | NotGiven = NOT_GIVEN,
+        preferred_name: Optional[str] | NotGiven = NOT_GIVEN,
+        prefix: Optional[str] | NotGiven = NOT_GIVEN,
         risk_rating: Optional[Literal["low", "medium", "high"]] | NotGiven = NOT_GIVEN,
+        suffix: Optional[str] | NotGiven = NOT_GIVEN,
+        wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam] | NotGiven = NOT_GIVEN,
         website: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -85,6 +99,8 @@ class LegalEntities(SyncAPIResource):
           addresses: A list of addresses for the entity.
 
           business_name: The business's legal business name.
+
+          citizenship_country: The country of citizenship for an individual.
 
           date_formed: A business's formation date (YYYY-MM-DD).
 
@@ -105,7 +121,17 @@ class LegalEntities(SyncAPIResource):
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
+          middle_name: An individual's middle name.
+
+          politically_exposed_person: Whether the individual is a politically exposed person.
+
+          preferred_name: An individual's preferred name.
+
+          prefix: An individual's prefix.
+
           risk_rating: The risk rating of the legal entity. One of low, medium, high.
+
+          suffix: An individual's suffix.
 
           website: The entity's primary website URL.
 
@@ -125,7 +151,9 @@ class LegalEntities(SyncAPIResource):
                 {
                     "legal_entity_type": legal_entity_type,
                     "addresses": addresses,
+                    "bank_settings": bank_settings,
                     "business_name": business_name,
+                    "citizenship_country": citizenship_country,
                     "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
                     "doing_business_as_names": doing_business_as_names,
@@ -136,8 +164,14 @@ class LegalEntities(SyncAPIResource):
                     "legal_entity_associations": legal_entity_associations,
                     "legal_structure": legal_structure,
                     "metadata": metadata,
+                    "middle_name": middle_name,
                     "phone_numbers": phone_numbers,
+                    "politically_exposed_person": politically_exposed_person,
+                    "preferred_name": preferred_name,
+                    "prefix": prefix,
                     "risk_rating": risk_rating,
+                    "suffix": suffix,
+                    "wealth_and_employment_details": wealth_and_employment_details,
                     "website": website,
                 },
                 legal_entity_create_params.LegalEntityCreateParams,
@@ -189,20 +223,30 @@ class LegalEntities(SyncAPIResource):
         self,
         id: str,
         *,
+        addresses: Iterable[legal_entity_update_params.Address] | NotGiven = NOT_GIVEN,
+        bank_settings: Optional[BankSettingsParam] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
+        citizenship_country: Optional[str] | NotGiven = NOT_GIVEN,
         date_formed: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_of_birth: Union[str, date, None] | NotGiven = NOT_GIVEN,
         doing_business_as_names: List[str] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
         first_name: Optional[str] | NotGiven = NOT_GIVEN,
+        identifications: Iterable[legal_entity_update_params.Identification] | NotGiven = NOT_GIVEN,
         last_name: Optional[str] | NotGiven = NOT_GIVEN,
         legal_structure: Optional[
             Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
         ]
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        middle_name: Optional[str] | NotGiven = NOT_GIVEN,
         phone_numbers: Iterable[legal_entity_update_params.PhoneNumber] | NotGiven = NOT_GIVEN,
+        politically_exposed_person: Optional[bool] | NotGiven = NOT_GIVEN,
+        preferred_name: Optional[str] | NotGiven = NOT_GIVEN,
+        prefix: Optional[str] | NotGiven = NOT_GIVEN,
         risk_rating: Optional[Literal["low", "medium", "high"]] | NotGiven = NOT_GIVEN,
+        suffix: Optional[str] | NotGiven = NOT_GIVEN,
+        wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam] | NotGiven = NOT_GIVEN,
         website: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -216,7 +260,11 @@ class LegalEntities(SyncAPIResource):
         Update a legal entity.
 
         Args:
+          addresses: A list of addresses for the entity.
+
           business_name: The business's legal business name.
+
+          citizenship_country: The country of citizenship for an individual.
 
           date_formed: A business's formation date (YYYY-MM-DD).
 
@@ -226,6 +274,8 @@ class LegalEntities(SyncAPIResource):
 
           first_name: An individual's first name.
 
+          identifications: A list of identifications for the legal entity.
+
           last_name: An individual's last name.
 
           legal_structure: The business's legal structure.
@@ -233,7 +283,17 @@ class LegalEntities(SyncAPIResource):
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
+          middle_name: An individual's middle name.
+
+          politically_exposed_person: Whether the individual is a politically exposed person.
+
+          preferred_name: An individual's preferred name.
+
+          prefix: An individual's prefix.
+
           risk_rating: The risk rating of the legal entity. One of low, medium, high.
+
+          suffix: An individual's suffix.
 
           website: The entity's primary website URL.
 
@@ -253,17 +313,27 @@ class LegalEntities(SyncAPIResource):
             f"/api/legal_entities/{id}",
             body=maybe_transform(
                 {
+                    "addresses": addresses,
+                    "bank_settings": bank_settings,
                     "business_name": business_name,
+                    "citizenship_country": citizenship_country,
                     "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
                     "doing_business_as_names": doing_business_as_names,
                     "email": email,
                     "first_name": first_name,
+                    "identifications": identifications,
                     "last_name": last_name,
                     "legal_structure": legal_structure,
                     "metadata": metadata,
+                    "middle_name": middle_name,
                     "phone_numbers": phone_numbers,
+                    "politically_exposed_person": politically_exposed_person,
+                    "preferred_name": preferred_name,
+                    "prefix": prefix,
                     "risk_rating": risk_rating,
+                    "suffix": suffix,
+                    "wealth_and_employment_details": wealth_and_employment_details,
                     "website": website,
                 },
                 legal_entity_update_params.LegalEntityUpdateParams,
@@ -357,7 +427,9 @@ class AsyncLegalEntities(AsyncAPIResource):
         *,
         legal_entity_type: Literal["business", "individual"],
         addresses: Iterable[legal_entity_create_params.Address] | NotGiven = NOT_GIVEN,
+        bank_settings: Optional[BankSettingsParam] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
+        citizenship_country: Optional[str] | NotGiven = NOT_GIVEN,
         date_formed: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_of_birth: Union[str, date, None] | NotGiven = NOT_GIVEN,
         doing_business_as_names: List[str] | NotGiven = NOT_GIVEN,
@@ -372,8 +444,14 @@ class AsyncLegalEntities(AsyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        middle_name: Optional[str] | NotGiven = NOT_GIVEN,
         phone_numbers: Iterable[legal_entity_create_params.PhoneNumber] | NotGiven = NOT_GIVEN,
+        politically_exposed_person: Optional[bool] | NotGiven = NOT_GIVEN,
+        preferred_name: Optional[str] | NotGiven = NOT_GIVEN,
+        prefix: Optional[str] | NotGiven = NOT_GIVEN,
         risk_rating: Optional[Literal["low", "medium", "high"]] | NotGiven = NOT_GIVEN,
+        suffix: Optional[str] | NotGiven = NOT_GIVEN,
+        wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam] | NotGiven = NOT_GIVEN,
         website: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -392,6 +470,8 @@ class AsyncLegalEntities(AsyncAPIResource):
           addresses: A list of addresses for the entity.
 
           business_name: The business's legal business name.
+
+          citizenship_country: The country of citizenship for an individual.
 
           date_formed: A business's formation date (YYYY-MM-DD).
 
@@ -412,7 +492,17 @@ class AsyncLegalEntities(AsyncAPIResource):
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
+          middle_name: An individual's middle name.
+
+          politically_exposed_person: Whether the individual is a politically exposed person.
+
+          preferred_name: An individual's preferred name.
+
+          prefix: An individual's prefix.
+
           risk_rating: The risk rating of the legal entity. One of low, medium, high.
+
+          suffix: An individual's suffix.
 
           website: The entity's primary website URL.
 
@@ -432,7 +522,9 @@ class AsyncLegalEntities(AsyncAPIResource):
                 {
                     "legal_entity_type": legal_entity_type,
                     "addresses": addresses,
+                    "bank_settings": bank_settings,
                     "business_name": business_name,
+                    "citizenship_country": citizenship_country,
                     "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
                     "doing_business_as_names": doing_business_as_names,
@@ -443,8 +535,14 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "legal_entity_associations": legal_entity_associations,
                     "legal_structure": legal_structure,
                     "metadata": metadata,
+                    "middle_name": middle_name,
                     "phone_numbers": phone_numbers,
+                    "politically_exposed_person": politically_exposed_person,
+                    "preferred_name": preferred_name,
+                    "prefix": prefix,
                     "risk_rating": risk_rating,
+                    "suffix": suffix,
+                    "wealth_and_employment_details": wealth_and_employment_details,
                     "website": website,
                 },
                 legal_entity_create_params.LegalEntityCreateParams,
@@ -496,20 +594,30 @@ class AsyncLegalEntities(AsyncAPIResource):
         self,
         id: str,
         *,
+        addresses: Iterable[legal_entity_update_params.Address] | NotGiven = NOT_GIVEN,
+        bank_settings: Optional[BankSettingsParam] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
+        citizenship_country: Optional[str] | NotGiven = NOT_GIVEN,
         date_formed: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_of_birth: Union[str, date, None] | NotGiven = NOT_GIVEN,
         doing_business_as_names: List[str] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
         first_name: Optional[str] | NotGiven = NOT_GIVEN,
+        identifications: Iterable[legal_entity_update_params.Identification] | NotGiven = NOT_GIVEN,
         last_name: Optional[str] | NotGiven = NOT_GIVEN,
         legal_structure: Optional[
             Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
         ]
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        middle_name: Optional[str] | NotGiven = NOT_GIVEN,
         phone_numbers: Iterable[legal_entity_update_params.PhoneNumber] | NotGiven = NOT_GIVEN,
+        politically_exposed_person: Optional[bool] | NotGiven = NOT_GIVEN,
+        preferred_name: Optional[str] | NotGiven = NOT_GIVEN,
+        prefix: Optional[str] | NotGiven = NOT_GIVEN,
         risk_rating: Optional[Literal["low", "medium", "high"]] | NotGiven = NOT_GIVEN,
+        suffix: Optional[str] | NotGiven = NOT_GIVEN,
+        wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam] | NotGiven = NOT_GIVEN,
         website: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -523,7 +631,11 @@ class AsyncLegalEntities(AsyncAPIResource):
         Update a legal entity.
 
         Args:
+          addresses: A list of addresses for the entity.
+
           business_name: The business's legal business name.
+
+          citizenship_country: The country of citizenship for an individual.
 
           date_formed: A business's formation date (YYYY-MM-DD).
 
@@ -533,6 +645,8 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           first_name: An individual's first name.
 
+          identifications: A list of identifications for the legal entity.
+
           last_name: An individual's last name.
 
           legal_structure: The business's legal structure.
@@ -540,7 +654,17 @@ class AsyncLegalEntities(AsyncAPIResource):
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
+          middle_name: An individual's middle name.
+
+          politically_exposed_person: Whether the individual is a politically exposed person.
+
+          preferred_name: An individual's preferred name.
+
+          prefix: An individual's prefix.
+
           risk_rating: The risk rating of the legal entity. One of low, medium, high.
+
+          suffix: An individual's suffix.
 
           website: The entity's primary website URL.
 
@@ -560,17 +684,27 @@ class AsyncLegalEntities(AsyncAPIResource):
             f"/api/legal_entities/{id}",
             body=await async_maybe_transform(
                 {
+                    "addresses": addresses,
+                    "bank_settings": bank_settings,
                     "business_name": business_name,
+                    "citizenship_country": citizenship_country,
                     "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
                     "doing_business_as_names": doing_business_as_names,
                     "email": email,
                     "first_name": first_name,
+                    "identifications": identifications,
                     "last_name": last_name,
                     "legal_structure": legal_structure,
                     "metadata": metadata,
+                    "middle_name": middle_name,
                     "phone_numbers": phone_numbers,
+                    "politically_exposed_person": politically_exposed_person,
+                    "preferred_name": preferred_name,
+                    "prefix": prefix,
                     "risk_rating": risk_rating,
+                    "suffix": suffix,
+                    "wealth_and_employment_details": wealth_and_employment_details,
                     "website": website,
                 },
                 legal_entity_update_params.LegalEntityUpdateParams,
