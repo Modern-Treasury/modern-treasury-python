@@ -7,6 +7,8 @@ from datetime import date
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
+from .bank_settings_param import BankSettingsParam
+from .wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
 
 __all__ = [
     "LegalEntityCreateParams",
@@ -36,8 +38,13 @@ class LegalEntityCreateParams(TypedDict, total=False):
     addresses: Iterable[Address]
     """A list of addresses for the entity."""
 
+    bank_settings: Optional[BankSettingsParam]
+
     business_name: Optional[str]
     """The business's legal business name."""
+
+    citizenship_country: Optional[str]
+    """The country of citizenship for an individual."""
 
     date_formed: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
     """A business's formation date (YYYY-MM-DD)."""
@@ -73,10 +80,27 @@ class LegalEntityCreateParams(TypedDict, total=False):
     Both the key and value must be strings.
     """
 
+    middle_name: Optional[str]
+    """An individual's middle name."""
+
     phone_numbers: Iterable[PhoneNumber]
+
+    politically_exposed_person: Optional[bool]
+    """Whether the individual is a politically exposed person."""
+
+    preferred_name: Optional[str]
+    """An individual's preferred name."""
+
+    prefix: Optional[str]
+    """An individual's prefix."""
 
     risk_rating: Optional[Literal["low", "medium", "high"]]
     """The risk rating of the legal entity. One of low, medium, high."""
+
+    suffix: Optional[str]
+    """An individual's suffix."""
+
+    wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam]
 
     website: Optional[str]
     """The entity's primary website URL."""
@@ -243,8 +267,13 @@ class LegalEntityAssociationChildLegalEntity(TypedDict, total=False):
     addresses: Iterable[LegalEntityAssociationChildLegalEntityAddress]
     """A list of addresses for the entity."""
 
+    bank_settings: Optional[BankSettingsParam]
+
     business_name: Optional[str]
     """The business's legal business name."""
+
+    citizenship_country: Optional[str]
+    """The country of citizenship for an individual."""
 
     date_formed: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
     """A business's formation date (YYYY-MM-DD)."""
@@ -280,10 +309,27 @@ class LegalEntityAssociationChildLegalEntity(TypedDict, total=False):
     Both the key and value must be strings.
     """
 
+    middle_name: Optional[str]
+    """An individual's middle name."""
+
     phone_numbers: Iterable[LegalEntityAssociationChildLegalEntityPhoneNumber]
+
+    politically_exposed_person: Optional[bool]
+    """Whether the individual is a politically exposed person."""
+
+    preferred_name: Optional[str]
+    """An individual's preferred name."""
+
+    prefix: Optional[str]
+    """An individual's prefix."""
 
     risk_rating: Optional[Literal["low", "medium", "high"]]
     """The risk rating of the legal entity. One of low, medium, high."""
+
+    suffix: Optional[str]
+    """An individual's suffix."""
+
+    wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam]
 
     website: Optional[str]
     """The entity's primary website URL."""

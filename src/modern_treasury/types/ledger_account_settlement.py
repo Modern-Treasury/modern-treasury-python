@@ -68,7 +68,7 @@ class LedgerAccountSettlement(BaseModel):
     settlement_entry_direction: Optional[str] = None
     """The direction of the ledger entry with the settlement_ledger_account."""
 
-    status: Literal["archived", "archiving", "pending", "posted", "processing"]
+    status: Literal["archived", "archiving", "drafting", "pending", "posted", "processing"]
     """The status of the ledger account settlement.
 
     One of `processing`, `pending`, `posted`, `archiving` or `archived`.
