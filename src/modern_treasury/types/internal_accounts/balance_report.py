@@ -16,6 +16,12 @@ class Balance(BaseModel):
     amount: int
     """The balance amount."""
 
+    as_of_date: Optional[date] = None
+    """The date on which the balance became true for the account."""
+
+    as_of_time: Optional[str] = None
+    """The time on which the balance became true for the account."""
+
     balance_type: Literal[
         "closing_available",
         "closing_ledger",
@@ -47,6 +53,9 @@ class Balance(BaseModel):
     object: str
 
     updated_at: datetime
+
+    value_date: Optional[date] = None
+    """The date on which the balance becomes available."""
 
     vendor_code: str
     """The code used by the bank when reporting this specific balance."""
