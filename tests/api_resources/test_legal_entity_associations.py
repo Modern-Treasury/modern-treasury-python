@@ -22,7 +22,7 @@ class TestLegalEntityAssociations:
     def test_method_create(self, client: ModernTreasury) -> None:
         legal_entity_association = client.legal_entity_associations.create(
             parent_legal_entity_id="parent_legal_entity_id",
-            relationship_types=["beneficial_owner", "control_person"],
+            relationship_types=["beneficial_owner"],
         )
         assert_matches_type(LegalEntityAssociation, legal_entity_association, path=["response"])
 
@@ -30,7 +30,7 @@ class TestLegalEntityAssociations:
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         legal_entity_association = client.legal_entity_associations.create(
             parent_legal_entity_id="parent_legal_entity_id",
-            relationship_types=["beneficial_owner", "control_person"],
+            relationship_types=["beneficial_owner"],
             child_legal_entity={
                 "addresses": [
                     {
@@ -39,32 +39,14 @@ class TestLegalEntityAssociations:
                         "locality": "locality",
                         "postal_code": "postal_code",
                         "region": "region",
-                        "address_types": ["business", "mailing", "other"],
+                        "address_types": ["business"],
                         "line2": "line2",
-                    },
-                    {
-                        "country": "country",
-                        "line1": "line1",
-                        "locality": "locality",
-                        "postal_code": "postal_code",
-                        "region": "region",
-                        "address_types": ["business", "mailing", "other"],
-                        "line2": "line2",
-                    },
-                    {
-                        "country": "country",
-                        "line1": "line1",
-                        "locality": "locality",
-                        "postal_code": "postal_code",
-                        "region": "region",
-                        "address_types": ["business", "mailing", "other"],
-                        "line2": "line2",
-                    },
+                    }
                 ],
                 "business_name": "business_name",
                 "date_formed": parse_date("2019-12-27"),
                 "date_of_birth": parse_date("2019-12-27"),
-                "doing_business_as_names": ["string", "string", "string"],
+                "doing_business_as_names": ["string"],
                 "email": "email",
                 "first_name": "first_name",
                 "identifications": [
@@ -72,17 +54,7 @@ class TestLegalEntityAssociations:
                         "id_number": "id_number",
                         "id_type": "ar_cuil",
                         "issuing_country": "issuing_country",
-                    },
-                    {
-                        "id_number": "id_number",
-                        "id_type": "ar_cuil",
-                        "issuing_country": "issuing_country",
-                    },
-                    {
-                        "id_number": "id_number",
-                        "id_type": "ar_cuil",
-                        "issuing_country": "issuing_country",
-                    },
+                    }
                 ],
                 "last_name": "last_name",
                 "legal_entity_type": "business",
@@ -92,11 +64,7 @@ class TestLegalEntityAssociations:
                     "foo": "bar",
                     "modern": "treasury",
                 },
-                "phone_numbers": [
-                    {"phone_number": "phone_number"},
-                    {"phone_number": "phone_number"},
-                    {"phone_number": "phone_number"},
-                ],
+                "phone_numbers": [{"phone_number": "phone_number"}],
                 "risk_rating": "low",
                 "website": "website",
             },
@@ -110,7 +78,7 @@ class TestLegalEntityAssociations:
     def test_raw_response_create(self, client: ModernTreasury) -> None:
         response = client.legal_entity_associations.with_raw_response.create(
             parent_legal_entity_id="parent_legal_entity_id",
-            relationship_types=["beneficial_owner", "control_person"],
+            relationship_types=["beneficial_owner"],
         )
 
         assert response.is_closed is True
@@ -122,7 +90,7 @@ class TestLegalEntityAssociations:
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
         with client.legal_entity_associations.with_streaming_response.create(
             parent_legal_entity_id="parent_legal_entity_id",
-            relationship_types=["beneficial_owner", "control_person"],
+            relationship_types=["beneficial_owner"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -140,7 +108,7 @@ class TestAsyncLegalEntityAssociations:
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
         legal_entity_association = await async_client.legal_entity_associations.create(
             parent_legal_entity_id="parent_legal_entity_id",
-            relationship_types=["beneficial_owner", "control_person"],
+            relationship_types=["beneficial_owner"],
         )
         assert_matches_type(LegalEntityAssociation, legal_entity_association, path=["response"])
 
@@ -148,7 +116,7 @@ class TestAsyncLegalEntityAssociations:
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         legal_entity_association = await async_client.legal_entity_associations.create(
             parent_legal_entity_id="parent_legal_entity_id",
-            relationship_types=["beneficial_owner", "control_person"],
+            relationship_types=["beneficial_owner"],
             child_legal_entity={
                 "addresses": [
                     {
@@ -157,32 +125,14 @@ class TestAsyncLegalEntityAssociations:
                         "locality": "locality",
                         "postal_code": "postal_code",
                         "region": "region",
-                        "address_types": ["business", "mailing", "other"],
+                        "address_types": ["business"],
                         "line2": "line2",
-                    },
-                    {
-                        "country": "country",
-                        "line1": "line1",
-                        "locality": "locality",
-                        "postal_code": "postal_code",
-                        "region": "region",
-                        "address_types": ["business", "mailing", "other"],
-                        "line2": "line2",
-                    },
-                    {
-                        "country": "country",
-                        "line1": "line1",
-                        "locality": "locality",
-                        "postal_code": "postal_code",
-                        "region": "region",
-                        "address_types": ["business", "mailing", "other"],
-                        "line2": "line2",
-                    },
+                    }
                 ],
                 "business_name": "business_name",
                 "date_formed": parse_date("2019-12-27"),
                 "date_of_birth": parse_date("2019-12-27"),
-                "doing_business_as_names": ["string", "string", "string"],
+                "doing_business_as_names": ["string"],
                 "email": "email",
                 "first_name": "first_name",
                 "identifications": [
@@ -190,17 +140,7 @@ class TestAsyncLegalEntityAssociations:
                         "id_number": "id_number",
                         "id_type": "ar_cuil",
                         "issuing_country": "issuing_country",
-                    },
-                    {
-                        "id_number": "id_number",
-                        "id_type": "ar_cuil",
-                        "issuing_country": "issuing_country",
-                    },
-                    {
-                        "id_number": "id_number",
-                        "id_type": "ar_cuil",
-                        "issuing_country": "issuing_country",
-                    },
+                    }
                 ],
                 "last_name": "last_name",
                 "legal_entity_type": "business",
@@ -210,11 +150,7 @@ class TestAsyncLegalEntityAssociations:
                     "foo": "bar",
                     "modern": "treasury",
                 },
-                "phone_numbers": [
-                    {"phone_number": "phone_number"},
-                    {"phone_number": "phone_number"},
-                    {"phone_number": "phone_number"},
-                ],
+                "phone_numbers": [{"phone_number": "phone_number"}],
                 "risk_rating": "low",
                 "website": "website",
             },
@@ -228,7 +164,7 @@ class TestAsyncLegalEntityAssociations:
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.legal_entity_associations.with_raw_response.create(
             parent_legal_entity_id="parent_legal_entity_id",
-            relationship_types=["beneficial_owner", "control_person"],
+            relationship_types=["beneficial_owner"],
         )
 
         assert response.is_closed is True
@@ -240,7 +176,7 @@ class TestAsyncLegalEntityAssociations:
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.legal_entity_associations.with_streaming_response.create(
             parent_legal_entity_id="parent_legal_entity_id",
-            relationship_types=["beneficial_owner", "control_person"],
+            relationship_types=["beneficial_owner"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

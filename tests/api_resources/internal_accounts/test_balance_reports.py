@@ -34,19 +34,7 @@ class TestBalanceReports:
                     "balance_type": "closing_available",
                     "vendor_code": "vendor_code",
                     "vendor_code_type": "vendor_code_type",
-                },
-                {
-                    "amount": 0,
-                    "balance_type": "closing_available",
-                    "vendor_code": "vendor_code",
-                    "vendor_code_type": "vendor_code_type",
-                },
-                {
-                    "amount": 0,
-                    "balance_type": "closing_available",
-                    "vendor_code": "vendor_code",
-                    "vendor_code_type": "vendor_code_type",
-                },
+                }
             ],
         )
         assert_matches_type(BalanceReport, balance_report, path=["response"])
@@ -64,19 +52,7 @@ class TestBalanceReports:
                     "balance_type": "closing_available",
                     "vendor_code": "vendor_code",
                     "vendor_code_type": "vendor_code_type",
-                },
-                {
-                    "amount": 0,
-                    "balance_type": "closing_available",
-                    "vendor_code": "vendor_code",
-                    "vendor_code_type": "vendor_code_type",
-                },
-                {
-                    "amount": 0,
-                    "balance_type": "closing_available",
-                    "vendor_code": "vendor_code",
-                    "vendor_code_type": "vendor_code_type",
-                },
+                }
             ],
         )
 
@@ -98,19 +74,7 @@ class TestBalanceReports:
                     "balance_type": "closing_available",
                     "vendor_code": "vendor_code",
                     "vendor_code_type": "vendor_code_type",
-                },
-                {
-                    "amount": 0,
-                    "balance_type": "closing_available",
-                    "vendor_code": "vendor_code",
-                    "vendor_code_type": "vendor_code_type",
-                },
-                {
-                    "amount": 0,
-                    "balance_type": "closing_available",
-                    "vendor_code": "vendor_code",
-                    "vendor_code_type": "vendor_code_type",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -135,19 +99,7 @@ class TestBalanceReports:
                         "balance_type": "closing_available",
                         "vendor_code": "vendor_code",
                         "vendor_code_type": "vendor_code_type",
-                    },
-                    {
-                        "amount": 0,
-                        "balance_type": "closing_available",
-                        "vendor_code": "vendor_code",
-                        "vendor_code_type": "vendor_code_type",
-                    },
-                    {
-                        "amount": 0,
-                        "balance_type": "closing_available",
-                        "vendor_code": "vendor_code",
-                        "vendor_code_type": "vendor_code_type",
-                    },
+                    }
                 ],
             )
 
@@ -313,19 +265,7 @@ class TestAsyncBalanceReports:
                     "balance_type": "closing_available",
                     "vendor_code": "vendor_code",
                     "vendor_code_type": "vendor_code_type",
-                },
-                {
-                    "amount": 0,
-                    "balance_type": "closing_available",
-                    "vendor_code": "vendor_code",
-                    "vendor_code_type": "vendor_code_type",
-                },
-                {
-                    "amount": 0,
-                    "balance_type": "closing_available",
-                    "vendor_code": "vendor_code",
-                    "vendor_code_type": "vendor_code_type",
-                },
+                }
             ],
         )
         assert_matches_type(BalanceReport, balance_report, path=["response"])
@@ -343,19 +283,7 @@ class TestAsyncBalanceReports:
                     "balance_type": "closing_available",
                     "vendor_code": "vendor_code",
                     "vendor_code_type": "vendor_code_type",
-                },
-                {
-                    "amount": 0,
-                    "balance_type": "closing_available",
-                    "vendor_code": "vendor_code",
-                    "vendor_code_type": "vendor_code_type",
-                },
-                {
-                    "amount": 0,
-                    "balance_type": "closing_available",
-                    "vendor_code": "vendor_code",
-                    "vendor_code_type": "vendor_code_type",
-                },
+                }
             ],
         )
 
@@ -377,19 +305,7 @@ class TestAsyncBalanceReports:
                     "balance_type": "closing_available",
                     "vendor_code": "vendor_code",
                     "vendor_code_type": "vendor_code_type",
-                },
-                {
-                    "amount": 0,
-                    "balance_type": "closing_available",
-                    "vendor_code": "vendor_code",
-                    "vendor_code_type": "vendor_code_type",
-                },
-                {
-                    "amount": 0,
-                    "balance_type": "closing_available",
-                    "vendor_code": "vendor_code",
-                    "vendor_code_type": "vendor_code_type",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -414,19 +330,7 @@ class TestAsyncBalanceReports:
                         "balance_type": "closing_available",
                         "vendor_code": "vendor_code",
                         "vendor_code_type": "vendor_code_type",
-                    },
-                    {
-                        "amount": 0,
-                        "balance_type": "closing_available",
-                        "vendor_code": "vendor_code",
-                        "vendor_code_type": "vendor_code_type",
-                    },
-                    {
-                        "amount": 0,
-                        "balance_type": "closing_available",
-                        "vendor_code": "vendor_code",
-                        "vendor_code_type": "vendor_code_type",
-                    },
+                    }
                 ],
             )
 

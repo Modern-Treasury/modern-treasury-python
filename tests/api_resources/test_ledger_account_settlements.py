@@ -171,7 +171,7 @@ class TestLedgerAccountSettlements:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account_settlement = client.ledger_account_settlements.list(
-            id=["string", "string", "string"],
+            id=["string"],
             after_cursor="after_cursor",
             created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             ledger_id="ledger_id",
@@ -358,7 +358,7 @@ class TestAsyncLedgerAccountSettlements:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         ledger_account_settlement = await async_client.ledger_account_settlements.list(
-            id=["string", "string", "string"],
+            id=["string"],
             after_cursor="after_cursor",
             created_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             ledger_id="ledger_id",

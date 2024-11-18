@@ -24,7 +24,7 @@ class TestAccountCollectionFlows:
     def test_method_create(self, client: ModernTreasury) -> None:
         account_collection_flow = client.account_collection_flows.create(
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            payment_types=["string", "string", "string"],
+            payment_types=["string"],
         )
         assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
 
@@ -32,8 +32,8 @@ class TestAccountCollectionFlows:
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         account_collection_flow = client.account_collection_flows.create(
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            payment_types=["string", "string", "string"],
-            receiving_countries=["USA", "AUS", "BEL"],
+            payment_types=["string"],
+            receiving_countries=["USA"],
         )
         assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
 
@@ -41,7 +41,7 @@ class TestAccountCollectionFlows:
     def test_raw_response_create(self, client: ModernTreasury) -> None:
         response = client.account_collection_flows.with_raw_response.create(
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            payment_types=["string", "string", "string"],
+            payment_types=["string"],
         )
 
         assert response.is_closed is True
@@ -53,7 +53,7 @@ class TestAccountCollectionFlows:
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
         with client.account_collection_flows.with_streaming_response.create(
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            payment_types=["string", "string", "string"],
+            payment_types=["string"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -188,7 +188,7 @@ class TestAsyncAccountCollectionFlows:
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
         account_collection_flow = await async_client.account_collection_flows.create(
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            payment_types=["string", "string", "string"],
+            payment_types=["string"],
         )
         assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
 
@@ -196,8 +196,8 @@ class TestAsyncAccountCollectionFlows:
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         account_collection_flow = await async_client.account_collection_flows.create(
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            payment_types=["string", "string", "string"],
-            receiving_countries=["USA", "AUS", "BEL"],
+            payment_types=["string"],
+            receiving_countries=["USA"],
         )
         assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
 
@@ -205,7 +205,7 @@ class TestAsyncAccountCollectionFlows:
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.account_collection_flows.with_raw_response.create(
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            payment_types=["string", "string", "string"],
+            payment_types=["string"],
         )
 
         assert response.is_closed is True
@@ -217,7 +217,7 @@ class TestAsyncAccountCollectionFlows:
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.account_collection_flows.with_streaming_response.create(
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            payment_types=["string", "string", "string"],
+            payment_types=["string"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

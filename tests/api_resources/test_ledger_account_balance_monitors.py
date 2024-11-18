@@ -181,7 +181,7 @@ class TestLedgerAccountBalanceMonitors:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account_balance_monitor = client.ledger_account_balance_monitors.list(
-            id=["string", "string", "string"],
+            id=["string"],
             after_cursor="after_cursor",
             ledger_account_id="ledger_account_id",
             metadata={"foo": "string"},
@@ -414,7 +414,7 @@ class TestAsyncLedgerAccountBalanceMonitors:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         ledger_account_balance_monitor = await async_client.ledger_account_balance_monitors.list(
-            id=["string", "string", "string"],
+            id=["string"],
             after_cursor="after_cursor",
             ledger_account_id="ledger_account_id",
             metadata={"foo": "string"},

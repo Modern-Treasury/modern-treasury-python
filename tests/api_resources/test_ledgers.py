@@ -161,7 +161,7 @@ class TestLedgers:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger = client.ledgers.list(
-            id=["string", "string", "string"],
+            id=["string"],
             after_cursor="after_cursor",
             metadata={"foo": "string"},
             per_page=0,
@@ -373,7 +373,7 @@ class TestAsyncLedgers:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         ledger = await async_client.ledgers.list(
-            id=["string", "string", "string"],
+            id=["string"],
             after_cursor="after_cursor",
             metadata={"foo": "string"},
             per_page=0,
