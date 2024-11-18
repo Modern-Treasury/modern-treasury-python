@@ -125,7 +125,7 @@ class TestLedgerEntries:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger_entry = client.ledger_entries.list(
-            id=["string", "string", "string"],
+            id=["string"],
             after_cursor="after_cursor",
             as_of_lock_version=0,
             direction="credit",
@@ -279,7 +279,7 @@ class TestAsyncLedgerEntries:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         ledger_entry = await async_client.ledger_entries.list(
-            id=["string", "string", "string"],
+            id=["string"],
             after_cursor="after_cursor",
             as_of_lock_version=0,
             direction="credit",

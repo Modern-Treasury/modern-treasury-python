@@ -29,17 +29,7 @@ class TestLedgerTransactions:
                     "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                },
-                {
-                    "amount": 0,
-                    "direction": "credit",
-                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                },
-                {
-                    "amount": 0,
-                    "direction": "credit",
-                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                },
+                }
             ],
         )
         assert_matches_type(LedgerTransaction, ledger_transaction, path=["response"])
@@ -62,37 +52,7 @@ class TestLedgerTransactions:
                     "pending_balance_amount": {"foo": 0},
                     "posted_balance_amount": {"foo": 0},
                     "show_resulting_ledger_account_balances": True,
-                },
-                {
-                    "amount": 0,
-                    "direction": "credit",
-                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "available_balance_amount": {"foo": 0},
-                    "lock_version": 0,
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                    "pending_balance_amount": {"foo": 0},
-                    "posted_balance_amount": {"foo": 0},
-                    "show_resulting_ledger_account_balances": True,
-                },
-                {
-                    "amount": 0,
-                    "direction": "credit",
-                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "available_balance_amount": {"foo": 0},
-                    "lock_version": 0,
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                    "pending_balance_amount": {"foo": 0},
-                    "posted_balance_amount": {"foo": 0},
-                    "show_resulting_ledger_account_balances": True,
-                },
+                }
             ],
             description="description",
             effective_at=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -117,17 +77,7 @@ class TestLedgerTransactions:
                     "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                },
-                {
-                    "amount": 0,
-                    "direction": "credit",
-                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                },
-                {
-                    "amount": 0,
-                    "direction": "credit",
-                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                },
+                }
             ],
         )
 
@@ -144,17 +94,7 @@ class TestLedgerTransactions:
                     "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                },
-                {
-                    "amount": 0,
-                    "direction": "credit",
-                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                },
-                {
-                    "amount": 0,
-                    "direction": "credit",
-                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -231,37 +171,7 @@ class TestLedgerTransactions:
                     "pending_balance_amount": {"foo": 0},
                     "posted_balance_amount": {"foo": 0},
                     "show_resulting_ledger_account_balances": True,
-                },
-                {
-                    "amount": 0,
-                    "direction": "credit",
-                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "available_balance_amount": {"foo": 0},
-                    "lock_version": 0,
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                    "pending_balance_amount": {"foo": 0},
-                    "posted_balance_amount": {"foo": 0},
-                    "show_resulting_ledger_account_balances": True,
-                },
-                {
-                    "amount": 0,
-                    "direction": "credit",
-                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "available_balance_amount": {"foo": 0},
-                    "lock_version": 0,
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                    "pending_balance_amount": {"foo": 0},
-                    "posted_balance_amount": {"foo": 0},
-                    "show_resulting_ledger_account_balances": True,
-                },
+                }
             ],
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledgerable_type="expected_payment",
@@ -313,7 +223,7 @@ class TestLedgerTransactions:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger_transaction = client.ledger_transactions.list(
-            id=["string", "string", "string"],
+            id=["string"],
             after_cursor="after_cursor",
             effective_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             effective_date={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
@@ -425,17 +335,7 @@ class TestAsyncLedgerTransactions:
                     "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                },
-                {
-                    "amount": 0,
-                    "direction": "credit",
-                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                },
-                {
-                    "amount": 0,
-                    "direction": "credit",
-                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                },
+                }
             ],
         )
         assert_matches_type(LedgerTransaction, ledger_transaction, path=["response"])
@@ -458,37 +358,7 @@ class TestAsyncLedgerTransactions:
                     "pending_balance_amount": {"foo": 0},
                     "posted_balance_amount": {"foo": 0},
                     "show_resulting_ledger_account_balances": True,
-                },
-                {
-                    "amount": 0,
-                    "direction": "credit",
-                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "available_balance_amount": {"foo": 0},
-                    "lock_version": 0,
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                    "pending_balance_amount": {"foo": 0},
-                    "posted_balance_amount": {"foo": 0},
-                    "show_resulting_ledger_account_balances": True,
-                },
-                {
-                    "amount": 0,
-                    "direction": "credit",
-                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "available_balance_amount": {"foo": 0},
-                    "lock_version": 0,
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                    "pending_balance_amount": {"foo": 0},
-                    "posted_balance_amount": {"foo": 0},
-                    "show_resulting_ledger_account_balances": True,
-                },
+                }
             ],
             description="description",
             effective_at=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -513,17 +383,7 @@ class TestAsyncLedgerTransactions:
                     "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                },
-                {
-                    "amount": 0,
-                    "direction": "credit",
-                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                },
-                {
-                    "amount": 0,
-                    "direction": "credit",
-                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                },
+                }
             ],
         )
 
@@ -540,17 +400,7 @@ class TestAsyncLedgerTransactions:
                     "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                },
-                {
-                    "amount": 0,
-                    "direction": "credit",
-                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                },
-                {
-                    "amount": 0,
-                    "direction": "credit",
-                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -627,37 +477,7 @@ class TestAsyncLedgerTransactions:
                     "pending_balance_amount": {"foo": 0},
                     "posted_balance_amount": {"foo": 0},
                     "show_resulting_ledger_account_balances": True,
-                },
-                {
-                    "amount": 0,
-                    "direction": "credit",
-                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "available_balance_amount": {"foo": 0},
-                    "lock_version": 0,
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                    "pending_balance_amount": {"foo": 0},
-                    "posted_balance_amount": {"foo": 0},
-                    "show_resulting_ledger_account_balances": True,
-                },
-                {
-                    "amount": 0,
-                    "direction": "credit",
-                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "available_balance_amount": {"foo": 0},
-                    "lock_version": 0,
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                    "pending_balance_amount": {"foo": 0},
-                    "posted_balance_amount": {"foo": 0},
-                    "show_resulting_ledger_account_balances": True,
-                },
+                }
             ],
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledgerable_type="expected_payment",
@@ -709,7 +529,7 @@ class TestAsyncLedgerTransactions:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         ledger_transaction = await async_client.ledger_transactions.list(
-            id=["string", "string", "string"],
+            id=["string"],
             after_cursor="after_cursor",
             effective_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             effective_date={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},

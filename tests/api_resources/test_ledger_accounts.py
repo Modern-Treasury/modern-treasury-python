@@ -40,11 +40,7 @@ class TestLedgerAccounts:
             normal_balance="credit",
             currency_exponent=0,
             description="description",
-            ledger_account_category_ids=[
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            ],
+            ledger_account_category_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledgerable_type="counterparty",
             metadata={
@@ -197,7 +193,7 @@ class TestLedgerAccounts:
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         ledger_account = client.ledger_accounts.list(
-            id=["string", "string", "string"],
+            id=["string"],
             after_cursor="after_cursor",
             available_balance_amount={
                 "eq": 0,
@@ -218,7 +214,7 @@ class TestLedgerAccounts:
             ledger_account_category_id="ledger_account_category_id",
             ledger_id="ledger_id",
             metadata={"foo": "string"},
-            name=["string", "string", "string"],
+            name=["string"],
             pending_balance_amount={
                 "eq": 0,
                 "gt": 0,
@@ -321,11 +317,7 @@ class TestAsyncLedgerAccounts:
             normal_balance="credit",
             currency_exponent=0,
             description="description",
-            ledger_account_category_ids=[
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            ],
+            ledger_account_category_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledgerable_type="counterparty",
             metadata={
@@ -478,7 +470,7 @@ class TestAsyncLedgerAccounts:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         ledger_account = await async_client.ledger_accounts.list(
-            id=["string", "string", "string"],
+            id=["string"],
             after_cursor="after_cursor",
             available_balance_amount={
                 "eq": 0,
@@ -499,7 +491,7 @@ class TestAsyncLedgerAccounts:
             ledger_account_category_id="ledger_account_category_id",
             ledger_id="ledger_id",
             metadata={"foo": "string"},
-            name=["string", "string", "string"],
+            name=["string"],
             pending_balance_amount={
                 "eq": 0,
                 "gt": 0,
