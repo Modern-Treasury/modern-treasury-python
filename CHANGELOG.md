@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.43.1 (2024-11-28)
+
+Full Changelog: [v1.43.0...v1.43.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.43.0...v1.43.1)
+
+### Bug Fixes
+
+* **asyncify:** avoid hanging process under certain conditions ([#556](https://github.com/Modern-Treasury/modern-treasury-python/issues/556)) ([d64a12f](https://github.com/Modern-Treasury/modern-treasury-python/commit/d64a12fd009154f0180d4154c0b6920545ffdfc2))
+* **client:** compat with new httpx 0.28.0 release ([#563](https://github.com/Modern-Treasury/modern-treasury-python/issues/563)) ([f70ecc8](https://github.com/Modern-Treasury/modern-treasury-python/commit/f70ecc84770dbaf4aa6b652b3fdf5c361df2082a))
+
+
+### Chores
+
+* **api:** additional fields for requests to get BalanceReports and create LegalEntities ([#557](https://github.com/Modern-Treasury/modern-treasury-python/issues/557)) ([e6eb038](https://github.com/Modern-Treasury/modern-treasury-python/commit/e6eb038c22ed677336cf95f593f06e62cf108c85))
+* **internal:** exclude mypy from running on tests ([#562](https://github.com/Modern-Treasury/modern-treasury-python/issues/562)) ([308156f](https://github.com/Modern-Treasury/modern-treasury-python/commit/308156fc3af7463fb4976244397560f6db0f2ef8))
+* **internal:** fix compat model_dump method when warnings are passed ([#558](https://github.com/Modern-Treasury/modern-treasury-python/issues/558)) ([148371f](https://github.com/Modern-Treasury/modern-treasury-python/commit/148371f5bc2b00b8438062643266c73bc7104240))
+* remove now unused `cached-property` dep ([#560](https://github.com/Modern-Treasury/modern-treasury-python/issues/560)) ([913649b](https://github.com/Modern-Treasury/modern-treasury-python/commit/913649bb0f36732d5c4d1058d1de6b9e745a59e6))
+* sync openapi spec ([#561](https://github.com/Modern-Treasury/modern-treasury-python/issues/561)) ([4753fa9](https://github.com/Modern-Treasury/modern-treasury-python/commit/4753fa909b756c7df43dc28179f682d98ac75f04))
+* **tests:** limit array example length ([#554](https://github.com/Modern-Treasury/modern-treasury-python/issues/554)) ([2da7d34](https://github.com/Modern-Treasury/modern-treasury-python/commit/2da7d34dc508a2f36eee7a93c22254353fefb695))
+
+
+### Documentation
+
+* add info log level to readme ([#559](https://github.com/Modern-Treasury/modern-treasury-python/issues/559)) ([2e92ffd](https://github.com/Modern-Treasury/modern-treasury-python/commit/2e92ffd1bf10ac2b4a0aa7fe398faf7d9101cb46))
+
 ## 1.43.0 (2024-11-12)
 
 Full Changelog: [v1.42.0...v1.43.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.42.0...v1.43.0)
