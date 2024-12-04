@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.43.2 (2024-12-04)
+
+Full Changelog: [v1.43.1...v1.43.2](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.43.1...v1.43.2)
+
+### Chores
+
+* **internal:** bump pyright ([#564](https://github.com/Modern-Treasury/modern-treasury-python/issues/564)) ([9425115](https://github.com/Modern-Treasury/modern-treasury-python/commit/9425115117bd609df8efe1bdcabc12d50d6b9e48))
+* make the `Omit` type public ([#566](https://github.com/Modern-Treasury/modern-treasury-python/issues/566)) ([e0efee5](https://github.com/Modern-Treasury/modern-treasury-python/commit/e0efee572e4d2a56c300577748e1381ebca3b60f))
+
 ## 1.43.1 (2024-11-28)
 
 Full Changelog: [v1.43.0...v1.43.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.43.0...v1.43.1)
