@@ -21,7 +21,6 @@ from ._types import (
     NotGiven,
     Transport,
     ProxiesTypes,
-    AsyncTransport,
     RequestOptions,
 )
 from ._utils import (
@@ -34,11 +33,8 @@ from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError, ModernTreasuryError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
-    DEFAULT_CONNECTION_LIMITS,
     SyncAPIClient,
     AsyncAPIClient,
-    SyncHttpxClientWrapper,
-    AsyncHttpxClientWrapper,
     make_request_options,
 )
 from .types.ping_response import PingResponse
@@ -118,12 +114,6 @@ class ModernTreasury(SyncAPIClient):
         # We provide a `DefaultHttpxClient` class that you can pass to retain the default values we use for `limits`, `timeout` & `follow_redirects`.
         # See the [httpx documentation](https://www.python-httpx.org/api/#client) for more details.
         http_client: httpx.Client | None = None,
-        # See httpx documentation for [custom transports](https://www.python-httpx.org/advanced/#custom-transports)
-        transport: Transport | None = None,
-        # See httpx documentation for [proxies](https://www.python-httpx.org/advanced/#http-proxying)
-        proxies: ProxiesTypes | None = None,
-        # See httpx documentation for [limits](https://www.python-httpx.org/advanced/#pool-limit-configuration)
-        connection_pool_limits: httpx.Limits | None = None,
         # Enable or disable schema validation for data returned by the API.
         # When enabled an error APIResponseValidationError is raised
         # if the API responds with invalid data for the expected schema.
@@ -172,9 +162,6 @@ class ModernTreasury(SyncAPIClient):
             max_retries=max_retries,
             timeout=timeout,
             http_client=http_client,
-            transport=transport,
-            proxies=proxies,
-            limits=connection_pool_limits,
             custom_headers=default_headers,
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
@@ -253,7 +240,6 @@ class ModernTreasury(SyncAPIClient):
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
-        connection_pool_limits: httpx.Limits | None = None,
         max_retries: int | NotGiven = NOT_GIVEN,
         default_headers: Mapping[str, str] | None = None,
         set_default_headers: Mapping[str, str] | None = None,
@@ -282,24 +268,7 @@ class ModernTreasury(SyncAPIClient):
         elif set_default_query is not None:
             params = set_default_query
 
-        if connection_pool_limits is not None:
-            if http_client is not None:
-                raise ValueError("The 'http_client' argument is mutually exclusive with 'connection_pool_limits'")
-
-            if not isinstance(self._client, SyncHttpxClientWrapper):
-                raise ValueError(
-                    "A custom HTTP client has been set and is mutually exclusive with the 'connection_pool_limits' argument"
-                )
-
-            http_client = None
-        else:
-            if self._limits is not DEFAULT_CONNECTION_LIMITS:
-                connection_pool_limits = self._limits
-            else:
-                connection_pool_limits = None
-
-            http_client = http_client or self._client
-
+        http_client = http_client or self._client
         return self.__class__(
             api_key=api_key or self.api_key,
             organization_id=organization_id or self.organization_id,
@@ -307,7 +276,6 @@ class ModernTreasury(SyncAPIClient):
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
-            connection_pool_limits=connection_pool_limits,
             max_retries=max_retries if is_given(max_retries) else self.max_retries,
             default_headers=headers,
             default_query=params,
@@ -436,12 +404,6 @@ class AsyncModernTreasury(AsyncAPIClient):
         # We provide a `DefaultAsyncHttpxClient` class that you can pass to retain the default values we use for `limits`, `timeout` & `follow_redirects`.
         # See the [httpx documentation](https://www.python-httpx.org/api/#asyncclient) for more details.
         http_client: httpx.AsyncClient | None = None,
-        # See httpx documentation for [custom transports](https://www.python-httpx.org/advanced/#custom-transports)
-        transport: AsyncTransport | None = None,
-        # See httpx documentation for [proxies](https://www.python-httpx.org/advanced/#http-proxying)
-        proxies: ProxiesTypes | None = None,
-        # See httpx documentation for [limits](https://www.python-httpx.org/advanced/#pool-limit-configuration)
-        connection_pool_limits: httpx.Limits | None = None,
         # Enable or disable schema validation for data returned by the API.
         # When enabled an error APIResponseValidationError is raised
         # if the API responds with invalid data for the expected schema.
@@ -490,9 +452,6 @@ class AsyncModernTreasury(AsyncAPIClient):
             max_retries=max_retries,
             timeout=timeout,
             http_client=http_client,
-            transport=transport,
-            proxies=proxies,
-            limits=connection_pool_limits,
             custom_headers=default_headers,
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
@@ -571,7 +530,6 @@ class AsyncModernTreasury(AsyncAPIClient):
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.AsyncClient | None = None,
-        connection_pool_limits: httpx.Limits | None = None,
         max_retries: int | NotGiven = NOT_GIVEN,
         default_headers: Mapping[str, str] | None = None,
         set_default_headers: Mapping[str, str] | None = None,
@@ -600,24 +558,7 @@ class AsyncModernTreasury(AsyncAPIClient):
         elif set_default_query is not None:
             params = set_default_query
 
-        if connection_pool_limits is not None:
-            if http_client is not None:
-                raise ValueError("The 'http_client' argument is mutually exclusive with 'connection_pool_limits'")
-
-            if not isinstance(self._client, AsyncHttpxClientWrapper):
-                raise ValueError(
-                    "A custom HTTP client has been set and is mutually exclusive with the 'connection_pool_limits' argument"
-                )
-
-            http_client = None
-        else:
-            if self._limits is not DEFAULT_CONNECTION_LIMITS:
-                connection_pool_limits = self._limits
-            else:
-                connection_pool_limits = None
-
-            http_client = http_client or self._client
-
+        http_client = http_client or self._client
         return self.__class__(
             api_key=api_key or self.api_key,
             organization_id=organization_id or self.organization_id,
@@ -625,7 +566,6 @@ class AsyncModernTreasury(AsyncAPIClient):
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
-            connection_pool_limits=connection_pool_limits,
             max_retries=max_retries if is_given(max_retries) else self.max_retries,
             default_headers=headers,
             default_query=params,
