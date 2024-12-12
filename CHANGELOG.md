@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.44.0 (2024-12-12)
+
+Full Changelog: [v1.43.1...v1.44.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.43.1...v1.44.0)
+
+### Chores
+
+* **internal:** add support for TypeAliasType ([#572](https://github.com/Modern-Treasury/modern-treasury-python/issues/572)) ([5996dd2](https://github.com/Modern-Treasury/modern-treasury-python/commit/5996dd28174cad52dffae85465204f48b7194f8b))
+* **internal:** bump pydantic dependency ([#567](https://github.com/Modern-Treasury/modern-treasury-python/issues/567)) ([ce22c80](https://github.com/Modern-Treasury/modern-treasury-python/commit/ce22c80cac2dce0e56cb937171e69cf8d325f1ab))
+* **internal:** bump pyright ([#564](https://github.com/Modern-Treasury/modern-treasury-python/issues/564)) ([9425115](https://github.com/Modern-Treasury/modern-treasury-python/commit/9425115117bd609df8efe1bdcabc12d50d6b9e48))
+* **internal:** bump pyright ([#571](https://github.com/Modern-Treasury/modern-treasury-python/issues/571)) ([ceb5b53](https://github.com/Modern-Treasury/modern-treasury-python/commit/ceb5b5340a9ef0d68586e0b0ff3c362b873c3a3a))
+* make the `Omit` type public ([#566](https://github.com/Modern-Treasury/modern-treasury-python/issues/566)) ([e0efee5](https://github.com/Modern-Treasury/modern-treasury-python/commit/e0efee572e4d2a56c300577748e1381ebca3b60f))
+* remove deprecated HTTP client options ([#568](https://github.com/Modern-Treasury/modern-treasury-python/issues/568)) ([5a50ac5](https://github.com/Modern-Treasury/modern-treasury-python/commit/5a50ac5b26e9844ca715359dfb203447d1dccf32))
+
+
+### Documentation
+
+* **readme:** fix http client proxies example ([#569](https://github.com/Modern-Treasury/modern-treasury-python/issues/569)) ([ec4df6a](https://github.com/Modern-Treasury/modern-treasury-python/commit/ec4df6aefa379ae45479d4da898d39eb16d3e965))
+
 ## 1.43.1 (2024-11-28)
 
 Full Changelog: [v1.43.0...v1.43.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.43.0...v1.43.1)
