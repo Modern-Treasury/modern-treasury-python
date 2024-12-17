@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.44.1 (2024-12-17)
+
+Full Changelog: [v1.44.0...v1.44.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.44.0...v1.44.1)
+
+### Chores
+
+* **internal:** fix some typos ([#577](https://github.com/Modern-Treasury/modern-treasury-python/issues/577)) ([98eafda](https://github.com/Modern-Treasury/modern-treasury-python/commit/98eafdaee2d1a82a4179dced104bd91ebffc0bb6))
+* **internal:** updated imports ([#573](https://github.com/Modern-Treasury/modern-treasury-python/issues/573)) ([d2600bf](https://github.com/Modern-Treasury/modern-treasury-python/commit/d2600bfc336d87a87c7e28f2794013ff7ddf80b5))
+
+
+### Documentation
+
+* **readme:** example snippet for client context manager ([#576](https://github.com/Modern-Treasury/modern-treasury-python/issues/576)) ([7c67e59](https://github.com/Modern-Treasury/modern-treasury-python/commit/7c67e59d0de855dcbd2dcc9998b585f71ef40302))
+
 ## 1.44.0 (2024-12-12)
 
 Full Changelog: [v1.43.1...v1.44.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.43.1...v1.44.0)
