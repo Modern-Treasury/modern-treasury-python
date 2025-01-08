@@ -318,7 +318,7 @@ counterparty = response.parse()  # get the object that `counterparties.create()`
 print(counterparty.id)
 ```
 
-These methods return a [`LegagcyAPIResponse`](https://github.com/Modern-Treasury/modern-treasury-python/tree/main/src/modern_treasury/_legacy_response.py) object. This is a legacy class as we're changing it slightly in the next major version.
+These methods return a [`LegacyAPIResponse`](https://github.com/Modern-Treasury/modern-treasury-python/tree/main/src/modern_treasury/_legacy_response.py) object. This is a legacy class as we're changing it slightly in the next major version.
 
 For the sync client this will mostly be the same with the exception
 of `content` & `text` will be methods instead of properties. In the
