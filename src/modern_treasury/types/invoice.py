@@ -8,7 +8,6 @@ from typing_extensions import Literal
 
 from .._compat import PYDANTIC_V2
 from .._models import BaseModel
-from .payment_order import PaymentOrder
 from .shared.currency import Currency
 from .expected_payment import ExpectedPayment
 
@@ -207,7 +206,7 @@ class Invoice(BaseModel):
     debit the recipient, or rely on manual payment from the recipient.
     """
 
-    payment_orders: List[PaymentOrder]
+    payment_orders: List["PaymentOrder"]
     """
     The payment orders created for paying the invoice through the invoice payment
     UI.
@@ -257,6 +256,8 @@ class Invoice(BaseModel):
     virtual_account_id: Optional[str] = None
     """The ID of the virtual account the invoice should be paid to."""
 
+
+from .payment_order import PaymentOrder
 
 if PYDANTIC_V2:
     Invoice.model_rebuild()
