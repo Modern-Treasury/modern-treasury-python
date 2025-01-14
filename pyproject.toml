@@ -1,6 +1,6 @@
 [project]
 name = "modern-treasury"
-version = "1.44.1"
+version = "1.44.2"
 description = "The official Python library for the Modern Treasury API"
 dynamic = ["readme"]
 license = "MIT"

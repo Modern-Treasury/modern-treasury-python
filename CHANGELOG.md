@@ -1,5 +1,31 @@
 # Changelog
 
+## 1.44.2 (2025-01-14)
+
+Full Changelog: [v1.44.1...v1.44.2](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.44.1...v1.44.2)
+
+### Bug Fixes
+
+* **client:** only call .close() when needed ([#583](https://github.com/Modern-Treasury/modern-treasury-python/issues/583)) ([afaf8e9](https://github.com/Modern-Treasury/modern-treasury-python/commit/afaf8e9ad149cab8ed388e35a0a08c440a301a5a))
+* correctly handle deserialising `cls` fields ([#587](https://github.com/Modern-Treasury/modern-treasury-python/issues/587)) ([1e0440f](https://github.com/Modern-Treasury/modern-treasury-python/commit/1e0440f869800e2f4588474c63a60b01b02e6409))
+
+
+### Chores
+
+* add missing isclass check ([#581](https://github.com/Modern-Treasury/modern-treasury-python/issues/581)) ([21691a3](https://github.com/Modern-Treasury/modern-treasury-python/commit/21691a39a12c1d0265db01ae25961c047afd9758))
+* bump license year ([#578](https://github.com/Modern-Treasury/modern-treasury-python/issues/578)) ([c98915c](https://github.com/Modern-Treasury/modern-treasury-python/commit/c98915ced18e5b08f182e82e0a7a4e8fc75bea96))
+* fix cyclical imports ([#588](https://github.com/Modern-Treasury/modern-treasury-python/issues/588)) ([d2473b2](https://github.com/Modern-Treasury/modern-treasury-python/commit/d2473b2895233e4968944faa3804453ece846506))
+* **internal:** bump httpx dependency ([#582](https://github.com/Modern-Treasury/modern-treasury-python/issues/582)) ([379345e](https://github.com/Modern-Treasury/modern-treasury-python/commit/379345ead4073d57f8cca0fd32b15c404bdf2fa9))
+* **internal:** update deps ([#589](https://github.com/Modern-Treasury/modern-treasury-python/issues/589)) ([4e2f499](https://github.com/Modern-Treasury/modern-treasury-python/commit/4e2f4998ebf133f8d56fd4693763703e00871d4b))
+* small refactors ([#580](https://github.com/Modern-Treasury/modern-treasury-python/issues/580)) ([03a8166](https://github.com/Modern-Treasury/modern-treasury-python/commit/03a816615a1fee7e41b9c57e5d5eb0647a804cf5))
+
+
+### Documentation
+
+* fix typos ([#584](https://github.com/Modern-Treasury/modern-treasury-python/issues/584)) ([618e1ce](https://github.com/Modern-Treasury/modern-treasury-python/commit/618e1ce71e18a97aa518cc3656afea032b059255))
+* more typo fixes ([#585](https://github.com/Modern-Treasury/modern-treasury-python/issues/585)) ([2c0734a](https://github.com/Modern-Treasury/modern-treasury-python/commit/2c0734aead00030dfd44112fe87423443a05b0d2))
+* **readme:** fix misplaced period ([#586](https://github.com/Modern-Treasury/modern-treasury-python/issues/586)) ([4f8fb4d](https://github.com/Modern-Treasury/modern-treasury-python/commit/4f8fb4dbd8eb2a2b49c9e3756469d9d14a768dbd))
+
 ## 1.44.1 (2024-12-17)
 
 Full Changelog: [v1.44.0...v1.44.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.44.0...v1.44.1)
