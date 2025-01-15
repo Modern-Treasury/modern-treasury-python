@@ -187,7 +187,7 @@ class ReturnObject(BaseModel):
     currency: Currency
     """Currency that this transaction is denominated in."""
 
-    current_return: Optional[ReturnObject] = None
+    current_return: Optional["ReturnObject"] = None
     """
     If the return's status is `returned`, this will include the return object's data
     that is returning this return.
