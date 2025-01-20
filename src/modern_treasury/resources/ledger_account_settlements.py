@@ -33,7 +33,7 @@ class LedgerAccountSettlements(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> LedgerAccountSettlementsWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
@@ -303,7 +303,7 @@ class AsyncLedgerAccountSettlements(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncLedgerAccountSettlementsWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/Modern-Treasury/modern-treasury-python#accessing-raw-response-data-eg-headers
