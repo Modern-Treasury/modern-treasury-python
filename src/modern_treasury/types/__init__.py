@@ -199,3 +199,6 @@ from .ledger_account_balance_monitor_update_params import (
 from .external_account_complete_verification_params import (
     ExternalAccountCompleteVerificationParams as ExternalAccountCompleteVerificationParams,
 )
+from .ledger_transaction_create_partial_post_params import (
+    LedgerTransactionCreatePartialPostParams as LedgerTransactionCreatePartialPostParams,
+)

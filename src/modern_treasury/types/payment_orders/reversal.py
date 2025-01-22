@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+import builtins
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -45,5 +46,7 @@ class Reversal(BaseModel):
 
     status: Literal["completed", "failed", "pending", "processing", "returned", "sent"]
     """The current status of the reversal."""
+
+    transaction_ids: List[Optional[builtins.object]]
 
     updated_at: datetime

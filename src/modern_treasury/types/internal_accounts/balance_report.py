@@ -31,12 +31,13 @@ class Balance(BaseModel):
         "opening_available_next_business_day",
         "opening_ledger",
         "other",
+        "previously_closed_book",
     ]
     """The specific type of balance reported.
 
     One of `opening_ledger`, `closing_ledger`, `current_ledger`,
     `opening_available`, `opening_available_next_business_day`, `closing_available`,
-    `current_available`, or `other`.
+    `current_available`, 'previously_closed_book', or `other`.
     """
 
     created_at: datetime

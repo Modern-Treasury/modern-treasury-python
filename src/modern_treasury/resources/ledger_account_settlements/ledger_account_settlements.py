@@ -8,28 +8,40 @@ from typing_extensions import Literal
 
 import httpx
 
-from .. import _legacy_response
-from ..types import (
+from ... import _legacy_response
+from ...types import (
     ledger_account_settlement_list_params,
     ledger_account_settlement_create_params,
     ledger_account_settlement_update_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.ledger_account_settlement import LedgerAccountSettlement
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+from ...pagination import SyncPage, AsyncPage
+from ..._base_client import AsyncPaginator, make_request_options
+from .account_entries import (
+    AccountEntries,
+    AsyncAccountEntries,
+    AccountEntriesWithRawResponse,
+    AsyncAccountEntriesWithRawResponse,
+    AccountEntriesWithStreamingResponse,
+    AsyncAccountEntriesWithStreamingResponse,
+)
+from ...types.ledger_account_settlement import LedgerAccountSettlement
 
 __all__ = ["LedgerAccountSettlements", "AsyncLedgerAccountSettlements"]
 
 
 class LedgerAccountSettlements(SyncAPIResource):
+    @cached_property
+    def account_entries(self) -> AccountEntries:
+        return AccountEntries(self._client)
+
     @cached_property
     def with_raw_response(self) -> LedgerAccountSettlementsWithRawResponse:
         """
@@ -300,6 +312,10 @@ class LedgerAccountSettlements(SyncAPIResource):
 
 
 class AsyncLedgerAccountSettlements(AsyncAPIResource):
+    @cached_property
+    def account_entries(self) -> AsyncAccountEntries:
+        return AsyncAccountEntries(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncLedgerAccountSettlementsWithRawResponse:
         """
@@ -586,6 +602,10 @@ class LedgerAccountSettlementsWithRawResponse:
             ledger_account_settlements.list,
         )
 
+    @cached_property
+    def account_entries(self) -> AccountEntriesWithRawResponse:
+        return AccountEntriesWithRawResponse(self._ledger_account_settlements.account_entries)
+
 
 class AsyncLedgerAccountSettlementsWithRawResponse:
     def __init__(self, ledger_account_settlements: AsyncLedgerAccountSettlements) -> None:
@@ -603,6 +623,10 @@ class AsyncLedgerAccountSettlementsWithRawResponse:
         self.list = _legacy_response.async_to_raw_response_wrapper(
             ledger_account_settlements.list,
         )
+
+    @cached_property
+    def account_entries(self) -> AsyncAccountEntriesWithRawResponse:
+        return AsyncAccountEntriesWithRawResponse(self._ledger_account_settlements.account_entries)
 
 
 class LedgerAccountSettlementsWithStreamingResponse:
@@ -622,6 +646,10 @@ class LedgerAccountSettlementsWithStreamingResponse:
             ledger_account_settlements.list,
         )
 
+    @cached_property
+    def account_entries(self) -> AccountEntriesWithStreamingResponse:
+        return AccountEntriesWithStreamingResponse(self._ledger_account_settlements.account_entries)
+
 
 class AsyncLedgerAccountSettlementsWithStreamingResponse:
     def __init__(self, ledger_account_settlements: AsyncLedgerAccountSettlements) -> None:
@@ -639,3 +667,7 @@ class AsyncLedgerAccountSettlementsWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             ledger_account_settlements.list,
         )
+
+    @cached_property
+    def account_entries(self) -> AsyncAccountEntriesWithStreamingResponse:
+        return AsyncAccountEntriesWithStreamingResponse(self._ledger_account_settlements.account_entries)

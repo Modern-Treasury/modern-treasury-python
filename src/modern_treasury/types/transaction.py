@@ -165,6 +165,7 @@ class Transaction(BaseModel):
     vendor_code_type: Optional[
         Literal[
             "bai2",
+            "banking_circle",
             "bankprov",
             "bnk_dev",
             "cleartouch",

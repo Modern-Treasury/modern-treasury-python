@@ -14,6 +14,7 @@ from ...types import (
     ledger_transaction_create_params,
     ledger_transaction_update_params,
     ledger_transaction_create_reversal_params,
+    ledger_transaction_create_partial_post_params,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
@@ -285,6 +286,7 @@ class LedgerTransactions(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         order_by: ledger_transaction_list_params.OrderBy | NotGiven = NOT_GIVEN,
+        partially_posts_ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         posted_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         reverses_ledger_transaction_id: str | NotGiven = NOT_GIVEN,
@@ -359,6 +361,7 @@ class LedgerTransactions(SyncAPIResource):
                         "ledgerable_type": ledgerable_type,
                         "metadata": metadata,
                         "order_by": order_by,
+                        "partially_posts_ledger_transaction_id": partially_posts_ledger_transaction_id,
                         "per_page": per_page,
                         "posted_at": posted_at,
                         "reverses_ledger_transaction_id": reverses_ledger_transaction_id,
@@ -369,6 +372,72 @@ class LedgerTransactions(SyncAPIResource):
                 ),
             ),
             model=LedgerTransaction,
+        )
+
+    def create_partial_post(
+        self,
+        id: str,
+        *,
+        posted_ledger_entries: Iterable[ledger_transaction_create_partial_post_params.PostedLedgerEntry],
+        description: str | NotGiven = NOT_GIVEN,
+        effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        idempotency_key: str | None = None,
+    ) -> LedgerTransaction:
+        """
+        Create a ledger transaction that partially posts another ledger transaction.
+
+        Args:
+          posted_ledger_entries: An array of ledger entry objects to be set on the posted ledger transaction.
+              There must be one entry for each of the existing entries with a lesser amount
+              than the existing entry.
+
+          description: An optional free-form description for the posted ledger transaction. Maximum of
+              1000 characters allowed.
+
+          effective_at: The timestamp (IS08601 format) at which the posted ledger transaction happened
+              for reporting purposes.
+
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._post(
+            f"/api/ledger_transactions/{id}/partial_post",
+            body=maybe_transform(
+                {
+                    "posted_ledger_entries": posted_ledger_entries,
+                    "description": description,
+                    "effective_at": effective_at,
+                    "metadata": metadata,
+                },
+                ledger_transaction_create_partial_post_params.LedgerTransactionCreatePartialPostParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=LedgerTransaction,
         )
 
     def create_reversal(
@@ -702,6 +771,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         order_by: ledger_transaction_list_params.OrderBy | NotGiven = NOT_GIVEN,
+        partially_posts_ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         posted_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         reverses_ledger_transaction_id: str | NotGiven = NOT_GIVEN,
@@ -776,6 +846,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
                         "ledgerable_type": ledgerable_type,
                         "metadata": metadata,
                         "order_by": order_by,
+                        "partially_posts_ledger_transaction_id": partially_posts_ledger_transaction_id,
                         "per_page": per_page,
                         "posted_at": posted_at,
                         "reverses_ledger_transaction_id": reverses_ledger_transaction_id,
@@ -786,6 +857,72 @@ class AsyncLedgerTransactions(AsyncAPIResource):
                 ),
             ),
             model=LedgerTransaction,
+        )
+
+    async def create_partial_post(
+        self,
+        id: str,
+        *,
+        posted_ledger_entries: Iterable[ledger_transaction_create_partial_post_params.PostedLedgerEntry],
+        description: str | NotGiven = NOT_GIVEN,
+        effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        idempotency_key: str | None = None,
+    ) -> LedgerTransaction:
+        """
+        Create a ledger transaction that partially posts another ledger transaction.
+
+        Args:
+          posted_ledger_entries: An array of ledger entry objects to be set on the posted ledger transaction.
+              There must be one entry for each of the existing entries with a lesser amount
+              than the existing entry.
+
+          description: An optional free-form description for the posted ledger transaction. Maximum of
+              1000 characters allowed.
+
+          effective_at: The timestamp (IS08601 format) at which the posted ledger transaction happened
+              for reporting purposes.
+
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._post(
+            f"/api/ledger_transactions/{id}/partial_post",
+            body=await async_maybe_transform(
+                {
+                    "posted_ledger_entries": posted_ledger_entries,
+                    "description": description,
+                    "effective_at": effective_at,
+                    "metadata": metadata,
+                },
+                ledger_transaction_create_partial_post_params.LedgerTransactionCreatePartialPostParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=LedgerTransaction,
         )
 
     async def create_reversal(
@@ -888,6 +1025,9 @@ class LedgerTransactionsWithRawResponse:
         self.list = _legacy_response.to_raw_response_wrapper(
             ledger_transactions.list,
         )
+        self.create_partial_post = _legacy_response.to_raw_response_wrapper(
+            ledger_transactions.create_partial_post,
+        )
         self.create_reversal = _legacy_response.to_raw_response_wrapper(
             ledger_transactions.create_reversal,
         )
@@ -912,6 +1052,9 @@ class AsyncLedgerTransactionsWithRawResponse:
         )
         self.list = _legacy_response.async_to_raw_response_wrapper(
             ledger_transactions.list,
+        )
+        self.create_partial_post = _legacy_response.async_to_raw_response_wrapper(
+            ledger_transactions.create_partial_post,
         )
         self.create_reversal = _legacy_response.async_to_raw_response_wrapper(
             ledger_transactions.create_reversal,
@@ -938,6 +1081,9 @@ class LedgerTransactionsWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             ledger_transactions.list,
         )
+        self.create_partial_post = to_streamed_response_wrapper(
+            ledger_transactions.create_partial_post,
+        )
         self.create_reversal = to_streamed_response_wrapper(
             ledger_transactions.create_reversal,
         )
@@ -962,6 +1108,9 @@ class AsyncLedgerTransactionsWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             ledger_transactions.list,
+        )
+        self.create_partial_post = async_to_streamed_response_wrapper(
+            ledger_transactions.create_partial_post,
         )
         self.create_reversal = async_to_streamed_response_wrapper(
             ledger_transactions.create_reversal,

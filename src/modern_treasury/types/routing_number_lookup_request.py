@@ -100,5 +100,6 @@ class RoutingNumberLookupRequest(BaseModel):
     ] = None
     """An array of payment types that are supported for this routing number.
 
-    This can include `ach`, `wire`, `rtp`, `sepa`, `bacs`, `au_becs` currently.
+    This can include `ach`, `wire`, `rtp`, `sepa`, `bacs`, `au_becs`, and 'fednow'
+    currently.
     """
