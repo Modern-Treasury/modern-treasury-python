@@ -1,5 +1,31 @@
 # Changelog
 
+## 1.44.3 (2025-01-22)
+
+Full Changelog: [v1.44.2...v1.44.3](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.44.2...v1.44.3)
+
+### Bug Fixes
+
+* **tests:** make test_get_platform less flaky ([#594](https://github.com/Modern-Treasury/modern-treasury-python/issues/594)) ([6bb3f77](https://github.com/Modern-Treasury/modern-treasury-python/commit/6bb3f7706b3e0735e09270b34d56443367679fe8))
+
+
+### Chores
+
+* **api:** adds new APIs for LedgerAccountSettlement LedgerEntries ([#597](https://github.com/Modern-Treasury/modern-treasury-python/issues/597)) ([61fa0db](https://github.com/Modern-Treasury/modern-treasury-python/commit/61fa0db2bd74765627697a030ef32bf0c31596c0))
+* **internal:** avoid pytest-asyncio deprecation warning ([#595](https://github.com/Modern-Treasury/modern-treasury-python/issues/595)) ([319682d](https://github.com/Modern-Treasury/modern-treasury-python/commit/319682d3dc7f9eec142eccfeeb54b2a3553289e3))
+* **internal:** bump pyright dependency ([#590](https://github.com/Modern-Treasury/modern-treasury-python/issues/590)) ([2303a04](https://github.com/Modern-Treasury/modern-treasury-python/commit/2303a04e8dcbe0ea0da22c1cdfe4b01a47f7479f))
+* **internal:** minor style changes ([#596](https://github.com/Modern-Treasury/modern-treasury-python/issues/596)) ([b038560](https://github.com/Modern-Treasury/modern-treasury-python/commit/b0385607831db9c4860e2cf9d85a6db46ff3f35e))
+
+
+### Documentation
+
+* **raw responses:** fix duplicate `the` ([#593](https://github.com/Modern-Treasury/modern-treasury-python/issues/593)) ([b8e6ce9](https://github.com/Modern-Treasury/modern-treasury-python/commit/b8e6ce97e7cff97bdd26c6b059aa7773c5d60cad))
+
+
+### Refactors
+
+* quote more recursive references ([#592](https://github.com/Modern-Treasury/modern-treasury-python/issues/592)) ([0998f81](https://github.com/Modern-Treasury/modern-treasury-python/commit/0998f81a030170747a5a31f4e4f50747a488a446))
+
 ## 1.44.2 (2025-01-14)
 
 Full Changelog: [v1.44.1...v1.44.2](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.44.1...v1.44.2)
