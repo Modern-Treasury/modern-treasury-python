@@ -251,6 +251,9 @@ class LedgerTransactionVersion(BaseModel):
 
     object: str
 
+    partially_posts_ledger_transaction_id: Optional[str] = None
+    """The ID of the ledger transaction that this ledger transaction partially posts."""
+
     posted_at: Optional[datetime] = None
     """The time on which the ledger transaction posted.
 

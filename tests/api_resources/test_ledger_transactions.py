@@ -239,6 +239,7 @@ class TestLedgerTransactions:
                 "created_at": "asc",
                 "effective_at": "asc",
             },
+            partially_posts_ledger_transaction_id="partially_posts_ledger_transaction_id",
             per_page=0,
             posted_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             reverses_ledger_transaction_id="reverses_ledger_transaction_id",
@@ -266,6 +267,98 @@ class TestLedgerTransactions:
             assert_matches_type(SyncPage[LedgerTransaction], ledger_transaction, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_create_partial_post(self, client: ModernTreasury) -> None:
+        ledger_transaction = client.ledger_transactions.create_partial_post(
+            id="id",
+            posted_ledger_entries=[
+                {
+                    "amount": 0,
+                    "direction": "credit",
+                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                }
+            ],
+        )
+        assert_matches_type(LedgerTransaction, ledger_transaction, path=["response"])
+
+    @parametrize
+    def test_method_create_partial_post_with_all_params(self, client: ModernTreasury) -> None:
+        ledger_transaction = client.ledger_transactions.create_partial_post(
+            id="id",
+            posted_ledger_entries=[
+                {
+                    "amount": 0,
+                    "direction": "credit",
+                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
+                }
+            ],
+            description="description",
+            effective_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
+        )
+        assert_matches_type(LedgerTransaction, ledger_transaction, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_partial_post(self, client: ModernTreasury) -> None:
+        response = client.ledger_transactions.with_raw_response.create_partial_post(
+            id="id",
+            posted_ledger_entries=[
+                {
+                    "amount": 0,
+                    "direction": "credit",
+                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                }
+            ],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_transaction = response.parse()
+        assert_matches_type(LedgerTransaction, ledger_transaction, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create_partial_post(self, client: ModernTreasury) -> None:
+        with client.ledger_transactions.with_streaming_response.create_partial_post(
+            id="id",
+            posted_ledger_entries=[
+                {
+                    "amount": 0,
+                    "direction": "credit",
+                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                }
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_transaction = response.parse()
+            assert_matches_type(LedgerTransaction, ledger_transaction, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_create_partial_post(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.ledger_transactions.with_raw_response.create_partial_post(
+                id="",
+                posted_ledger_entries=[
+                    {
+                        "amount": 0,
+                        "direction": "credit",
+                        "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    }
+                ],
+            )
 
     @parametrize
     def test_method_create_reversal(self, client: ModernTreasury) -> None:
@@ -545,6 +638,7 @@ class TestAsyncLedgerTransactions:
                 "created_at": "asc",
                 "effective_at": "asc",
             },
+            partially_posts_ledger_transaction_id="partially_posts_ledger_transaction_id",
             per_page=0,
             posted_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
             reverses_ledger_transaction_id="reverses_ledger_transaction_id",
@@ -572,6 +666,98 @@ class TestAsyncLedgerTransactions:
             assert_matches_type(AsyncPage[LedgerTransaction], ledger_transaction, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_create_partial_post(self, async_client: AsyncModernTreasury) -> None:
+        ledger_transaction = await async_client.ledger_transactions.create_partial_post(
+            id="id",
+            posted_ledger_entries=[
+                {
+                    "amount": 0,
+                    "direction": "credit",
+                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                }
+            ],
+        )
+        assert_matches_type(LedgerTransaction, ledger_transaction, path=["response"])
+
+    @parametrize
+    async def test_method_create_partial_post_with_all_params(self, async_client: AsyncModernTreasury) -> None:
+        ledger_transaction = await async_client.ledger_transactions.create_partial_post(
+            id="id",
+            posted_ledger_entries=[
+                {
+                    "amount": 0,
+                    "direction": "credit",
+                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
+                }
+            ],
+            description="description",
+            effective_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            metadata={
+                "key": "value",
+                "foo": "bar",
+                "modern": "treasury",
+            },
+        )
+        assert_matches_type(LedgerTransaction, ledger_transaction, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_partial_post(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.ledger_transactions.with_raw_response.create_partial_post(
+            id="id",
+            posted_ledger_entries=[
+                {
+                    "amount": 0,
+                    "direction": "credit",
+                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                }
+            ],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ledger_transaction = response.parse()
+        assert_matches_type(LedgerTransaction, ledger_transaction, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create_partial_post(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.ledger_transactions.with_streaming_response.create_partial_post(
+            id="id",
+            posted_ledger_entries=[
+                {
+                    "amount": 0,
+                    "direction": "credit",
+                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                }
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            ledger_transaction = await response.parse()
+            assert_matches_type(LedgerTransaction, ledger_transaction, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_create_partial_post(self, async_client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.ledger_transactions.with_raw_response.create_partial_post(
+                id="",
+                posted_ledger_entries=[
+                    {
+                        "amount": 0,
+                        "direction": "credit",
+                        "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    }
+                ],
+            )
 
     @parametrize
     async def test_method_create_reversal(self, async_client: AsyncModernTreasury) -> None:
