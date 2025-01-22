@@ -63,6 +63,8 @@ class LedgerTransactionListParams(TypedDict, total=False):
     supported.
     """
 
+    partially_posts_ledger_transaction_id: str
+
     per_page: int
 
     posted_at: Dict[str, Union[str, datetime]]
