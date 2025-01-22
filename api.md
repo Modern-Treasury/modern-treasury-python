@@ -372,6 +372,7 @@ Methods:
 - <code title="get /api/ledger_transactions/{id}">client.ledger_transactions.<a href="./src/modern_treasury/resources/ledger_transactions/ledger_transactions.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/ledger_transaction.py">LedgerTransaction</a></code>
 - <code title="patch /api/ledger_transactions/{id}">client.ledger_transactions.<a href="./src/modern_treasury/resources/ledger_transactions/ledger_transactions.py">update</a>(id, \*\*<a href="src/modern_treasury/types/ledger_transaction_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_transaction.py">LedgerTransaction</a></code>
 - <code title="get /api/ledger_transactions">client.ledger_transactions.<a href="./src/modern_treasury/resources/ledger_transactions/ledger_transactions.py">list</a>(\*\*<a href="src/modern_treasury/types/ledger_transaction_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_transaction.py">SyncPage[LedgerTransaction]</a></code>
+- <code title="post /api/ledger_transactions/{id}/partial_post">client.ledger_transactions.<a href="./src/modern_treasury/resources/ledger_transactions/ledger_transactions.py">create_partial_post</a>(id, \*\*<a href="src/modern_treasury/types/ledger_transaction_create_partial_post_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_transaction.py">LedgerTransaction</a></code>
 - <code title="post /api/ledger_transactions/{id}/reversal">client.ledger_transactions.<a href="./src/modern_treasury/resources/ledger_transactions/ledger_transactions.py">create_reversal</a>(id, \*\*<a href="src/modern_treasury/types/ledger_transaction_create_reversal_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_transaction.py">LedgerTransaction</a></code>
 
 ## Versions
@@ -581,10 +582,17 @@ from modern_treasury.types import LedgerAccountSettlement
 
 Methods:
 
-- <code title="post /api/ledger_account_settlements">client.ledger_account_settlements.<a href="./src/modern_treasury/resources/ledger_account_settlements.py">create</a>(\*\*<a href="src/modern_treasury/types/ledger_account_settlement_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_settlement.py">LedgerAccountSettlement</a></code>
-- <code title="get /api/ledger_account_settlements/{id}">client.ledger_account_settlements.<a href="./src/modern_treasury/resources/ledger_account_settlements.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/ledger_account_settlement.py">LedgerAccountSettlement</a></code>
-- <code title="patch /api/ledger_account_settlements/{id}">client.ledger_account_settlements.<a href="./src/modern_treasury/resources/ledger_account_settlements.py">update</a>(id, \*\*<a href="src/modern_treasury/types/ledger_account_settlement_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_settlement.py">LedgerAccountSettlement</a></code>
-- <code title="get /api/ledger_account_settlements">client.ledger_account_settlements.<a href="./src/modern_treasury/resources/ledger_account_settlements.py">list</a>(\*\*<a href="src/modern_treasury/types/ledger_account_settlement_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_settlement.py">SyncPage[LedgerAccountSettlement]</a></code>
+- <code title="post /api/ledger_account_settlements">client.ledger_account_settlements.<a href="./src/modern_treasury/resources/ledger_account_settlements/ledger_account_settlements.py">create</a>(\*\*<a href="src/modern_treasury/types/ledger_account_settlement_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_settlement.py">LedgerAccountSettlement</a></code>
+- <code title="get /api/ledger_account_settlements/{id}">client.ledger_account_settlements.<a href="./src/modern_treasury/resources/ledger_account_settlements/ledger_account_settlements.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/ledger_account_settlement.py">LedgerAccountSettlement</a></code>
+- <code title="patch /api/ledger_account_settlements/{id}">client.ledger_account_settlements.<a href="./src/modern_treasury/resources/ledger_account_settlements/ledger_account_settlements.py">update</a>(id, \*\*<a href="src/modern_treasury/types/ledger_account_settlement_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_settlement.py">LedgerAccountSettlement</a></code>
+- <code title="get /api/ledger_account_settlements">client.ledger_account_settlements.<a href="./src/modern_treasury/resources/ledger_account_settlements/ledger_account_settlements.py">list</a>(\*\*<a href="src/modern_treasury/types/ledger_account_settlement_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_settlement.py">SyncPage[LedgerAccountSettlement]</a></code>
+
+## AccountEntries
+
+Methods:
+
+- <code title="patch /api/ledger_account_settlements/{id}/ledger_entries">client.ledger_account_settlements.account_entries.<a href="./src/modern_treasury/resources/ledger_account_settlements/account_entries.py">update</a>(id, \*\*<a href="src/modern_treasury/types/ledger_account_settlements/account_entry_update_params.py">params</a>) -> None</code>
+- <code title="delete /api/ledger_account_settlements/{id}/ledger_entries">client.ledger_account_settlements.account_entries.<a href="./src/modern_treasury/resources/ledger_account_settlements/account_entries.py">delete</a>(id, \*\*<a href="src/modern_treasury/types/ledger_account_settlements/account_entry_delete_params.py">params</a>) -> None</code>
 
 # ForeignExchangeQuotes
 

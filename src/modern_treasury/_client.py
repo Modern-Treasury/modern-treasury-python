@@ -60,7 +60,6 @@ from .resources import (
     ledger_account_categories,
     ledger_account_statements,
     legal_entity_associations,
-    ledger_account_settlements,
     ledger_account_balance_monitors,
 )
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
@@ -77,6 +76,7 @@ from .resources.transactions import transactions
 from .resources.payment_orders import payment_orders
 from .resources.internal_accounts import internal_accounts
 from .resources.ledger_transactions import ledger_transactions
+from .resources.ledger_account_settlements import ledger_account_settlements
 
 __all__ = [
     "Timeout",
