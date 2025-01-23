@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.44.4 (2025-01-23)
+
+Full Changelog: [v1.44.3...v1.44.4](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.44.3...v1.44.4)
+
+### Chores
+
+* **internal:** minor formatting changes ([#598](https://github.com/Modern-Treasury/modern-treasury-python/issues/598)) ([0ce7295](https://github.com/Modern-Treasury/modern-treasury-python/commit/0ce7295ecbea3c7146699c200ac21e010b73786c))
+
 ## 1.44.3 (2025-01-22)
 
 Full Changelog: [v1.44.2...v1.44.3](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.44.2...v1.44.3)
