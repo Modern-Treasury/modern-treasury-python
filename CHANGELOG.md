@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.44.4 (2025-02-03)
+
+Full Changelog: [v1.44.3...v1.44.4](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.44.3...v1.44.4)
+
+### Chores
+
+* **internal:** bummp ruff dependency ([#601](https://github.com/Modern-Treasury/modern-treasury-python/issues/601)) ([0e2f4f3](https://github.com/Modern-Treasury/modern-treasury-python/commit/0e2f4f31538c58c74854ce5528a580d7d1bbce95))
+* **internal:** change default timeout to an int ([#600](https://github.com/Modern-Treasury/modern-treasury-python/issues/600)) ([991c163](https://github.com/Modern-Treasury/modern-treasury-python/commit/991c163764bb7b546457e8e8ab8a6b1368db18aa))
+* **internal:** minor formatting changes ([#598](https://github.com/Modern-Treasury/modern-treasury-python/issues/598)) ([0ce7295](https://github.com/Modern-Treasury/modern-treasury-python/commit/0ce7295ecbea3c7146699c200ac21e010b73786c))
+
 ## 1.44.3 (2025-01-22)
 
 Full Changelog: [v1.44.2...v1.44.3](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.44.2...v1.44.3)
