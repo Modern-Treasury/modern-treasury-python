@@ -23,6 +23,7 @@ from pydantic import ValidationError
 
 from modern_treasury import ModernTreasury, AsyncModernTreasury, APIResponseValidationError
 from modern_treasury._types import Omit
+from modern_treasury._utils import maybe_transform
 from modern_treasury._models import BaseModel, FinalRequestOptions
 from modern_treasury._constants import RAW_RESPONSE_HEADER
 from modern_treasury._exceptions import APIStatusError, APITimeoutError, ModernTreasuryError, APIResponseValidationError
@@ -32,6 +33,7 @@ from modern_treasury._base_client import (
     BaseClient,
     make_request_options,
 )
+from modern_treasury.types.counterparty_create_params import CounterpartyCreateParams
 
 from .utils import update_env
 
@@ -837,7 +839,7 @@ class TestModernTreasury:
         with pytest.raises(APITimeoutError):
             self.client.post(
                 "/api/counterparties",
-                body=cast(object, dict(name="my first counterparty")),
+                body=cast(object, maybe_transform(dict(name="my first counterparty"), CounterpartyCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -852,7 +854,7 @@ class TestModernTreasury:
         with pytest.raises(APIStatusError):
             self.client.post(
                 "/api/counterparties",
-                body=cast(object, dict(name="my first counterparty")),
+                body=cast(object, maybe_transform(dict(name="my first counterparty"), CounterpartyCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1751,7 +1753,7 @@ class TestAsyncModernTreasury:
         with pytest.raises(APITimeoutError):
             await self.client.post(
                 "/api/counterparties",
-                body=cast(object, dict(name="my first counterparty")),
+                body=cast(object, maybe_transform(dict(name="my first counterparty"), CounterpartyCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1766,7 +1768,7 @@ class TestAsyncModernTreasury:
         with pytest.raises(APIStatusError):
             await self.client.post(
                 "/api/counterparties",
-                body=cast(object, dict(name="my first counterparty")),
+                body=cast(object, maybe_transform(dict(name="my first counterparty"), CounterpartyCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
