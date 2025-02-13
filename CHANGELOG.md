@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.45.0 (2025-02-13)
+
+Full Changelog: [v1.44.3...v1.45.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.44.3...v1.45.0)
+
+### Features
+
+* **client:** send `X-Stainless-Read-Timeout` header ([#602](https://github.com/Modern-Treasury/modern-treasury-python/issues/602)) ([065e191](https://github.com/Modern-Treasury/modern-treasury-python/commit/065e191656e204835606e23caef5e7771fd8ae53))
+
+
+### Bug Fixes
+
+* asyncify on non-asyncio runtimes ([#605](https://github.com/Modern-Treasury/modern-treasury-python/issues/605)) ([424ed0b](https://github.com/Modern-Treasury/modern-treasury-python/commit/424ed0b7f8585a7e79425a626d91264cfe9a75f9))
+
+
+### Chores
+
+* **internal:** bummp ruff dependency ([#601](https://github.com/Modern-Treasury/modern-treasury-python/issues/601)) ([0e2f4f3](https://github.com/Modern-Treasury/modern-treasury-python/commit/0e2f4f31538c58c74854ce5528a580d7d1bbce95))
+* **internal:** change default timeout to an int ([#600](https://github.com/Modern-Treasury/modern-treasury-python/issues/600)) ([991c163](https://github.com/Modern-Treasury/modern-treasury-python/commit/991c163764bb7b546457e8e8ab8a6b1368db18aa))
+* **internal:** fix type traversing dictionary params ([#603](https://github.com/Modern-Treasury/modern-treasury-python/issues/603)) ([2ea3f16](https://github.com/Modern-Treasury/modern-treasury-python/commit/2ea3f1693e00537f9b2c7d60930b3c92754a17b5))
+* **internal:** minor formatting changes ([#598](https://github.com/Modern-Treasury/modern-treasury-python/issues/598)) ([0ce7295](https://github.com/Modern-Treasury/modern-treasury-python/commit/0ce7295ecbea3c7146699c200ac21e010b73786c))
+* **internal:** minor type handling changes ([#604](https://github.com/Modern-Treasury/modern-treasury-python/issues/604)) ([cfd8109](https://github.com/Modern-Treasury/modern-treasury-python/commit/cfd8109e23e0393c4695e95101cba7a1cf92ca1d))
+
 ## 1.44.3 (2025-01-22)
 
 Full Changelog: [v1.44.2...v1.44.3](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.44.2...v1.44.3)
