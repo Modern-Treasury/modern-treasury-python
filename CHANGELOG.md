@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.46.0 (2025-02-21)
+
+Full Changelog: [v1.45.0...v1.46.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.45.0...v1.46.0)
+
+### Features
+
+* **client:** allow passing `NotGiven` for body ([#606](https://github.com/Modern-Treasury/modern-treasury-python/issues/606)) ([5e2c828](https://github.com/Modern-Treasury/modern-treasury-python/commit/5e2c828f1e4b653c0b00a5be4fd6c5bbd037bcee))
+
+
+### Bug Fixes
+
+* **client:** mark some request bodies as optional ([5e2c828](https://github.com/Modern-Treasury/modern-treasury-python/commit/5e2c828f1e4b653c0b00a5be4fd6c5bbd037bcee))
+
+
+### Chores
+
+* **internal:** fix devcontainers setup ([#608](https://github.com/Modern-Treasury/modern-treasury-python/issues/608)) ([fcfdac5](https://github.com/Modern-Treasury/modern-treasury-python/commit/fcfdac51584dc4cd8ab4e6240a94d9ff59b56163))
+
 ## 1.45.0 (2025-02-13)
 
 Full Changelog: [v1.44.3...v1.45.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.44.3...v1.45.0)
