@@ -92,7 +92,7 @@ class TestCounterparties:
                     ],
                 }
             ],
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             ledger_type="customer",
             legal_entity={
                 "legal_entity_type": "business",
@@ -337,7 +337,7 @@ class TestCounterparties:
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         counterparty = client.counterparties.update(
             id="id",
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
             name="name",
@@ -388,7 +388,7 @@ class TestCounterparties:
             after_cursor="after_cursor",
             created_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             legal_entity_id="legal_entity_id",
             metadata={"foo": "string"},
             name="name",
@@ -581,7 +581,7 @@ class TestAsyncCounterparties:
                     ],
                 }
             ],
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             ledger_type="customer",
             legal_entity={
                 "legal_entity_type": "business",
@@ -826,7 +826,7 @@ class TestAsyncCounterparties:
     async def test_method_update_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         counterparty = await async_client.counterparties.update(
             id="id",
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
             name="name",
@@ -877,7 +877,7 @@ class TestAsyncCounterparties:
             after_cursor="after_cursor",
             created_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             legal_entity_id="legal_entity_id",
             metadata={"foo": "string"},
             name="name",
