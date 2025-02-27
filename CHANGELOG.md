@@ -1,5 +1,30 @@
 # Changelog
 
+## 1.46.0 (2025-02-27)
+
+Full Changelog: [v1.45.0...v1.46.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.45.0...v1.46.0)
+
+### Features
+
+* **client:** allow passing `NotGiven` for body ([#606](https://github.com/Modern-Treasury/modern-treasury-python/issues/606)) ([5e2c828](https://github.com/Modern-Treasury/modern-treasury-python/commit/5e2c828f1e4b653c0b00a5be4fd6c5bbd037bcee))
+
+
+### Bug Fixes
+
+* **client:** mark some request bodies as optional ([5e2c828](https://github.com/Modern-Treasury/modern-treasury-python/commit/5e2c828f1e4b653c0b00a5be4fd6c5bbd037bcee))
+
+
+### Chores
+
+* **docs:** update client docstring ([#611](https://github.com/Modern-Treasury/modern-treasury-python/issues/611)) ([fa883e4](https://github.com/Modern-Treasury/modern-treasury-python/commit/fa883e4b24914befec18f97381c45d084f469a9b))
+* **internal:** fix devcontainers setup ([#608](https://github.com/Modern-Treasury/modern-treasury-python/issues/608)) ([fcfdac5](https://github.com/Modern-Treasury/modern-treasury-python/commit/fcfdac51584dc4cd8ab4e6240a94d9ff59b56163))
+* **internal:** properly set __pydantic_private__ ([#609](https://github.com/Modern-Treasury/modern-treasury-python/issues/609)) ([b86b6a0](https://github.com/Modern-Treasury/modern-treasury-python/commit/b86b6a03f7c0a4777b1cb2bc085d58ec0e7a70af))
+
+
+### Documentation
+
+* update URLs from stainlessapi.com to stainless.com ([#610](https://github.com/Modern-Treasury/modern-treasury-python/issues/610)) ([5e01402](https://github.com/Modern-Treasury/modern-treasury-python/commit/5e0140295bdbc8045d104fcc121a54f1180ba153))
+
 ## 1.45.0 (2025-02-13)
 
 Full Changelog: [v1.44.3...v1.45.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.44.3...v1.45.0)

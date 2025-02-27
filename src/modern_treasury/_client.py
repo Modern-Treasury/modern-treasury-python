@@ -163,7 +163,7 @@ class ModernTreasury(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous Modern Treasury client instance.
+        """Construct a new synchronous ModernTreasury client instance.
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `api_key` from `MODERN_TREASURY_API_KEY`
@@ -453,7 +453,7 @@ class AsyncModernTreasury(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async Modern Treasury client instance.
+        """Construct a new async AsyncModernTreasury client instance.
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `api_key` from `MODERN_TREASURY_API_KEY`
