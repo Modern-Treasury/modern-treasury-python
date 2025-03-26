@@ -1,5 +1,38 @@
 # Changelog
 
+## 1.46.0 (2025-03-26)
+
+Full Changelog: [v1.45.0...v1.46.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.45.0...v1.46.0)
+
+### Features
+
+* **client:** allow passing `NotGiven` for body ([#606](https://github.com/Modern-Treasury/modern-treasury-python/issues/606)) ([5e2c828](https://github.com/Modern-Treasury/modern-treasury-python/commit/5e2c828f1e4b653c0b00a5be4fd6c5bbd037bcee))
+
+
+### Bug Fixes
+
+* **ci:** ensure pip is always available ([#617](https://github.com/Modern-Treasury/modern-treasury-python/issues/617)) ([794bcb1](https://github.com/Modern-Treasury/modern-treasury-python/commit/794bcb1f0b03ae902ea78c38c5ad57664f233b35))
+* **ci:** remove publishing patch ([#618](https://github.com/Modern-Treasury/modern-treasury-python/issues/618)) ([999f1af](https://github.com/Modern-Treasury/modern-treasury-python/commit/999f1af2b5438da6a5f05fdf63187e5f2ffec230))
+* **client:** mark some request bodies as optional ([5e2c828](https://github.com/Modern-Treasury/modern-treasury-python/commit/5e2c828f1e4b653c0b00a5be4fd6c5bbd037bcee))
+* **types:** handle more discriminated union shapes ([#616](https://github.com/Modern-Treasury/modern-treasury-python/issues/616)) ([9a47fa6](https://github.com/Modern-Treasury/modern-treasury-python/commit/9a47fa6322e4a56e215bbf406586813ca6f89e65))
+
+
+### Chores
+
+* add hash of OpenAPI spec/config inputs to .stats.yml ([#620](https://github.com/Modern-Treasury/modern-treasury-python/issues/620)) ([f902110](https://github.com/Modern-Treasury/modern-treasury-python/commit/f902110bed961118fcf13361864287b301e78996))
+* **docs:** update client docstring ([#611](https://github.com/Modern-Treasury/modern-treasury-python/issues/611)) ([fa883e4](https://github.com/Modern-Treasury/modern-treasury-python/commit/fa883e4b24914befec18f97381c45d084f469a9b))
+* fix typos ([#619](https://github.com/Modern-Treasury/modern-treasury-python/issues/619)) ([67d863d](https://github.com/Modern-Treasury/modern-treasury-python/commit/67d863d25ccda298199063d9400f37b0e0ff6b74))
+* **internal:** bump rye to 0.44.0 ([#615](https://github.com/Modern-Treasury/modern-treasury-python/issues/615)) ([28bf2de](https://github.com/Modern-Treasury/modern-treasury-python/commit/28bf2dee8a88aec5c2c95f13ccaa1696140de3b1))
+* **internal:** fix devcontainers setup ([#608](https://github.com/Modern-Treasury/modern-treasury-python/issues/608)) ([fcfdac5](https://github.com/Modern-Treasury/modern-treasury-python/commit/fcfdac51584dc4cd8ab4e6240a94d9ff59b56163))
+* **internal:** properly set __pydantic_private__ ([#609](https://github.com/Modern-Treasury/modern-treasury-python/issues/609)) ([b86b6a0](https://github.com/Modern-Treasury/modern-treasury-python/commit/b86b6a03f7c0a4777b1cb2bc085d58ec0e7a70af))
+* **internal:** remove extra empty newlines ([#614](https://github.com/Modern-Treasury/modern-treasury-python/issues/614)) ([52ce5d4](https://github.com/Modern-Treasury/modern-treasury-python/commit/52ce5d4f7600726bc5ce0b2d6f15e471730eb551))
+* **internal:** remove unused http client options forwarding ([#612](https://github.com/Modern-Treasury/modern-treasury-python/issues/612)) ([3e72f74](https://github.com/Modern-Treasury/modern-treasury-python/commit/3e72f74d040cc233fd95fd342200f6c4ba22b232))
+
+
+### Documentation
+
+* update URLs from stainlessapi.com to stainless.com ([#610](https://github.com/Modern-Treasury/modern-treasury-python/issues/610)) ([5e01402](https://github.com/Modern-Treasury/modern-treasury-python/commit/5e0140295bdbc8045d104fcc121a54f1180ba153))
+
 ## 1.45.0 (2025-02-13)
 
 Full Changelog: [v1.44.3...v1.45.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.44.3...v1.45.0)
