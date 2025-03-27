@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.46.1 (2025-03-27)
+
+Full Changelog: [v1.46.0...v1.46.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.46.0...v1.46.1)
+
+### Chores
+
+* **api:** updates to bulk creation request, legal entity schemas and more ([#621](https://github.com/Modern-Treasury/modern-treasury-python/issues/621)) ([f902eb8](https://github.com/Modern-Treasury/modern-treasury-python/commit/f902eb82a024348f32f2d1f17ab69a2b2eb0f146))
+* **internal:** remove CI condition ([#624](https://github.com/Modern-Treasury/modern-treasury-python/issues/624)) ([d553743](https://github.com/Modern-Treasury/modern-treasury-python/commit/d553743ac4def284a0e7881b168c0cb190052e35))
+
 ## 1.46.0 (2025-03-26)
 
 Full Changelog: [v1.45.0...v1.46.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.45.0...v1.46.0)
