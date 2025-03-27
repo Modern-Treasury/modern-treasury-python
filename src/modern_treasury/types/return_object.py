@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import builtins
 from typing import List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
@@ -72,6 +73,7 @@ class ReferenceNumber(BaseModel):
         "jpmc_payment_batch_id",
         "jpmc_payment_information_id",
         "jpmc_payment_returned_datetime",
+        "jpmc_transaction_reference_number",
         "lob_check_id",
         "other",
         "partial_swift_mir",
@@ -79,7 +81,9 @@ class ReferenceNumber(BaseModel):
         "pnc_instruction_id",
         "pnc_multipayment_id",
         "pnc_payment_trace_id",
+        "pnc_request_for_payment_id",
         "pnc_transaction_reference_number",
+        "rbc_wire_reference_id",
         "rspec_vendor_payment_id",
         "rtp_instruction_id",
         "signet_api_reference_id",
@@ -276,6 +280,9 @@ class ReturnObject(BaseModel):
 
     In these cases, this string will be present.
     """
+
+    data: Optional[builtins.object] = None
+    """The raw data from the return file that we get from the bank."""
 
 
 if PYDANTIC_V2:

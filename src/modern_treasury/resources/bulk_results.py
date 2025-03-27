@@ -79,7 +79,15 @@ class BulkResults(SyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         entity_id: str | NotGiven = NOT_GIVEN,
-        entity_type: Literal["payment_order", "ledger_transaction", "transaction", "expected_payment", "bulk_error"]
+        entity_type: Literal[
+            "payment_order",
+            "ledger_account",
+            "ledger_transaction",
+            "expected_payment",
+            "transaction",
+            "entity_link",
+            "bulk_error",
+        ]
         | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
@@ -200,7 +208,15 @@ class AsyncBulkResults(AsyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         entity_id: str | NotGiven = NOT_GIVEN,
-        entity_type: Literal["payment_order", "ledger_transaction", "transaction", "expected_payment", "bulk_error"]
+        entity_type: Literal[
+            "payment_order",
+            "ledger_account",
+            "ledger_transaction",
+            "expected_payment",
+            "transaction",
+            "entity_link",
+            "bulk_error",
+        ]
         | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,

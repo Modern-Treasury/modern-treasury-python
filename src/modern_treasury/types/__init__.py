@@ -9,6 +9,8 @@ from .shared import (
     AccountsType as AccountsType,
     AsyncResponse as AsyncResponse,
     TransactionDirection as TransactionDirection,
+    LegalEntityComplianceDetail as LegalEntityComplianceDetail,
+    LegalEntityIndustryClassification as LegalEntityIndustryClassification,
 )
 from .invoice import Invoice as Invoice
 from .document import Document as Document
