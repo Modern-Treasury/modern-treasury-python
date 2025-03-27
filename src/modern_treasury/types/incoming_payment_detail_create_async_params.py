@@ -25,6 +25,12 @@ class IncomingPaymentDetailCreateAsyncParams(TypedDict, total=False):
     currency: Optional[Currency]
     """Defaults to the currency of the originating account."""
 
+    data: Optional[object]
+    """
+    An object passed through to the simulated IPD that could reflect what a vendor
+    would pass.
+    """
+
     description: Optional[str]
     """Defaults to a random description."""
 
@@ -34,7 +40,9 @@ class IncomingPaymentDetailCreateAsyncParams(TypedDict, total=False):
     internal_account_id: str
     """The ID of one of your internal accounts."""
 
-    type: Literal["ach", "book", "check", "eft", "interac", "rtp", "sepa", "signet", "wire"]
+    type: Literal[
+        "ach", "au_becs", "bacs", "book", "check", "eft", "interac", "neft", "nz_becs", "rtp", "sepa", "signet", "wire"
+    ]
     """One of `ach`, `wire`, `check`."""
 
     virtual_account_id: Optional[str]

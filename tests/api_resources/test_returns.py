@@ -34,6 +34,7 @@ class TestReturns:
             returnable_type="incoming_payment_detail",
             additional_information="additional_information",
             code="901",
+            data={},
             date_of_death=parse_date("2019-12-27"),
             reason="reason",
         )
@@ -159,6 +160,7 @@ class TestAsyncReturns:
             returnable_type="incoming_payment_detail",
             additional_information="additional_information",
             code="901",
+            data={},
             date_of_death=parse_date("2019-12-27"),
             reason="reason",
         )
