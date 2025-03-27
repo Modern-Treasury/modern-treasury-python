@@ -179,6 +179,7 @@ class Transaction(BaseModel):
             "iso20022",
             "jpmc",
             "mx",
+            "paypal",
             "plaid",
             "pnc",
             "rspec_vendor",

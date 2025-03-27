@@ -61,7 +61,7 @@ class TestAccountEntries:
     def test_method_delete(self, client: ModernTreasury) -> None:
         account_entry = client.ledger_account_settlements.account_entries.delete(
             id="id",
-            ledger_entry_ids=[{}],
+            ledger_entry_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
         )
         assert account_entry is None
 
@@ -69,7 +69,7 @@ class TestAccountEntries:
     def test_raw_response_delete(self, client: ModernTreasury) -> None:
         response = client.ledger_account_settlements.account_entries.with_raw_response.delete(
             id="id",
-            ledger_entry_ids=[{}],
+            ledger_entry_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
         )
 
         assert response.is_closed is True
@@ -81,7 +81,7 @@ class TestAccountEntries:
     def test_streaming_response_delete(self, client: ModernTreasury) -> None:
         with client.ledger_account_settlements.account_entries.with_streaming_response.delete(
             id="id",
-            ledger_entry_ids=[{}],
+            ledger_entry_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -96,7 +96,7 @@ class TestAccountEntries:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.ledger_account_settlements.account_entries.with_raw_response.delete(
                 id="",
-                ledger_entry_ids=[{}],
+                ledger_entry_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             )
 
 
@@ -149,7 +149,7 @@ class TestAsyncAccountEntries:
     async def test_method_delete(self, async_client: AsyncModernTreasury) -> None:
         account_entry = await async_client.ledger_account_settlements.account_entries.delete(
             id="id",
-            ledger_entry_ids=[{}],
+            ledger_entry_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
         )
         assert account_entry is None
 
@@ -157,7 +157,7 @@ class TestAsyncAccountEntries:
     async def test_raw_response_delete(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.ledger_account_settlements.account_entries.with_raw_response.delete(
             id="id",
-            ledger_entry_ids=[{}],
+            ledger_entry_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
         )
 
         assert response.is_closed is True
@@ -169,7 +169,7 @@ class TestAsyncAccountEntries:
     async def test_streaming_response_delete(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.ledger_account_settlements.account_entries.with_streaming_response.delete(
             id="id",
-            ledger_entry_ids=[{}],
+            ledger_entry_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -184,5 +184,5 @@ class TestAsyncAccountEntries:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.ledger_account_settlements.account_entries.with_raw_response.delete(
                 id="",
-                ledger_entry_ids=[{}],
+                ledger_entry_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             )
