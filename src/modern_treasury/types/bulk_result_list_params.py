@@ -14,7 +14,15 @@ class BulkResultListParams(TypedDict, total=False):
     entity_id: str
     """Unique identifier for the result entity object."""
 
-    entity_type: Literal["payment_order", "ledger_transaction", "transaction", "expected_payment", "bulk_error"]
+    entity_type: Literal[
+        "payment_order",
+        "ledger_account",
+        "ledger_transaction",
+        "expected_payment",
+        "transaction",
+        "entity_link",
+        "bulk_error",
+    ]
     """The type of the request that created this result.
 
     bulk_request is the only supported `request_type`

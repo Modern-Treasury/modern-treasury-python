@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable, Optional
+from typing import List, Optional
 
 import httpx
 
@@ -93,7 +93,7 @@ class AccountEntries(SyncAPIResource):
         self,
         id: str,
         *,
-        ledger_entry_ids: Optional[Iterable[object]],
+        ledger_entry_ids: Optional[List[str]],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -210,7 +210,7 @@ class AsyncAccountEntries(AsyncAPIResource):
         self,
         id: str,
         *,
-        ledger_entry_ids: Optional[Iterable[object]],
+        ledger_entry_ids: Optional[List[str]],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

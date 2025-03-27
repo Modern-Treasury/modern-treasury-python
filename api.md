@@ -1,7 +1,14 @@
 # Shared Types
 
 ```python
-from modern_treasury.types import AccountsType, AsyncResponse, Currency, TransactionDirection
+from modern_treasury.types import (
+    AccountsType,
+    AsyncResponse,
+    Currency,
+    LegalEntityComplianceDetail,
+    LegalEntityIndustryClassification,
+    TransactionDirection,
+)
 ```
 
 # ModernTreasury

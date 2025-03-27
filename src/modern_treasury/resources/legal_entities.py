@@ -27,6 +27,8 @@ from .._base_client import AsyncPaginator, make_request_options
 from ..types.legal_entity import LegalEntity
 from ..types.bank_settings_param import BankSettingsParam
 from ..types.wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
+from ..types.shared_params.legal_entity_compliance_detail import LegalEntityComplianceDetail
+from ..types.shared_params.legal_entity_industry_classification import LegalEntityIndustryClassification
 
 __all__ = ["LegalEntities", "AsyncLegalEntities"]
 
@@ -59,12 +61,14 @@ class LegalEntities(SyncAPIResource):
         bank_settings: Optional[BankSettingsParam] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
         citizenship_country: Optional[str] | NotGiven = NOT_GIVEN,
+        compliance_details: Optional[LegalEntityComplianceDetail] | NotGiven = NOT_GIVEN,
         date_formed: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_of_birth: Union[str, date, None] | NotGiven = NOT_GIVEN,
         doing_business_as_names: List[str] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
         first_name: Optional[str] | NotGiven = NOT_GIVEN,
         identifications: Iterable[legal_entity_create_params.Identification] | NotGiven = NOT_GIVEN,
+        industry_classifications: Iterable[LegalEntityIndustryClassification] | NotGiven = NOT_GIVEN,
         last_name: Optional[str] | NotGiven = NOT_GIVEN,
         legal_entity_associations: Optional[Iterable[legal_entity_create_params.LegalEntityAssociation]]
         | NotGiven = NOT_GIVEN,
@@ -112,6 +116,8 @@ class LegalEntities(SyncAPIResource):
 
           identifications: A list of identifications for the legal entity.
 
+          industry_classifications: A list of industry classifications for the legal entity.
+
           last_name: An individual's last name.
 
           legal_entity_associations: The legal entity associations and its child legal entities.
@@ -154,12 +160,14 @@ class LegalEntities(SyncAPIResource):
                     "bank_settings": bank_settings,
                     "business_name": business_name,
                     "citizenship_country": citizenship_country,
+                    "compliance_details": compliance_details,
                     "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
                     "doing_business_as_names": doing_business_as_names,
                     "email": email,
                     "first_name": first_name,
                     "identifications": identifications,
+                    "industry_classifications": industry_classifications,
                     "last_name": last_name,
                     "legal_entity_associations": legal_entity_associations,
                     "legal_structure": legal_structure,
@@ -227,12 +235,14 @@ class LegalEntities(SyncAPIResource):
         bank_settings: Optional[BankSettingsParam] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
         citizenship_country: Optional[str] | NotGiven = NOT_GIVEN,
+        compliance_details: Optional[LegalEntityComplianceDetail] | NotGiven = NOT_GIVEN,
         date_formed: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_of_birth: Union[str, date, None] | NotGiven = NOT_GIVEN,
         doing_business_as_names: List[str] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
         first_name: Optional[str] | NotGiven = NOT_GIVEN,
         identifications: Iterable[legal_entity_update_params.Identification] | NotGiven = NOT_GIVEN,
+        industry_classifications: Iterable[LegalEntityIndustryClassification] | NotGiven = NOT_GIVEN,
         last_name: Optional[str] | NotGiven = NOT_GIVEN,
         legal_structure: Optional[
             Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
@@ -276,6 +286,8 @@ class LegalEntities(SyncAPIResource):
 
           identifications: A list of identifications for the legal entity.
 
+          industry_classifications: A list of industry classifications for the legal entity.
+
           last_name: An individual's last name.
 
           legal_structure: The business's legal structure.
@@ -317,12 +329,14 @@ class LegalEntities(SyncAPIResource):
                     "bank_settings": bank_settings,
                     "business_name": business_name,
                     "citizenship_country": citizenship_country,
+                    "compliance_details": compliance_details,
                     "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
                     "doing_business_as_names": doing_business_as_names,
                     "email": email,
                     "first_name": first_name,
                     "identifications": identifications,
+                    "industry_classifications": industry_classifications,
                     "last_name": last_name,
                     "legal_structure": legal_structure,
                     "metadata": metadata,
@@ -430,12 +444,14 @@ class AsyncLegalEntities(AsyncAPIResource):
         bank_settings: Optional[BankSettingsParam] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
         citizenship_country: Optional[str] | NotGiven = NOT_GIVEN,
+        compliance_details: Optional[LegalEntityComplianceDetail] | NotGiven = NOT_GIVEN,
         date_formed: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_of_birth: Union[str, date, None] | NotGiven = NOT_GIVEN,
         doing_business_as_names: List[str] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
         first_name: Optional[str] | NotGiven = NOT_GIVEN,
         identifications: Iterable[legal_entity_create_params.Identification] | NotGiven = NOT_GIVEN,
+        industry_classifications: Iterable[LegalEntityIndustryClassification] | NotGiven = NOT_GIVEN,
         last_name: Optional[str] | NotGiven = NOT_GIVEN,
         legal_entity_associations: Optional[Iterable[legal_entity_create_params.LegalEntityAssociation]]
         | NotGiven = NOT_GIVEN,
@@ -483,6 +499,8 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           identifications: A list of identifications for the legal entity.
 
+          industry_classifications: A list of industry classifications for the legal entity.
+
           last_name: An individual's last name.
 
           legal_entity_associations: The legal entity associations and its child legal entities.
@@ -525,12 +543,14 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "bank_settings": bank_settings,
                     "business_name": business_name,
                     "citizenship_country": citizenship_country,
+                    "compliance_details": compliance_details,
                     "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
                     "doing_business_as_names": doing_business_as_names,
                     "email": email,
                     "first_name": first_name,
                     "identifications": identifications,
+                    "industry_classifications": industry_classifications,
                     "last_name": last_name,
                     "legal_entity_associations": legal_entity_associations,
                     "legal_structure": legal_structure,
@@ -598,12 +618,14 @@ class AsyncLegalEntities(AsyncAPIResource):
         bank_settings: Optional[BankSettingsParam] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
         citizenship_country: Optional[str] | NotGiven = NOT_GIVEN,
+        compliance_details: Optional[LegalEntityComplianceDetail] | NotGiven = NOT_GIVEN,
         date_formed: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_of_birth: Union[str, date, None] | NotGiven = NOT_GIVEN,
         doing_business_as_names: List[str] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
         first_name: Optional[str] | NotGiven = NOT_GIVEN,
         identifications: Iterable[legal_entity_update_params.Identification] | NotGiven = NOT_GIVEN,
+        industry_classifications: Iterable[LegalEntityIndustryClassification] | NotGiven = NOT_GIVEN,
         last_name: Optional[str] | NotGiven = NOT_GIVEN,
         legal_structure: Optional[
             Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
@@ -647,6 +669,8 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           identifications: A list of identifications for the legal entity.
 
+          industry_classifications: A list of industry classifications for the legal entity.
+
           last_name: An individual's last name.
 
           legal_structure: The business's legal structure.
@@ -688,12 +712,14 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "bank_settings": bank_settings,
                     "business_name": business_name,
                     "citizenship_country": citizenship_country,
+                    "compliance_details": compliance_details,
                     "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
                     "doing_business_as_names": doing_business_as_names,
                     "email": email,
                     "first_name": first_name,
                     "identifications": identifications,
+                    "industry_classifications": industry_classifications,
                     "last_name": last_name,
                     "legal_structure": legal_structure,
                     "metadata": metadata,
