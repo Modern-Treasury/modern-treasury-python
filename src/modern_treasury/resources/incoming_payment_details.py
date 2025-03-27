@@ -142,7 +142,22 @@ class IncomingPaymentDetails(SyncAPIResource):
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         status: Literal["completed", "pending", "returned"] | NotGiven = NOT_GIVEN,
-        type: Literal["ach", "book", "check", "eft", "interac", "rtp", "sepa", "signet", "wire"] | NotGiven = NOT_GIVEN,
+        type: Literal[
+            "ach",
+            "au_becs",
+            "bacs",
+            "book",
+            "check",
+            "eft",
+            "interac",
+            "neft",
+            "nz_becs",
+            "rtp",
+            "sepa",
+            "signet",
+            "wire",
+        ]
+        | NotGiven = NOT_GIVEN,
         virtual_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -216,10 +231,26 @@ class IncomingPaymentDetails(SyncAPIResource):
         amount: int | NotGiven = NOT_GIVEN,
         as_of_date: Union[str, date, None] | NotGiven = NOT_GIVEN,
         currency: Optional[Currency] | NotGiven = NOT_GIVEN,
+        data: Optional[object] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         internal_account_id: str | NotGiven = NOT_GIVEN,
-        type: Literal["ach", "book", "check", "eft", "interac", "rtp", "sepa", "signet", "wire"] | NotGiven = NOT_GIVEN,
+        type: Literal[
+            "ach",
+            "au_becs",
+            "bacs",
+            "book",
+            "check",
+            "eft",
+            "interac",
+            "neft",
+            "nz_becs",
+            "rtp",
+            "sepa",
+            "signet",
+            "wire",
+        ]
+        | NotGiven = NOT_GIVEN,
         virtual_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -239,6 +270,9 @@ class IncomingPaymentDetails(SyncAPIResource):
           as_of_date: Defaults to today.
 
           currency: Defaults to the currency of the originating account.
+
+          data: An object passed through to the simulated IPD that could reflect what a vendor
+              would pass.
 
           description: Defaults to a random description.
 
@@ -268,6 +302,7 @@ class IncomingPaymentDetails(SyncAPIResource):
                     "amount": amount,
                     "as_of_date": as_of_date,
                     "currency": currency,
+                    "data": data,
                     "description": description,
                     "direction": direction,
                     "internal_account_id": internal_account_id,
@@ -397,7 +432,22 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         status: Literal["completed", "pending", "returned"] | NotGiven = NOT_GIVEN,
-        type: Literal["ach", "book", "check", "eft", "interac", "rtp", "sepa", "signet", "wire"] | NotGiven = NOT_GIVEN,
+        type: Literal[
+            "ach",
+            "au_becs",
+            "bacs",
+            "book",
+            "check",
+            "eft",
+            "interac",
+            "neft",
+            "nz_becs",
+            "rtp",
+            "sepa",
+            "signet",
+            "wire",
+        ]
+        | NotGiven = NOT_GIVEN,
         virtual_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -471,10 +521,26 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         amount: int | NotGiven = NOT_GIVEN,
         as_of_date: Union[str, date, None] | NotGiven = NOT_GIVEN,
         currency: Optional[Currency] | NotGiven = NOT_GIVEN,
+        data: Optional[object] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         direction: Literal["credit", "debit"] | NotGiven = NOT_GIVEN,
         internal_account_id: str | NotGiven = NOT_GIVEN,
-        type: Literal["ach", "book", "check", "eft", "interac", "rtp", "sepa", "signet", "wire"] | NotGiven = NOT_GIVEN,
+        type: Literal[
+            "ach",
+            "au_becs",
+            "bacs",
+            "book",
+            "check",
+            "eft",
+            "interac",
+            "neft",
+            "nz_becs",
+            "rtp",
+            "sepa",
+            "signet",
+            "wire",
+        ]
+        | NotGiven = NOT_GIVEN,
         virtual_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -494,6 +560,9 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
           as_of_date: Defaults to today.
 
           currency: Defaults to the currency of the originating account.
+
+          data: An object passed through to the simulated IPD that could reflect what a vendor
+              would pass.
 
           description: Defaults to a random description.
 
@@ -523,6 +592,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
                     "amount": amount,
                     "as_of_date": as_of_date,
                     "currency": currency,
+                    "data": data,
                     "description": description,
                     "direction": direction,
                     "internal_account_id": internal_account_id,

@@ -66,7 +66,15 @@ class BulkResult(BaseModel):
     entity_id: str
     """Unique identifier for the result entity object."""
 
-    entity_type: Literal["payment_order", "ledger_transaction", "transaction", "expected_payment", "bulk_error"]
+    entity_type: Literal[
+        "payment_order",
+        "ledger_account",
+        "ledger_transaction",
+        "expected_payment",
+        "transaction",
+        "entity_link",
+        "bulk_error",
+    ]
     """The type of the result entity object.
 
     For a successful bulk result, this is the same as the `resource_type` of the

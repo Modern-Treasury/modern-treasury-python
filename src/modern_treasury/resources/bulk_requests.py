@@ -48,7 +48,9 @@ class BulkRequests(SyncAPIResource):
         self,
         *,
         action_type: Literal["create", "update", "delete"],
-        resource_type: Literal["payment_order", "ledger_transaction", "transaction", "expected_payment"],
+        resource_type: Literal[
+            "payment_order", "ledger_account", "ledger_transaction", "expected_payment", "transaction", "entity_link"
+        ],
         resources: Iterable[bulk_request_create_params.Resource],
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -144,7 +146,9 @@ class BulkRequests(SyncAPIResource):
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        resource_type: Literal["payment_order", "ledger_transaction", "transaction", "expected_payment"]
+        resource_type: Literal[
+            "payment_order", "ledger_account", "ledger_transaction", "expected_payment", "transaction", "entity_link"
+        ]
         | NotGiven = NOT_GIVEN,
         status: Literal["pending", "processing", "completed"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -224,7 +228,9 @@ class AsyncBulkRequests(AsyncAPIResource):
         self,
         *,
         action_type: Literal["create", "update", "delete"],
-        resource_type: Literal["payment_order", "ledger_transaction", "transaction", "expected_payment"],
+        resource_type: Literal[
+            "payment_order", "ledger_account", "ledger_transaction", "expected_payment", "transaction", "entity_link"
+        ],
         resources: Iterable[bulk_request_create_params.Resource],
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -320,7 +326,9 @@ class AsyncBulkRequests(AsyncAPIResource):
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        resource_type: Literal["payment_order", "ledger_transaction", "transaction", "expected_payment"]
+        resource_type: Literal[
+            "payment_order", "ledger_account", "ledger_transaction", "expected_payment", "transaction", "entity_link"
+        ]
         | NotGiven = NOT_GIVEN,
         status: Literal["pending", "processing", "completed"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
