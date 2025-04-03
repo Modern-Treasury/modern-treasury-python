@@ -109,6 +109,7 @@ class Returns(SyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
+        data: Optional[object] | NotGiven = NOT_GIVEN,
         date_of_death: Union[str, date, None] | NotGiven = NOT_GIVEN,
         reason: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -132,6 +133,8 @@ class Returns(SyncAPIResource):
               this string will be present.
 
           code: The return code. For ACH returns, this is the required ACH return code.
+
+          data: The raw data from the return file that we get from the bank.
 
           date_of_death: If the return code is `R14` or `R15` this is the date the deceased counterparty
               passed away.
@@ -157,6 +160,7 @@ class Returns(SyncAPIResource):
                     "returnable_type": returnable_type,
                     "additional_information": additional_information,
                     "code": code,
+                    "data": data,
                     "date_of_death": date_of_death,
                     "reason": reason,
                 },
@@ -353,6 +357,7 @@ class AsyncReturns(AsyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
+        data: Optional[object] | NotGiven = NOT_GIVEN,
         date_of_death: Union[str, date, None] | NotGiven = NOT_GIVEN,
         reason: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -376,6 +381,8 @@ class AsyncReturns(AsyncAPIResource):
               this string will be present.
 
           code: The return code. For ACH returns, this is the required ACH return code.
+
+          data: The raw data from the return file that we get from the bank.
 
           date_of_death: If the return code is `R14` or `R15` this is the date the deceased counterparty
               passed away.
@@ -401,6 +408,7 @@ class AsyncReturns(AsyncAPIResource):
                     "returnable_type": returnable_type,
                     "additional_information": additional_information,
                     "code": code,
+                    "data": data,
                     "date_of_death": date_of_death,
                     "reason": reason,
                 },

@@ -125,7 +125,9 @@ class IncomingPaymentDetail(BaseModel):
     transaction_line_item_id: Optional[str] = None
     """The ID of the reconciled Transaction Line Item or `null`."""
 
-    type: Literal["ach", "book", "check", "eft", "interac", "rtp", "sepa", "signet", "wire"]
+    type: Literal[
+        "ach", "au_becs", "bacs", "book", "check", "eft", "interac", "neft", "nz_becs", "rtp", "sepa", "signet", "wire"
+    ]
     """
     One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
     `wire`.

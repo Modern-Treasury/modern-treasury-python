@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.47.0 (2025-04-03)
+
+Full Changelog: [v1.46.0...v1.47.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.46.0...v1.47.0)
+
+### Features
+
+* add MCP server ([7f5937a](https://github.com/Modern-Treasury/modern-treasury-python/commit/7f5937a39ede23c439d334fa72dbbee65d563d82))
+
+
+### Chores
+
+* **api:** updates to bulk creation request, legal entity schemas and more ([#621](https://github.com/Modern-Treasury/modern-treasury-python/issues/621)) ([f902eb8](https://github.com/Modern-Treasury/modern-treasury-python/commit/f902eb82a024348f32f2d1f17ab69a2b2eb0f146))
+* configure new SDK language ([c7bc073](https://github.com/Modern-Treasury/modern-treasury-python/commit/c7bc073d4d585b0e3575318b4a1cfe93572da6ab))
+* configure new SDK language ([b7109ac](https://github.com/Modern-Treasury/modern-treasury-python/commit/b7109ac356d1e745a88c273ffc62c89eb4235b41))
+* internal codegen changes ([5dcf31f](https://github.com/Modern-Treasury/modern-treasury-python/commit/5dcf31f0b5c8421de593db757aa933c5f5bb0c32))
+* **internal:** remove CI condition ([#624](https://github.com/Modern-Treasury/modern-treasury-python/issues/624)) ([d553743](https://github.com/Modern-Treasury/modern-treasury-python/commit/d553743ac4def284a0e7881b168c0cb190052e35))
+* **internal:** remove trailing character ([#625](https://github.com/Modern-Treasury/modern-treasury-python/issues/625)) ([a66a5e9](https://github.com/Modern-Treasury/modern-treasury-python/commit/a66a5e96c3798f169c80727e0a9771652b1bf760))
+* Remove deprecated/unused remote spec feature ([92bb1bc](https://github.com/Modern-Treasury/modern-treasury-python/commit/92bb1bc9c4ac43f97e2de011a20678e436d6257a))
+
 ## 1.46.0 (2025-03-26)
 
 Full Changelog: [v1.45.0...v1.46.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.45.0...v1.46.0)

@@ -9,6 +9,8 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 from .._utils import PropertyInfo
 from .bank_settings_param import BankSettingsParam
 from .wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
+from .shared_params.legal_entity_compliance_detail import LegalEntityComplianceDetail
+from .shared_params.legal_entity_industry_classification import LegalEntityIndustryClassification
 
 __all__ = [
     "LegalEntityUpdateParams",
@@ -33,6 +35,8 @@ class LegalEntityUpdateParams(TypedDict, total=False):
     citizenship_country: Optional[str]
     """The country of citizenship for an individual."""
 
+    compliance_details: Optional[LegalEntityComplianceDetail]
+
     date_formed: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
     """A business's formation date (YYYY-MM-DD)."""
 
@@ -49,6 +53,9 @@ class LegalEntityUpdateParams(TypedDict, total=False):
 
     identifications: Iterable[Identification]
     """A list of identifications for the legal entity."""
+
+    industry_classifications: Iterable[LegalEntityIndustryClassification]
+    """A list of industry classifications for the legal entity."""
 
     last_name: Optional[str]
     """An individual's last name."""

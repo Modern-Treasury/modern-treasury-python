@@ -8,6 +8,8 @@ from .._models import BaseModel
 from .bank_settings import BankSettings
 from .legal_entity_association import LegalEntityAssociation
 from .wealth_and_employment_details import WealthAndEmploymentDetails
+from .shared.legal_entity_compliance_detail import LegalEntityComplianceDetail
+from .shared.legal_entity_industry_classification import LegalEntityIndustryClassification
 
 __all__ = ["LegalEntity", "Addresses", "Address", "Identifications", "Identification", "PhoneNumbers", "PhoneNumber"]
 
@@ -137,6 +139,8 @@ class LegalEntity(BaseModel):
     citizenship_country: Optional[str] = None
     """The country of citizenship for an individual."""
 
+    compliance_details: Optional[LegalEntityComplianceDetail] = None
+
     created_at: datetime
 
     date_formed: Optional[date] = None
@@ -157,6 +161,9 @@ class LegalEntity(BaseModel):
 
     identifications: List[Identification]
     """A list of identifications for the legal entity."""
+
+    industry_classifications: List[LegalEntityIndustryClassification]
+    """A list of industry classifications for the legal entity."""
 
     last_name: Optional[str] = None
     """An individual's last name."""
