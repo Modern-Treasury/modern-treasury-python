@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.47.1 (2025-04-11)
+
+Full Changelog: [v1.47.0...v1.47.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.47.0...v1.47.1)
+
+### Bug Fixes
+
+* **perf:** optimize some hot paths ([ae95e02](https://github.com/Modern-Treasury/modern-treasury-python/commit/ae95e022621ec356fe633699de747958aa919f08))
+* **perf:** skip traversing types for NotGiven values ([23cf7d8](https://github.com/Modern-Treasury/modern-treasury-python/commit/23cf7d87413fa4dfb15041a91340e71be17ebe67))
+
+
+### Chores
+
+* **internal:** expand CI branch coverage ([#630](https://github.com/Modern-Treasury/modern-treasury-python/issues/630)) ([0fee83b](https://github.com/Modern-Treasury/modern-treasury-python/commit/0fee83b80adbc93deee293711b1b4f7abaf95160))
+* **internal:** reduce CI branch coverage ([2f870a8](https://github.com/Modern-Treasury/modern-treasury-python/commit/2f870a8188291555c61cf97130337d3e237ce380))
+* **internal:** slight transform perf improvement ([#627](https://github.com/Modern-Treasury/modern-treasury-python/issues/627)) ([06d57da](https://github.com/Modern-Treasury/modern-treasury-python/commit/06d57da7c18d51ec0bba69da190e2207c8d89a71))
+* slight wording improvement in README ([#629](https://github.com/Modern-Treasury/modern-treasury-python/issues/629)) ([962b8ff](https://github.com/Modern-Treasury/modern-treasury-python/commit/962b8ffa1fa79389b4fe7744076292989cab7cf2))
+
 ## 1.47.0 (2025-04-03)
 
 Full Changelog: [v1.46.0...v1.47.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.46.0...v1.47.0)
