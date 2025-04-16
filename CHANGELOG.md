@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.47.1 (2025-04-16)
+
+Full Changelog: [v1.47.0...v1.47.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.47.0...v1.47.1)
+
+### Bug Fixes
+
+* **client:** correctly reuse idempotency key ([68a2528](https://github.com/Modern-Treasury/modern-treasury-python/commit/68a2528fdcd817e18d39a50901d7b4fb7825deae))
+* **perf:** optimize some hot paths ([ae95e02](https://github.com/Modern-Treasury/modern-treasury-python/commit/ae95e022621ec356fe633699de747958aa919f08))
+* **perf:** skip traversing types for NotGiven values ([23cf7d8](https://github.com/Modern-Treasury/modern-treasury-python/commit/23cf7d87413fa4dfb15041a91340e71be17ebe67))
+
+
+### Chores
+
+* **internal:** base client updates ([53c6120](https://github.com/Modern-Treasury/modern-treasury-python/commit/53c6120b7afa374c14821c641ebfadd17671809c))
+* **internal:** bump pyright version ([f698a88](https://github.com/Modern-Treasury/modern-treasury-python/commit/f698a884775d8e06f00f1d8ceb8eb89d33f484d8))
+* **internal:** expand CI branch coverage ([#630](https://github.com/Modern-Treasury/modern-treasury-python/issues/630)) ([0fee83b](https://github.com/Modern-Treasury/modern-treasury-python/commit/0fee83b80adbc93deee293711b1b4f7abaf95160))
+* **internal:** reduce CI branch coverage ([2f870a8](https://github.com/Modern-Treasury/modern-treasury-python/commit/2f870a8188291555c61cf97130337d3e237ce380))
+* **internal:** slight transform perf improvement ([#627](https://github.com/Modern-Treasury/modern-treasury-python/issues/627)) ([06d57da](https://github.com/Modern-Treasury/modern-treasury-python/commit/06d57da7c18d51ec0bba69da190e2207c8d89a71))
+* **internal:** update pyright settings ([e5ca8e3](https://github.com/Modern-Treasury/modern-treasury-python/commit/e5ca8e306701e615db36bc158103339b0c946f54))
+* slight wording improvement in README ([#629](https://github.com/Modern-Treasury/modern-treasury-python/issues/629)) ([962b8ff](https://github.com/Modern-Treasury/modern-treasury-python/commit/962b8ffa1fa79389b4fe7744076292989cab7cf2))
+
 ## 1.47.0 (2025-04-03)
 
 Full Changelog: [v1.46.0...v1.47.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.46.0...v1.47.0)
