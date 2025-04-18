@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.47.2 (2025-04-18)
+
+Full Changelog: [v1.47.1...v1.47.2](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.47.1...v1.47.2)
+
+### Chores
+
+* **internal:** update models test ([62c7763](https://github.com/Modern-Treasury/modern-treasury-python/commit/62c7763b1be1d7064fe52331e6e4075ef9cf4f44))
+
 ## 1.47.1 (2025-04-16)
 
 Full Changelog: [v1.47.0...v1.47.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.47.0...v1.47.1)
