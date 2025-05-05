@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import os
 import base64
-from typing import Any, Union, Mapping
+from typing import TYPE_CHECKING, Any, Union, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -24,42 +24,9 @@ from ._types import (
     RequestOptions,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._version import __version__
 from ._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from .resources import (
-    events,
-    ledgers,
-    returns,
-    webhooks,
-    documents,
-    line_items,
-    connections,
-    paper_items,
-    validations,
-    bulk_results,
-    bulk_requests,
-    payment_flows,
-    counterparties,
-    ledger_entries,
-    legal_entities,
-    account_details,
-    ledger_accounts,
-    routing_details,
-    virtual_accounts,
-    expected_payments,
-    external_accounts,
-    ledgerable_events,
-    payment_references,
-    ledger_event_handlers,
-    foreign_exchange_quotes,
-    account_collection_flows,
-    incoming_payment_details,
-    connection_legal_entities,
-    ledger_account_categories,
-    ledger_account_statements,
-    legal_entity_associations,
-    ledger_account_balance_monitors,
-)
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError, ModernTreasuryError
 from ._base_client import (
@@ -68,13 +35,92 @@ from ._base_client import (
     AsyncAPIClient,
     make_request_options,
 )
-from .resources.invoices import invoices
 from .types.ping_response import PingResponse
-from .resources.transactions import transactions
-from .resources.payment_orders import payment_orders
-from .resources.internal_accounts import internal_accounts
-from .resources.ledger_transactions import ledger_transactions
-from .resources.ledger_account_settlements import ledger_account_settlements
+
+if TYPE_CHECKING:
+    from .resources import (
+        events,
+        ledgers,
+        returns,
+        invoices,
+        webhooks,
+        documents,
+        line_items,
+        connections,
+        paper_items,
+        validations,
+        bulk_results,
+        transactions,
+        bulk_requests,
+        payment_flows,
+        counterparties,
+        ledger_entries,
+        legal_entities,
+        payment_orders,
+        account_details,
+        ledger_accounts,
+        routing_details,
+        virtual_accounts,
+        expected_payments,
+        external_accounts,
+        internal_accounts,
+        ledgerable_events,
+        payment_references,
+        ledger_transactions,
+        ledger_event_handlers,
+        foreign_exchange_quotes,
+        account_collection_flows,
+        incoming_payment_details,
+        connection_legal_entities,
+        ledger_account_categories,
+        ledger_account_statements,
+        legal_entity_associations,
+        ledger_account_settlements,
+        ledger_account_balance_monitors,
+    )
+    from .resources.events import Events, AsyncEvents
+    from .resources.ledgers import Ledgers, AsyncLedgers
+    from .resources.returns import Returns, AsyncReturns
+    from .resources.documents import Documents, AsyncDocuments
+    from .resources.line_items import LineItems, AsyncLineItems
+    from .resources.connections import Connections, AsyncConnections
+    from .resources.paper_items import PaperItems, AsyncPaperItems
+    from .resources.validations import Validations, AsyncValidations
+    from .resources.bulk_results import BulkResults, AsyncBulkResults
+    from .resources.bulk_requests import BulkRequests, AsyncBulkRequests
+    from .resources.payment_flows import PaymentFlows, AsyncPaymentFlows
+    from .resources.counterparties import Counterparties, AsyncCounterparties
+    from .resources.ledger_entries import LedgerEntries, AsyncLedgerEntries
+    from .resources.legal_entities import LegalEntities, AsyncLegalEntities
+    from .resources.account_details import AccountDetails, AsyncAccountDetails
+    from .resources.ledger_accounts import LedgerAccounts, AsyncLedgerAccounts
+    from .resources.routing_details import RoutingDetails, AsyncRoutingDetails
+    from .resources.virtual_accounts import VirtualAccounts, AsyncVirtualAccounts
+    from .resources.expected_payments import ExpectedPayments, AsyncExpectedPayments
+    from .resources.external_accounts import ExternalAccounts, AsyncExternalAccounts
+    from .resources.invoices.invoices import Invoices, AsyncInvoices
+    from .resources.ledgerable_events import LedgerableEvents, AsyncLedgerableEvents
+    from .resources.payment_references import PaymentReferences, AsyncPaymentReferences
+    from .resources.ledger_event_handlers import LedgerEventHandlers, AsyncLedgerEventHandlers
+    from .resources.foreign_exchange_quotes import ForeignExchangeQuotes, AsyncForeignExchangeQuotes
+    from .resources.account_collection_flows import AccountCollectionFlows, AsyncAccountCollectionFlows
+    from .resources.incoming_payment_details import IncomingPaymentDetails, AsyncIncomingPaymentDetails
+    from .resources.connection_legal_entities import ConnectionLegalEntities, AsyncConnectionLegalEntities
+    from .resources.ledger_account_categories import LedgerAccountCategories, AsyncLedgerAccountCategories
+    from .resources.ledger_account_statements import LedgerAccountStatements, AsyncLedgerAccountStatements
+    from .resources.legal_entity_associations import LegalEntityAssociations, AsyncLegalEntityAssociations
+    from .resources.transactions.transactions import Transactions, AsyncTransactions
+    from .resources.payment_orders.payment_orders import PaymentOrders, AsyncPaymentOrders
+    from .resources.ledger_account_balance_monitors import (
+        LedgerAccountBalanceMonitors,
+        AsyncLedgerAccountBalanceMonitors,
+    )
+    from .resources.internal_accounts.internal_accounts import InternalAccounts, AsyncInternalAccounts
+    from .resources.ledger_transactions.ledger_transactions import LedgerTransactions, AsyncLedgerTransactions
+    from .resources.ledger_account_settlements.ledger_account_settlements import (
+        LedgerAccountSettlements,
+        AsyncLedgerAccountSettlements,
+    )
 
 __all__ = [
     "Timeout",
@@ -89,47 +135,6 @@ __all__ = [
 
 
 class ModernTreasury(SyncAPIClient):
-    connections: connections.Connections
-    counterparties: counterparties.Counterparties
-    events: events.Events
-    expected_payments: expected_payments.ExpectedPayments
-    external_accounts: external_accounts.ExternalAccounts
-    incoming_payment_details: incoming_payment_details.IncomingPaymentDetails
-    invoices: invoices.Invoices
-    documents: documents.Documents
-    account_collection_flows: account_collection_flows.AccountCollectionFlows
-    account_details: account_details.AccountDetails
-    routing_details: routing_details.RoutingDetails
-    internal_accounts: internal_accounts.InternalAccounts
-    ledgers: ledgers.Ledgers
-    ledgerable_events: ledgerable_events.LedgerableEvents
-    ledger_account_categories: ledger_account_categories.LedgerAccountCategories
-    ledger_accounts: ledger_accounts.LedgerAccounts
-    ledger_account_balance_monitors: ledger_account_balance_monitors.LedgerAccountBalanceMonitors
-    ledger_account_statements: ledger_account_statements.LedgerAccountStatements
-    ledger_entries: ledger_entries.LedgerEntries
-    ledger_event_handlers: ledger_event_handlers.LedgerEventHandlers
-    ledger_transactions: ledger_transactions.LedgerTransactions
-    line_items: line_items.LineItems
-    payment_flows: payment_flows.PaymentFlows
-    payment_orders: payment_orders.PaymentOrders
-    payment_references: payment_references.PaymentReferences
-    returns: returns.Returns
-    transactions: transactions.Transactions
-    validations: validations.Validations
-    paper_items: paper_items.PaperItems
-    webhooks: webhooks.Webhooks
-    virtual_accounts: virtual_accounts.VirtualAccounts
-    bulk_requests: bulk_requests.BulkRequests
-    bulk_results: bulk_results.BulkResults
-    ledger_account_settlements: ledger_account_settlements.LedgerAccountSettlements
-    foreign_exchange_quotes: foreign_exchange_quotes.ForeignExchangeQuotes
-    connection_legal_entities: connection_legal_entities.ConnectionLegalEntities
-    legal_entities: legal_entities.LegalEntities
-    legal_entity_associations: legal_entity_associations.LegalEntityAssociations
-    with_raw_response: ModernTreasuryWithRawResponse
-    with_streaming_response: ModernTreasuryWithStreamedResponse
-
     # client options
     api_key: str
     organization_id: str
@@ -205,46 +210,241 @@ class ModernTreasury(SyncAPIClient):
 
         self._idempotency_header = "Idempotency-Key"
 
-        self.connections = connections.Connections(self)
-        self.counterparties = counterparties.Counterparties(self)
-        self.events = events.Events(self)
-        self.expected_payments = expected_payments.ExpectedPayments(self)
-        self.external_accounts = external_accounts.ExternalAccounts(self)
-        self.incoming_payment_details = incoming_payment_details.IncomingPaymentDetails(self)
-        self.invoices = invoices.Invoices(self)
-        self.documents = documents.Documents(self)
-        self.account_collection_flows = account_collection_flows.AccountCollectionFlows(self)
-        self.account_details = account_details.AccountDetails(self)
-        self.routing_details = routing_details.RoutingDetails(self)
-        self.internal_accounts = internal_accounts.InternalAccounts(self)
-        self.ledgers = ledgers.Ledgers(self)
-        self.ledgerable_events = ledgerable_events.LedgerableEvents(self)
-        self.ledger_account_categories = ledger_account_categories.LedgerAccountCategories(self)
-        self.ledger_accounts = ledger_accounts.LedgerAccounts(self)
-        self.ledger_account_balance_monitors = ledger_account_balance_monitors.LedgerAccountBalanceMonitors(self)
-        self.ledger_account_statements = ledger_account_statements.LedgerAccountStatements(self)
-        self.ledger_entries = ledger_entries.LedgerEntries(self)
-        self.ledger_event_handlers = ledger_event_handlers.LedgerEventHandlers(self)
-        self.ledger_transactions = ledger_transactions.LedgerTransactions(self)
-        self.line_items = line_items.LineItems(self)
-        self.payment_flows = payment_flows.PaymentFlows(self)
-        self.payment_orders = payment_orders.PaymentOrders(self)
-        self.payment_references = payment_references.PaymentReferences(self)
-        self.returns = returns.Returns(self)
-        self.transactions = transactions.Transactions(self)
-        self.validations = validations.Validations(self)
-        self.paper_items = paper_items.PaperItems(self)
-        self.webhooks = webhooks.Webhooks(self)
-        self.virtual_accounts = virtual_accounts.VirtualAccounts(self)
-        self.bulk_requests = bulk_requests.BulkRequests(self)
-        self.bulk_results = bulk_results.BulkResults(self)
-        self.ledger_account_settlements = ledger_account_settlements.LedgerAccountSettlements(self)
-        self.foreign_exchange_quotes = foreign_exchange_quotes.ForeignExchangeQuotes(self)
-        self.connection_legal_entities = connection_legal_entities.ConnectionLegalEntities(self)
-        self.legal_entities = legal_entities.LegalEntities(self)
-        self.legal_entity_associations = legal_entity_associations.LegalEntityAssociations(self)
-        self.with_raw_response = ModernTreasuryWithRawResponse(self)
-        self.with_streaming_response = ModernTreasuryWithStreamedResponse(self)
+    @cached_property
+    def connections(self) -> Connections:
+        from .resources.connections import Connections
+
+        return Connections(self)
+
+    @cached_property
+    def counterparties(self) -> Counterparties:
+        from .resources.counterparties import Counterparties
+
+        return Counterparties(self)
+
+    @cached_property
+    def events(self) -> Events:
+        from .resources.events import Events
+
+        return Events(self)
+
+    @cached_property
+    def webhooks(self) -> webhooks.Webhooks:
+        from .resources.webhooks import Webhooks
+
+        return Webhooks(self)
+
+    @cached_property
+    def expected_payments(self) -> ExpectedPayments:
+        from .resources.expected_payments import ExpectedPayments
+
+        return ExpectedPayments(self)
+
+    @cached_property
+    def external_accounts(self) -> ExternalAccounts:
+        from .resources.external_accounts import ExternalAccounts
+
+        return ExternalAccounts(self)
+
+    @cached_property
+    def incoming_payment_details(self) -> IncomingPaymentDetails:
+        from .resources.incoming_payment_details import IncomingPaymentDetails
+
+        return IncomingPaymentDetails(self)
+
+    @cached_property
+    def invoices(self) -> Invoices:
+        from .resources.invoices import Invoices
+
+        return Invoices(self)
+
+    @cached_property
+    def documents(self) -> Documents:
+        from .resources.documents import Documents
+
+        return Documents(self)
+
+    @cached_property
+    def account_collection_flows(self) -> AccountCollectionFlows:
+        from .resources.account_collection_flows import AccountCollectionFlows
+
+        return AccountCollectionFlows(self)
+
+    @cached_property
+    def account_details(self) -> AccountDetails:
+        from .resources.account_details import AccountDetails
+
+        return AccountDetails(self)
+
+    @cached_property
+    def routing_details(self) -> RoutingDetails:
+        from .resources.routing_details import RoutingDetails
+
+        return RoutingDetails(self)
+
+    @cached_property
+    def internal_accounts(self) -> InternalAccounts:
+        from .resources.internal_accounts import InternalAccounts
+
+        return InternalAccounts(self)
+
+    @cached_property
+    def ledgers(self) -> Ledgers:
+        from .resources.ledgers import Ledgers
+
+        return Ledgers(self)
+
+    @cached_property
+    def ledgerable_events(self) -> LedgerableEvents:
+        from .resources.ledgerable_events import LedgerableEvents
+
+        return LedgerableEvents(self)
+
+    @cached_property
+    def ledger_account_categories(self) -> LedgerAccountCategories:
+        from .resources.ledger_account_categories import LedgerAccountCategories
+
+        return LedgerAccountCategories(self)
+
+    @cached_property
+    def ledger_accounts(self) -> LedgerAccounts:
+        from .resources.ledger_accounts import LedgerAccounts
+
+        return LedgerAccounts(self)
+
+    @cached_property
+    def ledger_account_balance_monitors(self) -> LedgerAccountBalanceMonitors:
+        from .resources.ledger_account_balance_monitors import LedgerAccountBalanceMonitors
+
+        return LedgerAccountBalanceMonitors(self)
+
+    @cached_property
+    def ledger_account_statements(self) -> LedgerAccountStatements:
+        from .resources.ledger_account_statements import LedgerAccountStatements
+
+        return LedgerAccountStatements(self)
+
+    @cached_property
+    def ledger_entries(self) -> LedgerEntries:
+        from .resources.ledger_entries import LedgerEntries
+
+        return LedgerEntries(self)
+
+    @cached_property
+    def ledger_event_handlers(self) -> LedgerEventHandlers:
+        from .resources.ledger_event_handlers import LedgerEventHandlers
+
+        return LedgerEventHandlers(self)
+
+    @cached_property
+    def ledger_transactions(self) -> LedgerTransactions:
+        from .resources.ledger_transactions import LedgerTransactions
+
+        return LedgerTransactions(self)
+
+    @cached_property
+    def line_items(self) -> LineItems:
+        from .resources.line_items import LineItems
+
+        return LineItems(self)
+
+    @cached_property
+    def payment_flows(self) -> PaymentFlows:
+        from .resources.payment_flows import PaymentFlows
+
+        return PaymentFlows(self)
+
+    @cached_property
+    def payment_orders(self) -> PaymentOrders:
+        from .resources.payment_orders import PaymentOrders
+
+        return PaymentOrders(self)
+
+    @cached_property
+    def payment_references(self) -> PaymentReferences:
+        from .resources.payment_references import PaymentReferences
+
+        return PaymentReferences(self)
+
+    @cached_property
+    def returns(self) -> Returns:
+        from .resources.returns import Returns
+
+        return Returns(self)
+
+    @cached_property
+    def transactions(self) -> Transactions:
+        from .resources.transactions import Transactions
+
+        return Transactions(self)
+
+    @cached_property
+    def validations(self) -> Validations:
+        from .resources.validations import Validations
+
+        return Validations(self)
+
+    @cached_property
+    def paper_items(self) -> PaperItems:
+        from .resources.paper_items import PaperItems
+
+        return PaperItems(self)
+
+    @cached_property
+    def virtual_accounts(self) -> VirtualAccounts:
+        from .resources.virtual_accounts import VirtualAccounts
+
+        return VirtualAccounts(self)
+
+    @cached_property
+    def bulk_requests(self) -> BulkRequests:
+        from .resources.bulk_requests import BulkRequests
+
+        return BulkRequests(self)
+
+    @cached_property
+    def bulk_results(self) -> BulkResults:
+        from .resources.bulk_results import BulkResults
+
+        return BulkResults(self)
+
+    @cached_property
+    def ledger_account_settlements(self) -> LedgerAccountSettlements:
+        from .resources.ledger_account_settlements import LedgerAccountSettlements
+
+        return LedgerAccountSettlements(self)
+
+    @cached_property
+    def foreign_exchange_quotes(self) -> ForeignExchangeQuotes:
+        from .resources.foreign_exchange_quotes import ForeignExchangeQuotes
+
+        return ForeignExchangeQuotes(self)
+
+    @cached_property
+    def connection_legal_entities(self) -> ConnectionLegalEntities:
+        from .resources.connection_legal_entities import ConnectionLegalEntities
+
+        return ConnectionLegalEntities(self)
+
+    @cached_property
+    def legal_entities(self) -> LegalEntities:
+        from .resources.legal_entities import LegalEntities
+
+        return LegalEntities(self)
+
+    @cached_property
+    def legal_entity_associations(self) -> LegalEntityAssociations:
+        from .resources.legal_entity_associations import LegalEntityAssociations
+
+        return LegalEntityAssociations(self)
+
+    @cached_property
+    def with_raw_response(self) -> ModernTreasuryWithRawResponse:
+        return ModernTreasuryWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ModernTreasuryWithStreamedResponse:
+        return ModernTreasuryWithStreamedResponse(self)
 
     @property
     @override
@@ -379,47 +579,6 @@ class ModernTreasury(SyncAPIClient):
 
 
 class AsyncModernTreasury(AsyncAPIClient):
-    connections: connections.AsyncConnections
-    counterparties: counterparties.AsyncCounterparties
-    events: events.AsyncEvents
-    expected_payments: expected_payments.AsyncExpectedPayments
-    external_accounts: external_accounts.AsyncExternalAccounts
-    incoming_payment_details: incoming_payment_details.AsyncIncomingPaymentDetails
-    invoices: invoices.AsyncInvoices
-    documents: documents.AsyncDocuments
-    account_collection_flows: account_collection_flows.AsyncAccountCollectionFlows
-    account_details: account_details.AsyncAccountDetails
-    routing_details: routing_details.AsyncRoutingDetails
-    internal_accounts: internal_accounts.AsyncInternalAccounts
-    ledgers: ledgers.AsyncLedgers
-    ledgerable_events: ledgerable_events.AsyncLedgerableEvents
-    ledger_account_categories: ledger_account_categories.AsyncLedgerAccountCategories
-    ledger_accounts: ledger_accounts.AsyncLedgerAccounts
-    ledger_account_balance_monitors: ledger_account_balance_monitors.AsyncLedgerAccountBalanceMonitors
-    ledger_account_statements: ledger_account_statements.AsyncLedgerAccountStatements
-    ledger_entries: ledger_entries.AsyncLedgerEntries
-    ledger_event_handlers: ledger_event_handlers.AsyncLedgerEventHandlers
-    ledger_transactions: ledger_transactions.AsyncLedgerTransactions
-    line_items: line_items.AsyncLineItems
-    payment_flows: payment_flows.AsyncPaymentFlows
-    payment_orders: payment_orders.AsyncPaymentOrders
-    payment_references: payment_references.AsyncPaymentReferences
-    returns: returns.AsyncReturns
-    transactions: transactions.AsyncTransactions
-    validations: validations.AsyncValidations
-    paper_items: paper_items.AsyncPaperItems
-    webhooks: webhooks.AsyncWebhooks
-    virtual_accounts: virtual_accounts.AsyncVirtualAccounts
-    bulk_requests: bulk_requests.AsyncBulkRequests
-    bulk_results: bulk_results.AsyncBulkResults
-    ledger_account_settlements: ledger_account_settlements.AsyncLedgerAccountSettlements
-    foreign_exchange_quotes: foreign_exchange_quotes.AsyncForeignExchangeQuotes
-    connection_legal_entities: connection_legal_entities.AsyncConnectionLegalEntities
-    legal_entities: legal_entities.AsyncLegalEntities
-    legal_entity_associations: legal_entity_associations.AsyncLegalEntityAssociations
-    with_raw_response: AsyncModernTreasuryWithRawResponse
-    with_streaming_response: AsyncModernTreasuryWithStreamedResponse
-
     # client options
     api_key: str
     organization_id: str
@@ -495,46 +654,241 @@ class AsyncModernTreasury(AsyncAPIClient):
 
         self._idempotency_header = "Idempotency-Key"
 
-        self.connections = connections.AsyncConnections(self)
-        self.counterparties = counterparties.AsyncCounterparties(self)
-        self.events = events.AsyncEvents(self)
-        self.expected_payments = expected_payments.AsyncExpectedPayments(self)
-        self.external_accounts = external_accounts.AsyncExternalAccounts(self)
-        self.incoming_payment_details = incoming_payment_details.AsyncIncomingPaymentDetails(self)
-        self.invoices = invoices.AsyncInvoices(self)
-        self.documents = documents.AsyncDocuments(self)
-        self.account_collection_flows = account_collection_flows.AsyncAccountCollectionFlows(self)
-        self.account_details = account_details.AsyncAccountDetails(self)
-        self.routing_details = routing_details.AsyncRoutingDetails(self)
-        self.internal_accounts = internal_accounts.AsyncInternalAccounts(self)
-        self.ledgers = ledgers.AsyncLedgers(self)
-        self.ledgerable_events = ledgerable_events.AsyncLedgerableEvents(self)
-        self.ledger_account_categories = ledger_account_categories.AsyncLedgerAccountCategories(self)
-        self.ledger_accounts = ledger_accounts.AsyncLedgerAccounts(self)
-        self.ledger_account_balance_monitors = ledger_account_balance_monitors.AsyncLedgerAccountBalanceMonitors(self)
-        self.ledger_account_statements = ledger_account_statements.AsyncLedgerAccountStatements(self)
-        self.ledger_entries = ledger_entries.AsyncLedgerEntries(self)
-        self.ledger_event_handlers = ledger_event_handlers.AsyncLedgerEventHandlers(self)
-        self.ledger_transactions = ledger_transactions.AsyncLedgerTransactions(self)
-        self.line_items = line_items.AsyncLineItems(self)
-        self.payment_flows = payment_flows.AsyncPaymentFlows(self)
-        self.payment_orders = payment_orders.AsyncPaymentOrders(self)
-        self.payment_references = payment_references.AsyncPaymentReferences(self)
-        self.returns = returns.AsyncReturns(self)
-        self.transactions = transactions.AsyncTransactions(self)
-        self.validations = validations.AsyncValidations(self)
-        self.paper_items = paper_items.AsyncPaperItems(self)
-        self.webhooks = webhooks.AsyncWebhooks(self)
-        self.virtual_accounts = virtual_accounts.AsyncVirtualAccounts(self)
-        self.bulk_requests = bulk_requests.AsyncBulkRequests(self)
-        self.bulk_results = bulk_results.AsyncBulkResults(self)
-        self.ledger_account_settlements = ledger_account_settlements.AsyncLedgerAccountSettlements(self)
-        self.foreign_exchange_quotes = foreign_exchange_quotes.AsyncForeignExchangeQuotes(self)
-        self.connection_legal_entities = connection_legal_entities.AsyncConnectionLegalEntities(self)
-        self.legal_entities = legal_entities.AsyncLegalEntities(self)
-        self.legal_entity_associations = legal_entity_associations.AsyncLegalEntityAssociations(self)
-        self.with_raw_response = AsyncModernTreasuryWithRawResponse(self)
-        self.with_streaming_response = AsyncModernTreasuryWithStreamedResponse(self)
+    @cached_property
+    def connections(self) -> AsyncConnections:
+        from .resources.connections import AsyncConnections
+
+        return AsyncConnections(self)
+
+    @cached_property
+    def counterparties(self) -> AsyncCounterparties:
+        from .resources.counterparties import AsyncCounterparties
+
+        return AsyncCounterparties(self)
+
+    @cached_property
+    def events(self) -> AsyncEvents:
+        from .resources.events import AsyncEvents
+
+        return AsyncEvents(self)
+
+    @cached_property
+    def webhooks(self) -> webhooks.AsyncWebhooks:
+        from .resources.webhooks import AsyncWebhooks
+
+        return AsyncWebhooks(self)
+
+    @cached_property
+    def expected_payments(self) -> AsyncExpectedPayments:
+        from .resources.expected_payments import AsyncExpectedPayments
+
+        return AsyncExpectedPayments(self)
+
+    @cached_property
+    def external_accounts(self) -> AsyncExternalAccounts:
+        from .resources.external_accounts import AsyncExternalAccounts
+
+        return AsyncExternalAccounts(self)
+
+    @cached_property
+    def incoming_payment_details(self) -> AsyncIncomingPaymentDetails:
+        from .resources.incoming_payment_details import AsyncIncomingPaymentDetails
+
+        return AsyncIncomingPaymentDetails(self)
+
+    @cached_property
+    def invoices(self) -> AsyncInvoices:
+        from .resources.invoices import AsyncInvoices
+
+        return AsyncInvoices(self)
+
+    @cached_property
+    def documents(self) -> AsyncDocuments:
+        from .resources.documents import AsyncDocuments
+
+        return AsyncDocuments(self)
+
+    @cached_property
+    def account_collection_flows(self) -> AsyncAccountCollectionFlows:
+        from .resources.account_collection_flows import AsyncAccountCollectionFlows
+
+        return AsyncAccountCollectionFlows(self)
+
+    @cached_property
+    def account_details(self) -> AsyncAccountDetails:
+        from .resources.account_details import AsyncAccountDetails
+
+        return AsyncAccountDetails(self)
+
+    @cached_property
+    def routing_details(self) -> AsyncRoutingDetails:
+        from .resources.routing_details import AsyncRoutingDetails
+
+        return AsyncRoutingDetails(self)
+
+    @cached_property
+    def internal_accounts(self) -> AsyncInternalAccounts:
+        from .resources.internal_accounts import AsyncInternalAccounts
+
+        return AsyncInternalAccounts(self)
+
+    @cached_property
+    def ledgers(self) -> AsyncLedgers:
+        from .resources.ledgers import AsyncLedgers
+
+        return AsyncLedgers(self)
+
+    @cached_property
+    def ledgerable_events(self) -> AsyncLedgerableEvents:
+        from .resources.ledgerable_events import AsyncLedgerableEvents
+
+        return AsyncLedgerableEvents(self)
+
+    @cached_property
+    def ledger_account_categories(self) -> AsyncLedgerAccountCategories:
+        from .resources.ledger_account_categories import AsyncLedgerAccountCategories
+
+        return AsyncLedgerAccountCategories(self)
+
+    @cached_property
+    def ledger_accounts(self) -> AsyncLedgerAccounts:
+        from .resources.ledger_accounts import AsyncLedgerAccounts
+
+        return AsyncLedgerAccounts(self)
+
+    @cached_property
+    def ledger_account_balance_monitors(self) -> AsyncLedgerAccountBalanceMonitors:
+        from .resources.ledger_account_balance_monitors import AsyncLedgerAccountBalanceMonitors
+
+        return AsyncLedgerAccountBalanceMonitors(self)
+
+    @cached_property
+    def ledger_account_statements(self) -> AsyncLedgerAccountStatements:
+        from .resources.ledger_account_statements import AsyncLedgerAccountStatements
+
+        return AsyncLedgerAccountStatements(self)
+
+    @cached_property
+    def ledger_entries(self) -> AsyncLedgerEntries:
+        from .resources.ledger_entries import AsyncLedgerEntries
+
+        return AsyncLedgerEntries(self)
+
+    @cached_property
+    def ledger_event_handlers(self) -> AsyncLedgerEventHandlers:
+        from .resources.ledger_event_handlers import AsyncLedgerEventHandlers
+
+        return AsyncLedgerEventHandlers(self)
+
+    @cached_property
+    def ledger_transactions(self) -> AsyncLedgerTransactions:
+        from .resources.ledger_transactions import AsyncLedgerTransactions
+
+        return AsyncLedgerTransactions(self)
+
+    @cached_property
+    def line_items(self) -> AsyncLineItems:
+        from .resources.line_items import AsyncLineItems
+
+        return AsyncLineItems(self)
+
+    @cached_property
+    def payment_flows(self) -> AsyncPaymentFlows:
+        from .resources.payment_flows import AsyncPaymentFlows
+
+        return AsyncPaymentFlows(self)
+
+    @cached_property
+    def payment_orders(self) -> AsyncPaymentOrders:
+        from .resources.payment_orders import AsyncPaymentOrders
+
+        return AsyncPaymentOrders(self)
+
+    @cached_property
+    def payment_references(self) -> AsyncPaymentReferences:
+        from .resources.payment_references import AsyncPaymentReferences
+
+        return AsyncPaymentReferences(self)
+
+    @cached_property
+    def returns(self) -> AsyncReturns:
+        from .resources.returns import AsyncReturns
+
+        return AsyncReturns(self)
+
+    @cached_property
+    def transactions(self) -> AsyncTransactions:
+        from .resources.transactions import AsyncTransactions
+
+        return AsyncTransactions(self)
+
+    @cached_property
+    def validations(self) -> AsyncValidations:
+        from .resources.validations import AsyncValidations
+
+        return AsyncValidations(self)
+
+    @cached_property
+    def paper_items(self) -> AsyncPaperItems:
+        from .resources.paper_items import AsyncPaperItems
+
+        return AsyncPaperItems(self)
+
+    @cached_property
+    def virtual_accounts(self) -> AsyncVirtualAccounts:
+        from .resources.virtual_accounts import AsyncVirtualAccounts
+
+        return AsyncVirtualAccounts(self)
+
+    @cached_property
+    def bulk_requests(self) -> AsyncBulkRequests:
+        from .resources.bulk_requests import AsyncBulkRequests
+
+        return AsyncBulkRequests(self)
+
+    @cached_property
+    def bulk_results(self) -> AsyncBulkResults:
+        from .resources.bulk_results import AsyncBulkResults
+
+        return AsyncBulkResults(self)
+
+    @cached_property
+    def ledger_account_settlements(self) -> AsyncLedgerAccountSettlements:
+        from .resources.ledger_account_settlements import AsyncLedgerAccountSettlements
+
+        return AsyncLedgerAccountSettlements(self)
+
+    @cached_property
+    def foreign_exchange_quotes(self) -> AsyncForeignExchangeQuotes:
+        from .resources.foreign_exchange_quotes import AsyncForeignExchangeQuotes
+
+        return AsyncForeignExchangeQuotes(self)
+
+    @cached_property
+    def connection_legal_entities(self) -> AsyncConnectionLegalEntities:
+        from .resources.connection_legal_entities import AsyncConnectionLegalEntities
+
+        return AsyncConnectionLegalEntities(self)
+
+    @cached_property
+    def legal_entities(self) -> AsyncLegalEntities:
+        from .resources.legal_entities import AsyncLegalEntities
+
+        return AsyncLegalEntities(self)
+
+    @cached_property
+    def legal_entity_associations(self) -> AsyncLegalEntityAssociations:
+        from .resources.legal_entity_associations import AsyncLegalEntityAssociations
+
+        return AsyncLegalEntityAssociations(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncModernTreasuryWithRawResponse:
+        return AsyncModernTreasuryWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncModernTreasuryWithStreamedResponse:
+        return AsyncModernTreasuryWithStreamedResponse(self)
 
     @property
     @override
@@ -669,279 +1023,945 @@ class AsyncModernTreasury(AsyncAPIClient):
 
 
 class ModernTreasuryWithRawResponse:
+    _client: ModernTreasury
+
     def __init__(self, client: ModernTreasury) -> None:
-        self.connections = connections.ConnectionsWithRawResponse(client.connections)
-        self.counterparties = counterparties.CounterpartiesWithRawResponse(client.counterparties)
-        self.events = events.EventsWithRawResponse(client.events)
-        self.expected_payments = expected_payments.ExpectedPaymentsWithRawResponse(client.expected_payments)
-        self.external_accounts = external_accounts.ExternalAccountsWithRawResponse(client.external_accounts)
-        self.incoming_payment_details = incoming_payment_details.IncomingPaymentDetailsWithRawResponse(
-            client.incoming_payment_details
-        )
-        self.invoices = invoices.InvoicesWithRawResponse(client.invoices)
-        self.documents = documents.DocumentsWithRawResponse(client.documents)
-        self.account_collection_flows = account_collection_flows.AccountCollectionFlowsWithRawResponse(
-            client.account_collection_flows
-        )
-        self.account_details = account_details.AccountDetailsWithRawResponse(client.account_details)
-        self.routing_details = routing_details.RoutingDetailsWithRawResponse(client.routing_details)
-        self.internal_accounts = internal_accounts.InternalAccountsWithRawResponse(client.internal_accounts)
-        self.ledgers = ledgers.LedgersWithRawResponse(client.ledgers)
-        self.ledgerable_events = ledgerable_events.LedgerableEventsWithRawResponse(client.ledgerable_events)
-        self.ledger_account_categories = ledger_account_categories.LedgerAccountCategoriesWithRawResponse(
-            client.ledger_account_categories
-        )
-        self.ledger_accounts = ledger_accounts.LedgerAccountsWithRawResponse(client.ledger_accounts)
-        self.ledger_account_balance_monitors = (
-            ledger_account_balance_monitors.LedgerAccountBalanceMonitorsWithRawResponse(
-                client.ledger_account_balance_monitors
-            )
-        )
-        self.ledger_account_statements = ledger_account_statements.LedgerAccountStatementsWithRawResponse(
-            client.ledger_account_statements
-        )
-        self.ledger_entries = ledger_entries.LedgerEntriesWithRawResponse(client.ledger_entries)
-        self.ledger_event_handlers = ledger_event_handlers.LedgerEventHandlersWithRawResponse(
-            client.ledger_event_handlers
-        )
-        self.ledger_transactions = ledger_transactions.LedgerTransactionsWithRawResponse(client.ledger_transactions)
-        self.line_items = line_items.LineItemsWithRawResponse(client.line_items)
-        self.payment_flows = payment_flows.PaymentFlowsWithRawResponse(client.payment_flows)
-        self.payment_orders = payment_orders.PaymentOrdersWithRawResponse(client.payment_orders)
-        self.payment_references = payment_references.PaymentReferencesWithRawResponse(client.payment_references)
-        self.returns = returns.ReturnsWithRawResponse(client.returns)
-        self.transactions = transactions.TransactionsWithRawResponse(client.transactions)
-        self.validations = validations.ValidationsWithRawResponse(client.validations)
-        self.paper_items = paper_items.PaperItemsWithRawResponse(client.paper_items)
-        self.virtual_accounts = virtual_accounts.VirtualAccountsWithRawResponse(client.virtual_accounts)
-        self.bulk_requests = bulk_requests.BulkRequestsWithRawResponse(client.bulk_requests)
-        self.bulk_results = bulk_results.BulkResultsWithRawResponse(client.bulk_results)
-        self.ledger_account_settlements = ledger_account_settlements.LedgerAccountSettlementsWithRawResponse(
-            client.ledger_account_settlements
-        )
-        self.foreign_exchange_quotes = foreign_exchange_quotes.ForeignExchangeQuotesWithRawResponse(
-            client.foreign_exchange_quotes
-        )
-        self.connection_legal_entities = connection_legal_entities.ConnectionLegalEntitiesWithRawResponse(
-            client.connection_legal_entities
-        )
-        self.legal_entities = legal_entities.LegalEntitiesWithRawResponse(client.legal_entities)
-        self.legal_entity_associations = legal_entity_associations.LegalEntityAssociationsWithRawResponse(
-            client.legal_entity_associations
-        )
+        self._client = client
 
         self.ping = _legacy_response.to_raw_response_wrapper(
             client.ping,
         )
 
+    @cached_property
+    def connections(self) -> connections.ConnectionsWithRawResponse:
+        from .resources.connections import ConnectionsWithRawResponse
+
+        return ConnectionsWithRawResponse(self._client.connections)
+
+    @cached_property
+    def counterparties(self) -> counterparties.CounterpartiesWithRawResponse:
+        from .resources.counterparties import CounterpartiesWithRawResponse
+
+        return CounterpartiesWithRawResponse(self._client.counterparties)
+
+    @cached_property
+    def events(self) -> events.EventsWithRawResponse:
+        from .resources.events import EventsWithRawResponse
+
+        return EventsWithRawResponse(self._client.events)
+
+    @cached_property
+    def expected_payments(self) -> expected_payments.ExpectedPaymentsWithRawResponse:
+        from .resources.expected_payments import ExpectedPaymentsWithRawResponse
+
+        return ExpectedPaymentsWithRawResponse(self._client.expected_payments)
+
+    @cached_property
+    def external_accounts(self) -> external_accounts.ExternalAccountsWithRawResponse:
+        from .resources.external_accounts import ExternalAccountsWithRawResponse
+
+        return ExternalAccountsWithRawResponse(self._client.external_accounts)
+
+    @cached_property
+    def incoming_payment_details(self) -> incoming_payment_details.IncomingPaymentDetailsWithRawResponse:
+        from .resources.incoming_payment_details import IncomingPaymentDetailsWithRawResponse
+
+        return IncomingPaymentDetailsWithRawResponse(self._client.incoming_payment_details)
+
+    @cached_property
+    def invoices(self) -> invoices.InvoicesWithRawResponse:
+        from .resources.invoices import InvoicesWithRawResponse
+
+        return InvoicesWithRawResponse(self._client.invoices)
+
+    @cached_property
+    def documents(self) -> documents.DocumentsWithRawResponse:
+        from .resources.documents import DocumentsWithRawResponse
+
+        return DocumentsWithRawResponse(self._client.documents)
+
+    @cached_property
+    def account_collection_flows(self) -> account_collection_flows.AccountCollectionFlowsWithRawResponse:
+        from .resources.account_collection_flows import AccountCollectionFlowsWithRawResponse
+
+        return AccountCollectionFlowsWithRawResponse(self._client.account_collection_flows)
+
+    @cached_property
+    def account_details(self) -> account_details.AccountDetailsWithRawResponse:
+        from .resources.account_details import AccountDetailsWithRawResponse
+
+        return AccountDetailsWithRawResponse(self._client.account_details)
+
+    @cached_property
+    def routing_details(self) -> routing_details.RoutingDetailsWithRawResponse:
+        from .resources.routing_details import RoutingDetailsWithRawResponse
+
+        return RoutingDetailsWithRawResponse(self._client.routing_details)
+
+    @cached_property
+    def internal_accounts(self) -> internal_accounts.InternalAccountsWithRawResponse:
+        from .resources.internal_accounts import InternalAccountsWithRawResponse
+
+        return InternalAccountsWithRawResponse(self._client.internal_accounts)
+
+    @cached_property
+    def ledgers(self) -> ledgers.LedgersWithRawResponse:
+        from .resources.ledgers import LedgersWithRawResponse
+
+        return LedgersWithRawResponse(self._client.ledgers)
+
+    @cached_property
+    def ledgerable_events(self) -> ledgerable_events.LedgerableEventsWithRawResponse:
+        from .resources.ledgerable_events import LedgerableEventsWithRawResponse
+
+        return LedgerableEventsWithRawResponse(self._client.ledgerable_events)
+
+    @cached_property
+    def ledger_account_categories(self) -> ledger_account_categories.LedgerAccountCategoriesWithRawResponse:
+        from .resources.ledger_account_categories import LedgerAccountCategoriesWithRawResponse
+
+        return LedgerAccountCategoriesWithRawResponse(self._client.ledger_account_categories)
+
+    @cached_property
+    def ledger_accounts(self) -> ledger_accounts.LedgerAccountsWithRawResponse:
+        from .resources.ledger_accounts import LedgerAccountsWithRawResponse
+
+        return LedgerAccountsWithRawResponse(self._client.ledger_accounts)
+
+    @cached_property
+    def ledger_account_balance_monitors(
+        self,
+    ) -> ledger_account_balance_monitors.LedgerAccountBalanceMonitorsWithRawResponse:
+        from .resources.ledger_account_balance_monitors import LedgerAccountBalanceMonitorsWithRawResponse
+
+        return LedgerAccountBalanceMonitorsWithRawResponse(self._client.ledger_account_balance_monitors)
+
+    @cached_property
+    def ledger_account_statements(self) -> ledger_account_statements.LedgerAccountStatementsWithRawResponse:
+        from .resources.ledger_account_statements import LedgerAccountStatementsWithRawResponse
+
+        return LedgerAccountStatementsWithRawResponse(self._client.ledger_account_statements)
+
+    @cached_property
+    def ledger_entries(self) -> ledger_entries.LedgerEntriesWithRawResponse:
+        from .resources.ledger_entries import LedgerEntriesWithRawResponse
+
+        return LedgerEntriesWithRawResponse(self._client.ledger_entries)
+
+    @cached_property
+    def ledger_event_handlers(self) -> ledger_event_handlers.LedgerEventHandlersWithRawResponse:
+        from .resources.ledger_event_handlers import LedgerEventHandlersWithRawResponse
+
+        return LedgerEventHandlersWithRawResponse(self._client.ledger_event_handlers)
+
+    @cached_property
+    def ledger_transactions(self) -> ledger_transactions.LedgerTransactionsWithRawResponse:
+        from .resources.ledger_transactions import LedgerTransactionsWithRawResponse
+
+        return LedgerTransactionsWithRawResponse(self._client.ledger_transactions)
+
+    @cached_property
+    def line_items(self) -> line_items.LineItemsWithRawResponse:
+        from .resources.line_items import LineItemsWithRawResponse
+
+        return LineItemsWithRawResponse(self._client.line_items)
+
+    @cached_property
+    def payment_flows(self) -> payment_flows.PaymentFlowsWithRawResponse:
+        from .resources.payment_flows import PaymentFlowsWithRawResponse
+
+        return PaymentFlowsWithRawResponse(self._client.payment_flows)
+
+    @cached_property
+    def payment_orders(self) -> payment_orders.PaymentOrdersWithRawResponse:
+        from .resources.payment_orders import PaymentOrdersWithRawResponse
+
+        return PaymentOrdersWithRawResponse(self._client.payment_orders)
+
+    @cached_property
+    def payment_references(self) -> payment_references.PaymentReferencesWithRawResponse:
+        from .resources.payment_references import PaymentReferencesWithRawResponse
+
+        return PaymentReferencesWithRawResponse(self._client.payment_references)
+
+    @cached_property
+    def returns(self) -> returns.ReturnsWithRawResponse:
+        from .resources.returns import ReturnsWithRawResponse
+
+        return ReturnsWithRawResponse(self._client.returns)
+
+    @cached_property
+    def transactions(self) -> transactions.TransactionsWithRawResponse:
+        from .resources.transactions import TransactionsWithRawResponse
+
+        return TransactionsWithRawResponse(self._client.transactions)
+
+    @cached_property
+    def validations(self) -> validations.ValidationsWithRawResponse:
+        from .resources.validations import ValidationsWithRawResponse
+
+        return ValidationsWithRawResponse(self._client.validations)
+
+    @cached_property
+    def paper_items(self) -> paper_items.PaperItemsWithRawResponse:
+        from .resources.paper_items import PaperItemsWithRawResponse
+
+        return PaperItemsWithRawResponse(self._client.paper_items)
+
+    @cached_property
+    def virtual_accounts(self) -> virtual_accounts.VirtualAccountsWithRawResponse:
+        from .resources.virtual_accounts import VirtualAccountsWithRawResponse
+
+        return VirtualAccountsWithRawResponse(self._client.virtual_accounts)
+
+    @cached_property
+    def bulk_requests(self) -> bulk_requests.BulkRequestsWithRawResponse:
+        from .resources.bulk_requests import BulkRequestsWithRawResponse
+
+        return BulkRequestsWithRawResponse(self._client.bulk_requests)
+
+    @cached_property
+    def bulk_results(self) -> bulk_results.BulkResultsWithRawResponse:
+        from .resources.bulk_results import BulkResultsWithRawResponse
+
+        return BulkResultsWithRawResponse(self._client.bulk_results)
+
+    @cached_property
+    def ledger_account_settlements(self) -> ledger_account_settlements.LedgerAccountSettlementsWithRawResponse:
+        from .resources.ledger_account_settlements import LedgerAccountSettlementsWithRawResponse
+
+        return LedgerAccountSettlementsWithRawResponse(self._client.ledger_account_settlements)
+
+    @cached_property
+    def foreign_exchange_quotes(self) -> foreign_exchange_quotes.ForeignExchangeQuotesWithRawResponse:
+        from .resources.foreign_exchange_quotes import ForeignExchangeQuotesWithRawResponse
+
+        return ForeignExchangeQuotesWithRawResponse(self._client.foreign_exchange_quotes)
+
+    @cached_property
+    def connection_legal_entities(self) -> connection_legal_entities.ConnectionLegalEntitiesWithRawResponse:
+        from .resources.connection_legal_entities import ConnectionLegalEntitiesWithRawResponse
+
+        return ConnectionLegalEntitiesWithRawResponse(self._client.connection_legal_entities)
+
+    @cached_property
+    def legal_entities(self) -> legal_entities.LegalEntitiesWithRawResponse:
+        from .resources.legal_entities import LegalEntitiesWithRawResponse
+
+        return LegalEntitiesWithRawResponse(self._client.legal_entities)
+
+    @cached_property
+    def legal_entity_associations(self) -> legal_entity_associations.LegalEntityAssociationsWithRawResponse:
+        from .resources.legal_entity_associations import LegalEntityAssociationsWithRawResponse
+
+        return LegalEntityAssociationsWithRawResponse(self._client.legal_entity_associations)
+
 
 class AsyncModernTreasuryWithRawResponse:
+    _client: AsyncModernTreasury
+
     def __init__(self, client: AsyncModernTreasury) -> None:
-        self.connections = connections.AsyncConnectionsWithRawResponse(client.connections)
-        self.counterparties = counterparties.AsyncCounterpartiesWithRawResponse(client.counterparties)
-        self.events = events.AsyncEventsWithRawResponse(client.events)
-        self.expected_payments = expected_payments.AsyncExpectedPaymentsWithRawResponse(client.expected_payments)
-        self.external_accounts = external_accounts.AsyncExternalAccountsWithRawResponse(client.external_accounts)
-        self.incoming_payment_details = incoming_payment_details.AsyncIncomingPaymentDetailsWithRawResponse(
-            client.incoming_payment_details
-        )
-        self.invoices = invoices.AsyncInvoicesWithRawResponse(client.invoices)
-        self.documents = documents.AsyncDocumentsWithRawResponse(client.documents)
-        self.account_collection_flows = account_collection_flows.AsyncAccountCollectionFlowsWithRawResponse(
-            client.account_collection_flows
-        )
-        self.account_details = account_details.AsyncAccountDetailsWithRawResponse(client.account_details)
-        self.routing_details = routing_details.AsyncRoutingDetailsWithRawResponse(client.routing_details)
-        self.internal_accounts = internal_accounts.AsyncInternalAccountsWithRawResponse(client.internal_accounts)
-        self.ledgers = ledgers.AsyncLedgersWithRawResponse(client.ledgers)
-        self.ledgerable_events = ledgerable_events.AsyncLedgerableEventsWithRawResponse(client.ledgerable_events)
-        self.ledger_account_categories = ledger_account_categories.AsyncLedgerAccountCategoriesWithRawResponse(
-            client.ledger_account_categories
-        )
-        self.ledger_accounts = ledger_accounts.AsyncLedgerAccountsWithRawResponse(client.ledger_accounts)
-        self.ledger_account_balance_monitors = (
-            ledger_account_balance_monitors.AsyncLedgerAccountBalanceMonitorsWithRawResponse(
-                client.ledger_account_balance_monitors
-            )
-        )
-        self.ledger_account_statements = ledger_account_statements.AsyncLedgerAccountStatementsWithRawResponse(
-            client.ledger_account_statements
-        )
-        self.ledger_entries = ledger_entries.AsyncLedgerEntriesWithRawResponse(client.ledger_entries)
-        self.ledger_event_handlers = ledger_event_handlers.AsyncLedgerEventHandlersWithRawResponse(
-            client.ledger_event_handlers
-        )
-        self.ledger_transactions = ledger_transactions.AsyncLedgerTransactionsWithRawResponse(
-            client.ledger_transactions
-        )
-        self.line_items = line_items.AsyncLineItemsWithRawResponse(client.line_items)
-        self.payment_flows = payment_flows.AsyncPaymentFlowsWithRawResponse(client.payment_flows)
-        self.payment_orders = payment_orders.AsyncPaymentOrdersWithRawResponse(client.payment_orders)
-        self.payment_references = payment_references.AsyncPaymentReferencesWithRawResponse(client.payment_references)
-        self.returns = returns.AsyncReturnsWithRawResponse(client.returns)
-        self.transactions = transactions.AsyncTransactionsWithRawResponse(client.transactions)
-        self.validations = validations.AsyncValidationsWithRawResponse(client.validations)
-        self.paper_items = paper_items.AsyncPaperItemsWithRawResponse(client.paper_items)
-        self.virtual_accounts = virtual_accounts.AsyncVirtualAccountsWithRawResponse(client.virtual_accounts)
-        self.bulk_requests = bulk_requests.AsyncBulkRequestsWithRawResponse(client.bulk_requests)
-        self.bulk_results = bulk_results.AsyncBulkResultsWithRawResponse(client.bulk_results)
-        self.ledger_account_settlements = ledger_account_settlements.AsyncLedgerAccountSettlementsWithRawResponse(
-            client.ledger_account_settlements
-        )
-        self.foreign_exchange_quotes = foreign_exchange_quotes.AsyncForeignExchangeQuotesWithRawResponse(
-            client.foreign_exchange_quotes
-        )
-        self.connection_legal_entities = connection_legal_entities.AsyncConnectionLegalEntitiesWithRawResponse(
-            client.connection_legal_entities
-        )
-        self.legal_entities = legal_entities.AsyncLegalEntitiesWithRawResponse(client.legal_entities)
-        self.legal_entity_associations = legal_entity_associations.AsyncLegalEntityAssociationsWithRawResponse(
-            client.legal_entity_associations
-        )
+        self._client = client
 
         self.ping = _legacy_response.async_to_raw_response_wrapper(
             client.ping,
         )
 
+    @cached_property
+    def connections(self) -> connections.AsyncConnectionsWithRawResponse:
+        from .resources.connections import AsyncConnectionsWithRawResponse
+
+        return AsyncConnectionsWithRawResponse(self._client.connections)
+
+    @cached_property
+    def counterparties(self) -> counterparties.AsyncCounterpartiesWithRawResponse:
+        from .resources.counterparties import AsyncCounterpartiesWithRawResponse
+
+        return AsyncCounterpartiesWithRawResponse(self._client.counterparties)
+
+    @cached_property
+    def events(self) -> events.AsyncEventsWithRawResponse:
+        from .resources.events import AsyncEventsWithRawResponse
+
+        return AsyncEventsWithRawResponse(self._client.events)
+
+    @cached_property
+    def expected_payments(self) -> expected_payments.AsyncExpectedPaymentsWithRawResponse:
+        from .resources.expected_payments import AsyncExpectedPaymentsWithRawResponse
+
+        return AsyncExpectedPaymentsWithRawResponse(self._client.expected_payments)
+
+    @cached_property
+    def external_accounts(self) -> external_accounts.AsyncExternalAccountsWithRawResponse:
+        from .resources.external_accounts import AsyncExternalAccountsWithRawResponse
+
+        return AsyncExternalAccountsWithRawResponse(self._client.external_accounts)
+
+    @cached_property
+    def incoming_payment_details(self) -> incoming_payment_details.AsyncIncomingPaymentDetailsWithRawResponse:
+        from .resources.incoming_payment_details import AsyncIncomingPaymentDetailsWithRawResponse
+
+        return AsyncIncomingPaymentDetailsWithRawResponse(self._client.incoming_payment_details)
+
+    @cached_property
+    def invoices(self) -> invoices.AsyncInvoicesWithRawResponse:
+        from .resources.invoices import AsyncInvoicesWithRawResponse
+
+        return AsyncInvoicesWithRawResponse(self._client.invoices)
+
+    @cached_property
+    def documents(self) -> documents.AsyncDocumentsWithRawResponse:
+        from .resources.documents import AsyncDocumentsWithRawResponse
+
+        return AsyncDocumentsWithRawResponse(self._client.documents)
+
+    @cached_property
+    def account_collection_flows(self) -> account_collection_flows.AsyncAccountCollectionFlowsWithRawResponse:
+        from .resources.account_collection_flows import AsyncAccountCollectionFlowsWithRawResponse
+
+        return AsyncAccountCollectionFlowsWithRawResponse(self._client.account_collection_flows)
+
+    @cached_property
+    def account_details(self) -> account_details.AsyncAccountDetailsWithRawResponse:
+        from .resources.account_details import AsyncAccountDetailsWithRawResponse
+
+        return AsyncAccountDetailsWithRawResponse(self._client.account_details)
+
+    @cached_property
+    def routing_details(self) -> routing_details.AsyncRoutingDetailsWithRawResponse:
+        from .resources.routing_details import AsyncRoutingDetailsWithRawResponse
+
+        return AsyncRoutingDetailsWithRawResponse(self._client.routing_details)
+
+    @cached_property
+    def internal_accounts(self) -> internal_accounts.AsyncInternalAccountsWithRawResponse:
+        from .resources.internal_accounts import AsyncInternalAccountsWithRawResponse
+
+        return AsyncInternalAccountsWithRawResponse(self._client.internal_accounts)
+
+    @cached_property
+    def ledgers(self) -> ledgers.AsyncLedgersWithRawResponse:
+        from .resources.ledgers import AsyncLedgersWithRawResponse
+
+        return AsyncLedgersWithRawResponse(self._client.ledgers)
+
+    @cached_property
+    def ledgerable_events(self) -> ledgerable_events.AsyncLedgerableEventsWithRawResponse:
+        from .resources.ledgerable_events import AsyncLedgerableEventsWithRawResponse
+
+        return AsyncLedgerableEventsWithRawResponse(self._client.ledgerable_events)
+
+    @cached_property
+    def ledger_account_categories(self) -> ledger_account_categories.AsyncLedgerAccountCategoriesWithRawResponse:
+        from .resources.ledger_account_categories import AsyncLedgerAccountCategoriesWithRawResponse
+
+        return AsyncLedgerAccountCategoriesWithRawResponse(self._client.ledger_account_categories)
+
+    @cached_property
+    def ledger_accounts(self) -> ledger_accounts.AsyncLedgerAccountsWithRawResponse:
+        from .resources.ledger_accounts import AsyncLedgerAccountsWithRawResponse
+
+        return AsyncLedgerAccountsWithRawResponse(self._client.ledger_accounts)
+
+    @cached_property
+    def ledger_account_balance_monitors(
+        self,
+    ) -> ledger_account_balance_monitors.AsyncLedgerAccountBalanceMonitorsWithRawResponse:
+        from .resources.ledger_account_balance_monitors import AsyncLedgerAccountBalanceMonitorsWithRawResponse
+
+        return AsyncLedgerAccountBalanceMonitorsWithRawResponse(self._client.ledger_account_balance_monitors)
+
+    @cached_property
+    def ledger_account_statements(self) -> ledger_account_statements.AsyncLedgerAccountStatementsWithRawResponse:
+        from .resources.ledger_account_statements import AsyncLedgerAccountStatementsWithRawResponse
+
+        return AsyncLedgerAccountStatementsWithRawResponse(self._client.ledger_account_statements)
+
+    @cached_property
+    def ledger_entries(self) -> ledger_entries.AsyncLedgerEntriesWithRawResponse:
+        from .resources.ledger_entries import AsyncLedgerEntriesWithRawResponse
+
+        return AsyncLedgerEntriesWithRawResponse(self._client.ledger_entries)
+
+    @cached_property
+    def ledger_event_handlers(self) -> ledger_event_handlers.AsyncLedgerEventHandlersWithRawResponse:
+        from .resources.ledger_event_handlers import AsyncLedgerEventHandlersWithRawResponse
+
+        return AsyncLedgerEventHandlersWithRawResponse(self._client.ledger_event_handlers)
+
+    @cached_property
+    def ledger_transactions(self) -> ledger_transactions.AsyncLedgerTransactionsWithRawResponse:
+        from .resources.ledger_transactions import AsyncLedgerTransactionsWithRawResponse
+
+        return AsyncLedgerTransactionsWithRawResponse(self._client.ledger_transactions)
+
+    @cached_property
+    def line_items(self) -> line_items.AsyncLineItemsWithRawResponse:
+        from .resources.line_items import AsyncLineItemsWithRawResponse
+
+        return AsyncLineItemsWithRawResponse(self._client.line_items)
+
+    @cached_property
+    def payment_flows(self) -> payment_flows.AsyncPaymentFlowsWithRawResponse:
+        from .resources.payment_flows import AsyncPaymentFlowsWithRawResponse
+
+        return AsyncPaymentFlowsWithRawResponse(self._client.payment_flows)
+
+    @cached_property
+    def payment_orders(self) -> payment_orders.AsyncPaymentOrdersWithRawResponse:
+        from .resources.payment_orders import AsyncPaymentOrdersWithRawResponse
+
+        return AsyncPaymentOrdersWithRawResponse(self._client.payment_orders)
+
+    @cached_property
+    def payment_references(self) -> payment_references.AsyncPaymentReferencesWithRawResponse:
+        from .resources.payment_references import AsyncPaymentReferencesWithRawResponse
+
+        return AsyncPaymentReferencesWithRawResponse(self._client.payment_references)
+
+    @cached_property
+    def returns(self) -> returns.AsyncReturnsWithRawResponse:
+        from .resources.returns import AsyncReturnsWithRawResponse
+
+        return AsyncReturnsWithRawResponse(self._client.returns)
+
+    @cached_property
+    def transactions(self) -> transactions.AsyncTransactionsWithRawResponse:
+        from .resources.transactions import AsyncTransactionsWithRawResponse
+
+        return AsyncTransactionsWithRawResponse(self._client.transactions)
+
+    @cached_property
+    def validations(self) -> validations.AsyncValidationsWithRawResponse:
+        from .resources.validations import AsyncValidationsWithRawResponse
+
+        return AsyncValidationsWithRawResponse(self._client.validations)
+
+    @cached_property
+    def paper_items(self) -> paper_items.AsyncPaperItemsWithRawResponse:
+        from .resources.paper_items import AsyncPaperItemsWithRawResponse
+
+        return AsyncPaperItemsWithRawResponse(self._client.paper_items)
+
+    @cached_property
+    def virtual_accounts(self) -> virtual_accounts.AsyncVirtualAccountsWithRawResponse:
+        from .resources.virtual_accounts import AsyncVirtualAccountsWithRawResponse
+
+        return AsyncVirtualAccountsWithRawResponse(self._client.virtual_accounts)
+
+    @cached_property
+    def bulk_requests(self) -> bulk_requests.AsyncBulkRequestsWithRawResponse:
+        from .resources.bulk_requests import AsyncBulkRequestsWithRawResponse
+
+        return AsyncBulkRequestsWithRawResponse(self._client.bulk_requests)
+
+    @cached_property
+    def bulk_results(self) -> bulk_results.AsyncBulkResultsWithRawResponse:
+        from .resources.bulk_results import AsyncBulkResultsWithRawResponse
+
+        return AsyncBulkResultsWithRawResponse(self._client.bulk_results)
+
+    @cached_property
+    def ledger_account_settlements(self) -> ledger_account_settlements.AsyncLedgerAccountSettlementsWithRawResponse:
+        from .resources.ledger_account_settlements import AsyncLedgerAccountSettlementsWithRawResponse
+
+        return AsyncLedgerAccountSettlementsWithRawResponse(self._client.ledger_account_settlements)
+
+    @cached_property
+    def foreign_exchange_quotes(self) -> foreign_exchange_quotes.AsyncForeignExchangeQuotesWithRawResponse:
+        from .resources.foreign_exchange_quotes import AsyncForeignExchangeQuotesWithRawResponse
+
+        return AsyncForeignExchangeQuotesWithRawResponse(self._client.foreign_exchange_quotes)
+
+    @cached_property
+    def connection_legal_entities(self) -> connection_legal_entities.AsyncConnectionLegalEntitiesWithRawResponse:
+        from .resources.connection_legal_entities import AsyncConnectionLegalEntitiesWithRawResponse
+
+        return AsyncConnectionLegalEntitiesWithRawResponse(self._client.connection_legal_entities)
+
+    @cached_property
+    def legal_entities(self) -> legal_entities.AsyncLegalEntitiesWithRawResponse:
+        from .resources.legal_entities import AsyncLegalEntitiesWithRawResponse
+
+        return AsyncLegalEntitiesWithRawResponse(self._client.legal_entities)
+
+    @cached_property
+    def legal_entity_associations(self) -> legal_entity_associations.AsyncLegalEntityAssociationsWithRawResponse:
+        from .resources.legal_entity_associations import AsyncLegalEntityAssociationsWithRawResponse
+
+        return AsyncLegalEntityAssociationsWithRawResponse(self._client.legal_entity_associations)
+
 
 class ModernTreasuryWithStreamedResponse:
+    _client: ModernTreasury
+
     def __init__(self, client: ModernTreasury) -> None:
-        self.connections = connections.ConnectionsWithStreamingResponse(client.connections)
-        self.counterparties = counterparties.CounterpartiesWithStreamingResponse(client.counterparties)
-        self.events = events.EventsWithStreamingResponse(client.events)
-        self.expected_payments = expected_payments.ExpectedPaymentsWithStreamingResponse(client.expected_payments)
-        self.external_accounts = external_accounts.ExternalAccountsWithStreamingResponse(client.external_accounts)
-        self.incoming_payment_details = incoming_payment_details.IncomingPaymentDetailsWithStreamingResponse(
-            client.incoming_payment_details
-        )
-        self.invoices = invoices.InvoicesWithStreamingResponse(client.invoices)
-        self.documents = documents.DocumentsWithStreamingResponse(client.documents)
-        self.account_collection_flows = account_collection_flows.AccountCollectionFlowsWithStreamingResponse(
-            client.account_collection_flows
-        )
-        self.account_details = account_details.AccountDetailsWithStreamingResponse(client.account_details)
-        self.routing_details = routing_details.RoutingDetailsWithStreamingResponse(client.routing_details)
-        self.internal_accounts = internal_accounts.InternalAccountsWithStreamingResponse(client.internal_accounts)
-        self.ledgers = ledgers.LedgersWithStreamingResponse(client.ledgers)
-        self.ledgerable_events = ledgerable_events.LedgerableEventsWithStreamingResponse(client.ledgerable_events)
-        self.ledger_account_categories = ledger_account_categories.LedgerAccountCategoriesWithStreamingResponse(
-            client.ledger_account_categories
-        )
-        self.ledger_accounts = ledger_accounts.LedgerAccountsWithStreamingResponse(client.ledger_accounts)
-        self.ledger_account_balance_monitors = (
-            ledger_account_balance_monitors.LedgerAccountBalanceMonitorsWithStreamingResponse(
-                client.ledger_account_balance_monitors
-            )
-        )
-        self.ledger_account_statements = ledger_account_statements.LedgerAccountStatementsWithStreamingResponse(
-            client.ledger_account_statements
-        )
-        self.ledger_entries = ledger_entries.LedgerEntriesWithStreamingResponse(client.ledger_entries)
-        self.ledger_event_handlers = ledger_event_handlers.LedgerEventHandlersWithStreamingResponse(
-            client.ledger_event_handlers
-        )
-        self.ledger_transactions = ledger_transactions.LedgerTransactionsWithStreamingResponse(
-            client.ledger_transactions
-        )
-        self.line_items = line_items.LineItemsWithStreamingResponse(client.line_items)
-        self.payment_flows = payment_flows.PaymentFlowsWithStreamingResponse(client.payment_flows)
-        self.payment_orders = payment_orders.PaymentOrdersWithStreamingResponse(client.payment_orders)
-        self.payment_references = payment_references.PaymentReferencesWithStreamingResponse(client.payment_references)
-        self.returns = returns.ReturnsWithStreamingResponse(client.returns)
-        self.transactions = transactions.TransactionsWithStreamingResponse(client.transactions)
-        self.validations = validations.ValidationsWithStreamingResponse(client.validations)
-        self.paper_items = paper_items.PaperItemsWithStreamingResponse(client.paper_items)
-        self.virtual_accounts = virtual_accounts.VirtualAccountsWithStreamingResponse(client.virtual_accounts)
-        self.bulk_requests = bulk_requests.BulkRequestsWithStreamingResponse(client.bulk_requests)
-        self.bulk_results = bulk_results.BulkResultsWithStreamingResponse(client.bulk_results)
-        self.ledger_account_settlements = ledger_account_settlements.LedgerAccountSettlementsWithStreamingResponse(
-            client.ledger_account_settlements
-        )
-        self.foreign_exchange_quotes = foreign_exchange_quotes.ForeignExchangeQuotesWithStreamingResponse(
-            client.foreign_exchange_quotes
-        )
-        self.connection_legal_entities = connection_legal_entities.ConnectionLegalEntitiesWithStreamingResponse(
-            client.connection_legal_entities
-        )
-        self.legal_entities = legal_entities.LegalEntitiesWithStreamingResponse(client.legal_entities)
-        self.legal_entity_associations = legal_entity_associations.LegalEntityAssociationsWithStreamingResponse(
-            client.legal_entity_associations
-        )
+        self._client = client
 
         self.ping = to_streamed_response_wrapper(
             client.ping,
         )
 
+    @cached_property
+    def connections(self) -> connections.ConnectionsWithStreamingResponse:
+        from .resources.connections import ConnectionsWithStreamingResponse
+
+        return ConnectionsWithStreamingResponse(self._client.connections)
+
+    @cached_property
+    def counterparties(self) -> counterparties.CounterpartiesWithStreamingResponse:
+        from .resources.counterparties import CounterpartiesWithStreamingResponse
+
+        return CounterpartiesWithStreamingResponse(self._client.counterparties)
+
+    @cached_property
+    def events(self) -> events.EventsWithStreamingResponse:
+        from .resources.events import EventsWithStreamingResponse
+
+        return EventsWithStreamingResponse(self._client.events)
+
+    @cached_property
+    def expected_payments(self) -> expected_payments.ExpectedPaymentsWithStreamingResponse:
+        from .resources.expected_payments import ExpectedPaymentsWithStreamingResponse
+
+        return ExpectedPaymentsWithStreamingResponse(self._client.expected_payments)
+
+    @cached_property
+    def external_accounts(self) -> external_accounts.ExternalAccountsWithStreamingResponse:
+        from .resources.external_accounts import ExternalAccountsWithStreamingResponse
+
+        return ExternalAccountsWithStreamingResponse(self._client.external_accounts)
+
+    @cached_property
+    def incoming_payment_details(self) -> incoming_payment_details.IncomingPaymentDetailsWithStreamingResponse:
+        from .resources.incoming_payment_details import IncomingPaymentDetailsWithStreamingResponse
+
+        return IncomingPaymentDetailsWithStreamingResponse(self._client.incoming_payment_details)
+
+    @cached_property
+    def invoices(self) -> invoices.InvoicesWithStreamingResponse:
+        from .resources.invoices import InvoicesWithStreamingResponse
+
+        return InvoicesWithStreamingResponse(self._client.invoices)
+
+    @cached_property
+    def documents(self) -> documents.DocumentsWithStreamingResponse:
+        from .resources.documents import DocumentsWithStreamingResponse
+
+        return DocumentsWithStreamingResponse(self._client.documents)
+
+    @cached_property
+    def account_collection_flows(self) -> account_collection_flows.AccountCollectionFlowsWithStreamingResponse:
+        from .resources.account_collection_flows import AccountCollectionFlowsWithStreamingResponse
+
+        return AccountCollectionFlowsWithStreamingResponse(self._client.account_collection_flows)
+
+    @cached_property
+    def account_details(self) -> account_details.AccountDetailsWithStreamingResponse:
+        from .resources.account_details import AccountDetailsWithStreamingResponse
+
+        return AccountDetailsWithStreamingResponse(self._client.account_details)
+
+    @cached_property
+    def routing_details(self) -> routing_details.RoutingDetailsWithStreamingResponse:
+        from .resources.routing_details import RoutingDetailsWithStreamingResponse
+
+        return RoutingDetailsWithStreamingResponse(self._client.routing_details)
+
+    @cached_property
+    def internal_accounts(self) -> internal_accounts.InternalAccountsWithStreamingResponse:
+        from .resources.internal_accounts import InternalAccountsWithStreamingResponse
+
+        return InternalAccountsWithStreamingResponse(self._client.internal_accounts)
+
+    @cached_property
+    def ledgers(self) -> ledgers.LedgersWithStreamingResponse:
+        from .resources.ledgers import LedgersWithStreamingResponse
+
+        return LedgersWithStreamingResponse(self._client.ledgers)
+
+    @cached_property
+    def ledgerable_events(self) -> ledgerable_events.LedgerableEventsWithStreamingResponse:
+        from .resources.ledgerable_events import LedgerableEventsWithStreamingResponse
+
+        return LedgerableEventsWithStreamingResponse(self._client.ledgerable_events)
+
+    @cached_property
+    def ledger_account_categories(self) -> ledger_account_categories.LedgerAccountCategoriesWithStreamingResponse:
+        from .resources.ledger_account_categories import LedgerAccountCategoriesWithStreamingResponse
+
+        return LedgerAccountCategoriesWithStreamingResponse(self._client.ledger_account_categories)
+
+    @cached_property
+    def ledger_accounts(self) -> ledger_accounts.LedgerAccountsWithStreamingResponse:
+        from .resources.ledger_accounts import LedgerAccountsWithStreamingResponse
+
+        return LedgerAccountsWithStreamingResponse(self._client.ledger_accounts)
+
+    @cached_property
+    def ledger_account_balance_monitors(
+        self,
+    ) -> ledger_account_balance_monitors.LedgerAccountBalanceMonitorsWithStreamingResponse:
+        from .resources.ledger_account_balance_monitors import LedgerAccountBalanceMonitorsWithStreamingResponse
+
+        return LedgerAccountBalanceMonitorsWithStreamingResponse(self._client.ledger_account_balance_monitors)
+
+    @cached_property
+    def ledger_account_statements(self) -> ledger_account_statements.LedgerAccountStatementsWithStreamingResponse:
+        from .resources.ledger_account_statements import LedgerAccountStatementsWithStreamingResponse
+
+        return LedgerAccountStatementsWithStreamingResponse(self._client.ledger_account_statements)
+
+    @cached_property
+    def ledger_entries(self) -> ledger_entries.LedgerEntriesWithStreamingResponse:
+        from .resources.ledger_entries import LedgerEntriesWithStreamingResponse
+
+        return LedgerEntriesWithStreamingResponse(self._client.ledger_entries)
+
+    @cached_property
+    def ledger_event_handlers(self) -> ledger_event_handlers.LedgerEventHandlersWithStreamingResponse:
+        from .resources.ledger_event_handlers import LedgerEventHandlersWithStreamingResponse
+
+        return LedgerEventHandlersWithStreamingResponse(self._client.ledger_event_handlers)
+
+    @cached_property
+    def ledger_transactions(self) -> ledger_transactions.LedgerTransactionsWithStreamingResponse:
+        from .resources.ledger_transactions import LedgerTransactionsWithStreamingResponse
+
+        return LedgerTransactionsWithStreamingResponse(self._client.ledger_transactions)
+
+    @cached_property
+    def line_items(self) -> line_items.LineItemsWithStreamingResponse:
+        from .resources.line_items import LineItemsWithStreamingResponse
+
+        return LineItemsWithStreamingResponse(self._client.line_items)
+
+    @cached_property
+    def payment_flows(self) -> payment_flows.PaymentFlowsWithStreamingResponse:
+        from .resources.payment_flows import PaymentFlowsWithStreamingResponse
+
+        return PaymentFlowsWithStreamingResponse(self._client.payment_flows)
+
+    @cached_property
+    def payment_orders(self) -> payment_orders.PaymentOrdersWithStreamingResponse:
+        from .resources.payment_orders import PaymentOrdersWithStreamingResponse
+
+        return PaymentOrdersWithStreamingResponse(self._client.payment_orders)
+
+    @cached_property
+    def payment_references(self) -> payment_references.PaymentReferencesWithStreamingResponse:
+        from .resources.payment_references import PaymentReferencesWithStreamingResponse
+
+        return PaymentReferencesWithStreamingResponse(self._client.payment_references)
+
+    @cached_property
+    def returns(self) -> returns.ReturnsWithStreamingResponse:
+        from .resources.returns import ReturnsWithStreamingResponse
+
+        return ReturnsWithStreamingResponse(self._client.returns)
+
+    @cached_property
+    def transactions(self) -> transactions.TransactionsWithStreamingResponse:
+        from .resources.transactions import TransactionsWithStreamingResponse
+
+        return TransactionsWithStreamingResponse(self._client.transactions)
+
+    @cached_property
+    def validations(self) -> validations.ValidationsWithStreamingResponse:
+        from .resources.validations import ValidationsWithStreamingResponse
+
+        return ValidationsWithStreamingResponse(self._client.validations)
+
+    @cached_property
+    def paper_items(self) -> paper_items.PaperItemsWithStreamingResponse:
+        from .resources.paper_items import PaperItemsWithStreamingResponse
+
+        return PaperItemsWithStreamingResponse(self._client.paper_items)
+
+    @cached_property
+    def virtual_accounts(self) -> virtual_accounts.VirtualAccountsWithStreamingResponse:
+        from .resources.virtual_accounts import VirtualAccountsWithStreamingResponse
+
+        return VirtualAccountsWithStreamingResponse(self._client.virtual_accounts)
+
+    @cached_property
+    def bulk_requests(self) -> bulk_requests.BulkRequestsWithStreamingResponse:
+        from .resources.bulk_requests import BulkRequestsWithStreamingResponse
+
+        return BulkRequestsWithStreamingResponse(self._client.bulk_requests)
+
+    @cached_property
+    def bulk_results(self) -> bulk_results.BulkResultsWithStreamingResponse:
+        from .resources.bulk_results import BulkResultsWithStreamingResponse
+
+        return BulkResultsWithStreamingResponse(self._client.bulk_results)
+
+    @cached_property
+    def ledger_account_settlements(self) -> ledger_account_settlements.LedgerAccountSettlementsWithStreamingResponse:
+        from .resources.ledger_account_settlements import LedgerAccountSettlementsWithStreamingResponse
+
+        return LedgerAccountSettlementsWithStreamingResponse(self._client.ledger_account_settlements)
+
+    @cached_property
+    def foreign_exchange_quotes(self) -> foreign_exchange_quotes.ForeignExchangeQuotesWithStreamingResponse:
+        from .resources.foreign_exchange_quotes import ForeignExchangeQuotesWithStreamingResponse
+
+        return ForeignExchangeQuotesWithStreamingResponse(self._client.foreign_exchange_quotes)
+
+    @cached_property
+    def connection_legal_entities(self) -> connection_legal_entities.ConnectionLegalEntitiesWithStreamingResponse:
+        from .resources.connection_legal_entities import ConnectionLegalEntitiesWithStreamingResponse
+
+        return ConnectionLegalEntitiesWithStreamingResponse(self._client.connection_legal_entities)
+
+    @cached_property
+    def legal_entities(self) -> legal_entities.LegalEntitiesWithStreamingResponse:
+        from .resources.legal_entities import LegalEntitiesWithStreamingResponse
+
+        return LegalEntitiesWithStreamingResponse(self._client.legal_entities)
+
+    @cached_property
+    def legal_entity_associations(self) -> legal_entity_associations.LegalEntityAssociationsWithStreamingResponse:
+        from .resources.legal_entity_associations import LegalEntityAssociationsWithStreamingResponse
+
+        return LegalEntityAssociationsWithStreamingResponse(self._client.legal_entity_associations)
+
 
 class AsyncModernTreasuryWithStreamedResponse:
+    _client: AsyncModernTreasury
+
     def __init__(self, client: AsyncModernTreasury) -> None:
-        self.connections = connections.AsyncConnectionsWithStreamingResponse(client.connections)
-        self.counterparties = counterparties.AsyncCounterpartiesWithStreamingResponse(client.counterparties)
-        self.events = events.AsyncEventsWithStreamingResponse(client.events)
-        self.expected_payments = expected_payments.AsyncExpectedPaymentsWithStreamingResponse(client.expected_payments)
-        self.external_accounts = external_accounts.AsyncExternalAccountsWithStreamingResponse(client.external_accounts)
-        self.incoming_payment_details = incoming_payment_details.AsyncIncomingPaymentDetailsWithStreamingResponse(
-            client.incoming_payment_details
-        )
-        self.invoices = invoices.AsyncInvoicesWithStreamingResponse(client.invoices)
-        self.documents = documents.AsyncDocumentsWithStreamingResponse(client.documents)
-        self.account_collection_flows = account_collection_flows.AsyncAccountCollectionFlowsWithStreamingResponse(
-            client.account_collection_flows
-        )
-        self.account_details = account_details.AsyncAccountDetailsWithStreamingResponse(client.account_details)
-        self.routing_details = routing_details.AsyncRoutingDetailsWithStreamingResponse(client.routing_details)
-        self.internal_accounts = internal_accounts.AsyncInternalAccountsWithStreamingResponse(client.internal_accounts)
-        self.ledgers = ledgers.AsyncLedgersWithStreamingResponse(client.ledgers)
-        self.ledgerable_events = ledgerable_events.AsyncLedgerableEventsWithStreamingResponse(client.ledgerable_events)
-        self.ledger_account_categories = ledger_account_categories.AsyncLedgerAccountCategoriesWithStreamingResponse(
-            client.ledger_account_categories
-        )
-        self.ledger_accounts = ledger_accounts.AsyncLedgerAccountsWithStreamingResponse(client.ledger_accounts)
-        self.ledger_account_balance_monitors = (
-            ledger_account_balance_monitors.AsyncLedgerAccountBalanceMonitorsWithStreamingResponse(
-                client.ledger_account_balance_monitors
-            )
-        )
-        self.ledger_account_statements = ledger_account_statements.AsyncLedgerAccountStatementsWithStreamingResponse(
-            client.ledger_account_statements
-        )
-        self.ledger_entries = ledger_entries.AsyncLedgerEntriesWithStreamingResponse(client.ledger_entries)
-        self.ledger_event_handlers = ledger_event_handlers.AsyncLedgerEventHandlersWithStreamingResponse(
-            client.ledger_event_handlers
-        )
-        self.ledger_transactions = ledger_transactions.AsyncLedgerTransactionsWithStreamingResponse(
-            client.ledger_transactions
-        )
-        self.line_items = line_items.AsyncLineItemsWithStreamingResponse(client.line_items)
-        self.payment_flows = payment_flows.AsyncPaymentFlowsWithStreamingResponse(client.payment_flows)
-        self.payment_orders = payment_orders.AsyncPaymentOrdersWithStreamingResponse(client.payment_orders)
-        self.payment_references = payment_references.AsyncPaymentReferencesWithStreamingResponse(
-            client.payment_references
-        )
-        self.returns = returns.AsyncReturnsWithStreamingResponse(client.returns)
-        self.transactions = transactions.AsyncTransactionsWithStreamingResponse(client.transactions)
-        self.validations = validations.AsyncValidationsWithStreamingResponse(client.validations)
-        self.paper_items = paper_items.AsyncPaperItemsWithStreamingResponse(client.paper_items)
-        self.virtual_accounts = virtual_accounts.AsyncVirtualAccountsWithStreamingResponse(client.virtual_accounts)
-        self.bulk_requests = bulk_requests.AsyncBulkRequestsWithStreamingResponse(client.bulk_requests)
-        self.bulk_results = bulk_results.AsyncBulkResultsWithStreamingResponse(client.bulk_results)
-        self.ledger_account_settlements = ledger_account_settlements.AsyncLedgerAccountSettlementsWithStreamingResponse(
-            client.ledger_account_settlements
-        )
-        self.foreign_exchange_quotes = foreign_exchange_quotes.AsyncForeignExchangeQuotesWithStreamingResponse(
-            client.foreign_exchange_quotes
-        )
-        self.connection_legal_entities = connection_legal_entities.AsyncConnectionLegalEntitiesWithStreamingResponse(
-            client.connection_legal_entities
-        )
-        self.legal_entities = legal_entities.AsyncLegalEntitiesWithStreamingResponse(client.legal_entities)
-        self.legal_entity_associations = legal_entity_associations.AsyncLegalEntityAssociationsWithStreamingResponse(
-            client.legal_entity_associations
-        )
+        self._client = client
 
         self.ping = async_to_streamed_response_wrapper(
             client.ping,
         )
+
+    @cached_property
+    def connections(self) -> connections.AsyncConnectionsWithStreamingResponse:
+        from .resources.connections import AsyncConnectionsWithStreamingResponse
+
+        return AsyncConnectionsWithStreamingResponse(self._client.connections)
+
+    @cached_property
+    def counterparties(self) -> counterparties.AsyncCounterpartiesWithStreamingResponse:
+        from .resources.counterparties import AsyncCounterpartiesWithStreamingResponse
+
+        return AsyncCounterpartiesWithStreamingResponse(self._client.counterparties)
+
+    @cached_property
+    def events(self) -> events.AsyncEventsWithStreamingResponse:
+        from .resources.events import AsyncEventsWithStreamingResponse
+
+        return AsyncEventsWithStreamingResponse(self._client.events)
+
+    @cached_property
+    def expected_payments(self) -> expected_payments.AsyncExpectedPaymentsWithStreamingResponse:
+        from .resources.expected_payments import AsyncExpectedPaymentsWithStreamingResponse
+
+        return AsyncExpectedPaymentsWithStreamingResponse(self._client.expected_payments)
+
+    @cached_property
+    def external_accounts(self) -> external_accounts.AsyncExternalAccountsWithStreamingResponse:
+        from .resources.external_accounts import AsyncExternalAccountsWithStreamingResponse
+
+        return AsyncExternalAccountsWithStreamingResponse(self._client.external_accounts)
+
+    @cached_property
+    def incoming_payment_details(self) -> incoming_payment_details.AsyncIncomingPaymentDetailsWithStreamingResponse:
+        from .resources.incoming_payment_details import AsyncIncomingPaymentDetailsWithStreamingResponse
+
+        return AsyncIncomingPaymentDetailsWithStreamingResponse(self._client.incoming_payment_details)
+
+    @cached_property
+    def invoices(self) -> invoices.AsyncInvoicesWithStreamingResponse:
+        from .resources.invoices import AsyncInvoicesWithStreamingResponse
+
+        return AsyncInvoicesWithStreamingResponse(self._client.invoices)
+
+    @cached_property
+    def documents(self) -> documents.AsyncDocumentsWithStreamingResponse:
+        from .resources.documents import AsyncDocumentsWithStreamingResponse
+
+        return AsyncDocumentsWithStreamingResponse(self._client.documents)
+
+    @cached_property
+    def account_collection_flows(self) -> account_collection_flows.AsyncAccountCollectionFlowsWithStreamingResponse:
+        from .resources.account_collection_flows import AsyncAccountCollectionFlowsWithStreamingResponse
+
+        return AsyncAccountCollectionFlowsWithStreamingResponse(self._client.account_collection_flows)
+
+    @cached_property
+    def account_details(self) -> account_details.AsyncAccountDetailsWithStreamingResponse:
+        from .resources.account_details import AsyncAccountDetailsWithStreamingResponse
+
+        return AsyncAccountDetailsWithStreamingResponse(self._client.account_details)
+
+    @cached_property
+    def routing_details(self) -> routing_details.AsyncRoutingDetailsWithStreamingResponse:
+        from .resources.routing_details import AsyncRoutingDetailsWithStreamingResponse
+
+        return AsyncRoutingDetailsWithStreamingResponse(self._client.routing_details)
+
+    @cached_property
+    def internal_accounts(self) -> internal_accounts.AsyncInternalAccountsWithStreamingResponse:
+        from .resources.internal_accounts import AsyncInternalAccountsWithStreamingResponse
+
+        return AsyncInternalAccountsWithStreamingResponse(self._client.internal_accounts)
+
+    @cached_property
+    def ledgers(self) -> ledgers.AsyncLedgersWithStreamingResponse:
+        from .resources.ledgers import AsyncLedgersWithStreamingResponse
+
+        return AsyncLedgersWithStreamingResponse(self._client.ledgers)
+
+    @cached_property
+    def ledgerable_events(self) -> ledgerable_events.AsyncLedgerableEventsWithStreamingResponse:
+        from .resources.ledgerable_events import AsyncLedgerableEventsWithStreamingResponse
+
+        return AsyncLedgerableEventsWithStreamingResponse(self._client.ledgerable_events)
+
+    @cached_property
+    def ledger_account_categories(self) -> ledger_account_categories.AsyncLedgerAccountCategoriesWithStreamingResponse:
+        from .resources.ledger_account_categories import AsyncLedgerAccountCategoriesWithStreamingResponse
+
+        return AsyncLedgerAccountCategoriesWithStreamingResponse(self._client.ledger_account_categories)
+
+    @cached_property
+    def ledger_accounts(self) -> ledger_accounts.AsyncLedgerAccountsWithStreamingResponse:
+        from .resources.ledger_accounts import AsyncLedgerAccountsWithStreamingResponse
+
+        return AsyncLedgerAccountsWithStreamingResponse(self._client.ledger_accounts)
+
+    @cached_property
+    def ledger_account_balance_monitors(
+        self,
+    ) -> ledger_account_balance_monitors.AsyncLedgerAccountBalanceMonitorsWithStreamingResponse:
+        from .resources.ledger_account_balance_monitors import AsyncLedgerAccountBalanceMonitorsWithStreamingResponse
+
+        return AsyncLedgerAccountBalanceMonitorsWithStreamingResponse(self._client.ledger_account_balance_monitors)
+
+    @cached_property
+    def ledger_account_statements(self) -> ledger_account_statements.AsyncLedgerAccountStatementsWithStreamingResponse:
+        from .resources.ledger_account_statements import AsyncLedgerAccountStatementsWithStreamingResponse
+
+        return AsyncLedgerAccountStatementsWithStreamingResponse(self._client.ledger_account_statements)
+
+    @cached_property
+    def ledger_entries(self) -> ledger_entries.AsyncLedgerEntriesWithStreamingResponse:
+        from .resources.ledger_entries import AsyncLedgerEntriesWithStreamingResponse
+
+        return AsyncLedgerEntriesWithStreamingResponse(self._client.ledger_entries)
+
+    @cached_property
+    def ledger_event_handlers(self) -> ledger_event_handlers.AsyncLedgerEventHandlersWithStreamingResponse:
+        from .resources.ledger_event_handlers import AsyncLedgerEventHandlersWithStreamingResponse
+
+        return AsyncLedgerEventHandlersWithStreamingResponse(self._client.ledger_event_handlers)
+
+    @cached_property
+    def ledger_transactions(self) -> ledger_transactions.AsyncLedgerTransactionsWithStreamingResponse:
+        from .resources.ledger_transactions import AsyncLedgerTransactionsWithStreamingResponse
+
+        return AsyncLedgerTransactionsWithStreamingResponse(self._client.ledger_transactions)
+
+    @cached_property
+    def line_items(self) -> line_items.AsyncLineItemsWithStreamingResponse:
+        from .resources.line_items import AsyncLineItemsWithStreamingResponse
+
+        return AsyncLineItemsWithStreamingResponse(self._client.line_items)
+
+    @cached_property
+    def payment_flows(self) -> payment_flows.AsyncPaymentFlowsWithStreamingResponse:
+        from .resources.payment_flows import AsyncPaymentFlowsWithStreamingResponse
+
+        return AsyncPaymentFlowsWithStreamingResponse(self._client.payment_flows)
+
+    @cached_property
+    def payment_orders(self) -> payment_orders.AsyncPaymentOrdersWithStreamingResponse:
+        from .resources.payment_orders import AsyncPaymentOrdersWithStreamingResponse
+
+        return AsyncPaymentOrdersWithStreamingResponse(self._client.payment_orders)
+
+    @cached_property
+    def payment_references(self) -> payment_references.AsyncPaymentReferencesWithStreamingResponse:
+        from .resources.payment_references import AsyncPaymentReferencesWithStreamingResponse
+
+        return AsyncPaymentReferencesWithStreamingResponse(self._client.payment_references)
+
+    @cached_property
+    def returns(self) -> returns.AsyncReturnsWithStreamingResponse:
+        from .resources.returns import AsyncReturnsWithStreamingResponse
+
+        return AsyncReturnsWithStreamingResponse(self._client.returns)
+
+    @cached_property
+    def transactions(self) -> transactions.AsyncTransactionsWithStreamingResponse:
+        from .resources.transactions import AsyncTransactionsWithStreamingResponse
+
+        return AsyncTransactionsWithStreamingResponse(self._client.transactions)
+
+    @cached_property
+    def validations(self) -> validations.AsyncValidationsWithStreamingResponse:
+        from .resources.validations import AsyncValidationsWithStreamingResponse
+
+        return AsyncValidationsWithStreamingResponse(self._client.validations)
+
+    @cached_property
+    def paper_items(self) -> paper_items.AsyncPaperItemsWithStreamingResponse:
+        from .resources.paper_items import AsyncPaperItemsWithStreamingResponse
+
+        return AsyncPaperItemsWithStreamingResponse(self._client.paper_items)
+
+    @cached_property
+    def virtual_accounts(self) -> virtual_accounts.AsyncVirtualAccountsWithStreamingResponse:
+        from .resources.virtual_accounts import AsyncVirtualAccountsWithStreamingResponse
+
+        return AsyncVirtualAccountsWithStreamingResponse(self._client.virtual_accounts)
+
+    @cached_property
+    def bulk_requests(self) -> bulk_requests.AsyncBulkRequestsWithStreamingResponse:
+        from .resources.bulk_requests import AsyncBulkRequestsWithStreamingResponse
+
+        return AsyncBulkRequestsWithStreamingResponse(self._client.bulk_requests)
+
+    @cached_property
+    def bulk_results(self) -> bulk_results.AsyncBulkResultsWithStreamingResponse:
+        from .resources.bulk_results import AsyncBulkResultsWithStreamingResponse
+
+        return AsyncBulkResultsWithStreamingResponse(self._client.bulk_results)
+
+    @cached_property
+    def ledger_account_settlements(
+        self,
+    ) -> ledger_account_settlements.AsyncLedgerAccountSettlementsWithStreamingResponse:
+        from .resources.ledger_account_settlements import AsyncLedgerAccountSettlementsWithStreamingResponse
+
+        return AsyncLedgerAccountSettlementsWithStreamingResponse(self._client.ledger_account_settlements)
+
+    @cached_property
+    def foreign_exchange_quotes(self) -> foreign_exchange_quotes.AsyncForeignExchangeQuotesWithStreamingResponse:
+        from .resources.foreign_exchange_quotes import AsyncForeignExchangeQuotesWithStreamingResponse
+
+        return AsyncForeignExchangeQuotesWithStreamingResponse(self._client.foreign_exchange_quotes)
+
+    @cached_property
+    def connection_legal_entities(self) -> connection_legal_entities.AsyncConnectionLegalEntitiesWithStreamingResponse:
+        from .resources.connection_legal_entities import AsyncConnectionLegalEntitiesWithStreamingResponse
+
+        return AsyncConnectionLegalEntitiesWithStreamingResponse(self._client.connection_legal_entities)
+
+    @cached_property
+    def legal_entities(self) -> legal_entities.AsyncLegalEntitiesWithStreamingResponse:
+        from .resources.legal_entities import AsyncLegalEntitiesWithStreamingResponse
+
+        return AsyncLegalEntitiesWithStreamingResponse(self._client.legal_entities)
+
+    @cached_property
+    def legal_entity_associations(self) -> legal_entity_associations.AsyncLegalEntityAssociationsWithStreamingResponse:
+        from .resources.legal_entity_associations import AsyncLegalEntityAssociationsWithStreamingResponse
+
+        return AsyncLegalEntityAssociationsWithStreamingResponse(self._client.legal_entity_associations)
 
 
 Client = ModernTreasury
