@@ -146,21 +146,6 @@ for counterparty in first_page.items:
 # Remove `await` for non-async usage.
 ```
 
-## Nested params
-
-Nested parameters are dictionaries, typed using `TypedDict`, for example:
-
-```python
-from modern_treasury import ModernTreasury
-
-client = ModernTreasury()
-
-external_account = client.external_accounts.create(
-    counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-)
-print(external_account.id)
-```
-
 ## File uploads
 
 Request parameters that correspond to file uploads can be passed as `bytes`, or a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.
