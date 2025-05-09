@@ -1,5 +1,40 @@
 # Changelog
 
+## 1.48.0 (2025-05-09)
+
+Full Changelog: [v1.47.1...v1.48.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.47.1...v1.48.0)
+
+### Features
+
+* **api:** only send idempotency headers on PUT / POST requets ([c73433d](https://github.com/Modern-Treasury/modern-treasury-python/commit/c73433dc820ddc7d93f249c18c78eeedd2fafe93))
+
+
+### Bug Fixes
+
+* **internal:** fix dangling merge conflict ([2b1a146](https://github.com/Modern-Treasury/modern-treasury-python/commit/2b1a146d4ff20b8d6930240d2d2906287ed150f1))
+* **package:** support direct resource imports ([ff8114d](https://github.com/Modern-Treasury/modern-treasury-python/commit/ff8114d2b4a97ab153c98887cb0a85ad87140ce2))
+* **pydantic v1:** more robust ModelField.annotation check ([e83f527](https://github.com/Modern-Treasury/modern-treasury-python/commit/e83f527f6a7e5e432cfa8fbd2b9dab79b8d2b040))
+
+
+### Chores
+
+* broadly detect json family of content-type headers ([56eeec0](https://github.com/Modern-Treasury/modern-treasury-python/commit/56eeec01457220e8eccb1a0975bdcd7e2e93b0e8))
+* **ci:** add timeout thresholds for CI jobs ([42ee73a](https://github.com/Modern-Treasury/modern-treasury-python/commit/42ee73a2f7f7a57bd4d8cb47a4921dfc920c3305))
+* **ci:** only use depot for staging repos ([1ff5cac](https://github.com/Modern-Treasury/modern-treasury-python/commit/1ff5cac1a02ada40685f0196059d9c0b6a72a91e))
+* **ci:** run on more branches and use depot runners ([9d4dd29](https://github.com/Modern-Treasury/modern-treasury-python/commit/9d4dd2963ef889e3fbbd17177a2dfff4767da0d9))
+* **internal:** avoid errors for isinstance checks on proxies ([ddb2ce2](https://github.com/Modern-Treasury/modern-treasury-python/commit/ddb2ce2b7fc8a0aa15f6aee4429d3e0ada03c8f0))
+* **internal:** fix list file params ([7653eb8](https://github.com/Modern-Treasury/modern-treasury-python/commit/7653eb8967cfa8ba6c66904edc31ec8f37ea004f))
+* **internal:** import reformatting ([e96d2e1](https://github.com/Modern-Treasury/modern-treasury-python/commit/e96d2e11a6d3a2ba61b4c0c847a3a76cdc6c6a4f))
+* **internal:** minor formatting changes ([34ea0e3](https://github.com/Modern-Treasury/modern-treasury-python/commit/34ea0e3b26eb74e401772fb90c601c48a49e2f7c))
+* **internal:** refactor retries to not use recursion ([1f46e05](https://github.com/Modern-Treasury/modern-treasury-python/commit/1f46e0513e040e91ab7eaa9191c036b3b4fe99fa))
+* **internal:** update models test ([62c7763](https://github.com/Modern-Treasury/modern-treasury-python/commit/62c7763b1be1d7064fe52331e6e4075ef9cf4f44))
+* use lazy imports for resources ([75d7317](https://github.com/Modern-Treasury/modern-treasury-python/commit/75d731734c12c833401fd1a5cde3f8381bd06076))
+
+
+### Documentation
+
+* remove or fix invalid readme examples ([ee8a05f](https://github.com/Modern-Treasury/modern-treasury-python/commit/ee8a05f71b219e9f5b0f483dcc093e3372fcb001))
+
 ## 1.47.1 (2025-04-16)
 
 Full Changelog: [v1.47.0...v1.47.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.47.0...v1.47.1)
