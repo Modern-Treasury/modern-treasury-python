@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.48.1 (2025-05-15)
+
+Full Changelog: [v1.48.0...v1.48.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.48.0...v1.48.1)
+
+### Chores
+
+* **ci:** fix installation instructions ([540922e](https://github.com/Modern-Treasury/modern-treasury-python/commit/540922ef843fcba0a61e472a493e70de843beb08))
+* **ci:** upload sdks to package manager ([8469c61](https://github.com/Modern-Treasury/modern-treasury-python/commit/8469c612cec993a9f7545e8eb36bb99cc223ed16))
+
 ## 1.48.0 (2025-05-09)
 
 Full Changelog: [v1.47.1...v1.48.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.47.1...v1.48.0)
