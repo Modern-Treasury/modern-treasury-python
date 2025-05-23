@@ -663,3 +663,23 @@ from modern_treasury.types import LegalEntityAssociation
 Methods:
 
 - <code title="post /api/legal_entity_associations">client.legal_entity_associations.<a href="./src/modern_treasury/resources/legal_entity_associations.py">create</a>(\*\*<a href="src/modern_treasury/types/legal_entity_association_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/legal_entity_association.py">LegalEntityAssociation</a></code>
+
+# PaymentActions
+
+Types:
+
+```python
+from modern_treasury.types import (
+    PaymentActionCreateResponse,
+    PaymentActionRetrieveResponse,
+    PaymentActionUpdateResponse,
+    PaymentActionListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /api/payment_actions">client.payment_actions.<a href="./src/modern_treasury/resources/payment_actions.py">create</a>(\*\*<a href="src/modern_treasury/types/payment_action_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/payment_action_create_response.py">PaymentActionCreateResponse</a></code>
+- <code title="get /api/payment_actions/{id}">client.payment_actions.<a href="./src/modern_treasury/resources/payment_actions.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/payment_action_retrieve_response.py">PaymentActionRetrieveResponse</a></code>
+- <code title="patch /api/payment_actions/{id}">client.payment_actions.<a href="./src/modern_treasury/resources/payment_actions.py">update</a>(id, \*\*<a href="src/modern_treasury/types/payment_action_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/payment_action_update_response.py">PaymentActionUpdateResponse</a></code>
+- <code title="get /api/payment_actions">client.payment_actions.<a href="./src/modern_treasury/resources/payment_actions.py">list</a>(\*\*<a href="src/modern_treasury/types/payment_action_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/payment_action_list_response.py">SyncPage[PaymentActionListResponse]</a></code>
