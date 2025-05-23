@@ -59,6 +59,7 @@ if TYPE_CHECKING:
         payment_orders,
         account_details,
         ledger_accounts,
+        payment_actions,
         routing_details,
         virtual_accounts,
         expected_payments,
@@ -94,6 +95,7 @@ if TYPE_CHECKING:
     from .resources.legal_entities import LegalEntities, AsyncLegalEntities
     from .resources.account_details import AccountDetails, AsyncAccountDetails
     from .resources.ledger_accounts import LedgerAccounts, AsyncLedgerAccounts
+    from .resources.payment_actions import PaymentActions, AsyncPaymentActions
     from .resources.routing_details import RoutingDetails, AsyncRoutingDetails
     from .resources.virtual_accounts import VirtualAccounts, AsyncVirtualAccounts
     from .resources.expected_payments import ExpectedPayments, AsyncExpectedPayments
@@ -437,6 +439,12 @@ class ModernTreasury(SyncAPIClient):
         from .resources.legal_entity_associations import LegalEntityAssociations
 
         return LegalEntityAssociations(self)
+
+    @cached_property
+    def payment_actions(self) -> PaymentActions:
+        from .resources.payment_actions import PaymentActions
+
+        return PaymentActions(self)
 
     @cached_property
     def with_raw_response(self) -> ModernTreasuryWithRawResponse:
@@ -883,6 +891,12 @@ class AsyncModernTreasury(AsyncAPIClient):
         return AsyncLegalEntityAssociations(self)
 
     @cached_property
+    def payment_actions(self) -> AsyncPaymentActions:
+        from .resources.payment_actions import AsyncPaymentActions
+
+        return AsyncPaymentActions(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncModernTreasuryWithRawResponse:
         return AsyncModernTreasuryWithRawResponse(self)
 
@@ -1256,6 +1270,12 @@ class ModernTreasuryWithRawResponse:
 
         return LegalEntityAssociationsWithRawResponse(self._client.legal_entity_associations)
 
+    @cached_property
+    def payment_actions(self) -> payment_actions.PaymentActionsWithRawResponse:
+        from .resources.payment_actions import PaymentActionsWithRawResponse
+
+        return PaymentActionsWithRawResponse(self._client.payment_actions)
+
 
 class AsyncModernTreasuryWithRawResponse:
     _client: AsyncModernTreasury
@@ -1491,6 +1511,12 @@ class AsyncModernTreasuryWithRawResponse:
 
         return AsyncLegalEntityAssociationsWithRawResponse(self._client.legal_entity_associations)
 
+    @cached_property
+    def payment_actions(self) -> payment_actions.AsyncPaymentActionsWithRawResponse:
+        from .resources.payment_actions import AsyncPaymentActionsWithRawResponse
+
+        return AsyncPaymentActionsWithRawResponse(self._client.payment_actions)
+
 
 class ModernTreasuryWithStreamedResponse:
     _client: ModernTreasury
@@ -1725,6 +1751,12 @@ class ModernTreasuryWithStreamedResponse:
         from .resources.legal_entity_associations import LegalEntityAssociationsWithStreamingResponse
 
         return LegalEntityAssociationsWithStreamingResponse(self._client.legal_entity_associations)
+
+    @cached_property
+    def payment_actions(self) -> payment_actions.PaymentActionsWithStreamingResponse:
+        from .resources.payment_actions import PaymentActionsWithStreamingResponse
+
+        return PaymentActionsWithStreamingResponse(self._client.payment_actions)
 
 
 class AsyncModernTreasuryWithStreamedResponse:
@@ -1962,6 +1994,12 @@ class AsyncModernTreasuryWithStreamedResponse:
         from .resources.legal_entity_associations import AsyncLegalEntityAssociationsWithStreamingResponse
 
         return AsyncLegalEntityAssociationsWithStreamingResponse(self._client.legal_entity_associations)
+
+    @cached_property
+    def payment_actions(self) -> payment_actions.AsyncPaymentActionsWithStreamingResponse:
+        from .resources.payment_actions import AsyncPaymentActionsWithStreamingResponse
+
+        return AsyncPaymentActionsWithStreamingResponse(self._client.payment_actions)
 
 
 Client = ModernTreasury

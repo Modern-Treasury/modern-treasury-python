@@ -153,6 +153,14 @@ from .ledger_accounts import (
     LedgerAccountsWithStreamingResponse,
     AsyncLedgerAccountsWithStreamingResponse,
 )
+from .payment_actions import (
+    PaymentActions,
+    AsyncPaymentActions,
+    PaymentActionsWithRawResponse,
+    AsyncPaymentActionsWithRawResponse,
+    PaymentActionsWithStreamingResponse,
+    AsyncPaymentActionsWithStreamingResponse,
+)
 from .routing_details import (
     RoutingDetails,
     AsyncRoutingDetails,
@@ -523,4 +531,10 @@ __all__ = [
     "AsyncLegalEntityAssociationsWithRawResponse",
     "LegalEntityAssociationsWithStreamingResponse",
     "AsyncLegalEntityAssociationsWithStreamingResponse",
+    "PaymentActions",
+    "AsyncPaymentActions",
+    "PaymentActionsWithRawResponse",
+    "AsyncPaymentActionsWithRawResponse",
+    "PaymentActionsWithStreamingResponse",
+    "AsyncPaymentActionsWithStreamingResponse",
 ]
