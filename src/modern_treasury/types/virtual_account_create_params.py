@@ -70,14 +70,18 @@ class AccountDetail(TypedDict, total=False):
 
     account_number_type: Literal[
         "au_number",
+        "base_address",
         "clabe",
+        "ethereum_address",
         "hk_number",
         "iban",
         "id_number",
         "nz_number",
         "other",
         "pan",
+        "polygon_address",
         "sg_number",
+        "solana_address",
         "wallet_address",
     ]
     """One of `iban`, `clabe`, `wallet_address`, or `other`.
@@ -178,6 +182,7 @@ class RoutingDetail(TypedDict, total=False):
             "ach",
             "au_becs",
             "bacs",
+            "base",
             "book",
             "card",
             "chats",
@@ -185,6 +190,7 @@ class RoutingDetail(TypedDict, total=False):
             "cross_border",
             "dk_nets",
             "eft",
+            "ethereum",
             "hu_ics",
             "interac",
             "masav",
@@ -193,6 +199,7 @@ class RoutingDetail(TypedDict, total=False):
             "nics",
             "nz_becs",
             "pl_elixir",
+            "polygon",
             "provxchange",
             "ro_sent",
             "rtp",
@@ -203,6 +210,7 @@ class RoutingDetail(TypedDict, total=False):
             "sic",
             "signet",
             "sknbi",
+            "solana",
             "wire",
             "zengin",
         ]

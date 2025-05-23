@@ -104,14 +104,18 @@ class AccountAccountDetail(TypedDict, total=False):
 
     account_number_type: Literal[
         "au_number",
+        "base_address",
         "clabe",
+        "ethereum_address",
         "hk_number",
         "iban",
         "id_number",
         "nz_number",
         "other",
         "pan",
+        "polygon_address",
         "sg_number",
+        "solana_address",
         "wallet_address",
     ]
 
@@ -246,6 +250,7 @@ class AccountRoutingDetail(TypedDict, total=False):
         "ach",
         "au_becs",
         "bacs",
+        "base",
         "book",
         "card",
         "chats",
@@ -253,6 +258,7 @@ class AccountRoutingDetail(TypedDict, total=False):
         "cross_border",
         "dk_nets",
         "eft",
+        "ethereum",
         "hu_ics",
         "interac",
         "masav",
@@ -261,6 +267,7 @@ class AccountRoutingDetail(TypedDict, total=False):
         "nics",
         "nz_becs",
         "pl_elixir",
+        "polygon",
         "provxchange",
         "ro_sent",
         "rtp",
@@ -271,6 +278,7 @@ class AccountRoutingDetail(TypedDict, total=False):
         "sic",
         "signet",
         "sknbi",
+        "solana",
         "wire",
         "zengin",
     ]
@@ -384,6 +392,7 @@ class LegalEntityIdentification(TypedDict, total=False):
             "cl_rut",
             "co_cedulas",
             "co_nit",
+            "drivers_license",
             "hn_id",
             "hn_rtn",
             "in_lei",
@@ -401,11 +410,20 @@ class LegalEntityIdentification(TypedDict, total=False):
     ]
     """The type of ID number."""
 
+    expiration_date: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
+    """
+    The date when the Identification is no longer considered valid by the issuing
+    authority.
+    """
+
     issuing_country: Optional[str]
     """
     The ISO 3166-1 alpha-2 country code of the country that issued the
     identification
     """
+
+    issuing_region: Optional[str]
+    """The region in which the identifcation was issued."""
 
 
 LegalEntityIdentifications = LegalEntityIdentification
@@ -457,6 +475,7 @@ class LegalEntityLegalEntityAssociationChildLegalEntityIdentification(TypedDict,
             "cl_rut",
             "co_cedulas",
             "co_nit",
+            "drivers_license",
             "hn_id",
             "hn_rtn",
             "in_lei",
@@ -474,11 +493,20 @@ class LegalEntityLegalEntityAssociationChildLegalEntityIdentification(TypedDict,
     ]
     """The type of ID number."""
 
+    expiration_date: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
+    """
+    The date when the Identification is no longer considered valid by the issuing
+    authority.
+    """
+
     issuing_country: Optional[str]
     """
     The ISO 3166-1 alpha-2 country code of the country that issued the
     identification
     """
+
+    issuing_region: Optional[str]
+    """The region in which the identifcation was issued."""
 
 
 LegalEntityLegalEntityAssociationsChildLegalEntityIdentifications = (

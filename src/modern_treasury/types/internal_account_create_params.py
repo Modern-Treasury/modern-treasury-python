@@ -24,6 +24,26 @@ class InternalAccountCreateParams(TypedDict, total=False):
     party_name: Required[str]
     """The legal name of the entity which owns the account."""
 
+    account_type: Literal[
+        "base_wallet",
+        "cash",
+        "checking",
+        "crypto_wallet",
+        "ethereum_wallet",
+        "general_ledger",
+        "loan",
+        "non_resident",
+        "other",
+        "overdraft",
+        "polygon_wallet",
+        "savings",
+        "solana_wallet",
+    ]
+    """
+    The account type, used to provision the appropriate account at the financial
+    institution.
+    """
+
     counterparty_id: str
     """The Counterparty associated to this account."""
 

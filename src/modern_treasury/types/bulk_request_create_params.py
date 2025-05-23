@@ -92,7 +92,13 @@ class BulkRequestCreateParams(TypedDict, total=False):
 
     resource_type: Required[
         Literal[
-            "payment_order", "ledger_account", "ledger_transaction", "expected_payment", "transaction", "entity_link"
+            "payment_order",
+            "ledger_account",
+            "ledger_transaction",
+            "expected_payment",
+            "transaction",
+            "transaction_line_item",
+            "entity_link",
         ]
     ]
     """One of payment_order, expected_payment, or ledger_transaction."""
@@ -298,14 +304,18 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccountAccountDetail(TypedD
 
     account_number_type: Literal[
         "au_number",
+        "base_address",
         "clabe",
+        "ethereum_address",
         "hk_number",
         "iban",
         "id_number",
         "nz_number",
         "other",
         "pan",
+        "polygon_address",
         "sg_number",
+        "solana_address",
         "wallet_address",
     ]
 
@@ -448,6 +458,7 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail(TypedD
         "ach",
         "au_becs",
         "bacs",
+        "base",
         "book",
         "card",
         "chats",
@@ -455,6 +466,7 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail(TypedD
         "cross_border",
         "dk_nets",
         "eft",
+        "ethereum",
         "hu_ics",
         "interac",
         "masav",
@@ -463,6 +475,7 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail(TypedD
         "nics",
         "nz_becs",
         "pl_elixir",
+        "polygon",
         "provxchange",
         "ro_sent",
         "rtp",
@@ -473,6 +486,7 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail(TypedD
         "sic",
         "signet",
         "sknbi",
+        "solana",
         "wire",
         "zengin",
     ]
@@ -1197,6 +1211,7 @@ class ResourceTransactionCreateRequest(TypedDict, total=False):
             "ach",
             "au_becs",
             "bacs",
+            "base",
             "book",
             "card",
             "chats",
@@ -1204,6 +1219,7 @@ class ResourceTransactionCreateRequest(TypedDict, total=False):
             "cross_border",
             "dk_nets",
             "eft",
+            "ethereum",
             "hu_ics",
             "interac",
             "masav",
@@ -1212,6 +1228,7 @@ class ResourceTransactionCreateRequest(TypedDict, total=False):
             "nics",
             "nz_becs",
             "pl_elixir",
+            "polygon",
             "provxchange",
             "ro_sent",
             "rtp",
@@ -1222,6 +1239,7 @@ class ResourceTransactionCreateRequest(TypedDict, total=False):
             "sic",
             "signet",
             "sknbi",
+            "solana",
             "wire",
             "zengin",
             "other",
@@ -1317,14 +1335,18 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountAccountDetail(Typed
 
     account_number_type: Literal[
         "au_number",
+        "base_address",
         "clabe",
+        "ethereum_address",
         "hk_number",
         "iban",
         "id_number",
         "nz_number",
         "other",
         "pan",
+        "polygon_address",
         "sg_number",
+        "solana_address",
         "wallet_address",
     ]
 
@@ -1467,6 +1489,7 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail(Typed
         "ach",
         "au_becs",
         "bacs",
+        "base",
         "book",
         "card",
         "chats",
@@ -1474,6 +1497,7 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail(Typed
         "cross_border",
         "dk_nets",
         "eft",
+        "ethereum",
         "hu_ics",
         "interac",
         "masav",
@@ -1482,6 +1506,7 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail(Typed
         "nics",
         "nz_becs",
         "pl_elixir",
+        "polygon",
         "provxchange",
         "ro_sent",
         "rtp",
@@ -1492,6 +1517,7 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail(Typed
         "sic",
         "signet",
         "sknbi",
+        "solana",
         "wire",
         "zengin",
     ]

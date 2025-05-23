@@ -65,18 +65,18 @@ class Document(BaseModel):
     """The unique identifier for the associated object."""
 
     documentable_type: Literal[
-        "case",
         "counterparty",
         "expected_payment",
         "external_account",
+        "identification",
         "incoming_payment_detail",
         "internal_account",
         "organization",
         "paper_item",
         "payment_order",
         "transaction",
-        "decision",
         "connection",
+        "conversation",
     ]
     """The type of the associated object.
 

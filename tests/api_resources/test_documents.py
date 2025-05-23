@@ -22,7 +22,7 @@ class TestDocuments:
     def test_method_create(self, client: ModernTreasury) -> None:
         document = client.documents.create(
             documentable_id="documentable_id",
-            documentable_type="cases",
+            documentable_type="counterparties",
             file=b"raw file contents",
         )
         assert_matches_type(Document, document, path=["response"])
@@ -31,7 +31,7 @@ class TestDocuments:
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         document = client.documents.create(
             documentable_id="documentable_id",
-            documentable_type="cases",
+            documentable_type="counterparties",
             file=b"raw file contents",
             document_type="document_type",
         )
@@ -41,7 +41,7 @@ class TestDocuments:
     def test_raw_response_create(self, client: ModernTreasury) -> None:
         response = client.documents.with_raw_response.create(
             documentable_id="documentable_id",
-            documentable_type="cases",
+            documentable_type="counterparties",
             file=b"raw file contents",
         )
 
@@ -54,7 +54,7 @@ class TestDocuments:
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
         with client.documents.with_streaming_response.create(
             documentable_id="documentable_id",
-            documentable_type="cases",
+            documentable_type="counterparties",
             file=b"raw file contents",
         ) as response:
             assert not response.is_closed
@@ -113,7 +113,7 @@ class TestDocuments:
         document = client.documents.list(
             after_cursor="after_cursor",
             documentable_id="documentable_id",
-            documentable_type="cases",
+            documentable_type="counterparties",
             per_page=0,
         )
         assert_matches_type(SyncPage[Document], document, path=["response"])
@@ -146,7 +146,7 @@ class TestAsyncDocuments:
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
         document = await async_client.documents.create(
             documentable_id="documentable_id",
-            documentable_type="cases",
+            documentable_type="counterparties",
             file=b"raw file contents",
         )
         assert_matches_type(Document, document, path=["response"])
@@ -155,7 +155,7 @@ class TestAsyncDocuments:
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         document = await async_client.documents.create(
             documentable_id="documentable_id",
-            documentable_type="cases",
+            documentable_type="counterparties",
             file=b"raw file contents",
             document_type="document_type",
         )
@@ -165,7 +165,7 @@ class TestAsyncDocuments:
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.documents.with_raw_response.create(
             documentable_id="documentable_id",
-            documentable_type="cases",
+            documentable_type="counterparties",
             file=b"raw file contents",
         )
 
@@ -178,7 +178,7 @@ class TestAsyncDocuments:
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.documents.with_streaming_response.create(
             documentable_id="documentable_id",
-            documentable_type="cases",
+            documentable_type="counterparties",
             file=b"raw file contents",
         ) as response:
             assert not response.is_closed
@@ -237,7 +237,7 @@ class TestAsyncDocuments:
         document = await async_client.documents.list(
             after_cursor="after_cursor",
             documentable_id="documentable_id",
-            documentable_type="cases",
+            documentable_type="counterparties",
             per_page=0,
         )
         assert_matches_type(AsyncPage[Document], document, path=["response"])

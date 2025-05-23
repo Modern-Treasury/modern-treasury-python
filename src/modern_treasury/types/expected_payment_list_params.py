@@ -46,6 +46,7 @@ class ExpectedPaymentListParams(TypedDict, total=False):
         "ach",
         "au_becs",
         "bacs",
+        "base",
         "book",
         "card",
         "chats",
@@ -53,6 +54,7 @@ class ExpectedPaymentListParams(TypedDict, total=False):
         "cross_border",
         "dk_nets",
         "eft",
+        "ethereum",
         "hu_ics",
         "interac",
         "masav",
@@ -61,6 +63,7 @@ class ExpectedPaymentListParams(TypedDict, total=False):
         "nics",
         "nz_becs",
         "pl_elixir",
+        "polygon",
         "provxchange",
         "ro_sent",
         "rtp",
@@ -71,6 +74,7 @@ class ExpectedPaymentListParams(TypedDict, total=False):
         "sic",
         "signet",
         "sknbi",
+        "solana",
         "wire",
         "zengin",
     ]
@@ -78,3 +82,9 @@ class ExpectedPaymentListParams(TypedDict, total=False):
     One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp,sen,
     sepa, signet, wire
     """
+
+    updated_at_lower_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Used to return expected payments updated after some datetime"""
+
+    updated_at_upper_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Used to return expected payments updated before some datetime"""
