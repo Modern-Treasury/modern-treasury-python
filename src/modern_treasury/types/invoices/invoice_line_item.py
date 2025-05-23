@@ -29,6 +29,9 @@ class InvoiceLineItem(BaseModel):
     invoice's `total_amount` due. `credit` has the opposite intention and effect.
     """
 
+    invoice_id: str
+    """The ID of the invoice for this line item."""
+
     live_mode: bool
     """
     This field will be true if this object exists in the live environment or false

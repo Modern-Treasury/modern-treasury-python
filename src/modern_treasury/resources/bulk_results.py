@@ -86,6 +86,7 @@ class BulkResults(SyncAPIResource):
             "expected_payment",
             "transaction",
             "entity_link",
+            "transaction_line_item",
             "bulk_error",
         ]
         | NotGiven = NOT_GIVEN,
@@ -215,6 +216,7 @@ class AsyncBulkResults(AsyncAPIResource):
             "expected_payment",
             "transaction",
             "entity_link",
+            "transaction_line_item",
             "bulk_error",
         ]
         | NotGiven = NOT_GIVEN,

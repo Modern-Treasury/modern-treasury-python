@@ -42,7 +42,7 @@ class TestCounterparties:
                             "account_number_type": "au_number",
                         }
                     ],
-                    "account_type": "cash",
+                    "account_type": "base_wallet",
                     "contact_details": [
                         {
                             "contact_identifier": "contact_identifier",
@@ -144,7 +144,9 @@ class TestCounterparties:
                     {
                         "id_number": "id_number",
                         "id_type": "ar_cuil",
+                        "expiration_date": parse_date("2019-12-27"),
                         "issuing_country": "issuing_country",
+                        "issuing_region": "issuing_region",
                     }
                 ],
                 "industry_classifications": [
@@ -212,7 +214,9 @@ class TestCounterparties:
                                 {
                                     "id_number": "id_number",
                                     "id_type": "ar_cuil",
+                                    "expiration_date": parse_date("2019-12-27"),
                                     "issuing_country": "issuing_country",
+                                    "issuing_region": "issuing_region",
                                 }
                             ],
                             "industry_classifications": [
@@ -583,7 +587,7 @@ class TestAsyncCounterparties:
                             "account_number_type": "au_number",
                         }
                     ],
-                    "account_type": "cash",
+                    "account_type": "base_wallet",
                     "contact_details": [
                         {
                             "contact_identifier": "contact_identifier",
@@ -685,7 +689,9 @@ class TestAsyncCounterparties:
                     {
                         "id_number": "id_number",
                         "id_type": "ar_cuil",
+                        "expiration_date": parse_date("2019-12-27"),
                         "issuing_country": "issuing_country",
+                        "issuing_region": "issuing_region",
                     }
                 ],
                 "industry_classifications": [
@@ -753,7 +759,9 @@ class TestAsyncCounterparties:
                                 {
                                     "id_number": "id_number",
                                     "id_type": "ar_cuil",
+                                    "expiration_date": parse_date("2019-12-27"),
                                     "issuing_country": "issuing_country",
+                                    "issuing_region": "issuing_region",
                                 }
                             ],
                             "industry_classifications": [

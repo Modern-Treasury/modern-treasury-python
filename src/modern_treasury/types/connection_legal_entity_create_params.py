@@ -87,6 +87,7 @@ class LegalEntityIdentification(TypedDict, total=False):
             "cl_rut",
             "co_cedulas",
             "co_nit",
+            "drivers_license",
             "hn_id",
             "hn_rtn",
             "in_lei",
@@ -104,11 +105,20 @@ class LegalEntityIdentification(TypedDict, total=False):
     ]
     """The type of ID number."""
 
+    expiration_date: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
+    """
+    The date when the Identification is no longer considered valid by the issuing
+    authority.
+    """
+
     issuing_country: Optional[str]
     """
     The ISO 3166-1 alpha-2 country code of the country that issued the
     identification
     """
+
+    issuing_region: Optional[str]
+    """The region in which the identifcation was issued."""
 
 
 LegalEntityIdentifications = LegalEntityIdentification
@@ -160,6 +170,7 @@ class LegalEntityLegalEntityAssociationChildLegalEntityIdentification(TypedDict,
             "cl_rut",
             "co_cedulas",
             "co_nit",
+            "drivers_license",
             "hn_id",
             "hn_rtn",
             "in_lei",
@@ -177,11 +188,20 @@ class LegalEntityLegalEntityAssociationChildLegalEntityIdentification(TypedDict,
     ]
     """The type of ID number."""
 
+    expiration_date: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
+    """
+    The date when the Identification is no longer considered valid by the issuing
+    authority.
+    """
+
     issuing_country: Optional[str]
     """
     The ISO 3166-1 alpha-2 country code of the country that issued the
     identification
     """
+
+    issuing_region: Optional[str]
+    """The region in which the identifcation was issued."""
 
 
 LegalEntityLegalEntityAssociationsChildLegalEntityIdentifications = (

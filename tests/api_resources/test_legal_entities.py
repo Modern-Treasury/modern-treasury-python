@@ -80,7 +80,9 @@ class TestLegalEntities:
                 {
                     "id_number": "id_number",
                     "id_type": "ar_cuil",
+                    "expiration_date": parse_date("2019-12-27"),
                     "issuing_country": "issuing_country",
+                    "issuing_region": "issuing_region",
                 }
             ],
             industry_classifications=[
@@ -148,7 +150,9 @@ class TestLegalEntities:
                             {
                                 "id_number": "id_number",
                                 "id_type": "ar_cuil",
+                                "expiration_date": parse_date("2019-12-27"),
                                 "issuing_country": "issuing_country",
+                                "issuing_region": "issuing_region",
                             }
                         ],
                         "industry_classifications": [
@@ -363,7 +367,9 @@ class TestLegalEntities:
                 {
                     "id_number": "id_number",
                     "id_type": "ar_cuil",
+                    "expiration_date": parse_date("2019-12-27"),
                     "issuing_country": "issuing_country",
+                    "issuing_region": "issuing_region",
                 }
             ],
             industry_classifications=[
@@ -546,7 +552,9 @@ class TestAsyncLegalEntities:
                 {
                     "id_number": "id_number",
                     "id_type": "ar_cuil",
+                    "expiration_date": parse_date("2019-12-27"),
                     "issuing_country": "issuing_country",
+                    "issuing_region": "issuing_region",
                 }
             ],
             industry_classifications=[
@@ -614,7 +622,9 @@ class TestAsyncLegalEntities:
                             {
                                 "id_number": "id_number",
                                 "id_type": "ar_cuil",
+                                "expiration_date": parse_date("2019-12-27"),
                                 "issuing_country": "issuing_country",
+                                "issuing_region": "issuing_region",
                             }
                         ],
                         "industry_classifications": [
@@ -829,7 +839,9 @@ class TestAsyncLegalEntities:
                 {
                     "id_number": "id_number",
                     "id_type": "ar_cuil",
+                    "expiration_date": parse_date("2019-12-27"),
                     "issuing_country": "issuing_country",
+                    "issuing_region": "issuing_region",
                 }
             ],
             industry_classifications=[

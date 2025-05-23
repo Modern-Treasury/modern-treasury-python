@@ -53,7 +53,7 @@ class TestPaymentOrders:
             documents=[
                 {
                     "documentable_id": "documentable_id",
-                    "documentable_type": "cases",
+                    "documentable_type": "counterparties",
                     "file": b"raw file contents",
                     "document_type": "document_type",
                 }
@@ -124,7 +124,7 @@ class TestPaymentOrders:
                         "account_number_type": "au_number",
                     }
                 ],
-                "account_type": "cash",
+                "account_type": "base_wallet",
                 "contact_details": [
                     {
                         "contact_identifier": "contact_identifier",
@@ -314,7 +314,7 @@ class TestPaymentOrders:
                         "account_number_type": "au_number",
                     }
                 ],
-                "account_type": "cash",
+                "account_type": "base_wallet",
                 "contact_details": [
                     {
                         "contact_identifier": "contact_identifier",
@@ -548,7 +548,7 @@ class TestPaymentOrders:
                         "account_number_type": "au_number",
                     }
                 ],
-                "account_type": "cash",
+                "account_type": "base_wallet",
                 "contact_details": [
                     {
                         "contact_identifier": "contact_identifier",
@@ -675,7 +675,7 @@ class TestAsyncPaymentOrders:
             documents=[
                 {
                     "documentable_id": "documentable_id",
-                    "documentable_type": "cases",
+                    "documentable_type": "counterparties",
                     "file": b"raw file contents",
                     "document_type": "document_type",
                 }
@@ -746,7 +746,7 @@ class TestAsyncPaymentOrders:
                         "account_number_type": "au_number",
                     }
                 ],
-                "account_type": "cash",
+                "account_type": "base_wallet",
                 "contact_details": [
                     {
                         "contact_identifier": "contact_identifier",
@@ -936,7 +936,7 @@ class TestAsyncPaymentOrders:
                         "account_number_type": "au_number",
                     }
                 ],
-                "account_type": "cash",
+                "account_type": "base_wallet",
                 "contact_details": [
                     {
                         "contact_identifier": "contact_identifier",
@@ -1170,7 +1170,7 @@ class TestAsyncPaymentOrders:
                         "account_number_type": "au_number",
                     }
                 ],
-                "account_type": "cash",
+                "account_type": "base_wallet",
                 "contact_details": [
                     {
                         "contact_identifier": "contact_identifier",

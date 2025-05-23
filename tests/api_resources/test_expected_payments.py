@@ -264,6 +264,8 @@ class TestExpectedPayments:
             per_page=0,
             status="archived",
             type="ach",
+            updated_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
+            updated_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(SyncPage[ExpectedPayment], expected_payment, path=["response"])
 
@@ -572,6 +574,8 @@ class TestAsyncExpectedPayments:
             per_page=0,
             status="archived",
             type="ach",
+            updated_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
+            updated_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(AsyncPage[ExpectedPayment], expected_payment, path=["response"])
 

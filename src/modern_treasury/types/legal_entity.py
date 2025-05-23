@@ -65,6 +65,12 @@ class Identification(BaseModel):
 
     discarded_at: Optional[datetime] = None
 
+    expiration_date: Optional[date] = None
+    """
+    The date when the Identification is no longer considered valid by the issuing
+    authority.
+    """
+
     id_type: Literal[
         "ar_cuil",
         "ar_cuit",
@@ -74,6 +80,7 @@ class Identification(BaseModel):
         "cl_rut",
         "co_cedulas",
         "co_nit",
+        "drivers_license",
         "hn_id",
         "hn_rtn",
         "in_lei",
@@ -95,6 +102,9 @@ class Identification(BaseModel):
     The ISO 3166-1 alpha-2 country code of the country that issued the
     identification
     """
+
+    issuing_region: Optional[str] = None
+    """The region in which the identifcation was issued."""
 
     live_mode: bool
     """

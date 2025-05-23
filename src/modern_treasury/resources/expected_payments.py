@@ -356,6 +356,7 @@ class ExpectedPayments(SyncAPIResource):
             "ach",
             "au_becs",
             "bacs",
+            "base",
             "book",
             "card",
             "chats",
@@ -363,6 +364,7 @@ class ExpectedPayments(SyncAPIResource):
             "cross_border",
             "dk_nets",
             "eft",
+            "ethereum",
             "hu_ics",
             "interac",
             "masav",
@@ -371,6 +373,7 @@ class ExpectedPayments(SyncAPIResource):
             "nics",
             "nz_becs",
             "pl_elixir",
+            "polygon",
             "provxchange",
             "ro_sent",
             "rtp",
@@ -381,10 +384,13 @@ class ExpectedPayments(SyncAPIResource):
             "sic",
             "signet",
             "sknbi",
+            "solana",
             "wire",
             "zengin",
         ]
         | NotGiven = NOT_GIVEN,
+        updated_at_lower_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        updated_at_upper_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -415,6 +421,10 @@ class ExpectedPayments(SyncAPIResource):
           type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp,sen,
               sepa, signet, wire
 
+          updated_at_lower_bound: Used to return expected payments updated after some datetime
+
+          updated_at_upper_bound: Used to return expected payments updated before some datetime
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -443,6 +453,8 @@ class ExpectedPayments(SyncAPIResource):
                         "per_page": per_page,
                         "status": status,
                         "type": type,
+                        "updated_at_lower_bound": updated_at_lower_bound,
+                        "updated_at_upper_bound": updated_at_upper_bound,
                     },
                     expected_payment_list_params.ExpectedPaymentListParams,
                 ),
@@ -816,6 +828,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
             "ach",
             "au_becs",
             "bacs",
+            "base",
             "book",
             "card",
             "chats",
@@ -823,6 +836,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
             "cross_border",
             "dk_nets",
             "eft",
+            "ethereum",
             "hu_ics",
             "interac",
             "masav",
@@ -831,6 +845,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
             "nics",
             "nz_becs",
             "pl_elixir",
+            "polygon",
             "provxchange",
             "ro_sent",
             "rtp",
@@ -841,10 +856,13 @@ class AsyncExpectedPayments(AsyncAPIResource):
             "sic",
             "signet",
             "sknbi",
+            "solana",
             "wire",
             "zengin",
         ]
         | NotGiven = NOT_GIVEN,
+        updated_at_lower_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        updated_at_upper_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -875,6 +893,10 @@ class AsyncExpectedPayments(AsyncAPIResource):
           type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp,sen,
               sepa, signet, wire
 
+          updated_at_lower_bound: Used to return expected payments updated after some datetime
+
+          updated_at_upper_bound: Used to return expected payments updated before some datetime
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -903,6 +925,8 @@ class AsyncExpectedPayments(AsyncAPIResource):
                         "per_page": per_page,
                         "status": status,
                         "type": type,
+                        "updated_at_lower_bound": updated_at_lower_bound,
+                        "updated_at_upper_bound": updated_at_upper_bound,
                     },
                     expected_payment_list_params.ExpectedPaymentListParams,
                 ),
