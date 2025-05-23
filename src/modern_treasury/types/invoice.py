@@ -137,7 +137,7 @@ class Invoice(BaseModel):
     """Currency that the invoice is denominated in. Defaults to `USD` if not provided."""
 
     description: str
-    """A free-form description of the invoice."""
+    """An optional free-form description of the invoice."""
 
     due_date: datetime
     """A future date by when the invoice needs to be paid."""

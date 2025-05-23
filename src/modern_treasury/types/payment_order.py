@@ -102,6 +102,10 @@ class ReferenceNumber(BaseModel):
         "bnk_dev_transfer_id",
         "bofa_end_to_end_id",
         "bofa_transaction_id",
+        "brale_transfer_id",
+        "bridge_destination_transaction_hash",
+        "bridge_source_transaction_hash",
+        "bridge_transfer_id",
         "check_number",
         "citibank_reference_number",
         "citibank_worldlink_clearing_system_reference_number",
@@ -216,12 +220,6 @@ class PaymentOrder(BaseModel):
     which correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
     """
 
-    compliance_rule_metadata: Optional[Dict[str, object]] = None
-    """Custom key-value pair for usage in compliance rules.
-
-    Please contact support before making changes to this field.
-    """
-
     counterparty_id: Optional[str] = None
     """
     If the payment order is tied to a specific Counterparty, their id will appear,
@@ -237,12 +235,6 @@ class PaymentOrder(BaseModel):
     """
     If the payment order's status is `returned`, this will include the return
     object's data.
-    """
-
-    decision_id: Optional[str] = None
-    """
-    The ID of the compliance decision for the payment order, if transaction
-    monitoring is enabled.
     """
 
     description: Optional[str] = None
@@ -401,12 +393,6 @@ class PaymentOrder(BaseModel):
     Usually, you will only have a single transaction ID. However, if a payment order
     initially results in a Return, but gets redrafted and is later successfully
     completed, it can have many transactions.
-    """
-
-    transaction_monitoring_enabled: bool
-    """
-    A flag that determines whether a payment order should go through transaction
-    monitoring.
     """
 
     type: PaymentOrderType

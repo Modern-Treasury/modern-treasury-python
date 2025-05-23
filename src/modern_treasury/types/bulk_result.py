@@ -73,6 +73,7 @@ class BulkResult(BaseModel):
         "expected_payment",
         "transaction",
         "entity_link",
+        "transaction_line_item",
         "bulk_error",
     ]
     """The type of the result entity object.

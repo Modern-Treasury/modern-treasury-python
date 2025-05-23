@@ -45,6 +45,12 @@ class PaperItem(BaseModel):
     memo_field: Optional[str] = None
     """The memo field on the paper item."""
 
+    metadata: object
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
+
     object: str
 
     remitter_name: Optional[str] = None

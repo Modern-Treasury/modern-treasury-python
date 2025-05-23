@@ -66,6 +66,22 @@ class InternalAccounts(SyncAPIResource):
         currency: Literal["USD", "CAD"],
         name: str,
         party_name: str,
+        account_type: Literal[
+            "base_wallet",
+            "cash",
+            "checking",
+            "crypto_wallet",
+            "ethereum_wallet",
+            "general_ledger",
+            "loan",
+            "non_resident",
+            "other",
+            "overdraft",
+            "polygon_wallet",
+            "savings",
+            "solana_wallet",
+        ]
+        | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
         legal_entity_id: str | NotGiven = NOT_GIVEN,
         parent_account_id: str | NotGiven = NOT_GIVEN,
@@ -91,6 +107,9 @@ class InternalAccounts(SyncAPIResource):
           name: The nickname of the account.
 
           party_name: The legal name of the entity which owns the account.
+
+          account_type: The account type, used to provision the appropriate account at the financial
+              institution.
 
           counterparty_id: The Counterparty associated to this account.
 
@@ -121,6 +140,7 @@ class InternalAccounts(SyncAPIResource):
                     "currency": currency,
                     "name": name,
                     "party_name": party_name,
+                    "account_type": account_type,
                     "counterparty_id": counterparty_id,
                     "legal_entity_id": legal_entity_id,
                     "parent_account_id": parent_account_id,
@@ -251,6 +271,7 @@ class InternalAccounts(SyncAPIResource):
             "ach",
             "au_becs",
             "bacs",
+            "base",
             "book",
             "card",
             "chats",
@@ -258,6 +279,7 @@ class InternalAccounts(SyncAPIResource):
             "cross_border",
             "dk_nets",
             "eft",
+            "ethereum",
             "hu_ics",
             "interac",
             "masav",
@@ -266,6 +288,7 @@ class InternalAccounts(SyncAPIResource):
             "nics",
             "nz_becs",
             "pl_elixir",
+            "polygon",
             "provxchange",
             "ro_sent",
             "rtp",
@@ -276,6 +299,7 @@ class InternalAccounts(SyncAPIResource):
             "sic",
             "signet",
             "sknbi",
+            "solana",
             "wire",
             "zengin",
         ]
@@ -371,6 +395,22 @@ class AsyncInternalAccounts(AsyncAPIResource):
         currency: Literal["USD", "CAD"],
         name: str,
         party_name: str,
+        account_type: Literal[
+            "base_wallet",
+            "cash",
+            "checking",
+            "crypto_wallet",
+            "ethereum_wallet",
+            "general_ledger",
+            "loan",
+            "non_resident",
+            "other",
+            "overdraft",
+            "polygon_wallet",
+            "savings",
+            "solana_wallet",
+        ]
+        | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
         legal_entity_id: str | NotGiven = NOT_GIVEN,
         parent_account_id: str | NotGiven = NOT_GIVEN,
@@ -396,6 +436,9 @@ class AsyncInternalAccounts(AsyncAPIResource):
           name: The nickname of the account.
 
           party_name: The legal name of the entity which owns the account.
+
+          account_type: The account type, used to provision the appropriate account at the financial
+              institution.
 
           counterparty_id: The Counterparty associated to this account.
 
@@ -426,6 +469,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                     "currency": currency,
                     "name": name,
                     "party_name": party_name,
+                    "account_type": account_type,
                     "counterparty_id": counterparty_id,
                     "legal_entity_id": legal_entity_id,
                     "parent_account_id": parent_account_id,
@@ -556,6 +600,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
             "ach",
             "au_becs",
             "bacs",
+            "base",
             "book",
             "card",
             "chats",
@@ -563,6 +608,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
             "cross_border",
             "dk_nets",
             "eft",
+            "ethereum",
             "hu_ics",
             "interac",
             "masav",
@@ -571,6 +617,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
             "nics",
             "nz_becs",
             "pl_elixir",
+            "polygon",
             "provxchange",
             "ro_sent",
             "rtp",
@@ -581,6 +628,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
             "sic",
             "signet",
             "sknbi",
+            "solana",
             "wire",
             "zengin",
         ]

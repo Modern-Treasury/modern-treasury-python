@@ -15,18 +15,18 @@ class DocumentCreateParams(TypedDict, total=False):
 
     documentable_type: Required[
         Literal[
-            "cases",
             "counterparties",
             "expected_payments",
             "external_accounts",
+            "identifications",
             "incoming_payment_details",
             "internal_accounts",
             "organizations",
             "paper_items",
             "payment_orders",
             "transactions",
-            "decisions",
             "connections",
+            "conversations",
         ]
     ]
 

@@ -123,7 +123,7 @@ class TestBulkRequests:
                                 "account_number_type": "au_number",
                             }
                         ],
-                        "account_type": "cash",
+                        "account_type": "base_wallet",
                         "contact_details": [
                             {
                                 "contact_identifier": "contact_identifier",
@@ -419,7 +419,7 @@ class TestAsyncBulkRequests:
                                 "account_number_type": "au_number",
                             }
                         ],
-                        "account_type": "cash",
+                        "account_type": "base_wallet",
                         "contact_details": [
                             {
                                 "contact_identifier": "contact_identifier",

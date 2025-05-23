@@ -24,7 +24,13 @@ class BulkRequestListParams(TypedDict, total=False):
     per_page: int
 
     resource_type: Literal[
-        "payment_order", "ledger_account", "ledger_transaction", "expected_payment", "transaction", "entity_link"
+        "payment_order",
+        "ledger_account",
+        "ledger_transaction",
+        "expected_payment",
+        "transaction",
+        "transaction_line_item",
+        "entity_link",
     ]
     """One of payment_order, expected_payment, or ledger_transaction."""
 

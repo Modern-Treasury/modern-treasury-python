@@ -313,14 +313,18 @@ class ReceivingAccountAccountDetail(TypedDict, total=False):
 
     account_number_type: Literal[
         "au_number",
+        "base_address",
         "clabe",
+        "ethereum_address",
         "hk_number",
         "iban",
         "id_number",
         "nz_number",
         "other",
         "pan",
+        "polygon_address",
         "sg_number",
+        "solana_address",
         "wallet_address",
     ]
 
@@ -441,6 +445,7 @@ class ReceivingAccountRoutingDetail(TypedDict, total=False):
         "ach",
         "au_becs",
         "bacs",
+        "base",
         "book",
         "card",
         "chats",
@@ -448,6 +453,7 @@ class ReceivingAccountRoutingDetail(TypedDict, total=False):
         "cross_border",
         "dk_nets",
         "eft",
+        "ethereum",
         "hu_ics",
         "interac",
         "masav",
@@ -456,6 +462,7 @@ class ReceivingAccountRoutingDetail(TypedDict, total=False):
         "nics",
         "nz_becs",
         "pl_elixir",
+        "polygon",
         "provxchange",
         "ro_sent",
         "rtp",
@@ -466,6 +473,7 @@ class ReceivingAccountRoutingDetail(TypedDict, total=False):
         "sic",
         "signet",
         "sknbi",
+        "solana",
         "wire",
         "zengin",
     ]
