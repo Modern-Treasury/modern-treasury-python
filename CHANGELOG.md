@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.50.0 (2025-06-02)
+
+Full Changelog: [v1.49.0...v1.50.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.49.0...v1.50.0)
+
+### Features
+
+* **client:** add follow_redirects request option ([a81f92c](https://github.com/Modern-Treasury/modern-treasury-python/commit/a81f92c0729aedad3b22ab18a4c4bf4627032eb6))
+
+
+### Chores
+
+* **docs:** remove reference to rye shell ([42e94f0](https://github.com/Modern-Treasury/modern-treasury-python/commit/42e94f0a08cc4f885e9eb21b0b5eae10a165800b))
+
 ## 1.49.0 (2025-05-23)
 
 Full Changelog: [v1.48.0...v1.49.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.48.0...v1.49.0)
