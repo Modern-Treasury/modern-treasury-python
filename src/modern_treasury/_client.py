@@ -65,10 +65,8 @@ if TYPE_CHECKING:
         expected_payments,
         external_accounts,
         internal_accounts,
-        ledgerable_events,
         payment_references,
         ledger_transactions,
-        ledger_event_handlers,
         foreign_exchange_quotes,
         account_collection_flows,
         incoming_payment_details,
@@ -101,9 +99,7 @@ if TYPE_CHECKING:
     from .resources.expected_payments import ExpectedPayments, AsyncExpectedPayments
     from .resources.external_accounts import ExternalAccounts, AsyncExternalAccounts
     from .resources.invoices.invoices import Invoices, AsyncInvoices
-    from .resources.ledgerable_events import LedgerableEvents, AsyncLedgerableEvents
     from .resources.payment_references import PaymentReferences, AsyncPaymentReferences
-    from .resources.ledger_event_handlers import LedgerEventHandlers, AsyncLedgerEventHandlers
     from .resources.foreign_exchange_quotes import ForeignExchangeQuotes, AsyncForeignExchangeQuotes
     from .resources.account_collection_flows import AccountCollectionFlows, AsyncAccountCollectionFlows
     from .resources.incoming_payment_details import IncomingPaymentDetails, AsyncIncomingPaymentDetails
@@ -297,12 +293,6 @@ class ModernTreasury(SyncAPIClient):
         return Ledgers(self)
 
     @cached_property
-    def ledgerable_events(self) -> LedgerableEvents:
-        from .resources.ledgerable_events import LedgerableEvents
-
-        return LedgerableEvents(self)
-
-    @cached_property
     def ledger_account_categories(self) -> LedgerAccountCategories:
         from .resources.ledger_account_categories import LedgerAccountCategories
 
@@ -331,12 +321,6 @@ class ModernTreasury(SyncAPIClient):
         from .resources.ledger_entries import LedgerEntries
 
         return LedgerEntries(self)
-
-    @cached_property
-    def ledger_event_handlers(self) -> LedgerEventHandlers:
-        from .resources.ledger_event_handlers import LedgerEventHandlers
-
-        return LedgerEventHandlers(self)
 
     @cached_property
     def ledger_transactions(self) -> LedgerTransactions:
@@ -747,12 +731,6 @@ class AsyncModernTreasury(AsyncAPIClient):
         return AsyncLedgers(self)
 
     @cached_property
-    def ledgerable_events(self) -> AsyncLedgerableEvents:
-        from .resources.ledgerable_events import AsyncLedgerableEvents
-
-        return AsyncLedgerableEvents(self)
-
-    @cached_property
     def ledger_account_categories(self) -> AsyncLedgerAccountCategories:
         from .resources.ledger_account_categories import AsyncLedgerAccountCategories
 
@@ -781,12 +759,6 @@ class AsyncModernTreasury(AsyncAPIClient):
         from .resources.ledger_entries import AsyncLedgerEntries
 
         return AsyncLedgerEntries(self)
-
-    @cached_property
-    def ledger_event_handlers(self) -> AsyncLedgerEventHandlers:
-        from .resources.ledger_event_handlers import AsyncLedgerEventHandlers
-
-        return AsyncLedgerEventHandlers(self)
 
     @cached_property
     def ledger_transactions(self) -> AsyncLedgerTransactions:
@@ -1125,12 +1097,6 @@ class ModernTreasuryWithRawResponse:
         return LedgersWithRawResponse(self._client.ledgers)
 
     @cached_property
-    def ledgerable_events(self) -> ledgerable_events.LedgerableEventsWithRawResponse:
-        from .resources.ledgerable_events import LedgerableEventsWithRawResponse
-
-        return LedgerableEventsWithRawResponse(self._client.ledgerable_events)
-
-    @cached_property
     def ledger_account_categories(self) -> ledger_account_categories.LedgerAccountCategoriesWithRawResponse:
         from .resources.ledger_account_categories import LedgerAccountCategoriesWithRawResponse
 
@@ -1161,12 +1127,6 @@ class ModernTreasuryWithRawResponse:
         from .resources.ledger_entries import LedgerEntriesWithRawResponse
 
         return LedgerEntriesWithRawResponse(self._client.ledger_entries)
-
-    @cached_property
-    def ledger_event_handlers(self) -> ledger_event_handlers.LedgerEventHandlersWithRawResponse:
-        from .resources.ledger_event_handlers import LedgerEventHandlersWithRawResponse
-
-        return LedgerEventHandlersWithRawResponse(self._client.ledger_event_handlers)
 
     @cached_property
     def ledger_transactions(self) -> ledger_transactions.LedgerTransactionsWithRawResponse:
@@ -1366,12 +1326,6 @@ class AsyncModernTreasuryWithRawResponse:
         return AsyncLedgersWithRawResponse(self._client.ledgers)
 
     @cached_property
-    def ledgerable_events(self) -> ledgerable_events.AsyncLedgerableEventsWithRawResponse:
-        from .resources.ledgerable_events import AsyncLedgerableEventsWithRawResponse
-
-        return AsyncLedgerableEventsWithRawResponse(self._client.ledgerable_events)
-
-    @cached_property
     def ledger_account_categories(self) -> ledger_account_categories.AsyncLedgerAccountCategoriesWithRawResponse:
         from .resources.ledger_account_categories import AsyncLedgerAccountCategoriesWithRawResponse
 
@@ -1402,12 +1356,6 @@ class AsyncModernTreasuryWithRawResponse:
         from .resources.ledger_entries import AsyncLedgerEntriesWithRawResponse
 
         return AsyncLedgerEntriesWithRawResponse(self._client.ledger_entries)
-
-    @cached_property
-    def ledger_event_handlers(self) -> ledger_event_handlers.AsyncLedgerEventHandlersWithRawResponse:
-        from .resources.ledger_event_handlers import AsyncLedgerEventHandlersWithRawResponse
-
-        return AsyncLedgerEventHandlersWithRawResponse(self._client.ledger_event_handlers)
 
     @cached_property
     def ledger_transactions(self) -> ledger_transactions.AsyncLedgerTransactionsWithRawResponse:
@@ -1607,12 +1555,6 @@ class ModernTreasuryWithStreamedResponse:
         return LedgersWithStreamingResponse(self._client.ledgers)
 
     @cached_property
-    def ledgerable_events(self) -> ledgerable_events.LedgerableEventsWithStreamingResponse:
-        from .resources.ledgerable_events import LedgerableEventsWithStreamingResponse
-
-        return LedgerableEventsWithStreamingResponse(self._client.ledgerable_events)
-
-    @cached_property
     def ledger_account_categories(self) -> ledger_account_categories.LedgerAccountCategoriesWithStreamingResponse:
         from .resources.ledger_account_categories import LedgerAccountCategoriesWithStreamingResponse
 
@@ -1643,12 +1585,6 @@ class ModernTreasuryWithStreamedResponse:
         from .resources.ledger_entries import LedgerEntriesWithStreamingResponse
 
         return LedgerEntriesWithStreamingResponse(self._client.ledger_entries)
-
-    @cached_property
-    def ledger_event_handlers(self) -> ledger_event_handlers.LedgerEventHandlersWithStreamingResponse:
-        from .resources.ledger_event_handlers import LedgerEventHandlersWithStreamingResponse
-
-        return LedgerEventHandlersWithStreamingResponse(self._client.ledger_event_handlers)
 
     @cached_property
     def ledger_transactions(self) -> ledger_transactions.LedgerTransactionsWithStreamingResponse:
@@ -1848,12 +1784,6 @@ class AsyncModernTreasuryWithStreamedResponse:
         return AsyncLedgersWithStreamingResponse(self._client.ledgers)
 
     @cached_property
-    def ledgerable_events(self) -> ledgerable_events.AsyncLedgerableEventsWithStreamingResponse:
-        from .resources.ledgerable_events import AsyncLedgerableEventsWithStreamingResponse
-
-        return AsyncLedgerableEventsWithStreamingResponse(self._client.ledgerable_events)
-
-    @cached_property
     def ledger_account_categories(self) -> ledger_account_categories.AsyncLedgerAccountCategoriesWithStreamingResponse:
         from .resources.ledger_account_categories import AsyncLedgerAccountCategoriesWithStreamingResponse
 
@@ -1884,12 +1814,6 @@ class AsyncModernTreasuryWithStreamedResponse:
         from .resources.ledger_entries import AsyncLedgerEntriesWithStreamingResponse
 
         return AsyncLedgerEntriesWithStreamingResponse(self._client.ledger_entries)
-
-    @cached_property
-    def ledger_event_handlers(self) -> ledger_event_handlers.AsyncLedgerEventHandlersWithStreamingResponse:
-        from .resources.ledger_event_handlers import AsyncLedgerEventHandlersWithStreamingResponse
-
-        return AsyncLedgerEventHandlersWithStreamingResponse(self._client.ledger_event_handlers)
 
     @cached_property
     def ledger_transactions(self) -> ledger_transactions.AsyncLedgerTransactionsWithStreamingResponse:

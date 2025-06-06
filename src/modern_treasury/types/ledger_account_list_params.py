@@ -50,6 +50,8 @@ class LedgerAccountListParams(TypedDict, total=False):
 
     currency: str
 
+    external_id: str
+
     ledger_account_category_id: str
 
     ledger_id: str
