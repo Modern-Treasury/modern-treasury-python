@@ -108,7 +108,7 @@ class BalanceReports(SyncAPIResource):
 
     def retrieve(
         self,
-        id: str,
+        id: Union[str, Literal["latest"]],
         *,
         internal_account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -134,8 +134,6 @@ class BalanceReports(SyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `internal_account_id` but received {internal_account_id!r}"
             )
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/api/internal_accounts/{internal_account_id}/balance_reports/{id}",
             options=make_request_options(
@@ -334,7 +332,7 @@ class AsyncBalanceReports(AsyncAPIResource):
 
     async def retrieve(
         self,
-        id: str,
+        id: Union[str, Literal["latest"]],
         *,
         internal_account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -360,8 +358,6 @@ class AsyncBalanceReports(AsyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `internal_account_id` but received {internal_account_id!r}"
             )
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/api/internal_accounts/{internal_account_id}/balance_reports/{id}",
             options=make_request_options(

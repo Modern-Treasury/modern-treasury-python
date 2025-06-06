@@ -99,6 +99,9 @@ class LedgerAccount(BaseModel):
 
     discarded_at: Optional[datetime] = None
 
+    external_id: Optional[str] = None
+    """An optional user-defined 180 character unique identifier."""
+
     ledger_id: str
     """The id of the ledger that this account belongs to."""
 

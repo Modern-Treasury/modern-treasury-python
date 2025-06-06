@@ -112,13 +112,13 @@ class ReferenceNumber(BaseModel):
         "column_fx_quote_id",
         "column_reversal_pair_transfer_id",
         "column_transfer_id",
+        "cross_river_fed_batch_id",
         "cross_river_payment_id",
         "cross_river_service_message",
         "cross_river_transaction_id",
         "currencycloud_conversion_id",
         "currencycloud_payment_id",
         "dc_bank_transaction_id",
-        "dwolla_transaction_id",
         "eft_trace_number",
         "evolve_transaction_id",
         "fedwire_imad",
@@ -376,6 +376,7 @@ class PaymentOrder(BaseModel):
         "returned",
         "reversed",
         "sent",
+        "stopped",
     ]
     """The current status of the payment order."""
 

@@ -209,6 +209,7 @@ class PaymentOrderUpdateParams(TypedDict, total=False):
         "returned",
         "reversed",
         "sent",
+        "stopped",
     ]
     """To cancel a payment order, use `cancelled`.
 

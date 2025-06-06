@@ -106,7 +106,7 @@ class TestBalanceReports:
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         balance_report = client.internal_accounts.balance_reports.retrieve(
-            id="id",
+            id="string",
             internal_account_id="internal_account_id",
         )
         assert_matches_type(BalanceReport, balance_report, path=["response"])
@@ -114,7 +114,7 @@ class TestBalanceReports:
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
         response = client.internal_accounts.balance_reports.with_raw_response.retrieve(
-            id="id",
+            id="string",
             internal_account_id="internal_account_id",
         )
 
@@ -126,7 +126,7 @@ class TestBalanceReports:
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.internal_accounts.balance_reports.with_streaming_response.retrieve(
-            id="id",
+            id="string",
             internal_account_id="internal_account_id",
         ) as response:
             assert not response.is_closed
@@ -141,14 +141,8 @@ class TestBalanceReports:
     def test_path_params_retrieve(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `internal_account_id` but received ''"):
             client.internal_accounts.balance_reports.with_raw_response.retrieve(
-                id="id",
+                id="string",
                 internal_account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.internal_accounts.balance_reports.with_raw_response.retrieve(
-                id="",
-                internal_account_id="internal_account_id",
             )
 
     @parametrize
@@ -337,7 +331,7 @@ class TestAsyncBalanceReports:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
         balance_report = await async_client.internal_accounts.balance_reports.retrieve(
-            id="id",
+            id="string",
             internal_account_id="internal_account_id",
         )
         assert_matches_type(BalanceReport, balance_report, path=["response"])
@@ -345,7 +339,7 @@ class TestAsyncBalanceReports:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.internal_accounts.balance_reports.with_raw_response.retrieve(
-            id="id",
+            id="string",
             internal_account_id="internal_account_id",
         )
 
@@ -357,7 +351,7 @@ class TestAsyncBalanceReports:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.internal_accounts.balance_reports.with_streaming_response.retrieve(
-            id="id",
+            id="string",
             internal_account_id="internal_account_id",
         ) as response:
             assert not response.is_closed
@@ -372,14 +366,8 @@ class TestAsyncBalanceReports:
     async def test_path_params_retrieve(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `internal_account_id` but received ''"):
             await async_client.internal_accounts.balance_reports.with_raw_response.retrieve(
-                id="id",
+                id="string",
                 internal_account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.internal_accounts.balance_reports.with_raw_response.retrieve(
-                id="",
-                internal_account_id="internal_account_id",
             )
 
     @parametrize

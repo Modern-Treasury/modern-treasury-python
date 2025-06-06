@@ -386,6 +386,7 @@ class PaymentOrders(SyncAPIResource):
             "returned",
             "reversed",
             "sent",
+            "stopped",
         ]
         | NotGiven = NOT_GIVEN,
         subtype: Optional[PaymentOrderSubtype] | NotGiven = NOT_GIVEN,
@@ -619,6 +620,7 @@ class PaymentOrders(SyncAPIResource):
             "returned",
             "reversed",
             "sent",
+            "stopped",
         ]
         | NotGiven = NOT_GIVEN,
         transaction_id: str | NotGiven = NOT_GIVEN,
@@ -1313,6 +1315,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
             "returned",
             "reversed",
             "sent",
+            "stopped",
         ]
         | NotGiven = NOT_GIVEN,
         subtype: Optional[PaymentOrderSubtype] | NotGiven = NOT_GIVEN,
@@ -1546,6 +1549,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
             "returned",
             "reversed",
             "sent",
+            "stopped",
         ]
         | NotGiven = NOT_GIVEN,
         transaction_id: str | NotGiven = NOT_GIVEN,
