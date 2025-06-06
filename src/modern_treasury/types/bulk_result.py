@@ -9,6 +9,7 @@ from typing_extensions import Literal, TypeAlias
 from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 from .transaction import Transaction
+from .ledger_account import LedgerAccount
 from .expected_payment import ExpectedPayment
 from .ledger_transaction import LedgerTransaction
 
@@ -48,7 +49,9 @@ class EntityBulkError(BaseModel):
     updated_at: datetime
 
 
-Entity: TypeAlias = Union["PaymentOrder", ExpectedPayment, LedgerTransaction, Transaction, EntityBulkError]
+Entity: TypeAlias = Union[
+    "PaymentOrder", ExpectedPayment, LedgerTransaction, LedgerAccount, Transaction, EntityBulkError
+]
 
 
 class BulkResult(BaseModel):

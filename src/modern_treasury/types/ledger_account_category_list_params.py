@@ -29,6 +29,8 @@ class LedgerAccountCategoryListParams(TypedDict, total=False):
 
     currency: str
 
+    external_id: str
+
     ledger_account_id: str
     """
     Query categories which contain a ledger account directly or through child

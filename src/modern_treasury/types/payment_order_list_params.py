@@ -71,6 +71,7 @@ class PaymentOrderListParams(TypedDict, total=False):
         "returned",
         "reversed",
         "sent",
+        "stopped",
     ]
 
     transaction_id: str
