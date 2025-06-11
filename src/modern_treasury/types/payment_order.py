@@ -112,6 +112,7 @@ class ReferenceNumber(BaseModel):
         "column_fx_quote_id",
         "column_reversal_pair_transfer_id",
         "column_transfer_id",
+        "cross_river_core_transaction_id",
         "cross_river_fed_batch_id",
         "cross_river_payment_id",
         "cross_river_service_message",
@@ -258,6 +259,9 @@ class PaymentOrder(BaseModel):
 
     expires_at: Optional[datetime] = None
     """RFP payments require an expires_at. This value must be past the effective_date."""
+
+    external_id: Optional[str] = None
+    """An optional user-defined 180 character unique identifier."""
 
     foreign_exchange_contract: Optional[str] = None
     """

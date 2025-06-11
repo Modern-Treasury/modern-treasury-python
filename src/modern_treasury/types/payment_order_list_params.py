@@ -31,6 +31,8 @@ class PaymentOrderListParams(TypedDict, total=False):
     effective_date_start: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
     """An inclusive lower bound for searching effective_date"""
 
+    external_id: str
+
     metadata: Dict[str, str]
     """
     For example, if you want to query for records with metadata key `Type` and value
