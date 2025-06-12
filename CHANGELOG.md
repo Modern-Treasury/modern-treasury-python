@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.52.0 (2025-06-12)
+
+Full Changelog: [v1.51.0...v1.52.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.51.0...v1.52.0)
+
+### Features
+
+* **api:** api update ([7088eea](https://github.com/Modern-Treasury/modern-treasury-python/commit/7088eeaea3b8ea66a458050119336b3f3cbb0fa1))
+
+
+### Bug Fixes
+
+* **client:** correctly parse binary response | stream ([f873d33](https://github.com/Modern-Treasury/modern-treasury-python/commit/f873d3366e0bb78a8235513eb716041d6fcf09e3))
+
+
+### Chores
+
+* **tests:** run tests in parallel ([954c41e](https://github.com/Modern-Treasury/modern-treasury-python/commit/954c41e7da4999717fec5d602f32634ebb1022f2))
+
 ## 1.51.0 (2025-06-06)
 
 Full Changelog: [v1.50.0...v1.51.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.50.0...v1.51.0)
