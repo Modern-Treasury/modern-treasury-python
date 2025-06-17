@@ -23,9 +23,7 @@ from pydantic import ValidationError
 
 from modern_treasury import ModernTreasury, AsyncModernTreasury, APIResponseValidationError
 from modern_treasury._types import Omit
-from modern_treasury._utils import maybe_transform
 from modern_treasury._models import BaseModel, FinalRequestOptions
-from modern_treasury._constants import RAW_RESPONSE_HEADER
 from modern_treasury._exceptions import APIStatusError, APITimeoutError, ModernTreasuryError, APIResponseValidationError
 from modern_treasury._base_client import (
     DEFAULT_TIMEOUT,
@@ -35,7 +33,6 @@ from modern_treasury._base_client import (
     DefaultAsyncHttpxClient,
     make_request_options,
 )
-from modern_treasury.types.counterparty_create_params import CounterpartyCreateParams
 
 from .utils import update_env
 
@@ -835,32 +832,21 @@ class TestModernTreasury:
 
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: ModernTreasury) -> None:
         respx_mock.post("/api/counterparties").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            self.client.post(
-                "/api/counterparties",
-                body=cast(object, maybe_transform(dict(name="my first counterparty"), CounterpartyCreateParams)),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
+            client.counterparties.with_streaming_response.create(name="name").__enter__()
 
         assert _get_open_connections(self.client) == 0
 
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: ModernTreasury) -> None:
         respx_mock.post("/api/counterparties").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            self.client.post(
-                "/api/counterparties",
-                body=cast(object, maybe_transform(dict(name="my first counterparty"), CounterpartyCreateParams)),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
-
+            client.counterparties.with_streaming_response.create(name="name").__enter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -1798,32 +1784,25 @@ class TestAsyncModernTreasury:
 
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    async def test_retrying_timeout_errors_doesnt_leak(
+        self, respx_mock: MockRouter, async_client: AsyncModernTreasury
+    ) -> None:
         respx_mock.post("/api/counterparties").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            await self.client.post(
-                "/api/counterparties",
-                body=cast(object, maybe_transform(dict(name="my first counterparty"), CounterpartyCreateParams)),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
+            await async_client.counterparties.with_streaming_response.create(name="name").__aenter__()
 
         assert _get_open_connections(self.client) == 0
 
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    async def test_retrying_status_errors_doesnt_leak(
+        self, respx_mock: MockRouter, async_client: AsyncModernTreasury
+    ) -> None:
         respx_mock.post("/api/counterparties").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            await self.client.post(
-                "/api/counterparties",
-                body=cast(object, maybe_transform(dict(name="my first counterparty"), CounterpartyCreateParams)),
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
-
+            await async_client.counterparties.with_streaming_response.create(name="name").__aenter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
