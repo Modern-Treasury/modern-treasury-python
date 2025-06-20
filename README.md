@@ -1,6 +1,6 @@
 # Modern Treasury Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/modern-treasury.svg)](https://pypi.org/project/modern-treasury/)
+[![PyPI version](<https://img.shields.io/pypi/v/modern-treasury.svg?label=pypi%20(stable)>)](https://pypi.org/project/modern-treasury/)
 
 The Modern Treasury Python library provides convenient access to the Modern Treasury REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
@@ -73,6 +73,43 @@ asyncio.run(main())
 ```
 
 Functionality between the synchronous and asynchronous clients is otherwise identical.
+
+### With aiohttp
+
+By default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.
+
+You can enable this by installing `aiohttp`:
+
+```sh
+# install from PyPI
+pip install modern-treasury[aiohttp]
+```
+
+Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
+
+```python
+import os
+import asyncio
+from modern_treasury import DefaultAioHttpClient
+from modern_treasury import AsyncModernTreasury
+
+
+async def main() -> None:
+    async with AsyncModernTreasury(
+        organization_id=os.environ.get(
+            "MODERN_TREASURY_ORGANIZATION_ID"
+        ),  # This is the default and can be omitted
+        api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted
+        http_client=DefaultAioHttpClient(),
+    ) as client:
+        counterparty = await client.counterparties.create(
+            name="my first counterparty",
+        )
+        print(counterparty.id)
+
+
+asyncio.run(main())
+```
 
 ## Using types
 
@@ -234,7 +271,7 @@ client.with_options(max_retries=5).counterparties.create(
 ### Timeouts
 
 By default requests time out after 1 minute. You can configure this with a `timeout` option,
-which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
+which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:
 
 ```python
 from modern_treasury import ModernTreasury

@@ -423,6 +423,7 @@ class TestPaymentOrders:
             direction="credit",
             effective_date_end=parse_date("2019-12-27"),
             effective_date_start=parse_date("2019-12-27"),
+            external_id="external_id",
             metadata={"foo": "string"},
             originating_account_id="originating_account_id",
             per_page=0,
@@ -642,7 +643,9 @@ class TestPaymentOrders:
 
 
 class TestAsyncPaymentOrders:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip(reason="Multiple values for nested arrays aren't supported yet")
     @parametrize
@@ -1045,6 +1048,7 @@ class TestAsyncPaymentOrders:
             direction="credit",
             effective_date_end=parse_date("2019-12-27"),
             effective_date_start=parse_date("2019-12-27"),
+            external_id="external_id",
             metadata={"foo": "string"},
             originating_account_id="originating_account_id",
             per_page=0,

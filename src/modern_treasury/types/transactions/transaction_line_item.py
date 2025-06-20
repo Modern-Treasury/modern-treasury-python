@@ -51,6 +51,9 @@ class TransactionLineItem(BaseModel):
     transaction’s reconciliation.
     """
 
+    reconciliation_group_id: Optional[str] = None
+    """The ID of the reconciliation group this line item belongs to, otherwise `null`."""
+
     transactable_id: Optional[str] = None
     """
     If a matching object exists in Modern Treasury, the ID will be populated here,
