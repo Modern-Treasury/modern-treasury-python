@@ -1,5 +1,34 @@
 # Changelog
 
+## 1.52.0 (2025-06-20)
+
+Full Changelog: [v1.51.0...v1.52.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.51.0...v1.52.0)
+
+### Features
+
+* **api:** api update ([7088eea](https://github.com/Modern-Treasury/modern-treasury-python/commit/7088eeaea3b8ea66a458050119336b3f3cbb0fa1))
+* **client:** add support for aiohttp ([9e596fe](https://github.com/Modern-Treasury/modern-treasury-python/commit/9e596fe4960796aa94738cac1efc84e0a5e47fef))
+
+
+### Bug Fixes
+
+* **client:** correctly parse binary response | stream ([f873d33](https://github.com/Modern-Treasury/modern-treasury-python/commit/f873d3366e0bb78a8235513eb716041d6fcf09e3))
+* **tests:** fix: tests which call HTTP endpoints directly with the example parameters ([66c9bd8](https://github.com/Modern-Treasury/modern-treasury-python/commit/66c9bd8c7a5796c13d59e83854b63bd528b43ce3))
+
+
+### Chores
+
+* **ci:** enable for pull requests ([abfde23](https://github.com/Modern-Treasury/modern-treasury-python/commit/abfde23b5dc8043bb639978f962b750d74f4e866))
+* **internal:** update conftest.py ([746a5b7](https://github.com/Modern-Treasury/modern-treasury-python/commit/746a5b7681f2292b3973b8c792f2efe74fe0395e))
+* **readme:** update badges ([e835456](https://github.com/Modern-Treasury/modern-treasury-python/commit/e835456327d17fc3d05e80897853a914a70218aa))
+* **tests:** add tests for httpx client instantiation & proxies ([1024799](https://github.com/Modern-Treasury/modern-treasury-python/commit/1024799f8a793d7651599efc7589768cbad4f820))
+* **tests:** run tests in parallel ([954c41e](https://github.com/Modern-Treasury/modern-treasury-python/commit/954c41e7da4999717fec5d602f32634ebb1022f2))
+
+
+### Documentation
+
+* **client:** fix httpx.Timeout documentation reference ([a8250c6](https://github.com/Modern-Treasury/modern-treasury-python/commit/a8250c697a08eba90e1e3746f68098c28ff959fa))
+
 ## 1.51.0 (2025-06-06)
 
 Full Changelog: [v1.50.0...v1.51.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.50.0...v1.51.0)
