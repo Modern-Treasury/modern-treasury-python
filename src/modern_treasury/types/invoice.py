@@ -157,6 +157,12 @@ class Invoice(BaseModel):
     invoicer_address: Optional[InvoicerAddress] = None
     """The invoice issuer's business address."""
 
+    invoicer_name: Optional[str] = None
+    """The name of the issuer for the invoice.
+
+    Defaults to the name of the Organization.
+    """
+
     ledger_account_settlement_id: Optional[str] = None
     """The ledger account settlement object linked to the invoice."""
 

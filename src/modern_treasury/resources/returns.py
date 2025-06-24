@@ -146,6 +146,7 @@ class Returns(SyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
+        corrections: Optional[return_create_params.Corrections] | NotGiven = NOT_GIVEN,
         data: Optional[object] | NotGiven = NOT_GIVEN,
         date_of_death: Union[str, date, None] | NotGiven = NOT_GIVEN,
         reason: Optional[str] | NotGiven = NOT_GIVEN,
@@ -170,6 +171,10 @@ class Returns(SyncAPIResource):
               this string will be present.
 
           code: The return code. For ACH returns, this is the required ACH return code.
+
+          corrections: Only relevant for ACH NOC returns. This is an object containing all of the new
+              and corrected information provided by the bank that was previously incorrect on
+              the original outgoing payment.
 
           data: The raw data from the return file that we get from the bank.
 
@@ -197,6 +202,7 @@ class Returns(SyncAPIResource):
                     "returnable_type": returnable_type,
                     "additional_information": additional_information,
                     "code": code,
+                    "corrections": corrections,
                     "data": data,
                     "date_of_death": date_of_death,
                     "reason": reason,
@@ -434,6 +440,7 @@ class AsyncReturns(AsyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
+        corrections: Optional[return_create_params.Corrections] | NotGiven = NOT_GIVEN,
         data: Optional[object] | NotGiven = NOT_GIVEN,
         date_of_death: Union[str, date, None] | NotGiven = NOT_GIVEN,
         reason: Optional[str] | NotGiven = NOT_GIVEN,
@@ -458,6 +465,10 @@ class AsyncReturns(AsyncAPIResource):
               this string will be present.
 
           code: The return code. For ACH returns, this is the required ACH return code.
+
+          corrections: Only relevant for ACH NOC returns. This is an object containing all of the new
+              and corrected information provided by the bank that was previously incorrect on
+              the original outgoing payment.
 
           data: The raw data from the return file that we get from the bank.
 
@@ -485,6 +496,7 @@ class AsyncReturns(AsyncAPIResource):
                     "returnable_type": returnable_type,
                     "additional_information": additional_information,
                     "code": code,
+                    "corrections": corrections,
                     "data": data,
                     "date_of_death": date_of_death,
                     "reason": reason,

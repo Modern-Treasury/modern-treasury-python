@@ -195,6 +195,7 @@ class RoutingDetail(TypedDict, total=False):
             "hk_interbank_clearing_code",
             "hu_interbank_clearing_code",
             "id_sknbi_code",
+            "il_bank_code",
             "in_ifsc",
             "jp_zengin_code",
             "my_branch_code",

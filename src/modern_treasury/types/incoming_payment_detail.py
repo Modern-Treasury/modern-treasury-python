@@ -103,6 +103,7 @@ class IncomingPaymentDetail(BaseModel):
             "hk_interbank_clearing_code",
             "hu_interbank_clearing_code",
             "id_sknbi_code",
+            "il_bank_code",
             "in_ifsc",
             "jp_zengin_code",
             "mx_bank_identifier",

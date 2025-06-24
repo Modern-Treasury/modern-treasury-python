@@ -94,6 +94,9 @@ class TransactionCreateParams(TypedDict, total=False):
     Examples could be `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
     """
 
+    vendor_customer_id: Optional[str]
+    """An identifier given to this transaction by the bank, often `null`."""
+
     vendor_description: Optional[str]
     """
     The transaction detail text that often appears in on your bank statement and in
