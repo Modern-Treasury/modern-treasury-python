@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -66,6 +66,7 @@ class InternalAccounts(SyncAPIResource):
         currency: Literal["USD", "CAD"],
         name: str,
         party_name: str,
+        account_capabilities: Iterable[internal_account_create_params.AccountCapability] | NotGiven = NOT_GIVEN,
         account_type: Literal[
             "base_wallet",
             "cash",
@@ -108,6 +109,9 @@ class InternalAccounts(SyncAPIResource):
 
           party_name: The legal name of the entity which owns the account.
 
+          account_capabilities: An array of AccountCapability objects that list the originating abilities of the
+              internal account and any relevant information for them.
+
           account_type: The account type, used to provision the appropriate account at the financial
               institution.
 
@@ -140,6 +144,7 @@ class InternalAccounts(SyncAPIResource):
                     "currency": currency,
                     "name": name,
                     "party_name": party_name,
+                    "account_capabilities": account_capabilities,
                     "account_type": account_type,
                     "counterparty_id": counterparty_id,
                     "legal_entity_id": legal_entity_id,
@@ -395,6 +400,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         currency: Literal["USD", "CAD"],
         name: str,
         party_name: str,
+        account_capabilities: Iterable[internal_account_create_params.AccountCapability] | NotGiven = NOT_GIVEN,
         account_type: Literal[
             "base_wallet",
             "cash",
@@ -437,6 +443,9 @@ class AsyncInternalAccounts(AsyncAPIResource):
 
           party_name: The legal name of the entity which owns the account.
 
+          account_capabilities: An array of AccountCapability objects that list the originating abilities of the
+              internal account and any relevant information for them.
+
           account_type: The account type, used to provision the appropriate account at the financial
               institution.
 
@@ -469,6 +478,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                     "currency": currency,
                     "name": name,
                     "party_name": party_name,
+                    "account_capabilities": account_capabilities,
                     "account_type": account_type,
                     "counterparty_id": counterparty_id,
                     "legal_entity_id": legal_entity_id,

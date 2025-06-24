@@ -137,9 +137,9 @@ class PaymentOrders(SyncAPIResource):
           accounting_ledger_class_id: The ID of one of your accounting ledger classes. Note that these will only be
               accessible if your accounting system has been connected.
 
-          charge_bearer: The party that will pay the fees for the payment order. Only applies to wire
-              payment orders. Can be one of shared, sender, or receiver, which correspond
-              respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
+          charge_bearer: The party that will pay the fees for the payment order. See
+              https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the
+              differences between the options.
 
           currency: Defaults to the currency of the originating account.
 
@@ -416,9 +416,9 @@ class PaymentOrders(SyncAPIResource):
           amount: Value in specified currency's smallest unit. e.g. $10 would be represented as
               1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
 
-          charge_bearer: The party that will pay the fees for the payment order. Only applies to wire
-              payment orders. Can be one of shared, sender, or receiver, which correspond
-              respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
+          charge_bearer: The party that will pay the fees for the payment order. See
+              https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the
+              differences between the options.
 
           counterparty_id: Required when receiving_account_id is passed the ID of an external account.
 
@@ -810,9 +810,9 @@ class PaymentOrders(SyncAPIResource):
           accounting_ledger_class_id: The ID of one of your accounting ledger classes. Note that these will only be
               accessible if your accounting system has been connected.
 
-          charge_bearer: The party that will pay the fees for the payment order. Only applies to wire
-              payment orders. Can be one of shared, sender, or receiver, which correspond
-              respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
+          charge_bearer: The party that will pay the fees for the payment order. See
+              https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the
+              differences between the options.
 
           currency: Defaults to the currency of the originating account.
 
@@ -1068,9 +1068,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
           accounting_ledger_class_id: The ID of one of your accounting ledger classes. Note that these will only be
               accessible if your accounting system has been connected.
 
-          charge_bearer: The party that will pay the fees for the payment order. Only applies to wire
-              payment orders. Can be one of shared, sender, or receiver, which correspond
-              respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
+          charge_bearer: The party that will pay the fees for the payment order. See
+              https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the
+              differences between the options.
 
           currency: Defaults to the currency of the originating account.
 
@@ -1347,9 +1347,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
           amount: Value in specified currency's smallest unit. e.g. $10 would be represented as
               1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
 
-          charge_bearer: The party that will pay the fees for the payment order. Only applies to wire
-              payment orders. Can be one of shared, sender, or receiver, which correspond
-              respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
+          charge_bearer: The party that will pay the fees for the payment order. See
+              https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the
+              differences between the options.
 
           counterparty_id: Required when receiving_account_id is passed the ID of an external account.
 
@@ -1741,9 +1741,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
           accounting_ledger_class_id: The ID of one of your accounting ledger classes. Note that these will only be
               accessible if your accounting system has been connected.
 
-          charge_bearer: The party that will pay the fees for the payment order. Only applies to wire
-              payment orders. Can be one of shared, sender, or receiver, which correspond
-              respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
+          charge_bearer: The party that will pay the fees for the payment order. See
+              https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the
+              differences between the options.
 
           currency: Defaults to the currency of the originating account.
 

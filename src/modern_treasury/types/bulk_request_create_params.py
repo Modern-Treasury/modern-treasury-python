@@ -443,6 +443,7 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail(TypedD
             "hk_interbank_clearing_code",
             "hu_interbank_clearing_code",
             "id_sknbi_code",
+            "il_bank_code",
             "in_ifsc",
             "jp_zengin_code",
             "my_branch_code",
@@ -608,8 +609,8 @@ class ResourcePaymentOrderAsyncCreateRequest(TypedDict, total=False):
     charge_bearer: Optional[Literal["shared", "sender", "receiver"]]
     """The party that will pay the fees for the payment order.
 
-    Only applies to wire payment orders. Can be one of shared, sender, or receiver,
-    which correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
+    See https://docs.moderntreasury.com/payments/docs/charge-bearer to understand
+    the differences between the options.
     """
 
     currency: Currency
@@ -1304,6 +1305,9 @@ class ResourceTransactionCreateRequest(TypedDict, total=False):
     Examples could be `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
     """
 
+    vendor_customer_id: Optional[str]
+    """An identifier given to this transaction by the bank, often `null`."""
+
     vendor_description: Optional[str]
     """
     The transaction detail text that often appears in on your bank statement and in
@@ -1526,6 +1530,7 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail(Typed
             "hk_interbank_clearing_code",
             "hu_interbank_clearing_code",
             "id_sknbi_code",
+            "il_bank_code",
             "in_ifsc",
             "jp_zengin_code",
             "my_branch_code",
@@ -1674,8 +1679,8 @@ class ResourcePaymentOrderUpdateRequestWithID(TypedDict, total=False):
     charge_bearer: Optional[Literal["shared", "sender", "receiver"]]
     """The party that will pay the fees for the payment order.
 
-    Only applies to wire payment orders. Can be one of shared, sender, or receiver,
-    which correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
+    See https://docs.moderntreasury.com/payments/docs/charge-bearer to understand
+    the differences between the options.
     """
 
     counterparty_id: Optional[str]
