@@ -49,6 +49,7 @@ class TestTransactions:
             },
             posted=True,
             type="ach",
+            vendor_customer_id="vendor_customer_id",
             vendor_description="vendor_description",
         )
         assert_matches_type(Transaction, transaction, path=["response"])
@@ -288,6 +289,7 @@ class TestAsyncTransactions:
             },
             posted=True,
             type="ach",
+            vendor_customer_id="vendor_customer_id",
             vendor_description="vendor_description",
         )
         assert_matches_type(Transaction, transaction, path=["response"])

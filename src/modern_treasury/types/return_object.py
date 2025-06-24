@@ -11,7 +11,45 @@ from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 from .shared.currency import Currency
 
-__all__ = ["ReturnObject", "ReferenceNumbers", "ReferenceNumber"]
+__all__ = ["ReturnObject", "Corrections", "ReferenceNumbers", "ReferenceNumber"]
+
+
+class Corrections(BaseModel):
+    account_number: Optional[str] = None
+    """
+    The updated account number that should replace the one originally used on the
+    outgoing payment.
+    """
+
+    company_id: Optional[str] = None
+    """
+    The updated company ID that should replace the one originally used on the
+    outgoing payment.
+    """
+
+    company_name: Optional[str] = None
+    """
+    The updated company name that should replace the one originally used on the
+    outgoing payment.
+    """
+
+    individual_identification_number: Optional[str] = None
+    """
+    The updated individual identification number that should replace the one
+    originally used on the outgoing payment.
+    """
+
+    routing_number: Optional[str] = None
+    """
+    The updated routing number that should replace the one originally used on the
+    outgoing payment.
+    """
+
+    transaction_code: Optional[str] = None
+    """
+    The updated account type code that should replace the one originally used on the
+    outgoing payment.
+    """
 
 
 class ReferenceNumber(BaseModel):
@@ -231,6 +269,13 @@ class ReturnObject(BaseModel):
     ] = None
     """The return code. For ACH returns, this is the required ACH return code."""
 
+    corrections: Optional[Corrections] = None
+    """Only relevant for ACH NOC returns.
+
+    This is an object containing all of the new and corrected information provided
+    by the bank that was previously incorrect on the original outgoing payment.
+    """
+
     created_at: datetime
 
     currency: Currency
@@ -334,7 +379,9 @@ class ReturnObject(BaseModel):
 
 if PYDANTIC_V2:
     ReturnObject.model_rebuild()
+    Corrections.model_rebuild()
     ReferenceNumber.model_rebuild()
 else:
     ReturnObject.update_forward_refs()  # type: ignore
+    Corrections.update_forward_refs()  # type: ignore
     ReferenceNumber.update_forward_refs()  # type: ignore

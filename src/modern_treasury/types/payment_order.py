@@ -217,8 +217,8 @@ class PaymentOrder(BaseModel):
     charge_bearer: Optional[Literal["shared", "sender", "receiver"]] = None
     """The party that will pay the fees for the payment order.
 
-    Only applies to wire payment orders. Can be one of shared, sender, or receiver,
-    which correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`.
+    See https://docs.moderntreasury.com/payments/docs/charge-bearer to understand
+    the differences between the options.
     """
 
     counterparty_id: Optional[str] = None

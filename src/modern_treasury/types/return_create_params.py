@@ -8,7 +8,7 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["ReturnCreateParams"]
+__all__ = ["ReturnCreateParams", "Corrections"]
 
 
 class ReturnCreateParams(TypedDict, total=False):
@@ -126,6 +126,13 @@ class ReturnCreateParams(TypedDict, total=False):
     ]
     """The return code. For ACH returns, this is the required ACH return code."""
 
+    corrections: Optional[Corrections]
+    """Only relevant for ACH NOC returns.
+
+    This is an object containing all of the new and corrected information provided
+    by the bank that was previously incorrect on the original outgoing payment.
+    """
+
     data: Optional[object]
     """The raw data from the return file that we get from the bank."""
 
@@ -139,4 +146,42 @@ class ReturnCreateParams(TypedDict, total=False):
     """An optional description of the reason for the return.
 
     This is for internal usage and will not be transmitted to the bank.”
+    """
+
+
+class Corrections(TypedDict, total=False):
+    account_number: Optional[str]
+    """
+    The updated account number that should replace the one originally used on the
+    outgoing payment.
+    """
+
+    company_id: Optional[str]
+    """
+    The updated company ID that should replace the one originally used on the
+    outgoing payment.
+    """
+
+    company_name: Optional[str]
+    """
+    The updated company name that should replace the one originally used on the
+    outgoing payment.
+    """
+
+    individual_identification_number: Optional[str]
+    """
+    The updated individual identification number that should replace the one
+    originally used on the outgoing payment.
+    """
+
+    routing_number: Optional[str]
+    """
+    The updated routing number that should replace the one originally used on the
+    outgoing payment.
+    """
+
+    transaction_code: Optional[str]
+    """
+    The updated account type code that should replace the one originally used on the
+    outgoing payment.
     """
