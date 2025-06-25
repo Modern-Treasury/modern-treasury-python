@@ -180,7 +180,7 @@ class InternalAccount(BaseModel):
     """
 
     legal_entity_id: Optional[str] = None
-    """The Legal Entity associated to this account"""
+    """The Legal Entity associated to this account."""
 
     live_mode: bool
     """
@@ -215,3 +215,6 @@ class InternalAccount(BaseModel):
     """An array of routing detail objects."""
 
     updated_at: datetime
+
+    vendor_id: Optional[str] = None
+    """The vendor ID associated with this account."""

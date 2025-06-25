@@ -130,6 +130,8 @@ class ReferenceNumber(BaseModel):
         "goldman_sachs_payment_request_id",
         "goldman_sachs_request_id",
         "goldman_sachs_unique_payment_id",
+        "hifi_offramp_id",
+        "hifi_transfer_id",
         "interac_message_id",
         "jpmc_ccn",
         "jpmc_clearing_system_reference",
