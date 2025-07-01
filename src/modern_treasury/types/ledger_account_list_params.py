@@ -7,6 +7,7 @@ from datetime import date, datetime
 from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
+from .shared.transaction_direction import TransactionDirection
 
 __all__ = [
     "LedgerAccountListParams",
@@ -68,6 +69,8 @@ class LedgerAccountListParams(TypedDict, total=False):
     If you have specific names to retrieve in bulk, you can pass them as query
     parameters delimited with `name[]=`, for example `?name[]=123&name[]=abc`.
     """
+
+    normal_balance: TransactionDirection
 
     pending_balance_amount: PendingBalanceAmount
     """
