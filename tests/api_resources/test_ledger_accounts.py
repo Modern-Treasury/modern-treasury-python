@@ -216,6 +216,7 @@ class TestLedgerAccounts:
             ledger_id="ledger_id",
             metadata={"foo": "string"},
             name=["string"],
+            normal_balance="credit",
             pending_balance_amount={
                 "eq": 0,
                 "gt": 0,
@@ -496,6 +497,7 @@ class TestAsyncLedgerAccounts:
             ledger_id="ledger_id",
             metadata={"foo": "string"},
             name=["string"],
+            normal_balance="credit",
             pending_balance_amount={
                 "eq": 0,
                 "gt": 0,
