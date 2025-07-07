@@ -4,135 +4,10 @@ from typing import Dict, Optional
 from datetime import datetime
 
 from .._models import BaseModel
+from .shared.ledger_balances import LedgerBalances
 from .shared.transaction_direction import TransactionDirection
 
-__all__ = [
-    "LedgerAccountStatementCreateResponse",
-    "EndingBalance",
-    "EndingBalanceAvailableBalance",
-    "EndingBalancePendingBalance",
-    "EndingBalancePostedBalance",
-    "StartingBalance",
-    "StartingBalanceAvailableBalance",
-    "StartingBalancePendingBalance",
-    "StartingBalancePostedBalance",
-]
-
-
-class EndingBalanceAvailableBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-class EndingBalancePendingBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-class EndingBalancePostedBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-class EndingBalance(BaseModel):
-    available_balance: EndingBalanceAvailableBalance
-    """
-    The available_balance is the sum of all posted inbound entries and pending
-    outbound entries. For credit normal, available_amount = posted_credits -
-    pending_debits; for debit normal, available_amount = posted_debits -
-    pending_credits.
-    """
-
-    pending_balance: EndingBalancePendingBalance
-    """The pending_balance is the sum of all pending and posted entries."""
-
-    posted_balance: EndingBalancePostedBalance
-    """The posted_balance is the sum of all posted entries."""
-
-
-class StartingBalanceAvailableBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-class StartingBalancePendingBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-class StartingBalancePostedBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-class StartingBalance(BaseModel):
-    available_balance: StartingBalanceAvailableBalance
-    """
-    The available_balance is the sum of all posted inbound entries and pending
-    outbound entries. For credit normal, available_amount = posted_credits -
-    pending_debits; for debit normal, available_amount = posted_debits -
-    pending_credits.
-    """
-
-    pending_balance: StartingBalancePendingBalance
-    """The pending_balance is the sum of all pending and posted entries."""
-
-    posted_balance: StartingBalancePostedBalance
-    """The posted_balance is the sum of all posted entries."""
+__all__ = ["LedgerAccountStatementCreateResponse"]
 
 
 class LedgerAccountStatementCreateResponse(BaseModel):
@@ -155,7 +30,7 @@ class LedgerAccountStatementCreateResponse(BaseModel):
     be included in the ledger account statement.
     """
 
-    ending_balance: EndingBalance
+    ending_balance: LedgerBalances
     """
     The pending, posted, and available balances for this ledger account at the
     `effective_at_upper_bound`. The posted balance is the sum of all posted entries
@@ -193,7 +68,7 @@ class LedgerAccountStatementCreateResponse(BaseModel):
 
     object: str
 
-    starting_balance: StartingBalance
+    starting_balance: LedgerBalances
     """
     The pending, posted, and available balances for this ledger account at the
     `effective_at_lower_bound`. The posted balance is the sum of all posted entries

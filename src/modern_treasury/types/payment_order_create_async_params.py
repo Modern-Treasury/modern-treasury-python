@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
+from typing import Dict, Union, Iterable, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
@@ -11,23 +11,19 @@ from .shared.currency import Currency
 from .payment_order_type import PaymentOrderType
 from .external_account_type import ExternalAccountType
 from .payment_order_subtype import PaymentOrderSubtype
-from .shared.transaction_direction import TransactionDirection
+from .shared_params.accounting import Accounting
+from .shared_params.address_request import AddressRequest
+from .contact_detail_create_request_param import ContactDetailCreateRequestParam
+from .shared_params.ledger_account_create_request import LedgerAccountCreateRequest
+from .shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
 __all__ = [
     "PaymentOrderCreateAsyncParams",
-    "Accounting",
-    "LedgerTransaction",
-    "LedgerTransactionLedgerEntries",
-    "LedgerTransactionLedgerEntry",
     "LineItems",
     "LineItem",
     "ReceivingAccount",
     "ReceivingAccountAccountDetails",
     "ReceivingAccountAccountDetail",
-    "ReceivingAccountContactDetails",
-    "ReceivingAccountContactDetail",
-    "ReceivingAccountLedgerAccount",
-    "ReceivingAccountPartyAddress",
     "ReceivingAccountRoutingDetails",
     "ReceivingAccountRoutingDetail",
 ]
@@ -119,7 +115,7 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
     currency matches the originating account currency.
     """
 
-    ledger_transaction: LedgerTransaction
+    ledger_transaction: LedgerTransactionCreateRequest
     """
     Specifies a ledger transaction object that will be created with the payment
     order. If the ledger transaction cannot be created, then the payment order
@@ -247,142 +243,6 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
     """Name of the ultimate funds recipient."""
 
 
-class Accounting(TypedDict, total=False):
-    account_id: Optional[str]
-    """The ID of one of your accounting categories.
-
-    Note that these will only be accessible if your accounting system has been
-    connected.
-    """
-
-    class_id: Optional[str]
-    """The ID of one of the class objects in your accounting system.
-
-    Class objects track segments of your business independent of client or project.
-    Note that these will only be accessible if your accounting system has been
-    connected.
-    """
-
-
-class LedgerTransactionLedgerEntry(TypedDict, total=False):
-    amount: Required[int]
-    """Value in specified currency's smallest unit.
-
-    e.g. $10 would be represented as 1000. Can be any integer up to 36 digits.
-    """
-
-    direction: Required[TransactionDirection]
-    """One of `credit`, `debit`.
-
-    Describes the direction money is flowing in the transaction. A `credit` moves
-    money from your account to someone else's. A `debit` pulls money from someone
-    else's account to your own. Note that wire, rtp, and check payments will always
-    be `credit`.
-    """
-
-    ledger_account_id: Required[str]
-    """The ledger account that this ledger entry is associated with."""
-
-    available_balance_amount: Optional[Dict[str, int]]
-    """
-    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
-    account’s available balance. If any of these conditions would be false after the
-    transaction is created, the entire call will fail with error code 422.
-    """
-
-    lock_version: Optional[int]
-    """Lock version of the ledger account.
-
-    This can be passed when creating a ledger transaction to only succeed if no
-    ledger transactions have posted since the given version. See our post about
-    Designing the Ledgers API with Optimistic Locking for more details.
-    """
-
-    metadata: Dict[str, str]
-    """Additional data represented as key-value pairs.
-
-    Both the key and value must be strings.
-    """
-
-    pending_balance_amount: Optional[Dict[str, int]]
-    """
-    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
-    account’s pending balance. If any of these conditions would be false after the
-    transaction is created, the entire call will fail with error code 422.
-    """
-
-    posted_balance_amount: Optional[Dict[str, int]]
-    """
-    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
-    account’s posted balance. If any of these conditions would be false after the
-    transaction is created, the entire call will fail with error code 422.
-    """
-
-    show_resulting_ledger_account_balances: Optional[bool]
-    """
-    If true, response will include the balance of the associated ledger account for
-    the entry.
-    """
-
-
-LedgerTransactionLedgerEntries = LedgerTransactionLedgerEntry
-"""This type is deprecated and will be removed in a future release.
-
-Please use LedgerTransactionLedgerEntry instead.
-"""
-
-
-class LedgerTransaction(TypedDict, total=False):
-    ledger_entries: Required[Iterable[LedgerTransactionLedgerEntry]]
-    """An array of ledger entry objects."""
-
-    description: Optional[str]
-    """An optional description for internal use."""
-
-    effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """
-    The timestamp (ISO8601 format) at which the ledger transaction happened for
-    reporting purposes.
-    """
-
-    effective_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
-    """
-    The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
-    purposes.
-    """
-
-    external_id: str
-    """A unique string to represent the ledger transaction.
-
-    Only one pending or posted ledger transaction may have this ID in the ledger.
-    """
-
-    ledgerable_id: str
-    """
-    If the ledger transaction can be reconciled to another object in Modern
-    Treasury, the id will be populated here, otherwise null.
-    """
-
-    ledgerable_type: Literal[
-        "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
-    ]
-    """
-    If the ledger transaction can be reconciled to another object in Modern
-    Treasury, the type will be populated here, otherwise null. This can be one of
-    payment_order, incoming_payment_detail, expected_payment, return, paper_item, or
-    reversal.
-    """
-
-    metadata: Dict[str, str]
-    """Additional data represented as key-value pairs.
-
-    Both the key and value must be strings.
-    """
-
-    status: Literal["archived", "pending", "posted"]
-    """To post a ledger transaction at creation, use `posted`."""
-
-
 class LineItem(TypedDict, total=False):
     amount: Required[int]
     """Value in specified currency's smallest unit.
@@ -440,82 +300,6 @@ ReceivingAccountAccountDetails = ReceivingAccountAccountDetail
 
 Please use ReceivingAccountAccountDetail instead.
 """
-
-
-class ReceivingAccountContactDetail(TypedDict, total=False):
-    contact_identifier: str
-
-    contact_identifier_type: Literal["email", "phone_number", "website"]
-
-
-ReceivingAccountContactDetails = ReceivingAccountContactDetail
-"""This type is deprecated and will be removed in a future release.
-
-Please use ReceivingAccountContactDetail instead.
-"""
-
-
-class ReceivingAccountLedgerAccount(TypedDict, total=False):
-    currency: Required[str]
-    """The currency of the ledger account."""
-
-    ledger_id: Required[str]
-    """The id of the ledger that this account belongs to."""
-
-    name: Required[str]
-    """The name of the ledger account."""
-
-    normal_balance: Required[TransactionDirection]
-    """The normal balance of the ledger account."""
-
-    currency_exponent: Optional[int]
-    """The currency exponent of the ledger account."""
-
-    description: Optional[str]
-    """The description of the ledger account."""
-
-    ledger_account_category_ids: List[str]
-    """
-    The array of ledger account category ids that this ledger account should be a
-    child of.
-    """
-
-    ledgerable_id: str
-    """
-    If the ledger account links to another object in Modern Treasury, the id will be
-    populated here, otherwise null.
-    """
-
-    ledgerable_type: Literal["counterparty", "external_account", "internal_account", "virtual_account"]
-    """
-    If the ledger account links to another object in Modern Treasury, the type will
-    be populated here, otherwise null. The value is one of internal_account or
-    external_account.
-    """
-
-    metadata: Dict[str, str]
-    """Additional data represented as key-value pairs.
-
-    Both the key and value must be strings.
-    """
-
-
-class ReceivingAccountPartyAddress(TypedDict, total=False):
-    country: Optional[str]
-    """Country code conforms to [ISO 3166-1 alpha-2]"""
-
-    line1: Optional[str]
-
-    line2: Optional[str]
-
-    locality: Optional[str]
-    """Locality or City."""
-
-    postal_code: Optional[str]
-    """The postal code of the address."""
-
-    region: Optional[str]
-    """Region or State."""
 
 
 class ReceivingAccountRoutingDetail(TypedDict, total=False):
@@ -599,9 +383,9 @@ class ReceivingAccount(TypedDict, total=False):
     account_type: ExternalAccountType
     """Can be `checking`, `savings` or `other`."""
 
-    contact_details: Iterable[ReceivingAccountContactDetail]
+    contact_details: Iterable[ContactDetailCreateRequestParam]
 
-    ledger_account: ReceivingAccountLedgerAccount
+    ledger_account: LedgerAccountCreateRequest
     """Specifies a ledger account object that will be created with the external
     account.
 
@@ -623,7 +407,7 @@ class ReceivingAccount(TypedDict, total=False):
     This is only for internal usage and won't affect any payments
     """
 
-    party_address: ReceivingAccountPartyAddress
+    party_address: AddressRequest
     """Required if receiving wire payments."""
 
     party_identifier: str

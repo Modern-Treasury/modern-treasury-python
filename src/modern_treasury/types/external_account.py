@@ -7,70 +7,11 @@ from typing_extensions import Literal
 from .._models import BaseModel
 from .account_detail import AccountDetail
 from .routing_detail import RoutingDetail
+from .shared.address import Address
 from .external_account_type import ExternalAccountType
+from .shared.contact_detail import ContactDetail
 
-__all__ = ["ExternalAccount", "ContactDetails", "ContactDetail", "PartyAddress"]
-
-
-class ContactDetail(BaseModel):
-    id: str
-
-    contact_identifier: str
-
-    contact_identifier_type: Literal["email", "phone_number", "website"]
-
-    created_at: datetime
-
-    discarded_at: Optional[datetime] = None
-
-    live_mode: bool
-    """
-    This field will be true if this object exists in the live environment or false
-    if it exists in the test environment.
-    """
-
-    object: str
-
-    updated_at: datetime
-
-
-ContactDetails = ContactDetail
-"""This type is deprecated and will be removed in a future release.
-
-Please use ContactDetail instead.
-"""
-
-
-class PartyAddress(BaseModel):
-    id: str
-
-    country: Optional[str] = None
-    """Country code conforms to [ISO 3166-1 alpha-2]"""
-
-    created_at: datetime
-
-    line1: Optional[str] = None
-
-    line2: Optional[str] = None
-
-    live_mode: bool
-    """
-    This field will be true if this object exists in the live environment or false
-    if it exists in the test environment.
-    """
-
-    locality: Optional[str] = None
-    """Locality or City."""
-
-    object: str
-
-    postal_code: Optional[str] = None
-    """The postal code of the address."""
-
-    region: Optional[str] = None
-    """Region or State."""
-
-    updated_at: datetime
+__all__ = ["ExternalAccount"]
 
 
 class ExternalAccount(BaseModel):
@@ -115,7 +56,7 @@ class ExternalAccount(BaseModel):
 
     object: str
 
-    party_address: Optional[PartyAddress] = None
+    party_address: Optional[Address] = None
     """The address associated with the owner or `null`."""
 
     party_name: str

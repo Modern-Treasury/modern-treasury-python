@@ -16,6 +16,7 @@ from .._response import to_streamed_response_wrapper, async_to_streamed_response
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.virtual_account import VirtualAccount
+from ..types.shared_params.ledger_account_create_request import LedgerAccountCreateRequest
 
 __all__ = ["VirtualAccounts", "AsyncVirtualAccounts"]
 
@@ -50,7 +51,7 @@ class VirtualAccounts(SyncAPIResource):
         credit_ledger_account_id: str | NotGiven = NOT_GIVEN,
         debit_ledger_account_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        ledger_account: virtual_account_create_params.LedgerAccount | NotGiven = NOT_GIVEN,
+        ledger_account: LedgerAccountCreateRequest | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         routing_details: Iterable[virtual_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -341,7 +342,7 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         credit_ledger_account_id: str | NotGiven = NOT_GIVEN,
         debit_ledger_account_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        ledger_account: virtual_account_create_params.LedgerAccount | NotGiven = NOT_GIVEN,
+        ledger_account: LedgerAccountCreateRequest | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         routing_details: Iterable[virtual_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

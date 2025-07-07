@@ -5,11 +5,24 @@ from __future__ import annotations
 from .event import Event as Event
 from .ledger import Ledger as Ledger
 from .shared import (
+    Address as Address,
     Currency as Currency,
+    Accounting as Accounting,
     AccountsType as AccountsType,
     AsyncResponse as AsyncResponse,
+    ContactDetail as ContactDetail,
+    LedgerBalance as LedgerBalance,
+    AddressRequest as AddressRequest,
+    LedgerBalances as LedgerBalances,
+    ForeignExchangeRate as ForeignExchangeRate,
     TransactionDirection as TransactionDirection,
+    ChildLegalEntityCreate as ChildLegalEntityCreate,
+    LedgerEntryCreateRequest as LedgerEntryCreateRequest,
+    LedgerAccountCreateRequest as LedgerAccountCreateRequest,
+    IdentificationCreateRequest as IdentificationCreateRequest,
     LegalEntityComplianceDetail as LegalEntityComplianceDetail,
+    LedgerTransactionCreateRequest as LedgerTransactionCreateRequest,
+    LegalEntityAddressCreateRequest as LegalEntityAddressCreateRequest,
     LegalEntityIndustryClassification as LegalEntityIndustryClassification,
 )
 from .invoice import Invoice as Invoice
@@ -127,6 +140,7 @@ from .payment_order_create_async_params import PaymentOrderCreateAsyncParams as 
 from .foreign_exchange_quote_list_params import ForeignExchangeQuoteListParams as ForeignExchangeQuoteListParams
 from .account_collection_flow_list_params import AccountCollectionFlowListParams as AccountCollectionFlowListParams
 from .connection_legal_entity_list_params import ConnectionLegalEntityListParams as ConnectionLegalEntityListParams
+from .contact_detail_create_request_param import ContactDetailCreateRequestParam as ContactDetailCreateRequestParam
 from .counterparty_collect_account_params import CounterpartyCollectAccountParams as CounterpartyCollectAccountParams
 from .incoming_payment_detail_list_params import IncomingPaymentDetailListParams as IncomingPaymentDetailListParams
 from .ledger_account_category_list_params import LedgerAccountCategoryListParams as LedgerAccountCategoryListParams
