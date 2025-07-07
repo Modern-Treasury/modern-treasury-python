@@ -6,8 +6,9 @@ from typing import Dict, Optional
 from typing_extensions import Literal, TypedDict
 
 from .external_account_type import ExternalAccountType
+from .shared_params.address_request import AddressRequest
 
-__all__ = ["ExternalAccountUpdateParams", "PartyAddress"]
+__all__ = ["ExternalAccountUpdateParams"]
 
 
 class ExternalAccountUpdateParams(TypedDict, total=False):
@@ -28,7 +29,7 @@ class ExternalAccountUpdateParams(TypedDict, total=False):
     This is only for internal usage and won't affect any payments
     """
 
-    party_address: PartyAddress
+    party_address: AddressRequest
 
     party_name: str
     """
@@ -37,21 +38,3 @@ class ExternalAccountUpdateParams(TypedDict, total=False):
 
     party_type: Optional[Literal["business", "individual"]]
     """Either `individual` or `business`."""
-
-
-class PartyAddress(TypedDict, total=False):
-    country: Optional[str]
-    """Country code conforms to [ISO 3166-1 alpha-2]"""
-
-    line1: Optional[str]
-
-    line2: Optional[str]
-
-    locality: Optional[str]
-    """Locality or City."""
-
-    postal_code: Optional[str]
-    """The postal code of the address."""
-
-    region: Optional[str]
-    """Region or State."""

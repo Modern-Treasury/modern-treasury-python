@@ -37,7 +37,9 @@ from ...types.shared.currency import Currency
 from ...types.payment_order_type import PaymentOrderType
 from ...types.payment_order_subtype import PaymentOrderSubtype
 from ...types.shared.async_response import AsyncResponse
+from ...types.shared_params.accounting import Accounting
 from ...types.shared.transaction_direction import TransactionDirection
+from ...types.shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
 __all__ = ["PaymentOrders", "AsyncPaymentOrders"]
 
@@ -73,7 +75,7 @@ class PaymentOrders(SyncAPIResource):
         direction: Literal["credit", "debit"],
         originating_account_id: str,
         type: PaymentOrderType,
-        accounting: payment_order_create_params.Accounting | NotGiven = NOT_GIVEN,
+        accounting: Accounting | NotGiven = NOT_GIVEN,
         accounting_category_id: Optional[str] | NotGiven = NOT_GIVEN,
         accounting_ledger_class_id: Optional[str] | NotGiven = NOT_GIVEN,
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | NotGiven = NOT_GIVEN,
@@ -85,7 +87,7 @@ class PaymentOrders(SyncAPIResource):
         fallback_type: Literal["ach"] | NotGiven = NOT_GIVEN,
         foreign_exchange_contract: Optional[str] | NotGiven = NOT_GIVEN,
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | NotGiven = NOT_GIVEN,
-        ledger_transaction: payment_order_create_params.LedgerTransaction | NotGiven = NOT_GIVEN,
+        ledger_transaction: LedgerTransactionCreateRequest | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         line_items: Iterable[payment_order_create_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -347,7 +349,7 @@ class PaymentOrders(SyncAPIResource):
         self,
         id: str,
         *,
-        accounting: payment_order_update_params.Accounting | NotGiven = NOT_GIVEN,
+        accounting: Accounting | NotGiven = NOT_GIVEN,
         accounting_category_id: Optional[str] | NotGiven = NOT_GIVEN,
         accounting_ledger_class_id: Optional[str] | NotGiven = NOT_GIVEN,
         amount: int | NotGiven = NOT_GIVEN,
@@ -747,7 +749,7 @@ class PaymentOrders(SyncAPIResource):
         direction: Literal["credit", "debit"],
         originating_account_id: str,
         type: PaymentOrderType,
-        accounting: payment_order_create_async_params.Accounting | NotGiven = NOT_GIVEN,
+        accounting: Accounting | NotGiven = NOT_GIVEN,
         accounting_category_id: Optional[str] | NotGiven = NOT_GIVEN,
         accounting_ledger_class_id: Optional[str] | NotGiven = NOT_GIVEN,
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | NotGiven = NOT_GIVEN,
@@ -758,7 +760,7 @@ class PaymentOrders(SyncAPIResource):
         fallback_type: Literal["ach"] | NotGiven = NOT_GIVEN,
         foreign_exchange_contract: Optional[str] | NotGiven = NOT_GIVEN,
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | NotGiven = NOT_GIVEN,
-        ledger_transaction: payment_order_create_async_params.LedgerTransaction | NotGiven = NOT_GIVEN,
+        ledger_transaction: LedgerTransactionCreateRequest | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         line_items: Iterable[payment_order_create_async_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -1004,7 +1006,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         direction: Literal["credit", "debit"],
         originating_account_id: str,
         type: PaymentOrderType,
-        accounting: payment_order_create_params.Accounting | NotGiven = NOT_GIVEN,
+        accounting: Accounting | NotGiven = NOT_GIVEN,
         accounting_category_id: Optional[str] | NotGiven = NOT_GIVEN,
         accounting_ledger_class_id: Optional[str] | NotGiven = NOT_GIVEN,
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | NotGiven = NOT_GIVEN,
@@ -1016,7 +1018,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         fallback_type: Literal["ach"] | NotGiven = NOT_GIVEN,
         foreign_exchange_contract: Optional[str] | NotGiven = NOT_GIVEN,
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | NotGiven = NOT_GIVEN,
-        ledger_transaction: payment_order_create_params.LedgerTransaction | NotGiven = NOT_GIVEN,
+        ledger_transaction: LedgerTransactionCreateRequest | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         line_items: Iterable[payment_order_create_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -1278,7 +1280,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         self,
         id: str,
         *,
-        accounting: payment_order_update_params.Accounting | NotGiven = NOT_GIVEN,
+        accounting: Accounting | NotGiven = NOT_GIVEN,
         accounting_category_id: Optional[str] | NotGiven = NOT_GIVEN,
         accounting_ledger_class_id: Optional[str] | NotGiven = NOT_GIVEN,
         amount: int | NotGiven = NOT_GIVEN,
@@ -1678,7 +1680,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         direction: Literal["credit", "debit"],
         originating_account_id: str,
         type: PaymentOrderType,
-        accounting: payment_order_create_async_params.Accounting | NotGiven = NOT_GIVEN,
+        accounting: Accounting | NotGiven = NOT_GIVEN,
         accounting_category_id: Optional[str] | NotGiven = NOT_GIVEN,
         accounting_ledger_class_id: Optional[str] | NotGiven = NOT_GIVEN,
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | NotGiven = NOT_GIVEN,
@@ -1689,7 +1691,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         fallback_type: Literal["ach"] | NotGiven = NOT_GIVEN,
         foreign_exchange_contract: Optional[str] | NotGiven = NOT_GIVEN,
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | NotGiven = NOT_GIVEN,
-        ledger_transaction: payment_order_create_async_params.LedgerTransaction | NotGiven = NOT_GIVEN,
+        ledger_transaction: LedgerTransactionCreateRequest | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         line_items: Iterable[payment_order_create_async_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,

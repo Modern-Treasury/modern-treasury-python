@@ -2,23 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 from .external_account_type import ExternalAccountType
-from .shared.transaction_direction import TransactionDirection
+from .shared_params.address_request import AddressRequest
+from .contact_detail_create_request_param import ContactDetailCreateRequestParam
+from .shared_params.ledger_account_create_request import LedgerAccountCreateRequest
 
-__all__ = [
-    "ExternalAccountCreateParams",
-    "AccountDetails",
-    "AccountDetail",
-    "ContactDetails",
-    "ContactDetail",
-    "LedgerAccount",
-    "PartyAddress",
-    "RoutingDetails",
-    "RoutingDetail",
-]
+__all__ = ["ExternalAccountCreateParams", "AccountDetails", "AccountDetail", "RoutingDetails", "RoutingDetail"]
 
 
 class ExternalAccountCreateParams(TypedDict, total=False):
@@ -29,9 +21,9 @@ class ExternalAccountCreateParams(TypedDict, total=False):
     account_type: ExternalAccountType
     """Can be `checking`, `savings` or `other`."""
 
-    contact_details: Iterable[ContactDetail]
+    contact_details: Iterable[ContactDetailCreateRequestParam]
 
-    ledger_account: LedgerAccount
+    ledger_account: LedgerAccountCreateRequest
     """Specifies a ledger account object that will be created with the external
     account.
 
@@ -53,7 +45,7 @@ class ExternalAccountCreateParams(TypedDict, total=False):
     This is only for internal usage and won't affect any payments
     """
 
-    party_address: PartyAddress
+    party_address: AddressRequest
     """Required if receiving wire payments."""
 
     party_identifier: str
@@ -101,82 +93,6 @@ AccountDetails = AccountDetail
 
 Please use AccountDetail instead.
 """
-
-
-class ContactDetail(TypedDict, total=False):
-    contact_identifier: str
-
-    contact_identifier_type: Literal["email", "phone_number", "website"]
-
-
-ContactDetails = ContactDetail
-"""This type is deprecated and will be removed in a future release.
-
-Please use ContactDetail instead.
-"""
-
-
-class LedgerAccount(TypedDict, total=False):
-    currency: Required[str]
-    """The currency of the ledger account."""
-
-    ledger_id: Required[str]
-    """The id of the ledger that this account belongs to."""
-
-    name: Required[str]
-    """The name of the ledger account."""
-
-    normal_balance: Required[TransactionDirection]
-    """The normal balance of the ledger account."""
-
-    currency_exponent: Optional[int]
-    """The currency exponent of the ledger account."""
-
-    description: Optional[str]
-    """The description of the ledger account."""
-
-    ledger_account_category_ids: List[str]
-    """
-    The array of ledger account category ids that this ledger account should be a
-    child of.
-    """
-
-    ledgerable_id: str
-    """
-    If the ledger account links to another object in Modern Treasury, the id will be
-    populated here, otherwise null.
-    """
-
-    ledgerable_type: Literal["counterparty", "external_account", "internal_account", "virtual_account"]
-    """
-    If the ledger account links to another object in Modern Treasury, the type will
-    be populated here, otherwise null. The value is one of internal_account or
-    external_account.
-    """
-
-    metadata: Dict[str, str]
-    """Additional data represented as key-value pairs.
-
-    Both the key and value must be strings.
-    """
-
-
-class PartyAddress(TypedDict, total=False):
-    country: Optional[str]
-    """Country code conforms to [ISO 3166-1 alpha-2]"""
-
-    line1: Optional[str]
-
-    line2: Optional[str]
-
-    locality: Optional[str]
-    """Locality or City."""
-
-    postal_code: Optional[str]
-    """The postal code of the address."""
-
-    region: Optional[str]
-    """Region or State."""
 
 
 class RoutingDetail(TypedDict, total=False):
