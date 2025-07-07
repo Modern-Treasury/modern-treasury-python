@@ -1,5 +1,44 @@
 # Changelog
 
+## 1.52.0 (2025-07-07)
+
+Full Changelog: [v1.51.0...v1.52.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.51.0...v1.52.0)
+
+### Features
+
+* **api:** api update ([924af1f](https://github.com/Modern-Treasury/modern-treasury-python/commit/924af1f3c70ee2266ecc7a60ba9b7b854f49d23c))
+* **api:** api update ([5640a2c](https://github.com/Modern-Treasury/modern-treasury-python/commit/5640a2c1bb6d999c6cb5410fcde1ddba862db064))
+* **api:** api update ([d8e0d07](https://github.com/Modern-Treasury/modern-treasury-python/commit/d8e0d0708635f0775a0c8252f3fec1dd87d6fbf9))
+* **api:** api update ([717c292](https://github.com/Modern-Treasury/modern-treasury-python/commit/717c29220236c627811dcc219cbe2b00190a863d))
+* **api:** api update ([7088eea](https://github.com/Modern-Treasury/modern-treasury-python/commit/7088eeaea3b8ea66a458050119336b3f3cbb0fa1))
+* **client:** add support for aiohttp ([9e596fe](https://github.com/Modern-Treasury/modern-treasury-python/commit/9e596fe4960796aa94738cac1efc84e0a5e47fef))
+
+
+### Bug Fixes
+
+* **ci:** correct conditional ([b126aed](https://github.com/Modern-Treasury/modern-treasury-python/commit/b126aed59bcc8d56a57a96ddc0a2ac47a61ed2be))
+* **ci:** release-doctor — report correct token name ([2a2ad42](https://github.com/Modern-Treasury/modern-treasury-python/commit/2a2ad42485df7c05b0998a7f02da0aa460516c8a))
+* **client:** correctly parse binary response | stream ([f873d33](https://github.com/Modern-Treasury/modern-treasury-python/commit/f873d3366e0bb78a8235513eb716041d6fcf09e3))
+* **tests:** fix: tests which call HTTP endpoints directly with the example parameters ([66c9bd8](https://github.com/Modern-Treasury/modern-treasury-python/commit/66c9bd8c7a5796c13d59e83854b63bd528b43ce3))
+
+
+### Chores
+
+* **ci:** change upload type ([53cbe9a](https://github.com/Modern-Treasury/modern-treasury-python/commit/53cbe9a6d2d6c59a101bc4bb94812ac055e8aab6))
+* **ci:** enable for pull requests ([abfde23](https://github.com/Modern-Treasury/modern-treasury-python/commit/abfde23b5dc8043bb639978f962b750d74f4e866))
+* **ci:** only run for pushes and fork pull requests ([29ae293](https://github.com/Modern-Treasury/modern-treasury-python/commit/29ae2939e17729505f6c5993c22fe6103236d8e0))
+* **internal:** codegen related update ([4217e60](https://github.com/Modern-Treasury/modern-treasury-python/commit/4217e60770270fc7982e11234012c0eab9d57f52))
+* **internal:** update conftest.py ([746a5b7](https://github.com/Modern-Treasury/modern-treasury-python/commit/746a5b7681f2292b3973b8c792f2efe74fe0395e))
+* **readme:** update badges ([e835456](https://github.com/Modern-Treasury/modern-treasury-python/commit/e835456327d17fc3d05e80897853a914a70218aa))
+* **tests:** add tests for httpx client instantiation & proxies ([1024799](https://github.com/Modern-Treasury/modern-treasury-python/commit/1024799f8a793d7651599efc7589768cbad4f820))
+* **tests:** run tests in parallel ([954c41e](https://github.com/Modern-Treasury/modern-treasury-python/commit/954c41e7da4999717fec5d602f32634ebb1022f2))
+* **tests:** skip some failing tests on the latest python versions ([3ec31d3](https://github.com/Modern-Treasury/modern-treasury-python/commit/3ec31d3ec4f45da2895933f251946870c00b6f0e))
+
+
+### Documentation
+
+* **client:** fix httpx.Timeout documentation reference ([a8250c6](https://github.com/Modern-Treasury/modern-treasury-python/commit/a8250c697a08eba90e1e3746f68098c28ff959fa))
+
 ## 1.51.0 (2025-06-06)
 
 Full Changelog: [v1.50.0...v1.51.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.50.0...v1.51.0)
