@@ -214,7 +214,7 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import InternalAccount
+from modern_treasury.types import InternalAccount, InternalAccountUpdateAccountCapabilityResponse
 ```
 
 Methods:
@@ -223,6 +223,7 @@ Methods:
 - <code title="get /api/internal_accounts/{id}">client.internal_accounts.<a href="./src/modern_treasury/resources/internal_accounts/internal_accounts.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/internal_account.py">InternalAccount</a></code>
 - <code title="patch /api/internal_accounts/{id}">client.internal_accounts.<a href="./src/modern_treasury/resources/internal_accounts/internal_accounts.py">update</a>(id, \*\*<a href="src/modern_treasury/types/internal_account_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/internal_account.py">InternalAccount</a></code>
 - <code title="get /api/internal_accounts">client.internal_accounts.<a href="./src/modern_treasury/resources/internal_accounts/internal_accounts.py">list</a>(\*\*<a href="src/modern_treasury/types/internal_account_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/internal_account.py">SyncPage[InternalAccount]</a></code>
+- <code title="patch /api/internal_accounts/{internal_account_id}/account_capabilities/{id}">client.internal_accounts.<a href="./src/modern_treasury/resources/internal_accounts/internal_accounts.py">update_account_capability</a>(id, \*, internal_account_id, \*\*<a href="src/modern_treasury/types/internal_account_update_account_capability_params.py">params</a>) -> <a href="./src/modern_treasury/types/internal_account_update_account_capability_response.py">InternalAccountUpdateAccountCapabilityResponse</a></code>
 
 ## BalanceReports
 

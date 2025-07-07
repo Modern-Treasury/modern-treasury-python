@@ -204,3 +204,9 @@ from .external_account_complete_verification_params import (
 from .ledger_transaction_create_partial_post_params import (
     LedgerTransactionCreatePartialPostParams as LedgerTransactionCreatePartialPostParams,
 )
+from .internal_account_update_account_capability_params import (
+    InternalAccountUpdateAccountCapabilityParams as InternalAccountUpdateAccountCapabilityParams,
+)
+from .internal_account_update_account_capability_response import (
+    InternalAccountUpdateAccountCapabilityResponse as InternalAccountUpdateAccountCapabilityResponse,
+)
