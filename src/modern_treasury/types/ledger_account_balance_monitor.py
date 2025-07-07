@@ -4,16 +4,9 @@ from typing import Dict, Optional
 from datetime import datetime
 
 from .._models import BaseModel
+from .shared.ledger_balances import LedgerBalances
 
-__all__ = [
-    "LedgerAccountBalanceMonitor",
-    "AlertCondition",
-    "CurrentLedgerAccountBalanceState",
-    "CurrentLedgerAccountBalanceStateBalances",
-    "CurrentLedgerAccountBalanceStateBalancesAvailableBalance",
-    "CurrentLedgerAccountBalanceStateBalancesPendingBalance",
-    "CurrentLedgerAccountBalanceStateBalancesPostedBalance",
-]
+__all__ = ["LedgerAccountBalanceMonitor", "AlertCondition", "CurrentLedgerAccountBalanceState"]
 
 
 class AlertCondition(BaseModel):
@@ -38,66 +31,8 @@ class AlertCondition(BaseModel):
     """
 
 
-class CurrentLedgerAccountBalanceStateBalancesAvailableBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-class CurrentLedgerAccountBalanceStateBalancesPendingBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-class CurrentLedgerAccountBalanceStateBalancesPostedBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-class CurrentLedgerAccountBalanceStateBalances(BaseModel):
-    available_balance: CurrentLedgerAccountBalanceStateBalancesAvailableBalance
-    """
-    The available_balance is the sum of all posted inbound entries and pending
-    outbound entries. For credit normal, available_amount = posted_credits -
-    pending_debits; for debit normal, available_amount = posted_debits -
-    pending_credits.
-    """
-
-    pending_balance: CurrentLedgerAccountBalanceStateBalancesPendingBalance
-    """The pending_balance is the sum of all pending and posted entries."""
-
-    posted_balance: CurrentLedgerAccountBalanceStateBalancesPostedBalance
-    """The posted_balance is the sum of all posted entries."""
-
-
 class CurrentLedgerAccountBalanceState(BaseModel):
-    balances: CurrentLedgerAccountBalanceStateBalances
+    balances: LedgerBalances
 
     ledger_account_lock_version: int
     """The current lock version of the ledger account."""

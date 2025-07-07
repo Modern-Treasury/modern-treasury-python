@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
+from typing import Dict, Union, Iterable, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
@@ -11,20 +11,18 @@ from .shared.currency import Currency
 from .payment_order_type import PaymentOrderType
 from .external_account_type import ExternalAccountType
 from .payment_order_subtype import PaymentOrderSubtype
-from .shared.transaction_direction import TransactionDirection
+from .shared_params.accounting import Accounting
+from .shared_params.address_request import AddressRequest
+from .contact_detail_create_request_param import ContactDetailCreateRequestParam
+from .shared_params.ledger_account_create_request import LedgerAccountCreateRequest
 
 __all__ = [
     "PaymentOrderUpdateParams",
-    "Accounting",
     "LineItems",
     "LineItem",
     "ReceivingAccount",
     "ReceivingAccountAccountDetails",
     "ReceivingAccountAccountDetail",
-    "ReceivingAccountContactDetails",
-    "ReceivingAccountContactDetail",
-    "ReceivingAccountLedgerAccount",
-    "ReceivingAccountPartyAddress",
     "ReceivingAccountRoutingDetails",
     "ReceivingAccountRoutingDetail",
 ]
@@ -261,23 +259,6 @@ class PaymentOrderUpdateParams(TypedDict, total=False):
     """
 
 
-class Accounting(TypedDict, total=False):
-    account_id: Optional[str]
-    """The ID of one of your accounting categories.
-
-    Note that these will only be accessible if your accounting system has been
-    connected.
-    """
-
-    class_id: Optional[str]
-    """The ID of one of the class objects in your accounting system.
-
-    Class objects track segments of your business independent of client or project.
-    Note that these will only be accessible if your accounting system has been
-    connected.
-    """
-
-
 class LineItem(TypedDict, total=False):
     amount: Required[int]
     """Value in specified currency's smallest unit.
@@ -335,82 +316,6 @@ ReceivingAccountAccountDetails = ReceivingAccountAccountDetail
 
 Please use ReceivingAccountAccountDetail instead.
 """
-
-
-class ReceivingAccountContactDetail(TypedDict, total=False):
-    contact_identifier: str
-
-    contact_identifier_type: Literal["email", "phone_number", "website"]
-
-
-ReceivingAccountContactDetails = ReceivingAccountContactDetail
-"""This type is deprecated and will be removed in a future release.
-
-Please use ReceivingAccountContactDetail instead.
-"""
-
-
-class ReceivingAccountLedgerAccount(TypedDict, total=False):
-    currency: Required[str]
-    """The currency of the ledger account."""
-
-    ledger_id: Required[str]
-    """The id of the ledger that this account belongs to."""
-
-    name: Required[str]
-    """The name of the ledger account."""
-
-    normal_balance: Required[TransactionDirection]
-    """The normal balance of the ledger account."""
-
-    currency_exponent: Optional[int]
-    """The currency exponent of the ledger account."""
-
-    description: Optional[str]
-    """The description of the ledger account."""
-
-    ledger_account_category_ids: List[str]
-    """
-    The array of ledger account category ids that this ledger account should be a
-    child of.
-    """
-
-    ledgerable_id: str
-    """
-    If the ledger account links to another object in Modern Treasury, the id will be
-    populated here, otherwise null.
-    """
-
-    ledgerable_type: Literal["counterparty", "external_account", "internal_account", "virtual_account"]
-    """
-    If the ledger account links to another object in Modern Treasury, the type will
-    be populated here, otherwise null. The value is one of internal_account or
-    external_account.
-    """
-
-    metadata: Dict[str, str]
-    """Additional data represented as key-value pairs.
-
-    Both the key and value must be strings.
-    """
-
-
-class ReceivingAccountPartyAddress(TypedDict, total=False):
-    country: Optional[str]
-    """Country code conforms to [ISO 3166-1 alpha-2]"""
-
-    line1: Optional[str]
-
-    line2: Optional[str]
-
-    locality: Optional[str]
-    """Locality or City."""
-
-    postal_code: Optional[str]
-    """The postal code of the address."""
-
-    region: Optional[str]
-    """Region or State."""
 
 
 class ReceivingAccountRoutingDetail(TypedDict, total=False):
@@ -494,9 +399,9 @@ class ReceivingAccount(TypedDict, total=False):
     account_type: ExternalAccountType
     """Can be `checking`, `savings` or `other`."""
 
-    contact_details: Iterable[ReceivingAccountContactDetail]
+    contact_details: Iterable[ContactDetailCreateRequestParam]
 
-    ledger_account: ReceivingAccountLedgerAccount
+    ledger_account: LedgerAccountCreateRequest
     """Specifies a ledger account object that will be created with the external
     account.
 
@@ -518,7 +423,7 @@ class ReceivingAccount(TypedDict, total=False):
     This is only for internal usage and won't affect any payments
     """
 
-    party_address: ReceivingAccountPartyAddress
+    party_address: AddressRequest
     """Required if receiving wire payments."""
 
     party_identifier: str

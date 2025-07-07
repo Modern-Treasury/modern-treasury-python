@@ -32,6 +32,7 @@ from ..._response import to_streamed_response_wrapper, async_to_streamed_respons
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.ledger_transaction import LedgerTransaction
+from ...types.shared_params.ledger_entry_create_request import LedgerEntryCreateRequest
 
 __all__ = ["LedgerTransactions", "AsyncLedgerTransactions"]
 
@@ -63,7 +64,7 @@ class LedgerTransactions(SyncAPIResource):
     def create(
         self,
         *,
-        ledger_entries: Iterable[ledger_transaction_create_params.LedgerEntry],
+        ledger_entries: Iterable[LedgerEntryCreateRequest],
         description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
@@ -188,7 +189,7 @@ class LedgerTransactions(SyncAPIResource):
         *,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        ledger_entries: Iterable[ledger_transaction_update_params.LedgerEntry] | NotGiven = NOT_GIVEN,
+        ledger_entries: Iterable[LedgerEntryCreateRequest] | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
             "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
@@ -548,7 +549,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
     async def create(
         self,
         *,
-        ledger_entries: Iterable[ledger_transaction_create_params.LedgerEntry],
+        ledger_entries: Iterable[LedgerEntryCreateRequest],
         description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
@@ -673,7 +674,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         *,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        ledger_entries: Iterable[ledger_transaction_update_params.LedgerEntry] | NotGiven = NOT_GIVEN,
+        ledger_entries: Iterable[LedgerEntryCreateRequest] | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
             "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"

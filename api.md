@@ -2,9 +2,22 @@
 
 ```python
 from modern_treasury.types import (
+    Accounting,
     AccountsType,
+    Address,
+    AddressRequest,
     AsyncResponse,
+    ChildLegalEntityCreate,
+    ContactDetail,
     Currency,
+    ForeignExchangeRate,
+    IdentificationCreateRequest,
+    LedgerAccountCreateRequest,
+    LedgerBalance,
+    LedgerBalances,
+    LedgerEntryCreateRequest,
+    LedgerTransactionCreateRequest,
+    LegalEntityAddressCreateRequest,
     LegalEntityComplianceDetail,
     LegalEntityIndustryClassification,
     TransactionDirection,
@@ -401,7 +414,12 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import PaymentOrder, PaymentOrderSubtype, PaymentOrderType
+from modern_treasury.types import (
+    ContactDetailCreateRequest,
+    PaymentOrder,
+    PaymentOrderSubtype,
+    PaymentOrderType,
+)
 ```
 
 Methods:

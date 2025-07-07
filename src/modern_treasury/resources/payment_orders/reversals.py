@@ -17,6 +17,7 @@ from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.payment_orders import reversal_list_params, reversal_create_params
 from ...types.payment_orders.reversal import Reversal
+from ...types.shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
 __all__ = ["Reversals", "AsyncReversals"]
 
@@ -52,7 +53,7 @@ class Reversals(SyncAPIResource):
             "date_earlier_than_intended",
             "date_later_than_intended",
         ],
-        ledger_transaction: reversal_create_params.LedgerTransaction | NotGiven = NOT_GIVEN,
+        ledger_transaction: LedgerTransactionCreateRequest | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -225,7 +226,7 @@ class AsyncReversals(AsyncAPIResource):
             "date_earlier_than_intended",
             "date_later_than_intended",
         ],
-        ledger_transaction: reversal_create_params.LedgerTransaction | NotGiven = NOT_GIVEN,
+        ledger_transaction: LedgerTransactionCreateRequest | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
