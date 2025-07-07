@@ -11,6 +11,7 @@ from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import (
     InternalAccount,
+    InternalAccountUpdateAccountCapabilityResponse,
 )
 from modern_treasury._utils import parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
@@ -228,6 +229,59 @@ class TestInternalAccounts:
 
         assert cast(Any, response.is_closed) is True
 
+    @parametrize
+    def test_method_update_account_capability(self, client: ModernTreasury) -> None:
+        internal_account = client.internal_accounts.update_account_capability(
+            id="id",
+            internal_account_id="internal_account_id",
+            identifier="identifier",
+        )
+        assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=["response"])
+
+    @parametrize
+    def test_raw_response_update_account_capability(self, client: ModernTreasury) -> None:
+        response = client.internal_accounts.with_raw_response.update_account_capability(
+            id="id",
+            internal_account_id="internal_account_id",
+            identifier="identifier",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        internal_account = response.parse()
+        assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update_account_capability(self, client: ModernTreasury) -> None:
+        with client.internal_accounts.with_streaming_response.update_account_capability(
+            id="id",
+            internal_account_id="internal_account_id",
+            identifier="identifier",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            internal_account = response.parse()
+            assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update_account_capability(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `internal_account_id` but received ''"):
+            client.internal_accounts.with_raw_response.update_account_capability(
+                id="id",
+                internal_account_id="",
+                identifier="identifier",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.internal_accounts.with_raw_response.update_account_capability(
+                id="",
+                internal_account_id="internal_account_id",
+                identifier="identifier",
+            )
+
 
 class TestAsyncInternalAccounts:
     parametrize = pytest.mark.parametrize(
@@ -440,3 +494,56 @@ class TestAsyncInternalAccounts:
             assert_matches_type(AsyncPage[InternalAccount], internal_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_update_account_capability(self, async_client: AsyncModernTreasury) -> None:
+        internal_account = await async_client.internal_accounts.update_account_capability(
+            id="id",
+            internal_account_id="internal_account_id",
+            identifier="identifier",
+        )
+        assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update_account_capability(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.internal_accounts.with_raw_response.update_account_capability(
+            id="id",
+            internal_account_id="internal_account_id",
+            identifier="identifier",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        internal_account = response.parse()
+        assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update_account_capability(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.internal_accounts.with_streaming_response.update_account_capability(
+            id="id",
+            internal_account_id="internal_account_id",
+            identifier="identifier",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            internal_account = await response.parse()
+            assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update_account_capability(self, async_client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `internal_account_id` but received ''"):
+            await async_client.internal_accounts.with_raw_response.update_account_capability(
+                id="id",
+                internal_account_id="",
+                identifier="identifier",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.internal_accounts.with_raw_response.update_account_capability(
+                id="",
+                internal_account_id="internal_account_id",
+                identifier="identifier",
+            )
