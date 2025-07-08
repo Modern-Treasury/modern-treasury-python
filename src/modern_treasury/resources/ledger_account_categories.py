@@ -140,7 +140,8 @@ class LedgerAccountCategories(SyncAPIResource):
         Args:
           balances: For example, if you want the balances as of a particular time (ISO8601), the
               encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
-              The balances as of a time are inclusive of entries with that exact time.
+              The balances as of a time are inclusive of entries with that exact time, but
+              with respect to the ledger accounts that are currently present in the category.
 
           extra_headers: Send extra headers
 
@@ -254,7 +255,8 @@ class LedgerAccountCategories(SyncAPIResource):
 
           balances: For example, if you want the balances as of a particular time (ISO8601), the
               encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
-              The balances as of a time are inclusive of entries with that exact time.
+              The balances as of a time are inclusive of entries with that exact time, but
+              with respect to the ledger accounts that are currently present in the category.
 
           ledger_account_id: Query categories which contain a ledger account directly or through child
               categories.
@@ -632,7 +634,8 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         Args:
           balances: For example, if you want the balances as of a particular time (ISO8601), the
               encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
-              The balances as of a time are inclusive of entries with that exact time.
+              The balances as of a time are inclusive of entries with that exact time, but
+              with respect to the ledger accounts that are currently present in the category.
 
           extra_headers: Send extra headers
 
@@ -746,7 +749,8 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
 
           balances: For example, if you want the balances as of a particular time (ISO8601), the
               encoded query string would be `balances%5Beffective_at%5D=2000-12-31T12:00:00Z`.
-              The balances as of a time are inclusive of entries with that exact time.
+              The balances as of a time are inclusive of entries with that exact time, but
+              with respect to the ledger accounts that are currently present in the category.
 
           ledger_account_id: Query categories which contain a ledger account directly or through child
               categories.
