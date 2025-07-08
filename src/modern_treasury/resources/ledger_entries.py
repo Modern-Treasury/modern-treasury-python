@@ -152,7 +152,8 @@ class LedgerEntries(SyncAPIResource):
         per_page: int | NotGiven = NOT_GIVEN,
         show_balances: bool | NotGiven = NOT_GIVEN,
         show_deleted: bool | NotGiven = NOT_GIVEN,
-        status: Literal["pending", "posted", "archived"] | NotGiven = NOT_GIVEN,
+        status: Union[Literal["pending", "posted", "archived"], List[Literal["pending", "posted", "archived"]]]
+        | NotGiven = NOT_GIVEN,
         updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -207,7 +208,8 @@ class LedgerEntries(SyncAPIResource):
               deleted.
 
           status: Get all ledger entries that match the status specified. One of `pending`,
-              `posted`, or `archived`.
+              `posted`, or `archived`. For multiple statuses, use
+              `status[]=pending&status[]=posted`.
 
           updated_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
@@ -390,7 +392,8 @@ class AsyncLedgerEntries(AsyncAPIResource):
         per_page: int | NotGiven = NOT_GIVEN,
         show_balances: bool | NotGiven = NOT_GIVEN,
         show_deleted: bool | NotGiven = NOT_GIVEN,
-        status: Literal["pending", "posted", "archived"] | NotGiven = NOT_GIVEN,
+        status: Union[Literal["pending", "posted", "archived"], List[Literal["pending", "posted", "archived"]]]
+        | NotGiven = NOT_GIVEN,
         updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -445,7 +448,8 @@ class AsyncLedgerEntries(AsyncAPIResource):
               deleted.
 
           status: Get all ledger entries that match the status specified. One of `pending`,
-              `posted`, or `archived`.
+              `posted`, or `archived`. For multiple statuses, use
+              `status[]=pending&status[]=posted`.
 
           updated_at: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the
               posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
