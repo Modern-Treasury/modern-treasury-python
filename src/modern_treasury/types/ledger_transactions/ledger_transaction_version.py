@@ -5,107 +5,10 @@ from datetime import date, datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from ..shared.ledger_balances import LedgerBalances
 from ..shared.transaction_direction import TransactionDirection
 
-__all__ = [
-    "LedgerTransactionVersion",
-    "LedgerEntries",
-    "LedgerEntry",
-    "LedgerEntriesResultingLedgerAccountBalances",
-    "LedgerEntryResultingLedgerAccountBalances",
-    "LedgerEntriesResultingLedgerAccountBalancesAvailableBalance",
-    "LedgerEntryResultingLedgerAccountBalancesAvailableBalance",
-    "LedgerEntriesResultingLedgerAccountBalancesPendingBalance",
-    "LedgerEntryResultingLedgerAccountBalancesPendingBalance",
-    "LedgerEntriesResultingLedgerAccountBalancesPostedBalance",
-    "LedgerEntryResultingLedgerAccountBalancesPostedBalance",
-]
-
-
-class LedgerEntryResultingLedgerAccountBalancesAvailableBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-LedgerEntriesResultingLedgerAccountBalancesAvailableBalance = LedgerEntryResultingLedgerAccountBalancesAvailableBalance
-"""This type is deprecated and will be removed in a future release.
-
-Please use LedgerEntryResultingLedgerAccountBalancesAvailableBalance instead.
-"""
-
-
-class LedgerEntryResultingLedgerAccountBalancesPendingBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-LedgerEntriesResultingLedgerAccountBalancesPendingBalance = LedgerEntryResultingLedgerAccountBalancesPendingBalance
-"""This type is deprecated and will be removed in a future release.
-
-Please use LedgerEntryResultingLedgerAccountBalancesPendingBalance instead.
-"""
-
-
-class LedgerEntryResultingLedgerAccountBalancesPostedBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-LedgerEntriesResultingLedgerAccountBalancesPostedBalance = LedgerEntryResultingLedgerAccountBalancesPostedBalance
-"""This type is deprecated and will be removed in a future release.
-
-Please use LedgerEntryResultingLedgerAccountBalancesPostedBalance instead.
-"""
-
-
-class LedgerEntryResultingLedgerAccountBalances(BaseModel):
-    available_balance: LedgerEntryResultingLedgerAccountBalancesAvailableBalance
-    """
-    The available_balance is the sum of all posted inbound entries and pending
-    outbound entries. For credit normal, available_amount = posted_credits -
-    pending_debits; for debit normal, available_amount = posted_debits -
-    pending_credits.
-    """
-
-    pending_balance: LedgerEntryResultingLedgerAccountBalancesPendingBalance
-    """The pending_balance is the sum of all pending and posted entries."""
-
-    posted_balance: LedgerEntryResultingLedgerAccountBalancesPostedBalance
-    """The posted_balance is the sum of all posted entries."""
-
-
-LedgerEntriesResultingLedgerAccountBalances = LedgerEntryResultingLedgerAccountBalances
-"""This type is deprecated and will be removed in a future release.
-
-Please use LedgerEntryResultingLedgerAccountBalances instead.
-"""
+__all__ = ["LedgerTransactionVersion", "LedgerEntries", "LedgerEntry"]
 
 
 class LedgerEntry(BaseModel):
@@ -162,7 +65,7 @@ class LedgerEntry(BaseModel):
 
     object: str
 
-    resulting_ledger_account_balances: Optional[LedgerEntryResultingLedgerAccountBalances] = None
+    resulting_ledger_account_balances: Optional[LedgerBalances] = None
     """
     The pending, posted, and available balances for this ledger entry's ledger
     account. The posted balance is the sum of all posted entries on the account. The

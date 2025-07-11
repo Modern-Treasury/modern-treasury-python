@@ -5,46 +5,15 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .shared.address import Address
 
-__all__ = ["RoutingDetail", "BankAddress"]
-
-
-class BankAddress(BaseModel):
-    id: str
-
-    country: Optional[str] = None
-    """Country code conforms to [ISO 3166-1 alpha-2]"""
-
-    created_at: datetime
-
-    line1: Optional[str] = None
-
-    line2: Optional[str] = None
-
-    live_mode: bool
-    """
-    This field will be true if this object exists in the live environment or false
-    if it exists in the test environment.
-    """
-
-    locality: Optional[str] = None
-    """Locality or City."""
-
-    object: str
-
-    postal_code: Optional[str] = None
-    """The postal code of the address."""
-
-    region: Optional[str] = None
-    """Region or State."""
-
-    updated_at: datetime
+__all__ = ["RoutingDetail"]
 
 
 class RoutingDetail(BaseModel):
     id: str
 
-    bank_address: Optional[BankAddress] = None
+    bank_address: Optional[Address] = None
 
     bank_name: str
     """The name of the bank."""

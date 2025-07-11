@@ -27,6 +27,7 @@ from ..types.expected_payment import ExpectedPayment
 from ..types.expected_payment_type import ExpectedPaymentType
 from ..types.reconciliation_rule_param import ReconciliationRuleParam
 from ..types.shared.transaction_direction import TransactionDirection
+from ..types.shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
 __all__ = ["ExpectedPayments", "AsyncExpectedPayments"]
 
@@ -63,7 +64,7 @@ class ExpectedPayments(SyncAPIResource):
         description: Optional[str] | NotGiven = NOT_GIVEN,
         direction: Optional[Literal["credit", "debit"]] | NotGiven = NOT_GIVEN,
         internal_account_id: Optional[str] | NotGiven = NOT_GIVEN,
-        ledger_transaction: expected_payment_create_params.LedgerTransaction | NotGiven = NOT_GIVEN,
+        ledger_transaction: LedgerTransactionCreateRequest | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         line_items: Iterable[expected_payment_create_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -535,7 +536,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
         description: Optional[str] | NotGiven = NOT_GIVEN,
         direction: Optional[Literal["credit", "debit"]] | NotGiven = NOT_GIVEN,
         internal_account_id: Optional[str] | NotGiven = NOT_GIVEN,
-        ledger_transaction: expected_payment_create_params.LedgerTransaction | NotGiven = NOT_GIVEN,
+        ledger_transaction: LedgerTransactionCreateRequest | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
         line_items: Iterable[expected_payment_create_params.LineItem] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,

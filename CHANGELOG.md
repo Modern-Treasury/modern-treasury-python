@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.53.0 (2025-07-11)
+
+Full Changelog: [v1.52.0...v1.53.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.52.0...v1.53.0)
+
+### Features
+
+* **api:** api update ([26c4c10](https://github.com/Modern-Treasury/modern-treasury-python/commit/26c4c107aae7ad145f0be12a60ba561cfc417fc0))
+* **api:** api update ([923a51e](https://github.com/Modern-Treasury/modern-treasury-python/commit/923a51e11c429d2fc118324986e87705a8bcdd3a))
+* **api:** manual updates ([9d61c9f](https://github.com/Modern-Treasury/modern-treasury-python/commit/9d61c9fa0b77a1c303e35c0b590cc17d1c522e33))
+* **api:** manual updates ([004c875](https://github.com/Modern-Treasury/modern-treasury-python/commit/004c875a5c7de066ca8878ad92a79cf357ec26b2))
+
+
+### Bug Fixes
+
+* **client:** don't send Content-Type header on GET requests ([ea4932b](https://github.com/Modern-Treasury/modern-treasury-python/commit/ea4932b94a0dec1e2b766039b2e4832f59a733b7))
+* **parsing:** correctly handle nested discriminated unions ([f163551](https://github.com/Modern-Treasury/modern-treasury-python/commit/f163551fa318fc5f064eeb27aa44e1b812da6923))
+
+
+### Chores
+
+* **internal:** bump pinned h11 dep ([0f8c519](https://github.com/Modern-Treasury/modern-treasury-python/commit/0f8c51961d03829ad553d531853d6c5d02eff9f3))
+* **package:** mark python 3.13 as supported ([b669a78](https://github.com/Modern-Treasury/modern-treasury-python/commit/b669a78428cb573dd8f8bb90e9946ce96e574fa2))
+* **readme:** fix version rendering on pypi ([649e91e](https://github.com/Modern-Treasury/modern-treasury-python/commit/649e91e14429b335ced0202f423fa417530e79d2))
+
 ## 1.52.0 (2025-07-07)
 
 Full Changelog: [v1.51.0...v1.52.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.51.0...v1.52.0)

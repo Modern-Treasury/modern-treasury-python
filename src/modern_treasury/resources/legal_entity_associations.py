@@ -16,6 +16,7 @@ from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from .._base_client import make_request_options
 from ..types.legal_entity_association import LegalEntityAssociation
+from ..types.shared_params.child_legal_entity_create import ChildLegalEntityCreate
 
 __all__ = ["LegalEntityAssociations", "AsyncLegalEntityAssociations"]
 
@@ -45,7 +46,7 @@ class LegalEntityAssociations(SyncAPIResource):
         *,
         parent_legal_entity_id: str,
         relationship_types: List[Literal["beneficial_owner", "control_person"]],
-        child_legal_entity: legal_entity_association_create_params.ChildLegalEntity | NotGiven = NOT_GIVEN,
+        child_legal_entity: ChildLegalEntityCreate | NotGiven = NOT_GIVEN,
         child_legal_entity_id: str | NotGiven = NOT_GIVEN,
         ownership_percentage: Optional[int] | NotGiven = NOT_GIVEN,
         title: Optional[str] | NotGiven = NOT_GIVEN,
@@ -131,7 +132,7 @@ class AsyncLegalEntityAssociations(AsyncAPIResource):
         *,
         parent_legal_entity_id: str,
         relationship_types: List[Literal["beneficial_owner", "control_person"]],
-        child_legal_entity: legal_entity_association_create_params.ChildLegalEntity | NotGiven = NOT_GIVEN,
+        child_legal_entity: ChildLegalEntityCreate | NotGiven = NOT_GIVEN,
         child_legal_entity_id: str | NotGiven = NOT_GIVEN,
         ownership_percentage: Optional[int] | NotGiven = NOT_GIVEN,
         title: Optional[str] | NotGiven = NOT_GIVEN,

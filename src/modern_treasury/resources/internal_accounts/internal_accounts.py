@@ -12,6 +12,7 @@ from ...types import (
     internal_account_list_params,
     internal_account_create_params,
     internal_account_update_params,
+    internal_account_update_account_capability_params,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import maybe_transform, async_maybe_transform
@@ -31,6 +32,7 @@ from .balance_reports import (
 from ...types.shared.currency import Currency
 from ...types.internal_account import InternalAccount
 from ...types.shared.transaction_direction import TransactionDirection
+from ...types.internal_account_update_account_capability_response import InternalAccountUpdateAccountCapabilityResponse
 
 __all__ = ["InternalAccounts", "AsyncInternalAccounts"]
 
@@ -368,6 +370,59 @@ class InternalAccounts(SyncAPIResource):
             model=InternalAccount,
         )
 
+    def update_account_capability(
+        self,
+        id: str,
+        *,
+        internal_account_id: str,
+        identifier: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        idempotency_key: str | None = None,
+    ) -> InternalAccountUpdateAccountCapabilityResponse:
+        """
+        update account_capability
+
+        Args:
+          identifier: A unique reference assigned by your bank for tracking and recognizing payment
+              files. It is important this is formatted exactly how the bank assigned it.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        if not internal_account_id:
+            raise ValueError(
+                f"Expected a non-empty value for `internal_account_id` but received {internal_account_id!r}"
+            )
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._patch(
+            f"/api/internal_accounts/{internal_account_id}/account_capabilities/{id}",
+            body=maybe_transform(
+                {"identifier": identifier},
+                internal_account_update_account_capability_params.InternalAccountUpdateAccountCapabilityParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=InternalAccountUpdateAccountCapabilityResponse,
+        )
+
 
 class AsyncInternalAccounts(AsyncAPIResource):
     @cached_property
@@ -702,6 +757,59 @@ class AsyncInternalAccounts(AsyncAPIResource):
             model=InternalAccount,
         )
 
+    async def update_account_capability(
+        self,
+        id: str,
+        *,
+        internal_account_id: str,
+        identifier: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        idempotency_key: str | None = None,
+    ) -> InternalAccountUpdateAccountCapabilityResponse:
+        """
+        update account_capability
+
+        Args:
+          identifier: A unique reference assigned by your bank for tracking and recognizing payment
+              files. It is important this is formatted exactly how the bank assigned it.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        if not internal_account_id:
+            raise ValueError(
+                f"Expected a non-empty value for `internal_account_id` but received {internal_account_id!r}"
+            )
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._patch(
+            f"/api/internal_accounts/{internal_account_id}/account_capabilities/{id}",
+            body=await async_maybe_transform(
+                {"identifier": identifier},
+                internal_account_update_account_capability_params.InternalAccountUpdateAccountCapabilityParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=InternalAccountUpdateAccountCapabilityResponse,
+        )
+
 
 class InternalAccountsWithRawResponse:
     def __init__(self, internal_accounts: InternalAccounts) -> None:
@@ -718,6 +826,9 @@ class InternalAccountsWithRawResponse:
         )
         self.list = _legacy_response.to_raw_response_wrapper(
             internal_accounts.list,
+        )
+        self.update_account_capability = _legacy_response.to_raw_response_wrapper(
+            internal_accounts.update_account_capability,
         )
 
     @cached_property
@@ -741,6 +852,9 @@ class AsyncInternalAccountsWithRawResponse:
         self.list = _legacy_response.async_to_raw_response_wrapper(
             internal_accounts.list,
         )
+        self.update_account_capability = _legacy_response.async_to_raw_response_wrapper(
+            internal_accounts.update_account_capability,
+        )
 
     @cached_property
     def balance_reports(self) -> AsyncBalanceReportsWithRawResponse:
@@ -763,6 +877,9 @@ class InternalAccountsWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             internal_accounts.list,
         )
+        self.update_account_capability = to_streamed_response_wrapper(
+            internal_accounts.update_account_capability,
+        )
 
     @cached_property
     def balance_reports(self) -> BalanceReportsWithStreamingResponse:
@@ -784,6 +901,9 @@ class AsyncInternalAccountsWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             internal_accounts.list,
+        )
+        self.update_account_capability = async_to_streamed_response_wrapper(
+            internal_accounts.update_account_capability,
         )
 
     @cached_property

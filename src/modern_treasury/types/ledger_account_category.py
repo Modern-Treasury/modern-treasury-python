@@ -4,79 +4,16 @@ from typing import Dict, Optional
 from datetime import datetime
 
 from .._models import BaseModel
+from .shared.ledger_balances import LedgerBalances
 from .shared.transaction_direction import TransactionDirection
 
-__all__ = [
-    "LedgerAccountCategory",
-    "Balances",
-    "BalancesAvailableBalance",
-    "BalancesPendingBalance",
-    "BalancesPostedBalance",
-]
-
-
-class BalancesAvailableBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-class BalancesPendingBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-class BalancesPostedBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-class Balances(BaseModel):
-    available_balance: BalancesAvailableBalance
-    """
-    The available_balance is the sum of all posted inbound entries and pending
-    outbound entries. For credit normal, available_amount = posted_credits -
-    pending_debits; for debit normal, available_amount = posted_debits -
-    pending_credits.
-    """
-
-    pending_balance: BalancesPendingBalance
-    """The pending_balance is the sum of all pending and posted entries."""
-
-    posted_balance: BalancesPostedBalance
-    """The posted_balance is the sum of all posted entries."""
+__all__ = ["LedgerAccountCategory"]
 
 
 class LedgerAccountCategory(BaseModel):
     id: str
 
-    balances: Balances
+    balances: LedgerBalances
     """The pending, posted, and available balances for this ledger account category.
 
     The posted balance is the sum of all posted entries on the account. The pending

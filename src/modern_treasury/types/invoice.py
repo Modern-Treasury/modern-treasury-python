@@ -10,44 +10,9 @@ from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 from .shared.currency import Currency
 from .expected_payment import ExpectedPayment
+from .shared.contact_detail import ContactDetail
 
-__all__ = [
-    "Invoice",
-    "ContactDetails",
-    "ContactDetail",
-    "CounterpartyBillingAddress",
-    "CounterpartyShippingAddress",
-    "InvoicerAddress",
-]
-
-
-class ContactDetail(BaseModel):
-    id: str
-
-    contact_identifier: str
-
-    contact_identifier_type: Literal["email", "phone_number", "website"]
-
-    created_at: datetime
-
-    discarded_at: Optional[datetime] = None
-
-    live_mode: bool
-    """
-    This field will be true if this object exists in the live environment or false
-    if it exists in the test environment.
-    """
-
-    object: str
-
-    updated_at: datetime
-
-
-ContactDetails = ContactDetail
-"""This type is deprecated and will be removed in a future release.
-
-Please use ContactDetail instead.
-"""
+__all__ = ["Invoice", "CounterpartyBillingAddress", "CounterpartyShippingAddress", "InvoicerAddress"]
 
 
 class CounterpartyBillingAddress(BaseModel):
@@ -267,13 +232,11 @@ from .payment_order import PaymentOrder
 
 if PYDANTIC_V2:
     Invoice.model_rebuild()
-    ContactDetail.model_rebuild()
     CounterpartyBillingAddress.model_rebuild()
     CounterpartyShippingAddress.model_rebuild()
     InvoicerAddress.model_rebuild()
 else:
     Invoice.update_forward_refs()  # type: ignore
-    ContactDetail.update_forward_refs()  # type: ignore
     CounterpartyBillingAddress.update_forward_refs()  # type: ignore
     CounterpartyShippingAddress.update_forward_refs()  # type: ignore
     InvoicerAddress.update_forward_refs()  # type: ignore

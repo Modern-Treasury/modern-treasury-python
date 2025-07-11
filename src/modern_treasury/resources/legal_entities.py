@@ -24,7 +24,9 @@ from .._base_client import AsyncPaginator, make_request_options
 from ..types.legal_entity import LegalEntity
 from ..types.bank_settings_param import BankSettingsParam
 from ..types.wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
+from ..types.shared_params.identification_create_request import IdentificationCreateRequest
 from ..types.shared_params.legal_entity_compliance_detail import LegalEntityComplianceDetail
+from ..types.shared_params.legal_entity_address_create_request import LegalEntityAddressCreateRequest
 from ..types.shared_params.legal_entity_industry_classification import LegalEntityIndustryClassification
 
 __all__ = ["LegalEntities", "AsyncLegalEntities"]
@@ -54,7 +56,7 @@ class LegalEntities(SyncAPIResource):
         self,
         *,
         legal_entity_type: Literal["business", "individual"],
-        addresses: Iterable[legal_entity_create_params.Address] | NotGiven = NOT_GIVEN,
+        addresses: Iterable[LegalEntityAddressCreateRequest] | NotGiven = NOT_GIVEN,
         bank_settings: Optional[BankSettingsParam] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
         citizenship_country: Optional[str] | NotGiven = NOT_GIVEN,
@@ -64,7 +66,7 @@ class LegalEntities(SyncAPIResource):
         doing_business_as_names: List[str] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
         first_name: Optional[str] | NotGiven = NOT_GIVEN,
-        identifications: Iterable[legal_entity_create_params.Identification] | NotGiven = NOT_GIVEN,
+        identifications: Iterable[IdentificationCreateRequest] | NotGiven = NOT_GIVEN,
         industry_classifications: Iterable[LegalEntityIndustryClassification] | NotGiven = NOT_GIVEN,
         last_name: Optional[str] | NotGiven = NOT_GIVEN,
         legal_entity_associations: Optional[Iterable[legal_entity_create_params.LegalEntityAssociation]]
@@ -228,7 +230,7 @@ class LegalEntities(SyncAPIResource):
         self,
         id: str,
         *,
-        addresses: Iterable[legal_entity_update_params.Address] | NotGiven = NOT_GIVEN,
+        addresses: Iterable[LegalEntityAddressCreateRequest] | NotGiven = NOT_GIVEN,
         bank_settings: Optional[BankSettingsParam] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
         citizenship_country: Optional[str] | NotGiven = NOT_GIVEN,
@@ -238,7 +240,7 @@ class LegalEntities(SyncAPIResource):
         doing_business_as_names: List[str] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
         first_name: Optional[str] | NotGiven = NOT_GIVEN,
-        identifications: Iterable[legal_entity_update_params.Identification] | NotGiven = NOT_GIVEN,
+        identifications: Iterable[IdentificationCreateRequest] | NotGiven = NOT_GIVEN,
         industry_classifications: Iterable[LegalEntityIndustryClassification] | NotGiven = NOT_GIVEN,
         last_name: Optional[str] | NotGiven = NOT_GIVEN,
         legal_structure: Optional[
@@ -437,7 +439,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         self,
         *,
         legal_entity_type: Literal["business", "individual"],
-        addresses: Iterable[legal_entity_create_params.Address] | NotGiven = NOT_GIVEN,
+        addresses: Iterable[LegalEntityAddressCreateRequest] | NotGiven = NOT_GIVEN,
         bank_settings: Optional[BankSettingsParam] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
         citizenship_country: Optional[str] | NotGiven = NOT_GIVEN,
@@ -447,7 +449,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         doing_business_as_names: List[str] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
         first_name: Optional[str] | NotGiven = NOT_GIVEN,
-        identifications: Iterable[legal_entity_create_params.Identification] | NotGiven = NOT_GIVEN,
+        identifications: Iterable[IdentificationCreateRequest] | NotGiven = NOT_GIVEN,
         industry_classifications: Iterable[LegalEntityIndustryClassification] | NotGiven = NOT_GIVEN,
         last_name: Optional[str] | NotGiven = NOT_GIVEN,
         legal_entity_associations: Optional[Iterable[legal_entity_create_params.LegalEntityAssociation]]
@@ -611,7 +613,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         self,
         id: str,
         *,
-        addresses: Iterable[legal_entity_update_params.Address] | NotGiven = NOT_GIVEN,
+        addresses: Iterable[LegalEntityAddressCreateRequest] | NotGiven = NOT_GIVEN,
         bank_settings: Optional[BankSettingsParam] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
         citizenship_country: Optional[str] | NotGiven = NOT_GIVEN,
@@ -621,7 +623,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         doing_business_as_names: List[str] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
         first_name: Optional[str] | NotGiven = NOT_GIVEN,
-        identifications: Iterable[legal_entity_update_params.Identification] | NotGiven = NOT_GIVEN,
+        identifications: Iterable[IdentificationCreateRequest] | NotGiven = NOT_GIVEN,
         industry_classifications: Iterable[LegalEntityIndustryClassification] | NotGiven = NOT_GIVEN,
         last_name: Optional[str] | NotGiven = NOT_GIVEN,
         legal_structure: Optional[

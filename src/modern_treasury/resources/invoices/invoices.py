@@ -28,6 +28,7 @@ from ..._base_client import AsyncPaginator, make_request_options
 from ...types.invoice import Invoice
 from ...types.shared.currency import Currency
 from ...types.payment_order_type import PaymentOrderType
+from ...types.shared_params.contact_detail import ContactDetail
 
 __all__ = ["Invoices", "AsyncInvoices"]
 
@@ -63,7 +64,7 @@ class Invoices(SyncAPIResource):
         due_date: Union[str, datetime],
         originating_account_id: str,
         auto_advance: Optional[bool] | NotGiven = NOT_GIVEN,
-        contact_details: Iterable[invoice_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
+        contact_details: Iterable[ContactDetail] | NotGiven = NOT_GIVEN,
         counterparty_billing_address: Optional[invoice_create_params.CounterpartyBillingAddress] | NotGiven = NOT_GIVEN,
         counterparty_shipping_address: Optional[invoice_create_params.CounterpartyShippingAddress]
         | NotGiven = NOT_GIVEN,
@@ -259,7 +260,7 @@ class Invoices(SyncAPIResource):
         self,
         id: str,
         *,
-        contact_details: Iterable[invoice_update_params.ContactDetail] | NotGiven = NOT_GIVEN,
+        contact_details: Iterable[ContactDetail] | NotGiven = NOT_GIVEN,
         counterparty_billing_address: Optional[invoice_update_params.CounterpartyBillingAddress] | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
         counterparty_shipping_address: Optional[invoice_update_params.CounterpartyShippingAddress]
@@ -572,7 +573,7 @@ class AsyncInvoices(AsyncAPIResource):
         due_date: Union[str, datetime],
         originating_account_id: str,
         auto_advance: Optional[bool] | NotGiven = NOT_GIVEN,
-        contact_details: Iterable[invoice_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
+        contact_details: Iterable[ContactDetail] | NotGiven = NOT_GIVEN,
         counterparty_billing_address: Optional[invoice_create_params.CounterpartyBillingAddress] | NotGiven = NOT_GIVEN,
         counterparty_shipping_address: Optional[invoice_create_params.CounterpartyShippingAddress]
         | NotGiven = NOT_GIVEN,
@@ -768,7 +769,7 @@ class AsyncInvoices(AsyncAPIResource):
         self,
         id: str,
         *,
-        contact_details: Iterable[invoice_update_params.ContactDetail] | NotGiven = NOT_GIVEN,
+        contact_details: Iterable[ContactDetail] | NotGiven = NOT_GIVEN,
         counterparty_billing_address: Optional[invoice_update_params.CounterpartyBillingAddress] | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
         counterparty_shipping_address: Optional[invoice_update_params.CounterpartyShippingAddress]

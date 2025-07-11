@@ -76,7 +76,7 @@ class LedgerTransactionListParams(TypedDict, total=False):
 
     reverses_ledger_transaction_id: str
 
-    status: Literal["pending", "posted", "archived"]
+    status: Union[Literal["pending", "posted", "archived"], List[Literal["pending", "posted", "archived"]]]
 
     updated_at: Dict[str, Union[str, datetime]]
     """

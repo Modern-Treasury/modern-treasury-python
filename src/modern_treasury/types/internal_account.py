@@ -9,10 +9,11 @@ from .._models import BaseModel
 from .connection import Connection
 from .account_detail import AccountDetail
 from .routing_detail import RoutingDetail
+from .shared.address import Address
 from .shared.currency import Currency
 from .shared.transaction_direction import TransactionDirection
 
-__all__ = ["InternalAccount", "AccountCapabilities", "AccountCapability", "PartyAddress"]
+__all__ = ["InternalAccount", "AccountCapabilities", "AccountCapability"]
 
 
 class AccountCapability(BaseModel):
@@ -99,38 +100,6 @@ Please use AccountCapability instead.
 """
 
 
-class PartyAddress(BaseModel):
-    id: str
-
-    country: Optional[str] = None
-    """Country code conforms to [ISO 3166-1 alpha-2]"""
-
-    created_at: datetime
-
-    line1: Optional[str] = None
-
-    line2: Optional[str] = None
-
-    live_mode: bool
-    """
-    This field will be true if this object exists in the live environment or false
-    if it exists in the test environment.
-    """
-
-    locality: Optional[str] = None
-    """Locality or City."""
-
-    object: str
-
-    postal_code: Optional[str] = None
-    """The postal code of the address."""
-
-    region: Optional[str] = None
-    """Region or State."""
-
-    updated_at: datetime
-
-
 class InternalAccount(BaseModel):
     id: str
 
@@ -202,7 +171,7 @@ class InternalAccount(BaseModel):
     parent_account_id: Optional[str] = None
     """The parent InternalAccount of this account."""
 
-    party_address: Optional[PartyAddress] = None
+    party_address: Optional[Address] = None
     """The address associated with the owner or null."""
 
     party_name: str

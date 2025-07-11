@@ -26,7 +26,10 @@ from .._base_client import AsyncPaginator, make_request_options
 from ..types.shared.currency import Currency
 from ..types.external_account import ExternalAccount
 from ..types.external_account_type import ExternalAccountType
+from ..types.shared_params.address_request import AddressRequest
 from ..types.external_account_verify_response import ExternalAccountVerifyResponse
+from ..types.contact_detail_create_request_param import ContactDetailCreateRequestParam
+from ..types.shared_params.ledger_account_create_request import LedgerAccountCreateRequest
 
 __all__ = ["ExternalAccounts", "AsyncExternalAccounts"]
 
@@ -57,11 +60,11 @@ class ExternalAccounts(SyncAPIResource):
         counterparty_id: Optional[str],
         account_details: Iterable[external_account_create_params.AccountDetail] | NotGiven = NOT_GIVEN,
         account_type: ExternalAccountType | NotGiven = NOT_GIVEN,
-        contact_details: Iterable[external_account_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
-        ledger_account: external_account_create_params.LedgerAccount | NotGiven = NOT_GIVEN,
+        contact_details: Iterable[ContactDetailCreateRequestParam] | NotGiven = NOT_GIVEN,
+        ledger_account: LedgerAccountCreateRequest | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
-        party_address: external_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
+        party_address: AddressRequest | NotGiven = NOT_GIVEN,
         party_identifier: str | NotGiven = NOT_GIVEN,
         party_name: str | NotGiven = NOT_GIVEN,
         party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
@@ -183,7 +186,7 @@ class ExternalAccounts(SyncAPIResource):
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
-        party_address: external_account_update_params.PartyAddress | NotGiven = NOT_GIVEN,
+        party_address: AddressRequest | NotGiven = NOT_GIVEN,
         party_name: str | NotGiven = NOT_GIVEN,
         party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -523,11 +526,11 @@ class AsyncExternalAccounts(AsyncAPIResource):
         counterparty_id: Optional[str],
         account_details: Iterable[external_account_create_params.AccountDetail] | NotGiven = NOT_GIVEN,
         account_type: ExternalAccountType | NotGiven = NOT_GIVEN,
-        contact_details: Iterable[external_account_create_params.ContactDetail] | NotGiven = NOT_GIVEN,
-        ledger_account: external_account_create_params.LedgerAccount | NotGiven = NOT_GIVEN,
+        contact_details: Iterable[ContactDetailCreateRequestParam] | NotGiven = NOT_GIVEN,
+        ledger_account: LedgerAccountCreateRequest | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
-        party_address: external_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
+        party_address: AddressRequest | NotGiven = NOT_GIVEN,
         party_identifier: str | NotGiven = NOT_GIVEN,
         party_name: str | NotGiven = NOT_GIVEN,
         party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
@@ -649,7 +652,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
-        party_address: external_account_update_params.PartyAddress | NotGiven = NOT_GIVEN,
+        party_address: AddressRequest | NotGiven = NOT_GIVEN,
         party_name: str | NotGiven = NOT_GIVEN,
         party_type: Optional[Literal["business", "individual"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

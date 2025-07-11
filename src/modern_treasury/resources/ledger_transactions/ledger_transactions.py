@@ -32,6 +32,7 @@ from ..._response import to_streamed_response_wrapper, async_to_streamed_respons
 from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.ledger_transaction import LedgerTransaction
+from ...types.shared_params.ledger_entry_create_request import LedgerEntryCreateRequest
 
 __all__ = ["LedgerTransactions", "AsyncLedgerTransactions"]
 
@@ -63,7 +64,7 @@ class LedgerTransactions(SyncAPIResource):
     def create(
         self,
         *,
-        ledger_entries: Iterable[ledger_transaction_create_params.LedgerEntry],
+        ledger_entries: Iterable[LedgerEntryCreateRequest],
         description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
@@ -188,7 +189,7 @@ class LedgerTransactions(SyncAPIResource):
         *,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        ledger_entries: Iterable[ledger_transaction_update_params.LedgerEntry] | NotGiven = NOT_GIVEN,
+        ledger_entries: Iterable[LedgerEntryCreateRequest] | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
             "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
@@ -287,7 +288,8 @@ class LedgerTransactions(SyncAPIResource):
         per_page: int | NotGiven = NOT_GIVEN,
         posted_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         reverses_ledger_transaction_id: str | NotGiven = NOT_GIVEN,
-        status: Literal["pending", "posted", "archived"] | NotGiven = NOT_GIVEN,
+        status: Union[Literal["pending", "posted", "archived"], List[Literal["pending", "posted", "archived"]]]
+        | NotGiven = NOT_GIVEN,
         updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -548,7 +550,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
     async def create(
         self,
         *,
-        ledger_entries: Iterable[ledger_transaction_create_params.LedgerEntry],
+        ledger_entries: Iterable[LedgerEntryCreateRequest],
         description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
@@ -673,7 +675,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         *,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        ledger_entries: Iterable[ledger_transaction_update_params.LedgerEntry] | NotGiven = NOT_GIVEN,
+        ledger_entries: Iterable[LedgerEntryCreateRequest] | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal[
             "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
@@ -772,7 +774,8 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         per_page: int | NotGiven = NOT_GIVEN,
         posted_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         reverses_ledger_transaction_id: str | NotGiven = NOT_GIVEN,
-        status: Literal["pending", "posted", "archived"] | NotGiven = NOT_GIVEN,
+        status: Union[Literal["pending", "posted", "archived"], List[Literal["pending", "posted", "archived"]]]
+        | NotGiven = NOT_GIVEN,
         updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

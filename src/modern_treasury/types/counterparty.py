@@ -7,85 +7,11 @@ from typing_extensions import Literal
 from .._models import BaseModel
 from .account_detail import AccountDetail
 from .routing_detail import RoutingDetail
+from .shared.address import Address
 from .external_account_type import ExternalAccountType
+from .shared.contact_detail import ContactDetail
 
-__all__ = [
-    "Counterparty",
-    "Accounts",
-    "Account",
-    "AccountsContactDetails",
-    "AccountContactDetail",
-    "AccountsPartyAddress",
-    "AccountPartyAddress",
-]
-
-
-class AccountContactDetail(BaseModel):
-    id: str
-
-    contact_identifier: str
-
-    contact_identifier_type: Literal["email", "phone_number", "website"]
-
-    created_at: datetime
-
-    discarded_at: Optional[datetime] = None
-
-    live_mode: bool
-    """
-    This field will be true if this object exists in the live environment or false
-    if it exists in the test environment.
-    """
-
-    object: str
-
-    updated_at: datetime
-
-
-AccountsContactDetails = AccountContactDetail
-"""This type is deprecated and will be removed in a future release.
-
-Please use AccountContactDetail instead.
-"""
-
-
-class AccountPartyAddress(BaseModel):
-    id: str
-
-    country: Optional[str] = None
-    """Country code conforms to [ISO 3166-1 alpha-2]"""
-
-    created_at: datetime
-
-    line1: Optional[str] = None
-
-    line2: Optional[str] = None
-
-    live_mode: bool
-    """
-    This field will be true if this object exists in the live environment or false
-    if it exists in the test environment.
-    """
-
-    locality: Optional[str] = None
-    """Locality or City."""
-
-    object: str
-
-    postal_code: Optional[str] = None
-    """The postal code of the address."""
-
-    region: Optional[str] = None
-    """Region or State."""
-
-    updated_at: datetime
-
-
-AccountsPartyAddress = AccountPartyAddress
-"""This type is deprecated and will be removed in a future release.
-
-Please use AccountPartyAddress instead.
-"""
+__all__ = ["Counterparty", "Accounts", "Account"]
 
 
 class Account(BaseModel):
@@ -96,7 +22,7 @@ class Account(BaseModel):
     account_type: Optional[ExternalAccountType] = None
     """Can be `checking`, `savings` or `other`."""
 
-    contact_details: Optional[List[AccountContactDetail]] = None
+    contact_details: Optional[List[ContactDetail]] = None
 
     created_at: Optional[datetime] = None
 
@@ -128,7 +54,7 @@ class Account(BaseModel):
 
     object: Optional[str] = None
 
-    party_address: Optional[AccountPartyAddress] = None
+    party_address: Optional[Address] = None
     """The address associated with the owner or `null`."""
 
     party_name: Optional[str] = None

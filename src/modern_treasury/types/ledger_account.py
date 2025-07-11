@@ -5,55 +5,14 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .shared.ledger_balance import LedgerBalance
 from .shared.transaction_direction import TransactionDirection
 
-__all__ = ["LedgerAccount", "Balances", "BalancesAvailableBalance", "BalancesPendingBalance", "BalancesPostedBalance"]
-
-
-class BalancesAvailableBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-class BalancesPendingBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-class BalancesPostedBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
+__all__ = ["LedgerAccount", "Balances"]
 
 
 class Balances(BaseModel):
-    available_balance: BalancesAvailableBalance
+    available_balance: LedgerBalance
     """
     The available_balance is the sum of all posted inbound entries and pending
     outbound entries. For credit normal, available_amount = posted_credits -
@@ -73,10 +32,10 @@ class Balances(BaseModel):
     balances.
     """
 
-    pending_balance: BalancesPendingBalance
+    pending_balance: LedgerBalance
     """The pending_balance is the sum of all pending and posted entries."""
 
-    posted_balance: BalancesPostedBalance
+    posted_balance: LedgerBalance
     """The posted_balance is the sum of all posted entries."""
 
 

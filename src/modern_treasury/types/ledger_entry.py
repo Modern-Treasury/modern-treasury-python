@@ -5,73 +5,10 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .shared.ledger_balances import LedgerBalances
 from .shared.transaction_direction import TransactionDirection
 
-__all__ = [
-    "LedgerEntry",
-    "ResultingLedgerAccountBalances",
-    "ResultingLedgerAccountBalancesAvailableBalance",
-    "ResultingLedgerAccountBalancesPendingBalance",
-    "ResultingLedgerAccountBalancesPostedBalance",
-]
-
-
-class ResultingLedgerAccountBalancesAvailableBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-class ResultingLedgerAccountBalancesPendingBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-class ResultingLedgerAccountBalancesPostedBalance(BaseModel):
-    amount: int
-
-    credits: int
-
-    currency: str
-    """The currency of the ledger account."""
-
-    currency_exponent: int
-    """The currency exponent of the ledger account."""
-
-    debits: int
-
-
-class ResultingLedgerAccountBalances(BaseModel):
-    available_balance: ResultingLedgerAccountBalancesAvailableBalance
-    """
-    The available_balance is the sum of all posted inbound entries and pending
-    outbound entries. For credit normal, available_amount = posted_credits -
-    pending_debits; for debit normal, available_amount = posted_debits -
-    pending_credits.
-    """
-
-    pending_balance: ResultingLedgerAccountBalancesPendingBalance
-    """The pending_balance is the sum of all pending and posted entries."""
-
-    posted_balance: ResultingLedgerAccountBalancesPostedBalance
-    """The posted_balance is the sum of all posted entries."""
+__all__ = ["LedgerEntry"]
 
 
 class LedgerEntry(BaseModel):
@@ -130,7 +67,7 @@ class LedgerEntry(BaseModel):
 
     object: str
 
-    resulting_ledger_account_balances: Optional[ResultingLedgerAccountBalances] = None
+    resulting_ledger_account_balances: Optional[LedgerBalances] = None
     """
     The pending, posted, and available balances for this ledger entry's ledger
     account. The posted balance is the sum of all posted entries on the account. The
