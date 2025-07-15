@@ -45,7 +45,7 @@ class PaymentActionListParams(TypedDict, total=False):
     status: Literal["pending", "processable", "processing", "sent", "failed", "cancelled"]
     """Filter by payment actions of a specific status."""
 
-    type: Literal["stop", "issue"]
+    type: Literal["evolve_non_processing_transaction", "stop", "issue"]
     """The type of payment action."""
 
 
