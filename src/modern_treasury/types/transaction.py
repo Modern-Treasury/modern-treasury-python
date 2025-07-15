@@ -147,6 +147,7 @@ class Transaction(BaseModel):
             "dc_bank",
             "dwolla",
             "evolve",
+            "fake_vendor",
             "goldman_sachs",
             "hifi",
             "iso20022",
@@ -155,12 +156,12 @@ class Transaction(BaseModel):
             "paypal",
             "plaid",
             "pnc",
-            "rspec_vendor",
             "signet",
             "silvergate",
             "swift",
             "us_bank",
             "user",
+            "western_alliance",
         ]
     ] = None
     """The type of `vendor_code` being reported.

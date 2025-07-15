@@ -96,7 +96,11 @@ class ReferenceNumber(BaseModel):
         "currencycloud_payment_id",
         "dc_bank_transaction_id",
         "eft_trace_number",
+        "evolve_core_batch",
+        "evolve_core_file_key",
+        "evolve_core_seq",
         "evolve_transaction_id",
+        "fake_vendor_payment_id",
         "fedwire_imad",
         "fedwire_omad",
         "first_republic_internal_id",
@@ -129,7 +133,6 @@ class ReferenceNumber(BaseModel):
         "pnc_request_for_payment_id",
         "pnc_transaction_reference_number",
         "rbc_wire_reference_id",
-        "rspec_vendor_payment_id",
         "rtp_instruction_id",
         "signet_api_reference_id",
         "signet_confirmation_id",
@@ -150,6 +153,9 @@ class ReferenceNumber(BaseModel):
         "wells_fargo_payment_id",
         "wells_fargo_trace_number",
         "wells_fargo_uetr",
+        "western_alliance_payment_id",
+        "western_alliance_transaction_id",
+        "western_alliance_wire_confirmation_number",
     ]
     """The type of the reference number. Referring to the vendor payment id."""
 
