@@ -22,7 +22,7 @@ class TestLegalEntityAssociations:
     def test_method_create(self, client: ModernTreasury) -> None:
         legal_entity_association = client.legal_entity_associations.create(
             parent_legal_entity_id="parent_legal_entity_id",
-            relationship_types=["beneficial_owner"],
+            relationship_types=["authorized_signer"],
         )
         assert_matches_type(LegalEntityAssociation, legal_entity_association, path=["response"])
 
@@ -30,7 +30,7 @@ class TestLegalEntityAssociations:
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         legal_entity_association = client.legal_entity_associations.create(
             parent_legal_entity_id="parent_legal_entity_id",
-            relationship_types=["beneficial_owner"],
+            relationship_types=["authorized_signer"],
             child_legal_entity={
                 "addresses": [
                     {
@@ -144,7 +144,7 @@ class TestLegalEntityAssociations:
     def test_raw_response_create(self, client: ModernTreasury) -> None:
         response = client.legal_entity_associations.with_raw_response.create(
             parent_legal_entity_id="parent_legal_entity_id",
-            relationship_types=["beneficial_owner"],
+            relationship_types=["authorized_signer"],
         )
 
         assert response.is_closed is True
@@ -156,7 +156,7 @@ class TestLegalEntityAssociations:
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
         with client.legal_entity_associations.with_streaming_response.create(
             parent_legal_entity_id="parent_legal_entity_id",
-            relationship_types=["beneficial_owner"],
+            relationship_types=["authorized_signer"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -176,7 +176,7 @@ class TestAsyncLegalEntityAssociations:
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
         legal_entity_association = await async_client.legal_entity_associations.create(
             parent_legal_entity_id="parent_legal_entity_id",
-            relationship_types=["beneficial_owner"],
+            relationship_types=["authorized_signer"],
         )
         assert_matches_type(LegalEntityAssociation, legal_entity_association, path=["response"])
 
@@ -184,7 +184,7 @@ class TestAsyncLegalEntityAssociations:
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         legal_entity_association = await async_client.legal_entity_associations.create(
             parent_legal_entity_id="parent_legal_entity_id",
-            relationship_types=["beneficial_owner"],
+            relationship_types=["authorized_signer"],
             child_legal_entity={
                 "addresses": [
                     {
@@ -298,7 +298,7 @@ class TestAsyncLegalEntityAssociations:
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.legal_entity_associations.with_raw_response.create(
             parent_legal_entity_id="parent_legal_entity_id",
-            relationship_types=["beneficial_owner"],
+            relationship_types=["authorized_signer"],
         )
 
         assert response.is_closed is True
@@ -310,7 +310,7 @@ class TestAsyncLegalEntityAssociations:
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.legal_entity_associations.with_streaming_response.create(
             parent_legal_entity_id="parent_legal_entity_id",
-            relationship_types=["beneficial_owner"],
+            relationship_types=["authorized_signer"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
