@@ -236,7 +236,7 @@ class LedgerAccountCategories(SyncAPIResource):
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
         parent_ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -264,6 +264,9 @@ class LedgerAccountCategories(SyncAPIResource):
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
+
+          name: If you have specific names to retrieve in bulk, you can pass them as query
+              parameters delimited with `name[]=`, for example `?name[]=123&name[]=abc`.
 
           parent_ledger_account_category_id: Query categories that are nested underneath a parent category
 
@@ -730,7 +733,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
         parent_ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -758,6 +761,9 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
+
+          name: If you have specific names to retrieve in bulk, you can pass them as query
+              parameters delimited with `name[]=`, for example `?name[]=123&name[]=abc`.
 
           parent_ledger_account_category_id: Query categories that are nested underneath a parent category
 
