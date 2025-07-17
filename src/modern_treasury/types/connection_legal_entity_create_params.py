@@ -37,7 +37,7 @@ class ConnectionLegalEntityCreateParams(TypedDict, total=False):
 
 
 class LegalEntityLegalEntityAssociation(TypedDict, total=False):
-    relationship_types: Required[List[Literal["beneficial_owner", "control_person"]]]
+    relationship_types: Required[List[Literal["authorized_signer", "beneficial_owner", "control_person"]]]
 
     child_legal_entity: ChildLegalEntityCreate
     """The child legal entity."""
