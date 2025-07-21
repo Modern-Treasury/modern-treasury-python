@@ -7,7 +7,6 @@ from typing import Dict, List, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, TypeAlias
 
-from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 from .shared.currency import Currency
 from .virtual_account import VirtualAccount
@@ -398,10 +397,3 @@ class PaymentOrder(BaseModel):
 
 
 from .return_object import ReturnObject
-
-if PYDANTIC_V2:
-    PaymentOrder.model_rebuild()
-    ReferenceNumber.model_rebuild()
-else:
-    PaymentOrder.update_forward_refs()  # type: ignore
-    ReferenceNumber.update_forward_refs()  # type: ignore
