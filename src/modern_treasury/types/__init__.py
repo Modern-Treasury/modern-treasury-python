@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from . import invoice, bulk_result, payment_order, return_object
+from .. import _compat
 from .event import Event as Event
 from .ledger import Ledger as Ledger
 from .shared import (
@@ -224,3 +226,18 @@ from .internal_account_update_account_capability_params import (
 from .internal_account_update_account_capability_response import (
     InternalAccountUpdateAccountCapabilityResponse as InternalAccountUpdateAccountCapabilityResponse,
 )
+
+# Rebuild cyclical models only after all modules are imported.
+# This ensures that, when building the deferred (due to cyclical references) model schema,
+# Pydantic can resolve the necessary references.
+# See: https://github.com/pydantic/pydantic/issues/11250 for more context.
+if _compat.PYDANTIC_V2:
+    invoice.Invoice.model_rebuild(_parent_namespace_depth=0)
+    payment_order.PaymentOrder.model_rebuild(_parent_namespace_depth=0)
+    return_object.ReturnObject.model_rebuild(_parent_namespace_depth=0)
+    bulk_result.BulkResult.model_rebuild(_parent_namespace_depth=0)
+else:
+    invoice.Invoice.update_forward_refs()  # type: ignore
+    payment_order.PaymentOrder.update_forward_refs()  # type: ignore
+    return_object.ReturnObject.update_forward_refs()  # type: ignore
+    bulk_result.BulkResult.update_forward_refs()  # type: ignore
