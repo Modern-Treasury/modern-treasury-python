@@ -6,7 +6,6 @@ from typing import Dict, List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
-from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 from .shared.currency import Currency
 from .expected_payment import ExpectedPayment
@@ -229,14 +228,3 @@ class Invoice(BaseModel):
 
 
 from .payment_order import PaymentOrder
-
-if PYDANTIC_V2:
-    Invoice.model_rebuild()
-    CounterpartyBillingAddress.model_rebuild()
-    CounterpartyShippingAddress.model_rebuild()
-    InvoicerAddress.model_rebuild()
-else:
-    Invoice.update_forward_refs()  # type: ignore
-    CounterpartyBillingAddress.update_forward_refs()  # type: ignore
-    CounterpartyShippingAddress.update_forward_refs()  # type: ignore
-    InvoicerAddress.update_forward_refs()  # type: ignore
