@@ -5,9 +5,9 @@ from datetime import date, datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .shared.bank_settings import BankSettings
+from .bank_settings import BankSettings
 from .legal_entity_association import LegalEntityAssociation
-from .shared.wealth_and_employment_details import WealthAndEmploymentDetails
+from .wealth_and_employment_details import WealthAndEmploymentDetails
 from .shared.legal_entity_compliance_detail import LegalEntityComplianceDetail
 from .shared.legal_entity_industry_classification import LegalEntityIndustryClassification
 
