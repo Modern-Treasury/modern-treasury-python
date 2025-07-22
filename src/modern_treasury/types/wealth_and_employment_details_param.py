@@ -6,12 +6,12 @@ from typing import Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ..._utils import PropertyInfo
+from .._utils import PropertyInfo
 
-__all__ = ["WealthAndEmploymentDetails"]
+__all__ = ["WealthAndEmploymentDetailsParam"]
 
 
-class WealthAndEmploymentDetails(TypedDict, total=False):
+class WealthAndEmploymentDetailsParam(TypedDict, total=False):
     id: Required[str]
 
     annual_income: Required[Optional[int]]

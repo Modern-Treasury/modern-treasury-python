@@ -7,11 +7,11 @@ from datetime import date
 from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .bank_settings import BankSettings
+from ..bank_settings_param import BankSettingsParam
 from .identification_create_request import IdentificationCreateRequest
-from .wealth_and_employment_details import WealthAndEmploymentDetails
 from .legal_entity_compliance_detail import LegalEntityComplianceDetail
 from .legal_entity_address_create_request import LegalEntityAddressCreateRequest
+from ..wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
 from .legal_entity_industry_classification import LegalEntityIndustryClassification
 
 __all__ = ["ChildLegalEntityCreate", "PhoneNumbers", "PhoneNumber"]
@@ -32,7 +32,7 @@ class ChildLegalEntityCreate(TypedDict, total=False):
     addresses: Iterable[LegalEntityAddressCreateRequest]
     """A list of addresses for the entity."""
 
-    bank_settings: Optional[BankSettings]
+    bank_settings: Optional[BankSettingsParam]
 
     business_name: Optional[str]
     """The business's legal business name."""
@@ -99,7 +99,7 @@ class ChildLegalEntityCreate(TypedDict, total=False):
     suffix: Optional[str]
     """An individual's suffix."""
 
-    wealth_and_employment_details: Optional[WealthAndEmploymentDetails]
+    wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam]
 
     website: Optional[str]
     """The entity's primary website URL."""
