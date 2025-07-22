@@ -7,7 +7,6 @@ from modern_treasury.types import (
     Address,
     AddressRequest,
     AsyncResponse,
-    BankSettings,
     ChildLegalEntityCreate,
     ContactDetail,
     Currency,
@@ -22,7 +21,6 @@ from modern_treasury.types import (
     LegalEntityComplianceDetail,
     LegalEntityIndustryClassification,
     TransactionDirection,
-    WealthAndEmploymentDetails,
 )
 ```
 
@@ -628,7 +626,7 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import BankSettings, LegalEntity, WealthAndEmploymentDetails
+from modern_treasury.types import LegalEntity
 ```
 
 Methods:
