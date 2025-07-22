@@ -628,7 +628,7 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import LegalEntity
+from modern_treasury.types import BankSettings, LegalEntity, WealthAndEmploymentDetails
 ```
 
 Methods:
