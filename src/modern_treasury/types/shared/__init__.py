@@ -4,6 +4,7 @@ from .address import Address as Address
 from .currency import Currency as Currency
 from .accounting import Accounting as Accounting
 from .accounts_type import AccountsType as AccountsType
+from .bank_settings import BankSettings as BankSettings
 from .async_response import AsyncResponse as AsyncResponse
 from .contact_detail import ContactDetail as ContactDetail
 from .ledger_balance import LedgerBalance as LedgerBalance
@@ -15,6 +16,7 @@ from .child_legal_entity_create import ChildLegalEntityCreate as ChildLegalEntit
 from .ledger_entry_create_request import LedgerEntryCreateRequest as LedgerEntryCreateRequest
 from .identification_create_request import IdentificationCreateRequest as IdentificationCreateRequest
 from .ledger_account_create_request import LedgerAccountCreateRequest as LedgerAccountCreateRequest
+from .wealth_and_employment_details import WealthAndEmploymentDetails as WealthAndEmploymentDetails
 from .legal_entity_compliance_detail import LegalEntityComplianceDetail as LegalEntityComplianceDetail
 from .ledger_transaction_create_request import LedgerTransactionCreateRequest as LedgerTransactionCreateRequest
 from .legal_entity_address_create_request import LegalEntityAddressCreateRequest as LegalEntityAddressCreateRequest

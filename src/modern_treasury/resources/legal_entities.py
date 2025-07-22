@@ -9,11 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from .. import _legacy_response
-from ..types import (
-    legal_entity_list_params,
-    legal_entity_create_params,
-    legal_entity_update_params,
-)
+from ..types import legal_entity_list_params, legal_entity_create_params, legal_entity_update_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -22,9 +18,9 @@ from .._response import to_streamed_response_wrapper, async_to_streamed_response
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.legal_entity import LegalEntity
-from ..types.bank_settings_param import BankSettingsParam
-from ..types.wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
+from ..types.shared_params.bank_settings import BankSettings
 from ..types.shared_params.identification_create_request import IdentificationCreateRequest
+from ..types.shared_params.wealth_and_employment_details import WealthAndEmploymentDetails
 from ..types.shared_params.legal_entity_compliance_detail import LegalEntityComplianceDetail
 from ..types.shared_params.legal_entity_address_create_request import LegalEntityAddressCreateRequest
 from ..types.shared_params.legal_entity_industry_classification import LegalEntityIndustryClassification
@@ -57,7 +53,7 @@ class LegalEntities(SyncAPIResource):
         *,
         legal_entity_type: Literal["business", "individual"],
         addresses: Iterable[LegalEntityAddressCreateRequest] | NotGiven = NOT_GIVEN,
-        bank_settings: Optional[BankSettingsParam] | NotGiven = NOT_GIVEN,
+        bank_settings: Optional[BankSettings] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
         citizenship_country: Optional[str] | NotGiven = NOT_GIVEN,
         compliance_details: Optional[LegalEntityComplianceDetail] | NotGiven = NOT_GIVEN,
@@ -83,7 +79,7 @@ class LegalEntities(SyncAPIResource):
         prefix: Optional[str] | NotGiven = NOT_GIVEN,
         risk_rating: Optional[Literal["low", "medium", "high"]] | NotGiven = NOT_GIVEN,
         suffix: Optional[str] | NotGiven = NOT_GIVEN,
-        wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam] | NotGiven = NOT_GIVEN,
+        wealth_and_employment_details: Optional[WealthAndEmploymentDetails] | NotGiven = NOT_GIVEN,
         website: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -231,7 +227,7 @@ class LegalEntities(SyncAPIResource):
         id: str,
         *,
         addresses: Iterable[LegalEntityAddressCreateRequest] | NotGiven = NOT_GIVEN,
-        bank_settings: Optional[BankSettingsParam] | NotGiven = NOT_GIVEN,
+        bank_settings: Optional[BankSettings] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
         citizenship_country: Optional[str] | NotGiven = NOT_GIVEN,
         compliance_details: Optional[LegalEntityComplianceDetail] | NotGiven = NOT_GIVEN,
@@ -255,7 +251,7 @@ class LegalEntities(SyncAPIResource):
         prefix: Optional[str] | NotGiven = NOT_GIVEN,
         risk_rating: Optional[Literal["low", "medium", "high"]] | NotGiven = NOT_GIVEN,
         suffix: Optional[str] | NotGiven = NOT_GIVEN,
-        wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam] | NotGiven = NOT_GIVEN,
+        wealth_and_employment_details: Optional[WealthAndEmploymentDetails] | NotGiven = NOT_GIVEN,
         website: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -440,7 +436,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         *,
         legal_entity_type: Literal["business", "individual"],
         addresses: Iterable[LegalEntityAddressCreateRequest] | NotGiven = NOT_GIVEN,
-        bank_settings: Optional[BankSettingsParam] | NotGiven = NOT_GIVEN,
+        bank_settings: Optional[BankSettings] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
         citizenship_country: Optional[str] | NotGiven = NOT_GIVEN,
         compliance_details: Optional[LegalEntityComplianceDetail] | NotGiven = NOT_GIVEN,
@@ -466,7 +462,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         prefix: Optional[str] | NotGiven = NOT_GIVEN,
         risk_rating: Optional[Literal["low", "medium", "high"]] | NotGiven = NOT_GIVEN,
         suffix: Optional[str] | NotGiven = NOT_GIVEN,
-        wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam] | NotGiven = NOT_GIVEN,
+        wealth_and_employment_details: Optional[WealthAndEmploymentDetails] | NotGiven = NOT_GIVEN,
         website: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -614,7 +610,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         id: str,
         *,
         addresses: Iterable[LegalEntityAddressCreateRequest] | NotGiven = NOT_GIVEN,
-        bank_settings: Optional[BankSettingsParam] | NotGiven = NOT_GIVEN,
+        bank_settings: Optional[BankSettings] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
         citizenship_country: Optional[str] | NotGiven = NOT_GIVEN,
         compliance_details: Optional[LegalEntityComplianceDetail] | NotGiven = NOT_GIVEN,
@@ -638,7 +634,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         prefix: Optional[str] | NotGiven = NOT_GIVEN,
         risk_rating: Optional[Literal["low", "medium", "high"]] | NotGiven = NOT_GIVEN,
         suffix: Optional[str] | NotGiven = NOT_GIVEN,
-        wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam] | NotGiven = NOT_GIVEN,
+        wealth_and_employment_details: Optional[WealthAndEmploymentDetails] | NotGiven = NOT_GIVEN,
         website: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

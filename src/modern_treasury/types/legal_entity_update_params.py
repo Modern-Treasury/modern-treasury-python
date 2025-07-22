@@ -7,9 +7,9 @@ from datetime import date
 from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .bank_settings_param import BankSettingsParam
-from .wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
+from .shared_params.bank_settings import BankSettings
 from .shared_params.identification_create_request import IdentificationCreateRequest
+from .shared_params.wealth_and_employment_details import WealthAndEmploymentDetails
 from .shared_params.legal_entity_compliance_detail import LegalEntityComplianceDetail
 from .shared_params.legal_entity_address_create_request import LegalEntityAddressCreateRequest
 from .shared_params.legal_entity_industry_classification import LegalEntityIndustryClassification
@@ -21,7 +21,7 @@ class LegalEntityUpdateParams(TypedDict, total=False):
     addresses: Iterable[LegalEntityAddressCreateRequest]
     """A list of addresses for the entity."""
 
-    bank_settings: Optional[BankSettingsParam]
+    bank_settings: Optional[BankSettings]
 
     business_name: Optional[str]
     """The business's legal business name."""
@@ -85,7 +85,7 @@ class LegalEntityUpdateParams(TypedDict, total=False):
     suffix: Optional[str]
     """An individual's suffix."""
 
-    wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam]
+    wealth_and_employment_details: Optional[WealthAndEmploymentDetails]
 
     website: Optional[str]
     """The entity's primary website URL."""
