@@ -30,6 +30,9 @@ class ExternalAccount(BaseModel):
 
     discarded_at: Optional[datetime] = None
 
+    external_id: Optional[str] = None
+    """An optional user-defined 180 character unique identifier."""
+
     ledger_account_id: Optional[str] = None
     """
     If the external account links to a ledger account in Modern Treasury, the id of

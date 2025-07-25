@@ -26,6 +26,9 @@ class CounterpartyListParams(TypedDict, total=False):
     This is also case insensitive.
     """
 
+    external_id: str
+    """An optional user-defined 180 character unique identifier."""
+
     legal_entity_id: str
     """Filters for counterparties with the given legal entity ID."""
 

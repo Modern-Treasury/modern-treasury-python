@@ -53,9 +53,11 @@ class Counterparties(SyncAPIResource):
         self,
         *,
         name: Optional[str],
+        query_external_id: str | NotGiven = NOT_GIVEN,
         accounting: counterparty_create_params.Accounting | NotGiven = NOT_GIVEN,
         accounts: Iterable[counterparty_create_params.Account] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
+        body_external_id: Optional[str] | NotGiven = NOT_GIVEN,
         ledger_type: Literal["customer", "vendor"] | NotGiven = NOT_GIVEN,
         legal_entity: counterparty_create_params.LegalEntity | NotGiven = NOT_GIVEN,
         legal_entity_id: Optional[str] | NotGiven = NOT_GIVEN,
@@ -77,9 +79,13 @@ class Counterparties(SyncAPIResource):
         Args:
           name: A human friendly name for this counterparty.
 
+          query_external_id: An optional user-defined 180 character unique identifier.
+
           accounts: The accounts for this counterparty.
 
           email: The counterparty's email.
+
+          body_external_id: An optional user-defined 180 character unique identifier.
 
           ledger_type: An optional type to auto-sync the counterparty to your ledger. Either `customer`
               or `vendor`.
@@ -114,6 +120,7 @@ class Counterparties(SyncAPIResource):
                     "accounting": accounting,
                     "accounts": accounts,
                     "email": email,
+                    "body_external_id": body_external_id,
                     "ledger_type": ledger_type,
                     "legal_entity": legal_entity,
                     "legal_entity_id": legal_entity_id,
@@ -130,6 +137,9 @@ class Counterparties(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
+                query=maybe_transform(
+                    {"query_external_id": query_external_id}, counterparty_create_params.CounterpartyCreateParams
+                ),
             ),
             cast_to=Counterparty,
         )
@@ -245,6 +255,7 @@ class Counterparties(SyncAPIResource):
         created_at_lower_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         created_at_upper_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         email: str | NotGiven = NOT_GIVEN,
+        external_id: str | NotGiven = NOT_GIVEN,
         legal_entity_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -266,6 +277,8 @@ class Counterparties(SyncAPIResource):
 
           email: Performs a partial string match of the email field. This is also case
               insensitive.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           legal_entity_id: Filters for counterparties with the given legal entity ID.
 
@@ -298,6 +311,7 @@ class Counterparties(SyncAPIResource):
                         "created_at_lower_bound": created_at_lower_bound,
                         "created_at_upper_bound": created_at_upper_bound,
                         "email": email,
+                        "external_id": external_id,
                         "legal_entity_id": legal_entity_id,
                         "metadata": metadata,
                         "name": name,
@@ -480,9 +494,11 @@ class AsyncCounterparties(AsyncAPIResource):
         self,
         *,
         name: Optional[str],
+        query_external_id: str | NotGiven = NOT_GIVEN,
         accounting: counterparty_create_params.Accounting | NotGiven = NOT_GIVEN,
         accounts: Iterable[counterparty_create_params.Account] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
+        body_external_id: Optional[str] | NotGiven = NOT_GIVEN,
         ledger_type: Literal["customer", "vendor"] | NotGiven = NOT_GIVEN,
         legal_entity: counterparty_create_params.LegalEntity | NotGiven = NOT_GIVEN,
         legal_entity_id: Optional[str] | NotGiven = NOT_GIVEN,
@@ -504,9 +520,13 @@ class AsyncCounterparties(AsyncAPIResource):
         Args:
           name: A human friendly name for this counterparty.
 
+          query_external_id: An optional user-defined 180 character unique identifier.
+
           accounts: The accounts for this counterparty.
 
           email: The counterparty's email.
+
+          body_external_id: An optional user-defined 180 character unique identifier.
 
           ledger_type: An optional type to auto-sync the counterparty to your ledger. Either `customer`
               or `vendor`.
@@ -541,6 +561,7 @@ class AsyncCounterparties(AsyncAPIResource):
                     "accounting": accounting,
                     "accounts": accounts,
                     "email": email,
+                    "body_external_id": body_external_id,
                     "ledger_type": ledger_type,
                     "legal_entity": legal_entity,
                     "legal_entity_id": legal_entity_id,
@@ -557,6 +578,9 @@ class AsyncCounterparties(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
+                query=await async_maybe_transform(
+                    {"query_external_id": query_external_id}, counterparty_create_params.CounterpartyCreateParams
+                ),
             ),
             cast_to=Counterparty,
         )
@@ -672,6 +696,7 @@ class AsyncCounterparties(AsyncAPIResource):
         created_at_lower_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         created_at_upper_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         email: str | NotGiven = NOT_GIVEN,
+        external_id: str | NotGiven = NOT_GIVEN,
         legal_entity_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -693,6 +718,8 @@ class AsyncCounterparties(AsyncAPIResource):
 
           email: Performs a partial string match of the email field. This is also case
               insensitive.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           legal_entity_id: Filters for counterparties with the given legal entity ID.
 
@@ -725,6 +752,7 @@ class AsyncCounterparties(AsyncAPIResource):
                         "created_at_lower_bound": created_at_lower_bound,
                         "created_at_upper_bound": created_at_upper_bound,
                         "email": email,
+                        "external_id": external_id,
                         "legal_entity_id": legal_entity_id,
                         "metadata": metadata,
                         "name": name,

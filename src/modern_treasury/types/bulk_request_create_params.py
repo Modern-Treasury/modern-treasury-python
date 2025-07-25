@@ -237,6 +237,9 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccount(TypedDict, total=Fa
 
     contact_details: Iterable[ContactDetailCreateRequestParam]
 
+    external_id: Optional[str]
+    """An optional user-defined 180 character unique identifier."""
+
     ledger_account: LedgerAccountCreateRequest
     """Specifies a ledger account object that will be created with the external
     account.
@@ -576,6 +579,9 @@ class ResourceExpectedPaymentCreateRequest(TypedDict, total=False):
     When you are receiving money, use credit. When you are being charged, use debit.
     """
 
+    external_id: Optional[str]
+    """An optional user-defined 180 character unique identifier."""
+
     internal_account_id: Optional[str]
     """The ID of the Internal Account for the expected payment."""
 
@@ -897,6 +903,9 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccount(TypedDict, total=F
     """Can be `checking`, `savings` or `other`."""
 
     contact_details: Iterable[ContactDetailCreateRequestParam]
+
+    external_id: Optional[str]
+    """An optional user-defined 180 character unique identifier."""
 
     ledger_account: LedgerAccountCreateRequest
     """Specifies a ledger account object that will be created with the external
@@ -1226,6 +1235,9 @@ class ResourceExpectedPaymentUpdateRequestWithID(TypedDict, total=False):
 
     When you are receiving money, use credit. When you are being charged, use debit.
     """
+
+    external_id: Optional[str]
+    """An optional user-defined 180 character unique identifier."""
 
     internal_account_id: Optional[str]
     """The ID of the Internal Account for the expected payment."""

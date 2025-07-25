@@ -37,6 +37,7 @@ class TestExpectedPayments:
             date_upper_bound=parse_date("2019-12-27"),
             description="description",
             direction="credit",
+            external_id="external_id",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledger_transaction={
                 "ledger_entries": [
@@ -186,6 +187,7 @@ class TestExpectedPayments:
             date_upper_bound=parse_date("2019-12-27"),
             description="description",
             direction="credit",
+            external_id="external_id",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={
                 "key": "value",
@@ -259,6 +261,7 @@ class TestExpectedPayments:
             created_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             direction="credit",
+            external_id="external_id",
             internal_account_id="internal_account_id",
             metadata={"foo": "string"},
             per_page=0,
@@ -349,6 +352,7 @@ class TestAsyncExpectedPayments:
             date_upper_bound=parse_date("2019-12-27"),
             description="description",
             direction="credit",
+            external_id="external_id",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledger_transaction={
                 "ledger_entries": [
@@ -498,6 +502,7 @@ class TestAsyncExpectedPayments:
             date_upper_bound=parse_date("2019-12-27"),
             description="description",
             direction="credit",
+            external_id="external_id",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={
                 "key": "value",
@@ -571,6 +576,7 @@ class TestAsyncExpectedPayments:
             created_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             direction="credit",
+            external_id="external_id",
             internal_account_id="internal_account_id",
             metadata={"foo": "string"},
             per_page=0,

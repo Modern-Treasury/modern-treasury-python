@@ -28,6 +28,9 @@ class Account(BaseModel):
 
     discarded_at: Optional[datetime] = None
 
+    external_id: Optional[str] = None
+    """An optional user-defined 180 character unique identifier."""
+
     ledger_account_id: Optional[str] = None
     """
     If the external account links to a ledger account in Modern Treasury, the id of
@@ -91,6 +94,9 @@ class Counterparty(BaseModel):
 
     email: Optional[str] = None
     """The counterparty's email."""
+
+    external_id: Optional[str] = None
+    """An optional user-defined 180 character unique identifier."""
 
     legal_entity_id: Optional[str] = None
     """The id of the legal entity."""

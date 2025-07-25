@@ -4,6 +4,8 @@ import builtins
 from typing import TYPE_CHECKING, Dict, Optional
 from datetime import datetime
 
+from pydantic import Field as FieldInfo
+
 from .._models import BaseModel
 
 __all__ = ["Ledger"]
@@ -38,6 +40,7 @@ class Ledger(BaseModel):
 
     updated_at: datetime
 
+    __pydantic_extra__: Dict[str, builtins.object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
     if TYPE_CHECKING:
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.

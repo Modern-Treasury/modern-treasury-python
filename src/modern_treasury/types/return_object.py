@@ -7,7 +7,6 @@ from typing import List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
-from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 from .shared.currency import Currency
 
@@ -383,13 +382,3 @@ class ReturnObject(BaseModel):
 
     data: Optional[builtins.object] = None
     """The raw data from the return file that we get from the bank."""
-
-
-if PYDANTIC_V2:
-    ReturnObject.model_rebuild()
-    Corrections.model_rebuild()
-    ReferenceNumber.model_rebuild()
-else:
-    ReturnObject.update_forward_refs()  # type: ignore
-    Corrections.update_forward_refs()  # type: ignore
-    ReferenceNumber.update_forward_refs()  # type: ignore

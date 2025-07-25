@@ -27,6 +27,8 @@ class ExpectedPaymentListParams(TypedDict, total=False):
     direction: TransactionDirection
     """One of credit, debit"""
 
+    external_id: str
+
     internal_account_id: str
     """Specify internal_account_id to see expected_payments for a specific account."""
 

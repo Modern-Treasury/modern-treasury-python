@@ -13,6 +13,9 @@ class ExternalAccountListParams(TypedDict, total=False):
 
     counterparty_id: str
 
+    external_id: str
+    """An optional user-defined 180 character unique identifier."""
+
     metadata: Dict[str, str]
     """
     For example, if you want to query for records with metadata key `Type` and value

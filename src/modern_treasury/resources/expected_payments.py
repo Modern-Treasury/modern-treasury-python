@@ -63,6 +63,7 @@ class ExpectedPayments(SyncAPIResource):
         date_upper_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         direction: Optional[Literal["credit", "debit"]] | NotGiven = NOT_GIVEN,
+        external_id: Optional[str] | NotGiven = NOT_GIVEN,
         internal_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         ledger_transaction: LedgerTransactionCreateRequest | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
@@ -104,6 +105,8 @@ class ExpectedPayments(SyncAPIResource):
 
           direction: One of credit or debit. When you are receiving money, use credit. When you are
               being charged, use debit.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           internal_account_id: The ID of the Internal Account for the expected payment.
 
@@ -160,6 +163,7 @@ class ExpectedPayments(SyncAPIResource):
                     "date_upper_bound": date_upper_bound,
                     "description": description,
                     "direction": direction,
+                    "external_id": external_id,
                     "internal_account_id": internal_account_id,
                     "ledger_transaction": ledger_transaction,
                     "ledger_transaction_id": ledger_transaction_id,
@@ -229,6 +233,7 @@ class ExpectedPayments(SyncAPIResource):
         date_upper_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         direction: Optional[Literal["credit", "debit"]] | NotGiven = NOT_GIVEN,
+        external_id: Optional[str] | NotGiven = NOT_GIVEN,
         internal_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         reconciliation_filters: Optional[object] | NotGiven = NOT_GIVEN,
@@ -268,6 +273,8 @@ class ExpectedPayments(SyncAPIResource):
 
           direction: One of credit or debit. When you are receiving money, use credit. When you are
               being charged, use debit.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           internal_account_id: The ID of the Internal Account for the expected payment.
 
@@ -319,6 +326,7 @@ class ExpectedPayments(SyncAPIResource):
                     "date_upper_bound": date_upper_bound,
                     "description": description,
                     "direction": direction,
+                    "external_id": external_id,
                     "internal_account_id": internal_account_id,
                     "metadata": metadata,
                     "reconciliation_filters": reconciliation_filters,
@@ -349,6 +357,7 @@ class ExpectedPayments(SyncAPIResource):
         created_at_lower_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         created_at_upper_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         direction: TransactionDirection | NotGiven = NOT_GIVEN,
+        external_id: str | NotGiven = NOT_GIVEN,
         internal_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
@@ -449,6 +458,7 @@ class ExpectedPayments(SyncAPIResource):
                         "created_at_lower_bound": created_at_lower_bound,
                         "created_at_upper_bound": created_at_upper_bound,
                         "direction": direction,
+                        "external_id": external_id,
                         "internal_account_id": internal_account_id,
                         "metadata": metadata,
                         "per_page": per_page,
@@ -535,6 +545,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
         date_upper_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         direction: Optional[Literal["credit", "debit"]] | NotGiven = NOT_GIVEN,
+        external_id: Optional[str] | NotGiven = NOT_GIVEN,
         internal_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         ledger_transaction: LedgerTransactionCreateRequest | NotGiven = NOT_GIVEN,
         ledger_transaction_id: str | NotGiven = NOT_GIVEN,
@@ -576,6 +587,8 @@ class AsyncExpectedPayments(AsyncAPIResource):
 
           direction: One of credit or debit. When you are receiving money, use credit. When you are
               being charged, use debit.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           internal_account_id: The ID of the Internal Account for the expected payment.
 
@@ -632,6 +645,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
                     "date_upper_bound": date_upper_bound,
                     "description": description,
                     "direction": direction,
+                    "external_id": external_id,
                     "internal_account_id": internal_account_id,
                     "ledger_transaction": ledger_transaction,
                     "ledger_transaction_id": ledger_transaction_id,
@@ -701,6 +715,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
         date_upper_bound: Union[str, date, None] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         direction: Optional[Literal["credit", "debit"]] | NotGiven = NOT_GIVEN,
+        external_id: Optional[str] | NotGiven = NOT_GIVEN,
         internal_account_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         reconciliation_filters: Optional[object] | NotGiven = NOT_GIVEN,
@@ -740,6 +755,8 @@ class AsyncExpectedPayments(AsyncAPIResource):
 
           direction: One of credit or debit. When you are receiving money, use credit. When you are
               being charged, use debit.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           internal_account_id: The ID of the Internal Account for the expected payment.
 
@@ -791,6 +808,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
                     "date_upper_bound": date_upper_bound,
                     "description": description,
                     "direction": direction,
+                    "external_id": external_id,
                     "internal_account_id": internal_account_id,
                     "metadata": metadata,
                     "reconciliation_filters": reconciliation_filters,
@@ -821,6 +839,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
         created_at_lower_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         created_at_upper_bound: Union[str, datetime] | NotGiven = NOT_GIVEN,
         direction: TransactionDirection | NotGiven = NOT_GIVEN,
+        external_id: str | NotGiven = NOT_GIVEN,
         internal_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
@@ -921,6 +940,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
                         "created_at_lower_bound": created_at_lower_bound,
                         "created_at_upper_bound": created_at_upper_bound,
                         "direction": direction,
+                        "external_id": external_id,
                         "internal_account_id": internal_account_id,
                         "metadata": metadata,
                         "per_page": per_page,

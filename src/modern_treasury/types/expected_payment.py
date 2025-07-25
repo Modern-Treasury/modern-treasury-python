@@ -53,6 +53,9 @@ class ExpectedPayment(BaseModel):
     When you are receiving money, use credit. When you are being charged, use debit.
     """
 
+    external_id: Optional[str] = None
+    """An optional user-defined 180 character unique identifier."""
+
     internal_account_id: Optional[str] = None
     """The ID of the Internal Account for the expected payment."""
 

@@ -100,7 +100,7 @@ class TestLegalEntities:
             last_name="last_name",
             legal_entity_associations=[
                 {
-                    "relationship_types": ["beneficial_owner"],
+                    "relationship_types": ["authorized_signer"],
                     "child_legal_entity": {
                         "addresses": [
                             {
@@ -574,7 +574,7 @@ class TestAsyncLegalEntities:
             last_name="last_name",
             legal_entity_associations=[
                 {
-                    "relationship_types": ["beneficial_owner"],
+                    "relationship_types": ["authorized_signer"],
                     "child_legal_entity": {
                         "addresses": [
                             {

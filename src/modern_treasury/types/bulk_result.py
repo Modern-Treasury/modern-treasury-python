@@ -6,7 +6,6 @@ from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
-from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 from .transaction import Transaction
 from .ledger_account import LedgerAccount
@@ -119,12 +118,3 @@ class BulkResult(BaseModel):
 
 
 from .payment_order import PaymentOrder
-
-if PYDANTIC_V2:
-    BulkResult.model_rebuild()
-    EntityBulkError.model_rebuild()
-    EntityBulkErrorRequestError.model_rebuild()
-else:
-    BulkResult.update_forward_refs()  # type: ignore
-    EntityBulkError.update_forward_refs()  # type: ignore
-    EntityBulkErrorRequestError.update_forward_refs()  # type: ignore
