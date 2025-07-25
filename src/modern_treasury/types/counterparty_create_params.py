@@ -40,6 +40,9 @@ class CounterpartyCreateParams(TypedDict, total=False):
     name: Required[Optional[str]]
     """A human friendly name for this counterparty."""
 
+    query_external_id: Annotated[str, PropertyInfo(alias="external_id")]
+    """An optional user-defined 180 character unique identifier."""
+
     accounting: Accounting
 
     accounts: Iterable[Account]
@@ -47,6 +50,9 @@ class CounterpartyCreateParams(TypedDict, total=False):
 
     email: Optional[str]
     """The counterparty's email."""
+
+    body_external_id: Annotated[Optional[str], PropertyInfo(alias="external_id")]
+    """An optional user-defined 180 character unique identifier."""
 
     ledger_type: Literal["customer", "vendor"]
     """An optional type to auto-sync the counterparty to your ledger.
@@ -196,6 +202,9 @@ class Account(TypedDict, total=False):
     """Can be `checking`, `savings` or `other`."""
 
     contact_details: Iterable[ContactDetailCreateRequestParam]
+
+    external_id: Optional[str]
+    """An optional user-defined 180 character unique identifier."""
 
     ledger_account: LedgerAccountCreateRequest
     """Specifies a ledger account object that will be created with the external

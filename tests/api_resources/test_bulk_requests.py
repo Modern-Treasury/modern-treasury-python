@@ -130,6 +130,7 @@ class TestBulkRequests:
                                 "contact_identifier_type": "email",
                             }
                         ],
+                        "external_id": "external_id",
                         "ledger_account": {
                             "currency": "currency",
                             "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -428,6 +429,7 @@ class TestAsyncBulkRequests:
                                 "contact_identifier_type": "email",
                             }
                         ],
+                        "external_id": "external_id",
                         "ledger_account": {
                             "currency": "currency",
                             "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
