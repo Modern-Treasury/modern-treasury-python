@@ -58,9 +58,11 @@ class ExternalAccounts(SyncAPIResource):
         self,
         *,
         counterparty_id: Optional[str],
+        query_external_id: str | NotGiven = NOT_GIVEN,
         account_details: Iterable[external_account_create_params.AccountDetail] | NotGiven = NOT_GIVEN,
         account_type: ExternalAccountType | NotGiven = NOT_GIVEN,
         contact_details: Iterable[ContactDetailCreateRequestParam] | NotGiven = NOT_GIVEN,
+        body_external_id: Optional[str] | NotGiven = NOT_GIVEN,
         ledger_account: LedgerAccountCreateRequest | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -82,7 +84,11 @@ class ExternalAccounts(SyncAPIResource):
         create external account
 
         Args:
+          query_external_id: An optional user-defined 180 character unique identifier.
+
           account_type: Can be `checking`, `savings` or `other`.
+
+          body_external_id: An optional user-defined 180 character unique identifier.
 
           ledger_account: Specifies a ledger account object that will be created with the external
               account. The resulting ledger account is linked to the external account for
@@ -123,6 +129,7 @@ class ExternalAccounts(SyncAPIResource):
                     "account_details": account_details,
                     "account_type": account_type,
                     "contact_details": contact_details,
+                    "body_external_id": body_external_id,
                     "ledger_account": ledger_account,
                     "metadata": metadata,
                     "name": name,
@@ -141,6 +148,9 @@ class ExternalAccounts(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
+                query=maybe_transform(
+                    {"query_external_id": query_external_id}, external_account_create_params.ExternalAccountCreateParams
+                ),
             ),
             cast_to=ExternalAccount,
         )
@@ -254,6 +264,7 @@ class ExternalAccounts(SyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
+        external_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         party_name: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
@@ -268,6 +279,8 @@ class ExternalAccounts(SyncAPIResource):
         list external accounts
 
         Args:
+          external_id: An optional user-defined 180 character unique identifier.
+
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
@@ -294,6 +307,7 @@ class ExternalAccounts(SyncAPIResource):
                     {
                         "after_cursor": after_cursor,
                         "counterparty_id": counterparty_id,
+                        "external_id": external_id,
                         "metadata": metadata,
                         "party_name": party_name,
                         "per_page": per_page,
@@ -524,9 +538,11 @@ class AsyncExternalAccounts(AsyncAPIResource):
         self,
         *,
         counterparty_id: Optional[str],
+        query_external_id: str | NotGiven = NOT_GIVEN,
         account_details: Iterable[external_account_create_params.AccountDetail] | NotGiven = NOT_GIVEN,
         account_type: ExternalAccountType | NotGiven = NOT_GIVEN,
         contact_details: Iterable[ContactDetailCreateRequestParam] | NotGiven = NOT_GIVEN,
+        body_external_id: Optional[str] | NotGiven = NOT_GIVEN,
         ledger_account: LedgerAccountCreateRequest | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
@@ -548,7 +564,11 @@ class AsyncExternalAccounts(AsyncAPIResource):
         create external account
 
         Args:
+          query_external_id: An optional user-defined 180 character unique identifier.
+
           account_type: Can be `checking`, `savings` or `other`.
+
+          body_external_id: An optional user-defined 180 character unique identifier.
 
           ledger_account: Specifies a ledger account object that will be created with the external
               account. The resulting ledger account is linked to the external account for
@@ -589,6 +609,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
                     "account_details": account_details,
                     "account_type": account_type,
                     "contact_details": contact_details,
+                    "body_external_id": body_external_id,
                     "ledger_account": ledger_account,
                     "metadata": metadata,
                     "name": name,
@@ -607,6 +628,9 @@ class AsyncExternalAccounts(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
+                query=await async_maybe_transform(
+                    {"query_external_id": query_external_id}, external_account_create_params.ExternalAccountCreateParams
+                ),
             ),
             cast_to=ExternalAccount,
         )
@@ -720,6 +744,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
         *,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         counterparty_id: str | NotGiven = NOT_GIVEN,
+        external_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         party_name: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
@@ -734,6 +759,8 @@ class AsyncExternalAccounts(AsyncAPIResource):
         list external accounts
 
         Args:
+          external_id: An optional user-defined 180 character unique identifier.
+
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
@@ -760,6 +787,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
                     {
                         "after_cursor": after_cursor,
                         "counterparty_id": counterparty_id,
+                        "external_id": external_id,
                         "metadata": metadata,
                         "party_name": party_name,
                         "per_page": per_page,

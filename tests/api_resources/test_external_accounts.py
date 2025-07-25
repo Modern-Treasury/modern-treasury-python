@@ -32,6 +32,7 @@ class TestExternalAccounts:
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         external_account = client.external_accounts.create(
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            query_external_id="external_id",
             account_details=[
                 {
                     "account_number": "account_number",
@@ -45,6 +46,7 @@ class TestExternalAccounts:
                     "contact_identifier_type": "email",
                 }
             ],
+            body_external_id="external_id",
             ledger_account={
                 "currency": "currency",
                 "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -220,6 +222,7 @@ class TestExternalAccounts:
         external_account = client.external_accounts.list(
             after_cursor="after_cursor",
             counterparty_id="counterparty_id",
+            external_id="external_id",
             metadata={"foo": "string"},
             party_name="party_name",
             per_page=0,
@@ -405,6 +408,7 @@ class TestAsyncExternalAccounts:
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         external_account = await async_client.external_accounts.create(
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            query_external_id="external_id",
             account_details=[
                 {
                     "account_number": "account_number",
@@ -418,6 +422,7 @@ class TestAsyncExternalAccounts:
                     "contact_identifier_type": "email",
                 }
             ],
+            body_external_id="external_id",
             ledger_account={
                 "currency": "currency",
                 "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -593,6 +598,7 @@ class TestAsyncExternalAccounts:
         external_account = await async_client.external_accounts.list(
             after_cursor="after_cursor",
             counterparty_id="counterparty_id",
+            external_id="external_id",
             metadata={"foo": "string"},
             party_name="party_name",
             per_page=0,

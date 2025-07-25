@@ -33,6 +33,7 @@ class TestCounterparties:
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         counterparty = client.counterparties.create(
             name="name",
+            query_external_id="external_id",
             accounting={"type": "customer"},
             accounts=[
                 {
@@ -49,6 +50,7 @@ class TestCounterparties:
                             "contact_identifier_type": "email",
                         }
                     ],
+                    "external_id": "external_id",
                     "ledger_account": {
                         "currency": "currency",
                         "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -93,6 +95,7 @@ class TestCounterparties:
                 }
             ],
             email="dev@stainless.com",
+            body_external_id="external_id",
             ledger_type="customer",
             legal_entity={
                 "legal_entity_type": "business",
@@ -445,6 +448,7 @@ class TestCounterparties:
             created_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             email="dev@stainless.com",
+            external_id="external_id",
             legal_entity_id="legal_entity_id",
             metadata={"foo": "string"},
             name="name",
@@ -580,6 +584,7 @@ class TestAsyncCounterparties:
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         counterparty = await async_client.counterparties.create(
             name="name",
+            query_external_id="external_id",
             accounting={"type": "customer"},
             accounts=[
                 {
@@ -596,6 +601,7 @@ class TestAsyncCounterparties:
                             "contact_identifier_type": "email",
                         }
                     ],
+                    "external_id": "external_id",
                     "ledger_account": {
                         "currency": "currency",
                         "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -640,6 +646,7 @@ class TestAsyncCounterparties:
                 }
             ],
             email="dev@stainless.com",
+            body_external_id="external_id",
             ledger_type="customer",
             legal_entity={
                 "legal_entity_type": "business",
@@ -992,6 +999,7 @@ class TestAsyncCounterparties:
             created_at_lower_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             created_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             email="dev@stainless.com",
+            external_id="external_id",
             legal_entity_id="legal_entity_id",
             metadata={"foo": "string"},
             name="name",
