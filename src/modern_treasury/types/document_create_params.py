@@ -26,7 +26,6 @@ class DocumentCreateParams(TypedDict, total=False):
             "payment_orders",
             "transactions",
             "connections",
-            "conversations",
         ]
     ]
 

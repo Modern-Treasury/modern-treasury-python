@@ -26,7 +26,6 @@ class DocumentListParams(TypedDict, total=False):
         "payment_orders",
         "transactions",
         "connections",
-        "conversations",
     ]
     """The type of the associated object.
 
