@@ -57,7 +57,6 @@ class Documents(SyncAPIResource):
             "payment_orders",
             "transactions",
             "connections",
-            "conversations",
         ],
         file: FileTypes,
         document_type: str | NotGiven = NOT_GIVEN,
@@ -164,7 +163,6 @@ class Documents(SyncAPIResource):
             "payment_orders",
             "transactions",
             "connections",
-            "conversations",
         ]
         | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
@@ -251,7 +249,6 @@ class AsyncDocuments(AsyncAPIResource):
             "payment_orders",
             "transactions",
             "connections",
-            "conversations",
         ],
         file: FileTypes,
         document_type: str | NotGiven = NOT_GIVEN,
@@ -358,7 +355,6 @@ class AsyncDocuments(AsyncAPIResource):
             "payment_orders",
             "transactions",
             "connections",
-            "conversations",
         ]
         | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,

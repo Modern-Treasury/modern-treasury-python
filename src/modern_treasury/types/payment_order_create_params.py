@@ -270,7 +270,6 @@ class Document(TypedDict, total=False):
             "payment_orders",
             "transactions",
             "connections",
-            "conversations",
         ]
     ]
 
