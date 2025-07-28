@@ -76,7 +76,6 @@ class Document(BaseModel):
         "payment_order",
         "transaction",
         "connection",
-        "conversation",
     ]
     """The type of the associated object.
 
