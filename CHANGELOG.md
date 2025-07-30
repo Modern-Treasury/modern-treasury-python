@@ -1,5 +1,33 @@
 # Changelog
 
+## 1.54.0 (2025-07-30)
+
+Full Changelog: [v1.53.0...v1.54.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.53.0...v1.54.0)
+
+### Features
+
+* **api:** api update ([e9e4c43](https://github.com/Modern-Treasury/modern-treasury-python/commit/e9e4c432dd40f740a2955e2173de2e908c1f047f))
+* **api:** api update ([5678a6f](https://github.com/Modern-Treasury/modern-treasury-python/commit/5678a6f27426faac34c9fee1de6d725c3be471b2))
+* **api:** api update ([f754137](https://github.com/Modern-Treasury/modern-treasury-python/commit/f754137e1d7f1cbf1e980c7da924206d73f675f5))
+* **api:** api update ([740dc96](https://github.com/Modern-Treasury/modern-treasury-python/commit/740dc967646be6d4b3da80d79868690ce0b5fd90))
+* **api:** api update ([065c089](https://github.com/Modern-Treasury/modern-treasury-python/commit/065c0890d0b340bbfba55d7e29b5c50d3dbb87f1))
+* **client:** support file upload requests ([e1420a0](https://github.com/Modern-Treasury/modern-treasury-python/commit/e1420a017f3f1e75d21409b420f2f9badfbe8476))
+
+
+### Bug Fixes
+
+* **api:** make Legal Entity change backwards compatibile ([a2ade3b](https://github.com/Modern-Treasury/modern-treasury-python/commit/a2ade3b613bd331624c557b4c71f7400cf9add2f))
+* **client:** remove circular imports ([36aac99](https://github.com/Modern-Treasury/modern-treasury-python/commit/36aac99fbd412234658fe301f0298c2d356e4cad))
+* **client:** unique model names ([6dea3e9](https://github.com/Modern-Treasury/modern-treasury-python/commit/6dea3e9a7c9fd51b70d7e86daf7872dd707dca2c))
+* **parsing:** ignore empty metadata ([2c22eca](https://github.com/Modern-Treasury/modern-treasury-python/commit/2c22eca8d49db6f244a21123df3c0593f91f5250))
+* **parsing:** parse extra field types ([335af00](https://github.com/Modern-Treasury/modern-treasury-python/commit/335af0051463270454b1d834311102525d1fa739))
+
+
+### Chores
+
+* **project:** add settings file for vscode ([56da9c3](https://github.com/Modern-Treasury/modern-treasury-python/commit/56da9c34ae7648e08fcbe2cdbe207d88f22e8fb6))
+* **types:** rebuild Pydantic models after all types are defined ([4df7193](https://github.com/Modern-Treasury/modern-treasury-python/commit/4df7193eb8b42d8121fa640977c67fc5ed8223c9))
+
 ## 1.53.0 (2025-07-15)
 
 Full Changelog: [v1.52.0...v1.53.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.52.0...v1.53.0)
