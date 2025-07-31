@@ -22,7 +22,6 @@ class DocumentListParams(TypedDict, total=False):
         "incoming_payment_details",
         "internal_accounts",
         "organizations",
-        "paper_items",
         "payment_orders",
         "transactions",
         "connections",

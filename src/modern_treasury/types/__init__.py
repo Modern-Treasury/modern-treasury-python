@@ -31,7 +31,6 @@ from .invoice import Invoice as Invoice
 from .document import Document as Document
 from .line_item import LineItem as LineItem
 from .connection import Connection as Connection
-from .paper_item import PaperItem as PaperItem
 from .bulk_result import BulkResult as BulkResult
 from .transaction import Transaction as Transaction
 from .bulk_request import BulkRequest as BulkRequest
@@ -70,7 +69,6 @@ from .payment_order_subtype import PaymentOrderSubtype as PaymentOrderSubtype
 from .connection_list_params import ConnectionListParams as ConnectionListParams
 from .document_create_params import DocumentCreateParams as DocumentCreateParams
 from .foreign_exchange_quote import ForeignExchangeQuote as ForeignExchangeQuote
-from .paper_item_list_params import PaperItemListParams as PaperItemListParams
 from .account_collection_flow import AccountCollectionFlow as AccountCollectionFlow
 from .bulk_result_list_params import BulkResultListParams as BulkResultListParams
 from .connection_legal_entity import ConnectionLegalEntity as ConnectionLegalEntity
