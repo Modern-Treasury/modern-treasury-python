@@ -70,9 +70,7 @@ class LedgerTransactions(SyncAPIResource):
         effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
         external_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
-        ledgerable_type: Literal[
-            "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
-        ]
+        ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
@@ -191,9 +189,7 @@ class LedgerTransactions(SyncAPIResource):
         effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         ledger_entries: Iterable[LedgerEntryCreateRequest] | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
-        ledgerable_type: Literal[
-            "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
-        ]
+        ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
@@ -278,9 +274,7 @@ class LedgerTransactions(SyncAPIResource):
         ledger_account_settlement_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
-        ledgerable_type: Literal[
-            "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
-        ]
+        ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         order_by: ledger_transaction_list_params.OrderBy | NotGiven = NOT_GIVEN,
@@ -447,9 +441,7 @@ class LedgerTransactions(SyncAPIResource):
         effective_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         external_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
-        ledgerable_type: Literal[
-            "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
-        ]
+        ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
@@ -556,9 +548,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
         external_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
-        ledgerable_type: Literal[
-            "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
-        ]
+        ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
@@ -677,9 +667,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         ledger_entries: Iterable[LedgerEntryCreateRequest] | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
-        ledgerable_type: Literal[
-            "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
-        ]
+        ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
@@ -764,9 +752,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         ledger_account_settlement_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
-        ledgerable_type: Literal[
-            "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
-        ]
+        ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         order_by: ledger_transaction_list_params.OrderBy | NotGiven = NOT_GIVEN,
@@ -933,9 +919,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         effective_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         external_id: str | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
-        ledgerable_type: Literal[
-            "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
-        ]
+        ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
         | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,

@@ -514,19 +514,6 @@ Methods:
 
 - <code title="get /api/validations/routing_numbers">client.validations.<a href="./src/modern_treasury/resources/validations.py">validate_routing_number</a>(\*\*<a href="src/modern_treasury/types/validation_validate_routing_number_params.py">params</a>) -> <a href="./src/modern_treasury/types/routing_number_lookup_request.py">RoutingNumberLookupRequest</a></code>
 
-# PaperItems
-
-Types:
-
-```python
-from modern_treasury.types import PaperItem
-```
-
-Methods:
-
-- <code title="get /api/paper_items/{id}">client.paper_items.<a href="./src/modern_treasury/resources/paper_items.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/paper_item.py">PaperItem</a></code>
-- <code title="get /api/paper_items">client.paper_items.<a href="./src/modern_treasury/resources/paper_items.py">list</a>(\*\*<a href="src/modern_treasury/types/paper_item_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/paper_item.py">SyncPage[PaperItem]</a></code>
-
 # VirtualAccounts
 
 Types:

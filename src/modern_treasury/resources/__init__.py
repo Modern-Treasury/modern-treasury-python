@@ -56,14 +56,6 @@ from .connections import (
     ConnectionsWithStreamingResponse,
     AsyncConnectionsWithStreamingResponse,
 )
-from .paper_items import (
-    PaperItems,
-    AsyncPaperItems,
-    PaperItemsWithRawResponse,
-    AsyncPaperItemsWithRawResponse,
-    PaperItemsWithStreamingResponse,
-    AsyncPaperItemsWithStreamingResponse,
-)
 from .validations import (
     Validations,
     AsyncValidations,
@@ -446,12 +438,6 @@ __all__ = [
     "AsyncValidationsWithRawResponse",
     "ValidationsWithStreamingResponse",
     "AsyncValidationsWithStreamingResponse",
-    "PaperItems",
-    "AsyncPaperItems",
-    "PaperItemsWithRawResponse",
-    "AsyncPaperItemsWithRawResponse",
-    "PaperItemsWithStreamingResponse",
-    "AsyncPaperItemsWithStreamingResponse",
     "VirtualAccounts",
     "AsyncVirtualAccounts",
     "VirtualAccountsWithRawResponse",

@@ -46,7 +46,6 @@ if TYPE_CHECKING:
         documents,
         line_items,
         connections,
-        paper_items,
         validations,
         bulk_results,
         transactions,
@@ -82,7 +81,6 @@ if TYPE_CHECKING:
     from .resources.documents import Documents, AsyncDocuments
     from .resources.line_items import LineItems, AsyncLineItems
     from .resources.connections import Connections, AsyncConnections
-    from .resources.paper_items import PaperItems, AsyncPaperItems
     from .resources.validations import Validations, AsyncValidations
     from .resources.bulk_results import BulkResults, AsyncBulkResults
     from .resources.bulk_requests import BulkRequests, AsyncBulkRequests
@@ -362,12 +360,6 @@ class ModernTreasury(SyncAPIClient):
         from .resources.validations import Validations
 
         return Validations(self)
-
-    @cached_property
-    def paper_items(self) -> PaperItems:
-        from .resources.paper_items import PaperItems
-
-        return PaperItems(self)
 
     @cached_property
     def virtual_accounts(self) -> VirtualAccounts:
@@ -796,12 +788,6 @@ class AsyncModernTreasury(AsyncAPIClient):
         return AsyncValidations(self)
 
     @cached_property
-    def paper_items(self) -> AsyncPaperItems:
-        from .resources.paper_items import AsyncPaperItems
-
-        return AsyncPaperItems(self)
-
-    @cached_property
     def virtual_accounts(self) -> AsyncVirtualAccounts:
         from .resources.virtual_accounts import AsyncVirtualAccounts
 
@@ -1164,12 +1150,6 @@ class ModernTreasuryWithRawResponse:
         return ValidationsWithRawResponse(self._client.validations)
 
     @cached_property
-    def paper_items(self) -> paper_items.PaperItemsWithRawResponse:
-        from .resources.paper_items import PaperItemsWithRawResponse
-
-        return PaperItemsWithRawResponse(self._client.paper_items)
-
-    @cached_property
     def virtual_accounts(self) -> virtual_accounts.VirtualAccountsWithRawResponse:
         from .resources.virtual_accounts import VirtualAccountsWithRawResponse
 
@@ -1391,12 +1371,6 @@ class AsyncModernTreasuryWithRawResponse:
         from .resources.validations import AsyncValidationsWithRawResponse
 
         return AsyncValidationsWithRawResponse(self._client.validations)
-
-    @cached_property
-    def paper_items(self) -> paper_items.AsyncPaperItemsWithRawResponse:
-        from .resources.paper_items import AsyncPaperItemsWithRawResponse
-
-        return AsyncPaperItemsWithRawResponse(self._client.paper_items)
 
     @cached_property
     def virtual_accounts(self) -> virtual_accounts.AsyncVirtualAccountsWithRawResponse:
@@ -1622,12 +1596,6 @@ class ModernTreasuryWithStreamedResponse:
         return ValidationsWithStreamingResponse(self._client.validations)
 
     @cached_property
-    def paper_items(self) -> paper_items.PaperItemsWithStreamingResponse:
-        from .resources.paper_items import PaperItemsWithStreamingResponse
-
-        return PaperItemsWithStreamingResponse(self._client.paper_items)
-
-    @cached_property
     def virtual_accounts(self) -> virtual_accounts.VirtualAccountsWithStreamingResponse:
         from .resources.virtual_accounts import VirtualAccountsWithStreamingResponse
 
@@ -1849,12 +1817,6 @@ class AsyncModernTreasuryWithStreamedResponse:
         from .resources.validations import AsyncValidationsWithStreamingResponse
 
         return AsyncValidationsWithStreamingResponse(self._client.validations)
-
-    @cached_property
-    def paper_items(self) -> paper_items.AsyncPaperItemsWithStreamingResponse:
-        from .resources.paper_items import AsyncPaperItemsWithStreamingResponse
-
-        return AsyncPaperItemsWithStreamingResponse(self._client.paper_items)
 
     @cached_property
     def virtual_accounts(self) -> virtual_accounts.AsyncVirtualAccountsWithStreamingResponse:
