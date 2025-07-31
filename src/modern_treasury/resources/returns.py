@@ -281,8 +281,8 @@ class Returns(SyncAPIResource):
 
           returnable_id: The ID of a valid returnable. Must be accompanied by `returnable_type`.
 
-          returnable_type: One of `payment_order`, `paper_item`, `reversal`, or `incoming_payment_detail`.
-              Must be accompanied by `returnable_id`.
+          returnable_type: One of `payment_order`, `reversal`, or `incoming_payment_detail`. Must be
+              accompanied by `returnable_id`.
 
           extra_headers: Send extra headers
 
@@ -575,8 +575,8 @@ class AsyncReturns(AsyncAPIResource):
 
           returnable_id: The ID of a valid returnable. Must be accompanied by `returnable_type`.
 
-          returnable_type: One of `payment_order`, `paper_item`, `reversal`, or `incoming_payment_detail`.
-              Must be accompanied by `returnable_id`.
+          returnable_type: One of `payment_order`, `reversal`, or `incoming_payment_detail`. Must be
+              accompanied by `returnable_id`.
 
           extra_headers: Send extra headers
 
