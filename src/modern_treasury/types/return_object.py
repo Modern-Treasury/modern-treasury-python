@@ -334,9 +334,7 @@ class ReturnObject(BaseModel):
     returnable_id: Optional[str] = None
     """The ID of the object being returned or `null`."""
 
-    returnable_type: Optional[
-        Literal["incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"]
-    ] = None
+    returnable_type: Optional[Literal["incoming_payment_detail", "payment_order", "return", "reversal"]] = None
     """The type of object being returned or `null`."""
 
     role: Literal["originating", "receiving"]
@@ -352,19 +350,7 @@ class ReturnObject(BaseModel):
     """The ID of the relevant Transaction Line Item or `null`."""
 
     type: Literal[
-        "ach",
-        "ach_noc",
-        "au_becs",
-        "bacs",
-        "book",
-        "check",
-        "cross_border",
-        "eft",
-        "interac",
-        "manual",
-        "paper_item",
-        "sepa",
-        "wire",
+        "ach", "ach_noc", "au_becs", "bacs", "book", "check", "cross_border", "eft", "interac", "manual", "sepa", "wire"
     ]
     """The type of return.
 
