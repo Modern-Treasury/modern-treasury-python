@@ -42,7 +42,7 @@ class LedgerTransactionCreateRequest(BaseModel):
     """
 
     ledgerable_type: Optional[
-        Literal["expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"]
+        Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
     ] = None
     """
     If the ledger transaction can be reconciled to another object in Modern

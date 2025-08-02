@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.55.0 (2025-08-02)
+
+Full Changelog: [v1.54.0...v1.55.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.54.0...v1.55.0)
+
+### Features
+
+* **api:** api update ([0943cb0](https://github.com/Modern-Treasury/modern-treasury-python/commit/0943cb089c11b2749e605b98e24a43632d78a231))
+
 ## 1.54.0 (2025-07-30)
 
 Full Changelog: [v1.53.0...v1.54.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.53.0...v1.54.0)

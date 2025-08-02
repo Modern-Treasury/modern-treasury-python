@@ -34,9 +34,7 @@ class LedgerTransactionCreateReversalParams(TypedDict, total=False):
     object like Return or Reversal.
     """
 
-    ledgerable_type: Literal[
-        "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
-    ]
+    ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
     """
     Specify this if you'd like to link the reversal ledger transaction to a Payment
     object like Return or Reversal.

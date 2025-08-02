@@ -44,9 +44,7 @@ class LedgerTransactionListParams(TypedDict, total=False):
 
     ledgerable_id: str
 
-    ledgerable_type: Literal[
-        "expected_payment", "incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"
-    ]
+    ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
 
     metadata: Dict[str, str]
     """

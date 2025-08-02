@@ -61,7 +61,7 @@ class TransactionLineItem(BaseModel):
     """
 
     transactable_type: Optional[
-        Literal["incoming_payment_detail", "paper_item", "payment_order", "payment_order_attempt", "return", "reversal"]
+        Literal["incoming_payment_detail", "payment_order", "payment_order_attempt", "return", "reversal"]
     ] = None
     """
     If a matching object exists in Modern Treasury, the type will be populated here,

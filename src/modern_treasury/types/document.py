@@ -72,7 +72,6 @@ class Document(BaseModel):
         "incoming_payment_detail",
         "internal_account",
         "organization",
-        "paper_item",
         "payment_order",
         "transaction",
         "connection",
