@@ -260,7 +260,7 @@ class Returns(SyncAPIResource):
         internal_account_id: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         returnable_id: str | NotGiven = NOT_GIVEN,
-        returnable_type: Literal["incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"]
+        returnable_type: Literal["incoming_payment_detail", "payment_order", "return", "reversal"]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -281,8 +281,8 @@ class Returns(SyncAPIResource):
 
           returnable_id: The ID of a valid returnable. Must be accompanied by `returnable_type`.
 
-          returnable_type: One of `payment_order`, `paper_item`, `reversal`, or `incoming_payment_detail`.
-              Must be accompanied by `returnable_id`.
+          returnable_type: One of `payment_order`, `reversal`, or `incoming_payment_detail`. Must be
+              accompanied by `returnable_id`.
 
           extra_headers: Send extra headers
 
@@ -554,7 +554,7 @@ class AsyncReturns(AsyncAPIResource):
         internal_account_id: str | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         returnable_id: str | NotGiven = NOT_GIVEN,
-        returnable_type: Literal["incoming_payment_detail", "paper_item", "payment_order", "return", "reversal"]
+        returnable_type: Literal["incoming_payment_detail", "payment_order", "return", "reversal"]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -575,8 +575,8 @@ class AsyncReturns(AsyncAPIResource):
 
           returnable_id: The ID of a valid returnable. Must be accompanied by `returnable_type`.
 
-          returnable_type: One of `payment_order`, `paper_item`, `reversal`, or `incoming_payment_detail`.
-              Must be accompanied by `returnable_id`.
+          returnable_type: One of `payment_order`, `reversal`, or `incoming_payment_detail`. Must be
+              accompanied by `returnable_id`.
 
           extra_headers: Send extra headers
 

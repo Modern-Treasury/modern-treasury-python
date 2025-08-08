@@ -31,7 +31,6 @@ from .invoice import Invoice as Invoice
 from .document import Document as Document
 from .line_item import LineItem as LineItem
 from .connection import Connection as Connection
-from .paper_item import PaperItem as PaperItem
 from .bulk_result import BulkResult as BulkResult
 from .transaction import Transaction as Transaction
 from .bulk_request import BulkRequest as BulkRequest
@@ -39,6 +38,7 @@ from .counterparty import Counterparty as Counterparty
 from .ledger_entry import LedgerEntry as LedgerEntry
 from .legal_entity import LegalEntity as LegalEntity
 from .payment_flow import PaymentFlow as PaymentFlow
+from .bank_settings import BankSettings as BankSettings
 from .payment_order import PaymentOrder as PaymentOrder
 from .ping_response import PingResponse as PingResponse
 from .return_object import ReturnObject as ReturnObject
@@ -55,6 +55,7 @@ from .ledger_list_params import LedgerListParams as LedgerListParams
 from .ledger_transaction import LedgerTransaction as LedgerTransaction
 from .payment_order_type import PaymentOrderType as PaymentOrderType
 from .return_list_params import ReturnListParams as ReturnListParams
+from .bank_settings_param import BankSettingsParam as BankSettingsParam
 from .invoice_list_params import InvoiceListParams as InvoiceListParams
 from .reconciliation_rule import ReconciliationRule as ReconciliationRule
 from .document_list_params import DocumentListParams as DocumentListParams
@@ -70,7 +71,6 @@ from .payment_order_subtype import PaymentOrderSubtype as PaymentOrderSubtype
 from .connection_list_params import ConnectionListParams as ConnectionListParams
 from .document_create_params import DocumentCreateParams as DocumentCreateParams
 from .foreign_exchange_quote import ForeignExchangeQuote as ForeignExchangeQuote
-from .paper_item_list_params import PaperItemListParams as PaperItemListParams
 from .account_collection_flow import AccountCollectionFlow as AccountCollectionFlow
 from .bulk_result_list_params import BulkResultListParams as BulkResultListParams
 from .connection_legal_entity import ConnectionLegalEntity as ConnectionLegalEntity
@@ -119,6 +119,7 @@ from .payment_reference_list_params import PaymentReferenceListParams as Payment
 from .routing_number_lookup_request import RoutingNumberLookupRequest as RoutingNumberLookupRequest
 from .virtual_account_create_params import VirtualAccountCreateParams as VirtualAccountCreateParams
 from .virtual_account_update_params import VirtualAccountUpdateParams as VirtualAccountUpdateParams
+from .wealth_and_employment_details import WealthAndEmploymentDetails as WealthAndEmploymentDetails
 from .expected_payment_create_params import ExpectedPaymentCreateParams as ExpectedPaymentCreateParams
 from .expected_payment_update_params import ExpectedPaymentUpdateParams as ExpectedPaymentUpdateParams
 from .external_account_create_params import ExternalAccountCreateParams as ExternalAccountCreateParams
@@ -143,6 +144,7 @@ from .contact_detail_create_request_param import ContactDetailCreateRequestParam
 from .counterparty_collect_account_params import CounterpartyCollectAccountParams as CounterpartyCollectAccountParams
 from .incoming_payment_detail_list_params import IncomingPaymentDetailListParams as IncomingPaymentDetailListParams
 from .ledger_account_category_list_params import LedgerAccountCategoryListParams as LedgerAccountCategoryListParams
+from .wealth_and_employment_details_param import WealthAndEmploymentDetailsParam as WealthAndEmploymentDetailsParam
 from .foreign_exchange_quote_create_params import ForeignExchangeQuoteCreateParams as ForeignExchangeQuoteCreateParams
 from .account_collection_flow_create_params import (
     AccountCollectionFlowCreateParams as AccountCollectionFlowCreateParams,

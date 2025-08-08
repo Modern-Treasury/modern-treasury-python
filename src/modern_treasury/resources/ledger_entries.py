@@ -152,8 +152,7 @@ class LedgerEntries(SyncAPIResource):
         per_page: int | NotGiven = NOT_GIVEN,
         show_balances: bool | NotGiven = NOT_GIVEN,
         show_deleted: bool | NotGiven = NOT_GIVEN,
-        status: Union[Literal["pending", "posted", "archived"], List[Literal["pending", "posted", "archived"]]]
-        | NotGiven = NOT_GIVEN,
+        status: List[Literal["pending", "posted", "archived"]] | NotGiven = NOT_GIVEN,
         updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -392,8 +391,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
         per_page: int | NotGiven = NOT_GIVEN,
         show_balances: bool | NotGiven = NOT_GIVEN,
         show_deleted: bool | NotGiven = NOT_GIVEN,
-        status: Union[Literal["pending", "posted", "archived"], List[Literal["pending", "posted", "archived"]]]
-        | NotGiven = NOT_GIVEN,
+        status: List[Literal["pending", "posted", "archived"]] | NotGiven = NOT_GIVEN,
         updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

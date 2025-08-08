@@ -100,7 +100,7 @@ class LedgerEntryListParams(TypedDict, total=False):
     previous entries are deleted.
     """
 
-    status: Union[Literal["pending", "posted", "archived"], List[Literal["pending", "posted", "archived"]]]
+    status: List[Literal["pending", "posted", "archived"]]
     """Get all ledger entries that match the status specified.
 
     One of `pending`, `posted`, or `archived`. For multiple statuses, use
