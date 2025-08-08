@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.55.0 (2025-08-08)
+
+Full Changelog: [v1.54.0...v1.55.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.54.0...v1.55.0)
+
+### Features
+
+* **api:** api update ([15e4b56](https://github.com/Modern-Treasury/modern-treasury-python/commit/15e4b5666a1cfa1f1b63be0f8d21475d41698fb6))
+* **api:** api update ([c59f7d1](https://github.com/Modern-Treasury/modern-treasury-python/commit/c59f7d1cfc5ca3e6890ab8405fff597ec3bdeed3))
+* **api:** api update ([f336cd2](https://github.com/Modern-Treasury/modern-treasury-python/commit/f336cd2f552ff2045517eb5e99c07d218510f322))
+* **api:** api update ([e29fcac](https://github.com/Modern-Treasury/modern-treasury-python/commit/e29fcac7279134f6a5f67742d934f049dc2895b4))
+* **api:** api update ([0943cb0](https://github.com/Modern-Treasury/modern-treasury-python/commit/0943cb089c11b2749e605b98e24a43632d78a231))
+* **api:** manual updates ([4d42ec5](https://github.com/Modern-Treasury/modern-treasury-python/commit/4d42ec521dbc452513ea9d98111eed978bdf21ad))
+
+
+### Chores
+
+* **internal:** fix ruff target version ([310a51c](https://github.com/Modern-Treasury/modern-treasury-python/commit/310a51cfcbdca407215c0a2d2521b47f66bb5178))
+* **internal:** update comment in script ([ab59df3](https://github.com/Modern-Treasury/modern-treasury-python/commit/ab59df30b33e034170e43e02d254cdfe32de0b43))
+* update @stainless-api/prism-cli to v5.15.0 ([9201079](https://github.com/Modern-Treasury/modern-treasury-python/commit/9201079c542823e7c1d9f0389858a8d6b863090c))
+
 ## 1.54.0 (2025-07-30)
 
 Full Changelog: [v1.53.0...v1.54.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.53.0...v1.54.0)
