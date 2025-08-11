@@ -53,7 +53,7 @@ class LedgerAccountSettlementCreateParams(TypedDict, total=False):
     It should be set to `true` when migrating existing settlements.
     """
 
-    status: Optional[Literal["pending", "posted"]]
+    status: Optional[Literal["pending", "posted", "drafting"]]
     """The status of the ledger account settlement.
 
     It is set to `pending` by default. To post a ledger account settlement at
