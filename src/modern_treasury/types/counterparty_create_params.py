@@ -3,15 +3,13 @@
 from __future__ import annotations
 
 from typing import Dict, List, Union, Iterable, Optional
-from datetime import date
+from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .bank_settings_param import BankSettingsParam
 from .external_account_type import ExternalAccountType
 from .shared_params.address_request import AddressRequest
 from .contact_detail_create_request_param import ContactDetailCreateRequestParam
-from .wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
 from .shared_params.child_legal_entity_create import ChildLegalEntityCreate
 from .shared_params.identification_create_request import IdentificationCreateRequest
 from .shared_params.ledger_account_create_request import LedgerAccountCreateRequest
@@ -29,10 +27,12 @@ __all__ = [
     "AccountsRoutingDetails",
     "AccountRoutingDetail",
     "LegalEntity",
+    "LegalEntityUnnamedTypeWithobjectParent8",
     "LegalEntityLegalEntityAssociations",
     "LegalEntityLegalEntityAssociation",
     "LegalEntityPhoneNumbers",
     "LegalEntityPhoneNumber",
+    "LegalEntityUnnamedTypeWithobjectParent9",
 ]
 
 
@@ -257,6 +257,45 @@ Please use Account instead.
 """
 
 
+class LegalEntityUnnamedTypeWithobjectParent8(TypedDict, total=False):
+    id: Required[str]
+
+    backup_withholding_percentage: Required[Optional[int]]
+    """The percentage of backup withholding to apply to the legal entity."""
+
+    created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
+
+    discarded_at: Required[Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]]
+
+    enable_backup_withholding: Required[Optional[bool]]
+    """Whether backup withholding is enabled.
+
+    See more here -
+    https://www.irs.gov/businesses/small-businesses-self-employed/backup-withholding.
+    """
+
+    live_mode: Required[bool]
+    """
+    This field will be true if this object exists in the live environment or false
+    if it exists in the test environment.
+    """
+
+    object: Required[str]
+
+    privacy_opt_out: Required[Optional[bool]]
+    """Cross River Bank specific setting to opt out of privacy policy."""
+
+    regulation_o: Required[Optional[bool]]
+    """
+    It covers, among other types of insider loans, extensions of credit by a member
+    bank to an executive officer, director, or principal shareholder of the member
+    bank; a bank holding company of which the member bank is a subsidiary; and any
+    other subsidiary of that bank holding company.
+    """
+
+    updated_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
+
+
 class LegalEntityLegalEntityAssociation(TypedDict, total=False):
     relationship_types: Required[List[Literal["authorized_signer", "beneficial_owner", "control_person"]]]
 
@@ -291,6 +330,165 @@ Please use LegalEntityPhoneNumber instead.
 """
 
 
+class LegalEntityUnnamedTypeWithobjectParent9(TypedDict, total=False):
+    id: Required[str]
+
+    annual_income: Required[Optional[int]]
+    """The annual income of the individual."""
+
+    created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
+
+    discarded_at: Required[Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]]
+
+    employer_country: Required[Optional[str]]
+    """The country in which the employer is located."""
+
+    employer_name: Required[Optional[str]]
+    """The name of the employer."""
+
+    employer_state: Required[Optional[str]]
+    """The state in which the employer is located."""
+
+    employment_status: Required[Optional[Literal["employed", "retired", "self_employed", "student", "unemployed"]]]
+    """The employment status of the individual."""
+
+    income_country: Required[Optional[str]]
+    """The country in which the individual's income is earned."""
+
+    income_source: Required[
+        Optional[
+            Literal[
+                "family_support",
+                "government_benefits",
+                "inheritance",
+                "investments",
+                "rental_income",
+                "retirement",
+                "salary",
+                "self_employed",
+            ]
+        ]
+    ]
+    """The source of the individual's income."""
+
+    income_state: Required[Optional[str]]
+    """The state in which the individual's income is earned."""
+
+    industry: Required[
+        Optional[
+            Literal[
+                "accounting",
+                "agriculture",
+                "automotive",
+                "chemical_manufacturing",
+                "construction",
+                "educational_medical",
+                "food_service",
+                "finance",
+                "gasoline",
+                "health_stores",
+                "laundry",
+                "maintenance",
+                "manufacturing",
+                "merchant_wholesale",
+                "mining",
+                "performing_arts",
+                "professional_non_legal",
+                "public_administration",
+                "publishing",
+                "real_estate",
+                "recreation_gambling",
+                "religious_charity",
+                "rental_services",
+                "retail_clothing",
+                "retail_electronics",
+                "retail_food",
+                "retail_furnishing",
+                "retail_home",
+                "retail_non_store",
+                "retail_sporting",
+                "transportation",
+                "travel",
+                "utilities",
+            ]
+        ]
+    ]
+    """The industry of the individual."""
+
+    live_mode: Required[bool]
+    """
+    This field will be true if this object exists in the live environment or false
+    if it exists in the test environment.
+    """
+
+    object: Required[str]
+
+    occupation: Required[
+        Optional[
+            Literal[
+                "consulting",
+                "executive",
+                "finance_accounting",
+                "food_services",
+                "government",
+                "healthcare",
+                "legal_services",
+                "manufacturing",
+                "other",
+                "sales",
+                "science_engineering",
+                "technology",
+            ]
+        ]
+    ]
+    """The occupation of the individual."""
+
+    source_of_funds: Required[
+        Optional[
+            Literal[
+                "alimony",
+                "annuity",
+                "business_owner",
+                "general_employee",
+                "government_benefits",
+                "homemaker",
+                "inheritance_gift",
+                "investment",
+                "legal_settlement",
+                "lottery",
+                "real_estate",
+                "retired",
+                "retirement",
+                "salary",
+                "self_employed",
+                "senior_executive",
+                "trust_income",
+            ]
+        ]
+    ]
+    """The source of the individual's funds."""
+
+    updated_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
+
+    wealth_source: Required[
+        Optional[
+            Literal[
+                "business_sale",
+                "family_support",
+                "government_benefits",
+                "inheritance",
+                "investments",
+                "other",
+                "rental_income",
+                "retirement",
+                "salary",
+                "self_employed",
+            ]
+        ]
+    ]
+    """The source of the individual's wealth."""
+
+
 class LegalEntity(TypedDict, total=False):
     legal_entity_type: Required[Literal["business", "individual"]]
     """The type of legal entity."""
@@ -298,7 +496,7 @@ class LegalEntity(TypedDict, total=False):
     addresses: Iterable[LegalEntityAddressCreateRequest]
     """A list of addresses for the entity."""
 
-    bank_settings: Optional[BankSettingsParam]
+    bank_settings: Optional[LegalEntityUnnamedTypeWithobjectParent8]
 
     business_name: Optional[str]
     """The business's legal business name."""
@@ -365,7 +563,7 @@ class LegalEntity(TypedDict, total=False):
     suffix: Optional[str]
     """An individual's suffix."""
 
-    wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam]
+    wealth_and_employment_details: Optional[LegalEntityUnnamedTypeWithobjectParent9]
 
     website: Optional[str]
     """The entity's primary website URL."""

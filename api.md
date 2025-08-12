@@ -620,7 +620,7 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import BankSettings, LegalEntity, WealthAndEmploymentDetails
+from modern_treasury.types import LegalEntity
 ```
 
 Methods:
