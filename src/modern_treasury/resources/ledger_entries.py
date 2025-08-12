@@ -136,6 +136,7 @@ class LedgerEntries(SyncAPIResource):
         *,
         id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        amount: ledger_entry_list_params.Amount | NotGiven = NOT_GIVEN,
         as_of_lock_version: int | NotGiven = NOT_GIVEN,
         direction: TransactionDirection | NotGiven = NOT_GIVEN,
         effective_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
@@ -167,6 +168,8 @@ class LedgerEntries(SyncAPIResource):
         Args:
           id: If you have specific IDs to retrieve in bulk, you can pass them as query
               parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
+
+          amount: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by amount.
 
           as_of_lock_version: Shows all ledger entries that were present on a ledger account at a particular
               `lock_version`. You must also specify `ledger_account_id`.
@@ -234,6 +237,7 @@ class LedgerEntries(SyncAPIResource):
                     {
                         "id": id,
                         "after_cursor": after_cursor,
+                        "amount": amount,
                         "as_of_lock_version": as_of_lock_version,
                         "direction": direction,
                         "effective_at": effective_at,
@@ -375,6 +379,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
         *,
         id: List[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
+        amount: ledger_entry_list_params.Amount | NotGiven = NOT_GIVEN,
         as_of_lock_version: int | NotGiven = NOT_GIVEN,
         direction: TransactionDirection | NotGiven = NOT_GIVEN,
         effective_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
@@ -406,6 +411,8 @@ class AsyncLedgerEntries(AsyncAPIResource):
         Args:
           id: If you have specific IDs to retrieve in bulk, you can pass them as query
               parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
+
+          amount: Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by amount.
 
           as_of_lock_version: Shows all ledger entries that were present on a ledger account at a particular
               `lock_version`. You must also specify `ledger_account_id`.
@@ -473,6 +480,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
                     {
                         "id": id,
                         "after_cursor": after_cursor,
+                        "amount": amount,
                         "as_of_lock_version": as_of_lock_version,
                         "direction": direction,
                         "effective_at": effective_at,

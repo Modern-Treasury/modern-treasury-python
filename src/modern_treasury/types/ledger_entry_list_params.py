@@ -8,7 +8,7 @@ from typing_extensions import Literal, TypedDict
 
 from .shared.transaction_direction import TransactionDirection
 
-__all__ = ["LedgerEntryListParams", "OrderBy"]
+__all__ = ["LedgerEntryListParams", "Amount", "OrderBy"]
 
 
 class LedgerEntryListParams(TypedDict, total=False):
@@ -19,6 +19,11 @@ class LedgerEntryListParams(TypedDict, total=False):
     """
 
     after_cursor: Optional[str]
+
+    amount: Amount
+    """
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by amount.
+    """
 
     as_of_lock_version: int
     """
@@ -113,6 +118,18 @@ class LedgerEntryListParams(TypedDict, total=False):
     posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use
     updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
     """
+
+
+class Amount(TypedDict, total=False):
+    eq: int
+
+    gt: int
+
+    gte: int
+
+    lt: int
+
+    lte: int
 
 
 class OrderBy(TypedDict, total=False):
