@@ -127,6 +127,13 @@ class TestLedgerEntries:
         ledger_entry = client.ledger_entries.list(
             id=["string"],
             after_cursor="after_cursor",
+            amount={
+                "eq": 0,
+                "gt": 0,
+                "gte": 0,
+                "lt": 0,
+                "lte": 0,
+            },
             as_of_lock_version=0,
             direction="credit",
             effective_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
@@ -283,6 +290,13 @@ class TestAsyncLedgerEntries:
         ledger_entry = await async_client.ledger_entries.list(
             id=["string"],
             after_cursor="after_cursor",
+            amount={
+                "eq": 0,
+                "gt": 0,
+                "gte": 0,
+                "lt": 0,
+                "lte": 0,
+            },
             as_of_lock_version=0,
             direction="credit",
             effective_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
