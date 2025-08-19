@@ -39,7 +39,8 @@ class PaymentActionCreateResponse(BaseModel):
     status: str
     """The current status of the payment action.
 
-    One of `pending`, `processing`, `sent`, `cancelled`, or `failed`.
+    One of `pending`, `processing`, `sent`, `acknowledged`, `cancelled`, or
+    `failed`.
     """
 
     type: str

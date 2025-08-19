@@ -8,7 +8,7 @@ __all__ = ["PaymentActionUpdateParams"]
 
 
 class PaymentActionUpdateParams(TypedDict, total=False):
-    status: Required[Literal["pending", "processable", "processing", "sent", "failed", "cancelled"]]
+    status: Required[Literal["pending", "processable", "processing", "sent", "acknowledged", "failed", "cancelled"]]
     """Optional.
 
     Set the status of the payment action to `cancelled` to cancel the payment
