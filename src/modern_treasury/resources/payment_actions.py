@@ -146,7 +146,7 @@ class PaymentActions(SyncAPIResource):
         self,
         id: str,
         *,
-        status: Literal["pending", "processable", "processing", "sent", "failed", "cancelled"],
+        status: Literal["pending", "processable", "processing", "sent", "acknowledged", "failed", "cancelled"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -199,8 +199,9 @@ class PaymentActions(SyncAPIResource):
         internal_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        status: Literal["pending", "processable", "processing", "sent", "failed", "cancelled"] | NotGiven = NOT_GIVEN,
-        type: Literal["evolve_non_processing_transaction", "control_file", "stop", "issue"] | NotGiven = NOT_GIVEN,
+        status: Literal["pending", "processable", "processing", "sent", "acknowledged", "failed", "cancelled"]
+        | NotGiven = NOT_GIVEN,
+        type: Literal["stop", "issue"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -388,7 +389,7 @@ class AsyncPaymentActions(AsyncAPIResource):
         self,
         id: str,
         *,
-        status: Literal["pending", "processable", "processing", "sent", "failed", "cancelled"],
+        status: Literal["pending", "processable", "processing", "sent", "acknowledged", "failed", "cancelled"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -443,8 +444,9 @@ class AsyncPaymentActions(AsyncAPIResource):
         internal_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
-        status: Literal["pending", "processable", "processing", "sent", "failed", "cancelled"] | NotGiven = NOT_GIVEN,
-        type: Literal["evolve_non_processing_transaction", "control_file", "stop", "issue"] | NotGiven = NOT_GIVEN,
+        status: Literal["pending", "processable", "processing", "sent", "acknowledged", "failed", "cancelled"]
+        | NotGiven = NOT_GIVEN,
+        type: Literal["stop", "issue"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

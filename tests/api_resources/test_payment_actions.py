@@ -168,7 +168,7 @@ class TestPaymentActions:
             metadata={"foo": "string"},
             per_page=0,
             status="pending",
-            type="evolve_non_processing_transaction",
+            type="stop",
         )
         assert_matches_type(SyncPage[PaymentActionListResponse], payment_action, path=["response"])
 
@@ -342,7 +342,7 @@ class TestAsyncPaymentActions:
             metadata={"foo": "string"},
             per_page=0,
             status="pending",
-            type="evolve_non_processing_transaction",
+            type="stop",
         )
         assert_matches_type(AsyncPage[PaymentActionListResponse], payment_action, path=["response"])
 
