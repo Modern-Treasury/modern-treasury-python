@@ -32,7 +32,7 @@ class LedgerAccountSettlement(BaseModel):
     description: Optional[str] = None
     """The description of the ledger account settlement."""
 
-    effective_at_upper_bound: datetime
+    effective_at_upper_bound: Optional[datetime] = None
     """
     The exclusive upper bound of the effective_at timestamp of the ledger entries to
     be included in the ledger account settlement. The default value is the
