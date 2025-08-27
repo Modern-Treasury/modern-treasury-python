@@ -312,7 +312,7 @@ class PaymentReferencesWithRawResponse:
         )
         self.retireve = (  # pyright: ignore[reportDeprecated]
             _legacy_response.to_raw_response_wrapper(
-                payment_references.retireve  # pyright: ignore[reportDeprecated],
+                payment_references.retireve,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -329,7 +329,7 @@ class AsyncPaymentReferencesWithRawResponse:
         )
         self.retireve = (  # pyright: ignore[reportDeprecated]
             _legacy_response.async_to_raw_response_wrapper(
-                payment_references.retireve  # pyright: ignore[reportDeprecated],
+                payment_references.retireve,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -346,7 +346,7 @@ class PaymentReferencesWithStreamingResponse:
         )
         self.retireve = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                payment_references.retireve  # pyright: ignore[reportDeprecated],
+                payment_references.retireve,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -363,6 +363,6 @@ class AsyncPaymentReferencesWithStreamingResponse:
         )
         self.retireve = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                payment_references.retireve  # pyright: ignore[reportDeprecated],
+                payment_references.retireve,  # pyright: ignore[reportDeprecated],
             )
         )
