@@ -17,6 +17,7 @@ PaymentOrderType: TypeAlias = Literal[
     "dk_nets",
     "eft",
     "ethereum",
+    "gb_fps",
     "hu_ics",
     "interac",
     "masav",

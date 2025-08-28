@@ -42,6 +42,7 @@ class ReferenceNumber(BaseModel):
         "bankprov_payment_id",
         "bnk_dev_prenotification_id",
         "bnk_dev_transfer_id",
+        "bny_mellon_transaction_reference_number",
         "bofa_end_to_end_id",
         "bofa_transaction_id",
         "brale_transfer_id",
