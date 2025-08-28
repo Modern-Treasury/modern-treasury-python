@@ -92,6 +92,7 @@ class PaymentOrderListParams(TypedDict, total=False):
         "dk_nets",
         "eft",
         "ethereum",
+        "gb_fps",
         "hu_ics",
         "interac",
         "masav",
