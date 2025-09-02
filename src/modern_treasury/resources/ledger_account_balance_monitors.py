@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 
 import httpx
 
@@ -12,7 +12,7 @@ from ..types import (
     ledger_account_balance_monitor_create_params,
     ledger_account_balance_monitor_update_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -193,7 +193,7 @@ class LedgerAccountBalanceMonitors(SyncAPIResource):
     def list(
         self,
         *,
-        id: List[str] | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -458,7 +458,7 @@ class AsyncLedgerAccountBalanceMonitors(AsyncAPIResource):
     def list(
         self,
         *,
-        id: List[str] | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         ledger_account_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,

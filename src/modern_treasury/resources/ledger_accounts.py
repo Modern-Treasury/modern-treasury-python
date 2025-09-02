@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -15,7 +15,7 @@ from ..types import (
     ledger_account_update_params,
     ledger_account_retrieve_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -57,7 +57,7 @@ class LedgerAccounts(SyncAPIResource):
         normal_balance: TransactionDirection,
         currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
-        ledger_account_category_ids: List[str] | NotGiven = NOT_GIVEN,
+        ledger_account_category_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal["counterparty", "external_account", "internal_account", "virtual_account"]
         | NotGiven = NOT_GIVEN,
@@ -244,7 +244,7 @@ class LedgerAccounts(SyncAPIResource):
     def list(
         self,
         *,
-        id: List[str] | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         available_balance_amount: ledger_account_list_params.AvailableBalanceAmount | NotGiven = NOT_GIVEN,
         balances: ledger_account_list_params.Balances | NotGiven = NOT_GIVEN,
@@ -254,7 +254,7 @@ class LedgerAccounts(SyncAPIResource):
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         normal_balance: TransactionDirection | NotGiven = NOT_GIVEN,
         pending_balance_amount: ledger_account_list_params.PendingBalanceAmount | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
@@ -415,7 +415,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         normal_balance: TransactionDirection,
         currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
-        ledger_account_category_ids: List[str] | NotGiven = NOT_GIVEN,
+        ledger_account_category_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         ledgerable_id: str | NotGiven = NOT_GIVEN,
         ledgerable_type: Literal["counterparty", "external_account", "internal_account", "virtual_account"]
         | NotGiven = NOT_GIVEN,
@@ -602,7 +602,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
     def list(
         self,
         *,
-        id: List[str] | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         available_balance_amount: ledger_account_list_params.AvailableBalanceAmount | NotGiven = NOT_GIVEN,
         balances: ledger_account_list_params.Balances | NotGiven = NOT_GIVEN,
@@ -612,7 +612,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         ledger_account_category_id: str | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
+        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         normal_balance: TransactionDirection | NotGiven = NOT_GIVEN,
         pending_balance_amount: ledger_account_list_params.PendingBalanceAmount | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,

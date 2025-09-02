@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
+from typing import Dict, Union, Iterable, Optional
 from datetime import date
 from typing_extensions import Literal
 
@@ -10,7 +10,7 @@ import httpx
 
 from .. import _legacy_response
 from ..types import legal_entity_list_params, legal_entity_create_params, legal_entity_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -58,7 +58,7 @@ class LegalEntities(SyncAPIResource):
         compliance_details: Optional[LegalEntityComplianceDetail] | NotGiven = NOT_GIVEN,
         date_formed: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_of_birth: Union[str, date, None] | NotGiven = NOT_GIVEN,
-        doing_business_as_names: List[str] | NotGiven = NOT_GIVEN,
+        doing_business_as_names: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
         first_name: Optional[str] | NotGiven = NOT_GIVEN,
         identifications: Iterable[IdentificationCreateRequest] | NotGiven = NOT_GIVEN,
@@ -234,7 +234,7 @@ class LegalEntities(SyncAPIResource):
         compliance_details: Optional[LegalEntityComplianceDetail] | NotGiven = NOT_GIVEN,
         date_formed: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_of_birth: Union[str, date, None] | NotGiven = NOT_GIVEN,
-        doing_business_as_names: List[str] | NotGiven = NOT_GIVEN,
+        doing_business_as_names: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
         first_name: Optional[str] | NotGiven = NOT_GIVEN,
         identifications: Iterable[IdentificationCreateRequest] | NotGiven = NOT_GIVEN,
@@ -445,7 +445,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         compliance_details: Optional[LegalEntityComplianceDetail] | NotGiven = NOT_GIVEN,
         date_formed: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_of_birth: Union[str, date, None] | NotGiven = NOT_GIVEN,
-        doing_business_as_names: List[str] | NotGiven = NOT_GIVEN,
+        doing_business_as_names: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
         first_name: Optional[str] | NotGiven = NOT_GIVEN,
         identifications: Iterable[IdentificationCreateRequest] | NotGiven = NOT_GIVEN,
@@ -621,7 +621,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         compliance_details: Optional[LegalEntityComplianceDetail] | NotGiven = NOT_GIVEN,
         date_formed: Union[str, date, None] | NotGiven = NOT_GIVEN,
         date_of_birth: Union[str, date, None] | NotGiven = NOT_GIVEN,
-        doing_business_as_names: List[str] | NotGiven = NOT_GIVEN,
+        doing_business_as_names: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         email: Optional[str] | NotGiven = NOT_GIVEN,
         first_name: Optional[str] | NotGiven = NOT_GIVEN,
         identifications: Iterable[IdentificationCreateRequest] | NotGiven = NOT_GIVEN,

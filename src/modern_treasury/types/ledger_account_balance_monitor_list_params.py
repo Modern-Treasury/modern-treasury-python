@@ -2,14 +2,16 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 from typing_extensions import TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = ["LedgerAccountBalanceMonitorListParams"]
 
 
 class LedgerAccountBalanceMonitorListParams(TypedDict, total=False):
-    id: List[str]
+    id: SequenceNotStr[str]
     """
     If you have specific IDs to retrieve in bulk, you can pass them as query
     parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.

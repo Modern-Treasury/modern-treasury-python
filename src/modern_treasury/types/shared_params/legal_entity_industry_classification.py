@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import Union
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["LegalEntityIndustryClassification"]
@@ -14,7 +15,7 @@ __all__ = ["LegalEntityIndustryClassification"]
 class LegalEntityIndustryClassification(TypedDict, total=False):
     id: Required[str]
 
-    classification_codes: Required[List[str]]
+    classification_codes: Required[SequenceNotStr[str]]
     """The industry classification codes for the legal entity."""
 
     classification_type: Required[
