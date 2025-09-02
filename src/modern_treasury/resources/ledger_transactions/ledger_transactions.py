@@ -16,7 +16,7 @@ from ...types import (
     ledger_transaction_create_reversal_params,
     ledger_transaction_create_partial_post_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from .versions import (
     Versions,
@@ -262,7 +262,7 @@ class LedgerTransactions(SyncAPIResource):
     def list(
         self,
         *,
-        id: List[str] | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         amount: ledger_transaction_list_params.Amount | NotGiven = NOT_GIVEN,
         effective_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
@@ -742,7 +742,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
     def list(
         self,
         *,
-        id: List[str] | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         amount: ledger_transaction_list_params.Amount | NotGiven = NOT_GIVEN,
         effective_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,

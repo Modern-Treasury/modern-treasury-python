@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
+from typing import Dict, Union, Iterable, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
@@ -10,7 +10,7 @@ import httpx
 
 from ... import _legacy_response
 from ...types import PaymentOrderType, invoice_list_params, invoice_create_params, invoice_update_params
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .line_items import (
@@ -76,7 +76,7 @@ class Invoices(SyncAPIResource):
         invoicer_address: Optional[invoice_create_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
         ledger_account_settlement_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        notification_email_addresses: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         notifications_enabled: bool | NotGiven = NOT_GIVEN,
         payment_effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
         payment_method: Literal["ui", "manual", "automatic"] | NotGiven = NOT_GIVEN,
@@ -274,7 +274,7 @@ class Invoices(SyncAPIResource):
         invoicer_address: Optional[invoice_update_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
         ledger_account_settlement_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        notification_email_addresses: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         notifications_enabled: bool | NotGiven = NOT_GIVEN,
         originating_account_id: str | NotGiven = NOT_GIVEN,
         payment_effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
@@ -585,7 +585,7 @@ class AsyncInvoices(AsyncAPIResource):
         invoicer_address: Optional[invoice_create_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
         ledger_account_settlement_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        notification_email_addresses: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         notifications_enabled: bool | NotGiven = NOT_GIVEN,
         payment_effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
         payment_method: Literal["ui", "manual", "automatic"] | NotGiven = NOT_GIVEN,
@@ -783,7 +783,7 @@ class AsyncInvoices(AsyncAPIResource):
         invoicer_address: Optional[invoice_update_params.InvoicerAddress] | NotGiven = NOT_GIVEN,
         ledger_account_settlement_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        notification_email_addresses: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        notification_email_addresses: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         notifications_enabled: bool | NotGiven = NOT_GIVEN,
         originating_account_id: str | NotGiven = NOT_GIVEN,
         payment_effective_date: Union[str, date] | NotGiven = NOT_GIVEN,

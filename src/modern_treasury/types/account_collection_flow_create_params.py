@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
+from .._types import SequenceNotStr
+
 __all__ = ["AccountCollectionFlowCreateParams"]
 
 
@@ -12,7 +14,7 @@ class AccountCollectionFlowCreateParams(TypedDict, total=False):
     counterparty_id: Required[str]
     """Required."""
 
-    payment_types: Required[List[str]]
+    payment_types: Required[SequenceNotStr[str]]
 
     receiving_countries: List[
         Literal[

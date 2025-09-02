@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 from .shared.transaction_direction import TransactionDirection
 
@@ -19,7 +20,7 @@ __all__ = [
 
 
 class LedgerAccountListParams(TypedDict, total=False):
-    id: List[str]
+    id: SequenceNotStr[str]
     """
     If you have specific IDs to retrieve in bulk, you can pass them as query
     parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
@@ -64,7 +65,7 @@ class LedgerAccountListParams(TypedDict, total=False):
     parameters.
     """
 
-    name: List[str]
+    name: SequenceNotStr[str]
     """
     If you have specific names to retrieve in bulk, you can pass them as query
     parameters delimited with `name[]=`, for example `?name[]=123&name[]=abc`.

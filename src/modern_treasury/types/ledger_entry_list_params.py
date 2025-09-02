@@ -6,13 +6,14 @@ from typing import Dict, List, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, TypedDict
 
+from .._types import SequenceNotStr
 from .shared.transaction_direction import TransactionDirection
 
 __all__ = ["LedgerEntryListParams", "Amount", "OrderBy"]
 
 
 class LedgerEntryListParams(TypedDict, total=False):
-    id: List[str]
+    id: SequenceNotStr[str]
     """
     If you have specific IDs to retrieve in bulk, you can pass them as query
     parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.

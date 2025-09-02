@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
+from typing import Dict, Union, Iterable, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 from .shared.currency import Currency
 from .payment_order_type import PaymentOrderType
@@ -75,7 +76,7 @@ class InvoiceUpdateParams(TypedDict, total=False):
     Both the key and value must be strings.
     """
 
-    notification_email_addresses: Optional[List[str]]
+    notification_email_addresses: Optional[SequenceNotStr[str]]
     """
     Emails in addition to the counterparty email to send invoice status
     notifications to. At least one email is required if notifications are enabled

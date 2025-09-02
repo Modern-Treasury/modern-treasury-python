@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 from typing_extensions import Required, TypedDict
 
+from .._types import SequenceNotStr
 from .shared.transaction_direction import TransactionDirection
 
 __all__ = ["LedgerAccountCategoryCreateParams"]
@@ -29,7 +30,7 @@ class LedgerAccountCategoryCreateParams(TypedDict, total=False):
     description: Optional[str]
     """The description of the ledger account category."""
 
-    ledger_account_category_ids: List[str]
+    ledger_account_category_ids: SequenceNotStr[str]
     """
     The array of ledger account category ids that this ledger account category
     should be a child of.

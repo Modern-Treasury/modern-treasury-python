@@ -10,7 +10,7 @@ import httpx
 
 from .. import _legacy_response
 from ..types import ledger_entry_list_params, ledger_entry_update_params, ledger_entry_retrieve_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -134,7 +134,7 @@ class LedgerEntries(SyncAPIResource):
     def list(
         self,
         *,
-        id: List[str] | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         amount: ledger_entry_list_params.Amount | NotGiven = NOT_GIVEN,
         as_of_lock_version: int | NotGiven = NOT_GIVEN,
@@ -377,7 +377,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
     def list(
         self,
         *,
-        id: List[str] | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         amount: ledger_entry_list_params.Amount | NotGiven = NOT_GIVEN,
         as_of_lock_version: int | NotGiven = NOT_GIVEN,

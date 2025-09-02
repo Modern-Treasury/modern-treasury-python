@@ -2,17 +2,18 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Optional
 from datetime import datetime
 from typing_extensions import Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
 __all__ = ["LedgerAccountCategoryListParams", "Balances"]
 
 
 class LedgerAccountCategoryListParams(TypedDict, total=False):
-    id: List[str]
+    id: SequenceNotStr[str]
     """
     If you have specific IDs to retrieve in bulk, you can pass them as query
     parameters delimited with `id[]=`, for example `?id[]=123&id[]=abc`.
@@ -47,7 +48,7 @@ class LedgerAccountCategoryListParams(TypedDict, total=False):
     parameters.
     """
 
-    name: List[str]
+    name: SequenceNotStr[str]
     """
     If you have specific names to retrieve in bulk, you can pass them as query
     parameters delimited with `name[]=`, for example `?name[]=123&name[]=abc`.

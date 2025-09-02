@@ -13,7 +13,7 @@ from ..types import (
     account_collection_flow_create_params,
     account_collection_flow_update_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -49,7 +49,7 @@ class AccountCollectionFlows(SyncAPIResource):
         self,
         *,
         counterparty_id: str,
-        payment_types: List[str],
+        payment_types: SequenceNotStr[str],
         receiving_countries: List[
             Literal[
                 "USA",
@@ -274,7 +274,7 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
         self,
         *,
         counterparty_id: str,
-        payment_types: List[str],
+        payment_types: SequenceNotStr[str],
         receiving_countries: List[
             Literal[
                 "USA",
