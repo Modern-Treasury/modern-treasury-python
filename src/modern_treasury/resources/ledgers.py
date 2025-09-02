@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Optional
 from datetime import datetime
 
 import httpx
 
 from .. import _legacy_response
 from ..types import ledger_list_params, ledger_create_params, ledger_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -190,7 +190,7 @@ class Ledgers(SyncAPIResource):
     def list(
         self,
         *,
-        id: List[str] | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
@@ -457,7 +457,7 @@ class AsyncLedgers(AsyncAPIResource):
     def list(
         self,
         *,
-        id: List[str] | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,

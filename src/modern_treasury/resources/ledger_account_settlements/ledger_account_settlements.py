@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -14,7 +14,7 @@ from ...types import (
     ledger_account_settlement_create_params,
     ledger_account_settlement_update_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -236,7 +236,7 @@ class LedgerAccountSettlements(SyncAPIResource):
     def list(
         self,
         *,
-        id: List[str] | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,
@@ -510,7 +510,7 @@ class AsyncLedgerAccountSettlements(AsyncAPIResource):
     def list(
         self,
         *,
-        id: List[str] | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
         created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
         ledger_id: str | NotGiven = NOT_GIVEN,

@@ -6,6 +6,7 @@ from typing import Dict, List, Union, Iterable, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 from .external_account_type import ExternalAccountType
 from .shared_params.address_request import AddressRequest
@@ -513,7 +514,7 @@ class LegalEntity(TypedDict, total=False):
     date_of_birth: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
     """An individual's date of birth (YYYY-MM-DD)."""
 
-    doing_business_as_names: List[str]
+    doing_business_as_names: SequenceNotStr[str]
 
     email: Optional[str]
     """The entity's primary email."""
