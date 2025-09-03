@@ -225,13 +225,13 @@ from .internal_account_update_account_capability_response import (
 # This ensures that, when building the deferred (due to cyclical references) model schema,
 # Pydantic can resolve the necessary references.
 # See: https://github.com/pydantic/pydantic/issues/11250 for more context.
-if _compat.PYDANTIC_V2:
-    invoice.Invoice.model_rebuild(_parent_namespace_depth=0)
-    payment_order.PaymentOrder.model_rebuild(_parent_namespace_depth=0)
-    return_object.ReturnObject.model_rebuild(_parent_namespace_depth=0)
-    bulk_result.BulkResult.model_rebuild(_parent_namespace_depth=0)
-else:
+if _compat.PYDANTIC_V1:
     invoice.Invoice.update_forward_refs()  # type: ignore
     payment_order.PaymentOrder.update_forward_refs()  # type: ignore
     return_object.ReturnObject.update_forward_refs()  # type: ignore
     bulk_result.BulkResult.update_forward_refs()  # type: ignore
+else:
+    invoice.Invoice.model_rebuild(_parent_namespace_depth=0)
+    payment_order.PaymentOrder.model_rebuild(_parent_namespace_depth=0)
+    return_object.ReturnObject.model_rebuild(_parent_namespace_depth=0)
+    bulk_result.BulkResult.model_rebuild(_parent_namespace_depth=0)
