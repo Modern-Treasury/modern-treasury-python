@@ -10,16 +10,10 @@ from .legal_entity_compliance_detail import LegalEntityComplianceDetail
 from .legal_entity_address_create_request import LegalEntityAddressCreateRequest
 from .legal_entity_industry_classification import LegalEntityIndustryClassification
 
-__all__ = [
-    "ChildLegalEntityCreate",
-    "UnnamedTypeWithobjectParent4",
-    "PhoneNumbers",
-    "PhoneNumber",
-    "UnnamedTypeWithobjectParent5",
-]
+__all__ = ["ChildLegalEntityCreate", "BankSettings", "PhoneNumbers", "PhoneNumber", "WealthAndEmploymentDetails"]
 
 
-class UnnamedTypeWithobjectParent4(BaseModel):
+class BankSettings(BaseModel):
     id: str
 
     backup_withholding_percentage: Optional[int] = None
@@ -69,7 +63,7 @@ Please use PhoneNumber instead.
 """
 
 
-class UnnamedTypeWithobjectParent5(BaseModel):
+class WealthAndEmploymentDetails(BaseModel):
     id: str
 
     annual_income: Optional[int] = None
@@ -222,7 +216,7 @@ class ChildLegalEntityCreate(BaseModel):
     addresses: Optional[List[LegalEntityAddressCreateRequest]] = None
     """A list of addresses for the entity."""
 
-    bank_settings: Optional[UnnamedTypeWithobjectParent4] = None
+    bank_settings: Optional[BankSettings] = None
 
     business_name: Optional[str] = None
     """The business's legal business name."""
@@ -289,7 +283,7 @@ class ChildLegalEntityCreate(BaseModel):
     suffix: Optional[str] = None
     """An individual's suffix."""
 
-    wealth_and_employment_details: Optional[UnnamedTypeWithobjectParent5] = None
+    wealth_and_employment_details: Optional[WealthAndEmploymentDetails] = None
 
     website: Optional[str] = None
     """The entity's primary website URL."""
