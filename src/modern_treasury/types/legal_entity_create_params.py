@@ -16,12 +16,12 @@ from .shared_params.legal_entity_industry_classification import LegalEntityIndus
 
 __all__ = [
     "LegalEntityCreateParams",
-    "UnnamedTypeWithNoPropertyInfoOrParent0",
+    "BankSettings",
     "LegalEntityAssociations",
     "LegalEntityAssociation",
     "PhoneNumbers",
     "PhoneNumber",
-    "UnnamedTypeWithNoPropertyInfoOrParent1",
+    "WealthAndEmploymentDetails",
 ]
 
 
@@ -32,7 +32,7 @@ class LegalEntityCreateParams(TypedDict, total=False):
     addresses: Iterable[LegalEntityAddressCreateRequest]
     """A list of addresses for the entity."""
 
-    bank_settings: Optional[UnnamedTypeWithNoPropertyInfoOrParent0]
+    bank_settings: Optional[BankSettings]
 
     business_name: Optional[str]
     """The business's legal business name."""
@@ -99,13 +99,13 @@ class LegalEntityCreateParams(TypedDict, total=False):
     suffix: Optional[str]
     """An individual's suffix."""
 
-    wealth_and_employment_details: Optional[UnnamedTypeWithNoPropertyInfoOrParent1]
+    wealth_and_employment_details: Optional[WealthAndEmploymentDetails]
 
     website: Optional[str]
     """The entity's primary website URL."""
 
 
-class UnnamedTypeWithNoPropertyInfoOrParent0(TypedDict, total=False):
+class BankSettings(TypedDict, total=False):
     id: Required[str]
 
     backup_withholding_percentage: Required[Optional[int]]
@@ -178,7 +178,7 @@ Please use PhoneNumber instead.
 """
 
 
-class UnnamedTypeWithNoPropertyInfoOrParent1(TypedDict, total=False):
+class WealthAndEmploymentDetails(TypedDict, total=False):
     id: Required[str]
 
     annual_income: Required[Optional[int]]

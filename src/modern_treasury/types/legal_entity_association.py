@@ -13,12 +13,12 @@ __all__ = [
     "ChildLegalEntity",
     "ChildLegalEntityAddresses",
     "ChildLegalEntityAddress",
-    "ChildLegalEntityUnnamedTypeWithobjectParent14",
+    "ChildLegalEntityBankSettings",
     "ChildLegalEntityIdentifications",
     "ChildLegalEntityIdentification",
     "ChildLegalEntityPhoneNumbers",
     "ChildLegalEntityPhoneNumber",
-    "ChildLegalEntityUnnamedTypeWithobjectParent15",
+    "ChildLegalEntityWealthAndEmploymentDetails",
 ]
 
 
@@ -66,7 +66,7 @@ Please use ChildLegalEntityAddress instead.
 """
 
 
-class ChildLegalEntityUnnamedTypeWithobjectParent14(BaseModel):
+class ChildLegalEntityBankSettings(BaseModel):
     id: str
 
     backup_withholding_percentage: Optional[int] = None
@@ -182,7 +182,7 @@ Please use ChildLegalEntityPhoneNumber instead.
 """
 
 
-class ChildLegalEntityUnnamedTypeWithobjectParent15(BaseModel):
+class ChildLegalEntityWealthAndEmploymentDetails(BaseModel):
     id: str
 
     annual_income: Optional[int] = None
@@ -337,7 +337,7 @@ class ChildLegalEntity(BaseModel):
     addresses: List[ChildLegalEntityAddress]
     """A list of addresses for the entity."""
 
-    bank_settings: Optional[ChildLegalEntityUnnamedTypeWithobjectParent14] = None
+    bank_settings: Optional[ChildLegalEntityBankSettings] = None
 
     business_name: Optional[str] = None
     """The business's legal business name."""
@@ -418,7 +418,7 @@ class ChildLegalEntity(BaseModel):
 
     updated_at: datetime
 
-    wealth_and_employment_details: Optional[ChildLegalEntityUnnamedTypeWithobjectParent15] = None
+    wealth_and_employment_details: Optional[ChildLegalEntityWealthAndEmploymentDetails] = None
 
     website: Optional[str] = None
     """The entity's primary website URL."""

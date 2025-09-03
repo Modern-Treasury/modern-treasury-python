@@ -51,8 +51,7 @@ class LegalEntities(SyncAPIResource):
         *,
         legal_entity_type: Literal["business", "individual"],
         addresses: Iterable[LegalEntityAddressCreateRequest] | NotGiven = NOT_GIVEN,
-        bank_settings: Optional[legal_entity_create_params.UnnamedTypeWithNoPropertyInfoOrParent0]
-        | NotGiven = NOT_GIVEN,
+        bank_settings: Optional[legal_entity_create_params.BankSettings] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
         citizenship_country: Optional[str] | NotGiven = NOT_GIVEN,
         compliance_details: Optional[LegalEntityComplianceDetail] | NotGiven = NOT_GIVEN,
@@ -78,7 +77,7 @@ class LegalEntities(SyncAPIResource):
         prefix: Optional[str] | NotGiven = NOT_GIVEN,
         risk_rating: Optional[Literal["low", "medium", "high"]] | NotGiven = NOT_GIVEN,
         suffix: Optional[str] | NotGiven = NOT_GIVEN,
-        wealth_and_employment_details: Optional[legal_entity_create_params.UnnamedTypeWithNoPropertyInfoOrParent1]
+        wealth_and_employment_details: Optional[legal_entity_create_params.WealthAndEmploymentDetails]
         | NotGiven = NOT_GIVEN,
         website: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -227,8 +226,7 @@ class LegalEntities(SyncAPIResource):
         id: str,
         *,
         addresses: Iterable[LegalEntityAddressCreateRequest] | NotGiven = NOT_GIVEN,
-        bank_settings: Optional[legal_entity_update_params.UnnamedTypeWithNoPropertyInfoOrParent2]
-        | NotGiven = NOT_GIVEN,
+        bank_settings: Optional[legal_entity_update_params.BankSettings] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
         citizenship_country: Optional[str] | NotGiven = NOT_GIVEN,
         compliance_details: Optional[LegalEntityComplianceDetail] | NotGiven = NOT_GIVEN,
@@ -252,7 +250,7 @@ class LegalEntities(SyncAPIResource):
         prefix: Optional[str] | NotGiven = NOT_GIVEN,
         risk_rating: Optional[Literal["low", "medium", "high"]] | NotGiven = NOT_GIVEN,
         suffix: Optional[str] | NotGiven = NOT_GIVEN,
-        wealth_and_employment_details: Optional[legal_entity_update_params.UnnamedTypeWithNoPropertyInfoOrParent3]
+        wealth_and_employment_details: Optional[legal_entity_update_params.WealthAndEmploymentDetails]
         | NotGiven = NOT_GIVEN,
         website: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -438,8 +436,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         *,
         legal_entity_type: Literal["business", "individual"],
         addresses: Iterable[LegalEntityAddressCreateRequest] | NotGiven = NOT_GIVEN,
-        bank_settings: Optional[legal_entity_create_params.UnnamedTypeWithNoPropertyInfoOrParent0]
-        | NotGiven = NOT_GIVEN,
+        bank_settings: Optional[legal_entity_create_params.BankSettings] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
         citizenship_country: Optional[str] | NotGiven = NOT_GIVEN,
         compliance_details: Optional[LegalEntityComplianceDetail] | NotGiven = NOT_GIVEN,
@@ -465,7 +462,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         prefix: Optional[str] | NotGiven = NOT_GIVEN,
         risk_rating: Optional[Literal["low", "medium", "high"]] | NotGiven = NOT_GIVEN,
         suffix: Optional[str] | NotGiven = NOT_GIVEN,
-        wealth_and_employment_details: Optional[legal_entity_create_params.UnnamedTypeWithNoPropertyInfoOrParent1]
+        wealth_and_employment_details: Optional[legal_entity_create_params.WealthAndEmploymentDetails]
         | NotGiven = NOT_GIVEN,
         website: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -614,8 +611,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         id: str,
         *,
         addresses: Iterable[LegalEntityAddressCreateRequest] | NotGiven = NOT_GIVEN,
-        bank_settings: Optional[legal_entity_update_params.UnnamedTypeWithNoPropertyInfoOrParent2]
-        | NotGiven = NOT_GIVEN,
+        bank_settings: Optional[legal_entity_update_params.BankSettings] | NotGiven = NOT_GIVEN,
         business_name: Optional[str] | NotGiven = NOT_GIVEN,
         citizenship_country: Optional[str] | NotGiven = NOT_GIVEN,
         compliance_details: Optional[LegalEntityComplianceDetail] | NotGiven = NOT_GIVEN,
@@ -639,7 +635,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         prefix: Optional[str] | NotGiven = NOT_GIVEN,
         risk_rating: Optional[Literal["low", "medium", "high"]] | NotGiven = NOT_GIVEN,
         suffix: Optional[str] | NotGiven = NOT_GIVEN,
-        wealth_and_employment_details: Optional[legal_entity_update_params.UnnamedTypeWithNoPropertyInfoOrParent3]
+        wealth_and_employment_details: Optional[legal_entity_update_params.WealthAndEmploymentDetails]
         | NotGiven = NOT_GIVEN,
         website: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

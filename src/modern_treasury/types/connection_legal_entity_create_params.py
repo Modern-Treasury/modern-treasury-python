@@ -17,12 +17,12 @@ from .shared_params.legal_entity_industry_classification import LegalEntityIndus
 __all__ = [
     "ConnectionLegalEntityCreateParams",
     "LegalEntity",
-    "LegalEntityUnnamedTypeWithobjectParent10",
+    "LegalEntityBankSettings",
     "LegalEntityLegalEntityAssociations",
     "LegalEntityLegalEntityAssociation",
     "LegalEntityPhoneNumbers",
     "LegalEntityPhoneNumber",
-    "LegalEntityUnnamedTypeWithobjectParent11",
+    "LegalEntityWealthAndEmploymentDetails",
 ]
 
 
@@ -37,7 +37,7 @@ class ConnectionLegalEntityCreateParams(TypedDict, total=False):
     """The ID of the legal entity."""
 
 
-class LegalEntityUnnamedTypeWithobjectParent10(TypedDict, total=False):
+class LegalEntityBankSettings(TypedDict, total=False):
     id: Required[str]
 
     backup_withholding_percentage: Required[Optional[int]]
@@ -110,7 +110,7 @@ Please use LegalEntityPhoneNumber instead.
 """
 
 
-class LegalEntityUnnamedTypeWithobjectParent11(TypedDict, total=False):
+class LegalEntityWealthAndEmploymentDetails(TypedDict, total=False):
     id: Required[str]
 
     annual_income: Required[Optional[int]]
@@ -273,7 +273,7 @@ class LegalEntity(TypedDict, total=False):
     addresses: Iterable[LegalEntityAddressCreateRequest]
     """A list of addresses for the entity."""
 
-    bank_settings: Optional[LegalEntityUnnamedTypeWithobjectParent10]
+    bank_settings: Optional[LegalEntityBankSettings]
 
     business_name: Optional[str]
     """The business's legal business name."""
@@ -343,7 +343,7 @@ class LegalEntity(TypedDict, total=False):
     suffix: Optional[str]
     """An individual's suffix."""
 
-    wealth_and_employment_details: Optional[LegalEntityUnnamedTypeWithobjectParent11]
+    wealth_and_employment_details: Optional[LegalEntityWealthAndEmploymentDetails]
 
     website: Optional[str]
     """The entity's primary website URL."""
