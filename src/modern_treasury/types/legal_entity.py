@@ -13,12 +13,12 @@ __all__ = [
     "LegalEntity",
     "Addresses",
     "Address",
-    "UnnamedTypeWithobjectParent12",
+    "BankSettings",
     "Identifications",
     "Identification",
     "PhoneNumbers",
     "PhoneNumber",
-    "UnnamedTypeWithobjectParent13",
+    "WealthAndEmploymentDetails",
 ]
 
 
@@ -66,7 +66,7 @@ Please use Address instead.
 """
 
 
-class UnnamedTypeWithobjectParent12(BaseModel):
+class BankSettings(BaseModel):
     id: str
 
     backup_withholding_percentage: Optional[int] = None
@@ -182,7 +182,7 @@ Please use PhoneNumber instead.
 """
 
 
-class UnnamedTypeWithobjectParent13(BaseModel):
+class WealthAndEmploymentDetails(BaseModel):
     id: str
 
     annual_income: Optional[int] = None
@@ -337,7 +337,7 @@ class LegalEntity(BaseModel):
     addresses: List[Address]
     """A list of addresses for the entity."""
 
-    bank_settings: Optional[UnnamedTypeWithobjectParent12] = None
+    bank_settings: Optional[BankSettings] = None
 
     business_name: Optional[str] = None
     """The business's legal business name."""
@@ -421,7 +421,7 @@ class LegalEntity(BaseModel):
 
     updated_at: datetime
 
-    wealth_and_employment_details: Optional[UnnamedTypeWithobjectParent13] = None
+    wealth_and_employment_details: Optional[WealthAndEmploymentDetails] = None
 
     website: Optional[str] = None
     """The entity's primary website URL."""
