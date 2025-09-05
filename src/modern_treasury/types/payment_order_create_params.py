@@ -12,7 +12,6 @@ from .shared.currency import Currency
 from .payment_order_type import PaymentOrderType
 from .external_account_type import ExternalAccountType
 from .payment_order_subtype import PaymentOrderSubtype
-from .shared_params.accounting import Accounting
 from .shared_params.address_request import AddressRequest
 from .contact_detail_create_request_param import ContactDetailCreateRequestParam
 from .shared_params.ledger_account_create_request import LedgerAccountCreateRequest
@@ -59,17 +58,8 @@ class PaymentOrderCreateParams(TypedDict, total=False):
     `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
     """
 
-    accounting: Accounting
-
     accounting_category_id: Optional[str]
     """The ID of one of your accounting categories.
-
-    Note that these will only be accessible if your accounting system has been
-    connected.
-    """
-
-    accounting_ledger_class_id: Optional[str]
-    """The ID of one of your accounting ledger classes.
 
     Note that these will only be accessible if your accounting system has been
     connected.

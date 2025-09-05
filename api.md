@@ -2,7 +2,6 @@
 
 ```python
 from modern_treasury.types import (
-    Accounting,
     AccountsType,
     Address,
     AddressRequest,
