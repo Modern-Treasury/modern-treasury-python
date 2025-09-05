@@ -41,12 +41,7 @@ class TestPaymentOrders:
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="ach",
-            accounting={
-                "account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "class_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            },
             accounting_category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             charge_bearer="shared",
             currency="AED",
             description="description",
@@ -268,12 +263,7 @@ class TestPaymentOrders:
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         payment_order = client.payment_orders.update(
             id="id",
-            accounting={
-                "account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "class_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            },
             accounting_category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             amount=0,
             charge_bearer="shared",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -476,12 +466,7 @@ class TestPaymentOrders:
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="ach",
-            accounting={
-                "account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "class_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            },
             accounting_category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             charge_bearer="shared",
             currency="AED",
             description="description",
@@ -669,12 +654,7 @@ class TestAsyncPaymentOrders:
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="ach",
-            accounting={
-                "account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "class_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            },
             accounting_category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             charge_bearer="shared",
             currency="AED",
             description="description",
@@ -896,12 +876,7 @@ class TestAsyncPaymentOrders:
     async def test_method_update_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         payment_order = await async_client.payment_orders.update(
             id="id",
-            accounting={
-                "account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "class_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            },
             accounting_category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             amount=0,
             charge_bearer="shared",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -1104,12 +1079,7 @@ class TestAsyncPaymentOrders:
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="ach",
-            accounting={
-                "account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                "class_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            },
             accounting_category_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            accounting_ledger_class_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             charge_bearer="shared",
             currency="AED",
             description="description",

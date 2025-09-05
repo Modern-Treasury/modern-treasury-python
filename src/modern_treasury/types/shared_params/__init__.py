@@ -1,7 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .currency import Currency as Currency
-from .accounting import Accounting as Accounting
 from .accounts_type import AccountsType as AccountsType
 from .contact_detail import ContactDetail as ContactDetail
 from .address_request import AddressRequest as AddressRequest
