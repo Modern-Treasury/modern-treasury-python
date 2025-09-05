@@ -5,7 +5,6 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .shared.accounting import Accounting
 
 __all__ = ["LineItem"]
 
@@ -13,19 +12,9 @@ __all__ = ["LineItem"]
 class LineItem(BaseModel):
     id: str
 
-    accounting: Accounting
-
     accounting_category_id: Optional[str] = None
     """The ID of one of your accounting categories.
 
-    Note that these will only be accessible if your accounting system has been
-    connected.
-    """
-
-    accounting_ledger_class_id: Optional[str] = None
-    """The ID of one of the class objects in your accounting system.
-
-    Class objects track segments of your business independent of client or project.
     Note that these will only be accessible if your accounting system has been
     connected.
     """

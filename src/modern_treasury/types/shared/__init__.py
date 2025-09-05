@@ -2,7 +2,6 @@
 
 from .address import Address as Address
 from .currency import Currency as Currency
-from .accounting import Accounting as Accounting
 from .accounts_type import AccountsType as AccountsType
 from .async_response import AsyncResponse as AsyncResponse
 from .contact_detail import ContactDetail as ContactDetail

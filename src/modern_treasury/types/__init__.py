@@ -9,7 +9,6 @@ from .ledger import Ledger as Ledger
 from .shared import (
     Address as Address,
     Currency as Currency,
-    Accounting as Accounting,
     AccountsType as AccountsType,
     AsyncResponse as AsyncResponse,
     ContactDetail as ContactDetail,
