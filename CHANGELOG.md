@@ -1,5 +1,36 @@
 # Changelog
 
+## 1.57.0 (2025-09-05)
+
+Full Changelog: [v1.56.0...v1.57.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.56.0...v1.57.0)
+
+### Features
+
+* **api:** api update ([9e040c9](https://github.com/Modern-Treasury/modern-treasury-python/commit/9e040c985c87356c652d90245e525ac6c793c39a))
+* **api:** api update ([ef22809](https://github.com/Modern-Treasury/modern-treasury-python/commit/ef22809e7a1caafbb0e9f5d4bee4bdd368a5cd58))
+* **api:** api update ([7e7f6de](https://github.com/Modern-Treasury/modern-treasury-python/commit/7e7f6decf65d197bbea600ddd6fe98d87b4a6c09))
+* **api:** api update ([730e09b](https://github.com/Modern-Treasury/modern-treasury-python/commit/730e09be13edb07956be58a0897e4225fb1d5977))
+* **api:** api update ([4a838c7](https://github.com/Modern-Treasury/modern-treasury-python/commit/4a838c769180121e22879f53667b115b880eccec))
+* improve future compat with pydantic v3 ([5ec9b10](https://github.com/Modern-Treasury/modern-treasury-python/commit/5ec9b1090fc6ff68194131c9f231e383f4e8c045))
+* **types:** replace List[str] with SequenceNotStr in params ([9302332](https://github.com/Modern-Treasury/modern-treasury-python/commit/93023328e1029c010e1f35477bb0545d9b8bbf3a))
+
+
+### Bug Fixes
+
+* avoid newer type syntax ([bc96a58](https://github.com/Modern-Treasury/modern-treasury-python/commit/bc96a582b4c792b3244b1cfffb262454ce7f7963))
+
+
+### Chores
+
+* **internal:** add Sequence related utils ([439d656](https://github.com/Modern-Treasury/modern-treasury-python/commit/439d6561f9fadc981f4fed09931c75984eb3015a))
+* **internal:** change ci workflow machines ([03e6fe0](https://github.com/Modern-Treasury/modern-treasury-python/commit/03e6fe0e3e35e110ece57ce19c99662d078b9e35))
+* **internal:** codegen related update ([201d3a4](https://github.com/Modern-Treasury/modern-treasury-python/commit/201d3a452b8e4326b8c2dd06558202a1f03603e2))
+* **internal:** minor formatting change ([c451e34](https://github.com/Modern-Treasury/modern-treasury-python/commit/c451e3434bd107550e01aad4b99f173ff6be72f9))
+* **internal:** move mypy configurations to `pyproject.toml` file ([648fe88](https://github.com/Modern-Treasury/modern-treasury-python/commit/648fe88c8d7f8256f3de3b37433a3807e5f521ef))
+* **internal:** update pyright exclude list ([e6bac95](https://github.com/Modern-Treasury/modern-treasury-python/commit/e6bac95fd8535a142f190b0b4e3fad86f4985254))
+* **tests:** simplify `get_platform` test ([674cf85](https://github.com/Modern-Treasury/modern-treasury-python/commit/674cf8513751933b5a226119522a4c871e31db9e))
+* update github action ([2c15ab3](https://github.com/Modern-Treasury/modern-treasury-python/commit/2c15ab373c6a4620f2c176303483e3f03a79c940))
+
 ## 1.56.0 (2025-08-12)
 
 Full Changelog: [v1.55.0...v1.56.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.55.0...v1.56.0)
