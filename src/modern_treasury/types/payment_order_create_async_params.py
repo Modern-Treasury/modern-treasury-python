@@ -18,6 +18,7 @@ from .shared_params.ledger_transaction_create_request import LedgerTransactionCr
 
 __all__ = [
     "PaymentOrderCreateAsyncParams",
+    "Accounting",
     "LineItems",
     "LineItem",
     "ReceivingAccount",
@@ -55,8 +56,17 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
     `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
     """
 
+    accounting: Accounting
+
     accounting_category_id: Optional[str]
     """The ID of one of your accounting categories.
+
+    Note that these will only be accessible if your accounting system has been
+    connected.
+    """
+
+    accounting_ledger_class_id: Optional[str]
+    """The ID of one of your accounting ledger classes.
 
     Note that these will only be accessible if your accounting system has been
     connected.
@@ -231,6 +241,23 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
 
     ultimate_receiving_party_name: Optional[str]
     """Name of the ultimate funds recipient."""
+
+
+class Accounting(TypedDict, total=False):
+    account_id: Optional[str]
+    """The ID of one of your accounting categories.
+
+    Note that these will only be accessible if your accounting system has been
+    connected.
+    """
+
+    class_id: Optional[str]
+    """The ID of one of the class objects in your accounting system.
+
+    Class objects track segments of your business independent of client or project.
+    Note that these will only be accessible if your accounting system has been
+    connected.
+    """
 
 
 class LineItem(TypedDict, total=False):
