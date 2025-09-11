@@ -74,7 +74,9 @@ class PaymentOrders(SyncAPIResource):
         direction: Literal["credit", "debit"],
         originating_account_id: str,
         type: PaymentOrderType,
+        accounting: payment_order_create_params.Accounting | NotGiven = NOT_GIVEN,
         accounting_category_id: Optional[str] | NotGiven = NOT_GIVEN,
+        accounting_ledger_class_id: Optional[str] | NotGiven = NOT_GIVEN,
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | NotGiven = NOT_GIVEN,
         currency: Currency | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
@@ -131,6 +133,9 @@ class PaymentOrders(SyncAPIResource):
               `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
 
           accounting_category_id: The ID of one of your accounting categories. Note that these will only be
+              accessible if your accounting system has been connected.
+
+          accounting_ledger_class_id: The ID of one of your accounting ledger classes. Note that these will only be
               accessible if your accounting system has been connected.
 
           charge_bearer: The party that will pay the fees for the payment order. See
@@ -252,7 +257,9 @@ class PaymentOrders(SyncAPIResource):
                 "direction": direction,
                 "originating_account_id": originating_account_id,
                 "type": type,
+                "accounting": accounting,
                 "accounting_category_id": accounting_category_id,
+                "accounting_ledger_class_id": accounting_ledger_class_id,
                 "charge_bearer": charge_bearer,
                 "currency": currency,
                 "description": description,
@@ -341,7 +348,9 @@ class PaymentOrders(SyncAPIResource):
         self,
         id: str,
         *,
+        accounting: payment_order_update_params.Accounting | NotGiven = NOT_GIVEN,
         accounting_category_id: Optional[str] | NotGiven = NOT_GIVEN,
+        accounting_ledger_class_id: Optional[str] | NotGiven = NOT_GIVEN,
         amount: int | NotGiven = NOT_GIVEN,
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
@@ -400,6 +409,9 @@ class PaymentOrders(SyncAPIResource):
 
         Args:
           accounting_category_id: The ID of one of your accounting categories. Note that these will only be
+              accessible if your accounting system has been connected.
+
+          accounting_ledger_class_id: The ID of one of your accounting ledger classes. Note that these will only be
               accessible if your accounting system has been connected.
 
           amount: Value in specified currency's smallest unit. e.g. $10 would be represented as
@@ -533,7 +545,9 @@ class PaymentOrders(SyncAPIResource):
             f"/api/payment_orders/{id}",
             body=maybe_transform(
                 {
+                    "accounting": accounting,
                     "accounting_category_id": accounting_category_id,
+                    "accounting_ledger_class_id": accounting_ledger_class_id,
                     "amount": amount,
                     "charge_bearer": charge_bearer,
                     "counterparty_id": counterparty_id,
@@ -735,7 +749,9 @@ class PaymentOrders(SyncAPIResource):
         direction: Literal["credit", "debit"],
         originating_account_id: str,
         type: PaymentOrderType,
+        accounting: payment_order_create_async_params.Accounting | NotGiven = NOT_GIVEN,
         accounting_category_id: Optional[str] | NotGiven = NOT_GIVEN,
+        accounting_ledger_class_id: Optional[str] | NotGiven = NOT_GIVEN,
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | NotGiven = NOT_GIVEN,
         currency: Currency | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
@@ -791,6 +807,9 @@ class PaymentOrders(SyncAPIResource):
               `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
 
           accounting_category_id: The ID of one of your accounting categories. Note that these will only be
+              accessible if your accounting system has been connected.
+
+          accounting_ledger_class_id: The ID of one of your accounting ledger classes. Note that these will only be
               accessible if your accounting system has been connected.
 
           charge_bearer: The party that will pay the fees for the payment order. See
@@ -911,7 +930,9 @@ class PaymentOrders(SyncAPIResource):
                     "direction": direction,
                     "originating_account_id": originating_account_id,
                     "type": type,
+                    "accounting": accounting,
                     "accounting_category_id": accounting_category_id,
+                    "accounting_ledger_class_id": accounting_ledger_class_id,
                     "charge_bearer": charge_bearer,
                     "currency": currency,
                     "description": description,
@@ -985,7 +1006,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
         direction: Literal["credit", "debit"],
         originating_account_id: str,
         type: PaymentOrderType,
+        accounting: payment_order_create_params.Accounting | NotGiven = NOT_GIVEN,
         accounting_category_id: Optional[str] | NotGiven = NOT_GIVEN,
+        accounting_ledger_class_id: Optional[str] | NotGiven = NOT_GIVEN,
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | NotGiven = NOT_GIVEN,
         currency: Currency | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
@@ -1042,6 +1065,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
               `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
 
           accounting_category_id: The ID of one of your accounting categories. Note that these will only be
+              accessible if your accounting system has been connected.
+
+          accounting_ledger_class_id: The ID of one of your accounting ledger classes. Note that these will only be
               accessible if your accounting system has been connected.
 
           charge_bearer: The party that will pay the fees for the payment order. See
@@ -1163,7 +1189,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
                 "direction": direction,
                 "originating_account_id": originating_account_id,
                 "type": type,
+                "accounting": accounting,
                 "accounting_category_id": accounting_category_id,
+                "accounting_ledger_class_id": accounting_ledger_class_id,
                 "charge_bearer": charge_bearer,
                 "currency": currency,
                 "description": description,
@@ -1252,7 +1280,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
         self,
         id: str,
         *,
+        accounting: payment_order_update_params.Accounting | NotGiven = NOT_GIVEN,
         accounting_category_id: Optional[str] | NotGiven = NOT_GIVEN,
+        accounting_ledger_class_id: Optional[str] | NotGiven = NOT_GIVEN,
         amount: int | NotGiven = NOT_GIVEN,
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | NotGiven = NOT_GIVEN,
         counterparty_id: Optional[str] | NotGiven = NOT_GIVEN,
@@ -1311,6 +1341,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
 
         Args:
           accounting_category_id: The ID of one of your accounting categories. Note that these will only be
+              accessible if your accounting system has been connected.
+
+          accounting_ledger_class_id: The ID of one of your accounting ledger classes. Note that these will only be
               accessible if your accounting system has been connected.
 
           amount: Value in specified currency's smallest unit. e.g. $10 would be represented as
@@ -1444,7 +1477,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
             f"/api/payment_orders/{id}",
             body=await async_maybe_transform(
                 {
+                    "accounting": accounting,
                     "accounting_category_id": accounting_category_id,
+                    "accounting_ledger_class_id": accounting_ledger_class_id,
                     "amount": amount,
                     "charge_bearer": charge_bearer,
                     "counterparty_id": counterparty_id,
@@ -1646,7 +1681,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
         direction: Literal["credit", "debit"],
         originating_account_id: str,
         type: PaymentOrderType,
+        accounting: payment_order_create_async_params.Accounting | NotGiven = NOT_GIVEN,
         accounting_category_id: Optional[str] | NotGiven = NOT_GIVEN,
+        accounting_ledger_class_id: Optional[str] | NotGiven = NOT_GIVEN,
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | NotGiven = NOT_GIVEN,
         currency: Currency | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
@@ -1702,6 +1739,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
               `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
 
           accounting_category_id: The ID of one of your accounting categories. Note that these will only be
+              accessible if your accounting system has been connected.
+
+          accounting_ledger_class_id: The ID of one of your accounting ledger classes. Note that these will only be
               accessible if your accounting system has been connected.
 
           charge_bearer: The party that will pay the fees for the payment order. See
@@ -1822,7 +1862,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
                     "direction": direction,
                     "originating_account_id": originating_account_id,
                     "type": type,
+                    "accounting": accounting,
                     "accounting_category_id": accounting_category_id,
+                    "accounting_ledger_class_id": accounting_ledger_class_id,
                     "charge_bearer": charge_bearer,
                     "currency": currency,
                     "description": description,

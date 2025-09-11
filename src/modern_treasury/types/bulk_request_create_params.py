@@ -25,6 +25,8 @@ __all__ = [
     "Resource",
     "ResourcesPaymentOrderAsyncCreateRequest",
     "ResourcePaymentOrderAsyncCreateRequest",
+    "ResourcesPaymentOrderAsyncCreateRequestAccounting",
+    "ResourcePaymentOrderAsyncCreateRequestAccounting",
     "ResourcesPaymentOrderAsyncCreateRequestLineItems",
     "ResourcePaymentOrderAsyncCreateRequestLineItem",
     "ResourcesPaymentOrderAsyncCreateRequestReceivingAccount",
@@ -43,6 +45,8 @@ __all__ = [
     "ResourceID",
     "ResourcesPaymentOrderUpdateRequestWithID",
     "ResourcePaymentOrderUpdateRequestWithID",
+    "ResourcesPaymentOrderUpdateRequestWithIDAccounting",
+    "ResourcePaymentOrderUpdateRequestWithIDAccounting",
     "ResourcesPaymentOrderUpdateRequestWithIDLineItems",
     "ResourcePaymentOrderUpdateRequestWithIDLineItem",
     "ResourcesPaymentOrderUpdateRequestWithIDReceivingAccount",
@@ -88,6 +92,30 @@ class BulkRequestCreateParams(TypedDict, total=False):
 
     Both the key and value must be strings.
     """
+
+
+class ResourcePaymentOrderAsyncCreateRequestAccounting(TypedDict, total=False):
+    account_id: Optional[str]
+    """The ID of one of your accounting categories.
+
+    Note that these will only be accessible if your accounting system has been
+    connected.
+    """
+
+    class_id: Optional[str]
+    """The ID of one of the class objects in your accounting system.
+
+    Class objects track segments of your business independent of client or project.
+    Note that these will only be accessible if your accounting system has been
+    connected.
+    """
+
+
+ResourcesPaymentOrderAsyncCreateRequestAccounting = ResourcePaymentOrderAsyncCreateRequestAccounting
+"""This type is deprecated and will be removed in a future release.
+
+Please use ResourcePaymentOrderAsyncCreateRequestAccounting instead.
+"""
 
 
 class ResourcePaymentOrderAsyncCreateRequestLineItem(TypedDict, total=False):
@@ -318,8 +346,17 @@ class ResourcePaymentOrderAsyncCreateRequest(TypedDict, total=False):
     `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
     """
 
+    accounting: ResourcePaymentOrderAsyncCreateRequestAccounting
+
     accounting_category_id: Optional[str]
     """The ID of one of your accounting categories.
+
+    Note that these will only be accessible if your accounting system has been
+    connected.
+    """
+
+    accounting_ledger_class_id: Optional[str]
+    """The ID of one of your accounting ledger classes.
 
     Note that these will only be accessible if your accounting system has been
     connected.
@@ -750,6 +787,30 @@ Please use ResourceID instead.
 """
 
 
+class ResourcePaymentOrderUpdateRequestWithIDAccounting(TypedDict, total=False):
+    account_id: Optional[str]
+    """The ID of one of your accounting categories.
+
+    Note that these will only be accessible if your accounting system has been
+    connected.
+    """
+
+    class_id: Optional[str]
+    """The ID of one of the class objects in your accounting system.
+
+    Class objects track segments of your business independent of client or project.
+    Note that these will only be accessible if your accounting system has been
+    connected.
+    """
+
+
+ResourcesPaymentOrderUpdateRequestWithIDAccounting = ResourcePaymentOrderUpdateRequestWithIDAccounting
+"""This type is deprecated and will be removed in a future release.
+
+Please use ResourcePaymentOrderUpdateRequestWithIDAccounting instead.
+"""
+
+
 class ResourcePaymentOrderUpdateRequestWithIDLineItem(TypedDict, total=False):
     amount: Required[int]
     """Value in specified currency's smallest unit.
@@ -954,8 +1015,17 @@ Please use ResourcePaymentOrderUpdateRequestWithIDReceivingAccount instead.
 class ResourcePaymentOrderUpdateRequestWithID(TypedDict, total=False):
     id: str
 
+    accounting: ResourcePaymentOrderUpdateRequestWithIDAccounting
+
     accounting_category_id: Optional[str]
     """The ID of one of your accounting categories.
+
+    Note that these will only be accessible if your accounting system has been
+    connected.
+    """
+
+    accounting_ledger_class_id: Optional[str]
+    """The ID of one of your accounting ledger classes.
 
     Note that these will only be accessible if your accounting system has been
     connected.

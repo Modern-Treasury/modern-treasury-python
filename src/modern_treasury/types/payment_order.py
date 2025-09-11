@@ -15,7 +15,24 @@ from .payment_order_type import PaymentOrderType
 from .payment_order_subtype import PaymentOrderSubtype
 from .shared.foreign_exchange_rate import ForeignExchangeRate
 
-__all__ = ["PaymentOrder", "ReferenceNumbers", "ReferenceNumber", "UltimateOriginatingAccount"]
+__all__ = ["PaymentOrder", "Accounting", "ReferenceNumbers", "ReferenceNumber", "UltimateOriginatingAccount"]
+
+
+class Accounting(BaseModel):
+    account_id: Optional[str] = None
+    """The ID of one of your accounting categories.
+
+    Note that these will only be accessible if your accounting system has been
+    connected.
+    """
+
+    class_id: Optional[str] = None
+    """The ID of one of the class objects in your accounting system.
+
+    Class objects track segments of your business independent of client or project.
+    Note that these will only be accessible if your accounting system has been
+    connected.
+    """
 
 
 class ReferenceNumber(BaseModel):
@@ -141,8 +158,17 @@ UltimateOriginatingAccount: TypeAlias = Union[VirtualAccount, InternalAccount, N
 class PaymentOrder(BaseModel):
     id: str
 
+    accounting: Accounting
+
     accounting_category_id: Optional[str] = None
     """The ID of one of your accounting categories.
+
+    Note that these will only be accessible if your accounting system has been
+    connected.
+    """
+
+    accounting_ledger_class_id: Optional[str] = None
+    """The ID of one of your accounting ledger classes.
 
     Note that these will only be accessible if your accounting system has been
     connected.
