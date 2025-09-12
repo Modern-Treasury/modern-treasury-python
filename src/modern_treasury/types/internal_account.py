@@ -187,6 +187,9 @@ class InternalAccount(BaseModel):
     routing_details: List[RoutingDetail]
     """An array of routing detail objects."""
 
+    status: Optional[str] = None
+    """The internal account status."""
+
     updated_at: datetime
 
     vendor_id: Optional[str] = None
