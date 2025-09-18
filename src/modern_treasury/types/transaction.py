@@ -153,6 +153,7 @@ class Transaction(BaseModel):
             "hifi",
             "iso20022",
             "jpmc",
+            "mt_fof",
             "mx",
             "paypal",
             "plaid",
