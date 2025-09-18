@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ... import _legacy_response
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -52,7 +52,7 @@ class LineItems(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> TransactionLineItem:
         """
@@ -105,7 +105,7 @@ class LineItems(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TransactionLineItem:
         """
         get transaction line item
@@ -132,17 +132,17 @@ class LineItems(SyncAPIResource):
     def list(
         self,
         *,
-        id: Dict[str, str] | NotGiven = NOT_GIVEN,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        transaction_id: str | NotGiven = NOT_GIVEN,
-        type: Optional[Literal["originating", "receiving"]] | NotGiven = NOT_GIVEN,
+        id: Dict[str, str] | Omit = omit,
+        after_cursor: Optional[str] | Omit = omit,
+        per_page: int | Omit = omit,
+        transaction_id: str | Omit = omit,
+        type: Optional[Literal["originating", "receiving"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[TransactionLineItem]:
         """
         list transaction_line_items
@@ -187,7 +187,7 @@ class LineItems(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> None:
         """
@@ -251,7 +251,7 @@ class AsyncLineItems(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> TransactionLineItem:
         """
@@ -304,7 +304,7 @@ class AsyncLineItems(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TransactionLineItem:
         """
         get transaction line item
@@ -331,17 +331,17 @@ class AsyncLineItems(AsyncAPIResource):
     def list(
         self,
         *,
-        id: Dict[str, str] | NotGiven = NOT_GIVEN,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        transaction_id: str | NotGiven = NOT_GIVEN,
-        type: Optional[Literal["originating", "receiving"]] | NotGiven = NOT_GIVEN,
+        id: Dict[str, str] | Omit = omit,
+        after_cursor: Optional[str] | Omit = omit,
+        per_page: int | Omit = omit,
+        transaction_id: str | Omit = omit,
+        type: Optional[Literal["originating", "receiving"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[TransactionLineItem, AsyncPage[TransactionLineItem]]:
         """
         list transaction_line_items
@@ -386,7 +386,7 @@ class AsyncLineItems(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> None:
         """

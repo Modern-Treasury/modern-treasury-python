@@ -12,7 +12,7 @@ from ..types import (
     ledger_account_balance_monitor_create_params,
     ledger_account_balance_monitor_update_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -49,14 +49,14 @@ class LedgerAccountBalanceMonitors(SyncAPIResource):
         *,
         alert_condition: ledger_account_balance_monitor_create_params.AlertCondition,
         ledger_account_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerAccountBalanceMonitor:
         """
@@ -112,7 +112,7 @@ class LedgerAccountBalanceMonitors(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LedgerAccountBalanceMonitor:
         """
         Get details on a single ledger account balance monitor.
@@ -140,14 +140,14 @@ class LedgerAccountBalanceMonitors(SyncAPIResource):
         self,
         id: str,
         *,
-        description: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerAccountBalanceMonitor:
         """
@@ -193,17 +193,17 @@ class LedgerAccountBalanceMonitors(SyncAPIResource):
     def list(
         self,
         *,
-        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        ledger_account_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | Omit = omit,
+        after_cursor: Optional[str] | Omit = omit,
+        ledger_account_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[LedgerAccountBalanceMonitor]:
         """
         Get a list of ledger account balance monitors.
@@ -257,7 +257,7 @@ class LedgerAccountBalanceMonitors(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerAccountBalanceMonitor:
         """
@@ -314,14 +314,14 @@ class AsyncLedgerAccountBalanceMonitors(AsyncAPIResource):
         *,
         alert_condition: ledger_account_balance_monitor_create_params.AlertCondition,
         ledger_account_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerAccountBalanceMonitor:
         """
@@ -377,7 +377,7 @@ class AsyncLedgerAccountBalanceMonitors(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LedgerAccountBalanceMonitor:
         """
         Get details on a single ledger account balance monitor.
@@ -405,14 +405,14 @@ class AsyncLedgerAccountBalanceMonitors(AsyncAPIResource):
         self,
         id: str,
         *,
-        description: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerAccountBalanceMonitor:
         """
@@ -458,17 +458,17 @@ class AsyncLedgerAccountBalanceMonitors(AsyncAPIResource):
     def list(
         self,
         *,
-        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        ledger_account_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | Omit = omit,
+        after_cursor: Optional[str] | Omit = omit,
+        ledger_account_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[LedgerAccountBalanceMonitor, AsyncPage[LedgerAccountBalanceMonitor]]:
         """
         Get a list of ledger account balance monitors.
@@ -522,7 +522,7 @@ class AsyncLedgerAccountBalanceMonitors(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerAccountBalanceMonitor:
         """

@@ -10,7 +10,7 @@ import httpx
 
 from ... import _legacy_response
 from ...types import transaction_list_params, transaction_create_params, transaction_update_params
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .line_items import (
@@ -63,8 +63,8 @@ class Transactions(SyncAPIResource):
         internal_account_id: str,
         vendor_code: Optional[str],
         vendor_code_type: Optional[str],
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        posted: bool | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | Omit = omit,
+        posted: bool | Omit = omit,
         type: Optional[
             Literal[
                 "ach",
@@ -105,15 +105,15 @@ class Transactions(SyncAPIResource):
                 "other",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        vendor_customer_id: Optional[str] | NotGiven = NOT_GIVEN,
-        vendor_description: Optional[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        vendor_customer_id: Optional[str] | Omit = omit,
+        vendor_description: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> Transaction:
         """create transaction
@@ -198,7 +198,7 @@ class Transactions(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Transaction:
         """
         Get details on a single transaction.
@@ -226,13 +226,13 @@ class Transactions(SyncAPIResource):
         self,
         id: str,
         *,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> Transaction:
         """
@@ -270,26 +270,26 @@ class Transactions(SyncAPIResource):
     def list(
         self,
         *,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        as_of_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
-        as_of_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        direction: str | NotGiven = NOT_GIVEN,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        payment_type: str | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        posted: bool | NotGiven = NOT_GIVEN,
-        transactable_type: str | NotGiven = NOT_GIVEN,
-        vendor_id: str | NotGiven = NOT_GIVEN,
-        virtual_account_id: str | NotGiven = NOT_GIVEN,
+        after_cursor: Optional[str] | Omit = omit,
+        as_of_date_end: Union[str, date] | Omit = omit,
+        as_of_date_start: Union[str, date] | Omit = omit,
+        counterparty_id: str | Omit = omit,
+        description: str | Omit = omit,
+        direction: str | Omit = omit,
+        internal_account_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        payment_type: str | Omit = omit,
+        per_page: int | Omit = omit,
+        posted: bool | Omit = omit,
+        transactable_type: str | Omit = omit,
+        vendor_id: str | Omit = omit,
+        virtual_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[Transaction]:
         """
         Get a list of all transactions.
@@ -363,7 +363,7 @@ class Transactions(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> None:
         """
@@ -429,8 +429,8 @@ class AsyncTransactions(AsyncAPIResource):
         internal_account_id: str,
         vendor_code: Optional[str],
         vendor_code_type: Optional[str],
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        posted: bool | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | Omit = omit,
+        posted: bool | Omit = omit,
         type: Optional[
             Literal[
                 "ach",
@@ -471,15 +471,15 @@ class AsyncTransactions(AsyncAPIResource):
                 "other",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        vendor_customer_id: Optional[str] | NotGiven = NOT_GIVEN,
-        vendor_description: Optional[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        vendor_customer_id: Optional[str] | Omit = omit,
+        vendor_description: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> Transaction:
         """create transaction
@@ -564,7 +564,7 @@ class AsyncTransactions(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Transaction:
         """
         Get details on a single transaction.
@@ -592,13 +592,13 @@ class AsyncTransactions(AsyncAPIResource):
         self,
         id: str,
         *,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> Transaction:
         """
@@ -636,26 +636,26 @@ class AsyncTransactions(AsyncAPIResource):
     def list(
         self,
         *,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        as_of_date_end: Union[str, date] | NotGiven = NOT_GIVEN,
-        as_of_date_start: Union[str, date] | NotGiven = NOT_GIVEN,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        direction: str | NotGiven = NOT_GIVEN,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        payment_type: str | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        posted: bool | NotGiven = NOT_GIVEN,
-        transactable_type: str | NotGiven = NOT_GIVEN,
-        vendor_id: str | NotGiven = NOT_GIVEN,
-        virtual_account_id: str | NotGiven = NOT_GIVEN,
+        after_cursor: Optional[str] | Omit = omit,
+        as_of_date_end: Union[str, date] | Omit = omit,
+        as_of_date_start: Union[str, date] | Omit = omit,
+        counterparty_id: str | Omit = omit,
+        description: str | Omit = omit,
+        direction: str | Omit = omit,
+        internal_account_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        payment_type: str | Omit = omit,
+        per_page: int | Omit = omit,
+        posted: bool | Omit = omit,
+        transactable_type: str | Omit = omit,
+        vendor_id: str | Omit = omit,
+        virtual_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Transaction, AsyncPage[Transaction]]:
         """
         Get a list of all transactions.
@@ -729,7 +729,7 @@ class AsyncTransactions(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> None:
         """

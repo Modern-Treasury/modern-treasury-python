@@ -9,7 +9,7 @@ import httpx
 
 from .. import _legacy_response
 from ..types import bulk_result_list_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -50,7 +50,7 @@ class BulkResults(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BulkResult:
         """
         get bulk_result
@@ -77,8 +77,8 @@ class BulkResults(SyncAPIResource):
     def list(
         self,
         *,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        entity_id: str | NotGiven = NOT_GIVEN,
+        after_cursor: Optional[str] | Omit = omit,
+        entity_id: str | Omit = omit,
         entity_type: Literal[
             "payment_order",
             "ledger_account",
@@ -89,17 +89,17 @@ class BulkResults(SyncAPIResource):
             "transaction_line_item",
             "bulk_error",
         ]
-        | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        request_type: Literal["bulk_request"] | NotGiven = NOT_GIVEN,
-        status: Literal["pending", "successful", "failed"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        per_page: int | Omit = omit,
+        request_id: str | Omit = omit,
+        request_type: Literal["bulk_request"] | Omit = omit,
+        status: Literal["pending", "successful", "failed"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[BulkResult]:
         """
         list bulk_results
@@ -180,7 +180,7 @@ class AsyncBulkResults(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BulkResult:
         """
         get bulk_result
@@ -207,8 +207,8 @@ class AsyncBulkResults(AsyncAPIResource):
     def list(
         self,
         *,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        entity_id: str | NotGiven = NOT_GIVEN,
+        after_cursor: Optional[str] | Omit = omit,
+        entity_id: str | Omit = omit,
         entity_type: Literal[
             "payment_order",
             "ledger_account",
@@ -219,17 +219,17 @@ class AsyncBulkResults(AsyncAPIResource):
             "transaction_line_item",
             "bulk_error",
         ]
-        | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        request_type: Literal["bulk_request"] | NotGiven = NOT_GIVEN,
-        status: Literal["pending", "successful", "failed"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        per_page: int | Omit = omit,
+        request_id: str | Omit = omit,
+        request_type: Literal["bulk_request"] | Omit = omit,
+        status: Literal["pending", "successful", "failed"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[BulkResult, AsyncPage[BulkResult]]:
         """
         list bulk_results

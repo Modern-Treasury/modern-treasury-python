@@ -13,7 +13,7 @@ from ..types import (
     ledger_account_category_update_params,
     ledger_account_category_retrieve_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -53,16 +53,16 @@ class LedgerAccountCategories(SyncAPIResource):
         ledger_id: str,
         name: str,
         normal_balance: TransactionDirection,
-        currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        ledger_account_category_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        currency_exponent: Optional[int] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        ledger_account_category_ids: SequenceNotStr[str] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerAccountCategory:
         """
@@ -126,13 +126,13 @@ class LedgerAccountCategories(SyncAPIResource):
         self,
         id: str,
         *,
-        balances: ledger_account_category_retrieve_params.Balances | NotGiven = NOT_GIVEN,
+        balances: ledger_account_category_retrieve_params.Balances | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LedgerAccountCategory:
         """
         Get the details on a single ledger account category.
@@ -171,15 +171,15 @@ class LedgerAccountCategories(SyncAPIResource):
         self,
         id: str,
         *,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerAccountCategory:
         """
@@ -228,23 +228,23 @@ class LedgerAccountCategories(SyncAPIResource):
     def list(
         self,
         *,
-        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        balances: ledger_account_category_list_params.Balances | NotGiven = NOT_GIVEN,
-        currency: str | NotGiven = NOT_GIVEN,
-        external_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_id: str | NotGiven = NOT_GIVEN,
-        ledger_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        parent_ledger_account_category_id: str | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | Omit = omit,
+        after_cursor: Optional[str] | Omit = omit,
+        balances: ledger_account_category_list_params.Balances | Omit = omit,
+        currency: str | Omit = omit,
+        external_id: str | Omit = omit,
+        ledger_account_id: str | Omit = omit,
+        ledger_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        parent_ledger_account_category_id: str | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[LedgerAccountCategory]:
         """
         Get a list of ledger account categories.
@@ -315,7 +315,7 @@ class LedgerAccountCategories(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerAccountCategory:
         """
@@ -356,7 +356,7 @@ class LedgerAccountCategories(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> None:
         """
@@ -400,7 +400,7 @@ class LedgerAccountCategories(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> None:
         """
@@ -444,7 +444,7 @@ class LedgerAccountCategories(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> None:
         """
@@ -488,7 +488,7 @@ class LedgerAccountCategories(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> None:
         """
@@ -550,16 +550,16 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         ledger_id: str,
         name: str,
         normal_balance: TransactionDirection,
-        currency_exponent: Optional[int] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        ledger_account_category_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        currency_exponent: Optional[int] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        ledger_account_category_ids: SequenceNotStr[str] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerAccountCategory:
         """
@@ -623,13 +623,13 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         self,
         id: str,
         *,
-        balances: ledger_account_category_retrieve_params.Balances | NotGiven = NOT_GIVEN,
+        balances: ledger_account_category_retrieve_params.Balances | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LedgerAccountCategory:
         """
         Get the details on a single ledger account category.
@@ -668,15 +668,15 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         self,
         id: str,
         *,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerAccountCategory:
         """
@@ -725,23 +725,23 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
     def list(
         self,
         *,
-        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        balances: ledger_account_category_list_params.Balances | NotGiven = NOT_GIVEN,
-        currency: str | NotGiven = NOT_GIVEN,
-        external_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_id: str | NotGiven = NOT_GIVEN,
-        ledger_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        parent_ledger_account_category_id: str | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | Omit = omit,
+        after_cursor: Optional[str] | Omit = omit,
+        balances: ledger_account_category_list_params.Balances | Omit = omit,
+        currency: str | Omit = omit,
+        external_id: str | Omit = omit,
+        ledger_account_id: str | Omit = omit,
+        ledger_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        name: SequenceNotStr[str] | Omit = omit,
+        parent_ledger_account_category_id: str | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[LedgerAccountCategory, AsyncPage[LedgerAccountCategory]]:
         """
         Get a list of ledger account categories.
@@ -812,7 +812,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerAccountCategory:
         """
@@ -853,7 +853,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> None:
         """
@@ -897,7 +897,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> None:
         """
@@ -941,7 +941,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> None:
         """
@@ -985,7 +985,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> None:
         """

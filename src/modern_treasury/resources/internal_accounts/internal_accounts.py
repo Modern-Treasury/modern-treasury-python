@@ -14,7 +14,7 @@ from ...types import (
     internal_account_update_params,
     internal_account_update_account_capability_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -68,7 +68,7 @@ class InternalAccounts(SyncAPIResource):
         currency: Literal["USD", "CAD"],
         name: str,
         party_name: str,
-        account_capabilities: Iterable[internal_account_create_params.AccountCapability] | NotGiven = NOT_GIVEN,
+        account_capabilities: Iterable[internal_account_create_params.AccountCapability] | Omit = omit,
         account_type: Literal[
             "base_wallet",
             "cash",
@@ -84,18 +84,18 @@ class InternalAccounts(SyncAPIResource):
             "savings",
             "solana_wallet",
         ]
-        | NotGiven = NOT_GIVEN,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        legal_entity_id: str | NotGiven = NOT_GIVEN,
-        parent_account_id: str | NotGiven = NOT_GIVEN,
-        party_address: internal_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
-        vendor_attributes: Dict[str, str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        counterparty_id: str | Omit = omit,
+        legal_entity_id: str | Omit = omit,
+        parent_account_id: str | Omit = omit,
+        party_address: internal_account_create_params.PartyAddress | Omit = omit,
+        vendor_attributes: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> InternalAccount:
         """
@@ -175,7 +175,7 @@ class InternalAccounts(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InternalAccount:
         """
         get internal account
@@ -203,17 +203,17 @@ class InternalAccounts(SyncAPIResource):
         self,
         id: str,
         *,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        parent_account_id: str | NotGiven = NOT_GIVEN,
+        counterparty_id: str | Omit = omit,
+        ledger_account_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        name: str | Omit = omit,
+        parent_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> InternalAccount:
         """
@@ -268,12 +268,12 @@ class InternalAccounts(SyncAPIResource):
     def list(
         self,
         *,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        currency: Currency | NotGiven = NOT_GIVEN,
-        legal_entity_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        payment_direction: TransactionDirection | NotGiven = NOT_GIVEN,
+        after_cursor: Optional[str] | Omit = omit,
+        counterparty_id: str | Omit = omit,
+        currency: Currency | Omit = omit,
+        legal_entity_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        payment_direction: TransactionDirection | Omit = omit,
         payment_type: Literal[
             "ach",
             "au_becs",
@@ -311,14 +311,14 @@ class InternalAccounts(SyncAPIResource):
             "wire",
             "zengin",
         ]
-        | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[InternalAccount]:
         """
         list internal accounts
@@ -382,7 +382,7 @@ class InternalAccounts(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> InternalAccountUpdateAccountCapabilityResponse:
         """
@@ -456,7 +456,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         currency: Literal["USD", "CAD"],
         name: str,
         party_name: str,
-        account_capabilities: Iterable[internal_account_create_params.AccountCapability] | NotGiven = NOT_GIVEN,
+        account_capabilities: Iterable[internal_account_create_params.AccountCapability] | Omit = omit,
         account_type: Literal[
             "base_wallet",
             "cash",
@@ -472,18 +472,18 @@ class AsyncInternalAccounts(AsyncAPIResource):
             "savings",
             "solana_wallet",
         ]
-        | NotGiven = NOT_GIVEN,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        legal_entity_id: str | NotGiven = NOT_GIVEN,
-        parent_account_id: str | NotGiven = NOT_GIVEN,
-        party_address: internal_account_create_params.PartyAddress | NotGiven = NOT_GIVEN,
-        vendor_attributes: Dict[str, str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        counterparty_id: str | Omit = omit,
+        legal_entity_id: str | Omit = omit,
+        parent_account_id: str | Omit = omit,
+        party_address: internal_account_create_params.PartyAddress | Omit = omit,
+        vendor_attributes: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> InternalAccount:
         """
@@ -563,7 +563,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InternalAccount:
         """
         get internal account
@@ -591,17 +591,17 @@ class AsyncInternalAccounts(AsyncAPIResource):
         self,
         id: str,
         *,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        parent_account_id: str | NotGiven = NOT_GIVEN,
+        counterparty_id: str | Omit = omit,
+        ledger_account_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        name: str | Omit = omit,
+        parent_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> InternalAccount:
         """
@@ -656,12 +656,12 @@ class AsyncInternalAccounts(AsyncAPIResource):
     def list(
         self,
         *,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        currency: Currency | NotGiven = NOT_GIVEN,
-        legal_entity_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        payment_direction: TransactionDirection | NotGiven = NOT_GIVEN,
+        after_cursor: Optional[str] | Omit = omit,
+        counterparty_id: str | Omit = omit,
+        currency: Currency | Omit = omit,
+        legal_entity_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        payment_direction: TransactionDirection | Omit = omit,
         payment_type: Literal[
             "ach",
             "au_becs",
@@ -699,14 +699,14 @@ class AsyncInternalAccounts(AsyncAPIResource):
             "wire",
             "zengin",
         ]
-        | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[InternalAccount, AsyncPage[InternalAccount]]:
         """
         list internal accounts
@@ -770,7 +770,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> InternalAccountUpdateAccountCapabilityResponse:
         """

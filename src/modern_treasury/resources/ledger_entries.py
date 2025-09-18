@@ -10,7 +10,7 @@ import httpx
 
 from .. import _legacy_response
 from ..types import ledger_entry_list_params, ledger_entry_update_params, ledger_entry_retrieve_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -47,13 +47,13 @@ class LedgerEntries(SyncAPIResource):
         self,
         id: str,
         *,
-        show_balances: bool | NotGiven = NOT_GIVEN,
+        show_balances: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LedgerEntry:
         """
         Get details on a single ledger entry.
@@ -90,13 +90,13 @@ class LedgerEntries(SyncAPIResource):
         self,
         id: str,
         *,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerEntry:
         """
@@ -134,33 +134,33 @@ class LedgerEntries(SyncAPIResource):
     def list(
         self,
         *,
-        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        amount: ledger_entry_list_params.Amount | NotGiven = NOT_GIVEN,
-        as_of_lock_version: int | NotGiven = NOT_GIVEN,
-        direction: TransactionDirection | NotGiven = NOT_GIVEN,
-        effective_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        effective_date: Dict[str, Union[str, date]] | NotGiven = NOT_GIVEN,
-        ledger_account_category_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_lock_version: Dict[str, int] | NotGiven = NOT_GIVEN,
-        ledger_account_payout_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_settlement_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_statement_id: str | NotGiven = NOT_GIVEN,
-        ledger_transaction_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        order_by: ledger_entry_list_params.OrderBy | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        show_balances: bool | NotGiven = NOT_GIVEN,
-        show_deleted: bool | NotGiven = NOT_GIVEN,
-        status: List[Literal["pending", "posted", "archived"]] | NotGiven = NOT_GIVEN,
-        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | Omit = omit,
+        after_cursor: Optional[str] | Omit = omit,
+        amount: ledger_entry_list_params.Amount | Omit = omit,
+        as_of_lock_version: int | Omit = omit,
+        direction: TransactionDirection | Omit = omit,
+        effective_at: Dict[str, Union[str, datetime]] | Omit = omit,
+        effective_date: Dict[str, Union[str, date]] | Omit = omit,
+        ledger_account_category_id: str | Omit = omit,
+        ledger_account_id: str | Omit = omit,
+        ledger_account_lock_version: Dict[str, int] | Omit = omit,
+        ledger_account_payout_id: str | Omit = omit,
+        ledger_account_settlement_id: str | Omit = omit,
+        ledger_account_statement_id: str | Omit = omit,
+        ledger_transaction_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        order_by: ledger_entry_list_params.OrderBy | Omit = omit,
+        per_page: int | Omit = omit,
+        show_balances: bool | Omit = omit,
+        show_deleted: bool | Omit = omit,
+        status: List[Literal["pending", "posted", "archived"]] | Omit = omit,
+        updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[LedgerEntry]:
         """
         Get a list of all ledger entries.
@@ -288,13 +288,13 @@ class AsyncLedgerEntries(AsyncAPIResource):
         self,
         id: str,
         *,
-        show_balances: bool | NotGiven = NOT_GIVEN,
+        show_balances: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LedgerEntry:
         """
         Get details on a single ledger entry.
@@ -331,13 +331,13 @@ class AsyncLedgerEntries(AsyncAPIResource):
         self,
         id: str,
         *,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerEntry:
         """
@@ -377,33 +377,33 @@ class AsyncLedgerEntries(AsyncAPIResource):
     def list(
         self,
         *,
-        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        amount: ledger_entry_list_params.Amount | NotGiven = NOT_GIVEN,
-        as_of_lock_version: int | NotGiven = NOT_GIVEN,
-        direction: TransactionDirection | NotGiven = NOT_GIVEN,
-        effective_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        effective_date: Dict[str, Union[str, date]] | NotGiven = NOT_GIVEN,
-        ledger_account_category_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_lock_version: Dict[str, int] | NotGiven = NOT_GIVEN,
-        ledger_account_payout_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_settlement_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_statement_id: str | NotGiven = NOT_GIVEN,
-        ledger_transaction_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        order_by: ledger_entry_list_params.OrderBy | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        show_balances: bool | NotGiven = NOT_GIVEN,
-        show_deleted: bool | NotGiven = NOT_GIVEN,
-        status: List[Literal["pending", "posted", "archived"]] | NotGiven = NOT_GIVEN,
-        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | Omit = omit,
+        after_cursor: Optional[str] | Omit = omit,
+        amount: ledger_entry_list_params.Amount | Omit = omit,
+        as_of_lock_version: int | Omit = omit,
+        direction: TransactionDirection | Omit = omit,
+        effective_at: Dict[str, Union[str, datetime]] | Omit = omit,
+        effective_date: Dict[str, Union[str, date]] | Omit = omit,
+        ledger_account_category_id: str | Omit = omit,
+        ledger_account_id: str | Omit = omit,
+        ledger_account_lock_version: Dict[str, int] | Omit = omit,
+        ledger_account_payout_id: str | Omit = omit,
+        ledger_account_settlement_id: str | Omit = omit,
+        ledger_account_statement_id: str | Omit = omit,
+        ledger_transaction_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        order_by: ledger_entry_list_params.OrderBy | Omit = omit,
+        per_page: int | Omit = omit,
+        show_balances: bool | Omit = omit,
+        show_deleted: bool | Omit = omit,
+        status: List[Literal["pending", "posted", "archived"]] | Omit = omit,
+        updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[LedgerEntry, AsyncPage[LedgerEntry]]:
         """
         Get a list of all ledger entries.

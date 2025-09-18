@@ -9,7 +9,7 @@ import httpx
 
 from .. import _legacy_response
 from ..types import event_list_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -50,7 +50,7 @@ class Events(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Event:
         """
         get event
@@ -77,19 +77,19 @@ class Events(SyncAPIResource):
     def list(
         self,
         *,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        entity_id: str | NotGiven = NOT_GIVEN,
-        event_name: str | NotGiven = NOT_GIVEN,
-        event_time_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        event_time_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        resource: str | NotGiven = NOT_GIVEN,
+        after_cursor: Optional[str] | Omit = omit,
+        entity_id: str | Omit = omit,
+        event_name: str | Omit = omit,
+        event_time_end: Union[str, datetime] | Omit = omit,
+        event_time_start: Union[str, datetime] | Omit = omit,
+        per_page: int | Omit = omit,
+        resource: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[Event]:
         """
         list events
@@ -161,7 +161,7 @@ class AsyncEvents(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Event:
         """
         get event
@@ -188,19 +188,19 @@ class AsyncEvents(AsyncAPIResource):
     def list(
         self,
         *,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        entity_id: str | NotGiven = NOT_GIVEN,
-        event_name: str | NotGiven = NOT_GIVEN,
-        event_time_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        event_time_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        resource: str | NotGiven = NOT_GIVEN,
+        after_cursor: Optional[str] | Omit = omit,
+        entity_id: str | Omit = omit,
+        event_name: str | Omit = omit,
+        event_time_end: Union[str, datetime] | Omit = omit,
+        event_time_start: Union[str, datetime] | Omit = omit,
+        per_page: int | Omit = omit,
+        resource: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Event, AsyncPage[Event]]:
         """
         list events
