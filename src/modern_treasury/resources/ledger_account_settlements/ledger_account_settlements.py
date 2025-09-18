@@ -14,7 +14,7 @@ from ...types import (
     ledger_account_settlement_create_params,
     ledger_account_settlement_update_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -63,18 +63,18 @@ class LedgerAccountSettlements(SyncAPIResource):
         *,
         contra_ledger_account_id: str,
         settled_ledger_account_id: str,
-        allow_either_direction: Optional[bool] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        effective_at_upper_bound: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        skip_settlement_ledger_transaction: Optional[bool] | NotGiven = NOT_GIVEN,
-        status: Optional[Literal["pending", "posted", "drafting"]] | NotGiven = NOT_GIVEN,
+        allow_either_direction: Optional[bool] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        effective_at_upper_bound: Union[str, datetime, None] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        skip_settlement_ledger_transaction: Optional[bool] | Omit = omit,
+        status: Optional[Literal["pending", "posted", "drafting"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerAccountSettlement:
         """
@@ -150,7 +150,7 @@ class LedgerAccountSettlements(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LedgerAccountSettlement:
         """
         Get details on a single ledger account settlement.
@@ -178,15 +178,15 @@ class LedgerAccountSettlements(SyncAPIResource):
         self,
         id: str,
         *,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        status: Literal["posted", "archived"] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        status: Literal["posted", "archived"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerAccountSettlement:
         """
@@ -236,22 +236,22 @@ class LedgerAccountSettlements(SyncAPIResource):
     def list(
         self,
         *,
-        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        ledger_id: str | NotGiven = NOT_GIVEN,
-        ledger_transaction_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        settled_ledger_account_id: str | NotGiven = NOT_GIVEN,
-        settlement_entry_direction: str | NotGiven = NOT_GIVEN,
-        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | Omit = omit,
+        after_cursor: Optional[str] | Omit = omit,
+        created_at: Dict[str, Union[str, datetime]] | Omit = omit,
+        ledger_id: str | Omit = omit,
+        ledger_transaction_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        per_page: int | Omit = omit,
+        settled_ledger_account_id: str | Omit = omit,
+        settlement_entry_direction: str | Omit = omit,
+        updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[LedgerAccountSettlement]:
         """
         Get a list of ledger account settlements.
@@ -337,18 +337,18 @@ class AsyncLedgerAccountSettlements(AsyncAPIResource):
         *,
         contra_ledger_account_id: str,
         settled_ledger_account_id: str,
-        allow_either_direction: Optional[bool] | NotGiven = NOT_GIVEN,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        effective_at_upper_bound: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        skip_settlement_ledger_transaction: Optional[bool] | NotGiven = NOT_GIVEN,
-        status: Optional[Literal["pending", "posted", "drafting"]] | NotGiven = NOT_GIVEN,
+        allow_either_direction: Optional[bool] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        effective_at_upper_bound: Union[str, datetime, None] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        skip_settlement_ledger_transaction: Optional[bool] | Omit = omit,
+        status: Optional[Literal["pending", "posted", "drafting"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerAccountSettlement:
         """
@@ -424,7 +424,7 @@ class AsyncLedgerAccountSettlements(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LedgerAccountSettlement:
         """
         Get details on a single ledger account settlement.
@@ -452,15 +452,15 @@ class AsyncLedgerAccountSettlements(AsyncAPIResource):
         self,
         id: str,
         *,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        status: Literal["posted", "archived"] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        status: Literal["posted", "archived"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerAccountSettlement:
         """
@@ -510,22 +510,22 @@ class AsyncLedgerAccountSettlements(AsyncAPIResource):
     def list(
         self,
         *,
-        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        created_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        ledger_id: str | NotGiven = NOT_GIVEN,
-        ledger_transaction_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        settled_ledger_account_id: str | NotGiven = NOT_GIVEN,
-        settlement_entry_direction: str | NotGiven = NOT_GIVEN,
-        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | Omit = omit,
+        after_cursor: Optional[str] | Omit = omit,
+        created_at: Dict[str, Union[str, datetime]] | Omit = omit,
+        ledger_id: str | Omit = omit,
+        ledger_transaction_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        per_page: int | Omit = omit,
+        settled_ledger_account_id: str | Omit = omit,
+        settlement_entry_direction: str | Omit = omit,
+        updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[LedgerAccountSettlement, AsyncPage[LedgerAccountSettlement]]:
         """
         Get a list of ledger account settlements.

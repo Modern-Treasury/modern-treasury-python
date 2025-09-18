@@ -16,7 +16,7 @@ from ...types import (
     ledger_transaction_create_reversal_params,
     ledger_transaction_create_partial_post_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from .versions import (
     Versions,
@@ -65,21 +65,21 @@ class LedgerTransactions(SyncAPIResource):
         self,
         *,
         ledger_entries: Iterable[LedgerEntryCreateRequest],
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
-        external_id: str | NotGiven = NOT_GIVEN,
-        ledgerable_id: str | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
+        effective_at: Union[str, datetime] | Omit = omit,
+        effective_date: Union[str, date] | Omit = omit,
+        external_id: str | Omit = omit,
+        ledgerable_id: str | Omit = omit,
         ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
-        | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        status: Literal["archived", "pending", "posted"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerTransaction:
         """
@@ -156,7 +156,7 @@ class LedgerTransactions(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LedgerTransaction:
         """
         Get details on a single ledger transaction.
@@ -184,20 +184,20 @@ class LedgerTransactions(SyncAPIResource):
         self,
         id: str,
         *,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        ledger_entries: Iterable[LedgerEntryCreateRequest] | NotGiven = NOT_GIVEN,
-        ledgerable_id: str | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
+        effective_at: Union[str, datetime] | Omit = omit,
+        ledger_entries: Iterable[LedgerEntryCreateRequest] | Omit = omit,
+        ledgerable_id: str | Omit = omit,
         ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
-        | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        status: Literal["archived", "pending", "posted"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerTransaction:
         """
@@ -262,34 +262,34 @@ class LedgerTransactions(SyncAPIResource):
     def list(
         self,
         *,
-        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        amount: ledger_transaction_list_params.Amount | NotGiven = NOT_GIVEN,
-        effective_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        effective_date: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        external_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_category_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_settlement_id: str | NotGiven = NOT_GIVEN,
-        ledger_id: str | NotGiven = NOT_GIVEN,
-        ledgerable_id: str | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | Omit = omit,
+        after_cursor: Optional[str] | Omit = omit,
+        amount: ledger_transaction_list_params.Amount | Omit = omit,
+        effective_at: Dict[str, Union[str, datetime]] | Omit = omit,
+        effective_date: Dict[str, Union[str, datetime]] | Omit = omit,
+        external_id: str | Omit = omit,
+        ledger_account_category_id: str | Omit = omit,
+        ledger_account_id: str | Omit = omit,
+        ledger_account_settlement_id: str | Omit = omit,
+        ledger_id: str | Omit = omit,
+        ledgerable_id: str | Omit = omit,
         ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
-        | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        order_by: ledger_transaction_list_params.OrderBy | NotGiven = NOT_GIVEN,
-        partially_posts_ledger_transaction_id: str | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        posted_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        reverses_ledger_transaction_id: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        order_by: ledger_transaction_list_params.OrderBy | Omit = omit,
+        partially_posts_ledger_transaction_id: str | Omit = omit,
+        per_page: int | Omit = omit,
+        posted_at: Dict[str, Union[str, datetime]] | Omit = omit,
+        reverses_ledger_transaction_id: str | Omit = omit,
         status: Union[Literal["pending", "posted", "archived"], List[Literal["pending", "posted", "archived"]]]
-        | NotGiven = NOT_GIVEN,
-        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[LedgerTransaction]:
         """
         Get a list of ledger transactions.
@@ -374,15 +374,15 @@ class LedgerTransactions(SyncAPIResource):
         id: str,
         *,
         posted_ledger_entries: Iterable[ledger_transaction_create_partial_post_params.PostedLedgerEntry],
-        description: str | NotGiven = NOT_GIVEN,
-        effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        effective_at: Union[str, datetime] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerTransaction:
         """
@@ -439,20 +439,20 @@ class LedgerTransactions(SyncAPIResource):
         self,
         id: str,
         *,
-        description: str | NotGiven = NOT_GIVEN,
-        effective_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        external_id: str | NotGiven = NOT_GIVEN,
-        ledgerable_id: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        effective_at: Union[str, datetime, None] | Omit = omit,
+        external_id: str | Omit = omit,
+        ledgerable_id: str | Omit = omit,
         ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
-        | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        status: Literal["archived", "pending", "posted"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerTransaction:
         """
@@ -545,21 +545,21 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         self,
         *,
         ledger_entries: Iterable[LedgerEntryCreateRequest],
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        effective_date: Union[str, date] | NotGiven = NOT_GIVEN,
-        external_id: str | NotGiven = NOT_GIVEN,
-        ledgerable_id: str | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
+        effective_at: Union[str, datetime] | Omit = omit,
+        effective_date: Union[str, date] | Omit = omit,
+        external_id: str | Omit = omit,
+        ledgerable_id: str | Omit = omit,
         ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
-        | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        status: Literal["archived", "pending", "posted"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerTransaction:
         """
@@ -636,7 +636,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LedgerTransaction:
         """
         Get details on a single ledger transaction.
@@ -664,20 +664,20 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         self,
         id: str,
         *,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        ledger_entries: Iterable[LedgerEntryCreateRequest] | NotGiven = NOT_GIVEN,
-        ledgerable_id: str | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
+        effective_at: Union[str, datetime] | Omit = omit,
+        ledger_entries: Iterable[LedgerEntryCreateRequest] | Omit = omit,
+        ledgerable_id: str | Omit = omit,
         ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
-        | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        status: Literal["archived", "pending", "posted"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerTransaction:
         """
@@ -742,34 +742,34 @@ class AsyncLedgerTransactions(AsyncAPIResource):
     def list(
         self,
         *,
-        id: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        amount: ledger_transaction_list_params.Amount | NotGiven = NOT_GIVEN,
-        effective_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        effective_date: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        external_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_category_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_settlement_id: str | NotGiven = NOT_GIVEN,
-        ledger_id: str | NotGiven = NOT_GIVEN,
-        ledgerable_id: str | NotGiven = NOT_GIVEN,
+        id: SequenceNotStr[str] | Omit = omit,
+        after_cursor: Optional[str] | Omit = omit,
+        amount: ledger_transaction_list_params.Amount | Omit = omit,
+        effective_at: Dict[str, Union[str, datetime]] | Omit = omit,
+        effective_date: Dict[str, Union[str, datetime]] | Omit = omit,
+        external_id: str | Omit = omit,
+        ledger_account_category_id: str | Omit = omit,
+        ledger_account_id: str | Omit = omit,
+        ledger_account_settlement_id: str | Omit = omit,
+        ledger_id: str | Omit = omit,
+        ledgerable_id: str | Omit = omit,
         ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
-        | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        order_by: ledger_transaction_list_params.OrderBy | NotGiven = NOT_GIVEN,
-        partially_posts_ledger_transaction_id: str | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        posted_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        reverses_ledger_transaction_id: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        order_by: ledger_transaction_list_params.OrderBy | Omit = omit,
+        partially_posts_ledger_transaction_id: str | Omit = omit,
+        per_page: int | Omit = omit,
+        posted_at: Dict[str, Union[str, datetime]] | Omit = omit,
+        reverses_ledger_transaction_id: str | Omit = omit,
         status: Union[Literal["pending", "posted", "archived"], List[Literal["pending", "posted", "archived"]]]
-        | NotGiven = NOT_GIVEN,
-        updated_at: Dict[str, Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[LedgerTransaction, AsyncPage[LedgerTransaction]]:
         """
         Get a list of ledger transactions.
@@ -854,15 +854,15 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         id: str,
         *,
         posted_ledger_entries: Iterable[ledger_transaction_create_partial_post_params.PostedLedgerEntry],
-        description: str | NotGiven = NOT_GIVEN,
-        effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        effective_at: Union[str, datetime] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerTransaction:
         """
@@ -919,20 +919,20 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         self,
         id: str,
         *,
-        description: str | NotGiven = NOT_GIVEN,
-        effective_at: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
-        external_id: str | NotGiven = NOT_GIVEN,
-        ledgerable_id: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        effective_at: Union[str, datetime, None] | Omit = omit,
+        external_id: str | Omit = omit,
+        ledgerable_id: str | Omit = omit,
         ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
-        | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        status: Literal["archived", "pending", "posted"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        status: Literal["archived", "pending", "posted"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LedgerTransaction:
         """

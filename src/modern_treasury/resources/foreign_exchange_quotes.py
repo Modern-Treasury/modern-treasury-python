@@ -9,7 +9,7 @@ import httpx
 
 from .. import _legacy_response
 from ..types import foreign_exchange_quote_list_params, foreign_exchange_quote_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -47,16 +47,16 @@ class ForeignExchangeQuotes(SyncAPIResource):
         *,
         internal_account_id: str,
         target_currency: Currency,
-        base_amount: int | NotGiven = NOT_GIVEN,
-        base_currency: Currency | NotGiven = NOT_GIVEN,
-        effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        target_amount: int | NotGiven = NOT_GIVEN,
+        base_amount: int | Omit = omit,
+        base_currency: Currency | Omit = omit,
+        effective_at: Union[str, datetime] | Omit = omit,
+        target_amount: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> ForeignExchangeQuote:
         """
@@ -119,7 +119,7 @@ class ForeignExchangeQuotes(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ForeignExchangeQuote:
         """
         get foreign_exchange_quote
@@ -146,21 +146,21 @@ class ForeignExchangeQuotes(SyncAPIResource):
     def list(
         self,
         *,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        base_currency: str | NotGiven = NOT_GIVEN,
-        effective_at_end: Union[str, date] | NotGiven = NOT_GIVEN,
-        effective_at_start: Union[str, date] | NotGiven = NOT_GIVEN,
-        expires_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        target_currency: str | NotGiven = NOT_GIVEN,
+        after_cursor: Optional[str] | Omit = omit,
+        base_currency: str | Omit = omit,
+        effective_at_end: Union[str, date] | Omit = omit,
+        effective_at_start: Union[str, date] | Omit = omit,
+        expires_at: Union[str, datetime] | Omit = omit,
+        internal_account_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        per_page: int | Omit = omit,
+        target_currency: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[ForeignExchangeQuote]:
         """
         list foreign_exchange_quotes
@@ -242,16 +242,16 @@ class AsyncForeignExchangeQuotes(AsyncAPIResource):
         *,
         internal_account_id: str,
         target_currency: Currency,
-        base_amount: int | NotGiven = NOT_GIVEN,
-        base_currency: Currency | NotGiven = NOT_GIVEN,
-        effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        target_amount: int | NotGiven = NOT_GIVEN,
+        base_amount: int | Omit = omit,
+        base_currency: Currency | Omit = omit,
+        effective_at: Union[str, datetime] | Omit = omit,
+        target_amount: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> ForeignExchangeQuote:
         """
@@ -314,7 +314,7 @@ class AsyncForeignExchangeQuotes(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ForeignExchangeQuote:
         """
         get foreign_exchange_quote
@@ -341,21 +341,21 @@ class AsyncForeignExchangeQuotes(AsyncAPIResource):
     def list(
         self,
         *,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        base_currency: str | NotGiven = NOT_GIVEN,
-        effective_at_end: Union[str, date] | NotGiven = NOT_GIVEN,
-        effective_at_start: Union[str, date] | NotGiven = NOT_GIVEN,
-        expires_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        target_currency: str | NotGiven = NOT_GIVEN,
+        after_cursor: Optional[str] | Omit = omit,
+        base_currency: str | Omit = omit,
+        effective_at_end: Union[str, date] | Omit = omit,
+        effective_at_start: Union[str, date] | Omit = omit,
+        expires_at: Union[str, datetime] | Omit = omit,
+        internal_account_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        per_page: int | Omit = omit,
+        target_currency: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ForeignExchangeQuote, AsyncPage[ForeignExchangeQuote]]:
         """
         list foreign_exchange_quotes
