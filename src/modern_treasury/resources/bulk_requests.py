@@ -9,7 +9,7 @@ import httpx
 
 from .. import _legacy_response
 from ..types import bulk_request_list_params, bulk_request_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -55,13 +55,13 @@ class BulkRequests(SyncAPIResource):
             "entity_link",
         ],
         resources: Iterable[bulk_request_create_params.Resource],
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> BulkRequest:
         """
@@ -118,7 +118,7 @@ class BulkRequests(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BulkRequest:
         """
         get bulk_request
@@ -145,10 +145,10 @@ class BulkRequests(SyncAPIResource):
     def list(
         self,
         *,
-        action_type: Literal["create", "update", "delete"] | NotGiven = NOT_GIVEN,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        action_type: Literal["create", "update", "delete"] | Omit = omit,
+        after_cursor: Optional[str] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        per_page: int | Omit = omit,
         resource_type: Literal[
             "payment_order",
             "ledger_account",
@@ -158,14 +158,14 @@ class BulkRequests(SyncAPIResource):
             "transaction_line_item",
             "entity_link",
         ]
-        | NotGiven = NOT_GIVEN,
-        status: Literal["pending", "processing", "completed"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        status: Literal["pending", "processing", "completed"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[BulkRequest]:
         """
         list bulk_requests
@@ -247,13 +247,13 @@ class AsyncBulkRequests(AsyncAPIResource):
             "entity_link",
         ],
         resources: Iterable[bulk_request_create_params.Resource],
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> BulkRequest:
         """
@@ -310,7 +310,7 @@ class AsyncBulkRequests(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BulkRequest:
         """
         get bulk_request
@@ -337,10 +337,10 @@ class AsyncBulkRequests(AsyncAPIResource):
     def list(
         self,
         *,
-        action_type: Literal["create", "update", "delete"] | NotGiven = NOT_GIVEN,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        action_type: Literal["create", "update", "delete"] | Omit = omit,
+        after_cursor: Optional[str] | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        per_page: int | Omit = omit,
         resource_type: Literal[
             "payment_order",
             "ledger_account",
@@ -350,14 +350,14 @@ class AsyncBulkRequests(AsyncAPIResource):
             "transaction_line_item",
             "entity_link",
         ]
-        | NotGiven = NOT_GIVEN,
-        status: Literal["pending", "processing", "completed"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        status: Literal["pending", "processing", "completed"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[BulkRequest, AsyncPage[BulkRequest]]:
         """
         list bulk_requests

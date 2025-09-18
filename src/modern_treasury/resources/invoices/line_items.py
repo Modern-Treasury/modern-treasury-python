@@ -7,7 +7,7 @@ from typing import Dict, Optional
 import httpx
 
 from ... import _legacy_response
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -46,17 +46,17 @@ class LineItems(SyncAPIResource):
         *,
         name: str,
         unit_amount: int,
-        description: str | NotGiven = NOT_GIVEN,
-        direction: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        quantity: int | NotGiven = NOT_GIVEN,
-        unit_amount_decimal: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        direction: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        quantity: int | Omit = omit,
+        unit_amount_decimal: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> InvoiceLineItem:
         """
@@ -130,7 +130,7 @@ class LineItems(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InvoiceLineItem:
         """
         get invoice_line_item
@@ -161,19 +161,19 @@ class LineItems(SyncAPIResource):
         id: str,
         *,
         invoice_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        direction: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        quantity: int | NotGiven = NOT_GIVEN,
-        unit_amount: int | NotGiven = NOT_GIVEN,
-        unit_amount_decimal: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        direction: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        name: str | Omit = omit,
+        quantity: int | Omit = omit,
+        unit_amount: int | Omit = omit,
+        unit_amount_decimal: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> InvoiceLineItem:
         """
@@ -243,14 +243,14 @@ class LineItems(SyncAPIResource):
         self,
         invoice_id: str,
         *,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        after_cursor: Optional[str] | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[InvoiceLineItem]:
         """
         list invoice_line_items
@@ -295,7 +295,7 @@ class LineItems(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> InvoiceLineItem:
         """
@@ -355,17 +355,17 @@ class AsyncLineItems(AsyncAPIResource):
         *,
         name: str,
         unit_amount: int,
-        description: str | NotGiven = NOT_GIVEN,
-        direction: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        quantity: int | NotGiven = NOT_GIVEN,
-        unit_amount_decimal: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        direction: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        quantity: int | Omit = omit,
+        unit_amount_decimal: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> InvoiceLineItem:
         """
@@ -439,7 +439,7 @@ class AsyncLineItems(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> InvoiceLineItem:
         """
         get invoice_line_item
@@ -470,19 +470,19 @@ class AsyncLineItems(AsyncAPIResource):
         id: str,
         *,
         invoice_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        direction: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        quantity: int | NotGiven = NOT_GIVEN,
-        unit_amount: int | NotGiven = NOT_GIVEN,
-        unit_amount_decimal: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        direction: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        name: str | Omit = omit,
+        quantity: int | Omit = omit,
+        unit_amount: int | Omit = omit,
+        unit_amount_decimal: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> InvoiceLineItem:
         """
@@ -552,14 +552,14 @@ class AsyncLineItems(AsyncAPIResource):
         self,
         invoice_id: str,
         *,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        after_cursor: Optional[str] | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[InvoiceLineItem, AsyncPage[InvoiceLineItem]]:
         """
         list invoice_line_items
@@ -604,7 +604,7 @@ class AsyncLineItems(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> InvoiceLineItem:
         """

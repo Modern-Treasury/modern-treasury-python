@@ -10,7 +10,7 @@ import httpx
 
 from .. import _legacy_response
 from ..types import return_list_params, return_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -47,7 +47,7 @@ class Returns(SyncAPIResource):
         *,
         returnable_id: Optional[str],
         returnable_type: Literal["incoming_payment_detail"],
-        additional_information: Optional[str] | NotGiven = NOT_GIVEN,
+        additional_information: Optional[str] | Omit = omit,
         code: Optional[
             Literal[
                 "901",
@@ -145,17 +145,17 @@ class Returns(SyncAPIResource):
                 "currencycloud",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        corrections: Optional[return_create_params.Corrections] | NotGiven = NOT_GIVEN,
-        data: Optional[object] | NotGiven = NOT_GIVEN,
-        date_of_death: Union[str, date, None] | NotGiven = NOT_GIVEN,
-        reason: Optional[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        corrections: Optional[return_create_params.Corrections] | Omit = omit,
+        data: Optional[object] | Omit = omit,
+        date_of_death: Union[str, date, None] | Omit = omit,
+        reason: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> ReturnObject:
         """
@@ -228,7 +228,7 @@ class Returns(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReturnObject:
         """
         Get a single return.
@@ -255,19 +255,18 @@ class Returns(SyncAPIResource):
     def list(
         self,
         *,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        returnable_id: str | NotGiven = NOT_GIVEN,
-        returnable_type: Literal["incoming_payment_detail", "payment_order", "return", "reversal"]
-        | NotGiven = NOT_GIVEN,
+        after_cursor: Optional[str] | Omit = omit,
+        counterparty_id: str | Omit = omit,
+        internal_account_id: str | Omit = omit,
+        per_page: int | Omit = omit,
+        returnable_id: str | Omit = omit,
+        returnable_type: Literal["incoming_payment_detail", "payment_order", "return", "reversal"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[ReturnObject]:
         """
         Get a list of returns.
@@ -341,7 +340,7 @@ class AsyncReturns(AsyncAPIResource):
         *,
         returnable_id: Optional[str],
         returnable_type: Literal["incoming_payment_detail"],
-        additional_information: Optional[str] | NotGiven = NOT_GIVEN,
+        additional_information: Optional[str] | Omit = omit,
         code: Optional[
             Literal[
                 "901",
@@ -439,17 +438,17 @@ class AsyncReturns(AsyncAPIResource):
                 "currencycloud",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
-        corrections: Optional[return_create_params.Corrections] | NotGiven = NOT_GIVEN,
-        data: Optional[object] | NotGiven = NOT_GIVEN,
-        date_of_death: Union[str, date, None] | NotGiven = NOT_GIVEN,
-        reason: Optional[str] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        corrections: Optional[return_create_params.Corrections] | Omit = omit,
+        data: Optional[object] | Omit = omit,
+        date_of_death: Union[str, date, None] | Omit = omit,
+        reason: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> ReturnObject:
         """
@@ -522,7 +521,7 @@ class AsyncReturns(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReturnObject:
         """
         Get a single return.
@@ -549,19 +548,18 @@ class AsyncReturns(AsyncAPIResource):
     def list(
         self,
         *,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        returnable_id: str | NotGiven = NOT_GIVEN,
-        returnable_type: Literal["incoming_payment_detail", "payment_order", "return", "reversal"]
-        | NotGiven = NOT_GIVEN,
+        after_cursor: Optional[str] | Omit = omit,
+        counterparty_id: str | Omit = omit,
+        internal_account_id: str | Omit = omit,
+        per_page: int | Omit = omit,
+        returnable_id: str | Omit = omit,
+        returnable_type: Literal["incoming_payment_detail", "payment_order", "return", "reversal"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[ReturnObject, AsyncPage[ReturnObject]]:
         """
         Get a list of returns.

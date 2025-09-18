@@ -9,7 +9,7 @@ import httpx
 
 from .. import _legacy_response
 from ..types import legal_entity_association_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -46,16 +46,16 @@ class LegalEntityAssociations(SyncAPIResource):
         *,
         parent_legal_entity_id: str,
         relationship_types: List[Literal["authorized_signer", "beneficial_owner", "control_person"]],
-        child_legal_entity: ChildLegalEntityCreate | NotGiven = NOT_GIVEN,
-        child_legal_entity_id: str | NotGiven = NOT_GIVEN,
-        ownership_percentage: Optional[int] | NotGiven = NOT_GIVEN,
-        title: Optional[str] | NotGiven = NOT_GIVEN,
+        child_legal_entity: ChildLegalEntityCreate | Omit = omit,
+        child_legal_entity_id: str | Omit = omit,
+        ownership_percentage: Optional[int] | Omit = omit,
+        title: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LegalEntityAssociation:
         """
@@ -132,16 +132,16 @@ class AsyncLegalEntityAssociations(AsyncAPIResource):
         *,
         parent_legal_entity_id: str,
         relationship_types: List[Literal["authorized_signer", "beneficial_owner", "control_person"]],
-        child_legal_entity: ChildLegalEntityCreate | NotGiven = NOT_GIVEN,
-        child_legal_entity_id: str | NotGiven = NOT_GIVEN,
-        ownership_percentage: Optional[int] | NotGiven = NOT_GIVEN,
-        title: Optional[str] | NotGiven = NOT_GIVEN,
+        child_legal_entity: ChildLegalEntityCreate | Omit = omit,
+        child_legal_entity_id: str | Omit = omit,
+        ownership_percentage: Optional[int] | Omit = omit,
+        title: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LegalEntityAssociation:
         """

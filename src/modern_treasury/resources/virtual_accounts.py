@@ -8,7 +8,7 @@ import httpx
 
 from .. import _legacy_response
 from ..types import virtual_account_list_params, virtual_account_create_params, virtual_account_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -46,20 +46,20 @@ class VirtualAccounts(SyncAPIResource):
         *,
         internal_account_id: str,
         name: str,
-        account_details: Iterable[virtual_account_create_params.AccountDetail] | NotGiven = NOT_GIVEN,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        credit_ledger_account_id: str | NotGiven = NOT_GIVEN,
-        debit_ledger_account_id: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        ledger_account: LedgerAccountCreateRequest | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        routing_details: Iterable[virtual_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
+        account_details: Iterable[virtual_account_create_params.AccountDetail] | Omit = omit,
+        counterparty_id: str | Omit = omit,
+        credit_ledger_account_id: str | Omit = omit,
+        debit_ledger_account_id: str | Omit = omit,
+        description: str | Omit = omit,
+        ledger_account: LedgerAccountCreateRequest | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        routing_details: Iterable[virtual_account_create_params.RoutingDetail] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> VirtualAccount:
         """
@@ -139,7 +139,7 @@ class VirtualAccounts(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualAccount:
         """
         get virtual_account
@@ -167,16 +167,16 @@ class VirtualAccounts(SyncAPIResource):
         self,
         id: str,
         *,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
+        counterparty_id: str | Omit = omit,
+        ledger_account_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> VirtualAccount:
         """
@@ -221,17 +221,17 @@ class VirtualAccounts(SyncAPIResource):
     def list(
         self,
         *,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        after_cursor: Optional[str] | Omit = omit,
+        counterparty_id: str | Omit = omit,
+        internal_account_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[VirtualAccount]:
         """
         Get a list of virtual accounts.
@@ -280,7 +280,7 @@ class VirtualAccounts(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> VirtualAccount:
         """
@@ -337,20 +337,20 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         *,
         internal_account_id: str,
         name: str,
-        account_details: Iterable[virtual_account_create_params.AccountDetail] | NotGiven = NOT_GIVEN,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        credit_ledger_account_id: str | NotGiven = NOT_GIVEN,
-        debit_ledger_account_id: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        ledger_account: LedgerAccountCreateRequest | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        routing_details: Iterable[virtual_account_create_params.RoutingDetail] | NotGiven = NOT_GIVEN,
+        account_details: Iterable[virtual_account_create_params.AccountDetail] | Omit = omit,
+        counterparty_id: str | Omit = omit,
+        credit_ledger_account_id: str | Omit = omit,
+        debit_ledger_account_id: str | Omit = omit,
+        description: str | Omit = omit,
+        ledger_account: LedgerAccountCreateRequest | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        routing_details: Iterable[virtual_account_create_params.RoutingDetail] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> VirtualAccount:
         """
@@ -430,7 +430,7 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VirtualAccount:
         """
         get virtual_account
@@ -458,16 +458,16 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         self,
         id: str,
         *,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        ledger_account_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
+        counterparty_id: str | Omit = omit,
+        ledger_account_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        name: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> VirtualAccount:
         """
@@ -512,17 +512,17 @@ class AsyncVirtualAccounts(AsyncAPIResource):
     def list(
         self,
         *,
-        after_cursor: Optional[str] | NotGiven = NOT_GIVEN,
-        counterparty_id: str | NotGiven = NOT_GIVEN,
-        internal_account_id: str | NotGiven = NOT_GIVEN,
-        metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        after_cursor: Optional[str] | Omit = omit,
+        counterparty_id: str | Omit = omit,
+        internal_account_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[VirtualAccount, AsyncPage[VirtualAccount]]:
         """
         Get a list of virtual accounts.
@@ -571,7 +571,7 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> VirtualAccount:
         """
