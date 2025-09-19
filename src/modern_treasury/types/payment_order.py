@@ -342,6 +342,7 @@ class PaymentOrder(BaseModel):
         "completed",
         "denied",
         "failed",
+        "held",
         "needs_approval",
         "pending",
         "processing",
