@@ -1187,6 +1187,7 @@ class ResourcePaymentOrderUpdateRequestWithID(TypedDict, total=False):
         "completed",
         "denied",
         "failed",
+        "held",
         "needs_approval",
         "pending",
         "processing",
