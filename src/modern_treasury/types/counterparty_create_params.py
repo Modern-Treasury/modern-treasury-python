@@ -81,7 +81,7 @@ class CounterpartyCreateParams(TypedDict, total=False):
     taxpayer_identifier: str
     """Either a valid SSN or EIN."""
 
-    verification_status: Literal["denied", "needs_approval", "unverified", "verified"]
+    verification_status: Optional[str]
     """The verification status of the counterparty."""
 
 
