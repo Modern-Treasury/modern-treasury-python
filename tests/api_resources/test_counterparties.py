@@ -319,7 +319,7 @@ class TestCounterparties:
             },
             send_remittance_advice=True,
             taxpayer_identifier="taxpayer_identifier",
-            verification_status="denied",
+            verification_status="verification_status",
         )
         assert_matches_type(Counterparty, counterparty, path=["response"])
 
@@ -870,7 +870,7 @@ class TestAsyncCounterparties:
             },
             send_remittance_advice=True,
             taxpayer_identifier="taxpayer_identifier",
-            verification_status="denied",
+            verification_status="verification_status",
         )
         assert_matches_type(Counterparty, counterparty, path=["response"])
 

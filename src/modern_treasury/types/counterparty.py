@@ -126,5 +126,5 @@ class Counterparty(BaseModel):
 
     updated_at: datetime
 
-    verification_status: Literal["denied", "needs_approval", "unverified", "verified"]
+    verification_status: Optional[str] = None
     """The verification status of the counterparty."""
