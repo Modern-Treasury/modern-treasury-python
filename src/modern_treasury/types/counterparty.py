@@ -126,5 +126,5 @@ class Counterparty(BaseModel):
 
     updated_at: datetime
 
-    verification_status: Optional[str] = None
+    verification_status: str
     """The verification status of the counterparty."""
