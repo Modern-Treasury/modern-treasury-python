@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Union, Optional
-from datetime import date
+from datetime import date, datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -15,6 +15,12 @@ class InvoiceListParams(TypedDict, total=False):
     after_cursor: Optional[str]
 
     counterparty_id: str
+
+    created_at_end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """An inclusive upper bound for searching created_at"""
+
+    created_at_start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """An inclusive lower bound for searching created_at"""
 
     due_date_end: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
     """An inclusive upper bound for searching due_date"""

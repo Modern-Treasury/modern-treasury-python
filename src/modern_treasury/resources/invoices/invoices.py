@@ -428,6 +428,8 @@ class Invoices(SyncAPIResource):
         *,
         after_cursor: Optional[str] | Omit = omit,
         counterparty_id: str | Omit = omit,
+        created_at_end: Union[str, datetime] | Omit = omit,
+        created_at_start: Union[str, datetime] | Omit = omit,
         due_date_end: Union[str, date] | Omit = omit,
         due_date_start: Union[str, date] | Omit = omit,
         expected_payment_id: str | Omit = omit,
@@ -448,6 +450,10 @@ class Invoices(SyncAPIResource):
         list invoices
 
         Args:
+          created_at_end: An inclusive upper bound for searching created_at
+
+          created_at_start: An inclusive lower bound for searching created_at
+
           due_date_end: An inclusive upper bound for searching due_date
 
           due_date_start: An inclusive lower bound for searching due_date
@@ -478,6 +484,8 @@ class Invoices(SyncAPIResource):
                     {
                         "after_cursor": after_cursor,
                         "counterparty_id": counterparty_id,
+                        "created_at_end": created_at_end,
+                        "created_at_start": created_at_start,
                         "due_date_end": due_date_end,
                         "due_date_start": due_date_start,
                         "expected_payment_id": expected_payment_id,
@@ -934,6 +942,8 @@ class AsyncInvoices(AsyncAPIResource):
         *,
         after_cursor: Optional[str] | Omit = omit,
         counterparty_id: str | Omit = omit,
+        created_at_end: Union[str, datetime] | Omit = omit,
+        created_at_start: Union[str, datetime] | Omit = omit,
         due_date_end: Union[str, date] | Omit = omit,
         due_date_start: Union[str, date] | Omit = omit,
         expected_payment_id: str | Omit = omit,
@@ -954,6 +964,10 @@ class AsyncInvoices(AsyncAPIResource):
         list invoices
 
         Args:
+          created_at_end: An inclusive upper bound for searching created_at
+
+          created_at_start: An inclusive lower bound for searching created_at
+
           due_date_end: An inclusive upper bound for searching due_date
 
           due_date_start: An inclusive lower bound for searching due_date
@@ -984,6 +998,8 @@ class AsyncInvoices(AsyncAPIResource):
                     {
                         "after_cursor": after_cursor,
                         "counterparty_id": counterparty_id,
+                        "created_at_end": created_at_end,
+                        "created_at_start": created_at_start,
                         "due_date_end": due_date_end,
                         "due_date_start": due_date_start,
                         "expected_payment_id": expected_payment_id,

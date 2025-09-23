@@ -307,6 +307,8 @@ class TestInvoices:
         invoice = client.invoices.list(
             after_cursor="after_cursor",
             counterparty_id="counterparty_id",
+            created_at_end=parse_datetime("2019-12-27T18:11:19.117Z"),
+            created_at_start=parse_datetime("2019-12-27T18:11:19.117Z"),
             due_date_end=parse_date("2019-12-27"),
             due_date_start=parse_date("2019-12-27"),
             expected_payment_id="expected_payment_id",
@@ -679,6 +681,8 @@ class TestAsyncInvoices:
         invoice = await async_client.invoices.list(
             after_cursor="after_cursor",
             counterparty_id="counterparty_id",
+            created_at_end=parse_datetime("2019-12-27T18:11:19.117Z"),
+            created_at_start=parse_datetime("2019-12-27T18:11:19.117Z"),
             due_date_end=parse_date("2019-12-27"),
             due_date_start=parse_date("2019-12-27"),
             expected_payment_id="expected_payment_id",
