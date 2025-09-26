@@ -15,7 +15,14 @@ from .payment_order_type import PaymentOrderType
 from .payment_order_subtype import PaymentOrderSubtype
 from .shared.foreign_exchange_rate import ForeignExchangeRate
 
-__all__ = ["PaymentOrder", "Accounting", "ReferenceNumbers", "ReferenceNumber", "UltimateOriginatingAccount"]
+__all__ = [
+    "PaymentOrder",
+    "Accounting",
+    "CurrentHold",
+    "ReferenceNumbers",
+    "ReferenceNumber",
+    "UltimateOriginatingAccount",
+]
 
 
 class Accounting(BaseModel):
@@ -33,6 +40,44 @@ class Accounting(BaseModel):
     Note that these will only be accessible if your accounting system has been
     connected.
     """
+
+
+class CurrentHold(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    object: Literal["hold"]
+    """The type of object"""
+
+    status: Literal["active", "resolved"]
+    """The status of the hold"""
+
+    target_id: str
+    """The ID of the target being held"""
+
+    target_type: Literal["payment_order"]
+    """The type of target being held"""
+
+    updated_at: datetime
+
+    live_mode: Optional[bool] = None
+    """
+    This field will be true if this object exists in the live environment or false
+    if it exists in the test environment.
+    """
+
+    metadata: Optional[Dict[str, str]] = None
+    """Additional metadata for the hold"""
+
+    reason: Optional[str] = None
+    """The reason for the hold"""
+
+    resolution: Optional[str] = None
+    """The resolution of the hold"""
+
+    resolved_at: Optional[datetime] = None
+    """When the hold was resolved"""
 
 
 class ReferenceNumber(BaseModel):
@@ -199,6 +244,12 @@ class PaymentOrder(BaseModel):
 
     currency: Currency
     """Defaults to the currency of the originating account."""
+
+    current_hold: Optional[CurrentHold] = None
+    """
+    If the payment order's status is `held`, this will include the hold object's
+    data.
+    """
 
     current_return: Optional["ReturnObject"] = None
     """

@@ -352,7 +352,19 @@ class ReturnObject(BaseModel):
     """The ID of the relevant Transaction Line Item or `null`."""
 
     type: Literal[
-        "ach", "ach_noc", "au_becs", "bacs", "book", "check", "cross_border", "eft", "interac", "manual", "sepa", "wire"
+        "ach",
+        "ach_noc",
+        "au_becs",
+        "bacs",
+        "book",
+        "check",
+        "cross_border",
+        "eft",
+        "gb_fps",
+        "interac",
+        "manual",
+        "sepa",
+        "wire",
     ]
     """The type of return.
 
