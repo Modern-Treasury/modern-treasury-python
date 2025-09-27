@@ -313,6 +313,7 @@ class InternalAccounts(SyncAPIResource):
         ]
         | Omit = omit,
         per_page: int | Omit = omit,
+        status: Literal["active", "pending_activation", "suspended", "pending_closure", "closed"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -337,6 +338,8 @@ class InternalAccounts(SyncAPIResource):
           payment_direction: Only return internal accounts that can originate payments with this direction.
 
           payment_type: Only return internal accounts that can make this type of payment.
+
+          status: Only return internal accounts with this status.
 
           extra_headers: Send extra headers
 
@@ -364,6 +367,7 @@ class InternalAccounts(SyncAPIResource):
                         "payment_direction": payment_direction,
                         "payment_type": payment_type,
                         "per_page": per_page,
+                        "status": status,
                     },
                     internal_account_list_params.InternalAccountListParams,
                 ),
@@ -701,6 +705,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         ]
         | Omit = omit,
         per_page: int | Omit = omit,
+        status: Literal["active", "pending_activation", "suspended", "pending_closure", "closed"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -725,6 +730,8 @@ class AsyncInternalAccounts(AsyncAPIResource):
           payment_direction: Only return internal accounts that can originate payments with this direction.
 
           payment_type: Only return internal accounts that can make this type of payment.
+
+          status: Only return internal accounts with this status.
 
           extra_headers: Send extra headers
 
@@ -752,6 +759,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                         "payment_direction": payment_direction,
                         "payment_type": payment_type,
                         "per_page": per_page,
+                        "status": status,
                     },
                     internal_account_list_params.InternalAccountListParams,
                 ),

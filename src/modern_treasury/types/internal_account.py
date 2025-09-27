@@ -192,7 +192,7 @@ class InternalAccount(BaseModel):
     routing_details: List[RoutingDetail]
     """An array of routing detail objects."""
 
-    status: Optional[str] = None
+    status: Optional[Literal["active", "closed", "pending_activation", "pending_closure", "suspended"]] = None
     """The internal account status."""
 
     updated_at: datetime
