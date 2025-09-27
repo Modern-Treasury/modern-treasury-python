@@ -73,3 +73,6 @@ class InternalAccountListParams(TypedDict, total=False):
     """Only return internal accounts that can make this type of payment."""
 
     per_page: int
+
+    status: Literal["active", "pending_activation", "suspended", "pending_closure", "closed"]
+    """Only return internal accounts with this status."""

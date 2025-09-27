@@ -206,6 +206,7 @@ class TestInternalAccounts:
             payment_direction="credit",
             payment_type="ach",
             per_page=0,
+            status="active",
         )
         assert_matches_type(SyncPage[InternalAccount], internal_account, path=["response"])
 
@@ -472,6 +473,7 @@ class TestAsyncInternalAccounts:
             payment_direction="credit",
             payment_type="ach",
             per_page=0,
+            status="active",
         )
         assert_matches_type(AsyncPage[InternalAccount], internal_account, path=["response"])
 
