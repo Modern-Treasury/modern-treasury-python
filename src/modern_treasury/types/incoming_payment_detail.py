@@ -118,6 +118,9 @@ class IncomingPaymentDetail(BaseModel):
     ] = None
     """The type of the originating routing number for the incoming payment detail."""
 
+    reconciled: bool
+    """True if the object is reconciled, false otherwise."""
+
     status: Literal["completed", "pending", "returned"]
     """The current status of the incoming payment order.
 

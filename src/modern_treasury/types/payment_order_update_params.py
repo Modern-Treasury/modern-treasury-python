@@ -172,6 +172,9 @@ class PaymentOrderUpdateParams(TypedDict, total=False):
     an internal account.
     """
 
+    reconciled: bool
+    """True if the object is reconciled, false otherwise."""
+
     remittance_information: Optional[str]
     """For `ach`, this field will be passed through on an addenda record.
 
