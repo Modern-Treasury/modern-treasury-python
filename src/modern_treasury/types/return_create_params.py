@@ -148,6 +148,9 @@ class ReturnCreateParams(TypedDict, total=False):
     This is for internal usage and will not be transmitted to the bank.”
     """
 
+    reconciled: bool
+    """True if the object is reconciled, false otherwise."""
+
 
 class Corrections(TypedDict, total=False):
     account_number: Optional[str]

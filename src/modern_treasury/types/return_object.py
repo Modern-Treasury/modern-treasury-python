@@ -330,6 +330,9 @@ class ReturnObject(BaseModel):
     human readable string.
     """
 
+    reconciled: bool
+    """True if the object is reconciled, false otherwise."""
+
     reference_numbers: List[ReferenceNumber]
     """An array of Payment Reference objects."""
 

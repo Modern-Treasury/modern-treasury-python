@@ -45,6 +45,7 @@ class TestReturns:
             data={},
             date_of_death=parse_date("2019-12-27"),
             reason="reason",
+            reconciled=True,
         )
         assert_matches_type(ReturnObject, return_, path=["response"])
 
@@ -181,6 +182,7 @@ class TestAsyncReturns:
             data={},
             date_of_death=parse_date("2019-12-27"),
             reason="reason",
+            reconciled=True,
         )
         assert_matches_type(ReturnObject, return_, path=["response"])
 
