@@ -43,6 +43,9 @@ class Reversal(BaseModel):
     ]
     """The reason for the reversal."""
 
+    reconciled: bool
+    """True if the object is reconciled, false otherwise."""
+
     status: Literal["completed", "failed", "pending", "processing", "returned", "sent"]
     """The current status of the reversal."""
 

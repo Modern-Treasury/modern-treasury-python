@@ -362,6 +362,9 @@ class PaymentOrder(BaseModel):
 
     receiving_account_type: Literal["internal_account", "external_account"]
 
+    reconciled: bool
+    """True if the object is reconciled, false otherwise."""
+
     reference_numbers: List[ReferenceNumber]
 
     remittance_information: Optional[str] = None

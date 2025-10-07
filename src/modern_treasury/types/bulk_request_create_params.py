@@ -483,6 +483,9 @@ class ResourcePaymentOrderAsyncCreateRequest(TypedDict, total=False):
     an internal account.
     """
 
+    reconciled: bool
+    """True if the object is reconciled, false otherwise."""
+
     remittance_information: Optional[str]
     """For `ach`, this field will be passed through on an addenda record.
 
@@ -1157,6 +1160,9 @@ class ResourcePaymentOrderUpdateRequestWithID(TypedDict, total=False):
     When using `receiving_account_id`, you may pass the id of an external account or
     an internal account.
     """
+
+    reconciled: bool
+    """True if the object is reconciled, false otherwise."""
 
     remittance_information: Optional[str]
     """For `ach`, this field will be passed through on an addenda record.
