@@ -150,7 +150,7 @@ class Returns(SyncAPIResource):
         data: Optional[object] | Omit = omit,
         date_of_death: Union[str, date, None] | Omit = omit,
         reason: Optional[str] | Omit = omit,
-        reconciled: bool | Omit = omit,
+        reconciliation_status: Literal["reconciled", "unreconciled", "tentatively_reconciled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -185,7 +185,7 @@ class Returns(SyncAPIResource):
           reason: An optional description of the reason for the return. This is for internal usage
               and will not be transmitted to the bank.”
 
-          reconciled: True if the object is reconciled, false otherwise.
+          reconciliation_status: One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
 
           extra_headers: Send extra headers
 
@@ -209,7 +209,7 @@ class Returns(SyncAPIResource):
                     "data": data,
                     "date_of_death": date_of_death,
                     "reason": reason,
-                    "reconciled": reconciled,
+                    "reconciliation_status": reconciliation_status,
                 },
                 return_create_params.ReturnCreateParams,
             ),
@@ -447,7 +447,7 @@ class AsyncReturns(AsyncAPIResource):
         data: Optional[object] | Omit = omit,
         date_of_death: Union[str, date, None] | Omit = omit,
         reason: Optional[str] | Omit = omit,
-        reconciled: bool | Omit = omit,
+        reconciliation_status: Literal["reconciled", "unreconciled", "tentatively_reconciled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -482,7 +482,7 @@ class AsyncReturns(AsyncAPIResource):
           reason: An optional description of the reason for the return. This is for internal usage
               and will not be transmitted to the bank.”
 
-          reconciled: True if the object is reconciled, false otherwise.
+          reconciliation_status: One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
 
           extra_headers: Send extra headers
 
@@ -506,7 +506,7 @@ class AsyncReturns(AsyncAPIResource):
                     "data": data,
                     "date_of_death": date_of_death,
                     "reason": reason,
-                    "reconciled": reconciled,
+                    "reconciliation_status": reconciliation_status,
                 },
                 return_create_params.ReturnCreateParams,
             ),
