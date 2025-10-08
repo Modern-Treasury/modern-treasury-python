@@ -148,8 +148,8 @@ class ReturnCreateParams(TypedDict, total=False):
     This is for internal usage and will not be transmitted to the bank.”
     """
 
-    reconciled: bool
-    """True if the object is reconciled, false otherwise."""
+    reconciliation_status: Literal["reconciled", "unreconciled", "tentatively_reconciled"]
+    """One of `unreconciled`, `tentatively_reconciled` or `reconciled`."""
 
 
 class Corrections(TypedDict, total=False):

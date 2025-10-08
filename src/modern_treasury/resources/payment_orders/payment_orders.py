@@ -97,7 +97,7 @@ class PaymentOrders(SyncAPIResource):
         purpose: Optional[str] | Omit = omit,
         receiving_account: payment_order_create_params.ReceivingAccount | Omit = omit,
         receiving_account_id: str | Omit = omit,
-        reconciled: bool | Omit = omit,
+        reconciliation_status: Literal["reconciled", "unreconciled", "tentatively_reconciled"] | Omit = omit,
         remittance_information: Optional[str] | Omit = omit,
         send_remittance_advice: Optional[bool] | Omit = omit,
         statement_descriptor: Optional[str] | Omit = omit,
@@ -212,7 +212,7 @@ class PaymentOrders(SyncAPIResource):
               `receiving_account_id`, you may pass the id of an external account or an
               internal account.
 
-          reconciled: True if the object is reconciled, false otherwise.
+          reconciliation_status: One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
 
           remittance_information: For `ach`, this field will be passed through on an addenda record. For `wire`
               payments the field will be passed through as the "Originator to Beneficiary
@@ -283,7 +283,7 @@ class PaymentOrders(SyncAPIResource):
                 "purpose": purpose,
                 "receiving_account": receiving_account,
                 "receiving_account_id": receiving_account_id,
-                "reconciled": reconciled,
+                "reconciliation_status": reconciliation_status,
                 "remittance_information": remittance_information,
                 "send_remittance_advice": send_remittance_advice,
                 "statement_descriptor": statement_descriptor,
@@ -376,7 +376,7 @@ class PaymentOrders(SyncAPIResource):
         purpose: Optional[str] | Omit = omit,
         receiving_account: payment_order_update_params.ReceivingAccount | Omit = omit,
         receiving_account_id: str | Omit = omit,
-        reconciled: bool | Omit = omit,
+        reconciliation_status: Literal["reconciled", "unreconciled", "tentatively_reconciled"] | Omit = omit,
         remittance_information: Optional[str] | Omit = omit,
         send_remittance_advice: Optional[bool] | Omit = omit,
         statement_descriptor: Optional[str] | Omit = omit,
@@ -492,7 +492,7 @@ class PaymentOrders(SyncAPIResource):
               `receiving_account_id`, you may pass the id of an external account or an
               internal account.
 
-          reconciled: True if the object is reconciled, false otherwise.
+          reconciliation_status: One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
 
           remittance_information: For `ach`, this field will be passed through on an addenda record. For `wire`
               payments the field will be passed through as the "Originator to Beneficiary
@@ -577,7 +577,7 @@ class PaymentOrders(SyncAPIResource):
                     "purpose": purpose,
                     "receiving_account": receiving_account,
                     "receiving_account_id": receiving_account_id,
-                    "reconciled": reconciled,
+                    "reconciliation_status": reconciliation_status,
                     "remittance_information": remittance_information,
                     "send_remittance_advice": send_remittance_advice,
                     "statement_descriptor": statement_descriptor,
@@ -781,7 +781,7 @@ class PaymentOrders(SyncAPIResource):
         purpose: Optional[str] | Omit = omit,
         receiving_account: payment_order_create_async_params.ReceivingAccount | Omit = omit,
         receiving_account_id: str | Omit = omit,
-        reconciled: bool | Omit = omit,
+        reconciliation_status: Literal["reconciled", "unreconciled", "tentatively_reconciled"] | Omit = omit,
         remittance_information: Optional[str] | Omit = omit,
         send_remittance_advice: Optional[bool] | Omit = omit,
         statement_descriptor: Optional[str] | Omit = omit,
@@ -893,7 +893,7 @@ class PaymentOrders(SyncAPIResource):
               `receiving_account_id`, you may pass the id of an external account or an
               internal account.
 
-          reconciled: True if the object is reconciled, false otherwise.
+          reconciliation_status: One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
 
           remittance_information: For `ach`, this field will be passed through on an addenda record. For `wire`
               payments the field will be passed through as the "Originator to Beneficiary
@@ -965,7 +965,7 @@ class PaymentOrders(SyncAPIResource):
                     "purpose": purpose,
                     "receiving_account": receiving_account,
                     "receiving_account_id": receiving_account_id,
-                    "reconciled": reconciled,
+                    "reconciliation_status": reconciliation_status,
                     "remittance_information": remittance_information,
                     "send_remittance_advice": send_remittance_advice,
                     "statement_descriptor": statement_descriptor,
@@ -1043,7 +1043,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         purpose: Optional[str] | Omit = omit,
         receiving_account: payment_order_create_params.ReceivingAccount | Omit = omit,
         receiving_account_id: str | Omit = omit,
-        reconciled: bool | Omit = omit,
+        reconciliation_status: Literal["reconciled", "unreconciled", "tentatively_reconciled"] | Omit = omit,
         remittance_information: Optional[str] | Omit = omit,
         send_remittance_advice: Optional[bool] | Omit = omit,
         statement_descriptor: Optional[str] | Omit = omit,
@@ -1158,7 +1158,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
               `receiving_account_id`, you may pass the id of an external account or an
               internal account.
 
-          reconciled: True if the object is reconciled, false otherwise.
+          reconciliation_status: One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
 
           remittance_information: For `ach`, this field will be passed through on an addenda record. For `wire`
               payments the field will be passed through as the "Originator to Beneficiary
@@ -1229,7 +1229,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
                 "purpose": purpose,
                 "receiving_account": receiving_account,
                 "receiving_account_id": receiving_account_id,
-                "reconciled": reconciled,
+                "reconciliation_status": reconciliation_status,
                 "remittance_information": remittance_information,
                 "send_remittance_advice": send_remittance_advice,
                 "statement_descriptor": statement_descriptor,
@@ -1322,7 +1322,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         purpose: Optional[str] | Omit = omit,
         receiving_account: payment_order_update_params.ReceivingAccount | Omit = omit,
         receiving_account_id: str | Omit = omit,
-        reconciled: bool | Omit = omit,
+        reconciliation_status: Literal["reconciled", "unreconciled", "tentatively_reconciled"] | Omit = omit,
         remittance_information: Optional[str] | Omit = omit,
         send_remittance_advice: Optional[bool] | Omit = omit,
         statement_descriptor: Optional[str] | Omit = omit,
@@ -1438,7 +1438,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
               `receiving_account_id`, you may pass the id of an external account or an
               internal account.
 
-          reconciled: True if the object is reconciled, false otherwise.
+          reconciliation_status: One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
 
           remittance_information: For `ach`, this field will be passed through on an addenda record. For `wire`
               payments the field will be passed through as the "Originator to Beneficiary
@@ -1523,7 +1523,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
                     "purpose": purpose,
                     "receiving_account": receiving_account,
                     "receiving_account_id": receiving_account_id,
-                    "reconciled": reconciled,
+                    "reconciliation_status": reconciliation_status,
                     "remittance_information": remittance_information,
                     "send_remittance_advice": send_remittance_advice,
                     "statement_descriptor": statement_descriptor,
@@ -1727,7 +1727,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         purpose: Optional[str] | Omit = omit,
         receiving_account: payment_order_create_async_params.ReceivingAccount | Omit = omit,
         receiving_account_id: str | Omit = omit,
-        reconciled: bool | Omit = omit,
+        reconciliation_status: Literal["reconciled", "unreconciled", "tentatively_reconciled"] | Omit = omit,
         remittance_information: Optional[str] | Omit = omit,
         send_remittance_advice: Optional[bool] | Omit = omit,
         statement_descriptor: Optional[str] | Omit = omit,
@@ -1839,7 +1839,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
               `receiving_account_id`, you may pass the id of an external account or an
               internal account.
 
-          reconciled: True if the object is reconciled, false otherwise.
+          reconciliation_status: One of `unreconciled`, `tentatively_reconciled` or `reconciled`.
 
           remittance_information: For `ach`, this field will be passed through on an addenda record. For `wire`
               payments the field will be passed through as the "Originator to Beneficiary
@@ -1911,7 +1911,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
                     "purpose": purpose,
                     "receiving_account": receiving_account,
                     "receiving_account_id": receiving_account_id,
-                    "reconciled": reconciled,
+                    "reconciliation_status": reconciliation_status,
                     "remittance_information": remittance_information,
                     "send_remittance_advice": send_remittance_advice,
                     "statement_descriptor": statement_descriptor,
