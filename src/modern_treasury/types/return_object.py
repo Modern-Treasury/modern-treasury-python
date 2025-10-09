@@ -330,7 +330,7 @@ class ReturnObject(BaseModel):
     human readable string.
     """
 
-    reconciliation_status: Literal["reconciled", "unreconciled", "tentatively_reconciled"]
+    reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"]
     """One of `unreconciled`, `tentatively_reconciled` or `reconciled`."""
 
     reference_numbers: List[ReferenceNumber]
