@@ -362,7 +362,7 @@ class PaymentOrder(BaseModel):
 
     receiving_account_type: Literal["internal_account", "external_account"]
 
-    reconciliation_status: Literal["reconciled", "unreconciled", "tentatively_reconciled"]
+    reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"]
     """One of `unreconciled`, `tentatively_reconciled` or `reconciled`."""
 
     reference_numbers: List[ReferenceNumber]

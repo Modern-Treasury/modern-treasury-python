@@ -43,7 +43,7 @@ class Reversal(BaseModel):
     ]
     """The reason for the reversal."""
 
-    reconciliation_status: Literal["reconciled", "unreconciled", "tentatively_reconciled"]
+    reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"]
     """One of `unreconciled`, `tentatively_reconciled` or `reconciled`."""
 
     status: Literal["completed", "failed", "pending", "processing", "returned", "sent"]

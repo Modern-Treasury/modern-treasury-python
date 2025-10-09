@@ -118,7 +118,7 @@ class IncomingPaymentDetail(BaseModel):
     ] = None
     """The type of the originating routing number for the incoming payment detail."""
 
-    reconciliation_status: Literal["reconciled", "unreconciled", "tentatively_reconciled"]
+    reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"]
     """One of `unreconciled`, `tentatively_reconciled` or `reconciled`."""
 
     status: Literal["completed", "pending", "returned"]
