@@ -193,7 +193,7 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
     an internal account.
     """
 
-    reconciliation_status: Literal["reconciled", "unreconciled", "tentatively_reconciled"]
+    reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"]
     """One of `unreconciled`, `tentatively_reconciled` or `reconciled`."""
 
     remittance_information: Optional[str]
