@@ -1,5 +1,37 @@
 # Changelog
 
+## 1.59.0 (2025-10-10)
+
+Full Changelog: [v1.58.0...v1.59.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.58.0...v1.59.0)
+
+### Features
+
+* **api:** api update ([19fc0ed](https://github.com/Modern-Treasury/modern-treasury-python/commit/19fc0ed01c2cf4b138f2a8e87dc79ae19731069a))
+* **api:** api update ([965600a](https://github.com/Modern-Treasury/modern-treasury-python/commit/965600a85231eb07fba46683aeb42b905dbd9d5f))
+* **api:** api update ([29d9efe](https://github.com/Modern-Treasury/modern-treasury-python/commit/29d9efed34a91adfeb586bc03e68859c6226a323))
+* **api:** api update ([42275ec](https://github.com/Modern-Treasury/modern-treasury-python/commit/42275ecbceb5743b98323c1815c7cde107711a14))
+* **api:** api update ([b43827b](https://github.com/Modern-Treasury/modern-treasury-python/commit/b43827b1b50d20c3e66b394aa73dc51705e73baa))
+* **api:** api update ([abbecf7](https://github.com/Modern-Treasury/modern-treasury-python/commit/abbecf7a9bcf405cdb493f1b27a4a57dec99d605))
+* **api:** api update ([1670556](https://github.com/Modern-Treasury/modern-treasury-python/commit/16705564ecc30d000e6d1e79e72ee017fb7cee0e))
+* **api:** api update ([cca87f9](https://github.com/Modern-Treasury/modern-treasury-python/commit/cca87f9ec1b201bc79b4849796c7b0a3f670e575))
+* **api:** api update ([550849f](https://github.com/Modern-Treasury/modern-treasury-python/commit/550849f1380821c4368e2f5c7823da59468325aa))
+* **api:** api update ([5722463](https://github.com/Modern-Treasury/modern-treasury-python/commit/57224635e0acd5f673e563281b1743eabe4487b9))
+* **api:** api update ([d609681](https://github.com/Modern-Treasury/modern-treasury-python/commit/d609681a6e857cdddaf14bc30f5d09be91a99e90))
+* **api:** api update ([3840a31](https://github.com/Modern-Treasury/modern-treasury-python/commit/3840a317c74f226da668f1ea06d1966ce7df2842))
+
+
+### Bug Fixes
+
+* **compat:** compat with `pydantic&lt;2.8.0` when using additional fields ([8f80109](https://github.com/Modern-Treasury/modern-treasury-python/commit/8f801091fefefdb2310f9085e7882e79e72dcdc0))
+
+
+### Chores
+
+* do not install brew dependencies in ./scripts/bootstrap by default ([7b32257](https://github.com/Modern-Treasury/modern-treasury-python/commit/7b322574c391c6da14c9e8dc7642e62bb7c01c9b))
+* **internal:** detect missing future annotations with ruff ([30be13a](https://github.com/Modern-Treasury/modern-treasury-python/commit/30be13acfaff4582381b1738ee5fe32901a0bf6a))
+* **internal:** update pydantic dependency ([cda3208](https://github.com/Modern-Treasury/modern-treasury-python/commit/cda320856c9d0c4fafda58b0d1d8c7fb57f610ca))
+* **types:** change optional parameter type from NotGiven to Omit ([aaab183](https://github.com/Modern-Treasury/modern-treasury-python/commit/aaab183db7698811c780702ca19fc325efc26269))
+
 ## 1.58.0 (2025-09-11)
 
 Full Changelog: [v1.57.0...v1.58.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.57.0...v1.58.0)
