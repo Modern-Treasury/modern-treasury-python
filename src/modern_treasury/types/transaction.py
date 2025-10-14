@@ -155,7 +155,6 @@ class Transaction(BaseModel):
             "mt_fof",
             "mx",
             "paypal",
-            "plaid",
             "pnc",
             "signet",
             "silvergate",
