@@ -140,7 +140,6 @@ class Transaction(BaseModel):
             "bankprov",
             "bnk_dev",
             "brale",
-            "bridge",
             "cleartouch",
             "column",
             "cross_river",
