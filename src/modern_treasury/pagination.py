@@ -29,6 +29,10 @@ class SyncPage(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
         return items
 
     @override
+    def has_next_page(self) -> bool:
+        return self.next_page_info() is not None
+
+    @override
     def next_page_info(self) -> Optional[PageInfo]:
         after_cursor = self.after_cursor
         if not after_cursor:
@@ -59,6 +63,10 @@ class AsyncPage(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
         if not items:
             return []
         return items
+
+    @override
+    def has_next_page(self) -> bool:
+        return self.next_page_info() is not None
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
