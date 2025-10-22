@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.60.0 (2025-10-22)
+
+Full Changelog: [v1.59.0...v1.60.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.59.0...v1.60.0)
+
+### Features
+
+* **api:** api update ([0ba705d](https://github.com/Modern-Treasury/modern-treasury-python/commit/0ba705d5415963e37bd179a78bb0b743153c89fe))
+* **api:** api update ([fbee782](https://github.com/Modern-Treasury/modern-treasury-python/commit/fbee7828b517d8118364eba67db3a5f311ed4ac1))
+* **api:** manual updates ([fad04fb](https://github.com/Modern-Treasury/modern-treasury-python/commit/fad04fb0f1614da2bae463370753a2ee4cccd1c8))
+
+
+### Chores
+
+* bump `httpx-aiohttp` version to 0.1.9 ([2cf46a3](https://github.com/Modern-Treasury/modern-treasury-python/commit/2cf46a31458e96215f63d38e342c0a743c0fd9b4))
+
 ## 1.59.0 (2025-10-10)
 
 Full Changelog: [v1.58.0...v1.59.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.58.0...v1.59.0)
