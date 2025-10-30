@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.60.1 (2025-10-30)
+
+Full Changelog: [v1.60.0...v1.60.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.60.0...v1.60.1)
+
+### Bug Fixes
+
+* **client:** close streams without requiring full consumption ([4fcb96a](https://github.com/Modern-Treasury/modern-treasury-python/commit/4fcb96a5bea5eca9a3860b290af9bc3245707067))
+
+
+### Chores
+
+* **internal/tests:** avoid race condition with implicit client cleanup ([d47993e](https://github.com/Modern-Treasury/modern-treasury-python/commit/d47993e8ec699a688767e12f909470e0d4a90a17))
+
 ## 1.60.0 (2025-10-22)
 
 Full Changelog: [v1.59.0...v1.60.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.59.0...v1.60.0)
