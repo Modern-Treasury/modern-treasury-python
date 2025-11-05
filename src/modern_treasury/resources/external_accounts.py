@@ -58,11 +58,10 @@ class ExternalAccounts(SyncAPIResource):
         self,
         *,
         counterparty_id: Optional[str],
-        query_external_id: str | Omit = omit,
         account_details: Iterable[external_account_create_params.AccountDetail] | Omit = omit,
         account_type: ExternalAccountType | Omit = omit,
         contact_details: Iterable[ContactDetailCreateRequestParam] | Omit = omit,
-        body_external_id: Optional[str] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         ledger_account: LedgerAccountCreateRequest | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         name: Optional[str] | Omit = omit,
@@ -84,11 +83,9 @@ class ExternalAccounts(SyncAPIResource):
         create external account
 
         Args:
-          query_external_id: An optional user-defined 180 character unique identifier.
-
           account_type: Can be `checking`, `savings` or `other`.
 
-          body_external_id: An optional user-defined 180 character unique identifier.
+          external_id: An optional user-defined 180 character unique identifier.
 
           ledger_account: Specifies a ledger account object that will be created with the external
               account. The resulting ledger account is linked to the external account for
@@ -129,7 +126,7 @@ class ExternalAccounts(SyncAPIResource):
                     "account_details": account_details,
                     "account_type": account_type,
                     "contact_details": contact_details,
-                    "body_external_id": body_external_id,
+                    "external_id": external_id,
                     "ledger_account": ledger_account,
                     "metadata": metadata,
                     "name": name,
@@ -148,9 +145,6 @@ class ExternalAccounts(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
-                query=maybe_transform(
-                    {"query_external_id": query_external_id}, external_account_create_params.ExternalAccountCreateParams
-                ),
             ),
             cast_to=ExternalAccount,
         )
@@ -539,11 +533,10 @@ class AsyncExternalAccounts(AsyncAPIResource):
         self,
         *,
         counterparty_id: Optional[str],
-        query_external_id: str | Omit = omit,
         account_details: Iterable[external_account_create_params.AccountDetail] | Omit = omit,
         account_type: ExternalAccountType | Omit = omit,
         contact_details: Iterable[ContactDetailCreateRequestParam] | Omit = omit,
-        body_external_id: Optional[str] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         ledger_account: LedgerAccountCreateRequest | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         name: Optional[str] | Omit = omit,
@@ -565,11 +558,9 @@ class AsyncExternalAccounts(AsyncAPIResource):
         create external account
 
         Args:
-          query_external_id: An optional user-defined 180 character unique identifier.
-
           account_type: Can be `checking`, `savings` or `other`.
 
-          body_external_id: An optional user-defined 180 character unique identifier.
+          external_id: An optional user-defined 180 character unique identifier.
 
           ledger_account: Specifies a ledger account object that will be created with the external
               account. The resulting ledger account is linked to the external account for
@@ -610,7 +601,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
                     "account_details": account_details,
                     "account_type": account_type,
                     "contact_details": contact_details,
-                    "body_external_id": body_external_id,
+                    "external_id": external_id,
                     "ledger_account": ledger_account,
                     "metadata": metadata,
                     "name": name,
@@ -629,9 +620,6 @@ class AsyncExternalAccounts(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 idempotency_key=idempotency_key,
-                query=await async_maybe_transform(
-                    {"query_external_id": query_external_id}, external_account_create_params.ExternalAccountCreateParams
-                ),
             ),
             cast_to=ExternalAccount,
         )
