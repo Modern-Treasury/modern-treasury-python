@@ -375,6 +375,46 @@ class InternalAccounts(SyncAPIResource):
             model=InternalAccount,
         )
 
+    def request_closure(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
+    ) -> InternalAccount:
+        """
+        request closure of internal account
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._post(
+            f"/api/internal_accounts/{id}/request_closure",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=InternalAccount,
+        )
+
     def update_account_capability(
         self,
         id: str,
@@ -767,6 +807,46 @@ class AsyncInternalAccounts(AsyncAPIResource):
             model=InternalAccount,
         )
 
+    async def request_closure(
+        self,
+        id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        idempotency_key: str | None = None,
+    ) -> InternalAccount:
+        """
+        request closure of internal account
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+
+          idempotency_key: Specify a custom idempotency key for this request
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._post(
+            f"/api/internal_accounts/{id}/request_closure",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                idempotency_key=idempotency_key,
+            ),
+            cast_to=InternalAccount,
+        )
+
     async def update_account_capability(
         self,
         id: str,
@@ -837,6 +917,9 @@ class InternalAccountsWithRawResponse:
         self.list = _legacy_response.to_raw_response_wrapper(
             internal_accounts.list,
         )
+        self.request_closure = _legacy_response.to_raw_response_wrapper(
+            internal_accounts.request_closure,
+        )
         self.update_account_capability = _legacy_response.to_raw_response_wrapper(
             internal_accounts.update_account_capability,
         )
@@ -861,6 +944,9 @@ class AsyncInternalAccountsWithRawResponse:
         )
         self.list = _legacy_response.async_to_raw_response_wrapper(
             internal_accounts.list,
+        )
+        self.request_closure = _legacy_response.async_to_raw_response_wrapper(
+            internal_accounts.request_closure,
         )
         self.update_account_capability = _legacy_response.async_to_raw_response_wrapper(
             internal_accounts.update_account_capability,
@@ -887,6 +973,9 @@ class InternalAccountsWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             internal_accounts.list,
         )
+        self.request_closure = to_streamed_response_wrapper(
+            internal_accounts.request_closure,
+        )
         self.update_account_capability = to_streamed_response_wrapper(
             internal_accounts.update_account_capability,
         )
@@ -911,6 +1000,9 @@ class AsyncInternalAccountsWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             internal_accounts.list,
+        )
+        self.request_closure = async_to_streamed_response_wrapper(
+            internal_accounts.request_closure,
         )
         self.update_account_capability = async_to_streamed_response_wrapper(
             internal_accounts.update_account_capability,
