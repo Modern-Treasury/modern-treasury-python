@@ -3,9 +3,8 @@
 from __future__ import annotations
 
 from typing import Dict, Iterable, Optional
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
-from .._utils import PropertyInfo
 from .external_account_type import ExternalAccountType
 from .shared_params.address_request import AddressRequest
 from .contact_detail_create_request_param import ContactDetailCreateRequestParam
@@ -17,9 +16,6 @@ __all__ = ["ExternalAccountCreateParams", "AccountDetails", "AccountDetail", "Ro
 class ExternalAccountCreateParams(TypedDict, total=False):
     counterparty_id: Required[Optional[str]]
 
-    query_external_id: Annotated[str, PropertyInfo(alias="external_id")]
-    """An optional user-defined 180 character unique identifier."""
-
     account_details: Iterable[AccountDetail]
 
     account_type: ExternalAccountType
@@ -27,7 +23,7 @@ class ExternalAccountCreateParams(TypedDict, total=False):
 
     contact_details: Iterable[ContactDetailCreateRequestParam]
 
-    body_external_id: Annotated[Optional[str], PropertyInfo(alias="external_id")]
+    external_id: Optional[str]
     """An optional user-defined 180 character unique identifier."""
 
     ledger_account: LedgerAccountCreateRequest
