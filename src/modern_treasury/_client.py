@@ -39,6 +39,7 @@ from .types.ping_response import PingResponse
 
 if TYPE_CHECKING:
     from .resources import (
+        holds,
         events,
         ledgers,
         returns,
@@ -56,6 +57,8 @@ if TYPE_CHECKING:
         legal_entities,
         payment_orders,
         account_details,
+        journal_entries,
+        journal_reports,
         ledger_accounts,
         payment_actions,
         routing_details,
@@ -75,6 +78,7 @@ if TYPE_CHECKING:
         ledger_account_settlements,
         ledger_account_balance_monitors,
     )
+    from .resources.holds import Holds, AsyncHolds
     from .resources.events import Events, AsyncEvents
     from .resources.ledgers import Ledgers, AsyncLedgers
     from .resources.returns import Returns, AsyncReturns
@@ -89,6 +93,8 @@ if TYPE_CHECKING:
     from .resources.ledger_entries import LedgerEntries, AsyncLedgerEntries
     from .resources.legal_entities import LegalEntities, AsyncLegalEntities
     from .resources.account_details import AccountDetails, AsyncAccountDetails
+    from .resources.journal_entries import JournalEntries, AsyncJournalEntries
+    from .resources.journal_reports import JournalReports, AsyncJournalReports
     from .resources.ledger_accounts import LedgerAccounts, AsyncLedgerAccounts
     from .resources.payment_actions import PaymentActions, AsyncPaymentActions
     from .resources.routing_details import RoutingDetails, AsyncRoutingDetails
@@ -414,6 +420,24 @@ class ModernTreasury(SyncAPIClient):
         from .resources.payment_actions import PaymentActions
 
         return PaymentActions(self)
+
+    @cached_property
+    def journal_entries(self) -> JournalEntries:
+        from .resources.journal_entries import JournalEntries
+
+        return JournalEntries(self)
+
+    @cached_property
+    def journal_reports(self) -> JournalReports:
+        from .resources.journal_reports import JournalReports
+
+        return JournalReports(self)
+
+    @cached_property
+    def holds(self) -> Holds:
+        from .resources.holds import Holds
+
+        return Holds(self)
 
     @cached_property
     def with_raw_response(self) -> ModernTreasuryWithRawResponse:
@@ -842,6 +866,24 @@ class AsyncModernTreasury(AsyncAPIClient):
         return AsyncPaymentActions(self)
 
     @cached_property
+    def journal_entries(self) -> AsyncJournalEntries:
+        from .resources.journal_entries import AsyncJournalEntries
+
+        return AsyncJournalEntries(self)
+
+    @cached_property
+    def journal_reports(self) -> AsyncJournalReports:
+        from .resources.journal_reports import AsyncJournalReports
+
+        return AsyncJournalReports(self)
+
+    @cached_property
+    def holds(self) -> AsyncHolds:
+        from .resources.holds import AsyncHolds
+
+        return AsyncHolds(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncModernTreasuryWithRawResponse:
         return AsyncModernTreasuryWithRawResponse(self)
 
@@ -1203,6 +1245,24 @@ class ModernTreasuryWithRawResponse:
 
         return PaymentActionsWithRawResponse(self._client.payment_actions)
 
+    @cached_property
+    def journal_entries(self) -> journal_entries.JournalEntriesWithRawResponse:
+        from .resources.journal_entries import JournalEntriesWithRawResponse
+
+        return JournalEntriesWithRawResponse(self._client.journal_entries)
+
+    @cached_property
+    def journal_reports(self) -> journal_reports.JournalReportsWithRawResponse:
+        from .resources.journal_reports import JournalReportsWithRawResponse
+
+        return JournalReportsWithRawResponse(self._client.journal_reports)
+
+    @cached_property
+    def holds(self) -> holds.HoldsWithRawResponse:
+        from .resources.holds import HoldsWithRawResponse
+
+        return HoldsWithRawResponse(self._client.holds)
+
 
 class AsyncModernTreasuryWithRawResponse:
     _client: AsyncModernTreasury
@@ -1426,6 +1486,24 @@ class AsyncModernTreasuryWithRawResponse:
 
         return AsyncPaymentActionsWithRawResponse(self._client.payment_actions)
 
+    @cached_property
+    def journal_entries(self) -> journal_entries.AsyncJournalEntriesWithRawResponse:
+        from .resources.journal_entries import AsyncJournalEntriesWithRawResponse
+
+        return AsyncJournalEntriesWithRawResponse(self._client.journal_entries)
+
+    @cached_property
+    def journal_reports(self) -> journal_reports.AsyncJournalReportsWithRawResponse:
+        from .resources.journal_reports import AsyncJournalReportsWithRawResponse
+
+        return AsyncJournalReportsWithRawResponse(self._client.journal_reports)
+
+    @cached_property
+    def holds(self) -> holds.AsyncHoldsWithRawResponse:
+        from .resources.holds import AsyncHoldsWithRawResponse
+
+        return AsyncHoldsWithRawResponse(self._client.holds)
+
 
 class ModernTreasuryWithStreamedResponse:
     _client: ModernTreasury
@@ -1648,6 +1726,24 @@ class ModernTreasuryWithStreamedResponse:
         from .resources.payment_actions import PaymentActionsWithStreamingResponse
 
         return PaymentActionsWithStreamingResponse(self._client.payment_actions)
+
+    @cached_property
+    def journal_entries(self) -> journal_entries.JournalEntriesWithStreamingResponse:
+        from .resources.journal_entries import JournalEntriesWithStreamingResponse
+
+        return JournalEntriesWithStreamingResponse(self._client.journal_entries)
+
+    @cached_property
+    def journal_reports(self) -> journal_reports.JournalReportsWithStreamingResponse:
+        from .resources.journal_reports import JournalReportsWithStreamingResponse
+
+        return JournalReportsWithStreamingResponse(self._client.journal_reports)
+
+    @cached_property
+    def holds(self) -> holds.HoldsWithStreamingResponse:
+        from .resources.holds import HoldsWithStreamingResponse
+
+        return HoldsWithStreamingResponse(self._client.holds)
 
 
 class AsyncModernTreasuryWithStreamedResponse:
@@ -1873,6 +1969,24 @@ class AsyncModernTreasuryWithStreamedResponse:
         from .resources.payment_actions import AsyncPaymentActionsWithStreamingResponse
 
         return AsyncPaymentActionsWithStreamingResponse(self._client.payment_actions)
+
+    @cached_property
+    def journal_entries(self) -> journal_entries.AsyncJournalEntriesWithStreamingResponse:
+        from .resources.journal_entries import AsyncJournalEntriesWithStreamingResponse
+
+        return AsyncJournalEntriesWithStreamingResponse(self._client.journal_entries)
+
+    @cached_property
+    def journal_reports(self) -> journal_reports.AsyncJournalReportsWithStreamingResponse:
+        from .resources.journal_reports import AsyncJournalReportsWithStreamingResponse
+
+        return AsyncJournalReportsWithStreamingResponse(self._client.journal_reports)
+
+    @cached_property
+    def holds(self) -> holds.AsyncHoldsWithStreamingResponse:
+        from .resources.holds import AsyncHoldsWithStreamingResponse
+
+        return AsyncHoldsWithStreamingResponse(self._client.holds)
 
 
 Client = ModernTreasury

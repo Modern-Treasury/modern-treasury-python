@@ -46,9 +46,13 @@ from .routing_detail import RoutingDetail as RoutingDetail
 from .virtual_account import VirtualAccount as VirtualAccount
 from .expected_payment import ExpectedPayment as ExpectedPayment
 from .external_account import ExternalAccount as ExternalAccount
+from .hold_list_params import HoldListParams as HoldListParams
 from .internal_account import InternalAccount as InternalAccount
 from .event_list_params import EventListParams as EventListParams
 from .payment_reference import PaymentReference as PaymentReference
+from .hold_create_params import HoldCreateParams as HoldCreateParams
+from .hold_list_response import HoldListResponse as HoldListResponse
+from .hold_update_params import HoldUpdateParams as HoldUpdateParams
 from .ledger_list_params import LedgerListParams as LedgerListParams
 from .ledger_transaction import LedgerTransaction as LedgerTransaction
 from .payment_order_type import PaymentOrderType as PaymentOrderType
@@ -56,6 +60,8 @@ from .return_list_params import ReturnListParams as ReturnListParams
 from .invoice_list_params import InvoiceListParams as InvoiceListParams
 from .reconciliation_rule import ReconciliationRule as ReconciliationRule
 from .document_list_params import DocumentListParams as DocumentListParams
+from .hold_create_response import HoldCreateResponse as HoldCreateResponse
+from .hold_update_response import HoldUpdateResponse as HoldUpdateResponse
 from .ledger_create_params import LedgerCreateParams as LedgerCreateParams
 from .ledger_update_params import LedgerUpdateParams as LedgerUpdateParams
 from .return_create_params import ReturnCreateParams as ReturnCreateParams
@@ -68,6 +74,7 @@ from .payment_order_subtype import PaymentOrderSubtype as PaymentOrderSubtype
 from .connection_list_params import ConnectionListParams as ConnectionListParams
 from .document_create_params import DocumentCreateParams as DocumentCreateParams
 from .foreign_exchange_quote import ForeignExchangeQuote as ForeignExchangeQuote
+from .hold_retrieve_response import HoldRetrieveResponse as HoldRetrieveResponse
 from .account_collection_flow import AccountCollectionFlow as AccountCollectionFlow
 from .bulk_result_list_params import BulkResultListParams as BulkResultListParams
 from .connection_legal_entity import ConnectionLegalEntity as ConnectionLegalEntity
@@ -81,6 +88,7 @@ from .ledger_entry_list_params import LedgerEntryListParams as LedgerEntryListPa
 from .legal_entity_association import LegalEntityAssociation as LegalEntityAssociation
 from .legal_entity_list_params import LegalEntityListParams as LegalEntityListParams
 from .payment_flow_list_params import PaymentFlowListParams as PaymentFlowListParams
+from .journal_entry_list_params import JournalEntryListParams as JournalEntryListParams
 from .ledger_account_settlement import LedgerAccountSettlement as LedgerAccountSettlement
 from .payment_order_list_params import PaymentOrderListParams as PaymentOrderListParams
 from .reconciliation_rule_param import ReconciliationRuleParam as ReconciliationRuleParam
@@ -105,6 +113,7 @@ from .account_detail_create_params import AccountDetailCreateParams as AccountDe
 from .expected_payment_list_params import ExpectedPaymentListParams as ExpectedPaymentListParams
 from .external_account_list_params import ExternalAccountListParams as ExternalAccountListParams
 from .internal_account_list_params import InternalAccountListParams as InternalAccountListParams
+from .journal_report_update_params import JournalReportUpdateParams as JournalReportUpdateParams
 from .ledger_account_create_params import LedgerAccountCreateParams as LedgerAccountCreateParams
 from .ledger_account_update_params import LedgerAccountUpdateParams as LedgerAccountUpdateParams
 from .ledger_entry_retrieve_params import LedgerEntryRetrieveParams as LedgerEntryRetrieveParams

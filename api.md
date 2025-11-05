@@ -235,6 +235,7 @@ Methods:
 - <code title="get /api/internal_accounts/{id}">client.internal_accounts.<a href="./src/modern_treasury/resources/internal_accounts/internal_accounts.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/internal_account.py">InternalAccount</a></code>
 - <code title="patch /api/internal_accounts/{id}">client.internal_accounts.<a href="./src/modern_treasury/resources/internal_accounts/internal_accounts.py">update</a>(id, \*\*<a href="src/modern_treasury/types/internal_account_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/internal_account.py">InternalAccount</a></code>
 - <code title="get /api/internal_accounts">client.internal_accounts.<a href="./src/modern_treasury/resources/internal_accounts/internal_accounts.py">list</a>(\*\*<a href="src/modern_treasury/types/internal_account_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/internal_account.py">SyncPage[InternalAccount]</a></code>
+- <code title="post /api/internal_accounts/{id}/request_closure">client.internal_accounts.<a href="./src/modern_treasury/resources/internal_accounts/internal_accounts.py">request_closure</a>(id) -> <a href="./src/modern_treasury/types/internal_account.py">InternalAccount</a></code>
 - <code title="patch /api/internal_accounts/{internal_account_id}/account_capabilities/{id}">client.internal_accounts.<a href="./src/modern_treasury/resources/internal_accounts/internal_accounts.py">update_account_capability</a>(id, \*, internal_account_id, \*\*<a href="src/modern_treasury/types/internal_account_update_account_capability_params.py">params</a>) -> <a href="./src/modern_treasury/types/internal_account_update_account_capability_response.py">InternalAccountUpdateAccountCapabilityResponse</a></code>
 
 ## BalanceReports
@@ -653,3 +654,38 @@ Methods:
 - <code title="get /api/payment_actions/{id}">client.payment_actions.<a href="./src/modern_treasury/resources/payment_actions.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/payment_action_retrieve_response.py">PaymentActionRetrieveResponse</a></code>
 - <code title="patch /api/payment_actions/{id}">client.payment_actions.<a href="./src/modern_treasury/resources/payment_actions.py">update</a>(id, \*\*<a href="src/modern_treasury/types/payment_action_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/payment_action_update_response.py">PaymentActionUpdateResponse</a></code>
 - <code title="get /api/payment_actions">client.payment_actions.<a href="./src/modern_treasury/resources/payment_actions.py">list</a>(\*\*<a href="src/modern_treasury/types/payment_action_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/payment_action_list_response.py">SyncPage[PaymentActionListResponse]</a></code>
+
+# JournalEntries
+
+Methods:
+
+- <code title="get /api/journal_entries/{id}">client.journal_entries.<a href="./src/modern_treasury/resources/journal_entries.py">retrieve</a>(id) -> None</code>
+- <code title="get /api/journal_entries">client.journal_entries.<a href="./src/modern_treasury/resources/journal_entries.py">list</a>(\*\*<a href="src/modern_treasury/types/journal_entry_list_params.py">params</a>) -> None</code>
+
+# JournalReports
+
+Methods:
+
+- <code title="get /api/journal_reports/{id}">client.journal_reports.<a href="./src/modern_treasury/resources/journal_reports.py">retrieve</a>(id) -> None</code>
+- <code title="patch /api/journal_reports/{id}">client.journal_reports.<a href="./src/modern_treasury/resources/journal_reports.py">update</a>(id, \*\*<a href="src/modern_treasury/types/journal_report_update_params.py">params</a>) -> None</code>
+- <code title="get /api/journal_reports">client.journal_reports.<a href="./src/modern_treasury/resources/journal_reports.py">list</a>() -> None</code>
+
+# Holds
+
+Types:
+
+```python
+from modern_treasury.types import (
+    HoldCreateResponse,
+    HoldRetrieveResponse,
+    HoldUpdateResponse,
+    HoldListResponse,
+)
+```
+
+Methods:
+
+- <code title="post /api/holds">client.holds.<a href="./src/modern_treasury/resources/holds.py">create</a>(\*\*<a href="src/modern_treasury/types/hold_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/hold_create_response.py">HoldCreateResponse</a></code>
+- <code title="get /api/holds/{id}">client.holds.<a href="./src/modern_treasury/resources/holds.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/hold_retrieve_response.py">HoldRetrieveResponse</a></code>
+- <code title="patch /api/holds/{id}">client.holds.<a href="./src/modern_treasury/resources/holds.py">update</a>(id, \*\*<a href="src/modern_treasury/types/hold_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/hold_update_response.py">HoldUpdateResponse</a></code>
+- <code title="get /api/holds">client.holds.<a href="./src/modern_treasury/resources/holds.py">list</a>(\*\*<a href="src/modern_treasury/types/hold_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/hold_list_response.py">SyncPage[HoldListResponse]</a></code>
