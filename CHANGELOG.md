@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.61.0 (2025-11-05)
+
+Full Changelog: [v1.60.1...v1.61.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.60.1...v1.61.0)
+
+### Features
+
+* **api:** api update ([93d8770](https://github.com/Modern-Treasury/modern-treasury-python/commit/93d8770dfa6ac1a347cfce6118864afb5eaf578b))
+* **api:** api update ([dcb506c](https://github.com/Modern-Treasury/modern-treasury-python/commit/dcb506ce73ada9ad935d7c028a9a81c762adde51))
+
+
+### Chores
+
+* **internal:** grammar fix (it's -&gt; its) ([e887244](https://github.com/Modern-Treasury/modern-treasury-python/commit/e8872445ce95b7540585fc5f18aaa13b104ae7ad))
+
 ## 1.60.1 (2025-10-30)
 
 Full Changelog: [v1.60.0...v1.60.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.60.0...v1.60.1)
