@@ -14,7 +14,6 @@ PaymentOrderSubtype: TypeAlias = Optional[
         "CIE",
         "CTX",
         "IAT",
-        "POS",
         "PPD",
         "TEL",
         "WEB",

@@ -61,6 +61,15 @@ class TestJournalEntries:
         assert journal_entry is None
 
     @parametrize
+    def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
+        journal_entry = client.journal_entries.list(
+            journal_report_id="journal_report_id",
+            page=0,
+            per_page=0,
+        )
+        assert journal_entry is None
+
+    @parametrize
     def test_raw_response_list(self, client: ModernTreasury) -> None:
         response = client.journal_entries.with_raw_response.list(
             journal_report_id="journal_report_id",
@@ -132,6 +141,15 @@ class TestAsyncJournalEntries:
     async def test_method_list(self, async_client: AsyncModernTreasury) -> None:
         journal_entry = await async_client.journal_entries.list(
             journal_report_id="journal_report_id",
+        )
+        assert journal_entry is None
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
+        journal_entry = await async_client.journal_entries.list(
+            journal_report_id="journal_report_id",
+            page=0,
+            per_page=0,
         )
         assert journal_entry is None
 
