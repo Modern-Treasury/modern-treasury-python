@@ -6,7 +6,7 @@ import httpx
 
 from .. import _legacy_response
 from ..types import journal_entry_list_params
-from .._types import Body, Query, Headers, NoneType, NotGiven, not_given
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -74,6 +74,8 @@ class JournalEntries(SyncAPIResource):
         self,
         *,
         journal_report_id: str,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -86,6 +88,10 @@ class JournalEntries(SyncAPIResource):
 
         Args:
           journal_report_id: The ID of the journal report
+
+          page: Page number for pagination
+
+          per_page: Number of items per page
 
           extra_headers: Send extra headers
 
@@ -104,7 +110,12 @@ class JournalEntries(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"journal_report_id": journal_report_id}, journal_entry_list_params.JournalEntryListParams
+                    {
+                        "journal_report_id": journal_report_id,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    journal_entry_list_params.JournalEntryListParams,
                 ),
             ),
             cast_to=NoneType,
@@ -169,6 +180,8 @@ class AsyncJournalEntries(AsyncAPIResource):
         self,
         *,
         journal_report_id: str,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -181,6 +194,10 @@ class AsyncJournalEntries(AsyncAPIResource):
 
         Args:
           journal_report_id: The ID of the journal report
+
+          page: Page number for pagination
+
+          per_page: Number of items per page
 
           extra_headers: Send extra headers
 
@@ -199,7 +216,12 @@ class AsyncJournalEntries(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"journal_report_id": journal_report_id}, journal_entry_list_params.JournalEntryListParams
+                    {
+                        "journal_report_id": journal_report_id,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    journal_entry_list_params.JournalEntryListParams,
                 ),
             ),
             cast_to=NoneType,
