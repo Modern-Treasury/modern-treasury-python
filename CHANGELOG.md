@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.62.0 (2025-11-11)
+
+Full Changelog: [v1.61.0...v1.62.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.61.0...v1.62.0)
+
+### Features
+
+* **api:** api update ([d4d8483](https://github.com/Modern-Treasury/modern-treasury-python/commit/d4d848338c8d9cb0f88785f4e8fab90dc0955d79))
+* **api:** api update ([8f6c8fe](https://github.com/Modern-Treasury/modern-treasury-python/commit/8f6c8fe147c93acbb829c8f9da770f38bd351978))
+* **api:** manual updates ([02605b4](https://github.com/Modern-Treasury/modern-treasury-python/commit/02605b4bbfe033011dbd6551a05c1c93b3e8cce1))
+
+
+### Bug Fixes
+
+* compat with Python 3.14 ([968ffe0](https://github.com/Modern-Treasury/modern-treasury-python/commit/968ffe09ec4faa09f7bbc331c9e85ca961c91fae))
+* **compat:** update signatures of `model_dump` and `model_dump_json` for Pydantic v1 ([de86bb4](https://github.com/Modern-Treasury/modern-treasury-python/commit/de86bb46dba202b90d9fbd3c02e91f03c8090fe0))
+
+
+### Chores
+
+* **package:** drop Python 3.8 support ([d0de5bf](https://github.com/Modern-Treasury/modern-treasury-python/commit/d0de5bf4b0c3431c10706dc8685c634e2fd43c42))
+
 ## 1.61.0 (2025-11-05)
 
 Full Changelog: [v1.60.1...v1.61.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.60.1...v1.61.0)
