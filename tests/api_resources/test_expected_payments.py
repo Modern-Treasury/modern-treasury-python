@@ -30,6 +30,10 @@ class TestExpectedPayments:
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         expected_payment = client.expected_payments.create(
             amount_lower_bound=0,
+            amount_reconciled=0,
+            amount_reconciled_direction="credit",
+            amount_unreconciled=0,
+            amount_unreconciled_direction="credit",
             amount_upper_bound=0,
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="AED",
@@ -180,6 +184,10 @@ class TestExpectedPayments:
         expected_payment = client.expected_payments.update(
             id="id",
             amount_lower_bound=0,
+            amount_reconciled=0,
+            amount_reconciled_direction="credit",
+            amount_unreconciled=0,
+            amount_unreconciled_direction="credit",
             amount_upper_bound=0,
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="AED",
@@ -345,6 +353,10 @@ class TestAsyncExpectedPayments:
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         expected_payment = await async_client.expected_payments.create(
             amount_lower_bound=0,
+            amount_reconciled=0,
+            amount_reconciled_direction="credit",
+            amount_unreconciled=0,
+            amount_unreconciled_direction="credit",
             amount_upper_bound=0,
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="AED",
@@ -495,6 +507,10 @@ class TestAsyncExpectedPayments:
         expected_payment = await async_client.expected_payments.update(
             id="id",
             amount_lower_bound=0,
+            amount_reconciled=0,
+            amount_reconciled_direction="credit",
+            amount_unreconciled=0,
+            amount_unreconciled_direction="credit",
             amount_upper_bound=0,
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             currency="AED",

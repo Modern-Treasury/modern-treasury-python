@@ -70,10 +70,8 @@ class Invoices(SyncAPIResource):
         currency: Currency | Omit = omit,
         description: str | Omit = omit,
         fallback_payment_method: Optional[str] | Omit = omit,
-        ingest_ledger_entries: Optional[bool] | Omit = omit,
         invoice_line_items: Optional[Iterable[invoice_create_params.InvoiceLineItem]] | Omit = omit,
         invoicer_address: Optional[invoice_create_params.InvoicerAddress] | Omit = omit,
-        ledger_account_settlement_id: Optional[str] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         notification_email_addresses: Optional[SequenceNotStr[str]] | Omit = omit,
         notifications_enabled: bool | Omit = omit,
@@ -120,17 +118,11 @@ class Invoices(SyncAPIResource):
           fallback_payment_method: When payment_method is automatic, the fallback payment method to use when an
               automatic payment fails. One of `manual` or `ui`.
 
-          ingest_ledger_entries: Whether to ingest the ledger_entries to populate the invoice line items. If this
-              is false, then a line item must be provided. If this is true, line_items must be
-              empty. Ignored if ledger_account_settlement_id is empty.
-
           invoice_line_items: An array of invoice line items. The API supports a maximum of 50 invoice line
               items per invoice. If a greater number of invoice line items is required, please
               contact support.
 
           invoicer_address: The invoice issuer's business address.
-
-          ledger_account_settlement_id: The ID of the virtual account the invoice should be paid to.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -194,10 +186,8 @@ class Invoices(SyncAPIResource):
                     "currency": currency,
                     "description": description,
                     "fallback_payment_method": fallback_payment_method,
-                    "ingest_ledger_entries": ingest_ledger_entries,
                     "invoice_line_items": invoice_line_items,
                     "invoicer_address": invoicer_address,
-                    "ledger_account_settlement_id": ledger_account_settlement_id,
                     "metadata": metadata,
                     "notification_email_addresses": notification_email_addresses,
                     "notifications_enabled": notifications_enabled,
@@ -267,10 +257,8 @@ class Invoices(SyncAPIResource):
         description: str | Omit = omit,
         due_date: Union[str, datetime] | Omit = omit,
         fallback_payment_method: Optional[str] | Omit = omit,
-        ingest_ledger_entries: Optional[bool] | Omit = omit,
         invoice_line_items: Optional[Iterable[invoice_update_params.InvoiceLineItem]] | Omit = omit,
         invoicer_address: Optional[invoice_update_params.InvoicerAddress] | Omit = omit,
-        ledger_account_settlement_id: Optional[str] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         notification_email_addresses: Optional[SequenceNotStr[str]] | Omit = omit,
         notifications_enabled: bool | Omit = omit,
@@ -313,17 +301,11 @@ class Invoices(SyncAPIResource):
           fallback_payment_method: When payment_method is automatic, the fallback payment method to use when an
               automatic payment fails. One of `manual` or `ui`.
 
-          ingest_ledger_entries: Whether to ingest the ledger_entries to populate the invoice line items. If this
-              is false, then a line item must be provided. If this is true, line_items must be
-              empty. Ignored if ledger_account_settlement_id is empty.
-
           invoice_line_items: An array of invoice line items. The API supports a maximum of 50 invoice line
               items per invoice. If a greater number of invoice line items is required, please
               contact support.
 
           invoicer_address: The invoice issuer's business address.
-
-          ledger_account_settlement_id: The ID of the virtual account the invoice should be paid to.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -393,10 +375,8 @@ class Invoices(SyncAPIResource):
                     "description": description,
                     "due_date": due_date,
                     "fallback_payment_method": fallback_payment_method,
-                    "ingest_ledger_entries": ingest_ledger_entries,
                     "invoice_line_items": invoice_line_items,
                     "invoicer_address": invoicer_address,
-                    "ledger_account_settlement_id": ledger_account_settlement_id,
                     "metadata": metadata,
                     "notification_email_addresses": notification_email_addresses,
                     "notifications_enabled": notifications_enabled,
@@ -584,10 +564,8 @@ class AsyncInvoices(AsyncAPIResource):
         currency: Currency | Omit = omit,
         description: str | Omit = omit,
         fallback_payment_method: Optional[str] | Omit = omit,
-        ingest_ledger_entries: Optional[bool] | Omit = omit,
         invoice_line_items: Optional[Iterable[invoice_create_params.InvoiceLineItem]] | Omit = omit,
         invoicer_address: Optional[invoice_create_params.InvoicerAddress] | Omit = omit,
-        ledger_account_settlement_id: Optional[str] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         notification_email_addresses: Optional[SequenceNotStr[str]] | Omit = omit,
         notifications_enabled: bool | Omit = omit,
@@ -634,17 +612,11 @@ class AsyncInvoices(AsyncAPIResource):
           fallback_payment_method: When payment_method is automatic, the fallback payment method to use when an
               automatic payment fails. One of `manual` or `ui`.
 
-          ingest_ledger_entries: Whether to ingest the ledger_entries to populate the invoice line items. If this
-              is false, then a line item must be provided. If this is true, line_items must be
-              empty. Ignored if ledger_account_settlement_id is empty.
-
           invoice_line_items: An array of invoice line items. The API supports a maximum of 50 invoice line
               items per invoice. If a greater number of invoice line items is required, please
               contact support.
 
           invoicer_address: The invoice issuer's business address.
-
-          ledger_account_settlement_id: The ID of the virtual account the invoice should be paid to.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -708,10 +680,8 @@ class AsyncInvoices(AsyncAPIResource):
                     "currency": currency,
                     "description": description,
                     "fallback_payment_method": fallback_payment_method,
-                    "ingest_ledger_entries": ingest_ledger_entries,
                     "invoice_line_items": invoice_line_items,
                     "invoicer_address": invoicer_address,
-                    "ledger_account_settlement_id": ledger_account_settlement_id,
                     "metadata": metadata,
                     "notification_email_addresses": notification_email_addresses,
                     "notifications_enabled": notifications_enabled,
@@ -781,10 +751,8 @@ class AsyncInvoices(AsyncAPIResource):
         description: str | Omit = omit,
         due_date: Union[str, datetime] | Omit = omit,
         fallback_payment_method: Optional[str] | Omit = omit,
-        ingest_ledger_entries: Optional[bool] | Omit = omit,
         invoice_line_items: Optional[Iterable[invoice_update_params.InvoiceLineItem]] | Omit = omit,
         invoicer_address: Optional[invoice_update_params.InvoicerAddress] | Omit = omit,
-        ledger_account_settlement_id: Optional[str] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         notification_email_addresses: Optional[SequenceNotStr[str]] | Omit = omit,
         notifications_enabled: bool | Omit = omit,
@@ -827,17 +795,11 @@ class AsyncInvoices(AsyncAPIResource):
           fallback_payment_method: When payment_method is automatic, the fallback payment method to use when an
               automatic payment fails. One of `manual` or `ui`.
 
-          ingest_ledger_entries: Whether to ingest the ledger_entries to populate the invoice line items. If this
-              is false, then a line item must be provided. If this is true, line_items must be
-              empty. Ignored if ledger_account_settlement_id is empty.
-
           invoice_line_items: An array of invoice line items. The API supports a maximum of 50 invoice line
               items per invoice. If a greater number of invoice line items is required, please
               contact support.
 
           invoicer_address: The invoice issuer's business address.
-
-          ledger_account_settlement_id: The ID of the virtual account the invoice should be paid to.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -907,10 +869,8 @@ class AsyncInvoices(AsyncAPIResource):
                     "description": description,
                     "due_date": due_date,
                     "fallback_payment_method": fallback_payment_method,
-                    "ingest_ledger_entries": ingest_ledger_entries,
                     "invoice_line_items": invoice_line_items,
                     "invoicer_address": invoicer_address,
-                    "ledger_account_settlement_id": ledger_account_settlement_id,
                     "metadata": metadata,
                     "notification_email_addresses": notification_email_addresses,
                     "notifications_enabled": notifications_enabled,
