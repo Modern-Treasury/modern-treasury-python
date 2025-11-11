@@ -56,6 +56,10 @@ class ExpectedPayments(SyncAPIResource):
         self,
         *,
         amount_lower_bound: Optional[int] | Omit = omit,
+        amount_reconciled: Optional[int] | Omit = omit,
+        amount_reconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
+        amount_unreconciled: Optional[int] | Omit = omit,
+        amount_unreconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
         amount_upper_bound: Optional[int] | Omit = omit,
         counterparty_id: Optional[str] | Omit = omit,
         currency: Optional[Currency] | Omit = omit,
@@ -89,6 +93,18 @@ class ExpectedPayments(SyncAPIResource):
         Args:
           amount_lower_bound: The lowest amount this expected payment may be equal to. Value in specified
               currency's smallest unit. e.g. $10 would be represented as 1000.
+
+          amount_reconciled: The amount reconciled for this expected payment. Value in specified currency's
+              smallest unit. e.g. $10 would be represented as 1000.
+
+          amount_reconciled_direction: One of credit or debit. Indicates whether amount_reconciled is a credit or debit
+              amount.
+
+          amount_unreconciled: The amount that remains unreconciled for this expected payment. Value in
+              specified currency's smallest unit. e.g. $10 would be represented as 1000.
+
+          amount_unreconciled_direction: One of credit or debit. Indicates whether amount_unreconciled is a credit or
+              debit amount.
 
           amount_upper_bound: The highest amount this expected payment may be equal to. Value in specified
               currency's smallest unit. e.g. $10 would be represented as 1000.
@@ -156,6 +172,10 @@ class ExpectedPayments(SyncAPIResource):
             body=maybe_transform(
                 {
                     "amount_lower_bound": amount_lower_bound,
+                    "amount_reconciled": amount_reconciled,
+                    "amount_reconciled_direction": amount_reconciled_direction,
+                    "amount_unreconciled": amount_unreconciled,
+                    "amount_unreconciled_direction": amount_unreconciled_direction,
                     "amount_upper_bound": amount_upper_bound,
                     "counterparty_id": counterparty_id,
                     "currency": currency,
@@ -226,6 +246,10 @@ class ExpectedPayments(SyncAPIResource):
         id: str,
         *,
         amount_lower_bound: Optional[int] | Omit = omit,
+        amount_reconciled: Optional[int] | Omit = omit,
+        amount_reconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
+        amount_unreconciled: Optional[int] | Omit = omit,
+        amount_unreconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
         amount_upper_bound: Optional[int] | Omit = omit,
         counterparty_id: Optional[str] | Omit = omit,
         currency: Optional[Currency] | Omit = omit,
@@ -257,6 +281,18 @@ class ExpectedPayments(SyncAPIResource):
         Args:
           amount_lower_bound: The lowest amount this expected payment may be equal to. Value in specified
               currency's smallest unit. e.g. $10 would be represented as 1000.
+
+          amount_reconciled: The amount reconciled for this expected payment. Value in specified currency's
+              smallest unit. e.g. $10 would be represented as 1000.
+
+          amount_reconciled_direction: One of credit or debit. Indicates whether amount_reconciled is a credit or debit
+              amount.
+
+          amount_unreconciled: The amount that remains unreconciled for this expected payment. Value in
+              specified currency's smallest unit. e.g. $10 would be represented as 1000.
+
+          amount_unreconciled_direction: One of credit or debit. Indicates whether amount_unreconciled is a credit or
+              debit amount.
 
           amount_upper_bound: The highest amount this expected payment may be equal to. Value in specified
               currency's smallest unit. e.g. $10 would be represented as 1000.
@@ -319,6 +355,10 @@ class ExpectedPayments(SyncAPIResource):
             body=maybe_transform(
                 {
                     "amount_lower_bound": amount_lower_bound,
+                    "amount_reconciled": amount_reconciled,
+                    "amount_reconciled_direction": amount_reconciled_direction,
+                    "amount_unreconciled": amount_unreconciled,
+                    "amount_unreconciled_direction": amount_unreconciled_direction,
                     "amount_upper_bound": amount_upper_bound,
                     "counterparty_id": counterparty_id,
                     "currency": currency,
@@ -539,6 +579,10 @@ class AsyncExpectedPayments(AsyncAPIResource):
         self,
         *,
         amount_lower_bound: Optional[int] | Omit = omit,
+        amount_reconciled: Optional[int] | Omit = omit,
+        amount_reconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
+        amount_unreconciled: Optional[int] | Omit = omit,
+        amount_unreconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
         amount_upper_bound: Optional[int] | Omit = omit,
         counterparty_id: Optional[str] | Omit = omit,
         currency: Optional[Currency] | Omit = omit,
@@ -572,6 +616,18 @@ class AsyncExpectedPayments(AsyncAPIResource):
         Args:
           amount_lower_bound: The lowest amount this expected payment may be equal to. Value in specified
               currency's smallest unit. e.g. $10 would be represented as 1000.
+
+          amount_reconciled: The amount reconciled for this expected payment. Value in specified currency's
+              smallest unit. e.g. $10 would be represented as 1000.
+
+          amount_reconciled_direction: One of credit or debit. Indicates whether amount_reconciled is a credit or debit
+              amount.
+
+          amount_unreconciled: The amount that remains unreconciled for this expected payment. Value in
+              specified currency's smallest unit. e.g. $10 would be represented as 1000.
+
+          amount_unreconciled_direction: One of credit or debit. Indicates whether amount_unreconciled is a credit or
+              debit amount.
 
           amount_upper_bound: The highest amount this expected payment may be equal to. Value in specified
               currency's smallest unit. e.g. $10 would be represented as 1000.
@@ -639,6 +695,10 @@ class AsyncExpectedPayments(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "amount_lower_bound": amount_lower_bound,
+                    "amount_reconciled": amount_reconciled,
+                    "amount_reconciled_direction": amount_reconciled_direction,
+                    "amount_unreconciled": amount_unreconciled,
+                    "amount_unreconciled_direction": amount_unreconciled_direction,
                     "amount_upper_bound": amount_upper_bound,
                     "counterparty_id": counterparty_id,
                     "currency": currency,
@@ -709,6 +769,10 @@ class AsyncExpectedPayments(AsyncAPIResource):
         id: str,
         *,
         amount_lower_bound: Optional[int] | Omit = omit,
+        amount_reconciled: Optional[int] | Omit = omit,
+        amount_reconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
+        amount_unreconciled: Optional[int] | Omit = omit,
+        amount_unreconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
         amount_upper_bound: Optional[int] | Omit = omit,
         counterparty_id: Optional[str] | Omit = omit,
         currency: Optional[Currency] | Omit = omit,
@@ -740,6 +804,18 @@ class AsyncExpectedPayments(AsyncAPIResource):
         Args:
           amount_lower_bound: The lowest amount this expected payment may be equal to. Value in specified
               currency's smallest unit. e.g. $10 would be represented as 1000.
+
+          amount_reconciled: The amount reconciled for this expected payment. Value in specified currency's
+              smallest unit. e.g. $10 would be represented as 1000.
+
+          amount_reconciled_direction: One of credit or debit. Indicates whether amount_reconciled is a credit or debit
+              amount.
+
+          amount_unreconciled: The amount that remains unreconciled for this expected payment. Value in
+              specified currency's smallest unit. e.g. $10 would be represented as 1000.
+
+          amount_unreconciled_direction: One of credit or debit. Indicates whether amount_unreconciled is a credit or
+              debit amount.
 
           amount_upper_bound: The highest amount this expected payment may be equal to. Value in specified
               currency's smallest unit. e.g. $10 would be represented as 1000.
@@ -802,6 +878,10 @@ class AsyncExpectedPayments(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "amount_lower_bound": amount_lower_bound,
+                    "amount_reconciled": amount_reconciled,
+                    "amount_reconciled_direction": amount_reconciled_direction,
+                    "amount_unreconciled": amount_unreconciled,
+                    "amount_unreconciled_direction": amount_unreconciled_direction,
                     "amount_upper_bound": amount_upper_bound,
                     "counterparty_id": counterparty_id,
                     "currency": currency,
