@@ -23,6 +23,32 @@ class ExpectedPayment(BaseModel):
     as 1000.
     """
 
+    amount_reconciled: Optional[int] = None
+    """The amount reconciled for this expected payment.
+
+    Value in specified currency's smallest unit. e.g. $10 would be represented
+    as 1000.
+    """
+
+    amount_reconciled_direction: Optional[Literal["credit", "debit"]] = None
+    """One of credit or debit.
+
+    Indicates whether amount_reconciled is a credit or debit amount.
+    """
+
+    amount_unreconciled: Optional[int] = None
+    """The amount that remains unreconciled for this expected payment.
+
+    Value in specified currency's smallest unit. e.g. $10 would be represented
+    as 1000.
+    """
+
+    amount_unreconciled_direction: Optional[Literal["credit", "debit"]] = None
+    """One of credit or debit.
+
+    Indicates whether amount_unreconciled is a credit or debit amount.
+    """
+
     amount_upper_bound: Optional[int] = None
     """The highest amount this expected payment may be equal to.
 
