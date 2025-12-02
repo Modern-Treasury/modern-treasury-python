@@ -89,6 +89,7 @@ pip install modern-treasury[aiohttp]
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
+import os
 import asyncio
 from modern_treasury import DefaultAioHttpClient
 from modern_treasury import AsyncModernTreasury
@@ -96,8 +97,10 @@ from modern_treasury import AsyncModernTreasury
 
 async def main() -> None:
     async with AsyncModernTreasury(
-        organization_id="my-organization-ID",
-        api_key="My API Key",
+        organization_id=os.environ.get(
+            "MODERN_TREASURY_ORGANIZATION_ID"
+        ),  # This is the default and can be omitted
+        api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
         counterparty = await client.counterparties.create(
