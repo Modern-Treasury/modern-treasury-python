@@ -203,6 +203,7 @@ class InternalAccounts(SyncAPIResource):
         self,
         id: str,
         *,
+        contra_ledger_account_id: str | Omit = omit,
         counterparty_id: str | Omit = omit,
         ledger_account_id: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
@@ -220,6 +221,8 @@ class InternalAccounts(SyncAPIResource):
         update internal account
 
         Args:
+          contra_ledger_account_id: The Contra Ledger Account associated to this account.
+
           counterparty_id: The Counterparty associated to this account.
 
           ledger_account_id: The Ledger Account associated to this account.
@@ -247,6 +250,7 @@ class InternalAccounts(SyncAPIResource):
             f"/api/internal_accounts/{id}",
             body=maybe_transform(
                 {
+                    "contra_ledger_account_id": contra_ledger_account_id,
                     "counterparty_id": counterparty_id,
                     "ledger_account_id": ledger_account_id,
                     "metadata": metadata,
@@ -635,6 +639,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         self,
         id: str,
         *,
+        contra_ledger_account_id: str | Omit = omit,
         counterparty_id: str | Omit = omit,
         ledger_account_id: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
@@ -652,6 +657,8 @@ class AsyncInternalAccounts(AsyncAPIResource):
         update internal account
 
         Args:
+          contra_ledger_account_id: The Contra Ledger Account associated to this account.
+
           counterparty_id: The Counterparty associated to this account.
 
           ledger_account_id: The Ledger Account associated to this account.
@@ -679,6 +686,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
             f"/api/internal_accounts/{id}",
             body=await async_maybe_transform(
                 {
+                    "contra_ledger_account_id": contra_ledger_account_id,
                     "counterparty_id": counterparty_id,
                     "ledger_account_id": ledger_account_id,
                     "metadata": metadata,
