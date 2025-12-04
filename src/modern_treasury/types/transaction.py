@@ -154,6 +154,7 @@ class Transaction(BaseModel):
             "jpmc",
             "mt_flow",
             "mx",
+            "paxos",
             "paypal",
             "pnc",
             "signet",

@@ -151,6 +151,7 @@ class TestInternalAccounts:
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         internal_account = client.internal_accounts.update(
             id="id",
+            contra_ledger_account_id="contra_ledger_account_id",
             counterparty_id="counterparty_id",
             ledger_account_id="ledger_account_id",
             metadata={"foo": "string"},
@@ -456,6 +457,7 @@ class TestAsyncInternalAccounts:
     async def test_method_update_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         internal_account = await async_client.internal_accounts.update(
             id="id",
+            contra_ledger_account_id="contra_ledger_account_id",
             counterparty_id="counterparty_id",
             ledger_account_id="ledger_account_id",
             metadata={"foo": "string"},
