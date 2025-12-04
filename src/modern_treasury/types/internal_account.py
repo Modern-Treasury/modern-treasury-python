@@ -143,6 +143,12 @@ class InternalAccount(BaseModel):
     connection: Connection
     """Specifies which financial institution the accounts belong to."""
 
+    contra_ledger_account_id: Optional[str] = None
+    """
+    If the internal account links to a contra ledger account in Modern Treasury, the
+    id of the contra ledger account will be populated here.
+    """
+
     counterparty_id: Optional[str] = None
     """The Counterparty associated to this account."""
 

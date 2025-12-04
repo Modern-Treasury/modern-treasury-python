@@ -9,6 +9,9 @@ __all__ = ["InternalAccountUpdateParams"]
 
 
 class InternalAccountUpdateParams(TypedDict, total=False):
+    contra_ledger_account_id: str
+    """The Contra Ledger Account associated to this account."""
+
     counterparty_id: str
     """The Counterparty associated to this account."""
 

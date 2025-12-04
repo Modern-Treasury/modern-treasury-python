@@ -17,4 +17,4 @@ class ConnectionLegalEntityListParams(TypedDict, total=False):
 
     per_page: int
 
-    status: Literal["completed", "denied", "failed", "processing"]
+    status: Literal["closed", "completed", "denied", "failed", "processing", "suspended"]
