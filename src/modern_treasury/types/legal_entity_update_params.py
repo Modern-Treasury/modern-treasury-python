@@ -130,6 +130,8 @@ class BankSettings(TypedDict, total=False):
 
 
 class PhoneNumber(TypedDict, total=False):
+    """A list of phone numbers in E.164 format."""
+
     phone_number: str
 
 

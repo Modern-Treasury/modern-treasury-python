@@ -43,6 +43,10 @@ class Accounting(BaseModel):
 
 
 class CurrentHold(BaseModel):
+    """
+    If the payment order's status is `held`, this will include the hold object's data.
+    """
+
     id: str
 
     created_at: datetime

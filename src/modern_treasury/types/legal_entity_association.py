@@ -172,6 +172,8 @@ Please use ChildLegalEntityIdentification instead.
 
 
 class ChildLegalEntityPhoneNumber(BaseModel):
+    """A list of phone numbers in E.164 format."""
+
     phone_number: Optional[str] = None
 
 
@@ -332,6 +334,8 @@ class ChildLegalEntityWealthAndEmploymentDetails(BaseModel):
 
 
 class ChildLegalEntity(BaseModel):
+    """The child legal entity."""
+
     id: str
 
     addresses: List[ChildLegalEntityAddress]

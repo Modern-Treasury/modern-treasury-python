@@ -140,6 +140,8 @@ class InvoiceCreateParams(TypedDict, total=False):
 
 
 class CounterpartyBillingAddress(TypedDict, total=False):
+    """The counterparty's billing address."""
+
     country: Required[str]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
@@ -158,6 +160,8 @@ class CounterpartyBillingAddress(TypedDict, total=False):
 
 
 class CounterpartyShippingAddress(TypedDict, total=False):
+    """The counterparty's shipping address where physical goods should be delivered."""
+
     country: Required[str]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
@@ -223,6 +227,8 @@ Please use InvoiceLineItem instead.
 
 
 class InvoicerAddress(TypedDict, total=False):
+    """The invoice issuer's business address."""
+
     country: Required[str]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 

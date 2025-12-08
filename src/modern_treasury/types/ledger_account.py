@@ -12,6 +12,11 @@ __all__ = ["LedgerAccount", "Balances"]
 
 
 class Balances(BaseModel):
+    """The pending, posted, and available balances for this ledger account.
+
+    The posted balance is the sum of all posted entries on the account. The pending balance is the sum of all pending and posted entries on the account. The available balance is the posted incoming entries minus the sum of the pending and posted outgoing amounts.
+    """
+
     available_balance: LedgerBalance
     """
     The available_balance is the sum of all posted inbound entries and pending

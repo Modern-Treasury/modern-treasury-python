@@ -441,6 +441,11 @@ Please use ReceivingAccountRoutingDetail instead.
 
 
 class ReceivingAccount(TypedDict, total=False):
+    """Either `receiving_account` or `receiving_account_id` must be present.
+
+    When using `receiving_account_id`, you may pass the id of an external account or an internal account.
+    """
+
     account_details: Iterable[ReceivingAccountAccountDetail]
 
     account_type: ExternalAccountType
