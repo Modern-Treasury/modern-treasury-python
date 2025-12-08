@@ -26,6 +26,8 @@ class LedgerAccountBalanceMonitorCreateParams(TypedDict, total=False):
 
 
 class AlertCondition(TypedDict, total=False):
+    """Describes the condition that must be satisfied for the monitor to be triggered."""
+
     field: Required[str]
     """
     One of `available_balance_amount`, `pending_balance_amount`,

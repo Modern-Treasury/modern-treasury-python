@@ -10,6 +10,8 @@ __all__ = ["LedgerAccountBalanceMonitor", "AlertCondition", "CurrentLedgerAccoun
 
 
 class AlertCondition(BaseModel):
+    """Describes the condition that must be satisfied for the monitor to be triggered."""
+
     field: str
     """
     One of `available_balance_amount`, `pending_balance_amount`,
@@ -32,6 +34,10 @@ class AlertCondition(BaseModel):
 
 
 class CurrentLedgerAccountBalanceState(BaseModel):
+    """
+    The ledger account's balances and the monitor state as of the current ledger account lock version.
+    """
+
     balances: LedgerBalances
 
     ledger_account_lock_version: int

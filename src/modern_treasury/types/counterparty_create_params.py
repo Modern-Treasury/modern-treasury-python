@@ -319,6 +319,8 @@ Please use LegalEntityLegalEntityAssociation instead.
 
 
 class LegalEntityPhoneNumber(TypedDict, total=False):
+    """A list of phone numbers in E.164 format."""
+
     phone_number: str
 
 

@@ -258,6 +258,11 @@ Please use ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail i
 
 
 class ResourcePaymentOrderAsyncCreateRequestReceivingAccount(TypedDict, total=False):
+    """Either `receiving_account` or `receiving_account_id` must be present.
+
+    When using `receiving_account_id`, you may pass the id of an external account or an internal account.
+    """
+
     account_details: Iterable[ResourcePaymentOrderAsyncCreateRequestReceivingAccountAccountDetail]
 
     account_type: ExternalAccountType
@@ -980,6 +985,11 @@ Please use ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail 
 
 
 class ResourcePaymentOrderUpdateRequestWithIDReceivingAccount(TypedDict, total=False):
+    """Either `receiving_account` or `receiving_account_id` must be present.
+
+    When using `receiving_account_id`, you may pass the id of an external account or an internal account.
+    """
+
     account_details: Iterable[ResourcePaymentOrderUpdateRequestWithIDReceivingAccountAccountDetail]
 
     account_type: ExternalAccountType

@@ -24,6 +24,10 @@ class LedgerAccountRetrieveParams(TypedDict, total=False):
 
 
 class Balances(TypedDict, total=False):
+    """
+    Use `balances[effective_at_lower_bound]` and `balances[effective_at_upper_bound]` to get the balances change between the two timestamps. The lower bound is inclusive while the upper bound is exclusive of the provided timestamps. If no value is supplied the balances will be retrieved not including that bound. Use `balances[as_of_lock_version]` to retrieve a balance as of a specific Ledger Account `lock_version`.
+    """
+
     as_of_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
 
     as_of_lock_version: int
