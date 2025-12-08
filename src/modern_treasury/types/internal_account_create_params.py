@@ -158,6 +158,8 @@ Please use AccountCapability instead.
 
 
 class PartyAddress(TypedDict, total=False):
+    """The address associated with the owner or null."""
+
     country: Required[str]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 

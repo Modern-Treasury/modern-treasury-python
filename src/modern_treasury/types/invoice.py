@@ -15,6 +15,8 @@ __all__ = ["Invoice", "CounterpartyBillingAddress", "CounterpartyShippingAddress
 
 
 class CounterpartyBillingAddress(BaseModel):
+    """The counterparty's billing address."""
+
     country: str
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
@@ -33,6 +35,8 @@ class CounterpartyBillingAddress(BaseModel):
 
 
 class CounterpartyShippingAddress(BaseModel):
+    """The counterparty's shipping address where physical goods should be delivered."""
+
     country: str
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
@@ -51,6 +55,8 @@ class CounterpartyShippingAddress(BaseModel):
 
 
 class InvoicerAddress(BaseModel):
+    """The invoice issuer's business address."""
+
     country: str
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 

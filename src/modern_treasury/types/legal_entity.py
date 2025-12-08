@@ -172,6 +172,8 @@ Please use Identification instead.
 
 
 class PhoneNumber(BaseModel):
+    """A list of phone numbers in E.164 format."""
+
     phone_number: Optional[str] = None
 
 

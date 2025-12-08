@@ -100,6 +100,8 @@ Please use LegalEntityLegalEntityAssociation instead.
 
 
 class LegalEntityPhoneNumber(TypedDict, total=False):
+    """A list of phone numbers in E.164 format."""
+
     phone_number: str
 
 
@@ -270,6 +272,8 @@ class LegalEntityWealthAndEmploymentDetails(TypedDict, total=False):
 
 
 class LegalEntity(TypedDict, total=False):
+    """The legal entity."""
+
     addresses: Iterable[LegalEntityAddressCreateRequest]
     """A list of addresses for the entity."""
 

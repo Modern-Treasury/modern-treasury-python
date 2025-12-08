@@ -92,6 +92,10 @@ class LedgerTransactionListParams(TypedDict, total=False):
 
 
 class Amount(TypedDict, total=False):
+    """
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by amount.
+    """
+
     eq: int
 
     gt: int
@@ -104,6 +108,11 @@ class Amount(TypedDict, total=False):
 
 
 class OrderBy(TypedDict, total=False):
+    """Order by `created_at` or `effective_at` in `asc` or `desc` order.
+
+    For example, to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`. Ordering by only one field at a time is supported.
+    """
+
     created_at: Literal["asc", "desc"]
 
     effective_at: Literal["asc", "desc"]

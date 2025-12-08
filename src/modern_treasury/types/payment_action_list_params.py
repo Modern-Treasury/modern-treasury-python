@@ -50,6 +50,10 @@ class PaymentActionListParams(TypedDict, total=False):
 
 
 class CreatedAt(TypedDict, total=False):
+    """
+    Filter by `created_at` using comparison operators like `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the created at timestamp. For example, `created_at[gte]=2024-01-01T00:00:00Z`
+    """
+
     eq: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
 
     gt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]

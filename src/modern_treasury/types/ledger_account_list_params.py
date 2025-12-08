@@ -96,6 +96,10 @@ class LedgerAccountListParams(TypedDict, total=False):
 
 
 class AvailableBalanceAmount(TypedDict, total=False):
+    """
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to filter by balance amount.
+    """
+
     eq: int
 
     gt: int
@@ -110,6 +114,10 @@ class AvailableBalanceAmount(TypedDict, total=False):
 
 
 class Balances(TypedDict, total=False):
+    """
+    Use `balances[effective_at_lower_bound]` and `balances[effective_at_upper_bound]` to get the balances change between the two timestamps. The lower bound is inclusive while the upper bound is exclusive of the provided timestamps. If no value is supplied the balances will be retrieved not including that bound.
+    """
+
     as_of_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
 
     effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
@@ -120,6 +128,10 @@ class Balances(TypedDict, total=False):
 
 
 class PendingBalanceAmount(TypedDict, total=False):
+    """
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to filter by balance amount.
+    """
+
     eq: int
 
     gt: int
@@ -134,6 +146,10 @@ class PendingBalanceAmount(TypedDict, total=False):
 
 
 class PostedBalanceAmount(TypedDict, total=False):
+    """
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to filter by balance amount.
+    """
+
     eq: int
 
     gt: int

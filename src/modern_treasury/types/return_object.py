@@ -14,6 +14,11 @@ __all__ = ["ReturnObject", "Corrections", "ReferenceNumbers", "ReferenceNumber"]
 
 
 class Corrections(BaseModel):
+    """Only relevant for ACH NOC returns.
+
+    This is an object containing all of the new and corrected information provided by the bank that was previously incorrect on the original outgoing payment.
+    """
+
     account_number: Optional[str] = None
     """
     The updated account number that should replace the one originally used on the
