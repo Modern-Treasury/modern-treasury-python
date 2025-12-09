@@ -264,6 +264,9 @@ class ChildLegalEntityCreate(TypedDict, total=False):
     last_name: Optional[str]
     """An individual's last name."""
 
+    legal_entity_associations: Optional[Iterable[object]]
+    """The legal entity associations and its child legal entities."""
+
     legal_entity_type: Literal["business", "individual"]
     """The type of legal entity."""
 

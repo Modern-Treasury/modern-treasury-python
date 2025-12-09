@@ -251,6 +251,9 @@ class ChildLegalEntityCreate(BaseModel):
     last_name: Optional[str] = None
     """An individual's last name."""
 
+    legal_entity_associations: Optional[List[object]] = None
+    """The legal entity associations and its child legal entities."""
+
     legal_entity_type: Optional[Literal["business", "individual"]] = None
     """The type of legal entity."""
 
