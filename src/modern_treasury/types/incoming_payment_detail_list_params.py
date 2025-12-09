@@ -46,7 +46,23 @@ class IncomingPaymentDetailListParams(TypedDict, total=False):
     """
 
     type: Literal[
-        "ach", "au_becs", "bacs", "book", "check", "eft", "interac", "neft", "nz_becs", "rtp", "sepa", "signet", "wire"
+        "ach",
+        "au_becs",
+        "bacs",
+        "base",
+        "book",
+        "check",
+        "eft",
+        "ethereum",
+        "interac",
+        "neft",
+        "nz_becs",
+        "polygon",
+        "rtp",
+        "sepa",
+        "signet",
+        "solana",
+        "wire",
     ]
     """
     One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or

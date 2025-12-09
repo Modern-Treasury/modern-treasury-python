@@ -234,6 +234,7 @@ class TestCounterparties:
                                 }
                             ],
                             "last_name": "last_name",
+                            "legal_entity_associations": [{}],
                             "legal_entity_type": "business",
                             "legal_structure": "corporation",
                             "metadata": {
@@ -784,6 +785,7 @@ class TestAsyncCounterparties:
                                 }
                             ],
                             "last_name": "last_name",
+                            "legal_entity_associations": [{}],
                             "legal_entity_type": "business",
                             "legal_structure": "corporation",
                             "metadata": {
