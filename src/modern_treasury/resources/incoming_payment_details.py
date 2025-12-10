@@ -157,6 +157,7 @@ class IncomingPaymentDetails(SyncAPIResource):
             "signet",
             "solana",
             "wire",
+            "zengin",
         ]
         | Omit = omit,
         virtual_account_id: str | Omit = omit,
@@ -254,6 +255,7 @@ class IncomingPaymentDetails(SyncAPIResource):
             "signet",
             "solana",
             "wire",
+            "zengin",
         ]
         | Omit = omit,
         virtual_account_id: Optional[str] | Omit = omit,
@@ -455,6 +457,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
             "signet",
             "solana",
             "wire",
+            "zengin",
         ]
         | Omit = omit,
         virtual_account_id: str | Omit = omit,
@@ -552,6 +555,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
             "signet",
             "solana",
             "wire",
+            "zengin",
         ]
         | Omit = omit,
         virtual_account_id: Optional[str] | Omit = omit,

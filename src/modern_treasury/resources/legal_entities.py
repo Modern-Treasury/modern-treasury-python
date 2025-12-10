@@ -52,16 +52,20 @@ class LegalEntities(SyncAPIResource):
         legal_entity_type: Literal["business", "individual"],
         addresses: Iterable[LegalEntityAddressCreateRequest] | Omit = omit,
         bank_settings: Optional[legal_entity_create_params.BankSettings] | Omit = omit,
+        business_description: Optional[str] | Omit = omit,
         business_name: Optional[str] | Omit = omit,
         citizenship_country: Optional[str] | Omit = omit,
         compliance_details: Optional[LegalEntityComplianceDetail] | Omit = omit,
+        country_of_incorporation: Optional[str] | Omit = omit,
         date_formed: Union[str, date, None] | Omit = omit,
         date_of_birth: Union[str, date, None] | Omit = omit,
         doing_business_as_names: SequenceNotStr[str] | Omit = omit,
         email: Optional[str] | Omit = omit,
+        expected_activity_volume: Optional[int] | Omit = omit,
         first_name: Optional[str] | Omit = omit,
         identifications: Iterable[IdentificationCreateRequest] | Omit = omit,
         industry_classifications: Iterable[LegalEntityIndustryClassification] | Omit = omit,
+        intended_use: Optional[str] | Omit = omit,
         last_name: Optional[str] | Omit = omit,
         legal_entity_associations: Optional[Iterable[legal_entity_create_params.LegalEntityAssociation]] | Omit = omit,
         legal_structure: Optional[
@@ -70,10 +74,12 @@ class LegalEntities(SyncAPIResource):
         | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         middle_name: Optional[str] | Omit = omit,
+        operating_jurisdictions: SequenceNotStr[str] | Omit = omit,
         phone_numbers: Iterable[legal_entity_create_params.PhoneNumber] | Omit = omit,
         politically_exposed_person: Optional[bool] | Omit = omit,
         preferred_name: Optional[str] | Omit = omit,
         prefix: Optional[str] | Omit = omit,
+        primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
         wealth_and_employment_details: Optional[legal_entity_create_params.WealthAndEmploymentDetails] | Omit = omit,
@@ -94,9 +100,14 @@ class LegalEntities(SyncAPIResource):
 
           addresses: A list of addresses for the entity.
 
+          business_description: A description of the business.
+
           business_name: The business's legal business name.
 
           citizenship_country: The country of citizenship for an individual.
+
+          country_of_incorporation: The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
+              alpha-3 formats.
 
           date_formed: A business's formation date (YYYY-MM-DD).
 
@@ -104,11 +115,15 @@ class LegalEntities(SyncAPIResource):
 
           email: The entity's primary email.
 
+          expected_activity_volume: Monthly expected transaction volume in entity's local currency.
+
           first_name: An individual's first name.
 
           identifications: A list of identifications for the legal entity.
 
           industry_classifications: A list of industry classifications for the legal entity.
+
+          intended_use: A description of the intended use of the legal entity.
 
           last_name: An individual's last name.
 
@@ -121,11 +136,16 @@ class LegalEntities(SyncAPIResource):
 
           middle_name: An individual's middle name.
 
+          operating_jurisdictions: A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
+              codes).
+
           politically_exposed_person: Whether the individual is a politically exposed person.
 
           preferred_name: An individual's preferred name.
 
           prefix: An individual's prefix.
+
+          primary_social_media_sites: A list of primary social media URLs for the business.
 
           risk_rating: The risk rating of the legal entity. One of low, medium, high.
 
@@ -150,25 +170,31 @@ class LegalEntities(SyncAPIResource):
                     "legal_entity_type": legal_entity_type,
                     "addresses": addresses,
                     "bank_settings": bank_settings,
+                    "business_description": business_description,
                     "business_name": business_name,
                     "citizenship_country": citizenship_country,
                     "compliance_details": compliance_details,
+                    "country_of_incorporation": country_of_incorporation,
                     "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
                     "doing_business_as_names": doing_business_as_names,
                     "email": email,
+                    "expected_activity_volume": expected_activity_volume,
                     "first_name": first_name,
                     "identifications": identifications,
                     "industry_classifications": industry_classifications,
+                    "intended_use": intended_use,
                     "last_name": last_name,
                     "legal_entity_associations": legal_entity_associations,
                     "legal_structure": legal_structure,
                     "metadata": metadata,
                     "middle_name": middle_name,
+                    "operating_jurisdictions": operating_jurisdictions,
                     "phone_numbers": phone_numbers,
                     "politically_exposed_person": politically_exposed_person,
                     "preferred_name": preferred_name,
                     "prefix": prefix,
+                    "primary_social_media_sites": primary_social_media_sites,
                     "risk_rating": risk_rating,
                     "suffix": suffix,
                     "wealth_and_employment_details": wealth_and_employment_details,
@@ -225,16 +251,20 @@ class LegalEntities(SyncAPIResource):
         *,
         addresses: Iterable[LegalEntityAddressCreateRequest] | Omit = omit,
         bank_settings: Optional[legal_entity_update_params.BankSettings] | Omit = omit,
+        business_description: Optional[str] | Omit = omit,
         business_name: Optional[str] | Omit = omit,
         citizenship_country: Optional[str] | Omit = omit,
         compliance_details: Optional[LegalEntityComplianceDetail] | Omit = omit,
+        country_of_incorporation: Optional[str] | Omit = omit,
         date_formed: Union[str, date, None] | Omit = omit,
         date_of_birth: Union[str, date, None] | Omit = omit,
         doing_business_as_names: SequenceNotStr[str] | Omit = omit,
         email: Optional[str] | Omit = omit,
+        expected_activity_volume: Optional[int] | Omit = omit,
         first_name: Optional[str] | Omit = omit,
         identifications: Iterable[IdentificationCreateRequest] | Omit = omit,
         industry_classifications: Iterable[LegalEntityIndustryClassification] | Omit = omit,
+        intended_use: Optional[str] | Omit = omit,
         last_name: Optional[str] | Omit = omit,
         legal_structure: Optional[
             Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
@@ -242,10 +272,12 @@ class LegalEntities(SyncAPIResource):
         | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         middle_name: Optional[str] | Omit = omit,
+        operating_jurisdictions: SequenceNotStr[str] | Omit = omit,
         phone_numbers: Iterable[legal_entity_update_params.PhoneNumber] | Omit = omit,
         politically_exposed_person: Optional[bool] | Omit = omit,
         preferred_name: Optional[str] | Omit = omit,
         prefix: Optional[str] | Omit = omit,
+        primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
         wealth_and_employment_details: Optional[legal_entity_update_params.WealthAndEmploymentDetails] | Omit = omit,
@@ -264,9 +296,14 @@ class LegalEntities(SyncAPIResource):
         Args:
           addresses: A list of addresses for the entity.
 
+          business_description: A description of the business.
+
           business_name: The business's legal business name.
 
           citizenship_country: The country of citizenship for an individual.
+
+          country_of_incorporation: The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
+              alpha-3 formats.
 
           date_formed: A business's formation date (YYYY-MM-DD).
 
@@ -274,11 +311,15 @@ class LegalEntities(SyncAPIResource):
 
           email: The entity's primary email.
 
+          expected_activity_volume: Monthly expected transaction volume in entity's local currency.
+
           first_name: An individual's first name.
 
           identifications: A list of identifications for the legal entity.
 
           industry_classifications: A list of industry classifications for the legal entity.
+
+          intended_use: A description of the intended use of the legal entity.
 
           last_name: An individual's last name.
 
@@ -289,11 +330,16 @@ class LegalEntities(SyncAPIResource):
 
           middle_name: An individual's middle name.
 
+          operating_jurisdictions: A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
+              codes).
+
           politically_exposed_person: Whether the individual is a politically exposed person.
 
           preferred_name: An individual's preferred name.
 
           prefix: An individual's prefix.
+
+          primary_social_media_sites: A list of primary social media URLs for the business.
 
           risk_rating: The risk rating of the legal entity. One of low, medium, high.
 
@@ -319,24 +365,30 @@ class LegalEntities(SyncAPIResource):
                 {
                     "addresses": addresses,
                     "bank_settings": bank_settings,
+                    "business_description": business_description,
                     "business_name": business_name,
                     "citizenship_country": citizenship_country,
                     "compliance_details": compliance_details,
+                    "country_of_incorporation": country_of_incorporation,
                     "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
                     "doing_business_as_names": doing_business_as_names,
                     "email": email,
+                    "expected_activity_volume": expected_activity_volume,
                     "first_name": first_name,
                     "identifications": identifications,
                     "industry_classifications": industry_classifications,
+                    "intended_use": intended_use,
                     "last_name": last_name,
                     "legal_structure": legal_structure,
                     "metadata": metadata,
                     "middle_name": middle_name,
+                    "operating_jurisdictions": operating_jurisdictions,
                     "phone_numbers": phone_numbers,
                     "politically_exposed_person": politically_exposed_person,
                     "preferred_name": preferred_name,
                     "prefix": prefix,
+                    "primary_social_media_sites": primary_social_media_sites,
                     "risk_rating": risk_rating,
                     "suffix": suffix,
                     "wealth_and_employment_details": wealth_and_employment_details,
@@ -434,16 +486,20 @@ class AsyncLegalEntities(AsyncAPIResource):
         legal_entity_type: Literal["business", "individual"],
         addresses: Iterable[LegalEntityAddressCreateRequest] | Omit = omit,
         bank_settings: Optional[legal_entity_create_params.BankSettings] | Omit = omit,
+        business_description: Optional[str] | Omit = omit,
         business_name: Optional[str] | Omit = omit,
         citizenship_country: Optional[str] | Omit = omit,
         compliance_details: Optional[LegalEntityComplianceDetail] | Omit = omit,
+        country_of_incorporation: Optional[str] | Omit = omit,
         date_formed: Union[str, date, None] | Omit = omit,
         date_of_birth: Union[str, date, None] | Omit = omit,
         doing_business_as_names: SequenceNotStr[str] | Omit = omit,
         email: Optional[str] | Omit = omit,
+        expected_activity_volume: Optional[int] | Omit = omit,
         first_name: Optional[str] | Omit = omit,
         identifications: Iterable[IdentificationCreateRequest] | Omit = omit,
         industry_classifications: Iterable[LegalEntityIndustryClassification] | Omit = omit,
+        intended_use: Optional[str] | Omit = omit,
         last_name: Optional[str] | Omit = omit,
         legal_entity_associations: Optional[Iterable[legal_entity_create_params.LegalEntityAssociation]] | Omit = omit,
         legal_structure: Optional[
@@ -452,10 +508,12 @@ class AsyncLegalEntities(AsyncAPIResource):
         | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         middle_name: Optional[str] | Omit = omit,
+        operating_jurisdictions: SequenceNotStr[str] | Omit = omit,
         phone_numbers: Iterable[legal_entity_create_params.PhoneNumber] | Omit = omit,
         politically_exposed_person: Optional[bool] | Omit = omit,
         preferred_name: Optional[str] | Omit = omit,
         prefix: Optional[str] | Omit = omit,
+        primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
         wealth_and_employment_details: Optional[legal_entity_create_params.WealthAndEmploymentDetails] | Omit = omit,
@@ -476,9 +534,14 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           addresses: A list of addresses for the entity.
 
+          business_description: A description of the business.
+
           business_name: The business's legal business name.
 
           citizenship_country: The country of citizenship for an individual.
+
+          country_of_incorporation: The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
+              alpha-3 formats.
 
           date_formed: A business's formation date (YYYY-MM-DD).
 
@@ -486,11 +549,15 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           email: The entity's primary email.
 
+          expected_activity_volume: Monthly expected transaction volume in entity's local currency.
+
           first_name: An individual's first name.
 
           identifications: A list of identifications for the legal entity.
 
           industry_classifications: A list of industry classifications for the legal entity.
+
+          intended_use: A description of the intended use of the legal entity.
 
           last_name: An individual's last name.
 
@@ -503,11 +570,16 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           middle_name: An individual's middle name.
 
+          operating_jurisdictions: A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
+              codes).
+
           politically_exposed_person: Whether the individual is a politically exposed person.
 
           preferred_name: An individual's preferred name.
 
           prefix: An individual's prefix.
+
+          primary_social_media_sites: A list of primary social media URLs for the business.
 
           risk_rating: The risk rating of the legal entity. One of low, medium, high.
 
@@ -532,25 +604,31 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "legal_entity_type": legal_entity_type,
                     "addresses": addresses,
                     "bank_settings": bank_settings,
+                    "business_description": business_description,
                     "business_name": business_name,
                     "citizenship_country": citizenship_country,
                     "compliance_details": compliance_details,
+                    "country_of_incorporation": country_of_incorporation,
                     "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
                     "doing_business_as_names": doing_business_as_names,
                     "email": email,
+                    "expected_activity_volume": expected_activity_volume,
                     "first_name": first_name,
                     "identifications": identifications,
                     "industry_classifications": industry_classifications,
+                    "intended_use": intended_use,
                     "last_name": last_name,
                     "legal_entity_associations": legal_entity_associations,
                     "legal_structure": legal_structure,
                     "metadata": metadata,
                     "middle_name": middle_name,
+                    "operating_jurisdictions": operating_jurisdictions,
                     "phone_numbers": phone_numbers,
                     "politically_exposed_person": politically_exposed_person,
                     "preferred_name": preferred_name,
                     "prefix": prefix,
+                    "primary_social_media_sites": primary_social_media_sites,
                     "risk_rating": risk_rating,
                     "suffix": suffix,
                     "wealth_and_employment_details": wealth_and_employment_details,
@@ -607,16 +685,20 @@ class AsyncLegalEntities(AsyncAPIResource):
         *,
         addresses: Iterable[LegalEntityAddressCreateRequest] | Omit = omit,
         bank_settings: Optional[legal_entity_update_params.BankSettings] | Omit = omit,
+        business_description: Optional[str] | Omit = omit,
         business_name: Optional[str] | Omit = omit,
         citizenship_country: Optional[str] | Omit = omit,
         compliance_details: Optional[LegalEntityComplianceDetail] | Omit = omit,
+        country_of_incorporation: Optional[str] | Omit = omit,
         date_formed: Union[str, date, None] | Omit = omit,
         date_of_birth: Union[str, date, None] | Omit = omit,
         doing_business_as_names: SequenceNotStr[str] | Omit = omit,
         email: Optional[str] | Omit = omit,
+        expected_activity_volume: Optional[int] | Omit = omit,
         first_name: Optional[str] | Omit = omit,
         identifications: Iterable[IdentificationCreateRequest] | Omit = omit,
         industry_classifications: Iterable[LegalEntityIndustryClassification] | Omit = omit,
+        intended_use: Optional[str] | Omit = omit,
         last_name: Optional[str] | Omit = omit,
         legal_structure: Optional[
             Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
@@ -624,10 +706,12 @@ class AsyncLegalEntities(AsyncAPIResource):
         | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         middle_name: Optional[str] | Omit = omit,
+        operating_jurisdictions: SequenceNotStr[str] | Omit = omit,
         phone_numbers: Iterable[legal_entity_update_params.PhoneNumber] | Omit = omit,
         politically_exposed_person: Optional[bool] | Omit = omit,
         preferred_name: Optional[str] | Omit = omit,
         prefix: Optional[str] | Omit = omit,
+        primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
         wealth_and_employment_details: Optional[legal_entity_update_params.WealthAndEmploymentDetails] | Omit = omit,
@@ -646,9 +730,14 @@ class AsyncLegalEntities(AsyncAPIResource):
         Args:
           addresses: A list of addresses for the entity.
 
+          business_description: A description of the business.
+
           business_name: The business's legal business name.
 
           citizenship_country: The country of citizenship for an individual.
+
+          country_of_incorporation: The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
+              alpha-3 formats.
 
           date_formed: A business's formation date (YYYY-MM-DD).
 
@@ -656,11 +745,15 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           email: The entity's primary email.
 
+          expected_activity_volume: Monthly expected transaction volume in entity's local currency.
+
           first_name: An individual's first name.
 
           identifications: A list of identifications for the legal entity.
 
           industry_classifications: A list of industry classifications for the legal entity.
+
+          intended_use: A description of the intended use of the legal entity.
 
           last_name: An individual's last name.
 
@@ -671,11 +764,16 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           middle_name: An individual's middle name.
 
+          operating_jurisdictions: A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
+              codes).
+
           politically_exposed_person: Whether the individual is a politically exposed person.
 
           preferred_name: An individual's preferred name.
 
           prefix: An individual's prefix.
+
+          primary_social_media_sites: A list of primary social media URLs for the business.
 
           risk_rating: The risk rating of the legal entity. One of low, medium, high.
 
@@ -701,24 +799,30 @@ class AsyncLegalEntities(AsyncAPIResource):
                 {
                     "addresses": addresses,
                     "bank_settings": bank_settings,
+                    "business_description": business_description,
                     "business_name": business_name,
                     "citizenship_country": citizenship_country,
                     "compliance_details": compliance_details,
+                    "country_of_incorporation": country_of_incorporation,
                     "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
                     "doing_business_as_names": doing_business_as_names,
                     "email": email,
+                    "expected_activity_volume": expected_activity_volume,
                     "first_name": first_name,
                     "identifications": identifications,
                     "industry_classifications": industry_classifications,
+                    "intended_use": intended_use,
                     "last_name": last_name,
                     "legal_structure": legal_structure,
                     "metadata": metadata,
                     "middle_name": middle_name,
+                    "operating_jurisdictions": operating_jurisdictions,
                     "phone_numbers": phone_numbers,
                     "politically_exposed_person": politically_exposed_person,
                     "preferred_name": preferred_name,
                     "prefix": prefix,
+                    "primary_social_media_sites": primary_social_media_sites,
                     "risk_rating": risk_rating,
                     "suffix": suffix,
                     "wealth_and_employment_details": wealth_and_employment_details,
