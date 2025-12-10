@@ -58,6 +58,7 @@ class IncomingPaymentDetailCreateAsyncParams(TypedDict, total=False):
         "signet",
         "solana",
         "wire",
+        "zengin",
     ]
     """One of `ach`, `wire`, `check`."""
 

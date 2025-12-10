@@ -151,6 +151,7 @@ class IncomingPaymentDetail(BaseModel):
         "signet",
         "solana",
         "wire",
+        "zengin",
     ]
     """
     One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
