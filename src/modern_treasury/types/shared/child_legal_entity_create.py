@@ -220,6 +220,9 @@ class ChildLegalEntityCreate(BaseModel):
 
     bank_settings: Optional[BankSettings] = None
 
+    business_description: Optional[str] = None
+    """A description of the business."""
+
     business_name: Optional[str] = None
     """The business's legal business name."""
 
@@ -227,6 +230,12 @@ class ChildLegalEntityCreate(BaseModel):
     """The country of citizenship for an individual."""
 
     compliance_details: Optional[LegalEntityComplianceDetail] = None
+
+    country_of_incorporation: Optional[str] = None
+    """
+    The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
+    alpha-3 formats.
+    """
 
     date_formed: Optional[date] = None
     """A business's formation date (YYYY-MM-DD)."""
@@ -239,6 +248,9 @@ class ChildLegalEntityCreate(BaseModel):
     email: Optional[str] = None
     """The entity's primary email."""
 
+    expected_activity_volume: Optional[int] = None
+    """Monthly expected transaction volume in entity's local currency."""
+
     first_name: Optional[str] = None
     """An individual's first name."""
 
@@ -247,6 +259,9 @@ class ChildLegalEntityCreate(BaseModel):
 
     industry_classifications: Optional[List[LegalEntityIndustryClassification]] = None
     """A list of industry classifications for the legal entity."""
+
+    intended_use: Optional[str] = None
+    """A description of the intended use of the legal entity."""
 
     last_name: Optional[str] = None
     """An individual's last name."""
@@ -271,6 +286,12 @@ class ChildLegalEntityCreate(BaseModel):
     middle_name: Optional[str] = None
     """An individual's middle name."""
 
+    operating_jurisdictions: Optional[List[str]] = None
+    """
+    A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
+    codes).
+    """
+
     phone_numbers: Optional[List[PhoneNumber]] = None
 
     politically_exposed_person: Optional[bool] = None
@@ -281,6 +302,9 @@ class ChildLegalEntityCreate(BaseModel):
 
     prefix: Optional[str] = None
     """An individual's prefix."""
+
+    primary_social_media_sites: Optional[List[str]] = None
+    """A list of primary social media URLs for the business."""
 
     risk_rating: Optional[Literal["low", "medium", "high"]] = None
     """The risk rating of the legal entity. One of low, medium, high."""

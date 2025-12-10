@@ -56,6 +56,7 @@ class TestConnectionLegalEntities:
                     "regulation_o": True,
                     "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 },
+                "business_description": "business_description",
                 "business_name": "business_name",
                 "citizenship_country": "citizenship_country",
                 "compliance_details": {
@@ -72,10 +73,12 @@ class TestConnectionLegalEntities:
                     "validated": True,
                     "validated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 },
+                "country_of_incorporation": "country_of_incorporation",
                 "date_formed": parse_date("2019-12-27"),
                 "date_of_birth": parse_date("2019-12-27"),
                 "doing_business_as_names": ["string"],
                 "email": "email",
+                "expected_activity_volume": 0,
                 "first_name": "first_name",
                 "identifications": [
                     {
@@ -98,6 +101,7 @@ class TestConnectionLegalEntities:
                         "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     }
                 ],
+                "intended_use": "intended_use",
                 "last_name": "last_name",
                 "legal_entity_associations": [
                     {
@@ -126,6 +130,7 @@ class TestConnectionLegalEntities:
                                 "regulation_o": True,
                                 "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                             },
+                            "business_description": "business_description",
                             "business_name": "business_name",
                             "citizenship_country": "citizenship_country",
                             "compliance_details": {
@@ -142,10 +147,12 @@ class TestConnectionLegalEntities:
                                 "validated": True,
                                 "validated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                             },
+                            "country_of_incorporation": "country_of_incorporation",
                             "date_formed": parse_date("2019-12-27"),
                             "date_of_birth": parse_date("2019-12-27"),
                             "doing_business_as_names": ["string"],
                             "email": "email",
+                            "expected_activity_volume": 0,
                             "first_name": "first_name",
                             "identifications": [
                                 {
@@ -168,6 +175,7 @@ class TestConnectionLegalEntities:
                                     "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                                 }
                             ],
+                            "intended_use": "intended_use",
                             "last_name": "last_name",
                             "legal_entity_associations": [{}],
                             "legal_entity_type": "business",
@@ -178,10 +186,12 @@ class TestConnectionLegalEntities:
                                 "modern": "treasury",
                             },
                             "middle_name": "middle_name",
+                            "operating_jurisdictions": ["string"],
                             "phone_numbers": [{"phone_number": "phone_number"}],
                             "politically_exposed_person": True,
                             "preferred_name": "preferred_name",
                             "prefix": "prefix",
+                            "primary_social_media_sites": ["string"],
                             "risk_rating": "low",
                             "suffix": "suffix",
                             "wealth_and_employment_details": {
@@ -219,10 +229,12 @@ class TestConnectionLegalEntities:
                     "modern": "treasury",
                 },
                 "middle_name": "middle_name",
+                "operating_jurisdictions": ["string"],
                 "phone_numbers": [{"phone_number": "phone_number"}],
                 "politically_exposed_person": True,
                 "preferred_name": "preferred_name",
                 "prefix": "prefix",
+                "primary_social_media_sites": ["string"],
                 "risk_rating": "low",
                 "suffix": "suffix",
                 "wealth_and_employment_details": {
@@ -436,6 +448,7 @@ class TestAsyncConnectionLegalEntities:
                     "regulation_o": True,
                     "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 },
+                "business_description": "business_description",
                 "business_name": "business_name",
                 "citizenship_country": "citizenship_country",
                 "compliance_details": {
@@ -452,10 +465,12 @@ class TestAsyncConnectionLegalEntities:
                     "validated": True,
                     "validated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 },
+                "country_of_incorporation": "country_of_incorporation",
                 "date_formed": parse_date("2019-12-27"),
                 "date_of_birth": parse_date("2019-12-27"),
                 "doing_business_as_names": ["string"],
                 "email": "email",
+                "expected_activity_volume": 0,
                 "first_name": "first_name",
                 "identifications": [
                     {
@@ -478,6 +493,7 @@ class TestAsyncConnectionLegalEntities:
                         "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     }
                 ],
+                "intended_use": "intended_use",
                 "last_name": "last_name",
                 "legal_entity_associations": [
                     {
@@ -506,6 +522,7 @@ class TestAsyncConnectionLegalEntities:
                                 "regulation_o": True,
                                 "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                             },
+                            "business_description": "business_description",
                             "business_name": "business_name",
                             "citizenship_country": "citizenship_country",
                             "compliance_details": {
@@ -522,10 +539,12 @@ class TestAsyncConnectionLegalEntities:
                                 "validated": True,
                                 "validated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                             },
+                            "country_of_incorporation": "country_of_incorporation",
                             "date_formed": parse_date("2019-12-27"),
                             "date_of_birth": parse_date("2019-12-27"),
                             "doing_business_as_names": ["string"],
                             "email": "email",
+                            "expected_activity_volume": 0,
                             "first_name": "first_name",
                             "identifications": [
                                 {
@@ -548,6 +567,7 @@ class TestAsyncConnectionLegalEntities:
                                     "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                                 }
                             ],
+                            "intended_use": "intended_use",
                             "last_name": "last_name",
                             "legal_entity_associations": [{}],
                             "legal_entity_type": "business",
@@ -558,10 +578,12 @@ class TestAsyncConnectionLegalEntities:
                                 "modern": "treasury",
                             },
                             "middle_name": "middle_name",
+                            "operating_jurisdictions": ["string"],
                             "phone_numbers": [{"phone_number": "phone_number"}],
                             "politically_exposed_person": True,
                             "preferred_name": "preferred_name",
                             "prefix": "prefix",
+                            "primary_social_media_sites": ["string"],
                             "risk_rating": "low",
                             "suffix": "suffix",
                             "wealth_and_employment_details": {
@@ -599,10 +621,12 @@ class TestAsyncConnectionLegalEntities:
                     "modern": "treasury",
                 },
                 "middle_name": "middle_name",
+                "operating_jurisdictions": ["string"],
                 "phone_numbers": [{"phone_number": "phone_number"}],
                 "politically_exposed_person": True,
                 "preferred_name": "preferred_name",
                 "prefix": "prefix",
+                "primary_social_media_sites": ["string"],
                 "risk_rating": "low",
                 "suffix": "suffix",
                 "wealth_and_employment_details": {
