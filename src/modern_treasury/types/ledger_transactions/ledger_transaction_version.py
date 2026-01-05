@@ -31,6 +31,12 @@ class LedgerEntry(BaseModel):
     be `credit`.
     """
 
+    effective_at: datetime
+    """
+    The timestamp (ISO8601 format) at which the ledger transaction happened for
+    reporting purposes.
+    """
+
     ledger_account_currency: str
     """The currency of the ledger account."""
 

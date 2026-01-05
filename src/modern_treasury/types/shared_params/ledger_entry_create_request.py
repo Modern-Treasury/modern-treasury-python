@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-from typing_extensions import Required, TypedDict
+from typing import Dict, Union, Optional
+from datetime import datetime
+from typing_extensions import Required, Annotated, TypedDict
 
+from ..._utils import PropertyInfo
 from ..shared.transaction_direction import TransactionDirection
 
 __all__ = ["LedgerEntryCreateRequest"]
@@ -34,6 +36,12 @@ class LedgerEntryCreateRequest(TypedDict, total=False):
     Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
     account’s available balance. If any of these conditions would be false after the
     transaction is created, the entire call will fail with error code 422.
+    """
+
+    effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """
+    The timestamp (ISO8601 format) at which the ledger transaction happened for
+    reporting purposes.
     """
 
     lock_version: Optional[int]
