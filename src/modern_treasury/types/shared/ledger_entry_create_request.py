@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, Optional
+from datetime import datetime
 
 from ..._models import BaseModel
 from .transaction_direction import TransactionDirection
@@ -32,6 +33,12 @@ class LedgerEntryCreateRequest(BaseModel):
     Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
     account’s available balance. If any of these conditions would be false after the
     transaction is created, the entire call will fail with error code 422.
+    """
+
+    effective_at: Optional[datetime] = None
+    """
+    The timestamp (ISO8601 format) at which the ledger transaction happened for
+    reporting purposes.
     """
 
     lock_version: Optional[int] = None
