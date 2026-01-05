@@ -131,6 +131,7 @@ class ReferenceNumber(BaseModel):
         "mt_flow_transfer_id",
         "other",
         "partial_swift_mir",
+        "paxos_orchestration_id",
         "paxos_transfer_id",
         "pnc_clearing_reference",
         "pnc_instruction_id",
