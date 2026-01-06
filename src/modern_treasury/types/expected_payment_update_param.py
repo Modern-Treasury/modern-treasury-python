@@ -7,16 +7,14 @@ from datetime import date
 from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .line_item_param import LineItemParam
 from .shared.currency import Currency
 from .expected_payment_type import ExpectedPaymentType
 from .reconciliation_rule_param import ReconciliationRuleParam
-from .shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
-__all__ = ["ExpectedPaymentCreateParams"]
+__all__ = ["ExpectedPaymentUpdateParam"]
 
 
-class ExpectedPaymentCreateParams(TypedDict, total=False):
+class ExpectedPaymentUpdateParam(TypedDict, total=False):
     amount_lower_bound: Optional[int]
     """The lowest amount this expected payment may be equal to.
 
@@ -84,24 +82,6 @@ class ExpectedPaymentCreateParams(TypedDict, total=False):
     internal_account_id: Optional[str]
     """The ID of the Internal Account for the expected payment."""
 
-    ledger_transaction: LedgerTransactionCreateRequest
-    """
-    Specifies a ledger transaction object that will be created with the expected
-    payment. If the ledger transaction cannot be created, then the expected payment
-    creation will fail. The resulting ledger transaction will mirror the status of
-    the expected payment.
-    """
-
-    ledger_transaction_id: str
-    """Either ledger_transaction or ledger_transaction_id can be provided.
-
-    Only a pending ledger transaction can be attached upon expected payment
-    creation. Once the expected payment is created, the status of the ledger
-    transaction tracks the expected payment automatically.
-    """
-
-    line_items: Iterable[LineItemParam]
-
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.
 
@@ -130,6 +110,12 @@ class ExpectedPaymentCreateParams(TypedDict, total=False):
     For ACH payments, this will be the full line item passed from the bank. For wire
     payments, this will be the OBI field on the wire. For check payments, this will
     be the memo field.
+    """
+
+    status: Optional[Literal["reconciled"]]
+    """
+    The Expected Payment's status can be updated from partially_reconciled to
+    reconciled.
     """
 
     type: Optional[ExpectedPaymentType]

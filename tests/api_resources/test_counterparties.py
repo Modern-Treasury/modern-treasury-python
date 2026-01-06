@@ -242,7 +242,7 @@ class TestCounterparties:
                             ],
                             "intended_use": "intended_use",
                             "last_name": "last_name",
-                            "legal_entity_associations": [{}],
+                            "legal_entity_associations": [],
                             "legal_entity_type": "business",
                             "legal_structure": "corporation",
                             "metadata": {
@@ -805,7 +805,7 @@ class TestAsyncCounterparties:
                             ],
                             "intended_use": "intended_use",
                             "last_name": "last_name",
-                            "legal_entity_associations": [{}],
+                            "legal_entity_associations": [],
                             "legal_entity_type": "business",
                             "legal_structure": "corporation",
                             "metadata": {

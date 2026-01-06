@@ -13,10 +13,10 @@ from .expected_payment_type import ExpectedPaymentType
 from .reconciliation_rule_param import ReconciliationRuleParam
 from .shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
-__all__ = ["ExpectedPaymentCreateParams"]
+__all__ = ["ExpectedPaymentCreateParam"]
 
 
-class ExpectedPaymentCreateParams(TypedDict, total=False):
+class ExpectedPaymentCreateParam(TypedDict, total=False):
     amount_lower_bound: Optional[int]
     """The lowest amount this expected payment may be equal to.
 

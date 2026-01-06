@@ -102,7 +102,14 @@ class TestLegalEntityAssociations:
                 ],
                 "intended_use": "intended_use",
                 "last_name": "last_name",
-                "legal_entity_associations": [{}],
+                "legal_entity_associations": [
+                    {
+                        "relationship_types": ["authorized_signer"],
+                        "child_legal_entity_id": "child_legal_entity_id",
+                        "ownership_percentage": 0,
+                        "title": "title",
+                    }
+                ],
                 "legal_entity_type": "business",
                 "legal_structure": "corporation",
                 "metadata": {
@@ -263,7 +270,14 @@ class TestAsyncLegalEntityAssociations:
                 ],
                 "intended_use": "intended_use",
                 "last_name": "last_name",
-                "legal_entity_associations": [{}],
+                "legal_entity_associations": [
+                    {
+                        "relationship_types": ["authorized_signer"],
+                        "child_legal_entity_id": "child_legal_entity_id",
+                        "ownership_percentage": 0,
+                        "title": "title",
+                    }
+                ],
                 "legal_entity_type": "business",
                 "legal_structure": "corporation",
                 "metadata": {
