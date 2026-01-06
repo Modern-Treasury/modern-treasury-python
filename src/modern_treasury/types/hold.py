@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["HoldCreateResponse"]
+__all__ = ["Hold"]
 
 
-class HoldCreateResponse(BaseModel):
+class Hold(BaseModel):
     id: str
 
     created_at: datetime

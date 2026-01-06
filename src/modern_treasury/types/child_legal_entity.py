@@ -6,13 +6,65 @@ from typing import Dict, List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
-from ..._models import BaseModel
-from .identification_create_request import IdentificationCreateRequest
-from .legal_entity_compliance_detail import LegalEntityComplianceDetail
-from .legal_entity_address_create_request import LegalEntityAddressCreateRequest
-from .legal_entity_industry_classification import LegalEntityIndustryClassification
+from .._models import BaseModel
+from .shared.legal_entity_compliance_detail import LegalEntityComplianceDetail
+from .shared.legal_entity_industry_classification import LegalEntityIndustryClassification
 
-__all__ = ["ChildLegalEntityCreate", "BankSettings", "PhoneNumbers", "PhoneNumber", "WealthAndEmploymentDetails"]
+__all__ = [
+    "ChildLegalEntity",
+    "Addresses",
+    "Address",
+    "BankSettings",
+    "Identifications",
+    "Identification",
+    "PhoneNumbers",
+    "PhoneNumber",
+    "WealthAndEmploymentDetails",
+]
+
+
+class Address(BaseModel):
+    id: str
+
+    address_types: List[Literal["business", "mailing", "other", "po_box", "residential"]]
+    """The types of this address."""
+
+    country: Optional[str] = None
+    """Country code conforms to [ISO 3166-1 alpha-2]"""
+
+    created_at: datetime
+
+    discarded_at: Optional[datetime] = None
+
+    line1: Optional[str] = None
+
+    line2: Optional[str] = None
+
+    live_mode: bool
+    """
+    This field will be true if this object exists in the live environment or false
+    if it exists in the test environment.
+    """
+
+    locality: Optional[str] = None
+    """Locality or City."""
+
+    object: str
+
+    postal_code: Optional[str] = None
+    """The postal code of the address."""
+
+    region: Optional[str] = None
+    """Region or State."""
+
+    updated_at: datetime
+
+
+Addresses = Address
+"""This type is deprecated and will be removed in a future release.
+
+Please use Address instead.
+"""
 
 
 class BankSettings(BaseModel):
@@ -52,6 +104,72 @@ class BankSettings(BaseModel):
     """
 
     updated_at: datetime
+
+
+class Identification(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    discarded_at: Optional[datetime] = None
+
+    expiration_date: Optional[date] = None
+    """
+    The date when the Identification is no longer considered valid by the issuing
+    authority.
+    """
+
+    id_type: Literal[
+        "ar_cuil",
+        "ar_cuit",
+        "br_cnpj",
+        "br_cpf",
+        "cl_run",
+        "cl_rut",
+        "co_cedulas",
+        "co_nit",
+        "drivers_license",
+        "hn_id",
+        "hn_rtn",
+        "in_lei",
+        "kr_brn",
+        "kr_crn",
+        "kr_rrn",
+        "passport",
+        "sa_tin",
+        "sa_vat",
+        "us_ein",
+        "us_itin",
+        "us_ssn",
+        "vn_tin",
+    ]
+    """The type of ID number."""
+
+    issuing_country: Optional[str] = None
+    """
+    The ISO 3166-1 alpha-2 country code of the country that issued the
+    identification
+    """
+
+    issuing_region: Optional[str] = None
+    """The region in which the identifcation was issued."""
+
+    live_mode: bool
+    """
+    This field will be true if this object exists in the live environment or false
+    if it exists in the test environment.
+    """
+
+    object: str
+
+    updated_at: datetime
+
+
+Identifications = Identification
+"""This type is deprecated and will be removed in a future release.
+
+Please use Identification instead.
+"""
 
 
 class PhoneNumber(BaseModel):
@@ -216,8 +334,10 @@ class WealthAndEmploymentDetails(BaseModel):
     """The source of the individual's wealth."""
 
 
-class ChildLegalEntityCreate(BaseModel):
-    addresses: Optional[List[LegalEntityAddressCreateRequest]] = None
+class ChildLegalEntity(BaseModel):
+    id: str
+
+    addresses: List[Address]
     """A list of addresses for the entity."""
 
     bank_settings: Optional[BankSettings] = None
@@ -239,13 +359,17 @@ class ChildLegalEntityCreate(BaseModel):
     alpha-3 formats.
     """
 
+    created_at: datetime
+
     date_formed: Optional[date] = None
     """A business's formation date (YYYY-MM-DD)."""
 
     date_of_birth: Optional[date] = None
     """An individual's date of birth (YYYY-MM-DD)."""
 
-    doing_business_as_names: Optional[List[str]] = None
+    discarded_at: Optional[datetime] = None
+
+    doing_business_as_names: List[str]
 
     email: Optional[str] = None
     """The entity's primary email."""
@@ -256,10 +380,10 @@ class ChildLegalEntityCreate(BaseModel):
     first_name: Optional[str] = None
     """An individual's first name."""
 
-    identifications: Optional[List[IdentificationCreateRequest]] = None
+    identifications: List[Identification]
     """A list of identifications for the legal entity."""
 
-    industry_classifications: Optional[List[LegalEntityIndustryClassification]] = None
+    industry_classifications: List[LegalEntityIndustryClassification]
     """A list of industry classifications for the legal entity."""
 
     intended_use: Optional[str] = None
@@ -268,10 +392,10 @@ class ChildLegalEntityCreate(BaseModel):
     last_name: Optional[str] = None
     """An individual's last name."""
 
-    legal_entity_associations: Optional[List[LegalEntityAssociationInlineCreate]] = None
+    legal_entity_associations: Optional[List["LegalEntityAssociation"]] = None
     """The legal entity associations and its child legal entities."""
 
-    legal_entity_type: Optional[Literal["business", "individual"]] = None
+    legal_entity_type: Literal["business", "individual", "joint"]
     """The type of legal entity."""
 
     legal_structure: Optional[
@@ -279,7 +403,13 @@ class ChildLegalEntityCreate(BaseModel):
     ] = None
     """The business's legal structure."""
 
-    metadata: Optional[Dict[str, str]] = None
+    live_mode: bool
+    """
+    This field will be true if this object exists in the live environment or false
+    if it exists in the test environment.
+    """
+
+    metadata: Dict[str, str]
     """Additional data represented as key-value pairs.
 
     Both the key and value must be strings.
@@ -288,13 +418,15 @@ class ChildLegalEntityCreate(BaseModel):
     middle_name: Optional[str] = None
     """An individual's middle name."""
 
-    operating_jurisdictions: Optional[List[str]] = None
+    object: str
+
+    operating_jurisdictions: List[str]
     """
     A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
     codes).
     """
 
-    phone_numbers: Optional[List[PhoneNumber]] = None
+    phone_numbers: List[PhoneNumber]
 
     politically_exposed_person: Optional[bool] = None
     """Whether the individual is a politically exposed person."""
@@ -305,7 +437,7 @@ class ChildLegalEntityCreate(BaseModel):
     prefix: Optional[str] = None
     """An individual's prefix."""
 
-    primary_social_media_sites: Optional[List[str]] = None
+    primary_social_media_sites: List[str]
     """A list of primary social media URLs for the business."""
 
     risk_rating: Optional[Literal["low", "medium", "high"]] = None
@@ -314,10 +446,12 @@ class ChildLegalEntityCreate(BaseModel):
     suffix: Optional[str] = None
     """An individual's suffix."""
 
+    updated_at: datetime
+
     wealth_and_employment_details: Optional[WealthAndEmploymentDetails] = None
 
     website: Optional[str] = None
     """The entity's primary website URL."""
 
 
-from ..legal_entity_association_inline_create import LegalEntityAssociationInlineCreate
+from .legal_entity_association import LegalEntityAssociation

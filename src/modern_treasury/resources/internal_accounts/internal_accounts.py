@@ -31,6 +31,7 @@ from .balance_reports import (
 )
 from ...types.shared.currency import Currency
 from ...types.internal_account import InternalAccount
+from ...types.account_capability_param import AccountCapabilityParam
 from ...types.shared.transaction_direction import TransactionDirection
 from ...types.internal_account_update_account_capability_response import InternalAccountUpdateAccountCapabilityResponse
 
@@ -68,7 +69,7 @@ class InternalAccounts(SyncAPIResource):
         currency: Literal["USD", "CAD"],
         name: str,
         party_name: str,
-        account_capabilities: Iterable[internal_account_create_params.AccountCapability] | Omit = omit,
+        account_capabilities: Iterable[AccountCapabilityParam] | Omit = omit,
         account_type: Literal[
             "base_wallet",
             "cash",
@@ -504,7 +505,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         currency: Literal["USD", "CAD"],
         name: str,
         party_name: str,
-        account_capabilities: Iterable[internal_account_create_params.AccountCapability] | Omit = omit,
+        account_capabilities: Iterable[AccountCapabilityParam] | Omit = omit,
         account_type: Literal[
             "base_wallet",
             "cash",

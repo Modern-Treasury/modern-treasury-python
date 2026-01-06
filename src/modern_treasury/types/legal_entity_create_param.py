@@ -13,28 +13,10 @@ from .shared_params.legal_entity_compliance_detail import LegalEntityComplianceD
 from .shared_params.legal_entity_address_create_request import LegalEntityAddressCreateRequest
 from .shared_params.legal_entity_industry_classification import LegalEntityIndustryClassification
 
-__all__ = [
-    "ConnectionLegalEntityCreateParams",
-    "LegalEntity",
-    "LegalEntityBankSettings",
-    "LegalEntityPhoneNumbers",
-    "LegalEntityPhoneNumber",
-    "LegalEntityWealthAndEmploymentDetails",
-]
+__all__ = ["LegalEntityCreateParam", "BankSettings", "PhoneNumbers", "PhoneNumber", "WealthAndEmploymentDetails"]
 
 
-class ConnectionLegalEntityCreateParams(TypedDict, total=False):
-    connection_id: Required[str]
-    """The ID of the connection."""
-
-    legal_entity: LegalEntity
-    """The legal entity."""
-
-    legal_entity_id: str
-    """The ID of the legal entity."""
-
-
-class LegalEntityBankSettings(TypedDict, total=False):
+class BankSettings(TypedDict, total=False):
     id: Required[str]
 
     backup_withholding_percentage: Required[Optional[int]]
@@ -73,20 +55,20 @@ class LegalEntityBankSettings(TypedDict, total=False):
     updated_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
 
-class LegalEntityPhoneNumber(TypedDict, total=False):
+class PhoneNumber(TypedDict, total=False):
     """A list of phone numbers in E.164 format."""
 
     phone_number: str
 
 
-LegalEntityPhoneNumbers = LegalEntityPhoneNumber
+PhoneNumbers = PhoneNumber
 """This type is deprecated and will be removed in a future release.
 
-Please use LegalEntityPhoneNumber instead.
+Please use PhoneNumber instead.
 """
 
 
-class LegalEntityWealthAndEmploymentDetails(TypedDict, total=False):
+class WealthAndEmploymentDetails(TypedDict, total=False):
     id: Required[str]
 
     annual_income: Required[Optional[int]]
@@ -245,13 +227,14 @@ class LegalEntityWealthAndEmploymentDetails(TypedDict, total=False):
     """The source of the individual's wealth."""
 
 
-class LegalEntity(TypedDict, total=False):
-    """The legal entity."""
+class LegalEntityCreateParam(TypedDict, total=False):
+    legal_entity_type: Required[Literal["business", "individual"]]
+    """The type of legal entity."""
 
     addresses: Iterable[LegalEntityAddressCreateRequest]
     """A list of addresses for the entity."""
 
-    bank_settings: Optional[LegalEntityBankSettings]
+    bank_settings: Optional[BankSettings]
 
     business_description: Optional[str]
     """A description of the business."""
@@ -302,9 +285,6 @@ class LegalEntity(TypedDict, total=False):
     legal_entity_associations: Optional[Iterable["LegalEntityAssociationInlineCreateParam"]]
     """The legal entity associations and its child legal entities."""
 
-    legal_entity_type: Literal["business", "individual"]
-    """The type of legal entity."""
-
     legal_structure: Optional[
         Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
     ]
@@ -325,7 +305,7 @@ class LegalEntity(TypedDict, total=False):
     codes).
     """
 
-    phone_numbers: Iterable[LegalEntityPhoneNumber]
+    phone_numbers: Iterable[PhoneNumber]
 
     politically_exposed_person: Optional[bool]
     """Whether the individual is a politically exposed person."""
@@ -345,7 +325,7 @@ class LegalEntity(TypedDict, total=False):
     suffix: Optional[str]
     """An individual's suffix."""
 
-    wealth_and_employment_details: Optional[LegalEntityWealthAndEmploymentDetails]
+    wealth_and_employment_details: Optional[WealthAndEmploymentDetails]
 
     website: Optional[str]
     """The entity's primary website URL."""
