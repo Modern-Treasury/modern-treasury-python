@@ -177,7 +177,7 @@ class TestConnectionLegalEntities:
                             ],
                             "intended_use": "intended_use",
                             "last_name": "last_name",
-                            "legal_entity_associations": [{}],
+                            "legal_entity_associations": [],
                             "legal_entity_type": "business",
                             "legal_structure": "corporation",
                             "metadata": {
@@ -569,7 +569,7 @@ class TestAsyncConnectionLegalEntities:
                             ],
                             "intended_use": "intended_use",
                             "last_name": "last_name",
-                            "legal_entity_associations": [{}],
+                            "legal_entity_associations": [],
                             "legal_entity_type": "business",
                             "legal_structure": "corporation",
                             "metadata": {

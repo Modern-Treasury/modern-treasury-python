@@ -19,7 +19,7 @@ from .shared_params.ledger_account_create_request import LedgerAccountCreateRequ
 from .shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
 __all__ = [
-    "PaymentOrderCreateAsyncParams",
+    "PaymentOrderAsyncCreateParam",
     "ReceivingAccount",
     "ReceivingAccountAccountDetails",
     "ReceivingAccountAccountDetail",
@@ -28,7 +28,171 @@ __all__ = [
 ]
 
 
-class PaymentOrderCreateAsyncParams(TypedDict, total=False):
+class ReceivingAccountAccountDetail(TypedDict, total=False):
+    account_number: Required[str]
+
+    account_number_type: Literal[
+        "au_number",
+        "base_address",
+        "clabe",
+        "ethereum_address",
+        "hk_number",
+        "iban",
+        "id_number",
+        "nz_number",
+        "other",
+        "pan",
+        "polygon_address",
+        "sg_number",
+        "solana_address",
+        "wallet_address",
+    ]
+
+
+ReceivingAccountAccountDetails = ReceivingAccountAccountDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use ReceivingAccountAccountDetail instead.
+"""
+
+
+class ReceivingAccountRoutingDetail(TypedDict, total=False):
+    routing_number: Required[str]
+
+    routing_number_type: Required[
+        Literal[
+            "aba",
+            "au_bsb",
+            "br_codigo",
+            "ca_cpa",
+            "chips",
+            "cnaps",
+            "dk_interbank_clearing_code",
+            "gb_sort_code",
+            "hk_interbank_clearing_code",
+            "hu_interbank_clearing_code",
+            "id_sknbi_code",
+            "il_bank_code",
+            "in_ifsc",
+            "jp_zengin_code",
+            "my_branch_code",
+            "mx_bank_identifier",
+            "nz_national_clearing_code",
+            "pl_national_clearing_code",
+            "se_bankgiro_clearing_code",
+            "sg_interbank_clearing_code",
+            "swift",
+            "za_national_clearing_code",
+        ]
+    ]
+
+    payment_type: Literal[
+        "ach",
+        "au_becs",
+        "bacs",
+        "base",
+        "book",
+        "card",
+        "chats",
+        "check",
+        "cross_border",
+        "dk_nets",
+        "eft",
+        "ethereum",
+        "gb_fps",
+        "hu_ics",
+        "interac",
+        "masav",
+        "mx_ccen",
+        "neft",
+        "nics",
+        "nz_becs",
+        "pl_elixir",
+        "polygon",
+        "provxchange",
+        "ro_sent",
+        "rtp",
+        "se_bankgirot",
+        "sen",
+        "sepa",
+        "sg_giro",
+        "sic",
+        "signet",
+        "sknbi",
+        "solana",
+        "wire",
+        "zengin",
+    ]
+
+
+ReceivingAccountRoutingDetails = ReceivingAccountRoutingDetail
+"""This type is deprecated and will be removed in a future release.
+
+Please use ReceivingAccountRoutingDetail instead.
+"""
+
+
+class ReceivingAccount(TypedDict, total=False):
+    """Either `receiving_account` or `receiving_account_id` must be present.
+
+    When using `receiving_account_id`, you may pass the id of an external account or an internal account.
+    """
+
+    account_details: Iterable[ReceivingAccountAccountDetail]
+
+    account_type: ExternalAccountType
+    """Can be `checking`, `savings` or `other`."""
+
+    contact_details: Iterable[ContactDetailCreateRequestParam]
+
+    external_id: Optional[str]
+    """An optional user-defined 180 character unique identifier."""
+
+    ledger_account: LedgerAccountCreateRequest
+    """Specifies a ledger account object that will be created with the external
+    account.
+
+    The resulting ledger account is linked to the external account for
+    auto-ledgering Payment objects. See
+    https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
+    for more details.
+    """
+
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
+
+    name: Optional[str]
+    """A nickname for the external account.
+
+    This is only for internal usage and won't affect any payments
+    """
+
+    party_address: AddressRequest
+    """Required if receiving wire payments."""
+
+    party_identifier: str
+
+    party_name: str
+    """
+    If this value isn't provided, it will be inherited from the counterparty's name.
+    """
+
+    party_type: Optional[Literal["business", "individual"]]
+    """Either `individual` or `business`."""
+
+    plaid_processor_token: str
+    """
+    If you've enabled the Modern Treasury + Plaid integration in your Plaid account,
+    you can pass the processor token in this field.
+    """
+
+    routing_details: Iterable[ReceivingAccountRoutingDetail]
+
+
+class PaymentOrderAsyncCreateParam(TypedDict, total=False):
     amount: Required[int]
     """Value in specified currency's smallest unit.
 
@@ -243,167 +407,3 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
 
     ultimate_receiving_party_name: Optional[str]
     """Name of the ultimate funds recipient."""
-
-
-class ReceivingAccountAccountDetail(TypedDict, total=False):
-    account_number: Required[str]
-
-    account_number_type: Literal[
-        "au_number",
-        "base_address",
-        "clabe",
-        "ethereum_address",
-        "hk_number",
-        "iban",
-        "id_number",
-        "nz_number",
-        "other",
-        "pan",
-        "polygon_address",
-        "sg_number",
-        "solana_address",
-        "wallet_address",
-    ]
-
-
-ReceivingAccountAccountDetails = ReceivingAccountAccountDetail
-"""This type is deprecated and will be removed in a future release.
-
-Please use ReceivingAccountAccountDetail instead.
-"""
-
-
-class ReceivingAccountRoutingDetail(TypedDict, total=False):
-    routing_number: Required[str]
-
-    routing_number_type: Required[
-        Literal[
-            "aba",
-            "au_bsb",
-            "br_codigo",
-            "ca_cpa",
-            "chips",
-            "cnaps",
-            "dk_interbank_clearing_code",
-            "gb_sort_code",
-            "hk_interbank_clearing_code",
-            "hu_interbank_clearing_code",
-            "id_sknbi_code",
-            "il_bank_code",
-            "in_ifsc",
-            "jp_zengin_code",
-            "my_branch_code",
-            "mx_bank_identifier",
-            "nz_national_clearing_code",
-            "pl_national_clearing_code",
-            "se_bankgiro_clearing_code",
-            "sg_interbank_clearing_code",
-            "swift",
-            "za_national_clearing_code",
-        ]
-    ]
-
-    payment_type: Literal[
-        "ach",
-        "au_becs",
-        "bacs",
-        "base",
-        "book",
-        "card",
-        "chats",
-        "check",
-        "cross_border",
-        "dk_nets",
-        "eft",
-        "ethereum",
-        "gb_fps",
-        "hu_ics",
-        "interac",
-        "masav",
-        "mx_ccen",
-        "neft",
-        "nics",
-        "nz_becs",
-        "pl_elixir",
-        "polygon",
-        "provxchange",
-        "ro_sent",
-        "rtp",
-        "se_bankgirot",
-        "sen",
-        "sepa",
-        "sg_giro",
-        "sic",
-        "signet",
-        "sknbi",
-        "solana",
-        "wire",
-        "zengin",
-    ]
-
-
-ReceivingAccountRoutingDetails = ReceivingAccountRoutingDetail
-"""This type is deprecated and will be removed in a future release.
-
-Please use ReceivingAccountRoutingDetail instead.
-"""
-
-
-class ReceivingAccount(TypedDict, total=False):
-    """Either `receiving_account` or `receiving_account_id` must be present.
-
-    When using `receiving_account_id`, you may pass the id of an external account or an internal account.
-    """
-
-    account_details: Iterable[ReceivingAccountAccountDetail]
-
-    account_type: ExternalAccountType
-    """Can be `checking`, `savings` or `other`."""
-
-    contact_details: Iterable[ContactDetailCreateRequestParam]
-
-    external_id: Optional[str]
-    """An optional user-defined 180 character unique identifier."""
-
-    ledger_account: LedgerAccountCreateRequest
-    """Specifies a ledger account object that will be created with the external
-    account.
-
-    The resulting ledger account is linked to the external account for
-    auto-ledgering Payment objects. See
-    https://docs.moderntreasury.com/docs/linking-to-other-modern-treasury-objects
-    for more details.
-    """
-
-    metadata: Dict[str, str]
-    """Additional data represented as key-value pairs.
-
-    Both the key and value must be strings.
-    """
-
-    name: Optional[str]
-    """A nickname for the external account.
-
-    This is only for internal usage and won't affect any payments
-    """
-
-    party_address: AddressRequest
-    """Required if receiving wire payments."""
-
-    party_identifier: str
-
-    party_name: str
-    """
-    If this value isn't provided, it will be inherited from the counterparty's name.
-    """
-
-    party_type: Optional[Literal["business", "individual"]]
-    """Either `individual` or `business`."""
-
-    plaid_processor_token: str
-    """
-    If you've enabled the Modern Treasury + Plaid integration in your Plaid account,
-    you can pass the processor token in this field.
-    """
-
-    routing_details: Iterable[ReceivingAccountRoutingDetail]

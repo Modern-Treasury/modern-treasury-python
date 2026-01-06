@@ -2,27 +2,18 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
+from typing import Dict, Union, Iterable, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
-from .shared_params.child_legal_entity_create import ChildLegalEntityCreate
 from .shared_params.identification_create_request import IdentificationCreateRequest
 from .shared_params.legal_entity_compliance_detail import LegalEntityComplianceDetail
 from .shared_params.legal_entity_address_create_request import LegalEntityAddressCreateRequest
 from .shared_params.legal_entity_industry_classification import LegalEntityIndustryClassification
 
-__all__ = [
-    "LegalEntityCreateParams",
-    "BankSettings",
-    "LegalEntityAssociations",
-    "LegalEntityAssociation",
-    "PhoneNumbers",
-    "PhoneNumber",
-    "WealthAndEmploymentDetails",
-]
+__all__ = ["LegalEntityCreateParams", "BankSettings", "PhoneNumbers", "PhoneNumber", "WealthAndEmploymentDetails"]
 
 
 class LegalEntityCreateParams(TypedDict, total=False):
@@ -80,7 +71,7 @@ class LegalEntityCreateParams(TypedDict, total=False):
     last_name: Optional[str]
     """An individual's last name."""
 
-    legal_entity_associations: Optional[Iterable[LegalEntityAssociation]]
+    legal_entity_associations: Optional[Iterable["LegalEntityAssociationInlineCreateParam"]]
     """The legal entity associations and its child legal entities."""
 
     legal_structure: Optional[
@@ -166,29 +157,6 @@ class BankSettings(TypedDict, total=False):
     """
 
     updated_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
-
-
-class LegalEntityAssociation(TypedDict, total=False):
-    relationship_types: Required[List[Literal["authorized_signer", "beneficial_owner", "control_person"]]]
-
-    child_legal_entity: ChildLegalEntityCreate
-    """The child legal entity."""
-
-    child_legal_entity_id: str
-    """The ID of the child legal entity."""
-
-    ownership_percentage: Optional[int]
-    """The child entity's ownership percentage iff they are a beneficial owner."""
-
-    title: Optional[str]
-    """The job title of the child entity at the parent entity."""
-
-
-LegalEntityAssociations = LegalEntityAssociation
-"""This type is deprecated and will be removed in a future release.
-
-Please use LegalEntityAssociation instead.
-"""
 
 
 class PhoneNumber(TypedDict, total=False):
@@ -361,3 +329,6 @@ class WealthAndEmploymentDetails(TypedDict, total=False):
         ]
     ]
     """The source of the individual's wealth."""
+
+
+from .legal_entity_association_inline_create_param import LegalEntityAssociationInlineCreateParam
