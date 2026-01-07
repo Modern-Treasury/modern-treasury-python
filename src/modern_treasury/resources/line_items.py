@@ -16,9 +16,7 @@ from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.line_item_list_response import LineItemListResponse
-from ..types.line_item_update_response import LineItemUpdateResponse
-from ..types.line_item_retrieve_response import LineItemRetrieveResponse
+from ..types.line_item import LineItem
 
 __all__ = ["LineItems", "AsyncLineItems"]
 
@@ -55,7 +53,7 @@ class LineItems(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LineItemRetrieveResponse:
+    ) -> LineItem:
         """
         Get a single line item
 
@@ -79,7 +77,7 @@ class LineItems(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LineItemRetrieveResponse,
+            cast_to=LineItem,
         )
 
     def update(
@@ -96,7 +94,7 @@ class LineItems(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> LineItemUpdateResponse:
+    ) -> LineItem:
         """
         update line item
 
@@ -130,7 +128,7 @@ class LineItems(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=LineItemUpdateResponse,
+            cast_to=LineItem,
         )
 
     def list(
@@ -146,7 +144,7 @@ class LineItems(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[LineItemListResponse]:
+    ) -> SyncPage[LineItem]:
         """
         Get a list of line items
 
@@ -165,7 +163,7 @@ class LineItems(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}")
         return self._get_api_list(
             f"/api/{itemizable_type}/{itemizable_id}/line_items",
-            page=SyncPage[LineItemListResponse],
+            page=SyncPage[LineItem],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -179,7 +177,7 @@ class LineItems(SyncAPIResource):
                     line_item_list_params.LineItemListParams,
                 ),
             ),
-            model=LineItemListResponse,
+            model=LineItem,
         )
 
 
@@ -215,7 +213,7 @@ class AsyncLineItems(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LineItemRetrieveResponse:
+    ) -> LineItem:
         """
         Get a single line item
 
@@ -239,7 +237,7 @@ class AsyncLineItems(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LineItemRetrieveResponse,
+            cast_to=LineItem,
         )
 
     async def update(
@@ -256,7 +254,7 @@ class AsyncLineItems(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> LineItemUpdateResponse:
+    ) -> LineItem:
         """
         update line item
 
@@ -290,7 +288,7 @@ class AsyncLineItems(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=LineItemUpdateResponse,
+            cast_to=LineItem,
         )
 
     def list(
@@ -306,7 +304,7 @@ class AsyncLineItems(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[LineItemListResponse, AsyncPage[LineItemListResponse]]:
+    ) -> AsyncPaginator[LineItem, AsyncPage[LineItem]]:
         """
         Get a list of line items
 
@@ -325,7 +323,7 @@ class AsyncLineItems(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}")
         return self._get_api_list(
             f"/api/{itemizable_type}/{itemizable_id}/line_items",
-            page=AsyncPage[LineItemListResponse],
+            page=AsyncPage[LineItem],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -339,7 +337,7 @@ class AsyncLineItems(AsyncAPIResource):
                     line_item_list_params.LineItemListParams,
                 ),
             ),
-            model=LineItemListResponse,
+            model=LineItem,
         )
 
 

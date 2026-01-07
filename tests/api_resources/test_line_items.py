@@ -9,11 +9,7 @@ import pytest
 
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
-from modern_treasury.types import (
-    LineItemListResponse,
-    LineItemUpdateResponse,
-    LineItemRetrieveResponse,
-)
+from modern_treasury.types import LineItem
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -29,7 +25,7 @@ class TestLineItems:
             itemizable_type="expected_payments",
             itemizable_id="itemizable_id",
         )
-        assert_matches_type(LineItemRetrieveResponse, line_item, path=["response"])
+        assert_matches_type(LineItem, line_item, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
@@ -42,7 +38,7 @@ class TestLineItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
-        assert_matches_type(LineItemRetrieveResponse, line_item, path=["response"])
+        assert_matches_type(LineItem, line_item, path=["response"])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
@@ -55,7 +51,7 @@ class TestLineItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             line_item = response.parse()
-            assert_matches_type(LineItemRetrieveResponse, line_item, path=["response"])
+            assert_matches_type(LineItem, line_item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -82,7 +78,7 @@ class TestLineItems:
             itemizable_type="expected_payments",
             itemizable_id="itemizable_id",
         )
-        assert_matches_type(LineItemUpdateResponse, line_item, path=["response"])
+        assert_matches_type(LineItem, line_item, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
@@ -96,7 +92,7 @@ class TestLineItems:
                 "modern": "treasury",
             },
         )
-        assert_matches_type(LineItemUpdateResponse, line_item, path=["response"])
+        assert_matches_type(LineItem, line_item, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: ModernTreasury) -> None:
@@ -109,7 +105,7 @@ class TestLineItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
-        assert_matches_type(LineItemUpdateResponse, line_item, path=["response"])
+        assert_matches_type(LineItem, line_item, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: ModernTreasury) -> None:
@@ -122,7 +118,7 @@ class TestLineItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             line_item = response.parse()
-            assert_matches_type(LineItemUpdateResponse, line_item, path=["response"])
+            assert_matches_type(LineItem, line_item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -149,7 +145,7 @@ class TestLineItems:
             itemizable_id="itemizable_id",
             itemizable_type="expected_payments",
         )
-        assert_matches_type(SyncPage[LineItemListResponse], line_item, path=["response"])
+        assert_matches_type(SyncPage[LineItem], line_item, path=["response"])
 
     @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
@@ -160,7 +156,7 @@ class TestLineItems:
             after_cursor="after_cursor",
             per_page=0,
         )
-        assert_matches_type(SyncPage[LineItemListResponse], line_item, path=["response"])
+        assert_matches_type(SyncPage[LineItem], line_item, path=["response"])
 
     @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
@@ -173,7 +169,7 @@ class TestLineItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
-        assert_matches_type(SyncPage[LineItemListResponse], line_item, path=["response"])
+        assert_matches_type(SyncPage[LineItem], line_item, path=["response"])
 
     @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
@@ -186,7 +182,7 @@ class TestLineItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             line_item = response.parse()
-            assert_matches_type(SyncPage[LineItemListResponse], line_item, path=["response"])
+            assert_matches_type(SyncPage[LineItem], line_item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -212,7 +208,7 @@ class TestAsyncLineItems:
             itemizable_type="expected_payments",
             itemizable_id="itemizable_id",
         )
-        assert_matches_type(LineItemRetrieveResponse, line_item, path=["response"])
+        assert_matches_type(LineItem, line_item, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
@@ -225,7 +221,7 @@ class TestAsyncLineItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
-        assert_matches_type(LineItemRetrieveResponse, line_item, path=["response"])
+        assert_matches_type(LineItem, line_item, path=["response"])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
@@ -238,7 +234,7 @@ class TestAsyncLineItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             line_item = await response.parse()
-            assert_matches_type(LineItemRetrieveResponse, line_item, path=["response"])
+            assert_matches_type(LineItem, line_item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -265,7 +261,7 @@ class TestAsyncLineItems:
             itemizable_type="expected_payments",
             itemizable_id="itemizable_id",
         )
-        assert_matches_type(LineItemUpdateResponse, line_item, path=["response"])
+        assert_matches_type(LineItem, line_item, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncModernTreasury) -> None:
@@ -279,7 +275,7 @@ class TestAsyncLineItems:
                 "modern": "treasury",
             },
         )
-        assert_matches_type(LineItemUpdateResponse, line_item, path=["response"])
+        assert_matches_type(LineItem, line_item, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncModernTreasury) -> None:
@@ -292,7 +288,7 @@ class TestAsyncLineItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
-        assert_matches_type(LineItemUpdateResponse, line_item, path=["response"])
+        assert_matches_type(LineItem, line_item, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncModernTreasury) -> None:
@@ -305,7 +301,7 @@ class TestAsyncLineItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             line_item = await response.parse()
-            assert_matches_type(LineItemUpdateResponse, line_item, path=["response"])
+            assert_matches_type(LineItem, line_item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -332,7 +328,7 @@ class TestAsyncLineItems:
             itemizable_id="itemizable_id",
             itemizable_type="expected_payments",
         )
-        assert_matches_type(AsyncPage[LineItemListResponse], line_item, path=["response"])
+        assert_matches_type(AsyncPage[LineItem], line_item, path=["response"])
 
     @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
@@ -343,7 +339,7 @@ class TestAsyncLineItems:
             after_cursor="after_cursor",
             per_page=0,
         )
-        assert_matches_type(AsyncPage[LineItemListResponse], line_item, path=["response"])
+        assert_matches_type(AsyncPage[LineItem], line_item, path=["response"])
 
     @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
@@ -356,7 +352,7 @@ class TestAsyncLineItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         line_item = response.parse()
-        assert_matches_type(AsyncPage[LineItemListResponse], line_item, path=["response"])
+        assert_matches_type(AsyncPage[LineItem], line_item, path=["response"])
 
     @pytest.mark.skip(reason="Prism is broken in this case")
     @parametrize
@@ -369,7 +365,7 @@ class TestAsyncLineItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             line_item = await response.parse()
-            assert_matches_type(AsyncPage[LineItemListResponse], line_item, path=["response"])
+            assert_matches_type(AsyncPage[LineItem], line_item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

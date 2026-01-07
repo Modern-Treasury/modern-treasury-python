@@ -4,16 +4,15 @@ from __future__ import annotations
 
 from typing import Dict, Union, Iterable, Optional
 from datetime import date
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .line_item_param import LineItemParam
 from .shared.currency import Currency
 from .expected_payment_type import ExpectedPaymentType
 from .reconciliation_rule_param import ReconciliationRuleParam
 from .shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
-__all__ = ["ExpectedPaymentCreateParams"]
+__all__ = ["ExpectedPaymentCreateParams", "LineItems", "LineItem"]
 
 
 class ExpectedPaymentCreateParams(TypedDict, total=False):
@@ -100,7 +99,7 @@ class ExpectedPaymentCreateParams(TypedDict, total=False):
     transaction tracks the expected payment automatically.
     """
 
-    line_items: Iterable[LineItemParam]
+    line_items: Iterable[LineItem]
 
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.
@@ -137,3 +136,34 @@ class ExpectedPaymentCreateParams(TypedDict, total=False):
     One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
     sepa, signet, wire.
     """
+
+
+class LineItem(TypedDict, total=False):
+    amount: Required[int]
+    """Value in specified currency's smallest unit.
+
+    e.g. $10 would be represented as 1000.
+    """
+
+    accounting_category_id: Optional[str]
+    """The ID of one of your accounting categories.
+
+    Note that these will only be accessible if your accounting system has been
+    connected.
+    """
+
+    description: Optional[str]
+    """A free-form description of the line item."""
+
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
+
+
+LineItems = LineItem
+"""This type is deprecated and will be removed in a future release.
+
+Please use LineItem instead.
+"""
