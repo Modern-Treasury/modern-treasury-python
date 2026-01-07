@@ -7,10 +7,10 @@ from .._models import BaseModel
 from .shared.ledger_balances import LedgerBalances
 from .shared.transaction_direction import TransactionDirection
 
-__all__ = ["LedgerAccountStatement"]
+__all__ = ["LedgerAccountStatementRetrieveResponse"]
 
 
-class LedgerAccountStatement(BaseModel):
+class LedgerAccountStatementRetrieveResponse(BaseModel):
     id: str
 
     created_at: datetime
