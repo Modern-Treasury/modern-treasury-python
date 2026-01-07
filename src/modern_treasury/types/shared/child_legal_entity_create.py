@@ -268,7 +268,7 @@ class ChildLegalEntityCreate(BaseModel):
     last_name: Optional[str] = None
     """An individual's last name."""
 
-    legal_entity_associations: Optional[List[LegalEntityAssociationInlineCreate]] = None
+    legal_entity_associations: Optional[List["LegalEntityAssociationInlineCreate"]] = None
     """The legal entity associations and its child legal entities."""
 
     legal_entity_type: Optional[Literal["business", "individual"]] = None
@@ -320,4 +320,4 @@ class ChildLegalEntityCreate(BaseModel):
     """The entity's primary website URL."""
 
 
-from ..legal_entity_association_inline_create import LegalEntityAssociationInlineCreate
+from .legal_entity_association_inline_create import LegalEntityAssociationInlineCreate

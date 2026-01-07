@@ -13,3 +13,6 @@ from .legal_entity_compliance_detail import LegalEntityComplianceDetail as Legal
 from .ledger_transaction_create_request import LedgerTransactionCreateRequest as LedgerTransactionCreateRequest
 from .legal_entity_address_create_request import LegalEntityAddressCreateRequest as LegalEntityAddressCreateRequest
 from .legal_entity_industry_classification import LegalEntityIndustryClassification as LegalEntityIndustryClassification
+from .legal_entity_association_inline_create import (
+    LegalEntityAssociationInlineCreate as LegalEntityAssociationInlineCreate,
+)

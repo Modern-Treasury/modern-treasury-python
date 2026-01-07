@@ -34,6 +34,7 @@ from .shared import (
     LedgerTransactionCreateRequest as LedgerTransactionCreateRequest,
     LegalEntityAddressCreateRequest as LegalEntityAddressCreateRequest,
     LegalEntityIndustryClassification as LegalEntityIndustryClassification,
+    LegalEntityAssociationInlineCreate as LegalEntityAssociationInlineCreate,
 )
 from .invoice import Invoice as Invoice
 from .document import Document as Document
@@ -226,9 +227,6 @@ from .ledger_account_balance_monitor_create_params import (
 from .ledger_account_balance_monitor_update_params import (
     LedgerAccountBalanceMonitorUpdateParams as LedgerAccountBalanceMonitorUpdateParams,
 )
-from .legal_entity_association_inline_create_param import (
-    LegalEntityAssociationInlineCreateParam as LegalEntityAssociationInlineCreateParam,
-)
 from .external_account_complete_verification_params import (
     ExternalAccountCompleteVerificationParams as ExternalAccountCompleteVerificationParams,
 )
@@ -255,6 +253,7 @@ if _compat.PYDANTIC_V1:
     child_legal_entity.ChildLegalEntity.update_forward_refs()  # type: ignore
     legal_entity_association.LegalEntityAssociation.update_forward_refs()  # type: ignore
     shared.child_legal_entity_create.ChildLegalEntityCreate.update_forward_refs()  # type: ignore
+    shared.legal_entity_association_inline_create.LegalEntityAssociationInlineCreate.update_forward_refs()  # type: ignore
 else:
     invoice.Invoice.model_rebuild(_parent_namespace_depth=0)
     payment_order.PaymentOrder.model_rebuild(_parent_namespace_depth=0)
@@ -264,3 +263,6 @@ else:
     child_legal_entity.ChildLegalEntity.model_rebuild(_parent_namespace_depth=0)
     legal_entity_association.LegalEntityAssociation.model_rebuild(_parent_namespace_depth=0)
     shared.child_legal_entity_create.ChildLegalEntityCreate.model_rebuild(_parent_namespace_depth=0)
+    shared.legal_entity_association_inline_create.LegalEntityAssociationInlineCreate.model_rebuild(
+        _parent_namespace_depth=0
+    )
