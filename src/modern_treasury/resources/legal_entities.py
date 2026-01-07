@@ -19,10 +19,10 @@ from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.legal_entity import LegalEntity
 from ..types.shared_params.identification_create_request import IdentificationCreateRequest
-from ..types.legal_entity_association_inline_create_param import LegalEntityAssociationInlineCreateParam
 from ..types.shared_params.legal_entity_compliance_detail import LegalEntityComplianceDetail
 from ..types.shared_params.legal_entity_address_create_request import LegalEntityAddressCreateRequest
 from ..types.shared_params.legal_entity_industry_classification import LegalEntityIndustryClassification
+from ..types.shared_params.legal_entity_association_inline_create import LegalEntityAssociationInlineCreate
 
 __all__ = ["LegalEntities", "AsyncLegalEntities"]
 
@@ -68,7 +68,7 @@ class LegalEntities(SyncAPIResource):
         industry_classifications: Iterable[LegalEntityIndustryClassification] | Omit = omit,
         intended_use: Optional[str] | Omit = omit,
         last_name: Optional[str] | Omit = omit,
-        legal_entity_associations: Optional[Iterable[LegalEntityAssociationInlineCreateParam]] | Omit = omit,
+        legal_entity_associations: Optional[Iterable[LegalEntityAssociationInlineCreate]] | Omit = omit,
         legal_structure: Optional[
             Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
         ]
@@ -502,7 +502,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         industry_classifications: Iterable[LegalEntityIndustryClassification] | Omit = omit,
         intended_use: Optional[str] | Omit = omit,
         last_name: Optional[str] | Omit = omit,
-        legal_entity_associations: Optional[Iterable[LegalEntityAssociationInlineCreateParam]] | Omit = omit,
+        legal_entity_associations: Optional[Iterable[LegalEntityAssociationInlineCreate]] | Omit = omit,
         legal_structure: Optional[
             Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
         ]

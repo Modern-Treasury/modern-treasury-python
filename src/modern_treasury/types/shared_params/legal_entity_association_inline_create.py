@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import List, Optional
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["LegalEntityAssociationInlineCreateParam"]
+__all__ = ["LegalEntityAssociationInlineCreate"]
 
 
-class LegalEntityAssociationInlineCreateParam(TypedDict, total=False):
+class LegalEntityAssociationInlineCreate(TypedDict, total=False):
     relationship_types: Required[List[Literal["authorized_signer", "beneficial_owner", "control_person"]]]
 
     child_legal_entity: "ChildLegalEntityCreate"
@@ -24,4 +24,4 @@ class LegalEntityAssociationInlineCreateParam(TypedDict, total=False):
     """The job title of the child entity at the parent entity."""
 
 
-from .shared_params.child_legal_entity_create import ChildLegalEntityCreate
+from .child_legal_entity_create import ChildLegalEntityCreate
