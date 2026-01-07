@@ -60,9 +60,8 @@
     }
   ],
   "reviewers": [
-    "cleb11",
-    "chen-annie",
-    "samridh90"
+    "samridh90",
+    "Modern-Treasury/apps-platform"
   ],
   "release-type": "python",
   "extra-files": [
