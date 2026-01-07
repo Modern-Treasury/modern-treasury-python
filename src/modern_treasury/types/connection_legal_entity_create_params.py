@@ -299,7 +299,7 @@ class LegalEntity(TypedDict, total=False):
     last_name: Optional[str]
     """An individual's last name."""
 
-    legal_entity_associations: Optional[Iterable["LegalEntityAssociationInlineCreateParam"]]
+    legal_entity_associations: Optional[Iterable["LegalEntityAssociationInlineCreate"]]
     """The legal entity associations and its child legal entities."""
 
     legal_entity_type: Literal["business", "individual"]
@@ -351,4 +351,4 @@ class LegalEntity(TypedDict, total=False):
     """The entity's primary website URL."""
 
 
-from .legal_entity_association_inline_create_param import LegalEntityAssociationInlineCreateParam
+from .shared_params.legal_entity_association_inline_create import LegalEntityAssociationInlineCreate

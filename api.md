@@ -17,6 +17,7 @@ from modern_treasury.types import (
     LedgerEntryCreateRequest,
     LedgerTransactionCreateRequest,
     LegalEntityAddressCreateRequest,
+    LegalEntityAssociationInlineCreate,
     LegalEntityComplianceDetail,
     LegalEntityIndustryClassification,
     TransactionDirection,
@@ -613,7 +614,7 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import LegalEntity, LegalEntityAssociationInlineCreate
+from modern_treasury.types import LegalEntity
 ```
 
 Methods:
