@@ -82,14 +82,7 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import (
-    ExpectedPayment,
-    ExpectedPaymentCreate,
-    ExpectedPaymentType,
-    ExpectedPaymentUpdate,
-    LineItem,
-    ReconciliationRule,
-)
+from modern_treasury.types import ExpectedPayment, ExpectedPaymentType, ReconciliationRule
 ```
 
 Methods:
@@ -158,7 +151,7 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types.invoices import InvoiceLineItem, InvoiceLineItemCreate
+from modern_treasury.types.invoices import InvoiceLineItem
 ```
 
 Methods:
@@ -174,7 +167,7 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import Document, DocumentCreate
+from modern_treasury.types import Document
 ```
 
 Methods:
@@ -203,7 +196,7 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import AccountDetail, AccountDetailCreate
+from modern_treasury.types import AccountDetail
 ```
 
 Methods:
@@ -218,7 +211,7 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import RoutingDetail, RoutingDetailCreate
+from modern_treasury.types import RoutingDetail
 ```
 
 Methods:
@@ -233,11 +226,7 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import (
-    AccountCapability,
-    InternalAccount,
-    InternalAccountUpdateAccountCapabilityResponse,
-)
+from modern_treasury.types import InternalAccount, InternalAccountUpdateAccountCapabilityResponse
 ```
 
 Methods:
@@ -337,13 +326,16 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import LedgerAccountStatement
+from modern_treasury.types import (
+    LedgerAccountStatementCreateResponse,
+    LedgerAccountStatementRetrieveResponse,
+)
 ```
 
 Methods:
 
-- <code title="post /api/ledger_account_statements">client.ledger_account_statements.<a href="./src/modern_treasury/resources/ledger_account_statements.py">create</a>(\*\*<a href="src/modern_treasury/types/ledger_account_statement_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_statement.py">LedgerAccountStatement</a></code>
-- <code title="get /api/ledger_account_statements/{id}">client.ledger_account_statements.<a href="./src/modern_treasury/resources/ledger_account_statements.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/ledger_account_statement.py">LedgerAccountStatement</a></code>
+- <code title="post /api/ledger_account_statements">client.ledger_account_statements.<a href="./src/modern_treasury/resources/ledger_account_statements.py">create</a>(\*\*<a href="src/modern_treasury/types/ledger_account_statement_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_account_statement_create_response.py">LedgerAccountStatementCreateResponse</a></code>
+- <code title="get /api/ledger_account_statements/{id}">client.ledger_account_statements.<a href="./src/modern_treasury/resources/ledger_account_statements.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/ledger_account_statement_retrieve_response.py">LedgerAccountStatementRetrieveResponse</a></code>
 
 # LedgerEntries
 
@@ -364,7 +356,7 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import LedgerTransaction, LedgerTransactionUpdate
+from modern_treasury.types import LedgerTransaction
 ```
 
 Methods:
@@ -393,19 +385,14 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import (
-    Accounting,
-    LineItemRetrieveResponse,
-    LineItemUpdateResponse,
-    LineItemListResponse,
-)
+from modern_treasury.types import LineItem
 ```
 
 Methods:
 
-- <code title="get /api/{itemizable_type}/{itemizable_id}/line_items/{id}">client.line_items.<a href="./src/modern_treasury/resources/line_items.py">retrieve</a>(id, \*, itemizable_type, itemizable_id) -> <a href="./src/modern_treasury/types/line_item_retrieve_response.py">LineItemRetrieveResponse</a></code>
-- <code title="patch /api/{itemizable_type}/{itemizable_id}/line_items/{id}">client.line_items.<a href="./src/modern_treasury/resources/line_items.py">update</a>(id, \*, itemizable_type, itemizable_id, \*\*<a href="src/modern_treasury/types/line_item_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/line_item_update_response.py">LineItemUpdateResponse</a></code>
-- <code title="get /api/{itemizable_type}/{itemizable_id}/line_items">client.line_items.<a href="./src/modern_treasury/resources/line_items.py">list</a>(itemizable_id, \*, itemizable_type, \*\*<a href="src/modern_treasury/types/line_item_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/line_item_list_response.py">SyncPage[LineItemListResponse]</a></code>
+- <code title="get /api/{itemizable_type}/{itemizable_id}/line_items/{id}">client.line_items.<a href="./src/modern_treasury/resources/line_items.py">retrieve</a>(id, \*, itemizable_type, itemizable_id) -> <a href="./src/modern_treasury/types/line_item.py">LineItem</a></code>
+- <code title="patch /api/{itemizable_type}/{itemizable_id}/line_items/{id}">client.line_items.<a href="./src/modern_treasury/resources/line_items.py">update</a>(id, \*, itemizable_type, itemizable_id, \*\*<a href="src/modern_treasury/types/line_item_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/line_item.py">LineItem</a></code>
+- <code title="get /api/{itemizable_type}/{itemizable_id}/line_items">client.line_items.<a href="./src/modern_treasury/resources/line_items.py">list</a>(itemizable_id, \*, itemizable_type, \*\*<a href="src/modern_treasury/types/line_item_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/line_item.py">SyncPage[LineItem]</a></code>
 
 # PaymentFlows
 
@@ -430,10 +417,8 @@ Types:
 from modern_treasury.types import (
     ContactDetailCreateRequest,
     PaymentOrder,
-    PaymentOrderAsyncCreate,
     PaymentOrderSubtype,
     PaymentOrderType,
-    PaymentOrderUpdate,
 )
 ```
 
@@ -491,7 +476,7 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import Transaction, TransactionCreate, TransactionUpdate
+from modern_treasury.types import Transaction
 ```
 
 Methods:
@@ -628,7 +613,7 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import LegalEntity, LegalEntityAssociationInlineCreate, LegalEntityCreate
+from modern_treasury.types import LegalEntity, LegalEntityAssociationInlineCreate
 ```
 
 Methods:
@@ -655,15 +640,20 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import PaymentAction
+from modern_treasury.types import (
+    PaymentActionCreateResponse,
+    PaymentActionRetrieveResponse,
+    PaymentActionUpdateResponse,
+    PaymentActionListResponse,
+)
 ```
 
 Methods:
 
-- <code title="post /api/payment_actions">client.payment_actions.<a href="./src/modern_treasury/resources/payment_actions.py">create</a>(\*\*<a href="src/modern_treasury/types/payment_action_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/payment_action.py">PaymentAction</a></code>
-- <code title="get /api/payment_actions/{id}">client.payment_actions.<a href="./src/modern_treasury/resources/payment_actions.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/payment_action.py">PaymentAction</a></code>
-- <code title="patch /api/payment_actions/{id}">client.payment_actions.<a href="./src/modern_treasury/resources/payment_actions.py">update</a>(id, \*\*<a href="src/modern_treasury/types/payment_action_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/payment_action.py">PaymentAction</a></code>
-- <code title="get /api/payment_actions">client.payment_actions.<a href="./src/modern_treasury/resources/payment_actions.py">list</a>(\*\*<a href="src/modern_treasury/types/payment_action_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/payment_action.py">SyncPage[PaymentAction]</a></code>
+- <code title="post /api/payment_actions">client.payment_actions.<a href="./src/modern_treasury/resources/payment_actions.py">create</a>(\*\*<a href="src/modern_treasury/types/payment_action_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/payment_action_create_response.py">PaymentActionCreateResponse</a></code>
+- <code title="get /api/payment_actions/{id}">client.payment_actions.<a href="./src/modern_treasury/resources/payment_actions.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/payment_action_retrieve_response.py">PaymentActionRetrieveResponse</a></code>
+- <code title="patch /api/payment_actions/{id}">client.payment_actions.<a href="./src/modern_treasury/resources/payment_actions.py">update</a>(id, \*\*<a href="src/modern_treasury/types/payment_action_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/payment_action_update_response.py">PaymentActionUpdateResponse</a></code>
+- <code title="get /api/payment_actions">client.payment_actions.<a href="./src/modern_treasury/resources/payment_actions.py">list</a>(\*\*<a href="src/modern_treasury/types/payment_action_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/payment_action_list_response.py">SyncPage[PaymentActionListResponse]</a></code>
 
 # JournalEntries
 
@@ -685,12 +675,17 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import Hold
+from modern_treasury.types import (
+    HoldCreateResponse,
+    HoldRetrieveResponse,
+    HoldUpdateResponse,
+    HoldListResponse,
+)
 ```
 
 Methods:
 
-- <code title="post /api/holds">client.holds.<a href="./src/modern_treasury/resources/holds.py">create</a>(\*\*<a href="src/modern_treasury/types/hold_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/hold.py">Hold</a></code>
-- <code title="get /api/holds/{id}">client.holds.<a href="./src/modern_treasury/resources/holds.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/hold.py">Hold</a></code>
-- <code title="patch /api/holds/{id}">client.holds.<a href="./src/modern_treasury/resources/holds.py">update</a>(id, \*\*<a href="src/modern_treasury/types/hold_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/hold.py">Hold</a></code>
-- <code title="get /api/holds">client.holds.<a href="./src/modern_treasury/resources/holds.py">list</a>(\*\*<a href="src/modern_treasury/types/hold_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/hold.py">SyncPage[Hold]</a></code>
+- <code title="post /api/holds">client.holds.<a href="./src/modern_treasury/resources/holds.py">create</a>(\*\*<a href="src/modern_treasury/types/hold_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/hold_create_response.py">HoldCreateResponse</a></code>
+- <code title="get /api/holds/{id}">client.holds.<a href="./src/modern_treasury/resources/holds.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/hold_retrieve_response.py">HoldRetrieveResponse</a></code>
+- <code title="patch /api/holds/{id}">client.holds.<a href="./src/modern_treasury/resources/holds.py">update</a>(id, \*\*<a href="src/modern_treasury/types/hold_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/hold_update_response.py">HoldUpdateResponse</a></code>
+- <code title="get /api/holds">client.holds.<a href="./src/modern_treasury/resources/holds.py">list</a>(\*\*<a href="src/modern_treasury/types/hold_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/hold_list_response.py">SyncPage[HoldListResponse]</a></code>

@@ -22,7 +22,6 @@ from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.line_item_param import LineItemParam
 from ..types.shared.currency import Currency
 from ..types.expected_payment import ExpectedPayment
 from ..types.expected_payment_type import ExpectedPaymentType
@@ -72,7 +71,7 @@ class ExpectedPayments(SyncAPIResource):
         internal_account_id: Optional[str] | Omit = omit,
         ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
         ledger_transaction_id: str | Omit = omit,
-        line_items: Iterable[LineItemParam] | Omit = omit,
+        line_items: Iterable[expected_payment_create_params.LineItem] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         reconciliation_filters: Optional[object] | Omit = omit,
         reconciliation_groups: Optional[object] | Omit = omit,
@@ -595,7 +594,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
         internal_account_id: Optional[str] | Omit = omit,
         ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
         ledger_transaction_id: str | Omit = omit,
-        line_items: Iterable[LineItemParam] | Omit = omit,
+        line_items: Iterable[expected_payment_create_params.LineItem] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         reconciliation_filters: Optional[object] | Omit = omit,
         reconciliation_groups: Optional[object] | Omit = omit,

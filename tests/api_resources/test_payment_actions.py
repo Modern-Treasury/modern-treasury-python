@@ -10,7 +10,10 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import (
-    PaymentAction,
+    PaymentActionListResponse,
+    PaymentActionCreateResponse,
+    PaymentActionUpdateResponse,
+    PaymentActionRetrieveResponse,
 )
 from modern_treasury._utils import parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
@@ -26,7 +29,7 @@ class TestPaymentActions:
         payment_action = client.payment_actions.create(
             type="type",
         )
-        assert_matches_type(PaymentAction, payment_action, path=["response"])
+        assert_matches_type(PaymentActionCreateResponse, payment_action, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
@@ -37,7 +40,7 @@ class TestPaymentActions:
             details={},
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(PaymentAction, payment_action, path=["response"])
+        assert_matches_type(PaymentActionCreateResponse, payment_action, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: ModernTreasury) -> None:
@@ -48,7 +51,7 @@ class TestPaymentActions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payment_action = response.parse()
-        assert_matches_type(PaymentAction, payment_action, path=["response"])
+        assert_matches_type(PaymentActionCreateResponse, payment_action, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
@@ -59,7 +62,7 @@ class TestPaymentActions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payment_action = response.parse()
-            assert_matches_type(PaymentAction, payment_action, path=["response"])
+            assert_matches_type(PaymentActionCreateResponse, payment_action, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -68,7 +71,7 @@ class TestPaymentActions:
         payment_action = client.payment_actions.retrieve(
             "id",
         )
-        assert_matches_type(PaymentAction, payment_action, path=["response"])
+        assert_matches_type(PaymentActionRetrieveResponse, payment_action, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
@@ -79,7 +82,7 @@ class TestPaymentActions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payment_action = response.parse()
-        assert_matches_type(PaymentAction, payment_action, path=["response"])
+        assert_matches_type(PaymentActionRetrieveResponse, payment_action, path=["response"])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
@@ -90,7 +93,7 @@ class TestPaymentActions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payment_action = response.parse()
-            assert_matches_type(PaymentAction, payment_action, path=["response"])
+            assert_matches_type(PaymentActionRetrieveResponse, payment_action, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -107,7 +110,7 @@ class TestPaymentActions:
             id="id",
             status="pending",
         )
-        assert_matches_type(PaymentAction, payment_action, path=["response"])
+        assert_matches_type(PaymentActionUpdateResponse, payment_action, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: ModernTreasury) -> None:
@@ -119,7 +122,7 @@ class TestPaymentActions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payment_action = response.parse()
-        assert_matches_type(PaymentAction, payment_action, path=["response"])
+        assert_matches_type(PaymentActionUpdateResponse, payment_action, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: ModernTreasury) -> None:
@@ -131,7 +134,7 @@ class TestPaymentActions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payment_action = response.parse()
-            assert_matches_type(PaymentAction, payment_action, path=["response"])
+            assert_matches_type(PaymentActionUpdateResponse, payment_action, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -146,7 +149,7 @@ class TestPaymentActions:
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         payment_action = client.payment_actions.list()
-        assert_matches_type(SyncPage[PaymentAction], payment_action, path=["response"])
+        assert_matches_type(SyncPage[PaymentActionListResponse], payment_action, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
@@ -167,7 +170,7 @@ class TestPaymentActions:
             status="pending",
             type="stop",
         )
-        assert_matches_type(SyncPage[PaymentAction], payment_action, path=["response"])
+        assert_matches_type(SyncPage[PaymentActionListResponse], payment_action, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: ModernTreasury) -> None:
@@ -176,7 +179,7 @@ class TestPaymentActions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payment_action = response.parse()
-        assert_matches_type(SyncPage[PaymentAction], payment_action, path=["response"])
+        assert_matches_type(SyncPage[PaymentActionListResponse], payment_action, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: ModernTreasury) -> None:
@@ -185,7 +188,7 @@ class TestPaymentActions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payment_action = response.parse()
-            assert_matches_type(SyncPage[PaymentAction], payment_action, path=["response"])
+            assert_matches_type(SyncPage[PaymentActionListResponse], payment_action, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -200,7 +203,7 @@ class TestAsyncPaymentActions:
         payment_action = await async_client.payment_actions.create(
             type="type",
         )
-        assert_matches_type(PaymentAction, payment_action, path=["response"])
+        assert_matches_type(PaymentActionCreateResponse, payment_action, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
@@ -211,7 +214,7 @@ class TestAsyncPaymentActions:
             details={},
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(PaymentAction, payment_action, path=["response"])
+        assert_matches_type(PaymentActionCreateResponse, payment_action, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
@@ -222,7 +225,7 @@ class TestAsyncPaymentActions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payment_action = response.parse()
-        assert_matches_type(PaymentAction, payment_action, path=["response"])
+        assert_matches_type(PaymentActionCreateResponse, payment_action, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
@@ -233,7 +236,7 @@ class TestAsyncPaymentActions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payment_action = await response.parse()
-            assert_matches_type(PaymentAction, payment_action, path=["response"])
+            assert_matches_type(PaymentActionCreateResponse, payment_action, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -242,7 +245,7 @@ class TestAsyncPaymentActions:
         payment_action = await async_client.payment_actions.retrieve(
             "id",
         )
-        assert_matches_type(PaymentAction, payment_action, path=["response"])
+        assert_matches_type(PaymentActionRetrieveResponse, payment_action, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
@@ -253,7 +256,7 @@ class TestAsyncPaymentActions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payment_action = response.parse()
-        assert_matches_type(PaymentAction, payment_action, path=["response"])
+        assert_matches_type(PaymentActionRetrieveResponse, payment_action, path=["response"])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
@@ -264,7 +267,7 @@ class TestAsyncPaymentActions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payment_action = await response.parse()
-            assert_matches_type(PaymentAction, payment_action, path=["response"])
+            assert_matches_type(PaymentActionRetrieveResponse, payment_action, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -281,7 +284,7 @@ class TestAsyncPaymentActions:
             id="id",
             status="pending",
         )
-        assert_matches_type(PaymentAction, payment_action, path=["response"])
+        assert_matches_type(PaymentActionUpdateResponse, payment_action, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncModernTreasury) -> None:
@@ -293,7 +296,7 @@ class TestAsyncPaymentActions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payment_action = response.parse()
-        assert_matches_type(PaymentAction, payment_action, path=["response"])
+        assert_matches_type(PaymentActionUpdateResponse, payment_action, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncModernTreasury) -> None:
@@ -305,7 +308,7 @@ class TestAsyncPaymentActions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payment_action = await response.parse()
-            assert_matches_type(PaymentAction, payment_action, path=["response"])
+            assert_matches_type(PaymentActionUpdateResponse, payment_action, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -320,7 +323,7 @@ class TestAsyncPaymentActions:
     @parametrize
     async def test_method_list(self, async_client: AsyncModernTreasury) -> None:
         payment_action = await async_client.payment_actions.list()
-        assert_matches_type(AsyncPage[PaymentAction], payment_action, path=["response"])
+        assert_matches_type(AsyncPage[PaymentActionListResponse], payment_action, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
@@ -341,7 +344,7 @@ class TestAsyncPaymentActions:
             status="pending",
             type="stop",
         )
-        assert_matches_type(AsyncPage[PaymentAction], payment_action, path=["response"])
+        assert_matches_type(AsyncPage[PaymentActionListResponse], payment_action, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncModernTreasury) -> None:
@@ -350,7 +353,7 @@ class TestAsyncPaymentActions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payment_action = response.parse()
-        assert_matches_type(AsyncPage[PaymentAction], payment_action, path=["response"])
+        assert_matches_type(AsyncPage[PaymentActionListResponse], payment_action, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncModernTreasury) -> None:
@@ -359,6 +362,6 @@ class TestAsyncPaymentActions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payment_action = await response.parse()
-            assert_matches_type(AsyncPage[PaymentAction], payment_action, path=["response"])
+            assert_matches_type(AsyncPage[PaymentActionListResponse], payment_action, path=["response"])
 
         assert cast(Any, response.is_closed) is True

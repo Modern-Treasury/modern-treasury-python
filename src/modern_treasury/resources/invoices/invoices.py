@@ -29,7 +29,6 @@ from ...types.invoice import Invoice
 from ...types.shared.currency import Currency
 from ...types.payment_order_type import PaymentOrderType
 from ...types.shared_params.contact_detail import ContactDetail
-from ...types.invoices.invoice_line_item_create_param import InvoiceLineItemCreateParam
 
 __all__ = ["Invoices", "AsyncInvoices"]
 
@@ -71,7 +70,7 @@ class Invoices(SyncAPIResource):
         currency: Currency | Omit = omit,
         description: str | Omit = omit,
         fallback_payment_method: Optional[str] | Omit = omit,
-        invoice_line_items: Optional[Iterable[InvoiceLineItemCreateParam]] | Omit = omit,
+        invoice_line_items: Optional[Iterable[invoice_create_params.InvoiceLineItem]] | Omit = omit,
         invoicer_address: Optional[invoice_create_params.InvoicerAddress] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         notification_email_addresses: Optional[SequenceNotStr[str]] | Omit = omit,
@@ -258,7 +257,7 @@ class Invoices(SyncAPIResource):
         description: str | Omit = omit,
         due_date: Union[str, datetime] | Omit = omit,
         fallback_payment_method: Optional[str] | Omit = omit,
-        invoice_line_items: Optional[Iterable[InvoiceLineItemCreateParam]] | Omit = omit,
+        invoice_line_items: Optional[Iterable[invoice_update_params.InvoiceLineItem]] | Omit = omit,
         invoicer_address: Optional[invoice_update_params.InvoicerAddress] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         notification_email_addresses: Optional[SequenceNotStr[str]] | Omit = omit,
@@ -565,7 +564,7 @@ class AsyncInvoices(AsyncAPIResource):
         currency: Currency | Omit = omit,
         description: str | Omit = omit,
         fallback_payment_method: Optional[str] | Omit = omit,
-        invoice_line_items: Optional[Iterable[InvoiceLineItemCreateParam]] | Omit = omit,
+        invoice_line_items: Optional[Iterable[invoice_create_params.InvoiceLineItem]] | Omit = omit,
         invoicer_address: Optional[invoice_create_params.InvoicerAddress] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         notification_email_addresses: Optional[SequenceNotStr[str]] | Omit = omit,
@@ -752,7 +751,7 @@ class AsyncInvoices(AsyncAPIResource):
         description: str | Omit = omit,
         due_date: Union[str, datetime] | Omit = omit,
         fallback_payment_method: Optional[str] | Omit = omit,
-        invoice_line_items: Optional[Iterable[InvoiceLineItemCreateParam]] | Omit = omit,
+        invoice_line_items: Optional[Iterable[invoice_update_params.InvoiceLineItem]] | Omit = omit,
         invoicer_address: Optional[invoice_update_params.InvoicerAddress] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         notification_email_addresses: Optional[SequenceNotStr[str]] | Omit = omit,

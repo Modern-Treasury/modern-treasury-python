@@ -11,9 +11,15 @@ from .._utils import PropertyInfo
 from .shared.currency import Currency
 from .payment_order_type import PaymentOrderType
 from .shared_params.contact_detail import ContactDetail
-from .invoices.invoice_line_item_create_param import InvoiceLineItemCreateParam
 
-__all__ = ["InvoiceCreateParams", "CounterpartyBillingAddress", "CounterpartyShippingAddress", "InvoicerAddress"]
+__all__ = [
+    "InvoiceCreateParams",
+    "CounterpartyBillingAddress",
+    "CounterpartyShippingAddress",
+    "InvoiceLineItems",
+    "InvoiceLineItem",
+    "InvoicerAddress",
+]
 
 
 class InvoiceCreateParams(TypedDict, total=False):
@@ -54,7 +60,7 @@ class InvoiceCreateParams(TypedDict, total=False):
     automatic payment fails. One of `manual` or `ui`.
     """
 
-    invoice_line_items: Optional[Iterable[InvoiceLineItemCreateParam]]
+    invoice_line_items: Optional[Iterable[InvoiceLineItem]]
     """An array of invoice line items.
 
     The API supports a maximum of 50 invoice line items per invoice. If a greater
@@ -171,6 +177,53 @@ class CounterpartyShippingAddress(TypedDict, total=False):
     """Region or State."""
 
     line2: str
+
+
+class InvoiceLineItem(TypedDict, total=False):
+    name: Required[str]
+    """The name of the line item, typically a product or SKU name."""
+
+    unit_amount: Required[int]
+    """
+    The cost per unit of the product or service that this line item is for,
+    specified in the invoice currency's smallest unit.
+    """
+
+    description: str
+    """An optional free-form description of the line item."""
+
+    direction: str
+    """Either `debit` or `credit`.
+
+    `debit` indicates that a client owes the business money and increases the
+    invoice's `total_amount` due. `credit` has the opposite intention and effect.
+    """
+
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
+
+    quantity: int
+    """The number of units of a product or service that this line item is for.
+
+    Must be a whole number. Defaults to 1 if not provided.
+    """
+
+    unit_amount_decimal: str
+    """
+    The cost per unit of the product or service that this line item is for,
+    specified in the invoice currency's smallest unit. Accepts decimal strings with
+    up to 12 decimals
+    """
+
+
+InvoiceLineItems = InvoiceLineItem
+"""This type is deprecated and will be removed in a future release.
+
+Please use InvoiceLineItem instead.
+"""
 
 
 class InvoicerAddress(TypedDict, total=False):

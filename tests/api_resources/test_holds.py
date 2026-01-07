@@ -9,7 +9,12 @@ import pytest
 
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
-from modern_treasury.types import Hold
+from modern_treasury.types import (
+    HoldListResponse,
+    HoldCreateResponse,
+    HoldUpdateResponse,
+    HoldRetrieveResponse,
+)
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -25,7 +30,7 @@ class TestHolds:
             target_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             target_type="payment_order",
         )
-        assert_matches_type(Hold, hold, path=["response"])
+        assert_matches_type(HoldCreateResponse, hold, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
@@ -36,7 +41,7 @@ class TestHolds:
             metadata={"foo": "string"},
             reason="reason",
         )
-        assert_matches_type(Hold, hold, path=["response"])
+        assert_matches_type(HoldCreateResponse, hold, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: ModernTreasury) -> None:
@@ -49,7 +54,7 @@ class TestHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = response.parse()
-        assert_matches_type(Hold, hold, path=["response"])
+        assert_matches_type(HoldCreateResponse, hold, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
@@ -62,7 +67,7 @@ class TestHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = response.parse()
-            assert_matches_type(Hold, hold, path=["response"])
+            assert_matches_type(HoldCreateResponse, hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -71,7 +76,7 @@ class TestHolds:
         hold = client.holds.retrieve(
             "id",
         )
-        assert_matches_type(Hold, hold, path=["response"])
+        assert_matches_type(HoldRetrieveResponse, hold, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
@@ -82,7 +87,7 @@ class TestHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = response.parse()
-        assert_matches_type(Hold, hold, path=["response"])
+        assert_matches_type(HoldRetrieveResponse, hold, path=["response"])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
@@ -93,7 +98,7 @@ class TestHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = response.parse()
-            assert_matches_type(Hold, hold, path=["response"])
+            assert_matches_type(HoldRetrieveResponse, hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -110,7 +115,7 @@ class TestHolds:
             id="id",
             status="resolved",
         )
-        assert_matches_type(Hold, hold, path=["response"])
+        assert_matches_type(HoldUpdateResponse, hold, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
@@ -119,7 +124,7 @@ class TestHolds:
             status="resolved",
             resolution="resolution",
         )
-        assert_matches_type(Hold, hold, path=["response"])
+        assert_matches_type(HoldUpdateResponse, hold, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: ModernTreasury) -> None:
@@ -131,7 +136,7 @@ class TestHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = response.parse()
-        assert_matches_type(Hold, hold, path=["response"])
+        assert_matches_type(HoldUpdateResponse, hold, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: ModernTreasury) -> None:
@@ -143,7 +148,7 @@ class TestHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = response.parse()
-            assert_matches_type(Hold, hold, path=["response"])
+            assert_matches_type(HoldUpdateResponse, hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -158,7 +163,7 @@ class TestHolds:
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         hold = client.holds.list()
-        assert_matches_type(SyncPage[Hold], hold, path=["response"])
+        assert_matches_type(SyncPage[HoldListResponse], hold, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
@@ -170,7 +175,7 @@ class TestHolds:
             target_id="target_id",
             target_type="payment_order",
         )
-        assert_matches_type(SyncPage[Hold], hold, path=["response"])
+        assert_matches_type(SyncPage[HoldListResponse], hold, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: ModernTreasury) -> None:
@@ -179,7 +184,7 @@ class TestHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = response.parse()
-        assert_matches_type(SyncPage[Hold], hold, path=["response"])
+        assert_matches_type(SyncPage[HoldListResponse], hold, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: ModernTreasury) -> None:
@@ -188,7 +193,7 @@ class TestHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = response.parse()
-            assert_matches_type(SyncPage[Hold], hold, path=["response"])
+            assert_matches_type(SyncPage[HoldListResponse], hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -205,7 +210,7 @@ class TestAsyncHolds:
             target_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             target_type="payment_order",
         )
-        assert_matches_type(Hold, hold, path=["response"])
+        assert_matches_type(HoldCreateResponse, hold, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
@@ -216,7 +221,7 @@ class TestAsyncHolds:
             metadata={"foo": "string"},
             reason="reason",
         )
-        assert_matches_type(Hold, hold, path=["response"])
+        assert_matches_type(HoldCreateResponse, hold, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
@@ -229,7 +234,7 @@ class TestAsyncHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = response.parse()
-        assert_matches_type(Hold, hold, path=["response"])
+        assert_matches_type(HoldCreateResponse, hold, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
@@ -242,7 +247,7 @@ class TestAsyncHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = await response.parse()
-            assert_matches_type(Hold, hold, path=["response"])
+            assert_matches_type(HoldCreateResponse, hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -251,7 +256,7 @@ class TestAsyncHolds:
         hold = await async_client.holds.retrieve(
             "id",
         )
-        assert_matches_type(Hold, hold, path=["response"])
+        assert_matches_type(HoldRetrieveResponse, hold, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
@@ -262,7 +267,7 @@ class TestAsyncHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = response.parse()
-        assert_matches_type(Hold, hold, path=["response"])
+        assert_matches_type(HoldRetrieveResponse, hold, path=["response"])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
@@ -273,7 +278,7 @@ class TestAsyncHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = await response.parse()
-            assert_matches_type(Hold, hold, path=["response"])
+            assert_matches_type(HoldRetrieveResponse, hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -290,7 +295,7 @@ class TestAsyncHolds:
             id="id",
             status="resolved",
         )
-        assert_matches_type(Hold, hold, path=["response"])
+        assert_matches_type(HoldUpdateResponse, hold, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncModernTreasury) -> None:
@@ -299,7 +304,7 @@ class TestAsyncHolds:
             status="resolved",
             resolution="resolution",
         )
-        assert_matches_type(Hold, hold, path=["response"])
+        assert_matches_type(HoldUpdateResponse, hold, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncModernTreasury) -> None:
@@ -311,7 +316,7 @@ class TestAsyncHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = response.parse()
-        assert_matches_type(Hold, hold, path=["response"])
+        assert_matches_type(HoldUpdateResponse, hold, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncModernTreasury) -> None:
@@ -323,7 +328,7 @@ class TestAsyncHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = await response.parse()
-            assert_matches_type(Hold, hold, path=["response"])
+            assert_matches_type(HoldUpdateResponse, hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -338,7 +343,7 @@ class TestAsyncHolds:
     @parametrize
     async def test_method_list(self, async_client: AsyncModernTreasury) -> None:
         hold = await async_client.holds.list()
-        assert_matches_type(AsyncPage[Hold], hold, path=["response"])
+        assert_matches_type(AsyncPage[HoldListResponse], hold, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
@@ -350,7 +355,7 @@ class TestAsyncHolds:
             target_id="target_id",
             target_type="payment_order",
         )
-        assert_matches_type(AsyncPage[Hold], hold, path=["response"])
+        assert_matches_type(AsyncPage[HoldListResponse], hold, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncModernTreasury) -> None:
@@ -359,7 +364,7 @@ class TestAsyncHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = response.parse()
-        assert_matches_type(AsyncPage[Hold], hold, path=["response"])
+        assert_matches_type(AsyncPage[HoldListResponse], hold, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncModernTreasury) -> None:
@@ -368,6 +373,6 @@ class TestAsyncHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = await response.parse()
-            assert_matches_type(AsyncPage[Hold], hold, path=["response"])
+            assert_matches_type(AsyncPage[HoldListResponse], hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True

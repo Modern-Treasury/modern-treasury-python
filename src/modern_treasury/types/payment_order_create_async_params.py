@@ -7,9 +7,7 @@ from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .line_item_param import LineItemParam
 from .shared.currency import Currency
-from .accounting_param import AccountingParam
 from .payment_order_type import PaymentOrderType
 from .external_account_type import ExternalAccountType
 from .payment_order_subtype import PaymentOrderSubtype
@@ -20,6 +18,9 @@ from .shared_params.ledger_transaction_create_request import LedgerTransactionCr
 
 __all__ = [
     "PaymentOrderCreateAsyncParams",
+    "Accounting",
+    "LineItems",
+    "LineItem",
     "ReceivingAccount",
     "ReceivingAccountAccountDetails",
     "ReceivingAccountAccountDetail",
@@ -55,7 +56,7 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
     `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
     """
 
-    accounting: AccountingParam
+    accounting: Accounting
 
     accounting_category_id: Optional[str]
     """The ID of one of your accounting categories.
@@ -130,7 +131,7 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
     the payment order automatically.
     """
 
-    line_items: Iterable[LineItemParam]
+    line_items: Iterable[LineItem]
     """An array of line items that must sum up to the amount of the payment order."""
 
     metadata: Dict[str, str]
@@ -243,6 +244,54 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
 
     ultimate_receiving_party_name: Optional[str]
     """Name of the ultimate funds recipient."""
+
+
+class Accounting(TypedDict, total=False):
+    account_id: Optional[str]
+    """The ID of one of your accounting categories.
+
+    Note that these will only be accessible if your accounting system has been
+    connected.
+    """
+
+    class_id: Optional[str]
+    """The ID of one of the class objects in your accounting system.
+
+    Class objects track segments of your business independent of client or project.
+    Note that these will only be accessible if your accounting system has been
+    connected.
+    """
+
+
+class LineItem(TypedDict, total=False):
+    amount: Required[int]
+    """Value in specified currency's smallest unit.
+
+    e.g. $10 would be represented as 1000.
+    """
+
+    accounting_category_id: Optional[str]
+    """The ID of one of your accounting categories.
+
+    Note that these will only be accessible if your accounting system has been
+    connected.
+    """
+
+    description: Optional[str]
+    """A free-form description of the line item."""
+
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
+
+
+LineItems = LineItem
+"""This type is deprecated and will be removed in a future release.
+
+Please use LineItem instead.
+"""
 
 
 class ReceivingAccountAccountDetail(TypedDict, total=False):

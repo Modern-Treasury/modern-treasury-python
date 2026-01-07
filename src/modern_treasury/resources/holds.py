@@ -15,8 +15,11 @@ from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ..pagination import SyncPage, AsyncPage
-from ..types.hold import Hold
 from .._base_client import AsyncPaginator, make_request_options
+from ..types.hold_list_response import HoldListResponse
+from ..types.hold_create_response import HoldCreateResponse
+from ..types.hold_update_response import HoldUpdateResponse
+from ..types.hold_retrieve_response import HoldRetrieveResponse
 
 __all__ = ["Holds", "AsyncHolds"]
 
@@ -56,7 +59,7 @@ class Holds(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> Hold:
+    ) -> HoldCreateResponse:
         """
         Create a new hold
 
@@ -100,7 +103,7 @@ class Holds(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=Hold,
+            cast_to=HoldCreateResponse,
         )
 
     def retrieve(
@@ -113,7 +116,7 @@ class Holds(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Hold:
+    ) -> HoldRetrieveResponse:
         """
         Get a specific hold
 
@@ -133,7 +136,7 @@ class Holds(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Hold,
+            cast_to=HoldRetrieveResponse,
         )
 
     def update(
@@ -149,7 +152,7 @@ class Holds(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> Hold:
+    ) -> HoldUpdateResponse:
         """
         Update a hold
 
@@ -186,7 +189,7 @@ class Holds(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=Hold,
+            cast_to=HoldUpdateResponse,
         )
 
     def list(
@@ -204,7 +207,7 @@ class Holds(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[Hold]:
+    ) -> SyncPage[HoldListResponse]:
         """
         Get a list of holds.
 
@@ -233,7 +236,7 @@ class Holds(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/holds",
-            page=SyncPage[Hold],
+            page=SyncPage[HoldListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -251,7 +254,7 @@ class Holds(SyncAPIResource):
                     hold_list_params.HoldListParams,
                 ),
             ),
-            model=Hold,
+            model=HoldListResponse,
         )
 
 
@@ -290,7 +293,7 @@ class AsyncHolds(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> Hold:
+    ) -> HoldCreateResponse:
         """
         Create a new hold
 
@@ -334,7 +337,7 @@ class AsyncHolds(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=Hold,
+            cast_to=HoldCreateResponse,
         )
 
     async def retrieve(
@@ -347,7 +350,7 @@ class AsyncHolds(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Hold:
+    ) -> HoldRetrieveResponse:
         """
         Get a specific hold
 
@@ -367,7 +370,7 @@ class AsyncHolds(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Hold,
+            cast_to=HoldRetrieveResponse,
         )
 
     async def update(
@@ -383,7 +386,7 @@ class AsyncHolds(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> Hold:
+    ) -> HoldUpdateResponse:
         """
         Update a hold
 
@@ -420,7 +423,7 @@ class AsyncHolds(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=Hold,
+            cast_to=HoldUpdateResponse,
         )
 
     def list(
@@ -438,7 +441,7 @@ class AsyncHolds(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Hold, AsyncPage[Hold]]:
+    ) -> AsyncPaginator[HoldListResponse, AsyncPage[HoldListResponse]]:
         """
         Get a list of holds.
 
@@ -467,7 +470,7 @@ class AsyncHolds(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/holds",
-            page=AsyncPage[Hold],
+            page=AsyncPage[HoldListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -485,7 +488,7 @@ class AsyncHolds(AsyncAPIResource):
                     hold_list_params.HoldListParams,
                 ),
             ),
-            model=Hold,
+            model=HoldListResponse,
         )
 
 

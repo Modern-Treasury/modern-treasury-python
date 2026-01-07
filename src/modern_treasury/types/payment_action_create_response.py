@@ -5,10 +5,10 @@ from datetime import datetime
 
 from .._models import BaseModel
 
-__all__ = ["PaymentAction"]
+__all__ = ["PaymentActionCreateResponse"]
 
 
-class PaymentAction(BaseModel):
+class PaymentActionCreateResponse(BaseModel):
     id: str
 
     actionable_id: Optional[str] = None
