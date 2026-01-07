@@ -61,7 +61,10 @@
   ],
   "reviewers": [
     "samridh90",
-    "Modern-Treasury/apps-platform"
+    "wzhu20",
+    "bullfight",
+    "ankitk-mt",
+    "eveyili"
   ],
   "release-type": "python",
   "extra-files": [
