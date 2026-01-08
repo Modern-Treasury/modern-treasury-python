@@ -351,7 +351,7 @@ class ReturnObject(BaseModel):
     role: Literal["originating", "receiving"]
     """The role of the return, can be `originating` or `receiving`."""
 
-    status: Literal["completed", "failed", "pending", "processing", "returned", "sent"]
+    status: Literal["cancelled", "completed", "failed", "pending", "processing", "returned", "sent"]
     """The current status of the return."""
 
     transaction_id: Optional[str] = None
