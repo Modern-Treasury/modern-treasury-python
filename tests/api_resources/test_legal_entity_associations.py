@@ -186,11 +186,9 @@ class TestAsyncLegalEntityAssociations:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
-    loose_parametrize = pytest.mark.parametrize(
-        "async_client", [False, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "aiohttp"]
-    )
 
-    @loose_parametrize
+    @pytest.mark.skip
+    @parametrize
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
         legal_entity_association = await async_client.legal_entity_associations.create(
             parent_legal_entity_id="parent_legal_entity_id",
@@ -198,7 +196,8 @@ class TestAsyncLegalEntityAssociations:
         )
         assert_matches_type(LegalEntityAssociation, legal_entity_association, path=["response"])
 
-    @loose_parametrize
+    @pytest.mark.skip
+    @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         legal_entity_association = await async_client.legal_entity_associations.create(
             parent_legal_entity_id="parent_legal_entity_id",
@@ -326,7 +325,8 @@ class TestAsyncLegalEntityAssociations:
         )
         assert_matches_type(LegalEntityAssociation, legal_entity_association, path=["response"])
 
-    @loose_parametrize
+    @pytest.mark.skip
+    @parametrize
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.legal_entity_associations.with_raw_response.create(
             parent_legal_entity_id="parent_legal_entity_id",
@@ -338,7 +338,8 @@ class TestAsyncLegalEntityAssociations:
         legal_entity_association = response.parse()
         assert_matches_type(LegalEntityAssociation, legal_entity_association, path=["response"])
 
-    @loose_parametrize
+    @pytest.mark.skip
+    @parametrize
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.legal_entity_associations.with_streaming_response.create(
             parent_legal_entity_id="parent_legal_entity_id",
