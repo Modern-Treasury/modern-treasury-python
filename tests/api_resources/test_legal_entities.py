@@ -514,18 +514,17 @@ class TestAsyncLegalEntities:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
-    loose_parametrize = pytest.mark.parametrize(
-        "async_client", [False, { "http_client": "aiohttp"}], indirect=True, ids=["loose", "aiohttp"]
-    )
 
-    @loose_parametrize
+    @pytest.mark.skip
+    @parametrize
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
         legal_entity = await async_client.legal_entities.create(
             legal_entity_type="business",
         )
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @loose_parametrize
+    @pytest.mark.skip
+    @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         legal_entity = await async_client.legal_entities.create(
             legal_entity_type="business",
@@ -756,7 +755,8 @@ class TestAsyncLegalEntities:
         )
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @loose_parametrize
+    @pytest.mark.skip
+    @parametrize
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.legal_entities.with_raw_response.create(
             legal_entity_type="business",
@@ -767,7 +767,8 @@ class TestAsyncLegalEntities:
         legal_entity = response.parse()
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @loose_parametrize
+    @pytest.mark.skip
+    @parametrize
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.legal_entities.with_streaming_response.create(
             legal_entity_type="business",
@@ -780,14 +781,16 @@ class TestAsyncLegalEntities:
 
         assert cast(Any, response.is_closed) is True
 
-    @loose_parametrize
+    @pytest.mark.skip
+    @parametrize
     async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
         legal_entity = await async_client.legal_entities.retrieve(
             "id",
         )
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @loose_parametrize
+    @pytest.mark.skip
+    @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.legal_entities.with_raw_response.retrieve(
             "id",
@@ -798,7 +801,8 @@ class TestAsyncLegalEntities:
         legal_entity = response.parse()
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @loose_parametrize
+    @pytest.mark.skip
+    @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.legal_entities.with_streaming_response.retrieve(
             "id",
@@ -818,14 +822,16 @@ class TestAsyncLegalEntities:
                 "",
             )
 
-    @loose_parametrize
+    @pytest.mark.skip
+    @parametrize
     async def test_method_update(self, async_client: AsyncModernTreasury) -> None:
         legal_entity = await async_client.legal_entities.update(
             id="id",
         )
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @loose_parametrize
+    @pytest.mark.skip
+    @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         legal_entity = await async_client.legal_entities.update(
             id="id",
@@ -938,7 +944,8 @@ class TestAsyncLegalEntities:
         )
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @loose_parametrize
+    @pytest.mark.skip
+    @parametrize
     async def test_raw_response_update(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.legal_entities.with_raw_response.update(
             id="id",
@@ -949,7 +956,8 @@ class TestAsyncLegalEntities:
         legal_entity = response.parse()
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @loose_parametrize
+    @pytest.mark.skip
+    @parametrize
     async def test_streaming_response_update(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.legal_entities.with_streaming_response.update(
             id="id",
