@@ -274,28 +274,27 @@ class Accounting(TypedDict, total=False):
 
 
 class Document(TypedDict, total=False):
-    documentable_id: Required[str]
-    """The unique identifier for the associated object."""
-
-    documentable_type: Required[
-        Literal[
-            "counterparties",
-            "expected_payments",
-            "external_accounts",
-            "identifications",
-            "incoming_payment_details",
-            "internal_accounts",
-            "organizations",
-            "payment_orders",
-            "transactions",
-            "connections",
-        ]
-    ]
-
     file: Required[FileTypes]
 
     document_type: str
     """A category given to the document, can be `null`."""
+
+    documentable_id: str
+    """The unique identifier for the associated object."""
+
+    documentable_type: Literal[
+        "connections",
+        "counterparties",
+        "expected_payments",
+        "external_accounts",
+        "identifications",
+        "incoming_payment_details",
+        "internal_accounts",
+        "legal_entities",
+        "organizations",
+        "payment_orders",
+        "transactions",
+    ]
 
 
 Documents = Document

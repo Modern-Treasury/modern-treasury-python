@@ -15,16 +15,17 @@ class DocumentListParams(TypedDict, total=False):
     """The unique identifier for the associated object."""
 
     documentable_type: Literal[
+        "connections",
         "counterparties",
         "expected_payments",
         "external_accounts",
         "identifications",
         "incoming_payment_details",
         "internal_accounts",
+        "legal_entities",
         "organizations",
         "payment_orders",
         "transactions",
-        "connections",
     ]
     """The type of the associated object.
 

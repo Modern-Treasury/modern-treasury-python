@@ -61,21 +61,24 @@ class Document(BaseModel):
     document_type: Optional[str] = None
     """A category given to the document, can be `null`."""
 
-    documentable_id: str
+    documentable_id: Optional[str] = None
     """The unique identifier for the associated object."""
 
-    documentable_type: Literal[
-        "counterparty",
-        "expected_payment",
-        "external_account",
-        "identification",
-        "incoming_payment_detail",
-        "internal_account",
-        "organization",
-        "payment_order",
-        "transaction",
-        "connection",
-    ]
+    documentable_type: Optional[
+        Literal[
+            "connection",
+            "counterparty",
+            "expected_payment",
+            "external_account",
+            "identification",
+            "incoming_payment_detail",
+            "internal_account",
+            "legal_entity",
+            "organization",
+            "payment_order",
+            "transaction",
+        ]
+    ] = None
     """The type of the associated object.
 
     Currently can be one of `payment_order`, `transaction`, `expected_payment`,
