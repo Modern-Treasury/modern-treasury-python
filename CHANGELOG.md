@@ -1,5 +1,57 @@
 # Changelog
 
+## 1.62.0 (2026-01-13)
+
+Full Changelog: [v1.61.0...v1.62.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.61.0...v1.62.0)
+
+### Features
+
+* **api:** api update ([780b800](https://github.com/Modern-Treasury/modern-treasury-python/commit/780b8006056daf31bc1ca89973a0ef068d7dfc0d))
+* **api:** api update ([b5bcf1e](https://github.com/Modern-Treasury/modern-treasury-python/commit/b5bcf1ea926c802da33bbd70c6fff8432b0c5740))
+* **api:** api update ([7f85ed8](https://github.com/Modern-Treasury/modern-treasury-python/commit/7f85ed811e83679f70a58969d646daa860e95762))
+* **api:** api update ([32cb2bf](https://github.com/Modern-Treasury/modern-treasury-python/commit/32cb2bfe0d516bab13bdc3ce3f091e50442d0ff2))
+* **api:** api update ([aa04fa3](https://github.com/Modern-Treasury/modern-treasury-python/commit/aa04fa3899173c32efa23d0c84793c8fc2298d59))
+* **api:** api update ([d4d8483](https://github.com/Modern-Treasury/modern-treasury-python/commit/d4d848338c8d9cb0f88785f4e8fab90dc0955d79))
+* **api:** api update ([8f6c8fe](https://github.com/Modern-Treasury/modern-treasury-python/commit/8f6c8fe147c93acbb829c8f9da770f38bd351978))
+* **api:** manual updates ([8d94e46](https://github.com/Modern-Treasury/modern-treasury-python/commit/8d94e465bf4c823b42184cd2ed8f51dc68e87761))
+* **api:** manual updates ([9cec2a3](https://github.com/Modern-Treasury/modern-treasury-python/commit/9cec2a331cdbaa0427e21cfe27476ab132653998))
+* **api:** manual updates ([af693a8](https://github.com/Modern-Treasury/modern-treasury-python/commit/af693a82d622b928e60b12585963807a1ed8f94b))
+* **api:** manual updates ([c2fcc0c](https://github.com/Modern-Treasury/modern-treasury-python/commit/c2fcc0c4789c0d233999ea2989d151497dbcb1e3))
+* **api:** manual updates ([1c83eb7](https://github.com/Modern-Treasury/modern-treasury-python/commit/1c83eb7d34288acdd6136ad2a62c9b805d7381aa))
+* **api:** manual updates ([0bab6c2](https://github.com/Modern-Treasury/modern-treasury-python/commit/0bab6c273e35f615f32b3dcf68005a46195c2cf0))
+* **api:** manual updates ([02605b4](https://github.com/Modern-Treasury/modern-treasury-python/commit/02605b4bbfe033011dbd6551a05c1c93b3e8cce1))
+* **client:** add support for binary request streaming ([8d41a57](https://github.com/Modern-Treasury/modern-treasury-python/commit/8d41a5793a65fec8c75f0cb3d1622e20d47d9c77))
+
+
+### Bug Fixes
+
+* compat with Python 3.14 ([968ffe0](https://github.com/Modern-Treasury/modern-treasury-python/commit/968ffe09ec4faa09f7bbc331c9e85ca961c91fae))
+* **compat:** update signatures of `model_dump` and `model_dump_json` for Pydantic v1 ([de86bb4](https://github.com/Modern-Treasury/modern-treasury-python/commit/de86bb46dba202b90d9fbd3c02e91f03c8090fe0))
+* ensure streams are always closed ([b989de5](https://github.com/Modern-Treasury/modern-treasury-python/commit/b989de53f6daa31b3c1dbcad2c90c7ea05236c48))
+* **test:** resolve failing Prism tests ([8e5540b](https://github.com/Modern-Treasury/modern-treasury-python/commit/8e5540b6ee259642bac716d02bdfd34fff52aa05))
+* **test:** skip prism tests with incorrect fixtures ([ba9193e](https://github.com/Modern-Treasury/modern-treasury-python/commit/ba9193e35ceef4b51cc52fbe67f7034686641c1f))
+* **types:** allow pyright to infer TypedDict types within SequenceNotStr ([7da05c5](https://github.com/Modern-Treasury/modern-treasury-python/commit/7da05c59a4c5e8b899475df30f45e25a81420786))
+* use async_to_httpx_files in patch method ([5ab915c](https://github.com/Modern-Treasury/modern-treasury-python/commit/5ab915cb2696b77df5c160f68437f3b471ce7a9d))
+
+
+### Chores
+
+* add missing docstrings ([a286950](https://github.com/Modern-Treasury/modern-treasury-python/commit/a286950b43363affa3db7c29fa7071d0c4107028))
+* add Python 3.14 classifier and testing ([22b5d02](https://github.com/Modern-Treasury/modern-treasury-python/commit/22b5d02faea320a551f86cfcf3b040fc313ca619))
+* add splat as owner of SDK PRs ([81ed8ca](https://github.com/Modern-Treasury/modern-treasury-python/commit/81ed8cac05678a0c7ea6d18cb26c36d11f8a8b06))
+* **deps:** mypy 1.18.1 has a regression, pin to 1.17 ([5d0a85f](https://github.com/Modern-Treasury/modern-treasury-python/commit/5d0a85fad9cdec7fe1d1b36af4ba5cbe4ab365e7))
+* **docs:** use environment variables for authentication in code snippets ([8f20485](https://github.com/Modern-Treasury/modern-treasury-python/commit/8f2048549ee5826560e57480dac67ed5223e769e))
+* **internal:** add `--fix` argument to lint script ([45a24d9](https://github.com/Modern-Treasury/modern-treasury-python/commit/45a24d9d793215c35abe61607d778059d892d2e2))
+* **internal:** add missing files argument to base client ([55b063e](https://github.com/Modern-Treasury/modern-treasury-python/commit/55b063e0aeebfe3e1dc6e6a36f2e5f7b5a1b525d))
+* **internal:** codegen related update ([0c9d445](https://github.com/Modern-Treasury/modern-treasury-python/commit/0c9d445b4d3be8f186b705be275293a92f2339ad))
+* **package:** drop Python 3.8 support ([d0de5bf](https://github.com/Modern-Treasury/modern-treasury-python/commit/d0de5bf4b0c3431c10706dc8685c634e2fd43c42))
+* update lockfile ([79e9f93](https://github.com/Modern-Treasury/modern-treasury-python/commit/79e9f93f63203060f7c87e8de3bca037fb4ad38e))
+
+
+### Documentation
+
+* prominently feature MCP server setup in root SDK readmes ([4cc9fba](https://github.com/Modern-Treasury/modern-treasury-python/commit/4cc9fba5da89d2258fca1419040c43ed4bb96984))
+
 ## 1.61.0 (2025-11-05)
 
 Full Changelog: [v1.60.1...v1.61.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.60.1...v1.61.0)
