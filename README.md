@@ -204,9 +204,9 @@ from modern_treasury import ModernTreasury
 client = ModernTreasury()
 
 client.documents.create(
+    file=Path("my/file.txt"),
     documentable_id="24c6b7a3-02...",
     documentable_type="counterparties",
-    file=Path("my/file.txt"),
 )
 ```
 

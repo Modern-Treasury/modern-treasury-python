@@ -44,21 +44,23 @@ class Documents(SyncAPIResource):
     def create(
         self,
         *,
-        documentable_id: str,
+        file: FileTypes,
+        document_type: str | Omit = omit,
+        documentable_id: str | Omit = omit,
         documentable_type: Literal[
+            "connections",
             "counterparties",
             "expected_payments",
             "external_accounts",
             "identifications",
             "incoming_payment_details",
             "internal_accounts",
+            "legal_entities",
             "organizations",
             "payment_orders",
             "transactions",
-            "connections",
-        ],
-        file: FileTypes,
-        document_type: str | Omit = omit,
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -71,9 +73,9 @@ class Documents(SyncAPIResource):
         Create a document.
 
         Args:
-          documentable_id: The unique identifier for the associated object.
-
           document_type: A category given to the document, can be `null`.
+
+          documentable_id: The unique identifier for the associated object.
 
           extra_headers: Send extra headers
 
@@ -87,10 +89,10 @@ class Documents(SyncAPIResource):
         """
         body = deepcopy_minimal(
             {
-                "documentable_id": documentable_id,
-                "documentable_type": documentable_type,
                 "file": file,
                 "document_type": document_type,
+                "documentable_id": documentable_id,
+                "documentable_type": documentable_type,
             }
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
@@ -151,16 +153,17 @@ class Documents(SyncAPIResource):
         after_cursor: Optional[str] | Omit = omit,
         documentable_id: str | Omit = omit,
         documentable_type: Literal[
+            "connections",
             "counterparties",
             "expected_payments",
             "external_accounts",
             "identifications",
             "incoming_payment_details",
             "internal_accounts",
+            "legal_entities",
             "organizations",
             "payment_orders",
             "transactions",
-            "connections",
         ]
         | Omit = omit,
         per_page: int | Omit = omit,
@@ -234,21 +237,23 @@ class AsyncDocuments(AsyncAPIResource):
     async def create(
         self,
         *,
-        documentable_id: str,
+        file: FileTypes,
+        document_type: str | Omit = omit,
+        documentable_id: str | Omit = omit,
         documentable_type: Literal[
+            "connections",
             "counterparties",
             "expected_payments",
             "external_accounts",
             "identifications",
             "incoming_payment_details",
             "internal_accounts",
+            "legal_entities",
             "organizations",
             "payment_orders",
             "transactions",
-            "connections",
-        ],
-        file: FileTypes,
-        document_type: str | Omit = omit,
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -261,9 +266,9 @@ class AsyncDocuments(AsyncAPIResource):
         Create a document.
 
         Args:
-          documentable_id: The unique identifier for the associated object.
-
           document_type: A category given to the document, can be `null`.
+
+          documentable_id: The unique identifier for the associated object.
 
           extra_headers: Send extra headers
 
@@ -277,10 +282,10 @@ class AsyncDocuments(AsyncAPIResource):
         """
         body = deepcopy_minimal(
             {
-                "documentable_id": documentable_id,
-                "documentable_type": documentable_type,
                 "file": file,
                 "document_type": document_type,
+                "documentable_id": documentable_id,
+                "documentable_type": documentable_type,
             }
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
@@ -341,16 +346,17 @@ class AsyncDocuments(AsyncAPIResource):
         after_cursor: Optional[str] | Omit = omit,
         documentable_id: str | Omit = omit,
         documentable_type: Literal[
+            "connections",
             "counterparties",
             "expected_payments",
             "external_accounts",
             "identifications",
             "incoming_payment_details",
             "internal_accounts",
+            "legal_entities",
             "organizations",
             "payment_orders",
             "transactions",
-            "connections",
         ]
         | Omit = omit,
         per_page: int | Omit = omit,
