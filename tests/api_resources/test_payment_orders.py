@@ -52,10 +52,10 @@ class TestPaymentOrders:
             description="description",
             documents=[
                 {
-                    "documentable_id": "documentable_id",
-                    "documentable_type": "counterparties",
                     "file": b"raw file contents",
                     "document_type": "document_type",
+                    "documentable_id": "documentable_id",
+                    "documentable_type": "connections",
                 }
             ],
             effective_date=parse_date("2019-12-27"),
@@ -685,10 +685,10 @@ class TestAsyncPaymentOrders:
             description="description",
             documents=[
                 {
-                    "documentable_id": "documentable_id",
-                    "documentable_type": "counterparties",
                     "file": b"raw file contents",
                     "document_type": "document_type",
+                    "documentable_id": "documentable_id",
+                    "documentable_type": "connections",
                 }
             ],
             effective_date=parse_date("2019-12-27"),
