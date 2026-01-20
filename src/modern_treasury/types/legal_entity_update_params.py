@@ -51,7 +51,7 @@ class LegalEntityUpdateParams(TypedDict, total=False):
     """The entity's primary email."""
 
     expected_activity_volume: Optional[int]
-    """Monthly expected transaction volume in entity's local currency."""
+    """Monthly expected transaction volume in USD."""
 
     first_name: Optional[str]
     """An individual's first name."""
@@ -170,7 +170,7 @@ class WealthAndEmploymentDetails(TypedDict, total=False):
     id: Required[str]
 
     annual_income: Required[Optional[int]]
-    """The annual income of the individual."""
+    """The annual income of the individual in USD."""
 
     created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
