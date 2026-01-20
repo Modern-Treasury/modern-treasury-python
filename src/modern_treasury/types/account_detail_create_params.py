@@ -16,6 +16,7 @@ class AccountDetailCreateParams(TypedDict, total=False):
     account_number_type: Literal[
         "au_number",
         "base_address",
+        "card_token",
         "clabe",
         "ethereum_address",
         "hk_number",

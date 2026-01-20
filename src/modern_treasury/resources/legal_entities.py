@@ -57,6 +57,7 @@ class LegalEntities(SyncAPIResource):
         business_name: Optional[str] | Omit = omit,
         citizenship_country: Optional[str] | Omit = omit,
         compliance_details: Optional[LegalEntityComplianceDetail] | Omit = omit,
+        connection_id: Optional[str] | Omit = omit,
         country_of_incorporation: Optional[str] | Omit = omit,
         date_formed: Union[str, date, None] | Omit = omit,
         date_of_birth: Union[str, date, None] | Omit = omit,
@@ -107,6 +108,12 @@ class LegalEntities(SyncAPIResource):
 
           citizenship_country: The country of citizenship for an individual.
 
+          connection_id: The connection ID for the connection the legal entity is associated with.
+              Defaults to the id of the connection designated with an is_default value of true
+              or the id of an existing operational connection if only one is available. Pass
+              in a value of null to prevent the connection from being associated with the
+              legal entity.
+
           country_of_incorporation: The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
               alpha-3 formats.
 
@@ -116,7 +123,7 @@ class LegalEntities(SyncAPIResource):
 
           email: The entity's primary email.
 
-          expected_activity_volume: Monthly expected transaction volume in entity's local currency.
+          expected_activity_volume: Monthly expected transaction volume in USD.
 
           first_name: An individual's first name.
 
@@ -175,6 +182,7 @@ class LegalEntities(SyncAPIResource):
                     "business_name": business_name,
                     "citizenship_country": citizenship_country,
                     "compliance_details": compliance_details,
+                    "connection_id": connection_id,
                     "country_of_incorporation": country_of_incorporation,
                     "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
@@ -312,7 +320,7 @@ class LegalEntities(SyncAPIResource):
 
           email: The entity's primary email.
 
-          expected_activity_volume: Monthly expected transaction volume in entity's local currency.
+          expected_activity_volume: Monthly expected transaction volume in USD.
 
           first_name: An individual's first name.
 
@@ -491,6 +499,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         business_name: Optional[str] | Omit = omit,
         citizenship_country: Optional[str] | Omit = omit,
         compliance_details: Optional[LegalEntityComplianceDetail] | Omit = omit,
+        connection_id: Optional[str] | Omit = omit,
         country_of_incorporation: Optional[str] | Omit = omit,
         date_formed: Union[str, date, None] | Omit = omit,
         date_of_birth: Union[str, date, None] | Omit = omit,
@@ -541,6 +550,12 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           citizenship_country: The country of citizenship for an individual.
 
+          connection_id: The connection ID for the connection the legal entity is associated with.
+              Defaults to the id of the connection designated with an is_default value of true
+              or the id of an existing operational connection if only one is available. Pass
+              in a value of null to prevent the connection from being associated with the
+              legal entity.
+
           country_of_incorporation: The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
               alpha-3 formats.
 
@@ -550,7 +565,7 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           email: The entity's primary email.
 
-          expected_activity_volume: Monthly expected transaction volume in entity's local currency.
+          expected_activity_volume: Monthly expected transaction volume in USD.
 
           first_name: An individual's first name.
 
@@ -609,6 +624,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "business_name": business_name,
                     "citizenship_country": citizenship_country,
                     "compliance_details": compliance_details,
+                    "connection_id": connection_id,
                     "country_of_incorporation": country_of_incorporation,
                     "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
@@ -746,7 +762,7 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           email: The entity's primary email.
 
-          expected_activity_volume: Monthly expected transaction volume in entity's local currency.
+          expected_activity_volume: Monthly expected transaction volume in USD.
 
           first_name: An individual's first name.
 

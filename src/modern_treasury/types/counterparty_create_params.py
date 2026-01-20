@@ -93,6 +93,7 @@ class AccountAccountDetail(TypedDict, total=False):
     account_number_type: Literal[
         "au_number",
         "base_address",
+        "card_token",
         "clabe",
         "ethereum_address",
         "hk_number",
@@ -309,7 +310,7 @@ class LegalEntityWealthAndEmploymentDetails(TypedDict, total=False):
     id: Required[str]
 
     annual_income: Required[Optional[int]]
-    """The annual income of the individual."""
+    """The annual income of the individual in USD."""
 
     created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
@@ -484,6 +485,15 @@ class LegalEntity(TypedDict, total=False):
 
     compliance_details: Optional[LegalEntityComplianceDetail]
 
+    connection_id: Optional[str]
+    """The connection ID for the connection the legal entity is associated with.
+
+    Defaults to the id of the connection designated with an is_default value of true
+    or the id of an existing operational connection if only one is available. Pass
+    in a value of null to prevent the connection from being associated with the
+    legal entity.
+    """
+
     country_of_incorporation: Optional[str]
     """
     The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
@@ -502,7 +512,7 @@ class LegalEntity(TypedDict, total=False):
     """The entity's primary email."""
 
     expected_activity_volume: Optional[int]
-    """Monthly expected transaction volume in entity's local currency."""
+    """Monthly expected transaction volume in USD."""
 
     first_name: Optional[str]
     """An individual's first name."""
