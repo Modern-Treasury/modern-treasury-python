@@ -7,6 +7,7 @@ from datetime import date, datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .document import Document
 from .shared.legal_entity_compliance_detail import LegalEntityComplianceDetail
 from .shared.legal_entity_industry_classification import LegalEntityIndustryClassification
 
@@ -113,6 +114,8 @@ class Identification(BaseModel):
 
     discarded_at: Optional[datetime] = None
 
+    documents: List[Document]
+
     expiration_date: Optional[date] = None
     """
     The date when the Identification is no longer considered valid by the issuing
@@ -189,7 +192,7 @@ class WealthAndEmploymentDetails(BaseModel):
     id: str
 
     annual_income: Optional[int] = None
-    """The annual income of the individual."""
+    """The annual income of the individual in USD."""
 
     created_at: datetime
 
@@ -369,13 +372,15 @@ class LegalEntity(BaseModel):
 
     discarded_at: Optional[datetime] = None
 
+    documents: List[Document]
+
     doing_business_as_names: List[str]
 
     email: Optional[str] = None
     """The entity's primary email."""
 
     expected_activity_volume: Optional[int] = None
-    """Monthly expected transaction volume in entity's local currency."""
+    """Monthly expected transaction volume in USD."""
 
     first_name: Optional[str] = None
     """An individual's first name."""
