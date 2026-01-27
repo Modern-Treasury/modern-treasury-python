@@ -182,6 +182,7 @@ class TestLegalEntities:
                         "legal_entity_associations": [],
                         "legal_entity_type": "business",
                         "legal_structure": "corporation",
+                        "listed_exchange": "listed_exchange",
                         "metadata": {
                             "key": "value",
                             "foo": "bar",
@@ -194,8 +195,20 @@ class TestLegalEntities:
                         "preferred_name": "preferred_name",
                         "prefix": "prefix",
                         "primary_social_media_sites": ["string"],
+                        "regulators": [
+                            {
+                                "jurisdiction": "jurisdiction",
+                                "name": "name",
+                                "registration_number": "registration_number",
+                            }
+                        ],
                         "risk_rating": "low",
                         "suffix": "suffix",
+                        "third_party_verification": {
+                            "vendor": "persona",
+                            "vendor_verification_id": "vendor_verification_id",
+                        },
+                        "ticker_symbol": "ticker_symbol",
                         "wealth_and_employment_details": {
                             "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                             "annual_income": 0,
@@ -224,6 +237,7 @@ class TestLegalEntities:
                 }
             ],
             legal_structure="corporation",
+            listed_exchange="listed_exchange",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -236,8 +250,20 @@ class TestLegalEntities:
             preferred_name="preferred_name",
             prefix="prefix",
             primary_social_media_sites=["string"],
+            regulators=[
+                {
+                    "jurisdiction": "jurisdiction",
+                    "name": "name",
+                    "registration_number": "registration_number",
+                }
+            ],
             risk_rating="low",
             suffix="suffix",
+            third_party_verification={
+                "vendor": "persona",
+                "vendor_verification_id": "vendor_verification_id",
+            },
+            ticker_symbol="ticker_symbol",
             wealth_and_employment_details={
                 "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "annual_income": 0,
@@ -406,6 +432,7 @@ class TestLegalEntities:
             intended_use="intended_use",
             last_name="last_name",
             legal_structure="corporation",
+            listed_exchange="listed_exchange",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -418,8 +445,20 @@ class TestLegalEntities:
             preferred_name="preferred_name",
             prefix="prefix",
             primary_social_media_sites=["string"],
+            regulators=[
+                {
+                    "jurisdiction": "jurisdiction",
+                    "name": "name",
+                    "registration_number": "registration_number",
+                }
+            ],
             risk_rating="low",
             suffix="suffix",
+            third_party_verification={
+                "vendor": "persona",
+                "vendor_verification_id": "vendor_verification_id",
+            },
+            ticker_symbol="ticker_symbol",
             wealth_and_employment_details={
                 "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "annual_income": 0,
@@ -679,6 +718,7 @@ class TestAsyncLegalEntities:
                         "legal_entity_associations": [],
                         "legal_entity_type": "business",
                         "legal_structure": "corporation",
+                        "listed_exchange": "listed_exchange",
                         "metadata": {
                             "key": "value",
                             "foo": "bar",
@@ -691,8 +731,20 @@ class TestAsyncLegalEntities:
                         "preferred_name": "preferred_name",
                         "prefix": "prefix",
                         "primary_social_media_sites": ["string"],
+                        "regulators": [
+                            {
+                                "jurisdiction": "jurisdiction",
+                                "name": "name",
+                                "registration_number": "registration_number",
+                            }
+                        ],
                         "risk_rating": "low",
                         "suffix": "suffix",
+                        "third_party_verification": {
+                            "vendor": "persona",
+                            "vendor_verification_id": "vendor_verification_id",
+                        },
+                        "ticker_symbol": "ticker_symbol",
                         "wealth_and_employment_details": {
                             "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                             "annual_income": 0,
@@ -721,6 +773,7 @@ class TestAsyncLegalEntities:
                 }
             ],
             legal_structure="corporation",
+            listed_exchange="listed_exchange",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -733,8 +786,20 @@ class TestAsyncLegalEntities:
             preferred_name="preferred_name",
             prefix="prefix",
             primary_social_media_sites=["string"],
+            regulators=[
+                {
+                    "jurisdiction": "jurisdiction",
+                    "name": "name",
+                    "registration_number": "registration_number",
+                }
+            ],
             risk_rating="low",
             suffix="suffix",
+            third_party_verification={
+                "vendor": "persona",
+                "vendor_verification_id": "vendor_verification_id",
+            },
+            ticker_symbol="ticker_symbol",
             wealth_and_employment_details={
                 "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "annual_income": 0,
@@ -910,6 +975,7 @@ class TestAsyncLegalEntities:
             intended_use="intended_use",
             last_name="last_name",
             legal_structure="corporation",
+            listed_exchange="listed_exchange",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -922,8 +988,20 @@ class TestAsyncLegalEntities:
             preferred_name="preferred_name",
             prefix="prefix",
             primary_social_media_sites=["string"],
+            regulators=[
+                {
+                    "jurisdiction": "jurisdiction",
+                    "name": "name",
+                    "registration_number": "registration_number",
+                }
+            ],
             risk_rating="low",
             suffix="suffix",
+            third_party_verification={
+                "vendor": "persona",
+                "vendor_verification_id": "vendor_verification_id",
+            },
+            ticker_symbol="ticker_symbol",
             wealth_and_employment_details={
                 "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "annual_income": 0,

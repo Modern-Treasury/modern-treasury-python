@@ -152,7 +152,7 @@ class Transaction(BaseModel):
             "hifi",
             "iso20022",
             "jpmc",
-            "mt_flow",
+            "modern_treasury",
             "mx",
             "paxos",
             "paypal",
