@@ -30,6 +30,9 @@ __all__ = [
     "LegalEntityBankSettings",
     "LegalEntityPhoneNumbers",
     "LegalEntityPhoneNumber",
+    "LegalEntityRegulators",
+    "LegalEntityRegulator",
+    "LegalEntityThirdPartyVerification",
     "LegalEntityWealthAndEmploymentDetails",
 ]
 
@@ -306,6 +309,37 @@ Please use LegalEntityPhoneNumber instead.
 """
 
 
+class LegalEntityRegulator(TypedDict, total=False):
+    jurisdiction: Required[str]
+    """
+    The country code where the regulator operates in the ISO 3166-1 alpha-2 format
+    (e.g., "US", "CA", "GB").
+    """
+
+    name: Required[str]
+    """Full name of the regulatory body."""
+
+    registration_number: Required[str]
+    """Registration or identification number with the regulator."""
+
+
+LegalEntityRegulators = LegalEntityRegulator
+"""This type is deprecated and will be removed in a future release.
+
+Please use LegalEntityRegulator instead.
+"""
+
+
+class LegalEntityThirdPartyVerification(TypedDict, total=False):
+    """Information describing a third-party verification run by an external vendor."""
+
+    vendor: Required[Literal["persona"]]
+    """The vendor that performed the verification, e.g. `persona`."""
+
+    vendor_verification_id: Required[str]
+    """The identification of the third party verification in `vendor`'s system."""
+
+
 class LegalEntityWealthAndEmploymentDetails(TypedDict, total=False):
     id: Required[str]
 
@@ -537,6 +571,9 @@ class LegalEntity(TypedDict, total=False):
     ]
     """The business's legal structure."""
 
+    listed_exchange: Optional[str]
+    """ISO 10383 market identifier code."""
+
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.
 
@@ -566,11 +603,20 @@ class LegalEntity(TypedDict, total=False):
     primary_social_media_sites: SequenceNotStr[str]
     """A list of primary social media URLs for the business."""
 
+    regulators: Optional[Iterable[LegalEntityRegulator]]
+    """Array of regulatory bodies overseeing this institution."""
+
     risk_rating: Optional[Literal["low", "medium", "high"]]
     """The risk rating of the legal entity. One of low, medium, high."""
 
     suffix: Optional[str]
     """An individual's suffix."""
+
+    third_party_verification: Optional[LegalEntityThirdPartyVerification]
+    """Information describing a third-party verification run by an external vendor."""
+
+    ticker_symbol: Optional[str]
+    """Stock ticker symbol for publicly traded companies."""
 
     wealth_and_employment_details: Optional[LegalEntityWealthAndEmploymentDetails]
 
