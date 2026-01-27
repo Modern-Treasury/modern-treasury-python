@@ -74,6 +74,7 @@ class LegalEntities(SyncAPIResource):
             Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
         ]
         | Omit = omit,
+        listed_exchange: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         middle_name: Optional[str] | Omit = omit,
         operating_jurisdictions: SequenceNotStr[str] | Omit = omit,
@@ -82,8 +83,11 @@ class LegalEntities(SyncAPIResource):
         preferred_name: Optional[str] | Omit = omit,
         prefix: Optional[str] | Omit = omit,
         primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
+        regulators: Optional[Iterable[legal_entity_create_params.Regulator]] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
+        third_party_verification: Optional[legal_entity_create_params.ThirdPartyVerification] | Omit = omit,
+        ticker_symbol: Optional[str] | Omit = omit,
         wealth_and_employment_details: Optional[legal_entity_create_params.WealthAndEmploymentDetails] | Omit = omit,
         website: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -139,6 +143,8 @@ class LegalEntities(SyncAPIResource):
 
           legal_structure: The business's legal structure.
 
+          listed_exchange: ISO 10383 market identifier code.
+
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
@@ -155,9 +161,15 @@ class LegalEntities(SyncAPIResource):
 
           primary_social_media_sites: A list of primary social media URLs for the business.
 
+          regulators: Array of regulatory bodies overseeing this institution.
+
           risk_rating: The risk rating of the legal entity. One of low, medium, high.
 
           suffix: An individual's suffix.
+
+          third_party_verification: Information describing a third-party verification run by an external vendor.
+
+          ticker_symbol: Stock ticker symbol for publicly traded companies.
 
           website: The entity's primary website URL.
 
@@ -196,6 +208,7 @@ class LegalEntities(SyncAPIResource):
                     "last_name": last_name,
                     "legal_entity_associations": legal_entity_associations,
                     "legal_structure": legal_structure,
+                    "listed_exchange": listed_exchange,
                     "metadata": metadata,
                     "middle_name": middle_name,
                     "operating_jurisdictions": operating_jurisdictions,
@@ -204,8 +217,11 @@ class LegalEntities(SyncAPIResource):
                     "preferred_name": preferred_name,
                     "prefix": prefix,
                     "primary_social_media_sites": primary_social_media_sites,
+                    "regulators": regulators,
                     "risk_rating": risk_rating,
                     "suffix": suffix,
+                    "third_party_verification": third_party_verification,
+                    "ticker_symbol": ticker_symbol,
                     "wealth_and_employment_details": wealth_and_employment_details,
                     "website": website,
                 },
@@ -279,6 +295,7 @@ class LegalEntities(SyncAPIResource):
             Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
         ]
         | Omit = omit,
+        listed_exchange: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         middle_name: Optional[str] | Omit = omit,
         operating_jurisdictions: SequenceNotStr[str] | Omit = omit,
@@ -287,8 +304,11 @@ class LegalEntities(SyncAPIResource):
         preferred_name: Optional[str] | Omit = omit,
         prefix: Optional[str] | Omit = omit,
         primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
+        regulators: Optional[Iterable[legal_entity_update_params.Regulator]] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
+        third_party_verification: Optional[legal_entity_update_params.ThirdPartyVerification] | Omit = omit,
+        ticker_symbol: Optional[str] | Omit = omit,
         wealth_and_employment_details: Optional[legal_entity_update_params.WealthAndEmploymentDetails] | Omit = omit,
         website: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -334,6 +354,8 @@ class LegalEntities(SyncAPIResource):
 
           legal_structure: The business's legal structure.
 
+          listed_exchange: ISO 10383 market identifier code.
+
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
@@ -350,9 +372,15 @@ class LegalEntities(SyncAPIResource):
 
           primary_social_media_sites: A list of primary social media URLs for the business.
 
+          regulators: Array of regulatory bodies overseeing this institution.
+
           risk_rating: The risk rating of the legal entity. One of low, medium, high.
 
           suffix: An individual's suffix.
+
+          third_party_verification: Information describing a third-party verification run by an external vendor.
+
+          ticker_symbol: Stock ticker symbol for publicly traded companies.
 
           website: The entity's primary website URL.
 
@@ -390,6 +418,7 @@ class LegalEntities(SyncAPIResource):
                     "intended_use": intended_use,
                     "last_name": last_name,
                     "legal_structure": legal_structure,
+                    "listed_exchange": listed_exchange,
                     "metadata": metadata,
                     "middle_name": middle_name,
                     "operating_jurisdictions": operating_jurisdictions,
@@ -398,8 +427,11 @@ class LegalEntities(SyncAPIResource):
                     "preferred_name": preferred_name,
                     "prefix": prefix,
                     "primary_social_media_sites": primary_social_media_sites,
+                    "regulators": regulators,
                     "risk_rating": risk_rating,
                     "suffix": suffix,
+                    "third_party_verification": third_party_verification,
+                    "ticker_symbol": ticker_symbol,
                     "wealth_and_employment_details": wealth_and_employment_details,
                     "website": website,
                 },
@@ -516,6 +548,7 @@ class AsyncLegalEntities(AsyncAPIResource):
             Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
         ]
         | Omit = omit,
+        listed_exchange: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         middle_name: Optional[str] | Omit = omit,
         operating_jurisdictions: SequenceNotStr[str] | Omit = omit,
@@ -524,8 +557,11 @@ class AsyncLegalEntities(AsyncAPIResource):
         preferred_name: Optional[str] | Omit = omit,
         prefix: Optional[str] | Omit = omit,
         primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
+        regulators: Optional[Iterable[legal_entity_create_params.Regulator]] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
+        third_party_verification: Optional[legal_entity_create_params.ThirdPartyVerification] | Omit = omit,
+        ticker_symbol: Optional[str] | Omit = omit,
         wealth_and_employment_details: Optional[legal_entity_create_params.WealthAndEmploymentDetails] | Omit = omit,
         website: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -581,6 +617,8 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           legal_structure: The business's legal structure.
 
+          listed_exchange: ISO 10383 market identifier code.
+
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
@@ -597,9 +635,15 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           primary_social_media_sites: A list of primary social media URLs for the business.
 
+          regulators: Array of regulatory bodies overseeing this institution.
+
           risk_rating: The risk rating of the legal entity. One of low, medium, high.
 
           suffix: An individual's suffix.
+
+          third_party_verification: Information describing a third-party verification run by an external vendor.
+
+          ticker_symbol: Stock ticker symbol for publicly traded companies.
 
           website: The entity's primary website URL.
 
@@ -638,6 +682,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "last_name": last_name,
                     "legal_entity_associations": legal_entity_associations,
                     "legal_structure": legal_structure,
+                    "listed_exchange": listed_exchange,
                     "metadata": metadata,
                     "middle_name": middle_name,
                     "operating_jurisdictions": operating_jurisdictions,
@@ -646,8 +691,11 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "preferred_name": preferred_name,
                     "prefix": prefix,
                     "primary_social_media_sites": primary_social_media_sites,
+                    "regulators": regulators,
                     "risk_rating": risk_rating,
                     "suffix": suffix,
+                    "third_party_verification": third_party_verification,
+                    "ticker_symbol": ticker_symbol,
                     "wealth_and_employment_details": wealth_and_employment_details,
                     "website": website,
                 },
@@ -721,6 +769,7 @@ class AsyncLegalEntities(AsyncAPIResource):
             Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
         ]
         | Omit = omit,
+        listed_exchange: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         middle_name: Optional[str] | Omit = omit,
         operating_jurisdictions: SequenceNotStr[str] | Omit = omit,
@@ -729,8 +778,11 @@ class AsyncLegalEntities(AsyncAPIResource):
         preferred_name: Optional[str] | Omit = omit,
         prefix: Optional[str] | Omit = omit,
         primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
+        regulators: Optional[Iterable[legal_entity_update_params.Regulator]] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
+        third_party_verification: Optional[legal_entity_update_params.ThirdPartyVerification] | Omit = omit,
+        ticker_symbol: Optional[str] | Omit = omit,
         wealth_and_employment_details: Optional[legal_entity_update_params.WealthAndEmploymentDetails] | Omit = omit,
         website: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -776,6 +828,8 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           legal_structure: The business's legal structure.
 
+          listed_exchange: ISO 10383 market identifier code.
+
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
 
@@ -792,9 +846,15 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           primary_social_media_sites: A list of primary social media URLs for the business.
 
+          regulators: Array of regulatory bodies overseeing this institution.
+
           risk_rating: The risk rating of the legal entity. One of low, medium, high.
 
           suffix: An individual's suffix.
+
+          third_party_verification: Information describing a third-party verification run by an external vendor.
+
+          ticker_symbol: Stock ticker symbol for publicly traded companies.
 
           website: The entity's primary website URL.
 
@@ -832,6 +892,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "intended_use": intended_use,
                     "last_name": last_name,
                     "legal_structure": legal_structure,
+                    "listed_exchange": listed_exchange,
                     "metadata": metadata,
                     "middle_name": middle_name,
                     "operating_jurisdictions": operating_jurisdictions,
@@ -840,8 +901,11 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "preferred_name": preferred_name,
                     "prefix": prefix,
                     "primary_social_media_sites": primary_social_media_sites,
+                    "regulators": regulators,
                     "risk_rating": risk_rating,
                     "suffix": suffix,
+                    "third_party_verification": third_party_verification,
+                    "ticker_symbol": ticker_symbol,
                     "wealth_and_employment_details": wealth_and_employment_details,
                     "website": website,
                 },

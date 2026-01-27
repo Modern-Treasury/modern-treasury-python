@@ -20,6 +20,9 @@ __all__ = [
     "Identification",
     "PhoneNumbers",
     "PhoneNumber",
+    "Regulators",
+    "Regulator",
+    "ThirdPartyVerification",
     "WealthAndEmploymentDetails",
 ]
 
@@ -186,6 +189,37 @@ PhoneNumbers = PhoneNumber
 
 Please use PhoneNumber instead.
 """
+
+
+class Regulator(BaseModel):
+    jurisdiction: str
+    """
+    The country code where the regulator operates in the ISO 3166-1 alpha-2 format
+    (e.g., "US", "CA", "GB").
+    """
+
+    name: str
+    """Full name of the regulatory body."""
+
+    registration_number: str
+    """Registration or identification number with the regulator."""
+
+
+Regulators = Regulator
+"""This type is deprecated and will be removed in a future release.
+
+Please use Regulator instead.
+"""
+
+
+class ThirdPartyVerification(BaseModel):
+    """Information describing a third-party verification run by an external vendor."""
+
+    vendor: Literal["persona"]
+    """The vendor that performed the verification, e.g. `persona`."""
+
+    vendor_verification_id: str
+    """The identification of the third party verification in `vendor`'s system."""
 
 
 class WealthAndEmploymentDetails(BaseModel):
@@ -405,6 +439,9 @@ class LegalEntity(BaseModel):
     ] = None
     """The business's legal structure."""
 
+    listed_exchange: Optional[str] = None
+    """ISO 10383 market identifier code."""
+
     live_mode: bool
     """
     This field will be true if this object exists in the live environment or false
@@ -442,11 +479,20 @@ class LegalEntity(BaseModel):
     primary_social_media_sites: List[str]
     """A list of primary social media URLs for the business."""
 
+    regulators: Optional[List[Regulator]] = None
+    """Array of regulatory bodies overseeing this institution."""
+
     risk_rating: Optional[Literal["low", "medium", "high"]] = None
     """The risk rating of the legal entity. One of low, medium, high."""
 
     suffix: Optional[str] = None
     """An individual's suffix."""
+
+    third_party_verification: Optional[ThirdPartyVerification] = None
+    """Information describing a third-party verification run by an external vendor."""
+
+    ticker_symbol: Optional[str] = None
+    """Stock ticker symbol for publicly traded companies."""
 
     updated_at: datetime
 
