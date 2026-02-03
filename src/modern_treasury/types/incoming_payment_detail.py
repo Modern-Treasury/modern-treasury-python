@@ -5,6 +5,7 @@ from datetime import date, datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .shared.address import Address
 from .shared.currency import Currency
 from .virtual_account import VirtualAccount
 from .shared.transaction_direction import TransactionDirection
@@ -178,3 +179,17 @@ class IncomingPaymentDetail(BaseModel):
 
     originating_account_number: Optional[str] = None
     """The account number of the originating account for the incoming payment detail."""
+
+    originating_party_address: Optional[Address] = None
+    """
+    The address of the originating party for the incoming payment detail, or `null`.
+    """
+
+    originating_party_name: Optional[str] = None
+    """The name of the originating party for the incoming payment detail."""
+
+    originating_party_vendor_identifier: Optional[str] = None
+    """
+    The vendor-assigned identifier for the originating party of the incoming payment
+    detail, or `null`.
+    """
