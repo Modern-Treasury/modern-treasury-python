@@ -85,6 +85,7 @@ class LegalEntities(SyncAPIResource):
         primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
         regulators: Optional[Iterable[legal_entity_create_params.Regulator]] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
+        status: Optional[Literal["active", "closed", "pending", "suspended"]] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
         third_party_verification: Optional[legal_entity_create_params.ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -165,6 +166,9 @@ class LegalEntities(SyncAPIResource):
 
           risk_rating: The risk rating of the legal entity. One of low, medium, high.
 
+          status: The activation status of the legal entity. One of pending, active, suspended, or
+              closed.
+
           suffix: An individual's suffix.
 
           third_party_verification: Information describing a third-party verification run by an external vendor.
@@ -219,6 +223,7 @@ class LegalEntities(SyncAPIResource):
                     "primary_social_media_sites": primary_social_media_sites,
                     "regulators": regulators,
                     "risk_rating": risk_rating,
+                    "status": status,
                     "suffix": suffix,
                     "third_party_verification": third_party_verification,
                     "ticker_symbol": ticker_symbol,
@@ -306,6 +311,7 @@ class LegalEntities(SyncAPIResource):
         primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
         regulators: Optional[Iterable[legal_entity_update_params.Regulator]] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
+        status: Optional[Literal["active", "closed", "pending", "suspended"]] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
         third_party_verification: Optional[legal_entity_update_params.ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -376,6 +382,9 @@ class LegalEntities(SyncAPIResource):
 
           risk_rating: The risk rating of the legal entity. One of low, medium, high.
 
+          status: The activation status of the legal entity. One of pending, active, suspended, or
+              closed.
+
           suffix: An individual's suffix.
 
           third_party_verification: Information describing a third-party verification run by an external vendor.
@@ -429,6 +438,7 @@ class LegalEntities(SyncAPIResource):
                     "primary_social_media_sites": primary_social_media_sites,
                     "regulators": regulators,
                     "risk_rating": risk_rating,
+                    "status": status,
                     "suffix": suffix,
                     "third_party_verification": third_party_verification,
                     "ticker_symbol": ticker_symbol,
@@ -455,6 +465,7 @@ class LegalEntities(SyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         per_page: int | Omit = omit,
         show_deleted: str | Omit = omit,
+        status: Literal["pending", "active", "suspended", "closed"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -493,6 +504,7 @@ class LegalEntities(SyncAPIResource):
                         "metadata": metadata,
                         "per_page": per_page,
                         "show_deleted": show_deleted,
+                        "status": status,
                     },
                     legal_entity_list_params.LegalEntityListParams,
                 ),
@@ -559,6 +571,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
         regulators: Optional[Iterable[legal_entity_create_params.Regulator]] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
+        status: Optional[Literal["active", "closed", "pending", "suspended"]] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
         third_party_verification: Optional[legal_entity_create_params.ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -639,6 +652,9 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           risk_rating: The risk rating of the legal entity. One of low, medium, high.
 
+          status: The activation status of the legal entity. One of pending, active, suspended, or
+              closed.
+
           suffix: An individual's suffix.
 
           third_party_verification: Information describing a third-party verification run by an external vendor.
@@ -693,6 +709,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "primary_social_media_sites": primary_social_media_sites,
                     "regulators": regulators,
                     "risk_rating": risk_rating,
+                    "status": status,
                     "suffix": suffix,
                     "third_party_verification": third_party_verification,
                     "ticker_symbol": ticker_symbol,
@@ -780,6 +797,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
         regulators: Optional[Iterable[legal_entity_update_params.Regulator]] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
+        status: Optional[Literal["active", "closed", "pending", "suspended"]] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
         third_party_verification: Optional[legal_entity_update_params.ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -850,6 +868,9 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           risk_rating: The risk rating of the legal entity. One of low, medium, high.
 
+          status: The activation status of the legal entity. One of pending, active, suspended, or
+              closed.
+
           suffix: An individual's suffix.
 
           third_party_verification: Information describing a third-party verification run by an external vendor.
@@ -903,6 +924,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "primary_social_media_sites": primary_social_media_sites,
                     "regulators": regulators,
                     "risk_rating": risk_rating,
+                    "status": status,
                     "suffix": suffix,
                     "third_party_verification": third_party_verification,
                     "ticker_symbol": ticker_symbol,
@@ -929,6 +951,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         per_page: int | Omit = omit,
         show_deleted: str | Omit = omit,
+        status: Literal["pending", "active", "suspended", "closed"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -967,6 +990,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                         "metadata": metadata,
                         "per_page": per_page,
                         "show_deleted": show_deleted,
+                        "status": status,
                     },
                     legal_entity_list_params.LegalEntityListParams,
                 ),

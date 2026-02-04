@@ -268,6 +268,7 @@ class TestCounterparties:
                                 }
                             ],
                             "risk_rating": "low",
+                            "status": "active",
                             "suffix": "suffix",
                             "third_party_verification": {
                                 "vendor": "persona",
@@ -323,6 +324,7 @@ class TestCounterparties:
                     }
                 ],
                 "risk_rating": "low",
+                "status": "active",
                 "suffix": "suffix",
                 "third_party_verification": {
                     "vendor": "persona",
@@ -859,6 +861,7 @@ class TestAsyncCounterparties:
                                 }
                             ],
                             "risk_rating": "low",
+                            "status": "active",
                             "suffix": "suffix",
                             "third_party_verification": {
                                 "vendor": "persona",
@@ -914,6 +917,7 @@ class TestAsyncCounterparties:
                     }
                 ],
                 "risk_rating": "low",
+                "status": "active",
                 "suffix": "suffix",
                 "third_party_verification": {
                     "vendor": "persona",

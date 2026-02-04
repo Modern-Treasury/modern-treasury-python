@@ -391,6 +391,12 @@ class LegalEntity(TypedDict, total=False):
     risk_rating: Optional[Literal["low", "medium", "high"]]
     """The risk rating of the legal entity. One of low, medium, high."""
 
+    status: Optional[Literal["active", "closed", "pending", "suspended"]]
+    """The activation status of the legal entity.
+
+    One of pending, active, suspended, or closed.
+    """
+
     suffix: Optional[str]
     """An individual's suffix."""
 
