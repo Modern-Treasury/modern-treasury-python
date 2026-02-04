@@ -488,6 +488,12 @@ class ChildLegalEntity(BaseModel):
     risk_rating: Optional[Literal["low", "medium", "high"]] = None
     """The risk rating of the legal entity. One of low, medium, high."""
 
+    status: Optional[Literal["active", "closed", "pending", "suspended"]] = None
+    """The activation status of the legal entity.
+
+    One of pending, active, suspended, or closed.
+    """
+
     suffix: Optional[str] = None
     """An individual's suffix."""
 

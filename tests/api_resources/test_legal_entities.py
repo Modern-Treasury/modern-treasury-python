@@ -203,6 +203,7 @@ class TestLegalEntities:
                             }
                         ],
                         "risk_rating": "low",
+                        "status": "active",
                         "suffix": "suffix",
                         "third_party_verification": {
                             "vendor": "persona",
@@ -258,6 +259,7 @@ class TestLegalEntities:
                 }
             ],
             risk_rating="low",
+            status="active",
             suffix="suffix",
             third_party_verification={
                 "vendor": "persona",
@@ -453,6 +455,7 @@ class TestLegalEntities:
                 }
             ],
             risk_rating="low",
+            status="active",
             suffix="suffix",
             third_party_verification={
                 "vendor": "persona",
@@ -527,6 +530,7 @@ class TestLegalEntities:
             metadata={"foo": "string"},
             per_page=0,
             show_deleted="show_deleted",
+            status="pending",
         )
         assert_matches_type(SyncPage[LegalEntity], legal_entity, path=["response"])
 
@@ -739,6 +743,7 @@ class TestAsyncLegalEntities:
                             }
                         ],
                         "risk_rating": "low",
+                        "status": "active",
                         "suffix": "suffix",
                         "third_party_verification": {
                             "vendor": "persona",
@@ -794,6 +799,7 @@ class TestAsyncLegalEntities:
                 }
             ],
             risk_rating="low",
+            status="active",
             suffix="suffix",
             third_party_verification={
                 "vendor": "persona",
@@ -996,6 +1002,7 @@ class TestAsyncLegalEntities:
                 }
             ],
             risk_rating="low",
+            status="active",
             suffix="suffix",
             third_party_verification={
                 "vendor": "persona",
@@ -1072,6 +1079,7 @@ class TestAsyncLegalEntities:
             metadata={"foo": "string"},
             per_page=0,
             show_deleted="show_deleted",
+            status="pending",
         )
         assert_matches_type(AsyncPage[LegalEntity], legal_entity, path=["response"])
 
