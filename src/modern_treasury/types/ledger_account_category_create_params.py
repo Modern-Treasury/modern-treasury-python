@@ -30,6 +30,9 @@ class LedgerAccountCategoryCreateParams(TypedDict, total=False):
     description: Optional[str]
     """The description of the ledger account category."""
 
+    external_id: Optional[str]
+    """An optional user-defined 180 character unique identifier."""
+
     ledger_account_category_ids: SequenceNotStr[str]
     """
     The array of ledger account category ids that this ledger account category

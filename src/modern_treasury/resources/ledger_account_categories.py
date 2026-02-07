@@ -55,6 +55,7 @@ class LedgerAccountCategories(SyncAPIResource):
         normal_balance: TransactionDirection,
         currency_exponent: Optional[int] | Omit = omit,
         description: Optional[str] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         ledger_account_category_ids: SequenceNotStr[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -80,6 +81,8 @@ class LedgerAccountCategories(SyncAPIResource):
           currency_exponent: The currency exponent of the ledger account category.
 
           description: The description of the ledger account category.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           ledger_account_category_ids: The array of ledger account category ids that this ledger account category
               should be a child of.
@@ -107,6 +110,7 @@ class LedgerAccountCategories(SyncAPIResource):
                     "normal_balance": normal_balance,
                     "currency_exponent": currency_exponent,
                     "description": description,
+                    "external_id": external_id,
                     "ledger_account_category_ids": ledger_account_category_ids,
                     "metadata": metadata,
                 },
@@ -552,6 +556,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         normal_balance: TransactionDirection,
         currency_exponent: Optional[int] | Omit = omit,
         description: Optional[str] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         ledger_account_category_ids: SequenceNotStr[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -577,6 +582,8 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
           currency_exponent: The currency exponent of the ledger account category.
 
           description: The description of the ledger account category.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           ledger_account_category_ids: The array of ledger account category ids that this ledger account category
               should be a child of.
@@ -604,6 +611,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
                     "normal_balance": normal_balance,
                     "currency_exponent": currency_exponent,
                     "description": description,
+                    "external_id": external_id,
                     "ledger_account_category_ids": ledger_account_category_ids,
                     "metadata": metadata,
                 },
