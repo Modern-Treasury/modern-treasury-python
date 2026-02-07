@@ -57,6 +57,7 @@ class LedgerAccounts(SyncAPIResource):
         normal_balance: TransactionDirection,
         currency_exponent: Optional[int] | Omit = omit,
         description: Optional[str] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         ledger_account_category_ids: SequenceNotStr[str] | Omit = omit,
         ledgerable_id: str | Omit = omit,
         ledgerable_type: Literal["counterparty", "external_account", "internal_account", "virtual_account"]
@@ -85,6 +86,8 @@ class LedgerAccounts(SyncAPIResource):
           currency_exponent: The currency exponent of the ledger account.
 
           description: The description of the ledger account.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           ledger_account_category_ids: The array of ledger account category ids that this ledger account should be a
               child of.
@@ -119,6 +122,7 @@ class LedgerAccounts(SyncAPIResource):
                     "normal_balance": normal_balance,
                     "currency_exponent": currency_exponent,
                     "description": description,
+                    "external_id": external_id,
                     "ledger_account_category_ids": ledger_account_category_ids,
                     "ledgerable_id": ledgerable_id,
                     "ledgerable_type": ledgerable_type,
@@ -415,6 +419,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         normal_balance: TransactionDirection,
         currency_exponent: Optional[int] | Omit = omit,
         description: Optional[str] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         ledger_account_category_ids: SequenceNotStr[str] | Omit = omit,
         ledgerable_id: str | Omit = omit,
         ledgerable_type: Literal["counterparty", "external_account", "internal_account", "virtual_account"]
@@ -443,6 +448,8 @@ class AsyncLedgerAccounts(AsyncAPIResource):
           currency_exponent: The currency exponent of the ledger account.
 
           description: The description of the ledger account.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           ledger_account_category_ids: The array of ledger account category ids that this ledger account should be a
               child of.
@@ -477,6 +484,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
                     "normal_balance": normal_balance,
                     "currency_exponent": currency_exponent,
                     "description": description,
+                    "external_id": external_id,
                     "ledger_account_category_ids": ledger_account_category_ids,
                     "ledgerable_id": ledgerable_id,
                     "ledgerable_type": ledgerable_type,

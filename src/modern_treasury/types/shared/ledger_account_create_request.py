@@ -28,6 +28,9 @@ class LedgerAccountCreateRequest(BaseModel):
     description: Optional[str] = None
     """The description of the ledger account."""
 
+    external_id: Optional[str] = None
+    """An optional user-defined 180 character unique identifier."""
+
     ledger_account_category_ids: Optional[List[str]] = None
     """
     The array of ledger account category ids that this ledger account should be a
