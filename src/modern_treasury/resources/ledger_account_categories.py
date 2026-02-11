@@ -240,7 +240,7 @@ class LedgerAccountCategories(SyncAPIResource):
         ledger_account_id: str | Omit = omit,
         ledger_id: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
-        name: SequenceNotStr[str] | Omit = omit,
+        name: str | Omit = omit,
         parent_ledger_account_category_id: str | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -268,9 +268,6 @@ class LedgerAccountCategories(SyncAPIResource):
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
-
-          name: If you have specific names to retrieve in bulk, you can pass them as query
-              parameters delimited with `name[]=`, for example `?name[]=123&name[]=abc`.
 
           parent_ledger_account_category_id: Query categories that are nested underneath a parent category
 
@@ -741,7 +738,7 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
         ledger_account_id: str | Omit = omit,
         ledger_id: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
-        name: SequenceNotStr[str] | Omit = omit,
+        name: str | Omit = omit,
         parent_ledger_account_category_id: str | Omit = omit,
         per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -769,9 +766,6 @@ class AsyncLedgerAccountCategories(AsyncAPIResource):
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
-
-          name: If you have specific names to retrieve in bulk, you can pass them as query
-              parameters delimited with `name[]=`, for example `?name[]=123&name[]=abc`.
 
           parent_ledger_account_category_id: Query categories that are nested underneath a parent category
 

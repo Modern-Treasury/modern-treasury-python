@@ -197,7 +197,7 @@ class TestLedgerAccountCategories:
             ledger_account_id="ledger_account_id",
             ledger_id="ledger_id",
             metadata={"foo": "string"},
-            name=["string"],
+            name="name",
             parent_ledger_account_category_id="parent_ledger_account_category_id",
             per_page=0,
         )
@@ -635,7 +635,7 @@ class TestAsyncLedgerAccountCategories:
             ledger_account_id="ledger_account_id",
             ledger_id="ledger_id",
             metadata={"foo": "string"},
-            name=["string"],
+            name="name",
             parent_ledger_account_category_id="parent_ledger_account_category_id",
             per_page=0,
         )

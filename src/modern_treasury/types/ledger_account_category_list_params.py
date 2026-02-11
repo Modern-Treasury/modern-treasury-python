@@ -48,11 +48,7 @@ class LedgerAccountCategoryListParams(TypedDict, total=False):
     parameters.
     """
 
-    name: SequenceNotStr[str]
-    """
-    If you have specific names to retrieve in bulk, you can pass them as query
-    parameters delimited with `name[]=`, for example `?name[]=123&name[]=abc`.
-    """
+    name: str
 
     parent_ledger_account_category_id: str
     """Query categories that are nested underneath a parent category"""
