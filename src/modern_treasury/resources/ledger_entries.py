@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
@@ -153,7 +153,7 @@ class LedgerEntries(SyncAPIResource):
         per_page: int | Omit = omit,
         show_balances: bool | Omit = omit,
         show_deleted: bool | Omit = omit,
-        status: List[Literal["pending", "posted", "archived"]] | Omit = omit,
+        status: Literal["pending", "posted", "archived"] | Omit = omit,
         updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -396,7 +396,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
         per_page: int | Omit = omit,
         show_balances: bool | Omit = omit,
         show_deleted: bool | Omit = omit,
-        status: List[Literal["pending", "posted", "archived"]] | Omit = omit,
+        status: Literal["pending", "posted", "archived"] | Omit = omit,
         updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
