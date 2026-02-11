@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, TypedDict
 
@@ -106,7 +106,7 @@ class LedgerEntryListParams(TypedDict, total=False):
     previous entries are deleted.
     """
 
-    status: List[Literal["pending", "posted", "archived"]]
+    status: Literal["pending", "posted", "archived"]
     """Get all ledger entries that match the status specified.
 
     One of `pending`, `posted`, or `archived`. For multiple statuses, use
