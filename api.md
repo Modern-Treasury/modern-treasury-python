@@ -18,7 +18,6 @@ from modern_treasury.types import (
     LedgerTransactionCreateRequest,
     LegalEntityAddressCreateRequest,
     LegalEntityAssociationInlineCreate,
-    LegalEntityComplianceDetail,
     LegalEntityIndustryClassification,
     TransactionDirection,
 )

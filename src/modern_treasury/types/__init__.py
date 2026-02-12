@@ -30,7 +30,6 @@ from .shared import (
     LedgerEntryCreateRequest as LedgerEntryCreateRequest,
     LedgerAccountCreateRequest as LedgerAccountCreateRequest,
     IdentificationCreateRequest as IdentificationCreateRequest,
-    LegalEntityComplianceDetail as LegalEntityComplianceDetail,
     LedgerTransactionCreateRequest as LedgerTransactionCreateRequest,
     LegalEntityAddressCreateRequest as LegalEntityAddressCreateRequest,
     LegalEntityIndustryClassification as LegalEntityIndustryClassification,
