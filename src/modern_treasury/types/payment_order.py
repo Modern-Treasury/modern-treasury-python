@@ -232,6 +232,12 @@ class PaymentOrder(BaseModel):
     allowed by the network is $100,000.
     """
 
+    batch_id: Optional[str] = None
+    """The ID of the batch in which the payment order is included.
+
+    Only populated after the payment order begins processing.
+    """
+
     charge_bearer: Optional[Literal["shared", "sender", "receiver"]] = None
     """The party that will pay the fees for the payment order.
 

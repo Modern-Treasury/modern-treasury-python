@@ -13,7 +13,6 @@ from .shared_params.address_request import AddressRequest
 from .contact_detail_create_request_param import ContactDetailCreateRequestParam
 from .shared_params.identification_create_request import IdentificationCreateRequest
 from .shared_params.ledger_account_create_request import LedgerAccountCreateRequest
-from .shared_params.legal_entity_compliance_detail import LegalEntityComplianceDetail
 from .shared_params.legal_entity_address_create_request import LegalEntityAddressCreateRequest
 from .shared_params.legal_entity_industry_classification import LegalEntityIndustryClassification
 
@@ -516,8 +515,6 @@ class LegalEntity(TypedDict, total=False):
 
     citizenship_country: Optional[str]
     """The country of citizenship for an individual."""
-
-    compliance_details: Optional[LegalEntityComplianceDetail]
 
     connection_id: Optional[str]
     """The connection ID for the connection the legal entity is associated with.

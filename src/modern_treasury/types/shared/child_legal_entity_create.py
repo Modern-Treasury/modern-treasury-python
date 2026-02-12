@@ -8,7 +8,6 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 from .identification_create_request import IdentificationCreateRequest
-from .legal_entity_compliance_detail import LegalEntityComplianceDetail
 from .legal_entity_address_create_request import LegalEntityAddressCreateRequest
 from .legal_entity_industry_classification import LegalEntityIndustryClassification
 
@@ -270,8 +269,6 @@ class ChildLegalEntityCreate(BaseModel):
 
     citizenship_country: Optional[str] = None
     """The country of citizenship for an individual."""
-
-    compliance_details: Optional[LegalEntityComplianceDetail] = None
 
     connection_id: Optional[str] = None
     """The connection ID for the connection the legal entity is associated with.
