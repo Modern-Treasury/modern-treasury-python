@@ -8,7 +8,6 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 from .document import Document
-from .shared.legal_entity_compliance_detail import LegalEntityComplianceDetail
 from .shared.legal_entity_industry_classification import LegalEntityIndustryClassification
 
 __all__ = [
@@ -388,7 +387,7 @@ class ChildLegalEntity(BaseModel):
     citizenship_country: Optional[str] = None
     """The country of citizenship for an individual."""
 
-    compliance_details: Optional[LegalEntityComplianceDetail] = None
+    compliance_details: Optional[object] = None
 
     country_of_incorporation: Optional[str] = None
     """

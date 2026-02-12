@@ -9,7 +9,6 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 from .shared_params.identification_create_request import IdentificationCreateRequest
-from .shared_params.legal_entity_compliance_detail import LegalEntityComplianceDetail
 from .shared_params.legal_entity_address_create_request import LegalEntityAddressCreateRequest
 from .shared_params.legal_entity_industry_classification import LegalEntityIndustryClassification
 
@@ -42,8 +41,6 @@ class LegalEntityCreateParams(TypedDict, total=False):
 
     citizenship_country: Optional[str]
     """The country of citizenship for an individual."""
-
-    compliance_details: Optional[LegalEntityComplianceDetail]
 
     connection_id: Optional[str]
     """The connection ID for the connection the legal entity is associated with.

@@ -19,7 +19,6 @@ from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.legal_entity import LegalEntity
 from ..types.shared_params.identification_create_request import IdentificationCreateRequest
-from ..types.shared_params.legal_entity_compliance_detail import LegalEntityComplianceDetail
 from ..types.shared_params.legal_entity_address_create_request import LegalEntityAddressCreateRequest
 from ..types.shared_params.legal_entity_industry_classification import LegalEntityIndustryClassification
 from ..types.shared_params.legal_entity_association_inline_create import LegalEntityAssociationInlineCreate
@@ -56,7 +55,6 @@ class LegalEntities(SyncAPIResource):
         business_description: Optional[str] | Omit = omit,
         business_name: Optional[str] | Omit = omit,
         citizenship_country: Optional[str] | Omit = omit,
-        compliance_details: Optional[LegalEntityComplianceDetail] | Omit = omit,
         connection_id: Optional[str] | Omit = omit,
         country_of_incorporation: Optional[str] | Omit = omit,
         date_formed: Union[str, date, None] | Omit = omit,
@@ -197,7 +195,6 @@ class LegalEntities(SyncAPIResource):
                     "business_description": business_description,
                     "business_name": business_name,
                     "citizenship_country": citizenship_country,
-                    "compliance_details": compliance_details,
                     "connection_id": connection_id,
                     "country_of_incorporation": country_of_incorporation,
                     "date_formed": date_formed,
@@ -284,7 +281,6 @@ class LegalEntities(SyncAPIResource):
         business_description: Optional[str] | Omit = omit,
         business_name: Optional[str] | Omit = omit,
         citizenship_country: Optional[str] | Omit = omit,
-        compliance_details: Optional[LegalEntityComplianceDetail] | Omit = omit,
         country_of_incorporation: Optional[str] | Omit = omit,
         date_formed: Union[str, date, None] | Omit = omit,
         date_of_birth: Union[str, date, None] | Omit = omit,
@@ -414,7 +410,6 @@ class LegalEntities(SyncAPIResource):
                     "business_description": business_description,
                     "business_name": business_name,
                     "citizenship_country": citizenship_country,
-                    "compliance_details": compliance_details,
                     "country_of_incorporation": country_of_incorporation,
                     "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
@@ -542,7 +537,6 @@ class AsyncLegalEntities(AsyncAPIResource):
         business_description: Optional[str] | Omit = omit,
         business_name: Optional[str] | Omit = omit,
         citizenship_country: Optional[str] | Omit = omit,
-        compliance_details: Optional[LegalEntityComplianceDetail] | Omit = omit,
         connection_id: Optional[str] | Omit = omit,
         country_of_incorporation: Optional[str] | Omit = omit,
         date_formed: Union[str, date, None] | Omit = omit,
@@ -683,7 +677,6 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "business_description": business_description,
                     "business_name": business_name,
                     "citizenship_country": citizenship_country,
-                    "compliance_details": compliance_details,
                     "connection_id": connection_id,
                     "country_of_incorporation": country_of_incorporation,
                     "date_formed": date_formed,
@@ -770,7 +763,6 @@ class AsyncLegalEntities(AsyncAPIResource):
         business_description: Optional[str] | Omit = omit,
         business_name: Optional[str] | Omit = omit,
         citizenship_country: Optional[str] | Omit = omit,
-        compliance_details: Optional[LegalEntityComplianceDetail] | Omit = omit,
         country_of_incorporation: Optional[str] | Omit = omit,
         date_formed: Union[str, date, None] | Omit = omit,
         date_of_birth: Union[str, date, None] | Omit = omit,
@@ -900,7 +892,6 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "business_description": business_description,
                     "business_name": business_name,
                     "citizenship_country": citizenship_country,
-                    "compliance_details": compliance_details,
                     "country_of_incorporation": country_of_incorporation,
                     "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
