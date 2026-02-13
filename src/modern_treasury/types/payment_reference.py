@@ -99,8 +99,6 @@ class PaymentReference(BaseModel):
         "silvergate_payment_id",
         "svb_end_to_end_id",
         "svb_payment_id",
-        "svb_transaction_cleared_for_sanctions_review",
-        "svb_transaction_held_for_sanctions_review",
         "swift_mir",
         "swift_uetr",
         "umb_product_partner_account_number",
