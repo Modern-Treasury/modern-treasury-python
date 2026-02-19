@@ -1,5 +1,37 @@
 # Changelog
 
+## 1.64.0 (2026-02-19)
+
+Full Changelog: [v1.63.0...v1.64.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.63.0...v1.64.0)
+
+### Features
+
+* **api:** api update ([6e355a8](https://github.com/Modern-Treasury/modern-treasury-python/commit/6e355a817cc98a5e1fcc0d64578834753668ff82))
+* **api:** api update ([ab0c565](https://github.com/Modern-Treasury/modern-treasury-python/commit/ab0c565b4220c6c9236181b4e1699dfe3d542147))
+* **api:** api update ([1894bde](https://github.com/Modern-Treasury/modern-treasury-python/commit/1894bdef23f2afc6d0e2e5b3e968838bce0c8130))
+* **api:** api update ([a36277e](https://github.com/Modern-Treasury/modern-treasury-python/commit/a36277e15343038decd3bf610f9e1ae68235a86a))
+* **api:** api update ([c92a9ce](https://github.com/Modern-Treasury/modern-treasury-python/commit/c92a9ce0dd768e53518a263241cdef81f1648a56))
+* **api:** api update ([80ff1b5](https://github.com/Modern-Treasury/modern-treasury-python/commit/80ff1b53fec639b70236541e6f5b9a8e548e5846))
+* **api:** api update ([a8c7d8d](https://github.com/Modern-Treasury/modern-treasury-python/commit/a8c7d8d62b7ab86c8cbd940b6a66905d218a2002))
+* **api:** api update ([59421e9](https://github.com/Modern-Treasury/modern-treasury-python/commit/59421e99d18c022caeeae69b34b21c3ad4d44311))
+* **client:** add custom JSON encoder for extended type support ([8e9e7dd](https://github.com/Modern-Treasury/modern-treasury-python/commit/8e9e7dd9ff628d218581f0ad3b3ab0d4521af898))
+
+
+### Bug Fixes
+
+* **docs:** fix mcp installation instructions for remote servers ([81262fe](https://github.com/Modern-Treasury/modern-treasury-python/commit/81262fe918cf0613b744fc25e49be04e34d578cc))
+
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([b019b1f](https://github.com/Modern-Treasury/modern-treasury-python/commit/b019b1f45f89acebdfb3cd77e9485403c2671f8f))
+* format all `api.md` files ([586eba0](https://github.com/Modern-Treasury/modern-treasury-python/commit/586eba00e21d0ff37997d7ef257a23a042f42a21))
+* **internal:** bump dependencies ([f21a8b1](https://github.com/Modern-Treasury/modern-treasury-python/commit/f21a8b106ca2bd401fc9d5782574d11d700e6e4c))
+* **internal:** codegen related update ([4471585](https://github.com/Modern-Treasury/modern-treasury-python/commit/447158528a5c121ed3040901e6cb7b1117210b46))
+* **internal:** fix lint error on Python 3.14 ([f2a9d02](https://github.com/Modern-Treasury/modern-treasury-python/commit/f2a9d02bab75a30b9c614fe7c7369466ce2839d0))
+* **internal:** update `actions/checkout` version ([7e8aa74](https://github.com/Modern-Treasury/modern-treasury-python/commit/7e8aa742c35f82615786e9f3d70597b08dc9ca1d))
+* update mock server docs ([8f1faaa](https://github.com/Modern-Treasury/modern-treasury-python/commit/8f1faaa09d2c3ed7343557f6fc6906e08b2f902b))
+
 ## 1.63.0 (2026-01-13)
 
 Full Changelog: [v1.62.0...v1.63.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.62.0...v1.63.0)
