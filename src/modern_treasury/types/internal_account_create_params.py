@@ -58,6 +58,9 @@ class InternalAccountCreateParams(TypedDict, total=False):
     counterparty_id: str
     """The Counterparty associated to this account."""
 
+    external_id: Optional[str]
+    """An optional user-defined 180 character unique identifier."""
+
     legal_entity_id: str
     """The LegalEntity associated to this account."""
 

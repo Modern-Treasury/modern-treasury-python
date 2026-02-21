@@ -11,6 +11,9 @@ __all__ = ["LegalEntityListParams"]
 class LegalEntityListParams(TypedDict, total=False):
     after_cursor: Optional[str]
 
+    external_id: str
+    """An optional user-defined 180 character unique identifier."""
+
     legal_entity_type: Literal["business", "individual"]
 
     metadata: Dict[str, str]

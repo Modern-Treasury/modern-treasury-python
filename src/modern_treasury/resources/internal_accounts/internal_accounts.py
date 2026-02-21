@@ -86,6 +86,7 @@ class InternalAccounts(SyncAPIResource):
         ]
         | Omit = omit,
         counterparty_id: str | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         legal_entity_id: str | Omit = omit,
         parent_account_id: str | Omit = omit,
         party_address: internal_account_create_params.PartyAddress | Omit = omit,
@@ -119,6 +120,8 @@ class InternalAccounts(SyncAPIResource):
 
           counterparty_id: The Counterparty associated to this account.
 
+          external_id: An optional user-defined 180 character unique identifier.
+
           legal_entity_id: The LegalEntity associated to this account.
 
           parent_account_id: The parent internal account of this new account.
@@ -149,6 +152,7 @@ class InternalAccounts(SyncAPIResource):
                     "account_capabilities": account_capabilities,
                     "account_type": account_type,
                     "counterparty_id": counterparty_id,
+                    "external_id": external_id,
                     "legal_entity_id": legal_entity_id,
                     "parent_account_id": parent_account_id,
                     "party_address": party_address,
@@ -205,6 +209,7 @@ class InternalAccounts(SyncAPIResource):
         *,
         contra_ledger_account_id: str | Omit = omit,
         counterparty_id: str | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         ledger_account_id: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         name: str | Omit = omit,
@@ -224,6 +229,8 @@ class InternalAccounts(SyncAPIResource):
           contra_ledger_account_id: The Contra Ledger Account associated to this account.
 
           counterparty_id: The Counterparty associated to this account.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           ledger_account_id: The Ledger Account associated to this account.
 
@@ -252,6 +259,7 @@ class InternalAccounts(SyncAPIResource):
                 {
                     "contra_ledger_account_id": contra_ledger_account_id,
                     "counterparty_id": counterparty_id,
+                    "external_id": external_id,
                     "ledger_account_id": ledger_account_id,
                     "metadata": metadata,
                     "name": name,
@@ -275,6 +283,7 @@ class InternalAccounts(SyncAPIResource):
         after_cursor: Optional[str] | Omit = omit,
         counterparty_id: str | Omit = omit,
         currency: Currency | Omit = omit,
+        external_id: str | Omit = omit,
         legal_entity_id: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         payment_direction: TransactionDirection | Omit = omit,
@@ -333,6 +342,8 @@ class InternalAccounts(SyncAPIResource):
 
           currency: Only return internal accounts with this currency.
 
+          external_id: An optional user-defined 180 character unique identifier.
+
           legal_entity_id: Only return internal accounts associated with this legal entity.
 
           metadata: For example, if you want to query for records with metadata key `Type` and value
@@ -366,6 +377,7 @@ class InternalAccounts(SyncAPIResource):
                         "after_cursor": after_cursor,
                         "counterparty_id": counterparty_id,
                         "currency": currency,
+                        "external_id": external_id,
                         "legal_entity_id": legal_entity_id,
                         "metadata": metadata,
                         "payment_direction": payment_direction,
@@ -522,6 +534,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         ]
         | Omit = omit,
         counterparty_id: str | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         legal_entity_id: str | Omit = omit,
         parent_account_id: str | Omit = omit,
         party_address: internal_account_create_params.PartyAddress | Omit = omit,
@@ -555,6 +568,8 @@ class AsyncInternalAccounts(AsyncAPIResource):
 
           counterparty_id: The Counterparty associated to this account.
 
+          external_id: An optional user-defined 180 character unique identifier.
+
           legal_entity_id: The LegalEntity associated to this account.
 
           parent_account_id: The parent internal account of this new account.
@@ -585,6 +600,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                     "account_capabilities": account_capabilities,
                     "account_type": account_type,
                     "counterparty_id": counterparty_id,
+                    "external_id": external_id,
                     "legal_entity_id": legal_entity_id,
                     "parent_account_id": parent_account_id,
                     "party_address": party_address,
@@ -641,6 +657,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         *,
         contra_ledger_account_id: str | Omit = omit,
         counterparty_id: str | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         ledger_account_id: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         name: str | Omit = omit,
@@ -660,6 +677,8 @@ class AsyncInternalAccounts(AsyncAPIResource):
           contra_ledger_account_id: The Contra Ledger Account associated to this account.
 
           counterparty_id: The Counterparty associated to this account.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           ledger_account_id: The Ledger Account associated to this account.
 
@@ -688,6 +707,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                 {
                     "contra_ledger_account_id": contra_ledger_account_id,
                     "counterparty_id": counterparty_id,
+                    "external_id": external_id,
                     "ledger_account_id": ledger_account_id,
                     "metadata": metadata,
                     "name": name,
@@ -711,6 +731,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         after_cursor: Optional[str] | Omit = omit,
         counterparty_id: str | Omit = omit,
         currency: Currency | Omit = omit,
+        external_id: str | Omit = omit,
         legal_entity_id: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         payment_direction: TransactionDirection | Omit = omit,
@@ -769,6 +790,8 @@ class AsyncInternalAccounts(AsyncAPIResource):
 
           currency: Only return internal accounts with this currency.
 
+          external_id: An optional user-defined 180 character unique identifier.
+
           legal_entity_id: Only return internal accounts associated with this legal entity.
 
           metadata: For example, if you want to query for records with metadata key `Type` and value
@@ -802,6 +825,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                         "after_cursor": after_cursor,
                         "counterparty_id": counterparty_id,
                         "currency": currency,
+                        "external_id": external_id,
                         "legal_entity_id": legal_entity_id,
                         "metadata": metadata,
                         "payment_direction": payment_direction,

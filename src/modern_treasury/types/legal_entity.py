@@ -422,6 +422,9 @@ class LegalEntity(BaseModel):
     expected_activity_volume: Optional[int] = None
     """Monthly expected transaction volume in USD."""
 
+    external_id: Optional[str] = None
+    """An optional user-defined 180 character unique identifier."""
+
     first_name: Optional[str] = None
     """An individual's first name."""
 
