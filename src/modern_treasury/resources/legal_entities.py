@@ -62,6 +62,7 @@ class LegalEntities(SyncAPIResource):
         doing_business_as_names: SequenceNotStr[str] | Omit = omit,
         email: Optional[str] | Omit = omit,
         expected_activity_volume: Optional[int] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         first_name: Optional[str] | Omit = omit,
         identifications: Iterable[IdentificationCreateRequest] | Omit = omit,
         industry_classifications: Iterable[LegalEntityIndustryClassification] | Omit = omit,
@@ -127,6 +128,8 @@ class LegalEntities(SyncAPIResource):
           email: The entity's primary email.
 
           expected_activity_volume: Monthly expected transaction volume in USD.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           first_name: An individual's first name.
 
@@ -202,6 +205,7 @@ class LegalEntities(SyncAPIResource):
                     "doing_business_as_names": doing_business_as_names,
                     "email": email,
                     "expected_activity_volume": expected_activity_volume,
+                    "external_id": external_id,
                     "first_name": first_name,
                     "identifications": identifications,
                     "industry_classifications": industry_classifications,
@@ -287,6 +291,7 @@ class LegalEntities(SyncAPIResource):
         doing_business_as_names: SequenceNotStr[str] | Omit = omit,
         email: Optional[str] | Omit = omit,
         expected_activity_volume: Optional[int] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         first_name: Optional[str] | Omit = omit,
         identifications: Iterable[IdentificationCreateRequest] | Omit = omit,
         industry_classifications: Iterable[LegalEntityIndustryClassification] | Omit = omit,
@@ -343,6 +348,8 @@ class LegalEntities(SyncAPIResource):
           email: The entity's primary email.
 
           expected_activity_volume: Monthly expected transaction volume in USD.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           first_name: An individual's first name.
 
@@ -416,6 +423,7 @@ class LegalEntities(SyncAPIResource):
                     "doing_business_as_names": doing_business_as_names,
                     "email": email,
                     "expected_activity_volume": expected_activity_volume,
+                    "external_id": external_id,
                     "first_name": first_name,
                     "identifications": identifications,
                     "industry_classifications": industry_classifications,
@@ -456,6 +464,7 @@ class LegalEntities(SyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | Omit = omit,
+        external_id: str | Omit = omit,
         legal_entity_type: Literal["business", "individual"] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         per_page: int | Omit = omit,
@@ -472,6 +481,8 @@ class LegalEntities(SyncAPIResource):
         Get a list of all legal entities.
 
         Args:
+          external_id: An optional user-defined 180 character unique identifier.
+
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
@@ -495,6 +506,7 @@ class LegalEntities(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
+                        "external_id": external_id,
                         "legal_entity_type": legal_entity_type,
                         "metadata": metadata,
                         "per_page": per_page,
@@ -544,6 +556,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         doing_business_as_names: SequenceNotStr[str] | Omit = omit,
         email: Optional[str] | Omit = omit,
         expected_activity_volume: Optional[int] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         first_name: Optional[str] | Omit = omit,
         identifications: Iterable[IdentificationCreateRequest] | Omit = omit,
         industry_classifications: Iterable[LegalEntityIndustryClassification] | Omit = omit,
@@ -609,6 +622,8 @@ class AsyncLegalEntities(AsyncAPIResource):
           email: The entity's primary email.
 
           expected_activity_volume: Monthly expected transaction volume in USD.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           first_name: An individual's first name.
 
@@ -684,6 +699,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "doing_business_as_names": doing_business_as_names,
                     "email": email,
                     "expected_activity_volume": expected_activity_volume,
+                    "external_id": external_id,
                     "first_name": first_name,
                     "identifications": identifications,
                     "industry_classifications": industry_classifications,
@@ -769,6 +785,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         doing_business_as_names: SequenceNotStr[str] | Omit = omit,
         email: Optional[str] | Omit = omit,
         expected_activity_volume: Optional[int] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         first_name: Optional[str] | Omit = omit,
         identifications: Iterable[IdentificationCreateRequest] | Omit = omit,
         industry_classifications: Iterable[LegalEntityIndustryClassification] | Omit = omit,
@@ -825,6 +842,8 @@ class AsyncLegalEntities(AsyncAPIResource):
           email: The entity's primary email.
 
           expected_activity_volume: Monthly expected transaction volume in USD.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           first_name: An individual's first name.
 
@@ -898,6 +917,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "doing_business_as_names": doing_business_as_names,
                     "email": email,
                     "expected_activity_volume": expected_activity_volume,
+                    "external_id": external_id,
                     "first_name": first_name,
                     "identifications": identifications,
                     "industry_classifications": industry_classifications,
@@ -938,6 +958,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         self,
         *,
         after_cursor: Optional[str] | Omit = omit,
+        external_id: str | Omit = omit,
         legal_entity_type: Literal["business", "individual"] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         per_page: int | Omit = omit,
@@ -954,6 +975,8 @@ class AsyncLegalEntities(AsyncAPIResource):
         Get a list of all legal entities.
 
         Args:
+          external_id: An optional user-defined 180 character unique identifier.
+
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
@@ -977,6 +1000,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "after_cursor": after_cursor,
+                        "external_id": external_id,
                         "legal_entity_type": legal_entity_type,
                         "metadata": metadata,
                         "per_page": per_page,

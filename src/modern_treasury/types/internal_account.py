@@ -157,6 +157,9 @@ class InternalAccount(BaseModel):
     currency: Currency
     """The currency of the account."""
 
+    external_id: Optional[str] = None
+    """An optional user-defined 180 character unique identifier."""
+
     ledger_account_id: Optional[str] = None
     """
     If the internal account links to a ledger account in Modern Treasury, the id of

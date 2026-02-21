@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Optional
 from typing_extensions import TypedDict
 
 __all__ = ["InternalAccountUpdateParams"]
@@ -14,6 +14,9 @@ class InternalAccountUpdateParams(TypedDict, total=False):
 
     counterparty_id: str
     """The Counterparty associated to this account."""
+
+    external_id: Optional[str]
+    """An optional user-defined 180 character unique identifier."""
 
     ledger_account_id: str
     """The Ledger Account associated to this account."""

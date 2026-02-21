@@ -20,6 +20,9 @@ class InternalAccountListParams(TypedDict, total=False):
     currency: Currency
     """Only return internal accounts with this currency."""
 
+    external_id: str
+    """An optional user-defined 180 character unique identifier."""
+
     legal_entity_id: str
     """Only return internal accounts associated with this legal entity."""
 

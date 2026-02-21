@@ -65,6 +65,7 @@ class TestLegalEntities:
             doing_business_as_names=["string"],
             email="email",
             expected_activity_volume=0,
+            external_id="external_id",
             first_name="first_name",
             identifications=[
                 {
@@ -126,6 +127,7 @@ class TestLegalEntities:
                         "doing_business_as_names": ["string"],
                         "email": "email",
                         "expected_activity_volume": 0,
+                        "external_id": "external_id",
                         "first_name": "first_name",
                         "identifications": [
                             {
@@ -366,6 +368,7 @@ class TestLegalEntities:
             doing_business_as_names=["string"],
             email="email",
             expected_activity_volume=0,
+            external_id="external_id",
             first_name="first_name",
             identifications=[
                 {
@@ -483,6 +486,7 @@ class TestLegalEntities:
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
         legal_entity = client.legal_entities.list(
             after_cursor="after_cursor",
+            external_id="external_id",
             legal_entity_type="business",
             metadata={"foo": "string"},
             per_page=0,
@@ -561,6 +565,7 @@ class TestAsyncLegalEntities:
             doing_business_as_names=["string"],
             email="email",
             expected_activity_volume=0,
+            external_id="external_id",
             first_name="first_name",
             identifications=[
                 {
@@ -622,6 +627,7 @@ class TestAsyncLegalEntities:
                         "doing_business_as_names": ["string"],
                         "email": "email",
                         "expected_activity_volume": 0,
+                        "external_id": "external_id",
                         "first_name": "first_name",
                         "identifications": [
                             {
@@ -862,6 +868,7 @@ class TestAsyncLegalEntities:
             doing_business_as_names=["string"],
             email="email",
             expected_activity_volume=0,
+            external_id="external_id",
             first_name="first_name",
             identifications=[
                 {
@@ -979,6 +986,7 @@ class TestAsyncLegalEntities:
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         legal_entity = await async_client.legal_entities.list(
             after_cursor="after_cursor",
+            external_id="external_id",
             legal_entity_type="business",
             metadata={"foo": "string"},
             per_page=0,

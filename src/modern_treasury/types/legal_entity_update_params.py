@@ -59,6 +59,9 @@ class LegalEntityUpdateParams(TypedDict, total=False):
     expected_activity_volume: Optional[int]
     """Monthly expected transaction volume in USD."""
 
+    external_id: Optional[str]
+    """An optional user-defined 180 character unique identifier."""
+
     first_name: Optional[str]
     """An individual's first name."""
 
