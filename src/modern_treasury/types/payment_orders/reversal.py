@@ -14,6 +14,9 @@ class Reversal(BaseModel):
 
     created_at: datetime
 
+    internal_account_id: Optional[str] = None
+    """The ID of the relevant Internal Account."""
+
     ledger_transaction_id: Optional[str] = None
     """The ID of the ledger transaction linked to the reversal."""
 
