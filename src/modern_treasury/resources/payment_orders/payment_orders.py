@@ -83,6 +83,7 @@ class PaymentOrders(SyncAPIResource):
         documents: Iterable[payment_order_create_params.Document] | Omit = omit,
         effective_date: Union[str, date] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         fallback_type: Literal["ach"] | Omit = omit,
         foreign_exchange_contract: Optional[str] | Omit = omit,
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
@@ -155,6 +156,8 @@ class PaymentOrders(SyncAPIResource):
               holiday or weekend. Format: yyyy-mm-dd.
 
           expires_at: RFP payments require an expires_at. This value must be past the effective_date.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           fallback_type: A payment type to fallback to if the original type is not valid for the
               receiving account. Currently, this only supports falling back from RTP to ACH
@@ -269,6 +272,7 @@ class PaymentOrders(SyncAPIResource):
                 "documents": documents,
                 "effective_date": effective_date,
                 "expires_at": expires_at,
+                "external_id": external_id,
                 "fallback_type": fallback_type,
                 "foreign_exchange_contract": foreign_exchange_contract,
                 "foreign_exchange_indicator": foreign_exchange_indicator,
@@ -363,6 +367,7 @@ class PaymentOrders(SyncAPIResource):
         direction: Literal["credit", "debit"] | Omit = omit,
         effective_date: Union[str, date] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         fallback_type: Literal["ach"] | Omit = omit,
         foreign_exchange_contract: Optional[str] | Omit = omit,
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
@@ -443,6 +448,8 @@ class PaymentOrders(SyncAPIResource):
               holiday or weekend. Format: yyyy-mm-dd.
 
           expires_at: RFP payments require an expires_at. This value must be past the effective_date.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           fallback_type: A payment type to fallback to if the original type is not valid for the
               receiving account. Currently, this only supports falling back from RTP to ACH
@@ -564,6 +571,7 @@ class PaymentOrders(SyncAPIResource):
                     "direction": direction,
                     "effective_date": effective_date,
                     "expires_at": expires_at,
+                    "external_id": external_id,
                     "fallback_type": fallback_type,
                     "foreign_exchange_contract": foreign_exchange_contract,
                     "foreign_exchange_indicator": foreign_exchange_indicator,
@@ -767,6 +775,7 @@ class PaymentOrders(SyncAPIResource):
         description: Optional[str] | Omit = omit,
         effective_date: Union[str, date] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         fallback_type: Literal["ach"] | Omit = omit,
         foreign_exchange_contract: Optional[str] | Omit = omit,
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
@@ -836,6 +845,8 @@ class PaymentOrders(SyncAPIResource):
               holiday or weekend. Format: yyyy-mm-dd.
 
           expires_at: RFP payments require an expires_at. This value must be past the effective_date.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           fallback_type: A payment type to fallback to if the original type is not valid for the
               receiving account. Currently, this only supports falling back from RTP to ACH
@@ -951,6 +962,7 @@ class PaymentOrders(SyncAPIResource):
                     "description": description,
                     "effective_date": effective_date,
                     "expires_at": expires_at,
+                    "external_id": external_id,
                     "fallback_type": fallback_type,
                     "foreign_exchange_contract": foreign_exchange_contract,
                     "foreign_exchange_indicator": foreign_exchange_indicator,
@@ -1029,6 +1041,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         documents: Iterable[payment_order_create_params.Document] | Omit = omit,
         effective_date: Union[str, date] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         fallback_type: Literal["ach"] | Omit = omit,
         foreign_exchange_contract: Optional[str] | Omit = omit,
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
@@ -1101,6 +1114,8 @@ class AsyncPaymentOrders(AsyncAPIResource):
               holiday or weekend. Format: yyyy-mm-dd.
 
           expires_at: RFP payments require an expires_at. This value must be past the effective_date.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           fallback_type: A payment type to fallback to if the original type is not valid for the
               receiving account. Currently, this only supports falling back from RTP to ACH
@@ -1215,6 +1230,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
                 "documents": documents,
                 "effective_date": effective_date,
                 "expires_at": expires_at,
+                "external_id": external_id,
                 "fallback_type": fallback_type,
                 "foreign_exchange_contract": foreign_exchange_contract,
                 "foreign_exchange_indicator": foreign_exchange_indicator,
@@ -1309,6 +1325,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         direction: Literal["credit", "debit"] | Omit = omit,
         effective_date: Union[str, date] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         fallback_type: Literal["ach"] | Omit = omit,
         foreign_exchange_contract: Optional[str] | Omit = omit,
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
@@ -1389,6 +1406,8 @@ class AsyncPaymentOrders(AsyncAPIResource):
               holiday or weekend. Format: yyyy-mm-dd.
 
           expires_at: RFP payments require an expires_at. This value must be past the effective_date.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           fallback_type: A payment type to fallback to if the original type is not valid for the
               receiving account. Currently, this only supports falling back from RTP to ACH
@@ -1510,6 +1529,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
                     "direction": direction,
                     "effective_date": effective_date,
                     "expires_at": expires_at,
+                    "external_id": external_id,
                     "fallback_type": fallback_type,
                     "foreign_exchange_contract": foreign_exchange_contract,
                     "foreign_exchange_indicator": foreign_exchange_indicator,
@@ -1713,6 +1733,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         description: Optional[str] | Omit = omit,
         effective_date: Union[str, date] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         fallback_type: Literal["ach"] | Omit = omit,
         foreign_exchange_contract: Optional[str] | Omit = omit,
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
@@ -1782,6 +1803,8 @@ class AsyncPaymentOrders(AsyncAPIResource):
               holiday or weekend. Format: yyyy-mm-dd.
 
           expires_at: RFP payments require an expires_at. This value must be past the effective_date.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           fallback_type: A payment type to fallback to if the original type is not valid for the
               receiving account. Currently, this only supports falling back from RTP to ACH
@@ -1897,6 +1920,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
                     "description": description,
                     "effective_date": effective_date,
                     "expires_at": expires_at,
+                    "external_id": external_id,
                     "fallback_type": fallback_type,
                     "foreign_exchange_contract": foreign_exchange_contract,
                     "foreign_exchange_indicator": foreign_exchange_indicator,

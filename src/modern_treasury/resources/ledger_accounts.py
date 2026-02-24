@@ -192,6 +192,7 @@ class LedgerAccounts(SyncAPIResource):
         id: str,
         *,
         description: Optional[str] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -207,6 +208,8 @@ class LedgerAccounts(SyncAPIResource):
 
         Args:
           description: The description of the ledger account.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -230,6 +233,7 @@ class LedgerAccounts(SyncAPIResource):
             body=maybe_transform(
                 {
                     "description": description,
+                    "external_id": external_id,
                     "metadata": metadata,
                     "name": name,
                 },
@@ -554,6 +558,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         id: str,
         *,
         description: Optional[str] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -569,6 +574,8 @@ class AsyncLedgerAccounts(AsyncAPIResource):
 
         Args:
           description: The description of the ledger account.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -592,6 +599,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "description": description,
+                    "external_id": external_id,
                     "metadata": metadata,
                     "name": name,
                 },

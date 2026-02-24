@@ -12,6 +12,9 @@ class CounterpartyUpdateParams(TypedDict, total=False):
     email: str
     """A new email for the counterparty."""
 
+    external_id: Optional[str]
+    """An optional user-defined 180 character unique identifier."""
+
     legal_entity_id: Optional[str]
     """The id of the legal entity."""
 

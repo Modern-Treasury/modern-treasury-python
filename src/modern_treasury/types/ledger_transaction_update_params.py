@@ -22,6 +22,12 @@ class LedgerTransactionUpdateParams(TypedDict, total=False):
     reporting purposes.
     """
 
+    external_id: Optional[str]
+    """A unique string to represent the ledger transaction.
+
+    Only one pending or posted ledger transaction may have this ID in the ledger.
+    """
+
     ledger_entries: Iterable[LedgerEntryCreateRequest]
     """An array of ledger entry objects."""
 

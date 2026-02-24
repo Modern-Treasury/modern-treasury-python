@@ -157,6 +157,7 @@ class TestLedgerTransactions:
             id="id",
             description="description",
             effective_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            external_id="external_id",
             ledger_entries=[
                 {
                     "amount": 0,
@@ -567,6 +568,7 @@ class TestAsyncLedgerTransactions:
             id="id",
             description="description",
             effective_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            external_id="external_id",
             ledger_entries=[
                 {
                     "amount": 0,

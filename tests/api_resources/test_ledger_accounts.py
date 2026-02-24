@@ -146,6 +146,7 @@ class TestLedgerAccounts:
         ledger_account = client.ledger_accounts.update(
             id="id",
             description="description",
+            external_id="external_id",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -428,6 +429,7 @@ class TestAsyncLedgerAccounts:
         ledger_account = await async_client.ledger_accounts.update(
             id="id",
             description="description",
+            external_id="external_id",
             metadata={
                 "key": "value",
                 "foo": "bar",
