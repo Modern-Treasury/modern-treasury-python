@@ -391,6 +391,9 @@ class ResourcePaymentOrderAsyncCreateRequest(TypedDict, total=False):
     expires_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """RFP payments require an expires_at. This value must be past the effective_date."""
 
+    external_id: Optional[str]
+    """An optional user-defined 180 character unique identifier."""
+
     fallback_type: Literal["ach"]
     """
     A payment type to fallback to if the original type is not valid for the
@@ -1114,6 +1117,9 @@ class ResourcePaymentOrderUpdateRequestWithID(TypedDict, total=False):
     expires_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """RFP payments require an expires_at. This value must be past the effective_date."""
 
+    external_id: Optional[str]
+    """An optional user-defined 180 character unique identifier."""
+
     fallback_type: Literal["ach"]
     """
     A payment type to fallback to if the original type is not valid for the
@@ -1444,6 +1450,12 @@ class ResourceLedgerTransactionUpdateRequestWithID(TypedDict, total=False):
     """
     The timestamp (ISO8601 format) at which the ledger transaction happened for
     reporting purposes.
+    """
+
+    external_id: Optional[str]
+    """A unique string to represent the ledger transaction.
+
+    Only one pending or posted ledger transaction may have this ID in the ledger.
     """
 
     ledger_entries: Iterable[LedgerEntryCreateRequest]

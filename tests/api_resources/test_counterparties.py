@@ -414,6 +414,7 @@ class TestCounterparties:
         counterparty = client.counterparties.update(
             id="id",
             email="dev@stainless.com",
+            external_id="external_id",
             legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
             name="name",
@@ -982,6 +983,7 @@ class TestAsyncCounterparties:
         counterparty = await async_client.counterparties.update(
             id="id",
             email="dev@stainless.com",
+            external_id="external_id",
             legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
             name="name",

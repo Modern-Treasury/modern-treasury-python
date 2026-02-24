@@ -176,6 +176,7 @@ class Counterparties(SyncAPIResource):
         id: str,
         *,
         email: str | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         legal_entity_id: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         name: str | Omit = omit,
@@ -194,6 +195,8 @@ class Counterparties(SyncAPIResource):
 
         Args:
           email: A new email for the counterparty.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           legal_entity_id: The id of the legal entity.
 
@@ -224,6 +227,7 @@ class Counterparties(SyncAPIResource):
             body=maybe_transform(
                 {
                     "email": email,
+                    "external_id": external_id,
                     "legal_entity_id": legal_entity_id,
                     "metadata": metadata,
                     "name": name,
@@ -611,6 +615,7 @@ class AsyncCounterparties(AsyncAPIResource):
         id: str,
         *,
         email: str | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         legal_entity_id: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         name: str | Omit = omit,
@@ -629,6 +634,8 @@ class AsyncCounterparties(AsyncAPIResource):
 
         Args:
           email: A new email for the counterparty.
+
+          external_id: An optional user-defined 180 character unique identifier.
 
           legal_entity_id: The id of the legal entity.
 
@@ -659,6 +666,7 @@ class AsyncCounterparties(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "email": email,
+                    "external_id": external_id,
                     "legal_entity_id": legal_entity_id,
                     "metadata": metadata,
                     "name": name,
