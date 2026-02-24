@@ -186,6 +186,7 @@ class LedgerTransactions(SyncAPIResource):
         *,
         description: Optional[str] | Omit = omit,
         effective_at: Union[str, datetime] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         ledger_entries: Iterable[LedgerEntryCreateRequest] | Omit = omit,
         ledgerable_id: str | Omit = omit,
         ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
@@ -208,6 +209,9 @@ class LedgerTransactions(SyncAPIResource):
 
           effective_at: The timestamp (ISO8601 format) at which the ledger transaction happened for
               reporting purposes.
+
+          external_id: A unique string to represent the ledger transaction. Only one pending or posted
+              ledger transaction may have this ID in the ledger.
 
           ledger_entries: An array of ledger entry objects.
 
@@ -241,6 +245,7 @@ class LedgerTransactions(SyncAPIResource):
                 {
                     "description": description,
                     "effective_at": effective_at,
+                    "external_id": external_id,
                     "ledger_entries": ledger_entries,
                     "ledgerable_id": ledgerable_id,
                     "ledgerable_type": ledgerable_type,
@@ -666,6 +671,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         *,
         description: Optional[str] | Omit = omit,
         effective_at: Union[str, datetime] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         ledger_entries: Iterable[LedgerEntryCreateRequest] | Omit = omit,
         ledgerable_id: str | Omit = omit,
         ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
@@ -688,6 +694,9 @@ class AsyncLedgerTransactions(AsyncAPIResource):
 
           effective_at: The timestamp (ISO8601 format) at which the ledger transaction happened for
               reporting purposes.
+
+          external_id: A unique string to represent the ledger transaction. Only one pending or posted
+              ledger transaction may have this ID in the ledger.
 
           ledger_entries: An array of ledger entry objects.
 
@@ -721,6 +730,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
                 {
                     "description": description,
                     "effective_at": effective_at,
+                    "external_id": external_id,
                     "ledger_entries": ledger_entries,
                     "ledgerable_id": ledgerable_id,
                     "ledgerable_type": ledgerable_type,

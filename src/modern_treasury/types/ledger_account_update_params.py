@@ -12,6 +12,9 @@ class LedgerAccountUpdateParams(TypedDict, total=False):
     description: Optional[str]
     """The description of the ledger account."""
 
+    external_id: Optional[str]
+    """An optional user-defined 180 character unique identifier."""
+
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.
 

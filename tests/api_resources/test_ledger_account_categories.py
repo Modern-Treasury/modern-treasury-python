@@ -141,6 +141,7 @@ class TestLedgerAccountCategories:
         ledger_account_category = client.ledger_account_categories.update(
             id="id",
             description="description",
+            external_id="external_id",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -579,6 +580,7 @@ class TestAsyncLedgerAccountCategories:
         ledger_account_category = await async_client.ledger_account_categories.update(
             id="id",
             description="description",
+            external_id="external_id",
             metadata={
                 "key": "value",
                 "foo": "bar",

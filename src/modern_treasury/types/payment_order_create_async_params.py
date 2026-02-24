@@ -95,6 +95,9 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
     expires_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """RFP payments require an expires_at. This value must be past the effective_date."""
 
+    external_id: Optional[str]
+    """An optional user-defined 180 character unique identifier."""
+
     fallback_type: Literal["ach"]
     """
     A payment type to fallback to if the original type is not valid for the
