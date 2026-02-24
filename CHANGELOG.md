@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.65.0 (2026-02-24)
+
+Full Changelog: [v1.64.0...v1.65.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.64.0...v1.65.0)
+
+### Features
+
+* **api:** api update ([d1f7db3](https://github.com/Modern-Treasury/modern-treasury-python/commit/d1f7db350dcf32e5f33e214fa5d5a4a4e6649942))
+* **api:** api update ([dfd6e37](https://github.com/Modern-Treasury/modern-treasury-python/commit/dfd6e37a3677656399a5f14b90da3713632ddf37))
+* **api:** api update ([ee95775](https://github.com/Modern-Treasury/modern-treasury-python/commit/ee95775d7cfdd1f7dfc99434926fc47f074f3b6e))
+* **api:** api update ([e13675f](https://github.com/Modern-Treasury/modern-treasury-python/commit/e13675f1202b1070134cbfee6005065457918d6b))
+
+
+### Chores
+
+* **internal:** add request options to SSE classes ([e59817c](https://github.com/Modern-Treasury/modern-treasury-python/commit/e59817c0cccc6565393f50213c4ed775e772db9e))
+* **internal:** make `test_proxy_environment_variables` more resilient ([638faad](https://github.com/Modern-Treasury/modern-treasury-python/commit/638faad2808b96153f6086372f59d3203638a7ad))
+* **internal:** make `test_proxy_environment_variables` more resilient to env ([7d4bc24](https://github.com/Modern-Treasury/modern-treasury-python/commit/7d4bc241b1341afb71a9915a6f5b2e324b5c96f4))
+
 ## 1.64.0 (2026-02-19)
 
 Full Changelog: [v1.63.0...v1.64.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.63.0...v1.64.0)
