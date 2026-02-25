@@ -81,8 +81,6 @@ class PaymentReference(BaseModel):
         "jpmc_payment_returned_datetime",
         "jpmc_transaction_reference_number",
         "lob_check_id",
-        "mt_flow_ach_noc_id",
-        "mt_flow_transfer_id",
         "other",
         "partial_swift_mir",
         "paxos_group_id",
