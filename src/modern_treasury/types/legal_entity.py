@@ -129,6 +129,7 @@ class Identification(BaseModel):
         "ar_cuit",
         "br_cnpj",
         "br_cpf",
+        "ca_sin",
         "cl_run",
         "cl_rut",
         "co_cedulas",
