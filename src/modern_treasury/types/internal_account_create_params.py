@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-import builtins
 from typing import Dict, Union, Iterable, Optional
 from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 from .shared.transaction_direction import TransactionDirection
@@ -77,7 +76,7 @@ class InternalAccountCreateParams(TypedDict, total=False):
     """
 
 
-class AccountCapabilityTyped(TypedDict, total=False):
+class AccountCapability(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     id: Required[str]
 
     created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
@@ -150,8 +149,6 @@ class AccountCapabilityTyped(TypedDict, total=False):
 
     updated_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
-
-AccountCapability: TypeAlias = Union[AccountCapabilityTyped, Dict[str, builtins.object]]
 
 AccountCapabilities = AccountCapability
 """This type is deprecated and will be removed in a future release.
