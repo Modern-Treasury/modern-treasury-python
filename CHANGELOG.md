@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.66.0 (2026-03-05)
+
+Full Changelog: [v1.65.0...v1.66.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.65.0...v1.66.0)
+
+### Features
+
+* **api:** api update ([64baf22](https://github.com/Modern-Treasury/modern-treasury-python/commit/64baf22cacf2d2035acce86c099846d577bd8511))
+* **api:** api update ([139dbc9](https://github.com/Modern-Treasury/modern-treasury-python/commit/139dbc995c2acb89cab92bb5a8281f53549ab561))
+* **api:** api update ([50600ee](https://github.com/Modern-Treasury/modern-treasury-python/commit/50600ee21d488eee96ac11bd27c3a9e9e5eb3dc3))
+* **api:** api update ([00ab1cb](https://github.com/Modern-Treasury/modern-treasury-python/commit/00ab1cbe4db2fd1393e1785d5d9fe404d03aa859))
+
+
+### Chores
+
+* **api:** remove an obsolete reviewer ([6d1a706](https://github.com/Modern-Treasury/modern-treasury-python/commit/6d1a70699a0a0e4fa80f259e5352d0734cba849b))
+* **test:** do not count install time for mock server timeout ([be70797](https://github.com/Modern-Treasury/modern-treasury-python/commit/be707974351757144587d061cfbc608fa4960ca2))
+
+
+### Refactors
+
+* **types:** use `extra_items` from PEP 728 ([2d1cba7](https://github.com/Modern-Treasury/modern-treasury-python/commit/2d1cba777ee2998b656985cf10a385f46d862a65))
+
 ## 1.65.0 (2026-02-24)
 
 Full Changelog: [v1.64.0...v1.65.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.64.0...v1.65.0)
