@@ -193,3 +193,15 @@ class IncomingPaymentDetail(BaseModel):
     The vendor-assigned identifier for the originating party of the incoming payment
     detail, or `null`.
     """
+
+    receiving_account_number: Optional[str] = None
+    """
+    The account number of the receiving account for the incoming payment detail, or
+    `null`.
+    """
+
+    receiving_account_number_safe: Optional[str] = None
+    """
+    The last 4 digits of the receiving account number for the incoming payment
+    detail, or `null`.
+    """
