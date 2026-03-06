@@ -49,7 +49,7 @@ class Reversal(BaseModel):
     reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"]
     """One of `unreconciled`, `tentatively_reconciled` or `reconciled`."""
 
-    status: Literal["completed", "failed", "pending", "processing", "returned", "sent"]
+    status: Literal["cancelled", "completed", "failed", "pending", "processing", "returned", "sent"]
     """The current status of the reversal."""
 
     transaction_ids: List[Optional[str]]
