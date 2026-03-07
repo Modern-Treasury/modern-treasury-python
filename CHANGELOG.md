@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.67.0 (2026-03-07)
+
+Full Changelog: [v1.66.0...v1.67.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.66.0...v1.67.0)
+
+### Features
+
+* **api:** api update ([67d0b8c](https://github.com/Modern-Treasury/modern-treasury-python/commit/67d0b8c00ba207eb88671b3ff0721748e03e8346))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([ae490dd](https://github.com/Modern-Treasury/modern-treasury-python/commit/ae490dd8cfa3ef4ff81d5043f952f5dab44ccabf))
+* update placeholder string ([2d119c7](https://github.com/Modern-Treasury/modern-treasury-python/commit/2d119c7bd7a74065ffb88393e12dfb37bb7fa52f))
+
 ## 1.66.0 (2026-03-05)
 
 Full Changelog: [v1.65.0...v1.66.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.65.0...v1.66.0)
