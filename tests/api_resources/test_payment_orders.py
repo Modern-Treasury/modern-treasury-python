@@ -52,7 +52,7 @@ class TestPaymentOrders:
             description="description",
             documents=[
                 {
-                    "file": b"raw file contents",
+                    "file": b"Example data",
                     "document_type": "document_type",
                     "documentable_id": "documentable_id",
                     "documentable_type": "connections",
@@ -691,7 +691,7 @@ class TestAsyncPaymentOrders:
             description="description",
             documents=[
                 {
-                    "file": b"raw file contents",
+                    "file": b"Example data",
                     "document_type": "document_type",
                     "documentable_id": "documentable_id",
                     "documentable_type": "connections",
