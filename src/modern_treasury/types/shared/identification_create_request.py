@@ -1,12 +1,37 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import date
 from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["IdentificationCreateRequest"]
+__all__ = ["IdentificationCreateRequest", "Documents", "Document"]
+
+
+class Document(BaseModel):
+    document_type: Literal[
+        "articles_of_incorporation",
+        "certificate_of_good_standing",
+        "ein_letter",
+        "identification_back",
+        "identification_front",
+        "proof_of_address",
+    ]
+    """A category given to the document, can be `null`."""
+
+    file_data: str
+    """Base64-encoded file content for the document."""
+
+    filename: Optional[str] = None
+    """The original filename of the document."""
+
+
+Documents = Document
+"""This type is deprecated and will be removed in a future release.
+
+Please use Document instead.
+"""
 
 
 class IdentificationCreateRequest(BaseModel):
@@ -39,6 +64,9 @@ class IdentificationCreateRequest(BaseModel):
         "vn_tin",
     ]
     """The type of ID number."""
+
+    documents: Optional[List[Document]] = None
+    """A list of documents to attach to the identification."""
 
     expiration_date: Optional[date] = None
     """

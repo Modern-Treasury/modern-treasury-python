@@ -14,6 +14,8 @@ from .legal_entity_industry_classification import LegalEntityIndustryClassificat
 __all__ = [
     "ChildLegalEntityCreate",
     "BankSettings",
+    "Documents",
+    "Document",
     "PhoneNumbers",
     "PhoneNumber",
     "Regulators",
@@ -60,6 +62,31 @@ class BankSettings(BaseModel):
     """
 
     updated_at: datetime
+
+
+class Document(BaseModel):
+    document_type: Literal[
+        "articles_of_incorporation",
+        "certificate_of_good_standing",
+        "ein_letter",
+        "identification_back",
+        "identification_front",
+        "proof_of_address",
+    ]
+    """A category given to the document, can be `null`."""
+
+    file_data: str
+    """Base64-encoded file content for the document."""
+
+    filename: Optional[str] = None
+    """The original filename of the document."""
+
+
+Documents = Document
+"""This type is deprecated and will be removed in a future release.
+
+Please use Document instead.
+"""
 
 
 class PhoneNumber(BaseModel):
@@ -297,6 +324,12 @@ class ChildLegalEntityCreate(BaseModel):
 
     date_of_birth: Optional[date] = None
     """An individual's date of birth (YYYY-MM-DD)."""
+
+    documents: Optional[List[Document]] = None
+    """A list of documents to attach to the legal entity (e.g.
+
+    articles of incorporation, certificate of good standing, proof of address).
+    """
 
     doing_business_as_names: Optional[List[str]] = None
 

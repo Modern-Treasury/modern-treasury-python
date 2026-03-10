@@ -59,6 +59,7 @@ class LegalEntities(SyncAPIResource):
         country_of_incorporation: Optional[str] | Omit = omit,
         date_formed: Union[str, date, None] | Omit = omit,
         date_of_birth: Union[str, date, None] | Omit = omit,
+        documents: Iterable[legal_entity_create_params.Document] | Omit = omit,
         doing_business_as_names: SequenceNotStr[str] | Omit = omit,
         email: Optional[str] | Omit = omit,
         expected_activity_volume: Optional[int] | Omit = omit,
@@ -124,6 +125,9 @@ class LegalEntities(SyncAPIResource):
           date_formed: A business's formation date (YYYY-MM-DD).
 
           date_of_birth: An individual's date of birth (YYYY-MM-DD).
+
+          documents: A list of documents to attach to the legal entity (e.g. articles of
+              incorporation, certificate of good standing, proof of address).
 
           email: The entity's primary email.
 
@@ -202,6 +206,7 @@ class LegalEntities(SyncAPIResource):
                     "country_of_incorporation": country_of_incorporation,
                     "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
+                    "documents": documents,
                     "doing_business_as_names": doing_business_as_names,
                     "email": email,
                     "expected_activity_volume": expected_activity_volume,
@@ -553,6 +558,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         country_of_incorporation: Optional[str] | Omit = omit,
         date_formed: Union[str, date, None] | Omit = omit,
         date_of_birth: Union[str, date, None] | Omit = omit,
+        documents: Iterable[legal_entity_create_params.Document] | Omit = omit,
         doing_business_as_names: SequenceNotStr[str] | Omit = omit,
         email: Optional[str] | Omit = omit,
         expected_activity_volume: Optional[int] | Omit = omit,
@@ -618,6 +624,9 @@ class AsyncLegalEntities(AsyncAPIResource):
           date_formed: A business's formation date (YYYY-MM-DD).
 
           date_of_birth: An individual's date of birth (YYYY-MM-DD).
+
+          documents: A list of documents to attach to the legal entity (e.g. articles of
+              incorporation, certificate of good standing, proof of address).
 
           email: The entity's primary email.
 
@@ -696,6 +705,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "country_of_incorporation": country_of_incorporation,
                     "date_formed": date_formed,
                     "date_of_birth": date_of_birth,
+                    "documents": documents,
                     "doing_business_as_names": doing_business_as_names,
                     "email": email,
                     "expected_activity_volume": expected_activity_volume,
