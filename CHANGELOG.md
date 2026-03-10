@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.68.0 (2026-03-10)
+
+Full Changelog: [v1.67.0...v1.68.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.67.0...v1.68.0)
+
+### Features
+
+* **api:** api update ([4a89d97](https://github.com/Modern-Treasury/modern-treasury-python/commit/4a89d9763d712e103255eca29df1c42df42402af))
+
 ## 1.67.0 (2026-03-07)
 
 Full Changelog: [v1.66.0...v1.67.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.66.0...v1.67.0)
