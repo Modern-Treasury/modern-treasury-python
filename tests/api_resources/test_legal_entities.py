@@ -63,6 +63,13 @@ class TestLegalEntities:
             country_of_incorporation="country_of_incorporation",
             date_formed=parse_date("2019-12-27"),
             date_of_birth=parse_date("2019-12-27"),
+            documents=[
+                {
+                    "document_type": "articles_of_incorporation",
+                    "file_data": "file_data",
+                    "filename": "filename",
+                }
+            ],
             doing_business_as_names=["string"],
             email="email",
             expected_activity_volume=0,
@@ -72,6 +79,13 @@ class TestLegalEntities:
                 {
                     "id_number": "id_number",
                     "id_type": "ar_cuil",
+                    "documents": [
+                        {
+                            "document_type": "articles_of_incorporation",
+                            "file_data": "file_data",
+                            "filename": "filename",
+                        }
+                    ],
                     "expiration_date": parse_date("2019-12-27"),
                     "issuing_country": "issuing_country",
                     "issuing_region": "issuing_region",
@@ -125,6 +139,13 @@ class TestLegalEntities:
                         "country_of_incorporation": "country_of_incorporation",
                         "date_formed": parse_date("2019-12-27"),
                         "date_of_birth": parse_date("2019-12-27"),
+                        "documents": [
+                            {
+                                "document_type": "articles_of_incorporation",
+                                "file_data": "file_data",
+                                "filename": "filename",
+                            }
+                        ],
                         "doing_business_as_names": ["string"],
                         "email": "email",
                         "expected_activity_volume": 0,
@@ -134,6 +155,13 @@ class TestLegalEntities:
                             {
                                 "id_number": "id_number",
                                 "id_type": "ar_cuil",
+                                "documents": [
+                                    {
+                                        "document_type": "articles_of_incorporation",
+                                        "file_data": "file_data",
+                                        "filename": "filename",
+                                    }
+                                ],
                                 "expiration_date": parse_date("2019-12-27"),
                                 "issuing_country": "issuing_country",
                                 "issuing_region": "issuing_region",
@@ -375,6 +403,13 @@ class TestLegalEntities:
                 {
                     "id_number": "id_number",
                     "id_type": "ar_cuil",
+                    "documents": [
+                        {
+                            "document_type": "articles_of_incorporation",
+                            "file_data": "file_data",
+                            "filename": "filename",
+                        }
+                    ],
                     "expiration_date": parse_date("2019-12-27"),
                     "issuing_country": "issuing_country",
                     "issuing_region": "issuing_region",
@@ -565,6 +600,13 @@ class TestAsyncLegalEntities:
             country_of_incorporation="country_of_incorporation",
             date_formed=parse_date("2019-12-27"),
             date_of_birth=parse_date("2019-12-27"),
+            documents=[
+                {
+                    "document_type": "articles_of_incorporation",
+                    "file_data": "file_data",
+                    "filename": "filename",
+                }
+            ],
             doing_business_as_names=["string"],
             email="email",
             expected_activity_volume=0,
@@ -574,6 +616,13 @@ class TestAsyncLegalEntities:
                 {
                     "id_number": "id_number",
                     "id_type": "ar_cuil",
+                    "documents": [
+                        {
+                            "document_type": "articles_of_incorporation",
+                            "file_data": "file_data",
+                            "filename": "filename",
+                        }
+                    ],
                     "expiration_date": parse_date("2019-12-27"),
                     "issuing_country": "issuing_country",
                     "issuing_region": "issuing_region",
@@ -627,6 +676,13 @@ class TestAsyncLegalEntities:
                         "country_of_incorporation": "country_of_incorporation",
                         "date_formed": parse_date("2019-12-27"),
                         "date_of_birth": parse_date("2019-12-27"),
+                        "documents": [
+                            {
+                                "document_type": "articles_of_incorporation",
+                                "file_data": "file_data",
+                                "filename": "filename",
+                            }
+                        ],
                         "doing_business_as_names": ["string"],
                         "email": "email",
                         "expected_activity_volume": 0,
@@ -636,6 +692,13 @@ class TestAsyncLegalEntities:
                             {
                                 "id_number": "id_number",
                                 "id_type": "ar_cuil",
+                                "documents": [
+                                    {
+                                        "document_type": "articles_of_incorporation",
+                                        "file_data": "file_data",
+                                        "filename": "filename",
+                                    }
+                                ],
                                 "expiration_date": parse_date("2019-12-27"),
                                 "issuing_country": "issuing_country",
                                 "issuing_region": "issuing_region",
@@ -884,6 +947,13 @@ class TestAsyncLegalEntities:
                 {
                     "id_number": "id_number",
                     "id_type": "ar_cuil",
+                    "documents": [
+                        {
+                            "document_type": "articles_of_incorporation",
+                            "file_data": "file_data",
+                            "filename": "filename",
+                        }
+                    ],
                     "expiration_date": parse_date("2019-12-27"),
                     "issuing_country": "issuing_country",
                     "issuing_region": "issuing_region",

@@ -27,6 +27,8 @@ __all__ = [
     "AccountRoutingDetail",
     "LegalEntity",
     "LegalEntityBankSettings",
+    "LegalEntityDocuments",
+    "LegalEntityDocument",
     "LegalEntityPhoneNumbers",
     "LegalEntityPhoneNumber",
     "LegalEntityRegulators",
@@ -295,6 +297,33 @@ class LegalEntityBankSettings(TypedDict, total=False):
     updated_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
 
+class LegalEntityDocument(TypedDict, total=False):
+    document_type: Required[
+        Literal[
+            "articles_of_incorporation",
+            "certificate_of_good_standing",
+            "ein_letter",
+            "identification_back",
+            "identification_front",
+            "proof_of_address",
+        ]
+    ]
+    """A category given to the document, can be `null`."""
+
+    file_data: Required[str]
+    """Base64-encoded file content for the document."""
+
+    filename: str
+    """The original filename of the document."""
+
+
+LegalEntityDocuments = LegalEntityDocument
+"""This type is deprecated and will be removed in a future release.
+
+Please use LegalEntityDocument instead.
+"""
+
+
 class LegalEntityPhoneNumber(TypedDict, total=False):
     """A list of phone numbers in E.164 format."""
 
@@ -543,6 +572,12 @@ class LegalEntity(TypedDict, total=False):
 
     date_of_birth: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
     """An individual's date of birth (YYYY-MM-DD)."""
+
+    documents: Iterable[LegalEntityDocument]
+    """A list of documents to attach to the legal entity (e.g.
+
+    articles of incorporation, certificate of good standing, proof of address).
+    """
 
     doing_business_as_names: SequenceNotStr[str]
 
