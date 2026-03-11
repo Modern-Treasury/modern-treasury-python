@@ -169,6 +169,7 @@ Currency: TypeAlias = Literal[
     "USD",
     "USDB",
     "USDC",
+    "USDG",
     "USDP",
     "USDT",
     "UYU",
