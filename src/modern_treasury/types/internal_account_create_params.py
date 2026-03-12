@@ -63,6 +63,12 @@ class InternalAccountCreateParams(TypedDict, total=False):
     legal_entity_id: str
     """The LegalEntity associated to this account."""
 
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
+
     parent_account_id: str
     """The parent internal account of this new account."""
 
