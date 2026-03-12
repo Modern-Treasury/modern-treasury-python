@@ -88,6 +88,7 @@ class InternalAccounts(SyncAPIResource):
         counterparty_id: str | Omit = omit,
         external_id: Optional[str] | Omit = omit,
         legal_entity_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
         parent_account_id: str | Omit = omit,
         party_address: internal_account_create_params.PartyAddress | Omit = omit,
         vendor_attributes: Dict[str, str] | Omit = omit,
@@ -124,6 +125,9 @@ class InternalAccounts(SyncAPIResource):
 
           legal_entity_id: The LegalEntity associated to this account.
 
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
+
           parent_account_id: The parent internal account of this new account.
 
           party_address: The address associated with the owner or null.
@@ -154,6 +158,7 @@ class InternalAccounts(SyncAPIResource):
                     "counterparty_id": counterparty_id,
                     "external_id": external_id,
                     "legal_entity_id": legal_entity_id,
+                    "metadata": metadata,
                     "parent_account_id": parent_account_id,
                     "party_address": party_address,
                     "vendor_attributes": vendor_attributes,
@@ -536,6 +541,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         counterparty_id: str | Omit = omit,
         external_id: Optional[str] | Omit = omit,
         legal_entity_id: str | Omit = omit,
+        metadata: Dict[str, str] | Omit = omit,
         parent_account_id: str | Omit = omit,
         party_address: internal_account_create_params.PartyAddress | Omit = omit,
         vendor_attributes: Dict[str, str] | Omit = omit,
@@ -572,6 +578,9 @@ class AsyncInternalAccounts(AsyncAPIResource):
 
           legal_entity_id: The LegalEntity associated to this account.
 
+          metadata: Additional data represented as key-value pairs. Both the key and value must be
+              strings.
+
           parent_account_id: The parent internal account of this new account.
 
           party_address: The address associated with the owner or null.
@@ -602,6 +611,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                     "counterparty_id": counterparty_id,
                     "external_id": external_id,
                     "legal_entity_id": legal_entity_id,
+                    "metadata": metadata,
                     "parent_account_id": parent_account_id,
                     "party_address": party_address,
                     "vendor_attributes": vendor_attributes,
