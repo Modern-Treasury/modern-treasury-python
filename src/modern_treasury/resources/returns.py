@@ -18,6 +18,7 @@ from .._response import to_streamed_response_wrapper, async_to_streamed_response
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.return_object import ReturnObject
+from ..types.shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
 __all__ = ["Returns", "AsyncReturns"]
 
@@ -149,6 +150,7 @@ class Returns(SyncAPIResource):
         corrections: Optional[return_create_params.Corrections] | Omit = omit,
         data: Optional[object] | Omit = omit,
         date_of_death: Union[str, date, None] | Omit = omit,
+        ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
         reason: Optional[str] | Omit = omit,
         reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -182,6 +184,10 @@ class Returns(SyncAPIResource):
           date_of_death: If the return code is `R14` or `R15` this is the date the deceased counterparty
               passed away.
 
+          ledger_transaction: Specifies a ledger transaction object that will be created with the return. If
+              the ledger transaction cannot be created, then the return creation will fail.
+              The resulting ledger transaction will mirror the status of the return.
+
           reason: An optional description of the reason for the return. This is for internal usage
               and will not be transmitted to the bank.”
 
@@ -208,6 +214,7 @@ class Returns(SyncAPIResource):
                     "corrections": corrections,
                     "data": data,
                     "date_of_death": date_of_death,
+                    "ledger_transaction": ledger_transaction,
                     "reason": reason,
                     "reconciliation_status": reconciliation_status,
                 },
@@ -446,6 +453,7 @@ class AsyncReturns(AsyncAPIResource):
         corrections: Optional[return_create_params.Corrections] | Omit = omit,
         data: Optional[object] | Omit = omit,
         date_of_death: Union[str, date, None] | Omit = omit,
+        ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
         reason: Optional[str] | Omit = omit,
         reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -479,6 +487,10 @@ class AsyncReturns(AsyncAPIResource):
           date_of_death: If the return code is `R14` or `R15` this is the date the deceased counterparty
               passed away.
 
+          ledger_transaction: Specifies a ledger transaction object that will be created with the return. If
+              the ledger transaction cannot be created, then the return creation will fail.
+              The resulting ledger transaction will mirror the status of the return.
+
           reason: An optional description of the reason for the return. This is for internal usage
               and will not be transmitted to the bank.”
 
@@ -505,6 +517,7 @@ class AsyncReturns(AsyncAPIResource):
                     "corrections": corrections,
                     "data": data,
                     "date_of_death": date_of_death,
+                    "ledger_transaction": ledger_transaction,
                     "reason": reason,
                     "reconciliation_status": reconciliation_status,
                 },

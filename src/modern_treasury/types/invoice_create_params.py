@@ -70,6 +70,12 @@ class InvoiceCreateParams(TypedDict, total=False):
     invoicer_address: Optional[InvoicerAddress]
     """The invoice issuer's business address."""
 
+    invoicer_name: Optional[str]
+    """The name of the issuer for the invoice.
+
+    Defaults to the name of the Organization.
+    """
+
     metadata: Optional[Dict[str, str]]
     """Additional data represented as key-value pairs.
 

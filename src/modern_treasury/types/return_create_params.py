@@ -7,6 +7,7 @@ from datetime import date
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
+from .shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
 __all__ = ["ReturnCreateParams", "Corrections"]
 
@@ -140,6 +141,13 @@ class ReturnCreateParams(TypedDict, total=False):
     """
     If the return code is `R14` or `R15` this is the date the deceased counterparty
     passed away.
+    """
+
+    ledger_transaction: LedgerTransactionCreateRequest
+    """Specifies a ledger transaction object that will be created with the return.
+
+    If the ledger transaction cannot be created, then the return creation will fail.
+    The resulting ledger transaction will mirror the status of the return.
     """
 
     reason: Optional[str]

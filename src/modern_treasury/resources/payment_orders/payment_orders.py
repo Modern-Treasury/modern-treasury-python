@@ -104,10 +104,14 @@ class PaymentOrders(SyncAPIResource):
         statement_descriptor: Optional[str] | Omit = omit,
         subtype: Optional[PaymentOrderSubtype] | Omit = omit,
         transaction_monitoring_enabled: bool | Omit = omit,
+        ultimate_originating_account_id: str | Omit = omit,
+        ultimate_originating_party_address: Optional[payment_order_create_params.UltimateOriginatingPartyAddress]
+        | Omit = omit,
         ultimate_originating_party_identifier: Optional[str] | Omit = omit,
         ultimate_originating_party_name: Optional[str] | Omit = omit,
         ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
         ultimate_receiving_party_name: Optional[str] | Omit = omit,
+        vendor_attributes: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -239,6 +243,11 @@ class PaymentOrders(SyncAPIResource):
           transaction_monitoring_enabled: A flag that determines whether a payment order should go through transaction
               monitoring.
 
+          ultimate_originating_account_id: The ultimate originating account ID. Can be a `virtual_account` or
+              `internal_account`.
+
+          ultimate_originating_party_address: Address of the ultimate originator of the payment order.
+
           ultimate_originating_party_identifier: Identifier of the ultimate originator of the payment order.
 
           ultimate_originating_party_name: Name of the ultimate originator of the payment order.
@@ -246,6 +255,9 @@ class PaymentOrders(SyncAPIResource):
           ultimate_receiving_party_identifier: Identifier of the ultimate funds recipient.
 
           ultimate_receiving_party_name: Name of the ultimate funds recipient.
+
+          vendor_attributes: Additional vendor specific fields for this payment. Data must be represented as
+              key-value pairs.
 
           extra_headers: Send extra headers
 
@@ -293,10 +305,13 @@ class PaymentOrders(SyncAPIResource):
                 "statement_descriptor": statement_descriptor,
                 "subtype": subtype,
                 "transaction_monitoring_enabled": transaction_monitoring_enabled,
+                "ultimate_originating_account_id": ultimate_originating_account_id,
+                "ultimate_originating_party_address": ultimate_originating_party_address,
                 "ultimate_originating_party_identifier": ultimate_originating_party_identifier,
                 "ultimate_originating_party_name": ultimate_originating_party_name,
                 "ultimate_receiving_party_identifier": ultimate_receiving_party_identifier,
                 "ultimate_receiving_party_name": ultimate_receiving_party_name,
+                "vendor_attributes": vendor_attributes,
             }
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["documents", "<array>", "file"]])
@@ -796,10 +811,14 @@ class PaymentOrders(SyncAPIResource):
         statement_descriptor: Optional[str] | Omit = omit,
         subtype: Optional[PaymentOrderSubtype] | Omit = omit,
         transaction_monitoring_enabled: bool | Omit = omit,
+        ultimate_originating_account_id: str | Omit = omit,
+        ultimate_originating_party_address: Optional[payment_order_create_async_params.UltimateOriginatingPartyAddress]
+        | Omit = omit,
         ultimate_originating_party_identifier: Optional[str] | Omit = omit,
         ultimate_originating_party_name: Optional[str] | Omit = omit,
         ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
         ultimate_receiving_party_name: Optional[str] | Omit = omit,
+        vendor_attributes: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -928,6 +947,11 @@ class PaymentOrders(SyncAPIResource):
           transaction_monitoring_enabled: A flag that determines whether a payment order should go through transaction
               monitoring.
 
+          ultimate_originating_account_id: The ultimate originating account ID. Can be a `virtual_account` or
+              `internal_account`.
+
+          ultimate_originating_party_address: Address of the ultimate originator of the payment order.
+
           ultimate_originating_party_identifier: Identifier of the ultimate originator of the payment order.
 
           ultimate_originating_party_name: Name of the ultimate originator of the payment order.
@@ -935,6 +959,9 @@ class PaymentOrders(SyncAPIResource):
           ultimate_receiving_party_identifier: Identifier of the ultimate funds recipient.
 
           ultimate_receiving_party_name: Name of the ultimate funds recipient.
+
+          vendor_attributes: Additional vendor specific fields for this payment. Data must be represented as
+              key-value pairs.
 
           extra_headers: Send extra headers
 
@@ -983,10 +1010,13 @@ class PaymentOrders(SyncAPIResource):
                     "statement_descriptor": statement_descriptor,
                     "subtype": subtype,
                     "transaction_monitoring_enabled": transaction_monitoring_enabled,
+                    "ultimate_originating_account_id": ultimate_originating_account_id,
+                    "ultimate_originating_party_address": ultimate_originating_party_address,
                     "ultimate_originating_party_identifier": ultimate_originating_party_identifier,
                     "ultimate_originating_party_name": ultimate_originating_party_name,
                     "ultimate_receiving_party_identifier": ultimate_receiving_party_identifier,
                     "ultimate_receiving_party_name": ultimate_receiving_party_name,
+                    "vendor_attributes": vendor_attributes,
                 },
                 payment_order_create_async_params.PaymentOrderCreateAsyncParams,
             ),
@@ -1062,10 +1092,14 @@ class AsyncPaymentOrders(AsyncAPIResource):
         statement_descriptor: Optional[str] | Omit = omit,
         subtype: Optional[PaymentOrderSubtype] | Omit = omit,
         transaction_monitoring_enabled: bool | Omit = omit,
+        ultimate_originating_account_id: str | Omit = omit,
+        ultimate_originating_party_address: Optional[payment_order_create_params.UltimateOriginatingPartyAddress]
+        | Omit = omit,
         ultimate_originating_party_identifier: Optional[str] | Omit = omit,
         ultimate_originating_party_name: Optional[str] | Omit = omit,
         ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
         ultimate_receiving_party_name: Optional[str] | Omit = omit,
+        vendor_attributes: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1197,6 +1231,11 @@ class AsyncPaymentOrders(AsyncAPIResource):
           transaction_monitoring_enabled: A flag that determines whether a payment order should go through transaction
               monitoring.
 
+          ultimate_originating_account_id: The ultimate originating account ID. Can be a `virtual_account` or
+              `internal_account`.
+
+          ultimate_originating_party_address: Address of the ultimate originator of the payment order.
+
           ultimate_originating_party_identifier: Identifier of the ultimate originator of the payment order.
 
           ultimate_originating_party_name: Name of the ultimate originator of the payment order.
@@ -1204,6 +1243,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
           ultimate_receiving_party_identifier: Identifier of the ultimate funds recipient.
 
           ultimate_receiving_party_name: Name of the ultimate funds recipient.
+
+          vendor_attributes: Additional vendor specific fields for this payment. Data must be represented as
+              key-value pairs.
 
           extra_headers: Send extra headers
 
@@ -1251,10 +1293,13 @@ class AsyncPaymentOrders(AsyncAPIResource):
                 "statement_descriptor": statement_descriptor,
                 "subtype": subtype,
                 "transaction_monitoring_enabled": transaction_monitoring_enabled,
+                "ultimate_originating_account_id": ultimate_originating_account_id,
+                "ultimate_originating_party_address": ultimate_originating_party_address,
                 "ultimate_originating_party_identifier": ultimate_originating_party_identifier,
                 "ultimate_originating_party_name": ultimate_originating_party_name,
                 "ultimate_receiving_party_identifier": ultimate_receiving_party_identifier,
                 "ultimate_receiving_party_name": ultimate_receiving_party_name,
+                "vendor_attributes": vendor_attributes,
             }
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["documents", "<array>", "file"]])
@@ -1754,10 +1799,14 @@ class AsyncPaymentOrders(AsyncAPIResource):
         statement_descriptor: Optional[str] | Omit = omit,
         subtype: Optional[PaymentOrderSubtype] | Omit = omit,
         transaction_monitoring_enabled: bool | Omit = omit,
+        ultimate_originating_account_id: str | Omit = omit,
+        ultimate_originating_party_address: Optional[payment_order_create_async_params.UltimateOriginatingPartyAddress]
+        | Omit = omit,
         ultimate_originating_party_identifier: Optional[str] | Omit = omit,
         ultimate_originating_party_name: Optional[str] | Omit = omit,
         ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
         ultimate_receiving_party_name: Optional[str] | Omit = omit,
+        vendor_attributes: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1886,6 +1935,11 @@ class AsyncPaymentOrders(AsyncAPIResource):
           transaction_monitoring_enabled: A flag that determines whether a payment order should go through transaction
               monitoring.
 
+          ultimate_originating_account_id: The ultimate originating account ID. Can be a `virtual_account` or
+              `internal_account`.
+
+          ultimate_originating_party_address: Address of the ultimate originator of the payment order.
+
           ultimate_originating_party_identifier: Identifier of the ultimate originator of the payment order.
 
           ultimate_originating_party_name: Name of the ultimate originator of the payment order.
@@ -1893,6 +1947,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
           ultimate_receiving_party_identifier: Identifier of the ultimate funds recipient.
 
           ultimate_receiving_party_name: Name of the ultimate funds recipient.
+
+          vendor_attributes: Additional vendor specific fields for this payment. Data must be represented as
+              key-value pairs.
 
           extra_headers: Send extra headers
 
@@ -1941,10 +1998,13 @@ class AsyncPaymentOrders(AsyncAPIResource):
                     "statement_descriptor": statement_descriptor,
                     "subtype": subtype,
                     "transaction_monitoring_enabled": transaction_monitoring_enabled,
+                    "ultimate_originating_account_id": ultimate_originating_account_id,
+                    "ultimate_originating_party_address": ultimate_originating_party_address,
                     "ultimate_originating_party_identifier": ultimate_originating_party_identifier,
                     "ultimate_originating_party_name": ultimate_originating_party_name,
                     "ultimate_receiving_party_identifier": ultimate_receiving_party_identifier,
                     "ultimate_receiving_party_name": ultimate_receiving_party_name,
+                    "vendor_attributes": vendor_attributes,
                 },
                 payment_order_create_async_params.PaymentOrderCreateAsyncParams,
             ),
