@@ -72,6 +72,7 @@ class Invoices(SyncAPIResource):
         fallback_payment_method: Optional[str] | Omit = omit,
         invoice_line_items: Optional[Iterable[invoice_create_params.InvoiceLineItem]] | Omit = omit,
         invoicer_address: Optional[invoice_create_params.InvoicerAddress] | Omit = omit,
+        invoicer_name: Optional[str] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         notification_email_addresses: Optional[SequenceNotStr[str]] | Omit = omit,
         notifications_enabled: bool | Omit = omit,
@@ -123,6 +124,9 @@ class Invoices(SyncAPIResource):
               contact support.
 
           invoicer_address: The invoice issuer's business address.
+
+          invoicer_name: The name of the issuer for the invoice. Defaults to the name of the
+              Organization.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -188,6 +192,7 @@ class Invoices(SyncAPIResource):
                     "fallback_payment_method": fallback_payment_method,
                     "invoice_line_items": invoice_line_items,
                     "invoicer_address": invoicer_address,
+                    "invoicer_name": invoicer_name,
                     "metadata": metadata,
                     "notification_email_addresses": notification_email_addresses,
                     "notifications_enabled": notifications_enabled,
@@ -259,6 +264,7 @@ class Invoices(SyncAPIResource):
         fallback_payment_method: Optional[str] | Omit = omit,
         invoice_line_items: Optional[Iterable[invoice_update_params.InvoiceLineItem]] | Omit = omit,
         invoicer_address: Optional[invoice_update_params.InvoicerAddress] | Omit = omit,
+        invoicer_name: Optional[str] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         notification_email_addresses: Optional[SequenceNotStr[str]] | Omit = omit,
         notifications_enabled: bool | Omit = omit,
@@ -306,6 +312,9 @@ class Invoices(SyncAPIResource):
               contact support.
 
           invoicer_address: The invoice issuer's business address.
+
+          invoicer_name: The name of the issuer for the invoice. Defaults to the name of the
+              Organization.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -377,6 +386,7 @@ class Invoices(SyncAPIResource):
                     "fallback_payment_method": fallback_payment_method,
                     "invoice_line_items": invoice_line_items,
                     "invoicer_address": invoicer_address,
+                    "invoicer_name": invoicer_name,
                     "metadata": metadata,
                     "notification_email_addresses": notification_email_addresses,
                     "notifications_enabled": notifications_enabled,
@@ -566,6 +576,7 @@ class AsyncInvoices(AsyncAPIResource):
         fallback_payment_method: Optional[str] | Omit = omit,
         invoice_line_items: Optional[Iterable[invoice_create_params.InvoiceLineItem]] | Omit = omit,
         invoicer_address: Optional[invoice_create_params.InvoicerAddress] | Omit = omit,
+        invoicer_name: Optional[str] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         notification_email_addresses: Optional[SequenceNotStr[str]] | Omit = omit,
         notifications_enabled: bool | Omit = omit,
@@ -617,6 +628,9 @@ class AsyncInvoices(AsyncAPIResource):
               contact support.
 
           invoicer_address: The invoice issuer's business address.
+
+          invoicer_name: The name of the issuer for the invoice. Defaults to the name of the
+              Organization.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -682,6 +696,7 @@ class AsyncInvoices(AsyncAPIResource):
                     "fallback_payment_method": fallback_payment_method,
                     "invoice_line_items": invoice_line_items,
                     "invoicer_address": invoicer_address,
+                    "invoicer_name": invoicer_name,
                     "metadata": metadata,
                     "notification_email_addresses": notification_email_addresses,
                     "notifications_enabled": notifications_enabled,
@@ -753,6 +768,7 @@ class AsyncInvoices(AsyncAPIResource):
         fallback_payment_method: Optional[str] | Omit = omit,
         invoice_line_items: Optional[Iterable[invoice_update_params.InvoiceLineItem]] | Omit = omit,
         invoicer_address: Optional[invoice_update_params.InvoicerAddress] | Omit = omit,
+        invoicer_name: Optional[str] | Omit = omit,
         metadata: Optional[Dict[str, str]] | Omit = omit,
         notification_email_addresses: Optional[SequenceNotStr[str]] | Omit = omit,
         notifications_enabled: bool | Omit = omit,
@@ -800,6 +816,9 @@ class AsyncInvoices(AsyncAPIResource):
               contact support.
 
           invoicer_address: The invoice issuer's business address.
+
+          invoicer_name: The name of the issuer for the invoice. Defaults to the name of the
+              Organization.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -871,6 +890,7 @@ class AsyncInvoices(AsyncAPIResource):
                     "fallback_payment_method": fallback_payment_method,
                     "invoice_line_items": invoice_line_items,
                     "invoicer_address": invoicer_address,
+                    "invoicer_name": invoicer_name,
                     "metadata": metadata,
                     "notification_email_addresses": notification_email_addresses,
                     "notifications_enabled": notifications_enabled,
