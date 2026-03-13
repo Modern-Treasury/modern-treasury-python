@@ -10,7 +10,7 @@ import pytest
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import ReturnObject
-from modern_treasury._utils import parse_date
+from modern_treasury._utils import parse_date, parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -44,6 +44,38 @@ class TestReturns:
             },
             data={},
             date_of_death=parse_date("2019-12-27"),
+            ledger_transaction={
+                "ledger_entries": [
+                    {
+                        "amount": 0,
+                        "direction": "credit",
+                        "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "available_balance_amount": {"foo": 0},
+                        "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "lock_version": 0,
+                        "metadata": {
+                            "key": "value",
+                            "foo": "bar",
+                            "modern": "treasury",
+                        },
+                        "pending_balance_amount": {"foo": 0},
+                        "posted_balance_amount": {"foo": 0},
+                        "show_resulting_ledger_account_balances": True,
+                    }
+                ],
+                "description": "description",
+                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "effective_date": parse_date("2019-12-27"),
+                "external_id": "external_id",
+                "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "ledgerable_type": "expected_payment",
+                "metadata": {
+                    "key": "value",
+                    "foo": "bar",
+                    "modern": "treasury",
+                },
+                "status": "archived",
+            },
             reason="reason",
             reconciliation_status="unreconciled",
         )
@@ -181,6 +213,38 @@ class TestAsyncReturns:
             },
             data={},
             date_of_death=parse_date("2019-12-27"),
+            ledger_transaction={
+                "ledger_entries": [
+                    {
+                        "amount": 0,
+                        "direction": "credit",
+                        "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "available_balance_amount": {"foo": 0},
+                        "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "lock_version": 0,
+                        "metadata": {
+                            "key": "value",
+                            "foo": "bar",
+                            "modern": "treasury",
+                        },
+                        "pending_balance_amount": {"foo": 0},
+                        "posted_balance_amount": {"foo": 0},
+                        "show_resulting_ledger_account_balances": True,
+                    }
+                ],
+                "description": "description",
+                "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "effective_date": parse_date("2019-12-27"),
+                "external_id": "external_id",
+                "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "ledgerable_type": "expected_payment",
+                "metadata": {
+                    "key": "value",
+                    "foo": "bar",
+                    "modern": "treasury",
+                },
+                "status": "archived",
+            },
             reason="reason",
             reconciliation_status="unreconciled",
         )
