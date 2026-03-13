@@ -91,6 +91,7 @@ class TestInvoices:
                 "region": "region",
                 "line2": "line2",
             },
+            invoicer_name="invoicer_name",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -242,6 +243,7 @@ class TestInvoices:
                 "region": "region",
                 "line2": "line2",
             },
+            invoicer_name="invoicer_name",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -461,6 +463,7 @@ class TestAsyncInvoices:
                 "region": "region",
                 "line2": "line2",
             },
+            invoicer_name="invoicer_name",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -612,6 +615,7 @@ class TestAsyncInvoices:
                 "region": "region",
                 "line2": "line2",
             },
+            invoicer_name="invoicer_name",
             metadata={
                 "key": "value",
                 "foo": "bar",

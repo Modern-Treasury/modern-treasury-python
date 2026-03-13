@@ -26,6 +26,7 @@ __all__ = [
     "ReceivingAccountAccountDetail",
     "ReceivingAccountRoutingDetails",
     "ReceivingAccountRoutingDetail",
+    "UltimateOriginatingPartyAddress",
 ]
 
 
@@ -236,6 +237,15 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
     monitoring.
     """
 
+    ultimate_originating_account_id: str
+    """The ultimate originating account ID.
+
+    Can be a `virtual_account` or `internal_account`.
+    """
+
+    ultimate_originating_party_address: Optional[UltimateOriginatingPartyAddress]
+    """Address of the ultimate originator of the payment order."""
+
     ultimate_originating_party_identifier: Optional[str]
     """Identifier of the ultimate originator of the payment order."""
 
@@ -247,6 +257,12 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
 
     ultimate_receiving_party_name: Optional[str]
     """Name of the ultimate funds recipient."""
+
+    vendor_attributes: object
+    """Additional vendor specific fields for this payment.
+
+    Data must be represented as key-value pairs.
+    """
 
 
 class Accounting(TypedDict, total=False):
@@ -460,3 +476,23 @@ class ReceivingAccount(TypedDict, total=False):
     """
 
     routing_details: Iterable[ReceivingAccountRoutingDetail]
+
+
+class UltimateOriginatingPartyAddress(TypedDict, total=False):
+    """Address of the ultimate originator of the payment order."""
+
+    country: str
+    """Country code conforms to [ISO 3166-1 alpha-2]"""
+
+    line1: str
+
+    line2: str
+
+    locality: str
+    """Locality or City."""
+
+    postal_code: str
+    """The postal code of the address."""
+
+    region: str
+    """Region or State."""

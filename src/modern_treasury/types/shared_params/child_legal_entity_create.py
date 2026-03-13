@@ -317,6 +317,8 @@ class ChildLegalEntityCreate(TypedDict, total=False):
     citizenship_country: Optional[str]
     """The country of citizenship for an individual."""
 
+    compliance_details: Optional[object]
+
     connection_id: Optional[str]
     """The connection ID for the connection the legal entity is associated with.
 
@@ -419,7 +421,7 @@ class ChildLegalEntityCreate(TypedDict, total=False):
     risk_rating: Optional[Literal["low", "medium", "high"]]
     """The risk rating of the legal entity. One of low, medium, high."""
 
-    status: Optional[Literal["active", "closed", "pending", "suspended"]]
+    status: Optional[Literal["active", "closed", "denied", "pending", "suspended"]]
     """The activation status of the legal entity.
 
     One of pending, active, suspended, or closed.
