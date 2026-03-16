@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.70.0 (2026-03-16)
+
+Full Changelog: [v1.69.0...v1.70.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.69.0...v1.70.0)
+
+### Features
+
+* **api:** api update ([bfcbed1](https://github.com/Modern-Treasury/modern-treasury-python/commit/bfcbed1675de524aeac6076fdb4316bab0487072))
+* **api:** api update ([58b3131](https://github.com/Modern-Treasury/modern-treasury-python/commit/58b3131850f5272b84bc3eb2b91e45423680f765))
+* **api:** api update ([567ef82](https://github.com/Modern-Treasury/modern-treasury-python/commit/567ef8262cdc29bd5b8d8180877173b4a37d94cb))
+
+
+### Bug Fixes
+
+* **deps:** bump minimum typing-extensions version ([7e2f7b5](https://github.com/Modern-Treasury/modern-treasury-python/commit/7e2f7b57d8cb0dd9d4673af39aa99b857acc24cf))
+* **pydantic:** do not pass `by_alias` unless set ([4f8155a](https://github.com/Modern-Treasury/modern-treasury-python/commit/4f8155a8e7994d870da44f121200471ac92d4cd1))
+
+
+### Chores
+
+* **internal:** tweak CI branches ([dec13f7](https://github.com/Modern-Treasury/modern-treasury-python/commit/dec13f722a954aa980050417083a2ad7fb80e781))
+
 ## 1.69.0 (2026-03-12)
 
 Full Changelog: [v1.68.0...v1.69.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.68.0...v1.69.0)
