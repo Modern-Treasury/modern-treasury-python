@@ -149,7 +149,6 @@ class Transaction(BaseModel):
             "evolve",
             "fake_vendor",
             "goldman_sachs",
-            "hifi",
             "iso20022",
             "jpmc",
             "modern_treasury",
