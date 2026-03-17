@@ -27,4 +27,4 @@ class LegalEntityListParams(TypedDict, total=False):
 
     show_deleted: str
 
-    status: Literal["pending", "active", "suspended", "closed", "denied"]
+    status: Literal["pending", "active", "suspended", "denied"]

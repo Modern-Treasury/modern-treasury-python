@@ -30,7 +30,7 @@ class ConnectionLegalEntity(BaseModel):
 
     object: str
 
-    status: Literal["closed", "completed", "denied", "failed", "processing", "suspended"]
+    status: Literal["completed", "denied", "failed", "processing", "suspended"]
     """The status of the connection legal entity."""
 
     updated_at: datetime
