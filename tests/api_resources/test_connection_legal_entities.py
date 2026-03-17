@@ -417,7 +417,7 @@ class TestConnectionLegalEntities:
             connection_id="connection_id",
             legal_entity_id="legal_entity_id",
             per_page=0,
-            status="closed",
+            status="completed",
         )
         assert_matches_type(SyncPage[ConnectionLegalEntity], connection_legal_entity, path=["response"])
 
@@ -843,7 +843,7 @@ class TestAsyncConnectionLegalEntities:
             connection_id="connection_id",
             legal_entity_id="legal_entity_id",
             per_page=0,
-            status="closed",
+            status="completed",
         )
         assert_matches_type(AsyncPage[ConnectionLegalEntity], connection_legal_entity, path=["response"])
 
