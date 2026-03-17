@@ -86,7 +86,7 @@ class LegalEntities(SyncAPIResource):
         primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
         regulators: Optional[Iterable[legal_entity_create_params.Regulator]] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
-        status: Optional[Literal["active", "closed", "denied", "pending", "suspended"]] | Omit = omit,
+        status: Optional[Literal["active", "denied", "pending", "suspended"]] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
         third_party_verification: Optional[legal_entity_create_params.ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -319,7 +319,7 @@ class LegalEntities(SyncAPIResource):
         primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
         regulators: Optional[Iterable[legal_entity_update_params.Regulator]] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
-        status: Optional[Literal["active", "closed", "denied", "pending", "suspended"]] | Omit = omit,
+        status: Optional[Literal["active", "denied", "pending", "suspended"]] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
         third_party_verification: Optional[legal_entity_update_params.ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -476,7 +476,7 @@ class LegalEntities(SyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         per_page: int | Omit = omit,
         show_deleted: str | Omit = omit,
-        status: Literal["pending", "active", "suspended", "closed", "denied"] | Omit = omit,
+        status: Literal["pending", "active", "suspended", "denied"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -587,7 +587,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
         regulators: Optional[Iterable[legal_entity_create_params.Regulator]] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
-        status: Optional[Literal["active", "closed", "denied", "pending", "suspended"]] | Omit = omit,
+        status: Optional[Literal["active", "denied", "pending", "suspended"]] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
         third_party_verification: Optional[legal_entity_create_params.ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -820,7 +820,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
         regulators: Optional[Iterable[legal_entity_update_params.Regulator]] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
-        status: Optional[Literal["active", "closed", "denied", "pending", "suspended"]] | Omit = omit,
+        status: Optional[Literal["active", "denied", "pending", "suspended"]] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
         third_party_verification: Optional[legal_entity_update_params.ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -977,7 +977,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         per_page: int | Omit = omit,
         show_deleted: str | Omit = omit,
-        status: Literal["pending", "active", "suspended", "closed", "denied"] | Omit = omit,
+        status: Literal["pending", "active", "suspended", "denied"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
