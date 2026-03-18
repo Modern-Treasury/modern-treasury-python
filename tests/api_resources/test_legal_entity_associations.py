@@ -137,7 +137,6 @@ class TestLegalEntityAssociations:
                     }
                 ],
                 "risk_rating": "low",
-                "status": "active",
                 "suffix": "suffix",
                 "third_party_verification": {
                     "vendor": "persona",
@@ -324,7 +323,6 @@ class TestAsyncLegalEntityAssociations:
                     }
                 ],
                 "risk_rating": "low",
-                "status": "active",
                 "suffix": "suffix",
                 "third_party_verification": {
                     "vendor": "persona",
