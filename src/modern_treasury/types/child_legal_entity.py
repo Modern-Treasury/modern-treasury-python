@@ -501,7 +501,7 @@ class ChildLegalEntity(BaseModel):
     status: Optional[Literal["active", "denied", "pending", "suspended"]] = None
     """The activation status of the legal entity.
 
-    One of pending, active, suspended, or closed.
+    One of pending, active, suspended, or denied.
     """
 
     suffix: Optional[str] = None
