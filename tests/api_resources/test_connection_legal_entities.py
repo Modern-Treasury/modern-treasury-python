@@ -207,7 +207,6 @@ class TestConnectionLegalEntities:
                                 }
                             ],
                             "risk_rating": "low",
-                            "status": "active",
                             "suffix": "suffix",
                             "third_party_verification": {
                                 "vendor": "persona",
@@ -264,7 +263,6 @@ class TestConnectionLegalEntities:
                     }
                 ],
                 "risk_rating": "low",
-                "status": "active",
                 "suffix": "suffix",
                 "third_party_verification": {
                     "vendor": "persona",
@@ -633,7 +631,6 @@ class TestAsyncConnectionLegalEntities:
                                 }
                             ],
                             "risk_rating": "low",
-                            "status": "active",
                             "suffix": "suffix",
                             "third_party_verification": {
                                 "vendor": "persona",
@@ -690,7 +687,6 @@ class TestAsyncConnectionLegalEntities:
                     }
                 ],
                 "risk_rating": "low",
-                "status": "active",
                 "suffix": "suffix",
                 "third_party_verification": {
                     "vendor": "persona",

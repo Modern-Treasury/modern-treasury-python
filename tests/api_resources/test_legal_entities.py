@@ -206,7 +206,6 @@ class TestLegalEntities:
                             }
                         ],
                         "risk_rating": "low",
-                        "status": "active",
                         "suffix": "suffix",
                         "third_party_verification": {
                             "vendor": "persona",
@@ -262,7 +261,6 @@ class TestLegalEntities:
                 }
             ],
             risk_rating="low",
-            status="active",
             suffix="suffix",
             third_party_verification={
                 "vendor": "persona",
@@ -452,7 +450,6 @@ class TestLegalEntities:
                 }
             ],
             risk_rating="low",
-            status="active",
             suffix="suffix",
             third_party_verification={
                 "vendor": "persona",
@@ -743,7 +740,6 @@ class TestAsyncLegalEntities:
                             }
                         ],
                         "risk_rating": "low",
-                        "status": "active",
                         "suffix": "suffix",
                         "third_party_verification": {
                             "vendor": "persona",
@@ -799,7 +795,6 @@ class TestAsyncLegalEntities:
                 }
             ],
             risk_rating="low",
-            status="active",
             suffix="suffix",
             third_party_verification={
                 "vendor": "persona",
@@ -989,7 +984,6 @@ class TestAsyncLegalEntities:
                 }
             ],
             risk_rating="low",
-            status="active",
             suffix="suffix",
             third_party_verification={
                 "vendor": "persona",
