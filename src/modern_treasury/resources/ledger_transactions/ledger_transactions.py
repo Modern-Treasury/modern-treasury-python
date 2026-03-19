@@ -17,7 +17,7 @@ from ...types import (
     ledger_transaction_create_partial_post_params,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from .versions import (
     Versions,
     AsyncVersions,
@@ -173,7 +173,7 @@ class LedgerTransactions(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/api/ledger_transactions/{id}",
+            path_template("/api/ledger_transactions/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -240,7 +240,7 @@ class LedgerTransactions(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/api/ledger_transactions/{id}",
+            path_template("/api/ledger_transactions/{id}", id=id),
             body=maybe_transform(
                 {
                     "description": description,
@@ -420,7 +420,7 @@ class LedgerTransactions(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/api/ledger_transactions/{id}/partial_post",
+            path_template("/api/ledger_transactions/{id}/partial_post", id=id),
             body=maybe_transform(
                 {
                     "posted_ledger_entries": posted_ledger_entries,
@@ -498,7 +498,7 @@ class LedgerTransactions(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/api/ledger_transactions/{id}/reversal",
+            path_template("/api/ledger_transactions/{id}/reversal", id=id),
             body=maybe_transform(
                 {
                     "description": description,
@@ -658,7 +658,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/api/ledger_transactions/{id}",
+            path_template("/api/ledger_transactions/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -725,7 +725,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/api/ledger_transactions/{id}",
+            path_template("/api/ledger_transactions/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "description": description,
@@ -905,7 +905,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/api/ledger_transactions/{id}/partial_post",
+            path_template("/api/ledger_transactions/{id}/partial_post", id=id),
             body=await async_maybe_transform(
                 {
                     "posted_ledger_entries": posted_ledger_entries,
@@ -983,7 +983,7 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/api/ledger_transactions/{id}/reversal",
+            path_template("/api/ledger_transactions/{id}/reversal", id=id),
             body=await async_maybe_transform(
                 {
                     "description": description,

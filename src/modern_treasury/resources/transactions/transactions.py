@@ -11,7 +11,7 @@ import httpx
 from ... import _legacy_response
 from ...types import transaction_list_params, transaction_create_params, transaction_update_params
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .line_items import (
     LineItems,
@@ -215,7 +215,7 @@ class Transactions(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/api/transactions/{id}",
+            path_template("/api/transactions/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -255,7 +255,7 @@ class Transactions(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/api/transactions/{id}",
+            path_template("/api/transactions/{id}", id=id),
             body=maybe_transform({"metadata": metadata}, transaction_update_params.TransactionUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -384,7 +384,7 @@ class Transactions(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/api/transactions/{id}",
+            path_template("/api/transactions/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -581,7 +581,7 @@ class AsyncTransactions(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/api/transactions/{id}",
+            path_template("/api/transactions/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -621,7 +621,7 @@ class AsyncTransactions(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/api/transactions/{id}",
+            path_template("/api/transactions/{id}", id=id),
             body=await async_maybe_transform({"metadata": metadata}, transaction_update_params.TransactionUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -750,7 +750,7 @@ class AsyncTransactions(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/api/transactions/{id}",
+            path_template("/api/transactions/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -14,7 +14,7 @@ from ..types import (
     account_collection_flow_update_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
@@ -143,7 +143,7 @@ class AccountCollectionFlows(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/api/account_collection_flows/{id}",
+            path_template("/api/account_collection_flows/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -184,7 +184,7 @@ class AccountCollectionFlows(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/api/account_collection_flows/{id}",
+            path_template("/api/account_collection_flows/{id}", id=id),
             body=maybe_transform(
                 {"status": status}, account_collection_flow_update_params.AccountCollectionFlowUpdateParams
             ),
@@ -368,7 +368,7 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/api/account_collection_flows/{id}",
+            path_template("/api/account_collection_flows/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -409,7 +409,7 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/api/account_collection_flows/{id}",
+            path_template("/api/account_collection_flows/{id}", id=id),
             body=await async_maybe_transform(
                 {"status": status}, account_collection_flow_update_params.AccountCollectionFlowUpdateParams
             ),

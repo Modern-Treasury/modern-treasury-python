@@ -10,7 +10,7 @@ import httpx
 from .. import _legacy_response
 from ..types import routing_detail_list_params, routing_detail_create_params
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
@@ -148,7 +148,9 @@ class RoutingDetails(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/api/{accounts_type}/{account_id}/routing_details",
+            path_template(
+                "/api/{accounts_type}/{account_id}/routing_details", accounts_type=accounts_type, account_id=account_id
+            ),
             body=maybe_transform(
                 {
                     "routing_number": routing_number,
@@ -199,7 +201,12 @@ class RoutingDetails(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/api/{accounts_type}/{account_id}/routing_details/{id}",
+            path_template(
+                "/api/{accounts_type}/{account_id}/routing_details/{id}",
+                accounts_type=accounts_type,
+                account_id=account_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -237,7 +244,9 @@ class RoutingDetails(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/api/{accounts_type}/{account_id}/routing_details",
+            path_template(
+                "/api/{accounts_type}/{account_id}/routing_details", accounts_type=accounts_type, account_id=account_id
+            ),
             page=SyncPage[RoutingDetail],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -291,7 +300,12 @@ class RoutingDetails(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/api/{accounts_type}/{account_id}/routing_details/{id}",
+            path_template(
+                "/api/{accounts_type}/{account_id}/routing_details/{id}",
+                accounts_type=accounts_type,
+                account_id=account_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -429,7 +443,9 @@ class AsyncRoutingDetails(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/api/{accounts_type}/{account_id}/routing_details",
+            path_template(
+                "/api/{accounts_type}/{account_id}/routing_details", accounts_type=accounts_type, account_id=account_id
+            ),
             body=await async_maybe_transform(
                 {
                     "routing_number": routing_number,
@@ -480,7 +496,12 @@ class AsyncRoutingDetails(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/api/{accounts_type}/{account_id}/routing_details/{id}",
+            path_template(
+                "/api/{accounts_type}/{account_id}/routing_details/{id}",
+                accounts_type=accounts_type,
+                account_id=account_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -518,7 +539,9 @@ class AsyncRoutingDetails(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/api/{accounts_type}/{account_id}/routing_details",
+            path_template(
+                "/api/{accounts_type}/{account_id}/routing_details", accounts_type=accounts_type, account_id=account_id
+            ),
             page=AsyncPage[RoutingDetail],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -572,7 +595,12 @@ class AsyncRoutingDetails(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/api/{accounts_type}/{account_id}/routing_details/{id}",
+            path_template(
+                "/api/{accounts_type}/{account_id}/routing_details/{id}",
+                accounts_type=accounts_type,
+                account_id=account_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
