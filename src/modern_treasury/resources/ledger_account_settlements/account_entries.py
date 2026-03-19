@@ -8,7 +8,7 @@ import httpx
 
 from ... import _legacy_response
 from ..._types import Body, Query, Headers, NoneType, NotGiven, SequenceNotStr, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
@@ -72,7 +72,7 @@ class AccountEntries(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
-            f"/api/ledger_account_settlements/{id}/ledger_entries",
+            path_template("/api/ledger_account_settlements/{id}/ledger_entries", id=id),
             body=maybe_transform(
                 {"ledger_entry_ids": ledger_entry_ids}, account_entry_update_params.AccountEntryUpdateParams
             ),
@@ -120,7 +120,7 @@ class AccountEntries(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/api/ledger_account_settlements/{id}/ledger_entries",
+            path_template("/api/ledger_account_settlements/{id}/ledger_entries", id=id),
             body=maybe_transform(
                 {"ledger_entry_ids": ledger_entry_ids}, account_entry_delete_params.AccountEntryDeleteParams
             ),
@@ -189,7 +189,7 @@ class AsyncAccountEntries(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
-            f"/api/ledger_account_settlements/{id}/ledger_entries",
+            path_template("/api/ledger_account_settlements/{id}/ledger_entries", id=id),
             body=await async_maybe_transform(
                 {"ledger_entry_ids": ledger_entry_ids}, account_entry_update_params.AccountEntryUpdateParams
             ),
@@ -237,7 +237,7 @@ class AsyncAccountEntries(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/api/ledger_account_settlements/{id}/ledger_entries",
+            path_template("/api/ledger_account_settlements/{id}/ledger_entries", id=id),
             body=await async_maybe_transform(
                 {"ledger_entry_ids": ledger_entry_ids}, account_entry_delete_params.AccountEntryDeleteParams
             ),

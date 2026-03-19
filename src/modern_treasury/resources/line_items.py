@@ -10,7 +10,7 @@ import httpx
 from .. import _legacy_response
 from ..types import line_item_list_params, line_item_update_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
@@ -73,7 +73,12 @@ class LineItems(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
+            path_template(
+                "/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
+                itemizable_type=itemizable_type,
+                itemizable_id=itemizable_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -119,7 +124,12 @@ class LineItems(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
+            path_template(
+                "/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
+                itemizable_type=itemizable_type,
+                itemizable_id=itemizable_id,
+                id=id,
+            ),
             body=maybe_transform({"metadata": metadata}, line_item_update_params.LineItemUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -162,7 +172,11 @@ class LineItems(SyncAPIResource):
         if not itemizable_id:
             raise ValueError(f"Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}")
         return self._get_api_list(
-            f"/api/{itemizable_type}/{itemizable_id}/line_items",
+            path_template(
+                "/api/{itemizable_type}/{itemizable_id}/line_items",
+                itemizable_type=itemizable_type,
+                itemizable_id=itemizable_id,
+            ),
             page=SyncPage[LineItem],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -233,7 +247,12 @@ class AsyncLineItems(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
+            path_template(
+                "/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
+                itemizable_type=itemizable_type,
+                itemizable_id=itemizable_id,
+                id=id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -279,7 +298,12 @@ class AsyncLineItems(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
+            path_template(
+                "/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
+                itemizable_type=itemizable_type,
+                itemizable_id=itemizable_id,
+                id=id,
+            ),
             body=await async_maybe_transform({"metadata": metadata}, line_item_update_params.LineItemUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -322,7 +346,11 @@ class AsyncLineItems(AsyncAPIResource):
         if not itemizable_id:
             raise ValueError(f"Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}")
         return self._get_api_list(
-            f"/api/{itemizable_type}/{itemizable_id}/line_items",
+            path_template(
+                "/api/{itemizable_type}/{itemizable_id}/line_items",
+                itemizable_type=itemizable_type,
+                itemizable_id=itemizable_id,
+            ),
             page=AsyncPage[LineItem],
             options=make_request_options(
                 extra_headers=extra_headers,
