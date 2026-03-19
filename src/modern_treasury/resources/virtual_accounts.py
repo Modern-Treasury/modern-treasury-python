@@ -9,7 +9,7 @@ import httpx
 from .. import _legacy_response
 from ..types import virtual_account_list_params, virtual_account_create_params, virtual_account_update_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
@@ -156,7 +156,7 @@ class VirtualAccounts(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/api/virtual_accounts/{id}",
+            path_template("/api/virtual_accounts/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -198,7 +198,7 @@ class VirtualAccounts(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/api/virtual_accounts/{id}",
+            path_template("/api/virtual_accounts/{id}", id=id),
             body=maybe_transform(
                 {
                     "counterparty_id": counterparty_id,
@@ -300,7 +300,7 @@ class VirtualAccounts(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
-            f"/api/virtual_accounts/{id}",
+            path_template("/api/virtual_accounts/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -447,7 +447,7 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/api/virtual_accounts/{id}",
+            path_template("/api/virtual_accounts/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -489,7 +489,7 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/api/virtual_accounts/{id}",
+            path_template("/api/virtual_accounts/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "counterparty_id": counterparty_id,
@@ -591,7 +591,7 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
-            f"/api/virtual_accounts/{id}",
+            path_template("/api/virtual_accounts/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -11,7 +11,7 @@ import httpx
 from .. import _legacy_response
 from ..types import ledger_entry_list_params, ledger_entry_update_params, ledger_entry_retrieve_params
 from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
@@ -73,7 +73,7 @@ class LedgerEntries(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/api/ledger_entries/{id}",
+            path_template("/api/ledger_entries/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -119,7 +119,7 @@ class LedgerEntries(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/api/ledger_entries/{id}",
+            path_template("/api/ledger_entries/{id}", id=id),
             body=maybe_transform({"metadata": metadata}, ledger_entry_update_params.LedgerEntryUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -314,7 +314,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/api/ledger_entries/{id}",
+            path_template("/api/ledger_entries/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -360,7 +360,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/api/ledger_entries/{id}",
+            path_template("/api/ledger_entries/{id}", id=id),
             body=await async_maybe_transform(
                 {"metadata": metadata}, ledger_entry_update_params.LedgerEntryUpdateParams
             ),

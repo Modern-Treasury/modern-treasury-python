@@ -18,7 +18,7 @@ from ...types import (
     payment_order_create_async_params,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import extract_files, maybe_transform, deepcopy_minimal, async_maybe_transform
+from ..._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
 from ..._compat import cached_property
 from .reversals import (
     Reversals,
@@ -360,7 +360,7 @@ class PaymentOrders(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/api/payment_orders/{id}",
+            path_template("/api/payment_orders/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -572,7 +572,7 @@ class PaymentOrders(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/api/payment_orders/{id}",
+            path_template("/api/payment_orders/{id}", id=id),
             body=maybe_transform(
                 {
                     "accounting": accounting,
@@ -1348,7 +1348,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/api/payment_orders/{id}",
+            path_template("/api/payment_orders/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1560,7 +1560,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/api/payment_orders/{id}",
+            path_template("/api/payment_orders/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "accounting": accounting,
