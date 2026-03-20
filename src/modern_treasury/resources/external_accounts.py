@@ -17,7 +17,7 @@ from ..types import (
     external_account_complete_verification_params,
 )
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
@@ -175,7 +175,7 @@ class ExternalAccounts(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/api/external_accounts/{id}",
+            path_template("/api/external_accounts/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -230,7 +230,7 @@ class ExternalAccounts(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/api/external_accounts/{id}",
+            path_template("/api/external_accounts/{id}", id=id),
             body=maybe_transform(
                 {
                     "account_type": account_type,
@@ -342,7 +342,7 @@ class ExternalAccounts(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/api/external_accounts/{id}",
+            path_template("/api/external_accounts/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -383,7 +383,7 @@ class ExternalAccounts(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._post(
-            f"/api/external_accounts/{id}/complete_verification",
+            path_template("/api/external_accounts/{id}/complete_verification", id=id),
             body=maybe_transform(
                 {"amounts": amounts},
                 external_account_complete_verification_params.ExternalAccountCompleteVerificationParams,
@@ -484,7 +484,7 @@ class ExternalAccounts(SyncAPIResource):
         return cast(
             ExternalAccountVerifyResponse,
             self._post(
-                f"/api/external_accounts/{id}/verify",
+                path_template("/api/external_accounts/{id}/verify", id=id),
                 body=maybe_transform(
                     {
                         "originating_account_id": originating_account_id,
@@ -650,7 +650,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/api/external_accounts/{id}",
+            path_template("/api/external_accounts/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -705,7 +705,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/api/external_accounts/{id}",
+            path_template("/api/external_accounts/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "account_type": account_type,
@@ -817,7 +817,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/api/external_accounts/{id}",
+            path_template("/api/external_accounts/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -858,7 +858,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._post(
-            f"/api/external_accounts/{id}/complete_verification",
+            path_template("/api/external_accounts/{id}/complete_verification", id=id),
             body=await async_maybe_transform(
                 {"amounts": amounts},
                 external_account_complete_verification_params.ExternalAccountCompleteVerificationParams,
@@ -959,7 +959,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
         return cast(
             ExternalAccountVerifyResponse,
             await self._post(
-                f"/api/external_accounts/{id}/verify",
+                path_template("/api/external_accounts/{id}/verify", id=id),
                 body=await async_maybe_transform(
                     {
                         "originating_account_id": originating_account_id,
