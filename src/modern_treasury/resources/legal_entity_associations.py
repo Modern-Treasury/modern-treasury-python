@@ -45,7 +45,9 @@ class LegalEntityAssociations(SyncAPIResource):
         self,
         *,
         parent_legal_entity_id: str,
-        relationship_types: List[Literal["authorized_signer", "beneficial_owner", "control_person"]],
+        relationship_types: List[
+            Literal["authorized_signer", "beneficial_owner", "control_person", "service_customer"]
+        ],
         child_legal_entity: ChildLegalEntityCreate | Omit = omit,
         child_legal_entity_id: str | Omit = omit,
         ownership_percentage: Optional[int] | Omit = omit,
@@ -131,7 +133,9 @@ class AsyncLegalEntityAssociations(AsyncAPIResource):
         self,
         *,
         parent_legal_entity_id: str,
-        relationship_types: List[Literal["authorized_signer", "beneficial_owner", "control_person"]],
+        relationship_types: List[
+            Literal["authorized_signer", "beneficial_owner", "control_person", "service_customer"]
+        ],
         child_legal_entity: ChildLegalEntityCreate | Omit = omit,
         child_legal_entity_id: str | Omit = omit,
         ownership_percentage: Optional[int] | Omit = omit,
