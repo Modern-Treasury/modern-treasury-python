@@ -38,7 +38,7 @@ class LegalEntityAssociation(BaseModel):
     This must be a business or joint legal entity.
     """
 
-    relationship_types: List[Literal["authorized_signer", "beneficial_owner", "control_person"]]
+    relationship_types: List[Literal["authorized_signer", "beneficial_owner", "control_person", "service_customer"]]
 
     title: Optional[str] = None
     """The job title of the child entity at the parent entity."""
