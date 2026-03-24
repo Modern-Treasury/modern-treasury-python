@@ -14,7 +14,6 @@ from modern_treasury.types import (
 )
 from modern_treasury._utils import parse_date
 from modern_treasury.pagination import SyncPage, AsyncPage
-from modern_treasury.types.shared import AsyncResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -149,7 +148,7 @@ class TestIncomingPaymentDetails:
     @parametrize
     def test_method_create_async(self, client: ModernTreasury) -> None:
         incoming_payment_detail = client.incoming_payment_details.create_async()
-        assert_matches_type(AsyncResponse, incoming_payment_detail, path=["response"])
+        assert_matches_type(IncomingPaymentDetail, incoming_payment_detail, path=["response"])
 
     @parametrize
     def test_method_create_async_with_all_params(self, client: ModernTreasury) -> None:
@@ -164,7 +163,7 @@ class TestIncomingPaymentDetails:
             type="ach",
             virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(AsyncResponse, incoming_payment_detail, path=["response"])
+        assert_matches_type(IncomingPaymentDetail, incoming_payment_detail, path=["response"])
 
     @parametrize
     def test_raw_response_create_async(self, client: ModernTreasury) -> None:
@@ -173,7 +172,7 @@ class TestIncomingPaymentDetails:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         incoming_payment_detail = response.parse()
-        assert_matches_type(AsyncResponse, incoming_payment_detail, path=["response"])
+        assert_matches_type(IncomingPaymentDetail, incoming_payment_detail, path=["response"])
 
     @parametrize
     def test_streaming_response_create_async(self, client: ModernTreasury) -> None:
@@ -182,7 +181,7 @@ class TestIncomingPaymentDetails:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             incoming_payment_detail = response.parse()
-            assert_matches_type(AsyncResponse, incoming_payment_detail, path=["response"])
+            assert_matches_type(IncomingPaymentDetail, incoming_payment_detail, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -319,7 +318,7 @@ class TestAsyncIncomingPaymentDetails:
     @parametrize
     async def test_method_create_async(self, async_client: AsyncModernTreasury) -> None:
         incoming_payment_detail = await async_client.incoming_payment_details.create_async()
-        assert_matches_type(AsyncResponse, incoming_payment_detail, path=["response"])
+        assert_matches_type(IncomingPaymentDetail, incoming_payment_detail, path=["response"])
 
     @parametrize
     async def test_method_create_async_with_all_params(self, async_client: AsyncModernTreasury) -> None:
@@ -334,7 +333,7 @@ class TestAsyncIncomingPaymentDetails:
             type="ach",
             virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(AsyncResponse, incoming_payment_detail, path=["response"])
+        assert_matches_type(IncomingPaymentDetail, incoming_payment_detail, path=["response"])
 
     @parametrize
     async def test_raw_response_create_async(self, async_client: AsyncModernTreasury) -> None:
@@ -343,7 +342,7 @@ class TestAsyncIncomingPaymentDetails:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         incoming_payment_detail = response.parse()
-        assert_matches_type(AsyncResponse, incoming_payment_detail, path=["response"])
+        assert_matches_type(IncomingPaymentDetail, incoming_payment_detail, path=["response"])
 
     @parametrize
     async def test_streaming_response_create_async(self, async_client: AsyncModernTreasury) -> None:
@@ -352,6 +351,6 @@ class TestAsyncIncomingPaymentDetails:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             incoming_payment_detail = await response.parse()
-            assert_matches_type(AsyncResponse, incoming_payment_detail, path=["response"])
+            assert_matches_type(IncomingPaymentDetail, incoming_payment_detail, path=["response"])
 
         assert cast(Any, response.is_closed) is True

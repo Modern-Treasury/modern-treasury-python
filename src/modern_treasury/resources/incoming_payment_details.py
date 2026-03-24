@@ -22,7 +22,6 @@ from .._response import to_streamed_response_wrapper, async_to_streamed_response
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.shared.currency import Currency
-from ..types.shared.async_response import AsyncResponse
 from ..types.incoming_payment_detail import IncomingPaymentDetail
 from ..types.shared.transaction_direction import TransactionDirection
 
@@ -266,7 +265,7 @@ class IncomingPaymentDetails(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> AsyncResponse:
+    ) -> IncomingPaymentDetail:
         """
         Simulate Incoming Payment Detail
 
@@ -325,7 +324,7 @@ class IncomingPaymentDetails(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=AsyncResponse,
+            cast_to=IncomingPaymentDetail,
         )
 
 
@@ -566,7 +565,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> AsyncResponse:
+    ) -> IncomingPaymentDetail:
         """
         Simulate Incoming Payment Detail
 
@@ -625,7 +624,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=AsyncResponse,
+            cast_to=IncomingPaymentDetail,
         )
 
 
