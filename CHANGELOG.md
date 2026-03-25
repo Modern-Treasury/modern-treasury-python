@@ -1,5 +1,37 @@
 # Changelog
 
+## 1.73.0 (2026-03-25)
+
+Full Changelog: [v1.72.0...v1.73.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.72.0...v1.73.0)
+
+### Features
+
+* **api:** api update ([87a2c67](https://github.com/Modern-Treasury/modern-treasury-python/commit/87a2c67ebfbd252e072efa8b5741e6d391dc327b))
+* **api:** api update ([076c0d5](https://github.com/Modern-Treasury/modern-treasury-python/commit/076c0d5e3dffbc8648065dfbe7c97e51d8ee3b5c))
+* **api:** api update ([67a0e5a](https://github.com/Modern-Treasury/modern-treasury-python/commit/67a0e5ad987d8b48a267ffaf4cc248ccd3c2d97f))
+* **api:** api update ([ac858c4](https://github.com/Modern-Treasury/modern-treasury-python/commit/ac858c4ec34ea63b9d51b68008191cbda45a004a))
+* **api:** switch back to prism mock server ([1157ce1](https://github.com/Modern-Treasury/modern-treasury-python/commit/1157ce1c1e316802285d5cff5b5e3f55b36d5720))
+
+
+### Bug Fixes
+
+* sanitize endpoint path params ([55444e6](https://github.com/Modern-Treasury/modern-treasury-python/commit/55444e6f8d3d9f858c831111c8d5f2c63817f123))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([46fa972](https://github.com/Modern-Treasury/modern-treasury-python/commit/46fa9723273ab28d242412245b6927f8d345814e))
+* **internal:** update gitignore ([18f2026](https://github.com/Modern-Treasury/modern-treasury-python/commit/18f2026d94d82e90449c7346a0d17f85cd4e804f))
+* **tests:** bump steady to v0.19.4 ([97aa5c9](https://github.com/Modern-Treasury/modern-treasury-python/commit/97aa5c956b46913b109aa1ac0bc80fc4b2646579))
+* **tests:** bump steady to v0.19.5 ([f3b391f](https://github.com/Modern-Treasury/modern-treasury-python/commit/f3b391fc9a9a2f5a732171a4c69f00d8266933d3))
+* **tests:** bump steady to v0.19.6 ([c6db0e1](https://github.com/Modern-Treasury/modern-treasury-python/commit/c6db0e19a4c8c361b3869c38086af4e34d925620))
+* **tests:** bump steady to v0.19.7 ([60c18bb](https://github.com/Modern-Treasury/modern-treasury-python/commit/60c18bb6d90cd65b8ecda877c59665285177b69a))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([afeba85](https://github.com/Modern-Treasury/modern-treasury-python/commit/afeba858c78e007f0567c233019dfb52305ab33a))
+
 ## 1.72.0 (2026-03-18)
 
 Full Changelog: [v1.71.0...v1.72.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.71.0...v1.72.0)
