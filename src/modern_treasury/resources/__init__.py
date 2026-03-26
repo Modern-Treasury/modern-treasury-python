@@ -281,14 +281,6 @@ from .ledger_account_statements import (
     LedgerAccountStatementsWithStreamingResponse,
     AsyncLedgerAccountStatementsWithStreamingResponse,
 )
-from .legal_entity_associations import (
-    LegalEntityAssociations,
-    AsyncLegalEntityAssociations,
-    LegalEntityAssociationsWithRawResponse,
-    AsyncLegalEntityAssociationsWithRawResponse,
-    LegalEntityAssociationsWithStreamingResponse,
-    AsyncLegalEntityAssociationsWithStreamingResponse,
-)
 from .ledger_account_settlements import (
     LedgerAccountSettlements,
     AsyncLedgerAccountSettlements,
@@ -507,12 +499,6 @@ __all__ = [
     "AsyncLegalEntitiesWithRawResponse",
     "LegalEntitiesWithStreamingResponse",
     "AsyncLegalEntitiesWithStreamingResponse",
-    "LegalEntityAssociations",
-    "AsyncLegalEntityAssociations",
-    "LegalEntityAssociationsWithRawResponse",
-    "AsyncLegalEntityAssociationsWithRawResponse",
-    "LegalEntityAssociationsWithStreamingResponse",
-    "AsyncLegalEntityAssociationsWithStreamingResponse",
     "PaymentActions",
     "AsyncPaymentActions",
     "PaymentActionsWithRawResponse",

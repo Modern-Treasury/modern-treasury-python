@@ -163,6 +163,7 @@ class RoutingDetail(TypedDict, total=False):
         "signet",
         "sknbi",
         "solana",
+        "stablecoin",
         "wire",
         "zengin",
     ]

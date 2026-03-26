@@ -436,6 +436,7 @@ class ExpectedPayments(SyncAPIResource):
             "signet",
             "sknbi",
             "solana",
+            "stablecoin",
             "wire",
             "zengin",
         ]
@@ -959,6 +960,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
             "signet",
             "sknbi",
             "solana",
+            "stablecoin",
             "wire",
             "zengin",
         ]

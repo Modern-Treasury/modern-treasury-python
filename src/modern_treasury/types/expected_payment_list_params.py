@@ -78,6 +78,7 @@ class ExpectedPaymentListParams(TypedDict, total=False):
         "signet",
         "sknbi",
         "solana",
+        "stablecoin",
         "wire",
         "zengin",
     ]

@@ -84,6 +84,7 @@ class ReconciliationRule(BaseModel):
             "signet",
             "sknbi",
             "solana",
+            "stablecoin",
             "wire",
             "zengin",
         ]
