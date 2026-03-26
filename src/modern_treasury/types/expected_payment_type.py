@@ -40,6 +40,7 @@ ExpectedPaymentType: TypeAlias = Optional[
         "signet",
         "sknbi",
         "solana",
+        "stablecoin",
         "wire",
         "zengin",
     ]

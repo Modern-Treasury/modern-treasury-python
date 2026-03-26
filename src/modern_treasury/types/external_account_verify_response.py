@@ -63,6 +63,7 @@ class ExternalAccountVerificationAttempt(BaseModel):
         "signet",
         "sknbi",
         "solana",
+        "stablecoin",
         "wire",
         "zengin",
     ]

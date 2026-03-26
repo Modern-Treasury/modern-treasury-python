@@ -693,6 +693,7 @@ class PaymentOrders(SyncAPIResource):
             "signet",
             "sknbi",
             "solana",
+            "stablecoin",
             "wire",
             "zengin",
         ]
@@ -1681,6 +1682,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
             "signet",
             "sknbi",
             "solana",
+            "stablecoin",
             "wire",
             "zengin",
         ]

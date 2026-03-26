@@ -107,6 +107,7 @@ class RoutingDetails(SyncAPIResource):
                 "signet",
                 "sknbi",
                 "solana",
+                "stablecoin",
                 "wire",
                 "zengin",
             ]
@@ -402,6 +403,7 @@ class AsyncRoutingDetails(AsyncAPIResource):
                 "signet",
                 "sknbi",
                 "solana",
+                "stablecoin",
                 "wire",
                 "zengin",
             ]

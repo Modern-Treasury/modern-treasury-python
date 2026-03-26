@@ -75,7 +75,6 @@ if TYPE_CHECKING:
         connection_legal_entities,
         ledger_account_categories,
         ledger_account_statements,
-        legal_entity_associations,
         ledger_account_settlements,
         ledger_account_balance_monitors,
     )
@@ -110,7 +109,6 @@ if TYPE_CHECKING:
     from .resources.connection_legal_entities import ConnectionLegalEntities, AsyncConnectionLegalEntities
     from .resources.ledger_account_categories import LedgerAccountCategories, AsyncLedgerAccountCategories
     from .resources.ledger_account_statements import LedgerAccountStatements, AsyncLedgerAccountStatements
-    from .resources.legal_entity_associations import LegalEntityAssociations, AsyncLegalEntityAssociations
     from .resources.transactions.transactions import Transactions, AsyncTransactions
     from .resources.payment_orders.payment_orders import PaymentOrders, AsyncPaymentOrders
     from .resources.ledger_account_balance_monitors import (
@@ -415,12 +413,6 @@ class ModernTreasury(SyncAPIClient):
         from .resources.legal_entities import LegalEntities
 
         return LegalEntities(self)
-
-    @cached_property
-    def legal_entity_associations(self) -> LegalEntityAssociations:
-        from .resources.legal_entity_associations import LegalEntityAssociations
-
-        return LegalEntityAssociations(self)
 
     @cached_property
     def payment_actions(self) -> PaymentActions:
@@ -867,12 +859,6 @@ class AsyncModernTreasury(AsyncAPIClient):
         return AsyncLegalEntities(self)
 
     @cached_property
-    def legal_entity_associations(self) -> AsyncLegalEntityAssociations:
-        from .resources.legal_entity_associations import AsyncLegalEntityAssociations
-
-        return AsyncLegalEntityAssociations(self)
-
-    @cached_property
     def payment_actions(self) -> AsyncPaymentActions:
         from .resources.payment_actions import AsyncPaymentActions
 
@@ -1247,12 +1233,6 @@ class ModernTreasuryWithRawResponse:
         return LegalEntitiesWithRawResponse(self._client.legal_entities)
 
     @cached_property
-    def legal_entity_associations(self) -> legal_entity_associations.LegalEntityAssociationsWithRawResponse:
-        from .resources.legal_entity_associations import LegalEntityAssociationsWithRawResponse
-
-        return LegalEntityAssociationsWithRawResponse(self._client.legal_entity_associations)
-
-    @cached_property
     def payment_actions(self) -> payment_actions.PaymentActionsWithRawResponse:
         from .resources.payment_actions import PaymentActionsWithRawResponse
 
@@ -1486,12 +1466,6 @@ class AsyncModernTreasuryWithRawResponse:
         from .resources.legal_entities import AsyncLegalEntitiesWithRawResponse
 
         return AsyncLegalEntitiesWithRawResponse(self._client.legal_entities)
-
-    @cached_property
-    def legal_entity_associations(self) -> legal_entity_associations.AsyncLegalEntityAssociationsWithRawResponse:
-        from .resources.legal_entity_associations import AsyncLegalEntityAssociationsWithRawResponse
-
-        return AsyncLegalEntityAssociationsWithRawResponse(self._client.legal_entity_associations)
 
     @cached_property
     def payment_actions(self) -> payment_actions.AsyncPaymentActionsWithRawResponse:
@@ -1729,12 +1703,6 @@ class ModernTreasuryWithStreamedResponse:
         return LegalEntitiesWithStreamingResponse(self._client.legal_entities)
 
     @cached_property
-    def legal_entity_associations(self) -> legal_entity_associations.LegalEntityAssociationsWithStreamingResponse:
-        from .resources.legal_entity_associations import LegalEntityAssociationsWithStreamingResponse
-
-        return LegalEntityAssociationsWithStreamingResponse(self._client.legal_entity_associations)
-
-    @cached_property
     def payment_actions(self) -> payment_actions.PaymentActionsWithStreamingResponse:
         from .resources.payment_actions import PaymentActionsWithStreamingResponse
 
@@ -1970,12 +1938,6 @@ class AsyncModernTreasuryWithStreamedResponse:
         from .resources.legal_entities import AsyncLegalEntitiesWithStreamingResponse
 
         return AsyncLegalEntitiesWithStreamingResponse(self._client.legal_entities)
-
-    @cached_property
-    def legal_entity_associations(self) -> legal_entity_associations.AsyncLegalEntityAssociationsWithStreamingResponse:
-        from .resources.legal_entity_associations import AsyncLegalEntityAssociationsWithStreamingResponse
-
-        return AsyncLegalEntityAssociationsWithStreamingResponse(self._client.legal_entity_associations)
 
     @cached_property
     def payment_actions(self) -> payment_actions.AsyncPaymentActionsWithStreamingResponse:

@@ -116,6 +116,7 @@ class Transaction(BaseModel):
         "signet",
         "sknbi",
         "solana",
+        "stablecoin",
         "wire",
         "zengin",
         "other",
