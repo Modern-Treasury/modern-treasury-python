@@ -38,6 +38,7 @@ PaymentOrderType: TypeAlias = Literal[
     "signet",
     "sknbi",
     "solana",
+    "stablecoin",
     "wire",
     "zengin",
 ]

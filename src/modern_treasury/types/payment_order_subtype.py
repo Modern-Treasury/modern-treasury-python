@@ -22,6 +22,7 @@ PaymentOrderSubtype: TypeAlias = Optional[
         "chats",
         "dk_nets",
         "eft",
+        "ethereum",
         "hu_ics",
         "masav",
         "mx_ccen",
@@ -35,6 +36,7 @@ PaymentOrderSubtype: TypeAlias = Optional[
         "sg_giro",
         "sic",
         "sknbi",
+        "solana",
         "zengin",
     ]
 ]

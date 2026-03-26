@@ -631,10 +631,6 @@ Types:
 from modern_treasury.types import ChildLegalEntity, LegalEntityAssociation
 ```
 
-Methods:
-
-- <code title="post /api/legal_entity_associations">client.legal_entity_associations.<a href="./src/modern_treasury/resources/legal_entity_associations.py">create</a>(\*\*<a href="src/modern_treasury/types/legal_entity_association_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/legal_entity_association.py">LegalEntityAssociation</a></code>
-
 # PaymentActions
 
 Types:

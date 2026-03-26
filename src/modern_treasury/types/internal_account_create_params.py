@@ -144,6 +144,7 @@ class AccountCapability(TypedDict, total=False, extra_items=object):  # type: ig
             "signet",
             "sknbi",
             "solana",
+            "stablecoin",
             "wire",
             "zengin",
         ]

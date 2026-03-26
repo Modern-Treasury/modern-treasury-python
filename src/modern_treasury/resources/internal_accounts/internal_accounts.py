@@ -326,6 +326,7 @@ class InternalAccounts(SyncAPIResource):
             "signet",
             "sknbi",
             "solana",
+            "stablecoin",
             "wire",
             "zengin",
         ]
@@ -783,6 +784,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
             "signet",
             "sknbi",
             "solana",
+            "stablecoin",
             "wire",
             "zengin",
         ]

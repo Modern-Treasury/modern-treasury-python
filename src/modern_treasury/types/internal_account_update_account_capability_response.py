@@ -74,6 +74,7 @@ class InternalAccountUpdateAccountCapabilityResponse(BaseModel):
         "signet",
         "sknbi",
         "solana",
+        "stablecoin",
         "wire",
         "zengin",
     ]

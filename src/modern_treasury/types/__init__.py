@@ -190,9 +190,6 @@ from .ledger_account_settlement_list_params import (
 from .ledger_account_statement_create_params import (
     LedgerAccountStatementCreateParams as LedgerAccountStatementCreateParams,
 )
-from .legal_entity_association_create_params import (
-    LegalEntityAssociationCreateParams as LegalEntityAssociationCreateParams,
-)
 from .ledger_account_category_retrieve_params import (
     LedgerAccountCategoryRetrieveParams as LedgerAccountCategoryRetrieveParams,
 )

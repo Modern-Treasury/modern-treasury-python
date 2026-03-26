@@ -79,6 +79,7 @@ class AccountCapability(BaseModel):
         "signet",
         "sknbi",
         "solana",
+        "stablecoin",
         "wire",
         "zengin",
     ]

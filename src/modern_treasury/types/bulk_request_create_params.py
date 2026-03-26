@@ -246,6 +246,7 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail(TypedD
         "signet",
         "sknbi",
         "solana",
+        "stablecoin",
         "wire",
         "zengin",
     ]
@@ -833,6 +834,7 @@ class ResourceTransactionCreateRequest(TypedDict, total=False):
             "signet",
             "sknbi",
             "solana",
+            "stablecoin",
             "wire",
             "zengin",
             "other",
@@ -1021,6 +1023,7 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail(Typed
         "signet",
         "sknbi",
         "solana",
+        "stablecoin",
         "wire",
         "zengin",
     ]
