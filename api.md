@@ -671,7 +671,7 @@ Methods:
 
 - <code title="get /api/journal_reports/{id}">client.journal_reports.<a href="./src/modern_treasury/resources/journal_reports.py">retrieve</a>(id) -> None</code>
 - <code title="patch /api/journal_reports/{id}">client.journal_reports.<a href="./src/modern_treasury/resources/journal_reports.py">update</a>(id, \*\*<a href="src/modern_treasury/types/journal_report_update_params.py">params</a>) -> None</code>
-- <code title="get /api/journal_reports">client.journal_reports.<a href="./src/modern_treasury/resources/journal_reports.py">list</a>() -> None</code>
+- <code title="get /api/journal_reports">client.journal_reports.<a href="./src/modern_treasury/resources/journal_reports.py">list</a>(\*\*<a href="src/modern_treasury/types/journal_report_list_params.py">params</a>) -> None</code>
 
 # Holds
 
