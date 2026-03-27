@@ -82,6 +82,7 @@ class PaymentReference(BaseModel):
         "lob_check_id",
         "other",
         "partial_swift_mir",
+        "paxos_fiat_withdrawal_id",
         "paxos_group_id",
         "paxos_orchestration_id",
         "paxos_transfer_id",
