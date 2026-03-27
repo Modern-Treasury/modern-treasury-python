@@ -207,6 +207,7 @@ class TestLegalEntities:
                             }
                         ],
                         "risk_rating": "low",
+                        "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "suffix": "suffix",
                         "third_party_verification": {
                             "vendor": "persona",
@@ -262,6 +263,7 @@ class TestLegalEntities:
                 }
             ],
             risk_rating="low",
+            service_provider_legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             suffix="suffix",
             third_party_verification={
                 "vendor": "persona",
@@ -451,6 +453,7 @@ class TestLegalEntities:
                 }
             ],
             risk_rating="low",
+            service_provider_legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             suffix="suffix",
             third_party_verification={
                 "vendor": "persona",
@@ -743,6 +746,7 @@ class TestAsyncLegalEntities:
                             }
                         ],
                         "risk_rating": "low",
+                        "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "suffix": "suffix",
                         "third_party_verification": {
                             "vendor": "persona",
@@ -798,6 +802,7 @@ class TestAsyncLegalEntities:
                 }
             ],
             risk_rating="low",
+            service_provider_legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             suffix="suffix",
             third_party_verification={
                 "vendor": "persona",
@@ -994,6 +999,7 @@ class TestAsyncLegalEntities:
                 }
             ],
             risk_rating="low",
+            service_provider_legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             suffix="suffix",
             third_party_verification={
                 "vendor": "persona",

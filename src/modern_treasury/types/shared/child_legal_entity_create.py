@@ -408,6 +408,9 @@ class ChildLegalEntityCreate(BaseModel):
     risk_rating: Optional[Literal["low", "medium", "high"]] = None
     """The risk rating of the legal entity. One of low, medium, high."""
 
+    service_provider_legal_entity_id: Optional[str] = None
+    """The UUID of the parent legal entity in the service provider tree."""
+
     suffix: Optional[str] = None
     """An individual's suffix."""
 
