@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
 from .. import _legacy_response
-from ..types import journal_report_update_params
+from ..types import journal_report_list_params, journal_report_update_params
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -123,6 +125,7 @@ class JournalReports(SyncAPIResource):
     def list(
         self,
         *,
+        status: Literal["draft", "published", "ready"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -130,12 +133,27 @@ class JournalReports(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """Retrieve a list of journal reports"""
+        """
+        Retrieve a list of journal reports
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._get(
             "/api/journal_reports",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"status": status}, journal_report_list_params.JournalReportListParams),
             ),
             cast_to=NoneType,
         )
@@ -248,6 +266,7 @@ class AsyncJournalReports(AsyncAPIResource):
     async def list(
         self,
         *,
+        status: Literal["draft", "published", "ready"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -255,12 +274,29 @@ class AsyncJournalReports(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """Retrieve a list of journal reports"""
+        """
+        Retrieve a list of journal reports
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._get(
             "/api/journal_reports",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"status": status}, journal_report_list_params.JournalReportListParams
+                ),
             ),
             cast_to=NoneType,
         )

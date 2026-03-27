@@ -106,6 +106,13 @@ class TestJournalReports:
         assert journal_report is None
 
     @parametrize
+    def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
+        journal_report = client.journal_reports.list(
+            status="draft",
+        )
+        assert journal_report is None
+
+    @parametrize
     def test_raw_response_list(self, client: ModernTreasury) -> None:
         response = client.journal_reports.with_raw_response.list()
 
@@ -219,6 +226,13 @@ class TestAsyncJournalReports:
     @parametrize
     async def test_method_list(self, async_client: AsyncModernTreasury) -> None:
         journal_report = await async_client.journal_reports.list()
+        assert journal_report is None
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
+        journal_report = await async_client.journal_reports.list(
+            status="draft",
+        )
         assert journal_report is None
 
     @parametrize
