@@ -86,6 +86,7 @@ class LegalEntities(SyncAPIResource):
         primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
         regulators: Optional[Iterable[legal_entity_create_params.Regulator]] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
+        service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
         third_party_verification: Optional[legal_entity_create_params.ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -171,6 +172,8 @@ class LegalEntities(SyncAPIResource):
 
           risk_rating: The risk rating of the legal entity. One of low, medium, high.
 
+          service_provider_legal_entity_id: The UUID of the parent legal entity in the service provider tree.
+
           suffix: An individual's suffix.
 
           third_party_verification: Information describing a third-party verification run by an external vendor.
@@ -227,6 +230,7 @@ class LegalEntities(SyncAPIResource):
                     "primary_social_media_sites": primary_social_media_sites,
                     "regulators": regulators,
                     "risk_rating": risk_rating,
+                    "service_provider_legal_entity_id": service_provider_legal_entity_id,
                     "suffix": suffix,
                     "third_party_verification": third_party_verification,
                     "ticker_symbol": ticker_symbol,
@@ -314,6 +318,7 @@ class LegalEntities(SyncAPIResource):
         primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
         regulators: Optional[Iterable[legal_entity_update_params.Regulator]] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
+        service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
         third_party_verification: Optional[legal_entity_update_params.ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -386,6 +391,8 @@ class LegalEntities(SyncAPIResource):
 
           risk_rating: The risk rating of the legal entity. One of low, medium, high.
 
+          service_provider_legal_entity_id: The UUID of the parent legal entity in the service provider tree.
+
           suffix: An individual's suffix.
 
           third_party_verification: Information describing a third-party verification run by an external vendor.
@@ -439,6 +446,7 @@ class LegalEntities(SyncAPIResource):
                     "primary_social_media_sites": primary_social_media_sites,
                     "regulators": regulators,
                     "risk_rating": risk_rating,
+                    "service_provider_legal_entity_id": service_provider_legal_entity_id,
                     "suffix": suffix,
                     "third_party_verification": third_party_verification,
                     "ticker_symbol": ticker_symbol,
@@ -577,6 +585,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
         regulators: Optional[Iterable[legal_entity_create_params.Regulator]] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
+        service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
         third_party_verification: Optional[legal_entity_create_params.ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -662,6 +671,8 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           risk_rating: The risk rating of the legal entity. One of low, medium, high.
 
+          service_provider_legal_entity_id: The UUID of the parent legal entity in the service provider tree.
+
           suffix: An individual's suffix.
 
           third_party_verification: Information describing a third-party verification run by an external vendor.
@@ -718,6 +729,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "primary_social_media_sites": primary_social_media_sites,
                     "regulators": regulators,
                     "risk_rating": risk_rating,
+                    "service_provider_legal_entity_id": service_provider_legal_entity_id,
                     "suffix": suffix,
                     "third_party_verification": third_party_verification,
                     "ticker_symbol": ticker_symbol,
@@ -805,6 +817,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
         regulators: Optional[Iterable[legal_entity_update_params.Regulator]] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
+        service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
         third_party_verification: Optional[legal_entity_update_params.ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -877,6 +890,8 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           risk_rating: The risk rating of the legal entity. One of low, medium, high.
 
+          service_provider_legal_entity_id: The UUID of the parent legal entity in the service provider tree.
+
           suffix: An individual's suffix.
 
           third_party_verification: Information describing a third-party verification run by an external vendor.
@@ -930,6 +945,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "primary_social_media_sites": primary_social_media_sites,
                     "regulators": regulators,
                     "risk_rating": risk_rating,
+                    "service_provider_legal_entity_id": service_provider_legal_entity_id,
                     "suffix": suffix,
                     "third_party_verification": third_party_verification,
                     "ticker_symbol": ticker_symbol,

@@ -120,6 +120,9 @@ class LegalEntityUpdateParams(TypedDict, total=False):
     risk_rating: Optional[Literal["low", "medium", "high"]]
     """The risk rating of the legal entity. One of low, medium, high."""
 
+    service_provider_legal_entity_id: Optional[str]
+    """The UUID of the parent legal entity in the service provider tree."""
+
     suffix: Optional[str]
     """An individual's suffix."""
 
