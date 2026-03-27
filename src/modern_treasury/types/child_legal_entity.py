@@ -498,6 +498,9 @@ class ChildLegalEntity(BaseModel):
     risk_rating: Optional[Literal["low", "medium", "high"]] = None
     """The risk rating of the legal entity. One of low, medium, high."""
 
+    service_provider_legal_entity_id: Optional[str] = None
+    """The UUID of the parent legal entity in the service provider tree."""
+
     status: Optional[Literal["active", "denied", "pending", "suspended"]] = None
     """The activation status of the legal entity.
 
