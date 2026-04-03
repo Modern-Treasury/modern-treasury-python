@@ -89,6 +89,7 @@ class LegalEntities(SyncAPIResource):
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
         third_party_verification: Optional[legal_entity_create_params.ThirdPartyVerification] | Omit = omit,
+        third_party_verifications: Iterable[legal_entity_create_params.ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
         wealth_and_employment_details: Optional[legal_entity_create_params.WealthAndEmploymentDetails] | Omit = omit,
         website: Optional[str] | Omit = omit,
@@ -176,7 +177,9 @@ class LegalEntities(SyncAPIResource):
 
           suffix: An individual's suffix.
 
-          third_party_verification: Information describing a third-party verification run by an external vendor.
+          third_party_verification: Deprecated. Use `third_party_verifications` instead.
+
+          third_party_verifications: A list of third-party verifications run by external vendors.
 
           ticker_symbol: Stock ticker symbol for publicly traded companies.
 
@@ -233,6 +236,7 @@ class LegalEntities(SyncAPIResource):
                     "service_provider_legal_entity_id": service_provider_legal_entity_id,
                     "suffix": suffix,
                     "third_party_verification": third_party_verification,
+                    "third_party_verifications": third_party_verifications,
                     "ticker_symbol": ticker_symbol,
                     "wealth_and_employment_details": wealth_and_employment_details,
                     "website": website,
@@ -321,6 +325,7 @@ class LegalEntities(SyncAPIResource):
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
         third_party_verification: Optional[legal_entity_update_params.ThirdPartyVerification] | Omit = omit,
+        third_party_verifications: Iterable[legal_entity_update_params.ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
         wealth_and_employment_details: Optional[legal_entity_update_params.WealthAndEmploymentDetails] | Omit = omit,
         website: Optional[str] | Omit = omit,
@@ -395,7 +400,9 @@ class LegalEntities(SyncAPIResource):
 
           suffix: An individual's suffix.
 
-          third_party_verification: Information describing a third-party verification run by an external vendor.
+          third_party_verification: Deprecated. Use `third_party_verifications` instead.
+
+          third_party_verifications: A list of third-party verifications run by external vendors.
 
           ticker_symbol: Stock ticker symbol for publicly traded companies.
 
@@ -449,6 +456,7 @@ class LegalEntities(SyncAPIResource):
                     "service_provider_legal_entity_id": service_provider_legal_entity_id,
                     "suffix": suffix,
                     "third_party_verification": third_party_verification,
+                    "third_party_verifications": third_party_verifications,
                     "ticker_symbol": ticker_symbol,
                     "wealth_and_employment_details": wealth_and_employment_details,
                     "website": website,
@@ -588,6 +596,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
         third_party_verification: Optional[legal_entity_create_params.ThirdPartyVerification] | Omit = omit,
+        third_party_verifications: Iterable[legal_entity_create_params.ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
         wealth_and_employment_details: Optional[legal_entity_create_params.WealthAndEmploymentDetails] | Omit = omit,
         website: Optional[str] | Omit = omit,
@@ -675,7 +684,9 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           suffix: An individual's suffix.
 
-          third_party_verification: Information describing a third-party verification run by an external vendor.
+          third_party_verification: Deprecated. Use `third_party_verifications` instead.
+
+          third_party_verifications: A list of third-party verifications run by external vendors.
 
           ticker_symbol: Stock ticker symbol for publicly traded companies.
 
@@ -732,6 +743,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "service_provider_legal_entity_id": service_provider_legal_entity_id,
                     "suffix": suffix,
                     "third_party_verification": third_party_verification,
+                    "third_party_verifications": third_party_verifications,
                     "ticker_symbol": ticker_symbol,
                     "wealth_and_employment_details": wealth_and_employment_details,
                     "website": website,
@@ -820,6 +832,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
         third_party_verification: Optional[legal_entity_update_params.ThirdPartyVerification] | Omit = omit,
+        third_party_verifications: Iterable[legal_entity_update_params.ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
         wealth_and_employment_details: Optional[legal_entity_update_params.WealthAndEmploymentDetails] | Omit = omit,
         website: Optional[str] | Omit = omit,
@@ -894,7 +907,9 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           suffix: An individual's suffix.
 
-          third_party_verification: Information describing a third-party verification run by an external vendor.
+          third_party_verification: Deprecated. Use `third_party_verifications` instead.
+
+          third_party_verifications: A list of third-party verifications run by external vendors.
 
           ticker_symbol: Stock ticker symbol for publicly traded companies.
 
@@ -948,6 +963,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "service_provider_legal_entity_id": service_provider_legal_entity_id,
                     "suffix": suffix,
                     "third_party_verification": third_party_verification,
+                    "third_party_verifications": third_party_verifications,
                     "ticker_symbol": ticker_symbol,
                     "wealth_and_employment_details": wealth_and_employment_details,
                     "website": website,
