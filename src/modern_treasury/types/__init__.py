@@ -27,6 +27,7 @@ from .shared import (
     ForeignExchangeRate as ForeignExchangeRate,
     TransactionDirection as TransactionDirection,
     ChildLegalEntityCreate as ChildLegalEntityCreate,
+    ThirdPartyVerification as ThirdPartyVerification,
     LedgerEntryCreateRequest as LedgerEntryCreateRequest,
     LedgerAccountCreateRequest as LedgerAccountCreateRequest,
     IdentificationCreateRequest as IdentificationCreateRequest,

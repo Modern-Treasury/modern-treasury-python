@@ -10,6 +10,7 @@ from .address_request import AddressRequest as AddressRequest
 from .ledger_balances import LedgerBalances as LedgerBalances
 from .foreign_exchange_rate import ForeignExchangeRate as ForeignExchangeRate
 from .transaction_direction import TransactionDirection as TransactionDirection
+from .third_party_verification import ThirdPartyVerification as ThirdPartyVerification
 from .child_legal_entity_create import ChildLegalEntityCreate as ChildLegalEntityCreate
 from .ledger_entry_create_request import LedgerEntryCreateRequest as LedgerEntryCreateRequest
 from .identification_create_request import IdentificationCreateRequest as IdentificationCreateRequest
