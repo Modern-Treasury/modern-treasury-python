@@ -5,6 +5,7 @@ from .accounts_type import AccountsType as AccountsType
 from .contact_detail import ContactDetail as ContactDetail
 from .address_request import AddressRequest as AddressRequest
 from .transaction_direction import TransactionDirection as TransactionDirection
+from .third_party_verification import ThirdPartyVerification as ThirdPartyVerification
 from .child_legal_entity_create import ChildLegalEntityCreate as ChildLegalEntityCreate
 from .ledger_entry_create_request import LedgerEntryCreateRequest as LedgerEntryCreateRequest
 from .identification_create_request import IdentificationCreateRequest as IdentificationCreateRequest

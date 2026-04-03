@@ -19,6 +19,7 @@ from modern_treasury.types import (
     LegalEntityAddressCreateRequest,
     LegalEntityAssociationInlineCreate,
     LegalEntityIndustryClassification,
+    ThirdPartyVerification,
     TransactionDirection,
 )
 ```
