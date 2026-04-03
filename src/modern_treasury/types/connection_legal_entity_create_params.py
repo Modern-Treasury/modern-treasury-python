@@ -8,6 +8,7 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
+from .shared_params.third_party_verification import ThirdPartyVerification
 from .shared_params.identification_create_request import IdentificationCreateRequest
 from .shared_params.legal_entity_address_create_request import LegalEntityAddressCreateRequest
 from .shared_params.legal_entity_industry_classification import LegalEntityIndustryClassification
@@ -22,8 +23,6 @@ __all__ = [
     "LegalEntityPhoneNumber",
     "LegalEntityRegulators",
     "LegalEntityRegulator",
-    "LegalEntityThirdPartyVerification",
-    "LegalEntityThirdPartyVerifications",
     "LegalEntityWealthAndEmploymentDetails",
 ]
 
@@ -137,33 +136,6 @@ LegalEntityRegulators = LegalEntityRegulator
 
 Please use LegalEntityRegulator instead.
 """
-
-
-class LegalEntityThirdPartyVerification(TypedDict, total=False):
-    """Deprecated. Use `third_party_verifications` instead."""
-
-    outcome: Required[Literal["passed", "failed"]]
-    """The outcome of the verification. One of `passed` or `failed`."""
-
-    vendor: Required[Literal["persona", "middesk", "alloy", "sumsub", "veriff"]]
-    """The vendor that performed the verification, e.g. `persona`."""
-
-    vendor_verification_id: Required[str]
-    """The identification of the third party verification in `vendor`'s system."""
-
-    verification_category: Required[
-        Literal["legal_name", "date_of_birth", "address", "government_id_number", "adverse_media"]
-    ]
-    """The category of verification performed."""
-
-    verification_method: Required[str]
-    """The method used to perform the verification."""
-
-    verification_time: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
-    """The timestamp when the verification was performed."""
-
-    comment: Optional[str]
-    """An optional comment about the verification."""
 
 
 class LegalEntityWealthAndEmploymentDetails(TypedDict, total=False):
@@ -459,10 +431,10 @@ class LegalEntity(TypedDict, total=False):
     suffix: Optional[str]
     """An individual's suffix."""
 
-    third_party_verification: Optional[LegalEntityThirdPartyVerification]
+    third_party_verification: Optional[ThirdPartyVerification]
     """Deprecated. Use `third_party_verifications` instead."""
 
-    third_party_verifications: Iterable[LegalEntityThirdPartyVerification]
+    third_party_verifications: Iterable[ThirdPartyVerification]
     """A list of third-party verifications run by external vendors."""
 
     ticker_symbol: Optional[str]

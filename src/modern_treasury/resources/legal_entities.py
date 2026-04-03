@@ -18,6 +18,7 @@ from .._response import to_streamed_response_wrapper, async_to_streamed_response
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.legal_entity import LegalEntity
+from ..types.shared_params.third_party_verification import ThirdPartyVerification
 from ..types.shared_params.identification_create_request import IdentificationCreateRequest
 from ..types.shared_params.legal_entity_address_create_request import LegalEntityAddressCreateRequest
 from ..types.shared_params.legal_entity_industry_classification import LegalEntityIndustryClassification
@@ -88,8 +89,8 @@ class LegalEntities(SyncAPIResource):
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
-        third_party_verification: Optional[legal_entity_create_params.ThirdPartyVerification] | Omit = omit,
-        third_party_verifications: Iterable[legal_entity_create_params.ThirdPartyVerification] | Omit = omit,
+        third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
+        third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
         wealth_and_employment_details: Optional[legal_entity_create_params.WealthAndEmploymentDetails] | Omit = omit,
         website: Optional[str] | Omit = omit,
@@ -324,8 +325,8 @@ class LegalEntities(SyncAPIResource):
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
-        third_party_verification: Optional[legal_entity_update_params.ThirdPartyVerification] | Omit = omit,
-        third_party_verifications: Iterable[legal_entity_update_params.ThirdPartyVerification] | Omit = omit,
+        third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
+        third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
         wealth_and_employment_details: Optional[legal_entity_update_params.WealthAndEmploymentDetails] | Omit = omit,
         website: Optional[str] | Omit = omit,
@@ -595,8 +596,8 @@ class AsyncLegalEntities(AsyncAPIResource):
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
-        third_party_verification: Optional[legal_entity_create_params.ThirdPartyVerification] | Omit = omit,
-        third_party_verifications: Iterable[legal_entity_create_params.ThirdPartyVerification] | Omit = omit,
+        third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
+        third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
         wealth_and_employment_details: Optional[legal_entity_create_params.WealthAndEmploymentDetails] | Omit = omit,
         website: Optional[str] | Omit = omit,
@@ -831,8 +832,8 @@ class AsyncLegalEntities(AsyncAPIResource):
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
-        third_party_verification: Optional[legal_entity_update_params.ThirdPartyVerification] | Omit = omit,
-        third_party_verifications: Iterable[legal_entity_update_params.ThirdPartyVerification] | Omit = omit,
+        third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
+        third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
         wealth_and_employment_details: Optional[legal_entity_update_params.WealthAndEmploymentDetails] | Omit = omit,
         website: Optional[str] | Omit = omit,
