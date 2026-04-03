@@ -276,9 +276,25 @@ class TestCounterparties:
                             "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                             "suffix": "suffix",
                             "third_party_verification": {
+                                "outcome": "passed",
                                 "vendor": "persona",
                                 "vendor_verification_id": "vendor_verification_id",
+                                "verification_category": "legal_name",
+                                "verification_method": "verification_method",
+                                "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
+                                "comment": "comment",
                             },
+                            "third_party_verifications": [
+                                {
+                                    "outcome": "passed",
+                                    "vendor": "persona",
+                                    "vendor_verification_id": "vendor_verification_id",
+                                    "verification_category": "legal_name",
+                                    "verification_method": "verification_method",
+                                    "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
+                                    "comment": "comment",
+                                }
+                            ],
                             "ticker_symbol": "ticker_symbol",
                             "wealth_and_employment_details": {
                                 "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -332,9 +348,25 @@ class TestCounterparties:
                 "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "suffix": "suffix",
                 "third_party_verification": {
+                    "outcome": "passed",
                     "vendor": "persona",
                     "vendor_verification_id": "vendor_verification_id",
+                    "verification_category": "legal_name",
+                    "verification_method": "verification_method",
+                    "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "comment": "comment",
                 },
+                "third_party_verifications": [
+                    {
+                        "outcome": "passed",
+                        "vendor": "persona",
+                        "vendor_verification_id": "vendor_verification_id",
+                        "verification_category": "legal_name",
+                        "verification_method": "verification_method",
+                        "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "comment": "comment",
+                    }
+                ],
                 "ticker_symbol": "ticker_symbol",
                 "wealth_and_employment_details": {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -875,9 +907,25 @@ class TestAsyncCounterparties:
                             "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                             "suffix": "suffix",
                             "third_party_verification": {
+                                "outcome": "passed",
                                 "vendor": "persona",
                                 "vendor_verification_id": "vendor_verification_id",
+                                "verification_category": "legal_name",
+                                "verification_method": "verification_method",
+                                "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
+                                "comment": "comment",
                             },
+                            "third_party_verifications": [
+                                {
+                                    "outcome": "passed",
+                                    "vendor": "persona",
+                                    "vendor_verification_id": "vendor_verification_id",
+                                    "verification_category": "legal_name",
+                                    "verification_method": "verification_method",
+                                    "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
+                                    "comment": "comment",
+                                }
+                            ],
                             "ticker_symbol": "ticker_symbol",
                             "wealth_and_employment_details": {
                                 "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -931,9 +979,25 @@ class TestAsyncCounterparties:
                 "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "suffix": "suffix",
                 "third_party_verification": {
+                    "outcome": "passed",
                     "vendor": "persona",
                     "vendor_verification_id": "vendor_verification_id",
+                    "verification_category": "legal_name",
+                    "verification_method": "verification_method",
+                    "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "comment": "comment",
                 },
+                "third_party_verifications": [
+                    {
+                        "outcome": "passed",
+                        "vendor": "persona",
+                        "vendor_verification_id": "vendor_verification_id",
+                        "verification_category": "legal_name",
+                        "verification_method": "verification_method",
+                        "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "comment": "comment",
+                    }
+                ],
                 "ticker_symbol": "ticker_symbol",
                 "wealth_and_employment_details": {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
