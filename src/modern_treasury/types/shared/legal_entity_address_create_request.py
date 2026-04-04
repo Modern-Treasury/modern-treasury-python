@@ -23,7 +23,9 @@ class LegalEntityAddressCreateRequest(BaseModel):
     region: Optional[str] = None
     """Region or State."""
 
-    address_types: Optional[List[Literal["business", "mailing", "other", "po_box", "residential"]]] = None
+    address_types: Optional[
+        List[Literal["business", "business_registered", "mailing", "other", "po_box", "residential"]]
+    ] = None
     """The types of this address."""
 
     line2: Optional[str] = None

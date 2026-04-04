@@ -29,7 +29,7 @@ __all__ = [
 class Address(BaseModel):
     id: str
 
-    address_types: List[Literal["business", "mailing", "other", "po_box", "residential"]]
+    address_types: List[Literal["business", "business_registered", "mailing", "other", "po_box", "residential"]]
     """The types of this address."""
 
     country: Optional[str] = None
