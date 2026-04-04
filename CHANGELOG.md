@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.74.0 (2026-04-04)
+
+Full Changelog: [v1.73.0...v1.74.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.73.0...v1.74.0)
+
+### Features
+
+* **api:** add third_party_verification model ([d550ec0](https://github.com/Modern-Treasury/modern-treasury-python/commit/d550ec0304496440d0e99f2813dd4e12ae26006e))
+* **api:** api update ([cccedeb](https://github.com/Modern-Treasury/modern-treasury-python/commit/cccedeb349111bc60513659c341c7297510e4f30))
+* **api:** api update ([3183f0b](https://github.com/Modern-Treasury/modern-treasury-python/commit/3183f0bc3eef3621e5b55a4c07a13edaedb68423))
+* **api:** api update ([48529b2](https://github.com/Modern-Treasury/modern-treasury-python/commit/48529b2f9a8e0512d8310fbd498a985cd71cf6e5))
+* **api:** api update ([101933e](https://github.com/Modern-Treasury/modern-treasury-python/commit/101933ea1ad62fdc1e2de1d8250c9a926d6073eb))
+* **api:** api update ([d9d33c8](https://github.com/Modern-Treasury/modern-treasury-python/commit/d9d33c85689a0334a563ec0b83696e9e3e12d7b8))
+* **api:** api update ([b7378c2](https://github.com/Modern-Treasury/modern-treasury-python/commit/b7378c2b88df0ef554dc4c63a135e70008316c4c))
+* **api:** api update ([5661987](https://github.com/Modern-Treasury/modern-treasury-python/commit/566198775306697dc2e2d205698bbef151e6ed89))
+* **api:** api update ([4b2a659](https://github.com/Modern-Treasury/modern-treasury-python/commit/4b2a659bd5d4ee61d280a46aa30523acf2f8e915))
+* **internal:** implement indices array format for query and form serialization ([7c06edd](https://github.com/Modern-Treasury/modern-treasury-python/commit/7c06edde944cac0e47a10ea725a900d09041945b))
+
 ## 1.73.0 (2026-03-25)
 
 Full Changelog: [v1.72.0...v1.73.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.72.0...v1.73.0)
