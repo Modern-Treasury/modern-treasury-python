@@ -69,6 +69,7 @@ class Document(BaseModel):
         "articles_of_incorporation",
         "certificate_of_good_standing",
         "ein_letter",
+        "generic",
         "identification_back",
         "identification_front",
         "proof_of_address",
