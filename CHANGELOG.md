@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.75.0 (2026-04-08)
+
+Full Changelog: [v1.74.0...v1.75.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.74.0...v1.75.0)
+
+### Features
+
+* **api:** api update ([59f5754](https://github.com/Modern-Treasury/modern-treasury-python/commit/59f5754bc03e0df927c98604abf9b46ef5fd49f7))
+
+
+### Bug Fixes
+
+* **client:** preserve hardcoded query params when merging with user params ([fe1d412](https://github.com/Modern-Treasury/modern-treasury-python/commit/fe1d4122374854505dea6811ba577df53388862c))
+
 ## 1.74.0 (2026-04-04)
 
 Full Changelog: [v1.73.0...v1.74.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.73.0...v1.74.0)
