@@ -120,6 +120,7 @@ class TestIncomingPaymentDetails:
             metadata={"foo": "string"},
             per_page=0,
             status="completed",
+            subtype="subtype",
             type="ach",
             virtual_account_id="virtual_account_id",
         )
@@ -160,6 +161,7 @@ class TestIncomingPaymentDetails:
             description="description",
             direction="credit",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            subtype="subtype",
             type="ach",
             virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -290,6 +292,7 @@ class TestAsyncIncomingPaymentDetails:
             metadata={"foo": "string"},
             per_page=0,
             status="completed",
+            subtype="subtype",
             type="ach",
             virtual_account_id="virtual_account_id",
         )
@@ -330,6 +333,7 @@ class TestAsyncIncomingPaymentDetails:
             description="description",
             direction="credit",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            subtype="subtype",
             type="ach",
             virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )

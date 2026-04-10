@@ -129,6 +129,13 @@ class IncomingPaymentDetail(BaseModel):
     One of `pending`, `completed`, or `returned`.
     """
 
+    subtype: Optional[str] = None
+    """An additional layer of classification for the type of incoming payment detail.
+
+    For example, a `type` of `stablecoin` may have a `subtype` of `ethereum` or
+    `solana`.
+    """
+
     transaction_id: Optional[str] = None
     """The ID of the reconciled Transaction or `null`."""
 

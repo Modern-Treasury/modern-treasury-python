@@ -40,6 +40,12 @@ class IncomingPaymentDetailCreateAsyncParams(TypedDict, total=False):
     internal_account_id: str
     """The ID of one of your internal accounts."""
 
+    subtype: Optional[str]
+    """
+    An additional layer of classification for the type of incoming payment detail,
+    e.g. `ethereum` for a `stablecoin` type.
+    """
+
     type: Literal[
         "ach",
         "au_becs",
