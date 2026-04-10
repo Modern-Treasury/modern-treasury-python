@@ -138,6 +138,7 @@ class IncomingPaymentDetails(SyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         per_page: int | Omit = omit,
         status: Literal["completed", "pending", "returned"] | Omit = omit,
+        subtype: str | Omit = omit,
         type: Literal[
             "ach",
             "au_becs",
@@ -186,6 +187,10 @@ class IncomingPaymentDetails(SyncAPIResource):
           status: The current status of the incoming payment order. One of `pending`, `completed`,
               or `returned`.
 
+          subtype: An additional layer of classification for the type of incoming payment detail.
+              For example, a `type` of `stablecoin` may have a `subtype` of `ethereum` or
+              `solana`.
+
           type: One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
               `wire`.
 
@@ -217,6 +222,7 @@ class IncomingPaymentDetails(SyncAPIResource):
                         "metadata": metadata,
                         "per_page": per_page,
                         "status": status,
+                        "subtype": subtype,
                         "type": type,
                         "virtual_account_id": virtual_account_id,
                     },
@@ -236,6 +242,7 @@ class IncomingPaymentDetails(SyncAPIResource):
         description: Optional[str] | Omit = omit,
         direction: Literal["credit", "debit"] | Omit = omit,
         internal_account_id: str | Omit = omit,
+        subtype: Optional[str] | Omit = omit,
         type: Literal[
             "ach",
             "au_becs",
@@ -286,6 +293,9 @@ class IncomingPaymentDetails(SyncAPIResource):
 
           internal_account_id: The ID of one of your internal accounts.
 
+          subtype: An additional layer of classification for the type of incoming payment detail,
+              e.g. `ethereum` for a `stablecoin` type.
+
           type: One of `ach`, `wire`, `check`.
 
           virtual_account_id: An optional parameter to associate the incoming payment detail to a virtual
@@ -312,6 +322,7 @@ class IncomingPaymentDetails(SyncAPIResource):
                     "description": description,
                     "direction": direction,
                     "internal_account_id": internal_account_id,
+                    "subtype": subtype,
                     "type": type,
                     "virtual_account_id": virtual_account_id,
                 },
@@ -438,6 +449,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         per_page: int | Omit = omit,
         status: Literal["completed", "pending", "returned"] | Omit = omit,
+        subtype: str | Omit = omit,
         type: Literal[
             "ach",
             "au_becs",
@@ -486,6 +498,10 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
           status: The current status of the incoming payment order. One of `pending`, `completed`,
               or `returned`.
 
+          subtype: An additional layer of classification for the type of incoming payment detail.
+              For example, a `type` of `stablecoin` may have a `subtype` of `ethereum` or
+              `solana`.
+
           type: One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
               `wire`.
 
@@ -517,6 +533,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
                         "metadata": metadata,
                         "per_page": per_page,
                         "status": status,
+                        "subtype": subtype,
                         "type": type,
                         "virtual_account_id": virtual_account_id,
                     },
@@ -536,6 +553,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         description: Optional[str] | Omit = omit,
         direction: Literal["credit", "debit"] | Omit = omit,
         internal_account_id: str | Omit = omit,
+        subtype: Optional[str] | Omit = omit,
         type: Literal[
             "ach",
             "au_becs",
@@ -586,6 +604,9 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
 
           internal_account_id: The ID of one of your internal accounts.
 
+          subtype: An additional layer of classification for the type of incoming payment detail,
+              e.g. `ethereum` for a `stablecoin` type.
+
           type: One of `ach`, `wire`, `check`.
 
           virtual_account_id: An optional parameter to associate the incoming payment detail to a virtual
@@ -612,6 +633,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
                     "description": description,
                     "direction": direction,
                     "internal_account_id": internal_account_id,
+                    "subtype": subtype,
                     "type": type,
                     "virtual_account_id": virtual_account_id,
                 },

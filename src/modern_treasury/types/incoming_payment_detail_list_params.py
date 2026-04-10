@@ -45,6 +45,13 @@ class IncomingPaymentDetailListParams(TypedDict, total=False):
     One of `pending`, `completed`, or `returned`.
     """
 
+    subtype: str
+    """An additional layer of classification for the type of incoming payment detail.
+
+    For example, a `type` of `stablecoin` may have a `subtype` of `ethereum` or
+    `solana`.
+    """
+
     type: Literal[
         "ach",
         "au_becs",
