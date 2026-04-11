@@ -69,6 +69,7 @@ class IncomingPaymentDetailListParams(TypedDict, total=False):
         "sepa",
         "signet",
         "solana",
+        "stablecoin",
         "wire",
         "zengin",
     ]

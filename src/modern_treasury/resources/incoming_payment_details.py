@@ -156,6 +156,7 @@ class IncomingPaymentDetails(SyncAPIResource):
             "sepa",
             "signet",
             "solana",
+            "stablecoin",
             "wire",
             "zengin",
         ]
@@ -260,6 +261,7 @@ class IncomingPaymentDetails(SyncAPIResource):
             "sepa",
             "signet",
             "solana",
+            "stablecoin",
             "wire",
             "zengin",
         ]
@@ -467,6 +469,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
             "sepa",
             "signet",
             "solana",
+            "stablecoin",
             "wire",
             "zengin",
         ]
@@ -571,6 +574,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
             "sepa",
             "signet",
             "solana",
+            "stablecoin",
             "wire",
             "zengin",
         ]
