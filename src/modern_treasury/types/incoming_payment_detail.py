@@ -159,6 +159,7 @@ class IncomingPaymentDetail(BaseModel):
         "sepa",
         "signet",
         "solana",
+        "stablecoin",
         "wire",
         "zengin",
     ]
