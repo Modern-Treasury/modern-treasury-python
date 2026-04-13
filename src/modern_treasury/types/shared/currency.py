@@ -140,7 +140,6 @@ Currency: TypeAlias = Literal[
     "RUB",
     "RWF",
     "SAR",
-    "SBC",
     "SBD",
     "SCR",
     "SDG",
