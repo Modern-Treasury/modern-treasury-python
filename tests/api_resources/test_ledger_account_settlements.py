@@ -128,6 +128,7 @@ class TestLedgerAccountSettlements:
                 "foo": "bar",
                 "modern": "treasury",
             },
+            skip_settlement_ledger_transaction=True,
             status="posted",
         )
         assert_matches_type(LedgerAccountSettlement, ledger_account_settlement, path=["response"])
@@ -317,6 +318,7 @@ class TestAsyncLedgerAccountSettlements:
                 "foo": "bar",
                 "modern": "treasury",
             },
+            skip_settlement_ledger_transaction=True,
             status="posted",
         )
         assert_matches_type(LedgerAccountSettlement, ledger_account_settlement, path=["response"])

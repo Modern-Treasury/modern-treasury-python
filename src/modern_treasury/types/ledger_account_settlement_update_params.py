@@ -18,6 +18,12 @@ class LedgerAccountSettlementUpdateParams(TypedDict, total=False):
     Both the key and value must be strings.
     """
 
+    skip_settlement_ledger_transaction: Optional[bool]
+    """It is set to `false` by default.
+
+    It should be set to `true` when migrating existing settlements.
+    """
+
     status: Literal["posted", "archived"]
     """To post a pending ledger account settlement, use `posted`.
 
