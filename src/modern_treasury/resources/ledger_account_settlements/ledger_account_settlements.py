@@ -180,6 +180,7 @@ class LedgerAccountSettlements(SyncAPIResource):
         *,
         description: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
+        skip_settlement_ledger_transaction: Optional[bool] | Omit = omit,
         status: Literal["posted", "archived"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -197,6 +198,9 @@ class LedgerAccountSettlements(SyncAPIResource):
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
+
+          skip_settlement_ledger_transaction: It is set to `false` by default. It should be set to `true` when migrating
+              existing settlements.
 
           status: To post a pending ledger account settlement, use `posted`. To archive a pending
               ledger transaction, use `archived`.
@@ -219,6 +223,7 @@ class LedgerAccountSettlements(SyncAPIResource):
                 {
                     "description": description,
                     "metadata": metadata,
+                    "skip_settlement_ledger_transaction": skip_settlement_ledger_transaction,
                     "status": status,
                 },
                 ledger_account_settlement_update_params.LedgerAccountSettlementUpdateParams,
@@ -454,6 +459,7 @@ class AsyncLedgerAccountSettlements(AsyncAPIResource):
         *,
         description: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
+        skip_settlement_ledger_transaction: Optional[bool] | Omit = omit,
         status: Literal["posted", "archived"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -471,6 +477,9 @@ class AsyncLedgerAccountSettlements(AsyncAPIResource):
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
+
+          skip_settlement_ledger_transaction: It is set to `false` by default. It should be set to `true` when migrating
+              existing settlements.
 
           status: To post a pending ledger account settlement, use `posted`. To archive a pending
               ledger transaction, use `archived`.
@@ -493,6 +502,7 @@ class AsyncLedgerAccountSettlements(AsyncAPIResource):
                 {
                     "description": description,
                     "metadata": metadata,
+                    "skip_settlement_ledger_transaction": skip_settlement_ledger_transaction,
                     "status": status,
                 },
                 ledger_account_settlement_update_params.LedgerAccountSettlementUpdateParams,
