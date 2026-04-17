@@ -17,8 +17,9 @@ from ...types import (
     payment_order_update_params,
     payment_order_create_async_params,
 )
+from ..._files import deepcopy_with_paths
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import extract_files, path_template, maybe_transform, deepcopy_minimal, async_maybe_transform
+from ..._utils import extract_files, path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .reversals import (
     Reversals,
@@ -269,7 +270,7 @@ class PaymentOrders(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
-        body = deepcopy_minimal(
+        body = deepcopy_with_paths(
             {
                 "amount": amount,
                 "direction": direction,
@@ -312,7 +313,8 @@ class PaymentOrders(SyncAPIResource):
                 "ultimate_receiving_party_identifier": ultimate_receiving_party_identifier,
                 "ultimate_receiving_party_name": ultimate_receiving_party_name,
                 "vendor_attributes": vendor_attributes,
-            }
+            },
+            [["documents", "<array>", "file"]],
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["documents", "<array>", "file"]])
         if files:
@@ -1254,7 +1256,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
-        body = deepcopy_minimal(
+        body = deepcopy_with_paths(
             {
                 "amount": amount,
                 "direction": direction,
@@ -1297,7 +1299,8 @@ class AsyncPaymentOrders(AsyncAPIResource):
                 "ultimate_receiving_party_identifier": ultimate_receiving_party_identifier,
                 "ultimate_receiving_party_name": ultimate_receiving_party_name,
                 "vendor_attributes": vendor_attributes,
-            }
+            },
+            [["documents", "<array>", "file"]],
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["documents", "<array>", "file"]])
         if files:
