@@ -65,7 +65,7 @@ class InternalAccounts(SyncAPIResource):
         self,
         *,
         connection_id: str,
-        currency: Literal["USD", "CAD"],
+        currency: Literal["USD", "CAD", "USDC", "USDG", "PYUSD"],
         name: str,
         party_name: str,
         account_capabilities: Iterable[internal_account_create_params.AccountCapability] | Omit = omit,
@@ -106,8 +106,8 @@ class InternalAccounts(SyncAPIResource):
         Args:
           connection_id: The identifier of the financial institution the account belongs to.
 
-          currency: Either "USD" or "CAD". Internal accounts created at Increase only supports
-              "USD".
+          currency: The currency of the internal account. Supports "USD" and "CAD" for fiat, and
+              "USDC", "USDG", and "PYUSD" for stablecoin accounts.
 
           name: The nickname of the account.
 
@@ -519,7 +519,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         self,
         *,
         connection_id: str,
-        currency: Literal["USD", "CAD"],
+        currency: Literal["USD", "CAD", "USDC", "USDG", "PYUSD"],
         name: str,
         party_name: str,
         account_capabilities: Iterable[internal_account_create_params.AccountCapability] | Omit = omit,
@@ -560,8 +560,8 @@ class AsyncInternalAccounts(AsyncAPIResource):
         Args:
           connection_id: The identifier of the financial institution the account belongs to.
 
-          currency: Either "USD" or "CAD". Internal accounts created at Increase only supports
-              "USD".
+          currency: The currency of the internal account. Supports "USD" and "CAD" for fiat, and
+              "USDC", "USDG", and "PYUSD" for stablecoin accounts.
 
           name: The nickname of the account.
 
