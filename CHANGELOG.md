@@ -1,5 +1,41 @@
 # Changelog
 
+## 1.76.0 (2026-04-22)
+
+Full Changelog: [v1.75.0...v1.76.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.75.0...v1.76.0)
+
+### Features
+
+* **api:** api update ([0ecb47f](https://github.com/Modern-Treasury/modern-treasury-python/commit/0ecb47ff5d20b1de2f763c4ca39719eb9ad5f56b))
+* **api:** api update ([eff1fdf](https://github.com/Modern-Treasury/modern-treasury-python/commit/eff1fdf52d45575d6141975a8398d9a8bbf307b6))
+* **api:** api update ([0e4acfb](https://github.com/Modern-Treasury/modern-treasury-python/commit/0e4acfb9f839239e6734a45837c3a1b95f5f671d))
+* **api:** api update ([1faeca6](https://github.com/Modern-Treasury/modern-treasury-python/commit/1faeca66d76274432369b7a7fd108065a84f7a70))
+* **api:** api update ([bf7172a](https://github.com/Modern-Treasury/modern-treasury-python/commit/bf7172a1023e626eb96b78e972bc26395a3bec47))
+* **api:** api update ([0261895](https://github.com/Modern-Treasury/modern-treasury-python/commit/026189540e80fa8c4a464c1a725be9933f5b7e35))
+* **api:** api update ([f51a102](https://github.com/Modern-Treasury/modern-treasury-python/commit/f51a102e195f3cca5e08ebe34c72a658181ef39c))
+* **api:** api update ([855300b](https://github.com/Modern-Treasury/modern-treasury-python/commit/855300b17c4e8a7b84672de36a88aeb57e512a3a))
+* **api:** api update ([7f0c775](https://github.com/Modern-Treasury/modern-treasury-python/commit/7f0c77545e2ba4fa91139c52a1d766d9b119de3b))
+
+
+### Bug Fixes
+
+* ensure file data are only sent as 1 parameter ([fe65054](https://github.com/Modern-Treasury/modern-treasury-python/commit/fe6505411e33f91eafe89b04c22db4d2290c3bf1))
+
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([d0cff15](https://github.com/Modern-Treasury/modern-treasury-python/commit/d0cff158c656746b118b2c26c49e97912c8ee930))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([22ebd75](https://github.com/Modern-Treasury/modern-treasury-python/commit/22ebd75652960632fa6ea9eb127535748aa65f3c))
+
+
+### Documentation
+
+* improve examples ([a009452](https://github.com/Modern-Treasury/modern-treasury-python/commit/a009452a06a74c1a4a7bfdeac789400af807837b))
+
 ## 1.75.0 (2026-04-08)
 
 Full Changelog: [v1.74.0...v1.75.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.74.0...v1.75.0)
