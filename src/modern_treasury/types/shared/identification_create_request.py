@@ -63,6 +63,7 @@ class IdentificationCreateRequest(BaseModel):
         "us_ein",
         "us_itin",
         "us_ssn",
+        "uy_rut",
         "vn_tin",
     ]
     """The type of ID number."""
