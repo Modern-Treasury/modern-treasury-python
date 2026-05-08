@@ -301,11 +301,16 @@ class TestLedgerTransactions:
                     "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "available_balance_amount": {"foo": 0},
+                    "lock_version": 0,
                     "metadata": {
                         "key": "value",
                         "foo": "bar",
                         "modern": "treasury",
                     },
+                    "pending_balance_amount": {"foo": 0},
+                    "posted_balance_amount": {"foo": 0},
+                    "show_resulting_ledger_account_balances": True,
                 }
             ],
             description="description",
@@ -712,11 +717,16 @@ class TestAsyncLedgerTransactions:
                     "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "available_balance_amount": {"foo": 0},
+                    "lock_version": 0,
                     "metadata": {
                         "key": "value",
                         "foo": "bar",
                         "modern": "treasury",
                     },
+                    "pending_balance_amount": {"foo": 0},
+                    "posted_balance_amount": {"foo": 0},
+                    "show_resulting_ledger_account_balances": True,
                 }
             ],
             description="description",

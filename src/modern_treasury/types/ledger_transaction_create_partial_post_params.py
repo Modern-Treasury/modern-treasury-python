@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import Dict, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
@@ -57,10 +57,45 @@ class PostedLedgerEntry(TypedDict, total=False):
     ledger_account_id: Required[str]
     """The ledger account that this ledger entry is associated with."""
 
+    available_balance_amount: Optional[Dict[str, int]]
+    """
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+    account’s available balance. If any of these conditions would be false after the
+    transaction is created, the entire call will fail with error code 422.
+    """
+
+    lock_version: Optional[int]
+    """Lock version of the ledger account.
+
+    This can be passed when creating a ledger transaction to only succeed if no
+    ledger transactions have posted since the given version. See our post about
+    Designing the Ledgers API with Optimistic Locking for more details.
+    """
+
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.
 
     Both the key and value must be strings.
+    """
+
+    pending_balance_amount: Optional[Dict[str, int]]
+    """
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+    account’s pending balance. If any of these conditions would be false after the
+    transaction is created, the entire call will fail with error code 422.
+    """
+
+    posted_balance_amount: Optional[Dict[str, int]]
+    """
+    Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to lock on the
+    account’s posted balance. If any of these conditions would be false after the
+    transaction is created, the entire call will fail with error code 422.
+    """
+
+    show_resulting_ledger_account_balances: Optional[bool]
+    """
+    If true, response will include the balance of the associated ledger account for
+    the entry.
     """
 
 
