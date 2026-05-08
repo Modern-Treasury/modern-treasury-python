@@ -39,12 +39,6 @@ class LedgerTransactionCreatePartialPostParams(TypedDict, total=False):
 
 
 class PostedLedgerEntry(TypedDict, total=False):
-    amount: Required[int]
-    """Value in specified currency's smallest unit.
-
-    e.g. $10 would be represented as 1000. Can be any integer up to 36 digits.
-    """
-
     direction: Required[Literal["credit", "debit"]]
     """One of `credit`, `debit`.
 
@@ -56,6 +50,18 @@ class PostedLedgerEntry(TypedDict, total=False):
 
     ledger_account_id: Required[str]
     """The ledger account that this ledger entry is associated with."""
+
+    amount: int
+    """Value in specified currency's smallest unit.
+
+    e.g. $10 would be represented as 1000. Can be any integer up to 36 digits.
+    """
+
+    amount_string: str
+    """
+    The amount of the ledger entry as a string, preserving full precision for values
+    that may exceed safe integer limits in some languages.
+    """
 
     available_balance_amount: Optional[Dict[str, int]]
     """
