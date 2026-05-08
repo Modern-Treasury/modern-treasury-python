@@ -26,7 +26,6 @@ class TestLedgerTransactions:
         ledger_transaction = client.ledger_transactions.create(
             ledger_entries=[
                 {
-                    "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 }
@@ -39,9 +38,10 @@ class TestLedgerTransactions:
         ledger_transaction = client.ledger_transactions.create(
             ledger_entries=[
                 {
-                    "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "amount": 0,
+                    "amount_string": "amount_string",
                     "available_balance_amount": {"foo": 0},
                     "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "lock_version": 0,
@@ -75,7 +75,6 @@ class TestLedgerTransactions:
         response = client.ledger_transactions.with_raw_response.create(
             ledger_entries=[
                 {
-                    "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 }
@@ -92,7 +91,6 @@ class TestLedgerTransactions:
         with client.ledger_transactions.with_streaming_response.create(
             ledger_entries=[
                 {
-                    "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 }
@@ -160,9 +158,10 @@ class TestLedgerTransactions:
             external_id="external_id",
             ledger_entries=[
                 {
-                    "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "amount": 0,
+                    "amount_string": "amount_string",
                     "available_balance_amount": {"foo": 0},
                     "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "lock_version": 0,
@@ -284,7 +283,6 @@ class TestLedgerTransactions:
             id="id",
             posted_ledger_entries=[
                 {
-                    "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 }
@@ -298,9 +296,10 @@ class TestLedgerTransactions:
             id="id",
             posted_ledger_entries=[
                 {
-                    "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "amount": 0,
+                    "amount_string": "amount_string",
                     "available_balance_amount": {"foo": 0},
                     "lock_version": 0,
                     "metadata": {
@@ -329,7 +328,6 @@ class TestLedgerTransactions:
             id="id",
             posted_ledger_entries=[
                 {
-                    "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 }
@@ -347,7 +345,6 @@ class TestLedgerTransactions:
             id="id",
             posted_ledger_entries=[
                 {
-                    "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 }
@@ -368,7 +365,6 @@ class TestLedgerTransactions:
                 id="",
                 posted_ledger_entries=[
                     {
-                        "amount": 0,
                         "direction": "credit",
                         "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     }
@@ -442,7 +438,6 @@ class TestAsyncLedgerTransactions:
         ledger_transaction = await async_client.ledger_transactions.create(
             ledger_entries=[
                 {
-                    "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 }
@@ -455,9 +450,10 @@ class TestAsyncLedgerTransactions:
         ledger_transaction = await async_client.ledger_transactions.create(
             ledger_entries=[
                 {
-                    "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "amount": 0,
+                    "amount_string": "amount_string",
                     "available_balance_amount": {"foo": 0},
                     "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "lock_version": 0,
@@ -491,7 +487,6 @@ class TestAsyncLedgerTransactions:
         response = await async_client.ledger_transactions.with_raw_response.create(
             ledger_entries=[
                 {
-                    "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 }
@@ -508,7 +503,6 @@ class TestAsyncLedgerTransactions:
         async with async_client.ledger_transactions.with_streaming_response.create(
             ledger_entries=[
                 {
-                    "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 }
@@ -576,9 +570,10 @@ class TestAsyncLedgerTransactions:
             external_id="external_id",
             ledger_entries=[
                 {
-                    "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "amount": 0,
+                    "amount_string": "amount_string",
                     "available_balance_amount": {"foo": 0},
                     "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "lock_version": 0,
@@ -700,7 +695,6 @@ class TestAsyncLedgerTransactions:
             id="id",
             posted_ledger_entries=[
                 {
-                    "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 }
@@ -714,9 +708,10 @@ class TestAsyncLedgerTransactions:
             id="id",
             posted_ledger_entries=[
                 {
-                    "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "amount": 0,
+                    "amount_string": "amount_string",
                     "available_balance_amount": {"foo": 0},
                     "lock_version": 0,
                     "metadata": {
@@ -745,7 +740,6 @@ class TestAsyncLedgerTransactions:
             id="id",
             posted_ledger_entries=[
                 {
-                    "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 }
@@ -763,7 +757,6 @@ class TestAsyncLedgerTransactions:
             id="id",
             posted_ledger_entries=[
                 {
-                    "amount": 0,
                     "direction": "credit",
                     "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 }
@@ -784,7 +777,6 @@ class TestAsyncLedgerTransactions:
                 id="",
                 posted_ledger_entries=[
                     {
-                        "amount": 0,
                         "direction": "credit",
                         "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     }
