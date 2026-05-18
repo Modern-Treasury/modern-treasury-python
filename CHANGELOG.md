@@ -1,5 +1,36 @@
 # Changelog
 
+## 1.77.0 (2026-05-18)
+
+Full Changelog: [v1.76.0...v1.77.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.76.0...v1.77.0)
+
+### Features
+
+* **api:** api update ([67b3d97](https://github.com/Modern-Treasury/modern-treasury-python/commit/67b3d976075ad304af48da6586b11fa38ab3b807))
+* **api:** api update ([252aef7](https://github.com/Modern-Treasury/modern-treasury-python/commit/252aef7fdf7989aadf32daa0b96d2e180d777239))
+* **api:** api update ([fe8aabc](https://github.com/Modern-Treasury/modern-treasury-python/commit/fe8aabc201d367e1778fa2c84d029ee1af0665db))
+* **api:** api update ([8f7ab08](https://github.com/Modern-Treasury/modern-treasury-python/commit/8f7ab08e53657febef591db0ca7654e99087a1e3))
+* **api:** api update ([ced4eb1](https://github.com/Modern-Treasury/modern-treasury-python/commit/ced4eb1966fa6be97ae1bd33f592c35f902195cd))
+* **api:** api update ([ec6cfcf](https://github.com/Modern-Treasury/modern-treasury-python/commit/ec6cfcf6d42c808db6e967713051a444cb11c7a9))
+* **api:** api update ([1da3c13](https://github.com/Modern-Treasury/modern-treasury-python/commit/1da3c135be415aa6dec24d190223127b97337df9))
+* **api:** api update ([47e5835](https://github.com/Modern-Treasury/modern-treasury-python/commit/47e5835a8598aee0fea9a3a63008ddbab148d236))
+* **api:** api update ([88d127f](https://github.com/Modern-Treasury/modern-treasury-python/commit/88d127f34abcc7e971cf0f48648fd97d8f806671))
+* **api:** api update ([a960ed8](https://github.com/Modern-Treasury/modern-treasury-python/commit/a960ed817b7d1faadc41296237f01e197c610078))
+* **internal/types:** support eagerly validating pydantic iterators ([0de6c33](https://github.com/Modern-Treasury/modern-treasury-python/commit/0de6c33d8ad196baf3bc200fdbdd3fe3e4f10809))
+* support setting headers via env ([12b4a5f](https://github.com/Modern-Treasury/modern-treasury-python/commit/12b4a5fbf6668adc297dd8921fa1a966845c4423))
+
+
+### Bug Fixes
+
+* **client:** add missing f-string prefix in file type error message ([b931d8d](https://github.com/Modern-Treasury/modern-treasury-python/commit/b931d8d5150c11c459e2ac2d98f5c8ef95b14f87))
+* use correct field name format for multipart file arrays ([c18d9fa](https://github.com/Modern-Treasury/modern-treasury-python/commit/c18d9faef73d1c354373414548a6cbda1fcb563d))
+
+
+### Chores
+
+* **internal:** codegen related update ([816b839](https://github.com/Modern-Treasury/modern-treasury-python/commit/816b8392343b2933aa88a3d80e159359181940bc))
+* **internal:** reformat pyproject.toml ([0a622b0](https://github.com/Modern-Treasury/modern-treasury-python/commit/0a622b042dcec533793c9de1a9f4a7805c95d442))
+
 ## 1.76.0 (2026-04-22)
 
 Full Changelog: [v1.75.0...v1.76.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.75.0...v1.76.0)
