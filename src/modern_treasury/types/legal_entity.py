@@ -57,6 +57,9 @@ class Address(BaseModel):
     postal_code: Optional[str] = None
     """The postal code of the address."""
 
+    primary: Optional[bool] = None
+    """Whether this address is the primary address for the legal entity."""
+
     region: Optional[str] = None
     """Region or State."""
 
