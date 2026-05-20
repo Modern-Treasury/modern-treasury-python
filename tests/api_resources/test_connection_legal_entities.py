@@ -42,6 +42,7 @@ class TestConnectionLegalEntities:
                         "region": "region",
                         "address_types": ["business"],
                         "line2": "line2",
+                        "primary": True,
                     }
                 ],
                 "bank_settings": {
@@ -119,6 +120,7 @@ class TestConnectionLegalEntities:
                                     "region": "region",
                                     "address_types": ["business"],
                                     "line2": "line2",
+                                    "primary": True,
                                 }
                             ],
                             "bank_settings": {
@@ -500,6 +502,7 @@ class TestAsyncConnectionLegalEntities:
                         "region": "region",
                         "address_types": ["business"],
                         "line2": "line2",
+                        "primary": True,
                     }
                 ],
                 "bank_settings": {
@@ -577,6 +580,7 @@ class TestAsyncConnectionLegalEntities:
                                     "region": "region",
                                     "address_types": ["business"],
                                     "line2": "line2",
+                                    "primary": True,
                                 }
                             ],
                             "bank_settings": {

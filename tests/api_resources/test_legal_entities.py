@@ -42,6 +42,7 @@ class TestLegalEntities:
                     "region": "region",
                     "address_types": ["business"],
                     "line2": "line2",
+                    "primary": True,
                 }
             ],
             bank_settings={
@@ -119,6 +120,7 @@ class TestLegalEntities:
                                 "region": "region",
                                 "address_types": ["business"],
                                 "line2": "line2",
+                                "primary": True,
                             }
                         ],
                         "bank_settings": {
@@ -408,6 +410,7 @@ class TestLegalEntities:
                     "region": "region",
                     "address_types": ["business"],
                     "line2": "line2",
+                    "primary": True,
                 }
             ],
             bank_settings={
@@ -629,6 +632,7 @@ class TestAsyncLegalEntities:
                     "region": "region",
                     "address_types": ["business"],
                     "line2": "line2",
+                    "primary": True,
                 }
             ],
             bank_settings={
@@ -706,6 +710,7 @@ class TestAsyncLegalEntities:
                                 "region": "region",
                                 "address_types": ["business"],
                                 "line2": "line2",
+                                "primary": True,
                             }
                         ],
                         "bank_settings": {
@@ -1002,6 +1007,7 @@ class TestAsyncLegalEntities:
                     "region": "region",
                     "address_types": ["business"],
                     "line2": "line2",
+                    "primary": True,
                 }
             ],
             bank_settings={
