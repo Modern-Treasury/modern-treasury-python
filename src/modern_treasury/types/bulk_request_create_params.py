@@ -63,6 +63,8 @@ __all__ = [
     "ResourceTransactionUpdateRequestWithID",
     "ResourcesLedgerTransactionUpdateRequestWithID",
     "ResourceLedgerTransactionUpdateRequestWithID",
+    "ResourcesLedgerAccountUpdateRequestWithID",
+    "ResourceLedgerAccountUpdateRequestWithID",
 ]
 
 
@@ -1527,6 +1529,32 @@ ResourcesLedgerTransactionUpdateRequestWithID = ResourceLedgerTransactionUpdateR
 Please use ResourceLedgerTransactionUpdateRequestWithID instead.
 """
 
+
+class ResourceLedgerAccountUpdateRequestWithID(TypedDict, total=False):
+    id: str
+
+    description: Optional[str]
+    """The description of the ledger account."""
+
+    external_id: Optional[str]
+    """An optional user-defined 180 character unique identifier."""
+
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
+
+    name: str
+    """The name of the ledger account."""
+
+
+ResourcesLedgerAccountUpdateRequestWithID = ResourceLedgerAccountUpdateRequestWithID
+"""This type is deprecated and will be removed in a future release.
+
+Please use ResourceLedgerAccountUpdateRequestWithID instead.
+"""
+
 Resource: TypeAlias = Union[
     ResourcePaymentOrderAsyncCreateRequest,
     ResourceExpectedPaymentCreateRequest,
@@ -1538,6 +1566,7 @@ Resource: TypeAlias = Union[
     ResourceExpectedPaymentUpdateRequestWithID,
     ResourceTransactionUpdateRequestWithID,
     ResourceLedgerTransactionUpdateRequestWithID,
+    ResourceLedgerAccountUpdateRequestWithID,
 ]
 
 Resources = Resource
