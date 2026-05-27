@@ -86,6 +86,7 @@ class InternalAccounts(SyncAPIResource):
         ]
         | Omit = omit,
         counterparty_id: str | Omit = omit,
+        debitable: Optional[bool] | Omit = omit,
         external_id: Optional[str] | Omit = omit,
         legal_entity_id: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
@@ -119,6 +120,12 @@ class InternalAccounts(SyncAPIResource):
               institution.
 
           counterparty_id: The Counterparty associated to this account.
+
+          debitable: Whether this account can receive ACH debits. Only applicable to accounts created
+              under a Modern Treasury PSP connection, or `null` for Bring Your Own Bank
+              accounts. Defaults to `false`. Configurable on create only. Please reach out to
+              support@moderntreasury.com or your customer success manager to enable this
+              capability for your connection.
 
           external_id: An optional user-defined 180 character unique identifier.
 
@@ -155,6 +162,7 @@ class InternalAccounts(SyncAPIResource):
                     "account_capabilities": account_capabilities,
                     "account_type": account_type,
                     "counterparty_id": counterparty_id,
+                    "debitable": debitable,
                     "external_id": external_id,
                     "legal_entity_id": legal_entity_id,
                     "metadata": metadata,
@@ -539,6 +547,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         ]
         | Omit = omit,
         counterparty_id: str | Omit = omit,
+        debitable: Optional[bool] | Omit = omit,
         external_id: Optional[str] | Omit = omit,
         legal_entity_id: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
@@ -572,6 +581,12 @@ class AsyncInternalAccounts(AsyncAPIResource):
               institution.
 
           counterparty_id: The Counterparty associated to this account.
+
+          debitable: Whether this account can receive ACH debits. Only applicable to accounts created
+              under a Modern Treasury PSP connection, or `null` for Bring Your Own Bank
+              accounts. Defaults to `false`. Configurable on create only. Please reach out to
+              support@moderntreasury.com or your customer success manager to enable this
+              capability for your connection.
 
           external_id: An optional user-defined 180 character unique identifier.
 
@@ -608,6 +623,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                     "account_capabilities": account_capabilities,
                     "account_type": account_type,
                     "counterparty_id": counterparty_id,
+                    "debitable": debitable,
                     "external_id": external_id,
                     "legal_entity_id": legal_entity_id,
                     "metadata": metadata,

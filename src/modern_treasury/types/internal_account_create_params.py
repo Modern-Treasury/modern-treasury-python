@@ -54,6 +54,15 @@ class InternalAccountCreateParams(TypedDict, total=False):
     counterparty_id: str
     """The Counterparty associated to this account."""
 
+    debitable: Optional[bool]
+    """Whether this account can receive ACH debits.
+
+    Only applicable to accounts created under a Modern Treasury PSP connection, or
+    `null` for Bring Your Own Bank accounts. Defaults to `false`. Configurable on
+    create only. Please reach out to support@moderntreasury.com or your customer
+    success manager to enable this capability for your connection.
+    """
+
     external_id: Optional[str]
     """An optional user-defined 180 character unique identifier."""
 
