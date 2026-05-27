@@ -1,4 +1,4 @@
 configured_endpoints: 167
-openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/modern-treasury/modern-treasury-485231f0a659081b11bdce5d9f4f0d7fa70108a8f0f0c45e9f8f84ba5498ea28.yml
-openapi_spec_hash: b9a334e70035ff57966edf04e8b1deca
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/modern-treasury/modern-treasury-25919912ec941b4a711b6e81ddcb003690da0a52f6ccd62da2923532740bd355.yml
+openapi_spec_hash: 952538da59538f94979d0dff09cda362
 config_hash: 55a5583c24314820a65f792e2ebab57b
