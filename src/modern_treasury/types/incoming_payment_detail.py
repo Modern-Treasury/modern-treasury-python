@@ -84,6 +84,7 @@ class IncomingPaymentDetail(BaseModel):
             "polygon_address",
             "sg_number",
             "solana_address",
+            "wallet_address",
         ]
     ] = None
     """The type of the originating account number for the incoming payment detail."""

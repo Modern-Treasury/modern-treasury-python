@@ -58,9 +58,9 @@ class InternalAccountCreateParams(TypedDict, total=False):
     """Whether this account can receive ACH debits.
 
     Only applicable to accounts created under a Modern Treasury PSP connection, or
-    `null` for Bring Your Own Bank accounts. Defaults to `false`. Configurable on
-    create only. Please reach out to support@moderntreasury.com or your customer
-    success manager to enable this capability for your connection.
+    `null` for Bring Your Own Bank accounts. Defaults to `false`. Configurable only
+    on creation. Please reach out to your customer success manager to enable this
+    capability for your connection.
     """
 
     external_id: Optional[str]

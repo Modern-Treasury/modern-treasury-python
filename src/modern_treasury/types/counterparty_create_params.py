@@ -109,6 +109,7 @@ class AccountAccountDetail(TypedDict, total=False):
         "polygon_address",
         "sg_number",
         "solana_address",
+        "wallet_address",
     ]
 
 
