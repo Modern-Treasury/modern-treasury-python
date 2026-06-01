@@ -63,6 +63,7 @@ class AccountDetails(SyncAPIResource):
             "polygon_address",
             "sg_number",
             "solana_address",
+            "wallet_address",
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -79,8 +80,8 @@ class AccountDetails(SyncAPIResource):
         Args:
           account_number: The account number for the bank account.
 
-          account_number_type: One of `iban`, `clabe`, or `other`. Use `other` if the bank account number is in
-              a generic format.
+          account_number_type: One of `iban`, `clabe`, `wallet_address`, or `other`. Use `other` if the bank
+              account number is in a generic format.
 
           extra_headers: Send extra headers
 
@@ -306,6 +307,7 @@ class AsyncAccountDetails(AsyncAPIResource):
             "polygon_address",
             "sg_number",
             "solana_address",
+            "wallet_address",
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -322,8 +324,8 @@ class AsyncAccountDetails(AsyncAPIResource):
         Args:
           account_number: The account number for the bank account.
 
-          account_number_type: One of `iban`, `clabe`, or `other`. Use `other` if the bank account number is in
-              a generic format.
+          account_number_type: One of `iban`, `clabe`, `wallet_address`, or `other`. Use `other` if the bank
+              account number is in a generic format.
 
           extra_headers: Send extra headers
 
