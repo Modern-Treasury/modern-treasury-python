@@ -78,24 +78,17 @@ class Transactions(SyncAPIResource):
                 "dk_nets",
                 "eft",
                 "gb_fps",
-                "hu_ics",
-                "interac",
                 "masav",
                 "mx_ccen",
                 "neft",
                 "nics",
                 "nz_becs",
                 "pl_elixir",
-                "provxchange",
-                "ro_sent",
                 "rtp",
                 "se_bankgirot",
-                "sen",
                 "sepa",
                 "sg_giro",
                 "sic",
-                "signet",
-                "sknbi",
                 "stablecoin",
                 "wire",
                 "zengin",
@@ -132,8 +125,8 @@ class Transactions(SyncAPIResource):
 
           vendor_code_type: The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
               `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
-              `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
-              `swift`, `us_bank`, or others.
+              `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `silvergate`, `swift`,
+              `us_bank`, or others.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -141,7 +134,7 @@ class Transactions(SyncAPIResource):
           posted: This field will be `true` if the transaction has posted to the account.
 
           type: The type of the transaction. Examples could be
-              `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
+              `card, `ach`, `wire`, `check`, `rtp`, or `book`.
 
           vendor_customer_id: An identifier given to this transaction by the bank, often `null`.
 
@@ -441,24 +434,17 @@ class AsyncTransactions(AsyncAPIResource):
                 "dk_nets",
                 "eft",
                 "gb_fps",
-                "hu_ics",
-                "interac",
                 "masav",
                 "mx_ccen",
                 "neft",
                 "nics",
                 "nz_becs",
                 "pl_elixir",
-                "provxchange",
-                "ro_sent",
                 "rtp",
                 "se_bankgirot",
-                "sen",
                 "sepa",
                 "sg_giro",
                 "sic",
-                "signet",
-                "sknbi",
                 "stablecoin",
                 "wire",
                 "zengin",
@@ -495,8 +481,8 @@ class AsyncTransactions(AsyncAPIResource):
 
           vendor_code_type: The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
               `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
-              `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
-              `swift`, `us_bank`, or others.
+              `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `silvergate`, `swift`,
+              `us_bank`, or others.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -504,7 +490,7 @@ class AsyncTransactions(AsyncAPIResource):
           posted: This field will be `true` if the transaction has posted to the account.
 
           type: The type of the transaction. Examples could be
-              `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
+              `card, `ach`, `wire`, `check`, `rtp`, or `book`.
 
           vendor_customer_id: An identifier given to this transaction by the bank, often `null`.
 
