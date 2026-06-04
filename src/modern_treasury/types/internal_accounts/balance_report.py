@@ -66,7 +66,7 @@ class Balance(BaseModel):
 
     Can be one of `bai2`, `bankprov`, `bnk_dev`, `cleartouch`, `currencycloud`,
     `cross_river`, `dc_bank`, `dwolla`, `evolve`, `goldman_sachs`, `iso20022`,
-    `jpmc`, `mx`, `signet`, `silvergate`, `swift`, or `us_bank`.
+    `jpmc`, `mx`, `silvergate`, `swift`, or `us_bank`.
     """
 
 
