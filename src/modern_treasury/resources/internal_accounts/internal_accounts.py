@@ -65,7 +65,7 @@ class InternalAccounts(SyncAPIResource):
         self,
         *,
         connection_id: str,
-        currency: Literal["USD", "CAD", "USDC", "USDG", "USDT", "PYUSD"],
+        currency: Literal["USD", "CAD", "USDC", "USDG", "PYUSD"],
         name: str,
         party_name: str,
         account_capabilities: Iterable[internal_account_create_params.AccountCapability] | Omit = omit,
@@ -86,7 +86,6 @@ class InternalAccounts(SyncAPIResource):
         ]
         | Omit = omit,
         counterparty_id: str | Omit = omit,
-        debitable: Optional[bool] | Omit = omit,
         external_id: Optional[str] | Omit = omit,
         legal_entity_id: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
@@ -107,7 +106,8 @@ class InternalAccounts(SyncAPIResource):
         Args:
           connection_id: The identifier of the financial institution the account belongs to.
 
-          currency: The currency of the internal account. Supports fiat and stablecoin currencies.
+          currency: The currency of the internal account. Supports "USD" and "CAD" for fiat, and
+              "USDC", "USDG", and "PYUSD" for stablecoin accounts.
 
           name: The nickname of the account.
 
@@ -120,11 +120,6 @@ class InternalAccounts(SyncAPIResource):
               institution.
 
           counterparty_id: The Counterparty associated to this account.
-
-          debitable: Whether this account can receive ACH debits. Only applicable to accounts created
-              under a Modern Treasury PSP connection, or `null` for Bring Your Own Bank
-              accounts. Defaults to `false`. Configurable only on creation. Please reach out
-              to your customer success manager to enable this capability for your connection.
 
           external_id: An optional user-defined 180 character unique identifier.
 
@@ -161,7 +156,6 @@ class InternalAccounts(SyncAPIResource):
                     "account_capabilities": account_capabilities,
                     "account_type": account_type,
                     "counterparty_id": counterparty_id,
-                    "debitable": debitable,
                     "external_id": external_id,
                     "legal_entity_id": legal_entity_id,
                     "metadata": metadata,
@@ -525,7 +519,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         self,
         *,
         connection_id: str,
-        currency: Literal["USD", "CAD", "USDC", "USDG", "USDT", "PYUSD"],
+        currency: Literal["USD", "CAD", "USDC", "USDG", "PYUSD"],
         name: str,
         party_name: str,
         account_capabilities: Iterable[internal_account_create_params.AccountCapability] | Omit = omit,
@@ -546,7 +540,6 @@ class AsyncInternalAccounts(AsyncAPIResource):
         ]
         | Omit = omit,
         counterparty_id: str | Omit = omit,
-        debitable: Optional[bool] | Omit = omit,
         external_id: Optional[str] | Omit = omit,
         legal_entity_id: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
@@ -567,7 +560,8 @@ class AsyncInternalAccounts(AsyncAPIResource):
         Args:
           connection_id: The identifier of the financial institution the account belongs to.
 
-          currency: The currency of the internal account. Supports fiat and stablecoin currencies.
+          currency: The currency of the internal account. Supports "USD" and "CAD" for fiat, and
+              "USDC", "USDG", and "PYUSD" for stablecoin accounts.
 
           name: The nickname of the account.
 
@@ -580,11 +574,6 @@ class AsyncInternalAccounts(AsyncAPIResource):
               institution.
 
           counterparty_id: The Counterparty associated to this account.
-
-          debitable: Whether this account can receive ACH debits. Only applicable to accounts created
-              under a Modern Treasury PSP connection, or `null` for Bring Your Own Bank
-              accounts. Defaults to `false`. Configurable only on creation. Please reach out
-              to your customer success manager to enable this capability for your connection.
 
           external_id: An optional user-defined 180 character unique identifier.
 
@@ -621,7 +610,6 @@ class AsyncInternalAccounts(AsyncAPIResource):
                     "account_capabilities": account_capabilities,
                     "account_type": account_type,
                     "counterparty_id": counterparty_id,
-                    "debitable": debitable,
                     "external_id": external_id,
                     "legal_entity_id": legal_entity_id,
                     "metadata": metadata,

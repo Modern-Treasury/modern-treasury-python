@@ -48,9 +48,6 @@ AnyMapping = Mapping[str, object]
 ModelT = TypeVar("ModelT", bound=pydantic.BaseModel)
 _T = TypeVar("_T")
 
-ArrayFormat = Literal["comma", "repeat", "indices", "brackets"]
-NestedFormat = Literal["dots", "brackets"]
-
 
 # Approximates httpx internal ProxiesTypes and RequestFiles types
 # while adding support for `PathLike` instances

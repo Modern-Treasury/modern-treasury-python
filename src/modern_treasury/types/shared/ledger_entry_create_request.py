@@ -10,6 +10,12 @@ __all__ = ["LedgerEntryCreateRequest"]
 
 
 class LedgerEntryCreateRequest(BaseModel):
+    amount: int
+    """Value in specified currency's smallest unit.
+
+    e.g. $10 would be represented as 1000. Can be any integer up to 36 digits.
+    """
+
     direction: TransactionDirection
     """One of `credit`, `debit`.
 
@@ -21,18 +27,6 @@ class LedgerEntryCreateRequest(BaseModel):
 
     ledger_account_id: str
     """The ledger account that this ledger entry is associated with."""
-
-    amount: Optional[int] = None
-    """Value in specified currency's smallest unit.
-
-    e.g. $10 would be represented as 1000. Can be any integer up to 36 digits.
-    """
-
-    amount_string: Optional[str] = None
-    """
-    The amount of the ledger entry as a string, preserving full precision for values
-    that may exceed safe integer limits in some languages.
-    """
 
     available_balance_amount: Optional[Dict[str, int]] = None
     """

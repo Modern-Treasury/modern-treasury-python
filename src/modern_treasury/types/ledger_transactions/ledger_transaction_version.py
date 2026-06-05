@@ -20,12 +20,6 @@ class LedgerEntry(BaseModel):
     e.g. $10 would be represented as 1000. Can be any integer up to 36 digits.
     """
 
-    amount_string: str
-    """
-    The amount of the ledger entry as a string, preserving full precision for values
-    that may exceed safe integer limits in some languages.
-    """
-
     created_at: datetime
 
     direction: TransactionDirection

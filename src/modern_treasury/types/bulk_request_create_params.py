@@ -63,8 +63,6 @@ __all__ = [
     "ResourceTransactionUpdateRequestWithID",
     "ResourcesLedgerTransactionUpdateRequestWithID",
     "ResourceLedgerTransactionUpdateRequestWithID",
-    "ResourcesLedgerAccountUpdateRequestWithID",
-    "ResourceLedgerAccountUpdateRequestWithID",
 ]
 
 
@@ -360,7 +358,7 @@ class ResourcePaymentOrderAsyncCreateRequest(TypedDict, total=False):
     """Value in specified currency's smallest unit.
 
     e.g. $10 would be represented as 1000 (cents). For RTP, the maximum amount
-    allowed by the network is $10,000,000.
+    allowed by the network is $100,000.
     """
 
     direction: Required[Literal["credit", "debit"]]
@@ -1118,7 +1116,7 @@ class ResourcePaymentOrderUpdateRequestWithID(TypedDict, total=False):
     """Value in specified currency's smallest unit.
 
     e.g. $10 would be represented as 1000 (cents). For RTP, the maximum amount
-    allowed by the network is $10,000,000.
+    allowed by the network is $100,000.
     """
 
     charge_bearer: Optional[Literal["shared", "sender", "receiver"]]
@@ -1529,32 +1527,6 @@ ResourcesLedgerTransactionUpdateRequestWithID = ResourceLedgerTransactionUpdateR
 Please use ResourceLedgerTransactionUpdateRequestWithID instead.
 """
 
-
-class ResourceLedgerAccountUpdateRequestWithID(TypedDict, total=False):
-    id: str
-
-    description: Optional[str]
-    """The description of the ledger account."""
-
-    external_id: Optional[str]
-    """An optional user-defined 180 character unique identifier."""
-
-    metadata: Dict[str, str]
-    """Additional data represented as key-value pairs.
-
-    Both the key and value must be strings.
-    """
-
-    name: str
-    """The name of the ledger account."""
-
-
-ResourcesLedgerAccountUpdateRequestWithID = ResourceLedgerAccountUpdateRequestWithID
-"""This type is deprecated and will be removed in a future release.
-
-Please use ResourceLedgerAccountUpdateRequestWithID instead.
-"""
-
 Resource: TypeAlias = Union[
     ResourcePaymentOrderAsyncCreateRequest,
     ResourceExpectedPaymentCreateRequest,
@@ -1566,7 +1538,6 @@ Resource: TypeAlias = Union[
     ResourceExpectedPaymentUpdateRequestWithID,
     ResourceTransactionUpdateRequestWithID,
     ResourceLedgerTransactionUpdateRequestWithID,
-    ResourceLedgerAccountUpdateRequestWithID,
 ]
 
 Resources = Resource

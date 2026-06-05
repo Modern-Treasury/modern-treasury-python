@@ -9,11 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from .. import _legacy_response
-from ..types import (
-    legal_entity_list_params,
-    legal_entity_create_params,
-    legal_entity_update_params,
-)
+from ..types import legal_entity_list_params, legal_entity_create_params, legal_entity_update_params
 from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -22,8 +18,6 @@ from .._response import to_streamed_response_wrapper, async_to_streamed_response
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.legal_entity import LegalEntity
-from ..types.bank_settings_param import BankSettingsParam
-from ..types.wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
 from ..types.shared_params.third_party_verification import ThirdPartyVerification
 from ..types.shared_params.identification_create_request import IdentificationCreateRequest
 from ..types.shared_params.legal_entity_address_create_request import LegalEntityAddressCreateRequest
@@ -58,7 +52,7 @@ class LegalEntities(SyncAPIResource):
         *,
         legal_entity_type: Literal["business", "individual"],
         addresses: Iterable[LegalEntityAddressCreateRequest] | Omit = omit,
-        bank_settings: Optional[BankSettingsParam] | Omit = omit,
+        bank_settings: Optional[legal_entity_create_params.BankSettings] | Omit = omit,
         business_description: Optional[str] | Omit = omit,
         business_name: Optional[str] | Omit = omit,
         citizenship_country: Optional[str] | Omit = omit,
@@ -98,7 +92,7 @@ class LegalEntities(SyncAPIResource):
         third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
         third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
-        wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam] | Omit = omit,
+        wealth_and_employment_details: Optional[legal_entity_create_params.WealthAndEmploymentDetails] | Omit = omit,
         website: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -298,7 +292,7 @@ class LegalEntities(SyncAPIResource):
         id: str,
         *,
         addresses: Iterable[LegalEntityAddressCreateRequest] | Omit = omit,
-        bank_settings: Optional[BankSettingsParam] | Omit = omit,
+        bank_settings: Optional[legal_entity_update_params.BankSettings] | Omit = omit,
         business_description: Optional[str] | Omit = omit,
         business_name: Optional[str] | Omit = omit,
         citizenship_country: Optional[str] | Omit = omit,
@@ -334,7 +328,7 @@ class LegalEntities(SyncAPIResource):
         third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
         third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
-        wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam] | Omit = omit,
+        wealth_and_employment_details: Optional[legal_entity_update_params.WealthAndEmploymentDetails] | Omit = omit,
         website: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -565,7 +559,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         *,
         legal_entity_type: Literal["business", "individual"],
         addresses: Iterable[LegalEntityAddressCreateRequest] | Omit = omit,
-        bank_settings: Optional[BankSettingsParam] | Omit = omit,
+        bank_settings: Optional[legal_entity_create_params.BankSettings] | Omit = omit,
         business_description: Optional[str] | Omit = omit,
         business_name: Optional[str] | Omit = omit,
         citizenship_country: Optional[str] | Omit = omit,
@@ -605,7 +599,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
         third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
-        wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam] | Omit = omit,
+        wealth_and_employment_details: Optional[legal_entity_create_params.WealthAndEmploymentDetails] | Omit = omit,
         website: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -805,7 +799,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         id: str,
         *,
         addresses: Iterable[LegalEntityAddressCreateRequest] | Omit = omit,
-        bank_settings: Optional[BankSettingsParam] | Omit = omit,
+        bank_settings: Optional[legal_entity_update_params.BankSettings] | Omit = omit,
         business_description: Optional[str] | Omit = omit,
         business_name: Optional[str] | Omit = omit,
         citizenship_country: Optional[str] | Omit = omit,
@@ -841,7 +835,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
         third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
-        wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam] | Omit = omit,
+        wealth_and_employment_details: Optional[legal_entity_update_params.WealthAndEmploymentDetails] | Omit = omit,
         website: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
