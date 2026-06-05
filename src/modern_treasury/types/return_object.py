@@ -373,7 +373,12 @@ class ReturnObject(BaseModel):
         "gb_fps",
         "interac",
         "manual",
+        "neft",
+        "nz_becs",
+        "rtp",
         "sepa",
+        "signet",
+        "stablecoin",
         "wire",
         "zengin",
     ]
