@@ -437,9 +437,8 @@ class PaymentOrder(BaseModel):
 
     type: PaymentOrderType
     """
-    One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-    `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-    `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+    One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+    `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
     """
 
     ultimate_originating_account: Optional[UltimateOriginatingAccount] = None

@@ -55,9 +55,8 @@ class PaymentOrderCreateParams(TypedDict, total=False):
 
     type: Required[PaymentOrderType]
     """
-    One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-    `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-    `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+    One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+    `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
     """
 
     accounting: Accounting
@@ -397,8 +396,6 @@ class ReceivingAccountRoutingDetail(TypedDict, total=False):
             "dk_interbank_clearing_code",
             "gb_sort_code",
             "hk_interbank_clearing_code",
-            "hu_interbank_clearing_code",
-            "id_sknbi_code",
             "il_bank_code",
             "in_ifsc",
             "jp_zengin_code",
@@ -425,24 +422,17 @@ class ReceivingAccountRoutingDetail(TypedDict, total=False):
         "dk_nets",
         "eft",
         "gb_fps",
-        "hu_ics",
-        "interac",
         "masav",
         "mx_ccen",
         "neft",
         "nics",
         "nz_becs",
         "pl_elixir",
-        "provxchange",
-        "ro_sent",
         "rtp",
         "se_bankgirot",
-        "sen",
         "sepa",
         "sg_giro",
         "sic",
-        "signet",
-        "sknbi",
         "stablecoin",
         "wire",
         "zengin",
