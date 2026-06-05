@@ -20,7 +20,9 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 class TestLegalEntities:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
-    loose_parametrize = pytest.mark.parametrize("client", [False], indirect=True, ids=["loose"])  # Prism can't generate valid deeply nested recursive data
+    loose_parametrize = pytest.mark.parametrize(
+        "client", [False], indirect=True, ids=["loose"]
+    )  # Prism can't generate valid deeply nested recursive data
 
     @loose_parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
