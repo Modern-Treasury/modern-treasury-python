@@ -62,30 +62,20 @@ class ReconciliationRule(BaseModel):
             "dk_nets",
             "eft",
             "gb_fps",
-            "hu_ics",
-            "interac",
             "masav",
             "mx_ccen",
             "neft",
             "nics",
             "nz_becs",
             "pl_elixir",
-            "provxchange",
-            "ro_sent",
             "rtp",
             "se_bankgirot",
-            "sen",
             "sepa",
             "sg_giro",
             "sic",
-            "signet",
-            "sknbi",
             "stablecoin",
             "wire",
             "zengin",
         ]
     ] = None
-    """
-    One of ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
-    sepa, signet wire
-    """
+    """One of ach, au_becs, bacs, book, check, eft, rtp, sepa, wire"""

@@ -371,20 +371,18 @@ class ReturnObject(BaseModel):
         "cross_border",
         "eft",
         "gb_fps",
-        "interac",
         "manual",
         "neft",
         "nz_becs",
         "rtp",
         "sepa",
-        "signet",
         "stablecoin",
         "wire",
         "zengin",
     ]
     """The type of return.
 
-    Can be one of: `ach`, `ach_noc`, `au_becs`, `bacs`, `eft`, `interac`, `manual`,
+    Can be one of: `ach`, `ach_noc`, `au_becs`, `bacs`, `eft`, `manual`,
     `paper_item`, `wire`.
     """
 

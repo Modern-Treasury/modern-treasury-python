@@ -38,7 +38,7 @@ class TransactionCreateParams(TypedDict, total=False):
 
     Can be one of `bai2`, `bankprov`, `bnk_dev`, `cleartouch`, `currencycloud`,
     `cross_river`, `dc_bank`, `dwolla`, `evolve`, `goldman_sachs`, `iso20022`,
-    `jpmc`, `mx`, `signet`, `silvergate`, `swift`, `us_bank`, or others.
+    `jpmc`, `mx`, `silvergate`, `swift`, `us_bank`, or others.
     """
 
     metadata: Dict[str, str]
@@ -63,24 +63,17 @@ class TransactionCreateParams(TypedDict, total=False):
             "dk_nets",
             "eft",
             "gb_fps",
-            "hu_ics",
-            "interac",
             "masav",
             "mx_ccen",
             "neft",
             "nics",
             "nz_becs",
             "pl_elixir",
-            "provxchange",
-            "ro_sent",
             "rtp",
             "se_bankgirot",
-            "sen",
             "sepa",
             "sg_giro",
             "sic",
-            "signet",
-            "sknbi",
             "stablecoin",
             "wire",
             "zengin",
@@ -89,7 +82,7 @@ class TransactionCreateParams(TypedDict, total=False):
     ]
     """The type of the transaction.
 
-    Examples could be `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
+    Examples could be `card, `ach`, `wire`, `check`, `rtp`, or `book`.
     """
 
     vendor_customer_id: Optional[str]

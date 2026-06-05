@@ -146,12 +146,10 @@ class IncomingPaymentDetails(SyncAPIResource):
             "book",
             "check",
             "eft",
-            "interac",
             "neft",
             "nz_becs",
             "rtp",
             "sepa",
-            "signet",
             "stablecoin",
             "wire",
             "zengin",
@@ -188,8 +186,7 @@ class IncomingPaymentDetails(SyncAPIResource):
               For example, a `type` of `stablecoin` may have a `subtype` of `ethereum` or
               `solana`.
 
-          type: One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
-              `wire`.
+          type: One of: `ach`, `book`, `check`, `eft`, `rtp`, `sepa`, or `wire`.
 
           virtual_account_id: If the incoming payment detail is in a virtual account, the ID of the Virtual
               Account.
@@ -247,12 +244,10 @@ class IncomingPaymentDetails(SyncAPIResource):
             "book",
             "check",
             "eft",
-            "interac",
             "neft",
             "nz_becs",
             "rtp",
             "sepa",
-            "signet",
             "stablecoin",
             "wire",
             "zengin",
@@ -451,12 +446,10 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
             "book",
             "check",
             "eft",
-            "interac",
             "neft",
             "nz_becs",
             "rtp",
             "sepa",
-            "signet",
             "stablecoin",
             "wire",
             "zengin",
@@ -493,8 +486,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
               For example, a `type` of `stablecoin` may have a `subtype` of `ethereum` or
               `solana`.
 
-          type: One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
-              `wire`.
+          type: One of: `ach`, `book`, `check`, `eft`, `rtp`, `sepa`, or `wire`.
 
           virtual_account_id: If the incoming payment detail is in a virtual account, the ID of the Virtual
               Account.
@@ -552,12 +544,10 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
             "book",
             "check",
             "eft",
-            "interac",
             "neft",
             "nz_becs",
             "rtp",
             "sepa",
-            "signet",
             "stablecoin",
             "wire",
             "zengin",
