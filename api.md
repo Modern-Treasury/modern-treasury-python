@@ -420,7 +420,6 @@ from modern_treasury.types import (
     PaymentOrder,
     PaymentOrderSubtype,
     PaymentOrderType,
-    VendorAttributes,
 )
 ```
 
