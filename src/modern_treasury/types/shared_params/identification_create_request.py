@@ -113,6 +113,7 @@ class IdentificationCreateRequest(TypedDict, total=False):
             "mx_curp",
             "mx_ine",
             "mx_rfc",
+            "national_id",
             "nl_bsn",
             "nl_btw",
             "nl_rsin",
