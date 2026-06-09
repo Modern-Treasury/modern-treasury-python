@@ -95,6 +95,7 @@ from .incoming_payment_detail import IncomingPaymentDetail as IncomingPaymentDet
 from .ledger_account_category import LedgerAccountCategory as LedgerAccountCategory
 from .line_item_update_params import LineItemUpdateParams as LineItemUpdateParams
 from .transaction_list_params import TransactionListParams as TransactionListParams
+from .vendor_attributes_param import VendorAttributesParam as VendorAttributesParam
 from .bulk_request_list_params import BulkRequestListParams as BulkRequestListParams
 from .counterparty_list_params import CounterpartyListParams as CounterpartyListParams
 from .ledger_entry_list_params import LedgerEntryListParams as LedgerEntryListParams
