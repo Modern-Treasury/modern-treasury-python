@@ -16,8 +16,12 @@ class InternalAccountCreateParams(TypedDict, total=False):
     connection_id: Required[str]
     """The identifier of the financial institution the account belongs to."""
 
-    currency: Required[Literal["USD", "CAD", "USDC", "USDG", "USDT", "PYUSD"]]
-    """The currency of the internal account. Supports fiat and stablecoin currencies."""
+    currency: Required[Literal["USD", "CAD", "USDC", "USDG", "PYUSD"]]
+    """The currency of the internal account.
+
+    Supports "USD" and "CAD" for fiat, and "USDC", "USDG", and "PYUSD" for
+    stablecoin accounts.
+    """
 
     name: Required[str]
     """The nickname of the account."""
@@ -53,15 +57,6 @@ class InternalAccountCreateParams(TypedDict, total=False):
 
     counterparty_id: str
     """The Counterparty associated to this account."""
-
-    debitable: Optional[bool]
-    """Whether this account can receive ACH debits.
-
-    Only applicable to accounts created under a Modern Treasury PSP connection, or
-    `null` for Bring Your Own Bank accounts. Defaults to `false`. Configurable only
-    on creation. Please reach out to your customer success manager to enable this
-    capability for your connection.
-    """
 
     external_id: Optional[str]
     """An optional user-defined 180 character unique identifier."""

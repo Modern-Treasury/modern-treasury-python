@@ -47,10 +47,9 @@ class TestReturns:
             ledger_transaction={
                 "ledger_entries": [
                     {
+                        "amount": 0,
                         "direction": "credit",
                         "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "amount": 0,
-                        "amount_string": "amount_string",
                         "available_balance_amount": {"foo": 0},
                         "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                         "lock_version": 0,
@@ -217,10 +216,9 @@ class TestAsyncReturns:
             ledger_transaction={
                 "ledger_entries": [
                     {
+                        "amount": 0,
                         "direction": "credit",
                         "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "amount": 0,
-                        "amount_string": "amount_string",
                         "available_balance_amount": {"foo": 0},
                         "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                         "lock_version": 0,

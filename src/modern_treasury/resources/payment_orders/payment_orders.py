@@ -38,6 +38,7 @@ from ...types.shared.currency import Currency
 from ...types.payment_order_type import PaymentOrderType
 from ...types.payment_order_subtype import PaymentOrderSubtype
 from ...types.shared.async_response import AsyncResponse
+from ...types.vendor_attributes_param import VendorAttributesParam
 from ...types.shared.transaction_direction import TransactionDirection
 from ...types.shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
@@ -112,7 +113,7 @@ class PaymentOrders(SyncAPIResource):
         ultimate_originating_party_name: Optional[str] | Omit = omit,
         ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
         ultimate_receiving_party_name: Optional[str] | Omit = omit,
-        vendor_attributes: object | Omit = omit,
+        vendor_attributes: VendorAttributesParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -126,7 +127,7 @@ class PaymentOrders(SyncAPIResource):
 
         Args:
           amount: Value in specified currency's smallest unit. e.g. $10 would be represented as
-              1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
+              1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
 
           direction: One of `credit`, `debit`. Describes the direction money is flowing in the
               transaction. A `credit` moves money from your account to someone else's. A
@@ -443,7 +444,7 @@ class PaymentOrders(SyncAPIResource):
               accessible if your accounting system has been connected.
 
           amount: Value in specified currency's smallest unit. e.g. $10 would be represented as
-              1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
+              1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
 
           charge_bearer: The party that will pay the fees for the payment order. See
               https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the
@@ -831,7 +832,7 @@ class PaymentOrders(SyncAPIResource):
 
         Args:
           amount: Value in specified currency's smallest unit. e.g. $10 would be represented as
-              1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
+              1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
 
           direction: One of `credit`, `debit`. Describes the direction money is flowing in the
               transaction. A `credit` moves money from your account to someone else's. A
@@ -1098,7 +1099,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         ultimate_originating_party_name: Optional[str] | Omit = omit,
         ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
         ultimate_receiving_party_name: Optional[str] | Omit = omit,
-        vendor_attributes: object | Omit = omit,
+        vendor_attributes: VendorAttributesParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1112,7 +1113,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
 
         Args:
           amount: Value in specified currency's smallest unit. e.g. $10 would be represented as
-              1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
+              1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
 
           direction: One of `credit`, `debit`. Describes the direction money is flowing in the
               transaction. A `credit` moves money from your account to someone else's. A
@@ -1429,7 +1430,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
               accessible if your accounting system has been connected.
 
           amount: Value in specified currency's smallest unit. e.g. $10 would be represented as
-              1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
+              1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
 
           charge_bearer: The party that will pay the fees for the payment order. See
               https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the
@@ -1817,7 +1818,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
 
         Args:
           amount: Value in specified currency's smallest unit. e.g. $10 would be represented as
-              1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
+              1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
 
           direction: One of `credit`, `debit`. Describes the direction money is flowing in the
               transaction. A `credit` moves money from your account to someone else's. A

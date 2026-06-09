@@ -108,7 +108,6 @@ class TestCounterparties:
                         "region": "region",
                         "address_types": ["business"],
                         "line2": "line2",
-                        "primary": True,
                     }
                 ],
                 "bank_settings": {
@@ -186,7 +185,6 @@ class TestCounterparties:
                                     "region": "region",
                                     "address_types": ["business"],
                                     "line2": "line2",
-                                    "primary": True,
                                 }
                             ],
                             "bank_settings": {
@@ -741,7 +739,6 @@ class TestAsyncCounterparties:
                         "region": "region",
                         "address_types": ["business"],
                         "line2": "line2",
-                        "primary": True,
                     }
                 ],
                 "bank_settings": {
@@ -819,7 +816,6 @@ class TestAsyncCounterparties:
                                     "region": "region",
                                     "address_types": ["business"],
                                     "line2": "line2",
-                                    "primary": True,
                                 }
                             ],
                             "bank_settings": {
