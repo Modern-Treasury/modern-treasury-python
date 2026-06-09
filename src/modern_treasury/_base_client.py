@@ -442,8 +442,7 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
         headers = httpx.Headers(headers_dict)
 
         idempotency_header = self._idempotency_header
-        if idempotency_header and options.method.lower() in {"post", "put"} and idempotency_header not in headers:
-            options.idempotency_key = options.idempotency_key or self._idempotency_key()
+        if idempotency_header and options.idempotency_key and idempotency_header not in headers:
             headers[idempotency_header] = options.idempotency_key
 
         # Don't set these headers if they were already set or removed by the caller. We check

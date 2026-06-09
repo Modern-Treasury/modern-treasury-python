@@ -23,7 +23,11 @@ from ._types import (
     RequestOptions,
     not_given,
 )
-from ._utils import is_given, get_async_library
+from ._utils import (
+    is_given,
+    is_mapping_t,
+    get_async_library,
+)
 from ._compat import cached_property
 from ._version import __version__
 from ._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
@@ -44,7 +48,6 @@ if TYPE_CHECKING:
         ledgers,
         returns,
         invoices,
-        webhooks,
         documents,
         line_items,
         connections,
@@ -197,6 +200,15 @@ class ModernTreasury(SyncAPIClient):
         if base_url is None:
             base_url = f"https://app.moderntreasury.com"
 
+        custom_headers_env = os.environ.get("MODERN_TREASURY_CUSTOM_HEADERS")
+        if custom_headers_env is not None:
+            parsed: dict[str, str] = {}
+            for line in custom_headers_env.split("\n"):
+                colon = line.find(":")
+                if colon >= 0:
+                    parsed[line[:colon].strip()] = line[colon + 1 :].strip()
+            default_headers = {**parsed, **(default_headers if is_mapping_t(default_headers) else {})}
+
         super().__init__(
             version=__version__,
             base_url=base_url,
@@ -227,12 +239,6 @@ class ModernTreasury(SyncAPIClient):
         from .resources.events import Events
 
         return Events(self)
-
-    @cached_property
-    def webhooks(self) -> webhooks.Webhooks:
-        from .resources.webhooks import Webhooks
-
-        return Webhooks(self)
 
     @cached_property
     def expected_payments(self) -> ExpectedPayments:
@@ -641,6 +647,15 @@ class AsyncModernTreasury(AsyncAPIClient):
         if base_url is None:
             base_url = f"https://app.moderntreasury.com"
 
+        custom_headers_env = os.environ.get("MODERN_TREASURY_CUSTOM_HEADERS")
+        if custom_headers_env is not None:
+            parsed: dict[str, str] = {}
+            for line in custom_headers_env.split("\n"):
+                colon = line.find(":")
+                if colon >= 0:
+                    parsed[line[:colon].strip()] = line[colon + 1 :].strip()
+            default_headers = {**parsed, **(default_headers if is_mapping_t(default_headers) else {})}
+
         super().__init__(
             version=__version__,
             base_url=base_url,
@@ -671,12 +686,6 @@ class AsyncModernTreasury(AsyncAPIClient):
         from .resources.events import AsyncEvents
 
         return AsyncEvents(self)
-
-    @cached_property
-    def webhooks(self) -> webhooks.AsyncWebhooks:
-        from .resources.webhooks import AsyncWebhooks
-
-        return AsyncWebhooks(self)
 
     @cached_property
     def expected_payments(self) -> AsyncExpectedPayments:

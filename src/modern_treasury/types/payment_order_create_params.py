@@ -12,6 +12,7 @@ from .shared.currency import Currency
 from .payment_order_type import PaymentOrderType
 from .external_account_type import ExternalAccountType
 from .payment_order_subtype import PaymentOrderSubtype
+from .vendor_attributes_param import VendorAttributesParam
 from .shared_params.address_request import AddressRequest
 from .contact_detail_create_request_param import ContactDetailCreateRequestParam
 from .shared_params.ledger_account_create_request import LedgerAccountCreateRequest
@@ -268,7 +269,7 @@ class PaymentOrderCreateParams(TypedDict, total=False):
     ultimate_receiving_party_name: Optional[str]
     """Name of the ultimate funds recipient."""
 
-    vendor_attributes: object
+    vendor_attributes: VendorAttributesParam
     """Additional vendor specific fields for this payment.
 
     Data must be represented as key-value pairs.

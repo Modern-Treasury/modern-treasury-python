@@ -38,6 +38,7 @@ from ...types.shared.currency import Currency
 from ...types.payment_order_type import PaymentOrderType
 from ...types.payment_order_subtype import PaymentOrderSubtype
 from ...types.shared.async_response import AsyncResponse
+from ...types.vendor_attributes_param import VendorAttributesParam
 from ...types.shared.transaction_direction import TransactionDirection
 from ...types.shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
@@ -112,7 +113,7 @@ class PaymentOrders(SyncAPIResource):
         ultimate_originating_party_name: Optional[str] | Omit = omit,
         ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
         ultimate_receiving_party_name: Optional[str] | Omit = omit,
-        vendor_attributes: object | Omit = omit,
+        vendor_attributes: VendorAttributesParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1098,7 +1099,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         ultimate_originating_party_name: Optional[str] | Omit = omit,
         ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
         ultimate_receiving_party_name: Optional[str] | Omit = omit,
-        vendor_attributes: object | Omit = omit,
+        vendor_attributes: VendorAttributesParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
