@@ -22,9 +22,6 @@ class InternalAccountCreateParams(TypedDict, total=False):
     name: Required[str]
     """The nickname of the account."""
 
-    party_name: Required[str]
-    """The legal name of the entity which owns the account."""
-
     account_capabilities: Iterable[AccountCapability]
     """
     An array of AccountCapability objects that list the originating abilities of the
@@ -80,6 +77,9 @@ class InternalAccountCreateParams(TypedDict, total=False):
 
     party_address: PartyAddress
     """The address associated with the owner or null."""
+
+    party_name: Optional[str]
+    """The legal name of the entity which owns the account."""
 
     vendor_attributes: Dict[str, str]
     """

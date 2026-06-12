@@ -28,7 +28,6 @@ class TestInternalAccounts:
             connection_id="connection_id",
             currency="USD",
             name="name",
-            party_name="party_name",
         )
         assert_matches_type(InternalAccount, internal_account, path=["response"])
 
@@ -38,7 +37,6 @@ class TestInternalAccounts:
             connection_id="connection_id",
             currency="USD",
             name="name",
-            party_name="party_name",
             account_capabilities=[
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -67,6 +65,7 @@ class TestInternalAccounts:
                 "region": "region",
                 "line2": "line2",
             },
+            party_name="party_name",
             vendor_attributes={
                 "key": "value",
                 "foo": "bar",
@@ -81,7 +80,6 @@ class TestInternalAccounts:
             connection_id="connection_id",
             currency="USD",
             name="name",
-            party_name="party_name",
         )
 
         assert response.is_closed is True
@@ -95,7 +93,6 @@ class TestInternalAccounts:
             connection_id="connection_id",
             currency="USD",
             name="name",
-            party_name="party_name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -339,7 +336,6 @@ class TestAsyncInternalAccounts:
             connection_id="connection_id",
             currency="USD",
             name="name",
-            party_name="party_name",
         )
         assert_matches_type(InternalAccount, internal_account, path=["response"])
 
@@ -349,7 +345,6 @@ class TestAsyncInternalAccounts:
             connection_id="connection_id",
             currency="USD",
             name="name",
-            party_name="party_name",
             account_capabilities=[
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -378,6 +373,7 @@ class TestAsyncInternalAccounts:
                 "region": "region",
                 "line2": "line2",
             },
+            party_name="party_name",
             vendor_attributes={
                 "key": "value",
                 "foo": "bar",
@@ -392,7 +388,6 @@ class TestAsyncInternalAccounts:
             connection_id="connection_id",
             currency="USD",
             name="name",
-            party_name="party_name",
         )
 
         assert response.is_closed is True
@@ -406,7 +401,6 @@ class TestAsyncInternalAccounts:
             connection_id="connection_id",
             currency="USD",
             name="name",
-            party_name="party_name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
