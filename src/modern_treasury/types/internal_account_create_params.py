@@ -16,7 +16,7 @@ class InternalAccountCreateParams(TypedDict, total=False):
     connection_id: Required[str]
     """The identifier of the financial institution the account belongs to."""
 
-    currency: Required[Literal["USD", "CAD", "USDC", "USDG", "USDT", "PYUSD"]]
+    currency: Required[Literal["USD", "CAD", "USDC", "USDT", "PYUSD", "USDG"]]
     """The currency of the internal account. Supports fiat and stablecoin currencies."""
 
     name: Required[str]

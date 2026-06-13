@@ -65,7 +65,7 @@ class InternalAccounts(SyncAPIResource):
         self,
         *,
         connection_id: str,
-        currency: Literal["USD", "CAD", "USDC", "USDG", "USDT", "PYUSD"],
+        currency: Literal["USD", "CAD", "USDC", "USDT", "PYUSD", "USDG"],
         name: str,
         account_capabilities: Iterable[internal_account_create_params.AccountCapability] | Omit = omit,
         account_type: Literal[
@@ -518,7 +518,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         self,
         *,
         connection_id: str,
-        currency: Literal["USD", "CAD", "USDC", "USDG", "USDT", "PYUSD"],
+        currency: Literal["USD", "CAD", "USDC", "USDT", "PYUSD", "USDG"],
         name: str,
         account_capabilities: Iterable[internal_account_create_params.AccountCapability] | Omit = omit,
         account_type: Literal[
