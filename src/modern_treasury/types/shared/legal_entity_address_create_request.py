@@ -29,3 +29,6 @@ class LegalEntityAddressCreateRequest(BaseModel):
     """The types of this address."""
 
     line2: Optional[str] = None
+
+    primary: Optional[bool] = None
+    """Whether this address is the primary address for the legal entity."""
