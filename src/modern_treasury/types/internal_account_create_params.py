@@ -88,7 +88,11 @@ class InternalAccountCreateParams(TypedDict, total=False):
     """
 
 
-class AccountCapability(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class AccountCapability(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     id: Required[str]
 
     created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
