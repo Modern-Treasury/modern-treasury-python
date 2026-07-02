@@ -23,6 +23,7 @@ __all__ = [
     "PhoneNumber",
     "Regulators",
     "Regulator",
+    "TermsOfUse",
 ]
 
 
@@ -128,6 +129,7 @@ class Identification(BaseModel):
         "gb_nino",
         "gb_utr",
         "gb_vat",
+        "generic_international",
         "gr_vat",
         "hn_id",
         "hn_rtn",
@@ -251,6 +253,19 @@ Please use Regulator instead.
 """
 
 
+class TermsOfUse(BaseModel):
+    """Acceptance of terms of use by the legal entity."""
+
+    accepted_at: Optional[datetime] = None
+    """The ISO 8601 timestamp indicating when the terms of use were accepted."""
+
+    ip_address: Optional[str] = None
+    """The IP address from which the terms of use were accepted.
+
+    Supports both IPv4 and IPv6 formats.
+    """
+
+
 class ChildLegalEntity(BaseModel):
     id: str
 
@@ -317,7 +332,7 @@ class ChildLegalEntity(BaseModel):
     legal_entity_associations: Optional[List["LegalEntityAssociation"]] = None
     """The legal entity associations and its child legal entities."""
 
-    legal_entity_type: Literal["business", "individual", "joint"]
+    legal_entity_type: Literal["business", "individual"]
     """The type of legal entity."""
 
     legal_structure: Optional[
@@ -382,6 +397,9 @@ class ChildLegalEntity(BaseModel):
 
     suffix: Optional[str] = None
     """An individual's suffix."""
+
+    terms_of_use: Optional[TermsOfUse] = None
+    """Acceptance of terms of use by the legal entity."""
 
     third_party_verification: Optional[ThirdPartyVerification] = None
     """Deprecated. Use `third_party_verifications` instead."""

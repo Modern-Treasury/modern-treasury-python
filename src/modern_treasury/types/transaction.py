@@ -20,6 +20,12 @@ class Transaction(BaseModel):
     e.g. $10 would be represented as 1000.
     """
 
+    amount_string: str
+    """
+    The amount of the transaction as a string, preserving full precision for values
+    that may exceed safe integer limits in some languages.
+    """
+
     as_of_date: Optional[date] = None
     """The date on which the transaction occurred."""
 
@@ -148,6 +154,7 @@ class Transaction(BaseModel):
             "pnc",
             "silvergate",
             "swift",
+            "turnkey",
             "us_bank",
             "user",
             "western_alliance",

@@ -29,9 +29,6 @@ class BalanceReportCreateParams(TypedDict, total=False):
 
 
 class Balance(TypedDict, total=False):
-    amount: Required[int]
-    """The balance amount."""
-
     balance_type: Required[
         Literal[
             "closing_available",
@@ -61,6 +58,15 @@ class Balance(TypedDict, total=False):
     Can be one of `bai2`, `bankprov`, `bnk_dev`, `cleartouch`, `currencycloud`,
     `cross_river`, `dc_bank`, `dwolla`, `evolve`, `goldman_sachs`, `iso20022`,
     `jpmc`, `mx`, `silvergate`, `swift`, or `us_bank`.
+    """
+
+    amount: int
+    """The balance amount."""
+
+    amount_string: str
+    """
+    The amount of the balance as a string, preserving full precision for values that
+    may exceed safe integer limits in some languages.
     """
 
 

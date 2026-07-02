@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Union, Iterable, Optional
-from datetime import date
+from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._types import SequenceNotStr
@@ -15,7 +15,7 @@ from .shared_params.identification_create_request import IdentificationCreateReq
 from .shared_params.legal_entity_address_create_request import LegalEntityAddressCreateRequest
 from .shared_params.legal_entity_industry_classification import LegalEntityIndustryClassification
 
-__all__ = ["LegalEntityUpdateParams", "PhoneNumbers", "PhoneNumber", "Regulators", "Regulator"]
+__all__ = ["LegalEntityUpdateParams", "PhoneNumbers", "PhoneNumber", "Regulators", "Regulator", "TermsOfUse"]
 
 
 class LegalEntityUpdateParams(TypedDict, total=False):
@@ -120,6 +120,9 @@ class LegalEntityUpdateParams(TypedDict, total=False):
     suffix: Optional[str]
     """An individual's suffix."""
 
+    terms_of_use: Optional[TermsOfUse]
+    """Acceptance of terms of use by the legal entity."""
+
     third_party_verification: Optional[ThirdPartyVerification]
     """Deprecated. Use `third_party_verifications` instead."""
 
@@ -167,3 +170,16 @@ Regulators = Regulator
 
 Please use Regulator instead.
 """
+
+
+class TermsOfUse(TypedDict, total=False):
+    """Acceptance of terms of use by the legal entity."""
+
+    accepted_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """The ISO 8601 timestamp indicating when the terms of use were accepted."""
+
+    ip_address: str
+    """The IP address from which the terms of use were accepted.
+
+    Supports both IPv4 and IPv6 formats.
+    """
