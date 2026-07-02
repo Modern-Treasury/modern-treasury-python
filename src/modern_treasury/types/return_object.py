@@ -116,7 +116,6 @@ class ReferenceNumber(BaseModel):
         "goldman_sachs_payment_request_id",
         "goldman_sachs_request_id",
         "goldman_sachs_unique_payment_id",
-        "interac_message_id",
         "jpmc_ccn",
         "jpmc_clearing_system_reference",
         "jpmc_customer_reference_id",
@@ -144,14 +143,13 @@ class ReferenceNumber(BaseModel):
         "pnc_transaction_reference_number",
         "rbc_wire_reference_id",
         "rtp_instruction_id",
-        "signet_api_reference_id",
-        "signet_confirmation_id",
-        "signet_request_id",
         "silvergate_payment_id",
         "svb_end_to_end_id",
         "svb_payment_id",
         "swift_mir",
         "swift_uetr",
+        "turnkey_activity_id",
+        "turnkey_send_transaction_status_id",
         "umb_product_partner_account_number",
         "usbank_payment_application_reference_id",
         "usbank_payment_id",
@@ -371,15 +369,18 @@ class ReturnObject(BaseModel):
         "cross_border",
         "eft",
         "gb_fps",
-        "interac",
         "manual",
+        "neft",
+        "nz_becs",
+        "rtp",
         "sepa",
+        "stablecoin",
         "wire",
         "zengin",
     ]
     """The type of return.
 
-    Can be one of: `ach`, `ach_noc`, `au_becs`, `bacs`, `eft`, `interac`, `manual`,
+    Can be one of: `ach`, `ach_noc`, `au_becs`, `bacs`, `eft`, `manual`,
     `paper_item`, `wire`.
     """
 

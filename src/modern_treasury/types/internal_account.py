@@ -57,24 +57,17 @@ class AccountCapability(BaseModel):
         "dk_nets",
         "eft",
         "gb_fps",
-        "hu_ics",
-        "interac",
         "masav",
         "mx_ccen",
         "neft",
         "nics",
         "nz_becs",
         "pl_elixir",
-        "provxchange",
-        "ro_sent",
         "rtp",
         "se_bankgirot",
-        "sen",
         "sepa",
         "sg_giro",
         "sic",
-        "signet",
-        "sknbi",
         "stablecoin",
         "wire",
         "zengin",
@@ -153,6 +146,15 @@ class InternalAccount(BaseModel):
 
     currency: Currency
     """The currency of the account."""
+
+    debitable: Optional[bool] = None
+    """Whether this account can receive ACH debits.
+
+    Only applicable to accounts created under a Modern Treasury PSP connection, or
+    `null` for Bring Your Own Bank accounts. Defaults to `false`. Configurable only
+    on creation. Please reach out to your customer success manager to enable this
+    capability for your connection.
+    """
 
     external_id: Optional[str] = None
     """An optional user-defined 180 character unique identifier."""

@@ -621,7 +621,7 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import LegalEntity
+from modern_treasury.types import BankSettings, LegalEntity, WealthAndEmploymentDetails
 ```
 
 Methods:
@@ -630,6 +630,7 @@ Methods:
 - <code title="get /api/legal_entities/{id}">client.legal_entities.<a href="./src/modern_treasury/resources/legal_entities.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/legal_entity.py">LegalEntity</a></code>
 - <code title="patch /api/legal_entities/{id}">client.legal_entities.<a href="./src/modern_treasury/resources/legal_entities.py">update</a>(id, \*\*<a href="src/modern_treasury/types/legal_entity_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/legal_entity.py">LegalEntity</a></code>
 - <code title="get /api/legal_entities">client.legal_entities.<a href="./src/modern_treasury/resources/legal_entities.py">list</a>(\*\*<a href="src/modern_treasury/types/legal_entity_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/legal_entity.py">SyncPage[LegalEntity]</a></code>
+- <code title="patch /api/simulations/legal_entities/{id}/update_status">client.legal_entities.<a href="./src/modern_treasury/resources/legal_entities.py">update_status</a>(id, \*\*<a href="src/modern_treasury/types/legal_entity_update_status_params.py">params</a>) -> <a href="./src/modern_treasury/types/legal_entity.py">LegalEntity</a></code>
 
 # LegalEntityAssociations
 

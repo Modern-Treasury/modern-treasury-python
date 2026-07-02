@@ -42,6 +42,7 @@ class TestLegalEntities:
                     "region": "region",
                     "address_types": ["business"],
                     "line2": "line2",
+                    "primary": True,
                 }
             ],
             bank_settings={
@@ -119,6 +120,7 @@ class TestLegalEntities:
                                 "region": "region",
                                 "address_types": ["business"],
                                 "line2": "line2",
+                                "primary": True,
                             }
                         ],
                         "bank_settings": {
@@ -209,6 +211,10 @@ class TestLegalEntities:
                         "risk_rating": "low",
                         "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "suffix": "suffix",
+                        "terms_of_use": {
+                            "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                            "ip_address": "ip_address",
+                        },
                         "third_party_verification": {
                             "outcome": "passed",
                             "vendor": "persona",
@@ -281,6 +287,10 @@ class TestLegalEntities:
             risk_rating="low",
             service_provider_legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             suffix="suffix",
+            terms_of_use={
+                "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "ip_address": "ip_address",
+            },
             third_party_verification={
                 "outcome": "passed",
                 "vendor": "persona",
@@ -408,6 +418,7 @@ class TestLegalEntities:
                     "region": "region",
                     "address_types": ["business"],
                     "line2": "line2",
+                    "primary": True,
                 }
             ],
             bank_settings={
@@ -487,6 +498,10 @@ class TestLegalEntities:
             risk_rating="low",
             service_provider_legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             suffix="suffix",
+            terms_of_use={
+                "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "ip_address": "ip_address",
+            },
             third_party_verification={
                 "outcome": "passed",
                 "vendor": "persona",
@@ -601,6 +616,48 @@ class TestLegalEntities:
 
         assert cast(Any, response.is_closed) is True
 
+    @parametrize
+    def test_method_update_status(self, client: ModernTreasury) -> None:
+        legal_entity = client.legal_entities.update_status(
+            id="id",
+            status="active",
+        )
+        assert_matches_type(LegalEntity, legal_entity, path=["response"])
+
+    @parametrize
+    def test_raw_response_update_status(self, client: ModernTreasury) -> None:
+        response = client.legal_entities.with_raw_response.update_status(
+            id="id",
+            status="active",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        legal_entity = response.parse()
+        assert_matches_type(LegalEntity, legal_entity, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update_status(self, client: ModernTreasury) -> None:
+        with client.legal_entities.with_streaming_response.update_status(
+            id="id",
+            status="active",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            legal_entity = response.parse()
+            assert_matches_type(LegalEntity, legal_entity, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update_status(self, client: ModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.legal_entities.with_raw_response.update_status(
+                id="",
+                status="active",
+            )
+
 
 class TestAsyncLegalEntities:
     parametrize = pytest.mark.parametrize(
@@ -629,6 +686,7 @@ class TestAsyncLegalEntities:
                     "region": "region",
                     "address_types": ["business"],
                     "line2": "line2",
+                    "primary": True,
                 }
             ],
             bank_settings={
@@ -706,6 +764,7 @@ class TestAsyncLegalEntities:
                                 "region": "region",
                                 "address_types": ["business"],
                                 "line2": "line2",
+                                "primary": True,
                             }
                         ],
                         "bank_settings": {
@@ -796,6 +855,10 @@ class TestAsyncLegalEntities:
                         "risk_rating": "low",
                         "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "suffix": "suffix",
+                        "terms_of_use": {
+                            "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                            "ip_address": "ip_address",
+                        },
                         "third_party_verification": {
                             "outcome": "passed",
                             "vendor": "persona",
@@ -868,6 +931,10 @@ class TestAsyncLegalEntities:
             risk_rating="low",
             service_provider_legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             suffix="suffix",
+            terms_of_use={
+                "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "ip_address": "ip_address",
+            },
             third_party_verification={
                 "outcome": "passed",
                 "vendor": "persona",
@@ -1002,6 +1069,7 @@ class TestAsyncLegalEntities:
                     "region": "region",
                     "address_types": ["business"],
                     "line2": "line2",
+                    "primary": True,
                 }
             ],
             bank_settings={
@@ -1081,6 +1149,10 @@ class TestAsyncLegalEntities:
             risk_rating="low",
             service_provider_legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             suffix="suffix",
+            terms_of_use={
+                "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "ip_address": "ip_address",
+            },
             third_party_verification={
                 "outcome": "passed",
                 "vendor": "persona",
@@ -1196,3 +1268,45 @@ class TestAsyncLegalEntities:
             assert_matches_type(AsyncPage[LegalEntity], legal_entity, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_update_status(self, async_client: AsyncModernTreasury) -> None:
+        legal_entity = await async_client.legal_entities.update_status(
+            id="id",
+            status="active",
+        )
+        assert_matches_type(LegalEntity, legal_entity, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update_status(self, async_client: AsyncModernTreasury) -> None:
+        response = await async_client.legal_entities.with_raw_response.update_status(
+            id="id",
+            status="active",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        legal_entity = response.parse()
+        assert_matches_type(LegalEntity, legal_entity, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update_status(self, async_client: AsyncModernTreasury) -> None:
+        async with async_client.legal_entities.with_streaming_response.update_status(
+            id="id",
+            status="active",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            legal_entity = await response.parse()
+            assert_matches_type(LegalEntity, legal_entity, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update_status(self, async_client: AsyncModernTreasury) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.legal_entities.with_raw_response.update_status(
+                id="",
+                status="active",
+            )

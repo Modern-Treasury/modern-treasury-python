@@ -126,7 +126,7 @@ class PaymentOrders(SyncAPIResource):
 
         Args:
           amount: Value in specified currency's smallest unit. e.g. $10 would be represented as
-              1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
+              1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
 
           direction: One of `credit`, `debit`. Describes the direction money is flowing in the
               transaction. A `credit` moves money from your account to someone else's. A
@@ -135,9 +135,8 @@ class PaymentOrders(SyncAPIResource):
 
           originating_account_id: The ID of one of your organization's internal accounts.
 
-          type: One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-              `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-              `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+          type: One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+              `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
 
           accounting_category_id: The ID of one of your accounting categories. Note that these will only be
               accessible if your accounting system has been connected.
@@ -443,7 +442,7 @@ class PaymentOrders(SyncAPIResource):
               accessible if your accounting system has been connected.
 
           amount: Value in specified currency's smallest unit. e.g. $10 would be represented as
-              1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
+              1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
 
           charge_bearer: The party that will pay the fees for the payment order. See
               https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the
@@ -541,9 +540,8 @@ class PaymentOrders(SyncAPIResource):
               payment orders, the `subtype` represents the SEC code. We currently support
               `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
 
-          type: One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-              `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-              `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+          type: One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+              `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
 
           ultimate_originating_party_identifier: This represents the identifier by which the person is known to the receiver when
               using the CIE subtype for ACH payments. Only the first 22 characters of this
@@ -673,24 +671,17 @@ class PaymentOrders(SyncAPIResource):
             "dk_nets",
             "eft",
             "gb_fps",
-            "hu_ics",
-            "interac",
             "masav",
             "mx_ccen",
             "neft",
             "nics",
             "nz_becs",
             "pl_elixir",
-            "provxchange",
-            "ro_sent",
             "rtp",
             "se_bankgirot",
-            "sen",
             "sepa",
             "sg_giro",
             "sic",
-            "signet",
-            "sknbi",
             "stablecoin",
             "wire",
             "zengin",
@@ -831,7 +822,7 @@ class PaymentOrders(SyncAPIResource):
 
         Args:
           amount: Value in specified currency's smallest unit. e.g. $10 would be represented as
-              1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
+              1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
 
           direction: One of `credit`, `debit`. Describes the direction money is flowing in the
               transaction. A `credit` moves money from your account to someone else's. A
@@ -840,9 +831,8 @@ class PaymentOrders(SyncAPIResource):
 
           originating_account_id: The ID of one of your organization's internal accounts.
 
-          type: One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-              `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-              `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+          type: One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+              `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
 
           accounting_category_id: The ID of one of your accounting categories. Note that these will only be
               accessible if your accounting system has been connected.
@@ -1112,7 +1102,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
 
         Args:
           amount: Value in specified currency's smallest unit. e.g. $10 would be represented as
-              1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
+              1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
 
           direction: One of `credit`, `debit`. Describes the direction money is flowing in the
               transaction. A `credit` moves money from your account to someone else's. A
@@ -1121,9 +1111,8 @@ class AsyncPaymentOrders(AsyncAPIResource):
 
           originating_account_id: The ID of one of your organization's internal accounts.
 
-          type: One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-              `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-              `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+          type: One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+              `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
 
           accounting_category_id: The ID of one of your accounting categories. Note that these will only be
               accessible if your accounting system has been connected.
@@ -1429,7 +1418,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
               accessible if your accounting system has been connected.
 
           amount: Value in specified currency's smallest unit. e.g. $10 would be represented as
-              1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
+              1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
 
           charge_bearer: The party that will pay the fees for the payment order. See
               https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the
@@ -1527,9 +1516,8 @@ class AsyncPaymentOrders(AsyncAPIResource):
               payment orders, the `subtype` represents the SEC code. We currently support
               `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`.
 
-          type: One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-              `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-              `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+          type: One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+              `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
 
           ultimate_originating_party_identifier: This represents the identifier by which the person is known to the receiver when
               using the CIE subtype for ACH payments. Only the first 22 characters of this
@@ -1659,24 +1647,17 @@ class AsyncPaymentOrders(AsyncAPIResource):
             "dk_nets",
             "eft",
             "gb_fps",
-            "hu_ics",
-            "interac",
             "masav",
             "mx_ccen",
             "neft",
             "nics",
             "nz_becs",
             "pl_elixir",
-            "provxchange",
-            "ro_sent",
             "rtp",
             "se_bankgirot",
-            "sen",
             "sepa",
             "sg_giro",
             "sic",
-            "signet",
-            "sknbi",
             "stablecoin",
             "wire",
             "zengin",
@@ -1817,7 +1798,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
 
         Args:
           amount: Value in specified currency's smallest unit. e.g. $10 would be represented as
-              1000 (cents). For RTP, the maximum amount allowed by the network is $100,000.
+              1000 (cents). For RTP, the maximum amount allowed by the network is $10,000,000.
 
           direction: One of `credit`, `debit`. Describes the direction money is flowing in the
               transaction. A `credit` moves money from your account to someone else's. A
@@ -1826,9 +1807,8 @@ class AsyncPaymentOrders(AsyncAPIResource):
 
           originating_account_id: The ID of one of your organization's internal accounts.
 
-          type: One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-              `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-              `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+          type: One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+              `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
 
           accounting_category_id: The ID of one of your accounting categories. Note that these will only be
               accessible if your accounting system has been connected.

@@ -8,6 +8,8 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 from .document import Document
+from .bank_settings import BankSettings
+from .wealth_and_employment_details import WealthAndEmploymentDetails
 from .shared.third_party_verification import ThirdPartyVerification
 from .shared.legal_entity_industry_classification import LegalEntityIndustryClassification
 
@@ -15,14 +17,13 @@ __all__ = [
     "LegalEntity",
     "Addresses",
     "Address",
-    "BankSettings",
     "Identifications",
     "Identification",
     "PhoneNumbers",
     "PhoneNumber",
     "Regulators",
     "Regulator",
-    "WealthAndEmploymentDetails",
+    "TermsOfUse",
 ]
 
 
@@ -57,6 +58,9 @@ class Address(BaseModel):
     postal_code: Optional[str] = None
     """The postal code of the address."""
 
+    primary: Optional[bool] = None
+    """Whether this address is the primary address for the legal entity."""
+
     region: Optional[str] = None
     """Region or State."""
 
@@ -68,45 +72,6 @@ Addresses = Address
 
 Please use Address instead.
 """
-
-
-class BankSettings(BaseModel):
-    id: str
-
-    backup_withholding_percentage: Optional[int] = None
-    """The percentage of backup withholding to apply to the legal entity."""
-
-    created_at: datetime
-
-    discarded_at: Optional[datetime] = None
-
-    enable_backup_withholding: Optional[bool] = None
-    """Whether backup withholding is enabled.
-
-    See more here -
-    https://www.irs.gov/businesses/small-businesses-self-employed/backup-withholding.
-    """
-
-    live_mode: bool
-    """
-    This field will be true if this object exists in the live environment or false
-    if it exists in the test environment.
-    """
-
-    object: str
-
-    privacy_opt_out: Optional[bool] = None
-    """Cross River Bank specific setting to opt out of privacy policy."""
-
-    regulation_o: Optional[bool] = None
-    """
-    It covers, among other types of insider loans, extensions of credit by a member
-    bank to an executive officer, director, or principal shareholder of the member
-    bank; a bank holding company of which the member bank is a subsidiary; and any
-    other subsidiary of that bank holding company.
-    """
-
-    updated_at: datetime
 
 
 class Identification(BaseModel):
@@ -127,27 +92,102 @@ class Identification(BaseModel):
     id_type: Literal[
         "ar_cuil",
         "ar_cuit",
+        "at_atin",
+        "at_vat",
+        "au_abn",
+        "au_tfn",
+        "be_ent",
+        "be_nrn",
         "br_cnpj",
         "br_cpf",
+        "ca_bn",
         "ca_sin",
+        "ch_ahv",
+        "ch_uid",
         "cl_run",
         "cl_rut",
         "co_cedulas",
         "co_nit",
+        "cy_tin",
+        "cz_ico",
+        "cz_rc",
+        "de_stid",
+        "de_stnr",
+        "de_vat",
+        "dk_cpr",
+        "dk_cvr",
         "drivers_license",
+        "ee_ik",
+        "ee_rk",
+        "es_nie",
+        "es_nif",
+        "fi_hetu",
+        "fi_ytj",
+        "fr_nif",
+        "fr_siren",
+        "fr_vat",
+        "gb_nino",
+        "gb_utr",
+        "gb_vat",
+        "generic_international",
+        "gr_vat",
         "hn_id",
         "hn_rtn",
+        "hr_oib",
+        "hu_adj",
+        "hu_anum",
         "ie_pps",
+        "ie_trn",
         "in_lei",
+        "is_knt",
+        "it_cf",
+        "it_piva",
+        "jp_hb",
+        "jp_mn",
         "kr_brn",
         "kr_crn",
         "kr_rrn",
+        "li_peid",
+        "lt_ak",
+        "lt_jak",
+        "lu_mtc",
+        "lu_vat",
+        "lv_pk",
+        "lv_rn",
+        "mt_tin",
+        "mt_vat",
+        "mx_curp",
+        "mx_ine",
+        "mx_rfc",
+        "national_id",
+        "nl_bsn",
+        "nl_btw",
+        "nl_rsin",
+        "no_fdn",
+        "no_mva",
+        "no_orgnr",
+        "nz_ird",
         "passport",
+        "pl_nip",
+        "pl_pesel",
+        "pt_nif",
+        "ro_cnp",
+        "ro_cui",
         "sa_tin",
         "sa_vat",
+        "se_orgnr",
+        "se_pnmr",
+        "sg_fin",
+        "sg_nric",
+        "sg_uen",
+        "si_dav",
+        "si_tin",
+        "sk_ico",
+        "sk_rc",
         "us_ein",
         "us_itin",
         "us_ssn",
+        "uy_rut",
         "vn_tin",
     ]
     """The type of ID number."""
@@ -213,160 +253,17 @@ Please use Regulator instead.
 """
 
 
-class WealthAndEmploymentDetails(BaseModel):
-    id: str
+class TermsOfUse(BaseModel):
+    """Acceptance of terms of use by the legal entity."""
 
-    annual_income: Optional[int] = None
-    """The annual income of the individual in USD."""
+    accepted_at: Optional[datetime] = None
+    """The ISO 8601 timestamp indicating when the terms of use were accepted."""
 
-    created_at: datetime
+    ip_address: Optional[str] = None
+    """The IP address from which the terms of use were accepted.
 
-    discarded_at: Optional[datetime] = None
-
-    employer_country: Optional[str] = None
-    """The country in which the employer is located."""
-
-    employer_name: Optional[str] = None
-    """The name of the employer."""
-
-    employer_state: Optional[str] = None
-    """The state in which the employer is located."""
-
-    employment_status: Optional[Literal["employed", "retired", "self_employed", "student", "unemployed"]] = None
-    """The employment status of the individual."""
-
-    income_country: Optional[str] = None
-    """The country in which the individual's income is earned."""
-
-    income_source: Optional[
-        Literal[
-            "family_support",
-            "government_benefits",
-            "inheritance",
-            "investments",
-            "rental_income",
-            "retirement",
-            "salary",
-            "self_employed",
-        ]
-    ] = None
-    """The source of the individual's income."""
-
-    income_state: Optional[str] = None
-    """The state in which the individual's income is earned."""
-
-    industry: Optional[
-        Literal[
-            "accounting",
-            "agriculture",
-            "automotive",
-            "chemical_manufacturing",
-            "construction",
-            "educational_medical",
-            "food_service",
-            "finance",
-            "gasoline",
-            "health_stores",
-            "laundry",
-            "maintenance",
-            "manufacturing",
-            "merchant_wholesale",
-            "mining",
-            "performing_arts",
-            "professional_non_legal",
-            "public_administration",
-            "publishing",
-            "real_estate",
-            "recreation_gambling",
-            "religious_charity",
-            "rental_services",
-            "retail_clothing",
-            "retail_electronics",
-            "retail_food",
-            "retail_furnishing",
-            "retail_home",
-            "retail_non_store",
-            "retail_sporting",
-            "transportation",
-            "travel",
-            "utilities",
-        ]
-    ] = None
-    """The industry of the individual."""
-
-    live_mode: bool
+    Supports both IPv4 and IPv6 formats.
     """
-    This field will be true if this object exists in the live environment or false
-    if it exists in the test environment.
-    """
-
-    object: str
-
-    occupation: Optional[
-        Literal[
-            "consulting",
-            "executive",
-            "finance_accounting",
-            "food_services",
-            "government",
-            "healthcare",
-            "legal_services",
-            "manufacturing",
-            "other",
-            "sales",
-            "science_engineering",
-            "technology",
-        ]
-    ] = None
-    """The occupation of the individual."""
-
-    source_of_funds: Optional[
-        Literal[
-            "alimony",
-            "annuity",
-            "business_owner",
-            "business_revenue",
-            "debt_financing",
-            "general_employee",
-            "government_benefits",
-            "homemaker",
-            "inheritance_gift",
-            "intercompany_loan",
-            "investment",
-            "investor_funding",
-            "legal_settlement",
-            "lottery",
-            "real_estate",
-            "retained_earnings_or_savings",
-            "retired",
-            "retirement",
-            "salary",
-            "sale_of_business_assets",
-            "sale_of_real_estate",
-            "self_employed",
-            "senior_executive",
-            "trust_income",
-        ]
-    ] = None
-    """The source of the individual's funds."""
-
-    updated_at: datetime
-
-    wealth_source: Optional[
-        Literal[
-            "business_sale",
-            "family_support",
-            "government_benefits",
-            "inheritance",
-            "investments",
-            "other",
-            "rental_income",
-            "retirement",
-            "salary",
-            "self_employed",
-        ]
-    ] = None
-    """The source of the individual's wealth."""
 
 
 class LegalEntity(BaseModel):
@@ -432,7 +329,7 @@ class LegalEntity(BaseModel):
     last_name: Optional[str] = None
     """An individual's last name."""
 
-    legal_entity_type: Literal["business", "individual", "joint"]
+    legal_entity_type: Literal["business", "individual"]
     """The type of legal entity."""
 
     legal_structure: Optional[
@@ -497,6 +394,9 @@ class LegalEntity(BaseModel):
 
     suffix: Optional[str] = None
     """An individual's suffix."""
+
+    terms_of_use: Optional[TermsOfUse] = None
+    """Acceptance of terms of use by the legal entity."""
 
     third_party_verification: Optional[ThirdPartyVerification] = None
     """Deprecated. Use `third_party_verifications` instead."""

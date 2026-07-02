@@ -20,6 +20,12 @@ class Transaction(BaseModel):
     e.g. $10 would be represented as 1000.
     """
 
+    amount_string: str
+    """
+    The amount of the transaction as a string, preserving full precision for values
+    that may exceed safe integer limits in some languages.
+    """
+
     as_of_date: Optional[date] = None
     """The date on which the transaction occurred."""
 
@@ -94,24 +100,17 @@ class Transaction(BaseModel):
         "dk_nets",
         "eft",
         "gb_fps",
-        "hu_ics",
-        "interac",
         "masav",
         "mx_ccen",
         "neft",
         "nics",
         "nz_becs",
         "pl_elixir",
-        "provxchange",
-        "ro_sent",
         "rtp",
         "se_bankgirot",
-        "sen",
         "sepa",
         "sg_giro",
         "sic",
-        "signet",
-        "sknbi",
         "stablecoin",
         "wire",
         "zengin",
@@ -119,7 +118,7 @@ class Transaction(BaseModel):
     ]
     """The type of the transaction.
 
-    Examples could be `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
+    Examples could be `card, `ach`, `wire`, `check`, `rtp`, or `book`.
     """
 
     updated_at: datetime
@@ -153,9 +152,9 @@ class Transaction(BaseModel):
             "paxos",
             "paypal",
             "pnc",
-            "signet",
             "silvergate",
             "swift",
+            "turnkey",
             "us_bank",
             "user",
             "western_alliance",
@@ -165,7 +164,7 @@ class Transaction(BaseModel):
 
     Can be one of `bai2`, `bankprov`, `bnk_dev`, `cleartouch`, `currencycloud`,
     `cross_river`, `dc_bank`, `dwolla`, `evolve`, `goldman_sachs`, `iso20022`,
-    `jpmc`, `mx`, `signet`, `silvergate`, `swift`, `us_bank`, or others.
+    `jpmc`, `mx`, `silvergate`, `swift`, `us_bank`, or others.
     """
 
     vendor_customer_id: Optional[str] = None

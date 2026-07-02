@@ -8,9 +8,11 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
+from .bank_settings_param import BankSettingsParam
 from .external_account_type import ExternalAccountType
 from .shared_params.address_request import AddressRequest
 from .contact_detail_create_request_param import ContactDetailCreateRequestParam
+from .wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
 from .shared_params.third_party_verification import ThirdPartyVerification
 from .shared_params.identification_create_request import IdentificationCreateRequest
 from .shared_params.ledger_account_create_request import LedgerAccountCreateRequest
@@ -27,14 +29,13 @@ __all__ = [
     "AccountsRoutingDetails",
     "AccountRoutingDetail",
     "LegalEntity",
-    "LegalEntityBankSettings",
     "LegalEntityDocuments",
     "LegalEntityDocument",
     "LegalEntityPhoneNumbers",
     "LegalEntityPhoneNumber",
     "LegalEntityRegulators",
     "LegalEntityRegulator",
-    "LegalEntityWealthAndEmploymentDetails",
+    "LegalEntityTermsOfUse",
 ]
 
 
@@ -134,8 +135,6 @@ class AccountRoutingDetail(TypedDict, total=False):
             "dk_interbank_clearing_code",
             "gb_sort_code",
             "hk_interbank_clearing_code",
-            "hu_interbank_clearing_code",
-            "id_sknbi_code",
             "il_bank_code",
             "in_ifsc",
             "jp_zengin_code",
@@ -162,24 +161,17 @@ class AccountRoutingDetail(TypedDict, total=False):
         "dk_nets",
         "eft",
         "gb_fps",
-        "hu_ics",
-        "interac",
         "masav",
         "mx_ccen",
         "neft",
         "nics",
         "nz_becs",
         "pl_elixir",
-        "provxchange",
-        "ro_sent",
         "rtp",
         "se_bankgirot",
-        "sen",
         "sepa",
         "sg_giro",
         "sic",
-        "signet",
-        "sknbi",
         "stablecoin",
         "wire",
         "zengin",
@@ -255,45 +247,6 @@ Please use Account instead.
 """
 
 
-class LegalEntityBankSettings(TypedDict, total=False):
-    id: Required[str]
-
-    backup_withholding_percentage: Required[Optional[int]]
-    """The percentage of backup withholding to apply to the legal entity."""
-
-    created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
-
-    discarded_at: Required[Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]]
-
-    enable_backup_withholding: Required[Optional[bool]]
-    """Whether backup withholding is enabled.
-
-    See more here -
-    https://www.irs.gov/businesses/small-businesses-self-employed/backup-withholding.
-    """
-
-    live_mode: Required[bool]
-    """
-    This field will be true if this object exists in the live environment or false
-    if it exists in the test environment.
-    """
-
-    object: Required[str]
-
-    privacy_opt_out: Required[Optional[bool]]
-    """Cross River Bank specific setting to opt out of privacy policy."""
-
-    regulation_o: Required[Optional[bool]]
-    """
-    It covers, among other types of insider loans, extensions of credit by a member
-    bank to an executive officer, director, or principal shareholder of the member
-    bank; a bank holding company of which the member bank is a subsidiary; and any
-    other subsidiary of that bank holding company.
-    """
-
-    updated_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
-
-
 class LegalEntityDocument(TypedDict, total=False):
     document_type: Required[
         Literal[
@@ -356,170 +309,17 @@ Please use LegalEntityRegulator instead.
 """
 
 
-class LegalEntityWealthAndEmploymentDetails(TypedDict, total=False):
-    id: Required[str]
+class LegalEntityTermsOfUse(TypedDict, total=False):
+    """Acceptance of terms of use by the legal entity."""
 
-    annual_income: Required[Optional[int]]
-    """The annual income of the individual in USD."""
+    accepted_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """The ISO 8601 timestamp indicating when the terms of use were accepted."""
 
-    created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
+    ip_address: str
+    """The IP address from which the terms of use were accepted.
 
-    discarded_at: Required[Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]]
-
-    employer_country: Required[Optional[str]]
-    """The country in which the employer is located."""
-
-    employer_name: Required[Optional[str]]
-    """The name of the employer."""
-
-    employer_state: Required[Optional[str]]
-    """The state in which the employer is located."""
-
-    employment_status: Required[Optional[Literal["employed", "retired", "self_employed", "student", "unemployed"]]]
-    """The employment status of the individual."""
-
-    income_country: Required[Optional[str]]
-    """The country in which the individual's income is earned."""
-
-    income_source: Required[
-        Optional[
-            Literal[
-                "family_support",
-                "government_benefits",
-                "inheritance",
-                "investments",
-                "rental_income",
-                "retirement",
-                "salary",
-                "self_employed",
-            ]
-        ]
-    ]
-    """The source of the individual's income."""
-
-    income_state: Required[Optional[str]]
-    """The state in which the individual's income is earned."""
-
-    industry: Required[
-        Optional[
-            Literal[
-                "accounting",
-                "agriculture",
-                "automotive",
-                "chemical_manufacturing",
-                "construction",
-                "educational_medical",
-                "food_service",
-                "finance",
-                "gasoline",
-                "health_stores",
-                "laundry",
-                "maintenance",
-                "manufacturing",
-                "merchant_wholesale",
-                "mining",
-                "performing_arts",
-                "professional_non_legal",
-                "public_administration",
-                "publishing",
-                "real_estate",
-                "recreation_gambling",
-                "religious_charity",
-                "rental_services",
-                "retail_clothing",
-                "retail_electronics",
-                "retail_food",
-                "retail_furnishing",
-                "retail_home",
-                "retail_non_store",
-                "retail_sporting",
-                "transportation",
-                "travel",
-                "utilities",
-            ]
-        ]
-    ]
-    """The industry of the individual."""
-
-    live_mode: Required[bool]
+    Supports both IPv4 and IPv6 formats.
     """
-    This field will be true if this object exists in the live environment or false
-    if it exists in the test environment.
-    """
-
-    object: Required[str]
-
-    occupation: Required[
-        Optional[
-            Literal[
-                "consulting",
-                "executive",
-                "finance_accounting",
-                "food_services",
-                "government",
-                "healthcare",
-                "legal_services",
-                "manufacturing",
-                "other",
-                "sales",
-                "science_engineering",
-                "technology",
-            ]
-        ]
-    ]
-    """The occupation of the individual."""
-
-    source_of_funds: Required[
-        Optional[
-            Literal[
-                "alimony",
-                "annuity",
-                "business_owner",
-                "business_revenue",
-                "debt_financing",
-                "general_employee",
-                "government_benefits",
-                "homemaker",
-                "inheritance_gift",
-                "intercompany_loan",
-                "investment",
-                "investor_funding",
-                "legal_settlement",
-                "lottery",
-                "real_estate",
-                "retained_earnings_or_savings",
-                "retired",
-                "retirement",
-                "salary",
-                "sale_of_business_assets",
-                "sale_of_real_estate",
-                "self_employed",
-                "senior_executive",
-                "trust_income",
-            ]
-        ]
-    ]
-    """The source of the individual's funds."""
-
-    updated_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
-
-    wealth_source: Required[
-        Optional[
-            Literal[
-                "business_sale",
-                "family_support",
-                "government_benefits",
-                "inheritance",
-                "investments",
-                "other",
-                "rental_income",
-                "retirement",
-                "salary",
-                "self_employed",
-            ]
-        ]
-    ]
-    """The source of the individual's wealth."""
 
 
 class LegalEntity(TypedDict, total=False):
@@ -529,7 +329,7 @@ class LegalEntity(TypedDict, total=False):
     addresses: Iterable[LegalEntityAddressCreateRequest]
     """A list of addresses for the entity."""
 
-    bank_settings: Optional[LegalEntityBankSettings]
+    bank_settings: Optional[BankSettingsParam]
 
     business_description: Optional[str]
     """A description of the business."""
@@ -647,6 +447,9 @@ class LegalEntity(TypedDict, total=False):
     suffix: Optional[str]
     """An individual's suffix."""
 
+    terms_of_use: Optional[LegalEntityTermsOfUse]
+    """Acceptance of terms of use by the legal entity."""
+
     third_party_verification: Optional[ThirdPartyVerification]
     """Deprecated. Use `third_party_verifications` instead."""
 
@@ -656,7 +459,7 @@ class LegalEntity(TypedDict, total=False):
     ticker_symbol: Optional[str]
     """Stock ticker symbol for publicly traded companies."""
 
-    wealth_and_employment_details: Optional[LegalEntityWealthAndEmploymentDetails]
+    wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam]
 
     website: Optional[str]
     """The entity's primary website URL."""
