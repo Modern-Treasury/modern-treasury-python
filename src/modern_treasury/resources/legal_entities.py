@@ -96,6 +96,7 @@ class LegalEntities(SyncAPIResource):
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
+        terms_of_use: Optional[legal_entity_create_params.TermsOfUse] | Omit = omit,
         third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
         third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -185,6 +186,8 @@ class LegalEntities(SyncAPIResource):
 
           suffix: An individual's suffix.
 
+          terms_of_use: Acceptance of terms of use by the legal entity.
+
           third_party_verification: Deprecated. Use `third_party_verifications` instead.
 
           third_party_verifications: A list of third-party verifications run by external vendors.
@@ -243,6 +246,7 @@ class LegalEntities(SyncAPIResource):
                     "risk_rating": risk_rating,
                     "service_provider_legal_entity_id": service_provider_legal_entity_id,
                     "suffix": suffix,
+                    "terms_of_use": terms_of_use,
                     "third_party_verification": third_party_verification,
                     "third_party_verifications": third_party_verifications,
                     "ticker_symbol": ticker_symbol,
@@ -332,6 +336,7 @@ class LegalEntities(SyncAPIResource):
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
+        terms_of_use: Optional[legal_entity_update_params.TermsOfUse] | Omit = omit,
         third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
         third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -408,6 +413,8 @@ class LegalEntities(SyncAPIResource):
 
           suffix: An individual's suffix.
 
+          terms_of_use: Acceptance of terms of use by the legal entity.
+
           third_party_verification: Deprecated. Use `third_party_verifications` instead.
 
           third_party_verifications: A list of third-party verifications run by external vendors.
@@ -463,6 +470,7 @@ class LegalEntities(SyncAPIResource):
                     "risk_rating": risk_rating,
                     "service_provider_legal_entity_id": service_provider_legal_entity_id,
                     "suffix": suffix,
+                    "terms_of_use": terms_of_use,
                     "third_party_verification": third_party_verification,
                     "third_party_verifications": third_party_verifications,
                     "ticker_symbol": ticker_symbol,
@@ -648,6 +656,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
+        terms_of_use: Optional[legal_entity_create_params.TermsOfUse] | Omit = omit,
         third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
         third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -737,6 +746,8 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           suffix: An individual's suffix.
 
+          terms_of_use: Acceptance of terms of use by the legal entity.
+
           third_party_verification: Deprecated. Use `third_party_verifications` instead.
 
           third_party_verifications: A list of third-party verifications run by external vendors.
@@ -795,6 +806,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "risk_rating": risk_rating,
                     "service_provider_legal_entity_id": service_provider_legal_entity_id,
                     "suffix": suffix,
+                    "terms_of_use": terms_of_use,
                     "third_party_verification": third_party_verification,
                     "third_party_verifications": third_party_verifications,
                     "ticker_symbol": ticker_symbol,
@@ -884,6 +896,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
+        terms_of_use: Optional[legal_entity_update_params.TermsOfUse] | Omit = omit,
         third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
         third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -960,6 +973,8 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           suffix: An individual's suffix.
 
+          terms_of_use: Acceptance of terms of use by the legal entity.
+
           third_party_verification: Deprecated. Use `third_party_verifications` instead.
 
           third_party_verifications: A list of third-party verifications run by external vendors.
@@ -1015,6 +1030,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "risk_rating": risk_rating,
                     "service_provider_legal_entity_id": service_provider_legal_entity_id,
                     "suffix": suffix,
+                    "terms_of_use": terms_of_use,
                     "third_party_verification": third_party_verification,
                     "third_party_verifications": third_party_verifications,
                     "ticker_symbol": ticker_symbol,

@@ -84,6 +84,7 @@ class IdentificationCreateRequest(TypedDict, total=False):
             "gb_nino",
             "gb_utr",
             "gb_vat",
+            "generic_international",
             "gr_vat",
             "hn_id",
             "hn_rtn",

@@ -210,6 +210,10 @@ class TestLegalEntities:
                         "risk_rating": "low",
                         "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "suffix": "suffix",
+                        "terms_of_use": {
+                            "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                            "ip_address": "ip_address",
+                        },
                         "third_party_verification": {
                             "outcome": "passed",
                             "vendor": "persona",
@@ -282,6 +286,10 @@ class TestLegalEntities:
             risk_rating="low",
             service_provider_legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             suffix="suffix",
+            terms_of_use={
+                "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "ip_address": "ip_address",
+            },
             third_party_verification={
                 "outcome": "passed",
                 "vendor": "persona",
@@ -489,6 +497,10 @@ class TestLegalEntities:
             risk_rating="low",
             service_provider_legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             suffix="suffix",
+            terms_of_use={
+                "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "ip_address": "ip_address",
+            },
             third_party_verification={
                 "outcome": "passed",
                 "vendor": "persona",
@@ -840,6 +852,10 @@ class TestAsyncLegalEntities:
                         "risk_rating": "low",
                         "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "suffix": "suffix",
+                        "terms_of_use": {
+                            "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                            "ip_address": "ip_address",
+                        },
                         "third_party_verification": {
                             "outcome": "passed",
                             "vendor": "persona",
@@ -912,6 +928,10 @@ class TestAsyncLegalEntities:
             risk_rating="low",
             service_provider_legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             suffix="suffix",
+            terms_of_use={
+                "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "ip_address": "ip_address",
+            },
             third_party_verification={
                 "outcome": "passed",
                 "vendor": "persona",
@@ -1119,6 +1139,10 @@ class TestAsyncLegalEntities:
             risk_rating="low",
             service_provider_legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             suffix="suffix",
+            terms_of_use={
+                "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "ip_address": "ip_address",
+            },
             third_party_verification={
                 "outcome": "passed",
                 "vendor": "persona",
