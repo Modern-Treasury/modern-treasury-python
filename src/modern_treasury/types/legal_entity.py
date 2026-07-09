@@ -30,7 +30,9 @@ __all__ = [
 class Address(BaseModel):
     id: str
 
-    address_types: List[Literal["business", "business_registered", "mailing", "other", "po_box", "residential"]]
+    address_types: List[
+        Literal["business", "business_physical", "business_registered", "mailing", "other", "po_box", "residential"]
+    ]
     """The types of this address."""
 
     country: Optional[str] = None
@@ -59,7 +61,10 @@ class Address(BaseModel):
     """The postal code of the address."""
 
     primary: Optional[bool] = None
-    """Whether this address is the primary address for the legal entity."""
+    """Whether this address is the primary address for the legal entity.
+
+    Optional; when omitted it is inferred from the address types.
+    """
 
     region: Optional[str] = None
     """Region or State."""
