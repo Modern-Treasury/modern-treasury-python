@@ -64,7 +64,6 @@ class InternalAccounts(SyncAPIResource):
     def create(
         self,
         *,
-        connection_id: str,
         currency: Literal["USD", "CAD", "USDC", "USDT", "PYUSD", "USDG"],
         name: str,
         account_capabilities: Iterable[internal_account_create_params.AccountCapability] | Omit = omit,
@@ -84,6 +83,7 @@ class InternalAccounts(SyncAPIResource):
             "solana_wallet",
         ]
         | Omit = omit,
+        connection_id: str | Omit = omit,
         counterparty_id: str | Omit = omit,
         debitable: Optional[bool] | Omit = omit,
         external_id: Optional[str] | Omit = omit,
@@ -101,13 +101,12 @@ class InternalAccounts(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> InternalAccount:
-        """
-        create internal account
+        """create internal account
 
         Args:
-          connection_id: The identifier of the financial institution the account belongs to.
+          currency: The currency of the internal account.
 
-          currency: The currency of the internal account. Supports fiat and stablecoin currencies.
+        Supports fiat and stablecoin currencies.
 
           name: The nickname of the account.
 
@@ -116,6 +115,10 @@ class InternalAccounts(SyncAPIResource):
 
           account_type: The account type, used to provision the appropriate account at the financial
               institution.
+
+          connection_id: The identifier of the financial institution the account belongs to. If not
+              provided, defaults to the default connection, or the sole connection if only one
+              exists.
 
           counterparty_id: The Counterparty associated to this account.
 
@@ -154,11 +157,11 @@ class InternalAccounts(SyncAPIResource):
             "/api/internal_accounts",
             body=maybe_transform(
                 {
-                    "connection_id": connection_id,
                     "currency": currency,
                     "name": name,
                     "account_capabilities": account_capabilities,
                     "account_type": account_type,
+                    "connection_id": connection_id,
                     "counterparty_id": counterparty_id,
                     "debitable": debitable,
                     "external_id": external_id,
@@ -517,7 +520,6 @@ class AsyncInternalAccounts(AsyncAPIResource):
     async def create(
         self,
         *,
-        connection_id: str,
         currency: Literal["USD", "CAD", "USDC", "USDT", "PYUSD", "USDG"],
         name: str,
         account_capabilities: Iterable[internal_account_create_params.AccountCapability] | Omit = omit,
@@ -537,6 +539,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
             "solana_wallet",
         ]
         | Omit = omit,
+        connection_id: str | Omit = omit,
         counterparty_id: str | Omit = omit,
         debitable: Optional[bool] | Omit = omit,
         external_id: Optional[str] | Omit = omit,
@@ -554,13 +557,12 @@ class AsyncInternalAccounts(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> InternalAccount:
-        """
-        create internal account
+        """create internal account
 
         Args:
-          connection_id: The identifier of the financial institution the account belongs to.
+          currency: The currency of the internal account.
 
-          currency: The currency of the internal account. Supports fiat and stablecoin currencies.
+        Supports fiat and stablecoin currencies.
 
           name: The nickname of the account.
 
@@ -569,6 +571,10 @@ class AsyncInternalAccounts(AsyncAPIResource):
 
           account_type: The account type, used to provision the appropriate account at the financial
               institution.
+
+          connection_id: The identifier of the financial institution the account belongs to. If not
+              provided, defaults to the default connection, or the sole connection if only one
+              exists.
 
           counterparty_id: The Counterparty associated to this account.
 
@@ -607,11 +613,11 @@ class AsyncInternalAccounts(AsyncAPIResource):
             "/api/internal_accounts",
             body=await async_maybe_transform(
                 {
-                    "connection_id": connection_id,
                     "currency": currency,
                     "name": name,
                     "account_capabilities": account_capabilities,
                     "account_type": account_type,
+                    "connection_id": connection_id,
                     "counterparty_id": counterparty_id,
                     "debitable": debitable,
                     "external_id": external_id,
