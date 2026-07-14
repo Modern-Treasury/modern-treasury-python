@@ -56,22 +56,32 @@ class ExpectedPaymentListParams(TypedDict, total=False):
         "dk_nets",
         "eft",
         "gb_fps",
+        "hu_ics",
+        "interac",
         "masav",
         "mx_ccen",
         "neft",
         "nics",
         "nz_becs",
         "pl_elixir",
+        "provxchange",
+        "ro_sent",
         "rtp",
         "se_bankgirot",
+        "sen",
         "sepa",
         "sg_giro",
         "sic",
+        "signet",
+        "sknbi",
         "stablecoin",
         "wire",
         "zengin",
     ]
-    """One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire"""
+    """
+    One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp,sen,
+    sepa, signet, wire
+    """
 
     updated_at_lower_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Used to return expected payments updated after some datetime"""

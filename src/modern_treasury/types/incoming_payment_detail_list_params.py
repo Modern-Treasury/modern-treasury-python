@@ -59,15 +59,20 @@ class IncomingPaymentDetailListParams(TypedDict, total=False):
         "book",
         "check",
         "eft",
+        "interac",
         "neft",
         "nz_becs",
         "rtp",
         "sepa",
+        "signet",
         "stablecoin",
         "wire",
         "zengin",
     ]
-    """One of: `ach`, `book`, `check`, `eft`, `rtp`, `sepa`, or `wire`."""
+    """
+    One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
+    `wire`.
+    """
 
     virtual_account_id: str
     """

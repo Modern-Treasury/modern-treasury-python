@@ -13,7 +13,6 @@ from ..types import (
     legal_entity_list_params,
     legal_entity_create_params,
     legal_entity_update_params,
-    legal_entity_update_status_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import path_template, maybe_transform, async_maybe_transform
@@ -96,7 +95,6 @@ class LegalEntities(SyncAPIResource):
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
-        terms_of_use: Optional[legal_entity_create_params.TermsOfUse] | Omit = omit,
         third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
         third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -186,8 +184,6 @@ class LegalEntities(SyncAPIResource):
 
           suffix: An individual's suffix.
 
-          terms_of_use: Acceptance of terms of use by the legal entity.
-
           third_party_verification: Deprecated. Use `third_party_verifications` instead.
 
           third_party_verifications: A list of third-party verifications run by external vendors.
@@ -246,7 +242,6 @@ class LegalEntities(SyncAPIResource):
                     "risk_rating": risk_rating,
                     "service_provider_legal_entity_id": service_provider_legal_entity_id,
                     "suffix": suffix,
-                    "terms_of_use": terms_of_use,
                     "third_party_verification": third_party_verification,
                     "third_party_verifications": third_party_verifications,
                     "ticker_symbol": ticker_symbol,
@@ -336,7 +331,6 @@ class LegalEntities(SyncAPIResource):
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
-        terms_of_use: Optional[legal_entity_update_params.TermsOfUse] | Omit = omit,
         third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
         third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -413,8 +407,6 @@ class LegalEntities(SyncAPIResource):
 
           suffix: An individual's suffix.
 
-          terms_of_use: Acceptance of terms of use by the legal entity.
-
           third_party_verification: Deprecated. Use `third_party_verifications` instead.
 
           third_party_verifications: A list of third-party verifications run by external vendors.
@@ -470,7 +462,6 @@ class LegalEntities(SyncAPIResource):
                     "risk_rating": risk_rating,
                     "service_provider_legal_entity_id": service_provider_legal_entity_id,
                     "suffix": suffix,
-                    "terms_of_use": terms_of_use,
                     "third_party_verification": third_party_verification,
                     "third_party_verifications": third_party_verifications,
                     "ticker_symbol": ticker_symbol,
@@ -548,51 +539,6 @@ class LegalEntities(SyncAPIResource):
             model=LegalEntity,
         )
 
-    def update_status(
-        self,
-        id: str,
-        *,
-        status: Literal["active", "suspended", "denied"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LegalEntity:
-        """
-        Update Legal Entity Status (sandbox only)
-
-        Args:
-          status: The target status for the legal entity. One of `active`, `suspended`, or
-              `denied`. Valid transitions depend on the current status.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-
-          idempotency_key: Specify a custom idempotency key for this request
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._patch(
-            path_template("/api/simulations/legal_entities/{id}/update_status", id=id),
-            body=maybe_transform({"status": status}, legal_entity_update_status_params.LegalEntityUpdateStatusParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
-            cast_to=LegalEntity,
-        )
-
 
 class AsyncLegalEntities(AsyncAPIResource):
     @cached_property
@@ -656,7 +602,6 @@ class AsyncLegalEntities(AsyncAPIResource):
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
-        terms_of_use: Optional[legal_entity_create_params.TermsOfUse] | Omit = omit,
         third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
         third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -746,8 +691,6 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           suffix: An individual's suffix.
 
-          terms_of_use: Acceptance of terms of use by the legal entity.
-
           third_party_verification: Deprecated. Use `third_party_verifications` instead.
 
           third_party_verifications: A list of third-party verifications run by external vendors.
@@ -806,7 +749,6 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "risk_rating": risk_rating,
                     "service_provider_legal_entity_id": service_provider_legal_entity_id,
                     "suffix": suffix,
-                    "terms_of_use": terms_of_use,
                     "third_party_verification": third_party_verification,
                     "third_party_verifications": third_party_verifications,
                     "ticker_symbol": ticker_symbol,
@@ -896,7 +838,6 @@ class AsyncLegalEntities(AsyncAPIResource):
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
-        terms_of_use: Optional[legal_entity_update_params.TermsOfUse] | Omit = omit,
         third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
         third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -973,8 +914,6 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           suffix: An individual's suffix.
 
-          terms_of_use: Acceptance of terms of use by the legal entity.
-
           third_party_verification: Deprecated. Use `third_party_verifications` instead.
 
           third_party_verifications: A list of third-party verifications run by external vendors.
@@ -1030,7 +969,6 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "risk_rating": risk_rating,
                     "service_provider_legal_entity_id": service_provider_legal_entity_id,
                     "suffix": suffix,
-                    "terms_of_use": terms_of_use,
                     "third_party_verification": third_party_verification,
                     "third_party_verifications": third_party_verifications,
                     "ticker_symbol": ticker_symbol,
@@ -1108,53 +1046,6 @@ class AsyncLegalEntities(AsyncAPIResource):
             model=LegalEntity,
         )
 
-    async def update_status(
-        self,
-        id: str,
-        *,
-        status: Literal["active", "suspended", "denied"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LegalEntity:
-        """
-        Update Legal Entity Status (sandbox only)
-
-        Args:
-          status: The target status for the legal entity. One of `active`, `suspended`, or
-              `denied`. Valid transitions depend on the current status.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-
-          idempotency_key: Specify a custom idempotency key for this request
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._patch(
-            path_template("/api/simulations/legal_entities/{id}/update_status", id=id),
-            body=await async_maybe_transform(
-                {"status": status}, legal_entity_update_status_params.LegalEntityUpdateStatusParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
-            cast_to=LegalEntity,
-        )
-
 
 class LegalEntitiesWithRawResponse:
     def __init__(self, legal_entities: LegalEntities) -> None:
@@ -1171,9 +1062,6 @@ class LegalEntitiesWithRawResponse:
         )
         self.list = _legacy_response.to_raw_response_wrapper(
             legal_entities.list,
-        )
-        self.update_status = _legacy_response.to_raw_response_wrapper(
-            legal_entities.update_status,
         )
 
 
@@ -1193,9 +1081,6 @@ class AsyncLegalEntitiesWithRawResponse:
         self.list = _legacy_response.async_to_raw_response_wrapper(
             legal_entities.list,
         )
-        self.update_status = _legacy_response.async_to_raw_response_wrapper(
-            legal_entities.update_status,
-        )
 
 
 class LegalEntitiesWithStreamingResponse:
@@ -1214,9 +1099,6 @@ class LegalEntitiesWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             legal_entities.list,
         )
-        self.update_status = to_streamed_response_wrapper(
-            legal_entities.update_status,
-        )
 
 
 class AsyncLegalEntitiesWithStreamingResponse:
@@ -1234,7 +1116,4 @@ class AsyncLegalEntitiesWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             legal_entities.list,
-        )
-        self.update_status = async_to_streamed_response_wrapper(
-            legal_entities.update_status,
         )
