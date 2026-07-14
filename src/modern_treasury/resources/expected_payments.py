@@ -154,7 +154,8 @@ class ExpectedPayments(SyncAPIResource):
               payments, this will be the OBI field on the wire. For check payments, this will
               be the memo field.
 
-          type: One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire.
+          type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
+              sepa, signet, wire.
 
           extra_headers: Send extra headers
 
@@ -334,7 +335,8 @@ class ExpectedPayments(SyncAPIResource):
           status: The Expected Payment's status can be updated from partially_reconciled to
               reconciled.
 
-          type: One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire.
+          type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
+              sepa, signet, wire.
 
           extra_headers: Send extra headers
 
@@ -412,17 +414,24 @@ class ExpectedPayments(SyncAPIResource):
             "dk_nets",
             "eft",
             "gb_fps",
+            "hu_ics",
+            "interac",
             "masav",
             "mx_ccen",
             "neft",
             "nics",
             "nz_becs",
             "pl_elixir",
+            "provxchange",
+            "ro_sent",
             "rtp",
             "se_bankgirot",
+            "sen",
             "sepa",
             "sg_giro",
             "sic",
+            "signet",
+            "sknbi",
             "stablecoin",
             "wire",
             "zengin",
@@ -457,7 +466,8 @@ class ExpectedPayments(SyncAPIResource):
 
           status: One of unreconciled, reconciled, or archived.
 
-          type: One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire
+          type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp,sen,
+              sepa, signet, wire
 
           updated_at_lower_bound: Used to return expected payments updated after some datetime
 
@@ -664,7 +674,8 @@ class AsyncExpectedPayments(AsyncAPIResource):
               payments, this will be the OBI field on the wire. For check payments, this will
               be the memo field.
 
-          type: One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire.
+          type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
+              sepa, signet, wire.
 
           extra_headers: Send extra headers
 
@@ -844,7 +855,8 @@ class AsyncExpectedPayments(AsyncAPIResource):
           status: The Expected Payment's status can be updated from partially_reconciled to
               reconciled.
 
-          type: One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire.
+          type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
+              sepa, signet, wire.
 
           extra_headers: Send extra headers
 
@@ -922,17 +934,24 @@ class AsyncExpectedPayments(AsyncAPIResource):
             "dk_nets",
             "eft",
             "gb_fps",
+            "hu_ics",
+            "interac",
             "masav",
             "mx_ccen",
             "neft",
             "nics",
             "nz_becs",
             "pl_elixir",
+            "provxchange",
+            "ro_sent",
             "rtp",
             "se_bankgirot",
+            "sen",
             "sepa",
             "sg_giro",
             "sic",
+            "signet",
+            "sknbi",
             "stablecoin",
             "wire",
             "zengin",
@@ -967,7 +986,8 @@ class AsyncExpectedPayments(AsyncAPIResource):
 
           status: One of unreconciled, reconciled, or archived.
 
-          type: One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire
+          type: One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp,sen,
+              sepa, signet, wire
 
           updated_at_lower_bound: Used to return expected payments updated after some datetime
 

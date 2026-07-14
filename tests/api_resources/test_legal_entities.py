@@ -20,16 +20,15 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 class TestLegalEntities:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
-    loose_parametrize = pytest.mark.parametrize("client", [False], indirect=True, ids=["loose"])  # Prism can't generate valid deeply nested recursive data
 
-    @loose_parametrize
+    @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         legal_entity = client.legal_entities.create(
             legal_entity_type="business",
         )
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @loose_parametrize
+    @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         legal_entity = client.legal_entities.create(
             legal_entity_type="business",
@@ -211,10 +210,6 @@ class TestLegalEntities:
                         "risk_rating": "low",
                         "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "suffix": "suffix",
-                        "terms_of_use": {
-                            "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                            "ip_address": "ip_address",
-                        },
                         "third_party_verification": {
                             "outcome": "passed",
                             "vendor": "persona",
@@ -287,10 +282,6 @@ class TestLegalEntities:
             risk_rating="low",
             service_provider_legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             suffix="suffix",
-            terms_of_use={
-                "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                "ip_address": "ip_address",
-            },
             third_party_verification={
                 "outcome": "passed",
                 "vendor": "persona",
@@ -336,7 +327,7 @@ class TestLegalEntities:
         )
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @loose_parametrize
+    @parametrize
     def test_raw_response_create(self, client: ModernTreasury) -> None:
         response = client.legal_entities.with_raw_response.create(
             legal_entity_type="business",
@@ -347,7 +338,7 @@ class TestLegalEntities:
         legal_entity = response.parse()
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @loose_parametrize
+    @parametrize
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
         with client.legal_entities.with_streaming_response.create(
             legal_entity_type="business",
@@ -360,14 +351,14 @@ class TestLegalEntities:
 
         assert cast(Any, response.is_closed) is True
 
-    @loose_parametrize
+    @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         legal_entity = client.legal_entities.retrieve(
             "id",
         )
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @loose_parametrize
+    @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
         response = client.legal_entities.with_raw_response.retrieve(
             "id",
@@ -378,7 +369,7 @@ class TestLegalEntities:
         legal_entity = response.parse()
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @loose_parametrize
+    @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.legal_entities.with_streaming_response.retrieve(
             "id",
@@ -398,14 +389,14 @@ class TestLegalEntities:
                 "",
             )
 
-    @loose_parametrize
+    @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
         legal_entity = client.legal_entities.update(
             id="id",
         )
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @loose_parametrize
+    @parametrize
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         legal_entity = client.legal_entities.update(
             id="id",
@@ -498,10 +489,6 @@ class TestLegalEntities:
             risk_rating="low",
             service_provider_legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             suffix="suffix",
-            terms_of_use={
-                "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                "ip_address": "ip_address",
-            },
             third_party_verification={
                 "outcome": "passed",
                 "vendor": "persona",
@@ -547,7 +534,7 @@ class TestLegalEntities:
         )
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @loose_parametrize
+    @parametrize
     def test_raw_response_update(self, client: ModernTreasury) -> None:
         response = client.legal_entities.with_raw_response.update(
             id="id",
@@ -558,7 +545,7 @@ class TestLegalEntities:
         legal_entity = response.parse()
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @loose_parametrize
+    @parametrize
     def test_streaming_response_update(self, client: ModernTreasury) -> None:
         with client.legal_entities.with_streaming_response.update(
             id="id",
@@ -616,55 +603,12 @@ class TestLegalEntities:
 
         assert cast(Any, response.is_closed) is True
 
-    @parametrize
-    def test_method_update_status(self, client: ModernTreasury) -> None:
-        legal_entity = client.legal_entities.update_status(
-            id="id",
-            status="active",
-        )
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
-
-    @parametrize
-    def test_raw_response_update_status(self, client: ModernTreasury) -> None:
-        response = client.legal_entities.with_raw_response.update_status(
-            id="id",
-            status="active",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        legal_entity = response.parse()
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
-
-    @parametrize
-    def test_streaming_response_update_status(self, client: ModernTreasury) -> None:
-        with client.legal_entities.with_streaming_response.update_status(
-            id="id",
-            status="active",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            legal_entity = response.parse()
-            assert_matches_type(LegalEntity, legal_entity, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_update_status(self, client: ModernTreasury) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.legal_entities.with_raw_response.update_status(
-                id="",
-                status="active",
-            )
-
 
 class TestAsyncLegalEntities:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip
     @parametrize
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
         legal_entity = await async_client.legal_entities.create(
@@ -672,7 +616,6 @@ class TestAsyncLegalEntities:
         )
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @pytest.mark.skip
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         legal_entity = await async_client.legal_entities.create(
@@ -855,10 +798,6 @@ class TestAsyncLegalEntities:
                         "risk_rating": "low",
                         "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "suffix": "suffix",
-                        "terms_of_use": {
-                            "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                            "ip_address": "ip_address",
-                        },
                         "third_party_verification": {
                             "outcome": "passed",
                             "vendor": "persona",
@@ -931,10 +870,6 @@ class TestAsyncLegalEntities:
             risk_rating="low",
             service_provider_legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             suffix="suffix",
-            terms_of_use={
-                "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                "ip_address": "ip_address",
-            },
             third_party_verification={
                 "outcome": "passed",
                 "vendor": "persona",
@@ -980,7 +915,6 @@ class TestAsyncLegalEntities:
         )
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @pytest.mark.skip
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.legal_entities.with_raw_response.create(
@@ -992,7 +926,6 @@ class TestAsyncLegalEntities:
         legal_entity = response.parse()
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @pytest.mark.skip
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.legal_entities.with_streaming_response.create(
@@ -1006,7 +939,6 @@ class TestAsyncLegalEntities:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
         legal_entity = await async_client.legal_entities.retrieve(
@@ -1014,7 +946,6 @@ class TestAsyncLegalEntities:
         )
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @pytest.mark.skip
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.legal_entities.with_raw_response.retrieve(
@@ -1026,7 +957,6 @@ class TestAsyncLegalEntities:
         legal_entity = response.parse()
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @pytest.mark.skip
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.legal_entities.with_streaming_response.retrieve(
@@ -1047,7 +977,6 @@ class TestAsyncLegalEntities:
                 "",
             )
 
-    @pytest.mark.skip
     @parametrize
     async def test_method_update(self, async_client: AsyncModernTreasury) -> None:
         legal_entity = await async_client.legal_entities.update(
@@ -1055,7 +984,6 @@ class TestAsyncLegalEntities:
         )
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @pytest.mark.skip
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         legal_entity = await async_client.legal_entities.update(
@@ -1149,10 +1077,6 @@ class TestAsyncLegalEntities:
             risk_rating="low",
             service_provider_legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             suffix="suffix",
-            terms_of_use={
-                "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                "ip_address": "ip_address",
-            },
             third_party_verification={
                 "outcome": "passed",
                 "vendor": "persona",
@@ -1198,7 +1122,6 @@ class TestAsyncLegalEntities:
         )
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @pytest.mark.skip
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.legal_entities.with_raw_response.update(
@@ -1210,7 +1133,6 @@ class TestAsyncLegalEntities:
         legal_entity = response.parse()
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @pytest.mark.skip
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.legal_entities.with_streaming_response.update(
@@ -1268,45 +1190,3 @@ class TestAsyncLegalEntities:
             assert_matches_type(AsyncPage[LegalEntity], legal_entity, path=["response"])
 
         assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_method_update_status(self, async_client: AsyncModernTreasury) -> None:
-        legal_entity = await async_client.legal_entities.update_status(
-            id="id",
-            status="active",
-        )
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
-
-    @parametrize
-    async def test_raw_response_update_status(self, async_client: AsyncModernTreasury) -> None:
-        response = await async_client.legal_entities.with_raw_response.update_status(
-            id="id",
-            status="active",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        legal_entity = response.parse()
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_update_status(self, async_client: AsyncModernTreasury) -> None:
-        async with async_client.legal_entities.with_streaming_response.update_status(
-            id="id",
-            status="active",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            legal_entity = await response.parse()
-            assert_matches_type(LegalEntity, legal_entity, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_update_status(self, async_client: AsyncModernTreasury) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.legal_entities.with_raw_response.update_status(
-                id="",
-                status="active",
-            )

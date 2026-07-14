@@ -16,12 +16,6 @@ class Balance(BaseModel):
     amount: int
     """The balance amount."""
 
-    amount_string: str
-    """
-    The amount of the balance as a string, preserving full precision for values that
-    may exceed safe integer limits in some languages.
-    """
-
     as_of_date: Optional[date] = None
     """The date on which the balance became true for the account."""
 
@@ -72,7 +66,7 @@ class Balance(BaseModel):
 
     Can be one of `bai2`, `bankprov`, `bnk_dev`, `cleartouch`, `currencycloud`,
     `cross_river`, `dc_bank`, `dwolla`, `evolve`, `goldman_sachs`, `iso20022`,
-    `jpmc`, `mx`, `silvergate`, `swift`, or `us_bank`.
+    `jpmc`, `mx`, `signet`, `silvergate`, `swift`, or `us_bank`.
     """
 
 
@@ -89,7 +83,7 @@ class BalanceReport(BaseModel):
     as_of_date: date
     """The date of the balance report in local time."""
 
-    as_of_time: str
+    as_of_time: Optional[str] = None
     """The time (24-hour clock) of the balance report in local time."""
 
     balance_report_type: Literal["intraday", "other", "previous_day", "real_time"]

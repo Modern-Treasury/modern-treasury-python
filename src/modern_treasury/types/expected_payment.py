@@ -143,6 +143,9 @@ class ExpectedPayment(BaseModel):
     """The ID of the Transaction Line Item this expected payment has been matched to."""
 
     type: Optional[ExpectedPaymentType] = None
-    """One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire."""
+    """
+    One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
+    sepa, signet, wire.
+    """
 
     updated_at: datetime
