@@ -53,7 +53,9 @@ class CounterpartyCollectAccountParams(TypedDict, total=False):
             "seBankgiroClearingCode",
             "nzNationalClearingCode",
             "hkInterbankClearingCode",
+            "huInterbankClearingCode",
             "dkInterbankClearingCode",
+            "idSknbiCode",
             "zaNationalClearingCode",
         ]
     ]

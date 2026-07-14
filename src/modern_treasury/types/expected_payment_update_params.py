@@ -119,4 +119,7 @@ class ExpectedPaymentUpdateParams(TypedDict, total=False):
     """
 
     type: Optional[ExpectedPaymentType]
-    """One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire."""
+    """
+    One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
+    sepa, signet, wire.
+    """
