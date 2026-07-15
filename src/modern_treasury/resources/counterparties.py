@@ -395,7 +395,9 @@ class Counterparties(SyncAPIResource):
                 "seBankgiroClearingCode",
                 "nzNationalClearingCode",
                 "hkInterbankClearingCode",
+                "huInterbankClearingCode",
                 "dkInterbankClearingCode",
+                "idSknbiCode",
                 "zaNationalClearingCode",
             ]
         ]
@@ -832,7 +834,9 @@ class AsyncCounterparties(AsyncAPIResource):
                 "seBankgiroClearingCode",
                 "nzNationalClearingCode",
                 "hkInterbankClearingCode",
+                "huInterbankClearingCode",
                 "dkInterbankClearingCode",
+                "idSknbiCode",
                 "zaNationalClearingCode",
             ]
         ]
