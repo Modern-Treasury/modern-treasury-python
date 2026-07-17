@@ -23,15 +23,10 @@ class LegalEntityAddressCreateRequest(TypedDict, total=False):
     region: Required[Optional[str]]
     """Region or State."""
 
-    address_types: List[
-        Literal["business", "business_physical", "business_registered", "mailing", "other", "po_box", "residential"]
-    ]
+    address_types: List[Literal["business", "business_registered", "mailing", "other", "po_box", "residential"]]
     """The types of this address."""
 
     line2: Optional[str]
 
     primary: Optional[bool]
-    """Whether this address is the primary address for the legal entity.
-
-    Optional; when omitted it is inferred from the address types.
-    """
+    """Whether this address is the primary address for the legal entity."""

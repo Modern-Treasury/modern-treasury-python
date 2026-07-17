@@ -64,8 +64,10 @@ class InternalAccounts(SyncAPIResource):
     def create(
         self,
         *,
-        currency: Literal["USD", "CAD", "USDC", "USDT", "PYUSD", "USDG"],
+        connection_id: str,
+        currency: Literal["USD", "CAD", "USDC", "USDG", "USDT", "PYUSD"],
         name: str,
+        party_name: str,
         account_capabilities: Iterable[internal_account_create_params.AccountCapability] | Omit = omit,
         account_type: Literal[
             "base_wallet",
@@ -83,7 +85,6 @@ class InternalAccounts(SyncAPIResource):
             "solana_wallet",
         ]
         | Omit = omit,
-        connection_id: str | Omit = omit,
         counterparty_id: str | Omit = omit,
         debitable: Optional[bool] | Omit = omit,
         external_id: Optional[str] | Omit = omit,
@@ -91,7 +92,6 @@ class InternalAccounts(SyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         parent_account_id: str | Omit = omit,
         party_address: internal_account_create_params.PartyAddress | Omit = omit,
-        party_name: Optional[str] | Omit = omit,
         vendor_attributes: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -101,24 +101,23 @@ class InternalAccounts(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> InternalAccount:
-        """create internal account
+        """
+        create internal account
 
         Args:
-          currency: The currency of the internal account.
+          connection_id: The identifier of the financial institution the account belongs to.
 
-        Supports fiat and stablecoin currencies.
+          currency: The currency of the internal account. Supports fiat and stablecoin currencies.
 
           name: The nickname of the account.
+
+          party_name: The legal name of the entity which owns the account.
 
           account_capabilities: An array of AccountCapability objects that list the originating abilities of the
               internal account and any relevant information for them.
 
           account_type: The account type, used to provision the appropriate account at the financial
               institution.
-
-          connection_id: The identifier of the financial institution the account belongs to. If not
-              provided, defaults to the default connection, or the sole connection if only one
-              exists.
 
           counterparty_id: The Counterparty associated to this account.
 
@@ -138,8 +137,6 @@ class InternalAccounts(SyncAPIResource):
 
           party_address: The address associated with the owner or null.
 
-          party_name: The legal name of the entity which owns the account.
-
           vendor_attributes: A hash of vendor specific attributes that will be used when creating the account
               at the vendor specified by the given connection.
 
@@ -157,11 +154,12 @@ class InternalAccounts(SyncAPIResource):
             "/api/internal_accounts",
             body=maybe_transform(
                 {
+                    "connection_id": connection_id,
                     "currency": currency,
                     "name": name,
+                    "party_name": party_name,
                     "account_capabilities": account_capabilities,
                     "account_type": account_type,
-                    "connection_id": connection_id,
                     "counterparty_id": counterparty_id,
                     "debitable": debitable,
                     "external_id": external_id,
@@ -169,7 +167,6 @@ class InternalAccounts(SyncAPIResource):
                     "metadata": metadata,
                     "parent_account_id": parent_account_id,
                     "party_address": party_address,
-                    "party_name": party_name,
                     "vendor_attributes": vendor_attributes,
                 },
                 internal_account_create_params.InternalAccountCreateParams,
@@ -313,17 +310,24 @@ class InternalAccounts(SyncAPIResource):
             "dk_nets",
             "eft",
             "gb_fps",
+            "hu_ics",
+            "interac",
             "masav",
             "mx_ccen",
             "neft",
             "nics",
             "nz_becs",
             "pl_elixir",
+            "provxchange",
+            "ro_sent",
             "rtp",
             "se_bankgirot",
+            "sen",
             "sepa",
             "sg_giro",
             "sic",
+            "signet",
+            "sknbi",
             "stablecoin",
             "wire",
             "zengin",
@@ -520,8 +524,10 @@ class AsyncInternalAccounts(AsyncAPIResource):
     async def create(
         self,
         *,
-        currency: Literal["USD", "CAD", "USDC", "USDT", "PYUSD", "USDG"],
+        connection_id: str,
+        currency: Literal["USD", "CAD", "USDC", "USDG", "USDT", "PYUSD"],
         name: str,
+        party_name: str,
         account_capabilities: Iterable[internal_account_create_params.AccountCapability] | Omit = omit,
         account_type: Literal[
             "base_wallet",
@@ -539,7 +545,6 @@ class AsyncInternalAccounts(AsyncAPIResource):
             "solana_wallet",
         ]
         | Omit = omit,
-        connection_id: str | Omit = omit,
         counterparty_id: str | Omit = omit,
         debitable: Optional[bool] | Omit = omit,
         external_id: Optional[str] | Omit = omit,
@@ -547,7 +552,6 @@ class AsyncInternalAccounts(AsyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         parent_account_id: str | Omit = omit,
         party_address: internal_account_create_params.PartyAddress | Omit = omit,
-        party_name: Optional[str] | Omit = omit,
         vendor_attributes: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -557,24 +561,23 @@ class AsyncInternalAccounts(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> InternalAccount:
-        """create internal account
+        """
+        create internal account
 
         Args:
-          currency: The currency of the internal account.
+          connection_id: The identifier of the financial institution the account belongs to.
 
-        Supports fiat and stablecoin currencies.
+          currency: The currency of the internal account. Supports fiat and stablecoin currencies.
 
           name: The nickname of the account.
+
+          party_name: The legal name of the entity which owns the account.
 
           account_capabilities: An array of AccountCapability objects that list the originating abilities of the
               internal account and any relevant information for them.
 
           account_type: The account type, used to provision the appropriate account at the financial
               institution.
-
-          connection_id: The identifier of the financial institution the account belongs to. If not
-              provided, defaults to the default connection, or the sole connection if only one
-              exists.
 
           counterparty_id: The Counterparty associated to this account.
 
@@ -594,8 +597,6 @@ class AsyncInternalAccounts(AsyncAPIResource):
 
           party_address: The address associated with the owner or null.
 
-          party_name: The legal name of the entity which owns the account.
-
           vendor_attributes: A hash of vendor specific attributes that will be used when creating the account
               at the vendor specified by the given connection.
 
@@ -613,11 +614,12 @@ class AsyncInternalAccounts(AsyncAPIResource):
             "/api/internal_accounts",
             body=await async_maybe_transform(
                 {
+                    "connection_id": connection_id,
                     "currency": currency,
                     "name": name,
+                    "party_name": party_name,
                     "account_capabilities": account_capabilities,
                     "account_type": account_type,
-                    "connection_id": connection_id,
                     "counterparty_id": counterparty_id,
                     "debitable": debitable,
                     "external_id": external_id,
@@ -625,7 +627,6 @@ class AsyncInternalAccounts(AsyncAPIResource):
                     "metadata": metadata,
                     "parent_account_id": parent_account_id,
                     "party_address": party_address,
-                    "party_name": party_name,
                     "vendor_attributes": vendor_attributes,
                 },
                 internal_account_create_params.InternalAccountCreateParams,
@@ -769,17 +770,24 @@ class AsyncInternalAccounts(AsyncAPIResource):
             "dk_nets",
             "eft",
             "gb_fps",
+            "hu_ics",
+            "interac",
             "masav",
             "mx_ccen",
             "neft",
             "nics",
             "nz_becs",
             "pl_elixir",
+            "provxchange",
+            "ro_sent",
             "rtp",
             "se_bankgirot",
+            "sen",
             "sepa",
             "sg_giro",
             "sic",
+            "signet",
+            "sknbi",
             "stablecoin",
             "wire",
             "zengin",

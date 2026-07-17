@@ -41,6 +41,8 @@ __all__ = [
     "ResourceExpectedPaymentCreateRequest",
     "ResourcesExpectedPaymentCreateRequestLineItems",
     "ResourceExpectedPaymentCreateRequestLineItem",
+    "ResourcesTransactionCreateRequest",
+    "ResourceTransactionCreateRequest",
     "ResourcesID",
     "ResourceID",
     "ResourcesPaymentOrderUpdateRequestWithID",
@@ -196,6 +198,8 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail(TypedD
             "dk_interbank_clearing_code",
             "gb_sort_code",
             "hk_interbank_clearing_code",
+            "hu_interbank_clearing_code",
+            "id_sknbi_code",
             "il_bank_code",
             "in_ifsc",
             "jp_zengin_code",
@@ -222,17 +226,24 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail(TypedD
         "dk_nets",
         "eft",
         "gb_fps",
+        "hu_ics",
+        "interac",
         "masav",
         "mx_ccen",
         "neft",
         "nics",
         "nz_becs",
         "pl_elixir",
+        "provxchange",
+        "ro_sent",
         "rtp",
         "se_bankgirot",
+        "sen",
         "sepa",
         "sg_giro",
         "sic",
+        "signet",
+        "sknbi",
         "stablecoin",
         "wire",
         "zengin",
@@ -366,8 +377,9 @@ class ResourcePaymentOrderAsyncCreateRequest(TypedDict, total=False):
 
     type: Required[PaymentOrderType]
     """
-    One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
-    `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
+    One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
+    `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
+    `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
     """
 
     accounting: ResourcePaymentOrderAsyncCreateRequestAccounting
@@ -733,13 +745,114 @@ class ResourceExpectedPaymentCreateRequest(TypedDict, total=False):
     """
 
     type: Optional[ExpectedPaymentType]
-    """One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire."""
+    """
+    One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
+    sepa, signet, wire.
+    """
 
 
 ResourcesExpectedPaymentCreateRequest = ResourceExpectedPaymentCreateRequest
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourceExpectedPaymentCreateRequest instead.
+"""
+
+
+class ResourceTransactionCreateRequest(TypedDict, total=False):
+    amount: Required[int]
+    """Value in specified currency's smallest unit.
+
+    e.g. $10 would be represented as 1000.
+    """
+
+    as_of_date: Required[Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]]
+    """The date on which the transaction occurred."""
+
+    direction: Required[str]
+    """Either `credit` or `debit`."""
+
+    internal_account_id: Required[str]
+    """The ID of the relevant Internal Account."""
+
+    vendor_code: Required[Optional[str]]
+    """When applicable, the bank-given code that determines the transaction's category.
+
+    For most banks this is the BAI2/BTRS transaction code.
+    """
+
+    vendor_code_type: Required[Optional[str]]
+    """The type of `vendor_code` being reported.
+
+    Can be one of `bai2`, `bankprov`, `bnk_dev`, `cleartouch`, `currencycloud`,
+    `cross_river`, `dc_bank`, `dwolla`, `evolve`, `goldman_sachs`, `iso20022`,
+    `jpmc`, `mx`, `signet`, `silvergate`, `swift`, `us_bank`, or others.
+    """
+
+    metadata: Dict[str, str]
+    """Additional data represented as key-value pairs.
+
+    Both the key and value must be strings.
+    """
+
+    posted: bool
+    """This field will be `true` if the transaction has posted to the account."""
+
+    type: Optional[
+        Literal[
+            "ach",
+            "au_becs",
+            "bacs",
+            "book",
+            "card",
+            "chats",
+            "check",
+            "cross_border",
+            "dk_nets",
+            "eft",
+            "gb_fps",
+            "hu_ics",
+            "interac",
+            "masav",
+            "mx_ccen",
+            "neft",
+            "nics",
+            "nz_becs",
+            "pl_elixir",
+            "provxchange",
+            "ro_sent",
+            "rtp",
+            "se_bankgirot",
+            "sen",
+            "sepa",
+            "sg_giro",
+            "sic",
+            "signet",
+            "sknbi",
+            "stablecoin",
+            "wire",
+            "zengin",
+            "other",
+        ]
+    ]
+    """The type of the transaction.
+
+    Examples could be `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
+    """
+
+    vendor_customer_id: Optional[str]
+    """An identifier given to this transaction by the bank, often `null`."""
+
+    vendor_description: Optional[str]
+    """
+    The transaction detail text that often appears in on your bank statement and in
+    your banking portal.
+    """
+
+
+ResourcesTransactionCreateRequest = ResourceTransactionCreateRequest
+"""This type is deprecated and will be removed in a future release.
+
+Please use ResourceTransactionCreateRequest instead.
 """
 
 
@@ -854,6 +967,8 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail(Typed
             "dk_interbank_clearing_code",
             "gb_sort_code",
             "hk_interbank_clearing_code",
+            "hu_interbank_clearing_code",
+            "id_sknbi_code",
             "il_bank_code",
             "in_ifsc",
             "jp_zengin_code",
@@ -880,17 +995,24 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail(Typed
         "dk_nets",
         "eft",
         "gb_fps",
+        "hu_ics",
+        "interac",
         "masav",
         "mx_ccen",
         "neft",
         "nics",
         "nz_becs",
         "pl_elixir",
+        "provxchange",
+        "ro_sent",
         "rtp",
         "se_bankgirot",
+        "sen",
         "sepa",
         "sg_giro",
         "sic",
+        "signet",
+        "sknbi",
         "stablecoin",
         "wire",
         "zengin",
@@ -1179,8 +1301,9 @@ class ResourcePaymentOrderUpdateRequestWithID(TypedDict, total=False):
 
     type: PaymentOrderType
     """
-    One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
-    `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
+    One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
+    `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
+    `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
     """
 
     ultimate_originating_party_identifier: Optional[str]
@@ -1326,7 +1449,10 @@ class ResourceExpectedPaymentUpdateRequestWithID(TypedDict, total=False):
     """
 
     type: Optional[ExpectedPaymentType]
-    """One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire."""
+    """
+    One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
+    sepa, signet, wire.
+    """
 
 
 ResourcesExpectedPaymentUpdateRequestWithID = ResourceExpectedPaymentUpdateRequestWithID
@@ -1434,14 +1560,13 @@ Resource: TypeAlias = Union[
     ResourceExpectedPaymentCreateRequest,
     LedgerTransactionCreateRequest,
     LedgerAccountCreateRequest,
+    ResourceTransactionCreateRequest,
     ResourceID,
     ResourcePaymentOrderUpdateRequestWithID,
     ResourceExpectedPaymentUpdateRequestWithID,
     ResourceTransactionUpdateRequestWithID,
     ResourceLedgerTransactionUpdateRequestWithID,
     ResourceLedgerAccountUpdateRequestWithID,
-    object,
-    object,
 ]
 
 Resources = Resource
