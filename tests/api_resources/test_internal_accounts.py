@@ -25,7 +25,6 @@ class TestInternalAccounts:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         internal_account = client.internal_accounts.create(
-            connection_id="connection_id",
             currency="USD",
             name="name",
         )
@@ -34,7 +33,6 @@ class TestInternalAccounts:
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         internal_account = client.internal_accounts.create(
-            connection_id="connection_id",
             currency="USD",
             name="name",
             account_capabilities=[
@@ -51,6 +49,7 @@ class TestInternalAccounts:
                 }
             ],
             account_type="checking",
+            connection_id="connection_id",
             counterparty_id="counterparty_id",
             debitable=True,
             external_id="external_id",
@@ -77,7 +76,6 @@ class TestInternalAccounts:
     @parametrize
     def test_raw_response_create(self, client: ModernTreasury) -> None:
         response = client.internal_accounts.with_raw_response.create(
-            connection_id="connection_id",
             currency="USD",
             name="name",
         )
@@ -90,7 +88,6 @@ class TestInternalAccounts:
     @parametrize
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
         with client.internal_accounts.with_streaming_response.create(
-            connection_id="connection_id",
             currency="USD",
             name="name",
         ) as response:
@@ -333,7 +330,6 @@ class TestAsyncInternalAccounts:
     @parametrize
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
         internal_account = await async_client.internal_accounts.create(
-            connection_id="connection_id",
             currency="USD",
             name="name",
         )
@@ -342,7 +338,6 @@ class TestAsyncInternalAccounts:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         internal_account = await async_client.internal_accounts.create(
-            connection_id="connection_id",
             currency="USD",
             name="name",
             account_capabilities=[
@@ -359,6 +354,7 @@ class TestAsyncInternalAccounts:
                 }
             ],
             account_type="checking",
+            connection_id="connection_id",
             counterparty_id="counterparty_id",
             debitable=True,
             external_id="external_id",
@@ -385,7 +381,6 @@ class TestAsyncInternalAccounts:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.internal_accounts.with_raw_response.create(
-            connection_id="connection_id",
             currency="USD",
             name="name",
         )
@@ -398,7 +393,6 @@ class TestAsyncInternalAccounts:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.internal_accounts.with_streaming_response.create(
-            connection_id="connection_id",
             currency="USD",
             name="name",
         ) as response:
