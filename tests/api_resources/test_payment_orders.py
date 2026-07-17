@@ -55,7 +55,7 @@ class TestPaymentOrders:
                     "file": b"Example data",
                     "document_type": "document_type",
                     "documentable_id": "documentable_id",
-                    "documentable_type": "connections",
+                    "documentable_type": "connection",
                 }
             ],
             effective_date=parse_date("2019-12-27"),
@@ -716,7 +716,7 @@ class TestAsyncPaymentOrders:
                     "file": b"Example data",
                     "document_type": "document_type",
                     "documentable_id": "documentable_id",
-                    "documentable_type": "connections",
+                    "documentable_type": "connection",
                 }
             ],
             effective_date=parse_date("2019-12-27"),
