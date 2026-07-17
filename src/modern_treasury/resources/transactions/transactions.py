@@ -57,13 +57,12 @@ class Transactions(SyncAPIResource):
     def create(
         self,
         *,
+        amount: int,
         as_of_date: Union[str, date, None],
         direction: str,
         internal_account_id: str,
         vendor_code: Optional[str],
         vendor_code_type: Optional[str],
-        amount: int | Omit = omit,
-        amount_string: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         posted: bool | Omit = omit,
         type: Optional[
@@ -79,17 +78,24 @@ class Transactions(SyncAPIResource):
                 "dk_nets",
                 "eft",
                 "gb_fps",
+                "hu_ics",
+                "interac",
                 "masav",
                 "mx_ccen",
                 "neft",
                 "nics",
                 "nz_becs",
                 "pl_elixir",
+                "provxchange",
+                "ro_sent",
                 "rtp",
                 "se_bankgirot",
+                "sen",
                 "sepa",
                 "sg_giro",
                 "sic",
+                "signet",
+                "sknbi",
                 "stablecoin",
                 "wire",
                 "zengin",
@@ -107,10 +113,14 @@ class Transactions(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> Transaction:
-        """
-        create transaction
+        """create transaction
 
         Args:
+          amount: Value in specified currency's smallest unit.
+
+        e.g. $10 would be represented
+              as 1000.
+
           as_of_date: The date on which the transaction occurred.
 
           direction: Either `credit` or `debit`.
@@ -122,14 +132,8 @@ class Transactions(SyncAPIResource):
 
           vendor_code_type: The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
               `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
-              `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `silvergate`, `swift`,
-              `us_bank`, or others.
-
-          amount: Value in specified currency's smallest unit. e.g. $10 would be represented
-              as 1000.
-
-          amount_string: The transaction amount as a string, preserving full precision for values that
-              may exceed safe integer limits in some languages.
+              `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
+              `swift`, `us_bank`, or others.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -137,7 +141,7 @@ class Transactions(SyncAPIResource):
           posted: This field will be `true` if the transaction has posted to the account.
 
           type: The type of the transaction. Examples could be
-              `card, `ach`, `wire`, `check`, `rtp`, or `book`.
+              `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
 
           vendor_customer_id: An identifier given to this transaction by the bank, often `null`.
 
@@ -158,13 +162,12 @@ class Transactions(SyncAPIResource):
             "/api/transactions",
             body=maybe_transform(
                 {
+                    "amount": amount,
                     "as_of_date": as_of_date,
                     "direction": direction,
                     "internal_account_id": internal_account_id,
                     "vendor_code": vendor_code,
                     "vendor_code_type": vendor_code_type,
-                    "amount": amount,
-                    "amount_string": amount_string,
                     "metadata": metadata,
                     "posted": posted,
                     "type": type,
@@ -417,13 +420,12 @@ class AsyncTransactions(AsyncAPIResource):
     async def create(
         self,
         *,
+        amount: int,
         as_of_date: Union[str, date, None],
         direction: str,
         internal_account_id: str,
         vendor_code: Optional[str],
         vendor_code_type: Optional[str],
-        amount: int | Omit = omit,
-        amount_string: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         posted: bool | Omit = omit,
         type: Optional[
@@ -439,17 +441,24 @@ class AsyncTransactions(AsyncAPIResource):
                 "dk_nets",
                 "eft",
                 "gb_fps",
+                "hu_ics",
+                "interac",
                 "masav",
                 "mx_ccen",
                 "neft",
                 "nics",
                 "nz_becs",
                 "pl_elixir",
+                "provxchange",
+                "ro_sent",
                 "rtp",
                 "se_bankgirot",
+                "sen",
                 "sepa",
                 "sg_giro",
                 "sic",
+                "signet",
+                "sknbi",
                 "stablecoin",
                 "wire",
                 "zengin",
@@ -467,10 +476,14 @@ class AsyncTransactions(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> Transaction:
-        """
-        create transaction
+        """create transaction
 
         Args:
+          amount: Value in specified currency's smallest unit.
+
+        e.g. $10 would be represented
+              as 1000.
+
           as_of_date: The date on which the transaction occurred.
 
           direction: Either `credit` or `debit`.
@@ -482,14 +495,8 @@ class AsyncTransactions(AsyncAPIResource):
 
           vendor_code_type: The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`,
               `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`,
-              `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `silvergate`, `swift`,
-              `us_bank`, or others.
-
-          amount: Value in specified currency's smallest unit. e.g. $10 would be represented
-              as 1000.
-
-          amount_string: The transaction amount as a string, preserving full precision for values that
-              may exceed safe integer limits in some languages.
+              `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
+              `swift`, `us_bank`, or others.
 
           metadata: Additional data represented as key-value pairs. Both the key and value must be
               strings.
@@ -497,7 +504,7 @@ class AsyncTransactions(AsyncAPIResource):
           posted: This field will be `true` if the transaction has posted to the account.
 
           type: The type of the transaction. Examples could be
-              `card, `ach`, `wire`, `check`, `rtp`, or `book`.
+              `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
 
           vendor_customer_id: An identifier given to this transaction by the bank, often `null`.
 
@@ -518,13 +525,12 @@ class AsyncTransactions(AsyncAPIResource):
             "/api/transactions",
             body=await async_maybe_transform(
                 {
+                    "amount": amount,
                     "as_of_date": as_of_date,
                     "direction": direction,
                     "internal_account_id": internal_account_id,
                     "vendor_code": vendor_code,
                     "vendor_code_type": vendor_code_type,
-                    "amount": amount,
-                    "amount_string": amount_string,
                     "metadata": metadata,
                     "posted": posted,
                     "type": type,
