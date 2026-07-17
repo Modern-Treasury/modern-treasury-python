@@ -144,6 +144,7 @@ class ReferenceNumber(BaseModel):
         "goldman_sachs_payment_request_id",
         "goldman_sachs_request_id",
         "goldman_sachs_unique_payment_id",
+        "interac_message_id",
         "jpmc_ccn",
         "jpmc_clearing_system_reference",
         "jpmc_customer_reference_id",
@@ -171,13 +172,14 @@ class ReferenceNumber(BaseModel):
         "pnc_transaction_reference_number",
         "rbc_wire_reference_id",
         "rtp_instruction_id",
+        "signet_api_reference_id",
+        "signet_confirmation_id",
+        "signet_request_id",
         "silvergate_payment_id",
         "svb_end_to_end_id",
         "svb_payment_id",
         "swift_mir",
         "swift_uetr",
-        "turnkey_activity_id",
-        "turnkey_send_transaction_status_id",
         "umb_product_partner_account_number",
         "usbank_payment_application_reference_id",
         "usbank_payment_id",
@@ -435,8 +437,9 @@ class PaymentOrder(BaseModel):
 
     type: PaymentOrderType
     """
-    One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
-    `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
+    One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
+    `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
+    `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
     """
 
     ultimate_originating_account: Optional[UltimateOriginatingAccount] = None
