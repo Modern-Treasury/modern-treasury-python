@@ -25,20 +25,16 @@ class TestInternalAccounts:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         internal_account = client.internal_accounts.create(
-            connection_id="connection_id",
             currency="USD",
             name="name",
-            party_name="party_name",
         )
         assert_matches_type(InternalAccount, internal_account, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         internal_account = client.internal_accounts.create(
-            connection_id="connection_id",
             currency="USD",
             name="name",
-            party_name="party_name",
             account_capabilities=[
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -53,6 +49,7 @@ class TestInternalAccounts:
                 }
             ],
             account_type="checking",
+            connection_id="connection_id",
             counterparty_id="counterparty_id",
             debitable=True,
             external_id="external_id",
@@ -67,6 +64,8 @@ class TestInternalAccounts:
                 "region": "region",
                 "line2": "line2",
             },
+            party_name="party_name",
+            requested_account_number_types=["ethereum_address"],
             vendor_attributes={
                 "key": "value",
                 "foo": "bar",
@@ -78,10 +77,8 @@ class TestInternalAccounts:
     @parametrize
     def test_raw_response_create(self, client: ModernTreasury) -> None:
         response = client.internal_accounts.with_raw_response.create(
-            connection_id="connection_id",
             currency="USD",
             name="name",
-            party_name="party_name",
         )
 
         assert response.is_closed is True
@@ -92,10 +89,8 @@ class TestInternalAccounts:
     @parametrize
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
         with client.internal_accounts.with_streaming_response.create(
-            connection_id="connection_id",
             currency="USD",
             name="name",
-            party_name="party_name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -336,20 +331,16 @@ class TestAsyncInternalAccounts:
     @parametrize
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
         internal_account = await async_client.internal_accounts.create(
-            connection_id="connection_id",
             currency="USD",
             name="name",
-            party_name="party_name",
         )
         assert_matches_type(InternalAccount, internal_account, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         internal_account = await async_client.internal_accounts.create(
-            connection_id="connection_id",
             currency="USD",
             name="name",
-            party_name="party_name",
             account_capabilities=[
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -364,6 +355,7 @@ class TestAsyncInternalAccounts:
                 }
             ],
             account_type="checking",
+            connection_id="connection_id",
             counterparty_id="counterparty_id",
             debitable=True,
             external_id="external_id",
@@ -378,6 +370,8 @@ class TestAsyncInternalAccounts:
                 "region": "region",
                 "line2": "line2",
             },
+            party_name="party_name",
+            requested_account_number_types=["ethereum_address"],
             vendor_attributes={
                 "key": "value",
                 "foo": "bar",
@@ -389,10 +383,8 @@ class TestAsyncInternalAccounts:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.internal_accounts.with_raw_response.create(
-            connection_id="connection_id",
             currency="USD",
             name="name",
-            party_name="party_name",
         )
 
         assert response.is_closed is True
@@ -403,10 +395,8 @@ class TestAsyncInternalAccounts:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.internal_accounts.with_streaming_response.create(
-            connection_id="connection_id",
             currency="USD",
             name="name",
-            party_name="party_name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
