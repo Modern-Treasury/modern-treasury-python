@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
+from typing import Dict, List, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
@@ -84,6 +84,11 @@ class InternalAccountCreateParams(TypedDict, total=False):
 
     party_name: Optional[str]
     """The legal name of the entity which owns the account."""
+
+    requested_account_number_types: List[
+        Literal["ethereum_address", "solana_address", "polygon_address", "base_address"]
+    ]
+    """An array of account number types requested for provisioning."""
 
     vendor_attributes: Dict[str, str]
     """
