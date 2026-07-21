@@ -128,7 +128,7 @@ class TestCounterparties:
                 "citizenship_country": "citizenship_country",
                 "compliance_details": {},
                 "connection_id": "connection_id",
-                "country_of_incorporation": "country_of_incorporation",
+                "country_of_incorporation": "US",
                 "date_formed": parse_date("2019-12-27"),
                 "date_of_birth": parse_date("2019-12-27"),
                 "documents": [
@@ -206,7 +206,7 @@ class TestCounterparties:
                             "citizenship_country": "citizenship_country",
                             "compliance_details": {},
                             "connection_id": "connection_id",
-                            "country_of_incorporation": "country_of_incorporation",
+                            "country_of_incorporation": "US",
                             "date_formed": parse_date("2019-12-27"),
                             "date_of_birth": parse_date("2019-12-27"),
                             "documents": [
@@ -261,7 +261,7 @@ class TestCounterparties:
                                 "modern": "treasury",
                             },
                             "middle_name": "middle_name",
-                            "operating_jurisdictions": ["string"],
+                            "operating_jurisdictions": ["US", "CA"],
                             "phone_numbers": [{"phone_number": "phone_number"}],
                             "politically_exposed_person": True,
                             "preferred_name": "preferred_name",
@@ -277,6 +277,10 @@ class TestCounterparties:
                             "risk_rating": "low",
                             "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                             "suffix": "suffix",
+                            "terms_of_use": {
+                                "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                                "ip_address": "ip_address",
+                            },
                             "third_party_verification": {
                                 "outcome": "passed",
                                 "vendor": "persona",
@@ -333,7 +337,7 @@ class TestCounterparties:
                     "modern": "treasury",
                 },
                 "middle_name": "middle_name",
-                "operating_jurisdictions": ["string"],
+                "operating_jurisdictions": ["US", "CA"],
                 "phone_numbers": [{"phone_number": "phone_number"}],
                 "politically_exposed_person": True,
                 "preferred_name": "preferred_name",
@@ -349,6 +353,10 @@ class TestCounterparties:
                 "risk_rating": "low",
                 "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "suffix": "suffix",
+                "terms_of_use": {
+                    "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "ip_address": "ip_address",
+                },
                 "third_party_verification": {
                     "outcome": "passed",
                     "vendor": "persona",
@@ -761,7 +769,7 @@ class TestAsyncCounterparties:
                 "citizenship_country": "citizenship_country",
                 "compliance_details": {},
                 "connection_id": "connection_id",
-                "country_of_incorporation": "country_of_incorporation",
+                "country_of_incorporation": "US",
                 "date_formed": parse_date("2019-12-27"),
                 "date_of_birth": parse_date("2019-12-27"),
                 "documents": [
@@ -839,7 +847,7 @@ class TestAsyncCounterparties:
                             "citizenship_country": "citizenship_country",
                             "compliance_details": {},
                             "connection_id": "connection_id",
-                            "country_of_incorporation": "country_of_incorporation",
+                            "country_of_incorporation": "US",
                             "date_formed": parse_date("2019-12-27"),
                             "date_of_birth": parse_date("2019-12-27"),
                             "documents": [
@@ -894,7 +902,7 @@ class TestAsyncCounterparties:
                                 "modern": "treasury",
                             },
                             "middle_name": "middle_name",
-                            "operating_jurisdictions": ["string"],
+                            "operating_jurisdictions": ["US", "CA"],
                             "phone_numbers": [{"phone_number": "phone_number"}],
                             "politically_exposed_person": True,
                             "preferred_name": "preferred_name",
@@ -910,6 +918,10 @@ class TestAsyncCounterparties:
                             "risk_rating": "low",
                             "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                             "suffix": "suffix",
+                            "terms_of_use": {
+                                "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                                "ip_address": "ip_address",
+                            },
                             "third_party_verification": {
                                 "outcome": "passed",
                                 "vendor": "persona",
@@ -966,7 +978,7 @@ class TestAsyncCounterparties:
                     "modern": "treasury",
                 },
                 "middle_name": "middle_name",
-                "operating_jurisdictions": ["string"],
+                "operating_jurisdictions": ["US", "CA"],
                 "phone_numbers": [{"phone_number": "phone_number"}],
                 "politically_exposed_person": True,
                 "preferred_name": "preferred_name",
@@ -982,6 +994,10 @@ class TestAsyncCounterparties:
                 "risk_rating": "low",
                 "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "suffix": "suffix",
+                "terms_of_use": {
+                    "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "ip_address": "ip_address",
+                },
                 "third_party_verification": {
                     "outcome": "passed",
                     "vendor": "persona",

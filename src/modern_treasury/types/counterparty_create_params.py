@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Union, Iterable, Optional
-from datetime import date
+from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._types import SequenceNotStr
@@ -35,6 +35,7 @@ __all__ = [
     "LegalEntityPhoneNumber",
     "LegalEntityRegulators",
     "LegalEntityRegulator",
+    "LegalEntityTermsOfUse",
 ]
 
 
@@ -134,8 +135,6 @@ class AccountRoutingDetail(TypedDict, total=False):
             "dk_interbank_clearing_code",
             "gb_sort_code",
             "hk_interbank_clearing_code",
-            "hu_interbank_clearing_code",
-            "id_sknbi_code",
             "il_bank_code",
             "in_ifsc",
             "jp_zengin_code",
@@ -162,24 +161,17 @@ class AccountRoutingDetail(TypedDict, total=False):
         "dk_nets",
         "eft",
         "gb_fps",
-        "hu_ics",
-        "interac",
         "masav",
         "mx_ccen",
         "neft",
         "nics",
         "nz_becs",
         "pl_elixir",
-        "provxchange",
-        "ro_sent",
         "rtp",
         "se_bankgirot",
-        "sen",
         "sepa",
         "sg_giro",
         "sic",
-        "signet",
-        "sknbi",
         "stablecoin",
         "wire",
         "zengin",
@@ -287,6 +279,11 @@ class LegalEntityPhoneNumber(TypedDict, total=False):
     """A list of phone numbers in E.164 format."""
 
     phone_number: str
+    """A phone number in E.164 format.
+
+    This format is strictly validated: include a leading + and country code,
+    followed by digits only (no spaces or dashes), e.g. +12025551234.
+    """
 
 
 LegalEntityPhoneNumbers = LegalEntityPhoneNumber
@@ -315,6 +312,19 @@ LegalEntityRegulators = LegalEntityRegulator
 
 Please use LegalEntityRegulator instead.
 """
+
+
+class LegalEntityTermsOfUse(TypedDict, total=False):
+    """Acceptance of terms of use by the legal entity."""
+
+    accepted_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """The ISO 8601 timestamp indicating when the terms of use were accepted."""
+
+    ip_address: str
+    """The IP address from which the terms of use were accepted.
+
+    Supports both IPv4 and IPv6 formats.
+    """
 
 
 class LegalEntity(TypedDict, total=False):
@@ -348,8 +358,8 @@ class LegalEntity(TypedDict, total=False):
 
     country_of_incorporation: Optional[str]
     """
-    The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-    alpha-3 formats.
+    The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+    code (e.g. US).
     """
 
     date_formed: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
@@ -412,8 +422,8 @@ class LegalEntity(TypedDict, total=False):
 
     operating_jurisdictions: SequenceNotStr[str]
     """
-    A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-    codes).
+    A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+    codes (e.g. ["US", "CA"]).
     """
 
     phone_numbers: Iterable[LegalEntityPhoneNumber]
@@ -441,6 +451,9 @@ class LegalEntity(TypedDict, total=False):
 
     suffix: Optional[str]
     """An individual's suffix."""
+
+    terms_of_use: Optional[LegalEntityTermsOfUse]
+    """Acceptance of terms of use by the legal entity."""
 
     third_party_verification: Optional[ThirdPartyVerification]
     """Deprecated. Use `third_party_verifications` instead."""

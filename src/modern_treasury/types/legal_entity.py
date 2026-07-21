@@ -23,13 +23,16 @@ __all__ = [
     "PhoneNumber",
     "Regulators",
     "Regulator",
+    "TermsOfUse",
 ]
 
 
 class Address(BaseModel):
     id: str
 
-    address_types: List[Literal["business", "business_registered", "mailing", "other", "po_box", "residential"]]
+    address_types: List[
+        Literal["business", "business_physical", "business_registered", "mailing", "other", "po_box", "residential"]
+    ]
     """The types of this address."""
 
     country: Optional[str] = None
@@ -50,7 +53,10 @@ class Address(BaseModel):
     """
 
     locality: Optional[str] = None
-    """Locality or City."""
+    """Locality or City.
+
+    Use the full city name rather than an abbreviation (e.g. San Francisco).
+    """
 
     object: str
 
@@ -58,10 +64,17 @@ class Address(BaseModel):
     """The postal code of the address."""
 
     primary: Optional[bool] = None
-    """Whether this address is the primary address for the legal entity."""
+    """Whether this address is the primary address for the legal entity.
+
+    Optional; when omitted it is inferred from the address types.
+    """
 
     region: Optional[str] = None
-    """Region or State."""
+    """Region or State.
+
+    This field is free-form; for US states, we recommend a two-letter code (e.g.
+    CA). Full state names are also accepted.
+    """
 
     updated_at: datetime
 
@@ -128,6 +141,7 @@ class Identification(BaseModel):
         "gb_nino",
         "gb_utr",
         "gb_vat",
+        "generic_international",
         "gr_vat",
         "hn_id",
         "hn_rtn",
@@ -157,6 +171,7 @@ class Identification(BaseModel):
         "mx_curp",
         "mx_ine",
         "mx_rfc",
+        "national_id",
         "nl_bsn",
         "nl_btw",
         "nl_rsin",
@@ -220,6 +235,11 @@ class PhoneNumber(BaseModel):
     """A list of phone numbers in E.164 format."""
 
     phone_number: Optional[str] = None
+    """A phone number in E.164 format.
+
+    This format is strictly validated: include a leading + and country code,
+    followed by digits only (no spaces or dashes), e.g. +12025551234.
+    """
 
 
 PhoneNumbers = PhoneNumber
@@ -250,6 +270,19 @@ Please use Regulator instead.
 """
 
 
+class TermsOfUse(BaseModel):
+    """Acceptance of terms of use by the legal entity."""
+
+    accepted_at: Optional[datetime] = None
+    """The ISO 8601 timestamp indicating when the terms of use were accepted."""
+
+    ip_address: Optional[str] = None
+    """The IP address from which the terms of use were accepted.
+
+    Supports both IPv4 and IPv6 formats.
+    """
+
+
 class LegalEntity(BaseModel):
     id: str
 
@@ -271,8 +304,8 @@ class LegalEntity(BaseModel):
 
     country_of_incorporation: Optional[str] = None
     """
-    The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-    alpha-3 formats.
+    The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+    code (e.g. US).
     """
 
     created_at: datetime
@@ -313,7 +346,7 @@ class LegalEntity(BaseModel):
     last_name: Optional[str] = None
     """An individual's last name."""
 
-    legal_entity_type: Literal["business", "individual", "joint"]
+    legal_entity_type: Literal["business", "individual"]
     """The type of legal entity."""
 
     legal_structure: Optional[
@@ -343,8 +376,8 @@ class LegalEntity(BaseModel):
 
     operating_jurisdictions: List[str]
     """
-    A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-    codes).
+    A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+    codes (e.g. ["US", "CA"]).
     """
 
     phone_numbers: List[PhoneNumber]
@@ -378,6 +411,9 @@ class LegalEntity(BaseModel):
 
     suffix: Optional[str] = None
     """An individual's suffix."""
+
+    terms_of_use: Optional[TermsOfUse] = None
+    """Acceptance of terms of use by the legal entity."""
 
     third_party_verification: Optional[ThirdPartyVerification] = None
     """Deprecated. Use `third_party_verifications` instead."""
