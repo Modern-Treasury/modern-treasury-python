@@ -110,8 +110,9 @@ class LegalEntities(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LegalEntity:
-        """
-        create legal_entity
+        """Create a legal entity.
+
+        All country fields use ISO 3166-1 alpha-2 (e.g. US).
 
         Args:
           legal_entity_type: The type of legal entity.
@@ -670,8 +671,9 @@ class AsyncLegalEntities(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LegalEntity:
-        """
-        create legal_entity
+        """Create a legal entity.
+
+        All country fields use ISO 3166-1 alpha-2 (e.g. US).
 
         Args:
           legal_entity_type: The type of legal entity.
