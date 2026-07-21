@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Union, Iterable, Optional
-from datetime import date
+from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
@@ -15,7 +15,16 @@ from .legal_entity_address_create_request import LegalEntityAddressCreateRequest
 from ..wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
 from .legal_entity_industry_classification import LegalEntityIndustryClassification
 
-__all__ = ["ChildLegalEntityCreate", "Documents", "Document", "PhoneNumbers", "PhoneNumber", "Regulators", "Regulator"]
+__all__ = [
+    "ChildLegalEntityCreate",
+    "Documents",
+    "Document",
+    "PhoneNumbers",
+    "PhoneNumber",
+    "Regulators",
+    "Regulator",
+    "TermsOfUse",
+]
 
 
 class Document(TypedDict, total=False):
@@ -80,6 +89,19 @@ Please use Regulator instead.
 """
 
 
+class TermsOfUse(TypedDict, total=False):
+    """Acceptance of terms of use by the legal entity."""
+
+    accepted_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """The ISO 8601 timestamp indicating when the terms of use were accepted."""
+
+    ip_address: str
+    """The IP address from which the terms of use were accepted.
+
+    Supports both IPv4 and IPv6 formats.
+    """
+
+
 class ChildLegalEntityCreate(TypedDict, total=False):
     addresses: Iterable[LegalEntityAddressCreateRequest]
     """A list of addresses for the entity."""
@@ -108,8 +130,8 @@ class ChildLegalEntityCreate(TypedDict, total=False):
 
     country_of_incorporation: Optional[str]
     """
-    The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-    alpha-3 formats.
+    The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+    code (e.g. US).
     """
 
     date_formed: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
@@ -175,8 +197,8 @@ class ChildLegalEntityCreate(TypedDict, total=False):
 
     operating_jurisdictions: SequenceNotStr[str]
     """
-    A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-    codes).
+    A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+    codes (e.g. ["US", "CA"]).
     """
 
     phone_numbers: Iterable[PhoneNumber]
@@ -204,6 +226,9 @@ class ChildLegalEntityCreate(TypedDict, total=False):
 
     suffix: Optional[str]
     """An individual's suffix."""
+
+    terms_of_use: Optional[TermsOfUse]
+    """Acceptance of terms of use by the legal entity."""
 
     third_party_verification: Optional[ThirdPartyVerification]
     """Deprecated. Use `third_party_verifications` instead."""

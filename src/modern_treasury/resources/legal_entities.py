@@ -95,6 +95,7 @@ class LegalEntities(SyncAPIResource):
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
+        terms_of_use: Optional[legal_entity_create_params.TermsOfUse] | Omit = omit,
         third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
         third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -128,8 +129,8 @@ class LegalEntities(SyncAPIResource):
               in a value of null to prevent the connection from being associated with the
               legal entity.
 
-          country_of_incorporation: The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-              alpha-3 formats.
+          country_of_incorporation: The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+              code (e.g. US).
 
           date_formed: A business's formation date (YYYY-MM-DD).
 
@@ -165,8 +166,8 @@ class LegalEntities(SyncAPIResource):
 
           middle_name: An individual's middle name.
 
-          operating_jurisdictions: A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-              codes).
+          operating_jurisdictions: A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+              codes (e.g. ["US", "CA"]).
 
           politically_exposed_person: Whether the individual is a politically exposed person.
 
@@ -183,6 +184,8 @@ class LegalEntities(SyncAPIResource):
           service_provider_legal_entity_id: The UUID of the parent legal entity in the service provider tree.
 
           suffix: An individual's suffix.
+
+          terms_of_use: Acceptance of terms of use by the legal entity.
 
           third_party_verification: Deprecated. Use `third_party_verifications` instead.
 
@@ -242,6 +245,7 @@ class LegalEntities(SyncAPIResource):
                     "risk_rating": risk_rating,
                     "service_provider_legal_entity_id": service_provider_legal_entity_id,
                     "suffix": suffix,
+                    "terms_of_use": terms_of_use,
                     "third_party_verification": third_party_verification,
                     "third_party_verifications": third_party_verifications,
                     "ticker_symbol": ticker_symbol,
@@ -331,6 +335,7 @@ class LegalEntities(SyncAPIResource):
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
+        terms_of_use: Optional[legal_entity_update_params.TermsOfUse] | Omit = omit,
         third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
         third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -356,8 +361,8 @@ class LegalEntities(SyncAPIResource):
 
           citizenship_country: The country of citizenship for an individual.
 
-          country_of_incorporation: The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-              alpha-3 formats.
+          country_of_incorporation: The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+              code (e.g. US).
 
           date_formed: A business's formation date (YYYY-MM-DD).
 
@@ -388,8 +393,8 @@ class LegalEntities(SyncAPIResource):
 
           middle_name: An individual's middle name.
 
-          operating_jurisdictions: A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-              codes).
+          operating_jurisdictions: A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+              codes (e.g. ["US", "CA"]).
 
           politically_exposed_person: Whether the individual is a politically exposed person.
 
@@ -406,6 +411,8 @@ class LegalEntities(SyncAPIResource):
           service_provider_legal_entity_id: The UUID of the parent legal entity in the service provider tree.
 
           suffix: An individual's suffix.
+
+          terms_of_use: Acceptance of terms of use by the legal entity.
 
           third_party_verification: Deprecated. Use `third_party_verifications` instead.
 
@@ -462,6 +469,7 @@ class LegalEntities(SyncAPIResource):
                     "risk_rating": risk_rating,
                     "service_provider_legal_entity_id": service_provider_legal_entity_id,
                     "suffix": suffix,
+                    "terms_of_use": terms_of_use,
                     "third_party_verification": third_party_verification,
                     "third_party_verifications": third_party_verifications,
                     "ticker_symbol": ticker_symbol,
@@ -602,6 +610,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
+        terms_of_use: Optional[legal_entity_create_params.TermsOfUse] | Omit = omit,
         third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
         third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -635,8 +644,8 @@ class AsyncLegalEntities(AsyncAPIResource):
               in a value of null to prevent the connection from being associated with the
               legal entity.
 
-          country_of_incorporation: The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-              alpha-3 formats.
+          country_of_incorporation: The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+              code (e.g. US).
 
           date_formed: A business's formation date (YYYY-MM-DD).
 
@@ -672,8 +681,8 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           middle_name: An individual's middle name.
 
-          operating_jurisdictions: A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-              codes).
+          operating_jurisdictions: A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+              codes (e.g. ["US", "CA"]).
 
           politically_exposed_person: Whether the individual is a politically exposed person.
 
@@ -690,6 +699,8 @@ class AsyncLegalEntities(AsyncAPIResource):
           service_provider_legal_entity_id: The UUID of the parent legal entity in the service provider tree.
 
           suffix: An individual's suffix.
+
+          terms_of_use: Acceptance of terms of use by the legal entity.
 
           third_party_verification: Deprecated. Use `third_party_verifications` instead.
 
@@ -749,6 +760,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "risk_rating": risk_rating,
                     "service_provider_legal_entity_id": service_provider_legal_entity_id,
                     "suffix": suffix,
+                    "terms_of_use": terms_of_use,
                     "third_party_verification": third_party_verification,
                     "third_party_verifications": third_party_verifications,
                     "ticker_symbol": ticker_symbol,
@@ -838,6 +850,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         suffix: Optional[str] | Omit = omit,
+        terms_of_use: Optional[legal_entity_update_params.TermsOfUse] | Omit = omit,
         third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
         third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
         ticker_symbol: Optional[str] | Omit = omit,
@@ -863,8 +876,8 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           citizenship_country: The country of citizenship for an individual.
 
-          country_of_incorporation: The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-              alpha-3 formats.
+          country_of_incorporation: The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+              code (e.g. US).
 
           date_formed: A business's formation date (YYYY-MM-DD).
 
@@ -895,8 +908,8 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           middle_name: An individual's middle name.
 
-          operating_jurisdictions: A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-              codes).
+          operating_jurisdictions: A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+              codes (e.g. ["US", "CA"]).
 
           politically_exposed_person: Whether the individual is a politically exposed person.
 
@@ -913,6 +926,8 @@ class AsyncLegalEntities(AsyncAPIResource):
           service_provider_legal_entity_id: The UUID of the parent legal entity in the service provider tree.
 
           suffix: An individual's suffix.
+
+          terms_of_use: Acceptance of terms of use by the legal entity.
 
           third_party_verification: Deprecated. Use `third_party_verifications` instead.
 
@@ -969,6 +984,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "risk_rating": risk_rating,
                     "service_provider_legal_entity_id": service_provider_legal_entity_id,
                     "suffix": suffix,
+                    "terms_of_use": terms_of_use,
                     "third_party_verification": third_party_verification,
                     "third_party_verifications": third_party_verifications,
                     "ticker_symbol": ticker_symbol,
