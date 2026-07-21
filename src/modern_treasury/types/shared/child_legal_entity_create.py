@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, List, Optional
-from datetime import date
+from datetime import date, datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -14,7 +14,16 @@ from ..wealth_and_employment_details import WealthAndEmploymentDetails
 from .legal_entity_address_create_request import LegalEntityAddressCreateRequest
 from .legal_entity_industry_classification import LegalEntityIndustryClassification
 
-__all__ = ["ChildLegalEntityCreate", "Documents", "Document", "PhoneNumbers", "PhoneNumber", "Regulators", "Regulator"]
+__all__ = [
+    "ChildLegalEntityCreate",
+    "Documents",
+    "Document",
+    "PhoneNumbers",
+    "PhoneNumber",
+    "Regulators",
+    "Regulator",
+    "TermsOfUse",
+]
 
 
 class Document(BaseModel):
@@ -47,6 +56,11 @@ class PhoneNumber(BaseModel):
     """A list of phone numbers in E.164 format."""
 
     phone_number: Optional[str] = None
+    """A phone number in E.164 format.
+
+    This format is strictly validated: include a leading + and country code,
+    followed by digits only (no spaces or dashes), e.g. +12025551234.
+    """
 
 
 PhoneNumbers = PhoneNumber
@@ -77,6 +91,19 @@ Please use Regulator instead.
 """
 
 
+class TermsOfUse(BaseModel):
+    """Acceptance of terms of use by the legal entity."""
+
+    accepted_at: Optional[datetime] = None
+    """The ISO 8601 timestamp indicating when the terms of use were accepted."""
+
+    ip_address: Optional[str] = None
+    """The IP address from which the terms of use were accepted.
+
+    Supports both IPv4 and IPv6 formats.
+    """
+
+
 class ChildLegalEntityCreate(BaseModel):
     addresses: Optional[List[LegalEntityAddressCreateRequest]] = None
     """A list of addresses for the entity."""
@@ -105,8 +132,8 @@ class ChildLegalEntityCreate(BaseModel):
 
     country_of_incorporation: Optional[str] = None
     """
-    The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-    alpha-3 formats.
+    The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+    code (e.g. US).
     """
 
     date_formed: Optional[date] = None
@@ -172,8 +199,8 @@ class ChildLegalEntityCreate(BaseModel):
 
     operating_jurisdictions: Optional[List[str]] = None
     """
-    A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-    codes).
+    A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+    codes (e.g. ["US", "CA"]).
     """
 
     phone_numbers: Optional[List[PhoneNumber]] = None
@@ -201,6 +228,9 @@ class ChildLegalEntityCreate(BaseModel):
 
     suffix: Optional[str] = None
     """An individual's suffix."""
+
+    terms_of_use: Optional[TermsOfUse] = None
+    """Acceptance of terms of use by the legal entity."""
 
     third_party_verification: Optional[ThirdPartyVerification] = None
     """Deprecated. Use `third_party_verifications` instead."""
