@@ -130,8 +130,8 @@ class LegalEntities(SyncAPIResource):
               in a value of null to prevent the connection from being associated with the
               legal entity.
 
-          country_of_incorporation: The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-              alpha-3 formats.
+          country_of_incorporation: The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+              code (e.g. US).
 
           date_formed: A business's formation date (YYYY-MM-DD).
 
@@ -167,8 +167,8 @@ class LegalEntities(SyncAPIResource):
 
           middle_name: An individual's middle name.
 
-          operating_jurisdictions: A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-              codes).
+          operating_jurisdictions: A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+              codes (e.g. ["US", "CA"]).
 
           politically_exposed_person: Whether the individual is a politically exposed person.
 
@@ -362,8 +362,8 @@ class LegalEntities(SyncAPIResource):
 
           citizenship_country: The country of citizenship for an individual.
 
-          country_of_incorporation: The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-              alpha-3 formats.
+          country_of_incorporation: The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+              code (e.g. US).
 
           date_formed: A business's formation date (YYYY-MM-DD).
 
@@ -394,8 +394,8 @@ class LegalEntities(SyncAPIResource):
 
           middle_name: An individual's middle name.
 
-          operating_jurisdictions: A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-              codes).
+          operating_jurisdictions: A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+              codes (e.g. ["US", "CA"]).
 
           politically_exposed_person: Whether the individual is a politically exposed person.
 
@@ -690,8 +690,8 @@ class AsyncLegalEntities(AsyncAPIResource):
               in a value of null to prevent the connection from being associated with the
               legal entity.
 
-          country_of_incorporation: The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-              alpha-3 formats.
+          country_of_incorporation: The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+              code (e.g. US).
 
           date_formed: A business's formation date (YYYY-MM-DD).
 
@@ -727,8 +727,8 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           middle_name: An individual's middle name.
 
-          operating_jurisdictions: A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-              codes).
+          operating_jurisdictions: A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+              codes (e.g. ["US", "CA"]).
 
           politically_exposed_person: Whether the individual is a politically exposed person.
 
@@ -922,8 +922,8 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           citizenship_country: The country of citizenship for an individual.
 
-          country_of_incorporation: The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-              alpha-3 formats.
+          country_of_incorporation: The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+              code (e.g. US).
 
           date_formed: A business's formation date (YYYY-MM-DD).
 
@@ -954,8 +954,8 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           middle_name: An individual's middle name.
 
-          operating_jurisdictions: A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-              codes).
+          operating_jurisdictions: A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+              codes (e.g. ["US", "CA"]).
 
           politically_exposed_person: Whether the individual is a politically exposed person.
 

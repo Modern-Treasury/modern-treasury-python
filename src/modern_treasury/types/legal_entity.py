@@ -292,8 +292,8 @@ class LegalEntity(BaseModel):
 
     country_of_incorporation: Optional[str] = None
     """
-    The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-    alpha-3 formats.
+    The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+    code (e.g. US).
     """
 
     created_at: datetime
@@ -364,8 +364,8 @@ class LegalEntity(BaseModel):
 
     operating_jurisdictions: List[str]
     """
-    A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-    codes).
+    A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+    codes (e.g. ["US", "CA"]).
     """
 
     phone_numbers: List[PhoneNumber]
