@@ -53,7 +53,10 @@ class Address(BaseModel):
     """
 
     locality: Optional[str] = None
-    """Locality or City."""
+    """Locality or City.
+
+    Use the full city name rather than an abbreviation (e.g. San Francisco).
+    """
 
     object: str
 
@@ -67,7 +70,11 @@ class Address(BaseModel):
     """
 
     region: Optional[str] = None
-    """Region or State."""
+    """Region or State.
+
+    This field is free-form; for US states, we recommend a two-letter code (e.g.
+    CA). Full state names are also accepted.
+    """
 
     updated_at: datetime
 
@@ -228,6 +235,11 @@ class PhoneNumber(BaseModel):
     """A list of phone numbers in E.164 format."""
 
     phone_number: Optional[str] = None
+    """A phone number in E.164 format.
+
+    This format is strictly validated: include a leading + and country code,
+    followed by digits only (no spaces or dashes), e.g. +12025551234.
+    """
 
 
 PhoneNumbers = PhoneNumber

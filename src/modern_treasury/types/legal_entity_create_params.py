@@ -202,6 +202,11 @@ class PhoneNumber(TypedDict, total=False):
     """A list of phone numbers in E.164 format."""
 
     phone_number: str
+    """A phone number in E.164 format.
+
+    This format is strictly validated: include a leading + and country code,
+    followed by digits only (no spaces or dashes), e.g. +12025551234.
+    """
 
 
 PhoneNumbers = PhoneNumber

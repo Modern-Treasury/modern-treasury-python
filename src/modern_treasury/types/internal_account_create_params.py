@@ -181,12 +181,19 @@ class PartyAddress(TypedDict, total=False):
     line1: Required[str]
 
     locality: Required[str]
-    """Locality or City."""
+    """Locality or City.
+
+    Use the full city name rather than an abbreviation (e.g. San Francisco).
+    """
 
     postal_code: Required[str]
     """The postal code of the address."""
 
     region: Required[str]
-    """Region or State."""
+    """Region or State.
+
+    This field is free-form; for US states, we recommend a two-letter code (e.g.
+    CA). Full state names are also accepted.
+    """
 
     line2: str
