@@ -1,5 +1,60 @@
 # Changelog
 
+## 1.78.0 (2026-07-11)
+
+Full Changelog: [v1.77.0...v1.78.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.77.0...v1.78.0)
+
+### Features
+
+* **api:** api update ([b57bb8b](https://github.com/Modern-Treasury/modern-treasury-python/commit/b57bb8b24053e5c550563e2b6b11023855cb3a44))
+* **api:** api update ([ebae29f](https://github.com/Modern-Treasury/modern-treasury-python/commit/ebae29ffe99041dd33930b3129e3db5817a8f0e1))
+
+## 1.77.0 (2026-07-02)
+
+Full Changelog: [v1.76.0...v1.77.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.76.0...v1.77.0)
+
+### Features
+
+* **api:** add legal entity simulation endpoint ([17744ee](https://github.com/Modern-Treasury/modern-treasury-python/commit/17744eef2f12f05d9d352462e06cd077aec520ef))
+* **api:** api update ([217ad12](https://github.com/Modern-Treasury/modern-treasury-python/commit/217ad12227a4c56f0250c22dfaafccf914259a9f))
+* **api:** api update ([ffd46a4](https://github.com/Modern-Treasury/modern-treasury-python/commit/ffd46a4dbf39d598113415761bacb4abd5686437))
+* **api:** api update ([c6954f8](https://github.com/Modern-Treasury/modern-treasury-python/commit/c6954f85770ab0816e20aada75b9dbaf6354f947))
+* **api:** api update ([f09cbb9](https://github.com/Modern-Treasury/modern-treasury-python/commit/f09cbb9ef7f7084d4d261a35a0d1dcea91faff4a))
+* **api:** api update ([b7cde24](https://github.com/Modern-Treasury/modern-treasury-python/commit/b7cde24f0f4dfe27437b2ec0081f3027e88f26ba))
+* **api:** api update ([d2ecccf](https://github.com/Modern-Treasury/modern-treasury-python/commit/d2ecccf3b991c821fa0edec01e8c2754fe82e1a5))
+* **api:** api update ([93d5c22](https://github.com/Modern-Treasury/modern-treasury-python/commit/93d5c22d8a875a03153923a5352e55d70d161370))
+* **api:** api update ([3e04824](https://github.com/Modern-Treasury/modern-treasury-python/commit/3e04824b6dbaef8651495564161b5ef6af044c04))
+* **api:** api update ([e642947](https://github.com/Modern-Treasury/modern-treasury-python/commit/e642947a6297fc5a3c97f23736f83e6f1aa97ec1))
+* **api:** api update ([c10be6e](https://github.com/Modern-Treasury/modern-treasury-python/commit/c10be6e1eabc8e11d4551e286d2765d6f7293751))
+* **api:** api update ([cee241d](https://github.com/Modern-Treasury/modern-treasury-python/commit/cee241d9b4cf5a1d500b7b743f99c2f51622a778))
+* **api:** api update ([3854d6b](https://github.com/Modern-Treasury/modern-treasury-python/commit/3854d6b46d3a96f8debc87d37543c1f2e25a0410))
+* **api:** api update ([f228554](https://github.com/Modern-Treasury/modern-treasury-python/commit/f22855485bbc5ebedfeb61a2d824d7b03fe11404))
+* **api:** api update ([67b3d97](https://github.com/Modern-Treasury/modern-treasury-python/commit/67b3d976075ad304af48da6586b11fa38ab3b807))
+* **api:** api update ([252aef7](https://github.com/Modern-Treasury/modern-treasury-python/commit/252aef7fdf7989aadf32daa0b96d2e180d777239))
+* **api:** api update ([fe8aabc](https://github.com/Modern-Treasury/modern-treasury-python/commit/fe8aabc201d367e1778fa2c84d029ee1af0665db))
+* **api:** api update ([8f7ab08](https://github.com/Modern-Treasury/modern-treasury-python/commit/8f7ab08e53657febef591db0ca7654e99087a1e3))
+* **api:** api update ([ced4eb1](https://github.com/Modern-Treasury/modern-treasury-python/commit/ced4eb1966fa6be97ae1bd33f592c35f902195cd))
+* **api:** api update ([ec6cfcf](https://github.com/Modern-Treasury/modern-treasury-python/commit/ec6cfcf6d42c808db6e967713051a444cb11c7a9))
+* **api:** api update ([1da3c13](https://github.com/Modern-Treasury/modern-treasury-python/commit/1da3c135be415aa6dec24d190223127b97337df9))
+* **api:** api update ([47e5835](https://github.com/Modern-Treasury/modern-treasury-python/commit/47e5835a8598aee0fea9a3a63008ddbab148d236))
+* **api:** api update ([88d127f](https://github.com/Modern-Treasury/modern-treasury-python/commit/88d127f34abcc7e971cf0f48648fd97d8f806671))
+* **api:** api update ([a960ed8](https://github.com/Modern-Treasury/modern-treasury-python/commit/a960ed817b7d1faadc41296237f01e197c610078))
+* **internal/types:** support eagerly validating pydantic iterators ([0de6c33](https://github.com/Modern-Treasury/modern-treasury-python/commit/0de6c33d8ad196baf3bc200fdbdd3fe3e4f10809))
+* support setting headers via env ([12b4a5f](https://github.com/Modern-Treasury/modern-treasury-python/commit/12b4a5fbf6668adc297dd8921fa1a966845c4423))
+
+
+### Bug Fixes
+
+* **client:** add missing f-string prefix in file type error message ([b931d8d](https://github.com/Modern-Treasury/modern-treasury-python/commit/b931d8d5150c11c459e2ac2d98f5c8ef95b14f87))
+* **types:** avoid type-checker errors on params with additional properties ([f65b331](https://github.com/Modern-Treasury/modern-treasury-python/commit/f65b33136f29025d46dd604fb04d0d71ea68c614))
+* use correct field name format for multipart file arrays ([c18d9fa](https://github.com/Modern-Treasury/modern-treasury-python/commit/c18d9faef73d1c354373414548a6cbda1fcb563d))
+
+
+### Chores
+
+* **internal:** codegen related update ([816b839](https://github.com/Modern-Treasury/modern-treasury-python/commit/816b8392343b2933aa88a3d80e159359181940bc))
+* **internal:** reformat pyproject.toml ([0a622b0](https://github.com/Modern-Treasury/modern-treasury-python/commit/0a622b042dcec533793c9de1a9f4a7805c95d442))
+
 ## 1.76.0 (2026-04-22)
 
 Full Changelog: [v1.75.0...v1.76.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.75.0...v1.76.0)
