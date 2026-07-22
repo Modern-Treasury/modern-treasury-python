@@ -17,10 +17,17 @@ class AddressRequest(TypedDict, total=False):
     line2: Optional[str]
 
     locality: Optional[str]
-    """Locality or City."""
+    """Locality or City.
+
+    Use the full city name rather than an abbreviation (e.g. San Francisco).
+    """
 
     postal_code: Optional[str]
     """The postal code of the address."""
 
     region: Optional[str]
-    """Region or State."""
+    """Region or State.
+
+    This field is free-form; for US states, we recommend a two-letter code (e.g.
+    CA). Full state names are also accepted.
+    """
