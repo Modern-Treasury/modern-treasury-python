@@ -198,8 +198,6 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail(TypedD
             "dk_interbank_clearing_code",
             "gb_sort_code",
             "hk_interbank_clearing_code",
-            "hu_interbank_clearing_code",
-            "id_sknbi_code",
             "il_bank_code",
             "in_ifsc",
             "jp_zengin_code",
@@ -226,24 +224,17 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail(TypedD
         "dk_nets",
         "eft",
         "gb_fps",
-        "hu_ics",
-        "interac",
         "masav",
         "mx_ccen",
         "neft",
         "nics",
         "nz_becs",
         "pl_elixir",
-        "provxchange",
-        "ro_sent",
         "rtp",
         "se_bankgirot",
-        "sen",
         "sepa",
         "sg_giro",
         "sic",
-        "signet",
-        "sknbi",
         "stablecoin",
         "wire",
         "zengin",
@@ -337,13 +328,20 @@ class ResourcePaymentOrderAsyncCreateRequestUltimateOriginatingPartyAddress(Type
     line2: str
 
     locality: str
-    """Locality or City."""
+    """Locality or City.
+
+    Use the full city name rather than an abbreviation (e.g. San Francisco).
+    """
 
     postal_code: str
     """The postal code of the address."""
 
     region: str
-    """Region or State."""
+    """Region or State.
+
+    This field is free-form; for US states, we recommend a two-letter code (e.g.
+    CA). Full state names are also accepted.
+    """
 
 
 ResourcesPaymentOrderAsyncCreateRequestUltimateOriginatingPartyAddress = (
@@ -377,9 +375,8 @@ class ResourcePaymentOrderAsyncCreateRequest(TypedDict, total=False):
 
     type: Required[PaymentOrderType]
     """
-    One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-    `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-    `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+    One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+    `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
     """
 
     accounting: ResourcePaymentOrderAsyncCreateRequestAccounting
@@ -745,10 +742,7 @@ class ResourceExpectedPaymentCreateRequest(TypedDict, total=False):
     """
 
     type: Optional[ExpectedPaymentType]
-    """
-    One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
-    sepa, signet, wire.
-    """
+    """One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire."""
 
 
 ResourcesExpectedPaymentCreateRequest = ResourceExpectedPaymentCreateRequest
@@ -759,11 +753,7 @@ Please use ResourceExpectedPaymentCreateRequest instead.
 
 
 class ResourceTransactionCreateRequest(TypedDict, total=False):
-    amount: Required[int]
-    """Value in specified currency's smallest unit.
-
-    e.g. $10 would be represented as 1000.
-    """
+    """At least one of "amount" or "amount_string" is required."""
 
     as_of_date: Required[Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]]
     """The date on which the transaction occurred."""
@@ -785,7 +775,19 @@ class ResourceTransactionCreateRequest(TypedDict, total=False):
 
     Can be one of `bai2`, `bankprov`, `bnk_dev`, `cleartouch`, `currencycloud`,
     `cross_river`, `dc_bank`, `dwolla`, `evolve`, `goldman_sachs`, `iso20022`,
-    `jpmc`, `mx`, `signet`, `silvergate`, `swift`, `us_bank`, or others.
+    `jpmc`, `mx`, `silvergate`, `swift`, `us_bank`, or others.
+    """
+
+    amount: int
+    """Value in specified currency's smallest unit.
+
+    e.g. $10 would be represented as 1000.
+    """
+
+    amount_string: str
+    """
+    The transaction amount as a string, preserving full precision for values that
+    may exceed safe integer limits in some languages.
     """
 
     metadata: Dict[str, str]
@@ -810,24 +812,17 @@ class ResourceTransactionCreateRequest(TypedDict, total=False):
             "dk_nets",
             "eft",
             "gb_fps",
-            "hu_ics",
-            "interac",
             "masav",
             "mx_ccen",
             "neft",
             "nics",
             "nz_becs",
             "pl_elixir",
-            "provxchange",
-            "ro_sent",
             "rtp",
             "se_bankgirot",
-            "sen",
             "sepa",
             "sg_giro",
             "sic",
-            "signet",
-            "sknbi",
             "stablecoin",
             "wire",
             "zengin",
@@ -836,7 +831,7 @@ class ResourceTransactionCreateRequest(TypedDict, total=False):
     ]
     """The type of the transaction.
 
-    Examples could be `card, `ach`, `wire`, `check`, `rtp`, `book`, or `sen`.
+    Examples could be `card, `ach`, `wire`, `check`, `rtp`, or `book`.
     """
 
     vendor_customer_id: Optional[str]
@@ -967,8 +962,6 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail(Typed
             "dk_interbank_clearing_code",
             "gb_sort_code",
             "hk_interbank_clearing_code",
-            "hu_interbank_clearing_code",
-            "id_sknbi_code",
             "il_bank_code",
             "in_ifsc",
             "jp_zengin_code",
@@ -995,24 +988,17 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail(Typed
         "dk_nets",
         "eft",
         "gb_fps",
-        "hu_ics",
-        "interac",
         "masav",
         "mx_ccen",
         "neft",
         "nics",
         "nz_becs",
         "pl_elixir",
-        "provxchange",
-        "ro_sent",
         "rtp",
         "se_bankgirot",
-        "sen",
         "sepa",
         "sg_giro",
         "sic",
-        "signet",
-        "sknbi",
         "stablecoin",
         "wire",
         "zengin",
@@ -1301,9 +1287,8 @@ class ResourcePaymentOrderUpdateRequestWithID(TypedDict, total=False):
 
     type: PaymentOrderType
     """
-    One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
-    `sepa`, `bacs`, `au_becs`, `interac`, `neft`, `nics`,
-    `nz_national_clearing_code`, `sic`, `signet`, `provexchange`, `zengin`.
+    One of `ach`, `se_bankgirot`, `eft`, `wire`, `check`, `book`, `rtp`, `sepa`,
+    `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
     """
 
     ultimate_originating_party_identifier: Optional[str]
@@ -1449,10 +1434,7 @@ class ResourceExpectedPaymentUpdateRequestWithID(TypedDict, total=False):
     """
 
     type: Optional[ExpectedPaymentType]
-    """
-    One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen,
-    sepa, signet, wire.
-    """
+    """One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire."""
 
 
 ResourcesExpectedPaymentUpdateRequestWithID = ResourceExpectedPaymentUpdateRequestWithID

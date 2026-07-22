@@ -15,20 +15,32 @@ class LegalEntityAddressCreateRequest(BaseModel):
     line1: Optional[str] = None
 
     locality: Optional[str] = None
-    """Locality or City."""
+    """Locality or City.
+
+    Use the full city name rather than an abbreviation (e.g. San Francisco).
+    """
 
     postal_code: Optional[str] = None
     """The postal code of the address."""
 
     region: Optional[str] = None
-    """Region or State."""
+    """Region or State.
+
+    This field is free-form; for US states, we recommend a two-letter code (e.g.
+    CA). Full state names are also accepted.
+    """
 
     address_types: Optional[
-        List[Literal["business", "business_registered", "mailing", "other", "po_box", "residential"]]
+        List[
+            Literal["business", "business_physical", "business_registered", "mailing", "other", "po_box", "residential"]
+        ]
     ] = None
     """The types of this address."""
 
     line2: Optional[str] = None
 
     primary: Optional[bool] = None
-    """Whether this address is the primary address for the legal entity."""
+    """Whether this address is the primary address for the legal entity.
+
+    Optional; when omitted it is inferred from the address types.
+    """
