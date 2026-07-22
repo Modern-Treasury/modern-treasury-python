@@ -27,7 +27,10 @@ class Address(BaseModel):
     """
 
     locality: Optional[str] = None
-    """Locality or City."""
+    """Locality or City.
+
+    Use the full city name rather than an abbreviation (e.g. San Francisco).
+    """
 
     object: str
 
@@ -35,6 +38,10 @@ class Address(BaseModel):
     """The postal code of the address."""
 
     region: Optional[str] = None
-    """Region or State."""
+    """Region or State.
+
+    This field is free-form; for US states, we recommend a two-letter code (e.g.
+    CA). Full state names are also accepted.
+    """
 
     updated_at: datetime
