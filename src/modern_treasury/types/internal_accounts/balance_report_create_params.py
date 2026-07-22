@@ -29,6 +29,8 @@ class BalanceReportCreateParams(TypedDict, total=False):
 
 
 class Balance(TypedDict, total=False):
+    """At least one of "amount" or "amount_string" is required."""
+
     balance_type: Required[
         Literal[
             "closing_available",
