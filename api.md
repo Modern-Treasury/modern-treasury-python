@@ -1,27 +1,7 @@
 # Shared Types
 
 ```python
-from modern_treasury.types import (
-    AccountsType,
-    Address,
-    AddressRequest,
-    AsyncResponse,
-    ChildLegalEntityCreate,
-    ContactDetail,
-    Currency,
-    ForeignExchangeRate,
-    IdentificationCreateRequest,
-    LedgerAccountCreateRequest,
-    LedgerBalance,
-    LedgerBalances,
-    LedgerEntryCreateRequest,
-    LedgerTransactionCreateRequest,
-    LegalEntityAddressCreateRequest,
-    LegalEntityAssociationInlineCreate,
-    LegalEntityIndustryClassification,
-    ThirdPartyVerification,
-    TransactionDirection,
-)
+from modern_treasury.types import AccountsType, Address, AddressRequest, AsyncResponse, ChildLegalEntityCreate, ContactDetail, Currency, ForeignExchangeRate, IdentificationCreateRequest, LedgerAccountCreateRequest, LedgerBalance, LedgerBalances, LedgerEntryCreateRequest, LedgerTransactionCreateRequest, LegalEntityAddressCreateRequest, LegalEntityAssociationInlineCreate, LegalEntityIndustryClassification, ThirdPartyVerification, TransactionDirection
 ```
 
 # ModernTreasury
@@ -99,11 +79,7 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import (
-    ExternalAccount,
-    ExternalAccountType,
-    ExternalAccountVerifyResponse,
-)
+from modern_treasury.types import ExternalAccount, ExternalAccountType, ExternalAccountVerifyResponse
 ```
 
 Methods:
@@ -327,10 +303,7 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import (
-    LedgerAccountStatementCreateResponse,
-    LedgerAccountStatementRetrieveResponse,
-)
+from modern_treasury.types import LedgerAccountStatementCreateResponse, LedgerAccountStatementRetrieveResponse
 ```
 
 Methods:
@@ -415,12 +388,7 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import (
-    ContactDetailCreateRequest,
-    PaymentOrder,
-    PaymentOrderSubtype,
-    PaymentOrderType,
-)
+from modern_treasury.types import ContactDetailCreateRequest, PaymentOrder, PaymentOrderSubtype, PaymentOrderType
 ```
 
 Methods:
@@ -637,12 +605,7 @@ from modern_treasury.types import ChildLegalEntity, LegalEntityAssociation
 Types:
 
 ```python
-from modern_treasury.types import (
-    PaymentActionCreateResponse,
-    PaymentActionRetrieveResponse,
-    PaymentActionUpdateResponse,
-    PaymentActionListResponse,
-)
+from modern_treasury.types import PaymentActionCreateResponse, PaymentActionRetrieveResponse, PaymentActionUpdateResponse, PaymentActionListResponse
 ```
 
 Methods:
@@ -672,12 +635,7 @@ Methods:
 Types:
 
 ```python
-from modern_treasury.types import (
-    HoldCreateResponse,
-    HoldRetrieveResponse,
-    HoldUpdateResponse,
-    HoldListResponse,
-)
+from modern_treasury.types import HoldCreateResponse, HoldRetrieveResponse, HoldUpdateResponse, HoldListResponse
 ```
 
 Methods:

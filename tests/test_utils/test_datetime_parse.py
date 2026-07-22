@@ -7,7 +7,6 @@ from typing import Type, Union
 from datetime import date, datetime, timezone, timedelta
 
 import pytest
-
 from modern_treasury._utils import parse_date, parse_datetime
 
 

@@ -2,18 +2,23 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
-from datetime import datetime
-from typing_extensions import Literal, TypeAlias
+from typing import Union, Optional, List, Dict
 
-from .._models import BaseModel
-from .transaction import Transaction
-from .ledger_account import LedgerAccount
 from .expected_payment import ExpectedPayment
+
 from .ledger_transaction import LedgerTransaction
 
-__all__ = ["BulkResult", "Entity", "EntityBulkError", "EntityBulkErrorRequestErrors", "EntityBulkErrorRequestError"]
+from .ledger_account import LedgerAccount
 
+from .transaction import Transaction
+
+from .._models import BaseModel
+
+from datetime import datetime
+
+from typing_extensions import TypeAliasType, TypeAlias, Literal
+
+__all__ = ["BulkResult", "Entity", "EntityBulkError", "EntityBulkErrorRequestErrors", "EntityBulkErrorRequestError"]
 
 class EntityBulkErrorRequestError(BaseModel):
     code: Optional[str] = None
@@ -22,13 +27,11 @@ class EntityBulkErrorRequestError(BaseModel):
 
     parameter: Optional[str] = None
 
-
 EntityBulkErrorRequestErrors = EntityBulkErrorRequestError
 """This type is deprecated and will be removed in a future release.
 
 Please use EntityBulkErrorRequestError instead.
 """
-
 
 class EntityBulkError(BaseModel):
     id: str
@@ -47,11 +50,7 @@ class EntityBulkError(BaseModel):
 
     updated_at: datetime
 
-
-Entity: TypeAlias = Union[
-    "PaymentOrder", ExpectedPayment, LedgerTransaction, LedgerAccount, Transaction, EntityBulkError
-]
-
+Entity: TypeAlias = Union["PaymentOrder", ExpectedPayment, LedgerTransaction, LedgerAccount, Transaction, EntityBulkError]
 
 class BulkResult(BaseModel):
     id: str
@@ -68,16 +67,7 @@ class BulkResult(BaseModel):
     entity_id: str
     """Unique identifier for the result entity object."""
 
-    entity_type: Literal[
-        "payment_order",
-        "ledger_account",
-        "ledger_transaction",
-        "expected_payment",
-        "transaction",
-        "entity_link",
-        "transaction_line_item",
-        "bulk_error",
-    ]
+    entity_type: Literal["payment_order", "ledger_account", "ledger_transaction", "expected_payment", "transaction", "entity_link", "transaction_line_item", "bulk_error"]
     """The type of the result entity object.
 
     For a successful bulk result, this is the same as the `resource_type` of the
@@ -115,6 +105,5 @@ class BulkResult(BaseModel):
     """One of successful or failed."""
 
     updated_at: datetime
-
 
 from .payment_order import PaymentOrder

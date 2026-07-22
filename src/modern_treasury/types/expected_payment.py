@@ -1,17 +1,22 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import builtins
-from typing import Dict, List, Optional
-from datetime import date, datetime
-from typing_extensions import Literal
 
 from .._models import BaseModel
+
+from typing import Optional, Dict, List
+
+from typing_extensions import Literal
+
+from datetime import datetime, date
+
 from .shared.currency import Currency
+
 from .reconciliation_rule import ReconciliationRule
+
 from .expected_payment_type import ExpectedPaymentType
 
 __all__ = ["ExpectedPayment"]
-
 
 class ExpectedPayment(BaseModel):
     id: str

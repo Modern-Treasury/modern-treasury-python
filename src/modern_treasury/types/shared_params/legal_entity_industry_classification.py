@@ -2,15 +2,17 @@
 
 from __future__ import annotations
 
-from typing import Union
-from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
-
 from ..._types import SequenceNotStr
+
+from typing_extensions import Literal, TypedDict, Required, Annotated
+
+from typing import Union
+
+from datetime import datetime
+
 from ..._utils import PropertyInfo
 
 __all__ = ["LegalEntityIndustryClassification"]
-
 
 class LegalEntityIndustryClassification(TypedDict, total=False):
     id: Required[str]
@@ -18,30 +20,12 @@ class LegalEntityIndustryClassification(TypedDict, total=False):
     classification_codes: Required[SequenceNotStr[str]]
     """The industry classification codes for the legal entity."""
 
-    classification_type: Required[
-        Literal[
-            "anzsic",
-            "bics",
-            "gics",
-            "hsics",
-            "icb",
-            "isic",
-            "mgecs",
-            "nace",
-            "naics",
-            "rbics",
-            "sic",
-            "sni",
-            "trbc",
-            "uksic",
-            "unspsc",
-        ]
-    ]
+    classification_type: Required[Literal["anzsic", "bics", "gics", "hsics", "icb", "isic", "mgecs", "nace", "naics", "rbics", "sic", "sni", "trbc", "uksic", "unspsc"]]
     """The classification system of the classification codes."""
 
-    created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
+    created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]]
 
-    discarded_at: Required[Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]]
+    discarded_at: Required[Annotated[Union[str, datetime, None], PropertyInfo(format = "iso8601")]]
 
     live_mode: Required[bool]
     """
@@ -51,4 +35,4 @@ class LegalEntityIndustryClassification(TypedDict, total=False):
 
     object: Required[str]
 
-    updated_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
+    updated_at: Required[Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]]

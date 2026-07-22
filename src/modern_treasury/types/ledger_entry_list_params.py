@@ -2,15 +2,17 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from datetime import date, datetime
-from typing_extensions import Literal, TypedDict
+from typing_extensions import TypedDict, Literal
 
 from .._types import SequenceNotStr
+
+from typing import Optional, Dict, Union
+
 from .shared.transaction_direction import TransactionDirection
 
-__all__ = ["LedgerEntryListParams", "Amount", "OrderBy"]
+from datetime import datetime, date
 
+__all__ = ["LedgerEntryListParams", "Amount", "OrderBy"]
 
 class LedgerEntryListParams(TypedDict, total=False):
     id: SequenceNotStr[str]
@@ -120,12 +122,10 @@ class LedgerEntryListParams(TypedDict, total=False):
     updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
     """
 
-
 class Amount(TypedDict, total=False):
     """
     Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by amount.
     """
-
     eq: int
 
     gt: int
@@ -136,13 +136,11 @@ class Amount(TypedDict, total=False):
 
     lte: int
 
-
 class OrderBy(TypedDict, total=False):
     """Order by `created_at` or `effective_at` in `asc` or `desc` order.
 
     For example, to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`. Ordering by only one field at a time is supported.
     """
-
     created_at: Literal["asc", "desc"]
 
     effective_at: Literal["asc", "desc"]

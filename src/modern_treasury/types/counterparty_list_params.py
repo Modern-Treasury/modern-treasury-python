@@ -2,22 +2,23 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing_extensions import TypedDict, Annotated
+
+from typing import Optional, Union, Dict
+
 from datetime import datetime
-from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
 __all__ = ["CounterpartyListParams"]
 
-
 class CounterpartyListParams(TypedDict, total=False):
     after_cursor: Optional[str]
 
-    created_at_lower_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    created_at_lower_bound: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """Used to return counterparties created after some datetime."""
 
-    created_at_upper_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    created_at_upper_bound: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """Used to return counterparties created before some datetime."""
 
     email: str

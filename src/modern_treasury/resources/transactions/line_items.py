@@ -2,24 +2,36 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-from typing_extensions import Literal
-
 import httpx
 
-from ... import _legacy_response
-from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
-from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ...pagination import SyncPage, AsyncPage
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.transactions import line_item_list_params, line_item_create_params
+
+from ..._compat import cached_property
+
 from ...types.transactions.transaction_line_item import TransactionLineItem
 
-__all__ = ["LineItems", "AsyncLineItems"]
+from ..._utils import maybe_transform, path_template, async_maybe_transform
 
+from ..._base_client import make_request_options, AsyncPaginator
+
+from ..._types import NotGiven, Omit, omit
+
+from ...pagination import SyncPage, AsyncPage
+
+from typing import Dict, Optional
+
+from typing_extensions import Literal
+
+from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ... import _legacy_response
+
+from typing_extensions import Literal, overload
+from ..._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ...types.transactions import line_item_create_params
+from ...types.transactions import line_item_list_params
+
+__all__ = ["LineItems", "AsyncLineItems"]
 
 class LineItems(SyncAPIResource):
     @cached_property
@@ -41,20 +53,18 @@ class LineItems(SyncAPIResource):
         """
         return LineItemsWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        amount: int,
-        expected_payment_id: str,
-        transaction_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> TransactionLineItem:
+    def create(self,
+    *,
+    amount: int,
+    expected_payment_id: str,
+    transaction_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> TransactionLineItem:
         """
         create transaction line items
 
@@ -78,35 +88,24 @@ class LineItems(SyncAPIResource):
         """
         return self._post(
             "/api/transaction_line_items",
-            body=maybe_transform(
-                {
-                    "amount": amount,
-                    "expected_payment_id": expected_payment_id,
-                    "transaction_id": transaction_id,
-                },
-                line_item_create_params.LineItemCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "amount": amount,
+                "expected_payment_id": expected_payment_id,
+                "transaction_id": transaction_id,
+            }, line_item_create_params.LineItemCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=TransactionLineItem,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TransactionLineItem:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> TransactionLineItem:
         """
         get transaction line item
 
@@ -120,30 +119,28 @@ class LineItems(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/transaction_line_items/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=TransactionLineItem,
         )
 
-    def list(
-        self,
-        *,
-        id: Dict[str, str] | Omit = omit,
-        after_cursor: Optional[str] | Omit = omit,
-        per_page: int | Omit = omit,
-        transaction_id: str | Omit = omit,
-        type: Optional[Literal["originating", "receiving"]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[TransactionLineItem]:
+    def list(self,
+    *,
+    id: Dict[str, str] | Omit = omit,
+    after_cursor: Optional[str] | Omit = omit,
+    per_page: int | Omit = omit,
+    transaction_id: str | Omit = omit,
+    type: Optional[Literal["originating", "receiving"]] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[TransactionLineItem]:
         """
         list transaction_line_items
 
@@ -158,38 +155,27 @@ class LineItems(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/transaction_line_items",
-            page=SyncPage[TransactionLineItem],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "id": id,
-                        "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "transaction_id": transaction_id,
-                        "type": type,
-                    },
-                    line_item_list_params.LineItemListParams,
-                ),
-            ),
+            page = SyncPage[TransactionLineItem],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "id": id,
+                "after_cursor": after_cursor,
+                "per_page": per_page,
+                "transaction_id": transaction_id,
+                "type": type,
+            }, line_item_list_params.LineItemListParams)),
             model=TransactionLineItem,
         )
 
-    def delete(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> None:
+    def delete(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> None:
         """
         delete transaction line item
 
@@ -205,20 +191,15 @@ class LineItems(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             path_template("/api/transaction_line_items/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=NoneType,
         )
-
 
 class AsyncLineItems(AsyncAPIResource):
     @cached_property
@@ -240,20 +221,18 @@ class AsyncLineItems(AsyncAPIResource):
         """
         return AsyncLineItemsWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        amount: int,
-        expected_payment_id: str,
-        transaction_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> TransactionLineItem:
+    async def create(self,
+    *,
+    amount: int,
+    expected_payment_id: str,
+    transaction_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> TransactionLineItem:
         """
         create transaction line items
 
@@ -277,35 +256,24 @@ class AsyncLineItems(AsyncAPIResource):
         """
         return await self._post(
             "/api/transaction_line_items",
-            body=await async_maybe_transform(
-                {
-                    "amount": amount,
-                    "expected_payment_id": expected_payment_id,
-                    "transaction_id": transaction_id,
-                },
-                line_item_create_params.LineItemCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "amount": amount,
+                "expected_payment_id": expected_payment_id,
+                "transaction_id": transaction_id,
+            }, line_item_create_params.LineItemCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=TransactionLineItem,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TransactionLineItem:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> TransactionLineItem:
         """
         get transaction line item
 
@@ -319,30 +287,28 @@ class AsyncLineItems(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/transaction_line_items/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=TransactionLineItem,
         )
 
-    def list(
-        self,
-        *,
-        id: Dict[str, str] | Omit = omit,
-        after_cursor: Optional[str] | Omit = omit,
-        per_page: int | Omit = omit,
-        transaction_id: str | Omit = omit,
-        type: Optional[Literal["originating", "receiving"]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[TransactionLineItem, AsyncPage[TransactionLineItem]]:
+    def list(self,
+    *,
+    id: Dict[str, str] | Omit = omit,
+    after_cursor: Optional[str] | Omit = omit,
+    per_page: int | Omit = omit,
+    transaction_id: str | Omit = omit,
+    type: Optional[Literal["originating", "receiving"]] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[TransactionLineItem, AsyncPage[TransactionLineItem]]:
         """
         list transaction_line_items
 
@@ -357,38 +323,27 @@ class AsyncLineItems(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/transaction_line_items",
-            page=AsyncPage[TransactionLineItem],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "id": id,
-                        "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "transaction_id": transaction_id,
-                        "type": type,
-                    },
-                    line_item_list_params.LineItemListParams,
-                ),
-            ),
+            page = AsyncPage[TransactionLineItem],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "id": id,
+                "after_cursor": after_cursor,
+                "per_page": per_page,
+                "transaction_id": transaction_id,
+                "type": type,
+            }, line_item_list_params.LineItemListParams)),
             model=TransactionLineItem,
         )
 
-    async def delete(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> None:
+    async def delete(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> None:
         """
         delete transaction line item
 
@@ -404,20 +359,15 @@ class AsyncLineItems(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             path_template("/api/transaction_line_items/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=NoneType,
         )
-
 
 class LineItemsWithRawResponse:
     def __init__(self, line_items: LineItems) -> None:
@@ -436,7 +386,6 @@ class LineItemsWithRawResponse:
             line_items.delete,
         )
 
-
 class AsyncLineItemsWithRawResponse:
     def __init__(self, line_items: AsyncLineItems) -> None:
         self._line_items = line_items
@@ -454,7 +403,6 @@ class AsyncLineItemsWithRawResponse:
             line_items.delete,
         )
 
-
 class LineItemsWithStreamingResponse:
     def __init__(self, line_items: LineItems) -> None:
         self._line_items = line_items
@@ -471,7 +419,6 @@ class LineItemsWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             line_items.delete,
         )
-
 
 class AsyncLineItemsWithStreamingResponse:
     def __init__(self, line_items: AsyncLineItems) -> None:

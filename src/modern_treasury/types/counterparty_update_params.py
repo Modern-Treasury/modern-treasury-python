@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
 from typing_extensions import TypedDict
 
-__all__ = ["CounterpartyUpdateParams"]
+from typing import Optional, Dict
 
+__all__ = ["CounterpartyUpdateParams"]
 
 class CounterpartyUpdateParams(TypedDict, total=False):
     email: str

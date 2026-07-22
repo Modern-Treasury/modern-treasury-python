@@ -2,26 +2,43 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
-from datetime import date
-from typing_extensions import Literal
-
 import httpx
 
-from .. import _legacy_response
-from ..types import return_list_params, return_create_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
+
+from .._compat import cached_property
+
 from ..types.return_object import ReturnObject
+
+from .._utils import maybe_transform, path_template, async_maybe_transform
+
+from .._base_client import make_request_options, AsyncPaginator
+
+from typing import Optional, Union
+
+from typing_extensions import Literal
+
+from .._types import Omit, omit, NotGiven
+
+from datetime import date
+
 from ..types.shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
-__all__ = ["Returns", "AsyncReturns"]
+from ..pagination import SyncPage, AsyncPage
 
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ..types import return_create_params
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import return_create_params
+from ..types import return_list_params
+from ..types import shared
+
+__all__ = ["Returns", "AsyncReturns"]
 
 class Returns(SyncAPIResource):
     @cached_property
@@ -43,124 +60,25 @@ class Returns(SyncAPIResource):
         """
         return ReturnsWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        returnable_id: Optional[str],
-        returnable_type: Literal["incoming_payment_detail"],
-        additional_information: Optional[str] | Omit = omit,
-        code: Optional[
-            Literal[
-                "901",
-                "902",
-                "903",
-                "904",
-                "905",
-                "907",
-                "908",
-                "909",
-                "910",
-                "911",
-                "912",
-                "914",
-                "C01",
-                "C02",
-                "C03",
-                "C05",
-                "C06",
-                "C07",
-                "C08",
-                "C09",
-                "C13",
-                "C14",
-                "R01",
-                "R02",
-                "R03",
-                "R04",
-                "R05",
-                "R06",
-                "R07",
-                "R08",
-                "R09",
-                "R10",
-                "R11",
-                "R12",
-                "R13",
-                "R14",
-                "R15",
-                "R16",
-                "R17",
-                "R18",
-                "R19",
-                "R20",
-                "R21",
-                "R22",
-                "R23",
-                "R24",
-                "R25",
-                "R26",
-                "R27",
-                "R28",
-                "R29",
-                "R30",
-                "R31",
-                "R32",
-                "R33",
-                "R34",
-                "R35",
-                "R36",
-                "R37",
-                "R38",
-                "R39",
-                "R40",
-                "R41",
-                "R42",
-                "R43",
-                "R44",
-                "R45",
-                "R46",
-                "R47",
-                "R50",
-                "R51",
-                "R52",
-                "R53",
-                "R61",
-                "R62",
-                "R67",
-                "R68",
-                "R69",
-                "R70",
-                "R71",
-                "R72",
-                "R73",
-                "R74",
-                "R75",
-                "R76",
-                "R77",
-                "R80",
-                "R81",
-                "R82",
-                "R83",
-                "R84",
-                "R85",
-                "currencycloud",
-            ]
-        ]
-        | Omit = omit,
-        corrections: Optional[return_create_params.Corrections] | Omit = omit,
-        data: Optional[object] | Omit = omit,
-        date_of_death: Union[str, date, None] | Omit = omit,
-        ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
-        reason: Optional[str] | Omit = omit,
-        reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ReturnObject:
+    def create(self,
+    *,
+    returnable_id: Optional[str],
+    returnable_type: Literal["incoming_payment_detail"],
+    additional_information: Optional[str] | Omit = omit,
+    code: Optional[Literal["901", "902", "903", "904", "905", "907", "908", "909", "910", "911", "912", "914", "C01", "C02", "C03", "C05", "C06", "C07", "C08", "C09", "C13", "C14", "R01", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09", "R10", "R11", "R12", "R13", "R14", "R15", "R16", "R17", "R18", "R19", "R20", "R21", "R22", "R23", "R24", "R25", "R26", "R27", "R28", "R29", "R30", "R31", "R32", "R33", "R34", "R35", "R36", "R37", "R38", "R39", "R40", "R41", "R42", "R43", "R44", "R45", "R46", "R47", "R50", "R51", "R52", "R53", "R61", "R62", "R67", "R68", "R69", "R70", "R71", "R72", "R73", "R74", "R75", "R76", "R77", "R80", "R81", "R82", "R83", "R84", "R85", "currencycloud"]] | Omit = omit,
+    corrections: Optional[return_create_params.Corrections] | Omit = omit,
+    data: Optional[object] | Omit = omit,
+    date_of_death: Union[str, date, None] | Omit = omit,
+    ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
+    reason: Optional[str] | Omit = omit,
+    reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ReturnObject:
         """
         Create a return.
 
@@ -205,42 +123,31 @@ class Returns(SyncAPIResource):
         """
         return self._post(
             "/api/returns",
-            body=maybe_transform(
-                {
-                    "returnable_id": returnable_id,
-                    "returnable_type": returnable_type,
-                    "additional_information": additional_information,
-                    "code": code,
-                    "corrections": corrections,
-                    "data": data,
-                    "date_of_death": date_of_death,
-                    "ledger_transaction": ledger_transaction,
-                    "reason": reason,
-                    "reconciliation_status": reconciliation_status,
-                },
-                return_create_params.ReturnCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "returnable_id": returnable_id,
+                "returnable_type": returnable_type,
+                "additional_information": additional_information,
+                "code": code,
+                "corrections": corrections,
+                "data": data,
+                "date_of_death": date_of_death,
+                "ledger_transaction": ledger_transaction,
+                "reason": reason,
+                "reconciliation_status": reconciliation_status,
+            }, return_create_params.ReturnCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=ReturnObject,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ReturnObject:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> ReturnObject:
         """
         Get a single return.
 
@@ -254,31 +161,29 @@ class Returns(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/returns/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=ReturnObject,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        internal_account_id: str | Omit = omit,
-        per_page: int | Omit = omit,
-        returnable_id: str | Omit = omit,
-        returnable_type: Literal["incoming_payment_detail", "payment_order", "return", "reversal"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[ReturnObject]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    internal_account_id: str | Omit = omit,
+    per_page: int | Omit = omit,
+    returnable_id: str | Omit = omit,
+    returnable_type: Literal["incoming_payment_detail", "payment_order", "return", "reversal"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[ReturnObject]:
         """
         Get a list of returns.
 
@@ -304,27 +209,17 @@ class Returns(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/returns",
-            page=SyncPage[ReturnObject],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "counterparty_id": counterparty_id,
-                        "internal_account_id": internal_account_id,
-                        "per_page": per_page,
-                        "returnable_id": returnable_id,
-                        "returnable_type": returnable_type,
-                    },
-                    return_list_params.ReturnListParams,
-                ),
-            ),
+            page = SyncPage[ReturnObject],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "counterparty_id": counterparty_id,
+                "internal_account_id": internal_account_id,
+                "per_page": per_page,
+                "returnable_id": returnable_id,
+                "returnable_type": returnable_type,
+            }, return_list_params.ReturnListParams)),
             model=ReturnObject,
         )
-
 
 class AsyncReturns(AsyncAPIResource):
     @cached_property
@@ -346,124 +241,25 @@ class AsyncReturns(AsyncAPIResource):
         """
         return AsyncReturnsWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        returnable_id: Optional[str],
-        returnable_type: Literal["incoming_payment_detail"],
-        additional_information: Optional[str] | Omit = omit,
-        code: Optional[
-            Literal[
-                "901",
-                "902",
-                "903",
-                "904",
-                "905",
-                "907",
-                "908",
-                "909",
-                "910",
-                "911",
-                "912",
-                "914",
-                "C01",
-                "C02",
-                "C03",
-                "C05",
-                "C06",
-                "C07",
-                "C08",
-                "C09",
-                "C13",
-                "C14",
-                "R01",
-                "R02",
-                "R03",
-                "R04",
-                "R05",
-                "R06",
-                "R07",
-                "R08",
-                "R09",
-                "R10",
-                "R11",
-                "R12",
-                "R13",
-                "R14",
-                "R15",
-                "R16",
-                "R17",
-                "R18",
-                "R19",
-                "R20",
-                "R21",
-                "R22",
-                "R23",
-                "R24",
-                "R25",
-                "R26",
-                "R27",
-                "R28",
-                "R29",
-                "R30",
-                "R31",
-                "R32",
-                "R33",
-                "R34",
-                "R35",
-                "R36",
-                "R37",
-                "R38",
-                "R39",
-                "R40",
-                "R41",
-                "R42",
-                "R43",
-                "R44",
-                "R45",
-                "R46",
-                "R47",
-                "R50",
-                "R51",
-                "R52",
-                "R53",
-                "R61",
-                "R62",
-                "R67",
-                "R68",
-                "R69",
-                "R70",
-                "R71",
-                "R72",
-                "R73",
-                "R74",
-                "R75",
-                "R76",
-                "R77",
-                "R80",
-                "R81",
-                "R82",
-                "R83",
-                "R84",
-                "R85",
-                "currencycloud",
-            ]
-        ]
-        | Omit = omit,
-        corrections: Optional[return_create_params.Corrections] | Omit = omit,
-        data: Optional[object] | Omit = omit,
-        date_of_death: Union[str, date, None] | Omit = omit,
-        ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
-        reason: Optional[str] | Omit = omit,
-        reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ReturnObject:
+    async def create(self,
+    *,
+    returnable_id: Optional[str],
+    returnable_type: Literal["incoming_payment_detail"],
+    additional_information: Optional[str] | Omit = omit,
+    code: Optional[Literal["901", "902", "903", "904", "905", "907", "908", "909", "910", "911", "912", "914", "C01", "C02", "C03", "C05", "C06", "C07", "C08", "C09", "C13", "C14", "R01", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09", "R10", "R11", "R12", "R13", "R14", "R15", "R16", "R17", "R18", "R19", "R20", "R21", "R22", "R23", "R24", "R25", "R26", "R27", "R28", "R29", "R30", "R31", "R32", "R33", "R34", "R35", "R36", "R37", "R38", "R39", "R40", "R41", "R42", "R43", "R44", "R45", "R46", "R47", "R50", "R51", "R52", "R53", "R61", "R62", "R67", "R68", "R69", "R70", "R71", "R72", "R73", "R74", "R75", "R76", "R77", "R80", "R81", "R82", "R83", "R84", "R85", "currencycloud"]] | Omit = omit,
+    corrections: Optional[return_create_params.Corrections] | Omit = omit,
+    data: Optional[object] | Omit = omit,
+    date_of_death: Union[str, date, None] | Omit = omit,
+    ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
+    reason: Optional[str] | Omit = omit,
+    reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ReturnObject:
         """
         Create a return.
 
@@ -508,42 +304,31 @@ class AsyncReturns(AsyncAPIResource):
         """
         return await self._post(
             "/api/returns",
-            body=await async_maybe_transform(
-                {
-                    "returnable_id": returnable_id,
-                    "returnable_type": returnable_type,
-                    "additional_information": additional_information,
-                    "code": code,
-                    "corrections": corrections,
-                    "data": data,
-                    "date_of_death": date_of_death,
-                    "ledger_transaction": ledger_transaction,
-                    "reason": reason,
-                    "reconciliation_status": reconciliation_status,
-                },
-                return_create_params.ReturnCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "returnable_id": returnable_id,
+                "returnable_type": returnable_type,
+                "additional_information": additional_information,
+                "code": code,
+                "corrections": corrections,
+                "data": data,
+                "date_of_death": date_of_death,
+                "ledger_transaction": ledger_transaction,
+                "reason": reason,
+                "reconciliation_status": reconciliation_status,
+            }, return_create_params.ReturnCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=ReturnObject,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ReturnObject:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> ReturnObject:
         """
         Get a single return.
 
@@ -557,31 +342,29 @@ class AsyncReturns(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/returns/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=ReturnObject,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        internal_account_id: str | Omit = omit,
-        per_page: int | Omit = omit,
-        returnable_id: str | Omit = omit,
-        returnable_type: Literal["incoming_payment_detail", "payment_order", "return", "reversal"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ReturnObject, AsyncPage[ReturnObject]]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    internal_account_id: str | Omit = omit,
+    per_page: int | Omit = omit,
+    returnable_id: str | Omit = omit,
+    returnable_type: Literal["incoming_payment_detail", "payment_order", "return", "reversal"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[ReturnObject, AsyncPage[ReturnObject]]:
         """
         Get a list of returns.
 
@@ -607,27 +390,17 @@ class AsyncReturns(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/returns",
-            page=AsyncPage[ReturnObject],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "counterparty_id": counterparty_id,
-                        "internal_account_id": internal_account_id,
-                        "per_page": per_page,
-                        "returnable_id": returnable_id,
-                        "returnable_type": returnable_type,
-                    },
-                    return_list_params.ReturnListParams,
-                ),
-            ),
+            page = AsyncPage[ReturnObject],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "counterparty_id": counterparty_id,
+                "internal_account_id": internal_account_id,
+                "per_page": per_page,
+                "returnable_id": returnable_id,
+                "returnable_type": returnable_type,
+            }, return_list_params.ReturnListParams)),
             model=ReturnObject,
         )
-
 
 class ReturnsWithRawResponse:
     def __init__(self, returns: Returns) -> None:
@@ -643,7 +416,6 @@ class ReturnsWithRawResponse:
             returns.list,
         )
 
-
 class AsyncReturnsWithRawResponse:
     def __init__(self, returns: AsyncReturns) -> None:
         self._returns = returns
@@ -658,7 +430,6 @@ class AsyncReturnsWithRawResponse:
             returns.list,
         )
 
-
 class ReturnsWithStreamingResponse:
     def __init__(self, returns: Returns) -> None:
         self._returns = returns
@@ -672,7 +443,6 @@ class ReturnsWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             returns.list,
         )
-
 
 class AsyncReturnsWithStreamingResponse:
     def __init__(self, returns: AsyncReturns) -> None:

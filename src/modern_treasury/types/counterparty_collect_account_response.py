@@ -4,7 +4,6 @@ from .._models import BaseModel
 
 __all__ = ["CounterpartyCollectAccountResponse"]
 
-
 class CounterpartyCollectAccountResponse(BaseModel):
     id: str
     """The id of the existing counterparty."""

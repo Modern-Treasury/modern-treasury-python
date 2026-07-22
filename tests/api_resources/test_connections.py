@@ -2,26 +2,33 @@
 
 from __future__ import annotations
 
-import os
-from typing import Any, cast
-
-import pytest
-
-from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
+
 from modern_treasury.types import Connection
+
 from modern_treasury.pagination import SyncPage, AsyncPage
+
+from typing import cast, Any
+
+import os
+import pytest
+import httpx
+from typing_extensions import get_args
+from respx import MockRouter
+from modern_treasury import ModernTreasury, AsyncModernTreasury
+from tests.utils import assert_matches_type
+from modern_treasury.types import connection_list_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestConnections:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         connection = client.connections.list()
-        assert_matches_type(SyncPage[Connection], connection, path=["response"])
+        assert_matches_type(SyncPage[Connection], connection, path=['response'])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
@@ -31,38 +38,36 @@ class TestConnections:
             per_page=0,
             vendor_customer_id="vendor_customer_id",
         )
-        assert_matches_type(SyncPage[Connection], connection, path=["response"])
+        assert_matches_type(SyncPage[Connection], connection, path=['response'])
 
     @parametrize
     def test_raw_response_list(self, client: ModernTreasury) -> None:
+
         response = client.connections.with_raw_response.list()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         connection = response.parse()
-        assert_matches_type(SyncPage[Connection], connection, path=["response"])
+        assert_matches_type(SyncPage[Connection], connection, path=['response'])
 
     @parametrize
     def test_streaming_response_list(self, client: ModernTreasury) -> None:
-        with client.connections.with_streaming_response.list() as response:
+        with client.connections.with_streaming_response.list() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             connection = response.parse()
-            assert_matches_type(SyncPage[Connection], connection, path=["response"])
+            assert_matches_type(SyncPage[Connection], connection, path=['response'])
 
         assert cast(Any, response.is_closed) is True
-
-
 class TestAsyncConnections:
-    parametrize = pytest.mark.parametrize(
-        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
-    )
+    parametrize = pytest.mark.parametrize("async_client", [False, True, {'http_client': 'aiohttp'}], indirect=True, ids=['loose', 'strict', 'aiohttp'])
+
 
     @parametrize
     async def test_method_list(self, async_client: AsyncModernTreasury) -> None:
         connection = await async_client.connections.list()
-        assert_matches_type(AsyncPage[Connection], connection, path=["response"])
+        assert_matches_type(AsyncPage[Connection], connection, path=['response'])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
@@ -72,24 +77,25 @@ class TestAsyncConnections:
             per_page=0,
             vendor_customer_id="vendor_customer_id",
         )
-        assert_matches_type(AsyncPage[Connection], connection, path=["response"])
+        assert_matches_type(AsyncPage[Connection], connection, path=['response'])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.connections.with_raw_response.list()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         connection = response.parse()
-        assert_matches_type(AsyncPage[Connection], connection, path=["response"])
+        assert_matches_type(AsyncPage[Connection], connection, path=['response'])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncModernTreasury) -> None:
-        async with async_client.connections.with_streaming_response.list() as response:
+        async with async_client.connections.with_streaming_response.list() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             connection = await response.parse()
-            assert_matches_type(AsyncPage[Connection], connection, path=["response"])
+            assert_matches_type(AsyncPage[Connection], connection, path=['response'])
 
         assert cast(Any, response.is_closed) is True

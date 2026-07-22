@@ -2,15 +2,17 @@
 
 from __future__ import annotations
 
-from typing import Union
-from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import TypedDict, Required, Annotated
 
-from .._utils import PropertyInfo
 from .shared.currency import Currency
 
-__all__ = ["ForeignExchangeQuoteCreateParams"]
+from typing import Union
 
+from datetime import datetime
+
+from .._utils import PropertyInfo
+
+__all__ = ["ForeignExchangeQuoteCreateParams"]
 
 class ForeignExchangeQuoteCreateParams(TypedDict, total=False):
     internal_account_id: Required[str]
@@ -28,7 +30,7 @@ class ForeignExchangeQuoteCreateParams(TypedDict, total=False):
     base_currency: Currency
     """Currency to convert, often called the "sell" currency."""
 
-    effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    effective_at: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """The timestamp until when the quoted rate is valid."""
 
     target_amount: int

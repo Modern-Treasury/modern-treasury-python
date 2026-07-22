@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
-from typing_extensions import Literal
-
 from ..._models import BaseModel
 
-__all__ = ["LegalEntityAssociationInlineCreate"]
+from typing import List, Optional
 
+from typing_extensions import Literal
+
+__all__ = ["LegalEntityAssociationInlineCreate"]
 
 class LegalEntityAssociationInlineCreate(BaseModel):
     relationship_types: List[Literal["authorized_signer", "beneficial_owner", "control_person"]]
@@ -24,6 +24,5 @@ class LegalEntityAssociationInlineCreate(BaseModel):
 
     title: Optional[str] = None
     """The job title of the child entity at the parent entity."""
-
 
 from .child_legal_entity_create import ChildLegalEntityCreate

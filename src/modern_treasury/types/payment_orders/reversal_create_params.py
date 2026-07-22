@@ -2,24 +2,16 @@
 
 from __future__ import annotations
 
-from typing import Dict
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import TypedDict, Literal, Required
 
 from ..shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
+from typing import Dict
+
 __all__ = ["ReversalCreateParams"]
 
-
 class ReversalCreateParams(TypedDict, total=False):
-    reason: Required[
-        Literal[
-            "duplicate",
-            "incorrect_amount",
-            "incorrect_receiving_account",
-            "date_earlier_than_intended",
-            "date_later_than_intended",
-        ]
-    ]
+    reason: Required[Literal["duplicate", "incorrect_amount", "incorrect_receiving_account", "date_earlier_than_intended", "date_later_than_intended"]]
     """The reason for the reversal.
 
     Must be one of `duplicate`, `incorrect_amount`, `incorrect_receiving_account`,

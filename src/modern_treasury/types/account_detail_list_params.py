@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict, Required
 
 from .shared.accounts_type import AccountsType
 
-__all__ = ["AccountDetailListParams"]
+from typing import Optional
 
+__all__ = ["AccountDetailListParams"]
 
 class AccountDetailListParams(TypedDict, total=False):
     accounts_type: Required[AccountsType]

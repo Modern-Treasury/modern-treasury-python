@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-from typing_extensions import Literal, TypedDict
+from typing_extensions import TypedDict, Literal
+
+from typing import Optional, Dict
 
 __all__ = ["BulkRequestListParams"]
-
 
 class BulkRequestListParams(TypedDict, total=False):
     action_type: Literal["create", "update", "delete"]
@@ -23,15 +23,7 @@ class BulkRequestListParams(TypedDict, total=False):
 
     per_page: int
 
-    resource_type: Literal[
-        "payment_order",
-        "ledger_account",
-        "ledger_transaction",
-        "expected_payment",
-        "transaction",
-        "transaction_line_item",
-        "entity_link",
-    ]
+    resource_type: Literal["payment_order", "ledger_account", "ledger_transaction", "expected_payment", "transaction", "transaction_line_item", "entity_link"]
     """One of payment_order, expected_payment, or ledger_transaction."""
 
     status: Literal["pending", "processing", "completed"]

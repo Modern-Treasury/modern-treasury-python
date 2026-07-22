@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
 from typing_extensions import TypedDict
 
-__all__ = ["LedgerAccountCategoryUpdateParams"]
+from typing import Optional, Dict
 
+__all__ = ["LedgerAccountCategoryUpdateParams"]
 
 class LedgerAccountCategoryUpdateParams(TypedDict, total=False):
     description: Optional[str]

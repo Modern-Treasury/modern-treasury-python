@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from ..._models import BaseModel
+
+from typing import Optional, List
+
 from datetime import date, datetime
+
 from typing_extensions import Literal
 
-from ..._models import BaseModel
 from ..shared.currency import Currency
 
 __all__ = ["BalanceReport", "Balances", "Balance"]
-
 
 class Balance(BaseModel):
     id: str
@@ -28,17 +30,7 @@ class Balance(BaseModel):
     as_of_time: Optional[str] = None
     """The time on which the balance became true for the account."""
 
-    balance_type: Literal[
-        "closing_available",
-        "closing_ledger",
-        "current_available",
-        "current_ledger",
-        "opening_available",
-        "opening_available_next_business_day",
-        "opening_ledger",
-        "other",
-        "previously_closed_book",
-    ]
+    balance_type: Literal["closing_available", "closing_ledger", "current_available", "current_ledger", "opening_available", "opening_available_next_business_day", "opening_ledger", "other", "previously_closed_book"]
     """The specific type of balance reported.
 
     One of `opening_ledger`, `closing_ledger`, `current_ledger`,
@@ -75,13 +67,11 @@ class Balance(BaseModel):
     `jpmc`, `mx`, `silvergate`, `swift`, or `us_bank`.
     """
 
-
 Balances = Balance
 """This type is deprecated and will be removed in a future release.
 
 Please use Balance instead.
 """
-
 
 class BalanceReport(BaseModel):
     id: str

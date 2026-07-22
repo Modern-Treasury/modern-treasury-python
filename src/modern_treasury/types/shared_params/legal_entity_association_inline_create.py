@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 from typing import List, Optional
-from typing_extensions import Literal, Required, TypedDict
+
+from typing_extensions import Literal, TypedDict, Required
 
 __all__ = ["LegalEntityAssociationInlineCreate"]
-
 
 class LegalEntityAssociationInlineCreate(TypedDict, total=False):
     relationship_types: Required[List[Literal["authorized_signer", "beneficial_owner", "control_person"]]]
@@ -22,6 +22,5 @@ class LegalEntityAssociationInlineCreate(TypedDict, total=False):
 
     title: Optional[str]
     """The job title of the child entity at the parent entity."""
-
 
 from .child_legal_entity_create import ChildLegalEntityCreate

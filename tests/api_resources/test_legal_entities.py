@@ -2,48 +2,60 @@
 
 from __future__ import annotations
 
-import os
-from typing import Any, cast
-
-import pytest
-
-from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
-from modern_treasury.types import (
-    LegalEntity,
-)
-from modern_treasury._utils import parse_date, parse_datetime
+
+from modern_treasury.types import LegalEntity
+
+from modern_treasury._utils import parse_datetime, parse_date
+
+from typing import cast, Any
+
 from modern_treasury.pagination import SyncPage, AsyncPage
+
+import os
+import pytest
+import httpx
+from typing_extensions import get_args
+from respx import MockRouter
+from modern_treasury import ModernTreasury, AsyncModernTreasury
+from tests.utils import assert_matches_type
+from modern_treasury.types import legal_entity_create_params
+from modern_treasury.types import legal_entity_update_params
+from modern_treasury.types import legal_entity_list_params
+from modern_treasury.types import BankSettings
+from modern_treasury.types import shared
+from modern_treasury.types import WealthAndEmploymentDetails
+from modern_treasury.types import BankSettings
+from modern_treasury.types import shared
+from modern_treasury.types import WealthAndEmploymentDetails
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestLegalEntities:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         legal_entity = client.legal_entities.create(
             legal_entity_type="business",
         )
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
+        assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         legal_entity = client.legal_entities.create(
             legal_entity_type="business",
-            addresses=[
-                {
-                    "country": "country",
-                    "line1": "line1",
-                    "locality": "locality",
-                    "postal_code": "postal_code",
-                    "region": "region",
-                    "address_types": ["business"],
-                    "line2": "line2",
-                    "primary": True,
-                }
-            ],
+            addresses=[{
+                "country": "country",
+                "line1": "line1",
+                "locality": "locality",
+                "postal_code": "postal_code",
+                "region": "region",
+                "address_types": ["business"],
+                "line2": "line2",
+                "primary": True,
+            }],
             bank_settings={
                 "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "backup_withholding_percentage": 0,
@@ -64,204 +76,182 @@ class TestLegalEntities:
             country_of_incorporation="country_of_incorporation",
             date_formed=parse_date("2019-12-27"),
             date_of_birth=parse_date("2019-12-27"),
-            documents=[
-                {
-                    "document_type": "articles_of_incorporation",
-                    "file_data": "file_data",
-                    "filename": "filename",
-                }
-            ],
+            documents=[{
+                "document_type": "articles_of_incorporation",
+                "file_data": "file_data",
+                "filename": "filename",
+            }],
             doing_business_as_names=["string"],
             email="email",
             expected_activity_volume=0,
             external_id="external_id",
             first_name="first_name",
-            identifications=[
-                {
-                    "id_number": "id_number",
-                    "id_type": "ar_cuil",
-                    "documents": [
-                        {
+            identifications=[{
+                "id_number": "id_number",
+                "id_type": "ar_cuil",
+                "documents": [{
+                    "document_type": "articles_of_incorporation",
+                    "file_data": "file_data",
+                    "filename": "filename",
+                }],
+                "expiration_date": parse_date("2019-12-27"),
+                "issuing_country": "issuing_country",
+                "issuing_region": "issuing_region",
+            }],
+            industry_classifications=[{
+                "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "classification_codes": ["string"],
+                "classification_type": "anzsic",
+                "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "live_mode": True,
+                "object": "object",
+                "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+            }],
+            intended_use="intended_use",
+            last_name="last_name",
+            legal_entity_associations=[{
+                "relationship_types": ["authorized_signer"],
+                "child_legal_entity": {
+                    "addresses": [{
+                        "country": "country",
+                        "line1": "line1",
+                        "locality": "locality",
+                        "postal_code": "postal_code",
+                        "region": "region",
+                        "address_types": ["business"],
+                        "line2": "line2",
+                        "primary": True,
+                    }],
+                    "bank_settings": {
+                        "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "backup_withholding_percentage": 0,
+                        "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "enable_backup_withholding": True,
+                        "live_mode": True,
+                        "object": "object",
+                        "privacy_opt_out": True,
+                        "regulation_o": True,
+                        "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    },
+                    "business_description": "business_description",
+                    "business_name": "business_name",
+                    "citizenship_country": "citizenship_country",
+                    "compliance_details": {},
+                    "connection_id": "connection_id",
+                    "country_of_incorporation": "country_of_incorporation",
+                    "date_formed": parse_date("2019-12-27"),
+                    "date_of_birth": parse_date("2019-12-27"),
+                    "documents": [{
+                        "document_type": "articles_of_incorporation",
+                        "file_data": "file_data",
+                        "filename": "filename",
+                    }],
+                    "doing_business_as_names": ["string"],
+                    "email": "email",
+                    "expected_activity_volume": 0,
+                    "external_id": "external_id",
+                    "first_name": "first_name",
+                    "identifications": [{
+                        "id_number": "id_number",
+                        "id_type": "ar_cuil",
+                        "documents": [{
                             "document_type": "articles_of_incorporation",
                             "file_data": "file_data",
                             "filename": "filename",
-                        }
-                    ],
-                    "expiration_date": parse_date("2019-12-27"),
-                    "issuing_country": "issuing_country",
-                    "issuing_region": "issuing_region",
-                }
-            ],
-            industry_classifications=[
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "classification_codes": ["string"],
-                    "classification_type": "anzsic",
-                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                    "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                    "live_mode": True,
-                    "object": "object",
-                    "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                }
-            ],
-            intended_use="intended_use",
-            last_name="last_name",
-            legal_entity_associations=[
-                {
-                    "relationship_types": ["authorized_signer"],
-                    "child_legal_entity": {
-                        "addresses": [
-                            {
-                                "country": "country",
-                                "line1": "line1",
-                                "locality": "locality",
-                                "postal_code": "postal_code",
-                                "region": "region",
-                                "address_types": ["business"],
-                                "line2": "line2",
-                                "primary": True,
-                            }
-                        ],
-                        "bank_settings": {
-                            "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                            "backup_withholding_percentage": 0,
-                            "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                            "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                            "enable_backup_withholding": True,
-                            "live_mode": True,
-                            "object": "object",
-                            "privacy_opt_out": True,
-                            "regulation_o": True,
-                            "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                        },
-                        "business_description": "business_description",
-                        "business_name": "business_name",
-                        "citizenship_country": "citizenship_country",
-                        "compliance_details": {},
-                        "connection_id": "connection_id",
-                        "country_of_incorporation": "country_of_incorporation",
-                        "date_formed": parse_date("2019-12-27"),
-                        "date_of_birth": parse_date("2019-12-27"),
-                        "documents": [
-                            {
-                                "document_type": "articles_of_incorporation",
-                                "file_data": "file_data",
-                                "filename": "filename",
-                            }
-                        ],
-                        "doing_business_as_names": ["string"],
-                        "email": "email",
-                        "expected_activity_volume": 0,
-                        "external_id": "external_id",
-                        "first_name": "first_name",
-                        "identifications": [
-                            {
-                                "id_number": "id_number",
-                                "id_type": "ar_cuil",
-                                "documents": [
-                                    {
-                                        "document_type": "articles_of_incorporation",
-                                        "file_data": "file_data",
-                                        "filename": "filename",
-                                    }
-                                ],
-                                "expiration_date": parse_date("2019-12-27"),
-                                "issuing_country": "issuing_country",
-                                "issuing_region": "issuing_region",
-                            }
-                        ],
-                        "industry_classifications": [
-                            {
-                                "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                                "classification_codes": ["string"],
-                                "classification_type": "anzsic",
-                                "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                                "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                                "live_mode": True,
-                                "object": "object",
-                                "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                            }
-                        ],
-                        "intended_use": "intended_use",
-                        "last_name": "last_name",
-                        "legal_entity_associations": [],
-                        "legal_entity_type": "business",
-                        "legal_structure": "corporation",
-                        "listed_exchange": "listed_exchange",
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
-                        },
-                        "middle_name": "middle_name",
-                        "operating_jurisdictions": ["string"],
-                        "phone_numbers": [{"phone_number": "phone_number"}],
-                        "politically_exposed_person": True,
-                        "preferred_name": "preferred_name",
-                        "prefix": "prefix",
-                        "primary_social_media_sites": ["string"],
-                        "regulators": [
-                            {
-                                "jurisdiction": "jurisdiction",
-                                "name": "name",
-                                "registration_number": "registration_number",
-                            }
-                        ],
-                        "risk_rating": "low",
-                        "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "suffix": "suffix",
-                        "terms_of_use": {
-                            "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                            "ip_address": "ip_address",
-                        },
-                        "third_party_verification": {
-                            "outcome": "passed",
-                            "vendor": "persona",
-                            "vendor_verification_id": "vendor_verification_id",
-                            "verification_category": "legal_name",
-                            "verification_method": "verification_method",
-                            "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
-                            "comment": "comment",
-                        },
-                        "third_party_verifications": [
-                            {
-                                "outcome": "passed",
-                                "vendor": "persona",
-                                "vendor_verification_id": "vendor_verification_id",
-                                "verification_category": "legal_name",
-                                "verification_method": "verification_method",
-                                "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
-                                "comment": "comment",
-                            }
-                        ],
-                        "ticker_symbol": "ticker_symbol",
-                        "wealth_and_employment_details": {
-                            "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                            "annual_income": 0,
-                            "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                            "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                            "employer_country": "employer_country",
-                            "employer_name": "employer_name",
-                            "employer_state": "employer_state",
-                            "employment_status": "employed",
-                            "income_country": "income_country",
-                            "income_source": "family_support",
-                            "income_state": "income_state",
-                            "industry": "accounting",
-                            "live_mode": True,
-                            "object": "object",
-                            "occupation": "consulting",
-                            "source_of_funds": "alimony",
-                            "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                            "wealth_source": "business_sale",
-                        },
-                        "website": "website",
+                        }],
+                        "expiration_date": parse_date("2019-12-27"),
+                        "issuing_country": "issuing_country",
+                        "issuing_region": "issuing_region",
+                    }],
+                    "industry_classifications": [{
+                        "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "classification_codes": ["string"],
+                        "classification_type": "anzsic",
+                        "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "live_mode": True,
+                        "object": "object",
+                        "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    }],
+                    "intended_use": "intended_use",
+                    "last_name": "last_name",
+                    "legal_entity_associations": [],
+                    "legal_entity_type": "business",
+                    "legal_structure": "corporation",
+                    "listed_exchange": "listed_exchange",
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
                     },
-                    "child_legal_entity_id": "child_legal_entity_id",
-                    "ownership_percentage": 0,
-                    "title": "title",
-                }
-            ],
+                    "middle_name": "middle_name",
+                    "operating_jurisdictions": ["string"],
+                    "phone_numbers": [{
+                        "phone_number": "phone_number"
+                    }],
+                    "politically_exposed_person": True,
+                    "preferred_name": "preferred_name",
+                    "prefix": "prefix",
+                    "primary_social_media_sites": ["string"],
+                    "regulators": [{
+                        "jurisdiction": "jurisdiction",
+                        "name": "name",
+                        "registration_number": "registration_number",
+                    }],
+                    "risk_rating": "low",
+                    "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "suffix": "suffix",
+                    "terms_of_use": {
+                        "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "ip_address": "ip_address",
+                    },
+                    "third_party_verification": {
+                        "outcome": "passed",
+                        "vendor": "persona",
+                        "vendor_verification_id": "vendor_verification_id",
+                        "verification_category": "legal_name",
+                        "verification_method": "verification_method",
+                        "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "comment": "comment",
+                    },
+                    "third_party_verifications": [{
+                        "outcome": "passed",
+                        "vendor": "persona",
+                        "vendor_verification_id": "vendor_verification_id",
+                        "verification_category": "legal_name",
+                        "verification_method": "verification_method",
+                        "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "comment": "comment",
+                    }],
+                    "ticker_symbol": "ticker_symbol",
+                    "wealth_and_employment_details": {
+                        "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "annual_income": 0,
+                        "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "employer_country": "employer_country",
+                        "employer_name": "employer_name",
+                        "employer_state": "employer_state",
+                        "employment_status": "employed",
+                        "income_country": "income_country",
+                        "income_source": "family_support",
+                        "income_state": "income_state",
+                        "industry": "accounting",
+                        "live_mode": True,
+                        "object": "object",
+                        "occupation": "consulting",
+                        "source_of_funds": "alimony",
+                        "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "wealth_source": "business_sale",
+                    },
+                    "website": "website",
+                },
+                "child_legal_entity_id": "child_legal_entity_id",
+                "ownership_percentage": 0,
+                "title": "title",
+            }],
             legal_structure="corporation",
             listed_exchange="listed_exchange",
             metadata={
@@ -271,18 +261,18 @@ class TestLegalEntities:
             },
             middle_name="middle_name",
             operating_jurisdictions=["string"],
-            phone_numbers=[{"phone_number": "phone_number"}],
+            phone_numbers=[{
+                "phone_number": "phone_number"
+            }],
             politically_exposed_person=True,
             preferred_name="preferred_name",
             prefix="prefix",
             primary_social_media_sites=["string"],
-            regulators=[
-                {
-                    "jurisdiction": "jurisdiction",
-                    "name": "name",
-                    "registration_number": "registration_number",
-                }
-            ],
+            regulators=[{
+                "jurisdiction": "jurisdiction",
+                "name": "name",
+                "registration_number": "registration_number",
+            }],
             risk_rating="low",
             service_provider_legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             suffix="suffix",
@@ -299,17 +289,15 @@ class TestLegalEntities:
                 "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "comment": "comment",
             },
-            third_party_verifications=[
-                {
-                    "outcome": "passed",
-                    "vendor": "persona",
-                    "vendor_verification_id": "vendor_verification_id",
-                    "verification_category": "legal_name",
-                    "verification_method": "verification_method",
-                    "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
-                    "comment": "comment",
-                }
-            ],
+            third_party_verifications=[{
+                "outcome": "passed",
+                "vendor": "persona",
+                "vendor_verification_id": "vendor_verification_id",
+                "verification_category": "legal_name",
+                "verification_method": "verification_method",
+                "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "comment": "comment",
+            }],
             ticker_symbol="ticker_symbol",
             wealth_and_employment_details={
                 "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -333,29 +321,30 @@ class TestLegalEntities:
             },
             website="website",
         )
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
+        assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
     @parametrize
     def test_raw_response_create(self, client: ModernTreasury) -> None:
+
         response = client.legal_entities.with_raw_response.create(
             legal_entity_type="business",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         legal_entity = response.parse()
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
+        assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
     @parametrize
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
         with client.legal_entities.with_streaming_response.create(
             legal_entity_type="business",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             legal_entity = response.parse()
-            assert_matches_type(LegalEntity, legal_entity, path=["response"])
+            assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -364,62 +353,61 @@ class TestLegalEntities:
         legal_entity = client.legal_entities.retrieve(
             "id",
         )
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
+        assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+
         response = client.legal_entities.with_raw_response.retrieve(
             "id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         legal_entity = response.parse()
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
+        assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.legal_entities.with_streaming_response.retrieve(
             "id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             legal_entity = response.parse()
-            assert_matches_type(LegalEntity, legal_entity, path=["response"])
+            assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_retrieve(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.legal_entities.with_raw_response.retrieve(
-                "",
-            )
+          client.legal_entities.with_raw_response.retrieve(
+              "",
+          )
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
         legal_entity = client.legal_entities.update(
             id="id",
         )
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
+        assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
     @parametrize
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         legal_entity = client.legal_entities.update(
             id="id",
-            addresses=[
-                {
-                    "country": "country",
-                    "line1": "line1",
-                    "locality": "locality",
-                    "postal_code": "postal_code",
-                    "region": "region",
-                    "address_types": ["business"],
-                    "line2": "line2",
-                    "primary": True,
-                }
-            ],
+            addresses=[{
+                "country": "country",
+                "line1": "line1",
+                "locality": "locality",
+                "postal_code": "postal_code",
+                "region": "region",
+                "address_types": ["business"],
+                "line2": "line2",
+                "primary": True,
+            }],
             bank_settings={
                 "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "backup_withholding_percentage": 0,
@@ -443,34 +431,28 @@ class TestLegalEntities:
             expected_activity_volume=0,
             external_id="external_id",
             first_name="first_name",
-            identifications=[
-                {
-                    "id_number": "id_number",
-                    "id_type": "ar_cuil",
-                    "documents": [
-                        {
-                            "document_type": "articles_of_incorporation",
-                            "file_data": "file_data",
-                            "filename": "filename",
-                        }
-                    ],
-                    "expiration_date": parse_date("2019-12-27"),
-                    "issuing_country": "issuing_country",
-                    "issuing_region": "issuing_region",
-                }
-            ],
-            industry_classifications=[
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "classification_codes": ["string"],
-                    "classification_type": "anzsic",
-                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                    "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                    "live_mode": True,
-                    "object": "object",
-                    "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                }
-            ],
+            identifications=[{
+                "id_number": "id_number",
+                "id_type": "ar_cuil",
+                "documents": [{
+                    "document_type": "articles_of_incorporation",
+                    "file_data": "file_data",
+                    "filename": "filename",
+                }],
+                "expiration_date": parse_date("2019-12-27"),
+                "issuing_country": "issuing_country",
+                "issuing_region": "issuing_region",
+            }],
+            industry_classifications=[{
+                "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "classification_codes": ["string"],
+                "classification_type": "anzsic",
+                "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "live_mode": True,
+                "object": "object",
+                "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+            }],
             intended_use="intended_use",
             last_name="last_name",
             legal_structure="corporation",
@@ -482,18 +464,18 @@ class TestLegalEntities:
             },
             middle_name="middle_name",
             operating_jurisdictions=["string"],
-            phone_numbers=[{"phone_number": "phone_number"}],
+            phone_numbers=[{
+                "phone_number": "phone_number"
+            }],
             politically_exposed_person=True,
             preferred_name="preferred_name",
             prefix="prefix",
             primary_social_media_sites=["string"],
-            regulators=[
-                {
-                    "jurisdiction": "jurisdiction",
-                    "name": "name",
-                    "registration_number": "registration_number",
-                }
-            ],
+            regulators=[{
+                "jurisdiction": "jurisdiction",
+                "name": "name",
+                "registration_number": "registration_number",
+            }],
             risk_rating="low",
             service_provider_legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             suffix="suffix",
@@ -510,17 +492,15 @@ class TestLegalEntities:
                 "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "comment": "comment",
             },
-            third_party_verifications=[
-                {
-                    "outcome": "passed",
-                    "vendor": "persona",
-                    "vendor_verification_id": "vendor_verification_id",
-                    "verification_category": "legal_name",
-                    "verification_method": "verification_method",
-                    "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
-                    "comment": "comment",
-                }
-            ],
+            third_party_verifications=[{
+                "outcome": "passed",
+                "vendor": "persona",
+                "vendor_verification_id": "vendor_verification_id",
+                "verification_category": "legal_name",
+                "verification_method": "verification_method",
+                "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "comment": "comment",
+            }],
             ticker_symbol="ticker_symbol",
             wealth_and_employment_details={
                 "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -544,43 +524,44 @@ class TestLegalEntities:
             },
             website="website",
         )
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
+        assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
     @parametrize
     def test_raw_response_update(self, client: ModernTreasury) -> None:
+
         response = client.legal_entities.with_raw_response.update(
             id="id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         legal_entity = response.parse()
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
+        assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
     @parametrize
     def test_streaming_response_update(self, client: ModernTreasury) -> None:
         with client.legal_entities.with_streaming_response.update(
             id="id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             legal_entity = response.parse()
-            assert_matches_type(LegalEntity, legal_entity, path=["response"])
+            assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_update(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.legal_entities.with_raw_response.update(
-                id="",
-            )
+          client.legal_entities.with_raw_response.update(
+              id="",
+          )
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         legal_entity = client.legal_entities.list()
-        assert_matches_type(SyncPage[LegalEntity], legal_entity, path=["response"])
+        assert_matches_type(SyncPage[LegalEntity], legal_entity, path=['response'])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
@@ -588,62 +569,60 @@ class TestLegalEntities:
             after_cursor="after_cursor",
             external_id="external_id",
             legal_entity_type="business",
-            metadata={"foo": "string"},
+            metadata={
+                "foo": "string"
+            },
             per_page=0,
             show_deleted="show_deleted",
             status="pending",
         )
-        assert_matches_type(SyncPage[LegalEntity], legal_entity, path=["response"])
+        assert_matches_type(SyncPage[LegalEntity], legal_entity, path=['response'])
 
     @parametrize
     def test_raw_response_list(self, client: ModernTreasury) -> None:
+
         response = client.legal_entities.with_raw_response.list()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         legal_entity = response.parse()
-        assert_matches_type(SyncPage[LegalEntity], legal_entity, path=["response"])
+        assert_matches_type(SyncPage[LegalEntity], legal_entity, path=['response'])
 
     @parametrize
     def test_streaming_response_list(self, client: ModernTreasury) -> None:
-        with client.legal_entities.with_streaming_response.list() as response:
+        with client.legal_entities.with_streaming_response.list() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             legal_entity = response.parse()
-            assert_matches_type(SyncPage[LegalEntity], legal_entity, path=["response"])
+            assert_matches_type(SyncPage[LegalEntity], legal_entity, path=['response'])
 
         assert cast(Any, response.is_closed) is True
-
-
 class TestAsyncLegalEntities:
-    parametrize = pytest.mark.parametrize(
-        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
-    )
+    parametrize = pytest.mark.parametrize("async_client", [False, True, {'http_client': 'aiohttp'}], indirect=True, ids=['loose', 'strict', 'aiohttp'])
+
 
     @parametrize
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
         legal_entity = await async_client.legal_entities.create(
             legal_entity_type="business",
         )
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
+        assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         legal_entity = await async_client.legal_entities.create(
             legal_entity_type="business",
-            addresses=[
-                {
-                    "country": "country",
-                    "line1": "line1",
-                    "locality": "locality",
-                    "postal_code": "postal_code",
-                    "region": "region",
-                    "address_types": ["business"],
-                    "line2": "line2",
-                    "primary": True,
-                }
-            ],
+            addresses=[{
+                "country": "country",
+                "line1": "line1",
+                "locality": "locality",
+                "postal_code": "postal_code",
+                "region": "region",
+                "address_types": ["business"],
+                "line2": "line2",
+                "primary": True,
+            }],
             bank_settings={
                 "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "backup_withholding_percentage": 0,
@@ -664,204 +643,182 @@ class TestAsyncLegalEntities:
             country_of_incorporation="country_of_incorporation",
             date_formed=parse_date("2019-12-27"),
             date_of_birth=parse_date("2019-12-27"),
-            documents=[
-                {
-                    "document_type": "articles_of_incorporation",
-                    "file_data": "file_data",
-                    "filename": "filename",
-                }
-            ],
+            documents=[{
+                "document_type": "articles_of_incorporation",
+                "file_data": "file_data",
+                "filename": "filename",
+            }],
             doing_business_as_names=["string"],
             email="email",
             expected_activity_volume=0,
             external_id="external_id",
             first_name="first_name",
-            identifications=[
-                {
-                    "id_number": "id_number",
-                    "id_type": "ar_cuil",
-                    "documents": [
-                        {
+            identifications=[{
+                "id_number": "id_number",
+                "id_type": "ar_cuil",
+                "documents": [{
+                    "document_type": "articles_of_incorporation",
+                    "file_data": "file_data",
+                    "filename": "filename",
+                }],
+                "expiration_date": parse_date("2019-12-27"),
+                "issuing_country": "issuing_country",
+                "issuing_region": "issuing_region",
+            }],
+            industry_classifications=[{
+                "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "classification_codes": ["string"],
+                "classification_type": "anzsic",
+                "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "live_mode": True,
+                "object": "object",
+                "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+            }],
+            intended_use="intended_use",
+            last_name="last_name",
+            legal_entity_associations=[{
+                "relationship_types": ["authorized_signer"],
+                "child_legal_entity": {
+                    "addresses": [{
+                        "country": "country",
+                        "line1": "line1",
+                        "locality": "locality",
+                        "postal_code": "postal_code",
+                        "region": "region",
+                        "address_types": ["business"],
+                        "line2": "line2",
+                        "primary": True,
+                    }],
+                    "bank_settings": {
+                        "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "backup_withholding_percentage": 0,
+                        "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "enable_backup_withholding": True,
+                        "live_mode": True,
+                        "object": "object",
+                        "privacy_opt_out": True,
+                        "regulation_o": True,
+                        "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    },
+                    "business_description": "business_description",
+                    "business_name": "business_name",
+                    "citizenship_country": "citizenship_country",
+                    "compliance_details": {},
+                    "connection_id": "connection_id",
+                    "country_of_incorporation": "country_of_incorporation",
+                    "date_formed": parse_date("2019-12-27"),
+                    "date_of_birth": parse_date("2019-12-27"),
+                    "documents": [{
+                        "document_type": "articles_of_incorporation",
+                        "file_data": "file_data",
+                        "filename": "filename",
+                    }],
+                    "doing_business_as_names": ["string"],
+                    "email": "email",
+                    "expected_activity_volume": 0,
+                    "external_id": "external_id",
+                    "first_name": "first_name",
+                    "identifications": [{
+                        "id_number": "id_number",
+                        "id_type": "ar_cuil",
+                        "documents": [{
                             "document_type": "articles_of_incorporation",
                             "file_data": "file_data",
                             "filename": "filename",
-                        }
-                    ],
-                    "expiration_date": parse_date("2019-12-27"),
-                    "issuing_country": "issuing_country",
-                    "issuing_region": "issuing_region",
-                }
-            ],
-            industry_classifications=[
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "classification_codes": ["string"],
-                    "classification_type": "anzsic",
-                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                    "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                    "live_mode": True,
-                    "object": "object",
-                    "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                }
-            ],
-            intended_use="intended_use",
-            last_name="last_name",
-            legal_entity_associations=[
-                {
-                    "relationship_types": ["authorized_signer"],
-                    "child_legal_entity": {
-                        "addresses": [
-                            {
-                                "country": "country",
-                                "line1": "line1",
-                                "locality": "locality",
-                                "postal_code": "postal_code",
-                                "region": "region",
-                                "address_types": ["business"],
-                                "line2": "line2",
-                                "primary": True,
-                            }
-                        ],
-                        "bank_settings": {
-                            "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                            "backup_withholding_percentage": 0,
-                            "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                            "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                            "enable_backup_withholding": True,
-                            "live_mode": True,
-                            "object": "object",
-                            "privacy_opt_out": True,
-                            "regulation_o": True,
-                            "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                        },
-                        "business_description": "business_description",
-                        "business_name": "business_name",
-                        "citizenship_country": "citizenship_country",
-                        "compliance_details": {},
-                        "connection_id": "connection_id",
-                        "country_of_incorporation": "country_of_incorporation",
-                        "date_formed": parse_date("2019-12-27"),
-                        "date_of_birth": parse_date("2019-12-27"),
-                        "documents": [
-                            {
-                                "document_type": "articles_of_incorporation",
-                                "file_data": "file_data",
-                                "filename": "filename",
-                            }
-                        ],
-                        "doing_business_as_names": ["string"],
-                        "email": "email",
-                        "expected_activity_volume": 0,
-                        "external_id": "external_id",
-                        "first_name": "first_name",
-                        "identifications": [
-                            {
-                                "id_number": "id_number",
-                                "id_type": "ar_cuil",
-                                "documents": [
-                                    {
-                                        "document_type": "articles_of_incorporation",
-                                        "file_data": "file_data",
-                                        "filename": "filename",
-                                    }
-                                ],
-                                "expiration_date": parse_date("2019-12-27"),
-                                "issuing_country": "issuing_country",
-                                "issuing_region": "issuing_region",
-                            }
-                        ],
-                        "industry_classifications": [
-                            {
-                                "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                                "classification_codes": ["string"],
-                                "classification_type": "anzsic",
-                                "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                                "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                                "live_mode": True,
-                                "object": "object",
-                                "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                            }
-                        ],
-                        "intended_use": "intended_use",
-                        "last_name": "last_name",
-                        "legal_entity_associations": [],
-                        "legal_entity_type": "business",
-                        "legal_structure": "corporation",
-                        "listed_exchange": "listed_exchange",
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
-                        },
-                        "middle_name": "middle_name",
-                        "operating_jurisdictions": ["string"],
-                        "phone_numbers": [{"phone_number": "phone_number"}],
-                        "politically_exposed_person": True,
-                        "preferred_name": "preferred_name",
-                        "prefix": "prefix",
-                        "primary_social_media_sites": ["string"],
-                        "regulators": [
-                            {
-                                "jurisdiction": "jurisdiction",
-                                "name": "name",
-                                "registration_number": "registration_number",
-                            }
-                        ],
-                        "risk_rating": "low",
-                        "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "suffix": "suffix",
-                        "terms_of_use": {
-                            "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                            "ip_address": "ip_address",
-                        },
-                        "third_party_verification": {
-                            "outcome": "passed",
-                            "vendor": "persona",
-                            "vendor_verification_id": "vendor_verification_id",
-                            "verification_category": "legal_name",
-                            "verification_method": "verification_method",
-                            "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
-                            "comment": "comment",
-                        },
-                        "third_party_verifications": [
-                            {
-                                "outcome": "passed",
-                                "vendor": "persona",
-                                "vendor_verification_id": "vendor_verification_id",
-                                "verification_category": "legal_name",
-                                "verification_method": "verification_method",
-                                "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
-                                "comment": "comment",
-                            }
-                        ],
-                        "ticker_symbol": "ticker_symbol",
-                        "wealth_and_employment_details": {
-                            "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                            "annual_income": 0,
-                            "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                            "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                            "employer_country": "employer_country",
-                            "employer_name": "employer_name",
-                            "employer_state": "employer_state",
-                            "employment_status": "employed",
-                            "income_country": "income_country",
-                            "income_source": "family_support",
-                            "income_state": "income_state",
-                            "industry": "accounting",
-                            "live_mode": True,
-                            "object": "object",
-                            "occupation": "consulting",
-                            "source_of_funds": "alimony",
-                            "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                            "wealth_source": "business_sale",
-                        },
-                        "website": "website",
+                        }],
+                        "expiration_date": parse_date("2019-12-27"),
+                        "issuing_country": "issuing_country",
+                        "issuing_region": "issuing_region",
+                    }],
+                    "industry_classifications": [{
+                        "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "classification_codes": ["string"],
+                        "classification_type": "anzsic",
+                        "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "live_mode": True,
+                        "object": "object",
+                        "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    }],
+                    "intended_use": "intended_use",
+                    "last_name": "last_name",
+                    "legal_entity_associations": [],
+                    "legal_entity_type": "business",
+                    "legal_structure": "corporation",
+                    "listed_exchange": "listed_exchange",
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
                     },
-                    "child_legal_entity_id": "child_legal_entity_id",
-                    "ownership_percentage": 0,
-                    "title": "title",
-                }
-            ],
+                    "middle_name": "middle_name",
+                    "operating_jurisdictions": ["string"],
+                    "phone_numbers": [{
+                        "phone_number": "phone_number"
+                    }],
+                    "politically_exposed_person": True,
+                    "preferred_name": "preferred_name",
+                    "prefix": "prefix",
+                    "primary_social_media_sites": ["string"],
+                    "regulators": [{
+                        "jurisdiction": "jurisdiction",
+                        "name": "name",
+                        "registration_number": "registration_number",
+                    }],
+                    "risk_rating": "low",
+                    "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "suffix": "suffix",
+                    "terms_of_use": {
+                        "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "ip_address": "ip_address",
+                    },
+                    "third_party_verification": {
+                        "outcome": "passed",
+                        "vendor": "persona",
+                        "vendor_verification_id": "vendor_verification_id",
+                        "verification_category": "legal_name",
+                        "verification_method": "verification_method",
+                        "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "comment": "comment",
+                    },
+                    "third_party_verifications": [{
+                        "outcome": "passed",
+                        "vendor": "persona",
+                        "vendor_verification_id": "vendor_verification_id",
+                        "verification_category": "legal_name",
+                        "verification_method": "verification_method",
+                        "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "comment": "comment",
+                    }],
+                    "ticker_symbol": "ticker_symbol",
+                    "wealth_and_employment_details": {
+                        "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                        "annual_income": 0,
+                        "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "employer_country": "employer_country",
+                        "employer_name": "employer_name",
+                        "employer_state": "employer_state",
+                        "employment_status": "employed",
+                        "income_country": "income_country",
+                        "income_source": "family_support",
+                        "income_state": "income_state",
+                        "industry": "accounting",
+                        "live_mode": True,
+                        "object": "object",
+                        "occupation": "consulting",
+                        "source_of_funds": "alimony",
+                        "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                        "wealth_source": "business_sale",
+                    },
+                    "website": "website",
+                },
+                "child_legal_entity_id": "child_legal_entity_id",
+                "ownership_percentage": 0,
+                "title": "title",
+            }],
             legal_structure="corporation",
             listed_exchange="listed_exchange",
             metadata={
@@ -871,18 +828,18 @@ class TestAsyncLegalEntities:
             },
             middle_name="middle_name",
             operating_jurisdictions=["string"],
-            phone_numbers=[{"phone_number": "phone_number"}],
+            phone_numbers=[{
+                "phone_number": "phone_number"
+            }],
             politically_exposed_person=True,
             preferred_name="preferred_name",
             prefix="prefix",
             primary_social_media_sites=["string"],
-            regulators=[
-                {
-                    "jurisdiction": "jurisdiction",
-                    "name": "name",
-                    "registration_number": "registration_number",
-                }
-            ],
+            regulators=[{
+                "jurisdiction": "jurisdiction",
+                "name": "name",
+                "registration_number": "registration_number",
+            }],
             risk_rating="low",
             service_provider_legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             suffix="suffix",
@@ -899,17 +856,15 @@ class TestAsyncLegalEntities:
                 "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "comment": "comment",
             },
-            third_party_verifications=[
-                {
-                    "outcome": "passed",
-                    "vendor": "persona",
-                    "vendor_verification_id": "vendor_verification_id",
-                    "verification_category": "legal_name",
-                    "verification_method": "verification_method",
-                    "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
-                    "comment": "comment",
-                }
-            ],
+            third_party_verifications=[{
+                "outcome": "passed",
+                "vendor": "persona",
+                "vendor_verification_id": "vendor_verification_id",
+                "verification_category": "legal_name",
+                "verification_method": "verification_method",
+                "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "comment": "comment",
+            }],
             ticker_symbol="ticker_symbol",
             wealth_and_employment_details={
                 "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -933,29 +888,30 @@ class TestAsyncLegalEntities:
             },
             website="website",
         )
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
+        assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.legal_entities.with_raw_response.create(
             legal_entity_type="business",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         legal_entity = response.parse()
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
+        assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.legal_entities.with_streaming_response.create(
             legal_entity_type="business",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             legal_entity = await response.parse()
-            assert_matches_type(LegalEntity, legal_entity, path=["response"])
+            assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -964,62 +920,61 @@ class TestAsyncLegalEntities:
         legal_entity = await async_client.legal_entities.retrieve(
             "id",
         )
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
+        assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.legal_entities.with_raw_response.retrieve(
             "id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         legal_entity = response.parse()
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
+        assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.legal_entities.with_streaming_response.retrieve(
             "id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             legal_entity = await response.parse()
-            assert_matches_type(LegalEntity, legal_entity, path=["response"])
+            assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.legal_entities.with_raw_response.retrieve(
-                "",
-            )
+          await async_client.legal_entities.with_raw_response.retrieve(
+              "",
+          )
 
     @parametrize
     async def test_method_update(self, async_client: AsyncModernTreasury) -> None:
         legal_entity = await async_client.legal_entities.update(
             id="id",
         )
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
+        assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         legal_entity = await async_client.legal_entities.update(
             id="id",
-            addresses=[
-                {
-                    "country": "country",
-                    "line1": "line1",
-                    "locality": "locality",
-                    "postal_code": "postal_code",
-                    "region": "region",
-                    "address_types": ["business"],
-                    "line2": "line2",
-                    "primary": True,
-                }
-            ],
+            addresses=[{
+                "country": "country",
+                "line1": "line1",
+                "locality": "locality",
+                "postal_code": "postal_code",
+                "region": "region",
+                "address_types": ["business"],
+                "line2": "line2",
+                "primary": True,
+            }],
             bank_settings={
                 "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "backup_withholding_percentage": 0,
@@ -1043,34 +998,28 @@ class TestAsyncLegalEntities:
             expected_activity_volume=0,
             external_id="external_id",
             first_name="first_name",
-            identifications=[
-                {
-                    "id_number": "id_number",
-                    "id_type": "ar_cuil",
-                    "documents": [
-                        {
-                            "document_type": "articles_of_incorporation",
-                            "file_data": "file_data",
-                            "filename": "filename",
-                        }
-                    ],
-                    "expiration_date": parse_date("2019-12-27"),
-                    "issuing_country": "issuing_country",
-                    "issuing_region": "issuing_region",
-                }
-            ],
-            industry_classifications=[
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "classification_codes": ["string"],
-                    "classification_type": "anzsic",
-                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                    "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                    "live_mode": True,
-                    "object": "object",
-                    "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                }
-            ],
+            identifications=[{
+                "id_number": "id_number",
+                "id_type": "ar_cuil",
+                "documents": [{
+                    "document_type": "articles_of_incorporation",
+                    "file_data": "file_data",
+                    "filename": "filename",
+                }],
+                "expiration_date": parse_date("2019-12-27"),
+                "issuing_country": "issuing_country",
+                "issuing_region": "issuing_region",
+            }],
+            industry_classifications=[{
+                "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "classification_codes": ["string"],
+                "classification_type": "anzsic",
+                "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "live_mode": True,
+                "object": "object",
+                "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+            }],
             intended_use="intended_use",
             last_name="last_name",
             legal_structure="corporation",
@@ -1082,18 +1031,18 @@ class TestAsyncLegalEntities:
             },
             middle_name="middle_name",
             operating_jurisdictions=["string"],
-            phone_numbers=[{"phone_number": "phone_number"}],
+            phone_numbers=[{
+                "phone_number": "phone_number"
+            }],
             politically_exposed_person=True,
             preferred_name="preferred_name",
             prefix="prefix",
             primary_social_media_sites=["string"],
-            regulators=[
-                {
-                    "jurisdiction": "jurisdiction",
-                    "name": "name",
-                    "registration_number": "registration_number",
-                }
-            ],
+            regulators=[{
+                "jurisdiction": "jurisdiction",
+                "name": "name",
+                "registration_number": "registration_number",
+            }],
             risk_rating="low",
             service_provider_legal_entity_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             suffix="suffix",
@@ -1110,17 +1059,15 @@ class TestAsyncLegalEntities:
                 "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "comment": "comment",
             },
-            third_party_verifications=[
-                {
-                    "outcome": "passed",
-                    "vendor": "persona",
-                    "vendor_verification_id": "vendor_verification_id",
-                    "verification_category": "legal_name",
-                    "verification_method": "verification_method",
-                    "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
-                    "comment": "comment",
-                }
-            ],
+            third_party_verifications=[{
+                "outcome": "passed",
+                "vendor": "persona",
+                "vendor_verification_id": "vendor_verification_id",
+                "verification_category": "legal_name",
+                "verification_method": "verification_method",
+                "verification_time": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "comment": "comment",
+            }],
             ticker_symbol="ticker_symbol",
             wealth_and_employment_details={
                 "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -1144,43 +1091,44 @@ class TestAsyncLegalEntities:
             },
             website="website",
         )
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
+        assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.legal_entities.with_raw_response.update(
             id="id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         legal_entity = response.parse()
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
+        assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.legal_entities.with_streaming_response.update(
             id="id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             legal_entity = await response.parse()
-            assert_matches_type(LegalEntity, legal_entity, path=["response"])
+            assert_matches_type(LegalEntity, legal_entity, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.legal_entities.with_raw_response.update(
-                id="",
-            )
+          await async_client.legal_entities.with_raw_response.update(
+              id="",
+          )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncModernTreasury) -> None:
         legal_entity = await async_client.legal_entities.list()
-        assert_matches_type(AsyncPage[LegalEntity], legal_entity, path=["response"])
+        assert_matches_type(AsyncPage[LegalEntity], legal_entity, path=['response'])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
@@ -1188,29 +1136,32 @@ class TestAsyncLegalEntities:
             after_cursor="after_cursor",
             external_id="external_id",
             legal_entity_type="business",
-            metadata={"foo": "string"},
+            metadata={
+                "foo": "string"
+            },
             per_page=0,
             show_deleted="show_deleted",
             status="pending",
         )
-        assert_matches_type(AsyncPage[LegalEntity], legal_entity, path=["response"])
+        assert_matches_type(AsyncPage[LegalEntity], legal_entity, path=['response'])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.legal_entities.with_raw_response.list()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         legal_entity = response.parse()
-        assert_matches_type(AsyncPage[LegalEntity], legal_entity, path=["response"])
+        assert_matches_type(AsyncPage[LegalEntity], legal_entity, path=['response'])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncModernTreasury) -> None:
-        async with async_client.legal_entities.with_streaming_response.list() as response:
+        async with async_client.legal_entities.with_streaming_response.list() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             legal_entity = await response.parse()
-            assert_matches_type(AsyncPage[LegalEntity], legal_entity, path=["response"])
+            assert_matches_type(AsyncPage[LegalEntity], legal_entity, path=['response'])
 
         assert cast(Any, response.is_closed) is True

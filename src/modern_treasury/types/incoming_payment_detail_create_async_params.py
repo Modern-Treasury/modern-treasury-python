@@ -2,15 +2,17 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing_extensions import TypedDict, Annotated, Literal
+
 from datetime import date
-from typing_extensions import Literal, Annotated, TypedDict
+
+from typing import Union, Optional
 
 from .._utils import PropertyInfo
+
 from .shared.currency import Currency
 
 __all__ = ["IncomingPaymentDetailCreateAsyncParams"]
-
 
 class IncomingPaymentDetailCreateAsyncParams(TypedDict, total=False):
     amount: int
@@ -19,7 +21,7 @@ class IncomingPaymentDetailCreateAsyncParams(TypedDict, total=False):
     e.g. $10 would be represented as 1000.
     """
 
-    as_of_date: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
+    as_of_date: Annotated[Union[str, date, None], PropertyInfo(format = "iso8601")]
     """Defaults to today."""
 
     currency: Optional[Currency]
@@ -46,21 +48,7 @@ class IncomingPaymentDetailCreateAsyncParams(TypedDict, total=False):
     e.g. `ethereum` for a `stablecoin` type.
     """
 
-    type: Literal[
-        "ach",
-        "au_becs",
-        "bacs",
-        "book",
-        "check",
-        "eft",
-        "neft",
-        "nz_becs",
-        "rtp",
-        "sepa",
-        "stablecoin",
-        "wire",
-        "zengin",
-    ]
+    type: Literal["ach", "au_becs", "bacs", "book", "check", "eft", "neft", "nz_becs", "rtp", "sepa", "stablecoin", "wire", "zengin"]
     """One of `ach`, `wire`, `check`."""
 
     virtual_account_id: Optional[str]

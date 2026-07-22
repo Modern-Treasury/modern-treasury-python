@@ -6,7 +6,6 @@ from typing_extensions import Literal, TypedDict
 
 __all__ = ["ContactDetailCreateRequestParam"]
 
-
 class ContactDetailCreateRequestParam(TypedDict, total=False):
     contact_identifier: str
 

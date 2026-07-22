@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict
 from typing_extensions import TypedDict
 
-__all__ = ["LedgerEntryUpdateParams"]
+from typing import Dict
 
+__all__ = ["LedgerEntryUpdateParams"]
 
 class LedgerEntryUpdateParams(TypedDict, total=False):
     metadata: Dict[str, str]

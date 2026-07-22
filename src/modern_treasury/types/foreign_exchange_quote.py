@@ -1,13 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from .._models import BaseModel
+
 from datetime import datetime
 
-from .._models import BaseModel
 from .shared.foreign_exchange_rate import ForeignExchangeRate
 
-__all__ = ["ForeignExchangeQuote"]
+from typing import Dict, Optional
 
+__all__ = ["ForeignExchangeQuote"]
 
 class ForeignExchangeQuote(BaseModel):
     id: str

@@ -2,17 +2,18 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable, Optional
+from typing_extensions import TypedDict, Annotated, Required, Literal
+
 from datetime import date
-from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from typing import Union, Iterable, Optional
 
 from ..._utils import PropertyInfo
 
 __all__ = ["BalanceReportCreateParams", "Balances", "Balance"]
 
-
 class BalanceReportCreateParams(TypedDict, total=False):
-    as_of_date: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]
+    as_of_date: Required[Annotated[Union[str, date], PropertyInfo(format = "iso8601")]]
     """The date of the balance report in local time."""
 
     as_of_time: Required[str]
@@ -27,21 +28,8 @@ class BalanceReportCreateParams(TypedDict, total=False):
     balances: Required[Iterable[Balance]]
     """An array of `Balance` objects."""
 
-
 class Balance(TypedDict, total=False):
-    balance_type: Required[
-        Literal[
-            "closing_available",
-            "closing_ledger",
-            "current_available",
-            "current_ledger",
-            "opening_available",
-            "opening_available_next_business_day",
-            "opening_ledger",
-            "other",
-            "previously_closed_book",
-        ]
-    ]
+    balance_type: Required[Literal["closing_available", "closing_ledger", "current_available", "current_ledger", "opening_available", "opening_available_next_business_day", "opening_ledger", "other", "previously_closed_book"]]
     """The specific type of balance reported.
 
     One of `opening_ledger`, `closing_ledger`, `current_ledger`,
@@ -68,7 +56,6 @@ class Balance(TypedDict, total=False):
     The amount of the balance as a string, preserving full precision for values that
     may exceed safe integer limits in some languages.
     """
-
 
 Balances = Balance
 """This type is deprecated and will be removed in a future release.

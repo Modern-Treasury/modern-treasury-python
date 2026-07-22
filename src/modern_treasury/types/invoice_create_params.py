@@ -2,31 +2,29 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
-from datetime import date, datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import TypedDict, Required, Annotated, Literal
 
-from .._types import SequenceNotStr
+from typing import Union, Optional, Iterable, Dict
+
+from datetime import datetime, date
+
 from .._utils import PropertyInfo
-from .shared.currency import Currency
-from .payment_order_type import PaymentOrderType
+
 from .shared_params.contact_detail import ContactDetail
 
-__all__ = [
-    "InvoiceCreateParams",
-    "CounterpartyBillingAddress",
-    "CounterpartyShippingAddress",
-    "InvoiceLineItems",
-    "InvoiceLineItem",
-    "InvoicerAddress",
-]
+from .shared.currency import Currency
 
+from .._types import SequenceNotStr
+
+from .payment_order_type import PaymentOrderType
+
+__all__ = ["InvoiceCreateParams", "CounterpartyBillingAddress", "CounterpartyShippingAddress", "InvoiceLineItems", "InvoiceLineItem", "InvoicerAddress"]
 
 class InvoiceCreateParams(TypedDict, total=False):
     counterparty_id: Required[str]
     """The ID of the counterparty receiving the invoice."""
 
-    due_date: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
+    due_date: Required[Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]]
     """A future date by when the invoice needs to be paid."""
 
     originating_account_id: Required[str]
@@ -95,7 +93,7 @@ class InvoiceCreateParams(TypedDict, total=False):
     about invoice status changes.
     """
 
-    payment_effective_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    payment_effective_date: Annotated[Union[str, date], PropertyInfo(format = "iso8601")]
     """Date transactions are to be posted to the participants' account.
 
     Defaults to the current business day or the next business day if the current day
@@ -143,10 +141,8 @@ class InvoiceCreateParams(TypedDict, total=False):
     virtual_account_id: Optional[str]
     """The ID of the virtual account the invoice should be paid to."""
 
-
 class CounterpartyBillingAddress(TypedDict, total=False):
     """The counterparty's billing address."""
-
     country: Required[str]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
@@ -162,11 +158,9 @@ class CounterpartyBillingAddress(TypedDict, total=False):
     """Region or State."""
 
     line2: str
-
 
 class CounterpartyShippingAddress(TypedDict, total=False):
     """The counterparty's shipping address where physical goods should be delivered."""
-
     country: Required[str]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
@@ -182,7 +176,6 @@ class CounterpartyShippingAddress(TypedDict, total=False):
     """Region or State."""
 
     line2: str
-
 
 class InvoiceLineItem(TypedDict, total=False):
     name: Required[str]
@@ -223,17 +216,14 @@ class InvoiceLineItem(TypedDict, total=False):
     up to 12 decimals
     """
 
-
 InvoiceLineItems = InvoiceLineItem
 """This type is deprecated and will be removed in a future release.
 
 Please use InvoiceLineItem instead.
 """
 
-
 class InvoicerAddress(TypedDict, total=False):
     """The invoice issuer's business address."""
-
     country: Required[str]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 

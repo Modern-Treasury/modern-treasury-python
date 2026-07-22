@@ -2,21 +2,23 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
+from typing_extensions import TypedDict, Annotated, Literal
+
+from typing import Optional, Union, Iterable, Dict
+
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
+
 from .shared_params.ledger_entry_create_request import LedgerEntryCreateRequest
 
 __all__ = ["LedgerTransactionUpdateParams"]
-
 
 class LedgerTransactionUpdateParams(TypedDict, total=False):
     description: Optional[str]
     """An optional description for internal use."""
 
-    effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    effective_at: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """
     The timestamp (ISO8601 format) at which the ledger transaction happened for
     reporting purposes.

@@ -2,21 +2,29 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
+from typing_extensions import TypedDict, Annotated, Literal, Required
+
+from typing import Iterable, Optional, Union, Dict
+
+from .shared_params.legal_entity_address_create_request import LegalEntityAddressCreateRequest
+
+from .bank_settings_param import BankSettingsParam
+
 from datetime import date, datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from .._utils import PropertyInfo
 
 from .._types import SequenceNotStr
-from .._utils import PropertyInfo
-from .bank_settings_param import BankSettingsParam
-from .wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
-from .shared_params.third_party_verification import ThirdPartyVerification
+
 from .shared_params.identification_create_request import IdentificationCreateRequest
-from .shared_params.legal_entity_address_create_request import LegalEntityAddressCreateRequest
+
 from .shared_params.legal_entity_industry_classification import LegalEntityIndustryClassification
 
-__all__ = ["LegalEntityUpdateParams", "PhoneNumbers", "PhoneNumber", "Regulators", "Regulator", "TermsOfUse"]
+from .shared_params.third_party_verification import ThirdPartyVerification
 
+from .wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
+
+__all__ = ["LegalEntityUpdateParams", "PhoneNumbers", "PhoneNumber", "Regulators", "Regulator", "TermsOfUse"]
 
 class LegalEntityUpdateParams(TypedDict, total=False):
     addresses: Iterable[LegalEntityAddressCreateRequest]
@@ -39,10 +47,10 @@ class LegalEntityUpdateParams(TypedDict, total=False):
     alpha-3 formats.
     """
 
-    date_formed: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
+    date_formed: Annotated[Union[str, date, None], PropertyInfo(format = "iso8601")]
     """A business's formation date (YYYY-MM-DD)."""
 
-    date_of_birth: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
+    date_of_birth: Annotated[Union[str, date, None], PropertyInfo(format = "iso8601")]
     """An individual's date of birth (YYYY-MM-DD)."""
 
     doing_business_as_names: SequenceNotStr[str]
@@ -71,9 +79,7 @@ class LegalEntityUpdateParams(TypedDict, total=False):
     last_name: Optional[str]
     """An individual's last name."""
 
-    legal_structure: Optional[
-        Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
-    ]
+    legal_structure: Optional[Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]]
     """The business's legal structure."""
 
     listed_exchange: Optional[str]
@@ -137,19 +143,15 @@ class LegalEntityUpdateParams(TypedDict, total=False):
     website: Optional[str]
     """The entity's primary website URL."""
 
-
 class PhoneNumber(TypedDict, total=False):
     """A list of phone numbers in E.164 format."""
-
     phone_number: str
-
 
 PhoneNumbers = PhoneNumber
 """This type is deprecated and will be removed in a future release.
 
 Please use PhoneNumber instead.
 """
-
 
 class Regulator(TypedDict, total=False):
     jurisdiction: Required[str]
@@ -164,18 +166,15 @@ class Regulator(TypedDict, total=False):
     registration_number: Required[str]
     """Registration or identification number with the regulator."""
 
-
 Regulators = Regulator
 """This type is deprecated and will be removed in a future release.
 
 Please use Regulator instead.
 """
 
-
 class TermsOfUse(TypedDict, total=False):
     """Acceptance of terms of use by the legal entity."""
-
-    accepted_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    accepted_at: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """The ISO 8601 timestamp indicating when the terms of use were accepted."""
 
     ip_address: str

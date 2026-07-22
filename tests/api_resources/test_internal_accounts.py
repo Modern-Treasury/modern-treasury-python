@@ -2,25 +2,35 @@
 
 from __future__ import annotations
 
-import os
-from typing import Any, cast
-
-import pytest
-
-from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
-from modern_treasury.types import (
-    InternalAccount,
-    InternalAccountUpdateAccountCapabilityResponse,
-)
+
+from modern_treasury.types import InternalAccount, InternalAccountUpdateAccountCapabilityResponse
+
 from modern_treasury._utils import parse_datetime
+
+from typing import cast, Any
+
 from modern_treasury.pagination import SyncPage, AsyncPage
+
+import os
+import pytest
+import httpx
+from typing_extensions import get_args
+from respx import MockRouter
+from modern_treasury import ModernTreasury, AsyncModernTreasury
+from tests.utils import assert_matches_type
+from modern_treasury.types import internal_account_create_params
+from modern_treasury.types import internal_account_update_params
+from modern_treasury.types import internal_account_list_params
+from modern_treasury.types import internal_account_update_account_capability_params
+from modern_treasury.types import shared
+from modern_treasury.types import shared
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestInternalAccounts:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
@@ -28,33 +38,33 @@ class TestInternalAccounts:
             currency="USD",
             name="name",
         )
-        assert_matches_type(InternalAccount, internal_account, path=["response"])
+        assert_matches_type(InternalAccount, internal_account, path=['response'])
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         internal_account = client.internal_accounts.create(
             currency="USD",
             name="name",
-            account_capabilities=[
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                    "direction": "credit",
-                    "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                    "identifier": "identifier",
-                    "live_mode": True,
-                    "object": "object",
-                    "payment_type": "ach",
-                    "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                }
-            ],
+            account_capabilities=[{
+                "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "direction": "credit",
+                "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "identifier": "identifier",
+                "live_mode": True,
+                "object": "object",
+                "payment_type": "ach",
+                "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+            }],
             account_type="checking",
             connection_id="connection_id",
             counterparty_id="counterparty_id",
             debitable=True,
             external_id="external_id",
             legal_entity_id="legal_entity_id",
-            metadata={"foo": "string"},
+            metadata={
+                "foo": "string"
+            },
             parent_account_id="parent_account_id",
             party_address={
                 "country": "country",
@@ -71,31 +81,32 @@ class TestInternalAccounts:
                 "modern": "treasury",
             },
         )
-        assert_matches_type(InternalAccount, internal_account, path=["response"])
+        assert_matches_type(InternalAccount, internal_account, path=['response'])
 
     @parametrize
     def test_raw_response_create(self, client: ModernTreasury) -> None:
+
         response = client.internal_accounts.with_raw_response.create(
             currency="USD",
             name="name",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         internal_account = response.parse()
-        assert_matches_type(InternalAccount, internal_account, path=["response"])
+        assert_matches_type(InternalAccount, internal_account, path=['response'])
 
     @parametrize
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
         with client.internal_accounts.with_streaming_response.create(
             currency="USD",
             name="name",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             internal_account = response.parse()
-            assert_matches_type(InternalAccount, internal_account, path=["response"])
+            assert_matches_type(InternalAccount, internal_account, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -104,45 +115,46 @@ class TestInternalAccounts:
         internal_account = client.internal_accounts.retrieve(
             "id",
         )
-        assert_matches_type(InternalAccount, internal_account, path=["response"])
+        assert_matches_type(InternalAccount, internal_account, path=['response'])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+
         response = client.internal_accounts.with_raw_response.retrieve(
             "id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         internal_account = response.parse()
-        assert_matches_type(InternalAccount, internal_account, path=["response"])
+        assert_matches_type(InternalAccount, internal_account, path=['response'])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.internal_accounts.with_streaming_response.retrieve(
             "id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             internal_account = response.parse()
-            assert_matches_type(InternalAccount, internal_account, path=["response"])
+            assert_matches_type(InternalAccount, internal_account, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_retrieve(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.internal_accounts.with_raw_response.retrieve(
-                "",
-            )
+          client.internal_accounts.with_raw_response.retrieve(
+              "",
+          )
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
         internal_account = client.internal_accounts.update(
             id="id",
         )
-        assert_matches_type(InternalAccount, internal_account, path=["response"])
+        assert_matches_type(InternalAccount, internal_account, path=['response'])
 
     @parametrize
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
@@ -152,47 +164,50 @@ class TestInternalAccounts:
             counterparty_id="counterparty_id",
             external_id="external_id",
             ledger_account_id="ledger_account_id",
-            metadata={"foo": "string"},
+            metadata={
+                "foo": "string"
+            },
             name="name",
             parent_account_id="parent_account_id",
         )
-        assert_matches_type(InternalAccount, internal_account, path=["response"])
+        assert_matches_type(InternalAccount, internal_account, path=['response'])
 
     @parametrize
     def test_raw_response_update(self, client: ModernTreasury) -> None:
+
         response = client.internal_accounts.with_raw_response.update(
             id="id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         internal_account = response.parse()
-        assert_matches_type(InternalAccount, internal_account, path=["response"])
+        assert_matches_type(InternalAccount, internal_account, path=['response'])
 
     @parametrize
     def test_streaming_response_update(self, client: ModernTreasury) -> None:
         with client.internal_accounts.with_streaming_response.update(
             id="id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             internal_account = response.parse()
-            assert_matches_type(InternalAccount, internal_account, path=["response"])
+            assert_matches_type(InternalAccount, internal_account, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_update(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.internal_accounts.with_raw_response.update(
-                id="",
-            )
+          client.internal_accounts.with_raw_response.update(
+              id="",
+          )
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         internal_account = client.internal_accounts.list()
-        assert_matches_type(SyncPage[InternalAccount], internal_account, path=["response"])
+        assert_matches_type(SyncPage[InternalAccount], internal_account, path=['response'])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
@@ -202,31 +217,34 @@ class TestInternalAccounts:
             currency="AED",
             external_id="external_id",
             legal_entity_id="legal_entity_id",
-            metadata={"foo": "string"},
+            metadata={
+                "foo": "string"
+            },
             payment_direction="credit",
             payment_type="ach",
             per_page=0,
             status="active",
         )
-        assert_matches_type(SyncPage[InternalAccount], internal_account, path=["response"])
+        assert_matches_type(SyncPage[InternalAccount], internal_account, path=['response'])
 
     @parametrize
     def test_raw_response_list(self, client: ModernTreasury) -> None:
+
         response = client.internal_accounts.with_raw_response.list()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         internal_account = response.parse()
-        assert_matches_type(SyncPage[InternalAccount], internal_account, path=["response"])
+        assert_matches_type(SyncPage[InternalAccount], internal_account, path=['response'])
 
     @parametrize
     def test_streaming_response_list(self, client: ModernTreasury) -> None:
-        with client.internal_accounts.with_streaming_response.list() as response:
+        with client.internal_accounts.with_streaming_response.list() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             internal_account = response.parse()
-            assert_matches_type(SyncPage[InternalAccount], internal_account, path=["response"])
+            assert_matches_type(SyncPage[InternalAccount], internal_account, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -235,38 +253,39 @@ class TestInternalAccounts:
         internal_account = client.internal_accounts.request_closure(
             "id",
         )
-        assert_matches_type(InternalAccount, internal_account, path=["response"])
+        assert_matches_type(InternalAccount, internal_account, path=['response'])
 
     @parametrize
     def test_raw_response_request_closure(self, client: ModernTreasury) -> None:
+
         response = client.internal_accounts.with_raw_response.request_closure(
             "id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         internal_account = response.parse()
-        assert_matches_type(InternalAccount, internal_account, path=["response"])
+        assert_matches_type(InternalAccount, internal_account, path=['response'])
 
     @parametrize
     def test_streaming_response_request_closure(self, client: ModernTreasury) -> None:
         with client.internal_accounts.with_streaming_response.request_closure(
             "id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             internal_account = response.parse()
-            assert_matches_type(InternalAccount, internal_account, path=["response"])
+            assert_matches_type(InternalAccount, internal_account, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_request_closure(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.internal_accounts.with_raw_response.request_closure(
-                "",
-            )
+          client.internal_accounts.with_raw_response.request_closure(
+              "",
+          )
 
     @parametrize
     def test_method_update_account_capability(self, client: ModernTreasury) -> None:
@@ -275,10 +294,11 @@ class TestInternalAccounts:
             internal_account_id="internal_account_id",
             identifier="identifier",
         )
-        assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=["response"])
+        assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=['response'])
 
     @parametrize
     def test_raw_response_update_account_capability(self, client: ModernTreasury) -> None:
+
         response = client.internal_accounts.with_raw_response.update_account_capability(
             id="id",
             internal_account_id="internal_account_id",
@@ -286,9 +306,9 @@ class TestInternalAccounts:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         internal_account = response.parse()
-        assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=["response"])
+        assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=['response'])
 
     @parametrize
     def test_streaming_response_update_account_capability(self, client: ModernTreasury) -> None:
@@ -296,36 +316,33 @@ class TestInternalAccounts:
             id="id",
             internal_account_id="internal_account_id",
             identifier="identifier",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             internal_account = response.parse()
-            assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=["response"])
+            assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_update_account_capability(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `internal_account_id` but received ''"):
-            client.internal_accounts.with_raw_response.update_account_capability(
-                id="id",
-                internal_account_id="",
-                identifier="identifier",
-            )
+          client.internal_accounts.with_raw_response.update_account_capability(
+              id="id",
+              internal_account_id="",
+              identifier="identifier",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.internal_accounts.with_raw_response.update_account_capability(
-                id="",
-                internal_account_id="internal_account_id",
-                identifier="identifier",
-            )
-
-
+          client.internal_accounts.with_raw_response.update_account_capability(
+              id="",
+              internal_account_id="internal_account_id",
+              identifier="identifier",
+          )
 class TestAsyncInternalAccounts:
-    parametrize = pytest.mark.parametrize(
-        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
-    )
+    parametrize = pytest.mark.parametrize("async_client", [False, True, {'http_client': 'aiohttp'}], indirect=True, ids=['loose', 'strict', 'aiohttp'])
+
 
     @parametrize
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
@@ -333,33 +350,33 @@ class TestAsyncInternalAccounts:
             currency="USD",
             name="name",
         )
-        assert_matches_type(InternalAccount, internal_account, path=["response"])
+        assert_matches_type(InternalAccount, internal_account, path=['response'])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         internal_account = await async_client.internal_accounts.create(
             currency="USD",
             name="name",
-            account_capabilities=[
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                    "direction": "credit",
-                    "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                    "identifier": "identifier",
-                    "live_mode": True,
-                    "object": "object",
-                    "payment_type": "ach",
-                    "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                }
-            ],
+            account_capabilities=[{
+                "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "created_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "direction": "credit",
+                "discarded_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "identifier": "identifier",
+                "live_mode": True,
+                "object": "object",
+                "payment_type": "ach",
+                "updated_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+            }],
             account_type="checking",
             connection_id="connection_id",
             counterparty_id="counterparty_id",
             debitable=True,
             external_id="external_id",
             legal_entity_id="legal_entity_id",
-            metadata={"foo": "string"},
+            metadata={
+                "foo": "string"
+            },
             parent_account_id="parent_account_id",
             party_address={
                 "country": "country",
@@ -376,31 +393,32 @@ class TestAsyncInternalAccounts:
                 "modern": "treasury",
             },
         )
-        assert_matches_type(InternalAccount, internal_account, path=["response"])
+        assert_matches_type(InternalAccount, internal_account, path=['response'])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.internal_accounts.with_raw_response.create(
             currency="USD",
             name="name",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         internal_account = response.parse()
-        assert_matches_type(InternalAccount, internal_account, path=["response"])
+        assert_matches_type(InternalAccount, internal_account, path=['response'])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.internal_accounts.with_streaming_response.create(
             currency="USD",
             name="name",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             internal_account = await response.parse()
-            assert_matches_type(InternalAccount, internal_account, path=["response"])
+            assert_matches_type(InternalAccount, internal_account, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -409,45 +427,46 @@ class TestAsyncInternalAccounts:
         internal_account = await async_client.internal_accounts.retrieve(
             "id",
         )
-        assert_matches_type(InternalAccount, internal_account, path=["response"])
+        assert_matches_type(InternalAccount, internal_account, path=['response'])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.internal_accounts.with_raw_response.retrieve(
             "id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         internal_account = response.parse()
-        assert_matches_type(InternalAccount, internal_account, path=["response"])
+        assert_matches_type(InternalAccount, internal_account, path=['response'])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.internal_accounts.with_streaming_response.retrieve(
             "id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             internal_account = await response.parse()
-            assert_matches_type(InternalAccount, internal_account, path=["response"])
+            assert_matches_type(InternalAccount, internal_account, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.internal_accounts.with_raw_response.retrieve(
-                "",
-            )
+          await async_client.internal_accounts.with_raw_response.retrieve(
+              "",
+          )
 
     @parametrize
     async def test_method_update(self, async_client: AsyncModernTreasury) -> None:
         internal_account = await async_client.internal_accounts.update(
             id="id",
         )
-        assert_matches_type(InternalAccount, internal_account, path=["response"])
+        assert_matches_type(InternalAccount, internal_account, path=['response'])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncModernTreasury) -> None:
@@ -457,47 +476,50 @@ class TestAsyncInternalAccounts:
             counterparty_id="counterparty_id",
             external_id="external_id",
             ledger_account_id="ledger_account_id",
-            metadata={"foo": "string"},
+            metadata={
+                "foo": "string"
+            },
             name="name",
             parent_account_id="parent_account_id",
         )
-        assert_matches_type(InternalAccount, internal_account, path=["response"])
+        assert_matches_type(InternalAccount, internal_account, path=['response'])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.internal_accounts.with_raw_response.update(
             id="id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         internal_account = response.parse()
-        assert_matches_type(InternalAccount, internal_account, path=["response"])
+        assert_matches_type(InternalAccount, internal_account, path=['response'])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.internal_accounts.with_streaming_response.update(
             id="id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             internal_account = await response.parse()
-            assert_matches_type(InternalAccount, internal_account, path=["response"])
+            assert_matches_type(InternalAccount, internal_account, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.internal_accounts.with_raw_response.update(
-                id="",
-            )
+          await async_client.internal_accounts.with_raw_response.update(
+              id="",
+          )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncModernTreasury) -> None:
         internal_account = await async_client.internal_accounts.list()
-        assert_matches_type(AsyncPage[InternalAccount], internal_account, path=["response"])
+        assert_matches_type(AsyncPage[InternalAccount], internal_account, path=['response'])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
@@ -507,31 +529,34 @@ class TestAsyncInternalAccounts:
             currency="AED",
             external_id="external_id",
             legal_entity_id="legal_entity_id",
-            metadata={"foo": "string"},
+            metadata={
+                "foo": "string"
+            },
             payment_direction="credit",
             payment_type="ach",
             per_page=0,
             status="active",
         )
-        assert_matches_type(AsyncPage[InternalAccount], internal_account, path=["response"])
+        assert_matches_type(AsyncPage[InternalAccount], internal_account, path=['response'])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.internal_accounts.with_raw_response.list()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         internal_account = response.parse()
-        assert_matches_type(AsyncPage[InternalAccount], internal_account, path=["response"])
+        assert_matches_type(AsyncPage[InternalAccount], internal_account, path=['response'])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncModernTreasury) -> None:
-        async with async_client.internal_accounts.with_streaming_response.list() as response:
+        async with async_client.internal_accounts.with_streaming_response.list() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             internal_account = await response.parse()
-            assert_matches_type(AsyncPage[InternalAccount], internal_account, path=["response"])
+            assert_matches_type(AsyncPage[InternalAccount], internal_account, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -540,38 +565,39 @@ class TestAsyncInternalAccounts:
         internal_account = await async_client.internal_accounts.request_closure(
             "id",
         )
-        assert_matches_type(InternalAccount, internal_account, path=["response"])
+        assert_matches_type(InternalAccount, internal_account, path=['response'])
 
     @parametrize
     async def test_raw_response_request_closure(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.internal_accounts.with_raw_response.request_closure(
             "id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         internal_account = response.parse()
-        assert_matches_type(InternalAccount, internal_account, path=["response"])
+        assert_matches_type(InternalAccount, internal_account, path=['response'])
 
     @parametrize
     async def test_streaming_response_request_closure(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.internal_accounts.with_streaming_response.request_closure(
             "id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             internal_account = await response.parse()
-            assert_matches_type(InternalAccount, internal_account, path=["response"])
+            assert_matches_type(InternalAccount, internal_account, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_request_closure(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.internal_accounts.with_raw_response.request_closure(
-                "",
-            )
+          await async_client.internal_accounts.with_raw_response.request_closure(
+              "",
+          )
 
     @parametrize
     async def test_method_update_account_capability(self, async_client: AsyncModernTreasury) -> None:
@@ -580,10 +606,11 @@ class TestAsyncInternalAccounts:
             internal_account_id="internal_account_id",
             identifier="identifier",
         )
-        assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=["response"])
+        assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=['response'])
 
     @parametrize
     async def test_raw_response_update_account_capability(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.internal_accounts.with_raw_response.update_account_capability(
             id="id",
             internal_account_id="internal_account_id",
@@ -591,9 +618,9 @@ class TestAsyncInternalAccounts:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         internal_account = response.parse()
-        assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=["response"])
+        assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=['response'])
 
     @parametrize
     async def test_streaming_response_update_account_capability(self, async_client: AsyncModernTreasury) -> None:
@@ -601,27 +628,27 @@ class TestAsyncInternalAccounts:
             id="id",
             internal_account_id="internal_account_id",
             identifier="identifier",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             internal_account = await response.parse()
-            assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=["response"])
+            assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_update_account_capability(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `internal_account_id` but received ''"):
-            await async_client.internal_accounts.with_raw_response.update_account_capability(
-                id="id",
-                internal_account_id="",
-                identifier="identifier",
-            )
+          await async_client.internal_accounts.with_raw_response.update_account_capability(
+              id="id",
+              internal_account_id="",
+              identifier="identifier",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.internal_accounts.with_raw_response.update_account_capability(
-                id="",
-                internal_account_id="internal_account_id",
-                identifier="identifier",
-            )
+          await async_client.internal_accounts.with_raw_response.update_account_capability(
+              id="",
+              internal_account_id="internal_account_id",
+              identifier="identifier",
+          )

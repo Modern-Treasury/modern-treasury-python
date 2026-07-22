@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import TypedDict, Literal, Required
 
 __all__ = ["AccountDetailCreateParams"]
-
 
 class AccountDetailCreateParams(TypedDict, total=False):
     accounts_type: Required[Literal["external_accounts"]]
@@ -13,23 +12,7 @@ class AccountDetailCreateParams(TypedDict, total=False):
     account_number: Required[str]
     """The account number for the bank account."""
 
-    account_number_type: Literal[
-        "au_number",
-        "base_address",
-        "card_token",
-        "clabe",
-        "ethereum_address",
-        "hk_number",
-        "iban",
-        "id_number",
-        "nz_number",
-        "other",
-        "pan",
-        "polygon_address",
-        "sg_number",
-        "solana_address",
-        "wallet_address",
-    ]
+    account_number_type: Literal["au_number", "base_address", "card_token", "clabe", "ethereum_address", "hk_number", "iban", "id_number", "nz_number", "other", "pan", "polygon_address", "sg_number", "solana_address", "wallet_address"]
     """One of `iban`, `clabe`, `wallet_address`, or `other`.
 
     Use `other` if the bank account number is in a generic format.

@@ -1,13 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 from ..._models import BaseModel
 
-__all__ = ["TransactionLineItem"]
+from typing import Optional
 
+from datetime import datetime
+
+from typing_extensions import Literal
+
+__all__ = ["TransactionLineItem"]
 
 class TransactionLineItem(BaseModel):
     id: str
@@ -60,9 +61,7 @@ class TransactionLineItem(BaseModel):
     otherwise `null`.
     """
 
-    transactable_type: Optional[
-        Literal["incoming_payment_detail", "payment_order", "payment_order_attempt", "return", "reversal"]
-    ] = None
+    transactable_type: Optional[Literal["incoming_payment_detail", "payment_order", "payment_order_attempt", "return", "reversal"]] = None
     """
     If a matching object exists in Modern Treasury, the type will be populated here,
     otherwise `null`.

@@ -2,15 +2,17 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
-
-from ..._utils import PropertyInfo
 from ..shared.transaction_direction import TransactionDirection
 
-__all__ = ["LedgerEntryCreateRequest"]
+from typing import Optional, Dict, Union
 
+from datetime import datetime
+
+from typing_extensions import TypedDict, Required, Annotated
+
+from ..._utils import PropertyInfo
+
+__all__ = ["LedgerEntryCreateRequest"]
 
 class LedgerEntryCreateRequest(TypedDict, total=False):
     direction: Required[TransactionDirection]
@@ -44,7 +46,7 @@ class LedgerEntryCreateRequest(TypedDict, total=False):
     transaction is created, the entire call will fail with error code 422.
     """
 
-    effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    effective_at: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """
     The timestamp (ISO8601 format) at which the ledger transaction happened for
     reporting purposes.

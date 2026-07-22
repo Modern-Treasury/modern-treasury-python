@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from datetime import datetime
 from typing_extensions import TypedDict
 
-__all__ = ["VersionListParams"]
+from typing import Optional, Dict, Union
 
+from datetime import datetime
+
+__all__ = ["VersionListParams"]
 
 class VersionListParams(TypedDict, total=False):
     after_cursor: Optional[str]

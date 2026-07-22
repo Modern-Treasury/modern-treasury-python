@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal, TypeAliasType, TypeAlias
 
 __all__ = ["AccountsType"]
 

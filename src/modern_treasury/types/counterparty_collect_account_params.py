@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import TypedDict, Required, Literal
 
 from .shared.transaction_direction import TransactionDirection
 
-__all__ = ["CounterpartyCollectAccountParams"]
+from typing import List
 
+__all__ = ["CounterpartyCollectAccountParams"]
 
 class CounterpartyCollectAccountParams(TypedDict, total=False):
     direction: Required[TransactionDirection]
@@ -26,37 +26,7 @@ class CounterpartyCollectAccountParams(TypedDict, total=False):
     valid HTTPS URL if set.
     """
 
-    fields: List[
-        Literal[
-            "name",
-            "nameOnAccount",
-            "taxpayerIdentifier",
-            "accountType",
-            "accountNumber",
-            "ibanNumber",
-            "clabeNumber",
-            "walletAddress",
-            "panNumber",
-            "routingNumber",
-            "abaWireRoutingNumber",
-            "swiftCode",
-            "auBsb",
-            "caCpa",
-            "cnaps",
-            "gbSortCode",
-            "inIfsc",
-            "myBranchCode",
-            "brCodigo",
-            "routingNumberType",
-            "address",
-            "jpZenginCode",
-            "seBankgiroClearingCode",
-            "nzNationalClearingCode",
-            "hkInterbankClearingCode",
-            "dkInterbankClearingCode",
-            "zaNationalClearingCode",
-        ]
-    ]
+    fields: List[Literal["name", "nameOnAccount", "taxpayerIdentifier", "accountType", "accountNumber", "ibanNumber", "clabeNumber", "walletAddress", "panNumber", "routingNumber", "abaWireRoutingNumber", "swiftCode", "auBsb", "caCpa", "cnaps", "gbSortCode", "inIfsc", "myBranchCode", "brCodigo", "routingNumberType", "address", "jpZenginCode", "seBankgiroClearingCode", "nzNationalClearingCode", "hkInterbankClearingCode", "dkInterbankClearingCode", "zaNationalClearingCode"]]
     """The list of fields you want on the form.
 
     This field is optional and if it is not set, will default to [\"nameOnAccount\",

@@ -1,13 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 from .._models import BaseModel
 
-__all__ = ["Document", "File"]
+from typing import Optional
 
+from datetime import datetime
+
+from typing_extensions import Literal
+
+__all__ = ["Document", "File"]
 
 class File(BaseModel):
     content_type: Optional[str] = None
@@ -18,7 +19,6 @@ class File(BaseModel):
 
     size: Optional[int] = None
     """The size of the document in bytes."""
-
 
 class Document(BaseModel):
     id: str
@@ -33,21 +33,7 @@ class Document(BaseModel):
     documentable_id: Optional[str] = None
     """The unique identifier for the associated object."""
 
-    documentable_type: Optional[
-        Literal[
-            "connection",
-            "counterparty",
-            "expected_payment",
-            "external_account",
-            "identification",
-            "incoming_payment_detail",
-            "internal_account",
-            "legal_entity",
-            "organization",
-            "payment_order",
-            "transaction",
-        ]
-    ] = None
+    documentable_type: Optional[Literal["connection", "counterparty", "expected_payment", "external_account", "identification", "incoming_payment_detail", "internal_account", "legal_entity", "organization", "payment_order", "transaction"]] = None
     """The type of the associated object.
 
     Currently can be one of `payment_order`, `transaction`, `expected_payment`,

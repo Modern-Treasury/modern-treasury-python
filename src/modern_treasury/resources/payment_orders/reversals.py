@@ -2,25 +2,39 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-from typing_extensions import Literal
-
 import httpx
 
-from ... import _legacy_response
-from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
-from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ...pagination import SyncPage, AsyncPage
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.payment_orders import reversal_list_params, reversal_create_params
+
+from ..._compat import cached_property
+
+from ..._utils import path_template, maybe_transform, async_maybe_transform
+
 from ...types.payment_orders.reversal import Reversal
+
+from ..._base_client import make_request_options, AsyncPaginator
+
+from typing_extensions import Literal
+
 from ...types.shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
-__all__ = ["Reversals", "AsyncReversals"]
+from ..._types import Omit, omit, NotGiven
 
+from typing import Dict, Optional
+
+from ...pagination import SyncPage, AsyncPage
+
+from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ... import _legacy_response
+
+from typing_extensions import Literal, overload
+from ..._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ...types.payment_orders import reversal_create_params
+from ...types.payment_orders import reversal_list_params
+from ...types import shared
+
+__all__ = ["Reversals", "AsyncReversals"]
 
 class Reversals(SyncAPIResource):
     @cached_property
@@ -42,27 +56,19 @@ class Reversals(SyncAPIResource):
         """
         return ReversalsWithStreamingResponse(self)
 
-    def create(
-        self,
-        payment_order_id: str,
-        *,
-        reason: Literal[
-            "duplicate",
-            "incorrect_amount",
-            "incorrect_receiving_account",
-            "date_earlier_than_intended",
-            "date_later_than_intended",
-        ],
-        ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Reversal:
+    def create(self,
+    payment_order_id: str,
+    *,
+    reason: Literal["duplicate", "incorrect_amount", "incorrect_receiving_account", "date_earlier_than_intended", "date_later_than_intended"],
+    ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Reversal:
         """
         Create a reversal for a payment order.
 
@@ -91,39 +97,30 @@ class Reversals(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not payment_order_id:
-            raise ValueError(f"Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}'
+          )
         return self._post(
             path_template("/api/payment_orders/{payment_order_id}/reversals", payment_order_id=payment_order_id),
-            body=maybe_transform(
-                {
-                    "reason": reason,
-                    "ledger_transaction": ledger_transaction,
-                    "metadata": metadata,
-                },
-                reversal_create_params.ReversalCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "reason": reason,
+                "ledger_transaction": ledger_transaction,
+                "metadata": metadata,
+            }, reversal_create_params.ReversalCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Reversal,
         )
 
-    def retrieve(
-        self,
-        reversal_id: str,
-        *,
-        payment_order_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Reversal:
+    def retrieve(self,
+    reversal_id: str,
+    *,
+    payment_order_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> Reversal:
         """
         Get details on a single reversal of a payment order.
 
@@ -137,34 +134,30 @@ class Reversals(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not payment_order_id:
-            raise ValueError(f"Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}'
+          )
         if not reversal_id:
-            raise ValueError(f"Expected a non-empty value for `reversal_id` but received {reversal_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `reversal_id` but received {reversal_id!r}'
+          )
         return self._get(
-            path_template(
-                "/api/payment_orders/{payment_order_id}/reversals/{reversal_id}",
-                payment_order_id=payment_order_id,
-                reversal_id=reversal_id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            path_template("/api/payment_orders/{payment_order_id}/reversals/{reversal_id}", payment_order_id=payment_order_id, reversal_id=reversal_id),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=Reversal,
         )
 
-    def list(
-        self,
-        payment_order_id: str,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        per_page: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[Reversal]:
+    def list(self,
+    payment_order_id: str,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    per_page: int | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[Reversal]:
         """
         Get a list of all reversals of a payment order.
 
@@ -178,26 +171,18 @@ class Reversals(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not payment_order_id:
-            raise ValueError(f"Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}'
+          )
         return self._get_api_list(
             path_template("/api/payment_orders/{payment_order_id}/reversals", payment_order_id=payment_order_id),
-            page=SyncPage[Reversal],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "per_page": per_page,
-                    },
-                    reversal_list_params.ReversalListParams,
-                ),
-            ),
+            page = SyncPage[Reversal],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "per_page": per_page,
+            }, reversal_list_params.ReversalListParams)),
             model=Reversal,
         )
-
 
 class AsyncReversals(AsyncAPIResource):
     @cached_property
@@ -219,27 +204,19 @@ class AsyncReversals(AsyncAPIResource):
         """
         return AsyncReversalsWithStreamingResponse(self)
 
-    async def create(
-        self,
-        payment_order_id: str,
-        *,
-        reason: Literal[
-            "duplicate",
-            "incorrect_amount",
-            "incorrect_receiving_account",
-            "date_earlier_than_intended",
-            "date_later_than_intended",
-        ],
-        ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Reversal:
+    async def create(self,
+    payment_order_id: str,
+    *,
+    reason: Literal["duplicate", "incorrect_amount", "incorrect_receiving_account", "date_earlier_than_intended", "date_later_than_intended"],
+    ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Reversal:
         """
         Create a reversal for a payment order.
 
@@ -268,39 +245,30 @@ class AsyncReversals(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not payment_order_id:
-            raise ValueError(f"Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}'
+          )
         return await self._post(
             path_template("/api/payment_orders/{payment_order_id}/reversals", payment_order_id=payment_order_id),
-            body=await async_maybe_transform(
-                {
-                    "reason": reason,
-                    "ledger_transaction": ledger_transaction,
-                    "metadata": metadata,
-                },
-                reversal_create_params.ReversalCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "reason": reason,
+                "ledger_transaction": ledger_transaction,
+                "metadata": metadata,
+            }, reversal_create_params.ReversalCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Reversal,
         )
 
-    async def retrieve(
-        self,
-        reversal_id: str,
-        *,
-        payment_order_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Reversal:
+    async def retrieve(self,
+    reversal_id: str,
+    *,
+    payment_order_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> Reversal:
         """
         Get details on a single reversal of a payment order.
 
@@ -314,34 +282,30 @@ class AsyncReversals(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not payment_order_id:
-            raise ValueError(f"Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}'
+          )
         if not reversal_id:
-            raise ValueError(f"Expected a non-empty value for `reversal_id` but received {reversal_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `reversal_id` but received {reversal_id!r}'
+          )
         return await self._get(
-            path_template(
-                "/api/payment_orders/{payment_order_id}/reversals/{reversal_id}",
-                payment_order_id=payment_order_id,
-                reversal_id=reversal_id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            path_template("/api/payment_orders/{payment_order_id}/reversals/{reversal_id}", payment_order_id=payment_order_id, reversal_id=reversal_id),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=Reversal,
         )
 
-    def list(
-        self,
-        payment_order_id: str,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        per_page: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Reversal, AsyncPage[Reversal]]:
+    def list(self,
+    payment_order_id: str,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    per_page: int | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[Reversal, AsyncPage[Reversal]]:
         """
         Get a list of all reversals of a payment order.
 
@@ -355,26 +319,18 @@ class AsyncReversals(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not payment_order_id:
-            raise ValueError(f"Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}'
+          )
         return self._get_api_list(
             path_template("/api/payment_orders/{payment_order_id}/reversals", payment_order_id=payment_order_id),
-            page=AsyncPage[Reversal],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "per_page": per_page,
-                    },
-                    reversal_list_params.ReversalListParams,
-                ),
-            ),
+            page = AsyncPage[Reversal],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "per_page": per_page,
+            }, reversal_list_params.ReversalListParams)),
             model=Reversal,
         )
-
 
 class ReversalsWithRawResponse:
     def __init__(self, reversals: Reversals) -> None:
@@ -390,7 +346,6 @@ class ReversalsWithRawResponse:
             reversals.list,
         )
 
-
 class AsyncReversalsWithRawResponse:
     def __init__(self, reversals: AsyncReversals) -> None:
         self._reversals = reversals
@@ -405,7 +360,6 @@ class AsyncReversalsWithRawResponse:
             reversals.list,
         )
 
-
 class ReversalsWithStreamingResponse:
     def __init__(self, reversals: Reversals) -> None:
         self._reversals = reversals
@@ -419,7 +373,6 @@ class ReversalsWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             reversals.list,
         )
-
 
 class AsyncReversalsWithStreamingResponse:
     def __init__(self, reversals: AsyncReversals) -> None:

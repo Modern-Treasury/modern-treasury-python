@@ -2,15 +2,17 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
-from datetime import date, datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing import Iterable, Optional, Union, Dict
 
-from ..._utils import PropertyInfo
 from .ledger_entry_create_request import LedgerEntryCreateRequest
 
-__all__ = ["LedgerTransactionCreateRequest"]
+from datetime import datetime, date
 
+from typing_extensions import Literal, TypedDict, Required, Annotated
+
+from ..._utils import PropertyInfo
+
+__all__ = ["LedgerTransactionCreateRequest"]
 
 class LedgerTransactionCreateRequest(TypedDict, total=False):
     ledger_entries: Required[Iterable[LedgerEntryCreateRequest]]
@@ -19,13 +21,13 @@ class LedgerTransactionCreateRequest(TypedDict, total=False):
     description: Optional[str]
     """An optional description for internal use."""
 
-    effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    effective_at: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """
     The timestamp (ISO8601 format) at which the ledger transaction happened for
     reporting purposes.
     """
 
-    effective_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    effective_date: Annotated[Union[str, date], PropertyInfo(format = "iso8601")]
     """
     The date (YYYY-MM-DD) on which the ledger transaction happened for reporting
     purposes.

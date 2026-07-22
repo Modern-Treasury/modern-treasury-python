@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-from typing_extensions import Literal, Required, TypedDict
-
-from ..._types import SequenceNotStr
 from ..shared.transaction_direction import TransactionDirection
 
-__all__ = ["LedgerAccountCreateRequest"]
+from typing import Optional, Dict
 
+from ..._types import SequenceNotStr
+
+from typing_extensions import Literal, TypedDict, Required
+
+__all__ = ["LedgerAccountCreateRequest"]
 
 class LedgerAccountCreateRequest(TypedDict, total=False):
     currency: Required[str]

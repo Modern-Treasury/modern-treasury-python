@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
+from typing_extensions import TypedDict, Literal
+
 from typing import Optional
-from typing_extensions import Literal, TypedDict
 
 __all__ = ["BulkResultListParams"]
-
 
 class BulkResultListParams(TypedDict, total=False):
     after_cursor: Optional[str]
@@ -14,16 +14,7 @@ class BulkResultListParams(TypedDict, total=False):
     entity_id: str
     """Unique identifier for the result entity object."""
 
-    entity_type: Literal[
-        "payment_order",
-        "ledger_account",
-        "ledger_transaction",
-        "expected_payment",
-        "transaction",
-        "entity_link",
-        "transaction_line_item",
-        "bulk_error",
-    ]
+    entity_type: Literal["payment_order", "ledger_account", "ledger_transaction", "expected_payment", "transaction", "entity_link", "transaction_line_item", "bulk_error"]
     """The type of the request that created this result.
 
     bulk_request is the only supported `request_type`

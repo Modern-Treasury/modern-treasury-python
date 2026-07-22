@@ -2,36 +2,33 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
-from datetime import date, datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import TypedDict, Required, Literal, Annotated
 
-from .._types import FileTypes
-from .._utils import PropertyInfo
-from .shared.currency import Currency
 from .payment_order_type import PaymentOrderType
-from .external_account_type import ExternalAccountType
-from .payment_order_subtype import PaymentOrderSubtype
-from .shared_params.address_request import AddressRequest
-from .contact_detail_create_request_param import ContactDetailCreateRequestParam
-from .shared_params.ledger_account_create_request import LedgerAccountCreateRequest
+
+from typing import Optional, Iterable, Union, Dict
+
+from .shared.currency import Currency
+
+from datetime import date, datetime
+
+from .._utils import PropertyInfo
+
 from .shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
-__all__ = [
-    "PaymentOrderCreateParams",
-    "Accounting",
-    "Documents",
-    "Document",
-    "LineItems",
-    "LineItem",
-    "ReceivingAccount",
-    "ReceivingAccountAccountDetails",
-    "ReceivingAccountAccountDetail",
-    "ReceivingAccountRoutingDetails",
-    "ReceivingAccountRoutingDetail",
-    "UltimateOriginatingPartyAddress",
-]
+from .payment_order_subtype import PaymentOrderSubtype
 
+from .._types import FileTypes
+
+from .external_account_type import ExternalAccountType
+
+from .contact_detail_create_request_param import ContactDetailCreateRequestParam
+
+from .shared_params.ledger_account_create_request import LedgerAccountCreateRequest
+
+from .shared_params.address_request import AddressRequest
+
+__all__ = ["PaymentOrderCreateParams", "Accounting", "Documents", "Document", "LineItems", "LineItem", "ReceivingAccount", "ReceivingAccountAccountDetails", "ReceivingAccountAccountDetail", "ReceivingAccountRoutingDetails", "ReceivingAccountRoutingDetail", "UltimateOriginatingPartyAddress"]
 
 class PaymentOrderCreateParams(TypedDict, total=False):
     amount: Required[int]
@@ -95,14 +92,14 @@ class PaymentOrderCreateParams(TypedDict, total=False):
     `multipart/form-data`.
     """
 
-    effective_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    effective_date: Annotated[Union[str, date], PropertyInfo(format = "iso8601")]
     """Date transactions are to be posted to the participants' account.
 
     Defaults to the current business day or the next business day if the current day
     is a bank holiday or weekend. Format: yyyy-mm-dd.
     """
 
-    expires_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    expires_at: Annotated[Union[str, datetime, None], PropertyInfo(format = "iso8601")]
     """RFP payments require an expires_at. This value must be past the effective_date."""
 
     external_id: Optional[str]
@@ -176,7 +173,7 @@ class PaymentOrderCreateParams(TypedDict, total=False):
     standard mail.
     """
 
-    process_after: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    process_after: Annotated[Union[str, datetime, None], PropertyInfo(format = "iso8601")]
     """If present, Modern Treasury will not process the payment until after this time.
 
     If `process_after` is past the cutoff for `effective_date`, `process_after` will
@@ -273,7 +270,6 @@ class PaymentOrderCreateParams(TypedDict, total=False):
     Data must be represented as key-value pairs.
     """
 
-
 class Accounting(TypedDict, total=False):
     account_id: Optional[str]
     """The ID of one of your accounting categories.
@@ -290,7 +286,6 @@ class Accounting(TypedDict, total=False):
     connected.
     """
 
-
 class Document(TypedDict, total=False):
     file: Required[FileTypes]
 
@@ -300,27 +295,13 @@ class Document(TypedDict, total=False):
     documentable_id: str
     """The unique identifier for the associated object."""
 
-    documentable_type: Literal[
-        "connection",
-        "counterparty",
-        "expected_payment",
-        "external_account",
-        "identification",
-        "incoming_payment_detail",
-        "internal_account",
-        "legal_entity",
-        "organization",
-        "payment_order",
-        "transaction",
-    ]
-
+    documentable_type: Literal["connection", "counterparty", "expected_payment", "external_account", "identification", "incoming_payment_detail", "internal_account", "legal_entity", "organization", "payment_order", "transaction"]
 
 Documents = Document
 """This type is deprecated and will be removed in a future release.
 
 Please use Document instead.
 """
-
 
 class LineItem(TypedDict, total=False):
     amount: Required[int]
@@ -345,35 +326,16 @@ class LineItem(TypedDict, total=False):
     Both the key and value must be strings.
     """
 
-
 LineItems = LineItem
 """This type is deprecated and will be removed in a future release.
 
 Please use LineItem instead.
 """
 
-
 class ReceivingAccountAccountDetail(TypedDict, total=False):
     account_number: Required[str]
 
-    account_number_type: Literal[
-        "au_number",
-        "base_address",
-        "card_token",
-        "clabe",
-        "ethereum_address",
-        "hk_number",
-        "iban",
-        "id_number",
-        "nz_number",
-        "other",
-        "pan",
-        "polygon_address",
-        "sg_number",
-        "solana_address",
-        "wallet_address",
-    ]
-
+    account_number_type: Literal["au_number", "base_address", "card_token", "clabe", "ethereum_address", "hk_number", "iban", "id_number", "nz_number", "other", "pan", "polygon_address", "sg_number", "solana_address", "wallet_address"]
 
 ReceivingAccountAccountDetails = ReceivingAccountAccountDetail
 """This type is deprecated and will be removed in a future release.
@@ -381,63 +343,12 @@ ReceivingAccountAccountDetails = ReceivingAccountAccountDetail
 Please use ReceivingAccountAccountDetail instead.
 """
 
-
 class ReceivingAccountRoutingDetail(TypedDict, total=False):
     routing_number: Required[str]
 
-    routing_number_type: Required[
-        Literal[
-            "aba",
-            "au_bsb",
-            "br_codigo",
-            "ca_cpa",
-            "chips",
-            "cnaps",
-            "dk_interbank_clearing_code",
-            "gb_sort_code",
-            "hk_interbank_clearing_code",
-            "il_bank_code",
-            "in_ifsc",
-            "jp_zengin_code",
-            "my_branch_code",
-            "mx_bank_identifier",
-            "nz_national_clearing_code",
-            "pl_national_clearing_code",
-            "se_bankgiro_clearing_code",
-            "sg_interbank_clearing_code",
-            "swift",
-            "za_national_clearing_code",
-        ]
-    ]
+    routing_number_type: Required[Literal["aba", "au_bsb", "br_codigo", "ca_cpa", "chips", "cnaps", "dk_interbank_clearing_code", "gb_sort_code", "hk_interbank_clearing_code", "il_bank_code", "in_ifsc", "jp_zengin_code", "my_branch_code", "mx_bank_identifier", "nz_national_clearing_code", "pl_national_clearing_code", "se_bankgiro_clearing_code", "sg_interbank_clearing_code", "swift", "za_national_clearing_code"]]
 
-    payment_type: Literal[
-        "ach",
-        "au_becs",
-        "bacs",
-        "book",
-        "card",
-        "chats",
-        "check",
-        "cross_border",
-        "dk_nets",
-        "eft",
-        "gb_fps",
-        "masav",
-        "mx_ccen",
-        "neft",
-        "nics",
-        "nz_becs",
-        "pl_elixir",
-        "rtp",
-        "se_bankgirot",
-        "sepa",
-        "sg_giro",
-        "sic",
-        "stablecoin",
-        "wire",
-        "zengin",
-    ]
-
+    payment_type: Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin"]
 
 ReceivingAccountRoutingDetails = ReceivingAccountRoutingDetail
 """This type is deprecated and will be removed in a future release.
@@ -445,13 +356,11 @@ ReceivingAccountRoutingDetails = ReceivingAccountRoutingDetail
 Please use ReceivingAccountRoutingDetail instead.
 """
 
-
 class ReceivingAccount(TypedDict, total=False):
     """Either `receiving_account` or `receiving_account_id` must be present.
 
     When using `receiving_account_id`, you may pass the id of an external account or an internal account.
     """
-
     account_details: Iterable[ReceivingAccountAccountDetail]
 
     account_type: ExternalAccountType
@@ -505,10 +414,8 @@ class ReceivingAccount(TypedDict, total=False):
 
     routing_details: Iterable[ReceivingAccountRoutingDetail]
 
-
 class UltimateOriginatingPartyAddress(TypedDict, total=False):
     """Address of the ultimate originator of the payment order."""
-
     country: str
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 

@@ -1,17 +1,17 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from .._models import BaseModel
+
+from .shared.ledger_balances import LedgerBalances
+
 from datetime import datetime
 
-from .._models import BaseModel
-from .shared.ledger_balances import LedgerBalances
+from typing import Optional, Dict
 
 __all__ = ["LedgerAccountBalanceMonitor", "AlertCondition", "CurrentLedgerAccountBalanceState"]
 
-
 class AlertCondition(BaseModel):
     """Describes the condition that must be satisfied for the monitor to be triggered."""
-
     field: str
     """
     One of `available_balance_amount`, `pending_balance_amount`,
@@ -32,12 +32,10 @@ class AlertCondition(BaseModel):
     logically true.
     """
 
-
 class CurrentLedgerAccountBalanceState(BaseModel):
     """
     The ledger account's balances and the monitor state as of the current ledger account lock version.
     """
-
     balances: LedgerBalances
 
     ledger_account_lock_version: int
@@ -48,7 +46,6 @@ class CurrentLedgerAccountBalanceState(BaseModel):
     If `true`, the ledger account's balances satisfy the `alert_condition` at this
     lock version.
     """
-
 
 class LedgerAccountBalanceMonitor(BaseModel):
     id: str

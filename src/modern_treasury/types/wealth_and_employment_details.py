@@ -1,13 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 from .._models import BaseModel
 
-__all__ = ["WealthAndEmploymentDetails"]
+from typing import Optional
 
+from datetime import datetime
+
+from typing_extensions import Literal
+
+__all__ = ["WealthAndEmploymentDetails"]
 
 class WealthAndEmploymentDetails(BaseModel):
     id: str
@@ -34,60 +35,13 @@ class WealthAndEmploymentDetails(BaseModel):
     income_country: Optional[str] = None
     """The country in which the individual's income is earned."""
 
-    income_source: Optional[
-        Literal[
-            "family_support",
-            "government_benefits",
-            "inheritance",
-            "investments",
-            "rental_income",
-            "retirement",
-            "salary",
-            "self_employed",
-        ]
-    ] = None
+    income_source: Optional[Literal["family_support", "government_benefits", "inheritance", "investments", "rental_income", "retirement", "salary", "self_employed"]] = None
     """The source of the individual's income."""
 
     income_state: Optional[str] = None
     """The state in which the individual's income is earned."""
 
-    industry: Optional[
-        Literal[
-            "accounting",
-            "agriculture",
-            "automotive",
-            "chemical_manufacturing",
-            "construction",
-            "educational_medical",
-            "food_service",
-            "finance",
-            "gasoline",
-            "health_stores",
-            "laundry",
-            "maintenance",
-            "manufacturing",
-            "merchant_wholesale",
-            "mining",
-            "performing_arts",
-            "professional_non_legal",
-            "public_administration",
-            "publishing",
-            "real_estate",
-            "recreation_gambling",
-            "religious_charity",
-            "rental_services",
-            "retail_clothing",
-            "retail_electronics",
-            "retail_food",
-            "retail_furnishing",
-            "retail_home",
-            "retail_non_store",
-            "retail_sporting",
-            "transportation",
-            "travel",
-            "utilities",
-        ]
-    ] = None
+    industry: Optional[Literal["accounting", "agriculture", "automotive", "chemical_manufacturing", "construction", "educational_medical", "food_service", "finance", "gasoline", "health_stores", "laundry", "maintenance", "manufacturing", "merchant_wholesale", "mining", "performing_arts", "professional_non_legal", "public_administration", "publishing", "real_estate", "recreation_gambling", "religious_charity", "rental_services", "retail_clothing", "retail_electronics", "retail_food", "retail_furnishing", "retail_home", "retail_non_store", "retail_sporting", "transportation", "travel", "utilities"]] = None
     """The industry of the individual."""
 
     live_mode: bool
@@ -98,68 +52,13 @@ class WealthAndEmploymentDetails(BaseModel):
 
     object: str
 
-    occupation: Optional[
-        Literal[
-            "consulting",
-            "executive",
-            "finance_accounting",
-            "food_services",
-            "government",
-            "healthcare",
-            "legal_services",
-            "manufacturing",
-            "other",
-            "sales",
-            "science_engineering",
-            "technology",
-        ]
-    ] = None
+    occupation: Optional[Literal["consulting", "executive", "finance_accounting", "food_services", "government", "healthcare", "legal_services", "manufacturing", "other", "sales", "science_engineering", "technology"]] = None
     """The occupation of the individual."""
 
-    source_of_funds: Optional[
-        Literal[
-            "alimony",
-            "annuity",
-            "business_owner",
-            "business_revenue",
-            "debt_financing",
-            "general_employee",
-            "government_benefits",
-            "homemaker",
-            "inheritance_gift",
-            "intercompany_loan",
-            "investment",
-            "investor_funding",
-            "legal_settlement",
-            "lottery",
-            "real_estate",
-            "retained_earnings_or_savings",
-            "retired",
-            "retirement",
-            "salary",
-            "sale_of_business_assets",
-            "sale_of_real_estate",
-            "self_employed",
-            "senior_executive",
-            "trust_income",
-        ]
-    ] = None
+    source_of_funds: Optional[Literal["alimony", "annuity", "business_owner", "business_revenue", "debt_financing", "general_employee", "government_benefits", "homemaker", "inheritance_gift", "intercompany_loan", "investment", "investor_funding", "legal_settlement", "lottery", "real_estate", "retained_earnings_or_savings", "retired", "retirement", "salary", "sale_of_business_assets", "sale_of_real_estate", "self_employed", "senior_executive", "trust_income"]] = None
     """The source of the individual's funds."""
 
     updated_at: datetime
 
-    wealth_source: Optional[
-        Literal[
-            "business_sale",
-            "family_support",
-            "government_benefits",
-            "inheritance",
-            "investments",
-            "other",
-            "rental_income",
-            "retirement",
-            "salary",
-            "self_employed",
-        ]
-    ] = None
+    wealth_source: Optional[Literal["business_sale", "family_support", "government_benefits", "inheritance", "investments", "other", "rental_income", "retirement", "salary", "self_employed"]] = None
     """The source of the individual's wealth."""

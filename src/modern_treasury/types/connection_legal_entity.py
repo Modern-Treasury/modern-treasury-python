@@ -1,13 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 from .._models import BaseModel
 
-__all__ = ["ConnectionLegalEntity"]
+from datetime import datetime
 
+from typing import Optional
+
+from typing_extensions import Literal
+
+__all__ = ["ConnectionLegalEntity"]
 
 class ConnectionLegalEntity(BaseModel):
     id: str

@@ -2,64 +2,72 @@
 
 from __future__ import annotations
 
-import os
-from typing import Any, cast
-
-import pytest
-
-from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
+
 from modern_treasury.types import BulkResult
+
+from typing import cast, Any
+
 from modern_treasury.pagination import SyncPage, AsyncPage
+
+import os
+import pytest
+import httpx
+from typing_extensions import get_args
+from respx import MockRouter
+from modern_treasury import ModernTreasury, AsyncModernTreasury
+from tests.utils import assert_matches_type
+from modern_treasury.types import bulk_result_list_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestBulkResults:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         bulk_result = client.bulk_results.retrieve(
             "id",
         )
-        assert_matches_type(BulkResult, bulk_result, path=["response"])
+        assert_matches_type(BulkResult, bulk_result, path=['response'])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+
         response = client.bulk_results.with_raw_response.retrieve(
             "id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         bulk_result = response.parse()
-        assert_matches_type(BulkResult, bulk_result, path=["response"])
+        assert_matches_type(BulkResult, bulk_result, path=['response'])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.bulk_results.with_streaming_response.retrieve(
             "id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             bulk_result = response.parse()
-            assert_matches_type(BulkResult, bulk_result, path=["response"])
+            assert_matches_type(BulkResult, bulk_result, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_retrieve(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.bulk_results.with_raw_response.retrieve(
-                "",
-            )
+          client.bulk_results.with_raw_response.retrieve(
+              "",
+          )
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         bulk_result = client.bulk_results.list()
-        assert_matches_type(SyncPage[BulkResult], bulk_result, path=["response"])
+        assert_matches_type(SyncPage[BulkResult], bulk_result, path=['response'])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
@@ -72,76 +80,75 @@ class TestBulkResults:
             request_type="bulk_request",
             status="pending",
         )
-        assert_matches_type(SyncPage[BulkResult], bulk_result, path=["response"])
+        assert_matches_type(SyncPage[BulkResult], bulk_result, path=['response'])
 
     @parametrize
     def test_raw_response_list(self, client: ModernTreasury) -> None:
+
         response = client.bulk_results.with_raw_response.list()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         bulk_result = response.parse()
-        assert_matches_type(SyncPage[BulkResult], bulk_result, path=["response"])
+        assert_matches_type(SyncPage[BulkResult], bulk_result, path=['response'])
 
     @parametrize
     def test_streaming_response_list(self, client: ModernTreasury) -> None:
-        with client.bulk_results.with_streaming_response.list() as response:
+        with client.bulk_results.with_streaming_response.list() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             bulk_result = response.parse()
-            assert_matches_type(SyncPage[BulkResult], bulk_result, path=["response"])
+            assert_matches_type(SyncPage[BulkResult], bulk_result, path=['response'])
 
         assert cast(Any, response.is_closed) is True
-
-
 class TestAsyncBulkResults:
-    parametrize = pytest.mark.parametrize(
-        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
-    )
+    parametrize = pytest.mark.parametrize("async_client", [False, True, {'http_client': 'aiohttp'}], indirect=True, ids=['loose', 'strict', 'aiohttp'])
+
 
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
         bulk_result = await async_client.bulk_results.retrieve(
             "id",
         )
-        assert_matches_type(BulkResult, bulk_result, path=["response"])
+        assert_matches_type(BulkResult, bulk_result, path=['response'])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.bulk_results.with_raw_response.retrieve(
             "id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         bulk_result = response.parse()
-        assert_matches_type(BulkResult, bulk_result, path=["response"])
+        assert_matches_type(BulkResult, bulk_result, path=['response'])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.bulk_results.with_streaming_response.retrieve(
             "id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             bulk_result = await response.parse()
-            assert_matches_type(BulkResult, bulk_result, path=["response"])
+            assert_matches_type(BulkResult, bulk_result, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.bulk_results.with_raw_response.retrieve(
-                "",
-            )
+          await async_client.bulk_results.with_raw_response.retrieve(
+              "",
+          )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncModernTreasury) -> None:
         bulk_result = await async_client.bulk_results.list()
-        assert_matches_type(AsyncPage[BulkResult], bulk_result, path=["response"])
+        assert_matches_type(AsyncPage[BulkResult], bulk_result, path=['response'])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
@@ -154,24 +161,25 @@ class TestAsyncBulkResults:
             request_type="bulk_request",
             status="pending",
         )
-        assert_matches_type(AsyncPage[BulkResult], bulk_result, path=["response"])
+        assert_matches_type(AsyncPage[BulkResult], bulk_result, path=['response'])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.bulk_results.with_raw_response.list()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         bulk_result = response.parse()
-        assert_matches_type(AsyncPage[BulkResult], bulk_result, path=["response"])
+        assert_matches_type(AsyncPage[BulkResult], bulk_result, path=['response'])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncModernTreasury) -> None:
-        async with async_client.bulk_results.with_streaming_response.list() as response:
+        async with async_client.bulk_results.with_streaming_response.list() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             bulk_result = await response.parse()
-            assert_matches_type(AsyncPage[BulkResult], bulk_result, path=["response"])
+            assert_matches_type(AsyncPage[BulkResult], bulk_result, path=['response'])
 
         assert cast(Any, response.is_closed) is True

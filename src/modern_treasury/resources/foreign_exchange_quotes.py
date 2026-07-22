@@ -2,25 +2,40 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from datetime import date, datetime
-
 import httpx
 
-from .. import _legacy_response
-from ..types import foreign_exchange_quote_list_params, foreign_exchange_quote_create_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.shared.currency import Currency
+
+from .._compat import cached_property
+
 from ..types.foreign_exchange_quote import ForeignExchangeQuote
 
-__all__ = ["ForeignExchangeQuotes", "AsyncForeignExchangeQuotes"]
+from .._utils import maybe_transform, path_template, async_maybe_transform
 
+from .._base_client import make_request_options, AsyncPaginator
+
+from ..types.shared.currency import Currency
+
+from .._types import Omit, omit, NotGiven
+
+from typing import Union, Optional, Dict
+
+from datetime import datetime, date
+
+from ..pagination import SyncPage, AsyncPage
+
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import foreign_exchange_quote_create_params
+from ..types import foreign_exchange_quote_list_params
+from ..types import shared
+from ..types import shared
+
+__all__ = ["ForeignExchangeQuotes", "AsyncForeignExchangeQuotes"]
 
 class ForeignExchangeQuotes(SyncAPIResource):
     @cached_property
@@ -42,23 +57,21 @@ class ForeignExchangeQuotes(SyncAPIResource):
         """
         return ForeignExchangeQuotesWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        internal_account_id: str,
-        target_currency: Currency,
-        base_amount: int | Omit = omit,
-        base_currency: Currency | Omit = omit,
-        effective_at: Union[str, datetime] | Omit = omit,
-        target_amount: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ForeignExchangeQuote:
+    def create(self,
+    *,
+    internal_account_id: str,
+    target_currency: Currency,
+    base_amount: int | Omit = omit,
+    base_currency: Currency | Omit = omit,
+    effective_at: Union[str, datetime] | Omit = omit,
+    target_amount: int | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ForeignExchangeQuote:
         """
         create foreign_exchange_quote
 
@@ -89,38 +102,27 @@ class ForeignExchangeQuotes(SyncAPIResource):
         """
         return self._post(
             "/api/foreign_exchange_quotes",
-            body=maybe_transform(
-                {
-                    "internal_account_id": internal_account_id,
-                    "target_currency": target_currency,
-                    "base_amount": base_amount,
-                    "base_currency": base_currency,
-                    "effective_at": effective_at,
-                    "target_amount": target_amount,
-                },
-                foreign_exchange_quote_create_params.ForeignExchangeQuoteCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "internal_account_id": internal_account_id,
+                "target_currency": target_currency,
+                "base_amount": base_amount,
+                "base_currency": base_currency,
+                "effective_at": effective_at,
+                "target_amount": target_amount,
+            }, foreign_exchange_quote_create_params.ForeignExchangeQuoteCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=ForeignExchangeQuote,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ForeignExchangeQuote:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> ForeignExchangeQuote:
         """
         get foreign_exchange_quote
 
@@ -134,34 +136,32 @@ class ForeignExchangeQuotes(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/foreign_exchange_quotes/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=ForeignExchangeQuote,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        base_currency: str | Omit = omit,
-        effective_at_end: Union[str, date] | Omit = omit,
-        effective_at_start: Union[str, date] | Omit = omit,
-        expires_at: Union[str, datetime] | Omit = omit,
-        internal_account_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        per_page: int | Omit = omit,
-        target_currency: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[ForeignExchangeQuote]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    base_currency: str | Omit = omit,
+    effective_at_end: Union[str, date] | Omit = omit,
+    effective_at_start: Union[str, date] | Omit = omit,
+    expires_at: Union[str, datetime] | Omit = omit,
+    internal_account_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    per_page: int | Omit = omit,
+    target_currency: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[ForeignExchangeQuote]:
         """
         list foreign_exchange_quotes
 
@@ -192,30 +192,20 @@ class ForeignExchangeQuotes(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/foreign_exchange_quotes",
-            page=SyncPage[ForeignExchangeQuote],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "base_currency": base_currency,
-                        "effective_at_end": effective_at_end,
-                        "effective_at_start": effective_at_start,
-                        "expires_at": expires_at,
-                        "internal_account_id": internal_account_id,
-                        "metadata": metadata,
-                        "per_page": per_page,
-                        "target_currency": target_currency,
-                    },
-                    foreign_exchange_quote_list_params.ForeignExchangeQuoteListParams,
-                ),
-            ),
+            page = SyncPage[ForeignExchangeQuote],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "base_currency": base_currency,
+                "effective_at_end": effective_at_end,
+                "effective_at_start": effective_at_start,
+                "expires_at": expires_at,
+                "internal_account_id": internal_account_id,
+                "metadata": metadata,
+                "per_page": per_page,
+                "target_currency": target_currency,
+            }, foreign_exchange_quote_list_params.ForeignExchangeQuoteListParams)),
             model=ForeignExchangeQuote,
         )
-
 
 class AsyncForeignExchangeQuotes(AsyncAPIResource):
     @cached_property
@@ -237,23 +227,21 @@ class AsyncForeignExchangeQuotes(AsyncAPIResource):
         """
         return AsyncForeignExchangeQuotesWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        internal_account_id: str,
-        target_currency: Currency,
-        base_amount: int | Omit = omit,
-        base_currency: Currency | Omit = omit,
-        effective_at: Union[str, datetime] | Omit = omit,
-        target_amount: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ForeignExchangeQuote:
+    async def create(self,
+    *,
+    internal_account_id: str,
+    target_currency: Currency,
+    base_amount: int | Omit = omit,
+    base_currency: Currency | Omit = omit,
+    effective_at: Union[str, datetime] | Omit = omit,
+    target_amount: int | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ForeignExchangeQuote:
         """
         create foreign_exchange_quote
 
@@ -284,38 +272,27 @@ class AsyncForeignExchangeQuotes(AsyncAPIResource):
         """
         return await self._post(
             "/api/foreign_exchange_quotes",
-            body=await async_maybe_transform(
-                {
-                    "internal_account_id": internal_account_id,
-                    "target_currency": target_currency,
-                    "base_amount": base_amount,
-                    "base_currency": base_currency,
-                    "effective_at": effective_at,
-                    "target_amount": target_amount,
-                },
-                foreign_exchange_quote_create_params.ForeignExchangeQuoteCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "internal_account_id": internal_account_id,
+                "target_currency": target_currency,
+                "base_amount": base_amount,
+                "base_currency": base_currency,
+                "effective_at": effective_at,
+                "target_amount": target_amount,
+            }, foreign_exchange_quote_create_params.ForeignExchangeQuoteCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=ForeignExchangeQuote,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ForeignExchangeQuote:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> ForeignExchangeQuote:
         """
         get foreign_exchange_quote
 
@@ -329,34 +306,32 @@ class AsyncForeignExchangeQuotes(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/foreign_exchange_quotes/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=ForeignExchangeQuote,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        base_currency: str | Omit = omit,
-        effective_at_end: Union[str, date] | Omit = omit,
-        effective_at_start: Union[str, date] | Omit = omit,
-        expires_at: Union[str, datetime] | Omit = omit,
-        internal_account_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        per_page: int | Omit = omit,
-        target_currency: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ForeignExchangeQuote, AsyncPage[ForeignExchangeQuote]]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    base_currency: str | Omit = omit,
+    effective_at_end: Union[str, date] | Omit = omit,
+    effective_at_start: Union[str, date] | Omit = omit,
+    expires_at: Union[str, datetime] | Omit = omit,
+    internal_account_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    per_page: int | Omit = omit,
+    target_currency: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[ForeignExchangeQuote, AsyncPage[ForeignExchangeQuote]]:
         """
         list foreign_exchange_quotes
 
@@ -387,30 +362,20 @@ class AsyncForeignExchangeQuotes(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/foreign_exchange_quotes",
-            page=AsyncPage[ForeignExchangeQuote],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "base_currency": base_currency,
-                        "effective_at_end": effective_at_end,
-                        "effective_at_start": effective_at_start,
-                        "expires_at": expires_at,
-                        "internal_account_id": internal_account_id,
-                        "metadata": metadata,
-                        "per_page": per_page,
-                        "target_currency": target_currency,
-                    },
-                    foreign_exchange_quote_list_params.ForeignExchangeQuoteListParams,
-                ),
-            ),
+            page = AsyncPage[ForeignExchangeQuote],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "base_currency": base_currency,
+                "effective_at_end": effective_at_end,
+                "effective_at_start": effective_at_start,
+                "expires_at": expires_at,
+                "internal_account_id": internal_account_id,
+                "metadata": metadata,
+                "per_page": per_page,
+                "target_currency": target_currency,
+            }, foreign_exchange_quote_list_params.ForeignExchangeQuoteListParams)),
             model=ForeignExchangeQuote,
         )
-
 
 class ForeignExchangeQuotesWithRawResponse:
     def __init__(self, foreign_exchange_quotes: ForeignExchangeQuotes) -> None:
@@ -426,7 +391,6 @@ class ForeignExchangeQuotesWithRawResponse:
             foreign_exchange_quotes.list,
         )
 
-
 class AsyncForeignExchangeQuotesWithRawResponse:
     def __init__(self, foreign_exchange_quotes: AsyncForeignExchangeQuotes) -> None:
         self._foreign_exchange_quotes = foreign_exchange_quotes
@@ -441,7 +405,6 @@ class AsyncForeignExchangeQuotesWithRawResponse:
             foreign_exchange_quotes.list,
         )
 
-
 class ForeignExchangeQuotesWithStreamingResponse:
     def __init__(self, foreign_exchange_quotes: ForeignExchangeQuotes) -> None:
         self._foreign_exchange_quotes = foreign_exchange_quotes
@@ -455,7 +418,6 @@ class ForeignExchangeQuotesWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             foreign_exchange_quotes.list,
         )
-
 
 class AsyncForeignExchangeQuotesWithStreamingResponse:
     def __init__(self, foreign_exchange_quotes: AsyncForeignExchangeQuotes) -> None:

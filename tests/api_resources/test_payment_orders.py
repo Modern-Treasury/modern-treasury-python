@@ -2,25 +2,47 @@
 
 from __future__ import annotations
 
-import os
-from typing import Any, cast
-
-import pytest
-
-from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
-from modern_treasury.types import (
-    PaymentOrder,
-)
+
+from modern_treasury.types import PaymentOrder
+
 from modern_treasury._utils import parse_date, parse_datetime
+
+from typing import cast, Any
+
 from modern_treasury.pagination import SyncPage, AsyncPage
+
 from modern_treasury.types.shared import AsyncResponse
+
+import os
+import pytest
+import httpx
+from typing_extensions import get_args
+from respx import MockRouter
+from modern_treasury import ModernTreasury, AsyncModernTreasury
+from tests.utils import assert_matches_type
+from modern_treasury.types import payment_order_create_params
+from modern_treasury.types import payment_order_update_params
+from modern_treasury.types import payment_order_list_params
+from modern_treasury.types import payment_order_create_async_params
+from modern_treasury.types import PaymentOrderType
+from modern_treasury.types import shared
+from modern_treasury.types import shared
+from modern_treasury.types import PaymentOrderSubtype
+from modern_treasury.types import shared
+from modern_treasury.types import PaymentOrderSubtype
+from modern_treasury.types import PaymentOrderType
+from modern_treasury.types import shared
+from modern_treasury.types import PaymentOrderType
+from modern_treasury.types import shared
+from modern_treasury.types import shared
+from modern_treasury.types import PaymentOrderSubtype
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestPaymentOrders:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @pytest.mark.skip(reason="Multiple values for nested arrays aren't supported yet")
     @parametrize
@@ -31,7 +53,7 @@ class TestPaymentOrders:
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="ach",
         )
-        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+        assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
     @pytest.mark.skip(reason="Multiple values for nested arrays aren't supported yet")
     @parametrize
@@ -50,14 +72,12 @@ class TestPaymentOrders:
             charge_bearer="shared",
             currency="AED",
             description="description",
-            documents=[
-                {
-                    "file": b"Example data",
-                    "document_type": "document_type",
-                    "documentable_id": "documentable_id",
-                    "documentable_type": "connection",
-                }
-            ],
+            documents=[{
+                "file": b"Example data",
+                "document_type": "document_type",
+                "documentable_id": "documentable_id",
+                "documentable_type": "connection",
+            }],
             effective_date=parse_date("2019-12-27"),
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             external_id="external_id",
@@ -65,25 +85,29 @@ class TestPaymentOrders:
             foreign_exchange_contract="foreign_exchange_contract",
             foreign_exchange_indicator="fixed_to_variable",
             ledger_transaction={
-                "ledger_entries": [
-                    {
-                        "direction": "credit",
-                        "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "amount": 0,
-                        "amount_string": "amount_string",
-                        "available_balance_amount": {"foo": 0},
-                        "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                        "lock_version": 0,
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
-                        },
-                        "pending_balance_amount": {"foo": 0},
-                        "posted_balance_amount": {"foo": 0},
-                        "show_resulting_ledger_account_balances": True,
-                    }
-                ],
+                "ledger_entries": [{
+                    "direction": "credit",
+                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "amount": 0,
+                    "amount_string": "amount_string",
+                    "available_balance_amount": {
+                        "foo": 0
+                    },
+                    "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "lock_version": 0,
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
+                    "pending_balance_amount": {
+                        "foo": 0
+                    },
+                    "posted_balance_amount": {
+                        "foo": 0
+                    },
+                    "show_resulting_ledger_account_balances": True,
+                }],
                 "description": "description",
                 "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "effective_date": parse_date("2019-12-27"),
@@ -98,18 +122,16 @@ class TestPaymentOrders:
                 "status": "archived",
             },
             ledger_transaction_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            line_items=[
-                {
-                    "amount": 0,
-                    "accounting_category_id": "accounting_category_id",
-                    "description": "description",
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                }
-            ],
+            line_items=[{
+                "amount": 0,
+                "accounting_category_id": "accounting_category_id",
+                "description": "description",
+                "metadata": {
+                    "key": "value",
+                    "foo": "bar",
+                    "modern": "treasury",
+                },
+            }],
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -121,19 +143,15 @@ class TestPaymentOrders:
             process_after=parse_datetime("2019-12-27T18:11:19.117Z"),
             purpose="purpose",
             receiving_account={
-                "account_details": [
-                    {
-                        "account_number": "account_number",
-                        "account_number_type": "au_number",
-                    }
-                ],
+                "account_details": [{
+                    "account_number": "account_number",
+                    "account_number_type": "au_number",
+                }],
                 "account_type": "base_wallet",
-                "contact_details": [
-                    {
-                        "contact_identifier": "contact_identifier",
-                        "contact_identifier_type": "email",
-                    }
-                ],
+                "contact_details": [{
+                    "contact_identifier": "contact_identifier",
+                    "contact_identifier_type": "email",
+                }],
                 "external_id": "external_id",
                 "ledger_account": {
                     "currency": "currency",
@@ -170,13 +188,11 @@ class TestPaymentOrders:
                 "party_name": "party_name",
                 "party_type": "business",
                 "plaid_processor_token": "plaid_processor_token",
-                "routing_details": [
-                    {
-                        "routing_number": "routing_number",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    }
-                ],
+                "routing_details": [{
+                    "routing_number": "routing_number",
+                    "routing_number_type": "aba",
+                    "payment_type": "ach",
+                }],
             },
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             reconciliation_status="unreconciled",
@@ -200,11 +216,12 @@ class TestPaymentOrders:
             ultimate_receiving_party_name="ultimate_receiving_party_name",
             vendor_attributes={},
         )
-        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+        assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
     @pytest.mark.skip(reason="Multiple values for nested arrays aren't supported yet")
     @parametrize
     def test_raw_response_create(self, client: ModernTreasury) -> None:
+
         response = client.payment_orders.with_raw_response.create(
             amount=0,
             direction="credit",
@@ -213,9 +230,9 @@ class TestPaymentOrders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         payment_order = response.parse()
-        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+        assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
     @pytest.mark.skip(reason="Multiple values for nested arrays aren't supported yet")
     @parametrize
@@ -225,12 +242,12 @@ class TestPaymentOrders:
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="ach",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             payment_order = response.parse()
-            assert_matches_type(PaymentOrder, payment_order, path=["response"])
+            assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -239,45 +256,46 @@ class TestPaymentOrders:
         payment_order = client.payment_orders.retrieve(
             "id",
         )
-        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+        assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+
         response = client.payment_orders.with_raw_response.retrieve(
             "id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         payment_order = response.parse()
-        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+        assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.payment_orders.with_streaming_response.retrieve(
             "id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             payment_order = response.parse()
-            assert_matches_type(PaymentOrder, payment_order, path=["response"])
+            assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_retrieve(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.payment_orders.with_raw_response.retrieve(
-                "",
-            )
+          client.payment_orders.with_raw_response.retrieve(
+              "",
+          )
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
         payment_order = client.payment_orders.update(
             id="id",
         )
-        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+        assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
     @parametrize
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
@@ -301,18 +319,16 @@ class TestPaymentOrders:
             fallback_type="ach",
             foreign_exchange_contract="foreign_exchange_contract",
             foreign_exchange_indicator="fixed_to_variable",
-            line_items=[
-                {
-                    "amount": 0,
-                    "accounting_category_id": "accounting_category_id",
-                    "description": "description",
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                }
-            ],
+            line_items=[{
+                "amount": 0,
+                "accounting_category_id": "accounting_category_id",
+                "description": "description",
+                "metadata": {
+                    "key": "value",
+                    "foo": "bar",
+                    "modern": "treasury",
+                },
+            }],
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -325,19 +341,15 @@ class TestPaymentOrders:
             process_after=parse_datetime("2019-12-27T18:11:19.117Z"),
             purpose="purpose",
             receiving_account={
-                "account_details": [
-                    {
-                        "account_number": "account_number",
-                        "account_number_type": "au_number",
-                    }
-                ],
+                "account_details": [{
+                    "account_number": "account_number",
+                    "account_number_type": "au_number",
+                }],
                 "account_type": "base_wallet",
-                "contact_details": [
-                    {
-                        "contact_identifier": "contact_identifier",
-                        "contact_identifier_type": "email",
-                    }
-                ],
+                "contact_details": [{
+                    "contact_identifier": "contact_identifier",
+                    "contact_identifier_type": "email",
+                }],
                 "external_id": "external_id",
                 "ledger_account": {
                     "currency": "currency",
@@ -374,13 +386,11 @@ class TestPaymentOrders:
                 "party_name": "party_name",
                 "party_type": "business",
                 "plaid_processor_token": "plaid_processor_token",
-                "routing_details": [
-                    {
-                        "routing_number": "routing_number",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    }
-                ],
+                "routing_details": [{
+                    "routing_number": "routing_number",
+                    "routing_number_type": "aba",
+                    "payment_type": "ach",
+                }],
             },
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             reconciliation_status="unreconciled",
@@ -395,43 +405,44 @@ class TestPaymentOrders:
             ultimate_receiving_party_identifier="ultimate_receiving_party_identifier",
             ultimate_receiving_party_name="ultimate_receiving_party_name",
         )
-        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+        assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
     @parametrize
     def test_raw_response_update(self, client: ModernTreasury) -> None:
+
         response = client.payment_orders.with_raw_response.update(
             id="id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         payment_order = response.parse()
-        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+        assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
     @parametrize
     def test_streaming_response_update(self, client: ModernTreasury) -> None:
         with client.payment_orders.with_streaming_response.update(
             id="id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             payment_order = response.parse()
-            assert_matches_type(PaymentOrder, payment_order, path=["response"])
+            assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_update(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.payment_orders.with_raw_response.update(
-                id="",
-            )
+          client.payment_orders.with_raw_response.update(
+              id="",
+          )
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         payment_order = client.payment_orders.list()
-        assert_matches_type(SyncPage[PaymentOrder], payment_order, path=["response"])
+        assert_matches_type(SyncPage[PaymentOrder], payment_order, path=['response'])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
@@ -444,7 +455,9 @@ class TestPaymentOrders:
             effective_date_end=parse_date("2019-12-27"),
             effective_date_start=parse_date("2019-12-27"),
             external_id="external_id",
-            metadata={"foo": "string"},
+            metadata={
+                "foo": "string"
+            },
             originating_account_id="originating_account_id",
             per_page=0,
             priority="high",
@@ -455,25 +468,26 @@ class TestPaymentOrders:
             transaction_id="transaction_id",
             type="ach",
         )
-        assert_matches_type(SyncPage[PaymentOrder], payment_order, path=["response"])
+        assert_matches_type(SyncPage[PaymentOrder], payment_order, path=['response'])
 
     @parametrize
     def test_raw_response_list(self, client: ModernTreasury) -> None:
+
         response = client.payment_orders.with_raw_response.list()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         payment_order = response.parse()
-        assert_matches_type(SyncPage[PaymentOrder], payment_order, path=["response"])
+        assert_matches_type(SyncPage[PaymentOrder], payment_order, path=['response'])
 
     @parametrize
     def test_streaming_response_list(self, client: ModernTreasury) -> None:
-        with client.payment_orders.with_streaming_response.list() as response:
+        with client.payment_orders.with_streaming_response.list() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             payment_order = response.parse()
-            assert_matches_type(SyncPage[PaymentOrder], payment_order, path=["response"])
+            assert_matches_type(SyncPage[PaymentOrder], payment_order, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -485,7 +499,7 @@ class TestPaymentOrders:
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="ach",
         )
-        assert_matches_type(AsyncResponse, payment_order, path=["response"])
+        assert_matches_type(AsyncResponse, payment_order, path=['response'])
 
     @parametrize
     def test_method_create_async_with_all_params(self, client: ModernTreasury) -> None:
@@ -510,25 +524,29 @@ class TestPaymentOrders:
             foreign_exchange_contract="foreign_exchange_contract",
             foreign_exchange_indicator="fixed_to_variable",
             ledger_transaction={
-                "ledger_entries": [
-                    {
-                        "direction": "credit",
-                        "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "amount": 0,
-                        "amount_string": "amount_string",
-                        "available_balance_amount": {"foo": 0},
-                        "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                        "lock_version": 0,
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
-                        },
-                        "pending_balance_amount": {"foo": 0},
-                        "posted_balance_amount": {"foo": 0},
-                        "show_resulting_ledger_account_balances": True,
-                    }
-                ],
+                "ledger_entries": [{
+                    "direction": "credit",
+                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "amount": 0,
+                    "amount_string": "amount_string",
+                    "available_balance_amount": {
+                        "foo": 0
+                    },
+                    "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "lock_version": 0,
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
+                    "pending_balance_amount": {
+                        "foo": 0
+                    },
+                    "posted_balance_amount": {
+                        "foo": 0
+                    },
+                    "show_resulting_ledger_account_balances": True,
+                }],
                 "description": "description",
                 "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "effective_date": parse_date("2019-12-27"),
@@ -543,18 +561,16 @@ class TestPaymentOrders:
                 "status": "archived",
             },
             ledger_transaction_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            line_items=[
-                {
-                    "amount": 0,
-                    "accounting_category_id": "accounting_category_id",
-                    "description": "description",
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                }
-            ],
+            line_items=[{
+                "amount": 0,
+                "accounting_category_id": "accounting_category_id",
+                "description": "description",
+                "metadata": {
+                    "key": "value",
+                    "foo": "bar",
+                    "modern": "treasury",
+                },
+            }],
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -566,19 +582,15 @@ class TestPaymentOrders:
             process_after=parse_datetime("2019-12-27T18:11:19.117Z"),
             purpose="purpose",
             receiving_account={
-                "account_details": [
-                    {
-                        "account_number": "account_number",
-                        "account_number_type": "au_number",
-                    }
-                ],
+                "account_details": [{
+                    "account_number": "account_number",
+                    "account_number_type": "au_number",
+                }],
                 "account_type": "base_wallet",
-                "contact_details": [
-                    {
-                        "contact_identifier": "contact_identifier",
-                        "contact_identifier_type": "email",
-                    }
-                ],
+                "contact_details": [{
+                    "contact_identifier": "contact_identifier",
+                    "contact_identifier_type": "email",
+                }],
                 "external_id": "external_id",
                 "ledger_account": {
                     "currency": "currency",
@@ -615,13 +627,11 @@ class TestPaymentOrders:
                 "party_name": "party_name",
                 "party_type": "business",
                 "plaid_processor_token": "plaid_processor_token",
-                "routing_details": [
-                    {
-                        "routing_number": "routing_number",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    }
-                ],
+                "routing_details": [{
+                    "routing_number": "routing_number",
+                    "routing_number_type": "aba",
+                    "payment_type": "ach",
+                }],
             },
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             reconciliation_status="unreconciled",
@@ -645,10 +655,11 @@ class TestPaymentOrders:
             ultimate_receiving_party_name="ultimate_receiving_party_name",
             vendor_attributes={},
         )
-        assert_matches_type(AsyncResponse, payment_order, path=["response"])
+        assert_matches_type(AsyncResponse, payment_order, path=['response'])
 
     @parametrize
     def test_raw_response_create_async(self, client: ModernTreasury) -> None:
+
         response = client.payment_orders.with_raw_response.create_async(
             amount=0,
             direction="credit",
@@ -657,9 +668,9 @@ class TestPaymentOrders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         payment_order = response.parse()
-        assert_matches_type(AsyncResponse, payment_order, path=["response"])
+        assert_matches_type(AsyncResponse, payment_order, path=['response'])
 
     @parametrize
     def test_streaming_response_create_async(self, client: ModernTreasury) -> None:
@@ -668,20 +679,17 @@ class TestPaymentOrders:
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="ach",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             payment_order = response.parse()
-            assert_matches_type(AsyncResponse, payment_order, path=["response"])
+            assert_matches_type(AsyncResponse, payment_order, path=['response'])
 
         assert cast(Any, response.is_closed) is True
-
-
 class TestAsyncPaymentOrders:
-    parametrize = pytest.mark.parametrize(
-        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
-    )
+    parametrize = pytest.mark.parametrize("async_client", [False, True, {'http_client': 'aiohttp'}], indirect=True, ids=['loose', 'strict', 'aiohttp'])
+
 
     @pytest.mark.skip(reason="Multiple values for nested arrays aren't supported yet")
     @parametrize
@@ -692,7 +700,7 @@ class TestAsyncPaymentOrders:
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="ach",
         )
-        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+        assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
     @pytest.mark.skip(reason="Multiple values for nested arrays aren't supported yet")
     @parametrize
@@ -711,14 +719,12 @@ class TestAsyncPaymentOrders:
             charge_bearer="shared",
             currency="AED",
             description="description",
-            documents=[
-                {
-                    "file": b"Example data",
-                    "document_type": "document_type",
-                    "documentable_id": "documentable_id",
-                    "documentable_type": "connection",
-                }
-            ],
+            documents=[{
+                "file": b"Example data",
+                "document_type": "document_type",
+                "documentable_id": "documentable_id",
+                "documentable_type": "connection",
+            }],
             effective_date=parse_date("2019-12-27"),
             expires_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             external_id="external_id",
@@ -726,25 +732,29 @@ class TestAsyncPaymentOrders:
             foreign_exchange_contract="foreign_exchange_contract",
             foreign_exchange_indicator="fixed_to_variable",
             ledger_transaction={
-                "ledger_entries": [
-                    {
-                        "direction": "credit",
-                        "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "amount": 0,
-                        "amount_string": "amount_string",
-                        "available_balance_amount": {"foo": 0},
-                        "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                        "lock_version": 0,
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
-                        },
-                        "pending_balance_amount": {"foo": 0},
-                        "posted_balance_amount": {"foo": 0},
-                        "show_resulting_ledger_account_balances": True,
-                    }
-                ],
+                "ledger_entries": [{
+                    "direction": "credit",
+                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "amount": 0,
+                    "amount_string": "amount_string",
+                    "available_balance_amount": {
+                        "foo": 0
+                    },
+                    "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "lock_version": 0,
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
+                    "pending_balance_amount": {
+                        "foo": 0
+                    },
+                    "posted_balance_amount": {
+                        "foo": 0
+                    },
+                    "show_resulting_ledger_account_balances": True,
+                }],
                 "description": "description",
                 "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "effective_date": parse_date("2019-12-27"),
@@ -759,18 +769,16 @@ class TestAsyncPaymentOrders:
                 "status": "archived",
             },
             ledger_transaction_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            line_items=[
-                {
-                    "amount": 0,
-                    "accounting_category_id": "accounting_category_id",
-                    "description": "description",
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                }
-            ],
+            line_items=[{
+                "amount": 0,
+                "accounting_category_id": "accounting_category_id",
+                "description": "description",
+                "metadata": {
+                    "key": "value",
+                    "foo": "bar",
+                    "modern": "treasury",
+                },
+            }],
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -782,19 +790,15 @@ class TestAsyncPaymentOrders:
             process_after=parse_datetime("2019-12-27T18:11:19.117Z"),
             purpose="purpose",
             receiving_account={
-                "account_details": [
-                    {
-                        "account_number": "account_number",
-                        "account_number_type": "au_number",
-                    }
-                ],
+                "account_details": [{
+                    "account_number": "account_number",
+                    "account_number_type": "au_number",
+                }],
                 "account_type": "base_wallet",
-                "contact_details": [
-                    {
-                        "contact_identifier": "contact_identifier",
-                        "contact_identifier_type": "email",
-                    }
-                ],
+                "contact_details": [{
+                    "contact_identifier": "contact_identifier",
+                    "contact_identifier_type": "email",
+                }],
                 "external_id": "external_id",
                 "ledger_account": {
                     "currency": "currency",
@@ -831,13 +835,11 @@ class TestAsyncPaymentOrders:
                 "party_name": "party_name",
                 "party_type": "business",
                 "plaid_processor_token": "plaid_processor_token",
-                "routing_details": [
-                    {
-                        "routing_number": "routing_number",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    }
-                ],
+                "routing_details": [{
+                    "routing_number": "routing_number",
+                    "routing_number_type": "aba",
+                    "payment_type": "ach",
+                }],
             },
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             reconciliation_status="unreconciled",
@@ -861,11 +863,12 @@ class TestAsyncPaymentOrders:
             ultimate_receiving_party_name="ultimate_receiving_party_name",
             vendor_attributes={},
         )
-        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+        assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
     @pytest.mark.skip(reason="Multiple values for nested arrays aren't supported yet")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.payment_orders.with_raw_response.create(
             amount=0,
             direction="credit",
@@ -874,9 +877,9 @@ class TestAsyncPaymentOrders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         payment_order = response.parse()
-        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+        assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
     @pytest.mark.skip(reason="Multiple values for nested arrays aren't supported yet")
     @parametrize
@@ -886,12 +889,12 @@ class TestAsyncPaymentOrders:
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="ach",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             payment_order = await response.parse()
-            assert_matches_type(PaymentOrder, payment_order, path=["response"])
+            assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -900,45 +903,46 @@ class TestAsyncPaymentOrders:
         payment_order = await async_client.payment_orders.retrieve(
             "id",
         )
-        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+        assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.payment_orders.with_raw_response.retrieve(
             "id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         payment_order = response.parse()
-        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+        assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.payment_orders.with_streaming_response.retrieve(
             "id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             payment_order = await response.parse()
-            assert_matches_type(PaymentOrder, payment_order, path=["response"])
+            assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.payment_orders.with_raw_response.retrieve(
-                "",
-            )
+          await async_client.payment_orders.with_raw_response.retrieve(
+              "",
+          )
 
     @parametrize
     async def test_method_update(self, async_client: AsyncModernTreasury) -> None:
         payment_order = await async_client.payment_orders.update(
             id="id",
         )
-        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+        assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncModernTreasury) -> None:
@@ -962,18 +966,16 @@ class TestAsyncPaymentOrders:
             fallback_type="ach",
             foreign_exchange_contract="foreign_exchange_contract",
             foreign_exchange_indicator="fixed_to_variable",
-            line_items=[
-                {
-                    "amount": 0,
-                    "accounting_category_id": "accounting_category_id",
-                    "description": "description",
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                }
-            ],
+            line_items=[{
+                "amount": 0,
+                "accounting_category_id": "accounting_category_id",
+                "description": "description",
+                "metadata": {
+                    "key": "value",
+                    "foo": "bar",
+                    "modern": "treasury",
+                },
+            }],
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -986,19 +988,15 @@ class TestAsyncPaymentOrders:
             process_after=parse_datetime("2019-12-27T18:11:19.117Z"),
             purpose="purpose",
             receiving_account={
-                "account_details": [
-                    {
-                        "account_number": "account_number",
-                        "account_number_type": "au_number",
-                    }
-                ],
+                "account_details": [{
+                    "account_number": "account_number",
+                    "account_number_type": "au_number",
+                }],
                 "account_type": "base_wallet",
-                "contact_details": [
-                    {
-                        "contact_identifier": "contact_identifier",
-                        "contact_identifier_type": "email",
-                    }
-                ],
+                "contact_details": [{
+                    "contact_identifier": "contact_identifier",
+                    "contact_identifier_type": "email",
+                }],
                 "external_id": "external_id",
                 "ledger_account": {
                     "currency": "currency",
@@ -1035,13 +1033,11 @@ class TestAsyncPaymentOrders:
                 "party_name": "party_name",
                 "party_type": "business",
                 "plaid_processor_token": "plaid_processor_token",
-                "routing_details": [
-                    {
-                        "routing_number": "routing_number",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    }
-                ],
+                "routing_details": [{
+                    "routing_number": "routing_number",
+                    "routing_number_type": "aba",
+                    "payment_type": "ach",
+                }],
             },
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             reconciliation_status="unreconciled",
@@ -1056,43 +1052,44 @@ class TestAsyncPaymentOrders:
             ultimate_receiving_party_identifier="ultimate_receiving_party_identifier",
             ultimate_receiving_party_name="ultimate_receiving_party_name",
         )
-        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+        assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.payment_orders.with_raw_response.update(
             id="id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         payment_order = response.parse()
-        assert_matches_type(PaymentOrder, payment_order, path=["response"])
+        assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.payment_orders.with_streaming_response.update(
             id="id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             payment_order = await response.parse()
-            assert_matches_type(PaymentOrder, payment_order, path=["response"])
+            assert_matches_type(PaymentOrder, payment_order, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.payment_orders.with_raw_response.update(
-                id="",
-            )
+          await async_client.payment_orders.with_raw_response.update(
+              id="",
+          )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncModernTreasury) -> None:
         payment_order = await async_client.payment_orders.list()
-        assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=["response"])
+        assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=['response'])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
@@ -1105,7 +1102,9 @@ class TestAsyncPaymentOrders:
             effective_date_end=parse_date("2019-12-27"),
             effective_date_start=parse_date("2019-12-27"),
             external_id="external_id",
-            metadata={"foo": "string"},
+            metadata={
+                "foo": "string"
+            },
             originating_account_id="originating_account_id",
             per_page=0,
             priority="high",
@@ -1116,25 +1115,26 @@ class TestAsyncPaymentOrders:
             transaction_id="transaction_id",
             type="ach",
         )
-        assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=["response"])
+        assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=['response'])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.payment_orders.with_raw_response.list()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         payment_order = response.parse()
-        assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=["response"])
+        assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=['response'])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncModernTreasury) -> None:
-        async with async_client.payment_orders.with_streaming_response.list() as response:
+        async with async_client.payment_orders.with_streaming_response.list() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             payment_order = await response.parse()
-            assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=["response"])
+            assert_matches_type(AsyncPage[PaymentOrder], payment_order, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1146,7 +1146,7 @@ class TestAsyncPaymentOrders:
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="ach",
         )
-        assert_matches_type(AsyncResponse, payment_order, path=["response"])
+        assert_matches_type(AsyncResponse, payment_order, path=['response'])
 
     @parametrize
     async def test_method_create_async_with_all_params(self, async_client: AsyncModernTreasury) -> None:
@@ -1171,25 +1171,29 @@ class TestAsyncPaymentOrders:
             foreign_exchange_contract="foreign_exchange_contract",
             foreign_exchange_indicator="fixed_to_variable",
             ledger_transaction={
-                "ledger_entries": [
-                    {
-                        "direction": "credit",
-                        "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "amount": 0,
-                        "amount_string": "amount_string",
-                        "available_balance_amount": {"foo": 0},
-                        "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                        "lock_version": 0,
-                        "metadata": {
-                            "key": "value",
-                            "foo": "bar",
-                            "modern": "treasury",
-                        },
-                        "pending_balance_amount": {"foo": 0},
-                        "posted_balance_amount": {"foo": 0},
-                        "show_resulting_ledger_account_balances": True,
-                    }
-                ],
+                "ledger_entries": [{
+                    "direction": "credit",
+                    "ledger_account_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "amount": 0,
+                    "amount_string": "amount_string",
+                    "available_balance_amount": {
+                        "foo": 0
+                    },
+                    "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "lock_version": 0,
+                    "metadata": {
+                        "key": "value",
+                        "foo": "bar",
+                        "modern": "treasury",
+                    },
+                    "pending_balance_amount": {
+                        "foo": 0
+                    },
+                    "posted_balance_amount": {
+                        "foo": 0
+                    },
+                    "show_resulting_ledger_account_balances": True,
+                }],
                 "description": "description",
                 "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "effective_date": parse_date("2019-12-27"),
@@ -1204,18 +1208,16 @@ class TestAsyncPaymentOrders:
                 "status": "archived",
             },
             ledger_transaction_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            line_items=[
-                {
-                    "amount": 0,
-                    "accounting_category_id": "accounting_category_id",
-                    "description": "description",
-                    "metadata": {
-                        "key": "value",
-                        "foo": "bar",
-                        "modern": "treasury",
-                    },
-                }
-            ],
+            line_items=[{
+                "amount": 0,
+                "accounting_category_id": "accounting_category_id",
+                "description": "description",
+                "metadata": {
+                    "key": "value",
+                    "foo": "bar",
+                    "modern": "treasury",
+                },
+            }],
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -1227,19 +1229,15 @@ class TestAsyncPaymentOrders:
             process_after=parse_datetime("2019-12-27T18:11:19.117Z"),
             purpose="purpose",
             receiving_account={
-                "account_details": [
-                    {
-                        "account_number": "account_number",
-                        "account_number_type": "au_number",
-                    }
-                ],
+                "account_details": [{
+                    "account_number": "account_number",
+                    "account_number_type": "au_number",
+                }],
                 "account_type": "base_wallet",
-                "contact_details": [
-                    {
-                        "contact_identifier": "contact_identifier",
-                        "contact_identifier_type": "email",
-                    }
-                ],
+                "contact_details": [{
+                    "contact_identifier": "contact_identifier",
+                    "contact_identifier_type": "email",
+                }],
                 "external_id": "external_id",
                 "ledger_account": {
                     "currency": "currency",
@@ -1276,13 +1274,11 @@ class TestAsyncPaymentOrders:
                 "party_name": "party_name",
                 "party_type": "business",
                 "plaid_processor_token": "plaid_processor_token",
-                "routing_details": [
-                    {
-                        "routing_number": "routing_number",
-                        "routing_number_type": "aba",
-                        "payment_type": "ach",
-                    }
-                ],
+                "routing_details": [{
+                    "routing_number": "routing_number",
+                    "routing_number_type": "aba",
+                    "payment_type": "ach",
+                }],
             },
             receiving_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             reconciliation_status="unreconciled",
@@ -1306,10 +1302,11 @@ class TestAsyncPaymentOrders:
             ultimate_receiving_party_name="ultimate_receiving_party_name",
             vendor_attributes={},
         )
-        assert_matches_type(AsyncResponse, payment_order, path=["response"])
+        assert_matches_type(AsyncResponse, payment_order, path=['response'])
 
     @parametrize
     async def test_raw_response_create_async(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.payment_orders.with_raw_response.create_async(
             amount=0,
             direction="credit",
@@ -1318,9 +1315,9 @@ class TestAsyncPaymentOrders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         payment_order = response.parse()
-        assert_matches_type(AsyncResponse, payment_order, path=["response"])
+        assert_matches_type(AsyncResponse, payment_order, path=['response'])
 
     @parametrize
     async def test_streaming_response_create_async(self, async_client: AsyncModernTreasury) -> None:
@@ -1329,11 +1326,11 @@ class TestAsyncPaymentOrders:
             direction="credit",
             originating_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             type="ach",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             payment_order = await response.parse()
-            assert_matches_type(AsyncResponse, payment_order, path=["response"])
+            assert_matches_type(AsyncResponse, payment_order, path=['response'])
 
         assert cast(Any, response.is_closed) is True

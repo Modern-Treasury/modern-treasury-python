@@ -2,27 +2,45 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-from typing_extensions import Literal
-
 import httpx
 
-from .. import _legacy_response
-from ..types import payment_action_list_params, payment_action_create_params, payment_action_update_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.payment_action_list_response import PaymentActionListResponse
+
+from .._compat import cached_property
+
 from ..types.payment_action_create_response import PaymentActionCreateResponse
-from ..types.payment_action_update_response import PaymentActionUpdateResponse
+
+from .._utils import maybe_transform, path_template, async_maybe_transform
+
+from .._base_client import make_request_options, AsyncPaginator
+
+from .._types import Omit, omit, NotGiven
+
 from ..types.payment_action_retrieve_response import PaymentActionRetrieveResponse
 
-__all__ = ["PaymentActions", "AsyncPaymentActions"]
+from ..types.payment_action_update_response import PaymentActionUpdateResponse
 
+from typing_extensions import Literal
+
+from ..types.payment_action_list_response import PaymentActionListResponse
+
+from ..pagination import SyncPage, AsyncPage
+
+from typing import Optional, Dict
+
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ..types import payment_action_list_params
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import payment_action_create_params
+from ..types import payment_action_update_params
+from ..types import payment_action_list_params
+
+__all__ = ["PaymentActions", "AsyncPaymentActions"]
 
 class PaymentActions(SyncAPIResource):
     @cached_property
@@ -44,22 +62,20 @@ class PaymentActions(SyncAPIResource):
         """
         return PaymentActionsWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        type: str,
-        actionable_id: str | Omit = omit,
-        actionable_type: str | Omit = omit,
-        details: object | Omit = omit,
-        internal_account_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> PaymentActionCreateResponse:
+    def create(self,
+    *,
+    type: str,
+    actionable_id: str | Omit = omit,
+    actionable_type: str | Omit = omit,
+    details: object | Omit = omit,
+    internal_account_id: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> PaymentActionCreateResponse:
         """Create a payment action.
 
         Args:
@@ -89,37 +105,26 @@ class PaymentActions(SyncAPIResource):
         """
         return self._post(
             "/api/payment_actions",
-            body=maybe_transform(
-                {
-                    "type": type,
-                    "actionable_id": actionable_id,
-                    "actionable_type": actionable_type,
-                    "details": details,
-                    "internal_account_id": internal_account_id,
-                },
-                payment_action_create_params.PaymentActionCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "type": type,
+                "actionable_id": actionable_id,
+                "actionable_type": actionable_type,
+                "details": details,
+                "internal_account_id": internal_account_id,
+            }, payment_action_create_params.PaymentActionCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=PaymentActionCreateResponse,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PaymentActionRetrieveResponse:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> PaymentActionRetrieveResponse:
         """
         Get details on a single payment action.
 
@@ -133,28 +138,26 @@ class PaymentActions(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/payment_actions/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=PaymentActionRetrieveResponse,
         )
 
-    def update(
-        self,
-        id: str,
-        *,
-        status: Literal["pending", "processable", "processing", "sent", "acknowledged", "failed", "cancelled"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> PaymentActionUpdateResponse:
+    def update(self,
+    id: str,
+    *,
+    status: Literal["pending", "processable", "processing", "sent", "acknowledged", "failed", "cancelled"],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> PaymentActionUpdateResponse:
         """Update a single payment action.
 
         Args:
@@ -175,40 +178,35 @@ class PaymentActions(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._patch(
             path_template("/api/payment_actions/{id}", id=id),
-            body=maybe_transform({"status": status}, payment_action_update_params.PaymentActionUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "status": status
+            }, payment_action_update_params.PaymentActionUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=PaymentActionUpdateResponse,
         )
 
-    def list(
-        self,
-        *,
-        actionable_id: str | Omit = omit,
-        actionable_type: str | Omit = omit,
-        after_cursor: Optional[str] | Omit = omit,
-        created_at: payment_action_list_params.CreatedAt | Omit = omit,
-        internal_account_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        per_page: int | Omit = omit,
-        status: Literal["pending", "processable", "processing", "sent", "acknowledged", "failed", "cancelled"]
-        | Omit = omit,
-        type: Literal["stop", "issue"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[PaymentActionListResponse]:
+    def list(self,
+    *,
+    actionable_id: str | Omit = omit,
+    actionable_type: str | Omit = omit,
+    after_cursor: Optional[str] | Omit = omit,
+    created_at: payment_action_list_params.CreatedAt | Omit = omit,
+    internal_account_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    per_page: int | Omit = omit,
+    status: Literal["pending", "processable", "processing", "sent", "acknowledged", "failed", "cancelled"] | Omit = omit,
+    type: Literal["stop", "issue"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[PaymentActionListResponse]:
         """
         Get a list of all payment actions.
 
@@ -242,30 +240,20 @@ class PaymentActions(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/payment_actions",
-            page=SyncPage[PaymentActionListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "actionable_id": actionable_id,
-                        "actionable_type": actionable_type,
-                        "after_cursor": after_cursor,
-                        "created_at": created_at,
-                        "internal_account_id": internal_account_id,
-                        "metadata": metadata,
-                        "per_page": per_page,
-                        "status": status,
-                        "type": type,
-                    },
-                    payment_action_list_params.PaymentActionListParams,
-                ),
-            ),
+            page = SyncPage[PaymentActionListResponse],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "actionable_id": actionable_id,
+                "actionable_type": actionable_type,
+                "after_cursor": after_cursor,
+                "created_at": created_at,
+                "internal_account_id": internal_account_id,
+                "metadata": metadata,
+                "per_page": per_page,
+                "status": status,
+                "type": type,
+            }, payment_action_list_params.PaymentActionListParams)),
             model=PaymentActionListResponse,
         )
-
 
 class AsyncPaymentActions(AsyncAPIResource):
     @cached_property
@@ -287,22 +275,20 @@ class AsyncPaymentActions(AsyncAPIResource):
         """
         return AsyncPaymentActionsWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        type: str,
-        actionable_id: str | Omit = omit,
-        actionable_type: str | Omit = omit,
-        details: object | Omit = omit,
-        internal_account_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> PaymentActionCreateResponse:
+    async def create(self,
+    *,
+    type: str,
+    actionable_id: str | Omit = omit,
+    actionable_type: str | Omit = omit,
+    details: object | Omit = omit,
+    internal_account_id: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> PaymentActionCreateResponse:
         """Create a payment action.
 
         Args:
@@ -332,37 +318,26 @@ class AsyncPaymentActions(AsyncAPIResource):
         """
         return await self._post(
             "/api/payment_actions",
-            body=await async_maybe_transform(
-                {
-                    "type": type,
-                    "actionable_id": actionable_id,
-                    "actionable_type": actionable_type,
-                    "details": details,
-                    "internal_account_id": internal_account_id,
-                },
-                payment_action_create_params.PaymentActionCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "type": type,
+                "actionable_id": actionable_id,
+                "actionable_type": actionable_type,
+                "details": details,
+                "internal_account_id": internal_account_id,
+            }, payment_action_create_params.PaymentActionCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=PaymentActionCreateResponse,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PaymentActionRetrieveResponse:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> PaymentActionRetrieveResponse:
         """
         Get details on a single payment action.
 
@@ -376,28 +351,26 @@ class AsyncPaymentActions(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/payment_actions/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=PaymentActionRetrieveResponse,
         )
 
-    async def update(
-        self,
-        id: str,
-        *,
-        status: Literal["pending", "processable", "processing", "sent", "acknowledged", "failed", "cancelled"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> PaymentActionUpdateResponse:
+    async def update(self,
+    id: str,
+    *,
+    status: Literal["pending", "processable", "processing", "sent", "acknowledged", "failed", "cancelled"],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> PaymentActionUpdateResponse:
         """Update a single payment action.
 
         Args:
@@ -418,42 +391,35 @@ class AsyncPaymentActions(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._patch(
             path_template("/api/payment_actions/{id}", id=id),
-            body=await async_maybe_transform(
-                {"status": status}, payment_action_update_params.PaymentActionUpdateParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "status": status
+            }, payment_action_update_params.PaymentActionUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=PaymentActionUpdateResponse,
         )
 
-    def list(
-        self,
-        *,
-        actionable_id: str | Omit = omit,
-        actionable_type: str | Omit = omit,
-        after_cursor: Optional[str] | Omit = omit,
-        created_at: payment_action_list_params.CreatedAt | Omit = omit,
-        internal_account_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        per_page: int | Omit = omit,
-        status: Literal["pending", "processable", "processing", "sent", "acknowledged", "failed", "cancelled"]
-        | Omit = omit,
-        type: Literal["stop", "issue"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PaymentActionListResponse, AsyncPage[PaymentActionListResponse]]:
+    def list(self,
+    *,
+    actionable_id: str | Omit = omit,
+    actionable_type: str | Omit = omit,
+    after_cursor: Optional[str] | Omit = omit,
+    created_at: payment_action_list_params.CreatedAt | Omit = omit,
+    internal_account_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    per_page: int | Omit = omit,
+    status: Literal["pending", "processable", "processing", "sent", "acknowledged", "failed", "cancelled"] | Omit = omit,
+    type: Literal["stop", "issue"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[PaymentActionListResponse, AsyncPage[PaymentActionListResponse]]:
         """
         Get a list of all payment actions.
 
@@ -487,30 +453,20 @@ class AsyncPaymentActions(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/payment_actions",
-            page=AsyncPage[PaymentActionListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "actionable_id": actionable_id,
-                        "actionable_type": actionable_type,
-                        "after_cursor": after_cursor,
-                        "created_at": created_at,
-                        "internal_account_id": internal_account_id,
-                        "metadata": metadata,
-                        "per_page": per_page,
-                        "status": status,
-                        "type": type,
-                    },
-                    payment_action_list_params.PaymentActionListParams,
-                ),
-            ),
+            page = AsyncPage[PaymentActionListResponse],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "actionable_id": actionable_id,
+                "actionable_type": actionable_type,
+                "after_cursor": after_cursor,
+                "created_at": created_at,
+                "internal_account_id": internal_account_id,
+                "metadata": metadata,
+                "per_page": per_page,
+                "status": status,
+                "type": type,
+            }, payment_action_list_params.PaymentActionListParams)),
             model=PaymentActionListResponse,
         )
-
 
 class PaymentActionsWithRawResponse:
     def __init__(self, payment_actions: PaymentActions) -> None:
@@ -529,7 +485,6 @@ class PaymentActionsWithRawResponse:
             payment_actions.list,
         )
 
-
 class AsyncPaymentActionsWithRawResponse:
     def __init__(self, payment_actions: AsyncPaymentActions) -> None:
         self._payment_actions = payment_actions
@@ -547,7 +502,6 @@ class AsyncPaymentActionsWithRawResponse:
             payment_actions.list,
         )
 
-
 class PaymentActionsWithStreamingResponse:
     def __init__(self, payment_actions: PaymentActions) -> None:
         self._payment_actions = payment_actions
@@ -564,7 +518,6 @@ class PaymentActionsWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             payment_actions.list,
         )
-
 
 class AsyncPaymentActionsWithStreamingResponse:
     def __init__(self, payment_actions: AsyncPaymentActions) -> None:

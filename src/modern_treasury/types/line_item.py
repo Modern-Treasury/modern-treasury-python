@@ -1,13 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 from .._models import BaseModel
 
-__all__ = ["LineItem", "Accounting"]
+from typing import Optional, Dict
 
+from datetime import datetime
+
+from typing_extensions import Literal
+
+__all__ = ["LineItem", "Accounting"]
 
 class Accounting(BaseModel):
     account_id: Optional[str] = None
@@ -24,7 +25,6 @@ class Accounting(BaseModel):
     Note that these will only be accessible if your accounting system has been
     connected.
     """
-
 
 class LineItem(BaseModel):
     id: str

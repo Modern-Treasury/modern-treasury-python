@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-from typing_extensions import Literal, TypedDict
+from typing_extensions import TypedDict, Literal
+
+from typing import Optional, Dict
 
 from .shared.currency import Currency
+
 from .shared.transaction_direction import TransactionDirection
 
 __all__ = ["InternalAccountListParams"]
-
 
 class InternalAccountListParams(TypedDict, total=False):
     after_cursor: Optional[str]
@@ -36,33 +37,7 @@ class InternalAccountListParams(TypedDict, total=False):
     payment_direction: TransactionDirection
     """Only return internal accounts that can originate payments with this direction."""
 
-    payment_type: Literal[
-        "ach",
-        "au_becs",
-        "bacs",
-        "book",
-        "card",
-        "chats",
-        "check",
-        "cross_border",
-        "dk_nets",
-        "eft",
-        "gb_fps",
-        "masav",
-        "mx_ccen",
-        "neft",
-        "nics",
-        "nz_becs",
-        "pl_elixir",
-        "rtp",
-        "se_bankgirot",
-        "sepa",
-        "sg_giro",
-        "sic",
-        "stablecoin",
-        "wire",
-        "zengin",
-    ]
+    payment_type: Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin"]
     """Only return internal accounts that can make this type of payment."""
 
     per_page: int

@@ -6,7 +6,6 @@ from typing_extensions import TypedDict
 
 __all__ = ["JournalReportUpdateParams"]
 
-
 class JournalReportUpdateParams(TypedDict, total=False):
     metadata: object
 

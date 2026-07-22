@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing_extensions import TypedDict, Annotated
+
+from typing import Optional, Union, Dict
+
 from datetime import date, datetime
-from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
 __all__ = ["ForeignExchangeQuoteListParams"]
-
 
 class ForeignExchangeQuoteListParams(TypedDict, total=False):
     after_cursor: Optional[str]
@@ -17,13 +18,13 @@ class ForeignExchangeQuoteListParams(TypedDict, total=False):
     base_currency: str
     """Currency to convert, often called the "sell" currency."""
 
-    effective_at_end: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    effective_at_end: Annotated[Union[str, date], PropertyInfo(format = "iso8601")]
     """An inclusive upper bound for searching effective_at"""
 
-    effective_at_start: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    effective_at_start: Annotated[Union[str, date], PropertyInfo(format = "iso8601")]
     """An inclusive lower bound for searching effective_at"""
 
-    expires_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    expires_at: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """The timestamp until which the quote must be booked by."""
 
     internal_account_id: str

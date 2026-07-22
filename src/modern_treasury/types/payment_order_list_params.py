@@ -2,33 +2,35 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing_extensions import TypedDict, Annotated, Literal
+
+from typing import Optional, Union, Dict
+
 from datetime import date, datetime
-from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
+
 from .shared.transaction_direction import TransactionDirection
 
 __all__ = ["PaymentOrderListParams"]
-
 
 class PaymentOrderListParams(TypedDict, total=False):
     after_cursor: Optional[str]
 
     counterparty_id: str
 
-    created_at_end: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    created_at_end: Annotated[Union[str, date], PropertyInfo(format = "iso8601")]
     """An inclusive upper bound for searching created_at"""
 
-    created_at_start: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    created_at_start: Annotated[Union[str, date], PropertyInfo(format = "iso8601")]
     """An inclusive lower bound for searching created_at"""
 
     direction: TransactionDirection
 
-    effective_date_end: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    effective_date_end: Annotated[Union[str, date], PropertyInfo(format = "iso8601")]
     """An inclusive upper bound for searching effective_date"""
 
-    effective_date_start: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    effective_date_start: Annotated[Union[str, date], PropertyInfo(format = "iso8601")]
     """An inclusive lower bound for searching effective_date"""
 
     external_id: str
@@ -52,58 +54,18 @@ class PaymentOrderListParams(TypedDict, total=False):
     standard mail.
     """
 
-    process_after_end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    process_after_end: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """An inclusive upper bound for searching process_after"""
 
-    process_after_start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    process_after_start: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """An inclusive lower bound for searching process_after"""
 
     reference_number: str
     """Query for records with the provided reference number"""
 
-    status: Literal[
-        "approved",
-        "cancelled",
-        "completed",
-        "denied",
-        "failed",
-        "held",
-        "needs_approval",
-        "pending",
-        "processing",
-        "returned",
-        "reversed",
-        "sent",
-        "stopped",
-    ]
+    status: Literal["approved", "cancelled", "completed", "denied", "failed", "held", "needs_approval", "pending", "processing", "returned", "reversed", "sent", "stopped"]
 
     transaction_id: str
     """The ID of a transaction that the payment order has been reconciled to."""
 
-    type: Literal[
-        "ach",
-        "au_becs",
-        "bacs",
-        "book",
-        "card",
-        "chats",
-        "check",
-        "cross_border",
-        "dk_nets",
-        "eft",
-        "gb_fps",
-        "masav",
-        "mx_ccen",
-        "neft",
-        "nics",
-        "nz_becs",
-        "pl_elixir",
-        "rtp",
-        "se_bankgirot",
-        "sepa",
-        "sg_giro",
-        "sic",
-        "stablecoin",
-        "wire",
-        "zengin",
-    ]
+    type: Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin"]

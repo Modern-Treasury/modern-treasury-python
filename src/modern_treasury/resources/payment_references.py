@@ -2,25 +2,37 @@
 
 from __future__ import annotations
 
-import typing_extensions
-from typing import Optional
-from typing_extensions import Literal
-
 import httpx
 
-from .. import _legacy_response
-from ..types import payment_reference_list_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform
-from .._compat import cached_property
+import typing_extensions
+
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
+
+from .._compat import cached_property
+
+from .._utils import path_template, maybe_transform
+
 from ..types.payment_reference import PaymentReference
 
-__all__ = ["PaymentReferences", "AsyncPaymentReferences"]
+from .._base_client import make_request_options, AsyncPaginator
 
+from .._types import NotGiven, Omit, omit
+
+from ..pagination import SyncPage, AsyncPage
+
+from typing import Optional
+
+from typing_extensions import Literal
+
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import payment_reference_list_params
+
+__all__ = ["PaymentReferences", "AsyncPaymentReferences"]
 
 class PaymentReferences(SyncAPIResource):
     @cached_property
@@ -42,17 +54,15 @@ class PaymentReferences(SyncAPIResource):
         """
         return PaymentReferencesWithStreamingResponse(self)
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PaymentReference:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> PaymentReference:
         """
         get payment_reference
 
@@ -66,30 +76,28 @@ class PaymentReferences(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/payment_references/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=PaymentReference,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        per_page: int | Omit = omit,
-        reference_number: str | Omit = omit,
-        referenceable_id: str | Omit = omit,
-        referenceable_type: Literal["payment_order", "return", "reversal"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[PaymentReference]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    per_page: int | Omit = omit,
+    reference_number: str | Omit = omit,
+    referenceable_id: str | Omit = omit,
+    referenceable_type: Literal["payment_order", "return", "reversal"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[PaymentReference]:
         """
         list payment_references
 
@@ -112,38 +120,27 @@ class PaymentReferences(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/payment_references",
-            page=SyncPage[PaymentReference],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "reference_number": reference_number,
-                        "referenceable_id": referenceable_id,
-                        "referenceable_type": referenceable_type,
-                    },
-                    payment_reference_list_params.PaymentReferenceListParams,
-                ),
-            ),
+            page = SyncPage[PaymentReference],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "per_page": per_page,
+                "reference_number": reference_number,
+                "referenceable_id": referenceable_id,
+                "referenceable_type": referenceable_type,
+            }, payment_reference_list_params.PaymentReferenceListParams)),
             model=PaymentReference,
         )
 
     @typing_extensions.deprecated("use `retrieve` instead")
-    def retireve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PaymentReference:
+    def retireve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> PaymentReference:
         """
         get payment_reference
 
@@ -156,10 +153,7 @@ class PaymentReferences(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self.retrieve(
-            id=id, extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-        )
-
+        return self.retrieve(id=id, extra_headers = extra_headers, extra_query = extra_query, extra_body = extra_body, timeout = timeout)
 
 class AsyncPaymentReferences(AsyncAPIResource):
     @cached_property
@@ -181,17 +175,15 @@ class AsyncPaymentReferences(AsyncAPIResource):
         """
         return AsyncPaymentReferencesWithStreamingResponse(self)
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PaymentReference:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> PaymentReference:
         """
         get payment_reference
 
@@ -205,30 +197,28 @@ class AsyncPaymentReferences(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/payment_references/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=PaymentReference,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        per_page: int | Omit = omit,
-        reference_number: str | Omit = omit,
-        referenceable_id: str | Omit = omit,
-        referenceable_type: Literal["payment_order", "return", "reversal"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PaymentReference, AsyncPage[PaymentReference]]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    per_page: int | Omit = omit,
+    reference_number: str | Omit = omit,
+    referenceable_id: str | Omit = omit,
+    referenceable_type: Literal["payment_order", "return", "reversal"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[PaymentReference, AsyncPage[PaymentReference]]:
         """
         list payment_references
 
@@ -251,38 +241,27 @@ class AsyncPaymentReferences(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/payment_references",
-            page=AsyncPage[PaymentReference],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "per_page": per_page,
-                        "reference_number": reference_number,
-                        "referenceable_id": referenceable_id,
-                        "referenceable_type": referenceable_type,
-                    },
-                    payment_reference_list_params.PaymentReferenceListParams,
-                ),
-            ),
+            page = AsyncPage[PaymentReference],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "per_page": per_page,
+                "reference_number": reference_number,
+                "referenceable_id": referenceable_id,
+                "referenceable_type": referenceable_type,
+            }, payment_reference_list_params.PaymentReferenceListParams)),
             model=PaymentReference,
         )
 
     @typing_extensions.deprecated("use `retrieve` instead")
-    async def retireve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PaymentReference:
+    async def retireve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> PaymentReference:
         """
         get payment_reference
 
@@ -295,10 +274,7 @@ class AsyncPaymentReferences(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self.retrieve(
-            id=id, extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-        )
-
+        return await self.retrieve(id=id, extra_headers = extra_headers, extra_query = extra_query, extra_body = extra_body, timeout = timeout)
 
 class PaymentReferencesWithRawResponse:
     def __init__(self, payment_references: PaymentReferences) -> None:
@@ -311,11 +287,10 @@ class PaymentReferencesWithRawResponse:
             payment_references.list,
         )
         self.retireve = (  # pyright: ignore[reportDeprecated]
-            _legacy_response.to_raw_response_wrapper(
-                payment_references.retireve,  # pyright: ignore[reportDeprecated],
-            )
+        _legacy_response.to_raw_response_wrapper(
+            payment_references.retireve , # pyright: ignore[reportDeprecated],
         )
-
+        )
 
 class AsyncPaymentReferencesWithRawResponse:
     def __init__(self, payment_references: AsyncPaymentReferences) -> None:
@@ -328,11 +303,10 @@ class AsyncPaymentReferencesWithRawResponse:
             payment_references.list,
         )
         self.retireve = (  # pyright: ignore[reportDeprecated]
-            _legacy_response.async_to_raw_response_wrapper(
-                payment_references.retireve,  # pyright: ignore[reportDeprecated],
-            )
+        _legacy_response.async_to_raw_response_wrapper(
+            payment_references.retireve , # pyright: ignore[reportDeprecated],
         )
-
+        )
 
 class PaymentReferencesWithStreamingResponse:
     def __init__(self, payment_references: PaymentReferences) -> None:
@@ -345,11 +319,10 @@ class PaymentReferencesWithStreamingResponse:
             payment_references.list,
         )
         self.retireve = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                payment_references.retireve,  # pyright: ignore[reportDeprecated],
-            )
+        to_streamed_response_wrapper(
+            payment_references.retireve , # pyright: ignore[reportDeprecated],
         )
-
+        )
 
 class AsyncPaymentReferencesWithStreamingResponse:
     def __init__(self, payment_references: AsyncPaymentReferences) -> None:
@@ -362,7 +335,7 @@ class AsyncPaymentReferencesWithStreamingResponse:
             payment_references.list,
         )
         self.retireve = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                payment_references.retireve,  # pyright: ignore[reportDeprecated],
-            )
+        async_to_streamed_response_wrapper(
+            payment_references.retireve , # pyright: ignore[reportDeprecated],
+        )
         )

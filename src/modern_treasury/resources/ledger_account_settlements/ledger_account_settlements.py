@@ -2,37 +2,41 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 import httpx
 
-from ... import _legacy_response
-from ...types import (
-    ledger_account_settlement_list_params,
-    ledger_account_settlement_create_params,
-    ledger_account_settlement_update_params,
-)
-from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
-from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ...pagination import SyncPage, AsyncPage
-from ..._base_client import AsyncPaginator, make_request_options
-from .account_entries import (
-    AccountEntries,
-    AsyncAccountEntries,
-    AccountEntriesWithRawResponse,
-    AsyncAccountEntriesWithRawResponse,
-    AccountEntriesWithStreamingResponse,
-    AsyncAccountEntriesWithStreamingResponse,
-)
+
+from .account_entries import AccountEntries, AsyncAccountEntries, AccountEntriesWithRawResponse, AsyncAccountEntriesWithRawResponse, AccountEntriesWithStreamingResponse, AsyncAccountEntriesWithStreamingResponse
+
+from ..._compat import cached_property
+
 from ...types.ledger_account_settlement import LedgerAccountSettlement
 
-__all__ = ["LedgerAccountSettlements", "AsyncLedgerAccountSettlements"]
+from ..._utils import maybe_transform, path_template, async_maybe_transform
 
+from ..._base_client import make_request_options, AsyncPaginator
+
+from typing import Optional, Union, Dict
+
+from ..._types import Omit, omit, NotGiven, SequenceNotStr
+
+from datetime import datetime
+
+from typing_extensions import Literal
+
+from ...pagination import SyncPage, AsyncPage
+
+from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ... import _legacy_response
+
+from typing_extensions import Literal, overload
+from ..._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ...types import ledger_account_settlement_create_params
+from ...types import ledger_account_settlement_update_params
+from ...types import ledger_account_settlement_list_params
+
+__all__ = ["LedgerAccountSettlements", "AsyncLedgerAccountSettlements"]
 
 class LedgerAccountSettlements(SyncAPIResource):
     @cached_property
@@ -58,25 +62,23 @@ class LedgerAccountSettlements(SyncAPIResource):
         """
         return LedgerAccountSettlementsWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        contra_ledger_account_id: str,
-        settled_ledger_account_id: str,
-        allow_either_direction: Optional[bool] | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        effective_at_upper_bound: Union[str, datetime, None] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        skip_settlement_ledger_transaction: Optional[bool] | Omit = omit,
-        status: Optional[Literal["pending", "posted", "drafting"]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LedgerAccountSettlement:
+    def create(self,
+    *,
+    contra_ledger_account_id: str,
+    settled_ledger_account_id: str,
+    allow_either_direction: Optional[bool] | Omit = omit,
+    description: Optional[str] | Omit = omit,
+    effective_at_upper_bound: Union[str, datetime, None] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    skip_settlement_ledger_transaction: Optional[bool] | Omit = omit,
+    status: Optional[Literal["pending", "posted", "drafting"]] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LedgerAccountSettlement:
         """
         Create a ledger account settlement.
 
@@ -118,40 +120,29 @@ class LedgerAccountSettlements(SyncAPIResource):
         """
         return self._post(
             "/api/ledger_account_settlements",
-            body=maybe_transform(
-                {
-                    "contra_ledger_account_id": contra_ledger_account_id,
-                    "settled_ledger_account_id": settled_ledger_account_id,
-                    "allow_either_direction": allow_either_direction,
-                    "description": description,
-                    "effective_at_upper_bound": effective_at_upper_bound,
-                    "metadata": metadata,
-                    "skip_settlement_ledger_transaction": skip_settlement_ledger_transaction,
-                    "status": status,
-                },
-                ledger_account_settlement_create_params.LedgerAccountSettlementCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "contra_ledger_account_id": contra_ledger_account_id,
+                "settled_ledger_account_id": settled_ledger_account_id,
+                "allow_either_direction": allow_either_direction,
+                "description": description,
+                "effective_at_upper_bound": effective_at_upper_bound,
+                "metadata": metadata,
+                "skip_settlement_ledger_transaction": skip_settlement_ledger_transaction,
+                "status": status,
+            }, ledger_account_settlement_create_params.LedgerAccountSettlementCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LedgerAccountSettlement,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LedgerAccountSettlement:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> LedgerAccountSettlement:
         """
         Get details on a single ledger account settlement.
 
@@ -165,31 +156,29 @@ class LedgerAccountSettlements(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/ledger_account_settlements/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=LedgerAccountSettlement,
         )
 
-    def update(
-        self,
-        id: str,
-        *,
-        description: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        skip_settlement_ledger_transaction: Optional[bool] | Omit = omit,
-        status: Literal["posted", "archived"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LedgerAccountSettlement:
+    def update(self,
+    id: str,
+    *,
+    description: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    skip_settlement_ledger_transaction: Optional[bool] | Omit = omit,
+    status: Literal["posted", "archived"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LedgerAccountSettlement:
         """
         Update the details of a ledger account settlement.
 
@@ -216,48 +205,39 @@ class LedgerAccountSettlements(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._patch(
             path_template("/api/ledger_account_settlements/{id}", id=id),
-            body=maybe_transform(
-                {
-                    "description": description,
-                    "metadata": metadata,
-                    "skip_settlement_ledger_transaction": skip_settlement_ledger_transaction,
-                    "status": status,
-                },
-                ledger_account_settlement_update_params.LedgerAccountSettlementUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "description": description,
+                "metadata": metadata,
+                "skip_settlement_ledger_transaction": skip_settlement_ledger_transaction,
+                "status": status,
+            }, ledger_account_settlement_update_params.LedgerAccountSettlementUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LedgerAccountSettlement,
         )
 
-    def list(
-        self,
-        *,
-        id: SequenceNotStr[str] | Omit = omit,
-        after_cursor: Optional[str] | Omit = omit,
-        created_at: Dict[str, Union[str, datetime]] | Omit = omit,
-        ledger_id: str | Omit = omit,
-        ledger_transaction_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        per_page: int | Omit = omit,
-        settled_ledger_account_id: str | Omit = omit,
-        settlement_entry_direction: str | Omit = omit,
-        updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[LedgerAccountSettlement]:
+    def list(self,
+    *,
+    id: SequenceNotStr[str] | Omit = omit,
+    after_cursor: Optional[str] | Omit = omit,
+    created_at: Dict[str, Union[str, datetime]] | Omit = omit,
+    ledger_id: str | Omit = omit,
+    ledger_transaction_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    per_page: int | Omit = omit,
+    settled_ledger_account_id: str | Omit = omit,
+    settlement_entry_direction: str | Omit = omit,
+    updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[LedgerAccountSettlement]:
         """
         Get a list of ledger account settlements.
 
@@ -287,31 +267,21 @@ class LedgerAccountSettlements(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/ledger_account_settlements",
-            page=SyncPage[LedgerAccountSettlement],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "id": id,
-                        "after_cursor": after_cursor,
-                        "created_at": created_at,
-                        "ledger_id": ledger_id,
-                        "ledger_transaction_id": ledger_transaction_id,
-                        "metadata": metadata,
-                        "per_page": per_page,
-                        "settled_ledger_account_id": settled_ledger_account_id,
-                        "settlement_entry_direction": settlement_entry_direction,
-                        "updated_at": updated_at,
-                    },
-                    ledger_account_settlement_list_params.LedgerAccountSettlementListParams,
-                ),
-            ),
+            page = SyncPage[LedgerAccountSettlement],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "id": id,
+                "after_cursor": after_cursor,
+                "created_at": created_at,
+                "ledger_id": ledger_id,
+                "ledger_transaction_id": ledger_transaction_id,
+                "metadata": metadata,
+                "per_page": per_page,
+                "settled_ledger_account_id": settled_ledger_account_id,
+                "settlement_entry_direction": settlement_entry_direction,
+                "updated_at": updated_at,
+            }, ledger_account_settlement_list_params.LedgerAccountSettlementListParams)),
             model=LedgerAccountSettlement,
         )
-
 
 class AsyncLedgerAccountSettlements(AsyncAPIResource):
     @cached_property
@@ -337,25 +307,23 @@ class AsyncLedgerAccountSettlements(AsyncAPIResource):
         """
         return AsyncLedgerAccountSettlementsWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        contra_ledger_account_id: str,
-        settled_ledger_account_id: str,
-        allow_either_direction: Optional[bool] | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        effective_at_upper_bound: Union[str, datetime, None] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        skip_settlement_ledger_transaction: Optional[bool] | Omit = omit,
-        status: Optional[Literal["pending", "posted", "drafting"]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LedgerAccountSettlement:
+    async def create(self,
+    *,
+    contra_ledger_account_id: str,
+    settled_ledger_account_id: str,
+    allow_either_direction: Optional[bool] | Omit = omit,
+    description: Optional[str] | Omit = omit,
+    effective_at_upper_bound: Union[str, datetime, None] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    skip_settlement_ledger_transaction: Optional[bool] | Omit = omit,
+    status: Optional[Literal["pending", "posted", "drafting"]] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LedgerAccountSettlement:
         """
         Create a ledger account settlement.
 
@@ -397,40 +365,29 @@ class AsyncLedgerAccountSettlements(AsyncAPIResource):
         """
         return await self._post(
             "/api/ledger_account_settlements",
-            body=await async_maybe_transform(
-                {
-                    "contra_ledger_account_id": contra_ledger_account_id,
-                    "settled_ledger_account_id": settled_ledger_account_id,
-                    "allow_either_direction": allow_either_direction,
-                    "description": description,
-                    "effective_at_upper_bound": effective_at_upper_bound,
-                    "metadata": metadata,
-                    "skip_settlement_ledger_transaction": skip_settlement_ledger_transaction,
-                    "status": status,
-                },
-                ledger_account_settlement_create_params.LedgerAccountSettlementCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "contra_ledger_account_id": contra_ledger_account_id,
+                "settled_ledger_account_id": settled_ledger_account_id,
+                "allow_either_direction": allow_either_direction,
+                "description": description,
+                "effective_at_upper_bound": effective_at_upper_bound,
+                "metadata": metadata,
+                "skip_settlement_ledger_transaction": skip_settlement_ledger_transaction,
+                "status": status,
+            }, ledger_account_settlement_create_params.LedgerAccountSettlementCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LedgerAccountSettlement,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LedgerAccountSettlement:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> LedgerAccountSettlement:
         """
         Get details on a single ledger account settlement.
 
@@ -444,31 +401,29 @@ class AsyncLedgerAccountSettlements(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/ledger_account_settlements/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=LedgerAccountSettlement,
         )
 
-    async def update(
-        self,
-        id: str,
-        *,
-        description: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        skip_settlement_ledger_transaction: Optional[bool] | Omit = omit,
-        status: Literal["posted", "archived"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LedgerAccountSettlement:
+    async def update(self,
+    id: str,
+    *,
+    description: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    skip_settlement_ledger_transaction: Optional[bool] | Omit = omit,
+    status: Literal["posted", "archived"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LedgerAccountSettlement:
         """
         Update the details of a ledger account settlement.
 
@@ -495,48 +450,39 @@ class AsyncLedgerAccountSettlements(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._patch(
             path_template("/api/ledger_account_settlements/{id}", id=id),
-            body=await async_maybe_transform(
-                {
-                    "description": description,
-                    "metadata": metadata,
-                    "skip_settlement_ledger_transaction": skip_settlement_ledger_transaction,
-                    "status": status,
-                },
-                ledger_account_settlement_update_params.LedgerAccountSettlementUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "description": description,
+                "metadata": metadata,
+                "skip_settlement_ledger_transaction": skip_settlement_ledger_transaction,
+                "status": status,
+            }, ledger_account_settlement_update_params.LedgerAccountSettlementUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LedgerAccountSettlement,
         )
 
-    def list(
-        self,
-        *,
-        id: SequenceNotStr[str] | Omit = omit,
-        after_cursor: Optional[str] | Omit = omit,
-        created_at: Dict[str, Union[str, datetime]] | Omit = omit,
-        ledger_id: str | Omit = omit,
-        ledger_transaction_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        per_page: int | Omit = omit,
-        settled_ledger_account_id: str | Omit = omit,
-        settlement_entry_direction: str | Omit = omit,
-        updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[LedgerAccountSettlement, AsyncPage[LedgerAccountSettlement]]:
+    def list(self,
+    *,
+    id: SequenceNotStr[str] | Omit = omit,
+    after_cursor: Optional[str] | Omit = omit,
+    created_at: Dict[str, Union[str, datetime]] | Omit = omit,
+    ledger_id: str | Omit = omit,
+    ledger_transaction_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    per_page: int | Omit = omit,
+    settled_ledger_account_id: str | Omit = omit,
+    settlement_entry_direction: str | Omit = omit,
+    updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[LedgerAccountSettlement, AsyncPage[LedgerAccountSettlement]]:
         """
         Get a list of ledger account settlements.
 
@@ -566,31 +512,21 @@ class AsyncLedgerAccountSettlements(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/ledger_account_settlements",
-            page=AsyncPage[LedgerAccountSettlement],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "id": id,
-                        "after_cursor": after_cursor,
-                        "created_at": created_at,
-                        "ledger_id": ledger_id,
-                        "ledger_transaction_id": ledger_transaction_id,
-                        "metadata": metadata,
-                        "per_page": per_page,
-                        "settled_ledger_account_id": settled_ledger_account_id,
-                        "settlement_entry_direction": settlement_entry_direction,
-                        "updated_at": updated_at,
-                    },
-                    ledger_account_settlement_list_params.LedgerAccountSettlementListParams,
-                ),
-            ),
+            page = AsyncPage[LedgerAccountSettlement],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "id": id,
+                "after_cursor": after_cursor,
+                "created_at": created_at,
+                "ledger_id": ledger_id,
+                "ledger_transaction_id": ledger_transaction_id,
+                "metadata": metadata,
+                "per_page": per_page,
+                "settled_ledger_account_id": settled_ledger_account_id,
+                "settlement_entry_direction": settlement_entry_direction,
+                "updated_at": updated_at,
+            }, ledger_account_settlement_list_params.LedgerAccountSettlementListParams)),
             model=LedgerAccountSettlement,
         )
-
 
 class LedgerAccountSettlementsWithRawResponse:
     def __init__(self, ledger_account_settlements: LedgerAccountSettlements) -> None:
@@ -613,7 +549,6 @@ class LedgerAccountSettlementsWithRawResponse:
     def account_entries(self) -> AccountEntriesWithRawResponse:
         return AccountEntriesWithRawResponse(self._ledger_account_settlements.account_entries)
 
-
 class AsyncLedgerAccountSettlementsWithRawResponse:
     def __init__(self, ledger_account_settlements: AsyncLedgerAccountSettlements) -> None:
         self._ledger_account_settlements = ledger_account_settlements
@@ -635,7 +570,6 @@ class AsyncLedgerAccountSettlementsWithRawResponse:
     def account_entries(self) -> AsyncAccountEntriesWithRawResponse:
         return AsyncAccountEntriesWithRawResponse(self._ledger_account_settlements.account_entries)
 
-
 class LedgerAccountSettlementsWithStreamingResponse:
     def __init__(self, ledger_account_settlements: LedgerAccountSettlements) -> None:
         self._ledger_account_settlements = ledger_account_settlements
@@ -656,7 +590,6 @@ class LedgerAccountSettlementsWithStreamingResponse:
     @cached_property
     def account_entries(self) -> AccountEntriesWithStreamingResponse:
         return AccountEntriesWithStreamingResponse(self._ledger_account_settlements.account_entries)
-
 
 class AsyncLedgerAccountSettlementsWithStreamingResponse:
     def __init__(self, ledger_account_settlements: AsyncLedgerAccountSettlements) -> None:

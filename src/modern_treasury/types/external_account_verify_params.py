@@ -2,12 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import TypedDict, Required, Literal
 
 from .shared.currency import Currency
 
 __all__ = ["ExternalAccountVerifyParams"]
-
 
 class ExternalAccountVerifyParams(TypedDict, total=False):
     originating_account_id: Required[str]
@@ -16,35 +15,7 @@ class ExternalAccountVerifyParams(TypedDict, total=False):
     Both credit and debit capabilities must be enabled.
     """
 
-    payment_type: Required[
-        Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "card",
-            "chats",
-            "check",
-            "cross_border",
-            "dk_nets",
-            "eft",
-            "gb_fps",
-            "masav",
-            "mx_ccen",
-            "neft",
-            "nics",
-            "nz_becs",
-            "pl_elixir",
-            "rtp",
-            "se_bankgirot",
-            "sepa",
-            "sg_giro",
-            "sic",
-            "stablecoin",
-            "wire",
-            "zengin",
-        ]
-    ]
+    payment_type: Required[Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin"]]
     """Can be `ach`, `eft`, or `rtp`."""
 
     currency: Currency

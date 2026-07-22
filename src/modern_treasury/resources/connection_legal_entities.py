@@ -2,28 +2,39 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import Literal
-
 import httpx
 
-from .. import _legacy_response
-from ..types import (
-    connection_legal_entity_list_params,
-    connection_legal_entity_create_params,
-    connection_legal_entity_update_params,
-)
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
+
+from .._compat import cached_property
+
 from ..types.connection_legal_entity import ConnectionLegalEntity
 
-__all__ = ["ConnectionLegalEntities", "AsyncConnectionLegalEntities"]
+from .._utils import maybe_transform, path_template, async_maybe_transform
 
+from .._base_client import make_request_options, AsyncPaginator
+
+from .._types import Omit, omit, NotGiven
+
+from typing_extensions import Literal
+
+from ..pagination import SyncPage, AsyncPage
+
+from typing import Optional
+
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ..types import connection_legal_entity_create_params
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import connection_legal_entity_create_params
+from ..types import connection_legal_entity_update_params
+from ..types import connection_legal_entity_list_params
+
+__all__ = ["ConnectionLegalEntities", "AsyncConnectionLegalEntities"]
 
 class ConnectionLegalEntities(SyncAPIResource):
     @cached_property
@@ -45,20 +56,18 @@ class ConnectionLegalEntities(SyncAPIResource):
         """
         return ConnectionLegalEntitiesWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        connection_id: str,
-        legal_entity: connection_legal_entity_create_params.LegalEntity | Omit = omit,
-        legal_entity_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ConnectionLegalEntity:
+    def create(self,
+    *,
+    connection_id: str,
+    legal_entity: connection_legal_entity_create_params.LegalEntity | Omit = omit,
+    legal_entity_id: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ConnectionLegalEntity:
         """
         Create a connection legal entity.
 
@@ -81,35 +90,24 @@ class ConnectionLegalEntities(SyncAPIResource):
         """
         return self._post(
             "/api/connection_legal_entities",
-            body=maybe_transform(
-                {
-                    "connection_id": connection_id,
-                    "legal_entity": legal_entity,
-                    "legal_entity_id": legal_entity_id,
-                },
-                connection_legal_entity_create_params.ConnectionLegalEntityCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "connection_id": connection_id,
+                "legal_entity": legal_entity,
+                "legal_entity_id": legal_entity_id,
+            }, connection_legal_entity_create_params.ConnectionLegalEntityCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=ConnectionLegalEntity,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConnectionLegalEntity:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> ConnectionLegalEntity:
         """
         Get details on a single connection legal entity.
 
@@ -123,28 +121,26 @@ class ConnectionLegalEntities(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/connection_legal_entities/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=ConnectionLegalEntity,
         )
 
-    def update(
-        self,
-        id: str,
-        *,
-        status: Literal["processing"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ConnectionLegalEntity:
+    def update(self,
+    id: str,
+    *,
+    status: Literal["processing"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ConnectionLegalEntity:
         """
         Update a connection legal entity.
 
@@ -162,37 +158,31 @@ class ConnectionLegalEntities(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._patch(
             path_template("/api/connection_legal_entities/{id}", id=id),
-            body=maybe_transform(
-                {"status": status}, connection_legal_entity_update_params.ConnectionLegalEntityUpdateParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "status": status
+            }, connection_legal_entity_update_params.ConnectionLegalEntityUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=ConnectionLegalEntity,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        connection_id: str | Omit = omit,
-        legal_entity_id: str | Omit = omit,
-        per_page: int | Omit = omit,
-        status: Literal["completed", "denied", "failed", "processing", "suspended"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[ConnectionLegalEntity]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    connection_id: str | Omit = omit,
+    legal_entity_id: str | Omit = omit,
+    per_page: int | Omit = omit,
+    status: Literal["completed", "denied", "failed", "processing", "suspended"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[ConnectionLegalEntity]:
         """
         Get a list of all connection legal entities.
 
@@ -207,26 +197,16 @@ class ConnectionLegalEntities(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/connection_legal_entities",
-            page=SyncPage[ConnectionLegalEntity],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "connection_id": connection_id,
-                        "legal_entity_id": legal_entity_id,
-                        "per_page": per_page,
-                        "status": status,
-                    },
-                    connection_legal_entity_list_params.ConnectionLegalEntityListParams,
-                ),
-            ),
+            page = SyncPage[ConnectionLegalEntity],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "connection_id": connection_id,
+                "legal_entity_id": legal_entity_id,
+                "per_page": per_page,
+                "status": status,
+            }, connection_legal_entity_list_params.ConnectionLegalEntityListParams)),
             model=ConnectionLegalEntity,
         )
-
 
 class AsyncConnectionLegalEntities(AsyncAPIResource):
     @cached_property
@@ -248,20 +228,18 @@ class AsyncConnectionLegalEntities(AsyncAPIResource):
         """
         return AsyncConnectionLegalEntitiesWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        connection_id: str,
-        legal_entity: connection_legal_entity_create_params.LegalEntity | Omit = omit,
-        legal_entity_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ConnectionLegalEntity:
+    async def create(self,
+    *,
+    connection_id: str,
+    legal_entity: connection_legal_entity_create_params.LegalEntity | Omit = omit,
+    legal_entity_id: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ConnectionLegalEntity:
         """
         Create a connection legal entity.
 
@@ -284,35 +262,24 @@ class AsyncConnectionLegalEntities(AsyncAPIResource):
         """
         return await self._post(
             "/api/connection_legal_entities",
-            body=await async_maybe_transform(
-                {
-                    "connection_id": connection_id,
-                    "legal_entity": legal_entity,
-                    "legal_entity_id": legal_entity_id,
-                },
-                connection_legal_entity_create_params.ConnectionLegalEntityCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "connection_id": connection_id,
+                "legal_entity": legal_entity,
+                "legal_entity_id": legal_entity_id,
+            }, connection_legal_entity_create_params.ConnectionLegalEntityCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=ConnectionLegalEntity,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ConnectionLegalEntity:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> ConnectionLegalEntity:
         """
         Get details on a single connection legal entity.
 
@@ -326,28 +293,26 @@ class AsyncConnectionLegalEntities(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/connection_legal_entities/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=ConnectionLegalEntity,
         )
 
-    async def update(
-        self,
-        id: str,
-        *,
-        status: Literal["processing"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ConnectionLegalEntity:
+    async def update(self,
+    id: str,
+    *,
+    status: Literal["processing"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ConnectionLegalEntity:
         """
         Update a connection legal entity.
 
@@ -365,37 +330,31 @@ class AsyncConnectionLegalEntities(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._patch(
             path_template("/api/connection_legal_entities/{id}", id=id),
-            body=await async_maybe_transform(
-                {"status": status}, connection_legal_entity_update_params.ConnectionLegalEntityUpdateParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "status": status
+            }, connection_legal_entity_update_params.ConnectionLegalEntityUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=ConnectionLegalEntity,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        connection_id: str | Omit = omit,
-        legal_entity_id: str | Omit = omit,
-        per_page: int | Omit = omit,
-        status: Literal["completed", "denied", "failed", "processing", "suspended"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ConnectionLegalEntity, AsyncPage[ConnectionLegalEntity]]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    connection_id: str | Omit = omit,
+    legal_entity_id: str | Omit = omit,
+    per_page: int | Omit = omit,
+    status: Literal["completed", "denied", "failed", "processing", "suspended"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[ConnectionLegalEntity, AsyncPage[ConnectionLegalEntity]]:
         """
         Get a list of all connection legal entities.
 
@@ -410,26 +369,16 @@ class AsyncConnectionLegalEntities(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/connection_legal_entities",
-            page=AsyncPage[ConnectionLegalEntity],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "connection_id": connection_id,
-                        "legal_entity_id": legal_entity_id,
-                        "per_page": per_page,
-                        "status": status,
-                    },
-                    connection_legal_entity_list_params.ConnectionLegalEntityListParams,
-                ),
-            ),
+            page = AsyncPage[ConnectionLegalEntity],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "connection_id": connection_id,
+                "legal_entity_id": legal_entity_id,
+                "per_page": per_page,
+                "status": status,
+            }, connection_legal_entity_list_params.ConnectionLegalEntityListParams)),
             model=ConnectionLegalEntity,
         )
-
 
 class ConnectionLegalEntitiesWithRawResponse:
     def __init__(self, connection_legal_entities: ConnectionLegalEntities) -> None:
@@ -448,7 +397,6 @@ class ConnectionLegalEntitiesWithRawResponse:
             connection_legal_entities.list,
         )
 
-
 class AsyncConnectionLegalEntitiesWithRawResponse:
     def __init__(self, connection_legal_entities: AsyncConnectionLegalEntities) -> None:
         self._connection_legal_entities = connection_legal_entities
@@ -466,7 +414,6 @@ class AsyncConnectionLegalEntitiesWithRawResponse:
             connection_legal_entities.list,
         )
 
-
 class ConnectionLegalEntitiesWithStreamingResponse:
     def __init__(self, connection_legal_entities: ConnectionLegalEntities) -> None:
         self._connection_legal_entities = connection_legal_entities
@@ -483,7 +430,6 @@ class ConnectionLegalEntitiesWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             connection_legal_entities.list,
         )
-
 
 class AsyncConnectionLegalEntitiesWithStreamingResponse:
     def __init__(self, connection_legal_entities: AsyncConnectionLegalEntities) -> None:

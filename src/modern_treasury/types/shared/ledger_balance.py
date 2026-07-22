@@ -4,7 +4,6 @@ from ..._models import BaseModel
 
 __all__ = ["LedgerBalance"]
 
-
 class LedgerBalance(BaseModel):
     amount: int
 

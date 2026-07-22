@@ -1,10 +1,10 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from ..._models import BaseModel
+
 from .ledger_balance import LedgerBalance
 
 __all__ = ["LedgerBalances"]
-
 
 class LedgerBalances(BaseModel):
     available_balance: LedgerBalance

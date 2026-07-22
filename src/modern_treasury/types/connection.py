@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from datetime import datetime
-
 from .._models import BaseModel
 
-__all__ = ["Connection"]
+from datetime import datetime
 
+from typing import Optional
+
+__all__ = ["Connection"]
 
 class Connection(BaseModel):
     id: str

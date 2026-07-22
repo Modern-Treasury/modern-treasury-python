@@ -2,31 +2,46 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 import httpx
 
-from .. import _legacy_response
-from ..types import (
-    ledger_account_list_params,
-    ledger_account_create_params,
-    ledger_account_update_params,
-    ledger_account_retrieve_params,
-)
-from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
+
+from .._compat import cached_property
+
 from ..types.ledger_account import LedgerAccount
+
+from .._utils import maybe_transform, path_template, async_maybe_transform
+
+from .._base_client import make_request_options, AsyncPaginator
+
 from ..types.shared.transaction_direction import TransactionDirection
 
-__all__ = ["LedgerAccounts", "AsyncLedgerAccounts"]
+from typing import Optional, Dict, Union
 
+from .._types import Omit, omit, SequenceNotStr, NotGiven
+
+from typing_extensions import Literal
+
+from ..pagination import SyncPage, AsyncPage
+
+from datetime import datetime
+
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ..types import ledger_account_retrieve_params, ledger_account_list_params
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import ledger_account_create_params
+from ..types import ledger_account_retrieve_params
+from ..types import ledger_account_update_params
+from ..types import ledger_account_list_params
+from ..types import shared
+from ..types import shared
+
+__all__ = ["LedgerAccounts", "AsyncLedgerAccounts"]
 
 class LedgerAccounts(SyncAPIResource):
     @cached_property
@@ -48,29 +63,26 @@ class LedgerAccounts(SyncAPIResource):
         """
         return LedgerAccountsWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        currency: str,
-        ledger_id: str,
-        name: str,
-        normal_balance: TransactionDirection,
-        currency_exponent: Optional[int] | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        ledger_account_category_ids: SequenceNotStr[str] | Omit = omit,
-        ledgerable_id: str | Omit = omit,
-        ledgerable_type: Literal["counterparty", "external_account", "internal_account", "virtual_account"]
-        | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LedgerAccount:
+    def create(self,
+    *,
+    currency: str,
+    ledger_id: str,
+    name: str,
+    normal_balance: TransactionDirection,
+    currency_exponent: Optional[int] | Omit = omit,
+    description: Optional[str] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    ledger_account_category_ids: SequenceNotStr[str] | Omit = omit,
+    ledgerable_id: str | Omit = omit,
+    ledgerable_type: Literal["counterparty", "external_account", "internal_account", "virtual_account"] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LedgerAccount:
         """
         Create a ledger account.
 
@@ -114,44 +126,33 @@ class LedgerAccounts(SyncAPIResource):
         """
         return self._post(
             "/api/ledger_accounts",
-            body=maybe_transform(
-                {
-                    "currency": currency,
-                    "ledger_id": ledger_id,
-                    "name": name,
-                    "normal_balance": normal_balance,
-                    "currency_exponent": currency_exponent,
-                    "description": description,
-                    "external_id": external_id,
-                    "ledger_account_category_ids": ledger_account_category_ids,
-                    "ledgerable_id": ledgerable_id,
-                    "ledgerable_type": ledgerable_type,
-                    "metadata": metadata,
-                },
-                ledger_account_create_params.LedgerAccountCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "currency": currency,
+                "ledger_id": ledger_id,
+                "name": name,
+                "normal_balance": normal_balance,
+                "currency_exponent": currency_exponent,
+                "description": description,
+                "external_id": external_id,
+                "ledger_account_category_ids": ledger_account_category_ids,
+                "ledgerable_id": ledgerable_id,
+                "ledgerable_type": ledgerable_type,
+                "metadata": metadata,
+            }, ledger_account_create_params.LedgerAccountCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LedgerAccount,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        balances: ledger_account_retrieve_params.Balances | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LedgerAccount:
+    def retrieve(self,
+    id: str,
+    *,
+    balances: ledger_account_retrieve_params.Balances | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> LedgerAccount:
         """
         Get details on a single ledger account.
 
@@ -172,37 +173,31 @@ class LedgerAccounts(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/ledger_accounts/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {"balances": balances}, ledger_account_retrieve_params.LedgerAccountRetrieveParams
-                ),
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "balances": balances
+            }, ledger_account_retrieve_params.LedgerAccountRetrieveParams)),
             cast_to=LedgerAccount,
         )
 
-    def update(
-        self,
-        id: str,
-        *,
-        description: Optional[str] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        name: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LedgerAccount:
+    def update(self,
+    id: str,
+    *,
+    description: Optional[str] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    name: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LedgerAccount:
         """
         Update the details of a ledger account.
 
@@ -227,54 +222,45 @@ class LedgerAccounts(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._patch(
             path_template("/api/ledger_accounts/{id}", id=id),
-            body=maybe_transform(
-                {
-                    "description": description,
-                    "external_id": external_id,
-                    "metadata": metadata,
-                    "name": name,
-                },
-                ledger_account_update_params.LedgerAccountUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "description": description,
+                "external_id": external_id,
+                "metadata": metadata,
+                "name": name,
+            }, ledger_account_update_params.LedgerAccountUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LedgerAccount,
         )
 
-    def list(
-        self,
-        *,
-        id: SequenceNotStr[str] | Omit = omit,
-        after_cursor: Optional[str] | Omit = omit,
-        available_balance_amount: ledger_account_list_params.AvailableBalanceAmount | Omit = omit,
-        balances: ledger_account_list_params.Balances | Omit = omit,
-        created_at: Dict[str, Union[str, datetime]] | Omit = omit,
-        currency: str | Omit = omit,
-        external_id: str | Omit = omit,
-        ledger_account_category_id: str | Omit = omit,
-        ledger_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        name: SequenceNotStr[str] | Omit = omit,
-        normal_balance: TransactionDirection | Omit = omit,
-        pending_balance_amount: ledger_account_list_params.PendingBalanceAmount | Omit = omit,
-        per_page: int | Omit = omit,
-        posted_balance_amount: ledger_account_list_params.PostedBalanceAmount | Omit = omit,
-        updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[LedgerAccount]:
+    def list(self,
+    *,
+    id: SequenceNotStr[str] | Omit = omit,
+    after_cursor: Optional[str] | Omit = omit,
+    available_balance_amount: ledger_account_list_params.AvailableBalanceAmount | Omit = omit,
+    balances: ledger_account_list_params.Balances | Omit = omit,
+    created_at: Dict[str, Union[str, datetime]] | Omit = omit,
+    currency: str | Omit = omit,
+    external_id: str | Omit = omit,
+    ledger_account_category_id: str | Omit = omit,
+    ledger_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    name: SequenceNotStr[str] | Omit = omit,
+    normal_balance: TransactionDirection | Omit = omit,
+    pending_balance_amount: ledger_account_list_params.PendingBalanceAmount | Omit = omit,
+    per_page: int | Omit = omit,
+    posted_balance_amount: ledger_account_list_params.PostedBalanceAmount | Omit = omit,
+    updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[LedgerAccount]:
         """
         Get a list of ledger accounts.
 
@@ -322,49 +308,38 @@ class LedgerAccounts(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/ledger_accounts",
-            page=SyncPage[LedgerAccount],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "id": id,
-                        "after_cursor": after_cursor,
-                        "available_balance_amount": available_balance_amount,
-                        "balances": balances,
-                        "created_at": created_at,
-                        "currency": currency,
-                        "external_id": external_id,
-                        "ledger_account_category_id": ledger_account_category_id,
-                        "ledger_id": ledger_id,
-                        "metadata": metadata,
-                        "name": name,
-                        "normal_balance": normal_balance,
-                        "pending_balance_amount": pending_balance_amount,
-                        "per_page": per_page,
-                        "posted_balance_amount": posted_balance_amount,
-                        "updated_at": updated_at,
-                    },
-                    ledger_account_list_params.LedgerAccountListParams,
-                ),
-            ),
+            page = SyncPage[LedgerAccount],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "id": id,
+                "after_cursor": after_cursor,
+                "available_balance_amount": available_balance_amount,
+                "balances": balances,
+                "created_at": created_at,
+                "currency": currency,
+                "external_id": external_id,
+                "ledger_account_category_id": ledger_account_category_id,
+                "ledger_id": ledger_id,
+                "metadata": metadata,
+                "name": name,
+                "normal_balance": normal_balance,
+                "pending_balance_amount": pending_balance_amount,
+                "per_page": per_page,
+                "posted_balance_amount": posted_balance_amount,
+                "updated_at": updated_at,
+            }, ledger_account_list_params.LedgerAccountListParams)),
             model=LedgerAccount,
         )
 
-    def delete(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LedgerAccount:
+    def delete(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LedgerAccount:
         """
         Delete a ledger account.
 
@@ -380,19 +355,14 @@ class LedgerAccounts(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._delete(
             path_template("/api/ledger_accounts/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LedgerAccount,
         )
-
 
 class AsyncLedgerAccounts(AsyncAPIResource):
     @cached_property
@@ -414,29 +384,26 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         """
         return AsyncLedgerAccountsWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        currency: str,
-        ledger_id: str,
-        name: str,
-        normal_balance: TransactionDirection,
-        currency_exponent: Optional[int] | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        ledger_account_category_ids: SequenceNotStr[str] | Omit = omit,
-        ledgerable_id: str | Omit = omit,
-        ledgerable_type: Literal["counterparty", "external_account", "internal_account", "virtual_account"]
-        | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LedgerAccount:
+    async def create(self,
+    *,
+    currency: str,
+    ledger_id: str,
+    name: str,
+    normal_balance: TransactionDirection,
+    currency_exponent: Optional[int] | Omit = omit,
+    description: Optional[str] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    ledger_account_category_ids: SequenceNotStr[str] | Omit = omit,
+    ledgerable_id: str | Omit = omit,
+    ledgerable_type: Literal["counterparty", "external_account", "internal_account", "virtual_account"] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LedgerAccount:
         """
         Create a ledger account.
 
@@ -480,44 +447,33 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         """
         return await self._post(
             "/api/ledger_accounts",
-            body=await async_maybe_transform(
-                {
-                    "currency": currency,
-                    "ledger_id": ledger_id,
-                    "name": name,
-                    "normal_balance": normal_balance,
-                    "currency_exponent": currency_exponent,
-                    "description": description,
-                    "external_id": external_id,
-                    "ledger_account_category_ids": ledger_account_category_ids,
-                    "ledgerable_id": ledgerable_id,
-                    "ledgerable_type": ledgerable_type,
-                    "metadata": metadata,
-                },
-                ledger_account_create_params.LedgerAccountCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "currency": currency,
+                "ledger_id": ledger_id,
+                "name": name,
+                "normal_balance": normal_balance,
+                "currency_exponent": currency_exponent,
+                "description": description,
+                "external_id": external_id,
+                "ledger_account_category_ids": ledger_account_category_ids,
+                "ledgerable_id": ledgerable_id,
+                "ledgerable_type": ledgerable_type,
+                "metadata": metadata,
+            }, ledger_account_create_params.LedgerAccountCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LedgerAccount,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        balances: ledger_account_retrieve_params.Balances | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LedgerAccount:
+    async def retrieve(self,
+    id: str,
+    *,
+    balances: ledger_account_retrieve_params.Balances | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> LedgerAccount:
         """
         Get details on a single ledger account.
 
@@ -538,37 +494,31 @@ class AsyncLedgerAccounts(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/ledger_accounts/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"balances": balances}, ledger_account_retrieve_params.LedgerAccountRetrieveParams
-                ),
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
+                "balances": balances
+            }, ledger_account_retrieve_params.LedgerAccountRetrieveParams)),
             cast_to=LedgerAccount,
         )
 
-    async def update(
-        self,
-        id: str,
-        *,
-        description: Optional[str] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        name: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LedgerAccount:
+    async def update(self,
+    id: str,
+    *,
+    description: Optional[str] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    name: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LedgerAccount:
         """
         Update the details of a ledger account.
 
@@ -593,54 +543,45 @@ class AsyncLedgerAccounts(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._patch(
             path_template("/api/ledger_accounts/{id}", id=id),
-            body=await async_maybe_transform(
-                {
-                    "description": description,
-                    "external_id": external_id,
-                    "metadata": metadata,
-                    "name": name,
-                },
-                ledger_account_update_params.LedgerAccountUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "description": description,
+                "external_id": external_id,
+                "metadata": metadata,
+                "name": name,
+            }, ledger_account_update_params.LedgerAccountUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LedgerAccount,
         )
 
-    def list(
-        self,
-        *,
-        id: SequenceNotStr[str] | Omit = omit,
-        after_cursor: Optional[str] | Omit = omit,
-        available_balance_amount: ledger_account_list_params.AvailableBalanceAmount | Omit = omit,
-        balances: ledger_account_list_params.Balances | Omit = omit,
-        created_at: Dict[str, Union[str, datetime]] | Omit = omit,
-        currency: str | Omit = omit,
-        external_id: str | Omit = omit,
-        ledger_account_category_id: str | Omit = omit,
-        ledger_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        name: SequenceNotStr[str] | Omit = omit,
-        normal_balance: TransactionDirection | Omit = omit,
-        pending_balance_amount: ledger_account_list_params.PendingBalanceAmount | Omit = omit,
-        per_page: int | Omit = omit,
-        posted_balance_amount: ledger_account_list_params.PostedBalanceAmount | Omit = omit,
-        updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[LedgerAccount, AsyncPage[LedgerAccount]]:
+    def list(self,
+    *,
+    id: SequenceNotStr[str] | Omit = omit,
+    after_cursor: Optional[str] | Omit = omit,
+    available_balance_amount: ledger_account_list_params.AvailableBalanceAmount | Omit = omit,
+    balances: ledger_account_list_params.Balances | Omit = omit,
+    created_at: Dict[str, Union[str, datetime]] | Omit = omit,
+    currency: str | Omit = omit,
+    external_id: str | Omit = omit,
+    ledger_account_category_id: str | Omit = omit,
+    ledger_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    name: SequenceNotStr[str] | Omit = omit,
+    normal_balance: TransactionDirection | Omit = omit,
+    pending_balance_amount: ledger_account_list_params.PendingBalanceAmount | Omit = omit,
+    per_page: int | Omit = omit,
+    posted_balance_amount: ledger_account_list_params.PostedBalanceAmount | Omit = omit,
+    updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[LedgerAccount, AsyncPage[LedgerAccount]]:
         """
         Get a list of ledger accounts.
 
@@ -688,49 +629,38 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/ledger_accounts",
-            page=AsyncPage[LedgerAccount],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "id": id,
-                        "after_cursor": after_cursor,
-                        "available_balance_amount": available_balance_amount,
-                        "balances": balances,
-                        "created_at": created_at,
-                        "currency": currency,
-                        "external_id": external_id,
-                        "ledger_account_category_id": ledger_account_category_id,
-                        "ledger_id": ledger_id,
-                        "metadata": metadata,
-                        "name": name,
-                        "normal_balance": normal_balance,
-                        "pending_balance_amount": pending_balance_amount,
-                        "per_page": per_page,
-                        "posted_balance_amount": posted_balance_amount,
-                        "updated_at": updated_at,
-                    },
-                    ledger_account_list_params.LedgerAccountListParams,
-                ),
-            ),
+            page = AsyncPage[LedgerAccount],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "id": id,
+                "after_cursor": after_cursor,
+                "available_balance_amount": available_balance_amount,
+                "balances": balances,
+                "created_at": created_at,
+                "currency": currency,
+                "external_id": external_id,
+                "ledger_account_category_id": ledger_account_category_id,
+                "ledger_id": ledger_id,
+                "metadata": metadata,
+                "name": name,
+                "normal_balance": normal_balance,
+                "pending_balance_amount": pending_balance_amount,
+                "per_page": per_page,
+                "posted_balance_amount": posted_balance_amount,
+                "updated_at": updated_at,
+            }, ledger_account_list_params.LedgerAccountListParams)),
             model=LedgerAccount,
         )
 
-    async def delete(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LedgerAccount:
+    async def delete(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LedgerAccount:
         """
         Delete a ledger account.
 
@@ -746,19 +676,14 @@ class AsyncLedgerAccounts(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._delete(
             path_template("/api/ledger_accounts/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LedgerAccount,
         )
-
 
 class LedgerAccountsWithRawResponse:
     def __init__(self, ledger_accounts: LedgerAccounts) -> None:
@@ -780,7 +705,6 @@ class LedgerAccountsWithRawResponse:
             ledger_accounts.delete,
         )
 
-
 class AsyncLedgerAccountsWithRawResponse:
     def __init__(self, ledger_accounts: AsyncLedgerAccounts) -> None:
         self._ledger_accounts = ledger_accounts
@@ -801,7 +725,6 @@ class AsyncLedgerAccountsWithRawResponse:
             ledger_accounts.delete,
         )
 
-
 class LedgerAccountsWithStreamingResponse:
     def __init__(self, ledger_accounts: LedgerAccounts) -> None:
         self._ledger_accounts = ledger_accounts
@@ -821,7 +744,6 @@ class LedgerAccountsWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             ledger_accounts.delete,
         )
-
 
 class AsyncLedgerAccountsWithStreamingResponse:
     def __init__(self, ledger_accounts: AsyncLedgerAccounts) -> None:

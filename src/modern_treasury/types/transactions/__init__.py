@@ -2,6 +2,6 @@
 
 from __future__ import annotations
 
-from .line_item_list_params import LineItemListParams as LineItemListParams
 from .transaction_line_item import TransactionLineItem as TransactionLineItem
 from .line_item_create_params import LineItemCreateParams as LineItemCreateParams
+from .line_item_list_params import LineItemListParams as LineItemListParams

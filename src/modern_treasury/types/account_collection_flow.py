@@ -1,13 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 from .._models import BaseModel
 
-__all__ = ["AccountCollectionFlow"]
+from typing import List, Optional
 
+from typing_extensions import Literal
+
+from datetime import datetime
+
+__all__ = ["AccountCollectionFlow"]
 
 class AccountCollectionFlow(BaseModel):
     counterparty_id: str
@@ -41,30 +42,7 @@ class AccountCollectionFlow(BaseModel):
 
     object: Optional[str] = None
 
-    receiving_countries: Optional[
-        List[
-            Literal[
-                "USA",
-                "AUS",
-                "BEL",
-                "CAN",
-                "CHL",
-                "CHN",
-                "COL",
-                "FRA",
-                "DEU",
-                "HKG",
-                "IND",
-                "IRL",
-                "ITA",
-                "MEX",
-                "NLD",
-                "PER",
-                "ESP",
-                "GBR",
-            ]
-        ]
-    ] = None
+    receiving_countries: Optional[List[Literal["USA", "AUS", "BEL", "CAN", "CHL", "CHN", "COL", "FRA", "DEU", "HKG", "IND", "IRL", "ITA", "MEX", "NLD", "PER", "ESP", "GBR"]]] = None
 
     status: Optional[Literal["cancelled", "completed", "expired", "pending"]] = None
     """The current status of the account collection flow.

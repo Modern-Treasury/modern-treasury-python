@@ -2,47 +2,70 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Mapping, Iterable, Optional, cast
-from datetime import date, datetime
-from typing_extensions import Literal
-
 import httpx
 
-from ... import _legacy_response
-from ...types import (
-    PaymentOrderType,
-    PaymentOrderSubtype,
-    payment_order_list_params,
-    payment_order_create_params,
-    payment_order_update_params,
-    payment_order_create_async_params,
-)
-from ..._files import deepcopy_with_paths
-from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import extract_files, path_template, maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from .reversals import (
-    Reversals,
-    AsyncReversals,
-    ReversalsWithRawResponse,
-    AsyncReversalsWithRawResponse,
-    ReversalsWithStreamingResponse,
-    AsyncReversalsWithStreamingResponse,
-)
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ...pagination import SyncPage, AsyncPage
-from ..._base_client import AsyncPaginator, make_request_options
+
+from .reversals import Reversals, AsyncReversals, ReversalsWithRawResponse, AsyncReversalsWithRawResponse, ReversalsWithStreamingResponse, AsyncReversalsWithStreamingResponse
+
+from ..._compat import cached_property
+
 from ...types.payment_order import PaymentOrder
-from ...types.shared.currency import Currency
+
+from ..._files import deepcopy_with_paths
+
+from ..._utils import extract_files, maybe_transform, path_template, async_maybe_transform
+
+from typing import cast, Mapping, Optional, Iterable, Union, Dict
+
+from ..._base_client import make_request_options, AsyncPaginator
+
+from typing_extensions import Literal
+
 from ...types.payment_order_type import PaymentOrderType
-from ...types.payment_order_subtype import PaymentOrderSubtype
-from ...types.shared.async_response import AsyncResponse
-from ...types.shared.transaction_direction import TransactionDirection
+
+from ..._types import Omit, omit, NotGiven
+
+from ...types.shared.currency import Currency
+
+from datetime import date, datetime
+
 from ...types.shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
-__all__ = ["PaymentOrders", "AsyncPaymentOrders"]
+from ...types.payment_order_subtype import PaymentOrderSubtype
 
+from ...pagination import SyncPage, AsyncPage
+
+from ...types.shared.transaction_direction import TransactionDirection
+
+from ...types.shared.async_response import AsyncResponse
+
+from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ...types import payment_order_create_params, payment_order_update_params, payment_order_create_async_params
+
+from ... import _legacy_response
+
+from typing_extensions import Literal, overload
+from ..._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ...types import payment_order_create_params
+from ...types import payment_order_update_params
+from ...types import payment_order_list_params
+from ...types import payment_order_create_async_params
+from ...types import PaymentOrderType
+from ...types import shared
+from ...types import shared
+from ...types import PaymentOrderSubtype
+from ...types import shared
+from ...types import PaymentOrderSubtype
+from ...types import PaymentOrderType
+from ...types import shared
+from ...types import PaymentOrderType
+from ...types import shared
+from ...types import shared
+from ...types import PaymentOrderSubtype
+
+__all__ = ["PaymentOrders", "AsyncPaymentOrders"]
 
 class PaymentOrders(SyncAPIResource):
     @cached_property
@@ -68,59 +91,56 @@ class PaymentOrders(SyncAPIResource):
         """
         return PaymentOrdersWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        amount: int,
-        direction: Literal["credit", "debit"],
-        originating_account_id: str,
-        type: PaymentOrderType,
-        accounting: payment_order_create_params.Accounting | Omit = omit,
-        accounting_category_id: Optional[str] | Omit = omit,
-        accounting_ledger_class_id: Optional[str] | Omit = omit,
-        charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | Omit = omit,
-        currency: Currency | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        documents: Iterable[payment_order_create_params.Document] | Omit = omit,
-        effective_date: Union[str, date] | Omit = omit,
-        expires_at: Union[str, datetime, None] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        fallback_type: Literal["ach"] | Omit = omit,
-        foreign_exchange_contract: Optional[str] | Omit = omit,
-        foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
-        ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
-        ledger_transaction_id: str | Omit = omit,
-        line_items: Iterable[payment_order_create_params.LineItem] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        nsf_protected: bool | Omit = omit,
-        originating_party_name: Optional[str] | Omit = omit,
-        priority: Literal["high", "normal"] | Omit = omit,
-        process_after: Union[str, datetime, None] | Omit = omit,
-        purpose: Optional[str] | Omit = omit,
-        receiving_account: payment_order_create_params.ReceivingAccount | Omit = omit,
-        receiving_account_id: str | Omit = omit,
-        reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"] | Omit = omit,
-        remittance_information: Optional[str] | Omit = omit,
-        send_remittance_advice: Optional[bool] | Omit = omit,
-        statement_descriptor: Optional[str] | Omit = omit,
-        subtype: Optional[PaymentOrderSubtype] | Omit = omit,
-        transaction_monitoring_enabled: bool | Omit = omit,
-        ultimate_originating_account_id: str | Omit = omit,
-        ultimate_originating_party_address: Optional[payment_order_create_params.UltimateOriginatingPartyAddress]
-        | Omit = omit,
-        ultimate_originating_party_identifier: Optional[str] | Omit = omit,
-        ultimate_originating_party_name: Optional[str] | Omit = omit,
-        ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
-        ultimate_receiving_party_name: Optional[str] | Omit = omit,
-        vendor_attributes: object | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> PaymentOrder:
+    def create(self,
+    *,
+    amount: int,
+    direction: Literal["credit", "debit"],
+    originating_account_id: str,
+    type: PaymentOrderType,
+    accounting: payment_order_create_params.Accounting | Omit = omit,
+    accounting_category_id: Optional[str] | Omit = omit,
+    accounting_ledger_class_id: Optional[str] | Omit = omit,
+    charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | Omit = omit,
+    currency: Currency | Omit = omit,
+    description: Optional[str] | Omit = omit,
+    documents: Iterable[payment_order_create_params.Document] | Omit = omit,
+    effective_date: Union[str, date] | Omit = omit,
+    expires_at: Union[str, datetime, None] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    fallback_type: Literal["ach"] | Omit = omit,
+    foreign_exchange_contract: Optional[str] | Omit = omit,
+    foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
+    ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
+    ledger_transaction_id: str | Omit = omit,
+    line_items: Iterable[payment_order_create_params.LineItem] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    nsf_protected: bool | Omit = omit,
+    originating_party_name: Optional[str] | Omit = omit,
+    priority: Literal["high", "normal"] | Omit = omit,
+    process_after: Union[str, datetime, None] | Omit = omit,
+    purpose: Optional[str] | Omit = omit,
+    receiving_account: payment_order_create_params.ReceivingAccount | Omit = omit,
+    receiving_account_id: str | Omit = omit,
+    reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"] | Omit = omit,
+    remittance_information: Optional[str] | Omit = omit,
+    send_remittance_advice: Optional[bool] | Omit = omit,
+    statement_descriptor: Optional[str] | Omit = omit,
+    subtype: Optional[PaymentOrderSubtype] | Omit = omit,
+    transaction_monitoring_enabled: bool | Omit = omit,
+    ultimate_originating_account_id: str | Omit = omit,
+    ultimate_originating_party_address: Optional[payment_order_create_params.UltimateOriginatingPartyAddress] | Omit = omit,
+    ultimate_originating_party_identifier: Optional[str] | Omit = omit,
+    ultimate_originating_party_name: Optional[str] | Omit = omit,
+    ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
+    ultimate_receiving_party_name: Optional[str] | Omit = omit,
+    vendor_attributes: object | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> PaymentOrder:
         """
         Create a new Payment Order
 
@@ -269,83 +289,75 @@ class PaymentOrders(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
-        body = deepcopy_with_paths(
-            {
-                "amount": amount,
-                "direction": direction,
-                "originating_account_id": originating_account_id,
-                "type": type,
-                "accounting": accounting,
-                "accounting_category_id": accounting_category_id,
-                "accounting_ledger_class_id": accounting_ledger_class_id,
-                "charge_bearer": charge_bearer,
-                "currency": currency,
-                "description": description,
-                "documents": documents,
-                "effective_date": effective_date,
-                "expires_at": expires_at,
-                "external_id": external_id,
-                "fallback_type": fallback_type,
-                "foreign_exchange_contract": foreign_exchange_contract,
-                "foreign_exchange_indicator": foreign_exchange_indicator,
-                "ledger_transaction": ledger_transaction,
-                "ledger_transaction_id": ledger_transaction_id,
-                "line_items": line_items,
-                "metadata": metadata,
-                "nsf_protected": nsf_protected,
-                "originating_party_name": originating_party_name,
-                "priority": priority,
-                "process_after": process_after,
-                "purpose": purpose,
-                "receiving_account": receiving_account,
-                "receiving_account_id": receiving_account_id,
-                "reconciliation_status": reconciliation_status,
-                "remittance_information": remittance_information,
-                "send_remittance_advice": send_remittance_advice,
-                "statement_descriptor": statement_descriptor,
-                "subtype": subtype,
-                "transaction_monitoring_enabled": transaction_monitoring_enabled,
-                "ultimate_originating_account_id": ultimate_originating_account_id,
-                "ultimate_originating_party_address": ultimate_originating_party_address,
-                "ultimate_originating_party_identifier": ultimate_originating_party_identifier,
-                "ultimate_originating_party_name": ultimate_originating_party_name,
-                "ultimate_receiving_party_identifier": ultimate_receiving_party_identifier,
-                "ultimate_receiving_party_name": ultimate_receiving_party_name,
-                "vendor_attributes": vendor_attributes,
-            },
-            [["documents", "<array>", "file"]],
+        body = deepcopy_with_paths({
+            "amount": amount,
+            "direction": direction,
+            "originating_account_id": originating_account_id,
+            "type": type,
+            "accounting": accounting,
+            "accounting_category_id": accounting_category_id,
+            "accounting_ledger_class_id": accounting_ledger_class_id,
+            "charge_bearer": charge_bearer,
+            "currency": currency,
+            "description": description,
+            "documents": documents,
+            "effective_date": effective_date,
+            "expires_at": expires_at,
+            "external_id": external_id,
+            "fallback_type": fallback_type,
+            "foreign_exchange_contract": foreign_exchange_contract,
+            "foreign_exchange_indicator": foreign_exchange_indicator,
+            "ledger_transaction": ledger_transaction,
+            "ledger_transaction_id": ledger_transaction_id,
+            "line_items": line_items,
+            "metadata": metadata,
+            "nsf_protected": nsf_protected,
+            "originating_party_name": originating_party_name,
+            "priority": priority,
+            "process_after": process_after,
+            "purpose": purpose,
+            "receiving_account": receiving_account,
+            "receiving_account_id": receiving_account_id,
+            "reconciliation_status": reconciliation_status,
+            "remittance_information": remittance_information,
+            "send_remittance_advice": send_remittance_advice,
+            "statement_descriptor": statement_descriptor,
+            "subtype": subtype,
+            "transaction_monitoring_enabled": transaction_monitoring_enabled,
+            "ultimate_originating_account_id": ultimate_originating_account_id,
+            "ultimate_originating_party_address": ultimate_originating_party_address,
+            "ultimate_originating_party_identifier": ultimate_originating_party_identifier,
+            "ultimate_originating_party_name": ultimate_originating_party_name,
+            "ultimate_receiving_party_identifier": ultimate_receiving_party_identifier,
+            "ultimate_receiving_party_name": ultimate_receiving_party_name,
+            "vendor_attributes": vendor_attributes,
+        }, [["documents", "<array>", "file"]])
+        files = extract_files(
+          cast(Mapping[str, object], body),
+          paths=[["documents", "<array>", "file"]]
         )
-        files = extract_files(cast(Mapping[str, object], body), paths=[["documents", "<array>", "file"]])
         if files:
-            # It should be noted that the actual Content-Type header that will be
-            # sent to the server will contain a `boundary` parameter, e.g.
-            # multipart/form-data; boundary=---abc--
-            extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
+          # It should be noted that the actual Content-Type header that will be
+          # sent to the server will contain a `boundary` parameter, e.g.
+          # multipart/form-data; boundary=---abc--
+          extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             "/api/payment_orders",
             body=maybe_transform(body, payment_order_create_params.PaymentOrderCreateParams),
             files=files,
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=PaymentOrder,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PaymentOrder:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> PaymentOrder:
         """
         Get details on a single payment order
 
@@ -359,78 +371,61 @@ class PaymentOrders(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/payment_orders/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=PaymentOrder,
         )
 
-    def update(
-        self,
-        id: str,
-        *,
-        accounting: payment_order_update_params.Accounting | Omit = omit,
-        accounting_category_id: Optional[str] | Omit = omit,
-        accounting_ledger_class_id: Optional[str] | Omit = omit,
-        amount: int | Omit = omit,
-        charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | Omit = omit,
-        counterparty_id: Optional[str] | Omit = omit,
-        currency: Currency | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        direction: Literal["credit", "debit"] | Omit = omit,
-        effective_date: Union[str, date] | Omit = omit,
-        expires_at: Union[str, datetime, None] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        fallback_type: Literal["ach"] | Omit = omit,
-        foreign_exchange_contract: Optional[str] | Omit = omit,
-        foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
-        line_items: Iterable[payment_order_update_params.LineItem] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        nsf_protected: bool | Omit = omit,
-        originating_account_id: str | Omit = omit,
-        originating_party_name: Optional[str] | Omit = omit,
-        priority: Literal["high", "normal"] | Omit = omit,
-        process_after: Union[str, datetime, None] | Omit = omit,
-        purpose: Optional[str] | Omit = omit,
-        receiving_account: payment_order_update_params.ReceivingAccount | Omit = omit,
-        receiving_account_id: str | Omit = omit,
-        reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"] | Omit = omit,
-        remittance_information: Optional[str] | Omit = omit,
-        send_remittance_advice: Optional[bool] | Omit = omit,
-        statement_descriptor: Optional[str] | Omit = omit,
-        status: Literal[
-            "approved",
-            "cancelled",
-            "completed",
-            "denied",
-            "failed",
-            "held",
-            "needs_approval",
-            "pending",
-            "processing",
-            "returned",
-            "reversed",
-            "sent",
-            "stopped",
-        ]
-        | Omit = omit,
-        subtype: Optional[PaymentOrderSubtype] | Omit = omit,
-        type: PaymentOrderType | Omit = omit,
-        ultimate_originating_party_identifier: Optional[str] | Omit = omit,
-        ultimate_originating_party_name: Optional[str] | Omit = omit,
-        ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
-        ultimate_receiving_party_name: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> PaymentOrder:
+    def update(self,
+    id: str,
+    *,
+    accounting: payment_order_update_params.Accounting | Omit = omit,
+    accounting_category_id: Optional[str] | Omit = omit,
+    accounting_ledger_class_id: Optional[str] | Omit = omit,
+    amount: int | Omit = omit,
+    charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | Omit = omit,
+    counterparty_id: Optional[str] | Omit = omit,
+    currency: Currency | Omit = omit,
+    description: Optional[str] | Omit = omit,
+    direction: Literal["credit", "debit"] | Omit = omit,
+    effective_date: Union[str, date] | Omit = omit,
+    expires_at: Union[str, datetime, None] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    fallback_type: Literal["ach"] | Omit = omit,
+    foreign_exchange_contract: Optional[str] | Omit = omit,
+    foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
+    line_items: Iterable[payment_order_update_params.LineItem] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    nsf_protected: bool | Omit = omit,
+    originating_account_id: str | Omit = omit,
+    originating_party_name: Optional[str] | Omit = omit,
+    priority: Literal["high", "normal"] | Omit = omit,
+    process_after: Union[str, datetime, None] | Omit = omit,
+    purpose: Optional[str] | Omit = omit,
+    receiving_account: payment_order_update_params.ReceivingAccount | Omit = omit,
+    receiving_account_id: str | Omit = omit,
+    reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"] | Omit = omit,
+    remittance_information: Optional[str] | Omit = omit,
+    send_remittance_advice: Optional[bool] | Omit = omit,
+    statement_descriptor: Optional[str] | Omit = omit,
+    status: Literal["approved", "cancelled", "completed", "denied", "failed", "held", "needs_approval", "pending", "processing", "returned", "reversed", "sent", "stopped"] | Omit = omit,
+    subtype: Optional[PaymentOrderSubtype] | Omit = omit,
+    type: PaymentOrderType | Omit = omit,
+    ultimate_originating_party_identifier: Optional[str] | Omit = omit,
+    ultimate_originating_party_name: Optional[str] | Omit = omit,
+    ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
+    ultimate_receiving_party_name: Optional[str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> PaymentOrder:
         """
         Update a payment order
 
@@ -570,130 +565,79 @@ class PaymentOrders(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._patch(
             path_template("/api/payment_orders/{id}", id=id),
-            body=maybe_transform(
-                {
-                    "accounting": accounting,
-                    "accounting_category_id": accounting_category_id,
-                    "accounting_ledger_class_id": accounting_ledger_class_id,
-                    "amount": amount,
-                    "charge_bearer": charge_bearer,
-                    "counterparty_id": counterparty_id,
-                    "currency": currency,
-                    "description": description,
-                    "direction": direction,
-                    "effective_date": effective_date,
-                    "expires_at": expires_at,
-                    "external_id": external_id,
-                    "fallback_type": fallback_type,
-                    "foreign_exchange_contract": foreign_exchange_contract,
-                    "foreign_exchange_indicator": foreign_exchange_indicator,
-                    "line_items": line_items,
-                    "metadata": metadata,
-                    "nsf_protected": nsf_protected,
-                    "originating_account_id": originating_account_id,
-                    "originating_party_name": originating_party_name,
-                    "priority": priority,
-                    "process_after": process_after,
-                    "purpose": purpose,
-                    "receiving_account": receiving_account,
-                    "receiving_account_id": receiving_account_id,
-                    "reconciliation_status": reconciliation_status,
-                    "remittance_information": remittance_information,
-                    "send_remittance_advice": send_remittance_advice,
-                    "statement_descriptor": statement_descriptor,
-                    "status": status,
-                    "subtype": subtype,
-                    "type": type,
-                    "ultimate_originating_party_identifier": ultimate_originating_party_identifier,
-                    "ultimate_originating_party_name": ultimate_originating_party_name,
-                    "ultimate_receiving_party_identifier": ultimate_receiving_party_identifier,
-                    "ultimate_receiving_party_name": ultimate_receiving_party_name,
-                },
-                payment_order_update_params.PaymentOrderUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "accounting": accounting,
+                "accounting_category_id": accounting_category_id,
+                "accounting_ledger_class_id": accounting_ledger_class_id,
+                "amount": amount,
+                "charge_bearer": charge_bearer,
+                "counterparty_id": counterparty_id,
+                "currency": currency,
+                "description": description,
+                "direction": direction,
+                "effective_date": effective_date,
+                "expires_at": expires_at,
+                "external_id": external_id,
+                "fallback_type": fallback_type,
+                "foreign_exchange_contract": foreign_exchange_contract,
+                "foreign_exchange_indicator": foreign_exchange_indicator,
+                "line_items": line_items,
+                "metadata": metadata,
+                "nsf_protected": nsf_protected,
+                "originating_account_id": originating_account_id,
+                "originating_party_name": originating_party_name,
+                "priority": priority,
+                "process_after": process_after,
+                "purpose": purpose,
+                "receiving_account": receiving_account,
+                "receiving_account_id": receiving_account_id,
+                "reconciliation_status": reconciliation_status,
+                "remittance_information": remittance_information,
+                "send_remittance_advice": send_remittance_advice,
+                "statement_descriptor": statement_descriptor,
+                "status": status,
+                "subtype": subtype,
+                "type": type,
+                "ultimate_originating_party_identifier": ultimate_originating_party_identifier,
+                "ultimate_originating_party_name": ultimate_originating_party_name,
+                "ultimate_receiving_party_identifier": ultimate_receiving_party_identifier,
+                "ultimate_receiving_party_name": ultimate_receiving_party_name,
+            }, payment_order_update_params.PaymentOrderUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=PaymentOrder,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        created_at_end: Union[str, date] | Omit = omit,
-        created_at_start: Union[str, date] | Omit = omit,
-        direction: TransactionDirection | Omit = omit,
-        effective_date_end: Union[str, date] | Omit = omit,
-        effective_date_start: Union[str, date] | Omit = omit,
-        external_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        originating_account_id: str | Omit = omit,
-        per_page: int | Omit = omit,
-        priority: Literal["high", "normal"] | Omit = omit,
-        process_after_end: Union[str, datetime] | Omit = omit,
-        process_after_start: Union[str, datetime] | Omit = omit,
-        reference_number: str | Omit = omit,
-        status: Literal[
-            "approved",
-            "cancelled",
-            "completed",
-            "denied",
-            "failed",
-            "held",
-            "needs_approval",
-            "pending",
-            "processing",
-            "returned",
-            "reversed",
-            "sent",
-            "stopped",
-        ]
-        | Omit = omit,
-        transaction_id: str | Omit = omit,
-        type: Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "card",
-            "chats",
-            "check",
-            "cross_border",
-            "dk_nets",
-            "eft",
-            "gb_fps",
-            "masav",
-            "mx_ccen",
-            "neft",
-            "nics",
-            "nz_becs",
-            "pl_elixir",
-            "rtp",
-            "se_bankgirot",
-            "sepa",
-            "sg_giro",
-            "sic",
-            "stablecoin",
-            "wire",
-            "zengin",
-        ]
-        | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[PaymentOrder]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    created_at_end: Union[str, date] | Omit = omit,
+    created_at_start: Union[str, date] | Omit = omit,
+    direction: TransactionDirection | Omit = omit,
+    effective_date_end: Union[str, date] | Omit = omit,
+    effective_date_start: Union[str, date] | Omit = omit,
+    external_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    originating_account_id: str | Omit = omit,
+    per_page: int | Omit = omit,
+    priority: Literal["high", "normal"] | Omit = omit,
+    process_after_end: Union[str, datetime] | Omit = omit,
+    process_after_start: Union[str, datetime] | Omit = omit,
+    reference_number: str | Omit = omit,
+    status: Literal["approved", "cancelled", "completed", "denied", "failed", "held", "needs_approval", "pending", "processing", "returned", "reversed", "sent", "stopped"] | Omit = omit,
+    transaction_id: str | Omit = omit,
+    type: Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[PaymentOrder]:
         """
         Get a list of all payment orders
 
@@ -732,91 +676,79 @@ class PaymentOrders(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/payment_orders",
-            page=SyncPage[PaymentOrder],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "counterparty_id": counterparty_id,
-                        "created_at_end": created_at_end,
-                        "created_at_start": created_at_start,
-                        "direction": direction,
-                        "effective_date_end": effective_date_end,
-                        "effective_date_start": effective_date_start,
-                        "external_id": external_id,
-                        "metadata": metadata,
-                        "originating_account_id": originating_account_id,
-                        "per_page": per_page,
-                        "priority": priority,
-                        "process_after_end": process_after_end,
-                        "process_after_start": process_after_start,
-                        "reference_number": reference_number,
-                        "status": status,
-                        "transaction_id": transaction_id,
-                        "type": type,
-                    },
-                    payment_order_list_params.PaymentOrderListParams,
-                ),
-            ),
+            page = SyncPage[PaymentOrder],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "counterparty_id": counterparty_id,
+                "created_at_end": created_at_end,
+                "created_at_start": created_at_start,
+                "direction": direction,
+                "effective_date_end": effective_date_end,
+                "effective_date_start": effective_date_start,
+                "external_id": external_id,
+                "metadata": metadata,
+                "originating_account_id": originating_account_id,
+                "per_page": per_page,
+                "priority": priority,
+                "process_after_end": process_after_end,
+                "process_after_start": process_after_start,
+                "reference_number": reference_number,
+                "status": status,
+                "transaction_id": transaction_id,
+                "type": type,
+            }, payment_order_list_params.PaymentOrderListParams)),
             model=PaymentOrder,
         )
 
-    def create_async(
-        self,
-        *,
-        amount: int,
-        direction: Literal["credit", "debit"],
-        originating_account_id: str,
-        type: PaymentOrderType,
-        accounting: payment_order_create_async_params.Accounting | Omit = omit,
-        accounting_category_id: Optional[str] | Omit = omit,
-        accounting_ledger_class_id: Optional[str] | Omit = omit,
-        charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | Omit = omit,
-        currency: Currency | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        effective_date: Union[str, date] | Omit = omit,
-        expires_at: Union[str, datetime, None] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        fallback_type: Literal["ach"] | Omit = omit,
-        foreign_exchange_contract: Optional[str] | Omit = omit,
-        foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
-        ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
-        ledger_transaction_id: str | Omit = omit,
-        line_items: Iterable[payment_order_create_async_params.LineItem] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        nsf_protected: bool | Omit = omit,
-        originating_party_name: Optional[str] | Omit = omit,
-        priority: Literal["high", "normal"] | Omit = omit,
-        process_after: Union[str, datetime, None] | Omit = omit,
-        purpose: Optional[str] | Omit = omit,
-        receiving_account: payment_order_create_async_params.ReceivingAccount | Omit = omit,
-        receiving_account_id: str | Omit = omit,
-        reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"] | Omit = omit,
-        remittance_information: Optional[str] | Omit = omit,
-        send_remittance_advice: Optional[bool] | Omit = omit,
-        statement_descriptor: Optional[str] | Omit = omit,
-        subtype: Optional[PaymentOrderSubtype] | Omit = omit,
-        transaction_monitoring_enabled: bool | Omit = omit,
-        ultimate_originating_account_id: str | Omit = omit,
-        ultimate_originating_party_address: Optional[payment_order_create_async_params.UltimateOriginatingPartyAddress]
-        | Omit = omit,
-        ultimate_originating_party_identifier: Optional[str] | Omit = omit,
-        ultimate_originating_party_name: Optional[str] | Omit = omit,
-        ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
-        ultimate_receiving_party_name: Optional[str] | Omit = omit,
-        vendor_attributes: object | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> AsyncResponse:
+    def create_async(self,
+    *,
+    amount: int,
+    direction: Literal["credit", "debit"],
+    originating_account_id: str,
+    type: PaymentOrderType,
+    accounting: payment_order_create_async_params.Accounting | Omit = omit,
+    accounting_category_id: Optional[str] | Omit = omit,
+    accounting_ledger_class_id: Optional[str] | Omit = omit,
+    charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | Omit = omit,
+    currency: Currency | Omit = omit,
+    description: Optional[str] | Omit = omit,
+    effective_date: Union[str, date] | Omit = omit,
+    expires_at: Union[str, datetime, None] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    fallback_type: Literal["ach"] | Omit = omit,
+    foreign_exchange_contract: Optional[str] | Omit = omit,
+    foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
+    ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
+    ledger_transaction_id: str | Omit = omit,
+    line_items: Iterable[payment_order_create_async_params.LineItem] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    nsf_protected: bool | Omit = omit,
+    originating_party_name: Optional[str] | Omit = omit,
+    priority: Literal["high", "normal"] | Omit = omit,
+    process_after: Union[str, datetime, None] | Omit = omit,
+    purpose: Optional[str] | Omit = omit,
+    receiving_account: payment_order_create_async_params.ReceivingAccount | Omit = omit,
+    receiving_account_id: str | Omit = omit,
+    reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"] | Omit = omit,
+    remittance_information: Optional[str] | Omit = omit,
+    send_remittance_advice: Optional[bool] | Omit = omit,
+    statement_descriptor: Optional[str] | Omit = omit,
+    subtype: Optional[PaymentOrderSubtype] | Omit = omit,
+    transaction_monitoring_enabled: bool | Omit = omit,
+    ultimate_originating_account_id: str | Omit = omit,
+    ultimate_originating_party_address: Optional[payment_order_create_async_params.UltimateOriginatingPartyAddress] | Omit = omit,
+    ultimate_originating_party_identifier: Optional[str] | Omit = omit,
+    ultimate_originating_party_name: Optional[str] | Omit = omit,
+    ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
+    ultimate_receiving_party_name: Optional[str] | Omit = omit,
+    vendor_attributes: object | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> AsyncResponse:
         """
         Create a new payment order asynchronously
 
@@ -964,61 +896,51 @@ class PaymentOrders(SyncAPIResource):
         """
         return self._post(
             "/api/payment_orders/create_async",
-            body=maybe_transform(
-                {
-                    "amount": amount,
-                    "direction": direction,
-                    "originating_account_id": originating_account_id,
-                    "type": type,
-                    "accounting": accounting,
-                    "accounting_category_id": accounting_category_id,
-                    "accounting_ledger_class_id": accounting_ledger_class_id,
-                    "charge_bearer": charge_bearer,
-                    "currency": currency,
-                    "description": description,
-                    "effective_date": effective_date,
-                    "expires_at": expires_at,
-                    "external_id": external_id,
-                    "fallback_type": fallback_type,
-                    "foreign_exchange_contract": foreign_exchange_contract,
-                    "foreign_exchange_indicator": foreign_exchange_indicator,
-                    "ledger_transaction": ledger_transaction,
-                    "ledger_transaction_id": ledger_transaction_id,
-                    "line_items": line_items,
-                    "metadata": metadata,
-                    "nsf_protected": nsf_protected,
-                    "originating_party_name": originating_party_name,
-                    "priority": priority,
-                    "process_after": process_after,
-                    "purpose": purpose,
-                    "receiving_account": receiving_account,
-                    "receiving_account_id": receiving_account_id,
-                    "reconciliation_status": reconciliation_status,
-                    "remittance_information": remittance_information,
-                    "send_remittance_advice": send_remittance_advice,
-                    "statement_descriptor": statement_descriptor,
-                    "subtype": subtype,
-                    "transaction_monitoring_enabled": transaction_monitoring_enabled,
-                    "ultimate_originating_account_id": ultimate_originating_account_id,
-                    "ultimate_originating_party_address": ultimate_originating_party_address,
-                    "ultimate_originating_party_identifier": ultimate_originating_party_identifier,
-                    "ultimate_originating_party_name": ultimate_originating_party_name,
-                    "ultimate_receiving_party_identifier": ultimate_receiving_party_identifier,
-                    "ultimate_receiving_party_name": ultimate_receiving_party_name,
-                    "vendor_attributes": vendor_attributes,
-                },
-                payment_order_create_async_params.PaymentOrderCreateAsyncParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "amount": amount,
+                "direction": direction,
+                "originating_account_id": originating_account_id,
+                "type": type,
+                "accounting": accounting,
+                "accounting_category_id": accounting_category_id,
+                "accounting_ledger_class_id": accounting_ledger_class_id,
+                "charge_bearer": charge_bearer,
+                "currency": currency,
+                "description": description,
+                "effective_date": effective_date,
+                "expires_at": expires_at,
+                "external_id": external_id,
+                "fallback_type": fallback_type,
+                "foreign_exchange_contract": foreign_exchange_contract,
+                "foreign_exchange_indicator": foreign_exchange_indicator,
+                "ledger_transaction": ledger_transaction,
+                "ledger_transaction_id": ledger_transaction_id,
+                "line_items": line_items,
+                "metadata": metadata,
+                "nsf_protected": nsf_protected,
+                "originating_party_name": originating_party_name,
+                "priority": priority,
+                "process_after": process_after,
+                "purpose": purpose,
+                "receiving_account": receiving_account,
+                "receiving_account_id": receiving_account_id,
+                "reconciliation_status": reconciliation_status,
+                "remittance_information": remittance_information,
+                "send_remittance_advice": send_remittance_advice,
+                "statement_descriptor": statement_descriptor,
+                "subtype": subtype,
+                "transaction_monitoring_enabled": transaction_monitoring_enabled,
+                "ultimate_originating_account_id": ultimate_originating_account_id,
+                "ultimate_originating_party_address": ultimate_originating_party_address,
+                "ultimate_originating_party_identifier": ultimate_originating_party_identifier,
+                "ultimate_originating_party_name": ultimate_originating_party_name,
+                "ultimate_receiving_party_identifier": ultimate_receiving_party_identifier,
+                "ultimate_receiving_party_name": ultimate_receiving_party_name,
+                "vendor_attributes": vendor_attributes,
+            }, payment_order_create_async_params.PaymentOrderCreateAsyncParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=AsyncResponse,
         )
-
 
 class AsyncPaymentOrders(AsyncAPIResource):
     @cached_property
@@ -1044,59 +966,56 @@ class AsyncPaymentOrders(AsyncAPIResource):
         """
         return AsyncPaymentOrdersWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        amount: int,
-        direction: Literal["credit", "debit"],
-        originating_account_id: str,
-        type: PaymentOrderType,
-        accounting: payment_order_create_params.Accounting | Omit = omit,
-        accounting_category_id: Optional[str] | Omit = omit,
-        accounting_ledger_class_id: Optional[str] | Omit = omit,
-        charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | Omit = omit,
-        currency: Currency | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        documents: Iterable[payment_order_create_params.Document] | Omit = omit,
-        effective_date: Union[str, date] | Omit = omit,
-        expires_at: Union[str, datetime, None] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        fallback_type: Literal["ach"] | Omit = omit,
-        foreign_exchange_contract: Optional[str] | Omit = omit,
-        foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
-        ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
-        ledger_transaction_id: str | Omit = omit,
-        line_items: Iterable[payment_order_create_params.LineItem] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        nsf_protected: bool | Omit = omit,
-        originating_party_name: Optional[str] | Omit = omit,
-        priority: Literal["high", "normal"] | Omit = omit,
-        process_after: Union[str, datetime, None] | Omit = omit,
-        purpose: Optional[str] | Omit = omit,
-        receiving_account: payment_order_create_params.ReceivingAccount | Omit = omit,
-        receiving_account_id: str | Omit = omit,
-        reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"] | Omit = omit,
-        remittance_information: Optional[str] | Omit = omit,
-        send_remittance_advice: Optional[bool] | Omit = omit,
-        statement_descriptor: Optional[str] | Omit = omit,
-        subtype: Optional[PaymentOrderSubtype] | Omit = omit,
-        transaction_monitoring_enabled: bool | Omit = omit,
-        ultimate_originating_account_id: str | Omit = omit,
-        ultimate_originating_party_address: Optional[payment_order_create_params.UltimateOriginatingPartyAddress]
-        | Omit = omit,
-        ultimate_originating_party_identifier: Optional[str] | Omit = omit,
-        ultimate_originating_party_name: Optional[str] | Omit = omit,
-        ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
-        ultimate_receiving_party_name: Optional[str] | Omit = omit,
-        vendor_attributes: object | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> PaymentOrder:
+    async def create(self,
+    *,
+    amount: int,
+    direction: Literal["credit", "debit"],
+    originating_account_id: str,
+    type: PaymentOrderType,
+    accounting: payment_order_create_params.Accounting | Omit = omit,
+    accounting_category_id: Optional[str] | Omit = omit,
+    accounting_ledger_class_id: Optional[str] | Omit = omit,
+    charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | Omit = omit,
+    currency: Currency | Omit = omit,
+    description: Optional[str] | Omit = omit,
+    documents: Iterable[payment_order_create_params.Document] | Omit = omit,
+    effective_date: Union[str, date] | Omit = omit,
+    expires_at: Union[str, datetime, None] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    fallback_type: Literal["ach"] | Omit = omit,
+    foreign_exchange_contract: Optional[str] | Omit = omit,
+    foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
+    ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
+    ledger_transaction_id: str | Omit = omit,
+    line_items: Iterable[payment_order_create_params.LineItem] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    nsf_protected: bool | Omit = omit,
+    originating_party_name: Optional[str] | Omit = omit,
+    priority: Literal["high", "normal"] | Omit = omit,
+    process_after: Union[str, datetime, None] | Omit = omit,
+    purpose: Optional[str] | Omit = omit,
+    receiving_account: payment_order_create_params.ReceivingAccount | Omit = omit,
+    receiving_account_id: str | Omit = omit,
+    reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"] | Omit = omit,
+    remittance_information: Optional[str] | Omit = omit,
+    send_remittance_advice: Optional[bool] | Omit = omit,
+    statement_descriptor: Optional[str] | Omit = omit,
+    subtype: Optional[PaymentOrderSubtype] | Omit = omit,
+    transaction_monitoring_enabled: bool | Omit = omit,
+    ultimate_originating_account_id: str | Omit = omit,
+    ultimate_originating_party_address: Optional[payment_order_create_params.UltimateOriginatingPartyAddress] | Omit = omit,
+    ultimate_originating_party_identifier: Optional[str] | Omit = omit,
+    ultimate_originating_party_name: Optional[str] | Omit = omit,
+    ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
+    ultimate_receiving_party_name: Optional[str] | Omit = omit,
+    vendor_attributes: object | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> PaymentOrder:
         """
         Create a new Payment Order
 
@@ -1245,83 +1164,75 @@ class AsyncPaymentOrders(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
-        body = deepcopy_with_paths(
-            {
-                "amount": amount,
-                "direction": direction,
-                "originating_account_id": originating_account_id,
-                "type": type,
-                "accounting": accounting,
-                "accounting_category_id": accounting_category_id,
-                "accounting_ledger_class_id": accounting_ledger_class_id,
-                "charge_bearer": charge_bearer,
-                "currency": currency,
-                "description": description,
-                "documents": documents,
-                "effective_date": effective_date,
-                "expires_at": expires_at,
-                "external_id": external_id,
-                "fallback_type": fallback_type,
-                "foreign_exchange_contract": foreign_exchange_contract,
-                "foreign_exchange_indicator": foreign_exchange_indicator,
-                "ledger_transaction": ledger_transaction,
-                "ledger_transaction_id": ledger_transaction_id,
-                "line_items": line_items,
-                "metadata": metadata,
-                "nsf_protected": nsf_protected,
-                "originating_party_name": originating_party_name,
-                "priority": priority,
-                "process_after": process_after,
-                "purpose": purpose,
-                "receiving_account": receiving_account,
-                "receiving_account_id": receiving_account_id,
-                "reconciliation_status": reconciliation_status,
-                "remittance_information": remittance_information,
-                "send_remittance_advice": send_remittance_advice,
-                "statement_descriptor": statement_descriptor,
-                "subtype": subtype,
-                "transaction_monitoring_enabled": transaction_monitoring_enabled,
-                "ultimate_originating_account_id": ultimate_originating_account_id,
-                "ultimate_originating_party_address": ultimate_originating_party_address,
-                "ultimate_originating_party_identifier": ultimate_originating_party_identifier,
-                "ultimate_originating_party_name": ultimate_originating_party_name,
-                "ultimate_receiving_party_identifier": ultimate_receiving_party_identifier,
-                "ultimate_receiving_party_name": ultimate_receiving_party_name,
-                "vendor_attributes": vendor_attributes,
-            },
-            [["documents", "<array>", "file"]],
+        body = deepcopy_with_paths({
+            "amount": amount,
+            "direction": direction,
+            "originating_account_id": originating_account_id,
+            "type": type,
+            "accounting": accounting,
+            "accounting_category_id": accounting_category_id,
+            "accounting_ledger_class_id": accounting_ledger_class_id,
+            "charge_bearer": charge_bearer,
+            "currency": currency,
+            "description": description,
+            "documents": documents,
+            "effective_date": effective_date,
+            "expires_at": expires_at,
+            "external_id": external_id,
+            "fallback_type": fallback_type,
+            "foreign_exchange_contract": foreign_exchange_contract,
+            "foreign_exchange_indicator": foreign_exchange_indicator,
+            "ledger_transaction": ledger_transaction,
+            "ledger_transaction_id": ledger_transaction_id,
+            "line_items": line_items,
+            "metadata": metadata,
+            "nsf_protected": nsf_protected,
+            "originating_party_name": originating_party_name,
+            "priority": priority,
+            "process_after": process_after,
+            "purpose": purpose,
+            "receiving_account": receiving_account,
+            "receiving_account_id": receiving_account_id,
+            "reconciliation_status": reconciliation_status,
+            "remittance_information": remittance_information,
+            "send_remittance_advice": send_remittance_advice,
+            "statement_descriptor": statement_descriptor,
+            "subtype": subtype,
+            "transaction_monitoring_enabled": transaction_monitoring_enabled,
+            "ultimate_originating_account_id": ultimate_originating_account_id,
+            "ultimate_originating_party_address": ultimate_originating_party_address,
+            "ultimate_originating_party_identifier": ultimate_originating_party_identifier,
+            "ultimate_originating_party_name": ultimate_originating_party_name,
+            "ultimate_receiving_party_identifier": ultimate_receiving_party_identifier,
+            "ultimate_receiving_party_name": ultimate_receiving_party_name,
+            "vendor_attributes": vendor_attributes,
+        }, [["documents", "<array>", "file"]])
+        files = extract_files(
+          cast(Mapping[str, object], body),
+          paths=[["documents", "<array>", "file"]]
         )
-        files = extract_files(cast(Mapping[str, object], body), paths=[["documents", "<array>", "file"]])
         if files:
-            # It should be noted that the actual Content-Type header that will be
-            # sent to the server will contain a `boundary` parameter, e.g.
-            # multipart/form-data; boundary=---abc--
-            extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
+          # It should be noted that the actual Content-Type header that will be
+          # sent to the server will contain a `boundary` parameter, e.g.
+          # multipart/form-data; boundary=---abc--
+          extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             "/api/payment_orders",
             body=await async_maybe_transform(body, payment_order_create_params.PaymentOrderCreateParams),
             files=files,
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=PaymentOrder,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PaymentOrder:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> PaymentOrder:
         """
         Get details on a single payment order
 
@@ -1335,78 +1246,61 @@ class AsyncPaymentOrders(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/payment_orders/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=PaymentOrder,
         )
 
-    async def update(
-        self,
-        id: str,
-        *,
-        accounting: payment_order_update_params.Accounting | Omit = omit,
-        accounting_category_id: Optional[str] | Omit = omit,
-        accounting_ledger_class_id: Optional[str] | Omit = omit,
-        amount: int | Omit = omit,
-        charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | Omit = omit,
-        counterparty_id: Optional[str] | Omit = omit,
-        currency: Currency | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        direction: Literal["credit", "debit"] | Omit = omit,
-        effective_date: Union[str, date] | Omit = omit,
-        expires_at: Union[str, datetime, None] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        fallback_type: Literal["ach"] | Omit = omit,
-        foreign_exchange_contract: Optional[str] | Omit = omit,
-        foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
-        line_items: Iterable[payment_order_update_params.LineItem] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        nsf_protected: bool | Omit = omit,
-        originating_account_id: str | Omit = omit,
-        originating_party_name: Optional[str] | Omit = omit,
-        priority: Literal["high", "normal"] | Omit = omit,
-        process_after: Union[str, datetime, None] | Omit = omit,
-        purpose: Optional[str] | Omit = omit,
-        receiving_account: payment_order_update_params.ReceivingAccount | Omit = omit,
-        receiving_account_id: str | Omit = omit,
-        reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"] | Omit = omit,
-        remittance_information: Optional[str] | Omit = omit,
-        send_remittance_advice: Optional[bool] | Omit = omit,
-        statement_descriptor: Optional[str] | Omit = omit,
-        status: Literal[
-            "approved",
-            "cancelled",
-            "completed",
-            "denied",
-            "failed",
-            "held",
-            "needs_approval",
-            "pending",
-            "processing",
-            "returned",
-            "reversed",
-            "sent",
-            "stopped",
-        ]
-        | Omit = omit,
-        subtype: Optional[PaymentOrderSubtype] | Omit = omit,
-        type: PaymentOrderType | Omit = omit,
-        ultimate_originating_party_identifier: Optional[str] | Omit = omit,
-        ultimate_originating_party_name: Optional[str] | Omit = omit,
-        ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
-        ultimate_receiving_party_name: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> PaymentOrder:
+    async def update(self,
+    id: str,
+    *,
+    accounting: payment_order_update_params.Accounting | Omit = omit,
+    accounting_category_id: Optional[str] | Omit = omit,
+    accounting_ledger_class_id: Optional[str] | Omit = omit,
+    amount: int | Omit = omit,
+    charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | Omit = omit,
+    counterparty_id: Optional[str] | Omit = omit,
+    currency: Currency | Omit = omit,
+    description: Optional[str] | Omit = omit,
+    direction: Literal["credit", "debit"] | Omit = omit,
+    effective_date: Union[str, date] | Omit = omit,
+    expires_at: Union[str, datetime, None] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    fallback_type: Literal["ach"] | Omit = omit,
+    foreign_exchange_contract: Optional[str] | Omit = omit,
+    foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
+    line_items: Iterable[payment_order_update_params.LineItem] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    nsf_protected: bool | Omit = omit,
+    originating_account_id: str | Omit = omit,
+    originating_party_name: Optional[str] | Omit = omit,
+    priority: Literal["high", "normal"] | Omit = omit,
+    process_after: Union[str, datetime, None] | Omit = omit,
+    purpose: Optional[str] | Omit = omit,
+    receiving_account: payment_order_update_params.ReceivingAccount | Omit = omit,
+    receiving_account_id: str | Omit = omit,
+    reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"] | Omit = omit,
+    remittance_information: Optional[str] | Omit = omit,
+    send_remittance_advice: Optional[bool] | Omit = omit,
+    statement_descriptor: Optional[str] | Omit = omit,
+    status: Literal["approved", "cancelled", "completed", "denied", "failed", "held", "needs_approval", "pending", "processing", "returned", "reversed", "sent", "stopped"] | Omit = omit,
+    subtype: Optional[PaymentOrderSubtype] | Omit = omit,
+    type: PaymentOrderType | Omit = omit,
+    ultimate_originating_party_identifier: Optional[str] | Omit = omit,
+    ultimate_originating_party_name: Optional[str] | Omit = omit,
+    ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
+    ultimate_receiving_party_name: Optional[str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> PaymentOrder:
         """
         Update a payment order
 
@@ -1546,130 +1440,79 @@ class AsyncPaymentOrders(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._patch(
             path_template("/api/payment_orders/{id}", id=id),
-            body=await async_maybe_transform(
-                {
-                    "accounting": accounting,
-                    "accounting_category_id": accounting_category_id,
-                    "accounting_ledger_class_id": accounting_ledger_class_id,
-                    "amount": amount,
-                    "charge_bearer": charge_bearer,
-                    "counterparty_id": counterparty_id,
-                    "currency": currency,
-                    "description": description,
-                    "direction": direction,
-                    "effective_date": effective_date,
-                    "expires_at": expires_at,
-                    "external_id": external_id,
-                    "fallback_type": fallback_type,
-                    "foreign_exchange_contract": foreign_exchange_contract,
-                    "foreign_exchange_indicator": foreign_exchange_indicator,
-                    "line_items": line_items,
-                    "metadata": metadata,
-                    "nsf_protected": nsf_protected,
-                    "originating_account_id": originating_account_id,
-                    "originating_party_name": originating_party_name,
-                    "priority": priority,
-                    "process_after": process_after,
-                    "purpose": purpose,
-                    "receiving_account": receiving_account,
-                    "receiving_account_id": receiving_account_id,
-                    "reconciliation_status": reconciliation_status,
-                    "remittance_information": remittance_information,
-                    "send_remittance_advice": send_remittance_advice,
-                    "statement_descriptor": statement_descriptor,
-                    "status": status,
-                    "subtype": subtype,
-                    "type": type,
-                    "ultimate_originating_party_identifier": ultimate_originating_party_identifier,
-                    "ultimate_originating_party_name": ultimate_originating_party_name,
-                    "ultimate_receiving_party_identifier": ultimate_receiving_party_identifier,
-                    "ultimate_receiving_party_name": ultimate_receiving_party_name,
-                },
-                payment_order_update_params.PaymentOrderUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "accounting": accounting,
+                "accounting_category_id": accounting_category_id,
+                "accounting_ledger_class_id": accounting_ledger_class_id,
+                "amount": amount,
+                "charge_bearer": charge_bearer,
+                "counterparty_id": counterparty_id,
+                "currency": currency,
+                "description": description,
+                "direction": direction,
+                "effective_date": effective_date,
+                "expires_at": expires_at,
+                "external_id": external_id,
+                "fallback_type": fallback_type,
+                "foreign_exchange_contract": foreign_exchange_contract,
+                "foreign_exchange_indicator": foreign_exchange_indicator,
+                "line_items": line_items,
+                "metadata": metadata,
+                "nsf_protected": nsf_protected,
+                "originating_account_id": originating_account_id,
+                "originating_party_name": originating_party_name,
+                "priority": priority,
+                "process_after": process_after,
+                "purpose": purpose,
+                "receiving_account": receiving_account,
+                "receiving_account_id": receiving_account_id,
+                "reconciliation_status": reconciliation_status,
+                "remittance_information": remittance_information,
+                "send_remittance_advice": send_remittance_advice,
+                "statement_descriptor": statement_descriptor,
+                "status": status,
+                "subtype": subtype,
+                "type": type,
+                "ultimate_originating_party_identifier": ultimate_originating_party_identifier,
+                "ultimate_originating_party_name": ultimate_originating_party_name,
+                "ultimate_receiving_party_identifier": ultimate_receiving_party_identifier,
+                "ultimate_receiving_party_name": ultimate_receiving_party_name,
+            }, payment_order_update_params.PaymentOrderUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=PaymentOrder,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        created_at_end: Union[str, date] | Omit = omit,
-        created_at_start: Union[str, date] | Omit = omit,
-        direction: TransactionDirection | Omit = omit,
-        effective_date_end: Union[str, date] | Omit = omit,
-        effective_date_start: Union[str, date] | Omit = omit,
-        external_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        originating_account_id: str | Omit = omit,
-        per_page: int | Omit = omit,
-        priority: Literal["high", "normal"] | Omit = omit,
-        process_after_end: Union[str, datetime] | Omit = omit,
-        process_after_start: Union[str, datetime] | Omit = omit,
-        reference_number: str | Omit = omit,
-        status: Literal[
-            "approved",
-            "cancelled",
-            "completed",
-            "denied",
-            "failed",
-            "held",
-            "needs_approval",
-            "pending",
-            "processing",
-            "returned",
-            "reversed",
-            "sent",
-            "stopped",
-        ]
-        | Omit = omit,
-        transaction_id: str | Omit = omit,
-        type: Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "card",
-            "chats",
-            "check",
-            "cross_border",
-            "dk_nets",
-            "eft",
-            "gb_fps",
-            "masav",
-            "mx_ccen",
-            "neft",
-            "nics",
-            "nz_becs",
-            "pl_elixir",
-            "rtp",
-            "se_bankgirot",
-            "sepa",
-            "sg_giro",
-            "sic",
-            "stablecoin",
-            "wire",
-            "zengin",
-        ]
-        | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PaymentOrder, AsyncPage[PaymentOrder]]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    created_at_end: Union[str, date] | Omit = omit,
+    created_at_start: Union[str, date] | Omit = omit,
+    direction: TransactionDirection | Omit = omit,
+    effective_date_end: Union[str, date] | Omit = omit,
+    effective_date_start: Union[str, date] | Omit = omit,
+    external_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    originating_account_id: str | Omit = omit,
+    per_page: int | Omit = omit,
+    priority: Literal["high", "normal"] | Omit = omit,
+    process_after_end: Union[str, datetime] | Omit = omit,
+    process_after_start: Union[str, datetime] | Omit = omit,
+    reference_number: str | Omit = omit,
+    status: Literal["approved", "cancelled", "completed", "denied", "failed", "held", "needs_approval", "pending", "processing", "returned", "reversed", "sent", "stopped"] | Omit = omit,
+    transaction_id: str | Omit = omit,
+    type: Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[PaymentOrder, AsyncPage[PaymentOrder]]:
         """
         Get a list of all payment orders
 
@@ -1708,91 +1551,79 @@ class AsyncPaymentOrders(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/payment_orders",
-            page=AsyncPage[PaymentOrder],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "counterparty_id": counterparty_id,
-                        "created_at_end": created_at_end,
-                        "created_at_start": created_at_start,
-                        "direction": direction,
-                        "effective_date_end": effective_date_end,
-                        "effective_date_start": effective_date_start,
-                        "external_id": external_id,
-                        "metadata": metadata,
-                        "originating_account_id": originating_account_id,
-                        "per_page": per_page,
-                        "priority": priority,
-                        "process_after_end": process_after_end,
-                        "process_after_start": process_after_start,
-                        "reference_number": reference_number,
-                        "status": status,
-                        "transaction_id": transaction_id,
-                        "type": type,
-                    },
-                    payment_order_list_params.PaymentOrderListParams,
-                ),
-            ),
+            page = AsyncPage[PaymentOrder],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "counterparty_id": counterparty_id,
+                "created_at_end": created_at_end,
+                "created_at_start": created_at_start,
+                "direction": direction,
+                "effective_date_end": effective_date_end,
+                "effective_date_start": effective_date_start,
+                "external_id": external_id,
+                "metadata": metadata,
+                "originating_account_id": originating_account_id,
+                "per_page": per_page,
+                "priority": priority,
+                "process_after_end": process_after_end,
+                "process_after_start": process_after_start,
+                "reference_number": reference_number,
+                "status": status,
+                "transaction_id": transaction_id,
+                "type": type,
+            }, payment_order_list_params.PaymentOrderListParams)),
             model=PaymentOrder,
         )
 
-    async def create_async(
-        self,
-        *,
-        amount: int,
-        direction: Literal["credit", "debit"],
-        originating_account_id: str,
-        type: PaymentOrderType,
-        accounting: payment_order_create_async_params.Accounting | Omit = omit,
-        accounting_category_id: Optional[str] | Omit = omit,
-        accounting_ledger_class_id: Optional[str] | Omit = omit,
-        charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | Omit = omit,
-        currency: Currency | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        effective_date: Union[str, date] | Omit = omit,
-        expires_at: Union[str, datetime, None] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        fallback_type: Literal["ach"] | Omit = omit,
-        foreign_exchange_contract: Optional[str] | Omit = omit,
-        foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
-        ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
-        ledger_transaction_id: str | Omit = omit,
-        line_items: Iterable[payment_order_create_async_params.LineItem] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        nsf_protected: bool | Omit = omit,
-        originating_party_name: Optional[str] | Omit = omit,
-        priority: Literal["high", "normal"] | Omit = omit,
-        process_after: Union[str, datetime, None] | Omit = omit,
-        purpose: Optional[str] | Omit = omit,
-        receiving_account: payment_order_create_async_params.ReceivingAccount | Omit = omit,
-        receiving_account_id: str | Omit = omit,
-        reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"] | Omit = omit,
-        remittance_information: Optional[str] | Omit = omit,
-        send_remittance_advice: Optional[bool] | Omit = omit,
-        statement_descriptor: Optional[str] | Omit = omit,
-        subtype: Optional[PaymentOrderSubtype] | Omit = omit,
-        transaction_monitoring_enabled: bool | Omit = omit,
-        ultimate_originating_account_id: str | Omit = omit,
-        ultimate_originating_party_address: Optional[payment_order_create_async_params.UltimateOriginatingPartyAddress]
-        | Omit = omit,
-        ultimate_originating_party_identifier: Optional[str] | Omit = omit,
-        ultimate_originating_party_name: Optional[str] | Omit = omit,
-        ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
-        ultimate_receiving_party_name: Optional[str] | Omit = omit,
-        vendor_attributes: object | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> AsyncResponse:
+    async def create_async(self,
+    *,
+    amount: int,
+    direction: Literal["credit", "debit"],
+    originating_account_id: str,
+    type: PaymentOrderType,
+    accounting: payment_order_create_async_params.Accounting | Omit = omit,
+    accounting_category_id: Optional[str] | Omit = omit,
+    accounting_ledger_class_id: Optional[str] | Omit = omit,
+    charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | Omit = omit,
+    currency: Currency | Omit = omit,
+    description: Optional[str] | Omit = omit,
+    effective_date: Union[str, date] | Omit = omit,
+    expires_at: Union[str, datetime, None] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    fallback_type: Literal["ach"] | Omit = omit,
+    foreign_exchange_contract: Optional[str] | Omit = omit,
+    foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
+    ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
+    ledger_transaction_id: str | Omit = omit,
+    line_items: Iterable[payment_order_create_async_params.LineItem] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    nsf_protected: bool | Omit = omit,
+    originating_party_name: Optional[str] | Omit = omit,
+    priority: Literal["high", "normal"] | Omit = omit,
+    process_after: Union[str, datetime, None] | Omit = omit,
+    purpose: Optional[str] | Omit = omit,
+    receiving_account: payment_order_create_async_params.ReceivingAccount | Omit = omit,
+    receiving_account_id: str | Omit = omit,
+    reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"] | Omit = omit,
+    remittance_information: Optional[str] | Omit = omit,
+    send_remittance_advice: Optional[bool] | Omit = omit,
+    statement_descriptor: Optional[str] | Omit = omit,
+    subtype: Optional[PaymentOrderSubtype] | Omit = omit,
+    transaction_monitoring_enabled: bool | Omit = omit,
+    ultimate_originating_account_id: str | Omit = omit,
+    ultimate_originating_party_address: Optional[payment_order_create_async_params.UltimateOriginatingPartyAddress] | Omit = omit,
+    ultimate_originating_party_identifier: Optional[str] | Omit = omit,
+    ultimate_originating_party_name: Optional[str] | Omit = omit,
+    ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
+    ultimate_receiving_party_name: Optional[str] | Omit = omit,
+    vendor_attributes: object | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> AsyncResponse:
         """
         Create a new payment order asynchronously
 
@@ -1940,61 +1771,51 @@ class AsyncPaymentOrders(AsyncAPIResource):
         """
         return await self._post(
             "/api/payment_orders/create_async",
-            body=await async_maybe_transform(
-                {
-                    "amount": amount,
-                    "direction": direction,
-                    "originating_account_id": originating_account_id,
-                    "type": type,
-                    "accounting": accounting,
-                    "accounting_category_id": accounting_category_id,
-                    "accounting_ledger_class_id": accounting_ledger_class_id,
-                    "charge_bearer": charge_bearer,
-                    "currency": currency,
-                    "description": description,
-                    "effective_date": effective_date,
-                    "expires_at": expires_at,
-                    "external_id": external_id,
-                    "fallback_type": fallback_type,
-                    "foreign_exchange_contract": foreign_exchange_contract,
-                    "foreign_exchange_indicator": foreign_exchange_indicator,
-                    "ledger_transaction": ledger_transaction,
-                    "ledger_transaction_id": ledger_transaction_id,
-                    "line_items": line_items,
-                    "metadata": metadata,
-                    "nsf_protected": nsf_protected,
-                    "originating_party_name": originating_party_name,
-                    "priority": priority,
-                    "process_after": process_after,
-                    "purpose": purpose,
-                    "receiving_account": receiving_account,
-                    "receiving_account_id": receiving_account_id,
-                    "reconciliation_status": reconciliation_status,
-                    "remittance_information": remittance_information,
-                    "send_remittance_advice": send_remittance_advice,
-                    "statement_descriptor": statement_descriptor,
-                    "subtype": subtype,
-                    "transaction_monitoring_enabled": transaction_monitoring_enabled,
-                    "ultimate_originating_account_id": ultimate_originating_account_id,
-                    "ultimate_originating_party_address": ultimate_originating_party_address,
-                    "ultimate_originating_party_identifier": ultimate_originating_party_identifier,
-                    "ultimate_originating_party_name": ultimate_originating_party_name,
-                    "ultimate_receiving_party_identifier": ultimate_receiving_party_identifier,
-                    "ultimate_receiving_party_name": ultimate_receiving_party_name,
-                    "vendor_attributes": vendor_attributes,
-                },
-                payment_order_create_async_params.PaymentOrderCreateAsyncParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "amount": amount,
+                "direction": direction,
+                "originating_account_id": originating_account_id,
+                "type": type,
+                "accounting": accounting,
+                "accounting_category_id": accounting_category_id,
+                "accounting_ledger_class_id": accounting_ledger_class_id,
+                "charge_bearer": charge_bearer,
+                "currency": currency,
+                "description": description,
+                "effective_date": effective_date,
+                "expires_at": expires_at,
+                "external_id": external_id,
+                "fallback_type": fallback_type,
+                "foreign_exchange_contract": foreign_exchange_contract,
+                "foreign_exchange_indicator": foreign_exchange_indicator,
+                "ledger_transaction": ledger_transaction,
+                "ledger_transaction_id": ledger_transaction_id,
+                "line_items": line_items,
+                "metadata": metadata,
+                "nsf_protected": nsf_protected,
+                "originating_party_name": originating_party_name,
+                "priority": priority,
+                "process_after": process_after,
+                "purpose": purpose,
+                "receiving_account": receiving_account,
+                "receiving_account_id": receiving_account_id,
+                "reconciliation_status": reconciliation_status,
+                "remittance_information": remittance_information,
+                "send_remittance_advice": send_remittance_advice,
+                "statement_descriptor": statement_descriptor,
+                "subtype": subtype,
+                "transaction_monitoring_enabled": transaction_monitoring_enabled,
+                "ultimate_originating_account_id": ultimate_originating_account_id,
+                "ultimate_originating_party_address": ultimate_originating_party_address,
+                "ultimate_originating_party_identifier": ultimate_originating_party_identifier,
+                "ultimate_originating_party_name": ultimate_originating_party_name,
+                "ultimate_receiving_party_identifier": ultimate_receiving_party_identifier,
+                "ultimate_receiving_party_name": ultimate_receiving_party_name,
+                "vendor_attributes": vendor_attributes,
+            }, payment_order_create_async_params.PaymentOrderCreateAsyncParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=AsyncResponse,
         )
-
 
 class PaymentOrdersWithRawResponse:
     def __init__(self, payment_orders: PaymentOrders) -> None:
@@ -2020,7 +1841,6 @@ class PaymentOrdersWithRawResponse:
     def reversals(self) -> ReversalsWithRawResponse:
         return ReversalsWithRawResponse(self._payment_orders.reversals)
 
-
 class AsyncPaymentOrdersWithRawResponse:
     def __init__(self, payment_orders: AsyncPaymentOrders) -> None:
         self._payment_orders = payment_orders
@@ -2045,7 +1865,6 @@ class AsyncPaymentOrdersWithRawResponse:
     def reversals(self) -> AsyncReversalsWithRawResponse:
         return AsyncReversalsWithRawResponse(self._payment_orders.reversals)
 
-
 class PaymentOrdersWithStreamingResponse:
     def __init__(self, payment_orders: PaymentOrders) -> None:
         self._payment_orders = payment_orders
@@ -2069,7 +1888,6 @@ class PaymentOrdersWithStreamingResponse:
     @cached_property
     def reversals(self) -> ReversalsWithStreamingResponse:
         return ReversalsWithStreamingResponse(self._payment_orders.reversals)
-
 
 class AsyncPaymentOrdersWithStreamingResponse:
     def __init__(self, payment_orders: AsyncPaymentOrders) -> None:

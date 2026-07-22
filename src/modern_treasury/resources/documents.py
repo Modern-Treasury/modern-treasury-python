@@ -2,25 +2,38 @@
 
 from __future__ import annotations
 
-from typing import Mapping, Optional, cast
-from typing_extensions import Literal
-
 import httpx
 
-from .. import _legacy_response
-from ..types import document_list_params, document_create_params
-from .._files import deepcopy_with_paths
-from .._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
-from .._utils import extract_files, path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
+
+from .._compat import cached_property
+
 from ..types.document import Document
 
-__all__ = ["Documents", "AsyncDocuments"]
+from .._files import deepcopy_with_paths
 
+from .._utils import extract_files, maybe_transform, path_template, async_maybe_transform
+
+from typing import cast, Mapping, Optional
+
+from .._base_client import make_request_options, AsyncPaginator
+
+from .._types import FileTypes, Omit, omit, NotGiven
+
+from typing_extensions import Literal
+
+from ..pagination import SyncPage, AsyncPage
+
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import document_create_params
+from ..types import document_list_params
+
+__all__ = ["Documents", "AsyncDocuments"]
 
 class Documents(SyncAPIResource):
     @cached_property
@@ -42,34 +55,19 @@ class Documents(SyncAPIResource):
         """
         return DocumentsWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        file: FileTypes,
-        document_type: str | Omit = omit,
-        documentable_id: str | Omit = omit,
-        documentable_type: Literal[
-            "connection",
-            "counterparty",
-            "expected_payment",
-            "external_account",
-            "identification",
-            "incoming_payment_detail",
-            "internal_account",
-            "legal_entity",
-            "organization",
-            "payment_order",
-            "transaction",
-        ]
-        | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Document:
+    def create(self,
+    *,
+    file: FileTypes,
+    document_type: str | Omit = omit,
+    documentable_id: str | Omit = omit,
+    documentable_type: Literal["connection", "counterparty", "expected_payment", "external_account", "identification", "incoming_payment_detail", "internal_account", "legal_entity", "organization", "payment_order", "transaction"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Document:
         """
         Create a document.
 
@@ -88,16 +86,16 @@ class Documents(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
-        body = deepcopy_with_paths(
-            {
-                "file": file,
-                "document_type": document_type,
-                "documentable_id": documentable_id,
-                "documentable_type": documentable_type,
-            },
-            [["file"]],
+        body = deepcopy_with_paths({
+            "file": file,
+            "document_type": document_type,
+            "documentable_id": documentable_id,
+            "documentable_type": documentable_type,
+        }, [["file"]])
+        files = extract_files(
+          cast(Mapping[str, object], body),
+          paths=[["file"]]
         )
-        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
@@ -106,27 +104,19 @@ class Documents(SyncAPIResource):
             "/api/documents",
             body=maybe_transform(body, document_create_params.DocumentCreateParams),
             files=files,
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Document,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Document:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> Document:
         """
         Get an existing document.
 
@@ -140,42 +130,27 @@ class Documents(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/documents/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=Document,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        documentable_id: str | Omit = omit,
-        documentable_type: Literal[
-            "connection",
-            "counterparty",
-            "expected_payment",
-            "external_account",
-            "identification",
-            "incoming_payment_detail",
-            "internal_account",
-            "legal_entity",
-            "organization",
-            "payment_order",
-            "transaction",
-        ]
-        | Omit = omit,
-        per_page: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[Document]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    documentable_id: str | Omit = omit,
+    documentable_type: Literal["connection", "counterparty", "expected_payment", "external_account", "identification", "incoming_payment_detail", "internal_account", "legal_entity", "organization", "payment_order", "transaction"] | Omit = omit,
+    per_page: int | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[Document]:
         """
         Get a list of documents.
 
@@ -196,25 +171,15 @@ class Documents(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/documents",
-            page=SyncPage[Document],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "documentable_id": documentable_id,
-                        "documentable_type": documentable_type,
-                        "per_page": per_page,
-                    },
-                    document_list_params.DocumentListParams,
-                ),
-            ),
+            page = SyncPage[Document],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "documentable_id": documentable_id,
+                "documentable_type": documentable_type,
+                "per_page": per_page,
+            }, document_list_params.DocumentListParams)),
             model=Document,
         )
-
 
 class AsyncDocuments(AsyncAPIResource):
     @cached_property
@@ -236,34 +201,19 @@ class AsyncDocuments(AsyncAPIResource):
         """
         return AsyncDocumentsWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        file: FileTypes,
-        document_type: str | Omit = omit,
-        documentable_id: str | Omit = omit,
-        documentable_type: Literal[
-            "connection",
-            "counterparty",
-            "expected_payment",
-            "external_account",
-            "identification",
-            "incoming_payment_detail",
-            "internal_account",
-            "legal_entity",
-            "organization",
-            "payment_order",
-            "transaction",
-        ]
-        | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Document:
+    async def create(self,
+    *,
+    file: FileTypes,
+    document_type: str | Omit = omit,
+    documentable_id: str | Omit = omit,
+    documentable_type: Literal["connection", "counterparty", "expected_payment", "external_account", "identification", "incoming_payment_detail", "internal_account", "legal_entity", "organization", "payment_order", "transaction"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Document:
         """
         Create a document.
 
@@ -282,16 +232,16 @@ class AsyncDocuments(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
-        body = deepcopy_with_paths(
-            {
-                "file": file,
-                "document_type": document_type,
-                "documentable_id": documentable_id,
-                "documentable_type": documentable_type,
-            },
-            [["file"]],
+        body = deepcopy_with_paths({
+            "file": file,
+            "document_type": document_type,
+            "documentable_id": documentable_id,
+            "documentable_type": documentable_type,
+        }, [["file"]])
+        files = extract_files(
+          cast(Mapping[str, object], body),
+          paths=[["file"]]
         )
-        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
@@ -300,27 +250,19 @@ class AsyncDocuments(AsyncAPIResource):
             "/api/documents",
             body=await async_maybe_transform(body, document_create_params.DocumentCreateParams),
             files=files,
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Document,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Document:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> Document:
         """
         Get an existing document.
 
@@ -334,42 +276,27 @@ class AsyncDocuments(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/documents/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=Document,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        documentable_id: str | Omit = omit,
-        documentable_type: Literal[
-            "connection",
-            "counterparty",
-            "expected_payment",
-            "external_account",
-            "identification",
-            "incoming_payment_detail",
-            "internal_account",
-            "legal_entity",
-            "organization",
-            "payment_order",
-            "transaction",
-        ]
-        | Omit = omit,
-        per_page: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Document, AsyncPage[Document]]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    documentable_id: str | Omit = omit,
+    documentable_type: Literal["connection", "counterparty", "expected_payment", "external_account", "identification", "incoming_payment_detail", "internal_account", "legal_entity", "organization", "payment_order", "transaction"] | Omit = omit,
+    per_page: int | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[Document, AsyncPage[Document]]:
         """
         Get a list of documents.
 
@@ -390,25 +317,15 @@ class AsyncDocuments(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/documents",
-            page=AsyncPage[Document],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "documentable_id": documentable_id,
-                        "documentable_type": documentable_type,
-                        "per_page": per_page,
-                    },
-                    document_list_params.DocumentListParams,
-                ),
-            ),
+            page = AsyncPage[Document],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "documentable_id": documentable_id,
+                "documentable_type": documentable_type,
+                "per_page": per_page,
+            }, document_list_params.DocumentListParams)),
             model=Document,
         )
-
 
 class DocumentsWithRawResponse:
     def __init__(self, documents: Documents) -> None:
@@ -424,7 +341,6 @@ class DocumentsWithRawResponse:
             documents.list,
         )
 
-
 class AsyncDocumentsWithRawResponse:
     def __init__(self, documents: AsyncDocuments) -> None:
         self._documents = documents
@@ -439,7 +355,6 @@ class AsyncDocumentsWithRawResponse:
             documents.list,
         )
 
-
 class DocumentsWithStreamingResponse:
     def __init__(self, documents: Documents) -> None:
         self._documents = documents
@@ -453,7 +368,6 @@ class DocumentsWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             documents.list,
         )
-
 
 class AsyncDocumentsWithStreamingResponse:
     def __init__(self, documents: AsyncDocuments) -> None:

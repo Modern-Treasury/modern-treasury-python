@@ -6,7 +6,6 @@ from typing_extensions import TypedDict
 
 __all__ = ["LedgerEntryRetrieveParams"]
 
-
 class LedgerEntryRetrieveParams(TypedDict, total=False):
     show_balances: bool
     """If true, response will include the balances attached to the ledger entry.

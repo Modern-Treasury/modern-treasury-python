@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict, Required
 
-from .._types import SequenceNotStr
 from .shared.transaction_direction import TransactionDirection
 
-__all__ = ["LedgerAccountCategoryCreateParams"]
+from typing import Optional, Dict
 
+from .._types import SequenceNotStr
+
+__all__ = ["LedgerAccountCategoryCreateParams"]
 
 class LedgerAccountCategoryCreateParams(TypedDict, total=False):
     currency: Required[str]

@@ -2,15 +2,17 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
-from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import TypedDict, Literal, Required, Annotated
 
-from .._utils import PropertyInfo
+from typing import Iterable, Optional, Dict, Union
+
+from datetime import datetime
+
 from .shared.transaction_direction import TransactionDirection
 
-__all__ = ["InternalAccountCreateParams", "AccountCapabilities", "AccountCapability", "PartyAddress"]
+from .._utils import PropertyInfo
 
+__all__ = ["InternalAccountCreateParams", "AccountCapabilities", "AccountCapability", "PartyAddress"]
 
 class InternalAccountCreateParams(TypedDict, total=False):
     currency: Required[Literal["USD", "CAD", "USDC", "USDT", "PYUSD", "USDG"]]
@@ -25,21 +27,7 @@ class InternalAccountCreateParams(TypedDict, total=False):
     internal account and any relevant information for them.
     """
 
-    account_type: Literal[
-        "base_wallet",
-        "cash",
-        "checking",
-        "crypto_wallet",
-        "ethereum_wallet",
-        "general_ledger",
-        "loan",
-        "non_resident",
-        "other",
-        "overdraft",
-        "polygon_wallet",
-        "savings",
-        "solana_wallet",
-    ]
+    account_type: Literal["base_wallet", "cash", "checking", "crypto_wallet", "ethereum_wallet", "general_ledger", "loan", "non_resident", "other", "overdraft", "polygon_wallet", "savings", "solana_wallet"]
     """
     The account type, used to provision the appropriate account at the financial
     institution.
@@ -91,11 +79,10 @@ class InternalAccountCreateParams(TypedDict, total=False):
     at the vendor specified by the given connection.
     """
 
-
 class AccountCapability(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     id: Required[str]
 
-    created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
+    created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]]
 
     direction: Required[TransactionDirection]
     """One of `debit` or `credit`.
@@ -103,7 +90,7 @@ class AccountCapability(TypedDict, total=False, extra_items=object):  # type: ig
     Indicates the direction of money movement this capability is responsible for.
     """
 
-    discarded_at: Required[Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]]
+    discarded_at: Required[Annotated[Union[str, datetime, None], PropertyInfo(format = "iso8601")]]
 
     identifier: Required[Optional[str]]
     """
@@ -119,42 +106,13 @@ class AccountCapability(TypedDict, total=False, extra_items=object):  # type: ig
 
     object: Required[str]
 
-    payment_type: Required[
-        Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "card",
-            "chats",
-            "check",
-            "cross_border",
-            "dk_nets",
-            "eft",
-            "gb_fps",
-            "masav",
-            "mx_ccen",
-            "neft",
-            "nics",
-            "nz_becs",
-            "pl_elixir",
-            "rtp",
-            "se_bankgirot",
-            "sepa",
-            "sg_giro",
-            "sic",
-            "stablecoin",
-            "wire",
-            "zengin",
-        ]
-    ]
+    payment_type: Required[Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin"]]
     """
     Indicates the the type of payment this capability is responsible for
     originating.
     """
 
-    updated_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
-
+    updated_at: Required[Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]]
 
 AccountCapabilities = AccountCapability
 """This type is deprecated and will be removed in a future release.
@@ -162,10 +120,8 @@ AccountCapabilities = AccountCapability
 Please use AccountCapability instead.
 """
 
-
 class PartyAddress(TypedDict, total=False):
     """The address associated with the owner or null."""
-
     country: Required[str]
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 

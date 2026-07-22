@@ -2,25 +2,39 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
-from datetime import date
-from typing_extensions import Literal
-
 import httpx
 
-from .. import _legacy_response
-from ..types import payment_flow_list_params, payment_flow_create_params, payment_flow_update_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
+
+from .._compat import cached_property
+
 from ..types.payment_flow import PaymentFlow
 
-__all__ = ["PaymentFlows", "AsyncPaymentFlows"]
+from .._utils import maybe_transform, path_template, async_maybe_transform
 
+from .._base_client import make_request_options, AsyncPaginator
+
+from typing_extensions import Literal
+
+from datetime import date
+
+from typing import Union, Optional
+
+from .._types import Omit, omit, NotGiven
+
+from ..pagination import SyncPage, AsyncPage
+
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import payment_flow_create_params
+from ..types import payment_flow_update_params
+from ..types import payment_flow_list_params
+
+__all__ = ["PaymentFlows", "AsyncPaymentFlows"]
 
 class PaymentFlows(SyncAPIResource):
     @cached_property
@@ -42,23 +56,21 @@ class PaymentFlows(SyncAPIResource):
         """
         return PaymentFlowsWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        amount: int,
-        counterparty_id: str,
-        currency: str,
-        direction: Literal["credit", "debit"],
-        originating_account_id: str,
-        due_date: Union[str, date] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> PaymentFlow:
+    def create(self,
+    *,
+    amount: int,
+    counterparty_id: str,
+    currency: str,
+    direction: Literal["credit", "debit"],
+    originating_account_id: str,
+    due_date: Union[str, date] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> PaymentFlow:
         """create payment_flow
 
         Args:
@@ -93,38 +105,27 @@ class PaymentFlows(SyncAPIResource):
         """
         return self._post(
             "/api/payment_flows",
-            body=maybe_transform(
-                {
-                    "amount": amount,
-                    "counterparty_id": counterparty_id,
-                    "currency": currency,
-                    "direction": direction,
-                    "originating_account_id": originating_account_id,
-                    "due_date": due_date,
-                },
-                payment_flow_create_params.PaymentFlowCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "amount": amount,
+                "counterparty_id": counterparty_id,
+                "currency": currency,
+                "direction": direction,
+                "originating_account_id": originating_account_id,
+                "due_date": due_date,
+            }, payment_flow_create_params.PaymentFlowCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=PaymentFlow,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PaymentFlow:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> PaymentFlow:
         """
         get payment_flow
 
@@ -138,28 +139,26 @@ class PaymentFlows(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/payment_flows/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=PaymentFlow,
         )
 
-    def update(
-        self,
-        id: str,
-        *,
-        status: Literal["cancelled"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> PaymentFlow:
+    def update(self,
+    id: str,
+    *,
+    status: Literal["cancelled"],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> PaymentFlow:
         """update payment_flow
 
         Args:
@@ -179,38 +178,34 @@ class PaymentFlows(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._patch(
             path_template("/api/payment_flows/{id}", id=id),
-            body=maybe_transform({"status": status}, payment_flow_update_params.PaymentFlowUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "status": status
+            }, payment_flow_update_params.PaymentFlowUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=PaymentFlow,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        client_token: str | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        originating_account_id: str | Omit = omit,
-        payment_order_id: str | Omit = omit,
-        per_page: int | Omit = omit,
-        receiving_account_id: str | Omit = omit,
-        status: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[PaymentFlow]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    client_token: str | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    originating_account_id: str | Omit = omit,
+    payment_order_id: str | Omit = omit,
+    per_page: int | Omit = omit,
+    receiving_account_id: str | Omit = omit,
+    status: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[PaymentFlow]:
         """
         list payment_flows
 
@@ -225,29 +220,19 @@ class PaymentFlows(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/payment_flows",
-            page=SyncPage[PaymentFlow],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "client_token": client_token,
-                        "counterparty_id": counterparty_id,
-                        "originating_account_id": originating_account_id,
-                        "payment_order_id": payment_order_id,
-                        "per_page": per_page,
-                        "receiving_account_id": receiving_account_id,
-                        "status": status,
-                    },
-                    payment_flow_list_params.PaymentFlowListParams,
-                ),
-            ),
+            page = SyncPage[PaymentFlow],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "client_token": client_token,
+                "counterparty_id": counterparty_id,
+                "originating_account_id": originating_account_id,
+                "payment_order_id": payment_order_id,
+                "per_page": per_page,
+                "receiving_account_id": receiving_account_id,
+                "status": status,
+            }, payment_flow_list_params.PaymentFlowListParams)),
             model=PaymentFlow,
         )
-
 
 class AsyncPaymentFlows(AsyncAPIResource):
     @cached_property
@@ -269,23 +254,21 @@ class AsyncPaymentFlows(AsyncAPIResource):
         """
         return AsyncPaymentFlowsWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        amount: int,
-        counterparty_id: str,
-        currency: str,
-        direction: Literal["credit", "debit"],
-        originating_account_id: str,
-        due_date: Union[str, date] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> PaymentFlow:
+    async def create(self,
+    *,
+    amount: int,
+    counterparty_id: str,
+    currency: str,
+    direction: Literal["credit", "debit"],
+    originating_account_id: str,
+    due_date: Union[str, date] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> PaymentFlow:
         """create payment_flow
 
         Args:
@@ -320,38 +303,27 @@ class AsyncPaymentFlows(AsyncAPIResource):
         """
         return await self._post(
             "/api/payment_flows",
-            body=await async_maybe_transform(
-                {
-                    "amount": amount,
-                    "counterparty_id": counterparty_id,
-                    "currency": currency,
-                    "direction": direction,
-                    "originating_account_id": originating_account_id,
-                    "due_date": due_date,
-                },
-                payment_flow_create_params.PaymentFlowCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "amount": amount,
+                "counterparty_id": counterparty_id,
+                "currency": currency,
+                "direction": direction,
+                "originating_account_id": originating_account_id,
+                "due_date": due_date,
+            }, payment_flow_create_params.PaymentFlowCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=PaymentFlow,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PaymentFlow:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> PaymentFlow:
         """
         get payment_flow
 
@@ -365,28 +337,26 @@ class AsyncPaymentFlows(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/payment_flows/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=PaymentFlow,
         )
 
-    async def update(
-        self,
-        id: str,
-        *,
-        status: Literal["cancelled"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> PaymentFlow:
+    async def update(self,
+    id: str,
+    *,
+    status: Literal["cancelled"],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> PaymentFlow:
         """update payment_flow
 
         Args:
@@ -406,38 +376,34 @@ class AsyncPaymentFlows(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._patch(
             path_template("/api/payment_flows/{id}", id=id),
-            body=await async_maybe_transform({"status": status}, payment_flow_update_params.PaymentFlowUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "status": status
+            }, payment_flow_update_params.PaymentFlowUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=PaymentFlow,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        client_token: str | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        originating_account_id: str | Omit = omit,
-        payment_order_id: str | Omit = omit,
-        per_page: int | Omit = omit,
-        receiving_account_id: str | Omit = omit,
-        status: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PaymentFlow, AsyncPage[PaymentFlow]]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    client_token: str | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    originating_account_id: str | Omit = omit,
+    payment_order_id: str | Omit = omit,
+    per_page: int | Omit = omit,
+    receiving_account_id: str | Omit = omit,
+    status: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[PaymentFlow, AsyncPage[PaymentFlow]]:
         """
         list payment_flows
 
@@ -452,29 +418,19 @@ class AsyncPaymentFlows(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/payment_flows",
-            page=AsyncPage[PaymentFlow],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "client_token": client_token,
-                        "counterparty_id": counterparty_id,
-                        "originating_account_id": originating_account_id,
-                        "payment_order_id": payment_order_id,
-                        "per_page": per_page,
-                        "receiving_account_id": receiving_account_id,
-                        "status": status,
-                    },
-                    payment_flow_list_params.PaymentFlowListParams,
-                ),
-            ),
+            page = AsyncPage[PaymentFlow],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "client_token": client_token,
+                "counterparty_id": counterparty_id,
+                "originating_account_id": originating_account_id,
+                "payment_order_id": payment_order_id,
+                "per_page": per_page,
+                "receiving_account_id": receiving_account_id,
+                "status": status,
+            }, payment_flow_list_params.PaymentFlowListParams)),
             model=PaymentFlow,
         )
-
 
 class PaymentFlowsWithRawResponse:
     def __init__(self, payment_flows: PaymentFlows) -> None:
@@ -493,7 +449,6 @@ class PaymentFlowsWithRawResponse:
             payment_flows.list,
         )
 
-
 class AsyncPaymentFlowsWithRawResponse:
     def __init__(self, payment_flows: AsyncPaymentFlows) -> None:
         self._payment_flows = payment_flows
@@ -511,7 +466,6 @@ class AsyncPaymentFlowsWithRawResponse:
             payment_flows.list,
         )
 
-
 class PaymentFlowsWithStreamingResponse:
     def __init__(self, payment_flows: PaymentFlows) -> None:
         self._payment_flows = payment_flows
@@ -528,7 +482,6 @@ class PaymentFlowsWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             payment_flows.list,
         )
-
 
 class AsyncPaymentFlowsWithStreamingResponse:
     def __init__(self, payment_flows: AsyncPaymentFlows) -> None:

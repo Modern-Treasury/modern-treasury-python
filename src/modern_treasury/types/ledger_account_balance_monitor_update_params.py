@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict
 from typing_extensions import TypedDict
 
-__all__ = ["LedgerAccountBalanceMonitorUpdateParams"]
+from typing import Dict
 
+__all__ = ["LedgerAccountBalanceMonitorUpdateParams"]
 
 class LedgerAccountBalanceMonitorUpdateParams(TypedDict, total=False):
     description: str

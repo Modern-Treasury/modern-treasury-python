@@ -2,24 +2,38 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
-from typing_extensions import Literal
-
 import httpx
 
-from .. import _legacy_response
-from ..types import bulk_request_list_params, bulk_request_create_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
+
+from .._compat import cached_property
+
 from ..types.bulk_request import BulkRequest
 
-__all__ = ["BulkRequests", "AsyncBulkRequests"]
+from .._utils import maybe_transform, path_template, async_maybe_transform
 
+from .._base_client import make_request_options, AsyncPaginator
+
+from typing_extensions import Literal
+
+from typing import Iterable, Dict, Optional
+
+from .._types import Omit, omit, NotGiven
+
+from ..pagination import SyncPage, AsyncPage
+
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ..types import bulk_request_create_params
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import bulk_request_create_params
+from ..types import bulk_request_list_params
+
+__all__ = ["BulkRequests", "AsyncBulkRequests"]
 
 class BulkRequests(SyncAPIResource):
     @cached_property
@@ -41,29 +55,19 @@ class BulkRequests(SyncAPIResource):
         """
         return BulkRequestsWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        action_type: Literal["create", "update", "delete"],
-        resource_type: Literal[
-            "payment_order",
-            "ledger_account",
-            "ledger_transaction",
-            "expected_payment",
-            "transaction",
-            "transaction_line_item",
-            "entity_link",
-        ],
-        resources: Iterable[bulk_request_create_params.Resource],
-        metadata: Dict[str, str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> BulkRequest:
+    def create(self,
+    *,
+    action_type: Literal["create", "update", "delete"],
+    resource_type: Literal["payment_order", "ledger_account", "ledger_transaction", "expected_payment", "transaction", "transaction_line_item", "entity_link"],
+    resources: Iterable[bulk_request_create_params.Resource],
+    metadata: Dict[str, str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> BulkRequest:
         """
         create bulk_request
 
@@ -90,36 +94,25 @@ class BulkRequests(SyncAPIResource):
         """
         return self._post(
             "/api/bulk_requests",
-            body=maybe_transform(
-                {
-                    "action_type": action_type,
-                    "resource_type": resource_type,
-                    "resources": resources,
-                    "metadata": metadata,
-                },
-                bulk_request_create_params.BulkRequestCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "action_type": action_type,
+                "resource_type": resource_type,
+                "resources": resources,
+                "metadata": metadata,
+            }, bulk_request_create_params.BulkRequestCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=BulkRequest,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BulkRequest:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> BulkRequest:
         """
         get bulk_request
 
@@ -133,40 +126,29 @@ class BulkRequests(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/bulk_requests/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=BulkRequest,
         )
 
-    def list(
-        self,
-        *,
-        action_type: Literal["create", "update", "delete"] | Omit = omit,
-        after_cursor: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        per_page: int | Omit = omit,
-        resource_type: Literal[
-            "payment_order",
-            "ledger_account",
-            "ledger_transaction",
-            "expected_payment",
-            "transaction",
-            "transaction_line_item",
-            "entity_link",
-        ]
-        | Omit = omit,
-        status: Literal["pending", "processing", "completed"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[BulkRequest]:
+    def list(self,
+    *,
+    action_type: Literal["create", "update", "delete"] | Omit = omit,
+    after_cursor: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    per_page: int | Omit = omit,
+    resource_type: Literal["payment_order", "ledger_account", "ledger_transaction", "expected_payment", "transaction", "transaction_line_item", "entity_link"] | Omit = omit,
+    status: Literal["pending", "processing", "completed"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[BulkRequest]:
         """
         list bulk_requests
 
@@ -191,27 +173,17 @@ class BulkRequests(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/bulk_requests",
-            page=SyncPage[BulkRequest],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "action_type": action_type,
-                        "after_cursor": after_cursor,
-                        "metadata": metadata,
-                        "per_page": per_page,
-                        "resource_type": resource_type,
-                        "status": status,
-                    },
-                    bulk_request_list_params.BulkRequestListParams,
-                ),
-            ),
+            page = SyncPage[BulkRequest],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "action_type": action_type,
+                "after_cursor": after_cursor,
+                "metadata": metadata,
+                "per_page": per_page,
+                "resource_type": resource_type,
+                "status": status,
+            }, bulk_request_list_params.BulkRequestListParams)),
             model=BulkRequest,
         )
-
 
 class AsyncBulkRequests(AsyncAPIResource):
     @cached_property
@@ -233,29 +205,19 @@ class AsyncBulkRequests(AsyncAPIResource):
         """
         return AsyncBulkRequestsWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        action_type: Literal["create", "update", "delete"],
-        resource_type: Literal[
-            "payment_order",
-            "ledger_account",
-            "ledger_transaction",
-            "expected_payment",
-            "transaction",
-            "transaction_line_item",
-            "entity_link",
-        ],
-        resources: Iterable[bulk_request_create_params.Resource],
-        metadata: Dict[str, str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> BulkRequest:
+    async def create(self,
+    *,
+    action_type: Literal["create", "update", "delete"],
+    resource_type: Literal["payment_order", "ledger_account", "ledger_transaction", "expected_payment", "transaction", "transaction_line_item", "entity_link"],
+    resources: Iterable[bulk_request_create_params.Resource],
+    metadata: Dict[str, str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> BulkRequest:
         """
         create bulk_request
 
@@ -282,36 +244,25 @@ class AsyncBulkRequests(AsyncAPIResource):
         """
         return await self._post(
             "/api/bulk_requests",
-            body=await async_maybe_transform(
-                {
-                    "action_type": action_type,
-                    "resource_type": resource_type,
-                    "resources": resources,
-                    "metadata": metadata,
-                },
-                bulk_request_create_params.BulkRequestCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "action_type": action_type,
+                "resource_type": resource_type,
+                "resources": resources,
+                "metadata": metadata,
+            }, bulk_request_create_params.BulkRequestCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=BulkRequest,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BulkRequest:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> BulkRequest:
         """
         get bulk_request
 
@@ -325,40 +276,29 @@ class AsyncBulkRequests(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/bulk_requests/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=BulkRequest,
         )
 
-    def list(
-        self,
-        *,
-        action_type: Literal["create", "update", "delete"] | Omit = omit,
-        after_cursor: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        per_page: int | Omit = omit,
-        resource_type: Literal[
-            "payment_order",
-            "ledger_account",
-            "ledger_transaction",
-            "expected_payment",
-            "transaction",
-            "transaction_line_item",
-            "entity_link",
-        ]
-        | Omit = omit,
-        status: Literal["pending", "processing", "completed"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[BulkRequest, AsyncPage[BulkRequest]]:
+    def list(self,
+    *,
+    action_type: Literal["create", "update", "delete"] | Omit = omit,
+    after_cursor: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    per_page: int | Omit = omit,
+    resource_type: Literal["payment_order", "ledger_account", "ledger_transaction", "expected_payment", "transaction", "transaction_line_item", "entity_link"] | Omit = omit,
+    status: Literal["pending", "processing", "completed"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[BulkRequest, AsyncPage[BulkRequest]]:
         """
         list bulk_requests
 
@@ -383,27 +323,17 @@ class AsyncBulkRequests(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/bulk_requests",
-            page=AsyncPage[BulkRequest],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "action_type": action_type,
-                        "after_cursor": after_cursor,
-                        "metadata": metadata,
-                        "per_page": per_page,
-                        "resource_type": resource_type,
-                        "status": status,
-                    },
-                    bulk_request_list_params.BulkRequestListParams,
-                ),
-            ),
+            page = AsyncPage[BulkRequest],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "action_type": action_type,
+                "after_cursor": after_cursor,
+                "metadata": metadata,
+                "per_page": per_page,
+                "resource_type": resource_type,
+                "status": status,
+            }, bulk_request_list_params.BulkRequestListParams)),
             model=BulkRequest,
         )
-
 
 class BulkRequestsWithRawResponse:
     def __init__(self, bulk_requests: BulkRequests) -> None:
@@ -419,7 +349,6 @@ class BulkRequestsWithRawResponse:
             bulk_requests.list,
         )
 
-
 class AsyncBulkRequestsWithRawResponse:
     def __init__(self, bulk_requests: AsyncBulkRequests) -> None:
         self._bulk_requests = bulk_requests
@@ -434,7 +363,6 @@ class AsyncBulkRequestsWithRawResponse:
             bulk_requests.list,
         )
 
-
 class BulkRequestsWithStreamingResponse:
     def __init__(self, bulk_requests: BulkRequests) -> None:
         self._bulk_requests = bulk_requests
@@ -448,7 +376,6 @@ class BulkRequestsWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             bulk_requests.list,
         )
-
 
 class AsyncBulkRequestsWithStreamingResponse:
     def __init__(self, bulk_requests: AsyncBulkRequests) -> None:

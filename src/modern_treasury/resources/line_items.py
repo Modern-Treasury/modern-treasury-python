@@ -2,24 +2,36 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-from typing_extensions import Literal
-
 import httpx
 
-from .. import _legacy_response
-from ..types import line_item_list_params, line_item_update_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
+
+from .._compat import cached_property
+
+from .._utils import path_template, maybe_transform, async_maybe_transform
+
 from ..types.line_item import LineItem
 
-__all__ = ["LineItems", "AsyncLineItems"]
+from .._base_client import make_request_options, AsyncPaginator
 
+from typing_extensions import Literal
+
+from .._types import NotGiven, Omit, omit
+
+from typing import Dict, Optional
+
+from ..pagination import SyncPage, AsyncPage
+
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import line_item_update_params
+from ..types import line_item_list_params
+
+__all__ = ["LineItems", "AsyncLineItems"]
 
 class LineItems(SyncAPIResource):
     @cached_property
@@ -41,19 +53,17 @@ class LineItems(SyncAPIResource):
         """
         return LineItemsWithStreamingResponse(self)
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        itemizable_type: Literal["expected_payments", "payment_orders"],
-        itemizable_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LineItem:
+    def retrieve(self,
+    id: str,
+    *,
+    itemizable_type: Literal["expected_payments", "payment_orders"],
+    itemizable_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> LineItem:
         """
         Get a single line item
 
@@ -67,39 +77,36 @@ class LineItems(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not itemizable_type:
-            raise ValueError(f"Expected a non-empty value for `itemizable_type` but received {itemizable_type!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `itemizable_type` but received {itemizable_type!r}'
+          )
         if not itemizable_id:
-            raise ValueError(f"Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}'
+          )
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
-            path_template(
-                "/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
-                itemizable_type=itemizable_type,
-                itemizable_id=itemizable_id,
-                id=id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            path_template("/api/{itemizable_type}/{itemizable_id}/line_items/{id}", itemizable_type=itemizable_type, itemizable_id=itemizable_id, id=id),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=LineItem,
         )
 
-    def update(
-        self,
-        id: str,
-        *,
-        itemizable_type: Literal["expected_payments", "payment_orders"],
-        itemizable_id: str,
-        metadata: Dict[str, str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LineItem:
+    def update(self,
+    id: str,
+    *,
+    itemizable_type: Literal["expected_payments", "payment_orders"],
+    itemizable_id: str,
+    metadata: Dict[str, str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LineItem:
         """
         update line item
 
@@ -118,43 +125,38 @@ class LineItems(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not itemizable_type:
-            raise ValueError(f"Expected a non-empty value for `itemizable_type` but received {itemizable_type!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `itemizable_type` but received {itemizable_type!r}'
+          )
         if not itemizable_id:
-            raise ValueError(f"Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}'
+          )
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._patch(
-            path_template(
-                "/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
-                itemizable_type=itemizable_type,
-                itemizable_id=itemizable_id,
-                id=id,
-            ),
-            body=maybe_transform({"metadata": metadata}, line_item_update_params.LineItemUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            path_template("/api/{itemizable_type}/{itemizable_id}/line_items/{id}", itemizable_type=itemizable_type, itemizable_id=itemizable_id, id=id),
+            body=maybe_transform({
+                "metadata": metadata
+            }, line_item_update_params.LineItemUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LineItem,
         )
 
-    def list(
-        self,
-        itemizable_id: str,
-        *,
-        itemizable_type: Literal["expected_payments", "payment_orders"],
-        after_cursor: Optional[str] | Omit = omit,
-        per_page: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[LineItem]:
+    def list(self,
+    itemizable_id: str,
+    *,
+    itemizable_type: Literal["expected_payments", "payment_orders"],
+    after_cursor: Optional[str] | Omit = omit,
+    per_page: int | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[LineItem]:
         """
         Get a list of line items
 
@@ -168,32 +170,22 @@ class LineItems(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not itemizable_type:
-            raise ValueError(f"Expected a non-empty value for `itemizable_type` but received {itemizable_type!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `itemizable_type` but received {itemizable_type!r}'
+          )
         if not itemizable_id:
-            raise ValueError(f"Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}'
+          )
         return self._get_api_list(
-            path_template(
-                "/api/{itemizable_type}/{itemizable_id}/line_items",
-                itemizable_type=itemizable_type,
-                itemizable_id=itemizable_id,
-            ),
-            page=SyncPage[LineItem],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "per_page": per_page,
-                    },
-                    line_item_list_params.LineItemListParams,
-                ),
-            ),
+            path_template("/api/{itemizable_type}/{itemizable_id}/line_items", itemizable_type=itemizable_type, itemizable_id=itemizable_id),
+            page = SyncPage[LineItem],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "per_page": per_page,
+            }, line_item_list_params.LineItemListParams)),
             model=LineItem,
         )
-
 
 class AsyncLineItems(AsyncAPIResource):
     @cached_property
@@ -215,19 +207,17 @@ class AsyncLineItems(AsyncAPIResource):
         """
         return AsyncLineItemsWithStreamingResponse(self)
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        itemizable_type: Literal["expected_payments", "payment_orders"],
-        itemizable_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LineItem:
+    async def retrieve(self,
+    id: str,
+    *,
+    itemizable_type: Literal["expected_payments", "payment_orders"],
+    itemizable_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> LineItem:
         """
         Get a single line item
 
@@ -241,39 +231,36 @@ class AsyncLineItems(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not itemizable_type:
-            raise ValueError(f"Expected a non-empty value for `itemizable_type` but received {itemizable_type!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `itemizable_type` but received {itemizable_type!r}'
+          )
         if not itemizable_id:
-            raise ValueError(f"Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}'
+          )
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
-            path_template(
-                "/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
-                itemizable_type=itemizable_type,
-                itemizable_id=itemizable_id,
-                id=id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            path_template("/api/{itemizable_type}/{itemizable_id}/line_items/{id}", itemizable_type=itemizable_type, itemizable_id=itemizable_id, id=id),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=LineItem,
         )
 
-    async def update(
-        self,
-        id: str,
-        *,
-        itemizable_type: Literal["expected_payments", "payment_orders"],
-        itemizable_id: str,
-        metadata: Dict[str, str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LineItem:
+    async def update(self,
+    id: str,
+    *,
+    itemizable_type: Literal["expected_payments", "payment_orders"],
+    itemizable_id: str,
+    metadata: Dict[str, str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LineItem:
         """
         update line item
 
@@ -292,43 +279,38 @@ class AsyncLineItems(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not itemizable_type:
-            raise ValueError(f"Expected a non-empty value for `itemizable_type` but received {itemizable_type!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `itemizable_type` but received {itemizable_type!r}'
+          )
         if not itemizable_id:
-            raise ValueError(f"Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}'
+          )
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._patch(
-            path_template(
-                "/api/{itemizable_type}/{itemizable_id}/line_items/{id}",
-                itemizable_type=itemizable_type,
-                itemizable_id=itemizable_id,
-                id=id,
-            ),
-            body=await async_maybe_transform({"metadata": metadata}, line_item_update_params.LineItemUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            path_template("/api/{itemizable_type}/{itemizable_id}/line_items/{id}", itemizable_type=itemizable_type, itemizable_id=itemizable_id, id=id),
+            body=await async_maybe_transform({
+                "metadata": metadata
+            }, line_item_update_params.LineItemUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LineItem,
         )
 
-    def list(
-        self,
-        itemizable_id: str,
-        *,
-        itemizable_type: Literal["expected_payments", "payment_orders"],
-        after_cursor: Optional[str] | Omit = omit,
-        per_page: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[LineItem, AsyncPage[LineItem]]:
+    def list(self,
+    itemizable_id: str,
+    *,
+    itemizable_type: Literal["expected_payments", "payment_orders"],
+    after_cursor: Optional[str] | Omit = omit,
+    per_page: int | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[LineItem, AsyncPage[LineItem]]:
         """
         Get a list of line items
 
@@ -342,32 +324,22 @@ class AsyncLineItems(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not itemizable_type:
-            raise ValueError(f"Expected a non-empty value for `itemizable_type` but received {itemizable_type!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `itemizable_type` but received {itemizable_type!r}'
+          )
         if not itemizable_id:
-            raise ValueError(f"Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `itemizable_id` but received {itemizable_id!r}'
+          )
         return self._get_api_list(
-            path_template(
-                "/api/{itemizable_type}/{itemizable_id}/line_items",
-                itemizable_type=itemizable_type,
-                itemizable_id=itemizable_id,
-            ),
-            page=AsyncPage[LineItem],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "per_page": per_page,
-                    },
-                    line_item_list_params.LineItemListParams,
-                ),
-            ),
+            path_template("/api/{itemizable_type}/{itemizable_id}/line_items", itemizable_type=itemizable_type, itemizable_id=itemizable_id),
+            page = AsyncPage[LineItem],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "per_page": per_page,
+            }, line_item_list_params.LineItemListParams)),
             model=LineItem,
         )
-
 
 class LineItemsWithRawResponse:
     def __init__(self, line_items: LineItems) -> None:
@@ -383,7 +355,6 @@ class LineItemsWithRawResponse:
             line_items.list,
         )
 
-
 class AsyncLineItemsWithRawResponse:
     def __init__(self, line_items: AsyncLineItems) -> None:
         self._line_items = line_items
@@ -398,7 +369,6 @@ class AsyncLineItemsWithRawResponse:
             line_items.list,
         )
 
-
 class LineItemsWithStreamingResponse:
     def __init__(self, line_items: LineItems) -> None:
         self._line_items = line_items
@@ -412,7 +382,6 @@ class LineItemsWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             line_items.list,
         )
-
 
 class AsyncLineItemsWithStreamingResponse:
     def __init__(self, line_items: AsyncLineItems) -> None:

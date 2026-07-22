@@ -1,13 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
-from typing_extensions import Literal
-
 from .._models import BaseModel
+
+from typing import Optional, Dict, List
+
 from .shared.address_request import AddressRequest
 
-__all__ = ["RoutingNumberLookupRequest"]
+from typing_extensions import Literal
 
+__all__ = ["RoutingNumberLookupRequest"]
 
 class RoutingNumberLookupRequest(BaseModel):
     bank_address: Optional[AddressRequest] = None
@@ -19,19 +20,7 @@ class RoutingNumberLookupRequest(BaseModel):
     routing_number: Optional[str] = None
     """The routing number of the bank."""
 
-    routing_number_type: Optional[
-        Literal[
-            "aba",
-            "au_bsb",
-            "ca_cpa",
-            "gb_sort_code",
-            "in_ifsc",
-            "nz_national_clearing_code",
-            "se_bankgiro_clearing_code",
-            "swift",
-            "za_national_clearing_code",
-        ]
-    ] = None
+    routing_number_type: Optional[Literal["aba", "au_bsb", "ca_cpa", "gb_sort_code", "in_ifsc", "nz_national_clearing_code", "se_bankgiro_clearing_code", "swift", "za_national_clearing_code"]] = None
     """The type of routing number.
 
     See https://docs.moderntreasury.com/platform/reference/routing-detail-object for
@@ -46,37 +35,7 @@ class RoutingNumberLookupRequest(BaseModel):
     list. Currently, this includes eu_con, uk_hmt, us_ofac, and un sanctions lists.
     """
 
-    supported_payment_types: Optional[
-        List[
-            Literal[
-                "ach",
-                "au_becs",
-                "bacs",
-                "book",
-                "card",
-                "chats",
-                "check",
-                "cross_border",
-                "dk_nets",
-                "eft",
-                "gb_fps",
-                "masav",
-                "mx_ccen",
-                "neft",
-                "nics",
-                "nz_becs",
-                "pl_elixir",
-                "rtp",
-                "se_bankgirot",
-                "sepa",
-                "sg_giro",
-                "sic",
-                "stablecoin",
-                "wire",
-                "zengin",
-            ]
-        ]
-    ] = None
+    supported_payment_types: Optional[List[Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin"]]] = None
     """An array of payment types that are supported for this routing number.
 
     This can include `ach`, `wire`, `rtp`, `sepa`, `bacs`, `au_becs`, and 'fednow'

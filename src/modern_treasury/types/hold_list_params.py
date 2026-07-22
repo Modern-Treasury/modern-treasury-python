@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-from typing_extensions import Literal, TypedDict
+from typing_extensions import TypedDict, Literal
+
+from typing import Optional, Dict
 
 __all__ = ["HoldListParams"]
-
 
 class HoldListParams(TypedDict, total=False):
     after_cursor: Optional[str]

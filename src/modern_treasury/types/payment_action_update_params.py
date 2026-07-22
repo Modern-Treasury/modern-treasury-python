@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import TypedDict, Literal, Required
 
 __all__ = ["PaymentActionUpdateParams"]
-
 
 class PaymentActionUpdateParams(TypedDict, total=False):
     status: Required[Literal["pending", "processable", "processing", "sent", "acknowledged", "failed", "cancelled"]]

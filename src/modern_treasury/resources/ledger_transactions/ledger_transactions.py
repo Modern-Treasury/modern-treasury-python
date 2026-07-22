@@ -2,40 +2,47 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
-from datetime import date, datetime
-from typing_extensions import Literal
-
 import httpx
 
-from ... import _legacy_response
-from ...types import (
-    ledger_transaction_list_params,
-    ledger_transaction_create_params,
-    ledger_transaction_update_params,
-    ledger_transaction_create_reversal_params,
-    ledger_transaction_create_partial_post_params,
-)
-from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
-from .versions import (
-    Versions,
-    AsyncVersions,
-    VersionsWithRawResponse,
-    AsyncVersionsWithRawResponse,
-    VersionsWithStreamingResponse,
-    AsyncVersionsWithStreamingResponse,
-)
-from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ...pagination import SyncPage, AsyncPage
-from ..._base_client import AsyncPaginator, make_request_options
+
+from .versions import Versions, AsyncVersions, VersionsWithRawResponse, AsyncVersionsWithRawResponse, VersionsWithStreamingResponse, AsyncVersionsWithStreamingResponse
+
+from ..._compat import cached_property
+
 from ...types.ledger_transaction import LedgerTransaction
+
+from ..._utils import maybe_transform, path_template, async_maybe_transform
+
+from ..._base_client import make_request_options, AsyncPaginator
+
+from typing import Iterable, Optional, Union, Dict, List
+
 from ...types.shared_params.ledger_entry_create_request import LedgerEntryCreateRequest
 
-__all__ = ["LedgerTransactions", "AsyncLedgerTransactions"]
+from ..._types import Omit, omit, NotGiven, SequenceNotStr
 
+from datetime import datetime, date
+
+from typing_extensions import Literal
+
+from ...pagination import SyncPage, AsyncPage
+
+from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ...types import ledger_transaction_list_params, ledger_transaction_create_partial_post_params
+
+from ... import _legacy_response
+
+from typing_extensions import Literal, overload
+from ..._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ...types import ledger_transaction_create_params
+from ...types import ledger_transaction_update_params
+from ...types import ledger_transaction_list_params
+from ...types import ledger_transaction_create_partial_post_params
+from ...types import ledger_transaction_create_reversal_params
+
+__all__ = ["LedgerTransactions", "AsyncLedgerTransactions"]
 
 class LedgerTransactions(SyncAPIResource):
     @cached_property
@@ -61,27 +68,24 @@ class LedgerTransactions(SyncAPIResource):
         """
         return LedgerTransactionsWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        ledger_entries: Iterable[LedgerEntryCreateRequest],
-        description: Optional[str] | Omit = omit,
-        effective_at: Union[str, datetime] | Omit = omit,
-        effective_date: Union[str, date] | Omit = omit,
-        external_id: str | Omit = omit,
-        ledgerable_id: str | Omit = omit,
-        ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
-        | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        status: Literal["archived", "pending", "posted"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LedgerTransaction:
+    def create(self,
+    *,
+    ledger_entries: Iterable[LedgerEntryCreateRequest],
+    description: Optional[str] | Omit = omit,
+    effective_at: Union[str, datetime] | Omit = omit,
+    effective_date: Union[str, date] | Omit = omit,
+    external_id: str | Omit = omit,
+    ledgerable_id: str | Omit = omit,
+    ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    status: Literal["archived", "pending", "posted"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LedgerTransaction:
         """
         Create a ledger transaction.
 
@@ -123,41 +127,30 @@ class LedgerTransactions(SyncAPIResource):
         """
         return self._post(
             "/api/ledger_transactions",
-            body=maybe_transform(
-                {
-                    "ledger_entries": ledger_entries,
-                    "description": description,
-                    "effective_at": effective_at,
-                    "effective_date": effective_date,
-                    "external_id": external_id,
-                    "ledgerable_id": ledgerable_id,
-                    "ledgerable_type": ledgerable_type,
-                    "metadata": metadata,
-                    "status": status,
-                },
-                ledger_transaction_create_params.LedgerTransactionCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "ledger_entries": ledger_entries,
+                "description": description,
+                "effective_at": effective_at,
+                "effective_date": effective_date,
+                "external_id": external_id,
+                "ledgerable_id": ledgerable_id,
+                "ledgerable_type": ledgerable_type,
+                "metadata": metadata,
+                "status": status,
+            }, ledger_transaction_create_params.LedgerTransactionCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LedgerTransaction,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LedgerTransaction:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> LedgerTransaction:
         """
         Get details on a single ledger transaction.
 
@@ -171,36 +164,33 @@ class LedgerTransactions(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/ledger_transactions/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=LedgerTransaction,
         )
 
-    def update(
-        self,
-        id: str,
-        *,
-        description: Optional[str] | Omit = omit,
-        effective_at: Union[str, datetime] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        ledger_entries: Iterable[LedgerEntryCreateRequest] | Omit = omit,
-        ledgerable_id: str | Omit = omit,
-        ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
-        | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        status: Literal["archived", "pending", "posted"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LedgerTransaction:
+    def update(self,
+    id: str,
+    *,
+    description: Optional[str] | Omit = omit,
+    effective_at: Union[str, datetime] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    ledger_entries: Iterable[LedgerEntryCreateRequest] | Omit = omit,
+    ledgerable_id: str | Omit = omit,
+    ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    status: Literal["archived", "pending", "posted"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LedgerTransaction:
         """
         Update the details of a ledger transaction.
 
@@ -238,64 +228,53 @@ class LedgerTransactions(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._patch(
             path_template("/api/ledger_transactions/{id}", id=id),
-            body=maybe_transform(
-                {
-                    "description": description,
-                    "effective_at": effective_at,
-                    "external_id": external_id,
-                    "ledger_entries": ledger_entries,
-                    "ledgerable_id": ledgerable_id,
-                    "ledgerable_type": ledgerable_type,
-                    "metadata": metadata,
-                    "status": status,
-                },
-                ledger_transaction_update_params.LedgerTransactionUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "description": description,
+                "effective_at": effective_at,
+                "external_id": external_id,
+                "ledger_entries": ledger_entries,
+                "ledgerable_id": ledgerable_id,
+                "ledgerable_type": ledgerable_type,
+                "metadata": metadata,
+                "status": status,
+            }, ledger_transaction_update_params.LedgerTransactionUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LedgerTransaction,
         )
 
-    def list(
-        self,
-        *,
-        id: SequenceNotStr[str] | Omit = omit,
-        after_cursor: Optional[str] | Omit = omit,
-        amount: ledger_transaction_list_params.Amount | Omit = omit,
-        effective_at: Dict[str, Union[str, datetime]] | Omit = omit,
-        effective_date: Dict[str, Union[str, datetime]] | Omit = omit,
-        external_id: str | Omit = omit,
-        ledger_account_category_id: str | Omit = omit,
-        ledger_account_id: str | Omit = omit,
-        ledger_account_settlement_id: str | Omit = omit,
-        ledger_id: str | Omit = omit,
-        ledgerable_id: str | Omit = omit,
-        ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
-        | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        order_by: ledger_transaction_list_params.OrderBy | Omit = omit,
-        partially_posts_ledger_transaction_id: str | Omit = omit,
-        per_page: int | Omit = omit,
-        posted_at: Dict[str, Union[str, datetime]] | Omit = omit,
-        reverses_ledger_transaction_id: str | Omit = omit,
-        status: Union[Literal["pending", "posted", "archived"], List[Literal["pending", "posted", "archived"]]]
-        | Omit = omit,
-        updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[LedgerTransaction]:
+    def list(self,
+    *,
+    id: SequenceNotStr[str] | Omit = omit,
+    after_cursor: Optional[str] | Omit = omit,
+    amount: ledger_transaction_list_params.Amount | Omit = omit,
+    effective_at: Dict[str, Union[str, datetime]] | Omit = omit,
+    effective_date: Dict[str, Union[str, datetime]] | Omit = omit,
+    external_id: str | Omit = omit,
+    ledger_account_category_id: str | Omit = omit,
+    ledger_account_id: str | Omit = omit,
+    ledger_account_settlement_id: str | Omit = omit,
+    ledger_id: str | Omit = omit,
+    ledgerable_id: str | Omit = omit,
+    ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    order_by: ledger_transaction_list_params.OrderBy | Omit = omit,
+    partially_posts_ledger_transaction_id: str | Omit = omit,
+    per_page: int | Omit = omit,
+    posted_at: Dict[str, Union[str, datetime]] | Omit = omit,
+    reverses_ledger_transaction_id: str | Omit = omit,
+    status: Union[Literal["pending", "posted", "archived"], List[Literal["pending", "posted", "archived"]]] | Omit = omit,
+    updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[LedgerTransaction]:
         """
         Get a list of ledger transactions.
 
@@ -339,57 +318,46 @@ class LedgerTransactions(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/ledger_transactions",
-            page=SyncPage[LedgerTransaction],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "id": id,
-                        "after_cursor": after_cursor,
-                        "amount": amount,
-                        "effective_at": effective_at,
-                        "effective_date": effective_date,
-                        "external_id": external_id,
-                        "ledger_account_category_id": ledger_account_category_id,
-                        "ledger_account_id": ledger_account_id,
-                        "ledger_account_settlement_id": ledger_account_settlement_id,
-                        "ledger_id": ledger_id,
-                        "ledgerable_id": ledgerable_id,
-                        "ledgerable_type": ledgerable_type,
-                        "metadata": metadata,
-                        "order_by": order_by,
-                        "partially_posts_ledger_transaction_id": partially_posts_ledger_transaction_id,
-                        "per_page": per_page,
-                        "posted_at": posted_at,
-                        "reverses_ledger_transaction_id": reverses_ledger_transaction_id,
-                        "status": status,
-                        "updated_at": updated_at,
-                    },
-                    ledger_transaction_list_params.LedgerTransactionListParams,
-                ),
-            ),
+            page = SyncPage[LedgerTransaction],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "id": id,
+                "after_cursor": after_cursor,
+                "amount": amount,
+                "effective_at": effective_at,
+                "effective_date": effective_date,
+                "external_id": external_id,
+                "ledger_account_category_id": ledger_account_category_id,
+                "ledger_account_id": ledger_account_id,
+                "ledger_account_settlement_id": ledger_account_settlement_id,
+                "ledger_id": ledger_id,
+                "ledgerable_id": ledgerable_id,
+                "ledgerable_type": ledgerable_type,
+                "metadata": metadata,
+                "order_by": order_by,
+                "partially_posts_ledger_transaction_id": partially_posts_ledger_transaction_id,
+                "per_page": per_page,
+                "posted_at": posted_at,
+                "reverses_ledger_transaction_id": reverses_ledger_transaction_id,
+                "status": status,
+                "updated_at": updated_at,
+            }, ledger_transaction_list_params.LedgerTransactionListParams)),
             model=LedgerTransaction,
         )
 
-    def create_partial_post(
-        self,
-        id: str,
-        *,
-        posted_ledger_entries: Iterable[ledger_transaction_create_partial_post_params.PostedLedgerEntry],
-        description: str | Omit = omit,
-        effective_at: Union[str, datetime] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LedgerTransaction:
+    def create_partial_post(self,
+    id: str,
+    *,
+    posted_ledger_entries: Iterable[ledger_transaction_create_partial_post_params.PostedLedgerEntry],
+    description: str | Omit = omit,
+    effective_at: Union[str, datetime] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LedgerTransaction:
         """
         Create a ledger transaction that partially posts another ledger transaction.
 
@@ -418,48 +386,38 @@ class LedgerTransactions(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._post(
             path_template("/api/ledger_transactions/{id}/partial_post", id=id),
-            body=maybe_transform(
-                {
-                    "posted_ledger_entries": posted_ledger_entries,
-                    "description": description,
-                    "effective_at": effective_at,
-                    "metadata": metadata,
-                },
-                ledger_transaction_create_partial_post_params.LedgerTransactionCreatePartialPostParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "posted_ledger_entries": posted_ledger_entries,
+                "description": description,
+                "effective_at": effective_at,
+                "metadata": metadata,
+            }, ledger_transaction_create_partial_post_params.LedgerTransactionCreatePartialPostParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LedgerTransaction,
         )
 
-    def create_reversal(
-        self,
-        id: str,
-        *,
-        description: str | Omit = omit,
-        effective_at: Union[str, datetime, None] | Omit = omit,
-        external_id: str | Omit = omit,
-        ledgerable_id: str | Omit = omit,
-        ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
-        | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        status: Literal["archived", "pending", "posted"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LedgerTransaction:
+    def create_reversal(self,
+    id: str,
+    *,
+    description: str | Omit = omit,
+    effective_at: Union[str, datetime, None] | Omit = omit,
+    external_id: str | Omit = omit,
+    ledgerable_id: str | Omit = omit,
+    ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    status: Literal["archived", "pending", "posted"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LedgerTransaction:
         """
         Create a ledger transaction reversal.
 
@@ -496,31 +454,23 @@ class LedgerTransactions(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._post(
             path_template("/api/ledger_transactions/{id}/reversal", id=id),
-            body=maybe_transform(
-                {
-                    "description": description,
-                    "effective_at": effective_at,
-                    "external_id": external_id,
-                    "ledgerable_id": ledgerable_id,
-                    "ledgerable_type": ledgerable_type,
-                    "metadata": metadata,
-                    "status": status,
-                },
-                ledger_transaction_create_reversal_params.LedgerTransactionCreateReversalParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "description": description,
+                "effective_at": effective_at,
+                "external_id": external_id,
+                "ledgerable_id": ledgerable_id,
+                "ledgerable_type": ledgerable_type,
+                "metadata": metadata,
+                "status": status,
+            }, ledger_transaction_create_reversal_params.LedgerTransactionCreateReversalParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LedgerTransaction,
         )
-
 
 class AsyncLedgerTransactions(AsyncAPIResource):
     @cached_property
@@ -546,27 +496,24 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         """
         return AsyncLedgerTransactionsWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        ledger_entries: Iterable[LedgerEntryCreateRequest],
-        description: Optional[str] | Omit = omit,
-        effective_at: Union[str, datetime] | Omit = omit,
-        effective_date: Union[str, date] | Omit = omit,
-        external_id: str | Omit = omit,
-        ledgerable_id: str | Omit = omit,
-        ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
-        | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        status: Literal["archived", "pending", "posted"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LedgerTransaction:
+    async def create(self,
+    *,
+    ledger_entries: Iterable[LedgerEntryCreateRequest],
+    description: Optional[str] | Omit = omit,
+    effective_at: Union[str, datetime] | Omit = omit,
+    effective_date: Union[str, date] | Omit = omit,
+    external_id: str | Omit = omit,
+    ledgerable_id: str | Omit = omit,
+    ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    status: Literal["archived", "pending", "posted"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LedgerTransaction:
         """
         Create a ledger transaction.
 
@@ -608,41 +555,30 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         """
         return await self._post(
             "/api/ledger_transactions",
-            body=await async_maybe_transform(
-                {
-                    "ledger_entries": ledger_entries,
-                    "description": description,
-                    "effective_at": effective_at,
-                    "effective_date": effective_date,
-                    "external_id": external_id,
-                    "ledgerable_id": ledgerable_id,
-                    "ledgerable_type": ledgerable_type,
-                    "metadata": metadata,
-                    "status": status,
-                },
-                ledger_transaction_create_params.LedgerTransactionCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "ledger_entries": ledger_entries,
+                "description": description,
+                "effective_at": effective_at,
+                "effective_date": effective_date,
+                "external_id": external_id,
+                "ledgerable_id": ledgerable_id,
+                "ledgerable_type": ledgerable_type,
+                "metadata": metadata,
+                "status": status,
+            }, ledger_transaction_create_params.LedgerTransactionCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LedgerTransaction,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LedgerTransaction:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> LedgerTransaction:
         """
         Get details on a single ledger transaction.
 
@@ -656,36 +592,33 @@ class AsyncLedgerTransactions(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/ledger_transactions/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=LedgerTransaction,
         )
 
-    async def update(
-        self,
-        id: str,
-        *,
-        description: Optional[str] | Omit = omit,
-        effective_at: Union[str, datetime] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        ledger_entries: Iterable[LedgerEntryCreateRequest] | Omit = omit,
-        ledgerable_id: str | Omit = omit,
-        ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
-        | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        status: Literal["archived", "pending", "posted"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LedgerTransaction:
+    async def update(self,
+    id: str,
+    *,
+    description: Optional[str] | Omit = omit,
+    effective_at: Union[str, datetime] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    ledger_entries: Iterable[LedgerEntryCreateRequest] | Omit = omit,
+    ledgerable_id: str | Omit = omit,
+    ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    status: Literal["archived", "pending", "posted"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LedgerTransaction:
         """
         Update the details of a ledger transaction.
 
@@ -723,64 +656,53 @@ class AsyncLedgerTransactions(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._patch(
             path_template("/api/ledger_transactions/{id}", id=id),
-            body=await async_maybe_transform(
-                {
-                    "description": description,
-                    "effective_at": effective_at,
-                    "external_id": external_id,
-                    "ledger_entries": ledger_entries,
-                    "ledgerable_id": ledgerable_id,
-                    "ledgerable_type": ledgerable_type,
-                    "metadata": metadata,
-                    "status": status,
-                },
-                ledger_transaction_update_params.LedgerTransactionUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "description": description,
+                "effective_at": effective_at,
+                "external_id": external_id,
+                "ledger_entries": ledger_entries,
+                "ledgerable_id": ledgerable_id,
+                "ledgerable_type": ledgerable_type,
+                "metadata": metadata,
+                "status": status,
+            }, ledger_transaction_update_params.LedgerTransactionUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LedgerTransaction,
         )
 
-    def list(
-        self,
-        *,
-        id: SequenceNotStr[str] | Omit = omit,
-        after_cursor: Optional[str] | Omit = omit,
-        amount: ledger_transaction_list_params.Amount | Omit = omit,
-        effective_at: Dict[str, Union[str, datetime]] | Omit = omit,
-        effective_date: Dict[str, Union[str, datetime]] | Omit = omit,
-        external_id: str | Omit = omit,
-        ledger_account_category_id: str | Omit = omit,
-        ledger_account_id: str | Omit = omit,
-        ledger_account_settlement_id: str | Omit = omit,
-        ledger_id: str | Omit = omit,
-        ledgerable_id: str | Omit = omit,
-        ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
-        | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        order_by: ledger_transaction_list_params.OrderBy | Omit = omit,
-        partially_posts_ledger_transaction_id: str | Omit = omit,
-        per_page: int | Omit = omit,
-        posted_at: Dict[str, Union[str, datetime]] | Omit = omit,
-        reverses_ledger_transaction_id: str | Omit = omit,
-        status: Union[Literal["pending", "posted", "archived"], List[Literal["pending", "posted", "archived"]]]
-        | Omit = omit,
-        updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[LedgerTransaction, AsyncPage[LedgerTransaction]]:
+    def list(self,
+    *,
+    id: SequenceNotStr[str] | Omit = omit,
+    after_cursor: Optional[str] | Omit = omit,
+    amount: ledger_transaction_list_params.Amount | Omit = omit,
+    effective_at: Dict[str, Union[str, datetime]] | Omit = omit,
+    effective_date: Dict[str, Union[str, datetime]] | Omit = omit,
+    external_id: str | Omit = omit,
+    ledger_account_category_id: str | Omit = omit,
+    ledger_account_id: str | Omit = omit,
+    ledger_account_settlement_id: str | Omit = omit,
+    ledger_id: str | Omit = omit,
+    ledgerable_id: str | Omit = omit,
+    ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    order_by: ledger_transaction_list_params.OrderBy | Omit = omit,
+    partially_posts_ledger_transaction_id: str | Omit = omit,
+    per_page: int | Omit = omit,
+    posted_at: Dict[str, Union[str, datetime]] | Omit = omit,
+    reverses_ledger_transaction_id: str | Omit = omit,
+    status: Union[Literal["pending", "posted", "archived"], List[Literal["pending", "posted", "archived"]]] | Omit = omit,
+    updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[LedgerTransaction, AsyncPage[LedgerTransaction]]:
         """
         Get a list of ledger transactions.
 
@@ -824,57 +746,46 @@ class AsyncLedgerTransactions(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/ledger_transactions",
-            page=AsyncPage[LedgerTransaction],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "id": id,
-                        "after_cursor": after_cursor,
-                        "amount": amount,
-                        "effective_at": effective_at,
-                        "effective_date": effective_date,
-                        "external_id": external_id,
-                        "ledger_account_category_id": ledger_account_category_id,
-                        "ledger_account_id": ledger_account_id,
-                        "ledger_account_settlement_id": ledger_account_settlement_id,
-                        "ledger_id": ledger_id,
-                        "ledgerable_id": ledgerable_id,
-                        "ledgerable_type": ledgerable_type,
-                        "metadata": metadata,
-                        "order_by": order_by,
-                        "partially_posts_ledger_transaction_id": partially_posts_ledger_transaction_id,
-                        "per_page": per_page,
-                        "posted_at": posted_at,
-                        "reverses_ledger_transaction_id": reverses_ledger_transaction_id,
-                        "status": status,
-                        "updated_at": updated_at,
-                    },
-                    ledger_transaction_list_params.LedgerTransactionListParams,
-                ),
-            ),
+            page = AsyncPage[LedgerTransaction],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "id": id,
+                "after_cursor": after_cursor,
+                "amount": amount,
+                "effective_at": effective_at,
+                "effective_date": effective_date,
+                "external_id": external_id,
+                "ledger_account_category_id": ledger_account_category_id,
+                "ledger_account_id": ledger_account_id,
+                "ledger_account_settlement_id": ledger_account_settlement_id,
+                "ledger_id": ledger_id,
+                "ledgerable_id": ledgerable_id,
+                "ledgerable_type": ledgerable_type,
+                "metadata": metadata,
+                "order_by": order_by,
+                "partially_posts_ledger_transaction_id": partially_posts_ledger_transaction_id,
+                "per_page": per_page,
+                "posted_at": posted_at,
+                "reverses_ledger_transaction_id": reverses_ledger_transaction_id,
+                "status": status,
+                "updated_at": updated_at,
+            }, ledger_transaction_list_params.LedgerTransactionListParams)),
             model=LedgerTransaction,
         )
 
-    async def create_partial_post(
-        self,
-        id: str,
-        *,
-        posted_ledger_entries: Iterable[ledger_transaction_create_partial_post_params.PostedLedgerEntry],
-        description: str | Omit = omit,
-        effective_at: Union[str, datetime] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LedgerTransaction:
+    async def create_partial_post(self,
+    id: str,
+    *,
+    posted_ledger_entries: Iterable[ledger_transaction_create_partial_post_params.PostedLedgerEntry],
+    description: str | Omit = omit,
+    effective_at: Union[str, datetime] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LedgerTransaction:
         """
         Create a ledger transaction that partially posts another ledger transaction.
 
@@ -903,48 +814,38 @@ class AsyncLedgerTransactions(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._post(
             path_template("/api/ledger_transactions/{id}/partial_post", id=id),
-            body=await async_maybe_transform(
-                {
-                    "posted_ledger_entries": posted_ledger_entries,
-                    "description": description,
-                    "effective_at": effective_at,
-                    "metadata": metadata,
-                },
-                ledger_transaction_create_partial_post_params.LedgerTransactionCreatePartialPostParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "posted_ledger_entries": posted_ledger_entries,
+                "description": description,
+                "effective_at": effective_at,
+                "metadata": metadata,
+            }, ledger_transaction_create_partial_post_params.LedgerTransactionCreatePartialPostParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LedgerTransaction,
         )
 
-    async def create_reversal(
-        self,
-        id: str,
-        *,
-        description: str | Omit = omit,
-        effective_at: Union[str, datetime, None] | Omit = omit,
-        external_id: str | Omit = omit,
-        ledgerable_id: str | Omit = omit,
-        ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
-        | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        status: Literal["archived", "pending", "posted"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LedgerTransaction:
+    async def create_reversal(self,
+    id: str,
+    *,
+    description: str | Omit = omit,
+    effective_at: Union[str, datetime, None] | Omit = omit,
+    external_id: str | Omit = omit,
+    ledgerable_id: str | Omit = omit,
+    ledgerable_type: Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    status: Literal["archived", "pending", "posted"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LedgerTransaction:
         """
         Create a ledger transaction reversal.
 
@@ -981,31 +882,23 @@ class AsyncLedgerTransactions(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._post(
             path_template("/api/ledger_transactions/{id}/reversal", id=id),
-            body=await async_maybe_transform(
-                {
-                    "description": description,
-                    "effective_at": effective_at,
-                    "external_id": external_id,
-                    "ledgerable_id": ledgerable_id,
-                    "ledgerable_type": ledgerable_type,
-                    "metadata": metadata,
-                    "status": status,
-                },
-                ledger_transaction_create_reversal_params.LedgerTransactionCreateReversalParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "description": description,
+                "effective_at": effective_at,
+                "external_id": external_id,
+                "ledgerable_id": ledgerable_id,
+                "ledgerable_type": ledgerable_type,
+                "metadata": metadata,
+                "status": status,
+            }, ledger_transaction_create_reversal_params.LedgerTransactionCreateReversalParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LedgerTransaction,
         )
-
 
 class LedgerTransactionsWithRawResponse:
     def __init__(self, ledger_transactions: LedgerTransactions) -> None:
@@ -1034,7 +927,6 @@ class LedgerTransactionsWithRawResponse:
     def versions(self) -> VersionsWithRawResponse:
         return VersionsWithRawResponse(self._ledger_transactions.versions)
 
-
 class AsyncLedgerTransactionsWithRawResponse:
     def __init__(self, ledger_transactions: AsyncLedgerTransactions) -> None:
         self._ledger_transactions = ledger_transactions
@@ -1062,7 +954,6 @@ class AsyncLedgerTransactionsWithRawResponse:
     def versions(self) -> AsyncVersionsWithRawResponse:
         return AsyncVersionsWithRawResponse(self._ledger_transactions.versions)
 
-
 class LedgerTransactionsWithStreamingResponse:
     def __init__(self, ledger_transactions: LedgerTransactions) -> None:
         self._ledger_transactions = ledger_transactions
@@ -1089,7 +980,6 @@ class LedgerTransactionsWithStreamingResponse:
     @cached_property
     def versions(self) -> VersionsWithStreamingResponse:
         return VersionsWithStreamingResponse(self._ledger_transactions.versions)
-
 
 class AsyncLedgerTransactionsWithStreamingResponse:
     def __init__(self, ledger_transactions: AsyncLedgerTransactions) -> None:

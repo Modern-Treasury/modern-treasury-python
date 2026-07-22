@@ -2,32 +2,47 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 import httpx
 
-from .. import _legacy_response
-from ..types import (
-    counterparty_list_params,
-    counterparty_create_params,
-    counterparty_update_params,
-    counterparty_collect_account_params,
-)
-from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
+
+from .._compat import cached_property
+
 from ..types.counterparty import Counterparty
-from ..types.shared.transaction_direction import TransactionDirection
+
+from .._utils import maybe_transform, path_template, async_maybe_transform
+
+from .._base_client import make_request_options, AsyncPaginator
+
+from typing import Optional, Iterable, Dict, Union, List
+
+from .._types import Omit, omit, NotGiven
+
+from typing_extensions import Literal
+
+from ..pagination import SyncPage, AsyncPage
+
+from datetime import datetime
+
 from ..types.counterparty_collect_account_response import CounterpartyCollectAccountResponse
 
-__all__ = ["Counterparties", "AsyncCounterparties"]
+from ..types.shared.transaction_direction import TransactionDirection
 
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ..types import counterparty_create_params
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import counterparty_create_params
+from ..types import counterparty_update_params
+from ..types import counterparty_list_params
+from ..types import counterparty_collect_account_params
+from ..types import shared
+
+__all__ = ["Counterparties", "AsyncCounterparties"]
 
 class Counterparties(SyncAPIResource):
     @cached_property
@@ -49,29 +64,27 @@ class Counterparties(SyncAPIResource):
         """
         return CounterpartiesWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        name: Optional[str],
-        accounting: counterparty_create_params.Accounting | Omit = omit,
-        accounts: Iterable[counterparty_create_params.Account] | Omit = omit,
-        email: Optional[str] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        ledger_type: Literal["customer", "vendor"] | Omit = omit,
-        legal_entity: counterparty_create_params.LegalEntity | Omit = omit,
-        legal_entity_id: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        send_remittance_advice: bool | Omit = omit,
-        taxpayer_identifier: str | Omit = omit,
-        verification_status: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Counterparty:
+    def create(self,
+    *,
+    name: Optional[str],
+    accounting: counterparty_create_params.Accounting | Omit = omit,
+    accounts: Iterable[counterparty_create_params.Account] | Omit = omit,
+    email: Optional[str] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    ledger_type: Literal["customer", "vendor"] | Omit = omit,
+    legal_entity: counterparty_create_params.LegalEntity | Omit = omit,
+    legal_entity_id: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    send_remittance_advice: bool | Omit = omit,
+    taxpayer_identifier: str | Omit = omit,
+    verification_status: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Counterparty:
         """
         Create a new counterparty.
 
@@ -111,44 +124,33 @@ class Counterparties(SyncAPIResource):
         """
         return self._post(
             "/api/counterparties",
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "accounting": accounting,
-                    "accounts": accounts,
-                    "email": email,
-                    "external_id": external_id,
-                    "ledger_type": ledger_type,
-                    "legal_entity": legal_entity,
-                    "legal_entity_id": legal_entity_id,
-                    "metadata": metadata,
-                    "send_remittance_advice": send_remittance_advice,
-                    "taxpayer_identifier": taxpayer_identifier,
-                    "verification_status": verification_status,
-                },
-                counterparty_create_params.CounterpartyCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "name": name,
+                "accounting": accounting,
+                "accounts": accounts,
+                "email": email,
+                "external_id": external_id,
+                "ledger_type": ledger_type,
+                "legal_entity": legal_entity,
+                "legal_entity_id": legal_entity_id,
+                "metadata": metadata,
+                "send_remittance_advice": send_remittance_advice,
+                "taxpayer_identifier": taxpayer_identifier,
+                "verification_status": verification_status,
+            }, counterparty_create_params.CounterpartyCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Counterparty,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Counterparty:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> Counterparty:
         """
         Get details on a single counterparty.
 
@@ -162,34 +164,32 @@ class Counterparties(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/counterparties/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=Counterparty,
         )
 
-    def update(
-        self,
-        id: str,
-        *,
-        email: str | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        legal_entity_id: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        name: str | Omit = omit,
-        send_remittance_advice: bool | Omit = omit,
-        taxpayer_identifier: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Counterparty:
+    def update(self,
+    id: str,
+    *,
+    email: str | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    legal_entity_id: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    name: str | Omit = omit,
+    send_remittance_advice: bool | Omit = omit,
+    taxpayer_identifier: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Counterparty:
         """
         Updates a given counterparty with new information.
 
@@ -221,50 +221,41 @@ class Counterparties(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._patch(
             path_template("/api/counterparties/{id}", id=id),
-            body=maybe_transform(
-                {
-                    "email": email,
-                    "external_id": external_id,
-                    "legal_entity_id": legal_entity_id,
-                    "metadata": metadata,
-                    "name": name,
-                    "send_remittance_advice": send_remittance_advice,
-                    "taxpayer_identifier": taxpayer_identifier,
-                },
-                counterparty_update_params.CounterpartyUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "email": email,
+                "external_id": external_id,
+                "legal_entity_id": legal_entity_id,
+                "metadata": metadata,
+                "name": name,
+                "send_remittance_advice": send_remittance_advice,
+                "taxpayer_identifier": taxpayer_identifier,
+            }, counterparty_update_params.CounterpartyUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Counterparty,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        created_at_lower_bound: Union[str, datetime] | Omit = omit,
-        created_at_upper_bound: Union[str, datetime] | Omit = omit,
-        email: str | Omit = omit,
-        external_id: str | Omit = omit,
-        legal_entity_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        name: str | Omit = omit,
-        per_page: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[Counterparty]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    created_at_lower_bound: Union[str, datetime] | Omit = omit,
+    created_at_upper_bound: Union[str, datetime] | Omit = omit,
+    email: str | Omit = omit,
+    external_id: str | Omit = omit,
+    legal_entity_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    name: str | Omit = omit,
+    per_page: int | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[Counterparty]:
         """
         Get a paginated list of all counterparties.
 
@@ -297,42 +288,31 @@ class Counterparties(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/counterparties",
-            page=SyncPage[Counterparty],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "created_at_lower_bound": created_at_lower_bound,
-                        "created_at_upper_bound": created_at_upper_bound,
-                        "email": email,
-                        "external_id": external_id,
-                        "legal_entity_id": legal_entity_id,
-                        "metadata": metadata,
-                        "name": name,
-                        "per_page": per_page,
-                    },
-                    counterparty_list_params.CounterpartyListParams,
-                ),
-            ),
+            page = SyncPage[Counterparty],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "created_at_lower_bound": created_at_lower_bound,
+                "created_at_upper_bound": created_at_upper_bound,
+                "email": email,
+                "external_id": external_id,
+                "legal_entity_id": legal_entity_id,
+                "metadata": metadata,
+                "name": name,
+                "per_page": per_page,
+            }, counterparty_list_params.CounterpartyListParams)),
             model=Counterparty,
         )
 
-    def delete(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> None:
+    def delete(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> None:
         """
         Deletes a given counterparty.
 
@@ -348,67 +328,30 @@ class Counterparties(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             path_template("/api/counterparties/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=NoneType,
         )
 
-    def collect_account(
-        self,
-        id: str,
-        *,
-        direction: TransactionDirection,
-        custom_redirect: str | Omit = omit,
-        fields: List[
-            Literal[
-                "name",
-                "nameOnAccount",
-                "taxpayerIdentifier",
-                "accountType",
-                "accountNumber",
-                "ibanNumber",
-                "clabeNumber",
-                "walletAddress",
-                "panNumber",
-                "routingNumber",
-                "abaWireRoutingNumber",
-                "swiftCode",
-                "auBsb",
-                "caCpa",
-                "cnaps",
-                "gbSortCode",
-                "inIfsc",
-                "myBranchCode",
-                "brCodigo",
-                "routingNumberType",
-                "address",
-                "jpZenginCode",
-                "seBankgiroClearingCode",
-                "nzNationalClearingCode",
-                "hkInterbankClearingCode",
-                "dkInterbankClearingCode",
-                "zaNationalClearingCode",
-            ]
-        ]
-        | Omit = omit,
-        send_email: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> CounterpartyCollectAccountResponse:
+    def collect_account(self,
+    id: str,
+    *,
+    direction: TransactionDirection,
+    custom_redirect: str | Omit = omit,
+    fields: List[Literal["name", "nameOnAccount", "taxpayerIdentifier", "accountType", "accountNumber", "ibanNumber", "clabeNumber", "walletAddress", "panNumber", "routingNumber", "abaWireRoutingNumber", "swiftCode", "auBsb", "caCpa", "cnaps", "gbSortCode", "inIfsc", "myBranchCode", "brCodigo", "routingNumberType", "address", "jpZenginCode", "seBankgiroClearingCode", "nzNationalClearingCode", "hkInterbankClearingCode", "dkInterbankClearingCode", "zaNationalClearingCode"]] | Omit = omit,
+    send_email: bool | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> CounterpartyCollectAccountResponse:
         """
         Send an email requesting account details.
 
@@ -443,28 +386,20 @@ class Counterparties(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._post(
             path_template("/api/counterparties/{id}/collect_account", id=id),
-            body=maybe_transform(
-                {
-                    "direction": direction,
-                    "custom_redirect": custom_redirect,
-                    "fields": fields,
-                    "send_email": send_email,
-                },
-                counterparty_collect_account_params.CounterpartyCollectAccountParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "direction": direction,
+                "custom_redirect": custom_redirect,
+                "fields": fields,
+                "send_email": send_email,
+            }, counterparty_collect_account_params.CounterpartyCollectAccountParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=CounterpartyCollectAccountResponse,
         )
-
 
 class AsyncCounterparties(AsyncAPIResource):
     @cached_property
@@ -486,29 +421,27 @@ class AsyncCounterparties(AsyncAPIResource):
         """
         return AsyncCounterpartiesWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        name: Optional[str],
-        accounting: counterparty_create_params.Accounting | Omit = omit,
-        accounts: Iterable[counterparty_create_params.Account] | Omit = omit,
-        email: Optional[str] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        ledger_type: Literal["customer", "vendor"] | Omit = omit,
-        legal_entity: counterparty_create_params.LegalEntity | Omit = omit,
-        legal_entity_id: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        send_remittance_advice: bool | Omit = omit,
-        taxpayer_identifier: str | Omit = omit,
-        verification_status: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Counterparty:
+    async def create(self,
+    *,
+    name: Optional[str],
+    accounting: counterparty_create_params.Accounting | Omit = omit,
+    accounts: Iterable[counterparty_create_params.Account] | Omit = omit,
+    email: Optional[str] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    ledger_type: Literal["customer", "vendor"] | Omit = omit,
+    legal_entity: counterparty_create_params.LegalEntity | Omit = omit,
+    legal_entity_id: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    send_remittance_advice: bool | Omit = omit,
+    taxpayer_identifier: str | Omit = omit,
+    verification_status: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Counterparty:
         """
         Create a new counterparty.
 
@@ -548,44 +481,33 @@ class AsyncCounterparties(AsyncAPIResource):
         """
         return await self._post(
             "/api/counterparties",
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "accounting": accounting,
-                    "accounts": accounts,
-                    "email": email,
-                    "external_id": external_id,
-                    "ledger_type": ledger_type,
-                    "legal_entity": legal_entity,
-                    "legal_entity_id": legal_entity_id,
-                    "metadata": metadata,
-                    "send_remittance_advice": send_remittance_advice,
-                    "taxpayer_identifier": taxpayer_identifier,
-                    "verification_status": verification_status,
-                },
-                counterparty_create_params.CounterpartyCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "name": name,
+                "accounting": accounting,
+                "accounts": accounts,
+                "email": email,
+                "external_id": external_id,
+                "ledger_type": ledger_type,
+                "legal_entity": legal_entity,
+                "legal_entity_id": legal_entity_id,
+                "metadata": metadata,
+                "send_remittance_advice": send_remittance_advice,
+                "taxpayer_identifier": taxpayer_identifier,
+                "verification_status": verification_status,
+            }, counterparty_create_params.CounterpartyCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Counterparty,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Counterparty:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> Counterparty:
         """
         Get details on a single counterparty.
 
@@ -599,34 +521,32 @@ class AsyncCounterparties(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/counterparties/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=Counterparty,
         )
 
-    async def update(
-        self,
-        id: str,
-        *,
-        email: str | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        legal_entity_id: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        name: str | Omit = omit,
-        send_remittance_advice: bool | Omit = omit,
-        taxpayer_identifier: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Counterparty:
+    async def update(self,
+    id: str,
+    *,
+    email: str | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    legal_entity_id: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    name: str | Omit = omit,
+    send_remittance_advice: bool | Omit = omit,
+    taxpayer_identifier: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Counterparty:
         """
         Updates a given counterparty with new information.
 
@@ -658,50 +578,41 @@ class AsyncCounterparties(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._patch(
             path_template("/api/counterparties/{id}", id=id),
-            body=await async_maybe_transform(
-                {
-                    "email": email,
-                    "external_id": external_id,
-                    "legal_entity_id": legal_entity_id,
-                    "metadata": metadata,
-                    "name": name,
-                    "send_remittance_advice": send_remittance_advice,
-                    "taxpayer_identifier": taxpayer_identifier,
-                },
-                counterparty_update_params.CounterpartyUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "email": email,
+                "external_id": external_id,
+                "legal_entity_id": legal_entity_id,
+                "metadata": metadata,
+                "name": name,
+                "send_remittance_advice": send_remittance_advice,
+                "taxpayer_identifier": taxpayer_identifier,
+            }, counterparty_update_params.CounterpartyUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Counterparty,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        created_at_lower_bound: Union[str, datetime] | Omit = omit,
-        created_at_upper_bound: Union[str, datetime] | Omit = omit,
-        email: str | Omit = omit,
-        external_id: str | Omit = omit,
-        legal_entity_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        name: str | Omit = omit,
-        per_page: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Counterparty, AsyncPage[Counterparty]]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    created_at_lower_bound: Union[str, datetime] | Omit = omit,
+    created_at_upper_bound: Union[str, datetime] | Omit = omit,
+    email: str | Omit = omit,
+    external_id: str | Omit = omit,
+    legal_entity_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    name: str | Omit = omit,
+    per_page: int | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[Counterparty, AsyncPage[Counterparty]]:
         """
         Get a paginated list of all counterparties.
 
@@ -734,42 +645,31 @@ class AsyncCounterparties(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/counterparties",
-            page=AsyncPage[Counterparty],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "created_at_lower_bound": created_at_lower_bound,
-                        "created_at_upper_bound": created_at_upper_bound,
-                        "email": email,
-                        "external_id": external_id,
-                        "legal_entity_id": legal_entity_id,
-                        "metadata": metadata,
-                        "name": name,
-                        "per_page": per_page,
-                    },
-                    counterparty_list_params.CounterpartyListParams,
-                ),
-            ),
+            page = AsyncPage[Counterparty],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "created_at_lower_bound": created_at_lower_bound,
+                "created_at_upper_bound": created_at_upper_bound,
+                "email": email,
+                "external_id": external_id,
+                "legal_entity_id": legal_entity_id,
+                "metadata": metadata,
+                "name": name,
+                "per_page": per_page,
+            }, counterparty_list_params.CounterpartyListParams)),
             model=Counterparty,
         )
 
-    async def delete(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> None:
+    async def delete(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> None:
         """
         Deletes a given counterparty.
 
@@ -785,67 +685,30 @@ class AsyncCounterparties(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             path_template("/api/counterparties/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=NoneType,
         )
 
-    async def collect_account(
-        self,
-        id: str,
-        *,
-        direction: TransactionDirection,
-        custom_redirect: str | Omit = omit,
-        fields: List[
-            Literal[
-                "name",
-                "nameOnAccount",
-                "taxpayerIdentifier",
-                "accountType",
-                "accountNumber",
-                "ibanNumber",
-                "clabeNumber",
-                "walletAddress",
-                "panNumber",
-                "routingNumber",
-                "abaWireRoutingNumber",
-                "swiftCode",
-                "auBsb",
-                "caCpa",
-                "cnaps",
-                "gbSortCode",
-                "inIfsc",
-                "myBranchCode",
-                "brCodigo",
-                "routingNumberType",
-                "address",
-                "jpZenginCode",
-                "seBankgiroClearingCode",
-                "nzNationalClearingCode",
-                "hkInterbankClearingCode",
-                "dkInterbankClearingCode",
-                "zaNationalClearingCode",
-            ]
-        ]
-        | Omit = omit,
-        send_email: bool | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> CounterpartyCollectAccountResponse:
+    async def collect_account(self,
+    id: str,
+    *,
+    direction: TransactionDirection,
+    custom_redirect: str | Omit = omit,
+    fields: List[Literal["name", "nameOnAccount", "taxpayerIdentifier", "accountType", "accountNumber", "ibanNumber", "clabeNumber", "walletAddress", "panNumber", "routingNumber", "abaWireRoutingNumber", "swiftCode", "auBsb", "caCpa", "cnaps", "gbSortCode", "inIfsc", "myBranchCode", "brCodigo", "routingNumberType", "address", "jpZenginCode", "seBankgiroClearingCode", "nzNationalClearingCode", "hkInterbankClearingCode", "dkInterbankClearingCode", "zaNationalClearingCode"]] | Omit = omit,
+    send_email: bool | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> CounterpartyCollectAccountResponse:
         """
         Send an email requesting account details.
 
@@ -880,28 +743,20 @@ class AsyncCounterparties(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._post(
             path_template("/api/counterparties/{id}/collect_account", id=id),
-            body=await async_maybe_transform(
-                {
-                    "direction": direction,
-                    "custom_redirect": custom_redirect,
-                    "fields": fields,
-                    "send_email": send_email,
-                },
-                counterparty_collect_account_params.CounterpartyCollectAccountParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "direction": direction,
+                "custom_redirect": custom_redirect,
+                "fields": fields,
+                "send_email": send_email,
+            }, counterparty_collect_account_params.CounterpartyCollectAccountParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=CounterpartyCollectAccountResponse,
         )
-
 
 class CounterpartiesWithRawResponse:
     def __init__(self, counterparties: Counterparties) -> None:
@@ -926,7 +781,6 @@ class CounterpartiesWithRawResponse:
             counterparties.collect_account,
         )
 
-
 class AsyncCounterpartiesWithRawResponse:
     def __init__(self, counterparties: AsyncCounterparties) -> None:
         self._counterparties = counterparties
@@ -950,7 +804,6 @@ class AsyncCounterpartiesWithRawResponse:
             counterparties.collect_account,
         )
 
-
 class CounterpartiesWithStreamingResponse:
     def __init__(self, counterparties: Counterparties) -> None:
         self._counterparties = counterparties
@@ -973,7 +826,6 @@ class CounterpartiesWithStreamingResponse:
         self.collect_account = to_streamed_response_wrapper(
             counterparties.collect_account,
         )
-
 
 class AsyncCounterpartiesWithStreamingResponse:
     def __init__(self, counterparties: AsyncCounterparties) -> None:

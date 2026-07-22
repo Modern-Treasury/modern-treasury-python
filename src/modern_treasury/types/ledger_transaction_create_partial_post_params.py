@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
+from typing_extensions import TypedDict, Required, Annotated, Literal
+
+from typing import Iterable, Union, Dict, Optional
+
 from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
 __all__ = ["LedgerTransactionCreatePartialPostParams", "PostedLedgerEntries", "PostedLedgerEntry"]
-
 
 class LedgerTransactionCreatePartialPostParams(TypedDict, total=False):
     posted_ledger_entries: Required[Iterable[PostedLedgerEntry]]
@@ -25,7 +26,7 @@ class LedgerTransactionCreatePartialPostParams(TypedDict, total=False):
     Maximum of 1000 characters allowed.
     """
 
-    effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    effective_at: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """
     The timestamp (IS08601 format) at which the posted ledger transaction happened
     for reporting purposes.
@@ -36,7 +37,6 @@ class LedgerTransactionCreatePartialPostParams(TypedDict, total=False):
 
     Both the key and value must be strings.
     """
-
 
 class PostedLedgerEntry(TypedDict, total=False):
     direction: Required[Literal["credit", "debit"]]
@@ -103,7 +103,6 @@ class PostedLedgerEntry(TypedDict, total=False):
     If true, response will include the balance of the associated ledger account for
     the entry.
     """
-
 
 PostedLedgerEntries = PostedLedgerEntry
 """This type is deprecated and will be removed in a future release.

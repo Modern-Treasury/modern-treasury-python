@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Union, Optional
-from datetime import datetime
-from typing_extensions import Literal, TypeAlias
 
-from .._models import BaseModel
 from .external_account import ExternalAccount
 
-__all__ = ["ExternalAccountVerifyResponse", "ExternalAccountVerificationAttempt"]
+from .._models import BaseModel
 
+from datetime import datetime
+
+from typing_extensions import Literal, TypeAliasType, TypeAlias
+
+__all__ = ["ExternalAccountVerifyResponse", "ExternalAccountVerificationAttempt"]
 
 class ExternalAccountVerificationAttempt(BaseModel):
     id: str
@@ -29,33 +31,7 @@ class ExternalAccountVerificationAttempt(BaseModel):
     originating_account_id: str
     """The ID of the internal account where the micro-deposits originate from."""
 
-    payment_type: Literal[
-        "ach",
-        "au_becs",
-        "bacs",
-        "book",
-        "card",
-        "chats",
-        "check",
-        "cross_border",
-        "dk_nets",
-        "eft",
-        "gb_fps",
-        "masav",
-        "mx_ccen",
-        "neft",
-        "nics",
-        "nz_becs",
-        "pl_elixir",
-        "rtp",
-        "se_bankgirot",
-        "sepa",
-        "sg_giro",
-        "sic",
-        "stablecoin",
-        "wire",
-        "zengin",
-    ]
+    payment_type: Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin"]
     """The type of payment that can be made to this account.
 
     Can be `ach`, `eft`, or `rtp`.
@@ -71,6 +47,5 @@ class ExternalAccountVerificationAttempt(BaseModel):
     """
 
     updated_at: datetime
-
 
 ExternalAccountVerifyResponse: TypeAlias = Union[ExternalAccount, ExternalAccountVerificationAttempt]

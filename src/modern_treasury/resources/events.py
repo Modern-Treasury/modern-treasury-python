@@ -2,24 +2,35 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
-from datetime import datetime
-
 import httpx
 
-from .. import _legacy_response
-from ..types import event_list_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
+
+from .._compat import cached_property
+
+from .._utils import path_template, maybe_transform
+
 from ..types.event import Event
-from .._base_client import AsyncPaginator, make_request_options
+
+from .._base_client import make_request_options, AsyncPaginator
+
+from .._types import NotGiven, Omit, omit
+
+from ..pagination import SyncPage, AsyncPage
+
+from typing import Optional, Union
+
+from datetime import datetime
+
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import event_list_params
 
 __all__ = ["Events", "AsyncEvents"]
-
 
 class Events(SyncAPIResource):
     @cached_property
@@ -41,17 +52,15 @@ class Events(SyncAPIResource):
         """
         return EventsWithStreamingResponse(self)
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Event:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> Event:
         """
         get event
 
@@ -65,32 +74,30 @@ class Events(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/events/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=Event,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        entity_id: str | Omit = omit,
-        event_name: str | Omit = omit,
-        event_time_end: Union[str, datetime] | Omit = omit,
-        event_time_start: Union[str, datetime] | Omit = omit,
-        per_page: int | Omit = omit,
-        resource: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[Event]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    entity_id: str | Omit = omit,
+    event_name: str | Omit = omit,
+    event_time_end: Union[str, datetime] | Omit = omit,
+    event_time_start: Union[str, datetime] | Omit = omit,
+    per_page: int | Omit = omit,
+    resource: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[Event]:
         """
         list events
 
@@ -109,28 +116,18 @@ class Events(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/events",
-            page=SyncPage[Event],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "entity_id": entity_id,
-                        "event_name": event_name,
-                        "event_time_end": event_time_end,
-                        "event_time_start": event_time_start,
-                        "per_page": per_page,
-                        "resource": resource,
-                    },
-                    event_list_params.EventListParams,
-                ),
-            ),
+            page = SyncPage[Event],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "entity_id": entity_id,
+                "event_name": event_name,
+                "event_time_end": event_time_end,
+                "event_time_start": event_time_start,
+                "per_page": per_page,
+                "resource": resource,
+            }, event_list_params.EventListParams)),
             model=Event,
         )
-
 
 class AsyncEvents(AsyncAPIResource):
     @cached_property
@@ -152,17 +149,15 @@ class AsyncEvents(AsyncAPIResource):
         """
         return AsyncEventsWithStreamingResponse(self)
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Event:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> Event:
         """
         get event
 
@@ -176,32 +171,30 @@ class AsyncEvents(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/events/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=Event,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        entity_id: str | Omit = omit,
-        event_name: str | Omit = omit,
-        event_time_end: Union[str, datetime] | Omit = omit,
-        event_time_start: Union[str, datetime] | Omit = omit,
-        per_page: int | Omit = omit,
-        resource: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Event, AsyncPage[Event]]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    entity_id: str | Omit = omit,
+    event_name: str | Omit = omit,
+    event_time_end: Union[str, datetime] | Omit = omit,
+    event_time_start: Union[str, datetime] | Omit = omit,
+    per_page: int | Omit = omit,
+    resource: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[Event, AsyncPage[Event]]:
         """
         list events
 
@@ -220,28 +213,18 @@ class AsyncEvents(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/events",
-            page=AsyncPage[Event],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "entity_id": entity_id,
-                        "event_name": event_name,
-                        "event_time_end": event_time_end,
-                        "event_time_start": event_time_start,
-                        "per_page": per_page,
-                        "resource": resource,
-                    },
-                    event_list_params.EventListParams,
-                ),
-            ),
+            page = AsyncPage[Event],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "entity_id": entity_id,
+                "event_name": event_name,
+                "event_time_end": event_time_end,
+                "event_time_start": event_time_start,
+                "per_page": per_page,
+                "resource": resource,
+            }, event_list_params.EventListParams)),
             model=Event,
         )
-
 
 class EventsWithRawResponse:
     def __init__(self, events: Events) -> None:
@@ -254,7 +237,6 @@ class EventsWithRawResponse:
             events.list,
         )
 
-
 class AsyncEventsWithRawResponse:
     def __init__(self, events: AsyncEvents) -> None:
         self._events = events
@@ -266,7 +248,6 @@ class AsyncEventsWithRawResponse:
             events.list,
         )
 
-
 class EventsWithStreamingResponse:
     def __init__(self, events: Events) -> None:
         self._events = events
@@ -277,7 +258,6 @@ class EventsWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             events.list,
         )
-
 
 class AsyncEventsWithStreamingResponse:
     def __init__(self, events: AsyncEvents) -> None:

@@ -2,25 +2,40 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import Literal
-
 import httpx
 
-from .. import _legacy_response
-from ..types import account_detail_list_params, account_detail_create_params
-from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
+
+from .._compat import cached_property
+
+from .._utils import path_template, maybe_transform, async_maybe_transform
+
 from ..types.account_detail import AccountDetail
+
+from .._base_client import make_request_options, AsyncPaginator
+
+from typing_extensions import Literal
+
+from .._types import Omit, omit, NotGiven
+
 from ..types.shared.accounts_type import AccountsType
 
-__all__ = ["AccountDetails", "AsyncAccountDetails"]
+from ..pagination import SyncPage, AsyncPage
 
+from typing import Optional
+
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import account_detail_create_params
+from ..types import account_detail_list_params
+from ..types import shared
+from ..types import shared
+
+__all__ = ["AccountDetails", "AsyncAccountDetails"]
 
 class AccountDetails(SyncAPIResource):
     @cached_property
@@ -42,38 +57,19 @@ class AccountDetails(SyncAPIResource):
         """
         return AccountDetailsWithStreamingResponse(self)
 
-    def create(
-        self,
-        account_id: str,
-        *,
-        accounts_type: Literal["external_accounts"],
-        account_number: str,
-        account_number_type: Literal[
-            "au_number",
-            "base_address",
-            "card_token",
-            "clabe",
-            "ethereum_address",
-            "hk_number",
-            "iban",
-            "id_number",
-            "nz_number",
-            "other",
-            "pan",
-            "polygon_address",
-            "sg_number",
-            "solana_address",
-            "wallet_address",
-        ]
-        | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> AccountDetail:
+    def create(self,
+    account_id: str,
+    *,
+    accounts_type: Literal["external_accounts"],
+    account_number: str,
+    account_number_type: Literal["au_number", "base_address", "card_token", "clabe", "ethereum_address", "hk_number", "iban", "id_number", "nz_number", "other", "pan", "polygon_address", "sg_number", "solana_address", "wallet_address"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> AccountDetail:
         """
         Create an account detail for an external account.
 
@@ -94,43 +90,34 @@ class AccountDetails(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not accounts_type:
-            raise ValueError(f"Expected a non-empty value for `accounts_type` but received {accounts_type!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `accounts_type` but received {accounts_type!r}'
+          )
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._post(
-            path_template(
-                "/api/{accounts_type}/{account_id}/account_details", accounts_type=accounts_type, account_id=account_id
-            ),
-            body=maybe_transform(
-                {
-                    "account_number": account_number,
-                    "account_number_type": account_number_type,
-                },
-                account_detail_create_params.AccountDetailCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            path_template("/api/{accounts_type}/{account_id}/account_details", accounts_type=accounts_type, account_id=account_id),
+            body=maybe_transform({
+                "account_number": account_number,
+                "account_number_type": account_number_type,
+            }, account_detail_create_params.AccountDetailCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=AccountDetail,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        accounts_type: AccountsType,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AccountDetail:
+    def retrieve(self,
+    id: str,
+    *,
+    accounts_type: AccountsType,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AccountDetail:
         """
         Get a single account detail for a single internal or external account.
 
@@ -144,38 +131,35 @@ class AccountDetails(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not accounts_type:
-            raise ValueError(f"Expected a non-empty value for `accounts_type` but received {accounts_type!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `accounts_type` but received {accounts_type!r}'
+          )
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
-            path_template(
-                "/api/{accounts_type}/{account_id}/account_details/{id}",
-                accounts_type=accounts_type,
-                account_id=account_id,
-                id=id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            path_template("/api/{accounts_type}/{account_id}/account_details/{id}", accounts_type=accounts_type, account_id=account_id, id=id),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=AccountDetail,
         )
 
-    def list(
-        self,
-        account_id: str,
-        *,
-        accounts_type: AccountsType,
-        after_cursor: Optional[str] | Omit = omit,
-        per_page: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[AccountDetail]:
+    def list(self,
+    account_id: str,
+    *,
+    accounts_type: AccountsType,
+    after_cursor: Optional[str] | Omit = omit,
+    per_page: int | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[AccountDetail]:
         """
         Get a list of account details for a single internal or external account.
 
@@ -189,44 +173,35 @@ class AccountDetails(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not accounts_type:
-            raise ValueError(f"Expected a non-empty value for `accounts_type` but received {accounts_type!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `accounts_type` but received {accounts_type!r}'
+          )
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
-            path_template(
-                "/api/{accounts_type}/{account_id}/account_details", accounts_type=accounts_type, account_id=account_id
-            ),
-            page=SyncPage[AccountDetail],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "per_page": per_page,
-                    },
-                    account_detail_list_params.AccountDetailListParams,
-                ),
-            ),
+            path_template("/api/{accounts_type}/{account_id}/account_details", accounts_type=accounts_type, account_id=account_id),
+            page = SyncPage[AccountDetail],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "per_page": per_page,
+            }, account_detail_list_params.AccountDetailListParams)),
             model=AccountDetail,
         )
 
-    def delete(
-        self,
-        id: str,
-        *,
-        accounts_type: Literal["external_accounts"],
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> None:
+    def delete(self,
+    id: str,
+    *,
+    accounts_type: Literal["external_accounts"],
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> None:
         """
         Delete a single account detail for an external account.
 
@@ -242,29 +217,23 @@ class AccountDetails(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not accounts_type:
-            raise ValueError(f"Expected a non-empty value for `accounts_type` but received {accounts_type!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `accounts_type` but received {accounts_type!r}'
+          )
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            path_template(
-                "/api/{accounts_type}/{account_id}/account_details/{id}",
-                accounts_type=accounts_type,
-                account_id=account_id,
-                id=id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            path_template("/api/{accounts_type}/{account_id}/account_details/{id}", accounts_type=accounts_type, account_id=account_id, id=id),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=NoneType,
         )
-
 
 class AsyncAccountDetails(AsyncAPIResource):
     @cached_property
@@ -286,38 +255,19 @@ class AsyncAccountDetails(AsyncAPIResource):
         """
         return AsyncAccountDetailsWithStreamingResponse(self)
 
-    async def create(
-        self,
-        account_id: str,
-        *,
-        accounts_type: Literal["external_accounts"],
-        account_number: str,
-        account_number_type: Literal[
-            "au_number",
-            "base_address",
-            "card_token",
-            "clabe",
-            "ethereum_address",
-            "hk_number",
-            "iban",
-            "id_number",
-            "nz_number",
-            "other",
-            "pan",
-            "polygon_address",
-            "sg_number",
-            "solana_address",
-            "wallet_address",
-        ]
-        | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> AccountDetail:
+    async def create(self,
+    account_id: str,
+    *,
+    accounts_type: Literal["external_accounts"],
+    account_number: str,
+    account_number_type: Literal["au_number", "base_address", "card_token", "clabe", "ethereum_address", "hk_number", "iban", "id_number", "nz_number", "other", "pan", "polygon_address", "sg_number", "solana_address", "wallet_address"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> AccountDetail:
         """
         Create an account detail for an external account.
 
@@ -338,43 +288,34 @@ class AsyncAccountDetails(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not accounts_type:
-            raise ValueError(f"Expected a non-empty value for `accounts_type` but received {accounts_type!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `accounts_type` but received {accounts_type!r}'
+          )
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._post(
-            path_template(
-                "/api/{accounts_type}/{account_id}/account_details", accounts_type=accounts_type, account_id=account_id
-            ),
-            body=await async_maybe_transform(
-                {
-                    "account_number": account_number,
-                    "account_number_type": account_number_type,
-                },
-                account_detail_create_params.AccountDetailCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            path_template("/api/{accounts_type}/{account_id}/account_details", accounts_type=accounts_type, account_id=account_id),
+            body=await async_maybe_transform({
+                "account_number": account_number,
+                "account_number_type": account_number_type,
+            }, account_detail_create_params.AccountDetailCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=AccountDetail,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        accounts_type: AccountsType,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AccountDetail:
+    async def retrieve(self,
+    id: str,
+    *,
+    accounts_type: AccountsType,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AccountDetail:
         """
         Get a single account detail for a single internal or external account.
 
@@ -388,38 +329,35 @@ class AsyncAccountDetails(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not accounts_type:
-            raise ValueError(f"Expected a non-empty value for `accounts_type` but received {accounts_type!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `accounts_type` but received {accounts_type!r}'
+          )
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
-            path_template(
-                "/api/{accounts_type}/{account_id}/account_details/{id}",
-                accounts_type=accounts_type,
-                account_id=account_id,
-                id=id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            path_template("/api/{accounts_type}/{account_id}/account_details/{id}", accounts_type=accounts_type, account_id=account_id, id=id),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=AccountDetail,
         )
 
-    def list(
-        self,
-        account_id: str,
-        *,
-        accounts_type: AccountsType,
-        after_cursor: Optional[str] | Omit = omit,
-        per_page: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[AccountDetail, AsyncPage[AccountDetail]]:
+    def list(self,
+    account_id: str,
+    *,
+    accounts_type: AccountsType,
+    after_cursor: Optional[str] | Omit = omit,
+    per_page: int | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[AccountDetail, AsyncPage[AccountDetail]]:
         """
         Get a list of account details for a single internal or external account.
 
@@ -433,44 +371,35 @@ class AsyncAccountDetails(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not accounts_type:
-            raise ValueError(f"Expected a non-empty value for `accounts_type` but received {accounts_type!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `accounts_type` but received {accounts_type!r}'
+          )
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
-            path_template(
-                "/api/{accounts_type}/{account_id}/account_details", accounts_type=accounts_type, account_id=account_id
-            ),
-            page=AsyncPage[AccountDetail],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "per_page": per_page,
-                    },
-                    account_detail_list_params.AccountDetailListParams,
-                ),
-            ),
+            path_template("/api/{accounts_type}/{account_id}/account_details", accounts_type=accounts_type, account_id=account_id),
+            page = AsyncPage[AccountDetail],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "per_page": per_page,
+            }, account_detail_list_params.AccountDetailListParams)),
             model=AccountDetail,
         )
 
-    async def delete(
-        self,
-        id: str,
-        *,
-        accounts_type: Literal["external_accounts"],
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> None:
+    async def delete(self,
+    id: str,
+    *,
+    accounts_type: Literal["external_accounts"],
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> None:
         """
         Delete a single account detail for an external account.
 
@@ -486,29 +415,23 @@ class AsyncAccountDetails(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not accounts_type:
-            raise ValueError(f"Expected a non-empty value for `accounts_type` but received {accounts_type!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `accounts_type` but received {accounts_type!r}'
+          )
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            path_template(
-                "/api/{accounts_type}/{account_id}/account_details/{id}",
-                accounts_type=accounts_type,
-                account_id=account_id,
-                id=id,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            path_template("/api/{accounts_type}/{account_id}/account_details/{id}", accounts_type=accounts_type, account_id=account_id, id=id),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=NoneType,
         )
-
 
 class AccountDetailsWithRawResponse:
     def __init__(self, account_details: AccountDetails) -> None:
@@ -527,7 +450,6 @@ class AccountDetailsWithRawResponse:
             account_details.delete,
         )
 
-
 class AsyncAccountDetailsWithRawResponse:
     def __init__(self, account_details: AsyncAccountDetails) -> None:
         self._account_details = account_details
@@ -545,7 +467,6 @@ class AsyncAccountDetailsWithRawResponse:
             account_details.delete,
         )
 
-
 class AccountDetailsWithStreamingResponse:
     def __init__(self, account_details: AccountDetails) -> None:
         self._account_details = account_details
@@ -562,7 +483,6 @@ class AccountDetailsWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             account_details.delete,
         )
-
 
 class AsyncAccountDetailsWithStreamingResponse:
     def __init__(self, account_details: AsyncAccountDetails) -> None:

@@ -2,18 +2,23 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
+from typing_extensions import TypedDict, Literal, Annotated, Required
+
+from typing import Optional, Union, Iterable, Dict
+
+from .shared.currency import Currency
+
 from datetime import date
-from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .shared.currency import Currency
-from .expected_payment_type import ExpectedPaymentType
-from .reconciliation_rule_param import ReconciliationRuleParam
+
 from .shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
-__all__ = ["ExpectedPaymentCreateParams", "LineItems", "LineItem"]
+from .reconciliation_rule_param import ReconciliationRuleParam
 
+from .expected_payment_type import ExpectedPaymentType
+
+__all__ = ["ExpectedPaymentCreateParams", "LineItems", "LineItem"]
 
 class ExpectedPaymentCreateParams(TypedDict, total=False):
     amount_lower_bound: Optional[int]
@@ -62,10 +67,10 @@ class ExpectedPaymentCreateParams(TypedDict, total=False):
     currency: Optional[Currency]
     """Must conform to ISO 4217. Defaults to the currency of the internal account."""
 
-    date_lower_bound: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
+    date_lower_bound: Annotated[Union[str, date, None], PropertyInfo(format = "iso8601")]
     """The earliest date the payment may come in. Format: yyyy-mm-dd"""
 
-    date_upper_bound: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
+    date_upper_bound: Annotated[Union[str, date, None], PropertyInfo(format = "iso8601")]
     """The latest date the payment may come in. Format: yyyy-mm-dd"""
 
     description: Optional[str]
@@ -134,7 +139,6 @@ class ExpectedPaymentCreateParams(TypedDict, total=False):
     type: Optional[ExpectedPaymentType]
     """One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire."""
 
-
 class LineItem(TypedDict, total=False):
     amount: Required[int]
     """Value in specified currency's smallest unit.
@@ -157,7 +161,6 @@ class LineItem(TypedDict, total=False):
 
     Both the key and value must be strings.
     """
-
 
 LineItems = LineItem
 """This type is deprecated and will be removed in a future release.

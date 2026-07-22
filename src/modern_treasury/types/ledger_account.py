@@ -1,22 +1,24 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from .._models import BaseModel
+
+from .shared.ledger_balance import LedgerBalance
+
+from typing import Optional, Dict
+
 from datetime import datetime
+
 from typing_extensions import Literal
 
-from .._models import BaseModel
-from .shared.ledger_balance import LedgerBalance
 from .shared.transaction_direction import TransactionDirection
 
 __all__ = ["LedgerAccount", "Balances"]
-
 
 class Balances(BaseModel):
     """The pending, posted, and available balances for this ledger account.
 
     The posted balance is the sum of all posted entries on the account. The pending balance is the sum of all pending and posted entries on the account. The available balance is the posted incoming entries minus the sum of the pending and posted outgoing amounts.
     """
-
     available_balance: LedgerBalance
     """
     The available_balance is the sum of all posted inbound entries and pending
@@ -42,7 +44,6 @@ class Balances(BaseModel):
 
     posted_balance: LedgerBalance
     """The posted_balance is the sum of all posted entries."""
-
 
 class LedgerAccount(BaseModel):
     id: str

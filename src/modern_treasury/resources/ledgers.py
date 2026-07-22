@@ -2,24 +2,37 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from datetime import datetime
-
 import httpx
 
-from .. import _legacy_response
-from ..types import ledger_list_params, ledger_create_params, ledger_update_params
-from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
+
+from .._compat import cached_property
+
 from ..types.ledger import Ledger
 
-__all__ = ["Ledgers", "AsyncLedgers"]
+from .._utils import maybe_transform, path_template, async_maybe_transform
 
+from .._base_client import make_request_options, AsyncPaginator
+
+from typing import Optional, Dict, Union
+
+from .._types import Omit, omit, NotGiven, SequenceNotStr
+
+from ..pagination import SyncPage, AsyncPage
+
+from datetime import datetime
+
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import ledger_create_params
+from ..types import ledger_update_params
+from ..types import ledger_list_params
+
+__all__ = ["Ledgers", "AsyncLedgers"]
 
 class Ledgers(SyncAPIResource):
     @cached_property
@@ -41,20 +54,18 @@ class Ledgers(SyncAPIResource):
         """
         return LedgersWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        name: str,
-        description: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Ledger:
+    def create(self,
+    *,
+    name: str,
+    description: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Ledger:
         """
         Create a ledger.
 
@@ -78,35 +89,24 @@ class Ledgers(SyncAPIResource):
         """
         return self._post(
             "/api/ledgers",
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "description": description,
-                    "metadata": metadata,
-                },
-                ledger_create_params.LedgerCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "name": name,
+                "description": description,
+                "metadata": metadata,
+            }, ledger_create_params.LedgerCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Ledger,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Ledger:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> Ledger:
         """
         Get details on a single ledger.
 
@@ -120,30 +120,28 @@ class Ledgers(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/ledgers/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=Ledger,
         )
 
-    def update(
-        self,
-        id: str,
-        *,
-        description: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        name: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Ledger:
+    def update(self,
+    id: str,
+    *,
+    description: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    name: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Ledger:
         """
         Update the details of a ledger.
 
@@ -166,42 +164,33 @@ class Ledgers(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._patch(
             path_template("/api/ledgers/{id}", id=id),
-            body=maybe_transform(
-                {
-                    "description": description,
-                    "metadata": metadata,
-                    "name": name,
-                },
-                ledger_update_params.LedgerUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "description": description,
+                "metadata": metadata,
+                "name": name,
+            }, ledger_update_params.LedgerUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Ledger,
         )
 
-    def list(
-        self,
-        *,
-        id: SequenceNotStr[str] | Omit = omit,
-        after_cursor: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        per_page: int | Omit = omit,
-        updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[Ledger]:
+    def list(self,
+    *,
+    id: SequenceNotStr[str] | Omit = omit,
+    after_cursor: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    per_page: int | Omit = omit,
+    updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[Ledger]:
         """
         Get a list of ledgers.
 
@@ -227,38 +216,27 @@ class Ledgers(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/ledgers",
-            page=SyncPage[Ledger],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "id": id,
-                        "after_cursor": after_cursor,
-                        "metadata": metadata,
-                        "per_page": per_page,
-                        "updated_at": updated_at,
-                    },
-                    ledger_list_params.LedgerListParams,
-                ),
-            ),
+            page = SyncPage[Ledger],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "id": id,
+                "after_cursor": after_cursor,
+                "metadata": metadata,
+                "per_page": per_page,
+                "updated_at": updated_at,
+            }, ledger_list_params.LedgerListParams)),
             model=Ledger,
         )
 
-    def delete(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Ledger:
+    def delete(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Ledger:
         """
         Delete a ledger.
 
@@ -274,19 +252,14 @@ class Ledgers(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._delete(
             path_template("/api/ledgers/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Ledger,
         )
-
 
 class AsyncLedgers(AsyncAPIResource):
     @cached_property
@@ -308,20 +281,18 @@ class AsyncLedgers(AsyncAPIResource):
         """
         return AsyncLedgersWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        name: str,
-        description: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Ledger:
+    async def create(self,
+    *,
+    name: str,
+    description: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Ledger:
         """
         Create a ledger.
 
@@ -345,35 +316,24 @@ class AsyncLedgers(AsyncAPIResource):
         """
         return await self._post(
             "/api/ledgers",
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "description": description,
-                    "metadata": metadata,
-                },
-                ledger_create_params.LedgerCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "name": name,
+                "description": description,
+                "metadata": metadata,
+            }, ledger_create_params.LedgerCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Ledger,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Ledger:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> Ledger:
         """
         Get details on a single ledger.
 
@@ -387,30 +347,28 @@ class AsyncLedgers(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/ledgers/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=Ledger,
         )
 
-    async def update(
-        self,
-        id: str,
-        *,
-        description: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        name: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Ledger:
+    async def update(self,
+    id: str,
+    *,
+    description: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    name: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Ledger:
         """
         Update the details of a ledger.
 
@@ -433,42 +391,33 @@ class AsyncLedgers(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._patch(
             path_template("/api/ledgers/{id}", id=id),
-            body=await async_maybe_transform(
-                {
-                    "description": description,
-                    "metadata": metadata,
-                    "name": name,
-                },
-                ledger_update_params.LedgerUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "description": description,
+                "metadata": metadata,
+                "name": name,
+            }, ledger_update_params.LedgerUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Ledger,
         )
 
-    def list(
-        self,
-        *,
-        id: SequenceNotStr[str] | Omit = omit,
-        after_cursor: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        per_page: int | Omit = omit,
-        updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Ledger, AsyncPage[Ledger]]:
+    def list(self,
+    *,
+    id: SequenceNotStr[str] | Omit = omit,
+    after_cursor: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    per_page: int | Omit = omit,
+    updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[Ledger, AsyncPage[Ledger]]:
         """
         Get a list of ledgers.
 
@@ -494,38 +443,27 @@ class AsyncLedgers(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/ledgers",
-            page=AsyncPage[Ledger],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "id": id,
-                        "after_cursor": after_cursor,
-                        "metadata": metadata,
-                        "per_page": per_page,
-                        "updated_at": updated_at,
-                    },
-                    ledger_list_params.LedgerListParams,
-                ),
-            ),
+            page = AsyncPage[Ledger],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "id": id,
+                "after_cursor": after_cursor,
+                "metadata": metadata,
+                "per_page": per_page,
+                "updated_at": updated_at,
+            }, ledger_list_params.LedgerListParams)),
             model=Ledger,
         )
 
-    async def delete(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Ledger:
+    async def delete(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Ledger:
         """
         Delete a ledger.
 
@@ -541,19 +479,14 @@ class AsyncLedgers(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._delete(
             path_template("/api/ledgers/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Ledger,
         )
-
 
 class LedgersWithRawResponse:
     def __init__(self, ledgers: Ledgers) -> None:
@@ -575,7 +508,6 @@ class LedgersWithRawResponse:
             ledgers.delete,
         )
 
-
 class AsyncLedgersWithRawResponse:
     def __init__(self, ledgers: AsyncLedgers) -> None:
         self._ledgers = ledgers
@@ -596,7 +528,6 @@ class AsyncLedgersWithRawResponse:
             ledgers.delete,
         )
 
-
 class LedgersWithStreamingResponse:
     def __init__(self, ledgers: Ledgers) -> None:
         self._ledgers = ledgers
@@ -616,7 +547,6 @@ class LedgersWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             ledgers.delete,
         )
-
 
 class AsyncLedgersWithStreamingResponse:
     def __init__(self, ledgers: AsyncLedgers) -> None:

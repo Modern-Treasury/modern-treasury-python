@@ -2,25 +2,26 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing_extensions import TypedDict, Annotated
+
+from typing import Optional, Union, Dict
+
 from datetime import date
-from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
 __all__ = ["TransactionListParams"]
 
-
 class TransactionListParams(TypedDict, total=False):
     after_cursor: Optional[str]
 
-    as_of_date_end: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    as_of_date_end: Annotated[Union[str, date], PropertyInfo(format = "iso8601")]
     """
     Filters transactions with an `as_of_date` starting on or before the specified
     date (YYYY-MM-DD).
     """
 
-    as_of_date_start: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    as_of_date_start: Annotated[Union[str, date], PropertyInfo(format = "iso8601")]
     """
     Filters transactions with an `as_of_date` starting on or after the specified
     date (YYYY-MM-DD).

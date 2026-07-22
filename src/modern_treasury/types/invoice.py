@@ -2,21 +2,24 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
-from datetime import date, datetime
-from typing_extensions import Literal
-
 from .._models import BaseModel
-from .shared.currency import Currency
-from .expected_payment import ExpectedPayment
+
+from typing import Optional, List, Dict
+
 from .shared.contact_detail import ContactDetail
+
+from datetime import datetime, date
+
+from .shared.currency import Currency
+
+from .expected_payment import ExpectedPayment
+
+from typing_extensions import Literal
 
 __all__ = ["Invoice", "CounterpartyBillingAddress", "CounterpartyShippingAddress", "InvoicerAddress"]
 
-
 class CounterpartyBillingAddress(BaseModel):
     """The counterparty's billing address."""
-
     country: str
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
@@ -32,11 +35,9 @@ class CounterpartyBillingAddress(BaseModel):
     """Region or State."""
 
     line2: Optional[str] = None
-
 
 class CounterpartyShippingAddress(BaseModel):
     """The counterparty's shipping address where physical goods should be delivered."""
-
     country: str
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
@@ -52,11 +53,9 @@ class CounterpartyShippingAddress(BaseModel):
     """Region or State."""
 
     line2: Optional[str] = None
-
 
 class InvoicerAddress(BaseModel):
     """The invoice issuer's business address."""
-
     country: str
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
@@ -72,7 +71,6 @@ class InvoicerAddress(BaseModel):
     """Region or State."""
 
     line2: Optional[str] = None
-
 
 class Invoice(BaseModel):
     id: str
@@ -240,6 +238,5 @@ class Invoice(BaseModel):
 
     voided_at: Optional[datetime] = None
     """The time at which the invoice was voided."""
-
 
 from .payment_order import PaymentOrder

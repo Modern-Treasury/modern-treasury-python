@@ -30,6 +30,7 @@ from ._constants import RAW_RESPONSE_HEADER
 from ._streaming import Stream, AsyncStream, is_stream_class_type, extract_stream_chunk_type
 from ._exceptions import APIResponseValidationError
 
+
 if TYPE_CHECKING:
     from ._models import FinalRequestOptions
     from ._base_client import BaseClient
@@ -86,6 +87,8 @@ class LegacyAPIResponse(Generic[R]):
         self._options = options
         self.http_response = raw
         self.retries_taken = retries_taken
+
+    
 
     @overload
     def parse(self, *, to: type[_T]) -> _T: ...
@@ -199,6 +202,8 @@ class LegacyAPIResponse(Generic[R]):
             cast_to = extract_type_arg(cast_to, 0)
 
         origin = get_origin(cast_to) or cast_to
+
+        
 
         if self._stream:
             if to:

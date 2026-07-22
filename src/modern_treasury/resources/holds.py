@@ -2,27 +2,43 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-from typing_extensions import Literal
-
 import httpx
 
-from .. import _legacy_response
-from ..types import hold_list_params, hold_create_params, hold_update_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.hold_list_response import HoldListResponse
+
+from .._compat import cached_property
+
 from ..types.hold_create_response import HoldCreateResponse
-from ..types.hold_update_response import HoldUpdateResponse
+
+from .._utils import maybe_transform, path_template, async_maybe_transform
+
+from .._base_client import make_request_options, AsyncPaginator
+
+from typing_extensions import Literal
+
+from typing import Optional, Dict
+
+from .._types import Omit, omit, NotGiven
+
 from ..types.hold_retrieve_response import HoldRetrieveResponse
 
-__all__ = ["Holds", "AsyncHolds"]
+from ..types.hold_update_response import HoldUpdateResponse
 
+from ..types.hold_list_response import HoldListResponse
+
+from ..pagination import SyncPage, AsyncPage
+
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import hold_create_params
+from ..types import hold_update_params
+from ..types import hold_list_params
+
+__all__ = ["Holds", "AsyncHolds"]
 
 class Holds(SyncAPIResource):
     @cached_property
@@ -44,22 +60,20 @@ class Holds(SyncAPIResource):
         """
         return HoldsWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        status: Literal["active"],
-        target_id: str,
-        target_type: Literal["payment_order"],
-        metadata: Optional[Dict[str, str]] | Omit = omit,
-        reason: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> HoldCreateResponse:
+    def create(self,
+    *,
+    status: Literal["active"],
+    target_id: str,
+    target_type: Literal["payment_order"],
+    metadata: Optional[Dict[str, str]] | Omit = omit,
+    reason: Optional[str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> HoldCreateResponse:
         """
         Create a new hold
 
@@ -86,37 +100,26 @@ class Holds(SyncAPIResource):
         """
         return self._post(
             "/api/holds",
-            body=maybe_transform(
-                {
-                    "status": status,
-                    "target_id": target_id,
-                    "target_type": target_type,
-                    "metadata": metadata,
-                    "reason": reason,
-                },
-                hold_create_params.HoldCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "status": status,
+                "target_id": target_id,
+                "target_type": target_type,
+                "metadata": metadata,
+                "reason": reason,
+            }, hold_create_params.HoldCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=HoldCreateResponse,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> HoldRetrieveResponse:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> HoldRetrieveResponse:
         """
         Get a specific hold
 
@@ -130,29 +133,27 @@ class Holds(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/holds/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=HoldRetrieveResponse,
         )
 
-    def update(
-        self,
-        id: str,
-        *,
-        status: Literal["resolved"],
-        resolution: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> HoldUpdateResponse:
+    def update(self,
+    id: str,
+    *,
+    status: Literal["resolved"],
+    resolution: Optional[str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> HoldUpdateResponse:
         """
         Update a hold
 
@@ -172,42 +173,33 @@ class Holds(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._patch(
             path_template("/api/holds/{id}", id=id),
-            body=maybe_transform(
-                {
-                    "status": status,
-                    "resolution": resolution,
-                },
-                hold_update_params.HoldUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "status": status,
+                "resolution": resolution,
+            }, hold_update_params.HoldUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=HoldUpdateResponse,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        per_page: int | Omit = omit,
-        status: Optional[Literal["active", "resolved"]] | Omit = omit,
-        target_id: Optional[str] | Omit = omit,
-        target_type: Optional[Literal["payment_order"]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[HoldListResponse]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    per_page: int | Omit = omit,
+    status: Optional[Literal["active", "resolved"]] | Omit = omit,
+    target_id: Optional[str] | Omit = omit,
+    target_type: Optional[Literal["payment_order"]] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[HoldListResponse]:
         """
         Get a list of holds.
 
@@ -232,27 +224,17 @@ class Holds(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/holds",
-            page=SyncPage[HoldListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "metadata": metadata,
-                        "per_page": per_page,
-                        "status": status,
-                        "target_id": target_id,
-                        "target_type": target_type,
-                    },
-                    hold_list_params.HoldListParams,
-                ),
-            ),
+            page = SyncPage[HoldListResponse],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "metadata": metadata,
+                "per_page": per_page,
+                "status": status,
+                "target_id": target_id,
+                "target_type": target_type,
+            }, hold_list_params.HoldListParams)),
             model=HoldListResponse,
         )
-
 
 class AsyncHolds(AsyncAPIResource):
     @cached_property
@@ -274,22 +256,20 @@ class AsyncHolds(AsyncAPIResource):
         """
         return AsyncHoldsWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        status: Literal["active"],
-        target_id: str,
-        target_type: Literal["payment_order"],
-        metadata: Optional[Dict[str, str]] | Omit = omit,
-        reason: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> HoldCreateResponse:
+    async def create(self,
+    *,
+    status: Literal["active"],
+    target_id: str,
+    target_type: Literal["payment_order"],
+    metadata: Optional[Dict[str, str]] | Omit = omit,
+    reason: Optional[str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> HoldCreateResponse:
         """
         Create a new hold
 
@@ -316,37 +296,26 @@ class AsyncHolds(AsyncAPIResource):
         """
         return await self._post(
             "/api/holds",
-            body=await async_maybe_transform(
-                {
-                    "status": status,
-                    "target_id": target_id,
-                    "target_type": target_type,
-                    "metadata": metadata,
-                    "reason": reason,
-                },
-                hold_create_params.HoldCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "status": status,
+                "target_id": target_id,
+                "target_type": target_type,
+                "metadata": metadata,
+                "reason": reason,
+            }, hold_create_params.HoldCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=HoldCreateResponse,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> HoldRetrieveResponse:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> HoldRetrieveResponse:
         """
         Get a specific hold
 
@@ -360,29 +329,27 @@ class AsyncHolds(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/holds/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=HoldRetrieveResponse,
         )
 
-    async def update(
-        self,
-        id: str,
-        *,
-        status: Literal["resolved"],
-        resolution: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> HoldUpdateResponse:
+    async def update(self,
+    id: str,
+    *,
+    status: Literal["resolved"],
+    resolution: Optional[str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> HoldUpdateResponse:
         """
         Update a hold
 
@@ -402,42 +369,33 @@ class AsyncHolds(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._patch(
             path_template("/api/holds/{id}", id=id),
-            body=await async_maybe_transform(
-                {
-                    "status": status,
-                    "resolution": resolution,
-                },
-                hold_update_params.HoldUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "status": status,
+                "resolution": resolution,
+            }, hold_update_params.HoldUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=HoldUpdateResponse,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        per_page: int | Omit = omit,
-        status: Optional[Literal["active", "resolved"]] | Omit = omit,
-        target_id: Optional[str] | Omit = omit,
-        target_type: Optional[Literal["payment_order"]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[HoldListResponse, AsyncPage[HoldListResponse]]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    per_page: int | Omit = omit,
+    status: Optional[Literal["active", "resolved"]] | Omit = omit,
+    target_id: Optional[str] | Omit = omit,
+    target_type: Optional[Literal["payment_order"]] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[HoldListResponse, AsyncPage[HoldListResponse]]:
         """
         Get a list of holds.
 
@@ -462,27 +420,17 @@ class AsyncHolds(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/holds",
-            page=AsyncPage[HoldListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "metadata": metadata,
-                        "per_page": per_page,
-                        "status": status,
-                        "target_id": target_id,
-                        "target_type": target_type,
-                    },
-                    hold_list_params.HoldListParams,
-                ),
-            ),
+            page = AsyncPage[HoldListResponse],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "metadata": metadata,
+                "per_page": per_page,
+                "status": status,
+                "target_id": target_id,
+                "target_type": target_type,
+            }, hold_list_params.HoldListParams)),
             model=HoldListResponse,
         )
-
 
 class HoldsWithRawResponse:
     def __init__(self, holds: Holds) -> None:
@@ -501,7 +449,6 @@ class HoldsWithRawResponse:
             holds.list,
         )
 
-
 class AsyncHoldsWithRawResponse:
     def __init__(self, holds: AsyncHolds) -> None:
         self._holds = holds
@@ -519,7 +466,6 @@ class AsyncHoldsWithRawResponse:
             holds.list,
         )
 
-
 class HoldsWithStreamingResponse:
     def __init__(self, holds: Holds) -> None:
         self._holds = holds
@@ -536,7 +482,6 @@ class HoldsWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             holds.list,
         )
-
 
 class AsyncHoldsWithStreamingResponse:
     def __init__(self, holds: AsyncHolds) -> None:

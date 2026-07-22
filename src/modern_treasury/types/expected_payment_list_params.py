@@ -2,15 +2,17 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing_extensions import TypedDict, Annotated, Literal
+
+from typing import Optional, Union, Dict
+
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
+
 from .shared.transaction_direction import TransactionDirection
 
 __all__ = ["ExpectedPaymentListParams"]
-
 
 class ExpectedPaymentListParams(TypedDict, total=False):
     after_cursor: Optional[str]
@@ -18,10 +20,10 @@ class ExpectedPaymentListParams(TypedDict, total=False):
     counterparty_id: str
     """Specify counterparty_id to see expected_payments for a specific account."""
 
-    created_at_lower_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    created_at_lower_bound: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """Used to return expected payments created after some datetime"""
 
-    created_at_upper_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    created_at_upper_bound: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """Used to return expected payments created before some datetime"""
 
     direction: TransactionDirection
@@ -44,37 +46,11 @@ class ExpectedPaymentListParams(TypedDict, total=False):
     status: Literal["archived", "partially_reconciled", "reconciled", "unreconciled"]
     """One of unreconciled, reconciled, or archived."""
 
-    type: Literal[
-        "ach",
-        "au_becs",
-        "bacs",
-        "book",
-        "card",
-        "chats",
-        "check",
-        "cross_border",
-        "dk_nets",
-        "eft",
-        "gb_fps",
-        "masav",
-        "mx_ccen",
-        "neft",
-        "nics",
-        "nz_becs",
-        "pl_elixir",
-        "rtp",
-        "se_bankgirot",
-        "sepa",
-        "sg_giro",
-        "sic",
-        "stablecoin",
-        "wire",
-        "zengin",
-    ]
+    type: Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin"]
     """One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire"""
 
-    updated_at_lower_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    updated_at_lower_bound: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """Used to return expected payments updated after some datetime"""
 
-    updated_at_upper_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    updated_at_upper_bound: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """Used to return expected payments updated before some datetime"""

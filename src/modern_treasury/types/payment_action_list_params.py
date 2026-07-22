@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing_extensions import TypedDict, Literal, Annotated
+
+from typing import Optional, Dict, Union
+
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
 __all__ = ["PaymentActionListParams", "CreatedAt"]
-
 
 class PaymentActionListParams(TypedDict, total=False):
     actionable_id: str
@@ -48,18 +49,16 @@ class PaymentActionListParams(TypedDict, total=False):
     type: Literal["stop", "issue"]
     """The type of payment action."""
 
-
 class CreatedAt(TypedDict, total=False):
     """
     Filter by `created_at` using comparison operators like `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the created at timestamp. For example, `created_at[gte]=2024-01-01T00:00:00Z`
     """
+    eq: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
 
-    eq: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    gt: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
 
-    gt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    gte: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
 
-    gte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    lt: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
 
-    lt: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-
-    lte: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    lte: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]

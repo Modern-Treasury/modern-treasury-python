@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing_extensions import TypedDict, Required, Annotated, Literal
+
+from typing import Optional, Union, Dict
+
 from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
 __all__ = ["LedgerAccountSettlementCreateParams"]
-
 
 class LedgerAccountSettlementCreateParams(TypedDict, total=False):
     contra_ledger_account_id: Required[str]
@@ -34,7 +35,7 @@ class LedgerAccountSettlementCreateParams(TypedDict, total=False):
     description: Optional[str]
     """The description of the ledger account settlement."""
 
-    effective_at_upper_bound: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    effective_at_upper_bound: Annotated[Union[str, datetime, None], PropertyInfo(format = "iso8601")]
     """
     The exclusive upper bound of the effective_at timestamp of the ledger entries to
     be included in the ledger account settlement. The default value is the

@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 from .._models import BaseModel
 
-__all__ = ["LegalEntityAssociation"]
+from datetime import datetime
 
+from typing import Optional, List
+
+from typing_extensions import Literal
+
+__all__ = ["LegalEntityAssociation"]
 
 class LegalEntityAssociation(BaseModel):
     id: str
@@ -41,6 +42,5 @@ class LegalEntityAssociation(BaseModel):
     """The job title of the child entity at the parent entity."""
 
     updated_at: datetime
-
 
 from .child_legal_entity import ChildLegalEntity

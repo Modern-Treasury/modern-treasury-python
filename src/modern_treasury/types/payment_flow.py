@@ -1,13 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from datetime import date, datetime
-from typing_extensions import Literal
-
 from .._models import BaseModel
 
-__all__ = ["PaymentFlow"]
+from typing import Optional
 
+from datetime import datetime, date
+
+from typing_extensions import Literal
+
+__all__ = ["PaymentFlow"]
 
 class PaymentFlow(BaseModel):
     id: Optional[str] = None

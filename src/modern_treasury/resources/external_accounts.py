@@ -2,37 +2,59 @@
 
 from __future__ import annotations
 
-from typing import Any, Dict, Iterable, Optional, cast
-from typing_extensions import Literal
-
 import httpx
 
-from .. import _legacy_response
-from ..types import (
-    ExternalAccountType,
-    external_account_list_params,
-    external_account_create_params,
-    external_account_update_params,
-    external_account_verify_params,
-    external_account_complete_verification_params,
-)
-from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.shared.currency import Currency
+
+from .._compat import cached_property
+
 from ..types.external_account import ExternalAccount
+
+from .._utils import maybe_transform, path_template, async_maybe_transform
+
+from .._base_client import make_request_options, AsyncPaginator
+
+from typing import Optional, Iterable, Dict, Any, cast
+
+from .._types import Omit, omit, NotGiven
+
 from ..types.external_account_type import ExternalAccountType
-from ..types.shared_params.address_request import AddressRequest
-from ..types.external_account_verify_response import ExternalAccountVerifyResponse
+
 from ..types.contact_detail_create_request_param import ContactDetailCreateRequestParam
+
 from ..types.shared_params.ledger_account_create_request import LedgerAccountCreateRequest
 
-__all__ = ["ExternalAccounts", "AsyncExternalAccounts"]
+from ..types.shared_params.address_request import AddressRequest
 
+from typing_extensions import Literal
+
+from ..pagination import SyncPage, AsyncPage
+
+from ..types.external_account_verify_response import ExternalAccountVerifyResponse
+
+from ..types.shared.currency import Currency
+
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ..types import external_account_create_params
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import external_account_create_params
+from ..types import external_account_update_params
+from ..types import external_account_list_params
+from ..types import external_account_complete_verification_params
+from ..types import external_account_verify_params
+from ..types import ExternalAccountType
+from ..types import shared
+from ..types import shared
+from ..types import ExternalAccountType
+from ..types import shared
+from ..types import shared
+
+__all__ = ["ExternalAccounts", "AsyncExternalAccounts"]
 
 class ExternalAccounts(SyncAPIResource):
     @cached_property
@@ -54,31 +76,29 @@ class ExternalAccounts(SyncAPIResource):
         """
         return ExternalAccountsWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        counterparty_id: Optional[str],
-        account_details: Iterable[external_account_create_params.AccountDetail] | Omit = omit,
-        account_type: ExternalAccountType | Omit = omit,
-        contact_details: Iterable[ContactDetailCreateRequestParam] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        ledger_account: LedgerAccountCreateRequest | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        name: Optional[str] | Omit = omit,
-        party_address: AddressRequest | Omit = omit,
-        party_identifier: str | Omit = omit,
-        party_name: str | Omit = omit,
-        party_type: Optional[Literal["business", "individual"]] | Omit = omit,
-        plaid_processor_token: str | Omit = omit,
-        routing_details: Iterable[external_account_create_params.RoutingDetail] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ExternalAccount:
+    def create(self,
+    *,
+    counterparty_id: Optional[str],
+    account_details: Iterable[external_account_create_params.AccountDetail] | Omit = omit,
+    account_type: ExternalAccountType | Omit = omit,
+    contact_details: Iterable[ContactDetailCreateRequestParam] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    ledger_account: LedgerAccountCreateRequest | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    name: Optional[str] | Omit = omit,
+    party_address: AddressRequest | Omit = omit,
+    party_identifier: str | Omit = omit,
+    party_name: str | Omit = omit,
+    party_type: Optional[Literal["business", "individual"]] | Omit = omit,
+    plaid_processor_token: str | Omit = omit,
+    routing_details: Iterable[external_account_create_params.RoutingDetail] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ExternalAccount:
         """
         create external account
 
@@ -120,46 +140,35 @@ class ExternalAccounts(SyncAPIResource):
         """
         return self._post(
             "/api/external_accounts",
-            body=maybe_transform(
-                {
-                    "counterparty_id": counterparty_id,
-                    "account_details": account_details,
-                    "account_type": account_type,
-                    "contact_details": contact_details,
-                    "external_id": external_id,
-                    "ledger_account": ledger_account,
-                    "metadata": metadata,
-                    "name": name,
-                    "party_address": party_address,
-                    "party_identifier": party_identifier,
-                    "party_name": party_name,
-                    "party_type": party_type,
-                    "plaid_processor_token": plaid_processor_token,
-                    "routing_details": routing_details,
-                },
-                external_account_create_params.ExternalAccountCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "counterparty_id": counterparty_id,
+                "account_details": account_details,
+                "account_type": account_type,
+                "contact_details": contact_details,
+                "external_id": external_id,
+                "ledger_account": ledger_account,
+                "metadata": metadata,
+                "name": name,
+                "party_address": party_address,
+                "party_identifier": party_identifier,
+                "party_name": party_name,
+                "party_type": party_type,
+                "plaid_processor_token": plaid_processor_token,
+                "routing_details": routing_details,
+            }, external_account_create_params.ExternalAccountCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=ExternalAccount,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ExternalAccount:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> ExternalAccount:
         """
         show external account
 
@@ -173,34 +182,32 @@ class ExternalAccounts(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/external_accounts/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=ExternalAccount,
         )
 
-    def update(
-        self,
-        id: str,
-        *,
-        account_type: ExternalAccountType | Omit = omit,
-        counterparty_id: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        name: Optional[str] | Omit = omit,
-        party_address: AddressRequest | Omit = omit,
-        party_name: str | Omit = omit,
-        party_type: Optional[Literal["business", "individual"]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ExternalAccount:
+    def update(self,
+    id: str,
+    *,
+    account_type: ExternalAccountType | Omit = omit,
+    counterparty_id: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    name: Optional[str] | Omit = omit,
+    party_address: AddressRequest | Omit = omit,
+    party_name: str | Omit = omit,
+    party_type: Optional[Literal["business", "individual"]] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ExternalAccount:
         """
         update external account
 
@@ -228,47 +235,38 @@ class ExternalAccounts(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._patch(
             path_template("/api/external_accounts/{id}", id=id),
-            body=maybe_transform(
-                {
-                    "account_type": account_type,
-                    "counterparty_id": counterparty_id,
-                    "metadata": metadata,
-                    "name": name,
-                    "party_address": party_address,
-                    "party_name": party_name,
-                    "party_type": party_type,
-                },
-                external_account_update_params.ExternalAccountUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "account_type": account_type,
+                "counterparty_id": counterparty_id,
+                "metadata": metadata,
+                "name": name,
+                "party_address": party_address,
+                "party_name": party_name,
+                "party_type": party_type,
+            }, external_account_update_params.ExternalAccountUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=ExternalAccount,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        external_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        party_name: str | Omit = omit,
-        per_page: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[ExternalAccount]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    external_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    party_name: str | Omit = omit,
+    per_page: int | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[ExternalAccount]:
         """
         list external accounts
 
@@ -291,39 +289,28 @@ class ExternalAccounts(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/external_accounts",
-            page=SyncPage[ExternalAccount],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "counterparty_id": counterparty_id,
-                        "external_id": external_id,
-                        "metadata": metadata,
-                        "party_name": party_name,
-                        "per_page": per_page,
-                    },
-                    external_account_list_params.ExternalAccountListParams,
-                ),
-            ),
+            page = SyncPage[ExternalAccount],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "counterparty_id": counterparty_id,
+                "external_id": external_id,
+                "metadata": metadata,
+                "party_name": party_name,
+                "per_page": per_page,
+            }, external_account_list_params.ExternalAccountListParams)),
             model=ExternalAccount,
         )
 
-    def delete(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> None:
+    def delete(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> None:
         """
         delete external account
 
@@ -339,33 +326,27 @@ class ExternalAccounts(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             path_template("/api/external_accounts/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=NoneType,
         )
 
-    def complete_verification(
-        self,
-        id: str,
-        *,
-        amounts: Iterable[int] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ExternalAccount:
+    def complete_verification(self,
+    id: str,
+    *,
+    amounts: Iterable[int] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ExternalAccount:
         """
         complete verification of external account
 
@@ -381,66 +362,33 @@ class ExternalAccounts(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._post(
             path_template("/api/external_accounts/{id}/complete_verification", id=id),
-            body=maybe_transform(
-                {"amounts": amounts},
-                external_account_complete_verification_params.ExternalAccountCompleteVerificationParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "amounts": amounts
+            }, external_account_complete_verification_params.ExternalAccountCompleteVerificationParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=ExternalAccount,
         )
 
-    def verify(
-        self,
-        id: str,
-        *,
-        originating_account_id: str,
-        payment_type: Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "card",
-            "chats",
-            "check",
-            "cross_border",
-            "dk_nets",
-            "eft",
-            "gb_fps",
-            "masav",
-            "mx_ccen",
-            "neft",
-            "nics",
-            "nz_becs",
-            "pl_elixir",
-            "rtp",
-            "se_bankgirot",
-            "sepa",
-            "sg_giro",
-            "sic",
-            "stablecoin",
-            "wire",
-            "zengin",
-        ],
-        currency: Currency | Omit = omit,
-        fallback_type: Literal["ach"] | Omit = omit,
-        priority: Literal["high", "normal"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ExternalAccountVerifyResponse:
+    def verify(self,
+    id: str,
+    *,
+    originating_account_id: str,
+    payment_type: Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin"],
+    currency: Currency | Omit = omit,
+    fallback_type: Literal["ach"] | Omit = omit,
+    priority: Literal["high", "normal"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ExternalAccountVerifyResponse:
         """
         verify external account
 
@@ -470,34 +418,21 @@ class ExternalAccounts(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return cast(
-            ExternalAccountVerifyResponse,
-            self._post(
-                path_template("/api/external_accounts/{id}/verify", id=id),
-                body=maybe_transform(
-                    {
-                        "originating_account_id": originating_account_id,
-                        "payment_type": payment_type,
-                        "currency": currency,
-                        "fallback_type": fallback_type,
-                        "priority": priority,
-                    },
-                    external_account_verify_params.ExternalAccountVerifyParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    idempotency_key=idempotency_key,
-                ),
-                cast_to=cast(
-                    Any, ExternalAccountVerifyResponse
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
+        return cast(ExternalAccountVerifyResponse, self._post(
+            path_template("/api/external_accounts/{id}/verify", id=id),
+            body=maybe_transform({
+                "originating_account_id": originating_account_id,
+                "payment_type": payment_type,
+                "currency": currency,
+                "fallback_type": fallback_type,
+                "priority": priority,
+            }, external_account_verify_params.ExternalAccountVerifyParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
+            cast_to=cast(Any, ExternalAccountVerifyResponse),  # Union types cannot be passed in as arguments in the type system
+        ))
 
 class AsyncExternalAccounts(AsyncAPIResource):
     @cached_property
@@ -519,31 +454,29 @@ class AsyncExternalAccounts(AsyncAPIResource):
         """
         return AsyncExternalAccountsWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        counterparty_id: Optional[str],
-        account_details: Iterable[external_account_create_params.AccountDetail] | Omit = omit,
-        account_type: ExternalAccountType | Omit = omit,
-        contact_details: Iterable[ContactDetailCreateRequestParam] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        ledger_account: LedgerAccountCreateRequest | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        name: Optional[str] | Omit = omit,
-        party_address: AddressRequest | Omit = omit,
-        party_identifier: str | Omit = omit,
-        party_name: str | Omit = omit,
-        party_type: Optional[Literal["business", "individual"]] | Omit = omit,
-        plaid_processor_token: str | Omit = omit,
-        routing_details: Iterable[external_account_create_params.RoutingDetail] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ExternalAccount:
+    async def create(self,
+    *,
+    counterparty_id: Optional[str],
+    account_details: Iterable[external_account_create_params.AccountDetail] | Omit = omit,
+    account_type: ExternalAccountType | Omit = omit,
+    contact_details: Iterable[ContactDetailCreateRequestParam] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    ledger_account: LedgerAccountCreateRequest | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    name: Optional[str] | Omit = omit,
+    party_address: AddressRequest | Omit = omit,
+    party_identifier: str | Omit = omit,
+    party_name: str | Omit = omit,
+    party_type: Optional[Literal["business", "individual"]] | Omit = omit,
+    plaid_processor_token: str | Omit = omit,
+    routing_details: Iterable[external_account_create_params.RoutingDetail] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ExternalAccount:
         """
         create external account
 
@@ -585,46 +518,35 @@ class AsyncExternalAccounts(AsyncAPIResource):
         """
         return await self._post(
             "/api/external_accounts",
-            body=await async_maybe_transform(
-                {
-                    "counterparty_id": counterparty_id,
-                    "account_details": account_details,
-                    "account_type": account_type,
-                    "contact_details": contact_details,
-                    "external_id": external_id,
-                    "ledger_account": ledger_account,
-                    "metadata": metadata,
-                    "name": name,
-                    "party_address": party_address,
-                    "party_identifier": party_identifier,
-                    "party_name": party_name,
-                    "party_type": party_type,
-                    "plaid_processor_token": plaid_processor_token,
-                    "routing_details": routing_details,
-                },
-                external_account_create_params.ExternalAccountCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "counterparty_id": counterparty_id,
+                "account_details": account_details,
+                "account_type": account_type,
+                "contact_details": contact_details,
+                "external_id": external_id,
+                "ledger_account": ledger_account,
+                "metadata": metadata,
+                "name": name,
+                "party_address": party_address,
+                "party_identifier": party_identifier,
+                "party_name": party_name,
+                "party_type": party_type,
+                "plaid_processor_token": plaid_processor_token,
+                "routing_details": routing_details,
+            }, external_account_create_params.ExternalAccountCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=ExternalAccount,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ExternalAccount:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> ExternalAccount:
         """
         show external account
 
@@ -638,34 +560,32 @@ class AsyncExternalAccounts(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/external_accounts/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=ExternalAccount,
         )
 
-    async def update(
-        self,
-        id: str,
-        *,
-        account_type: ExternalAccountType | Omit = omit,
-        counterparty_id: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        name: Optional[str] | Omit = omit,
-        party_address: AddressRequest | Omit = omit,
-        party_name: str | Omit = omit,
-        party_type: Optional[Literal["business", "individual"]] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ExternalAccount:
+    async def update(self,
+    id: str,
+    *,
+    account_type: ExternalAccountType | Omit = omit,
+    counterparty_id: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    name: Optional[str] | Omit = omit,
+    party_address: AddressRequest | Omit = omit,
+    party_name: str | Omit = omit,
+    party_type: Optional[Literal["business", "individual"]] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ExternalAccount:
         """
         update external account
 
@@ -693,47 +613,38 @@ class AsyncExternalAccounts(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._patch(
             path_template("/api/external_accounts/{id}", id=id),
-            body=await async_maybe_transform(
-                {
-                    "account_type": account_type,
-                    "counterparty_id": counterparty_id,
-                    "metadata": metadata,
-                    "name": name,
-                    "party_address": party_address,
-                    "party_name": party_name,
-                    "party_type": party_type,
-                },
-                external_account_update_params.ExternalAccountUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "account_type": account_type,
+                "counterparty_id": counterparty_id,
+                "metadata": metadata,
+                "name": name,
+                "party_address": party_address,
+                "party_name": party_name,
+                "party_type": party_type,
+            }, external_account_update_params.ExternalAccountUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=ExternalAccount,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        external_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        party_name: str | Omit = omit,
-        per_page: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ExternalAccount, AsyncPage[ExternalAccount]]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    external_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    party_name: str | Omit = omit,
+    per_page: int | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[ExternalAccount, AsyncPage[ExternalAccount]]:
         """
         list external accounts
 
@@ -756,39 +667,28 @@ class AsyncExternalAccounts(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/external_accounts",
-            page=AsyncPage[ExternalAccount],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "counterparty_id": counterparty_id,
-                        "external_id": external_id,
-                        "metadata": metadata,
-                        "party_name": party_name,
-                        "per_page": per_page,
-                    },
-                    external_account_list_params.ExternalAccountListParams,
-                ),
-            ),
+            page = AsyncPage[ExternalAccount],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "counterparty_id": counterparty_id,
+                "external_id": external_id,
+                "metadata": metadata,
+                "party_name": party_name,
+                "per_page": per_page,
+            }, external_account_list_params.ExternalAccountListParams)),
             model=ExternalAccount,
         )
 
-    async def delete(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> None:
+    async def delete(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> None:
         """
         delete external account
 
@@ -804,33 +704,27 @@ class AsyncExternalAccounts(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             path_template("/api/external_accounts/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=NoneType,
         )
 
-    async def complete_verification(
-        self,
-        id: str,
-        *,
-        amounts: Iterable[int] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ExternalAccount:
+    async def complete_verification(self,
+    id: str,
+    *,
+    amounts: Iterable[int] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ExternalAccount:
         """
         complete verification of external account
 
@@ -846,66 +740,33 @@ class AsyncExternalAccounts(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._post(
             path_template("/api/external_accounts/{id}/complete_verification", id=id),
-            body=await async_maybe_transform(
-                {"amounts": amounts},
-                external_account_complete_verification_params.ExternalAccountCompleteVerificationParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "amounts": amounts
+            }, external_account_complete_verification_params.ExternalAccountCompleteVerificationParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=ExternalAccount,
         )
 
-    async def verify(
-        self,
-        id: str,
-        *,
-        originating_account_id: str,
-        payment_type: Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "card",
-            "chats",
-            "check",
-            "cross_border",
-            "dk_nets",
-            "eft",
-            "gb_fps",
-            "masav",
-            "mx_ccen",
-            "neft",
-            "nics",
-            "nz_becs",
-            "pl_elixir",
-            "rtp",
-            "se_bankgirot",
-            "sepa",
-            "sg_giro",
-            "sic",
-            "stablecoin",
-            "wire",
-            "zengin",
-        ],
-        currency: Currency | Omit = omit,
-        fallback_type: Literal["ach"] | Omit = omit,
-        priority: Literal["high", "normal"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ExternalAccountVerifyResponse:
+    async def verify(self,
+    id: str,
+    *,
+    originating_account_id: str,
+    payment_type: Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin"],
+    currency: Currency | Omit = omit,
+    fallback_type: Literal["ach"] | Omit = omit,
+    priority: Literal["high", "normal"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ExternalAccountVerifyResponse:
         """
         verify external account
 
@@ -935,34 +796,21 @@ class AsyncExternalAccounts(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return cast(
-            ExternalAccountVerifyResponse,
-            await self._post(
-                path_template("/api/external_accounts/{id}/verify", id=id),
-                body=await async_maybe_transform(
-                    {
-                        "originating_account_id": originating_account_id,
-                        "payment_type": payment_type,
-                        "currency": currency,
-                        "fallback_type": fallback_type,
-                        "priority": priority,
-                    },
-                    external_account_verify_params.ExternalAccountVerifyParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    idempotency_key=idempotency_key,
-                ),
-                cast_to=cast(
-                    Any, ExternalAccountVerifyResponse
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
+        return cast(ExternalAccountVerifyResponse, await self._post(
+            path_template("/api/external_accounts/{id}/verify", id=id),
+            body=await async_maybe_transform({
+                "originating_account_id": originating_account_id,
+                "payment_type": payment_type,
+                "currency": currency,
+                "fallback_type": fallback_type,
+                "priority": priority,
+            }, external_account_verify_params.ExternalAccountVerifyParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
+            cast_to=cast(Any, ExternalAccountVerifyResponse),  # Union types cannot be passed in as arguments in the type system
+        ))
 
 class ExternalAccountsWithRawResponse:
     def __init__(self, external_accounts: ExternalAccounts) -> None:
@@ -990,7 +838,6 @@ class ExternalAccountsWithRawResponse:
             external_accounts.verify,
         )
 
-
 class AsyncExternalAccountsWithRawResponse:
     def __init__(self, external_accounts: AsyncExternalAccounts) -> None:
         self._external_accounts = external_accounts
@@ -1017,7 +864,6 @@ class AsyncExternalAccountsWithRawResponse:
             external_accounts.verify,
         )
 
-
 class ExternalAccountsWithStreamingResponse:
     def __init__(self, external_accounts: ExternalAccounts) -> None:
         self._external_accounts = external_accounts
@@ -1043,7 +889,6 @@ class ExternalAccountsWithStreamingResponse:
         self.verify = to_streamed_response_wrapper(
             external_accounts.verify,
         )
-
 
 class AsyncExternalAccountsWithStreamingResponse:
     def __init__(self, external_accounts: AsyncExternalAccounts) -> None:

@@ -2,37 +2,30 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
-from datetime import date, datetime
+from .._models import BaseModel
+
+from typing import List, Optional, Dict
+
 from typing_extensions import Literal
 
-from .._models import BaseModel
+from datetime import datetime, date
+
 from .document import Document
+
 from .bank_settings import BankSettings
-from .wealth_and_employment_details import WealthAndEmploymentDetails
-from .shared.third_party_verification import ThirdPartyVerification
+
 from .shared.legal_entity_industry_classification import LegalEntityIndustryClassification
 
-__all__ = [
-    "LegalEntity",
-    "Addresses",
-    "Address",
-    "Identifications",
-    "Identification",
-    "PhoneNumbers",
-    "PhoneNumber",
-    "Regulators",
-    "Regulator",
-    "TermsOfUse",
-]
+from .shared.third_party_verification import ThirdPartyVerification
 
+from .wealth_and_employment_details import WealthAndEmploymentDetails
+
+__all__ = ["LegalEntity", "Addresses", "Address", "Identifications", "Identification", "PhoneNumbers", "PhoneNumber", "Regulators", "Regulator", "TermsOfUse"]
 
 class Address(BaseModel):
     id: str
 
-    address_types: List[
-        Literal["business", "business_physical", "business_registered", "mailing", "other", "po_box", "residential"]
-    ]
+    address_types: List[Literal["business", "business_physical", "business_registered", "mailing", "other", "po_box", "residential"]]
     """The types of this address."""
 
     country: Optional[str] = None
@@ -71,13 +64,11 @@ class Address(BaseModel):
 
     updated_at: datetime
 
-
 Addresses = Address
 """This type is deprecated and will be removed in a future release.
 
 Please use Address instead.
 """
-
 
 class Identification(BaseModel):
     id: str
@@ -94,107 +85,7 @@ class Identification(BaseModel):
     authority.
     """
 
-    id_type: Literal[
-        "ar_cuil",
-        "ar_cuit",
-        "at_atin",
-        "at_vat",
-        "au_abn",
-        "au_tfn",
-        "be_ent",
-        "be_nrn",
-        "br_cnpj",
-        "br_cpf",
-        "ca_bn",
-        "ca_sin",
-        "ch_ahv",
-        "ch_uid",
-        "cl_run",
-        "cl_rut",
-        "co_cedulas",
-        "co_nit",
-        "cy_tin",
-        "cz_ico",
-        "cz_rc",
-        "de_stid",
-        "de_stnr",
-        "de_vat",
-        "dk_cpr",
-        "dk_cvr",
-        "drivers_license",
-        "ee_ik",
-        "ee_rk",
-        "es_nie",
-        "es_nif",
-        "fi_hetu",
-        "fi_ytj",
-        "fr_nif",
-        "fr_siren",
-        "fr_vat",
-        "gb_nino",
-        "gb_utr",
-        "gb_vat",
-        "generic_international",
-        "gr_vat",
-        "hn_id",
-        "hn_rtn",
-        "hr_oib",
-        "hu_adj",
-        "hu_anum",
-        "ie_pps",
-        "ie_trn",
-        "in_lei",
-        "is_knt",
-        "it_cf",
-        "it_piva",
-        "jp_hb",
-        "jp_mn",
-        "kr_brn",
-        "kr_crn",
-        "kr_rrn",
-        "li_peid",
-        "lt_ak",
-        "lt_jak",
-        "lu_mtc",
-        "lu_vat",
-        "lv_pk",
-        "lv_rn",
-        "mt_tin",
-        "mt_vat",
-        "mx_curp",
-        "mx_ine",
-        "mx_rfc",
-        "national_id",
-        "nl_bsn",
-        "nl_btw",
-        "nl_rsin",
-        "no_fdn",
-        "no_mva",
-        "no_orgnr",
-        "nz_ird",
-        "passport",
-        "pl_nip",
-        "pl_pesel",
-        "pt_nif",
-        "ro_cnp",
-        "ro_cui",
-        "sa_tin",
-        "sa_vat",
-        "se_orgnr",
-        "se_pnmr",
-        "sg_fin",
-        "sg_nric",
-        "sg_uen",
-        "si_dav",
-        "si_tin",
-        "sk_ico",
-        "sk_rc",
-        "us_ein",
-        "us_itin",
-        "us_ssn",
-        "uy_rut",
-        "vn_tin",
-    ]
+    id_type: Literal["ar_cuil", "ar_cuit", "at_atin", "at_vat", "au_abn", "au_tfn", "be_ent", "be_nrn", "br_cnpj", "br_cpf", "ca_bn", "ca_sin", "ch_ahv", "ch_uid", "cl_run", "cl_rut", "co_cedulas", "co_nit", "cy_tin", "cz_ico", "cz_rc", "de_stid", "de_stnr", "de_vat", "dk_cpr", "dk_cvr", "drivers_license", "ee_ik", "ee_rk", "es_nie", "es_nif", "fi_hetu", "fi_ytj", "fr_nif", "fr_siren", "fr_vat", "gb_nino", "gb_utr", "gb_vat", "generic_international", "gr_vat", "hn_id", "hn_rtn", "hr_oib", "hu_adj", "hu_anum", "ie_pps", "ie_trn", "in_lei", "is_knt", "it_cf", "it_piva", "jp_hb", "jp_mn", "kr_brn", "kr_crn", "kr_rrn", "li_peid", "lt_ak", "lt_jak", "lu_mtc", "lu_vat", "lv_pk", "lv_rn", "mt_tin", "mt_vat", "mx_curp", "mx_ine", "mx_rfc", "national_id", "nl_bsn", "nl_btw", "nl_rsin", "no_fdn", "no_mva", "no_orgnr", "nz_ird", "passport", "pl_nip", "pl_pesel", "pt_nif", "ro_cnp", "ro_cui", "sa_tin", "sa_vat", "se_orgnr", "se_pnmr", "sg_fin", "sg_nric", "sg_uen", "si_dav", "si_tin", "sk_ico", "sk_rc", "us_ein", "us_itin", "us_ssn", "uy_rut", "vn_tin"]
     """The type of ID number."""
 
     issuing_country: Optional[str] = None
@@ -216,26 +107,21 @@ class Identification(BaseModel):
 
     updated_at: datetime
 
-
 Identifications = Identification
 """This type is deprecated and will be removed in a future release.
 
 Please use Identification instead.
 """
 
-
 class PhoneNumber(BaseModel):
     """A list of phone numbers in E.164 format."""
-
     phone_number: Optional[str] = None
-
 
 PhoneNumbers = PhoneNumber
 """This type is deprecated and will be removed in a future release.
 
 Please use PhoneNumber instead.
 """
-
 
 class Regulator(BaseModel):
     jurisdiction: str
@@ -250,17 +136,14 @@ class Regulator(BaseModel):
     registration_number: str
     """Registration or identification number with the regulator."""
 
-
 Regulators = Regulator
 """This type is deprecated and will be removed in a future release.
 
 Please use Regulator instead.
 """
 
-
 class TermsOfUse(BaseModel):
     """Acceptance of terms of use by the legal entity."""
-
     accepted_at: Optional[datetime] = None
     """The ISO 8601 timestamp indicating when the terms of use were accepted."""
 
@@ -269,7 +152,6 @@ class TermsOfUse(BaseModel):
 
     Supports both IPv4 and IPv6 formats.
     """
-
 
 class LegalEntity(BaseModel):
     id: str
@@ -337,9 +219,7 @@ class LegalEntity(BaseModel):
     legal_entity_type: Literal["business", "individual"]
     """The type of legal entity."""
 
-    legal_structure: Optional[
-        Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
-    ] = None
+    legal_structure: Optional[Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]] = None
     """The business's legal structure."""
 
     listed_exchange: Optional[str] = None
@@ -421,6 +301,5 @@ class LegalEntity(BaseModel):
 
     legal_entity_associations: Optional[List["LegalEntityAssociation"]] = None
     """The legal entity associations and its child legal entities."""
-
 
 from .legal_entity_association import LegalEntityAssociation

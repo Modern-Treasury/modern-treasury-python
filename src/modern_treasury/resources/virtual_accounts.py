@@ -2,24 +2,40 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
-
 import httpx
 
-from .. import _legacy_response
-from ..types import virtual_account_list_params, virtual_account_create_params, virtual_account_update_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
+
+from .._compat import cached_property
+
 from ..types.virtual_account import VirtualAccount
+
+from .._utils import maybe_transform, path_template, async_maybe_transform
+
+from .._base_client import make_request_options, AsyncPaginator
+
+from typing import Iterable, Dict, Optional
+
+from .._types import Omit, omit, NotGiven
+
 from ..types.shared_params.ledger_account_create_request import LedgerAccountCreateRequest
 
-__all__ = ["VirtualAccounts", "AsyncVirtualAccounts"]
+from ..pagination import SyncPage, AsyncPage
 
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ..types import virtual_account_create_params
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import virtual_account_create_params
+from ..types import virtual_account_update_params
+from ..types import virtual_account_list_params
+from ..types import shared
+
+__all__ = ["VirtualAccounts", "AsyncVirtualAccounts"]
 
 class VirtualAccounts(SyncAPIResource):
     @cached_property
@@ -41,27 +57,25 @@ class VirtualAccounts(SyncAPIResource):
         """
         return VirtualAccountsWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        internal_account_id: str,
-        name: str,
-        account_details: Iterable[virtual_account_create_params.AccountDetail] | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        credit_ledger_account_id: str | Omit = omit,
-        debit_ledger_account_id: str | Omit = omit,
-        description: str | Omit = omit,
-        ledger_account: LedgerAccountCreateRequest | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        routing_details: Iterable[virtual_account_create_params.RoutingDetail] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> VirtualAccount:
+    def create(self,
+    *,
+    internal_account_id: str,
+    name: str,
+    account_details: Iterable[virtual_account_create_params.AccountDetail] | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    credit_ledger_account_id: str | Omit = omit,
+    debit_ledger_account_id: str | Omit = omit,
+    description: str | Omit = omit,
+    ledger_account: LedgerAccountCreateRequest | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    routing_details: Iterable[virtual_account_create_params.RoutingDetail] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> VirtualAccount:
         """
         create virtual_account
 
@@ -105,42 +119,31 @@ class VirtualAccounts(SyncAPIResource):
         """
         return self._post(
             "/api/virtual_accounts",
-            body=maybe_transform(
-                {
-                    "internal_account_id": internal_account_id,
-                    "name": name,
-                    "account_details": account_details,
-                    "counterparty_id": counterparty_id,
-                    "credit_ledger_account_id": credit_ledger_account_id,
-                    "debit_ledger_account_id": debit_ledger_account_id,
-                    "description": description,
-                    "ledger_account": ledger_account,
-                    "metadata": metadata,
-                    "routing_details": routing_details,
-                },
-                virtual_account_create_params.VirtualAccountCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "internal_account_id": internal_account_id,
+                "name": name,
+                "account_details": account_details,
+                "counterparty_id": counterparty_id,
+                "credit_ledger_account_id": credit_ledger_account_id,
+                "debit_ledger_account_id": debit_ledger_account_id,
+                "description": description,
+                "ledger_account": ledger_account,
+                "metadata": metadata,
+                "routing_details": routing_details,
+            }, virtual_account_create_params.VirtualAccountCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=VirtualAccount,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VirtualAccount:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> VirtualAccount:
         """
         get virtual_account
 
@@ -154,31 +157,29 @@ class VirtualAccounts(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/virtual_accounts/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=VirtualAccount,
         )
 
-    def update(
-        self,
-        id: str,
-        *,
-        counterparty_id: str | Omit = omit,
-        ledger_account_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        name: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> VirtualAccount:
+    def update(self,
+    id: str,
+    *,
+    counterparty_id: str | Omit = omit,
+    ledger_account_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    name: Optional[str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> VirtualAccount:
         """
         update virtual_account
 
@@ -196,43 +197,34 @@ class VirtualAccounts(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._patch(
             path_template("/api/virtual_accounts/{id}", id=id),
-            body=maybe_transform(
-                {
-                    "counterparty_id": counterparty_id,
-                    "ledger_account_id": ledger_account_id,
-                    "metadata": metadata,
-                    "name": name,
-                },
-                virtual_account_update_params.VirtualAccountUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "counterparty_id": counterparty_id,
+                "ledger_account_id": ledger_account_id,
+                "metadata": metadata,
+                "name": name,
+            }, virtual_account_update_params.VirtualAccountUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=VirtualAccount,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        internal_account_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        per_page: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[VirtualAccount]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    internal_account_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    per_page: int | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[VirtualAccount]:
         """
         Get a list of virtual accounts.
 
@@ -251,38 +243,27 @@ class VirtualAccounts(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/virtual_accounts",
-            page=SyncPage[VirtualAccount],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "counterparty_id": counterparty_id,
-                        "internal_account_id": internal_account_id,
-                        "metadata": metadata,
-                        "per_page": per_page,
-                    },
-                    virtual_account_list_params.VirtualAccountListParams,
-                ),
-            ),
+            page = SyncPage[VirtualAccount],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "counterparty_id": counterparty_id,
+                "internal_account_id": internal_account_id,
+                "metadata": metadata,
+                "per_page": per_page,
+            }, virtual_account_list_params.VirtualAccountListParams)),
             model=VirtualAccount,
         )
 
-    def delete(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> VirtualAccount:
+    def delete(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> VirtualAccount:
         """
         delete virtual_account
 
@@ -298,19 +279,14 @@ class VirtualAccounts(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._delete(
             path_template("/api/virtual_accounts/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=VirtualAccount,
         )
-
 
 class AsyncVirtualAccounts(AsyncAPIResource):
     @cached_property
@@ -332,27 +308,25 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         """
         return AsyncVirtualAccountsWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        internal_account_id: str,
-        name: str,
-        account_details: Iterable[virtual_account_create_params.AccountDetail] | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        credit_ledger_account_id: str | Omit = omit,
-        debit_ledger_account_id: str | Omit = omit,
-        description: str | Omit = omit,
-        ledger_account: LedgerAccountCreateRequest | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        routing_details: Iterable[virtual_account_create_params.RoutingDetail] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> VirtualAccount:
+    async def create(self,
+    *,
+    internal_account_id: str,
+    name: str,
+    account_details: Iterable[virtual_account_create_params.AccountDetail] | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    credit_ledger_account_id: str | Omit = omit,
+    debit_ledger_account_id: str | Omit = omit,
+    description: str | Omit = omit,
+    ledger_account: LedgerAccountCreateRequest | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    routing_details: Iterable[virtual_account_create_params.RoutingDetail] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> VirtualAccount:
         """
         create virtual_account
 
@@ -396,42 +370,31 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         """
         return await self._post(
             "/api/virtual_accounts",
-            body=await async_maybe_transform(
-                {
-                    "internal_account_id": internal_account_id,
-                    "name": name,
-                    "account_details": account_details,
-                    "counterparty_id": counterparty_id,
-                    "credit_ledger_account_id": credit_ledger_account_id,
-                    "debit_ledger_account_id": debit_ledger_account_id,
-                    "description": description,
-                    "ledger_account": ledger_account,
-                    "metadata": metadata,
-                    "routing_details": routing_details,
-                },
-                virtual_account_create_params.VirtualAccountCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "internal_account_id": internal_account_id,
+                "name": name,
+                "account_details": account_details,
+                "counterparty_id": counterparty_id,
+                "credit_ledger_account_id": credit_ledger_account_id,
+                "debit_ledger_account_id": debit_ledger_account_id,
+                "description": description,
+                "ledger_account": ledger_account,
+                "metadata": metadata,
+                "routing_details": routing_details,
+            }, virtual_account_create_params.VirtualAccountCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=VirtualAccount,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> VirtualAccount:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> VirtualAccount:
         """
         get virtual_account
 
@@ -445,31 +408,29 @@ class AsyncVirtualAccounts(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/virtual_accounts/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=VirtualAccount,
         )
 
-    async def update(
-        self,
-        id: str,
-        *,
-        counterparty_id: str | Omit = omit,
-        ledger_account_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        name: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> VirtualAccount:
+    async def update(self,
+    id: str,
+    *,
+    counterparty_id: str | Omit = omit,
+    ledger_account_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    name: Optional[str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> VirtualAccount:
         """
         update virtual_account
 
@@ -487,43 +448,34 @@ class AsyncVirtualAccounts(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._patch(
             path_template("/api/virtual_accounts/{id}", id=id),
-            body=await async_maybe_transform(
-                {
-                    "counterparty_id": counterparty_id,
-                    "ledger_account_id": ledger_account_id,
-                    "metadata": metadata,
-                    "name": name,
-                },
-                virtual_account_update_params.VirtualAccountUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "counterparty_id": counterparty_id,
+                "ledger_account_id": ledger_account_id,
+                "metadata": metadata,
+                "name": name,
+            }, virtual_account_update_params.VirtualAccountUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=VirtualAccount,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        internal_account_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        per_page: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[VirtualAccount, AsyncPage[VirtualAccount]]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    internal_account_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    per_page: int | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[VirtualAccount, AsyncPage[VirtualAccount]]:
         """
         Get a list of virtual accounts.
 
@@ -542,38 +494,27 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/virtual_accounts",
-            page=AsyncPage[VirtualAccount],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "counterparty_id": counterparty_id,
-                        "internal_account_id": internal_account_id,
-                        "metadata": metadata,
-                        "per_page": per_page,
-                    },
-                    virtual_account_list_params.VirtualAccountListParams,
-                ),
-            ),
+            page = AsyncPage[VirtualAccount],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "counterparty_id": counterparty_id,
+                "internal_account_id": internal_account_id,
+                "metadata": metadata,
+                "per_page": per_page,
+            }, virtual_account_list_params.VirtualAccountListParams)),
             model=VirtualAccount,
         )
 
-    async def delete(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> VirtualAccount:
+    async def delete(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> VirtualAccount:
         """
         delete virtual_account
 
@@ -589,19 +530,14 @@ class AsyncVirtualAccounts(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._delete(
             path_template("/api/virtual_accounts/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=VirtualAccount,
         )
-
 
 class VirtualAccountsWithRawResponse:
     def __init__(self, virtual_accounts: VirtualAccounts) -> None:
@@ -623,7 +559,6 @@ class VirtualAccountsWithRawResponse:
             virtual_accounts.delete,
         )
 
-
 class AsyncVirtualAccountsWithRawResponse:
     def __init__(self, virtual_accounts: AsyncVirtualAccounts) -> None:
         self._virtual_accounts = virtual_accounts
@@ -644,7 +579,6 @@ class AsyncVirtualAccountsWithRawResponse:
             virtual_accounts.delete,
         )
 
-
 class VirtualAccountsWithStreamingResponse:
     def __init__(self, virtual_accounts: VirtualAccounts) -> None:
         self._virtual_accounts = virtual_accounts
@@ -664,7 +598,6 @@ class VirtualAccountsWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             virtual_accounts.delete,
         )
-
 
 class AsyncVirtualAccountsWithStreamingResponse:
     def __init__(self, virtual_accounts: AsyncVirtualAccounts) -> None:

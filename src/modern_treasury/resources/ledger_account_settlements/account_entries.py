@@ -2,21 +2,30 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 import httpx
 
-from ... import _legacy_response
-from ..._types import Body, Query, Headers, NoneType, NotGiven, SequenceNotStr, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
-from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ..._compat import cached_property
+
+from ..._utils import path_template, maybe_transform, async_maybe_transform
+
 from ..._base_client import make_request_options
-from ...types.ledger_account_settlements import account_entry_delete_params, account_entry_update_params
+
+from typing import Optional
+
+from ..._types import SequenceNotStr, NotGiven
+
+from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ... import _legacy_response
+
+from typing_extensions import Literal, overload
+from ..._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ...types.ledger_account_settlements import account_entry_update_params
+from ...types.ledger_account_settlements import account_entry_delete_params
 
 __all__ = ["AccountEntries", "AsyncAccountEntries"]
-
 
 class AccountEntries(SyncAPIResource):
     @cached_property
@@ -38,19 +47,17 @@ class AccountEntries(SyncAPIResource):
         """
         return AccountEntriesWithStreamingResponse(self)
 
-    def update(
-        self,
-        id: str,
-        *,
-        ledger_entry_ids: Optional[SequenceNotStr[str]],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> None:
+    def update(self,
+    id: str,
+    *,
+    ledger_entry_ids: Optional[SequenceNotStr[str]],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> None:
         """
         Add ledger entries to a draft ledger account settlement.
 
@@ -69,36 +76,30 @@ class AccountEntries(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._patch(
             path_template("/api/ledger_account_settlements/{id}/ledger_entries", id=id),
-            body=maybe_transform(
-                {"ledger_entry_ids": ledger_entry_ids}, account_entry_update_params.AccountEntryUpdateParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "ledger_entry_ids": ledger_entry_ids
+            }, account_entry_update_params.AccountEntryUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=NoneType,
         )
 
-    def delete(
-        self,
-        id: str,
-        *,
-        ledger_entry_ids: Optional[SequenceNotStr[str]],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> None:
+    def delete(self,
+    id: str,
+    *,
+    ledger_entry_ids: Optional[SequenceNotStr[str]],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> None:
         """
         Remove ledger entries from a draft ledger account settlement.
 
@@ -117,23 +118,18 @@ class AccountEntries(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             path_template("/api/ledger_account_settlements/{id}/ledger_entries", id=id),
-            body=maybe_transform(
-                {"ledger_entry_ids": ledger_entry_ids}, account_entry_delete_params.AccountEntryDeleteParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "ledger_entry_ids": ledger_entry_ids
+            }, account_entry_delete_params.AccountEntryDeleteParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=NoneType,
         )
-
 
 class AsyncAccountEntries(AsyncAPIResource):
     @cached_property
@@ -155,19 +151,17 @@ class AsyncAccountEntries(AsyncAPIResource):
         """
         return AsyncAccountEntriesWithStreamingResponse(self)
 
-    async def update(
-        self,
-        id: str,
-        *,
-        ledger_entry_ids: Optional[SequenceNotStr[str]],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> None:
+    async def update(self,
+    id: str,
+    *,
+    ledger_entry_ids: Optional[SequenceNotStr[str]],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> None:
         """
         Add ledger entries to a draft ledger account settlement.
 
@@ -186,36 +180,30 @@ class AsyncAccountEntries(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._patch(
             path_template("/api/ledger_account_settlements/{id}/ledger_entries", id=id),
-            body=await async_maybe_transform(
-                {"ledger_entry_ids": ledger_entry_ids}, account_entry_update_params.AccountEntryUpdateParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "ledger_entry_ids": ledger_entry_ids
+            }, account_entry_update_params.AccountEntryUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=NoneType,
         )
 
-    async def delete(
-        self,
-        id: str,
-        *,
-        ledger_entry_ids: Optional[SequenceNotStr[str]],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> None:
+    async def delete(self,
+    id: str,
+    *,
+    ledger_entry_ids: Optional[SequenceNotStr[str]],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> None:
         """
         Remove ledger entries from a draft ledger account settlement.
 
@@ -234,23 +222,18 @@ class AsyncAccountEntries(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             path_template("/api/ledger_account_settlements/{id}/ledger_entries", id=id),
-            body=await async_maybe_transform(
-                {"ledger_entry_ids": ledger_entry_ids}, account_entry_delete_params.AccountEntryDeleteParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "ledger_entry_ids": ledger_entry_ids
+            }, account_entry_delete_params.AccountEntryDeleteParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=NoneType,
         )
-
 
 class AccountEntriesWithRawResponse:
     def __init__(self, account_entries: AccountEntries) -> None:
@@ -263,7 +246,6 @@ class AccountEntriesWithRawResponse:
             account_entries.delete,
         )
 
-
 class AsyncAccountEntriesWithRawResponse:
     def __init__(self, account_entries: AsyncAccountEntries) -> None:
         self._account_entries = account_entries
@@ -275,7 +257,6 @@ class AsyncAccountEntriesWithRawResponse:
             account_entries.delete,
         )
 
-
 class AccountEntriesWithStreamingResponse:
     def __init__(self, account_entries: AccountEntries) -> None:
         self._account_entries = account_entries
@@ -286,7 +267,6 @@ class AccountEntriesWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             account_entries.delete,
         )
-
 
 class AsyncAccountEntriesWithStreamingResponse:
     def __init__(self, account_entries: AsyncAccountEntries) -> None:

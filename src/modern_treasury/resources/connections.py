@@ -2,23 +2,33 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 import httpx
 
-from .. import _legacy_response
-from ..types import connection_list_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
+
+from .._compat import cached_property
+
 from ..types.connection import Connection
 
-__all__ = ["Connections", "AsyncConnections"]
+from ..pagination import SyncPage, AsyncPage
 
+from .._base_client import make_request_options, AsyncPaginator
+
+from .._utils import maybe_transform
+
+from typing import Optional
+
+from .._types import Omit, omit, NotGiven
+
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import connection_list_params
+
+__all__ = ["Connections", "AsyncConnections"]
 
 class Connections(SyncAPIResource):
     @cached_property
@@ -40,20 +50,18 @@ class Connections(SyncAPIResource):
         """
         return ConnectionsWithStreamingResponse(self)
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        entity: str | Omit = omit,
-        per_page: int | Omit = omit,
-        vendor_customer_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[Connection]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    entity: str | Omit = omit,
+    per_page: int | Omit = omit,
+    vendor_customer_id: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[Connection]:
         """
         Get a list of all connections.
 
@@ -72,25 +80,15 @@ class Connections(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/connections",
-            page=SyncPage[Connection],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "entity": entity,
-                        "per_page": per_page,
-                        "vendor_customer_id": vendor_customer_id,
-                    },
-                    connection_list_params.ConnectionListParams,
-                ),
-            ),
+            page = SyncPage[Connection],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "entity": entity,
+                "per_page": per_page,
+                "vendor_customer_id": vendor_customer_id,
+            }, connection_list_params.ConnectionListParams)),
             model=Connection,
         )
-
 
 class AsyncConnections(AsyncAPIResource):
     @cached_property
@@ -112,20 +110,18 @@ class AsyncConnections(AsyncAPIResource):
         """
         return AsyncConnectionsWithStreamingResponse(self)
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        entity: str | Omit = omit,
-        per_page: int | Omit = omit,
-        vendor_customer_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Connection, AsyncPage[Connection]]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    entity: str | Omit = omit,
+    per_page: int | Omit = omit,
+    vendor_customer_id: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[Connection, AsyncPage[Connection]]:
         """
         Get a list of all connections.
 
@@ -144,25 +140,15 @@ class AsyncConnections(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/connections",
-            page=AsyncPage[Connection],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "entity": entity,
-                        "per_page": per_page,
-                        "vendor_customer_id": vendor_customer_id,
-                    },
-                    connection_list_params.ConnectionListParams,
-                ),
-            ),
+            page = AsyncPage[Connection],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "entity": entity,
+                "per_page": per_page,
+                "vendor_customer_id": vendor_customer_id,
+            }, connection_list_params.ConnectionListParams)),
             model=Connection,
         )
-
 
 class ConnectionsWithRawResponse:
     def __init__(self, connections: Connections) -> None:
@@ -172,7 +158,6 @@ class ConnectionsWithRawResponse:
             connections.list,
         )
 
-
 class AsyncConnectionsWithRawResponse:
     def __init__(self, connections: AsyncConnections) -> None:
         self._connections = connections
@@ -181,7 +166,6 @@ class AsyncConnectionsWithRawResponse:
             connections.list,
         )
 
-
 class ConnectionsWithStreamingResponse:
     def __init__(self, connections: Connections) -> None:
         self._connections = connections
@@ -189,7 +173,6 @@ class ConnectionsWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             connections.list,
         )
-
 
 class AsyncConnectionsWithStreamingResponse:
     def __init__(self, connections: AsyncConnections) -> None:

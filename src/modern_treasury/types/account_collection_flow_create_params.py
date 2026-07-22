@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import TypedDict, Required, Literal
 
 from .._types import SequenceNotStr
 
-__all__ = ["AccountCollectionFlowCreateParams"]
+from typing import List
 
+__all__ = ["AccountCollectionFlowCreateParams"]
 
 class AccountCollectionFlowCreateParams(TypedDict, total=False):
     counterparty_id: Required[str]
@@ -16,25 +16,4 @@ class AccountCollectionFlowCreateParams(TypedDict, total=False):
 
     payment_types: Required[SequenceNotStr[str]]
 
-    receiving_countries: List[
-        Literal[
-            "USA",
-            "AUS",
-            "BEL",
-            "CAN",
-            "CHL",
-            "CHN",
-            "COL",
-            "FRA",
-            "DEU",
-            "HKG",
-            "IND",
-            "IRL",
-            "ITA",
-            "MEX",
-            "NLD",
-            "PER",
-            "ESP",
-            "GBR",
-        ]
-    ]
+    receiving_countries: List[Literal["USA", "AUS", "BEL", "CAN", "CHL", "CHN", "COL", "FRA", "DEU", "HKG", "IND", "IRL", "ITA", "MEX", "NLD", "PER", "ESP", "GBR"]]

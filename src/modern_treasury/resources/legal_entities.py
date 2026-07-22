@@ -2,36 +2,61 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
-from datetime import date
-from typing_extensions import Literal
-
 import httpx
 
-from .. import _legacy_response
-from ..types import (
-    legal_entity_list_params,
-    legal_entity_create_params,
-    legal_entity_update_params,
-)
-from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
+
+from .._compat import cached_property
+
 from ..types.legal_entity import LegalEntity
-from ..types.bank_settings_param import BankSettingsParam
-from ..types.wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
-from ..types.shared_params.third_party_verification import ThirdPartyVerification
-from ..types.shared_params.identification_create_request import IdentificationCreateRequest
+
+from .._utils import maybe_transform, path_template, async_maybe_transform
+
+from .._base_client import make_request_options, AsyncPaginator
+
+from typing_extensions import Literal
+
+from typing import Iterable, Optional, Union, Dict
+
 from ..types.shared_params.legal_entity_address_create_request import LegalEntityAddressCreateRequest
+
+from .._types import Omit, omit, SequenceNotStr, NotGiven
+
+from ..types.bank_settings_param import BankSettingsParam
+
+from datetime import date
+
+from ..types.shared_params.identification_create_request import IdentificationCreateRequest
+
 from ..types.shared_params.legal_entity_industry_classification import LegalEntityIndustryClassification
+
 from ..types.shared_params.legal_entity_association_inline_create import LegalEntityAssociationInlineCreate
 
-__all__ = ["LegalEntities", "AsyncLegalEntities"]
+from ..types.shared_params.third_party_verification import ThirdPartyVerification
 
+from ..types.wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
+
+from ..pagination import SyncPage, AsyncPage
+
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ..types import legal_entity_create_params, legal_entity_update_params
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import legal_entity_create_params
+from ..types import legal_entity_update_params
+from ..types import legal_entity_list_params
+from ..types import BankSettings
+from ..types import shared
+from ..types import WealthAndEmploymentDetails
+from ..types import BankSettings
+from ..types import shared
+from ..types import WealthAndEmploymentDetails
+
+__all__ = ["LegalEntities", "AsyncLegalEntities"]
 
 class LegalEntities(SyncAPIResource):
     @cached_property
@@ -53,62 +78,57 @@ class LegalEntities(SyncAPIResource):
         """
         return LegalEntitiesWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        legal_entity_type: Literal["business", "individual"],
-        addresses: Iterable[LegalEntityAddressCreateRequest] | Omit = omit,
-        bank_settings: Optional[BankSettingsParam] | Omit = omit,
-        business_description: Optional[str] | Omit = omit,
-        business_name: Optional[str] | Omit = omit,
-        citizenship_country: Optional[str] | Omit = omit,
-        compliance_details: Optional[object] | Omit = omit,
-        connection_id: Optional[str] | Omit = omit,
-        country_of_incorporation: Optional[str] | Omit = omit,
-        date_formed: Union[str, date, None] | Omit = omit,
-        date_of_birth: Union[str, date, None] | Omit = omit,
-        documents: Iterable[legal_entity_create_params.Document] | Omit = omit,
-        doing_business_as_names: SequenceNotStr[str] | Omit = omit,
-        email: Optional[str] | Omit = omit,
-        expected_activity_volume: Optional[int] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        first_name: Optional[str] | Omit = omit,
-        identifications: Iterable[IdentificationCreateRequest] | Omit = omit,
-        industry_classifications: Iterable[LegalEntityIndustryClassification] | Omit = omit,
-        intended_use: Optional[str] | Omit = omit,
-        last_name: Optional[str] | Omit = omit,
-        legal_entity_associations: Optional[Iterable[LegalEntityAssociationInlineCreate]] | Omit = omit,
-        legal_structure: Optional[
-            Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
-        ]
-        | Omit = omit,
-        listed_exchange: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        middle_name: Optional[str] | Omit = omit,
-        operating_jurisdictions: SequenceNotStr[str] | Omit = omit,
-        phone_numbers: Iterable[legal_entity_create_params.PhoneNumber] | Omit = omit,
-        politically_exposed_person: Optional[bool] | Omit = omit,
-        preferred_name: Optional[str] | Omit = omit,
-        prefix: Optional[str] | Omit = omit,
-        primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
-        regulators: Optional[Iterable[legal_entity_create_params.Regulator]] | Omit = omit,
-        risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
-        service_provider_legal_entity_id: Optional[str] | Omit = omit,
-        suffix: Optional[str] | Omit = omit,
-        terms_of_use: Optional[legal_entity_create_params.TermsOfUse] | Omit = omit,
-        third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
-        third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
-        ticker_symbol: Optional[str] | Omit = omit,
-        wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam] | Omit = omit,
-        website: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LegalEntity:
+    def create(self,
+    *,
+    legal_entity_type: Literal["business", "individual"],
+    addresses: Iterable[LegalEntityAddressCreateRequest] | Omit = omit,
+    bank_settings: Optional[BankSettingsParam] | Omit = omit,
+    business_description: Optional[str] | Omit = omit,
+    business_name: Optional[str] | Omit = omit,
+    citizenship_country: Optional[str] | Omit = omit,
+    compliance_details: Optional[object] | Omit = omit,
+    connection_id: Optional[str] | Omit = omit,
+    country_of_incorporation: Optional[str] | Omit = omit,
+    date_formed: Union[str, date, None] | Omit = omit,
+    date_of_birth: Union[str, date, None] | Omit = omit,
+    documents: Iterable[legal_entity_create_params.Document] | Omit = omit,
+    doing_business_as_names: SequenceNotStr[str] | Omit = omit,
+    email: Optional[str] | Omit = omit,
+    expected_activity_volume: Optional[int] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    first_name: Optional[str] | Omit = omit,
+    identifications: Iterable[IdentificationCreateRequest] | Omit = omit,
+    industry_classifications: Iterable[LegalEntityIndustryClassification] | Omit = omit,
+    intended_use: Optional[str] | Omit = omit,
+    last_name: Optional[str] | Omit = omit,
+    legal_entity_associations: Optional[Iterable[LegalEntityAssociationInlineCreate]] | Omit = omit,
+    legal_structure: Optional[Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]] | Omit = omit,
+    listed_exchange: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    middle_name: Optional[str] | Omit = omit,
+    operating_jurisdictions: SequenceNotStr[str] | Omit = omit,
+    phone_numbers: Iterable[legal_entity_create_params.PhoneNumber] | Omit = omit,
+    politically_exposed_person: Optional[bool] | Omit = omit,
+    preferred_name: Optional[str] | Omit = omit,
+    prefix: Optional[str] | Omit = omit,
+    primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
+    regulators: Optional[Iterable[legal_entity_create_params.Regulator]] | Omit = omit,
+    risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
+    service_provider_legal_entity_id: Optional[str] | Omit = omit,
+    suffix: Optional[str] | Omit = omit,
+    terms_of_use: Optional[legal_entity_create_params.TermsOfUse] | Omit = omit,
+    third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
+    third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
+    ticker_symbol: Optional[str] | Omit = omit,
+    wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam] | Omit = omit,
+    website: Optional[str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LegalEntity:
         """
         create legal_entity
 
@@ -207,74 +227,63 @@ class LegalEntities(SyncAPIResource):
         """
         return self._post(
             "/api/legal_entities",
-            body=maybe_transform(
-                {
-                    "legal_entity_type": legal_entity_type,
-                    "addresses": addresses,
-                    "bank_settings": bank_settings,
-                    "business_description": business_description,
-                    "business_name": business_name,
-                    "citizenship_country": citizenship_country,
-                    "compliance_details": compliance_details,
-                    "connection_id": connection_id,
-                    "country_of_incorporation": country_of_incorporation,
-                    "date_formed": date_formed,
-                    "date_of_birth": date_of_birth,
-                    "documents": documents,
-                    "doing_business_as_names": doing_business_as_names,
-                    "email": email,
-                    "expected_activity_volume": expected_activity_volume,
-                    "external_id": external_id,
-                    "first_name": first_name,
-                    "identifications": identifications,
-                    "industry_classifications": industry_classifications,
-                    "intended_use": intended_use,
-                    "last_name": last_name,
-                    "legal_entity_associations": legal_entity_associations,
-                    "legal_structure": legal_structure,
-                    "listed_exchange": listed_exchange,
-                    "metadata": metadata,
-                    "middle_name": middle_name,
-                    "operating_jurisdictions": operating_jurisdictions,
-                    "phone_numbers": phone_numbers,
-                    "politically_exposed_person": politically_exposed_person,
-                    "preferred_name": preferred_name,
-                    "prefix": prefix,
-                    "primary_social_media_sites": primary_social_media_sites,
-                    "regulators": regulators,
-                    "risk_rating": risk_rating,
-                    "service_provider_legal_entity_id": service_provider_legal_entity_id,
-                    "suffix": suffix,
-                    "terms_of_use": terms_of_use,
-                    "third_party_verification": third_party_verification,
-                    "third_party_verifications": third_party_verifications,
-                    "ticker_symbol": ticker_symbol,
-                    "wealth_and_employment_details": wealth_and_employment_details,
-                    "website": website,
-                },
-                legal_entity_create_params.LegalEntityCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "legal_entity_type": legal_entity_type,
+                "addresses": addresses,
+                "bank_settings": bank_settings,
+                "business_description": business_description,
+                "business_name": business_name,
+                "citizenship_country": citizenship_country,
+                "compliance_details": compliance_details,
+                "connection_id": connection_id,
+                "country_of_incorporation": country_of_incorporation,
+                "date_formed": date_formed,
+                "date_of_birth": date_of_birth,
+                "documents": documents,
+                "doing_business_as_names": doing_business_as_names,
+                "email": email,
+                "expected_activity_volume": expected_activity_volume,
+                "external_id": external_id,
+                "first_name": first_name,
+                "identifications": identifications,
+                "industry_classifications": industry_classifications,
+                "intended_use": intended_use,
+                "last_name": last_name,
+                "legal_entity_associations": legal_entity_associations,
+                "legal_structure": legal_structure,
+                "listed_exchange": listed_exchange,
+                "metadata": metadata,
+                "middle_name": middle_name,
+                "operating_jurisdictions": operating_jurisdictions,
+                "phone_numbers": phone_numbers,
+                "politically_exposed_person": politically_exposed_person,
+                "preferred_name": preferred_name,
+                "prefix": prefix,
+                "primary_social_media_sites": primary_social_media_sites,
+                "regulators": regulators,
+                "risk_rating": risk_rating,
+                "service_provider_legal_entity_id": service_provider_legal_entity_id,
+                "suffix": suffix,
+                "terms_of_use": terms_of_use,
+                "third_party_verification": third_party_verification,
+                "third_party_verifications": third_party_verifications,
+                "ticker_symbol": ticker_symbol,
+                "wealth_and_employment_details": wealth_and_employment_details,
+                "website": website,
+            }, legal_entity_create_params.LegalEntityCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LegalEntity,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LegalEntity:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> LegalEntity:
         """
         Get details on a single legal entity.
 
@@ -288,67 +297,62 @@ class LegalEntities(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/legal_entities/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=LegalEntity,
         )
 
-    def update(
-        self,
-        id: str,
-        *,
-        addresses: Iterable[LegalEntityAddressCreateRequest] | Omit = omit,
-        bank_settings: Optional[BankSettingsParam] | Omit = omit,
-        business_description: Optional[str] | Omit = omit,
-        business_name: Optional[str] | Omit = omit,
-        citizenship_country: Optional[str] | Omit = omit,
-        country_of_incorporation: Optional[str] | Omit = omit,
-        date_formed: Union[str, date, None] | Omit = omit,
-        date_of_birth: Union[str, date, None] | Omit = omit,
-        doing_business_as_names: SequenceNotStr[str] | Omit = omit,
-        email: Optional[str] | Omit = omit,
-        expected_activity_volume: Optional[int] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        first_name: Optional[str] | Omit = omit,
-        identifications: Iterable[IdentificationCreateRequest] | Omit = omit,
-        industry_classifications: Iterable[LegalEntityIndustryClassification] | Omit = omit,
-        intended_use: Optional[str] | Omit = omit,
-        last_name: Optional[str] | Omit = omit,
-        legal_structure: Optional[
-            Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
-        ]
-        | Omit = omit,
-        listed_exchange: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        middle_name: Optional[str] | Omit = omit,
-        operating_jurisdictions: SequenceNotStr[str] | Omit = omit,
-        phone_numbers: Iterable[legal_entity_update_params.PhoneNumber] | Omit = omit,
-        politically_exposed_person: Optional[bool] | Omit = omit,
-        preferred_name: Optional[str] | Omit = omit,
-        prefix: Optional[str] | Omit = omit,
-        primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
-        regulators: Optional[Iterable[legal_entity_update_params.Regulator]] | Omit = omit,
-        risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
-        service_provider_legal_entity_id: Optional[str] | Omit = omit,
-        suffix: Optional[str] | Omit = omit,
-        terms_of_use: Optional[legal_entity_update_params.TermsOfUse] | Omit = omit,
-        third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
-        third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
-        ticker_symbol: Optional[str] | Omit = omit,
-        wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam] | Omit = omit,
-        website: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LegalEntity:
+    def update(self,
+    id: str,
+    *,
+    addresses: Iterable[LegalEntityAddressCreateRequest] | Omit = omit,
+    bank_settings: Optional[BankSettingsParam] | Omit = omit,
+    business_description: Optional[str] | Omit = omit,
+    business_name: Optional[str] | Omit = omit,
+    citizenship_country: Optional[str] | Omit = omit,
+    country_of_incorporation: Optional[str] | Omit = omit,
+    date_formed: Union[str, date, None] | Omit = omit,
+    date_of_birth: Union[str, date, None] | Omit = omit,
+    doing_business_as_names: SequenceNotStr[str] | Omit = omit,
+    email: Optional[str] | Omit = omit,
+    expected_activity_volume: Optional[int] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    first_name: Optional[str] | Omit = omit,
+    identifications: Iterable[IdentificationCreateRequest] | Omit = omit,
+    industry_classifications: Iterable[LegalEntityIndustryClassification] | Omit = omit,
+    intended_use: Optional[str] | Omit = omit,
+    last_name: Optional[str] | Omit = omit,
+    legal_structure: Optional[Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]] | Omit = omit,
+    listed_exchange: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    middle_name: Optional[str] | Omit = omit,
+    operating_jurisdictions: SequenceNotStr[str] | Omit = omit,
+    phone_numbers: Iterable[legal_entity_update_params.PhoneNumber] | Omit = omit,
+    politically_exposed_person: Optional[bool] | Omit = omit,
+    preferred_name: Optional[str] | Omit = omit,
+    prefix: Optional[str] | Omit = omit,
+    primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
+    regulators: Optional[Iterable[legal_entity_update_params.Regulator]] | Omit = omit,
+    risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
+    service_provider_legal_entity_id: Optional[str] | Omit = omit,
+    suffix: Optional[str] | Omit = omit,
+    terms_of_use: Optional[legal_entity_update_params.TermsOfUse] | Omit = omit,
+    third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
+    third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
+    ticker_symbol: Optional[str] | Omit = omit,
+    wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam] | Omit = omit,
+    website: Optional[str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LegalEntity:
         """
         Update a legal entity.
 
@@ -433,78 +437,69 @@ class LegalEntities(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._patch(
             path_template("/api/legal_entities/{id}", id=id),
-            body=maybe_transform(
-                {
-                    "addresses": addresses,
-                    "bank_settings": bank_settings,
-                    "business_description": business_description,
-                    "business_name": business_name,
-                    "citizenship_country": citizenship_country,
-                    "country_of_incorporation": country_of_incorporation,
-                    "date_formed": date_formed,
-                    "date_of_birth": date_of_birth,
-                    "doing_business_as_names": doing_business_as_names,
-                    "email": email,
-                    "expected_activity_volume": expected_activity_volume,
-                    "external_id": external_id,
-                    "first_name": first_name,
-                    "identifications": identifications,
-                    "industry_classifications": industry_classifications,
-                    "intended_use": intended_use,
-                    "last_name": last_name,
-                    "legal_structure": legal_structure,
-                    "listed_exchange": listed_exchange,
-                    "metadata": metadata,
-                    "middle_name": middle_name,
-                    "operating_jurisdictions": operating_jurisdictions,
-                    "phone_numbers": phone_numbers,
-                    "politically_exposed_person": politically_exposed_person,
-                    "preferred_name": preferred_name,
-                    "prefix": prefix,
-                    "primary_social_media_sites": primary_social_media_sites,
-                    "regulators": regulators,
-                    "risk_rating": risk_rating,
-                    "service_provider_legal_entity_id": service_provider_legal_entity_id,
-                    "suffix": suffix,
-                    "terms_of_use": terms_of_use,
-                    "third_party_verification": third_party_verification,
-                    "third_party_verifications": third_party_verifications,
-                    "ticker_symbol": ticker_symbol,
-                    "wealth_and_employment_details": wealth_and_employment_details,
-                    "website": website,
-                },
-                legal_entity_update_params.LegalEntityUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "addresses": addresses,
+                "bank_settings": bank_settings,
+                "business_description": business_description,
+                "business_name": business_name,
+                "citizenship_country": citizenship_country,
+                "country_of_incorporation": country_of_incorporation,
+                "date_formed": date_formed,
+                "date_of_birth": date_of_birth,
+                "doing_business_as_names": doing_business_as_names,
+                "email": email,
+                "expected_activity_volume": expected_activity_volume,
+                "external_id": external_id,
+                "first_name": first_name,
+                "identifications": identifications,
+                "industry_classifications": industry_classifications,
+                "intended_use": intended_use,
+                "last_name": last_name,
+                "legal_structure": legal_structure,
+                "listed_exchange": listed_exchange,
+                "metadata": metadata,
+                "middle_name": middle_name,
+                "operating_jurisdictions": operating_jurisdictions,
+                "phone_numbers": phone_numbers,
+                "politically_exposed_person": politically_exposed_person,
+                "preferred_name": preferred_name,
+                "prefix": prefix,
+                "primary_social_media_sites": primary_social_media_sites,
+                "regulators": regulators,
+                "risk_rating": risk_rating,
+                "service_provider_legal_entity_id": service_provider_legal_entity_id,
+                "suffix": suffix,
+                "terms_of_use": terms_of_use,
+                "third_party_verification": third_party_verification,
+                "third_party_verifications": third_party_verifications,
+                "ticker_symbol": ticker_symbol,
+                "wealth_and_employment_details": wealth_and_employment_details,
+                "website": website,
+            }, legal_entity_update_params.LegalEntityUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LegalEntity,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        external_id: str | Omit = omit,
-        legal_entity_type: Literal["business", "individual"] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        per_page: int | Omit = omit,
-        show_deleted: str | Omit = omit,
-        status: Literal["pending", "active", "suspended", "denied"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[LegalEntity]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    external_id: str | Omit = omit,
+    legal_entity_type: Literal["business", "individual"] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    per_page: int | Omit = omit,
+    show_deleted: str | Omit = omit,
+    status: Literal["pending", "active", "suspended", "denied"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[LegalEntity]:
         """
         Get a list of all legal entities.
 
@@ -525,28 +520,18 @@ class LegalEntities(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/legal_entities",
-            page=SyncPage[LegalEntity],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "external_id": external_id,
-                        "legal_entity_type": legal_entity_type,
-                        "metadata": metadata,
-                        "per_page": per_page,
-                        "show_deleted": show_deleted,
-                        "status": status,
-                    },
-                    legal_entity_list_params.LegalEntityListParams,
-                ),
-            ),
+            page = SyncPage[LegalEntity],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "external_id": external_id,
+                "legal_entity_type": legal_entity_type,
+                "metadata": metadata,
+                "per_page": per_page,
+                "show_deleted": show_deleted,
+                "status": status,
+            }, legal_entity_list_params.LegalEntityListParams)),
             model=LegalEntity,
         )
-
 
 class AsyncLegalEntities(AsyncAPIResource):
     @cached_property
@@ -568,62 +553,57 @@ class AsyncLegalEntities(AsyncAPIResource):
         """
         return AsyncLegalEntitiesWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        legal_entity_type: Literal["business", "individual"],
-        addresses: Iterable[LegalEntityAddressCreateRequest] | Omit = omit,
-        bank_settings: Optional[BankSettingsParam] | Omit = omit,
-        business_description: Optional[str] | Omit = omit,
-        business_name: Optional[str] | Omit = omit,
-        citizenship_country: Optional[str] | Omit = omit,
-        compliance_details: Optional[object] | Omit = omit,
-        connection_id: Optional[str] | Omit = omit,
-        country_of_incorporation: Optional[str] | Omit = omit,
-        date_formed: Union[str, date, None] | Omit = omit,
-        date_of_birth: Union[str, date, None] | Omit = omit,
-        documents: Iterable[legal_entity_create_params.Document] | Omit = omit,
-        doing_business_as_names: SequenceNotStr[str] | Omit = omit,
-        email: Optional[str] | Omit = omit,
-        expected_activity_volume: Optional[int] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        first_name: Optional[str] | Omit = omit,
-        identifications: Iterable[IdentificationCreateRequest] | Omit = omit,
-        industry_classifications: Iterable[LegalEntityIndustryClassification] | Omit = omit,
-        intended_use: Optional[str] | Omit = omit,
-        last_name: Optional[str] | Omit = omit,
-        legal_entity_associations: Optional[Iterable[LegalEntityAssociationInlineCreate]] | Omit = omit,
-        legal_structure: Optional[
-            Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
-        ]
-        | Omit = omit,
-        listed_exchange: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        middle_name: Optional[str] | Omit = omit,
-        operating_jurisdictions: SequenceNotStr[str] | Omit = omit,
-        phone_numbers: Iterable[legal_entity_create_params.PhoneNumber] | Omit = omit,
-        politically_exposed_person: Optional[bool] | Omit = omit,
-        preferred_name: Optional[str] | Omit = omit,
-        prefix: Optional[str] | Omit = omit,
-        primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
-        regulators: Optional[Iterable[legal_entity_create_params.Regulator]] | Omit = omit,
-        risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
-        service_provider_legal_entity_id: Optional[str] | Omit = omit,
-        suffix: Optional[str] | Omit = omit,
-        terms_of_use: Optional[legal_entity_create_params.TermsOfUse] | Omit = omit,
-        third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
-        third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
-        ticker_symbol: Optional[str] | Omit = omit,
-        wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam] | Omit = omit,
-        website: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LegalEntity:
+    async def create(self,
+    *,
+    legal_entity_type: Literal["business", "individual"],
+    addresses: Iterable[LegalEntityAddressCreateRequest] | Omit = omit,
+    bank_settings: Optional[BankSettingsParam] | Omit = omit,
+    business_description: Optional[str] | Omit = omit,
+    business_name: Optional[str] | Omit = omit,
+    citizenship_country: Optional[str] | Omit = omit,
+    compliance_details: Optional[object] | Omit = omit,
+    connection_id: Optional[str] | Omit = omit,
+    country_of_incorporation: Optional[str] | Omit = omit,
+    date_formed: Union[str, date, None] | Omit = omit,
+    date_of_birth: Union[str, date, None] | Omit = omit,
+    documents: Iterable[legal_entity_create_params.Document] | Omit = omit,
+    doing_business_as_names: SequenceNotStr[str] | Omit = omit,
+    email: Optional[str] | Omit = omit,
+    expected_activity_volume: Optional[int] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    first_name: Optional[str] | Omit = omit,
+    identifications: Iterable[IdentificationCreateRequest] | Omit = omit,
+    industry_classifications: Iterable[LegalEntityIndustryClassification] | Omit = omit,
+    intended_use: Optional[str] | Omit = omit,
+    last_name: Optional[str] | Omit = omit,
+    legal_entity_associations: Optional[Iterable[LegalEntityAssociationInlineCreate]] | Omit = omit,
+    legal_structure: Optional[Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]] | Omit = omit,
+    listed_exchange: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    middle_name: Optional[str] | Omit = omit,
+    operating_jurisdictions: SequenceNotStr[str] | Omit = omit,
+    phone_numbers: Iterable[legal_entity_create_params.PhoneNumber] | Omit = omit,
+    politically_exposed_person: Optional[bool] | Omit = omit,
+    preferred_name: Optional[str] | Omit = omit,
+    prefix: Optional[str] | Omit = omit,
+    primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
+    regulators: Optional[Iterable[legal_entity_create_params.Regulator]] | Omit = omit,
+    risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
+    service_provider_legal_entity_id: Optional[str] | Omit = omit,
+    suffix: Optional[str] | Omit = omit,
+    terms_of_use: Optional[legal_entity_create_params.TermsOfUse] | Omit = omit,
+    third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
+    third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
+    ticker_symbol: Optional[str] | Omit = omit,
+    wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam] | Omit = omit,
+    website: Optional[str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LegalEntity:
         """
         create legal_entity
 
@@ -722,74 +702,63 @@ class AsyncLegalEntities(AsyncAPIResource):
         """
         return await self._post(
             "/api/legal_entities",
-            body=await async_maybe_transform(
-                {
-                    "legal_entity_type": legal_entity_type,
-                    "addresses": addresses,
-                    "bank_settings": bank_settings,
-                    "business_description": business_description,
-                    "business_name": business_name,
-                    "citizenship_country": citizenship_country,
-                    "compliance_details": compliance_details,
-                    "connection_id": connection_id,
-                    "country_of_incorporation": country_of_incorporation,
-                    "date_formed": date_formed,
-                    "date_of_birth": date_of_birth,
-                    "documents": documents,
-                    "doing_business_as_names": doing_business_as_names,
-                    "email": email,
-                    "expected_activity_volume": expected_activity_volume,
-                    "external_id": external_id,
-                    "first_name": first_name,
-                    "identifications": identifications,
-                    "industry_classifications": industry_classifications,
-                    "intended_use": intended_use,
-                    "last_name": last_name,
-                    "legal_entity_associations": legal_entity_associations,
-                    "legal_structure": legal_structure,
-                    "listed_exchange": listed_exchange,
-                    "metadata": metadata,
-                    "middle_name": middle_name,
-                    "operating_jurisdictions": operating_jurisdictions,
-                    "phone_numbers": phone_numbers,
-                    "politically_exposed_person": politically_exposed_person,
-                    "preferred_name": preferred_name,
-                    "prefix": prefix,
-                    "primary_social_media_sites": primary_social_media_sites,
-                    "regulators": regulators,
-                    "risk_rating": risk_rating,
-                    "service_provider_legal_entity_id": service_provider_legal_entity_id,
-                    "suffix": suffix,
-                    "terms_of_use": terms_of_use,
-                    "third_party_verification": third_party_verification,
-                    "third_party_verifications": third_party_verifications,
-                    "ticker_symbol": ticker_symbol,
-                    "wealth_and_employment_details": wealth_and_employment_details,
-                    "website": website,
-                },
-                legal_entity_create_params.LegalEntityCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "legal_entity_type": legal_entity_type,
+                "addresses": addresses,
+                "bank_settings": bank_settings,
+                "business_description": business_description,
+                "business_name": business_name,
+                "citizenship_country": citizenship_country,
+                "compliance_details": compliance_details,
+                "connection_id": connection_id,
+                "country_of_incorporation": country_of_incorporation,
+                "date_formed": date_formed,
+                "date_of_birth": date_of_birth,
+                "documents": documents,
+                "doing_business_as_names": doing_business_as_names,
+                "email": email,
+                "expected_activity_volume": expected_activity_volume,
+                "external_id": external_id,
+                "first_name": first_name,
+                "identifications": identifications,
+                "industry_classifications": industry_classifications,
+                "intended_use": intended_use,
+                "last_name": last_name,
+                "legal_entity_associations": legal_entity_associations,
+                "legal_structure": legal_structure,
+                "listed_exchange": listed_exchange,
+                "metadata": metadata,
+                "middle_name": middle_name,
+                "operating_jurisdictions": operating_jurisdictions,
+                "phone_numbers": phone_numbers,
+                "politically_exposed_person": politically_exposed_person,
+                "preferred_name": preferred_name,
+                "prefix": prefix,
+                "primary_social_media_sites": primary_social_media_sites,
+                "regulators": regulators,
+                "risk_rating": risk_rating,
+                "service_provider_legal_entity_id": service_provider_legal_entity_id,
+                "suffix": suffix,
+                "terms_of_use": terms_of_use,
+                "third_party_verification": third_party_verification,
+                "third_party_verifications": third_party_verifications,
+                "ticker_symbol": ticker_symbol,
+                "wealth_and_employment_details": wealth_and_employment_details,
+                "website": website,
+            }, legal_entity_create_params.LegalEntityCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LegalEntity,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LegalEntity:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> LegalEntity:
         """
         Get details on a single legal entity.
 
@@ -803,67 +772,62 @@ class AsyncLegalEntities(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/legal_entities/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=LegalEntity,
         )
 
-    async def update(
-        self,
-        id: str,
-        *,
-        addresses: Iterable[LegalEntityAddressCreateRequest] | Omit = omit,
-        bank_settings: Optional[BankSettingsParam] | Omit = omit,
-        business_description: Optional[str] | Omit = omit,
-        business_name: Optional[str] | Omit = omit,
-        citizenship_country: Optional[str] | Omit = omit,
-        country_of_incorporation: Optional[str] | Omit = omit,
-        date_formed: Union[str, date, None] | Omit = omit,
-        date_of_birth: Union[str, date, None] | Omit = omit,
-        doing_business_as_names: SequenceNotStr[str] | Omit = omit,
-        email: Optional[str] | Omit = omit,
-        expected_activity_volume: Optional[int] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        first_name: Optional[str] | Omit = omit,
-        identifications: Iterable[IdentificationCreateRequest] | Omit = omit,
-        industry_classifications: Iterable[LegalEntityIndustryClassification] | Omit = omit,
-        intended_use: Optional[str] | Omit = omit,
-        last_name: Optional[str] | Omit = omit,
-        legal_structure: Optional[
-            Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
-        ]
-        | Omit = omit,
-        listed_exchange: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        middle_name: Optional[str] | Omit = omit,
-        operating_jurisdictions: SequenceNotStr[str] | Omit = omit,
-        phone_numbers: Iterable[legal_entity_update_params.PhoneNumber] | Omit = omit,
-        politically_exposed_person: Optional[bool] | Omit = omit,
-        preferred_name: Optional[str] | Omit = omit,
-        prefix: Optional[str] | Omit = omit,
-        primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
-        regulators: Optional[Iterable[legal_entity_update_params.Regulator]] | Omit = omit,
-        risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
-        service_provider_legal_entity_id: Optional[str] | Omit = omit,
-        suffix: Optional[str] | Omit = omit,
-        terms_of_use: Optional[legal_entity_update_params.TermsOfUse] | Omit = omit,
-        third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
-        third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
-        ticker_symbol: Optional[str] | Omit = omit,
-        wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam] | Omit = omit,
-        website: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LegalEntity:
+    async def update(self,
+    id: str,
+    *,
+    addresses: Iterable[LegalEntityAddressCreateRequest] | Omit = omit,
+    bank_settings: Optional[BankSettingsParam] | Omit = omit,
+    business_description: Optional[str] | Omit = omit,
+    business_name: Optional[str] | Omit = omit,
+    citizenship_country: Optional[str] | Omit = omit,
+    country_of_incorporation: Optional[str] | Omit = omit,
+    date_formed: Union[str, date, None] | Omit = omit,
+    date_of_birth: Union[str, date, None] | Omit = omit,
+    doing_business_as_names: SequenceNotStr[str] | Omit = omit,
+    email: Optional[str] | Omit = omit,
+    expected_activity_volume: Optional[int] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    first_name: Optional[str] | Omit = omit,
+    identifications: Iterable[IdentificationCreateRequest] | Omit = omit,
+    industry_classifications: Iterable[LegalEntityIndustryClassification] | Omit = omit,
+    intended_use: Optional[str] | Omit = omit,
+    last_name: Optional[str] | Omit = omit,
+    legal_structure: Optional[Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]] | Omit = omit,
+    listed_exchange: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    middle_name: Optional[str] | Omit = omit,
+    operating_jurisdictions: SequenceNotStr[str] | Omit = omit,
+    phone_numbers: Iterable[legal_entity_update_params.PhoneNumber] | Omit = omit,
+    politically_exposed_person: Optional[bool] | Omit = omit,
+    preferred_name: Optional[str] | Omit = omit,
+    prefix: Optional[str] | Omit = omit,
+    primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
+    regulators: Optional[Iterable[legal_entity_update_params.Regulator]] | Omit = omit,
+    risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
+    service_provider_legal_entity_id: Optional[str] | Omit = omit,
+    suffix: Optional[str] | Omit = omit,
+    terms_of_use: Optional[legal_entity_update_params.TermsOfUse] | Omit = omit,
+    third_party_verification: Optional[ThirdPartyVerification] | Omit = omit,
+    third_party_verifications: Iterable[ThirdPartyVerification] | Omit = omit,
+    ticker_symbol: Optional[str] | Omit = omit,
+    wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam] | Omit = omit,
+    website: Optional[str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LegalEntity:
         """
         Update a legal entity.
 
@@ -948,78 +912,69 @@ class AsyncLegalEntities(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._patch(
             path_template("/api/legal_entities/{id}", id=id),
-            body=await async_maybe_transform(
-                {
-                    "addresses": addresses,
-                    "bank_settings": bank_settings,
-                    "business_description": business_description,
-                    "business_name": business_name,
-                    "citizenship_country": citizenship_country,
-                    "country_of_incorporation": country_of_incorporation,
-                    "date_formed": date_formed,
-                    "date_of_birth": date_of_birth,
-                    "doing_business_as_names": doing_business_as_names,
-                    "email": email,
-                    "expected_activity_volume": expected_activity_volume,
-                    "external_id": external_id,
-                    "first_name": first_name,
-                    "identifications": identifications,
-                    "industry_classifications": industry_classifications,
-                    "intended_use": intended_use,
-                    "last_name": last_name,
-                    "legal_structure": legal_structure,
-                    "listed_exchange": listed_exchange,
-                    "metadata": metadata,
-                    "middle_name": middle_name,
-                    "operating_jurisdictions": operating_jurisdictions,
-                    "phone_numbers": phone_numbers,
-                    "politically_exposed_person": politically_exposed_person,
-                    "preferred_name": preferred_name,
-                    "prefix": prefix,
-                    "primary_social_media_sites": primary_social_media_sites,
-                    "regulators": regulators,
-                    "risk_rating": risk_rating,
-                    "service_provider_legal_entity_id": service_provider_legal_entity_id,
-                    "suffix": suffix,
-                    "terms_of_use": terms_of_use,
-                    "third_party_verification": third_party_verification,
-                    "third_party_verifications": third_party_verifications,
-                    "ticker_symbol": ticker_symbol,
-                    "wealth_and_employment_details": wealth_and_employment_details,
-                    "website": website,
-                },
-                legal_entity_update_params.LegalEntityUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "addresses": addresses,
+                "bank_settings": bank_settings,
+                "business_description": business_description,
+                "business_name": business_name,
+                "citizenship_country": citizenship_country,
+                "country_of_incorporation": country_of_incorporation,
+                "date_formed": date_formed,
+                "date_of_birth": date_of_birth,
+                "doing_business_as_names": doing_business_as_names,
+                "email": email,
+                "expected_activity_volume": expected_activity_volume,
+                "external_id": external_id,
+                "first_name": first_name,
+                "identifications": identifications,
+                "industry_classifications": industry_classifications,
+                "intended_use": intended_use,
+                "last_name": last_name,
+                "legal_structure": legal_structure,
+                "listed_exchange": listed_exchange,
+                "metadata": metadata,
+                "middle_name": middle_name,
+                "operating_jurisdictions": operating_jurisdictions,
+                "phone_numbers": phone_numbers,
+                "politically_exposed_person": politically_exposed_person,
+                "preferred_name": preferred_name,
+                "prefix": prefix,
+                "primary_social_media_sites": primary_social_media_sites,
+                "regulators": regulators,
+                "risk_rating": risk_rating,
+                "service_provider_legal_entity_id": service_provider_legal_entity_id,
+                "suffix": suffix,
+                "terms_of_use": terms_of_use,
+                "third_party_verification": third_party_verification,
+                "third_party_verifications": third_party_verifications,
+                "ticker_symbol": ticker_symbol,
+                "wealth_and_employment_details": wealth_and_employment_details,
+                "website": website,
+            }, legal_entity_update_params.LegalEntityUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LegalEntity,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        external_id: str | Omit = omit,
-        legal_entity_type: Literal["business", "individual"] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        per_page: int | Omit = omit,
-        show_deleted: str | Omit = omit,
-        status: Literal["pending", "active", "suspended", "denied"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[LegalEntity, AsyncPage[LegalEntity]]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    external_id: str | Omit = omit,
+    legal_entity_type: Literal["business", "individual"] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    per_page: int | Omit = omit,
+    show_deleted: str | Omit = omit,
+    status: Literal["pending", "active", "suspended", "denied"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[LegalEntity, AsyncPage[LegalEntity]]:
         """
         Get a list of all legal entities.
 
@@ -1040,28 +995,18 @@ class AsyncLegalEntities(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/legal_entities",
-            page=AsyncPage[LegalEntity],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "external_id": external_id,
-                        "legal_entity_type": legal_entity_type,
-                        "metadata": metadata,
-                        "per_page": per_page,
-                        "show_deleted": show_deleted,
-                        "status": status,
-                    },
-                    legal_entity_list_params.LegalEntityListParams,
-                ),
-            ),
+            page = AsyncPage[LegalEntity],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "external_id": external_id,
+                "legal_entity_type": legal_entity_type,
+                "metadata": metadata,
+                "per_page": per_page,
+                "show_deleted": show_deleted,
+                "status": status,
+            }, legal_entity_list_params.LegalEntityListParams)),
             model=LegalEntity,
         )
-
 
 class LegalEntitiesWithRawResponse:
     def __init__(self, legal_entities: LegalEntities) -> None:
@@ -1080,7 +1025,6 @@ class LegalEntitiesWithRawResponse:
             legal_entities.list,
         )
 
-
 class AsyncLegalEntitiesWithRawResponse:
     def __init__(self, legal_entities: AsyncLegalEntities) -> None:
         self._legal_entities = legal_entities
@@ -1098,7 +1042,6 @@ class AsyncLegalEntitiesWithRawResponse:
             legal_entities.list,
         )
 
-
 class LegalEntitiesWithStreamingResponse:
     def __init__(self, legal_entities: LegalEntities) -> None:
         self._legal_entities = legal_entities
@@ -1115,7 +1058,6 @@ class LegalEntitiesWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             legal_entities.list,
         )
-
 
 class AsyncLegalEntitiesWithStreamingResponse:
     def __init__(self, legal_entities: AsyncLegalEntities) -> None:

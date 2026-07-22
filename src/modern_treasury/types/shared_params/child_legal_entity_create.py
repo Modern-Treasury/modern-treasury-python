@@ -2,43 +2,32 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
+from typing import Iterable, Optional, Union, Dict
+
+from .legal_entity_address_create_request import LegalEntityAddressCreateRequest
+
+from ..bank_settings_param import BankSettingsParam
+
 from datetime import date, datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._types import SequenceNotStr
-from ..._utils import PropertyInfo
-from ..bank_settings_param import BankSettingsParam
-from .third_party_verification import ThirdPartyVerification
+
 from .identification_create_request import IdentificationCreateRequest
-from .legal_entity_address_create_request import LegalEntityAddressCreateRequest
-from ..wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
+
 from .legal_entity_industry_classification import LegalEntityIndustryClassification
 
-__all__ = [
-    "ChildLegalEntityCreate",
-    "Documents",
-    "Document",
-    "PhoneNumbers",
-    "PhoneNumber",
-    "Regulators",
-    "Regulator",
-    "TermsOfUse",
-]
+from typing_extensions import Literal, TypedDict, Required, Annotated
 
+from .third_party_verification import ThirdPartyVerification
+
+from ..wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
+
+from ..._utils import PropertyInfo
+
+__all__ = ["ChildLegalEntityCreate", "Documents", "Document", "PhoneNumbers", "PhoneNumber", "Regulators", "Regulator", "TermsOfUse"]
 
 class Document(TypedDict, total=False):
-    document_type: Required[
-        Literal[
-            "articles_of_incorporation",
-            "certificate_of_good_standing",
-            "ein_letter",
-            "generic",
-            "identification_back",
-            "identification_front",
-            "proof_of_address",
-        ]
-    ]
+    document_type: Required[Literal["articles_of_incorporation", "certificate_of_good_standing", "ein_letter", "generic", "identification_back", "identification_front", "proof_of_address"]]
     """A category given to the document, can be `null`."""
 
     file_data: Required[str]
@@ -47,26 +36,21 @@ class Document(TypedDict, total=False):
     filename: str
     """The original filename of the document."""
 
-
 Documents = Document
 """This type is deprecated and will be removed in a future release.
 
 Please use Document instead.
 """
 
-
 class PhoneNumber(TypedDict, total=False):
     """A list of phone numbers in E.164 format."""
-
     phone_number: str
-
 
 PhoneNumbers = PhoneNumber
 """This type is deprecated and will be removed in a future release.
 
 Please use PhoneNumber instead.
 """
-
 
 class Regulator(TypedDict, total=False):
     jurisdiction: Required[str]
@@ -81,18 +65,15 @@ class Regulator(TypedDict, total=False):
     registration_number: Required[str]
     """Registration or identification number with the regulator."""
 
-
 Regulators = Regulator
 """This type is deprecated and will be removed in a future release.
 
 Please use Regulator instead.
 """
 
-
 class TermsOfUse(TypedDict, total=False):
     """Acceptance of terms of use by the legal entity."""
-
-    accepted_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    accepted_at: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """The ISO 8601 timestamp indicating when the terms of use were accepted."""
 
     ip_address: str
@@ -100,7 +81,6 @@ class TermsOfUse(TypedDict, total=False):
 
     Supports both IPv4 and IPv6 formats.
     """
-
 
 class ChildLegalEntityCreate(TypedDict, total=False):
     addresses: Iterable[LegalEntityAddressCreateRequest]
@@ -134,10 +114,10 @@ class ChildLegalEntityCreate(TypedDict, total=False):
     alpha-3 formats.
     """
 
-    date_formed: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
+    date_formed: Annotated[Union[str, date, None], PropertyInfo(format = "iso8601")]
     """A business's formation date (YYYY-MM-DD)."""
 
-    date_of_birth: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
+    date_of_birth: Annotated[Union[str, date, None], PropertyInfo(format = "iso8601")]
     """An individual's date of birth (YYYY-MM-DD)."""
 
     documents: Iterable[Document]
@@ -178,9 +158,7 @@ class ChildLegalEntityCreate(TypedDict, total=False):
     legal_entity_type: Literal["business", "individual"]
     """The type of legal entity."""
 
-    legal_structure: Optional[
-        Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
-    ]
+    legal_structure: Optional[Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]]
     """The business's legal structure."""
 
     listed_exchange: Optional[str]
@@ -243,6 +221,5 @@ class ChildLegalEntityCreate(TypedDict, total=False):
 
     website: Optional[str]
     """The entity's primary website URL."""
-
 
 from .legal_entity_association_inline_create import LegalEntityAssociationInlineCreate

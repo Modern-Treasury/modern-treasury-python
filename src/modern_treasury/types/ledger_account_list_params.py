@@ -2,22 +2,19 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from datetime import date, datetime
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict, Annotated
 
 from .._types import SequenceNotStr
-from .._utils import PropertyInfo
+
+from typing import Optional, Dict, Union
+
+from datetime import datetime, date
+
 from .shared.transaction_direction import TransactionDirection
 
-__all__ = [
-    "LedgerAccountListParams",
-    "AvailableBalanceAmount",
-    "Balances",
-    "PendingBalanceAmount",
-    "PostedBalanceAmount",
-]
+from .._utils import PropertyInfo
 
+__all__ = ["LedgerAccountListParams", "AvailableBalanceAmount", "Balances", "PendingBalanceAmount", "PostedBalanceAmount"]
 
 class LedgerAccountListParams(TypedDict, total=False):
     id: SequenceNotStr[str]
@@ -94,12 +91,10 @@ class LedgerAccountListParams(TypedDict, total=False):
     updated_at%5Bgt%5D=2000-01-01T12:00:00Z.
     """
 
-
 class AvailableBalanceAmount(TypedDict, total=False):
     """
     Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to filter by balance amount.
     """
-
     eq: int
 
     gt: int
@@ -111,27 +106,23 @@ class AvailableBalanceAmount(TypedDict, total=False):
     lte: int
 
     not_eq: int
-
 
 class Balances(TypedDict, total=False):
     """
     Use `balances[effective_at_lower_bound]` and `balances[effective_at_upper_bound]` to get the balances change between the two timestamps. The lower bound is inclusive while the upper bound is exclusive of the provided timestamps. If no value is supplied the balances will be retrieved not including that bound.
     """
+    as_of_date: Annotated[Union[str, date], PropertyInfo(format = "iso8601")]
 
-    as_of_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    effective_at: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
 
-    effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    effective_at_lower_bound: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
 
-    effective_at_lower_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-
-    effective_at_upper_bound: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-
+    effective_at_upper_bound: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
 
 class PendingBalanceAmount(TypedDict, total=False):
     """
     Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to filter by balance amount.
     """
-
     eq: int
 
     gt: int
@@ -144,12 +135,10 @@ class PendingBalanceAmount(TypedDict, total=False):
 
     not_eq: int
 
-
 class PostedBalanceAmount(TypedDict, total=False):
     """
     Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), `eq` (=), or `not_eq` (!=) to filter by balance amount.
     """
-
     eq: int
 
     gt: int

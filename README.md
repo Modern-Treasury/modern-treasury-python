@@ -38,9 +38,7 @@ import os
 from modern_treasury import ModernTreasury
 
 client = ModernTreasury(
-    organization_id=os.environ.get(
-        "MODERN_TREASURY_ORGANIZATION_ID"
-    ),  # This is the default and can be omitted
+    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),  # This is the default and can be omitted
     api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted
 )
 
@@ -65,19 +63,15 @@ import asyncio
 from modern_treasury import AsyncModernTreasury
 
 client = AsyncModernTreasury(
-    organization_id=os.environ.get(
-        "MODERN_TREASURY_ORGANIZATION_ID"
-    ),  # This is the default and can be omitted
+    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),  # This is the default and can be omitted
     api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted
 )
 
-
 async def main() -> None:
-    counterparty = await client.counterparties.create(
-        name="my first counterparty",
-    )
-    print(counterparty.id)
-
+  counterparty = await client.counterparties.create(
+      name="my first counterparty",
+  )
+  print(counterparty.id)
 
 asyncio.run(main())
 ```
@@ -103,20 +97,16 @@ import asyncio
 from modern_treasury import DefaultAioHttpClient
 from modern_treasury import AsyncModernTreasury
 
-
 async def main() -> None:
-    async with AsyncModernTreasury(
-        organization_id=os.environ.get(
-            "MODERN_TREASURY_ORGANIZATION_ID"
-        ),  # This is the default and can be omitted
-        api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted
-        http_client=DefaultAioHttpClient(),
-    ) as client:
-        counterparty = await client.counterparties.create(
-            name="my first counterparty",
-        )
-        print(counterparty.id)
-
+  async with AsyncModernTreasury(
+    organization_id=os.environ.get("MODERN_TREASURY_ORGANIZATION_ID"),  # This is the default and can be omitted
+    api_key=os.environ.get("MODERN_TREASURY_API_KEY"),  # This is the default and can be omitted
+    http_client=DefaultAioHttpClient(),
+) as client:
+    counterparty = await client.counterparties.create(
+        name="my first counterparty",
+    )
+    print(counterparty.id)
 
 asyncio.run(main())
 ```
@@ -157,14 +147,12 @@ from modern_treasury import AsyncModernTreasury
 
 client = AsyncModernTreasury()
 
-
 async def main() -> None:
     all_counterparties = []
     # Iterate through items across all pages, issuing requests as needed.
     async for counterparty in client.counterparties.list():
         all_counterparties.append(counterparty)
     print(all_counterparties)
-
 
 asyncio.run(main())
 ```
@@ -186,7 +174,7 @@ Or just work directly with the returned data:
 ```python
 first_page = await client.counterparties.list()
 
-print(f"next page cursor: {first_page.after_cursor}")  # => "next page cursor: ..."
+print(f"next page cursor: {first_page.after_cursor}") # => "next page cursor: ..."
 for counterparty in first_page.items:
     print(counterparty.id)
 
@@ -233,7 +221,7 @@ try:
     )
 except modern_treasury.APIConnectionError as e:
     print("The server could not be reached")
-    print(e.__cause__)  # an underlying Exception, likely raised within httpx.
+    print(e.__cause__) # an underlying Exception, likely raised within httpx.
 except modern_treasury.RateLimitError as e:
     print("A 429 status code was received; we should back off a bit.")
 except modern_treasury.APIStatusError as e:
@@ -273,7 +261,7 @@ client = ModernTreasury(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).counterparties.create(
+client.with_options(max_retries = 5).counterparties.create(
     name="my first counterparty",
 )
 ```
@@ -298,7 +286,7 @@ client = ModernTreasury(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).counterparties.create(
+client.with_options(timeout = 5.0).counterparties.create(
     name="my first counterparty",
 )
 ```
@@ -370,11 +358,11 @@ As such, `.with_streaming_response` methods return a different [`APIResponse`](h
 ```python
 with client.counterparties.with_streaming_response.create(
     name="my first counterparty",
-) as response:
-    print(response.headers.get("X-My-Header"))
+) as response :
+    print(response.headers.get('X-My-Header'))
 
     for line in response.iter_lines():
-        print(line)
+      print(line)
 ```
 
 The context manager is required so that the response will reliably be closed.
@@ -428,10 +416,7 @@ from modern_treasury import ModernTreasury, DefaultHttpxClient
 client = ModernTreasury(
     # Or use the `MODERN_TREASURY_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
-    http_client=DefaultHttpxClient(
-        proxy="http://my.test.proxy.example.com",
-        transport=httpx.HTTPTransport(local_address="0.0.0.0"),
-    ),
+    http_client=DefaultHttpxClient(proxy="http://my.test.proxy.example.com", transport=httpx.HTTPTransport(local_address="0.0.0.0")),
 )
 ```
 

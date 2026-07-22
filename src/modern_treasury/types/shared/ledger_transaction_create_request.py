@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
-from datetime import date, datetime
-from typing_extensions import Literal
-
 from ..._models import BaseModel
+
+from typing import List, Optional, Dict
+
 from .ledger_entry_create_request import LedgerEntryCreateRequest
 
-__all__ = ["LedgerTransactionCreateRequest"]
+from datetime import datetime, date
 
+from typing_extensions import Literal
+
+__all__ = ["LedgerTransactionCreateRequest"]
 
 class LedgerTransactionCreateRequest(BaseModel):
     ledger_entries: List[LedgerEntryCreateRequest]
@@ -41,9 +43,7 @@ class LedgerTransactionCreateRequest(BaseModel):
     Treasury, the id will be populated here, otherwise null.
     """
 
-    ledgerable_type: Optional[
-        Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
-    ] = None
+    ledgerable_type: Optional[Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]] = None
     """
     If the ledger transaction can be reconciled to another object in Modern
     Treasury, the type will be populated here, otherwise null. This can be one of

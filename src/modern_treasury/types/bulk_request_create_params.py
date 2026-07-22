@@ -2,85 +2,43 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
-from datetime import date, datetime
-from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
+from typing_extensions import TypedDict, Literal, Required, Annotated, TypeAliasType, TypeAlias
 
-from .._utils import PropertyInfo
-from .shared.currency import Currency
+from typing import Iterable, Dict, Optional, Union
+
 from .payment_order_type import PaymentOrderType
-from .expected_payment_type import ExpectedPaymentType
-from .external_account_type import ExternalAccountType
-from .payment_order_subtype import PaymentOrderSubtype
-from .reconciliation_rule_param import ReconciliationRuleParam
-from .shared_params.address_request import AddressRequest
-from .contact_detail_create_request_param import ContactDetailCreateRequestParam
-from .shared_params.ledger_entry_create_request import LedgerEntryCreateRequest
-from .shared_params.ledger_account_create_request import LedgerAccountCreateRequest
+
+from .shared.currency import Currency
+
+from datetime import date, datetime
+
 from .shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
-__all__ = [
-    "BulkRequestCreateParams",
-    "Resources",
-    "Resource",
-    "ResourcesPaymentOrderAsyncCreateRequest",
-    "ResourcePaymentOrderAsyncCreateRequest",
-    "ResourcesPaymentOrderAsyncCreateRequestAccounting",
-    "ResourcePaymentOrderAsyncCreateRequestAccounting",
-    "ResourcesPaymentOrderAsyncCreateRequestLineItems",
-    "ResourcePaymentOrderAsyncCreateRequestLineItem",
-    "ResourcesPaymentOrderAsyncCreateRequestReceivingAccount",
-    "ResourcePaymentOrderAsyncCreateRequestReceivingAccount",
-    "ResourcesPaymentOrderAsyncCreateRequestReceivingAccountAccountDetails",
-    "ResourcePaymentOrderAsyncCreateRequestReceivingAccountAccountDetail",
-    "ResourcesPaymentOrderAsyncCreateRequestReceivingAccountRoutingDetails",
-    "ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail",
-    "ResourcesPaymentOrderAsyncCreateRequestUltimateOriginatingPartyAddress",
-    "ResourcePaymentOrderAsyncCreateRequestUltimateOriginatingPartyAddress",
-    "ResourcesExpectedPaymentCreateRequest",
-    "ResourceExpectedPaymentCreateRequest",
-    "ResourcesExpectedPaymentCreateRequestLineItems",
-    "ResourceExpectedPaymentCreateRequestLineItem",
-    "ResourcesID",
-    "ResourceID",
-    "ResourcesPaymentOrderUpdateRequestWithID",
-    "ResourcePaymentOrderUpdateRequestWithID",
-    "ResourcesPaymentOrderUpdateRequestWithIDAccounting",
-    "ResourcePaymentOrderUpdateRequestWithIDAccounting",
-    "ResourcesPaymentOrderUpdateRequestWithIDLineItems",
-    "ResourcePaymentOrderUpdateRequestWithIDLineItem",
-    "ResourcesPaymentOrderUpdateRequestWithIDReceivingAccount",
-    "ResourcePaymentOrderUpdateRequestWithIDReceivingAccount",
-    "ResourcesPaymentOrderUpdateRequestWithIDReceivingAccountAccountDetails",
-    "ResourcePaymentOrderUpdateRequestWithIDReceivingAccountAccountDetail",
-    "ResourcesPaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetails",
-    "ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail",
-    "ResourcesExpectedPaymentUpdateRequestWithID",
-    "ResourceExpectedPaymentUpdateRequestWithID",
-    "ResourcesTransactionUpdateRequestWithID",
-    "ResourceTransactionUpdateRequestWithID",
-    "ResourcesLedgerTransactionUpdateRequestWithID",
-    "ResourceLedgerTransactionUpdateRequestWithID",
-    "ResourcesLedgerAccountUpdateRequestWithID",
-    "ResourceLedgerAccountUpdateRequestWithID",
-]
+from .payment_order_subtype import PaymentOrderSubtype
 
+from .external_account_type import ExternalAccountType
+
+from .contact_detail_create_request_param import ContactDetailCreateRequestParam
+
+from .shared_params.ledger_account_create_request import LedgerAccountCreateRequest
+
+from .shared_params.address_request import AddressRequest
+
+from .._utils import PropertyInfo
+
+from .reconciliation_rule_param import ReconciliationRuleParam
+
+from .expected_payment_type import ExpectedPaymentType
+
+from .shared_params.ledger_entry_create_request import LedgerEntryCreateRequest
+
+__all__ = ["BulkRequestCreateParams", "Resources", "Resource", "ResourcesPaymentOrderAsyncCreateRequest", "ResourcePaymentOrderAsyncCreateRequest", "ResourcesPaymentOrderAsyncCreateRequestAccounting", "ResourcePaymentOrderAsyncCreateRequestAccounting", "ResourcesPaymentOrderAsyncCreateRequestLineItems", "ResourcePaymentOrderAsyncCreateRequestLineItem", "ResourcesPaymentOrderAsyncCreateRequestReceivingAccount", "ResourcePaymentOrderAsyncCreateRequestReceivingAccount", "ResourcesPaymentOrderAsyncCreateRequestReceivingAccountAccountDetails", "ResourcePaymentOrderAsyncCreateRequestReceivingAccountAccountDetail", "ResourcesPaymentOrderAsyncCreateRequestReceivingAccountRoutingDetails", "ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail", "ResourcesPaymentOrderAsyncCreateRequestUltimateOriginatingPartyAddress", "ResourcePaymentOrderAsyncCreateRequestUltimateOriginatingPartyAddress", "ResourcesExpectedPaymentCreateRequest", "ResourceExpectedPaymentCreateRequest", "ResourcesExpectedPaymentCreateRequestLineItems", "ResourceExpectedPaymentCreateRequestLineItem", "ResourcesID", "ResourceID", "ResourcesPaymentOrderUpdateRequestWithID", "ResourcePaymentOrderUpdateRequestWithID", "ResourcesPaymentOrderUpdateRequestWithIDAccounting", "ResourcePaymentOrderUpdateRequestWithIDAccounting", "ResourcesPaymentOrderUpdateRequestWithIDLineItems", "ResourcePaymentOrderUpdateRequestWithIDLineItem", "ResourcesPaymentOrderUpdateRequestWithIDReceivingAccount", "ResourcePaymentOrderUpdateRequestWithIDReceivingAccount", "ResourcesPaymentOrderUpdateRequestWithIDReceivingAccountAccountDetails", "ResourcePaymentOrderUpdateRequestWithIDReceivingAccountAccountDetail", "ResourcesPaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetails", "ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail", "ResourcesExpectedPaymentUpdateRequestWithID", "ResourceExpectedPaymentUpdateRequestWithID", "ResourcesTransactionUpdateRequestWithID", "ResourceTransactionUpdateRequestWithID", "ResourcesLedgerTransactionUpdateRequestWithID", "ResourceLedgerTransactionUpdateRequestWithID", "ResourcesLedgerAccountUpdateRequestWithID", "ResourceLedgerAccountUpdateRequestWithID"]
 
 class BulkRequestCreateParams(TypedDict, total=False):
     action_type: Required[Literal["create", "update", "delete"]]
     """One of create, or update."""
 
-    resource_type: Required[
-        Literal[
-            "payment_order",
-            "ledger_account",
-            "ledger_transaction",
-            "expected_payment",
-            "transaction",
-            "transaction_line_item",
-            "entity_link",
-        ]
-    ]
+    resource_type: Required[Literal["payment_order", "ledger_account", "ledger_transaction", "expected_payment", "transaction", "transaction_line_item", "entity_link"]]
     """One of payment_order, expected_payment, or ledger_transaction."""
 
     resources: Required[Iterable[Resource]]
@@ -94,7 +52,6 @@ class BulkRequestCreateParams(TypedDict, total=False):
 
     Both the key and value must be strings.
     """
-
 
 class ResourcePaymentOrderAsyncCreateRequestAccounting(TypedDict, total=False):
     account_id: Optional[str]
@@ -112,13 +69,11 @@ class ResourcePaymentOrderAsyncCreateRequestAccounting(TypedDict, total=False):
     connected.
     """
 
-
 ResourcesPaymentOrderAsyncCreateRequestAccounting = ResourcePaymentOrderAsyncCreateRequestAccounting
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourcePaymentOrderAsyncCreateRequestAccounting instead.
 """
-
 
 class ResourcePaymentOrderAsyncCreateRequestLineItem(TypedDict, total=False):
     amount: Required[int]
@@ -143,117 +98,41 @@ class ResourcePaymentOrderAsyncCreateRequestLineItem(TypedDict, total=False):
     Both the key and value must be strings.
     """
 
-
 ResourcesPaymentOrderAsyncCreateRequestLineItems = ResourcePaymentOrderAsyncCreateRequestLineItem
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourcePaymentOrderAsyncCreateRequestLineItem instead.
 """
 
-
 class ResourcePaymentOrderAsyncCreateRequestReceivingAccountAccountDetail(TypedDict, total=False):
     account_number: Required[str]
 
-    account_number_type: Literal[
-        "au_number",
-        "base_address",
-        "card_token",
-        "clabe",
-        "ethereum_address",
-        "hk_number",
-        "iban",
-        "id_number",
-        "nz_number",
-        "other",
-        "pan",
-        "polygon_address",
-        "sg_number",
-        "solana_address",
-        "wallet_address",
-    ]
+    account_number_type: Literal["au_number", "base_address", "card_token", "clabe", "ethereum_address", "hk_number", "iban", "id_number", "nz_number", "other", "pan", "polygon_address", "sg_number", "solana_address", "wallet_address"]
 
-
-ResourcesPaymentOrderAsyncCreateRequestReceivingAccountAccountDetails = (
-    ResourcePaymentOrderAsyncCreateRequestReceivingAccountAccountDetail
-)
+ResourcesPaymentOrderAsyncCreateRequestReceivingAccountAccountDetails = ResourcePaymentOrderAsyncCreateRequestReceivingAccountAccountDetail
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourcePaymentOrderAsyncCreateRequestReceivingAccountAccountDetail instead.
 """
 
-
 class ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail(TypedDict, total=False):
     routing_number: Required[str]
 
-    routing_number_type: Required[
-        Literal[
-            "aba",
-            "au_bsb",
-            "br_codigo",
-            "ca_cpa",
-            "chips",
-            "cnaps",
-            "dk_interbank_clearing_code",
-            "gb_sort_code",
-            "hk_interbank_clearing_code",
-            "il_bank_code",
-            "in_ifsc",
-            "jp_zengin_code",
-            "my_branch_code",
-            "mx_bank_identifier",
-            "nz_national_clearing_code",
-            "pl_national_clearing_code",
-            "se_bankgiro_clearing_code",
-            "sg_interbank_clearing_code",
-            "swift",
-            "za_national_clearing_code",
-        ]
-    ]
+    routing_number_type: Required[Literal["aba", "au_bsb", "br_codigo", "ca_cpa", "chips", "cnaps", "dk_interbank_clearing_code", "gb_sort_code", "hk_interbank_clearing_code", "il_bank_code", "in_ifsc", "jp_zengin_code", "my_branch_code", "mx_bank_identifier", "nz_national_clearing_code", "pl_national_clearing_code", "se_bankgiro_clearing_code", "sg_interbank_clearing_code", "swift", "za_national_clearing_code"]]
 
-    payment_type: Literal[
-        "ach",
-        "au_becs",
-        "bacs",
-        "book",
-        "card",
-        "chats",
-        "check",
-        "cross_border",
-        "dk_nets",
-        "eft",
-        "gb_fps",
-        "masav",
-        "mx_ccen",
-        "neft",
-        "nics",
-        "nz_becs",
-        "pl_elixir",
-        "rtp",
-        "se_bankgirot",
-        "sepa",
-        "sg_giro",
-        "sic",
-        "stablecoin",
-        "wire",
-        "zengin",
-    ]
+    payment_type: Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin"]
 
-
-ResourcesPaymentOrderAsyncCreateRequestReceivingAccountRoutingDetails = (
-    ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail
-)
+ResourcesPaymentOrderAsyncCreateRequestReceivingAccountRoutingDetails = ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail instead.
 """
-
 
 class ResourcePaymentOrderAsyncCreateRequestReceivingAccount(TypedDict, total=False):
     """Either `receiving_account` or `receiving_account_id` must be present.
 
     When using `receiving_account_id`, you may pass the id of an external account or an internal account.
     """
-
     account_details: Iterable[ResourcePaymentOrderAsyncCreateRequestReceivingAccountAccountDetail]
 
     account_type: ExternalAccountType
@@ -307,17 +186,14 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccount(TypedDict, total=Fa
 
     routing_details: Iterable[ResourcePaymentOrderAsyncCreateRequestReceivingAccountRoutingDetail]
 
-
 ResourcesPaymentOrderAsyncCreateRequestReceivingAccount = ResourcePaymentOrderAsyncCreateRequestReceivingAccount
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourcePaymentOrderAsyncCreateRequestReceivingAccount instead.
 """
 
-
 class ResourcePaymentOrderAsyncCreateRequestUltimateOriginatingPartyAddress(TypedDict, total=False):
     """Address of the ultimate originator of the payment order."""
-
     country: str
     """Country code conforms to [ISO 3166-1 alpha-2]"""
 
@@ -334,15 +210,11 @@ class ResourcePaymentOrderAsyncCreateRequestUltimateOriginatingPartyAddress(Type
     region: str
     """Region or State."""
 
-
-ResourcesPaymentOrderAsyncCreateRequestUltimateOriginatingPartyAddress = (
-    ResourcePaymentOrderAsyncCreateRequestUltimateOriginatingPartyAddress
-)
+ResourcesPaymentOrderAsyncCreateRequestUltimateOriginatingPartyAddress = ResourcePaymentOrderAsyncCreateRequestUltimateOriginatingPartyAddress
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourcePaymentOrderAsyncCreateRequestUltimateOriginatingPartyAddress instead.
 """
-
 
 class ResourcePaymentOrderAsyncCreateRequest(TypedDict, total=False):
     amount: Required[int]
@@ -399,14 +271,14 @@ class ResourcePaymentOrderAsyncCreateRequest(TypedDict, total=False):
     description: Optional[str]
     """An optional description for internal use."""
 
-    effective_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    effective_date: Annotated[Union[str, date], PropertyInfo(format = "iso8601")]
     """Date transactions are to be posted to the participants' account.
 
     Defaults to the current business day or the next business day if the current day
     is a bank holiday or weekend. Format: yyyy-mm-dd.
     """
 
-    expires_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    expires_at: Annotated[Union[str, datetime, None], PropertyInfo(format = "iso8601")]
     """RFP payments require an expires_at. This value must be past the effective_date."""
 
     external_id: Optional[str]
@@ -480,7 +352,7 @@ class ResourcePaymentOrderAsyncCreateRequest(TypedDict, total=False):
     standard mail.
     """
 
-    process_after: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    process_after: Annotated[Union[str, datetime, None], PropertyInfo(format = "iso8601")]
     """If present, Modern Treasury will not process the payment until after this time.
 
     If `process_after` is past the cutoff for `effective_date`, `process_after` will
@@ -577,13 +449,11 @@ class ResourcePaymentOrderAsyncCreateRequest(TypedDict, total=False):
     Data must be represented as key-value pairs.
     """
 
-
 ResourcesPaymentOrderAsyncCreateRequest = ResourcePaymentOrderAsyncCreateRequest
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourcePaymentOrderAsyncCreateRequest instead.
 """
-
 
 class ResourceExpectedPaymentCreateRequestLineItem(TypedDict, total=False):
     amount: Required[int]
@@ -608,13 +478,11 @@ class ResourceExpectedPaymentCreateRequestLineItem(TypedDict, total=False):
     Both the key and value must be strings.
     """
 
-
 ResourcesExpectedPaymentCreateRequestLineItems = ResourceExpectedPaymentCreateRequestLineItem
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourceExpectedPaymentCreateRequestLineItem instead.
 """
-
 
 class ResourceExpectedPaymentCreateRequest(TypedDict, total=False):
     amount_lower_bound: Optional[int]
@@ -663,10 +531,10 @@ class ResourceExpectedPaymentCreateRequest(TypedDict, total=False):
     currency: Optional[Currency]
     """Must conform to ISO 4217. Defaults to the currency of the internal account."""
 
-    date_lower_bound: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
+    date_lower_bound: Annotated[Union[str, date, None], PropertyInfo(format = "iso8601")]
     """The earliest date the payment may come in. Format: yyyy-mm-dd"""
 
-    date_upper_bound: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
+    date_upper_bound: Annotated[Union[str, date, None], PropertyInfo(format = "iso8601")]
     """The latest date the payment may come in. Format: yyyy-mm-dd"""
 
     description: Optional[str]
@@ -735,24 +603,20 @@ class ResourceExpectedPaymentCreateRequest(TypedDict, total=False):
     type: Optional[ExpectedPaymentType]
     """One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire."""
 
-
 ResourcesExpectedPaymentCreateRequest = ResourceExpectedPaymentCreateRequest
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourceExpectedPaymentCreateRequest instead.
 """
 
-
 class ResourceID(TypedDict, total=False):
     id: str
-
 
 ResourcesID = ResourceID
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourceID instead.
 """
-
 
 class ResourcePaymentOrderUpdateRequestWithIDAccounting(TypedDict, total=False):
     account_id: Optional[str]
@@ -770,13 +634,11 @@ class ResourcePaymentOrderUpdateRequestWithIDAccounting(TypedDict, total=False):
     connected.
     """
 
-
 ResourcesPaymentOrderUpdateRequestWithIDAccounting = ResourcePaymentOrderUpdateRequestWithIDAccounting
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourcePaymentOrderUpdateRequestWithIDAccounting instead.
 """
-
 
 class ResourcePaymentOrderUpdateRequestWithIDLineItem(TypedDict, total=False):
     amount: Required[int]
@@ -801,117 +663,41 @@ class ResourcePaymentOrderUpdateRequestWithIDLineItem(TypedDict, total=False):
     Both the key and value must be strings.
     """
 
-
 ResourcesPaymentOrderUpdateRequestWithIDLineItems = ResourcePaymentOrderUpdateRequestWithIDLineItem
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourcePaymentOrderUpdateRequestWithIDLineItem instead.
 """
 
-
 class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountAccountDetail(TypedDict, total=False):
     account_number: Required[str]
 
-    account_number_type: Literal[
-        "au_number",
-        "base_address",
-        "card_token",
-        "clabe",
-        "ethereum_address",
-        "hk_number",
-        "iban",
-        "id_number",
-        "nz_number",
-        "other",
-        "pan",
-        "polygon_address",
-        "sg_number",
-        "solana_address",
-        "wallet_address",
-    ]
+    account_number_type: Literal["au_number", "base_address", "card_token", "clabe", "ethereum_address", "hk_number", "iban", "id_number", "nz_number", "other", "pan", "polygon_address", "sg_number", "solana_address", "wallet_address"]
 
-
-ResourcesPaymentOrderUpdateRequestWithIDReceivingAccountAccountDetails = (
-    ResourcePaymentOrderUpdateRequestWithIDReceivingAccountAccountDetail
-)
+ResourcesPaymentOrderUpdateRequestWithIDReceivingAccountAccountDetails = ResourcePaymentOrderUpdateRequestWithIDReceivingAccountAccountDetail
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourcePaymentOrderUpdateRequestWithIDReceivingAccountAccountDetail instead.
 """
 
-
 class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail(TypedDict, total=False):
     routing_number: Required[str]
 
-    routing_number_type: Required[
-        Literal[
-            "aba",
-            "au_bsb",
-            "br_codigo",
-            "ca_cpa",
-            "chips",
-            "cnaps",
-            "dk_interbank_clearing_code",
-            "gb_sort_code",
-            "hk_interbank_clearing_code",
-            "il_bank_code",
-            "in_ifsc",
-            "jp_zengin_code",
-            "my_branch_code",
-            "mx_bank_identifier",
-            "nz_national_clearing_code",
-            "pl_national_clearing_code",
-            "se_bankgiro_clearing_code",
-            "sg_interbank_clearing_code",
-            "swift",
-            "za_national_clearing_code",
-        ]
-    ]
+    routing_number_type: Required[Literal["aba", "au_bsb", "br_codigo", "ca_cpa", "chips", "cnaps", "dk_interbank_clearing_code", "gb_sort_code", "hk_interbank_clearing_code", "il_bank_code", "in_ifsc", "jp_zengin_code", "my_branch_code", "mx_bank_identifier", "nz_national_clearing_code", "pl_national_clearing_code", "se_bankgiro_clearing_code", "sg_interbank_clearing_code", "swift", "za_national_clearing_code"]]
 
-    payment_type: Literal[
-        "ach",
-        "au_becs",
-        "bacs",
-        "book",
-        "card",
-        "chats",
-        "check",
-        "cross_border",
-        "dk_nets",
-        "eft",
-        "gb_fps",
-        "masav",
-        "mx_ccen",
-        "neft",
-        "nics",
-        "nz_becs",
-        "pl_elixir",
-        "rtp",
-        "se_bankgirot",
-        "sepa",
-        "sg_giro",
-        "sic",
-        "stablecoin",
-        "wire",
-        "zengin",
-    ]
+    payment_type: Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin"]
 
-
-ResourcesPaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetails = (
-    ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail
-)
+ResourcesPaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetails = ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail instead.
 """
-
 
 class ResourcePaymentOrderUpdateRequestWithIDReceivingAccount(TypedDict, total=False):
     """Either `receiving_account` or `receiving_account_id` must be present.
 
     When using `receiving_account_id`, you may pass the id of an external account or an internal account.
     """
-
     account_details: Iterable[ResourcePaymentOrderUpdateRequestWithIDReceivingAccountAccountDetail]
 
     account_type: ExternalAccountType
@@ -965,13 +751,11 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccount(TypedDict, total=F
 
     routing_details: Iterable[ResourcePaymentOrderUpdateRequestWithIDReceivingAccountRoutingDetail]
 
-
 ResourcesPaymentOrderUpdateRequestWithIDReceivingAccount = ResourcePaymentOrderUpdateRequestWithIDReceivingAccount
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourcePaymentOrderUpdateRequestWithIDReceivingAccount instead.
 """
-
 
 class ResourcePaymentOrderUpdateRequestWithID(TypedDict, total=False):
     id: str
@@ -1024,14 +808,14 @@ class ResourcePaymentOrderUpdateRequestWithID(TypedDict, total=False):
     be `credit`.
     """
 
-    effective_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    effective_date: Annotated[Union[str, date], PropertyInfo(format = "iso8601")]
     """Date transactions are to be posted to the participants' account.
 
     Defaults to the current business day or the next business day if the current day
     is a bank holiday or weekend. Format: yyyy-mm-dd.
     """
 
-    expires_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    expires_at: Annotated[Union[str, datetime, None], PropertyInfo(format = "iso8601")]
     """RFP payments require an expires_at. This value must be past the effective_date."""
 
     external_id: Optional[str]
@@ -1092,7 +876,7 @@ class ResourcePaymentOrderUpdateRequestWithID(TypedDict, total=False):
     standard mail.
     """
 
-    process_after: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
+    process_after: Annotated[Union[str, datetime, None], PropertyInfo(format = "iso8601")]
     """If present, Modern Treasury will not process the payment until after this time.
 
     If `process_after` is past the cutoff for `effective_date`, `process_after` will
@@ -1148,21 +932,7 @@ class ResourcePaymentOrderUpdateRequestWithID(TypedDict, total=False):
     characters.
     """
 
-    status: Literal[
-        "approved",
-        "cancelled",
-        "completed",
-        "denied",
-        "failed",
-        "held",
-        "needs_approval",
-        "pending",
-        "processing",
-        "returned",
-        "reversed",
-        "sent",
-        "stopped",
-    ]
+    status: Literal["approved", "cancelled", "completed", "denied", "failed", "held", "needs_approval", "pending", "processing", "returned", "reversed", "sent", "stopped"]
     """To cancel a payment order, use `cancelled`.
 
     To redraft a returned payment order, use `approved`. To undo approval on a
@@ -1211,13 +981,11 @@ class ResourcePaymentOrderUpdateRequestWithID(TypedDict, total=False):
     string will be used. Any additional characters will be truncated.
     """
 
-
 ResourcesPaymentOrderUpdateRequestWithID = ResourcePaymentOrderUpdateRequestWithID
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourcePaymentOrderUpdateRequestWithID instead.
 """
-
 
 class ResourceExpectedPaymentUpdateRequestWithID(TypedDict, total=False):
     id: str
@@ -1268,10 +1036,10 @@ class ResourceExpectedPaymentUpdateRequestWithID(TypedDict, total=False):
     currency: Optional[Currency]
     """Must conform to ISO 4217. Defaults to the currency of the internal account."""
 
-    date_lower_bound: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
+    date_lower_bound: Annotated[Union[str, date, None], PropertyInfo(format = "iso8601")]
     """The earliest date the payment may come in. Format: yyyy-mm-dd"""
 
-    date_upper_bound: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
+    date_upper_bound: Annotated[Union[str, date, None], PropertyInfo(format = "iso8601")]
     """The latest date the payment may come in. Format: yyyy-mm-dd"""
 
     description: Optional[str]
@@ -1328,13 +1096,11 @@ class ResourceExpectedPaymentUpdateRequestWithID(TypedDict, total=False):
     type: Optional[ExpectedPaymentType]
     """One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire."""
 
-
 ResourcesExpectedPaymentUpdateRequestWithID = ResourceExpectedPaymentUpdateRequestWithID
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourceExpectedPaymentUpdateRequestWithID instead.
 """
-
 
 class ResourceTransactionUpdateRequestWithID(TypedDict, total=False):
     id: str
@@ -1345,13 +1111,11 @@ class ResourceTransactionUpdateRequestWithID(TypedDict, total=False):
     Pairs can be removed by passing an empty string or `null` as the value.
     """
 
-
 ResourcesTransactionUpdateRequestWithID = ResourceTransactionUpdateRequestWithID
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourceTransactionUpdateRequestWithID instead.
 """
-
 
 class ResourceLedgerTransactionUpdateRequestWithID(TypedDict, total=False):
     id: str
@@ -1359,7 +1123,7 @@ class ResourceLedgerTransactionUpdateRequestWithID(TypedDict, total=False):
     description: Optional[str]
     """An optional description for internal use."""
 
-    effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    effective_at: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """
     The timestamp (ISO8601 format) at which the ledger transaction happened for
     reporting purposes.
@@ -1396,13 +1160,11 @@ class ResourceLedgerTransactionUpdateRequestWithID(TypedDict, total=False):
     status: Literal["archived", "pending", "posted"]
     """To post a ledger transaction at creation, use `posted`."""
 
-
 ResourcesLedgerTransactionUpdateRequestWithID = ResourceLedgerTransactionUpdateRequestWithID
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourceLedgerTransactionUpdateRequestWithID instead.
 """
-
 
 class ResourceLedgerAccountUpdateRequestWithID(TypedDict, total=False):
     id: str
@@ -1422,27 +1184,13 @@ class ResourceLedgerAccountUpdateRequestWithID(TypedDict, total=False):
     name: str
     """The name of the ledger account."""
 
-
 ResourcesLedgerAccountUpdateRequestWithID = ResourceLedgerAccountUpdateRequestWithID
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourceLedgerAccountUpdateRequestWithID instead.
 """
 
-Resource: TypeAlias = Union[
-    ResourcePaymentOrderAsyncCreateRequest,
-    ResourceExpectedPaymentCreateRequest,
-    LedgerTransactionCreateRequest,
-    LedgerAccountCreateRequest,
-    ResourceID,
-    ResourcePaymentOrderUpdateRequestWithID,
-    ResourceExpectedPaymentUpdateRequestWithID,
-    ResourceTransactionUpdateRequestWithID,
-    ResourceLedgerTransactionUpdateRequestWithID,
-    ResourceLedgerAccountUpdateRequestWithID,
-    object,
-    object,
-]
+Resource: TypeAlias = Union[ResourcePaymentOrderAsyncCreateRequest, ResourceExpectedPaymentCreateRequest, LedgerTransactionCreateRequest, LedgerAccountCreateRequest, ResourceID, ResourcePaymentOrderUpdateRequestWithID, ResourceExpectedPaymentUpdateRequestWithID, ResourceTransactionUpdateRequestWithID, ResourceLedgerTransactionUpdateRequestWithID, ResourceLedgerAccountUpdateRequestWithID, object, object]
 
 Resources = Resource
 """This type is deprecated and will be removed in a future release.

@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
+from typing_extensions import TypedDict, Required
+
 from typing import Dict
-from typing_extensions import Required, TypedDict
 
 __all__ = ["LedgerAccountBalanceMonitorCreateParams", "AlertCondition"]
-
 
 class LedgerAccountBalanceMonitorCreateParams(TypedDict, total=False):
     alert_condition: Required[AlertCondition]
@@ -24,10 +24,8 @@ class LedgerAccountBalanceMonitorCreateParams(TypedDict, total=False):
     Both the key and value must be strings.
     """
 
-
 class AlertCondition(TypedDict, total=False):
     """Describes the condition that must be satisfied for the monitor to be triggered."""
-
     field: Required[str]
     """
     One of `available_balance_amount`, `pending_balance_amount`,

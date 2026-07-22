@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Optional
 from typing_extensions import TypedDict
 
-__all__ = ["LineItemListParams"]
+from typing import Optional
 
+__all__ = ["LineItemListParams"]
 
 class LineItemListParams(TypedDict, total=False):
     after_cursor: Optional[str]

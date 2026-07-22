@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal, TypedDict, Required, Annotated
+
 from typing import Union
+
 from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
 __all__ = ["ContactDetail"]
-
 
 class ContactDetail(TypedDict, total=False):
     id: Required[str]
@@ -18,9 +19,9 @@ class ContactDetail(TypedDict, total=False):
 
     contact_identifier_type: Required[Literal["email", "phone_number", "website"]]
 
-    created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
+    created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]]
 
-    discarded_at: Required[Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]]
+    discarded_at: Required[Annotated[Union[str, datetime, None], PropertyInfo(format = "iso8601")]]
 
     live_mode: Required[bool]
     """
@@ -30,4 +31,4 @@ class ContactDetail(TypedDict, total=False):
 
     object: Required[str]
 
-    updated_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
+    updated_at: Required[Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]]

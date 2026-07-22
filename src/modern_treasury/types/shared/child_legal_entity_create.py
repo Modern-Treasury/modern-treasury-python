@@ -2,40 +2,30 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
-from datetime import date, datetime
+from ..._models import BaseModel
+
 from typing_extensions import Literal
 
-from ..._models import BaseModel
-from ..bank_settings import BankSettings
-from .third_party_verification import ThirdPartyVerification
-from .identification_create_request import IdentificationCreateRequest
-from ..wealth_and_employment_details import WealthAndEmploymentDetails
+from typing import Optional, List, Dict
+
+from datetime import datetime, date
+
 from .legal_entity_address_create_request import LegalEntityAddressCreateRequest
+
+from ..bank_settings import BankSettings
+
+from .identification_create_request import IdentificationCreateRequest
+
 from .legal_entity_industry_classification import LegalEntityIndustryClassification
 
-__all__ = [
-    "ChildLegalEntityCreate",
-    "Documents",
-    "Document",
-    "PhoneNumbers",
-    "PhoneNumber",
-    "Regulators",
-    "Regulator",
-    "TermsOfUse",
-]
+from .third_party_verification import ThirdPartyVerification
 
+from ..wealth_and_employment_details import WealthAndEmploymentDetails
+
+__all__ = ["ChildLegalEntityCreate", "Documents", "Document", "PhoneNumbers", "PhoneNumber", "Regulators", "Regulator", "TermsOfUse"]
 
 class Document(BaseModel):
-    document_type: Literal[
-        "articles_of_incorporation",
-        "certificate_of_good_standing",
-        "ein_letter",
-        "generic",
-        "identification_back",
-        "identification_front",
-        "proof_of_address",
-    ]
+    document_type: Literal["articles_of_incorporation", "certificate_of_good_standing", "ein_letter", "generic", "identification_back", "identification_front", "proof_of_address"]
     """A category given to the document, can be `null`."""
 
     file_data: str
@@ -44,26 +34,21 @@ class Document(BaseModel):
     filename: Optional[str] = None
     """The original filename of the document."""
 
-
 Documents = Document
 """This type is deprecated and will be removed in a future release.
 
 Please use Document instead.
 """
 
-
 class PhoneNumber(BaseModel):
     """A list of phone numbers in E.164 format."""
-
     phone_number: Optional[str] = None
-
 
 PhoneNumbers = PhoneNumber
 """This type is deprecated and will be removed in a future release.
 
 Please use PhoneNumber instead.
 """
-
 
 class Regulator(BaseModel):
     jurisdiction: str
@@ -78,17 +63,14 @@ class Regulator(BaseModel):
     registration_number: str
     """Registration or identification number with the regulator."""
 
-
 Regulators = Regulator
 """This type is deprecated and will be removed in a future release.
 
 Please use Regulator instead.
 """
 
-
 class TermsOfUse(BaseModel):
     """Acceptance of terms of use by the legal entity."""
-
     accepted_at: Optional[datetime] = None
     """The ISO 8601 timestamp indicating when the terms of use were accepted."""
 
@@ -97,7 +79,6 @@ class TermsOfUse(BaseModel):
 
     Supports both IPv4 and IPv6 formats.
     """
-
 
 class ChildLegalEntityCreate(BaseModel):
     addresses: Optional[List[LegalEntityAddressCreateRequest]] = None
@@ -175,9 +156,7 @@ class ChildLegalEntityCreate(BaseModel):
     legal_entity_type: Optional[Literal["business", "individual"]] = None
     """The type of legal entity."""
 
-    legal_structure: Optional[
-        Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
-    ] = None
+    legal_structure: Optional[Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]] = None
     """The business's legal structure."""
 
     listed_exchange: Optional[str] = None
@@ -240,6 +219,5 @@ class ChildLegalEntityCreate(BaseModel):
 
     website: Optional[str] = None
     """The entity's primary website URL."""
-
 
 from .legal_entity_association_inline_create import LegalEntityAssociationInlineCreate

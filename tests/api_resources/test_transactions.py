@@ -2,24 +2,32 @@
 
 from __future__ import annotations
 
-import os
-from typing import Any, cast
-
-import pytest
-
-from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
-from modern_treasury.types import (
-    Transaction,
-)
+
+from modern_treasury.types import Transaction
+
 from modern_treasury._utils import parse_date
+
+from typing import cast, Any
+
 from modern_treasury.pagination import SyncPage, AsyncPage
+
+import os
+import pytest
+import httpx
+from typing_extensions import get_args
+from respx import MockRouter
+from modern_treasury import ModernTreasury, AsyncModernTreasury
+from tests.utils import assert_matches_type
+from modern_treasury.types import transaction_create_params
+from modern_treasury.types import transaction_update_params
+from modern_treasury.types import transaction_list_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestTransactions:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
@@ -30,7 +38,7 @@ class TestTransactions:
             vendor_code="vendor_code",
             vendor_code_type="vendor_code_type",
         )
-        assert_matches_type(Transaction, transaction, path=["response"])
+        assert_matches_type(Transaction, transaction, path=['response'])
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
@@ -52,10 +60,11 @@ class TestTransactions:
             vendor_customer_id="vendor_customer_id",
             vendor_description="vendor_description",
         )
-        assert_matches_type(Transaction, transaction, path=["response"])
+        assert_matches_type(Transaction, transaction, path=['response'])
 
     @parametrize
     def test_raw_response_create(self, client: ModernTreasury) -> None:
+
         response = client.transactions.with_raw_response.create(
             as_of_date=parse_date("2019-12-27"),
             direction="direction",
@@ -65,9 +74,9 @@ class TestTransactions:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         transaction = response.parse()
-        assert_matches_type(Transaction, transaction, path=["response"])
+        assert_matches_type(Transaction, transaction, path=['response'])
 
     @parametrize
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
@@ -77,12 +86,12 @@ class TestTransactions:
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             vendor_code="vendor_code",
             vendor_code_type="vendor_code_type",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             transaction = response.parse()
-            assert_matches_type(Transaction, transaction, path=["response"])
+            assert_matches_type(Transaction, transaction, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -91,89 +100,93 @@ class TestTransactions:
         transaction = client.transactions.retrieve(
             "id",
         )
-        assert_matches_type(Transaction, transaction, path=["response"])
+        assert_matches_type(Transaction, transaction, path=['response'])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
+
         response = client.transactions.with_raw_response.retrieve(
             "id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         transaction = response.parse()
-        assert_matches_type(Transaction, transaction, path=["response"])
+        assert_matches_type(Transaction, transaction, path=['response'])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.transactions.with_streaming_response.retrieve(
             "id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             transaction = response.parse()
-            assert_matches_type(Transaction, transaction, path=["response"])
+            assert_matches_type(Transaction, transaction, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_retrieve(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.transactions.with_raw_response.retrieve(
-                "",
-            )
+          client.transactions.with_raw_response.retrieve(
+              "",
+          )
 
     @parametrize
     def test_method_update(self, client: ModernTreasury) -> None:
         transaction = client.transactions.update(
             id="id",
         )
-        assert_matches_type(Transaction, transaction, path=["response"])
+        assert_matches_type(Transaction, transaction, path=['response'])
 
     @parametrize
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         transaction = client.transactions.update(
             id="id",
-            metadata={"foo": "string"},
+            metadata={
+                "foo": "string"
+            },
         )
-        assert_matches_type(Transaction, transaction, path=["response"])
+        assert_matches_type(Transaction, transaction, path=['response'])
 
     @parametrize
     def test_raw_response_update(self, client: ModernTreasury) -> None:
+
         response = client.transactions.with_raw_response.update(
             id="id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         transaction = response.parse()
-        assert_matches_type(Transaction, transaction, path=["response"])
+        assert_matches_type(Transaction, transaction, path=['response'])
 
     @parametrize
     def test_streaming_response_update(self, client: ModernTreasury) -> None:
         with client.transactions.with_streaming_response.update(
             id="id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             transaction = response.parse()
-            assert_matches_type(Transaction, transaction, path=["response"])
+            assert_matches_type(Transaction, transaction, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_update(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.transactions.with_raw_response.update(
-                id="",
-            )
+          client.transactions.with_raw_response.update(
+              id="",
+          )
 
     @parametrize
     def test_method_list(self, client: ModernTreasury) -> None:
         transaction = client.transactions.list()
-        assert_matches_type(SyncPage[Transaction], transaction, path=["response"])
+        assert_matches_type(SyncPage[Transaction], transaction, path=['response'])
 
     @parametrize
     def test_method_list_with_all_params(self, client: ModernTreasury) -> None:
@@ -185,7 +198,9 @@ class TestTransactions:
             description="description",
             direction="direction",
             internal_account_id="internal_account_id",
-            metadata={"foo": "string"},
+            metadata={
+                "foo": "string"
+            },
             payment_type="payment_type",
             per_page=0,
             posted=True,
@@ -193,25 +208,26 @@ class TestTransactions:
             vendor_id="vendor_id",
             virtual_account_id="virtual_account_id",
         )
-        assert_matches_type(SyncPage[Transaction], transaction, path=["response"])
+        assert_matches_type(SyncPage[Transaction], transaction, path=['response'])
 
     @parametrize
     def test_raw_response_list(self, client: ModernTreasury) -> None:
+
         response = client.transactions.with_raw_response.list()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         transaction = response.parse()
-        assert_matches_type(SyncPage[Transaction], transaction, path=["response"])
+        assert_matches_type(SyncPage[Transaction], transaction, path=['response'])
 
     @parametrize
     def test_streaming_response_list(self, client: ModernTreasury) -> None:
-        with client.transactions.with_streaming_response.list() as response:
+        with client.transactions.with_streaming_response.list() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             transaction = response.parse()
-            assert_matches_type(SyncPage[Transaction], transaction, path=["response"])
+            assert_matches_type(SyncPage[Transaction], transaction, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -224,12 +240,13 @@ class TestTransactions:
 
     @parametrize
     def test_raw_response_delete(self, client: ModernTreasury) -> None:
+
         response = client.transactions.with_raw_response.delete(
             "id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         transaction = response.parse()
         assert transaction is None
 
@@ -237,9 +254,9 @@ class TestTransactions:
     def test_streaming_response_delete(self, client: ModernTreasury) -> None:
         with client.transactions.with_streaming_response.delete(
             "id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             transaction = response.parse()
             assert transaction is None
@@ -249,15 +266,12 @@ class TestTransactions:
     @parametrize
     def test_path_params_delete(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.transactions.with_raw_response.delete(
-                "",
-            )
-
-
+          client.transactions.with_raw_response.delete(
+              "",
+          )
 class TestAsyncTransactions:
-    parametrize = pytest.mark.parametrize(
-        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
-    )
+    parametrize = pytest.mark.parametrize("async_client", [False, True, {'http_client': 'aiohttp'}], indirect=True, ids=['loose', 'strict', 'aiohttp'])
+
 
     @parametrize
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
@@ -268,7 +282,7 @@ class TestAsyncTransactions:
             vendor_code="vendor_code",
             vendor_code_type="vendor_code_type",
         )
-        assert_matches_type(Transaction, transaction, path=["response"])
+        assert_matches_type(Transaction, transaction, path=['response'])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
@@ -290,10 +304,11 @@ class TestAsyncTransactions:
             vendor_customer_id="vendor_customer_id",
             vendor_description="vendor_description",
         )
-        assert_matches_type(Transaction, transaction, path=["response"])
+        assert_matches_type(Transaction, transaction, path=['response'])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.transactions.with_raw_response.create(
             as_of_date=parse_date("2019-12-27"),
             direction="direction",
@@ -303,9 +318,9 @@ class TestAsyncTransactions:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         transaction = response.parse()
-        assert_matches_type(Transaction, transaction, path=["response"])
+        assert_matches_type(Transaction, transaction, path=['response'])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
@@ -315,12 +330,12 @@ class TestAsyncTransactions:
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             vendor_code="vendor_code",
             vendor_code_type="vendor_code_type",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             transaction = await response.parse()
-            assert_matches_type(Transaction, transaction, path=["response"])
+            assert_matches_type(Transaction, transaction, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -329,89 +344,93 @@ class TestAsyncTransactions:
         transaction = await async_client.transactions.retrieve(
             "id",
         )
-        assert_matches_type(Transaction, transaction, path=["response"])
+        assert_matches_type(Transaction, transaction, path=['response'])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.transactions.with_raw_response.retrieve(
             "id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         transaction = response.parse()
-        assert_matches_type(Transaction, transaction, path=["response"])
+        assert_matches_type(Transaction, transaction, path=['response'])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.transactions.with_streaming_response.retrieve(
             "id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             transaction = await response.parse()
-            assert_matches_type(Transaction, transaction, path=["response"])
+            assert_matches_type(Transaction, transaction, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.transactions.with_raw_response.retrieve(
-                "",
-            )
+          await async_client.transactions.with_raw_response.retrieve(
+              "",
+          )
 
     @parametrize
     async def test_method_update(self, async_client: AsyncModernTreasury) -> None:
         transaction = await async_client.transactions.update(
             id="id",
         )
-        assert_matches_type(Transaction, transaction, path=["response"])
+        assert_matches_type(Transaction, transaction, path=['response'])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         transaction = await async_client.transactions.update(
             id="id",
-            metadata={"foo": "string"},
+            metadata={
+                "foo": "string"
+            },
         )
-        assert_matches_type(Transaction, transaction, path=["response"])
+        assert_matches_type(Transaction, transaction, path=['response'])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.transactions.with_raw_response.update(
             id="id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         transaction = response.parse()
-        assert_matches_type(Transaction, transaction, path=["response"])
+        assert_matches_type(Transaction, transaction, path=['response'])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.transactions.with_streaming_response.update(
             id="id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             transaction = await response.parse()
-            assert_matches_type(Transaction, transaction, path=["response"])
+            assert_matches_type(Transaction, transaction, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.transactions.with_raw_response.update(
-                id="",
-            )
+          await async_client.transactions.with_raw_response.update(
+              id="",
+          )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncModernTreasury) -> None:
         transaction = await async_client.transactions.list()
-        assert_matches_type(AsyncPage[Transaction], transaction, path=["response"])
+        assert_matches_type(AsyncPage[Transaction], transaction, path=['response'])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncModernTreasury) -> None:
@@ -423,7 +442,9 @@ class TestAsyncTransactions:
             description="description",
             direction="direction",
             internal_account_id="internal_account_id",
-            metadata={"foo": "string"},
+            metadata={
+                "foo": "string"
+            },
             payment_type="payment_type",
             per_page=0,
             posted=True,
@@ -431,25 +452,26 @@ class TestAsyncTransactions:
             vendor_id="vendor_id",
             virtual_account_id="virtual_account_id",
         )
-        assert_matches_type(AsyncPage[Transaction], transaction, path=["response"])
+        assert_matches_type(AsyncPage[Transaction], transaction, path=['response'])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.transactions.with_raw_response.list()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         transaction = response.parse()
-        assert_matches_type(AsyncPage[Transaction], transaction, path=["response"])
+        assert_matches_type(AsyncPage[Transaction], transaction, path=['response'])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncModernTreasury) -> None:
-        async with async_client.transactions.with_streaming_response.list() as response:
+        async with async_client.transactions.with_streaming_response.list() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             transaction = await response.parse()
-            assert_matches_type(AsyncPage[Transaction], transaction, path=["response"])
+            assert_matches_type(AsyncPage[Transaction], transaction, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -462,12 +484,13 @@ class TestAsyncTransactions:
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncModernTreasury) -> None:
+
         response = await async_client.transactions.with_raw_response.delete(
             "id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         transaction = response.parse()
         assert transaction is None
 
@@ -475,9 +498,9 @@ class TestAsyncTransactions:
     async def test_streaming_response_delete(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.transactions.with_streaming_response.delete(
             "id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             transaction = await response.parse()
             assert transaction is None
@@ -487,6 +510,6 @@ class TestAsyncTransactions:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.transactions.with_raw_response.delete(
-                "",
-            )
+          await async_client.transactions.with_raw_response.delete(
+              "",
+          )

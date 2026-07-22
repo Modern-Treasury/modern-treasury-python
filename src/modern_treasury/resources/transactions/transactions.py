@@ -2,33 +2,41 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from datetime import date
-from typing_extensions import Literal
-
 import httpx
 
-from ... import _legacy_response
-from ...types import transaction_list_params, transaction_create_params, transaction_update_params
-from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from .line_items import (
-    LineItems,
-    AsyncLineItems,
-    LineItemsWithRawResponse,
-    AsyncLineItemsWithRawResponse,
-    LineItemsWithStreamingResponse,
-    AsyncLineItemsWithStreamingResponse,
-)
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ...pagination import SyncPage, AsyncPage
-from ..._base_client import AsyncPaginator, make_request_options
+
+from .line_items import LineItems, AsyncLineItems, LineItemsWithRawResponse, AsyncLineItemsWithRawResponse, LineItemsWithStreamingResponse, AsyncLineItemsWithStreamingResponse
+
+from ..._compat import cached_property
+
 from ...types.transaction import Transaction
 
-__all__ = ["Transactions", "AsyncTransactions"]
+from ..._utils import maybe_transform, path_template, async_maybe_transform
 
+from ..._base_client import make_request_options, AsyncPaginator
+
+from datetime import date
+
+from typing import Union, Optional, Dict
+
+from ..._types import Omit, omit, NotGiven
+
+from typing_extensions import Literal
+
+from ...pagination import SyncPage, AsyncPage
+
+from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ... import _legacy_response
+
+from typing_extensions import Literal, overload
+from ..._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ...types import transaction_create_params
+from ...types import transaction_update_params
+from ...types import transaction_list_params
+
+__all__ = ["Transactions", "AsyncTransactions"]
 
 class Transactions(SyncAPIResource):
     @cached_property
@@ -54,59 +62,27 @@ class Transactions(SyncAPIResource):
         """
         return TransactionsWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        as_of_date: Union[str, date, None],
-        direction: str,
-        internal_account_id: str,
-        vendor_code: Optional[str],
-        vendor_code_type: Optional[str],
-        amount: int | Omit = omit,
-        amount_string: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        posted: bool | Omit = omit,
-        type: Optional[
-            Literal[
-                "ach",
-                "au_becs",
-                "bacs",
-                "book",
-                "card",
-                "chats",
-                "check",
-                "cross_border",
-                "dk_nets",
-                "eft",
-                "gb_fps",
-                "masav",
-                "mx_ccen",
-                "neft",
-                "nics",
-                "nz_becs",
-                "pl_elixir",
-                "rtp",
-                "se_bankgirot",
-                "sepa",
-                "sg_giro",
-                "sic",
-                "stablecoin",
-                "wire",
-                "zengin",
-                "other",
-            ]
-        ]
-        | Omit = omit,
-        vendor_customer_id: Optional[str] | Omit = omit,
-        vendor_description: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Transaction:
+    def create(self,
+    *,
+    as_of_date: Union[str, date, None],
+    direction: str,
+    internal_account_id: str,
+    vendor_code: Optional[str],
+    vendor_code_type: Optional[str],
+    amount: int | Omit = omit,
+    amount_string: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    posted: bool | Omit = omit,
+    type: Optional[Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin", "other"]] | Omit = omit,
+    vendor_customer_id: Optional[str] | Omit = omit,
+    vendor_description: Optional[str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Transaction:
         """
         create transaction
 
@@ -156,44 +132,33 @@ class Transactions(SyncAPIResource):
         """
         return self._post(
             "/api/transactions",
-            body=maybe_transform(
-                {
-                    "as_of_date": as_of_date,
-                    "direction": direction,
-                    "internal_account_id": internal_account_id,
-                    "vendor_code": vendor_code,
-                    "vendor_code_type": vendor_code_type,
-                    "amount": amount,
-                    "amount_string": amount_string,
-                    "metadata": metadata,
-                    "posted": posted,
-                    "type": type,
-                    "vendor_customer_id": vendor_customer_id,
-                    "vendor_description": vendor_description,
-                },
-                transaction_create_params.TransactionCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "as_of_date": as_of_date,
+                "direction": direction,
+                "internal_account_id": internal_account_id,
+                "vendor_code": vendor_code,
+                "vendor_code_type": vendor_code_type,
+                "amount": amount,
+                "amount_string": amount_string,
+                "metadata": metadata,
+                "posted": posted,
+                "type": type,
+                "vendor_customer_id": vendor_customer_id,
+                "vendor_description": vendor_description,
+            }, transaction_create_params.TransactionCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Transaction,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Transaction:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> Transaction:
         """
         Get details on a single transaction.
 
@@ -207,28 +172,26 @@ class Transactions(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/transactions/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=Transaction,
         )
 
-    def update(
-        self,
-        id: str,
-        *,
-        metadata: Dict[str, str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Transaction:
+    def update(self,
+    id: str,
+    *,
+    metadata: Dict[str, str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Transaction:
         """
         Update a single transaction.
 
@@ -247,44 +210,40 @@ class Transactions(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._patch(
             path_template("/api/transactions/{id}", id=id),
-            body=maybe_transform({"metadata": metadata}, transaction_update_params.TransactionUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "metadata": metadata
+            }, transaction_update_params.TransactionUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Transaction,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        as_of_date_end: Union[str, date] | Omit = omit,
-        as_of_date_start: Union[str, date] | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        description: str | Omit = omit,
-        direction: str | Omit = omit,
-        internal_account_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        payment_type: str | Omit = omit,
-        per_page: int | Omit = omit,
-        posted: bool | Omit = omit,
-        transactable_type: str | Omit = omit,
-        vendor_id: str | Omit = omit,
-        virtual_account_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[Transaction]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    as_of_date_end: Union[str, date] | Omit = omit,
+    as_of_date_start: Union[str, date] | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    description: str | Omit = omit,
+    direction: str | Omit = omit,
+    internal_account_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    payment_type: str | Omit = omit,
+    per_page: int | Omit = omit,
+    posted: bool | Omit = omit,
+    transactable_type: str | Omit = omit,
+    vendor_id: str | Omit = omit,
+    virtual_account_id: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[Transaction]:
         """
         Get a list of all transactions.
 
@@ -319,47 +278,36 @@ class Transactions(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/transactions",
-            page=SyncPage[Transaction],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "as_of_date_end": as_of_date_end,
-                        "as_of_date_start": as_of_date_start,
-                        "counterparty_id": counterparty_id,
-                        "description": description,
-                        "direction": direction,
-                        "internal_account_id": internal_account_id,
-                        "metadata": metadata,
-                        "payment_type": payment_type,
-                        "per_page": per_page,
-                        "posted": posted,
-                        "transactable_type": transactable_type,
-                        "vendor_id": vendor_id,
-                        "virtual_account_id": virtual_account_id,
-                    },
-                    transaction_list_params.TransactionListParams,
-                ),
-            ),
+            page = SyncPage[Transaction],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "as_of_date_end": as_of_date_end,
+                "as_of_date_start": as_of_date_start,
+                "counterparty_id": counterparty_id,
+                "description": description,
+                "direction": direction,
+                "internal_account_id": internal_account_id,
+                "metadata": metadata,
+                "payment_type": payment_type,
+                "per_page": per_page,
+                "posted": posted,
+                "transactable_type": transactable_type,
+                "vendor_id": vendor_id,
+                "virtual_account_id": virtual_account_id,
+            }, transaction_list_params.TransactionListParams)),
             model=Transaction,
         )
 
-    def delete(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> None:
+    def delete(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> None:
         """
         delete transaction
 
@@ -375,20 +323,15 @@ class Transactions(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             path_template("/api/transactions/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=NoneType,
         )
-
 
 class AsyncTransactions(AsyncAPIResource):
     @cached_property
@@ -414,59 +357,27 @@ class AsyncTransactions(AsyncAPIResource):
         """
         return AsyncTransactionsWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        as_of_date: Union[str, date, None],
-        direction: str,
-        internal_account_id: str,
-        vendor_code: Optional[str],
-        vendor_code_type: Optional[str],
-        amount: int | Omit = omit,
-        amount_string: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        posted: bool | Omit = omit,
-        type: Optional[
-            Literal[
-                "ach",
-                "au_becs",
-                "bacs",
-                "book",
-                "card",
-                "chats",
-                "check",
-                "cross_border",
-                "dk_nets",
-                "eft",
-                "gb_fps",
-                "masav",
-                "mx_ccen",
-                "neft",
-                "nics",
-                "nz_becs",
-                "pl_elixir",
-                "rtp",
-                "se_bankgirot",
-                "sepa",
-                "sg_giro",
-                "sic",
-                "stablecoin",
-                "wire",
-                "zengin",
-                "other",
-            ]
-        ]
-        | Omit = omit,
-        vendor_customer_id: Optional[str] | Omit = omit,
-        vendor_description: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Transaction:
+    async def create(self,
+    *,
+    as_of_date: Union[str, date, None],
+    direction: str,
+    internal_account_id: str,
+    vendor_code: Optional[str],
+    vendor_code_type: Optional[str],
+    amount: int | Omit = omit,
+    amount_string: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    posted: bool | Omit = omit,
+    type: Optional[Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin", "other"]] | Omit = omit,
+    vendor_customer_id: Optional[str] | Omit = omit,
+    vendor_description: Optional[str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Transaction:
         """
         create transaction
 
@@ -516,44 +427,33 @@ class AsyncTransactions(AsyncAPIResource):
         """
         return await self._post(
             "/api/transactions",
-            body=await async_maybe_transform(
-                {
-                    "as_of_date": as_of_date,
-                    "direction": direction,
-                    "internal_account_id": internal_account_id,
-                    "vendor_code": vendor_code,
-                    "vendor_code_type": vendor_code_type,
-                    "amount": amount,
-                    "amount_string": amount_string,
-                    "metadata": metadata,
-                    "posted": posted,
-                    "type": type,
-                    "vendor_customer_id": vendor_customer_id,
-                    "vendor_description": vendor_description,
-                },
-                transaction_create_params.TransactionCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "as_of_date": as_of_date,
+                "direction": direction,
+                "internal_account_id": internal_account_id,
+                "vendor_code": vendor_code,
+                "vendor_code_type": vendor_code_type,
+                "amount": amount,
+                "amount_string": amount_string,
+                "metadata": metadata,
+                "posted": posted,
+                "type": type,
+                "vendor_customer_id": vendor_customer_id,
+                "vendor_description": vendor_description,
+            }, transaction_create_params.TransactionCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Transaction,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Transaction:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> Transaction:
         """
         Get details on a single transaction.
 
@@ -567,28 +467,26 @@ class AsyncTransactions(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/transactions/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=Transaction,
         )
 
-    async def update(
-        self,
-        id: str,
-        *,
-        metadata: Dict[str, str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Transaction:
+    async def update(self,
+    id: str,
+    *,
+    metadata: Dict[str, str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Transaction:
         """
         Update a single transaction.
 
@@ -607,44 +505,40 @@ class AsyncTransactions(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._patch(
             path_template("/api/transactions/{id}", id=id),
-            body=await async_maybe_transform({"metadata": metadata}, transaction_update_params.TransactionUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "metadata": metadata
+            }, transaction_update_params.TransactionUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Transaction,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        as_of_date_end: Union[str, date] | Omit = omit,
-        as_of_date_start: Union[str, date] | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        description: str | Omit = omit,
-        direction: str | Omit = omit,
-        internal_account_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        payment_type: str | Omit = omit,
-        per_page: int | Omit = omit,
-        posted: bool | Omit = omit,
-        transactable_type: str | Omit = omit,
-        vendor_id: str | Omit = omit,
-        virtual_account_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Transaction, AsyncPage[Transaction]]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    as_of_date_end: Union[str, date] | Omit = omit,
+    as_of_date_start: Union[str, date] | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    description: str | Omit = omit,
+    direction: str | Omit = omit,
+    internal_account_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    payment_type: str | Omit = omit,
+    per_page: int | Omit = omit,
+    posted: bool | Omit = omit,
+    transactable_type: str | Omit = omit,
+    vendor_id: str | Omit = omit,
+    virtual_account_id: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[Transaction, AsyncPage[Transaction]]:
         """
         Get a list of all transactions.
 
@@ -679,47 +573,36 @@ class AsyncTransactions(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/transactions",
-            page=AsyncPage[Transaction],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "as_of_date_end": as_of_date_end,
-                        "as_of_date_start": as_of_date_start,
-                        "counterparty_id": counterparty_id,
-                        "description": description,
-                        "direction": direction,
-                        "internal_account_id": internal_account_id,
-                        "metadata": metadata,
-                        "payment_type": payment_type,
-                        "per_page": per_page,
-                        "posted": posted,
-                        "transactable_type": transactable_type,
-                        "vendor_id": vendor_id,
-                        "virtual_account_id": virtual_account_id,
-                    },
-                    transaction_list_params.TransactionListParams,
-                ),
-            ),
+            page = AsyncPage[Transaction],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "as_of_date_end": as_of_date_end,
+                "as_of_date_start": as_of_date_start,
+                "counterparty_id": counterparty_id,
+                "description": description,
+                "direction": direction,
+                "internal_account_id": internal_account_id,
+                "metadata": metadata,
+                "payment_type": payment_type,
+                "per_page": per_page,
+                "posted": posted,
+                "transactable_type": transactable_type,
+                "vendor_id": vendor_id,
+                "virtual_account_id": virtual_account_id,
+            }, transaction_list_params.TransactionListParams)),
             model=Transaction,
         )
 
-    async def delete(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> None:
+    async def delete(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> None:
         """
         delete transaction
 
@@ -735,20 +618,15 @@ class AsyncTransactions(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             path_template("/api/transactions/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=NoneType,
         )
-
 
 class TransactionsWithRawResponse:
     def __init__(self, transactions: Transactions) -> None:
@@ -774,7 +652,6 @@ class TransactionsWithRawResponse:
     def line_items(self) -> LineItemsWithRawResponse:
         return LineItemsWithRawResponse(self._transactions.line_items)
 
-
 class AsyncTransactionsWithRawResponse:
     def __init__(self, transactions: AsyncTransactions) -> None:
         self._transactions = transactions
@@ -799,7 +676,6 @@ class AsyncTransactionsWithRawResponse:
     def line_items(self) -> AsyncLineItemsWithRawResponse:
         return AsyncLineItemsWithRawResponse(self._transactions.line_items)
 
-
 class TransactionsWithStreamingResponse:
     def __init__(self, transactions: Transactions) -> None:
         self._transactions = transactions
@@ -823,7 +699,6 @@ class TransactionsWithStreamingResponse:
     @cached_property
     def line_items(self) -> LineItemsWithStreamingResponse:
         return LineItemsWithStreamingResponse(self._transactions.line_items)
-
 
 class AsyncTransactionsWithStreamingResponse:
     def __init__(self, transactions: AsyncTransactions) -> None:

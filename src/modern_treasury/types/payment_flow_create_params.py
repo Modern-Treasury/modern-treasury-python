@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing_extensions import TypedDict, Required, Literal, Annotated
+
 from datetime import date
-from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from typing import Union
 
 from .._utils import PropertyInfo
 
 __all__ = ["PaymentFlowCreateParams"]
-
 
 class PaymentFlowCreateParams(TypedDict, total=False):
     amount: Required[int]
@@ -39,7 +40,7 @@ class PaymentFlowCreateParams(TypedDict, total=False):
     originating_account_id: Required[str]
     """Required. The ID of one of your organization's internal accounts."""
 
-    due_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    due_date: Annotated[Union[str, date], PropertyInfo(format = "iso8601")]
     """Optional.
 
     Can only be passed in when `effective_date_selection_enabled` is `true`. When

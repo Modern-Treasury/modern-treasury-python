@@ -2,16 +2,19 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import TypedDict, Required, Literal
+
+from typing import Optional, Iterable, Dict
 
 from .external_account_type import ExternalAccountType
-from .shared_params.address_request import AddressRequest
+
 from .contact_detail_create_request_param import ContactDetailCreateRequestParam
+
 from .shared_params.ledger_account_create_request import LedgerAccountCreateRequest
 
-__all__ = ["ExternalAccountCreateParams", "AccountDetails", "AccountDetail", "RoutingDetails", "RoutingDetail"]
+from .shared_params.address_request import AddressRequest
 
+__all__ = ["ExternalAccountCreateParams", "AccountDetails", "AccountDetail", "RoutingDetails", "RoutingDetail"]
 
 class ExternalAccountCreateParams(TypedDict, total=False):
     counterparty_id: Required[Optional[str]]
@@ -69,28 +72,10 @@ class ExternalAccountCreateParams(TypedDict, total=False):
 
     routing_details: Iterable[RoutingDetail]
 
-
 class AccountDetail(TypedDict, total=False):
     account_number: Required[str]
 
-    account_number_type: Literal[
-        "au_number",
-        "base_address",
-        "card_token",
-        "clabe",
-        "ethereum_address",
-        "hk_number",
-        "iban",
-        "id_number",
-        "nz_number",
-        "other",
-        "pan",
-        "polygon_address",
-        "sg_number",
-        "solana_address",
-        "wallet_address",
-    ]
-
+    account_number_type: Literal["au_number", "base_address", "card_token", "clabe", "ethereum_address", "hk_number", "iban", "id_number", "nz_number", "other", "pan", "polygon_address", "sg_number", "solana_address", "wallet_address"]
 
 AccountDetails = AccountDetail
 """This type is deprecated and will be removed in a future release.
@@ -98,63 +83,12 @@ AccountDetails = AccountDetail
 Please use AccountDetail instead.
 """
 
-
 class RoutingDetail(TypedDict, total=False):
     routing_number: Required[str]
 
-    routing_number_type: Required[
-        Literal[
-            "aba",
-            "au_bsb",
-            "br_codigo",
-            "ca_cpa",
-            "chips",
-            "cnaps",
-            "dk_interbank_clearing_code",
-            "gb_sort_code",
-            "hk_interbank_clearing_code",
-            "il_bank_code",
-            "in_ifsc",
-            "jp_zengin_code",
-            "my_branch_code",
-            "mx_bank_identifier",
-            "nz_national_clearing_code",
-            "pl_national_clearing_code",
-            "se_bankgiro_clearing_code",
-            "sg_interbank_clearing_code",
-            "swift",
-            "za_national_clearing_code",
-        ]
-    ]
+    routing_number_type: Required[Literal["aba", "au_bsb", "br_codigo", "ca_cpa", "chips", "cnaps", "dk_interbank_clearing_code", "gb_sort_code", "hk_interbank_clearing_code", "il_bank_code", "in_ifsc", "jp_zengin_code", "my_branch_code", "mx_bank_identifier", "nz_national_clearing_code", "pl_national_clearing_code", "se_bankgiro_clearing_code", "sg_interbank_clearing_code", "swift", "za_national_clearing_code"]]
 
-    payment_type: Literal[
-        "ach",
-        "au_becs",
-        "bacs",
-        "book",
-        "card",
-        "chats",
-        "check",
-        "cross_border",
-        "dk_nets",
-        "eft",
-        "gb_fps",
-        "masav",
-        "mx_ccen",
-        "neft",
-        "nics",
-        "nz_becs",
-        "pl_elixir",
-        "rtp",
-        "se_bankgirot",
-        "sepa",
-        "sg_giro",
-        "sic",
-        "stablecoin",
-        "wire",
-        "zengin",
-    ]
-
+    payment_type: Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin"]
 
 RoutingDetails = RoutingDetail
 """This type is deprecated and will be removed in a future release.

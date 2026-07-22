@@ -2,23 +2,24 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing_extensions import TypedDict, Annotated, Required
+
+from typing import Union, Optional, Dict
+
 from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
 __all__ = ["LedgerAccountStatementCreateParams"]
 
-
 class LedgerAccountStatementCreateParams(TypedDict, total=False):
-    effective_at_lower_bound: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
+    effective_at_lower_bound: Required[Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]]
     """
     The inclusive lower bound of the effective_at timestamp of the ledger entries to
     be included in the ledger account statement.
     """
 
-    effective_at_upper_bound: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
+    effective_at_upper_bound: Required[Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]]
     """
     The exclusive upper bound of the effective_at timestamp of the ledger entries to
     be included in the ledger account statement.

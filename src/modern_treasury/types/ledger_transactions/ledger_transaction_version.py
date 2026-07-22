@@ -1,15 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
-from datetime import date, datetime
-from typing_extensions import Literal
-
 from ..._models import BaseModel
-from ..shared.ledger_balances import LedgerBalances
+
+from datetime import datetime, date
+
 from ..shared.transaction_direction import TransactionDirection
 
-__all__ = ["LedgerTransactionVersion", "LedgerEntries", "LedgerEntry"]
+from typing import Optional, Dict, List
 
+from ..shared.ledger_balances import LedgerBalances
+
+from typing_extensions import Literal
+
+__all__ = ["LedgerTransactionVersion", "LedgerEntries", "LedgerEntry"]
 
 class LedgerEntry(BaseModel):
     id: str
@@ -94,13 +97,11 @@ class LedgerEntry(BaseModel):
     One of `pending`, `posted`, or `archived`.
     """
 
-
 LedgerEntries = LedgerEntry
 """This type is deprecated and will be removed in a future release.
 
 Please use LedgerEntry instead.
 """
-
 
 class LedgerTransactionVersion(BaseModel):
     id: str
@@ -151,9 +152,7 @@ class LedgerTransactionVersion(BaseModel):
     Treasury, the id will be populated here, otherwise null.
     """
 
-    ledgerable_type: Optional[
-        Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]
-    ] = None
+    ledgerable_type: Optional[Literal["expected_payment", "incoming_payment_detail", "payment_order", "return", "reversal"]] = None
     """
     If the ledger transaction can be reconciled to another object in Modern
     Treasury, the type will be populated here, otherwise null. This can be one of

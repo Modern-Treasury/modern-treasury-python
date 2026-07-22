@@ -2,24 +2,35 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from datetime import datetime
-
 import httpx
 
-from .. import _legacy_response
-from ..types import ledger_account_statement_create_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from .._base_client import make_request_options
+
+from .._compat import cached_property
+
 from ..types.ledger_account_statement_create_response import LedgerAccountStatementCreateResponse
+
+from .._utils import maybe_transform, path_template, async_maybe_transform
+
+from .._base_client import make_request_options
+
+from typing import Union, Optional, Dict
+
+from datetime import datetime
+
+from .._types import Omit, omit, NotGiven
+
 from ..types.ledger_account_statement_retrieve_response import LedgerAccountStatementRetrieveResponse
 
-__all__ = ["LedgerAccountStatements", "AsyncLedgerAccountStatements"]
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import ledger_account_statement_create_params
+
+__all__ = ["LedgerAccountStatements", "AsyncLedgerAccountStatements"]
 
 class LedgerAccountStatements(SyncAPIResource):
     @cached_property
@@ -41,22 +52,20 @@ class LedgerAccountStatements(SyncAPIResource):
         """
         return LedgerAccountStatementsWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        effective_at_lower_bound: Union[str, datetime],
-        effective_at_upper_bound: Union[str, datetime],
-        ledger_account_id: str,
-        description: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LedgerAccountStatementCreateResponse:
+    def create(self,
+    *,
+    effective_at_lower_bound: Union[str, datetime],
+    effective_at_upper_bound: Union[str, datetime],
+    ledger_account_id: str,
+    description: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LedgerAccountStatementCreateResponse:
         """
         Create a ledger account statement.
 
@@ -87,37 +96,26 @@ class LedgerAccountStatements(SyncAPIResource):
         """
         return self._post(
             "/api/ledger_account_statements",
-            body=maybe_transform(
-                {
-                    "effective_at_lower_bound": effective_at_lower_bound,
-                    "effective_at_upper_bound": effective_at_upper_bound,
-                    "ledger_account_id": ledger_account_id,
-                    "description": description,
-                    "metadata": metadata,
-                },
-                ledger_account_statement_create_params.LedgerAccountStatementCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "effective_at_lower_bound": effective_at_lower_bound,
+                "effective_at_upper_bound": effective_at_upper_bound,
+                "ledger_account_id": ledger_account_id,
+                "description": description,
+                "metadata": metadata,
+            }, ledger_account_statement_create_params.LedgerAccountStatementCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LedgerAccountStatementCreateResponse,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LedgerAccountStatementRetrieveResponse:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> LedgerAccountStatementRetrieveResponse:
         """
         Get details on a single ledger account statement.
 
@@ -131,15 +129,14 @@ class LedgerAccountStatements(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/ledger_account_statements/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=LedgerAccountStatementRetrieveResponse,
         )
-
 
 class AsyncLedgerAccountStatements(AsyncAPIResource):
     @cached_property
@@ -161,22 +158,20 @@ class AsyncLedgerAccountStatements(AsyncAPIResource):
         """
         return AsyncLedgerAccountStatementsWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        effective_at_lower_bound: Union[str, datetime],
-        effective_at_upper_bound: Union[str, datetime],
-        ledger_account_id: str,
-        description: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> LedgerAccountStatementCreateResponse:
+    async def create(self,
+    *,
+    effective_at_lower_bound: Union[str, datetime],
+    effective_at_upper_bound: Union[str, datetime],
+    ledger_account_id: str,
+    description: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> LedgerAccountStatementCreateResponse:
         """
         Create a ledger account statement.
 
@@ -207,37 +202,26 @@ class AsyncLedgerAccountStatements(AsyncAPIResource):
         """
         return await self._post(
             "/api/ledger_account_statements",
-            body=await async_maybe_transform(
-                {
-                    "effective_at_lower_bound": effective_at_lower_bound,
-                    "effective_at_upper_bound": effective_at_upper_bound,
-                    "ledger_account_id": ledger_account_id,
-                    "description": description,
-                    "metadata": metadata,
-                },
-                ledger_account_statement_create_params.LedgerAccountStatementCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "effective_at_lower_bound": effective_at_lower_bound,
+                "effective_at_upper_bound": effective_at_upper_bound,
+                "ledger_account_id": ledger_account_id,
+                "description": description,
+                "metadata": metadata,
+            }, ledger_account_statement_create_params.LedgerAccountStatementCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=LedgerAccountStatementCreateResponse,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> LedgerAccountStatementRetrieveResponse:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> LedgerAccountStatementRetrieveResponse:
         """
         Get details on a single ledger account statement.
 
@@ -251,15 +235,14 @@ class AsyncLedgerAccountStatements(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/ledger_account_statements/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=LedgerAccountStatementRetrieveResponse,
         )
-
 
 class LedgerAccountStatementsWithRawResponse:
     def __init__(self, ledger_account_statements: LedgerAccountStatements) -> None:
@@ -272,7 +255,6 @@ class LedgerAccountStatementsWithRawResponse:
             ledger_account_statements.retrieve,
         )
 
-
 class AsyncLedgerAccountStatementsWithRawResponse:
     def __init__(self, ledger_account_statements: AsyncLedgerAccountStatements) -> None:
         self._ledger_account_statements = ledger_account_statements
@@ -284,7 +266,6 @@ class AsyncLedgerAccountStatementsWithRawResponse:
             ledger_account_statements.retrieve,
         )
 
-
 class LedgerAccountStatementsWithStreamingResponse:
     def __init__(self, ledger_account_statements: LedgerAccountStatements) -> None:
         self._ledger_account_statements = ledger_account_statements
@@ -295,7 +276,6 @@ class LedgerAccountStatementsWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             ledger_account_statements.retrieve,
         )
-
 
 class AsyncLedgerAccountStatementsWithStreamingResponse:
     def __init__(self, ledger_account_statements: AsyncLedgerAccountStatements) -> None:

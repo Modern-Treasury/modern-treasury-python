@@ -1,18 +1,24 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 from .._models import BaseModel
+
+from typing import Optional, List, Dict
+
 from .account_detail import AccountDetail
-from .routing_detail import RoutingDetail
-from .shared.address import Address
+
 from .external_account_type import ExternalAccountType
+
 from .shared.contact_detail import ContactDetail
 
-__all__ = ["Counterparty", "Accounts", "Account"]
+from datetime import datetime
 
+from .shared.address import Address
+
+from typing_extensions import Literal
+
+from .routing_detail import RoutingDetail
+
+__all__ = ["Counterparty", "Accounts", "Account"]
 
 class Account(BaseModel):
     id: Optional[str] = None
@@ -74,13 +80,11 @@ class Account(BaseModel):
 
     verification_status: Optional[Literal["pending_verification", "unverified", "verified"]] = None
 
-
 Accounts = Account
 """This type is deprecated and will be removed in a future release.
 
 Please use Account instead.
 """
-
 
 class Counterparty(BaseModel):
     id: str

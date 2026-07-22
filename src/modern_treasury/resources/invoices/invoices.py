@@ -2,36 +2,53 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
-from datetime import date, datetime
-from typing_extensions import Literal
-
 import httpx
 
-from ... import _legacy_response
-from ...types import PaymentOrderType, invoice_list_params, invoice_create_params, invoice_update_params
-from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from .line_items import (
-    LineItems,
-    AsyncLineItems,
-    LineItemsWithRawResponse,
-    AsyncLineItemsWithRawResponse,
-    LineItemsWithStreamingResponse,
-    AsyncLineItemsWithStreamingResponse,
-)
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ...pagination import SyncPage, AsyncPage
-from ..._base_client import AsyncPaginator, make_request_options
+
+from .line_items import LineItems, AsyncLineItems, LineItemsWithRawResponse, AsyncLineItemsWithRawResponse, LineItemsWithStreamingResponse, AsyncLineItemsWithStreamingResponse
+
+from ..._compat import cached_property
+
 from ...types.invoice import Invoice
-from ...types.shared.currency import Currency
-from ...types.payment_order_type import PaymentOrderType
+
+from ..._utils import maybe_transform, path_template, async_maybe_transform
+
+from ..._base_client import make_request_options, AsyncPaginator
+
+from typing import Union, Optional, Iterable, Dict
+
+from datetime import datetime, date
+
+from ..._types import Omit, omit, SequenceNotStr, NotGiven
+
 from ...types.shared_params.contact_detail import ContactDetail
 
-__all__ = ["Invoices", "AsyncInvoices"]
+from ...types.shared.currency import Currency
 
+from typing_extensions import Literal
+
+from ...types.payment_order_type import PaymentOrderType
+
+from ...pagination import SyncPage, AsyncPage
+
+from ..._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ...types import invoice_create_params, invoice_update_params
+
+from ... import _legacy_response
+
+from typing_extensions import Literal, overload
+from ..._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ...types import invoice_create_params
+from ...types import invoice_update_params
+from ...types import invoice_list_params
+from ...types import shared
+from ...types import PaymentOrderType
+from ...types import shared
+from ...types import PaymentOrderType
+
+__all__ = ["Invoices", "AsyncInvoices"]
 
 class Invoices(SyncAPIResource):
     @cached_property
@@ -57,41 +74,39 @@ class Invoices(SyncAPIResource):
         """
         return InvoicesWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        counterparty_id: str,
-        due_date: Union[str, datetime],
-        originating_account_id: str,
-        auto_advance: Optional[bool] | Omit = omit,
-        contact_details: Iterable[ContactDetail] | Omit = omit,
-        counterparty_billing_address: Optional[invoice_create_params.CounterpartyBillingAddress] | Omit = omit,
-        counterparty_shipping_address: Optional[invoice_create_params.CounterpartyShippingAddress] | Omit = omit,
-        currency: Currency | Omit = omit,
-        description: str | Omit = omit,
-        fallback_payment_method: Optional[str] | Omit = omit,
-        invoice_line_items: Optional[Iterable[invoice_create_params.InvoiceLineItem]] | Omit = omit,
-        invoicer_address: Optional[invoice_create_params.InvoicerAddress] | Omit = omit,
-        invoicer_name: Optional[str] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
-        notification_email_addresses: Optional[SequenceNotStr[str]] | Omit = omit,
-        notifications_enabled: bool | Omit = omit,
-        payment_effective_date: Union[str, date] | Omit = omit,
-        payment_method: Literal["ui", "manual", "automatic"] | Omit = omit,
-        payment_type: PaymentOrderType | Omit = omit,
-        receiving_account_id: str | Omit = omit,
-        recipient_email: Optional[str] | Omit = omit,
-        recipient_name: Optional[str] | Omit = omit,
-        remind_after_overdue_days: Optional[Iterable[int]] | Omit = omit,
-        virtual_account_id: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Invoice:
+    def create(self,
+    *,
+    counterparty_id: str,
+    due_date: Union[str, datetime],
+    originating_account_id: str,
+    auto_advance: Optional[bool] | Omit = omit,
+    contact_details: Iterable[ContactDetail] | Omit = omit,
+    counterparty_billing_address: Optional[invoice_create_params.CounterpartyBillingAddress] | Omit = omit,
+    counterparty_shipping_address: Optional[invoice_create_params.CounterpartyShippingAddress] | Omit = omit,
+    currency: Currency | Omit = omit,
+    description: str | Omit = omit,
+    fallback_payment_method: Optional[str] | Omit = omit,
+    invoice_line_items: Optional[Iterable[invoice_create_params.InvoiceLineItem]] | Omit = omit,
+    invoicer_address: Optional[invoice_create_params.InvoicerAddress] | Omit = omit,
+    invoicer_name: Optional[str] | Omit = omit,
+    metadata: Optional[Dict[str, str]] | Omit = omit,
+    notification_email_addresses: Optional[SequenceNotStr[str]] | Omit = omit,
+    notifications_enabled: bool | Omit = omit,
+    payment_effective_date: Union[str, date] | Omit = omit,
+    payment_method: Literal["ui", "manual", "automatic"] | Omit = omit,
+    payment_type: PaymentOrderType | Omit = omit,
+    receiving_account_id: str | Omit = omit,
+    recipient_email: Optional[str] | Omit = omit,
+    recipient_name: Optional[str] | Omit = omit,
+    remind_after_overdue_days: Optional[Iterable[int]] | Omit = omit,
+    virtual_account_id: Optional[str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Invoice:
         """
         create invoice
 
@@ -177,56 +192,45 @@ class Invoices(SyncAPIResource):
         """
         return self._post(
             "/api/invoices",
-            body=maybe_transform(
-                {
-                    "counterparty_id": counterparty_id,
-                    "due_date": due_date,
-                    "originating_account_id": originating_account_id,
-                    "auto_advance": auto_advance,
-                    "contact_details": contact_details,
-                    "counterparty_billing_address": counterparty_billing_address,
-                    "counterparty_shipping_address": counterparty_shipping_address,
-                    "currency": currency,
-                    "description": description,
-                    "fallback_payment_method": fallback_payment_method,
-                    "invoice_line_items": invoice_line_items,
-                    "invoicer_address": invoicer_address,
-                    "invoicer_name": invoicer_name,
-                    "metadata": metadata,
-                    "notification_email_addresses": notification_email_addresses,
-                    "notifications_enabled": notifications_enabled,
-                    "payment_effective_date": payment_effective_date,
-                    "payment_method": payment_method,
-                    "payment_type": payment_type,
-                    "receiving_account_id": receiving_account_id,
-                    "recipient_email": recipient_email,
-                    "recipient_name": recipient_name,
-                    "remind_after_overdue_days": remind_after_overdue_days,
-                    "virtual_account_id": virtual_account_id,
-                },
-                invoice_create_params.InvoiceCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "counterparty_id": counterparty_id,
+                "due_date": due_date,
+                "originating_account_id": originating_account_id,
+                "auto_advance": auto_advance,
+                "contact_details": contact_details,
+                "counterparty_billing_address": counterparty_billing_address,
+                "counterparty_shipping_address": counterparty_shipping_address,
+                "currency": currency,
+                "description": description,
+                "fallback_payment_method": fallback_payment_method,
+                "invoice_line_items": invoice_line_items,
+                "invoicer_address": invoicer_address,
+                "invoicer_name": invoicer_name,
+                "metadata": metadata,
+                "notification_email_addresses": notification_email_addresses,
+                "notifications_enabled": notifications_enabled,
+                "payment_effective_date": payment_effective_date,
+                "payment_method": payment_method,
+                "payment_type": payment_type,
+                "receiving_account_id": receiving_account_id,
+                "recipient_email": recipient_email,
+                "recipient_name": recipient_name,
+                "remind_after_overdue_days": remind_after_overdue_days,
+                "virtual_account_id": virtual_account_id,
+            }, invoice_create_params.InvoiceCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Invoice,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Invoice:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> Invoice:
         """
         get invoice
 
@@ -240,51 +244,49 @@ class Invoices(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/invoices/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=Invoice,
         )
 
-    def update(
-        self,
-        id: str,
-        *,
-        contact_details: Iterable[ContactDetail] | Omit = omit,
-        counterparty_billing_address: Optional[invoice_update_params.CounterpartyBillingAddress] | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        counterparty_shipping_address: Optional[invoice_update_params.CounterpartyShippingAddress] | Omit = omit,
-        currency: Currency | Omit = omit,
-        description: str | Omit = omit,
-        due_date: Union[str, datetime] | Omit = omit,
-        fallback_payment_method: Optional[str] | Omit = omit,
-        invoice_line_items: Optional[Iterable[invoice_update_params.InvoiceLineItem]] | Omit = omit,
-        invoicer_address: Optional[invoice_update_params.InvoicerAddress] | Omit = omit,
-        invoicer_name: Optional[str] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
-        notification_email_addresses: Optional[SequenceNotStr[str]] | Omit = omit,
-        notifications_enabled: bool | Omit = omit,
-        originating_account_id: str | Omit = omit,
-        payment_effective_date: Union[str, date] | Omit = omit,
-        payment_method: Literal["ui", "manual", "automatic"] | Omit = omit,
-        payment_type: PaymentOrderType | Omit = omit,
-        receiving_account_id: str | Omit = omit,
-        recipient_email: Optional[str] | Omit = omit,
-        recipient_name: Optional[str] | Omit = omit,
-        remind_after_overdue_days: Optional[Iterable[int]] | Omit = omit,
-        status: str | Omit = omit,
-        virtual_account_id: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Invoice:
+    def update(self,
+    id: str,
+    *,
+    contact_details: Iterable[ContactDetail] | Omit = omit,
+    counterparty_billing_address: Optional[invoice_update_params.CounterpartyBillingAddress] | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    counterparty_shipping_address: Optional[invoice_update_params.CounterpartyShippingAddress] | Omit = omit,
+    currency: Currency | Omit = omit,
+    description: str | Omit = omit,
+    due_date: Union[str, datetime] | Omit = omit,
+    fallback_payment_method: Optional[str] | Omit = omit,
+    invoice_line_items: Optional[Iterable[invoice_update_params.InvoiceLineItem]] | Omit = omit,
+    invoicer_address: Optional[invoice_update_params.InvoicerAddress] | Omit = omit,
+    invoicer_name: Optional[str] | Omit = omit,
+    metadata: Optional[Dict[str, str]] | Omit = omit,
+    notification_email_addresses: Optional[SequenceNotStr[str]] | Omit = omit,
+    notifications_enabled: bool | Omit = omit,
+    originating_account_id: str | Omit = omit,
+    payment_effective_date: Union[str, date] | Omit = omit,
+    payment_method: Literal["ui", "manual", "automatic"] | Omit = omit,
+    payment_type: PaymentOrderType | Omit = omit,
+    receiving_account_id: str | Omit = omit,
+    recipient_email: Optional[str] | Omit = omit,
+    recipient_name: Optional[str] | Omit = omit,
+    remind_after_overdue_days: Optional[Iterable[int]] | Omit = omit,
+    status: str | Omit = omit,
+    virtual_account_id: Optional[str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Invoice:
         """
         update invoice
 
@@ -369,71 +371,62 @@ class Invoices(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._patch(
             path_template("/api/invoices/{id}", id=id),
-            body=maybe_transform(
-                {
-                    "contact_details": contact_details,
-                    "counterparty_billing_address": counterparty_billing_address,
-                    "counterparty_id": counterparty_id,
-                    "counterparty_shipping_address": counterparty_shipping_address,
-                    "currency": currency,
-                    "description": description,
-                    "due_date": due_date,
-                    "fallback_payment_method": fallback_payment_method,
-                    "invoice_line_items": invoice_line_items,
-                    "invoicer_address": invoicer_address,
-                    "invoicer_name": invoicer_name,
-                    "metadata": metadata,
-                    "notification_email_addresses": notification_email_addresses,
-                    "notifications_enabled": notifications_enabled,
-                    "originating_account_id": originating_account_id,
-                    "payment_effective_date": payment_effective_date,
-                    "payment_method": payment_method,
-                    "payment_type": payment_type,
-                    "receiving_account_id": receiving_account_id,
-                    "recipient_email": recipient_email,
-                    "recipient_name": recipient_name,
-                    "remind_after_overdue_days": remind_after_overdue_days,
-                    "status": status,
-                    "virtual_account_id": virtual_account_id,
-                },
-                invoice_update_params.InvoiceUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "contact_details": contact_details,
+                "counterparty_billing_address": counterparty_billing_address,
+                "counterparty_id": counterparty_id,
+                "counterparty_shipping_address": counterparty_shipping_address,
+                "currency": currency,
+                "description": description,
+                "due_date": due_date,
+                "fallback_payment_method": fallback_payment_method,
+                "invoice_line_items": invoice_line_items,
+                "invoicer_address": invoicer_address,
+                "invoicer_name": invoicer_name,
+                "metadata": metadata,
+                "notification_email_addresses": notification_email_addresses,
+                "notifications_enabled": notifications_enabled,
+                "originating_account_id": originating_account_id,
+                "payment_effective_date": payment_effective_date,
+                "payment_method": payment_method,
+                "payment_type": payment_type,
+                "receiving_account_id": receiving_account_id,
+                "recipient_email": recipient_email,
+                "recipient_name": recipient_name,
+                "remind_after_overdue_days": remind_after_overdue_days,
+                "status": status,
+                "virtual_account_id": virtual_account_id,
+            }, invoice_update_params.InvoiceUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Invoice,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        created_at_end: Union[str, datetime] | Omit = omit,
-        created_at_start: Union[str, datetime] | Omit = omit,
-        due_date_end: Union[str, date] | Omit = omit,
-        due_date_start: Union[str, date] | Omit = omit,
-        expected_payment_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        number: str | Omit = omit,
-        originating_account_id: str | Omit = omit,
-        payment_order_id: str | Omit = omit,
-        per_page: int | Omit = omit,
-        status: Literal["draft", "paid", "partially_paid", "payment_pending", "unpaid", "voided"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[Invoice]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    created_at_end: Union[str, datetime] | Omit = omit,
+    created_at_start: Union[str, datetime] | Omit = omit,
+    due_date_end: Union[str, date] | Omit = omit,
+    due_date_start: Union[str, date] | Omit = omit,
+    expected_payment_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    number: str | Omit = omit,
+    originating_account_id: str | Omit = omit,
+    payment_order_id: str | Omit = omit,
+    per_page: int | Omit = omit,
+    status: Literal["draft", "paid", "partially_paid", "payment_pending", "unpaid", "voided"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[Invoice]:
         """
         list invoices
 
@@ -462,47 +455,36 @@ class Invoices(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/invoices",
-            page=SyncPage[Invoice],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "counterparty_id": counterparty_id,
-                        "created_at_end": created_at_end,
-                        "created_at_start": created_at_start,
-                        "due_date_end": due_date_end,
-                        "due_date_start": due_date_start,
-                        "expected_payment_id": expected_payment_id,
-                        "metadata": metadata,
-                        "number": number,
-                        "originating_account_id": originating_account_id,
-                        "payment_order_id": payment_order_id,
-                        "per_page": per_page,
-                        "status": status,
-                    },
-                    invoice_list_params.InvoiceListParams,
-                ),
-            ),
+            page = SyncPage[Invoice],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "counterparty_id": counterparty_id,
+                "created_at_end": created_at_end,
+                "created_at_start": created_at_start,
+                "due_date_end": due_date_end,
+                "due_date_start": due_date_start,
+                "expected_payment_id": expected_payment_id,
+                "metadata": metadata,
+                "number": number,
+                "originating_account_id": originating_account_id,
+                "payment_order_id": payment_order_id,
+                "per_page": per_page,
+                "status": status,
+            }, invoice_list_params.InvoiceListParams)),
             model=Invoice,
         )
 
-    def add_payment_order(
-        self,
-        payment_order_id: str,
-        *,
-        id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> None:
+    def add_payment_order(self,
+    payment_order_id: str,
+    *,
+    id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> None:
         """
         Add a payment order to an invoice.
 
@@ -518,24 +500,19 @@ class Invoices(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         if not payment_order_id:
-            raise ValueError(f"Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
-            path_template(
-                "/api/invoices/{id}/payment_orders/{payment_order_id}", id=id, payment_order_id=payment_order_id
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            path_template("/api/invoices/{id}/payment_orders/{payment_order_id}", id=id, payment_order_id=payment_order_id),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=NoneType,
         )
-
 
 class AsyncInvoices(AsyncAPIResource):
     @cached_property
@@ -561,41 +538,39 @@ class AsyncInvoices(AsyncAPIResource):
         """
         return AsyncInvoicesWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        counterparty_id: str,
-        due_date: Union[str, datetime],
-        originating_account_id: str,
-        auto_advance: Optional[bool] | Omit = omit,
-        contact_details: Iterable[ContactDetail] | Omit = omit,
-        counterparty_billing_address: Optional[invoice_create_params.CounterpartyBillingAddress] | Omit = omit,
-        counterparty_shipping_address: Optional[invoice_create_params.CounterpartyShippingAddress] | Omit = omit,
-        currency: Currency | Omit = omit,
-        description: str | Omit = omit,
-        fallback_payment_method: Optional[str] | Omit = omit,
-        invoice_line_items: Optional[Iterable[invoice_create_params.InvoiceLineItem]] | Omit = omit,
-        invoicer_address: Optional[invoice_create_params.InvoicerAddress] | Omit = omit,
-        invoicer_name: Optional[str] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
-        notification_email_addresses: Optional[SequenceNotStr[str]] | Omit = omit,
-        notifications_enabled: bool | Omit = omit,
-        payment_effective_date: Union[str, date] | Omit = omit,
-        payment_method: Literal["ui", "manual", "automatic"] | Omit = omit,
-        payment_type: PaymentOrderType | Omit = omit,
-        receiving_account_id: str | Omit = omit,
-        recipient_email: Optional[str] | Omit = omit,
-        recipient_name: Optional[str] | Omit = omit,
-        remind_after_overdue_days: Optional[Iterable[int]] | Omit = omit,
-        virtual_account_id: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Invoice:
+    async def create(self,
+    *,
+    counterparty_id: str,
+    due_date: Union[str, datetime],
+    originating_account_id: str,
+    auto_advance: Optional[bool] | Omit = omit,
+    contact_details: Iterable[ContactDetail] | Omit = omit,
+    counterparty_billing_address: Optional[invoice_create_params.CounterpartyBillingAddress] | Omit = omit,
+    counterparty_shipping_address: Optional[invoice_create_params.CounterpartyShippingAddress] | Omit = omit,
+    currency: Currency | Omit = omit,
+    description: str | Omit = omit,
+    fallback_payment_method: Optional[str] | Omit = omit,
+    invoice_line_items: Optional[Iterable[invoice_create_params.InvoiceLineItem]] | Omit = omit,
+    invoicer_address: Optional[invoice_create_params.InvoicerAddress] | Omit = omit,
+    invoicer_name: Optional[str] | Omit = omit,
+    metadata: Optional[Dict[str, str]] | Omit = omit,
+    notification_email_addresses: Optional[SequenceNotStr[str]] | Omit = omit,
+    notifications_enabled: bool | Omit = omit,
+    payment_effective_date: Union[str, date] | Omit = omit,
+    payment_method: Literal["ui", "manual", "automatic"] | Omit = omit,
+    payment_type: PaymentOrderType | Omit = omit,
+    receiving_account_id: str | Omit = omit,
+    recipient_email: Optional[str] | Omit = omit,
+    recipient_name: Optional[str] | Omit = omit,
+    remind_after_overdue_days: Optional[Iterable[int]] | Omit = omit,
+    virtual_account_id: Optional[str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Invoice:
         """
         create invoice
 
@@ -681,56 +656,45 @@ class AsyncInvoices(AsyncAPIResource):
         """
         return await self._post(
             "/api/invoices",
-            body=await async_maybe_transform(
-                {
-                    "counterparty_id": counterparty_id,
-                    "due_date": due_date,
-                    "originating_account_id": originating_account_id,
-                    "auto_advance": auto_advance,
-                    "contact_details": contact_details,
-                    "counterparty_billing_address": counterparty_billing_address,
-                    "counterparty_shipping_address": counterparty_shipping_address,
-                    "currency": currency,
-                    "description": description,
-                    "fallback_payment_method": fallback_payment_method,
-                    "invoice_line_items": invoice_line_items,
-                    "invoicer_address": invoicer_address,
-                    "invoicer_name": invoicer_name,
-                    "metadata": metadata,
-                    "notification_email_addresses": notification_email_addresses,
-                    "notifications_enabled": notifications_enabled,
-                    "payment_effective_date": payment_effective_date,
-                    "payment_method": payment_method,
-                    "payment_type": payment_type,
-                    "receiving_account_id": receiving_account_id,
-                    "recipient_email": recipient_email,
-                    "recipient_name": recipient_name,
-                    "remind_after_overdue_days": remind_after_overdue_days,
-                    "virtual_account_id": virtual_account_id,
-                },
-                invoice_create_params.InvoiceCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "counterparty_id": counterparty_id,
+                "due_date": due_date,
+                "originating_account_id": originating_account_id,
+                "auto_advance": auto_advance,
+                "contact_details": contact_details,
+                "counterparty_billing_address": counterparty_billing_address,
+                "counterparty_shipping_address": counterparty_shipping_address,
+                "currency": currency,
+                "description": description,
+                "fallback_payment_method": fallback_payment_method,
+                "invoice_line_items": invoice_line_items,
+                "invoicer_address": invoicer_address,
+                "invoicer_name": invoicer_name,
+                "metadata": metadata,
+                "notification_email_addresses": notification_email_addresses,
+                "notifications_enabled": notifications_enabled,
+                "payment_effective_date": payment_effective_date,
+                "payment_method": payment_method,
+                "payment_type": payment_type,
+                "receiving_account_id": receiving_account_id,
+                "recipient_email": recipient_email,
+                "recipient_name": recipient_name,
+                "remind_after_overdue_days": remind_after_overdue_days,
+                "virtual_account_id": virtual_account_id,
+            }, invoice_create_params.InvoiceCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Invoice,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Invoice:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> Invoice:
         """
         get invoice
 
@@ -744,51 +708,49 @@ class AsyncInvoices(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/invoices/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=Invoice,
         )
 
-    async def update(
-        self,
-        id: str,
-        *,
-        contact_details: Iterable[ContactDetail] | Omit = omit,
-        counterparty_billing_address: Optional[invoice_update_params.CounterpartyBillingAddress] | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        counterparty_shipping_address: Optional[invoice_update_params.CounterpartyShippingAddress] | Omit = omit,
-        currency: Currency | Omit = omit,
-        description: str | Omit = omit,
-        due_date: Union[str, datetime] | Omit = omit,
-        fallback_payment_method: Optional[str] | Omit = omit,
-        invoice_line_items: Optional[Iterable[invoice_update_params.InvoiceLineItem]] | Omit = omit,
-        invoicer_address: Optional[invoice_update_params.InvoicerAddress] | Omit = omit,
-        invoicer_name: Optional[str] | Omit = omit,
-        metadata: Optional[Dict[str, str]] | Omit = omit,
-        notification_email_addresses: Optional[SequenceNotStr[str]] | Omit = omit,
-        notifications_enabled: bool | Omit = omit,
-        originating_account_id: str | Omit = omit,
-        payment_effective_date: Union[str, date] | Omit = omit,
-        payment_method: Literal["ui", "manual", "automatic"] | Omit = omit,
-        payment_type: PaymentOrderType | Omit = omit,
-        receiving_account_id: str | Omit = omit,
-        recipient_email: Optional[str] | Omit = omit,
-        recipient_name: Optional[str] | Omit = omit,
-        remind_after_overdue_days: Optional[Iterable[int]] | Omit = omit,
-        status: str | Omit = omit,
-        virtual_account_id: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> Invoice:
+    async def update(self,
+    id: str,
+    *,
+    contact_details: Iterable[ContactDetail] | Omit = omit,
+    counterparty_billing_address: Optional[invoice_update_params.CounterpartyBillingAddress] | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    counterparty_shipping_address: Optional[invoice_update_params.CounterpartyShippingAddress] | Omit = omit,
+    currency: Currency | Omit = omit,
+    description: str | Omit = omit,
+    due_date: Union[str, datetime] | Omit = omit,
+    fallback_payment_method: Optional[str] | Omit = omit,
+    invoice_line_items: Optional[Iterable[invoice_update_params.InvoiceLineItem]] | Omit = omit,
+    invoicer_address: Optional[invoice_update_params.InvoicerAddress] | Omit = omit,
+    invoicer_name: Optional[str] | Omit = omit,
+    metadata: Optional[Dict[str, str]] | Omit = omit,
+    notification_email_addresses: Optional[SequenceNotStr[str]] | Omit = omit,
+    notifications_enabled: bool | Omit = omit,
+    originating_account_id: str | Omit = omit,
+    payment_effective_date: Union[str, date] | Omit = omit,
+    payment_method: Literal["ui", "manual", "automatic"] | Omit = omit,
+    payment_type: PaymentOrderType | Omit = omit,
+    receiving_account_id: str | Omit = omit,
+    recipient_email: Optional[str] | Omit = omit,
+    recipient_name: Optional[str] | Omit = omit,
+    remind_after_overdue_days: Optional[Iterable[int]] | Omit = omit,
+    status: str | Omit = omit,
+    virtual_account_id: Optional[str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> Invoice:
         """
         update invoice
 
@@ -873,71 +835,62 @@ class AsyncInvoices(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._patch(
             path_template("/api/invoices/{id}", id=id),
-            body=await async_maybe_transform(
-                {
-                    "contact_details": contact_details,
-                    "counterparty_billing_address": counterparty_billing_address,
-                    "counterparty_id": counterparty_id,
-                    "counterparty_shipping_address": counterparty_shipping_address,
-                    "currency": currency,
-                    "description": description,
-                    "due_date": due_date,
-                    "fallback_payment_method": fallback_payment_method,
-                    "invoice_line_items": invoice_line_items,
-                    "invoicer_address": invoicer_address,
-                    "invoicer_name": invoicer_name,
-                    "metadata": metadata,
-                    "notification_email_addresses": notification_email_addresses,
-                    "notifications_enabled": notifications_enabled,
-                    "originating_account_id": originating_account_id,
-                    "payment_effective_date": payment_effective_date,
-                    "payment_method": payment_method,
-                    "payment_type": payment_type,
-                    "receiving_account_id": receiving_account_id,
-                    "recipient_email": recipient_email,
-                    "recipient_name": recipient_name,
-                    "remind_after_overdue_days": remind_after_overdue_days,
-                    "status": status,
-                    "virtual_account_id": virtual_account_id,
-                },
-                invoice_update_params.InvoiceUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "contact_details": contact_details,
+                "counterparty_billing_address": counterparty_billing_address,
+                "counterparty_id": counterparty_id,
+                "counterparty_shipping_address": counterparty_shipping_address,
+                "currency": currency,
+                "description": description,
+                "due_date": due_date,
+                "fallback_payment_method": fallback_payment_method,
+                "invoice_line_items": invoice_line_items,
+                "invoicer_address": invoicer_address,
+                "invoicer_name": invoicer_name,
+                "metadata": metadata,
+                "notification_email_addresses": notification_email_addresses,
+                "notifications_enabled": notifications_enabled,
+                "originating_account_id": originating_account_id,
+                "payment_effective_date": payment_effective_date,
+                "payment_method": payment_method,
+                "payment_type": payment_type,
+                "receiving_account_id": receiving_account_id,
+                "recipient_email": recipient_email,
+                "recipient_name": recipient_name,
+                "remind_after_overdue_days": remind_after_overdue_days,
+                "status": status,
+                "virtual_account_id": virtual_account_id,
+            }, invoice_update_params.InvoiceUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=Invoice,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        created_at_end: Union[str, datetime] | Omit = omit,
-        created_at_start: Union[str, datetime] | Omit = omit,
-        due_date_end: Union[str, date] | Omit = omit,
-        due_date_start: Union[str, date] | Omit = omit,
-        expected_payment_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        number: str | Omit = omit,
-        originating_account_id: str | Omit = omit,
-        payment_order_id: str | Omit = omit,
-        per_page: int | Omit = omit,
-        status: Literal["draft", "paid", "partially_paid", "payment_pending", "unpaid", "voided"] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Invoice, AsyncPage[Invoice]]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    created_at_end: Union[str, datetime] | Omit = omit,
+    created_at_start: Union[str, datetime] | Omit = omit,
+    due_date_end: Union[str, date] | Omit = omit,
+    due_date_start: Union[str, date] | Omit = omit,
+    expected_payment_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    number: str | Omit = omit,
+    originating_account_id: str | Omit = omit,
+    payment_order_id: str | Omit = omit,
+    per_page: int | Omit = omit,
+    status: Literal["draft", "paid", "partially_paid", "payment_pending", "unpaid", "voided"] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[Invoice, AsyncPage[Invoice]]:
         """
         list invoices
 
@@ -966,47 +919,36 @@ class AsyncInvoices(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/invoices",
-            page=AsyncPage[Invoice],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "counterparty_id": counterparty_id,
-                        "created_at_end": created_at_end,
-                        "created_at_start": created_at_start,
-                        "due_date_end": due_date_end,
-                        "due_date_start": due_date_start,
-                        "expected_payment_id": expected_payment_id,
-                        "metadata": metadata,
-                        "number": number,
-                        "originating_account_id": originating_account_id,
-                        "payment_order_id": payment_order_id,
-                        "per_page": per_page,
-                        "status": status,
-                    },
-                    invoice_list_params.InvoiceListParams,
-                ),
-            ),
+            page = AsyncPage[Invoice],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "counterparty_id": counterparty_id,
+                "created_at_end": created_at_end,
+                "created_at_start": created_at_start,
+                "due_date_end": due_date_end,
+                "due_date_start": due_date_start,
+                "expected_payment_id": expected_payment_id,
+                "metadata": metadata,
+                "number": number,
+                "originating_account_id": originating_account_id,
+                "payment_order_id": payment_order_id,
+                "per_page": per_page,
+                "status": status,
+            }, invoice_list_params.InvoiceListParams)),
             model=Invoice,
         )
 
-    async def add_payment_order(
-        self,
-        payment_order_id: str,
-        *,
-        id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> None:
+    async def add_payment_order(self,
+    payment_order_id: str,
+    *,
+    id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> None:
         """
         Add a payment order to an invoice.
 
@@ -1022,24 +964,19 @@ class AsyncInvoices(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         if not payment_order_id:
-            raise ValueError(f"Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `payment_order_id` but received {payment_order_id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
-            path_template(
-                "/api/invoices/{id}/payment_orders/{payment_order_id}", id=id, payment_order_id=payment_order_id
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            path_template("/api/invoices/{id}/payment_orders/{payment_order_id}", id=id, payment_order_id=payment_order_id),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=NoneType,
         )
-
 
 class InvoicesWithRawResponse:
     def __init__(self, invoices: Invoices) -> None:
@@ -1065,7 +1002,6 @@ class InvoicesWithRawResponse:
     def line_items(self) -> LineItemsWithRawResponse:
         return LineItemsWithRawResponse(self._invoices.line_items)
 
-
 class AsyncInvoicesWithRawResponse:
     def __init__(self, invoices: AsyncInvoices) -> None:
         self._invoices = invoices
@@ -1090,7 +1026,6 @@ class AsyncInvoicesWithRawResponse:
     def line_items(self) -> AsyncLineItemsWithRawResponse:
         return AsyncLineItemsWithRawResponse(self._invoices.line_items)
 
-
 class InvoicesWithStreamingResponse:
     def __init__(self, invoices: Invoices) -> None:
         self._invoices = invoices
@@ -1114,7 +1049,6 @@ class InvoicesWithStreamingResponse:
     @cached_property
     def line_items(self) -> LineItemsWithStreamingResponse:
         return LineItemsWithStreamingResponse(self._invoices.line_items)
-
 
 class AsyncInvoicesWithStreamingResponse:
     def __init__(self, invoices: AsyncInvoices) -> None:

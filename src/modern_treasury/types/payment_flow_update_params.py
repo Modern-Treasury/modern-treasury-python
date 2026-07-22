@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import TypedDict, Literal, Required
 
 __all__ = ["PaymentFlowUpdateParams"]
-
 
 class PaymentFlowUpdateParams(TypedDict, total=False):
     status: Required[Literal["cancelled"]]

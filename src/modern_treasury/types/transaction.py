@@ -1,15 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
-from datetime import date, datetime
-from typing_extensions import Literal
-
 from .._models import BaseModel
+
+from typing import Optional, Dict
+
+from datetime import date, datetime
+
 from .shared.currency import Currency
+
 from .shared.foreign_exchange_rate import ForeignExchangeRate
 
-__all__ = ["Transaction"]
+from typing_extensions import Literal
 
+__all__ = ["Transaction"]
 
 class Transaction(BaseModel):
     id: str
@@ -88,34 +91,7 @@ class Transaction(BaseModel):
     transaction's amount.
     """
 
-    type: Literal[
-        "ach",
-        "au_becs",
-        "bacs",
-        "book",
-        "card",
-        "chats",
-        "check",
-        "cross_border",
-        "dk_nets",
-        "eft",
-        "gb_fps",
-        "masav",
-        "mx_ccen",
-        "neft",
-        "nics",
-        "nz_becs",
-        "pl_elixir",
-        "rtp",
-        "se_bankgirot",
-        "sepa",
-        "sg_giro",
-        "sic",
-        "stablecoin",
-        "wire",
-        "zengin",
-        "other",
-    ]
+    type: Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin", "other"]
     """The type of the transaction.
 
     Examples could be `card, `ach`, `wire`, `check`, `rtp`, or `book`.
@@ -129,37 +105,7 @@ class Transaction(BaseModel):
     For most banks this is the BAI2/BTRS transaction code.
     """
 
-    vendor_code_type: Optional[
-        Literal[
-            "bai2",
-            "banking_circle",
-            "bankprov",
-            "bnk_dev",
-            "cleartouch",
-            "coinbase_prime",
-            "column",
-            "cross_river",
-            "currencycloud",
-            "dc_bank",
-            "dwolla",
-            "evolve",
-            "fake_vendor",
-            "goldman_sachs",
-            "iso20022",
-            "jpmc",
-            "modern_treasury",
-            "mx",
-            "paxos",
-            "paypal",
-            "pnc",
-            "silvergate",
-            "swift",
-            "turnkey",
-            "us_bank",
-            "user",
-            "western_alliance",
-        ]
-    ] = None
+    vendor_code_type: Optional[Literal["bai2", "banking_circle", "bankprov", "bnk_dev", "cleartouch", "coinbase_prime", "column", "cross_river", "currencycloud", "dc_bank", "dwolla", "evolve", "fake_vendor", "goldman_sachs", "iso20022", "jpmc", "modern_treasury", "mx", "paxos", "paypal", "pnc", "silvergate", "swift", "turnkey", "us_bank", "user", "western_alliance"]] = None
     """The type of `vendor_code` being reported.
 
     Can be one of `bai2`, `bankprov`, `bnk_dev`, `cleartouch`, `currencycloud`,

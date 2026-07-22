@@ -1,13 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict
-from datetime import datetime
-from typing_extensions import Literal
-
 from .._models import BaseModel
 
-__all__ = ["BulkRequest"]
+from typing_extensions import Literal
 
+from datetime import datetime
+
+from typing import Dict
+
+__all__ = ["BulkRequest"]
 
 class BulkRequest(BaseModel):
     id: str
@@ -34,15 +35,7 @@ class BulkRequest(BaseModel):
 
     object: str
 
-    resource_type: Literal[
-        "payment_order",
-        "ledger_account",
-        "ledger_transaction",
-        "expected_payment",
-        "transaction",
-        "transaction_line_item",
-        "entity_link",
-    ]
+    resource_type: Literal["payment_order", "ledger_account", "ledger_transaction", "expected_payment", "transaction", "transaction_line_item", "entity_link"]
     """One of payment_order, expected_payment, or ledger_transaction."""
 
     status: Literal["pending", "processing", "completed"]

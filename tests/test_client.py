@@ -2,39 +2,50 @@
 
 from __future__ import annotations
 
-import gc
-import os
-import sys
-import json
-import asyncio
-import inspect
 import dataclasses
+
+import pytest
+
+import sys
+
+import httpx
+
+from modern_treasury import ModernTreasury, AsyncModernTreasury
+
+from modern_treasury._exceptions import APITimeoutError, APIStatusError, ModernTreasuryError, APIResponseValidationError
+
+from typing import TypeVar, Callable, Coroutine, Iterable, Optional, Iterator, cast, Any, Union
+
+from typing_extensions import override, AsyncIterator, Literal
+
+from modern_treasury._types import Omit
+
+from pydantic import ValidationError
+
+from modern_treasury._base_client import DefaultHttpxClient, get_platform, OtherPlatform, DefaultAsyncHttpxClient
+
+from modern_treasury._utils import asyncify
+
+import asyncio
+import gc
+import inspect
+import json
+import os
 import tracemalloc
-from typing import Any, Union, TypeVar, Callable, Iterable, Iterator, Optional, Coroutine, cast
 from unittest import mock
-from typing_extensions import Literal, AsyncIterator, override
 
 import httpx
 import pytest
 from respx import MockRouter
-from pydantic import ValidationError
 
 from modern_treasury import ModernTreasury, AsyncModernTreasury, APIResponseValidationError
+from modern_treasury._models import FinalRequestOptions, BaseModel
+from modern_treasury._types import Headers, Query, Body, Timeout, Omit
+from modern_treasury._base_client import DEFAULT_TIMEOUT, HTTPX_DEFAULT_TIMEOUT, BaseClient, RequestOptions, make_request_options
+from modern_treasury._streaming import Stream, AsyncStream
+from modern_treasury._constants import RAW_RESPONSE_HEADER
+from modern_treasury._response import APIResponse, AsyncAPIResponse
 from modern_treasury._types import Omit
-from modern_treasury._utils import asyncify
-from modern_treasury._models import BaseModel, FinalRequestOptions
-from modern_treasury._exceptions import APIStatusError, APITimeoutError, ModernTreasuryError, APIResponseValidationError
-from modern_treasury._base_client import (
-    DEFAULT_TIMEOUT,
-    HTTPX_DEFAULT_TIMEOUT,
-    BaseClient,
-    OtherPlatform,
-    DefaultHttpxClient,
-    DefaultAsyncHttpxClient,
-    get_platform,
-    make_request_options,
-)
-
 from .utils import update_env
 
 T = TypeVar("T")
@@ -42,67 +53,59 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 api_key = "My API Key"
 organization_id = "my-organization-ID"
 
-
 def _get_params(client: BaseClient[Any, Any]) -> dict[str, str]:
-    request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-    url = httpx.URL(request.url)
-    return dict(url.params)
-
+  request = client._build_request(FinalRequestOptions(method="get", url='/foo'))
+  url = httpx.URL(request.url)
+  return dict(url.params)
 
 def _low_retry_timeout(*_args: Any, **_kwargs: Any) -> float:
     return 0.1
 
-
 def mirror_request_content(request: httpx.Request) -> httpx.Response:
-    return httpx.Response(200, content=request.content)
-
+  return httpx.Response(200, content=request.content)
 
 # note: we can't use the httpx.MockTransport class as it consumes the request
 #       body itself, which means we can't test that the body is read lazily
 class MockTransport(httpx.BaseTransport, httpx.AsyncBaseTransport):
-    def __init__(
-        self,
-        handler: Callable[[httpx.Request], httpx.Response]
-        | Callable[[httpx.Request], Coroutine[Any, Any, httpx.Response]],
-    ) -> None:
-        self.handler = handler
+  def __init__(
+      self,
+      handler: Callable[[httpx.Request], httpx.Response]
+      | Callable[[httpx.Request], Coroutine[Any, Any, httpx.Response]],
+  ) -> None:
+      self.handler = handler
 
-    @override
-    def handle_request(
-        self,
-        request: httpx.Request,
-    ) -> httpx.Response:
-        assert not inspect.iscoroutinefunction(self.handler), "handler must not be a coroutine function"
-        assert inspect.isfunction(self.handler), "handler must be a function"
-        return self.handler(request)
+  @override
+  def handle_request(
+      self,
+      request: httpx.Request,
+  ) -> httpx.Response:
+      assert not inspect.iscoroutinefunction(self.handler), "handler must not be a coroutine function"
+      assert inspect.isfunction(self.handler), "handler must be a function"
+      return self.handler(request)
 
-    @override
-    async def handle_async_request(
-        self,
-        request: httpx.Request,
-    ) -> httpx.Response:
-        assert inspect.iscoroutinefunction(self.handler), "handler must be a coroutine function"
-        return await self.handler(request)
-
+  @override
+  async def handle_async_request(
+      self,
+      request: httpx.Request,
+  ) -> httpx.Response:
+      assert inspect.iscoroutinefunction(self.handler), "handler must be a coroutine function"
+      return await self.handler(request)
 
 @dataclasses.dataclass
 class Counter:
     value: int = 0
 
-
 def _make_sync_iterator(iterable: Iterable[T], counter: Optional[Counter] = None) -> Iterator[T]:
-    for item in iterable:
-        if counter:
-            counter.value += 1
-        yield item
-
+  for item in iterable:
+    if counter:
+      counter.value += 1
+    yield item
 
 async def _make_async_iterator(iterable: Iterable[T], counter: Optional[Counter] = None) -> AsyncIterator[T]:
-    for item in iterable:
-        if counter:
-            counter.value += 1
-        yield item
-
+  for item in iterable:
+    if counter:
+      counter.value += 1
+    yield item
 
 def _get_open_connections(client: ModernTreasury | AsyncModernTreasury) -> int:
     transport = client._client._transport
@@ -110,7 +113,6 @@ def _get_open_connections(client: ModernTreasury | AsyncModernTreasury) -> int:
 
     pool = transport._pool
     return len(pool._requests)
-
 
 class TestModernTreasury:
     @pytest.mark.respx(base_url=base_url)
@@ -124,9 +126,7 @@ class TestModernTreasury:
 
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response_for_binary(self, respx_mock: MockRouter, client: ModernTreasury) -> None:
-        respx_mock.post("/foo").mock(
-            return_value=httpx.Response(200, headers={"Content-Type": "application/binary"}, content='{"foo": "bar"}')
-        )
+        respx_mock.post("/foo").mock(return_value=httpx.Response(200, headers={'Content-Type':'application/binary'}, content='{"foo": "bar"}'))
 
         response = client.post("/foo", cast_to=httpx.Response)
         assert response.status_code == 200
@@ -162,67 +162,59 @@ class TestModernTreasury:
         assert isinstance(client.timeout, httpx.Timeout)
 
     def test_copy_default_headers(self) -> None:
-        client = ModernTreasury(
-            base_url=base_url,
-            api_key=api_key,
-            organization_id=organization_id,
-            _strict_response_validation=True,
-            default_headers={"X-Foo": "bar"},
-        )
-        assert client.default_headers["X-Foo"] == "bar"
+        client = ModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, default_headers={
+            "X-Foo": "bar"
+        })
+        assert client.default_headers['X-Foo'] == 'bar'
 
         # does not override the already given value when not specified
         copied = client.copy()
-        assert copied.default_headers["X-Foo"] == "bar"
+        assert copied.default_headers['X-Foo'] == 'bar'
 
         # merges already given headers
-        copied = client.copy(default_headers={"X-Bar": "stainless"})
-        assert copied.default_headers["X-Foo"] == "bar"
-        assert copied.default_headers["X-Bar"] == "stainless"
+        copied = client.copy(default_headers={'X-Bar': 'stainless'})
+        assert copied.default_headers['X-Foo'] == 'bar'
+        assert copied.default_headers['X-Bar'] == 'stainless'
 
         # uses new values for any already given headers
-        copied = client.copy(default_headers={"X-Foo": "stainless"})
-        assert copied.default_headers["X-Foo"] == "stainless"
+        copied = client.copy(default_headers={'X-Foo': 'stainless'})
+        assert copied.default_headers['X-Foo'] == 'stainless'
 
         # set_default_headers
 
         # completely overrides already set values
         copied = client.copy(set_default_headers={})
-        assert copied.default_headers.get("X-Foo") is None
+        assert copied.default_headers.get('X-Foo') is None
 
-        copied = client.copy(set_default_headers={"X-Bar": "Robert"})
-        assert copied.default_headers["X-Bar"] == "Robert"
+        copied = client.copy(set_default_headers={'X-Bar': 'Robert'})
+        assert copied.default_headers['X-Bar'] == 'Robert'
 
         with pytest.raises(
-            ValueError,
-            match="`default_headers` and `set_default_headers` arguments are mutually exclusive",
+          ValueError,
+          match='`default_headers` and `set_default_headers` arguments are mutually exclusive',
         ):
-            client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
+          client.copy(set_default_headers={}, default_headers={'X-Foo': 'Bar'})
         client.close()
 
     def test_copy_default_query(self) -> None:
-        client = ModernTreasury(
-            base_url=base_url,
-            api_key=api_key,
-            organization_id=organization_id,
-            _strict_response_validation=True,
-            default_query={"foo": "bar"},
-        )
-        assert _get_params(client)["foo"] == "bar"
+        client = ModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, default_query={
+            "foo": "bar"
+        })
+        assert _get_params(client)['foo'] == 'bar'
 
         # does not override the already given value when not specified
         copied = client.copy()
-        assert _get_params(copied)["foo"] == "bar"
+        assert _get_params(copied)['foo'] == 'bar'
 
         # merges already given params
-        copied = client.copy(default_query={"bar": "stainless"})
+        copied = client.copy(default_query={'bar': 'stainless'})
         params = _get_params(copied)
-        assert params["foo"] == "bar"
-        assert params["bar"] == "stainless"
+        assert params['foo'] == 'bar'
+        assert params['bar'] == 'stainless'
 
         # uses new values for any already given headers
-        copied = client.copy(default_query={"foo": "stainless"})
-        assert _get_params(copied)["foo"] == "stainless"
+        copied = client.copy(default_query={'foo': 'stainless'})
+        assert _get_params(copied)['foo'] == 'stainless'
 
         # set_default_query
 
@@ -230,23 +222,23 @@ class TestModernTreasury:
         copied = client.copy(set_default_query={})
         assert _get_params(copied) == {}
 
-        copied = client.copy(set_default_query={"bar": "Robert"})
-        assert _get_params(copied)["bar"] == "Robert"
+        copied = client.copy(set_default_query={'bar': 'Robert'})
+        assert _get_params(copied)['bar'] == 'Robert'
 
         with pytest.raises(
-            ValueError,
-            # TODO: update
-            match="`default_query` and `set_default_query` arguments are mutually exclusive",
+          ValueError,
+          # TODO: update
+          match='`default_query` and `set_default_query` arguments are mutually exclusive',
         ):
-            client.copy(set_default_query={}, default_query={"foo": "Bar"})
+          client.copy(set_default_query={}, default_query={'foo': 'Bar'})
 
         client.close()
 
     def test_copy_signature(self, client: ModernTreasury) -> None:
         # ensure the same parameters that can be passed to the client are defined in the `.copy()` method
         init_signature = inspect.signature(
-            # mypy doesn't like that we access the `__init__` property.
-            client.__init__,  # type: ignore[misc]
+          # mypy doesn't like that we access the `__init__` property.
+          client.__init__,  # type: ignore[misc]
         )
         copy_signature = inspect.signature(client.copy)
         exclude_params = {"transport", "proxies", "_strict_response_validation"}
@@ -326,18 +318,14 @@ class TestModernTreasury:
         timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
         assert timeout == DEFAULT_TIMEOUT
 
-        request = client._build_request(FinalRequestOptions(method="get", url="/foo", timeout=httpx.Timeout(100.0)))
+        request = client._build_request(
+            FinalRequestOptions(method="get", url="/foo", timeout=httpx.Timeout(100.0))
+        )
         timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
         assert timeout == httpx.Timeout(100.0)
 
     def test_client_timeout_option(self) -> None:
-        client = ModernTreasury(
-            base_url=base_url,
-            api_key=api_key,
-            organization_id=organization_id,
-            _strict_response_validation=True,
-            timeout=httpx.Timeout(0),
-        )
+        client = ModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, timeout=httpx.Timeout(0))
 
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -348,120 +336,76 @@ class TestModernTreasury:
     def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         with httpx.Client(timeout=None) as http_client:
-            client = ModernTreasury(
-                base_url=base_url,
-                api_key=api_key,
-                organization_id=organization_id,
-                _strict_response_validation=True,
-                http_client=http_client,
-            )
+          client = ModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, http_client=http_client)
 
-            request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-            timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
-            assert timeout == httpx.Timeout(None)
+          request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+          timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
+          assert timeout == httpx.Timeout(None)
 
-            client.close()
+          client.close()
 
         # no timeout given to the httpx client should not use the httpx default
         with httpx.Client() as http_client:
-            client = ModernTreasury(
-                base_url=base_url,
-                api_key=api_key,
-                organization_id=organization_id,
-                _strict_response_validation=True,
-                http_client=http_client,
-            )
+          client = ModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, http_client=http_client)
 
-            request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-            timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
-            assert timeout == DEFAULT_TIMEOUT
+          request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+          timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
+          assert timeout == DEFAULT_TIMEOUT
 
-            client.close()
+          client.close()
 
         # explicitly passing the default timeout currently results in it being ignored
         with httpx.Client(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = ModernTreasury(
-                base_url=base_url,
-                api_key=api_key,
-                organization_id=organization_id,
-                _strict_response_validation=True,
-                http_client=http_client,
-            )
+          client = ModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, http_client=http_client)
 
-            request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-            timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
-            assert timeout == DEFAULT_TIMEOUT  # our default
+          request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+          timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
+          assert timeout == DEFAULT_TIMEOUT  # our default
 
-            client.close()
+          client.close()
 
     async def test_invalid_http_client(self) -> None:
-        with pytest.raises(TypeError, match="Invalid `http_client` arg"):
-            async with httpx.AsyncClient() as http_client:
-                ModernTreasury(
-                    base_url=base_url,
-                    api_key=api_key,
-                    organization_id=organization_id,
-                    _strict_response_validation=True,
-                    http_client=cast(Any, http_client),
-                )
+        with pytest.raises(TypeError, match='Invalid `http_client` arg') :
+            async with httpx.AsyncClient() as http_client :
+                ModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, http_client=cast(Any, http_client))
 
     def test_default_headers_option(self) -> None:
-        test_client = ModernTreasury(
-            base_url=base_url,
-            api_key=api_key,
-            organization_id=organization_id,
-            _strict_response_validation=True,
-            default_headers={"X-Foo": "bar"},
-        )
-        request = test_client._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert request.headers.get("x-foo") == "bar"
-        assert request.headers.get("x-stainless-lang") == "python"
+        test_client = ModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, default_headers={
+            "X-Foo": "bar"
+        })
+        request = test_client._build_request(FinalRequestOptions(method="get", url='/foo'))
+        assert request.headers.get('x-foo') == 'bar'
+        assert request.headers.get('x-stainless-lang') == 'python'
 
-        test_client2 = ModernTreasury(
-            base_url=base_url,
-            api_key=api_key,
-            organization_id=organization_id,
-            _strict_response_validation=True,
-            default_headers={
-                "X-Foo": "stainless",
-                "X-Stainless-Lang": "my-overriding-header",
-            },
-        )
-        request = test_client2._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert request.headers.get("x-foo") == "stainless"
-        assert request.headers.get("x-stainless-lang") == "my-overriding-header"
+        test_client2 = ModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, default_headers={
+            "X-Foo": "stainless",
+            "X-Stainless-Lang": "my-overriding-header",
+        })
+        request = test_client2._build_request(FinalRequestOptions(method="get", url='/foo'))
+        assert request.headers.get('x-foo') == 'stainless'
+        assert request.headers.get('x-stainless-lang') == 'my-overriding-header'
 
         test_client.close()
         test_client2.close()
 
     def test_validate_headers(self) -> None:
-        client = ModernTreasury(
-            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-        )
-        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+        client = ModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True)
+        request = client._build_request(FinalRequestOptions(method="get", url='/foo'))
         assert "Basic" in request.headers.get("Authorization")
 
         with pytest.raises(ModernTreasuryError):
-            with update_env(
-                **{
-                    "MODERN_TREASURY_ORGANIZATION_ID": Omit(),
-                    "MODERN_TREASURY_API_KEY": Omit(),
-                }
-            ):
-                client2 = ModernTreasury(
-                    base_url=base_url, api_key=None, organization_id=None, _strict_response_validation=True
-                )
+            with update_env(**{
+                "MODERN_TREASURY_ORGANIZATION_ID": Omit(),
+                "MODERN_TREASURY_API_KEY": Omit(),
+            }) :
+                client2 = ModernTreasury(base_url=base_url, api_key=None, organization_id=None, _strict_response_validation=True)
             _ = client2
 
     def test_default_query_option(self) -> None:
-        client = ModernTreasury(
-            base_url=base_url,
-            api_key=api_key,
-            organization_id=organization_id,
-            _strict_response_validation=True,
-            default_query={"query_param": "bar"},
-        )
-        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+        client = ModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, default_query={
+            "query_param": "bar"
+        })
+        request = client._build_request(FinalRequestOptions(method="get", url='/foo'))
         url = httpx.URL(request.url)
         assert dict(url.params) == {"query_param": "bar"}
 
@@ -473,7 +417,7 @@ class TestModernTreasury:
             )
         )
         url = httpx.URL(request.url)
-        assert dict(url.params) == {"foo": "baz", "query_param": "overridden"}
+        assert dict(url.params) == {'foo': 'baz', "query_param": "overridden"}
 
         client.close()
 
@@ -582,7 +526,7 @@ class TestModernTreasury:
             ),
         )
         params = dict(request.url.params)
-        assert params == {"bar": "1", "foo": "2"}
+        assert params == {'bar': '1', 'foo': '2'}
 
         # `extra_query` takes priority over `query` when keys clash
         request = client._build_request(
@@ -596,7 +540,7 @@ class TestModernTreasury:
             ),
         )
         params = dict(request.url.params)
-        assert params == {"foo": "2"}
+        assert params == {'foo': '2'}
 
     def test_multipart_repeating_array(self, client: ModernTreasury) -> None:
         request = client._build_request(
@@ -633,12 +577,7 @@ class TestModernTreasury:
 
         file_content = b"Hello, this is a test file."
 
-        response = client.post(
-            "/upload",
-            content=file_content,
-            cast_to=httpx.Response,
-            options={"headers": {"Content-Type": "application/octet-stream"}},
-        )
+        response = client.post("/upload", content=file_content, cast_to=httpx.Response, options={"headers": {"Content-Type": "application/octet-stream"}})
 
         assert response.status_code == 200
         assert response.request.headers["Content-Type"] == "application/octet-stream"
@@ -653,29 +592,16 @@ class TestModernTreasury:
             assert counter.value == 0, "the request body should not have been read"
             return httpx.Response(200, content=request.read())
 
-        with ModernTreasury(
-            base_url=base_url,
-            api_key=api_key,
-            organization_id=organization_id,
-            _strict_response_validation=True,
-            http_client=httpx.Client(transport=MockTransport(handler=mock_handler)),
-        ) as client:
-            response = client.post(
-                "/upload",
-                content=iterator,
-                cast_to=httpx.Response,
-                options={"headers": {"Content-Type": "application/octet-stream"}},
-            )
+        with ModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, http_client=httpx.Client(transport = MockTransport(handler=mock_handler))) as client:
+          response = client.post("/upload", content=iterator, cast_to=httpx.Response, options={"headers": {"Content-Type": "application/octet-stream"}})
 
-            assert response.status_code == 200
-            assert response.request.headers["Content-Type"] == "application/octet-stream"
-            assert response.content == file_content
-            assert counter.value == 1
+          assert response.status_code == 200
+          assert response.request.headers["Content-Type"] == "application/octet-stream"
+          assert response.content == file_content
+          assert counter.value == 1
 
     @pytest.mark.respx(base_url=base_url)
-    def test_binary_content_upload_with_body_is_deprecated(
-        self, respx_mock: MockRouter, client: ModernTreasury
-    ) -> None:
+    def test_binary_content_upload_with_body_is_deprecated(self, respx_mock: MockRouter, client: ModernTreasury) -> None:
         respx_mock.post("/upload").mock(side_effect=mirror_request_content)
 
         file_content = b"Hello, this is a test file."
@@ -683,12 +609,7 @@ class TestModernTreasury:
         with pytest.deprecated_call(
             match="Passing raw bytes as `body` is deprecated and will be removed in a future version. Please pass raw bytes via the `content` parameter instead."
         ):
-            response = client.post(
-                "/upload",
-                body=file_content,
-                cast_to=httpx.Response,
-                options={"headers": {"Content-Type": "application/octet-stream"}},
-            )
+            response = client.post("/upload", body=file_content, cast_to=httpx.Response, options={"headers": {"Content-Type": "application/octet-stream"}})
 
         assert response.status_code == 200
         assert response.request.headers["Content-Type"] == "application/octet-stream"
@@ -702,42 +623,37 @@ class TestModernTreasury:
         class Model2(BaseModel):
             foo: str
 
-        respx_mock.get("/foo").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get('/foo').mock(return_value=httpx.Response(200, json={'foo': 'bar'}))
 
         response = client.get("/foo", cast_to=cast(Any, Union[Model1, Model2]))
         assert isinstance(response, Model2)
-        assert response.foo == "bar"
-
+        assert response.foo == 'bar'
     @pytest.mark.respx(base_url=base_url)
     def test_union_response_different_types(self, respx_mock: MockRouter, client: ModernTreasury) -> None:
         """Union of objects with the same field name using a different type"""
-
         class Model1(BaseModel):
             foo: int
 
         class Model2(BaseModel):
             foo: str
 
-        respx_mock.get("/foo").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get('/foo').mock(return_value=httpx.Response(200, json={'foo': 'bar'}))
 
         response = client.get("/foo", cast_to=cast(Any, Union[Model1, Model2]))
         assert isinstance(response, Model2)
-        assert response.foo == "bar"
+        assert response.foo == 'bar'
 
-        respx_mock.get("/foo").mock(return_value=httpx.Response(200, json={"foo": 1}))
+        respx_mock.get('/foo').mock(return_value=httpx.Response(200, json={'foo': 1}))
 
         response = client.get("/foo", cast_to=cast(Any, Union[Model1, Model2]))
         assert isinstance(response, Model1)
         assert response.foo == 1
 
     @pytest.mark.respx(base_url=base_url)
-    def test_non_application_json_content_type_for_json_data(
-        self, respx_mock: MockRouter, client: ModernTreasury
-    ) -> None:
+    def test_non_application_json_content_type_for_json_data(self, respx_mock: MockRouter, client: ModernTreasury) -> None:
         """
         Response that sets Content-Type to something other than application/json but returns json data
         """
-
         class Model(BaseModel):
             foo: int
 
@@ -755,7 +671,7 @@ class TestModernTreasury:
 
     @pytest.mark.respx(base_url=base_url)
     def test_idempotency_header_options(self, respx_mock: MockRouter, client: ModernTreasury) -> None:
-        respx_mock.post("/foo").mock(return_value=httpx.Response(200, json={}))
+        respx_mock.post('/foo').mock(return_value=httpx.Response(200, json={}))
 
         response = client.post("/foo", cast_to=httpx.Response)
 
@@ -764,33 +680,22 @@ class TestModernTreasury:
         assert header.startswith("stainless-python-retry")
 
         # explicit header
-        response = client.post(
-            "/foo",
-            cast_to=httpx.Response,
-            options=make_request_options(extra_headers={"Idempotency-Key": "custom-key"}),
-        )
+        response = client.post("/foo", cast_to=httpx.Response, options = make_request_options(extra_headers = {
+            "Idempotency-Key": "custom-key"
+        }))
         assert response.request.headers.get("Idempotency-Key") == "custom-key"
 
-        response = client.post(
-            "/foo",
-            cast_to=httpx.Response,
-            options=make_request_options(extra_headers={"idempotency-key": "custom-key"}),
-        )
+        response = client.post("/foo", cast_to=httpx.Response, options = make_request_options(extra_headers = {
+            "idempotency-key": "custom-key"
+        }))
         assert response.request.headers.get("Idempotency-Key") == "custom-key"
 
         # custom argument
-        response = client.post(
-            "/foo", cast_to=httpx.Response, options=make_request_options(idempotency_key="custom-key")
-        )
+        response = client.post("/foo", cast_to=httpx.Response, options=make_request_options(idempotency_key="custom-key"))
         assert response.request.headers.get("Idempotency-Key") == "custom-key"
 
     def test_base_url_setter(self) -> None:
-        client = ModernTreasury(
-            base_url="https://example.com/from_init",
-            api_key=api_key,
-            organization_id=organization_id,
-            _strict_response_validation=True,
-        )
+        client = ModernTreasury(base_url="https://example.com/from_init", api_key=api_key, organization_id=organization_id, _strict_response_validation=True)
         assert client.base_url == "https://example.com/from_init/"
 
         client.base_url = "https://example.com/from_setter"  # type: ignore[assignment]
@@ -800,29 +705,11 @@ class TestModernTreasury:
         client.close()
 
     def test_base_url_env(self) -> None:
-        with update_env(MODERN_TREASURY_BASE_URL="http://localhost:5000/from/env"):
-            client = ModernTreasury(api_key=api_key, organization_id=organization_id, _strict_response_validation=True)
-            assert client.base_url == "http://localhost:5000/from/env/"
+        with update_env(MODERN_TREASURY_BASE_URL='http://localhost:5000/from/env'):
+          client = ModernTreasury(api_key=api_key, organization_id=organization_id, _strict_response_validation=True)
+          assert client.base_url == 'http://localhost:5000/from/env/'
 
-    @pytest.mark.parametrize(
-        "client",
-        [
-            ModernTreasury(
-                base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                organization_id=organization_id,
-                _strict_response_validation=True,
-            ),
-            ModernTreasury(
-                base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                organization_id=organization_id,
-                _strict_response_validation=True,
-                http_client=httpx.Client(),
-            ),
-        ],
-        ids=["standard", "custom http client"],
-    )
+    @pytest.mark.parametrize("client", [ModernTreasury(base_url="http://localhost:5000/custom/path/", api_key=api_key, organization_id=organization_id, _strict_response_validation=True), ModernTreasury(base_url="http://localhost:5000/custom/path/", api_key=api_key, organization_id=organization_id, _strict_response_validation=True, http_client=httpx.Client())], ids = ["standard", "custom http client"])
     def test_base_url_trailing_slash(self, client: ModernTreasury) -> None:
         request = client._build_request(
             FinalRequestOptions(
@@ -834,25 +721,7 @@ class TestModernTreasury:
         assert request.url == "http://localhost:5000/custom/path/foo"
         client.close()
 
-    @pytest.mark.parametrize(
-        "client",
-        [
-            ModernTreasury(
-                base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                organization_id=organization_id,
-                _strict_response_validation=True,
-            ),
-            ModernTreasury(
-                base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                organization_id=organization_id,
-                _strict_response_validation=True,
-                http_client=httpx.Client(),
-            ),
-        ],
-        ids=["standard", "custom http client"],
-    )
+    @pytest.mark.parametrize("client", [ModernTreasury(base_url="http://localhost:5000/custom/path/", api_key=api_key, organization_id=organization_id, _strict_response_validation=True), ModernTreasury(base_url="http://localhost:5000/custom/path/", api_key=api_key, organization_id=organization_id, _strict_response_validation=True, http_client=httpx.Client())], ids = ["standard", "custom http client"])
     def test_base_url_no_trailing_slash(self, client: ModernTreasury) -> None:
         request = client._build_request(
             FinalRequestOptions(
@@ -864,25 +733,7 @@ class TestModernTreasury:
         assert request.url == "http://localhost:5000/custom/path/foo"
         client.close()
 
-    @pytest.mark.parametrize(
-        "client",
-        [
-            ModernTreasury(
-                base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                organization_id=organization_id,
-                _strict_response_validation=True,
-            ),
-            ModernTreasury(
-                base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                organization_id=organization_id,
-                _strict_response_validation=True,
-                http_client=httpx.Client(),
-            ),
-        ],
-        ids=["standard", "custom http client"],
-    )
+    @pytest.mark.parametrize("client", [ModernTreasury(base_url="http://localhost:5000/custom/path/", api_key=api_key, organization_id=organization_id, _strict_response_validation=True), ModernTreasury(base_url="http://localhost:5000/custom/path/", api_key=api_key, organization_id=organization_id, _strict_response_validation=True, http_client=httpx.Client())], ids = ["standard", "custom http client"])
     def test_absolute_request_url(self, client: ModernTreasury) -> None:
         request = client._build_request(
             FinalRequestOptions(
@@ -895,9 +746,7 @@ class TestModernTreasury:
         client.close()
 
     def test_copied_client_does_not_close_http(self) -> None:
-        test_client = ModernTreasury(
-            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-        )
+        test_client = ModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True)
         assert not test_client.is_closed()
 
         copied = test_client.copy()
@@ -908,13 +757,11 @@ class TestModernTreasury:
         assert not test_client.is_closed()
 
     def test_client_context_manager(self) -> None:
-        test_client = ModernTreasury(
-            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-        )
+        test_client = ModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True)
         with test_client as c2:
-            assert c2 is test_client
-            assert not c2.is_closed()
-            assert not test_client.is_closed()
+          assert c2 is test_client
+          assert not c2.is_closed()
+          assert not test_client.is_closed()
         assert test_client.is_closed()
 
     @pytest.mark.respx(base_url=base_url)
@@ -931,13 +778,7 @@ class TestModernTreasury:
 
     def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
-            ModernTreasury(
-                base_url=base_url,
-                api_key=api_key,
-                organization_id=organization_id,
-                _strict_response_validation=True,
-                max_retries=cast(Any, None),
-            )
+          ModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, max_retries=cast(Any, None))
 
     @pytest.mark.respx(base_url=base_url)
     def test_received_text_for_expected_json(self, respx_mock: MockRouter) -> None:
@@ -946,16 +787,12 @@ class TestModernTreasury:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = ModernTreasury(
-            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-        )
+        strict_client = ModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
-            strict_client.get("/foo", cast_to=Model)
+          strict_client.get("/foo", cast_to=Model)
 
-        non_strict_client = ModernTreasury(
-            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=False
-        )
+        non_strict_client = ModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=False)
 
         response = non_strict_client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -964,34 +801,32 @@ class TestModernTreasury:
         non_strict_client.close()
 
     @pytest.mark.parametrize(
-        "remaining_retries,retry_after,timeout",
-        [
-            [3, "20", 20],
-            [3, "0", 0.5],
-            [3, "-10", 0.5],
-            [3, "60", 60],
-            [3, "61", 0.5],
-            [3, "Fri, 29 Sep 2023 16:26:57 GMT", 20],
-            [3, "Fri, 29 Sep 2023 16:26:37 GMT", 0.5],
-            [3, "Fri, 29 Sep 2023 16:26:27 GMT", 0.5],
-            [3, "Fri, 29 Sep 2023 16:27:37 GMT", 60],
-            [3, "Fri, 29 Sep 2023 16:27:38 GMT", 0.5],
-            [3, "99999999999999999999999999999999999", 0.5],
-            [3, "Zun, 29 Sep 2023 16:26:27 GMT", 0.5],
-            [3, "", 0.5],
-            [2, "", 0.5 * 2.0],
-            [1, "", 0.5 * 4.0],
-            [-1100, "", 8],  # test large number potentially overflowing
-        ],
-    )
+            "remaining_retries,retry_after,timeout",
+            [
+                [ 3, "20", 20 ],
+                [ 3, "0", 0.5 ],
+                [ 3, "-10", 0.5 ],
+                [ 3, "60", 60 ],
+                [ 3, "61", 0.5 ],
+                [ 3, "Fri, 29 Sep 2023 16:26:57 GMT", 20 ],
+                [ 3, "Fri, 29 Sep 2023 16:26:37 GMT", 0.5 ],
+                [ 3, "Fri, 29 Sep 2023 16:26:27 GMT", 0.5 ],
+                [ 3, "Fri, 29 Sep 2023 16:27:37 GMT", 60 ],
+                [ 3, "Fri, 29 Sep 2023 16:27:38 GMT", 0.5 ],
+                [ 3, "99999999999999999999999999999999999", 0.5 ],
+                [ 3, "Zun, 29 Sep 2023 16:26:27 GMT", 0.5 ],
+                [ 3, "", 0.5 ],
+                [ 2, "", 0.5 * 2.0 ],
+                [ 1, "", 0.5 * 4.0 ],
+                [-1100, "", 8], # test large number potentially overflowing
+            ],
+        )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
-    def test_parse_retry_after_header(
-        self, remaining_retries: int, retry_after: str, timeout: float, client: ModernTreasury
-    ) -> None:
+    def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float, client: ModernTreasury) -> None:
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
         calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
-        assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
+        assert calculated == pytest.approx(timeout, 0.5 * 0.875) # pyright: ignore[reportUnknownMemberType]
 
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
@@ -1021,7 +856,7 @@ class TestModernTreasury:
         client: ModernTreasury,
         failures_before_success: int,
         failure_mode: Literal["status", "exception"],
-        respx_mock: MockRouter,
+        respx_mock: MockRouter
     ) -> None:
         client = client.with_options(max_retries=4)
 
@@ -1032,7 +867,7 @@ class TestModernTreasury:
             if nb_retries < failures_before_success:
                 nb_retries += 1
                 if failure_mode == "exception":
-                    raise RuntimeError("oops")
+                  raise RuntimeError("oops")
                 return httpx.Response(500)
             return httpx.Response(200)
 
@@ -1047,7 +882,10 @@ class TestModernTreasury:
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_omit_retry_count_header(
-        self, client: ModernTreasury, failures_before_success: int, respx_mock: MockRouter
+        self,
+        client: ModernTreasury,
+        failures_before_success: int,
+        respx_mock: MockRouter
     ) -> None:
         client = client.with_options(max_retries=4)
 
@@ -1062,17 +900,18 @@ class TestModernTreasury:
 
         respx_mock.post("/api/counterparties").mock(side_effect=retry_handler)
 
-        response = client.counterparties.with_raw_response.create(
-            name="name", extra_headers={"x-stainless-retry-count": Omit()}
-        )
+        response = client.counterparties.with_raw_response.create(name="name", extra_headers={'x-stainless-retry-count': Omit()})
 
-        assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
+        assert len(response.http_request.headers.get_list('x-stainless-retry-count')) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_overwrite_retry_count_header(
-        self, client: ModernTreasury, failures_before_success: int, respx_mock: MockRouter
+        self,
+        client: ModernTreasury,
+        failures_before_success: int,
+        respx_mock: MockRouter
     ) -> None:
         client = client.with_options(max_retries=4)
 
@@ -1087,17 +926,18 @@ class TestModernTreasury:
 
         respx_mock.post("/api/counterparties").mock(side_effect=retry_handler)
 
-        response = client.counterparties.with_raw_response.create(
-            name="name", extra_headers={"x-stainless-retry-count": "42"}
-        )
+        response = client.counterparties.with_raw_response.create(name="name", extra_headers={'x-stainless-retry-count': '42'})
 
-        assert response.http_request.headers.get("x-stainless-retry-count") == "42"
+        assert response.http_request.headers.get('x-stainless-retry-count') == '42'
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retries_taken_new_response_class(
-        self, client: ModernTreasury, failures_before_success: int, respx_mock: MockRouter
+        self,
+        client: ModernTreasury,
+        failures_before_success: int,
+        respx_mock: MockRouter
     ) -> None:
         client = client.with_options(max_retries=4)
 
@@ -1112,7 +952,7 @@ class TestModernTreasury:
 
         respx_mock.post("/api/counterparties").mock(side_effect=retry_handler)
 
-        with client.counterparties.with_streaming_response.create(name="name") as response:
+        with client.counterparties.with_streaming_response.create(name="name") as response :
             assert response.retries_taken == failures_before_success
             assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
 
@@ -1170,8 +1010,6 @@ class TestModernTreasury:
 
         assert exc_info.value.response.status_code == 302
         assert exc_info.value.response.headers["Location"] == f"{base_url}/redirected"
-
-
 class TestAsyncModernTreasury:
     @pytest.mark.respx(base_url=base_url)
     async def test_raw_response(self, respx_mock: MockRouter, async_client: AsyncModernTreasury) -> None:
@@ -1184,9 +1022,7 @@ class TestAsyncModernTreasury:
 
     @pytest.mark.respx(base_url=base_url)
     async def test_raw_response_for_binary(self, respx_mock: MockRouter, async_client: AsyncModernTreasury) -> None:
-        respx_mock.post("/foo").mock(
-            return_value=httpx.Response(200, headers={"Content-Type": "application/binary"}, content='{"foo": "bar"}')
-        )
+        respx_mock.post("/foo").mock(return_value=httpx.Response(200, headers={'Content-Type':'application/binary'}, content='{"foo": "bar"}'))
 
         response = await async_client.post("/foo", cast_to=httpx.Response)
         assert response.status_code == 200
@@ -1222,67 +1058,59 @@ class TestAsyncModernTreasury:
         assert isinstance(async_client.timeout, httpx.Timeout)
 
     async def test_copy_default_headers(self) -> None:
-        client = AsyncModernTreasury(
-            base_url=base_url,
-            api_key=api_key,
-            organization_id=organization_id,
-            _strict_response_validation=True,
-            default_headers={"X-Foo": "bar"},
-        )
-        assert client.default_headers["X-Foo"] == "bar"
+        client = AsyncModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, default_headers={
+            "X-Foo": "bar"
+        })
+        assert client.default_headers['X-Foo'] == 'bar'
 
         # does not override the already given value when not specified
         copied = client.copy()
-        assert copied.default_headers["X-Foo"] == "bar"
+        assert copied.default_headers['X-Foo'] == 'bar'
 
         # merges already given headers
-        copied = client.copy(default_headers={"X-Bar": "stainless"})
-        assert copied.default_headers["X-Foo"] == "bar"
-        assert copied.default_headers["X-Bar"] == "stainless"
+        copied = client.copy(default_headers={'X-Bar': 'stainless'})
+        assert copied.default_headers['X-Foo'] == 'bar'
+        assert copied.default_headers['X-Bar'] == 'stainless'
 
         # uses new values for any already given headers
-        copied = client.copy(default_headers={"X-Foo": "stainless"})
-        assert copied.default_headers["X-Foo"] == "stainless"
+        copied = client.copy(default_headers={'X-Foo': 'stainless'})
+        assert copied.default_headers['X-Foo'] == 'stainless'
 
         # set_default_headers
 
         # completely overrides already set values
         copied = client.copy(set_default_headers={})
-        assert copied.default_headers.get("X-Foo") is None
+        assert copied.default_headers.get('X-Foo') is None
 
-        copied = client.copy(set_default_headers={"X-Bar": "Robert"})
-        assert copied.default_headers["X-Bar"] == "Robert"
+        copied = client.copy(set_default_headers={'X-Bar': 'Robert'})
+        assert copied.default_headers['X-Bar'] == 'Robert'
 
         with pytest.raises(
-            ValueError,
-            match="`default_headers` and `set_default_headers` arguments are mutually exclusive",
+          ValueError,
+          match='`default_headers` and `set_default_headers` arguments are mutually exclusive',
         ):
-            client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
+          client.copy(set_default_headers={}, default_headers={'X-Foo': 'Bar'})
         await client.close()
 
     async def test_copy_default_query(self) -> None:
-        client = AsyncModernTreasury(
-            base_url=base_url,
-            api_key=api_key,
-            organization_id=organization_id,
-            _strict_response_validation=True,
-            default_query={"foo": "bar"},
-        )
-        assert _get_params(client)["foo"] == "bar"
+        client = AsyncModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, default_query={
+            "foo": "bar"
+        })
+        assert _get_params(client)['foo'] == 'bar'
 
         # does not override the already given value when not specified
         copied = client.copy()
-        assert _get_params(copied)["foo"] == "bar"
+        assert _get_params(copied)['foo'] == 'bar'
 
         # merges already given params
-        copied = client.copy(default_query={"bar": "stainless"})
+        copied = client.copy(default_query={'bar': 'stainless'})
         params = _get_params(copied)
-        assert params["foo"] == "bar"
-        assert params["bar"] == "stainless"
+        assert params['foo'] == 'bar'
+        assert params['bar'] == 'stainless'
 
         # uses new values for any already given headers
-        copied = client.copy(default_query={"foo": "stainless"})
-        assert _get_params(copied)["foo"] == "stainless"
+        copied = client.copy(default_query={'foo': 'stainless'})
+        assert _get_params(copied)['foo'] == 'stainless'
 
         # set_default_query
 
@@ -1290,23 +1118,23 @@ class TestAsyncModernTreasury:
         copied = client.copy(set_default_query={})
         assert _get_params(copied) == {}
 
-        copied = client.copy(set_default_query={"bar": "Robert"})
-        assert _get_params(copied)["bar"] == "Robert"
+        copied = client.copy(set_default_query={'bar': 'Robert'})
+        assert _get_params(copied)['bar'] == 'Robert'
 
         with pytest.raises(
-            ValueError,
-            # TODO: update
-            match="`default_query` and `set_default_query` arguments are mutually exclusive",
+          ValueError,
+          # TODO: update
+          match='`default_query` and `set_default_query` arguments are mutually exclusive',
         ):
-            client.copy(set_default_query={}, default_query={"foo": "Bar"})
+          client.copy(set_default_query={}, default_query={'foo': 'Bar'})
 
         await client.close()
 
     def test_copy_signature(self, async_client: AsyncModernTreasury) -> None:
         # ensure the same parameters that can be passed to the client are defined in the `.copy()` method
         init_signature = inspect.signature(
-            # mypy doesn't like that we access the `__init__` property.
-            async_client.__init__,  # type: ignore[misc]
+          # mypy doesn't like that we access the `__init__` property.
+          async_client.__init__,  # type: ignore[misc]
         )
         copy_signature = inspect.signature(async_client.copy)
         exclude_params = {"transport", "proxies", "_strict_response_validation"}
@@ -1393,13 +1221,7 @@ class TestAsyncModernTreasury:
         assert timeout == httpx.Timeout(100.0)
 
     async def test_client_timeout_option(self) -> None:
-        client = AsyncModernTreasury(
-            base_url=base_url,
-            api_key=api_key,
-            organization_id=organization_id,
-            _strict_response_validation=True,
-            timeout=httpx.Timeout(0),
-        )
+        client = AsyncModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, timeout=httpx.Timeout(0))
 
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -1410,120 +1232,76 @@ class TestAsyncModernTreasury:
     async def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         async with httpx.AsyncClient(timeout=None) as http_client:
-            client = AsyncModernTreasury(
-                base_url=base_url,
-                api_key=api_key,
-                organization_id=organization_id,
-                _strict_response_validation=True,
-                http_client=http_client,
-            )
+          client = AsyncModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, http_client=http_client)
 
-            request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-            timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
-            assert timeout == httpx.Timeout(None)
+          request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+          timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
+          assert timeout == httpx.Timeout(None)
 
-            await client.close()
+          await client.close()
 
         # no timeout given to the httpx client should not use the httpx default
         async with httpx.AsyncClient() as http_client:
-            client = AsyncModernTreasury(
-                base_url=base_url,
-                api_key=api_key,
-                organization_id=organization_id,
-                _strict_response_validation=True,
-                http_client=http_client,
-            )
+          client = AsyncModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, http_client=http_client)
 
-            request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-            timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
-            assert timeout == DEFAULT_TIMEOUT
+          request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+          timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
+          assert timeout == DEFAULT_TIMEOUT
 
-            await client.close()
+          await client.close()
 
         # explicitly passing the default timeout currently results in it being ignored
         async with httpx.AsyncClient(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = AsyncModernTreasury(
-                base_url=base_url,
-                api_key=api_key,
-                organization_id=organization_id,
-                _strict_response_validation=True,
-                http_client=http_client,
-            )
+          client = AsyncModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, http_client=http_client)
 
-            request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-            timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
-            assert timeout == DEFAULT_TIMEOUT  # our default
+          request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+          timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
+          assert timeout == DEFAULT_TIMEOUT  # our default
 
-            await client.close()
+          await client.close()
 
     def test_invalid_http_client(self) -> None:
-        with pytest.raises(TypeError, match="Invalid `http_client` arg"):
-            with httpx.Client() as http_client:
-                AsyncModernTreasury(
-                    base_url=base_url,
-                    api_key=api_key,
-                    organization_id=organization_id,
-                    _strict_response_validation=True,
-                    http_client=cast(Any, http_client),
-                )
+        with pytest.raises(TypeError, match='Invalid `http_client` arg') :
+            with httpx.Client() as http_client :
+                AsyncModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, http_client=cast(Any, http_client))
 
     async def test_default_headers_option(self) -> None:
-        test_client = AsyncModernTreasury(
-            base_url=base_url,
-            api_key=api_key,
-            organization_id=organization_id,
-            _strict_response_validation=True,
-            default_headers={"X-Foo": "bar"},
-        )
-        request = test_client._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert request.headers.get("x-foo") == "bar"
-        assert request.headers.get("x-stainless-lang") == "python"
+        test_client = AsyncModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, default_headers={
+            "X-Foo": "bar"
+        })
+        request = test_client._build_request(FinalRequestOptions(method="get", url='/foo'))
+        assert request.headers.get('x-foo') == 'bar'
+        assert request.headers.get('x-stainless-lang') == 'python'
 
-        test_client2 = AsyncModernTreasury(
-            base_url=base_url,
-            api_key=api_key,
-            organization_id=organization_id,
-            _strict_response_validation=True,
-            default_headers={
-                "X-Foo": "stainless",
-                "X-Stainless-Lang": "my-overriding-header",
-            },
-        )
-        request = test_client2._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert request.headers.get("x-foo") == "stainless"
-        assert request.headers.get("x-stainless-lang") == "my-overriding-header"
+        test_client2 = AsyncModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, default_headers={
+            "X-Foo": "stainless",
+            "X-Stainless-Lang": "my-overriding-header",
+        })
+        request = test_client2._build_request(FinalRequestOptions(method="get", url='/foo'))
+        assert request.headers.get('x-foo') == 'stainless'
+        assert request.headers.get('x-stainless-lang') == 'my-overriding-header'
 
         await test_client.close()
         await test_client2.close()
 
     def test_validate_headers(self) -> None:
-        client = AsyncModernTreasury(
-            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-        )
-        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+        client = AsyncModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True)
+        request = client._build_request(FinalRequestOptions(method="get", url='/foo'))
         assert "Basic" in request.headers.get("Authorization")
 
         with pytest.raises(ModernTreasuryError):
-            with update_env(
-                **{
-                    "MODERN_TREASURY_ORGANIZATION_ID": Omit(),
-                    "MODERN_TREASURY_API_KEY": Omit(),
-                }
-            ):
-                client2 = AsyncModernTreasury(
-                    base_url=base_url, api_key=None, organization_id=None, _strict_response_validation=True
-                )
+            with update_env(**{
+                "MODERN_TREASURY_ORGANIZATION_ID": Omit(),
+                "MODERN_TREASURY_API_KEY": Omit(),
+            }) :
+                client2 = AsyncModernTreasury(base_url=base_url, api_key=None, organization_id=None, _strict_response_validation=True)
             _ = client2
 
     async def test_default_query_option(self) -> None:
-        client = AsyncModernTreasury(
-            base_url=base_url,
-            api_key=api_key,
-            organization_id=organization_id,
-            _strict_response_validation=True,
-            default_query={"query_param": "bar"},
-        )
-        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+        client = AsyncModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, default_query={
+            "query_param": "bar"
+        })
+        request = client._build_request(FinalRequestOptions(method="get", url='/foo'))
         url = httpx.URL(request.url)
         assert dict(url.params) == {"query_param": "bar"}
 
@@ -1535,7 +1313,7 @@ class TestAsyncModernTreasury:
             )
         )
         url = httpx.URL(request.url)
-        assert dict(url.params) == {"foo": "baz", "query_param": "overridden"}
+        assert dict(url.params) == {'foo': 'baz', "query_param": "overridden"}
 
         await client.close()
 
@@ -1644,7 +1422,7 @@ class TestAsyncModernTreasury:
             ),
         )
         params = dict(request.url.params)
-        assert params == {"bar": "1", "foo": "2"}
+        assert params == {'bar': '1', 'foo': '2'}
 
         # `extra_query` takes priority over `query` when keys clash
         request = client._build_request(
@@ -1658,7 +1436,7 @@ class TestAsyncModernTreasury:
             ),
         )
         params = dict(request.url.params)
-        assert params == {"foo": "2"}
+        assert params == {'foo': '2'}
 
     def test_multipart_repeating_array(self, async_client: AsyncModernTreasury) -> None:
         request = async_client._build_request(
@@ -1695,12 +1473,7 @@ class TestAsyncModernTreasury:
 
         file_content = b"Hello, this is a test file."
 
-        response = await async_client.post(
-            "/upload",
-            content=file_content,
-            cast_to=httpx.Response,
-            options={"headers": {"Content-Type": "application/octet-stream"}},
-        )
+        response = await async_client.post("/upload", content=file_content, cast_to=httpx.Response, options={"headers": {"Content-Type": "application/octet-stream"}})
 
         assert response.status_code == 200
         assert response.request.headers["Content-Type"] == "application/octet-stream"
@@ -1715,29 +1488,16 @@ class TestAsyncModernTreasury:
             assert counter.value == 0, "the request body should not have been read"
             return httpx.Response(200, content=await request.aread())
 
-        async with AsyncModernTreasury(
-            base_url=base_url,
-            api_key=api_key,
-            organization_id=organization_id,
-            _strict_response_validation=True,
-            http_client=httpx.AsyncClient(transport=MockTransport(handler=mock_handler)),
-        ) as client:
-            response = await client.post(
-                "/upload",
-                content=iterator,
-                cast_to=httpx.Response,
-                options={"headers": {"Content-Type": "application/octet-stream"}},
-            )
+        async with AsyncModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, http_client=httpx.AsyncClient(transport = MockTransport(handler=mock_handler))) as client:
+          response = await client.post("/upload", content=iterator, cast_to=httpx.Response, options={"headers": {"Content-Type": "application/octet-stream"}})
 
-            assert response.status_code == 200
-            assert response.request.headers["Content-Type"] == "application/octet-stream"
-            assert response.content == file_content
-            assert counter.value == 1
+          assert response.status_code == 200
+          assert response.request.headers["Content-Type"] == "application/octet-stream"
+          assert response.content == file_content
+          assert counter.value == 1
 
     @pytest.mark.respx(base_url=base_url)
-    async def test_binary_content_upload_with_body_is_deprecated(
-        self, respx_mock: MockRouter, async_client: AsyncModernTreasury
-    ) -> None:
+    async def test_binary_content_upload_with_body_is_deprecated(self, respx_mock: MockRouter, async_client: AsyncModernTreasury) -> None:
         respx_mock.post("/upload").mock(side_effect=mirror_request_content)
 
         file_content = b"Hello, this is a test file."
@@ -1745,12 +1505,7 @@ class TestAsyncModernTreasury:
         with pytest.deprecated_call(
             match="Passing raw bytes as `body` is deprecated and will be removed in a future version. Please pass raw bytes via the `content` parameter instead."
         ):
-            response = await async_client.post(
-                "/upload",
-                body=file_content,
-                cast_to=httpx.Response,
-                options={"headers": {"Content-Type": "application/octet-stream"}},
-            )
+            response = await async_client.post("/upload", body=file_content, cast_to=httpx.Response, options={"headers": {"Content-Type": "application/octet-stream"}})
 
         assert response.status_code == 200
         assert response.request.headers["Content-Type"] == "application/octet-stream"
@@ -1764,44 +1519,37 @@ class TestAsyncModernTreasury:
         class Model2(BaseModel):
             foo: str
 
-        respx_mock.get("/foo").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get('/foo').mock(return_value=httpx.Response(200, json={'foo': 'bar'}))
 
         response = await async_client.get("/foo", cast_to=cast(Any, Union[Model1, Model2]))
         assert isinstance(response, Model2)
-        assert response.foo == "bar"
-
+        assert response.foo == 'bar'
     @pytest.mark.respx(base_url=base_url)
-    async def test_union_response_different_types(
-        self, respx_mock: MockRouter, async_client: AsyncModernTreasury
-    ) -> None:
+    async def test_union_response_different_types(self, respx_mock: MockRouter, async_client: AsyncModernTreasury) -> None:
         """Union of objects with the same field name using a different type"""
-
         class Model1(BaseModel):
             foo: int
 
         class Model2(BaseModel):
             foo: str
 
-        respx_mock.get("/foo").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+        respx_mock.get('/foo').mock(return_value=httpx.Response(200, json={'foo': 'bar'}))
 
         response = await async_client.get("/foo", cast_to=cast(Any, Union[Model1, Model2]))
         assert isinstance(response, Model2)
-        assert response.foo == "bar"
+        assert response.foo == 'bar'
 
-        respx_mock.get("/foo").mock(return_value=httpx.Response(200, json={"foo": 1}))
+        respx_mock.get('/foo').mock(return_value=httpx.Response(200, json={'foo': 1}))
 
         response = await async_client.get("/foo", cast_to=cast(Any, Union[Model1, Model2]))
         assert isinstance(response, Model1)
         assert response.foo == 1
 
     @pytest.mark.respx(base_url=base_url)
-    async def test_non_application_json_content_type_for_json_data(
-        self, respx_mock: MockRouter, async_client: AsyncModernTreasury
-    ) -> None:
+    async def test_non_application_json_content_type_for_json_data(self, respx_mock: MockRouter, async_client: AsyncModernTreasury) -> None:
         """
         Response that sets Content-Type to something other than application/json but returns json data
         """
-
         class Model(BaseModel):
             foo: int
 
@@ -1819,7 +1567,7 @@ class TestAsyncModernTreasury:
 
     @pytest.mark.respx(base_url=base_url)
     async def test_idempotency_header_options(self, respx_mock: MockRouter, async_client: AsyncModernTreasury) -> None:
-        respx_mock.post("/foo").mock(return_value=httpx.Response(200, json={}))
+        respx_mock.post('/foo').mock(return_value=httpx.Response(200, json={}))
 
         response = await async_client.post("/foo", cast_to=httpx.Response)
 
@@ -1828,33 +1576,22 @@ class TestAsyncModernTreasury:
         assert header.startswith("stainless-python-retry")
 
         # explicit header
-        response = await async_client.post(
-            "/foo",
-            cast_to=httpx.Response,
-            options=make_request_options(extra_headers={"Idempotency-Key": "custom-key"}),
-        )
+        response = await async_client.post("/foo", cast_to=httpx.Response, options = make_request_options(extra_headers = {
+            "Idempotency-Key": "custom-key"
+        }))
         assert response.request.headers.get("Idempotency-Key") == "custom-key"
 
-        response = await async_client.post(
-            "/foo",
-            cast_to=httpx.Response,
-            options=make_request_options(extra_headers={"idempotency-key": "custom-key"}),
-        )
+        response = await async_client.post("/foo", cast_to=httpx.Response, options = make_request_options(extra_headers = {
+            "idempotency-key": "custom-key"
+        }))
         assert response.request.headers.get("Idempotency-Key") == "custom-key"
 
         # custom argument
-        response = await async_client.post(
-            "/foo", cast_to=httpx.Response, options=make_request_options(idempotency_key="custom-key")
-        )
+        response = await async_client.post("/foo", cast_to=httpx.Response, options=make_request_options(idempotency_key="custom-key"))
         assert response.request.headers.get("Idempotency-Key") == "custom-key"
 
     async def test_base_url_setter(self) -> None:
-        client = AsyncModernTreasury(
-            base_url="https://example.com/from_init",
-            api_key=api_key,
-            organization_id=organization_id,
-            _strict_response_validation=True,
-        )
+        client = AsyncModernTreasury(base_url="https://example.com/from_init", api_key=api_key, organization_id=organization_id, _strict_response_validation=True)
         assert client.base_url == "https://example.com/from_init/"
 
         client.base_url = "https://example.com/from_setter"  # type: ignore[assignment]
@@ -1864,31 +1601,11 @@ class TestAsyncModernTreasury:
         await client.close()
 
     async def test_base_url_env(self) -> None:
-        with update_env(MODERN_TREASURY_BASE_URL="http://localhost:5000/from/env"):
-            client = AsyncModernTreasury(
-                api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-            )
-            assert client.base_url == "http://localhost:5000/from/env/"
+        with update_env(MODERN_TREASURY_BASE_URL='http://localhost:5000/from/env'):
+          client = AsyncModernTreasury(api_key=api_key, organization_id=organization_id, _strict_response_validation=True)
+          assert client.base_url == 'http://localhost:5000/from/env/'
 
-    @pytest.mark.parametrize(
-        "client",
-        [
-            AsyncModernTreasury(
-                base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                organization_id=organization_id,
-                _strict_response_validation=True,
-            ),
-            AsyncModernTreasury(
-                base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                organization_id=organization_id,
-                _strict_response_validation=True,
-                http_client=httpx.AsyncClient(),
-            ),
-        ],
-        ids=["standard", "custom http client"],
-    )
+    @pytest.mark.parametrize("client", [AsyncModernTreasury(base_url="http://localhost:5000/custom/path/", api_key=api_key, organization_id=organization_id, _strict_response_validation=True), AsyncModernTreasury(base_url="http://localhost:5000/custom/path/", api_key=api_key, organization_id=organization_id, _strict_response_validation=True, http_client=httpx.AsyncClient())], ids = ["standard", "custom http client"])
     async def test_base_url_trailing_slash(self, client: AsyncModernTreasury) -> None:
         request = client._build_request(
             FinalRequestOptions(
@@ -1900,25 +1617,7 @@ class TestAsyncModernTreasury:
         assert request.url == "http://localhost:5000/custom/path/foo"
         await client.close()
 
-    @pytest.mark.parametrize(
-        "client",
-        [
-            AsyncModernTreasury(
-                base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                organization_id=organization_id,
-                _strict_response_validation=True,
-            ),
-            AsyncModernTreasury(
-                base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                organization_id=organization_id,
-                _strict_response_validation=True,
-                http_client=httpx.AsyncClient(),
-            ),
-        ],
-        ids=["standard", "custom http client"],
-    )
+    @pytest.mark.parametrize("client", [AsyncModernTreasury(base_url="http://localhost:5000/custom/path/", api_key=api_key, organization_id=organization_id, _strict_response_validation=True), AsyncModernTreasury(base_url="http://localhost:5000/custom/path/", api_key=api_key, organization_id=organization_id, _strict_response_validation=True, http_client=httpx.AsyncClient())], ids = ["standard", "custom http client"])
     async def test_base_url_no_trailing_slash(self, client: AsyncModernTreasury) -> None:
         request = client._build_request(
             FinalRequestOptions(
@@ -1930,25 +1629,7 @@ class TestAsyncModernTreasury:
         assert request.url == "http://localhost:5000/custom/path/foo"
         await client.close()
 
-    @pytest.mark.parametrize(
-        "client",
-        [
-            AsyncModernTreasury(
-                base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                organization_id=organization_id,
-                _strict_response_validation=True,
-            ),
-            AsyncModernTreasury(
-                base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                organization_id=organization_id,
-                _strict_response_validation=True,
-                http_client=httpx.AsyncClient(),
-            ),
-        ],
-        ids=["standard", "custom http client"],
-    )
+    @pytest.mark.parametrize("client", [AsyncModernTreasury(base_url="http://localhost:5000/custom/path/", api_key=api_key, organization_id=organization_id, _strict_response_validation=True), AsyncModernTreasury(base_url="http://localhost:5000/custom/path/", api_key=api_key, organization_id=organization_id, _strict_response_validation=True, http_client=httpx.AsyncClient())], ids = ["standard", "custom http client"])
     async def test_absolute_request_url(self, client: AsyncModernTreasury) -> None:
         request = client._build_request(
             FinalRequestOptions(
@@ -1961,9 +1642,7 @@ class TestAsyncModernTreasury:
         await client.close()
 
     async def test_copied_client_does_not_close_http(self) -> None:
-        test_client = AsyncModernTreasury(
-            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-        )
+        test_client = AsyncModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True)
         assert not test_client.is_closed()
 
         copied = test_client.copy()
@@ -1975,19 +1654,15 @@ class TestAsyncModernTreasury:
         assert not test_client.is_closed()
 
     async def test_client_context_manager(self) -> None:
-        test_client = AsyncModernTreasury(
-            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-        )
+        test_client = AsyncModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True)
         async with test_client as c2:
-            assert c2 is test_client
-            assert not c2.is_closed()
-            assert not test_client.is_closed()
+          assert c2 is test_client
+          assert not c2.is_closed()
+          assert not test_client.is_closed()
         assert test_client.is_closed()
 
     @pytest.mark.respx(base_url=base_url)
-    async def test_client_response_validation_error(
-        self, respx_mock: MockRouter, async_client: AsyncModernTreasury
-    ) -> None:
+    async def test_client_response_validation_error(self, respx_mock: MockRouter, async_client: AsyncModernTreasury) -> None:
         class Model(BaseModel):
             foo: str
 
@@ -2000,13 +1675,7 @@ class TestAsyncModernTreasury:
 
     async def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
-            AsyncModernTreasury(
-                base_url=base_url,
-                api_key=api_key,
-                organization_id=organization_id,
-                _strict_response_validation=True,
-                max_retries=cast(Any, None),
-            )
+          AsyncModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True, max_retries=cast(Any, None))
 
     @pytest.mark.respx(base_url=base_url)
     async def test_received_text_for_expected_json(self, respx_mock: MockRouter) -> None:
@@ -2015,16 +1684,12 @@ class TestAsyncModernTreasury:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = AsyncModernTreasury(
-            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True
-        )
+        strict_client = AsyncModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
-            await strict_client.get("/foo", cast_to=Model)
+          await strict_client.get("/foo", cast_to=Model)
 
-        non_strict_client = AsyncModernTreasury(
-            base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=False
-        )
+        non_strict_client = AsyncModernTreasury(base_url=base_url, api_key=api_key, organization_id=organization_id, _strict_response_validation=False)
 
         response = await non_strict_client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -2033,40 +1698,36 @@ class TestAsyncModernTreasury:
         await non_strict_client.close()
 
     @pytest.mark.parametrize(
-        "remaining_retries,retry_after,timeout",
-        [
-            [3, "20", 20],
-            [3, "0", 0.5],
-            [3, "-10", 0.5],
-            [3, "60", 60],
-            [3, "61", 0.5],
-            [3, "Fri, 29 Sep 2023 16:26:57 GMT", 20],
-            [3, "Fri, 29 Sep 2023 16:26:37 GMT", 0.5],
-            [3, "Fri, 29 Sep 2023 16:26:27 GMT", 0.5],
-            [3, "Fri, 29 Sep 2023 16:27:37 GMT", 60],
-            [3, "Fri, 29 Sep 2023 16:27:38 GMT", 0.5],
-            [3, "99999999999999999999999999999999999", 0.5],
-            [3, "Zun, 29 Sep 2023 16:26:27 GMT", 0.5],
-            [3, "", 0.5],
-            [2, "", 0.5 * 2.0],
-            [1, "", 0.5 * 4.0],
-            [-1100, "", 8],  # test large number potentially overflowing
-        ],
-    )
+            "remaining_retries,retry_after,timeout",
+            [
+                [ 3, "20", 20 ],
+                [ 3, "0", 0.5 ],
+                [ 3, "-10", 0.5 ],
+                [ 3, "60", 60 ],
+                [ 3, "61", 0.5 ],
+                [ 3, "Fri, 29 Sep 2023 16:26:57 GMT", 20 ],
+                [ 3, "Fri, 29 Sep 2023 16:26:37 GMT", 0.5 ],
+                [ 3, "Fri, 29 Sep 2023 16:26:27 GMT", 0.5 ],
+                [ 3, "Fri, 29 Sep 2023 16:27:37 GMT", 60 ],
+                [ 3, "Fri, 29 Sep 2023 16:27:38 GMT", 0.5 ],
+                [ 3, "99999999999999999999999999999999999", 0.5 ],
+                [ 3, "Zun, 29 Sep 2023 16:26:27 GMT", 0.5 ],
+                [ 3, "", 0.5 ],
+                [ 2, "", 0.5 * 2.0 ],
+                [ 1, "", 0.5 * 4.0 ],
+                [-1100, "", 8], # test large number potentially overflowing
+            ],
+        )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
-    async def test_parse_retry_after_header(
-        self, remaining_retries: int, retry_after: str, timeout: float, async_client: AsyncModernTreasury
-    ) -> None:
+    async def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float, async_client: AsyncModernTreasury) -> None:
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
         calculated = async_client._calculate_retry_timeout(remaining_retries, options, headers)
-        assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
+        assert calculated == pytest.approx(timeout, 0.5 * 0.875) # pyright: ignore[reportUnknownMemberType]
 
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    async def test_retrying_timeout_errors_doesnt_leak(
-        self, respx_mock: MockRouter, async_client: AsyncModernTreasury
-    ) -> None:
+    async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, async_client: AsyncModernTreasury) -> None:
         respx_mock.post("/api/counterparties").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
@@ -2076,9 +1737,7 @@ class TestAsyncModernTreasury:
 
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    async def test_retrying_status_errors_doesnt_leak(
-        self, respx_mock: MockRouter, async_client: AsyncModernTreasury
-    ) -> None:
+    async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, async_client: AsyncModernTreasury) -> None:
         respx_mock.post("/api/counterparties").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
@@ -2094,7 +1753,7 @@ class TestAsyncModernTreasury:
         async_client: AsyncModernTreasury,
         failures_before_success: int,
         failure_mode: Literal["status", "exception"],
-        respx_mock: MockRouter,
+        respx_mock: MockRouter
     ) -> None:
         client = async_client.with_options(max_retries=4)
 
@@ -2105,7 +1764,7 @@ class TestAsyncModernTreasury:
             if nb_retries < failures_before_success:
                 nb_retries += 1
                 if failure_mode == "exception":
-                    raise RuntimeError("oops")
+                  raise RuntimeError("oops")
                 return httpx.Response(500)
             return httpx.Response(200)
 
@@ -2120,7 +1779,10 @@ class TestAsyncModernTreasury:
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_omit_retry_count_header(
-        self, async_client: AsyncModernTreasury, failures_before_success: int, respx_mock: MockRouter
+        self,
+        async_client: AsyncModernTreasury,
+        failures_before_success: int,
+        respx_mock: MockRouter
     ) -> None:
         client = async_client.with_options(max_retries=4)
 
@@ -2135,17 +1797,18 @@ class TestAsyncModernTreasury:
 
         respx_mock.post("/api/counterparties").mock(side_effect=retry_handler)
 
-        response = await client.counterparties.with_raw_response.create(
-            name="name", extra_headers={"x-stainless-retry-count": Omit()}
-        )
+        response = await client.counterparties.with_raw_response.create(name="name", extra_headers={'x-stainless-retry-count': Omit()})
 
-        assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
+        assert len(response.http_request.headers.get_list('x-stainless-retry-count')) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_overwrite_retry_count_header(
-        self, async_client: AsyncModernTreasury, failures_before_success: int, respx_mock: MockRouter
+        self,
+        async_client: AsyncModernTreasury,
+        failures_before_success: int,
+        respx_mock: MockRouter
     ) -> None:
         client = async_client.with_options(max_retries=4)
 
@@ -2160,17 +1823,18 @@ class TestAsyncModernTreasury:
 
         respx_mock.post("/api/counterparties").mock(side_effect=retry_handler)
 
-        response = await client.counterparties.with_raw_response.create(
-            name="name", extra_headers={"x-stainless-retry-count": "42"}
-        )
+        response = await client.counterparties.with_raw_response.create(name="name", extra_headers={'x-stainless-retry-count': '42'})
 
-        assert response.http_request.headers.get("x-stainless-retry-count") == "42"
+        assert response.http_request.headers.get('x-stainless-retry-count') == '42'
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
     @mock.patch("modern_treasury._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retries_taken_new_response_class(
-        self, async_client: AsyncModernTreasury, failures_before_success: int, respx_mock: MockRouter
+        self,
+        async_client: AsyncModernTreasury,
+        failures_before_success: int,
+        respx_mock: MockRouter
     ) -> None:
         client = async_client.with_options(max_retries=4)
 
@@ -2185,7 +1849,7 @@ class TestAsyncModernTreasury:
 
         respx_mock.post("/api/counterparties").mock(side_effect=retry_handler)
 
-        async with client.counterparties.with_streaming_response.create(name="name") as response:
+        async with client.counterparties.with_streaming_response.create(name="name") as response :
             assert response.retries_taken == failures_before_success
             assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
 
@@ -2243,9 +1907,7 @@ class TestAsyncModernTreasury:
         )
 
         with pytest.raises(APIStatusError) as exc_info:
-            await async_client.post(
-                "/redirect", body={"key": "value"}, options={"follow_redirects": False}, cast_to=httpx.Response
-            )
+            await async_client.post("/redirect", body={"key": "value"}, options={"follow_redirects": False}, cast_to=httpx.Response)
 
         assert exc_info.value.response.status_code == 302
         assert exc_info.value.response.headers["Location"] == f"{base_url}/redirected"

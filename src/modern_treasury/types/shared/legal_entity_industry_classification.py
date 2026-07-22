@@ -1,13 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 from ..._models import BaseModel
 
-__all__ = ["LegalEntityIndustryClassification"]
+from typing import List, Optional
 
+from typing_extensions import Literal
+
+from datetime import datetime
+
+__all__ = ["LegalEntityIndustryClassification"]
 
 class LegalEntityIndustryClassification(BaseModel):
     id: str
@@ -15,23 +16,7 @@ class LegalEntityIndustryClassification(BaseModel):
     classification_codes: List[str]
     """The industry classification codes for the legal entity."""
 
-    classification_type: Literal[
-        "anzsic",
-        "bics",
-        "gics",
-        "hsics",
-        "icb",
-        "isic",
-        "mgecs",
-        "nace",
-        "naics",
-        "rbics",
-        "sic",
-        "sni",
-        "trbc",
-        "uksic",
-        "unspsc",
-    ]
+    classification_type: Literal["anzsic", "bics", "gics", "hsics", "icb", "isic", "mgecs", "nace", "naics", "rbics", "sic", "sni", "trbc", "uksic", "unspsc"]
     """The classification system of the classification codes."""
 
     created_at: datetime

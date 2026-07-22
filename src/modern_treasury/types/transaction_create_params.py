@@ -2,17 +2,18 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing_extensions import TypedDict, Annotated, Required, Literal
+
 from datetime import date
-from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from typing import Union, Optional, Dict
 
 from .._utils import PropertyInfo
 
 __all__ = ["TransactionCreateParams"]
 
-
 class TransactionCreateParams(TypedDict, total=False):
-    as_of_date: Required[Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]]
+    as_of_date: Required[Annotated[Union[str, date, None], PropertyInfo(format = "iso8601")]]
     """The date on which the transaction occurred."""
 
     direction: Required[str]
@@ -56,36 +57,7 @@ class TransactionCreateParams(TypedDict, total=False):
     posted: bool
     """This field will be `true` if the transaction has posted to the account."""
 
-    type: Optional[
-        Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "card",
-            "chats",
-            "check",
-            "cross_border",
-            "dk_nets",
-            "eft",
-            "gb_fps",
-            "masav",
-            "mx_ccen",
-            "neft",
-            "nics",
-            "nz_becs",
-            "pl_elixir",
-            "rtp",
-            "se_bankgirot",
-            "sepa",
-            "sg_giro",
-            "sic",
-            "stablecoin",
-            "wire",
-            "zengin",
-            "other",
-        ]
-    ]
+    type: Optional[Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin", "other"]]
     """The type of the transaction.
 
     Examples could be `card, `ach`, `wire`, `check`, `rtp`, or `book`.

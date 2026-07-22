@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from .._models import BaseModel
+
+from .shared.ledger_balances import LedgerBalances
+
 from datetime import datetime
 
-from .._models import BaseModel
-from .shared.ledger_balances import LedgerBalances
+from typing import Optional, Dict
+
 from .shared.transaction_direction import TransactionDirection
 
 __all__ = ["LedgerAccountCategory"]
-
 
 class LedgerAccountCategory(BaseModel):
     id: str

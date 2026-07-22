@@ -3,5 +3,5 @@
 from __future__ import annotations
 
 from .reversal import Reversal as Reversal
-from .reversal_list_params import ReversalListParams as ReversalListParams
 from .reversal_create_params import ReversalCreateParams as ReversalCreateParams
+from .reversal_list_params import ReversalListParams as ReversalListParams

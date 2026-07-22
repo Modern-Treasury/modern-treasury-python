@@ -2,30 +2,31 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from datetime import date, datetime
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import TypedDict, Annotated, Literal
+
+from typing import Optional, Union, Dict
+
+from datetime import datetime, date
 
 from .._utils import PropertyInfo
 
 __all__ = ["InvoiceListParams"]
-
 
 class InvoiceListParams(TypedDict, total=False):
     after_cursor: Optional[str]
 
     counterparty_id: str
 
-    created_at_end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    created_at_end: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """An inclusive upper bound for searching created_at"""
 
-    created_at_start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    created_at_start: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """An inclusive lower bound for searching created_at"""
 
-    due_date_end: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    due_date_end: Annotated[Union[str, date], PropertyInfo(format = "iso8601")]
     """An inclusive upper bound for searching due_date"""
 
-    due_date_start: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    due_date_start: Annotated[Union[str, date], PropertyInfo(format = "iso8601")]
     """An inclusive lower bound for searching due_date"""
 
     expected_payment_id: str

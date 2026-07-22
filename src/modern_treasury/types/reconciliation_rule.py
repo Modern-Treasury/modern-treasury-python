@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
-from datetime import date
+from .._models import BaseModel
+
 from typing_extensions import Literal
 
-from .._models import BaseModel
+from typing import Optional, Dict
+
 from .shared.currency import Currency
 
-__all__ = ["ReconciliationRule"]
+from datetime import date
 
+__all__ = ["ReconciliationRule"]
 
 class ReconciliationRule(BaseModel):
     amount_lower_bound: int
@@ -49,33 +51,5 @@ class ReconciliationRule(BaseModel):
     date_upper_bound: Optional[date] = None
     """The latest date the payment may come in. Format is yyyy-mm-dd"""
 
-    type: Optional[
-        Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "card",
-            "chats",
-            "check",
-            "cross_border",
-            "dk_nets",
-            "eft",
-            "gb_fps",
-            "masav",
-            "mx_ccen",
-            "neft",
-            "nics",
-            "nz_becs",
-            "pl_elixir",
-            "rtp",
-            "se_bankgirot",
-            "sepa",
-            "sg_giro",
-            "sic",
-            "stablecoin",
-            "wire",
-            "zengin",
-        ]
-    ] = None
+    type: Optional[Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin"]] = None
     """One of ach, au_becs, bacs, book, check, eft, rtp, sepa, wire"""

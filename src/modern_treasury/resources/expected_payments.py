@@ -2,35 +2,57 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
-from datetime import date, datetime
-from typing_extensions import Literal
-
 import httpx
 
-from .. import _legacy_response
-from ..types import (
-    ExpectedPaymentType,
-    expected_payment_list_params,
-    expected_payment_create_params,
-    expected_payment_update_params,
-)
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.shared.currency import Currency
+
+from .._compat import cached_property
+
 from ..types.expected_payment import ExpectedPayment
-from ..types.expected_payment_type import ExpectedPaymentType
-from ..types.reconciliation_rule_param import ReconciliationRuleParam
-from ..types.shared.transaction_direction import TransactionDirection
+
+from .._utils import maybe_transform, path_template, async_maybe_transform
+
+from .._base_client import make_request_options, AsyncPaginator
+
+from typing import Optional, Union, Iterable, Dict
+
+from .._types import Omit, omit, NotGiven
+
+from typing_extensions import Literal
+
+from ..types.shared.currency import Currency
+
+from datetime import date, datetime
+
 from ..types.shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
-__all__ = ["ExpectedPayments", "AsyncExpectedPayments"]
+from ..types.reconciliation_rule_param import ReconciliationRuleParam
 
+from ..types.expected_payment_type import ExpectedPaymentType
+
+from ..pagination import SyncPage, AsyncPage
+
+from ..types.shared.transaction_direction import TransactionDirection
+
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ..types import expected_payment_create_params
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import expected_payment_create_params
+from ..types import expected_payment_update_params
+from ..types import expected_payment_list_params
+from ..types import shared
+from ..types import shared
+from ..types import ExpectedPaymentType
+from ..types import shared
+from ..types import ExpectedPaymentType
+from ..types import shared
+
+__all__ = ["ExpectedPayments", "AsyncExpectedPayments"]
 
 class ExpectedPayments(SyncAPIResource):
     @cached_property
@@ -52,41 +74,39 @@ class ExpectedPayments(SyncAPIResource):
         """
         return ExpectedPaymentsWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        amount_lower_bound: Optional[int] | Omit = omit,
-        amount_reconciled: Optional[int] | Omit = omit,
-        amount_reconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
-        amount_unreconciled: Optional[int] | Omit = omit,
-        amount_unreconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
-        amount_upper_bound: Optional[int] | Omit = omit,
-        counterparty_id: Optional[str] | Omit = omit,
-        currency: Optional[Currency] | Omit = omit,
-        date_lower_bound: Union[str, date, None] | Omit = omit,
-        date_upper_bound: Union[str, date, None] | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        direction: Optional[Literal["credit", "debit"]] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        internal_account_id: Optional[str] | Omit = omit,
-        ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
-        ledger_transaction_id: str | Omit = omit,
-        line_items: Iterable[expected_payment_create_params.LineItem] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        reconciliation_filters: Optional[object] | Omit = omit,
-        reconciliation_groups: Optional[object] | Omit = omit,
-        reconciliation_rule_variables: Optional[Iterable[ReconciliationRuleParam]] | Omit = omit,
-        remittance_information: Optional[str] | Omit = omit,
-        statement_descriptor: Optional[str] | Omit = omit,
-        type: Optional[ExpectedPaymentType] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ExpectedPayment:
+    def create(self,
+    *,
+    amount_lower_bound: Optional[int] | Omit = omit,
+    amount_reconciled: Optional[int] | Omit = omit,
+    amount_reconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
+    amount_unreconciled: Optional[int] | Omit = omit,
+    amount_unreconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
+    amount_upper_bound: Optional[int] | Omit = omit,
+    counterparty_id: Optional[str] | Omit = omit,
+    currency: Optional[Currency] | Omit = omit,
+    date_lower_bound: Union[str, date, None] | Omit = omit,
+    date_upper_bound: Union[str, date, None] | Omit = omit,
+    description: Optional[str] | Omit = omit,
+    direction: Optional[Literal["credit", "debit"]] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    internal_account_id: Optional[str] | Omit = omit,
+    ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
+    ledger_transaction_id: str | Omit = omit,
+    line_items: Iterable[expected_payment_create_params.LineItem] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    reconciliation_filters: Optional[object] | Omit = omit,
+    reconciliation_groups: Optional[object] | Omit = omit,
+    reconciliation_rule_variables: Optional[Iterable[ReconciliationRuleParam]] | Omit = omit,
+    remittance_information: Optional[str] | Omit = omit,
+    statement_descriptor: Optional[str] | Omit = omit,
+    type: Optional[ExpectedPaymentType] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ExpectedPayment:
         """
         create expected payment
 
@@ -168,56 +188,45 @@ class ExpectedPayments(SyncAPIResource):
         """
         return self._post(
             "/api/expected_payments",
-            body=maybe_transform(
-                {
-                    "amount_lower_bound": amount_lower_bound,
-                    "amount_reconciled": amount_reconciled,
-                    "amount_reconciled_direction": amount_reconciled_direction,
-                    "amount_unreconciled": amount_unreconciled,
-                    "amount_unreconciled_direction": amount_unreconciled_direction,
-                    "amount_upper_bound": amount_upper_bound,
-                    "counterparty_id": counterparty_id,
-                    "currency": currency,
-                    "date_lower_bound": date_lower_bound,
-                    "date_upper_bound": date_upper_bound,
-                    "description": description,
-                    "direction": direction,
-                    "external_id": external_id,
-                    "internal_account_id": internal_account_id,
-                    "ledger_transaction": ledger_transaction,
-                    "ledger_transaction_id": ledger_transaction_id,
-                    "line_items": line_items,
-                    "metadata": metadata,
-                    "reconciliation_filters": reconciliation_filters,
-                    "reconciliation_groups": reconciliation_groups,
-                    "reconciliation_rule_variables": reconciliation_rule_variables,
-                    "remittance_information": remittance_information,
-                    "statement_descriptor": statement_descriptor,
-                    "type": type,
-                },
-                expected_payment_create_params.ExpectedPaymentCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "amount_lower_bound": amount_lower_bound,
+                "amount_reconciled": amount_reconciled,
+                "amount_reconciled_direction": amount_reconciled_direction,
+                "amount_unreconciled": amount_unreconciled,
+                "amount_unreconciled_direction": amount_unreconciled_direction,
+                "amount_upper_bound": amount_upper_bound,
+                "counterparty_id": counterparty_id,
+                "currency": currency,
+                "date_lower_bound": date_lower_bound,
+                "date_upper_bound": date_upper_bound,
+                "description": description,
+                "direction": direction,
+                "external_id": external_id,
+                "internal_account_id": internal_account_id,
+                "ledger_transaction": ledger_transaction,
+                "ledger_transaction_id": ledger_transaction_id,
+                "line_items": line_items,
+                "metadata": metadata,
+                "reconciliation_filters": reconciliation_filters,
+                "reconciliation_groups": reconciliation_groups,
+                "reconciliation_rule_variables": reconciliation_rule_variables,
+                "remittance_information": remittance_information,
+                "statement_descriptor": statement_descriptor,
+                "type": type,
+            }, expected_payment_create_params.ExpectedPaymentCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=ExpectedPayment,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ExpectedPayment:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> ExpectedPayment:
         """
         get expected payment
 
@@ -231,49 +240,47 @@ class ExpectedPayments(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/expected_payments/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=ExpectedPayment,
         )
 
-    def update(
-        self,
-        id: str,
-        *,
-        amount_lower_bound: Optional[int] | Omit = omit,
-        amount_reconciled: Optional[int] | Omit = omit,
-        amount_reconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
-        amount_unreconciled: Optional[int] | Omit = omit,
-        amount_unreconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
-        amount_upper_bound: Optional[int] | Omit = omit,
-        counterparty_id: Optional[str] | Omit = omit,
-        currency: Optional[Currency] | Omit = omit,
-        date_lower_bound: Union[str, date, None] | Omit = omit,
-        date_upper_bound: Union[str, date, None] | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        direction: Optional[Literal["credit", "debit"]] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        internal_account_id: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        reconciliation_filters: Optional[object] | Omit = omit,
-        reconciliation_groups: Optional[object] | Omit = omit,
-        reconciliation_rule_variables: Optional[Iterable[ReconciliationRuleParam]] | Omit = omit,
-        remittance_information: Optional[str] | Omit = omit,
-        statement_descriptor: Optional[str] | Omit = omit,
-        status: Optional[Literal["reconciled"]] | Omit = omit,
-        type: Optional[ExpectedPaymentType] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ExpectedPayment:
+    def update(self,
+    id: str,
+    *,
+    amount_lower_bound: Optional[int] | Omit = omit,
+    amount_reconciled: Optional[int] | Omit = omit,
+    amount_reconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
+    amount_unreconciled: Optional[int] | Omit = omit,
+    amount_unreconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
+    amount_upper_bound: Optional[int] | Omit = omit,
+    counterparty_id: Optional[str] | Omit = omit,
+    currency: Optional[Currency] | Omit = omit,
+    date_lower_bound: Union[str, date, None] | Omit = omit,
+    date_upper_bound: Union[str, date, None] | Omit = omit,
+    description: Optional[str] | Omit = omit,
+    direction: Optional[Literal["credit", "debit"]] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    internal_account_id: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    reconciliation_filters: Optional[object] | Omit = omit,
+    reconciliation_groups: Optional[object] | Omit = omit,
+    reconciliation_rule_variables: Optional[Iterable[ReconciliationRuleParam]] | Omit = omit,
+    remittance_information: Optional[str] | Omit = omit,
+    statement_descriptor: Optional[str] | Omit = omit,
+    status: Optional[Literal["reconciled"]] | Omit = omit,
+    type: Optional[ExpectedPaymentType] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ExpectedPayment:
         """
         update expected payment
 
@@ -347,96 +354,60 @@ class ExpectedPayments(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._patch(
             path_template("/api/expected_payments/{id}", id=id),
-            body=maybe_transform(
-                {
-                    "amount_lower_bound": amount_lower_bound,
-                    "amount_reconciled": amount_reconciled,
-                    "amount_reconciled_direction": amount_reconciled_direction,
-                    "amount_unreconciled": amount_unreconciled,
-                    "amount_unreconciled_direction": amount_unreconciled_direction,
-                    "amount_upper_bound": amount_upper_bound,
-                    "counterparty_id": counterparty_id,
-                    "currency": currency,
-                    "date_lower_bound": date_lower_bound,
-                    "date_upper_bound": date_upper_bound,
-                    "description": description,
-                    "direction": direction,
-                    "external_id": external_id,
-                    "internal_account_id": internal_account_id,
-                    "metadata": metadata,
-                    "reconciliation_filters": reconciliation_filters,
-                    "reconciliation_groups": reconciliation_groups,
-                    "reconciliation_rule_variables": reconciliation_rule_variables,
-                    "remittance_information": remittance_information,
-                    "statement_descriptor": statement_descriptor,
-                    "status": status,
-                    "type": type,
-                },
-                expected_payment_update_params.ExpectedPaymentUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "amount_lower_bound": amount_lower_bound,
+                "amount_reconciled": amount_reconciled,
+                "amount_reconciled_direction": amount_reconciled_direction,
+                "amount_unreconciled": amount_unreconciled,
+                "amount_unreconciled_direction": amount_unreconciled_direction,
+                "amount_upper_bound": amount_upper_bound,
+                "counterparty_id": counterparty_id,
+                "currency": currency,
+                "date_lower_bound": date_lower_bound,
+                "date_upper_bound": date_upper_bound,
+                "description": description,
+                "direction": direction,
+                "external_id": external_id,
+                "internal_account_id": internal_account_id,
+                "metadata": metadata,
+                "reconciliation_filters": reconciliation_filters,
+                "reconciliation_groups": reconciliation_groups,
+                "reconciliation_rule_variables": reconciliation_rule_variables,
+                "remittance_information": remittance_information,
+                "statement_descriptor": statement_descriptor,
+                "status": status,
+                "type": type,
+            }, expected_payment_update_params.ExpectedPaymentUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=ExpectedPayment,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        created_at_lower_bound: Union[str, datetime] | Omit = omit,
-        created_at_upper_bound: Union[str, datetime] | Omit = omit,
-        direction: TransactionDirection | Omit = omit,
-        external_id: str | Omit = omit,
-        internal_account_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        per_page: int | Omit = omit,
-        status: Literal["archived", "partially_reconciled", "reconciled", "unreconciled"] | Omit = omit,
-        type: Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "card",
-            "chats",
-            "check",
-            "cross_border",
-            "dk_nets",
-            "eft",
-            "gb_fps",
-            "masav",
-            "mx_ccen",
-            "neft",
-            "nics",
-            "nz_becs",
-            "pl_elixir",
-            "rtp",
-            "se_bankgirot",
-            "sepa",
-            "sg_giro",
-            "sic",
-            "stablecoin",
-            "wire",
-            "zengin",
-        ]
-        | Omit = omit,
-        updated_at_lower_bound: Union[str, datetime] | Omit = omit,
-        updated_at_upper_bound: Union[str, datetime] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[ExpectedPayment]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    created_at_lower_bound: Union[str, datetime] | Omit = omit,
+    created_at_upper_bound: Union[str, datetime] | Omit = omit,
+    direction: TransactionDirection | Omit = omit,
+    external_id: str | Omit = omit,
+    internal_account_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    per_page: int | Omit = omit,
+    status: Literal["archived", "partially_reconciled", "reconciled", "unreconciled"] | Omit = omit,
+    type: Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin"] | Omit = omit,
+    updated_at_lower_bound: Union[str, datetime] | Omit = omit,
+    updated_at_upper_bound: Union[str, datetime] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[ExpectedPayment]:
         """
         list expected_payments
 
@@ -473,46 +444,35 @@ class ExpectedPayments(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/expected_payments",
-            page=SyncPage[ExpectedPayment],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "counterparty_id": counterparty_id,
-                        "created_at_lower_bound": created_at_lower_bound,
-                        "created_at_upper_bound": created_at_upper_bound,
-                        "direction": direction,
-                        "external_id": external_id,
-                        "internal_account_id": internal_account_id,
-                        "metadata": metadata,
-                        "per_page": per_page,
-                        "status": status,
-                        "type": type,
-                        "updated_at_lower_bound": updated_at_lower_bound,
-                        "updated_at_upper_bound": updated_at_upper_bound,
-                    },
-                    expected_payment_list_params.ExpectedPaymentListParams,
-                ),
-            ),
+            page = SyncPage[ExpectedPayment],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "counterparty_id": counterparty_id,
+                "created_at_lower_bound": created_at_lower_bound,
+                "created_at_upper_bound": created_at_upper_bound,
+                "direction": direction,
+                "external_id": external_id,
+                "internal_account_id": internal_account_id,
+                "metadata": metadata,
+                "per_page": per_page,
+                "status": status,
+                "type": type,
+                "updated_at_lower_bound": updated_at_lower_bound,
+                "updated_at_upper_bound": updated_at_upper_bound,
+            }, expected_payment_list_params.ExpectedPaymentListParams)),
             model=ExpectedPayment,
         )
 
-    def delete(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ExpectedPayment:
+    def delete(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ExpectedPayment:
         """
         delete expected payment
 
@@ -528,19 +488,14 @@ class ExpectedPayments(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._delete(
             path_template("/api/expected_payments/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=ExpectedPayment,
         )
-
 
 class AsyncExpectedPayments(AsyncAPIResource):
     @cached_property
@@ -562,41 +517,39 @@ class AsyncExpectedPayments(AsyncAPIResource):
         """
         return AsyncExpectedPaymentsWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        amount_lower_bound: Optional[int] | Omit = omit,
-        amount_reconciled: Optional[int] | Omit = omit,
-        amount_reconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
-        amount_unreconciled: Optional[int] | Omit = omit,
-        amount_unreconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
-        amount_upper_bound: Optional[int] | Omit = omit,
-        counterparty_id: Optional[str] | Omit = omit,
-        currency: Optional[Currency] | Omit = omit,
-        date_lower_bound: Union[str, date, None] | Omit = omit,
-        date_upper_bound: Union[str, date, None] | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        direction: Optional[Literal["credit", "debit"]] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        internal_account_id: Optional[str] | Omit = omit,
-        ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
-        ledger_transaction_id: str | Omit = omit,
-        line_items: Iterable[expected_payment_create_params.LineItem] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        reconciliation_filters: Optional[object] | Omit = omit,
-        reconciliation_groups: Optional[object] | Omit = omit,
-        reconciliation_rule_variables: Optional[Iterable[ReconciliationRuleParam]] | Omit = omit,
-        remittance_information: Optional[str] | Omit = omit,
-        statement_descriptor: Optional[str] | Omit = omit,
-        type: Optional[ExpectedPaymentType] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ExpectedPayment:
+    async def create(self,
+    *,
+    amount_lower_bound: Optional[int] | Omit = omit,
+    amount_reconciled: Optional[int] | Omit = omit,
+    amount_reconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
+    amount_unreconciled: Optional[int] | Omit = omit,
+    amount_unreconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
+    amount_upper_bound: Optional[int] | Omit = omit,
+    counterparty_id: Optional[str] | Omit = omit,
+    currency: Optional[Currency] | Omit = omit,
+    date_lower_bound: Union[str, date, None] | Omit = omit,
+    date_upper_bound: Union[str, date, None] | Omit = omit,
+    description: Optional[str] | Omit = omit,
+    direction: Optional[Literal["credit", "debit"]] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    internal_account_id: Optional[str] | Omit = omit,
+    ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
+    ledger_transaction_id: str | Omit = omit,
+    line_items: Iterable[expected_payment_create_params.LineItem] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    reconciliation_filters: Optional[object] | Omit = omit,
+    reconciliation_groups: Optional[object] | Omit = omit,
+    reconciliation_rule_variables: Optional[Iterable[ReconciliationRuleParam]] | Omit = omit,
+    remittance_information: Optional[str] | Omit = omit,
+    statement_descriptor: Optional[str] | Omit = omit,
+    type: Optional[ExpectedPaymentType] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ExpectedPayment:
         """
         create expected payment
 
@@ -678,56 +631,45 @@ class AsyncExpectedPayments(AsyncAPIResource):
         """
         return await self._post(
             "/api/expected_payments",
-            body=await async_maybe_transform(
-                {
-                    "amount_lower_bound": amount_lower_bound,
-                    "amount_reconciled": amount_reconciled,
-                    "amount_reconciled_direction": amount_reconciled_direction,
-                    "amount_unreconciled": amount_unreconciled,
-                    "amount_unreconciled_direction": amount_unreconciled_direction,
-                    "amount_upper_bound": amount_upper_bound,
-                    "counterparty_id": counterparty_id,
-                    "currency": currency,
-                    "date_lower_bound": date_lower_bound,
-                    "date_upper_bound": date_upper_bound,
-                    "description": description,
-                    "direction": direction,
-                    "external_id": external_id,
-                    "internal_account_id": internal_account_id,
-                    "ledger_transaction": ledger_transaction,
-                    "ledger_transaction_id": ledger_transaction_id,
-                    "line_items": line_items,
-                    "metadata": metadata,
-                    "reconciliation_filters": reconciliation_filters,
-                    "reconciliation_groups": reconciliation_groups,
-                    "reconciliation_rule_variables": reconciliation_rule_variables,
-                    "remittance_information": remittance_information,
-                    "statement_descriptor": statement_descriptor,
-                    "type": type,
-                },
-                expected_payment_create_params.ExpectedPaymentCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "amount_lower_bound": amount_lower_bound,
+                "amount_reconciled": amount_reconciled,
+                "amount_reconciled_direction": amount_reconciled_direction,
+                "amount_unreconciled": amount_unreconciled,
+                "amount_unreconciled_direction": amount_unreconciled_direction,
+                "amount_upper_bound": amount_upper_bound,
+                "counterparty_id": counterparty_id,
+                "currency": currency,
+                "date_lower_bound": date_lower_bound,
+                "date_upper_bound": date_upper_bound,
+                "description": description,
+                "direction": direction,
+                "external_id": external_id,
+                "internal_account_id": internal_account_id,
+                "ledger_transaction": ledger_transaction,
+                "ledger_transaction_id": ledger_transaction_id,
+                "line_items": line_items,
+                "metadata": metadata,
+                "reconciliation_filters": reconciliation_filters,
+                "reconciliation_groups": reconciliation_groups,
+                "reconciliation_rule_variables": reconciliation_rule_variables,
+                "remittance_information": remittance_information,
+                "statement_descriptor": statement_descriptor,
+                "type": type,
+            }, expected_payment_create_params.ExpectedPaymentCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=ExpectedPayment,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ExpectedPayment:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> ExpectedPayment:
         """
         get expected payment
 
@@ -741,49 +683,47 @@ class AsyncExpectedPayments(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/expected_payments/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=ExpectedPayment,
         )
 
-    async def update(
-        self,
-        id: str,
-        *,
-        amount_lower_bound: Optional[int] | Omit = omit,
-        amount_reconciled: Optional[int] | Omit = omit,
-        amount_reconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
-        amount_unreconciled: Optional[int] | Omit = omit,
-        amount_unreconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
-        amount_upper_bound: Optional[int] | Omit = omit,
-        counterparty_id: Optional[str] | Omit = omit,
-        currency: Optional[Currency] | Omit = omit,
-        date_lower_bound: Union[str, date, None] | Omit = omit,
-        date_upper_bound: Union[str, date, None] | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        direction: Optional[Literal["credit", "debit"]] | Omit = omit,
-        external_id: Optional[str] | Omit = omit,
-        internal_account_id: Optional[str] | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        reconciliation_filters: Optional[object] | Omit = omit,
-        reconciliation_groups: Optional[object] | Omit = omit,
-        reconciliation_rule_variables: Optional[Iterable[ReconciliationRuleParam]] | Omit = omit,
-        remittance_information: Optional[str] | Omit = omit,
-        statement_descriptor: Optional[str] | Omit = omit,
-        status: Optional[Literal["reconciled"]] | Omit = omit,
-        type: Optional[ExpectedPaymentType] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ExpectedPayment:
+    async def update(self,
+    id: str,
+    *,
+    amount_lower_bound: Optional[int] | Omit = omit,
+    amount_reconciled: Optional[int] | Omit = omit,
+    amount_reconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
+    amount_unreconciled: Optional[int] | Omit = omit,
+    amount_unreconciled_direction: Optional[Literal["credit", "debit"]] | Omit = omit,
+    amount_upper_bound: Optional[int] | Omit = omit,
+    counterparty_id: Optional[str] | Omit = omit,
+    currency: Optional[Currency] | Omit = omit,
+    date_lower_bound: Union[str, date, None] | Omit = omit,
+    date_upper_bound: Union[str, date, None] | Omit = omit,
+    description: Optional[str] | Omit = omit,
+    direction: Optional[Literal["credit", "debit"]] | Omit = omit,
+    external_id: Optional[str] | Omit = omit,
+    internal_account_id: Optional[str] | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    reconciliation_filters: Optional[object] | Omit = omit,
+    reconciliation_groups: Optional[object] | Omit = omit,
+    reconciliation_rule_variables: Optional[Iterable[ReconciliationRuleParam]] | Omit = omit,
+    remittance_information: Optional[str] | Omit = omit,
+    statement_descriptor: Optional[str] | Omit = omit,
+    status: Optional[Literal["reconciled"]] | Omit = omit,
+    type: Optional[ExpectedPaymentType] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ExpectedPayment:
         """
         update expected payment
 
@@ -857,96 +797,60 @@ class AsyncExpectedPayments(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._patch(
             path_template("/api/expected_payments/{id}", id=id),
-            body=await async_maybe_transform(
-                {
-                    "amount_lower_bound": amount_lower_bound,
-                    "amount_reconciled": amount_reconciled,
-                    "amount_reconciled_direction": amount_reconciled_direction,
-                    "amount_unreconciled": amount_unreconciled,
-                    "amount_unreconciled_direction": amount_unreconciled_direction,
-                    "amount_upper_bound": amount_upper_bound,
-                    "counterparty_id": counterparty_id,
-                    "currency": currency,
-                    "date_lower_bound": date_lower_bound,
-                    "date_upper_bound": date_upper_bound,
-                    "description": description,
-                    "direction": direction,
-                    "external_id": external_id,
-                    "internal_account_id": internal_account_id,
-                    "metadata": metadata,
-                    "reconciliation_filters": reconciliation_filters,
-                    "reconciliation_groups": reconciliation_groups,
-                    "reconciliation_rule_variables": reconciliation_rule_variables,
-                    "remittance_information": remittance_information,
-                    "statement_descriptor": statement_descriptor,
-                    "status": status,
-                    "type": type,
-                },
-                expected_payment_update_params.ExpectedPaymentUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "amount_lower_bound": amount_lower_bound,
+                "amount_reconciled": amount_reconciled,
+                "amount_reconciled_direction": amount_reconciled_direction,
+                "amount_unreconciled": amount_unreconciled,
+                "amount_unreconciled_direction": amount_unreconciled_direction,
+                "amount_upper_bound": amount_upper_bound,
+                "counterparty_id": counterparty_id,
+                "currency": currency,
+                "date_lower_bound": date_lower_bound,
+                "date_upper_bound": date_upper_bound,
+                "description": description,
+                "direction": direction,
+                "external_id": external_id,
+                "internal_account_id": internal_account_id,
+                "metadata": metadata,
+                "reconciliation_filters": reconciliation_filters,
+                "reconciliation_groups": reconciliation_groups,
+                "reconciliation_rule_variables": reconciliation_rule_variables,
+                "remittance_information": remittance_information,
+                "statement_descriptor": statement_descriptor,
+                "status": status,
+                "type": type,
+            }, expected_payment_update_params.ExpectedPaymentUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=ExpectedPayment,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        created_at_lower_bound: Union[str, datetime] | Omit = omit,
-        created_at_upper_bound: Union[str, datetime] | Omit = omit,
-        direction: TransactionDirection | Omit = omit,
-        external_id: str | Omit = omit,
-        internal_account_id: str | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        per_page: int | Omit = omit,
-        status: Literal["archived", "partially_reconciled", "reconciled", "unreconciled"] | Omit = omit,
-        type: Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "card",
-            "chats",
-            "check",
-            "cross_border",
-            "dk_nets",
-            "eft",
-            "gb_fps",
-            "masav",
-            "mx_ccen",
-            "neft",
-            "nics",
-            "nz_becs",
-            "pl_elixir",
-            "rtp",
-            "se_bankgirot",
-            "sepa",
-            "sg_giro",
-            "sic",
-            "stablecoin",
-            "wire",
-            "zengin",
-        ]
-        | Omit = omit,
-        updated_at_lower_bound: Union[str, datetime] | Omit = omit,
-        updated_at_upper_bound: Union[str, datetime] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[ExpectedPayment, AsyncPage[ExpectedPayment]]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    created_at_lower_bound: Union[str, datetime] | Omit = omit,
+    created_at_upper_bound: Union[str, datetime] | Omit = omit,
+    direction: TransactionDirection | Omit = omit,
+    external_id: str | Omit = omit,
+    internal_account_id: str | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    per_page: int | Omit = omit,
+    status: Literal["archived", "partially_reconciled", "reconciled", "unreconciled"] | Omit = omit,
+    type: Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin"] | Omit = omit,
+    updated_at_lower_bound: Union[str, datetime] | Omit = omit,
+    updated_at_upper_bound: Union[str, datetime] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[ExpectedPayment, AsyncPage[ExpectedPayment]]:
         """
         list expected_payments
 
@@ -983,46 +887,35 @@ class AsyncExpectedPayments(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/expected_payments",
-            page=AsyncPage[ExpectedPayment],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "counterparty_id": counterparty_id,
-                        "created_at_lower_bound": created_at_lower_bound,
-                        "created_at_upper_bound": created_at_upper_bound,
-                        "direction": direction,
-                        "external_id": external_id,
-                        "internal_account_id": internal_account_id,
-                        "metadata": metadata,
-                        "per_page": per_page,
-                        "status": status,
-                        "type": type,
-                        "updated_at_lower_bound": updated_at_lower_bound,
-                        "updated_at_upper_bound": updated_at_upper_bound,
-                    },
-                    expected_payment_list_params.ExpectedPaymentListParams,
-                ),
-            ),
+            page = AsyncPage[ExpectedPayment],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "counterparty_id": counterparty_id,
+                "created_at_lower_bound": created_at_lower_bound,
+                "created_at_upper_bound": created_at_upper_bound,
+                "direction": direction,
+                "external_id": external_id,
+                "internal_account_id": internal_account_id,
+                "metadata": metadata,
+                "per_page": per_page,
+                "status": status,
+                "type": type,
+                "updated_at_lower_bound": updated_at_lower_bound,
+                "updated_at_upper_bound": updated_at_upper_bound,
+            }, expected_payment_list_params.ExpectedPaymentListParams)),
             model=ExpectedPayment,
         )
 
-    async def delete(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> ExpectedPayment:
+    async def delete(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> ExpectedPayment:
         """
         delete expected payment
 
@@ -1038,19 +931,14 @@ class AsyncExpectedPayments(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._delete(
             path_template("/api/expected_payments/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=ExpectedPayment,
         )
-
 
 class ExpectedPaymentsWithRawResponse:
     def __init__(self, expected_payments: ExpectedPayments) -> None:
@@ -1072,7 +960,6 @@ class ExpectedPaymentsWithRawResponse:
             expected_payments.delete,
         )
 
-
 class AsyncExpectedPaymentsWithRawResponse:
     def __init__(self, expected_payments: AsyncExpectedPayments) -> None:
         self._expected_payments = expected_payments
@@ -1093,7 +980,6 @@ class AsyncExpectedPaymentsWithRawResponse:
             expected_payments.delete,
         )
 
-
 class ExpectedPaymentsWithStreamingResponse:
     def __init__(self, expected_payments: ExpectedPayments) -> None:
         self._expected_payments = expected_payments
@@ -1113,7 +999,6 @@ class ExpectedPaymentsWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             expected_payments.delete,
         )
-
 
 class AsyncExpectedPaymentsWithStreamingResponse:
     def __init__(self, expected_payments: AsyncExpectedPayments) -> None:

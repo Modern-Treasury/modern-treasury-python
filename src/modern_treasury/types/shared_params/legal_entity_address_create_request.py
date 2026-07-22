@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing import Optional, List
+
+from typing_extensions import Literal, TypedDict, Required
 
 __all__ = ["LegalEntityAddressCreateRequest"]
-
 
 class LegalEntityAddressCreateRequest(TypedDict, total=False):
     country: Required[Optional[str]]
@@ -23,9 +23,7 @@ class LegalEntityAddressCreateRequest(TypedDict, total=False):
     region: Required[Optional[str]]
     """Region or State."""
 
-    address_types: List[
-        Literal["business", "business_physical", "business_registered", "mailing", "other", "po_box", "residential"]
-    ]
+    address_types: List[Literal["business", "business_physical", "business_registered", "mailing", "other", "po_box", "residential"]]
     """The types of this address."""
 
     line2: Optional[str]

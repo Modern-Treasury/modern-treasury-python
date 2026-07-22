@@ -4,7 +4,6 @@ from ..._models import BaseModel
 
 __all__ = ["AsyncResponse"]
 
-
 class AsyncResponse(BaseModel):
     id: str
 

@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from datetime import datetime
-
 from .._models import BaseModel
 
-__all__ = ["PaymentActionUpdateResponse"]
+from typing import Optional
 
+from datetime import datetime
+
+__all__ = ["PaymentActionUpdateResponse"]
 
 class PaymentActionUpdateResponse(BaseModel):
     id: str

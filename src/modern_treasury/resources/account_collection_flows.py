@@ -2,28 +2,37 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
-from typing_extensions import Literal
-
 import httpx
 
-from .. import _legacy_response
-from ..types import (
-    account_collection_flow_list_params,
-    account_collection_flow_create_params,
-    account_collection_flow_update_params,
-)
-from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
+
+from .._compat import cached_property
+
 from ..types.account_collection_flow import AccountCollectionFlow
 
-__all__ = ["AccountCollectionFlows", "AsyncAccountCollectionFlows"]
+from .._utils import maybe_transform, path_template, async_maybe_transform
 
+from .._base_client import make_request_options, AsyncPaginator
+
+from .._types import SequenceNotStr, Omit, omit, NotGiven
+
+from typing import List, Optional
+
+from typing_extensions import Literal
+
+from ..pagination import SyncPage, AsyncPage
+
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import account_collection_flow_create_params
+from ..types import account_collection_flow_update_params
+from ..types import account_collection_flow_list_params
+
+__all__ = ["AccountCollectionFlows", "AsyncAccountCollectionFlows"]
 
 class AccountCollectionFlows(SyncAPIResource):
     @cached_property
@@ -45,42 +54,18 @@ class AccountCollectionFlows(SyncAPIResource):
         """
         return AccountCollectionFlowsWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        counterparty_id: str,
-        payment_types: SequenceNotStr[str],
-        receiving_countries: List[
-            Literal[
-                "USA",
-                "AUS",
-                "BEL",
-                "CAN",
-                "CHL",
-                "CHN",
-                "COL",
-                "FRA",
-                "DEU",
-                "HKG",
-                "IND",
-                "IRL",
-                "ITA",
-                "MEX",
-                "NLD",
-                "PER",
-                "ESP",
-                "GBR",
-            ]
-        ]
-        | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> AccountCollectionFlow:
+    def create(self,
+    *,
+    counterparty_id: str,
+    payment_types: SequenceNotStr[str],
+    receiving_countries: List[Literal["USA", "AUS", "BEL", "CAN", "CHL", "CHN", "COL", "FRA", "DEU", "HKG", "IND", "IRL", "ITA", "MEX", "NLD", "PER", "ESP", "GBR"]] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> AccountCollectionFlow:
         """
         create account_collection_flow
 
@@ -99,35 +84,24 @@ class AccountCollectionFlows(SyncAPIResource):
         """
         return self._post(
             "/api/account_collection_flows",
-            body=maybe_transform(
-                {
-                    "counterparty_id": counterparty_id,
-                    "payment_types": payment_types,
-                    "receiving_countries": receiving_countries,
-                },
-                account_collection_flow_create_params.AccountCollectionFlowCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "counterparty_id": counterparty_id,
+                "payment_types": payment_types,
+                "receiving_countries": receiving_countries,
+            }, account_collection_flow_create_params.AccountCollectionFlowCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=AccountCollectionFlow,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AccountCollectionFlow:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AccountCollectionFlow:
         """
         get account_collection_flow
 
@@ -141,28 +115,26 @@ class AccountCollectionFlows(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/account_collection_flows/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=AccountCollectionFlow,
         )
 
-    def update(
-        self,
-        id: str,
-        *,
-        status: Literal["cancelled"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> AccountCollectionFlow:
+    def update(self,
+    id: str,
+    *,
+    status: Literal["cancelled"],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> AccountCollectionFlow:
         """update account_collection_flow
 
         Args:
@@ -182,38 +154,32 @@ class AccountCollectionFlows(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._patch(
             path_template("/api/account_collection_flows/{id}", id=id),
-            body=maybe_transform(
-                {"status": status}, account_collection_flow_update_params.AccountCollectionFlowUpdateParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "status": status
+            }, account_collection_flow_update_params.AccountCollectionFlowUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=AccountCollectionFlow,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        client_token: str | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        external_account_id: str | Omit = omit,
-        per_page: int | Omit = omit,
-        status: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[AccountCollectionFlow]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    client_token: str | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    external_account_id: str | Omit = omit,
+    per_page: int | Omit = omit,
+    status: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[AccountCollectionFlow]:
         """
         list account_collection_flows
 
@@ -228,27 +194,17 @@ class AccountCollectionFlows(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/account_collection_flows",
-            page=SyncPage[AccountCollectionFlow],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "client_token": client_token,
-                        "counterparty_id": counterparty_id,
-                        "external_account_id": external_account_id,
-                        "per_page": per_page,
-                        "status": status,
-                    },
-                    account_collection_flow_list_params.AccountCollectionFlowListParams,
-                ),
-            ),
+            page = SyncPage[AccountCollectionFlow],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "client_token": client_token,
+                "counterparty_id": counterparty_id,
+                "external_account_id": external_account_id,
+                "per_page": per_page,
+                "status": status,
+            }, account_collection_flow_list_params.AccountCollectionFlowListParams)),
             model=AccountCollectionFlow,
         )
-
 
 class AsyncAccountCollectionFlows(AsyncAPIResource):
     @cached_property
@@ -270,42 +226,18 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
         """
         return AsyncAccountCollectionFlowsWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        counterparty_id: str,
-        payment_types: SequenceNotStr[str],
-        receiving_countries: List[
-            Literal[
-                "USA",
-                "AUS",
-                "BEL",
-                "CAN",
-                "CHL",
-                "CHN",
-                "COL",
-                "FRA",
-                "DEU",
-                "HKG",
-                "IND",
-                "IRL",
-                "ITA",
-                "MEX",
-                "NLD",
-                "PER",
-                "ESP",
-                "GBR",
-            ]
-        ]
-        | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> AccountCollectionFlow:
+    async def create(self,
+    *,
+    counterparty_id: str,
+    payment_types: SequenceNotStr[str],
+    receiving_countries: List[Literal["USA", "AUS", "BEL", "CAN", "CHL", "CHN", "COL", "FRA", "DEU", "HKG", "IND", "IRL", "ITA", "MEX", "NLD", "PER", "ESP", "GBR"]] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> AccountCollectionFlow:
         """
         create account_collection_flow
 
@@ -324,35 +256,24 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
         """
         return await self._post(
             "/api/account_collection_flows",
-            body=await async_maybe_transform(
-                {
-                    "counterparty_id": counterparty_id,
-                    "payment_types": payment_types,
-                    "receiving_countries": receiving_countries,
-                },
-                account_collection_flow_create_params.AccountCollectionFlowCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "counterparty_id": counterparty_id,
+                "payment_types": payment_types,
+                "receiving_countries": receiving_countries,
+            }, account_collection_flow_create_params.AccountCollectionFlowCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=AccountCollectionFlow,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AccountCollectionFlow:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AccountCollectionFlow:
         """
         get account_collection_flow
 
@@ -366,28 +287,26 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/account_collection_flows/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=AccountCollectionFlow,
         )
 
-    async def update(
-        self,
-        id: str,
-        *,
-        status: Literal["cancelled"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> AccountCollectionFlow:
+    async def update(self,
+    id: str,
+    *,
+    status: Literal["cancelled"],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> AccountCollectionFlow:
         """update account_collection_flow
 
         Args:
@@ -407,38 +326,32 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._patch(
             path_template("/api/account_collection_flows/{id}", id=id),
-            body=await async_maybe_transform(
-                {"status": status}, account_collection_flow_update_params.AccountCollectionFlowUpdateParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "status": status
+            }, account_collection_flow_update_params.AccountCollectionFlowUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=AccountCollectionFlow,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        client_token: str | Omit = omit,
-        counterparty_id: str | Omit = omit,
-        external_account_id: str | Omit = omit,
-        per_page: int | Omit = omit,
-        status: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[AccountCollectionFlow, AsyncPage[AccountCollectionFlow]]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    client_token: str | Omit = omit,
+    counterparty_id: str | Omit = omit,
+    external_account_id: str | Omit = omit,
+    per_page: int | Omit = omit,
+    status: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[AccountCollectionFlow, AsyncPage[AccountCollectionFlow]]:
         """
         list account_collection_flows
 
@@ -453,27 +366,17 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/account_collection_flows",
-            page=AsyncPage[AccountCollectionFlow],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "client_token": client_token,
-                        "counterparty_id": counterparty_id,
-                        "external_account_id": external_account_id,
-                        "per_page": per_page,
-                        "status": status,
-                    },
-                    account_collection_flow_list_params.AccountCollectionFlowListParams,
-                ),
-            ),
+            page = AsyncPage[AccountCollectionFlow],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "client_token": client_token,
+                "counterparty_id": counterparty_id,
+                "external_account_id": external_account_id,
+                "per_page": per_page,
+                "status": status,
+            }, account_collection_flow_list_params.AccountCollectionFlowListParams)),
             model=AccountCollectionFlow,
         )
-
 
 class AccountCollectionFlowsWithRawResponse:
     def __init__(self, account_collection_flows: AccountCollectionFlows) -> None:
@@ -492,7 +395,6 @@ class AccountCollectionFlowsWithRawResponse:
             account_collection_flows.list,
         )
 
-
 class AsyncAccountCollectionFlowsWithRawResponse:
     def __init__(self, account_collection_flows: AsyncAccountCollectionFlows) -> None:
         self._account_collection_flows = account_collection_flows
@@ -510,7 +412,6 @@ class AsyncAccountCollectionFlowsWithRawResponse:
             account_collection_flows.list,
         )
 
-
 class AccountCollectionFlowsWithStreamingResponse:
     def __init__(self, account_collection_flows: AccountCollectionFlows) -> None:
         self._account_collection_flows = account_collection_flows
@@ -527,7 +428,6 @@ class AccountCollectionFlowsWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             account_collection_flows.list,
         )
-
 
 class AsyncAccountCollectionFlowsWithStreamingResponse:
     def __init__(self, account_collection_flows: AsyncAccountCollectionFlows) -> None:

@@ -2,31 +2,45 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from datetime import date
-from typing_extensions import Literal
-
 import httpx
 
-from .. import _legacy_response
-from ..types import (
-    incoming_payment_detail_list_params,
-    incoming_payment_detail_update_params,
-    incoming_payment_detail_create_async_params,
-)
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
-from ..pagination import SyncPage, AsyncPage
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.shared.currency import Currency
+
+from .._compat import cached_property
+
+from .._utils import path_template, maybe_transform, async_maybe_transform
+
 from ..types.incoming_payment_detail import IncomingPaymentDetail
+
+from .._base_client import make_request_options, AsyncPaginator
+
+from .._types import NotGiven, Omit, omit
+
+from typing import Dict, Optional, Union
+
+from ..pagination import SyncPage, AsyncPage
+
+from datetime import date
+
 from ..types.shared.transaction_direction import TransactionDirection
 
-__all__ = ["IncomingPaymentDetails", "AsyncIncomingPaymentDetails"]
+from typing_extensions import Literal
 
+from ..types.shared.currency import Currency
+
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import incoming_payment_detail_update_params
+from ..types import incoming_payment_detail_list_params
+from ..types import incoming_payment_detail_create_async_params
+from ..types import shared
+from ..types import shared
+
+__all__ = ["IncomingPaymentDetails", "AsyncIncomingPaymentDetails"]
 
 class IncomingPaymentDetails(SyncAPIResource):
     @cached_property
@@ -48,17 +62,15 @@ class IncomingPaymentDetails(SyncAPIResource):
         """
         return IncomingPaymentDetailsWithStreamingResponse(self)
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> IncomingPaymentDetail:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> IncomingPaymentDetail:
         """
         Get an existing Incoming Payment Detail.
 
@@ -72,28 +84,26 @@ class IncomingPaymentDetails(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._get(
             path_template("/api/incoming_payment_details/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=IncomingPaymentDetail,
         )
 
-    def update(
-        self,
-        id: str,
-        *,
-        metadata: Dict[str, str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> IncomingPaymentDetail:
+    def update(self,
+    id: str,
+    *,
+    metadata: Dict[str, str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> IncomingPaymentDetail:
         """
         Update an existing Incoming Payment Detail.
 
@@ -112,57 +122,36 @@ class IncomingPaymentDetails(SyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return self._patch(
             path_template("/api/incoming_payment_details/{id}", id=id),
-            body=maybe_transform(
-                {"metadata": metadata}, incoming_payment_detail_update_params.IncomingPaymentDetailUpdateParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "metadata": metadata
+            }, incoming_payment_detail_update_params.IncomingPaymentDetailUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=IncomingPaymentDetail,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        as_of_date_end: Union[str, date] | Omit = omit,
-        as_of_date_start: Union[str, date] | Omit = omit,
-        direction: TransactionDirection | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        per_page: int | Omit = omit,
-        status: Literal["completed", "pending", "returned"] | Omit = omit,
-        subtype: str | Omit = omit,
-        type: Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "check",
-            "eft",
-            "neft",
-            "nz_becs",
-            "rtp",
-            "sepa",
-            "stablecoin",
-            "wire",
-            "zengin",
-        ]
-        | Omit = omit,
-        virtual_account_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[IncomingPaymentDetail]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    as_of_date_end: Union[str, date] | Omit = omit,
+    as_of_date_start: Union[str, date] | Omit = omit,
+    direction: TransactionDirection | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    per_page: int | Omit = omit,
+    status: Literal["completed", "pending", "returned"] | Omit = omit,
+    subtype: str | Omit = omit,
+    type: Literal["ach", "au_becs", "bacs", "book", "check", "eft", "neft", "nz_becs", "rtp", "sepa", "stablecoin", "wire", "zengin"] | Omit = omit,
+    virtual_account_id: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> SyncPage[IncomingPaymentDetail]:
         """
         Get a list of Incoming Payment Details.
 
@@ -201,67 +190,41 @@ class IncomingPaymentDetails(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/incoming_payment_details",
-            page=SyncPage[IncomingPaymentDetail],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "as_of_date_end": as_of_date_end,
-                        "as_of_date_start": as_of_date_start,
-                        "direction": direction,
-                        "metadata": metadata,
-                        "per_page": per_page,
-                        "status": status,
-                        "subtype": subtype,
-                        "type": type,
-                        "virtual_account_id": virtual_account_id,
-                    },
-                    incoming_payment_detail_list_params.IncomingPaymentDetailListParams,
-                ),
-            ),
+            page = SyncPage[IncomingPaymentDetail],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "as_of_date_end": as_of_date_end,
+                "as_of_date_start": as_of_date_start,
+                "direction": direction,
+                "metadata": metadata,
+                "per_page": per_page,
+                "status": status,
+                "subtype": subtype,
+                "type": type,
+                "virtual_account_id": virtual_account_id,
+            }, incoming_payment_detail_list_params.IncomingPaymentDetailListParams)),
             model=IncomingPaymentDetail,
         )
 
-    def create_async(
-        self,
-        *,
-        amount: int | Omit = omit,
-        as_of_date: Union[str, date, None] | Omit = omit,
-        currency: Optional[Currency] | Omit = omit,
-        data: Optional[object] | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        direction: Literal["credit", "debit"] | Omit = omit,
-        internal_account_id: str | Omit = omit,
-        subtype: Optional[str] | Omit = omit,
-        type: Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "check",
-            "eft",
-            "neft",
-            "nz_becs",
-            "rtp",
-            "sepa",
-            "stablecoin",
-            "wire",
-            "zengin",
-        ]
-        | Omit = omit,
-        virtual_account_id: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> IncomingPaymentDetail:
+    def create_async(self,
+    *,
+    amount: int | Omit = omit,
+    as_of_date: Union[str, date, None] | Omit = omit,
+    currency: Optional[Currency] | Omit = omit,
+    data: Optional[object] | Omit = omit,
+    description: Optional[str] | Omit = omit,
+    direction: Literal["credit", "debit"] | Omit = omit,
+    internal_account_id: str | Omit = omit,
+    subtype: Optional[str] | Omit = omit,
+    type: Literal["ach", "au_becs", "bacs", "book", "check", "eft", "neft", "nz_becs", "rtp", "sepa", "stablecoin", "wire", "zengin"] | Omit = omit,
+    virtual_account_id: Optional[str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> IncomingPaymentDetail:
         """
         Simulate Incoming Payment Detail
 
@@ -302,31 +265,21 @@ class IncomingPaymentDetails(SyncAPIResource):
         """
         return self._post(
             "/api/simulations/incoming_payment_details/create_async",
-            body=maybe_transform(
-                {
-                    "amount": amount,
-                    "as_of_date": as_of_date,
-                    "currency": currency,
-                    "data": data,
-                    "description": description,
-                    "direction": direction,
-                    "internal_account_id": internal_account_id,
-                    "subtype": subtype,
-                    "type": type,
-                    "virtual_account_id": virtual_account_id,
-                },
-                incoming_payment_detail_create_async_params.IncomingPaymentDetailCreateAsyncParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=maybe_transform({
+                "amount": amount,
+                "as_of_date": as_of_date,
+                "currency": currency,
+                "data": data,
+                "description": description,
+                "direction": direction,
+                "internal_account_id": internal_account_id,
+                "subtype": subtype,
+                "type": type,
+                "virtual_account_id": virtual_account_id,
+            }, incoming_payment_detail_create_async_params.IncomingPaymentDetailCreateAsyncParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=IncomingPaymentDetail,
         )
-
 
 class AsyncIncomingPaymentDetails(AsyncAPIResource):
     @cached_property
@@ -348,17 +301,15 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         """
         return AsyncIncomingPaymentDetailsWithStreamingResponse(self)
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> IncomingPaymentDetail:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> IncomingPaymentDetail:
         """
         Get an existing Incoming Payment Detail.
 
@@ -372,28 +323,26 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._get(
             path_template("/api/incoming_payment_details/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=IncomingPaymentDetail,
         )
 
-    async def update(
-        self,
-        id: str,
-        *,
-        metadata: Dict[str, str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> IncomingPaymentDetail:
+    async def update(self,
+    id: str,
+    *,
+    metadata: Dict[str, str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> IncomingPaymentDetail:
         """
         Update an existing Incoming Payment Detail.
 
@@ -412,57 +361,36 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
           idempotency_key: Specify a custom idempotency key for this request
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         return await self._patch(
             path_template("/api/incoming_payment_details/{id}", id=id),
-            body=await async_maybe_transform(
-                {"metadata": metadata}, incoming_payment_detail_update_params.IncomingPaymentDetailUpdateParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "metadata": metadata
+            }, incoming_payment_detail_update_params.IncomingPaymentDetailUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=IncomingPaymentDetail,
         )
 
-    def list(
-        self,
-        *,
-        after_cursor: Optional[str] | Omit = omit,
-        as_of_date_end: Union[str, date] | Omit = omit,
-        as_of_date_start: Union[str, date] | Omit = omit,
-        direction: TransactionDirection | Omit = omit,
-        metadata: Dict[str, str] | Omit = omit,
-        per_page: int | Omit = omit,
-        status: Literal["completed", "pending", "returned"] | Omit = omit,
-        subtype: str | Omit = omit,
-        type: Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "check",
-            "eft",
-            "neft",
-            "nz_becs",
-            "rtp",
-            "sepa",
-            "stablecoin",
-            "wire",
-            "zengin",
-        ]
-        | Omit = omit,
-        virtual_account_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[IncomingPaymentDetail, AsyncPage[IncomingPaymentDetail]]:
+    def list(self,
+    *,
+    after_cursor: Optional[str] | Omit = omit,
+    as_of_date_end: Union[str, date] | Omit = omit,
+    as_of_date_start: Union[str, date] | Omit = omit,
+    direction: TransactionDirection | Omit = omit,
+    metadata: Dict[str, str] | Omit = omit,
+    per_page: int | Omit = omit,
+    status: Literal["completed", "pending", "returned"] | Omit = omit,
+    subtype: str | Omit = omit,
+    type: Literal["ach", "au_becs", "bacs", "book", "check", "eft", "neft", "nz_becs", "rtp", "sepa", "stablecoin", "wire", "zengin"] | Omit = omit,
+    virtual_account_id: str | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> AsyncPaginator[IncomingPaymentDetail, AsyncPage[IncomingPaymentDetail]]:
         """
         Get a list of Incoming Payment Details.
 
@@ -501,67 +429,41 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/incoming_payment_details",
-            page=AsyncPage[IncomingPaymentDetail],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after_cursor": after_cursor,
-                        "as_of_date_end": as_of_date_end,
-                        "as_of_date_start": as_of_date_start,
-                        "direction": direction,
-                        "metadata": metadata,
-                        "per_page": per_page,
-                        "status": status,
-                        "subtype": subtype,
-                        "type": type,
-                        "virtual_account_id": virtual_account_id,
-                    },
-                    incoming_payment_detail_list_params.IncomingPaymentDetailListParams,
-                ),
-            ),
+            page = AsyncPage[IncomingPaymentDetail],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "after_cursor": after_cursor,
+                "as_of_date_end": as_of_date_end,
+                "as_of_date_start": as_of_date_start,
+                "direction": direction,
+                "metadata": metadata,
+                "per_page": per_page,
+                "status": status,
+                "subtype": subtype,
+                "type": type,
+                "virtual_account_id": virtual_account_id,
+            }, incoming_payment_detail_list_params.IncomingPaymentDetailListParams)),
             model=IncomingPaymentDetail,
         )
 
-    async def create_async(
-        self,
-        *,
-        amount: int | Omit = omit,
-        as_of_date: Union[str, date, None] | Omit = omit,
-        currency: Optional[Currency] | Omit = omit,
-        data: Optional[object] | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        direction: Literal["credit", "debit"] | Omit = omit,
-        internal_account_id: str | Omit = omit,
-        subtype: Optional[str] | Omit = omit,
-        type: Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "check",
-            "eft",
-            "neft",
-            "nz_becs",
-            "rtp",
-            "sepa",
-            "stablecoin",
-            "wire",
-            "zengin",
-        ]
-        | Omit = omit,
-        virtual_account_id: Optional[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-        idempotency_key: str | None = None,
-    ) -> IncomingPaymentDetail:
+    async def create_async(self,
+    *,
+    amount: int | Omit = omit,
+    as_of_date: Union[str, date, None] | Omit = omit,
+    currency: Optional[Currency] | Omit = omit,
+    data: Optional[object] | Omit = omit,
+    description: Optional[str] | Omit = omit,
+    direction: Literal["credit", "debit"] | Omit = omit,
+    internal_account_id: str | Omit = omit,
+    subtype: Optional[str] | Omit = omit,
+    type: Literal["ach", "au_becs", "bacs", "book", "check", "eft", "neft", "nz_becs", "rtp", "sepa", "stablecoin", "wire", "zengin"] | Omit = omit,
+    virtual_account_id: Optional[str] | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    idempotency_key: str | None = None,) -> IncomingPaymentDetail:
         """
         Simulate Incoming Payment Detail
 
@@ -602,31 +504,21 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         """
         return await self._post(
             "/api/simulations/incoming_payment_details/create_async",
-            body=await async_maybe_transform(
-                {
-                    "amount": amount,
-                    "as_of_date": as_of_date,
-                    "currency": currency,
-                    "data": data,
-                    "description": description,
-                    "direction": direction,
-                    "internal_account_id": internal_account_id,
-                    "subtype": subtype,
-                    "type": type,
-                    "virtual_account_id": virtual_account_id,
-                },
-                incoming_payment_detail_create_async_params.IncomingPaymentDetailCreateAsyncParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                idempotency_key=idempotency_key,
-            ),
+            body=await async_maybe_transform({
+                "amount": amount,
+                "as_of_date": as_of_date,
+                "currency": currency,
+                "data": data,
+                "description": description,
+                "direction": direction,
+                "internal_account_id": internal_account_id,
+                "subtype": subtype,
+                "type": type,
+                "virtual_account_id": virtual_account_id,
+            }, incoming_payment_detail_create_async_params.IncomingPaymentDetailCreateAsyncParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, idempotency_key=idempotency_key),
             cast_to=IncomingPaymentDetail,
         )
-
 
 class IncomingPaymentDetailsWithRawResponse:
     def __init__(self, incoming_payment_details: IncomingPaymentDetails) -> None:
@@ -645,7 +537,6 @@ class IncomingPaymentDetailsWithRawResponse:
             incoming_payment_details.create_async,
         )
 
-
 class AsyncIncomingPaymentDetailsWithRawResponse:
     def __init__(self, incoming_payment_details: AsyncIncomingPaymentDetails) -> None:
         self._incoming_payment_details = incoming_payment_details
@@ -663,7 +554,6 @@ class AsyncIncomingPaymentDetailsWithRawResponse:
             incoming_payment_details.create_async,
         )
 
-
 class IncomingPaymentDetailsWithStreamingResponse:
     def __init__(self, incoming_payment_details: IncomingPaymentDetails) -> None:
         self._incoming_payment_details = incoming_payment_details
@@ -680,7 +570,6 @@ class IncomingPaymentDetailsWithStreamingResponse:
         self.create_async = to_streamed_response_wrapper(
             incoming_payment_details.create_async,
         )
-
 
 class AsyncIncomingPaymentDetailsWithStreamingResponse:
     def __init__(self, incoming_payment_details: AsyncIncomingPaymentDetails) -> None:

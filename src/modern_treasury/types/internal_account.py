@@ -1,22 +1,30 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import builtins
-from typing import TYPE_CHECKING, Dict, List, Optional
+
+from .._models import BaseModel
+
 from datetime import datetime
+
+from .shared.transaction_direction import TransactionDirection
+
+from typing import Optional, TYPE_CHECKING, Dict, List
+
 from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
-from .._models import BaseModel
-from .connection import Connection
 from .account_detail import AccountDetail
-from .routing_detail import RoutingDetail
-from .shared.address import Address
+
+from .connection import Connection
+
 from .shared.currency import Currency
-from .shared.transaction_direction import TransactionDirection
+
+from .shared.address import Address
+
+from .routing_detail import RoutingDetail
 
 __all__ = ["InternalAccount", "AccountCapabilities", "AccountCapability"]
-
 
 class AccountCapability(BaseModel):
     id: str
@@ -45,33 +53,7 @@ class AccountCapability(BaseModel):
 
     object: str
 
-    payment_type: Literal[
-        "ach",
-        "au_becs",
-        "bacs",
-        "book",
-        "card",
-        "chats",
-        "check",
-        "cross_border",
-        "dk_nets",
-        "eft",
-        "gb_fps",
-        "masav",
-        "mx_ccen",
-        "neft",
-        "nics",
-        "nz_becs",
-        "pl_elixir",
-        "rtp",
-        "se_bankgirot",
-        "sepa",
-        "sg_giro",
-        "sic",
-        "stablecoin",
-        "wire",
-        "zengin",
-    ]
+    payment_type: Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin"]
     """
     Indicates the the type of payment this capability is responsible for
     originating.
@@ -82,22 +64,19 @@ class AccountCapability(BaseModel):
     if TYPE_CHECKING:
         # Some versions of Pydantic <2.8.0 have a bug and don’t allow assigning a
         # value to this field, so for compatibility we avoid doing it at runtime.
-        __pydantic_extra__: Dict[str, builtins.object] = FieldInfo(init=False)  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        __pydantic_extra__: Dict[str, builtins.object] = FieldInfo(init=False)# pyright: ignore[reportIncompatibleVariableOverride]
         # Stub to indicate that arbitrary properties are accepted.
         # To access properties that are not valid identifiers you can use `getattr`, e.g.
         # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> builtins.object: ...
+        def __getattr__(self, attr: str) -> builtins.object:    ...
     else:
         __pydantic_extra__: Dict[str, builtins.object]
-
 
 AccountCapabilities = AccountCapability
 """This type is deprecated and will be removed in a future release.
 
 Please use AccountCapability instead.
 """
-
 
 class InternalAccount(BaseModel):
     id: str
@@ -111,23 +90,7 @@ class InternalAccount(BaseModel):
     account_details: List[AccountDetail]
     """An array of account detail objects."""
 
-    account_type: Optional[
-        Literal[
-            "base_wallet",
-            "cash",
-            "checking",
-            "crypto_wallet",
-            "ethereum_wallet",
-            "general_ledger",
-            "loan",
-            "non_resident",
-            "other",
-            "overdraft",
-            "polygon_wallet",
-            "savings",
-            "solana_wallet",
-        ]
-    ] = None
+    account_type: Optional[Literal["base_wallet", "cash", "checking", "crypto_wallet", "ethereum_wallet", "general_ledger", "loan", "non_resident", "other", "overdraft", "polygon_wallet", "savings", "solana_wallet"]] = None
     """Can be checking, savings or other."""
 
     connection: Connection

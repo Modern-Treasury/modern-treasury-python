@@ -2,15 +2,17 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from datetime import date
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, TypedDict, Required, Annotated
 
-from .._utils import PropertyInfo
+from typing import Optional, Dict, Union
+
 from .shared.currency import Currency
 
-__all__ = ["ReconciliationRuleParam"]
+from datetime import date
 
+from .._utils import PropertyInfo
+
+__all__ = ["ReconciliationRuleParam"]
 
 class ReconciliationRuleParam(TypedDict, total=False):
     amount_lower_bound: Required[int]
@@ -45,39 +47,11 @@ class ReconciliationRuleParam(TypedDict, total=False):
     custom_identifiers: Optional[Dict[str, str]]
     """A hash of custom identifiers for this payment"""
 
-    date_lower_bound: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
+    date_lower_bound: Annotated[Union[str, date, None], PropertyInfo(format = "iso8601")]
     """The earliest date the payment may come in. Format is yyyy-mm-dd"""
 
-    date_upper_bound: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
+    date_upper_bound: Annotated[Union[str, date, None], PropertyInfo(format = "iso8601")]
     """The latest date the payment may come in. Format is yyyy-mm-dd"""
 
-    type: Optional[
-        Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "card",
-            "chats",
-            "check",
-            "cross_border",
-            "dk_nets",
-            "eft",
-            "gb_fps",
-            "masav",
-            "mx_ccen",
-            "neft",
-            "nics",
-            "nz_becs",
-            "pl_elixir",
-            "rtp",
-            "se_bankgirot",
-            "sepa",
-            "sg_giro",
-            "sic",
-            "stablecoin",
-            "wire",
-            "zengin",
-        ]
-    ]
+    type: Optional[Literal["ach", "au_becs", "bacs", "book", "card", "chats", "check", "cross_border", "dk_nets", "eft", "gb_fps", "masav", "mx_ccen", "neft", "nics", "nz_becs", "pl_elixir", "rtp", "se_bankgirot", "sepa", "sg_giro", "sic", "stablecoin", "wire", "zengin"]]
     """One of ach, au_becs, bacs, book, check, eft, rtp, sepa, wire"""

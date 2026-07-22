@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import TypedDict, Literal
 
 __all__ = ["ConnectionLegalEntityUpdateParams"]
-
 
 class ConnectionLegalEntityUpdateParams(TypedDict, total=False):
     status: Literal["processing"]

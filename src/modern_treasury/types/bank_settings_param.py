@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import Optional, Union
+
 from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
+
+from typing_extensions import TypedDict, Required, Annotated
 
 from .._utils import PropertyInfo
 
 __all__ = ["BankSettingsParam"]
-
 
 class BankSettingsParam(TypedDict, total=False):
     id: Required[str]
@@ -17,9 +18,9 @@ class BankSettingsParam(TypedDict, total=False):
     backup_withholding_percentage: Required[Optional[int]]
     """The percentage of backup withholding to apply to the legal entity."""
 
-    created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
+    created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]]
 
-    discarded_at: Required[Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]]
+    discarded_at: Required[Annotated[Union[str, datetime, None], PropertyInfo(format = "iso8601")]]
 
     enable_backup_withholding: Required[Optional[bool]]
     """Whether backup withholding is enabled.
@@ -47,4 +48,4 @@ class BankSettingsParam(TypedDict, total=False):
     other subsidiary of that bank holding company.
     """
 
-    updated_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
+    updated_at: Required[Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]]

@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
 from typing_extensions import TypedDict
 
-__all__ = ["InternalAccountUpdateParams"]
+from typing import Optional, Dict
 
+__all__ = ["InternalAccountUpdateParams"]
 
 class InternalAccountUpdateParams(TypedDict, total=False):
     contra_ledger_account_id: str

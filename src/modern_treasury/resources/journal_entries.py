@@ -4,17 +4,25 @@ from __future__ import annotations
 
 import httpx
 
-from .. import _legacy_response
-from ..types import journal_entry_list_params
-from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from .._compat import cached_property
+
+from .._utils import path_template, maybe_transform, async_maybe_transform
+
 from .._base_client import make_request_options
 
-__all__ = ["JournalEntries", "AsyncJournalEntries"]
+from .._types import NotGiven, Omit, omit
 
+from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from .. import _legacy_response
+
+from typing_extensions import Literal, overload
+from .._types import Timeout, Headers, NotGiven, not_given, Omit, omit, NoneType, Query, Body
+from ..types import journal_entry_list_params
+
+__all__ = ["JournalEntries", "AsyncJournalEntries"]
 
 class JournalEntries(SyncAPIResource):
     @cached_property
@@ -36,17 +44,15 @@ class JournalEntries(SyncAPIResource):
         """
         return JournalEntriesWithStreamingResponse(self)
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> None:
         """
         Retrieve a specific journal entry
 
@@ -60,29 +66,27 @@ class JournalEntries(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._get(
             path_template("/api/journal_entries/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=NoneType,
         )
 
-    def list(
-        self,
-        *,
-        journal_report_id: str,
-        page: int | Omit = omit,
-        per_page: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    def list(self,
+    *,
+    journal_report_id: str,
+    page: int | Omit = omit,
+    per_page: int | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> None:
         """
         Retrieve a list of journal entries
 
@@ -104,23 +108,13 @@ class JournalEntries(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._get(
             "/api/journal_entries",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "journal_report_id": journal_report_id,
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    journal_entry_list_params.JournalEntryListParams,
-                ),
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "journal_report_id": journal_report_id,
+                "page": page,
+                "per_page": per_page,
+            }, journal_entry_list_params.JournalEntryListParams)),
             cast_to=NoneType,
         )
-
 
 class AsyncJournalEntries(AsyncAPIResource):
     @cached_property
@@ -142,17 +136,15 @@ class AsyncJournalEntries(AsyncAPIResource):
         """
         return AsyncJournalEntriesWithStreamingResponse(self)
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    async def retrieve(self,
+    id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> None:
         """
         Retrieve a specific journal entry
 
@@ -166,29 +158,27 @@ class AsyncJournalEntries(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `id` but received {id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._get(
             path_template("/api/journal_entries/{id}", id=id),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=NoneType,
         )
 
-    async def list(
-        self,
-        *,
-        journal_report_id: str,
-        page: int | Omit = omit,
-        per_page: int | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    async def list(self,
+    *,
+    journal_report_id: str,
+    page: int | Omit = omit,
+    per_page: int | Omit = omit,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = not_given,) -> None:
         """
         Retrieve a list of journal entries
 
@@ -210,23 +200,13 @@ class AsyncJournalEntries(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._get(
             "/api/journal_entries",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "journal_report_id": journal_report_id,
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    journal_entry_list_params.JournalEntryListParams,
-                ),
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
+                "journal_report_id": journal_report_id,
+                "page": page,
+                "per_page": per_page,
+            }, journal_entry_list_params.JournalEntryListParams)),
             cast_to=NoneType,
         )
-
 
 class JournalEntriesWithRawResponse:
     def __init__(self, journal_entries: JournalEntries) -> None:
@@ -239,7 +219,6 @@ class JournalEntriesWithRawResponse:
             journal_entries.list,
         )
 
-
 class AsyncJournalEntriesWithRawResponse:
     def __init__(self, journal_entries: AsyncJournalEntries) -> None:
         self._journal_entries = journal_entries
@@ -251,7 +230,6 @@ class AsyncJournalEntriesWithRawResponse:
             journal_entries.list,
         )
 
-
 class JournalEntriesWithStreamingResponse:
     def __init__(self, journal_entries: JournalEntries) -> None:
         self._journal_entries = journal_entries
@@ -262,7 +240,6 @@ class JournalEntriesWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             journal_entries.list,
         )
-
 
 class AsyncJournalEntriesWithStreamingResponse:
     def __init__(self, journal_entries: AsyncJournalEntries) -> None:

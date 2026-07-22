@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
 from typing_extensions import TypedDict
 
-__all__ = ["VirtualAccountUpdateParams"]
+from typing import Dict, Optional
 
+__all__ = ["VirtualAccountUpdateParams"]
 
 class VirtualAccountUpdateParams(TypedDict, total=False):
     counterparty_id: str

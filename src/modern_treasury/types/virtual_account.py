@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from .._models import BaseModel
+
+from typing import List, Optional, Dict
+
+from .account_detail import AccountDetail
+
 from datetime import datetime
 
-from .._models import BaseModel
-from .account_detail import AccountDetail
 from .routing_detail import RoutingDetail
 
 __all__ = ["VirtualAccount"]
-
 
 class VirtualAccount(BaseModel):
     id: str

@@ -1,10 +1,10 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .currency import Currency
 from ..._models import BaseModel
 
-__all__ = ["ForeignExchangeRate"]
+from .currency import Currency
 
+__all__ = ["ForeignExchangeRate"]
 
 class ForeignExchangeRate(BaseModel):
     base_amount: int

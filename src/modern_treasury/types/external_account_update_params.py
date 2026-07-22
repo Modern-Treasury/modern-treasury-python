@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-from typing_extensions import Literal, TypedDict
+from typing_extensions import TypedDict, Literal
 
 from .external_account_type import ExternalAccountType
+
+from typing import Optional, Dict
+
 from .shared_params.address_request import AddressRequest
 
 __all__ = ["ExternalAccountUpdateParams"]
-
 
 class ExternalAccountUpdateParams(TypedDict, total=False):
     account_type: ExternalAccountType

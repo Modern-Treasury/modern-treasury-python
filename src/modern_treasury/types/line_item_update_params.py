@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
+from typing_extensions import TypedDict, Literal, Required
+
 from typing import Dict
-from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["LineItemUpdateParams"]
-
 
 class LineItemUpdateParams(TypedDict, total=False):
     itemizable_type: Required[Literal["expected_payments", "payment_orders"]]

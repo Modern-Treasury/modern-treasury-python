@@ -1,17 +1,22 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
-from datetime import date, datetime
-from typing_extensions import Literal
-
 from .._models import BaseModel
-from .shared.address import Address
+
+from datetime import date, datetime
+
 from .shared.currency import Currency
-from .virtual_account import VirtualAccount
+
+from typing import Dict, Optional
+
 from .shared.transaction_direction import TransactionDirection
 
-__all__ = ["IncomingPaymentDetail"]
+from typing_extensions import Literal
 
+from .virtual_account import VirtualAccount
+
+from .shared.address import Address
+
+__all__ = ["IncomingPaymentDetail"]
 
 class IncomingPaymentDetail(BaseModel):
     id: str
@@ -68,54 +73,13 @@ class IncomingPaymentDetail(BaseModel):
     detail.
     """
 
-    originating_account_number_type: Optional[
-        Literal[
-            "au_number",
-            "base_address",
-            "card_token",
-            "clabe",
-            "ethereum_address",
-            "hk_number",
-            "iban",
-            "id_number",
-            "nz_number",
-            "other",
-            "pan",
-            "polygon_address",
-            "sg_number",
-            "solana_address",
-            "wallet_address",
-        ]
-    ] = None
+    originating_account_number_type: Optional[Literal["au_number", "base_address", "card_token", "clabe", "ethereum_address", "hk_number", "iban", "id_number", "nz_number", "other", "pan", "polygon_address", "sg_number", "solana_address", "wallet_address"]] = None
     """The type of the originating account number for the incoming payment detail."""
 
     originating_routing_number: Optional[str] = None
     """The routing number of the originating account for the incoming payment detail."""
 
-    originating_routing_number_type: Optional[
-        Literal[
-            "aba",
-            "au_bsb",
-            "br_codigo",
-            "ca_cpa",
-            "chips",
-            "cnaps",
-            "dk_interbank_clearing_code",
-            "gb_sort_code",
-            "hk_interbank_clearing_code",
-            "il_bank_code",
-            "in_ifsc",
-            "jp_zengin_code",
-            "mx_bank_identifier",
-            "my_branch_code",
-            "nz_national_clearing_code",
-            "pl_national_clearing_code",
-            "se_bankgiro_clearing_code",
-            "sg_interbank_clearing_code",
-            "swift",
-            "za_national_clearing_code",
-        ]
-    ] = None
+    originating_routing_number_type: Optional[Literal["aba", "au_bsb", "br_codigo", "ca_cpa", "chips", "cnaps", "dk_interbank_clearing_code", "gb_sort_code", "hk_interbank_clearing_code", "il_bank_code", "in_ifsc", "jp_zengin_code", "mx_bank_identifier", "my_branch_code", "nz_national_clearing_code", "pl_national_clearing_code", "se_bankgiro_clearing_code", "sg_interbank_clearing_code", "swift", "za_national_clearing_code"]] = None
     """The type of the originating routing number for the incoming payment detail."""
 
     reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"]
@@ -140,21 +104,7 @@ class IncomingPaymentDetail(BaseModel):
     transaction_line_item_id: Optional[str] = None
     """The ID of the reconciled Transaction Line Item or `null`."""
 
-    type: Literal[
-        "ach",
-        "au_becs",
-        "bacs",
-        "book",
-        "check",
-        "eft",
-        "neft",
-        "nz_becs",
-        "rtp",
-        "sepa",
-        "stablecoin",
-        "wire",
-        "zengin",
-    ]
+    type: Literal["ach", "au_becs", "bacs", "book", "check", "eft", "neft", "nz_becs", "rtp", "sepa", "stablecoin", "wire", "zengin"]
     """One of: `ach`, `book`, `check`, `eft`, `rtp`, `sepa`, or `wire`."""
 
     updated_at: datetime

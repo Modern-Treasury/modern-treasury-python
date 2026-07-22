@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
+from typing_extensions import TypedDict, Literal
+
 from typing import Dict, Optional
-from typing_extensions import Literal, TypedDict
 
 __all__ = ["LineItemListParams"]
-
 
 class LineItemListParams(TypedDict, total=False):
     id: Dict[str, str]

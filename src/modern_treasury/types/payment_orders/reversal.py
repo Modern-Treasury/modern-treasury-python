@@ -1,13 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 from ..._models import BaseModel
 
-__all__ = ["Reversal"]
+from datetime import datetime
 
+from typing import Optional, Dict, List
+
+from typing_extensions import Literal
+
+__all__ = ["Reversal"]
 
 class Reversal(BaseModel):
     id: str
@@ -37,13 +38,7 @@ class Reversal(BaseModel):
     payment_order_id: Optional[str] = None
     """The ID of the relevant Payment Order."""
 
-    reason: Literal[
-        "duplicate",
-        "incorrect_amount",
-        "incorrect_receiving_account",
-        "date_earlier_than_intended",
-        "date_later_than_intended",
-    ]
+    reason: Literal["duplicate", "incorrect_amount", "incorrect_receiving_account", "date_earlier_than_intended", "date_later_than_intended"]
     """The reason for the reversal."""
 
     reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"]

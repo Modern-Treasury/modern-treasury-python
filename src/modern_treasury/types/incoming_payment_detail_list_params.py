@@ -2,26 +2,28 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing_extensions import TypedDict, Annotated, Literal
+
+from typing import Optional, Union, Dict
+
 from datetime import date
-from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
+
 from .shared.transaction_direction import TransactionDirection
 
 __all__ = ["IncomingPaymentDetailListParams"]
 
-
 class IncomingPaymentDetailListParams(TypedDict, total=False):
     after_cursor: Optional[str]
 
-    as_of_date_end: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    as_of_date_end: Annotated[Union[str, date], PropertyInfo(format = "iso8601")]
     """
     Filters incoming payment details with an as_of_date starting on or before the
     specified date (YYYY-MM-DD).
     """
 
-    as_of_date_start: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
+    as_of_date_start: Annotated[Union[str, date], PropertyInfo(format = "iso8601")]
     """
     Filters incoming payment details with an as_of_date starting on or after the
     specified date (YYYY-MM-DD).
@@ -52,21 +54,7 @@ class IncomingPaymentDetailListParams(TypedDict, total=False):
     `solana`.
     """
 
-    type: Literal[
-        "ach",
-        "au_becs",
-        "bacs",
-        "book",
-        "check",
-        "eft",
-        "neft",
-        "nz_becs",
-        "rtp",
-        "sepa",
-        "stablecoin",
-        "wire",
-        "zengin",
-    ]
+    type: Literal["ach", "au_becs", "bacs", "book", "check", "eft", "neft", "nz_becs", "rtp", "sepa", "stablecoin", "wire", "zengin"]
     """One of: `ach`, `book`, `check`, `eft`, `rtp`, `sepa`, or `wire`."""
 
     virtual_account_id: str
