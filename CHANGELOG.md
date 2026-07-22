@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.79.0 (2026-07-22)
+
+Full Changelog: [v1.78.0...v1.79.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.78.0...v1.79.0)
+
+### Features
+
+* **api:** api update ([3faedeb](https://github.com/Modern-Treasury/modern-treasury-python/commit/3faedebc72314a5445e059081a1da2b81f940a32))
+* **api:** api update ([c2d8f9e](https://github.com/Modern-Treasury/modern-treasury-python/commit/c2d8f9edad70f731f2174d52a4b511e0a9c493a5))
+* **api:** api update ([fdc6b34](https://github.com/Modern-Treasury/modern-treasury-python/commit/fdc6b34a2410044e2970cf9726dda9f9a703a41e))
+* **api:** api update ([0084977](https://github.com/Modern-Treasury/modern-treasury-python/commit/00849772536c39c3321571995aa46f49398d0213))
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([c2d74cd](https://github.com/Modern-Treasury/modern-treasury-python/commit/c2d74cde06e3e7ddda599a8c3ebd7bc55da4fd07))
+
 ## 1.78.0 (2026-07-11)
 
 Full Changelog: [v1.77.0...v1.78.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.77.0...v1.78.0)
