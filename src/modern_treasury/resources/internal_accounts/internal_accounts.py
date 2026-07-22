@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
+from typing import Dict, List, Iterable, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -92,6 +92,10 @@ class InternalAccounts(SyncAPIResource):
         parent_account_id: str | Omit = omit,
         party_address: internal_account_create_params.PartyAddress | Omit = omit,
         party_name: Optional[str] | Omit = omit,
+        requested_account_number_types: List[
+            Literal["ethereum_address", "solana_address", "polygon_address", "base_address"]
+        ]
+        | Omit = omit,
         vendor_attributes: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -140,6 +144,8 @@ class InternalAccounts(SyncAPIResource):
 
           party_name: The legal name of the entity which owns the account.
 
+          requested_account_number_types: An array of account number types requested for provisioning.
+
           vendor_attributes: A hash of vendor specific attributes that will be used when creating the account
               at the vendor specified by the given connection.
 
@@ -170,6 +176,7 @@ class InternalAccounts(SyncAPIResource):
                     "parent_account_id": parent_account_id,
                     "party_address": party_address,
                     "party_name": party_name,
+                    "requested_account_number_types": requested_account_number_types,
                     "vendor_attributes": vendor_attributes,
                 },
                 internal_account_create_params.InternalAccountCreateParams,
@@ -548,6 +555,10 @@ class AsyncInternalAccounts(AsyncAPIResource):
         parent_account_id: str | Omit = omit,
         party_address: internal_account_create_params.PartyAddress | Omit = omit,
         party_name: Optional[str] | Omit = omit,
+        requested_account_number_types: List[
+            Literal["ethereum_address", "solana_address", "polygon_address", "base_address"]
+        ]
+        | Omit = omit,
         vendor_attributes: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -596,6 +607,8 @@ class AsyncInternalAccounts(AsyncAPIResource):
 
           party_name: The legal name of the entity which owns the account.
 
+          requested_account_number_types: An array of account number types requested for provisioning.
+
           vendor_attributes: A hash of vendor specific attributes that will be used when creating the account
               at the vendor specified by the given connection.
 
@@ -626,6 +639,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                     "parent_account_id": parent_account_id,
                     "party_address": party_address,
                     "party_name": party_name,
+                    "requested_account_number_types": requested_account_number_types,
                     "vendor_attributes": vendor_attributes,
                 },
                 internal_account_create_params.InternalAccountCreateParams,

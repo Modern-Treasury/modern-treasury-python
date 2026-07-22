@@ -81,6 +81,8 @@ class IdentificationCreateRequest(BaseModel):
         "gb_vat",
         "generic_international",
         "gr_vat",
+        "hk_brn",
+        "hk_hkid",
         "hn_id",
         "hn_rtn",
         "hr_oib",

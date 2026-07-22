@@ -26,7 +26,11 @@ class WealthAndEmploymentDetails(BaseModel):
     """The name of the employer."""
 
     employer_state: Optional[str] = None
-    """The state in which the employer is located."""
+    """The state in which the employer is located.
+
+    This field is free-form text; for US states, we recommend a two-letter
+    abbreviation (e.g. CA).
+    """
 
     employment_status: Optional[Literal["employed", "retired", "self_employed", "student", "unemployed"]] = None
     """The employment status of the individual."""

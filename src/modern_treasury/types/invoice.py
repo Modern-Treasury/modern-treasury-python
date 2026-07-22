@@ -23,13 +23,20 @@ class CounterpartyBillingAddress(BaseModel):
     line1: str
 
     locality: str
-    """Locality or City."""
+    """Locality or City.
+
+    Use the full city name rather than an abbreviation (e.g. San Francisco).
+    """
 
     postal_code: str
     """The postal code of the address."""
 
     region: str
-    """Region or State."""
+    """Region or State.
+
+    This field is free-form; for US states, we recommend a two-letter code (e.g.
+    CA). Full state names are also accepted.
+    """
 
     line2: Optional[str] = None
 
@@ -43,13 +50,20 @@ class CounterpartyShippingAddress(BaseModel):
     line1: str
 
     locality: str
-    """Locality or City."""
+    """Locality or City.
+
+    Use the full city name rather than an abbreviation (e.g. San Francisco).
+    """
 
     postal_code: str
     """The postal code of the address."""
 
     region: str
-    """Region or State."""
+    """Region or State.
+
+    This field is free-form; for US states, we recommend a two-letter code (e.g.
+    CA). Full state names are also accepted.
+    """
 
     line2: Optional[str] = None
 
@@ -63,13 +77,20 @@ class InvoicerAddress(BaseModel):
     line1: str
 
     locality: str
-    """Locality or City."""
+    """Locality or City.
+
+    Use the full city name rather than an abbreviation (e.g. San Francisco).
+    """
 
     postal_code: str
     """The postal code of the address."""
 
     region: str
-    """Region or State."""
+    """Region or State.
+
+    This field is free-form; for US states, we recommend a two-letter code (e.g.
+    CA). Full state names are also accepted.
+    """
 
     line2: Optional[str] = None
 
