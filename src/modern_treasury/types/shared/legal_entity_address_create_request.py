@@ -15,20 +15,13 @@ class LegalEntityAddressCreateRequest(BaseModel):
     line1: Optional[str] = None
 
     locality: Optional[str] = None
-    """Locality or City.
-
-    Use the full city name rather than an abbreviation (e.g. San Francisco).
-    """
+    """Locality or City."""
 
     postal_code: Optional[str] = None
     """The postal code of the address."""
 
     region: Optional[str] = None
-    """Region or State.
-
-    This field is free-form; for US states, we recommend a two-letter code (e.g.
-    CA). Full state names are also accepted.
-    """
+    """Region or State."""
 
     address_types: Optional[
         List[

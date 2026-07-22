@@ -517,17 +517,10 @@ class UltimateOriginatingPartyAddress(TypedDict, total=False):
     line2: str
 
     locality: str
-    """Locality or City.
-
-    Use the full city name rather than an abbreviation (e.g. San Francisco).
-    """
+    """Locality or City."""
 
     postal_code: str
     """The postal code of the address."""
 
     region: str
-    """Region or State.
-
-    This field is free-form; for US states, we recommend a two-letter code (e.g.
-    CA). Full state names are also accepted.
-    """
+    """Region or State."""

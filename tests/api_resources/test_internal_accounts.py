@@ -65,7 +65,6 @@ class TestInternalAccounts:
                 "line2": "line2",
             },
             party_name="party_name",
-            requested_account_number_types=["ethereum_address"],
             vendor_attributes={
                 "key": "value",
                 "foo": "bar",
@@ -371,7 +370,6 @@ class TestAsyncInternalAccounts:
                 "line2": "line2",
             },
             party_name="party_name",
-            requested_account_number_types=["ethereum_address"],
             vendor_attributes={
                 "key": "value",
                 "foo": "bar",

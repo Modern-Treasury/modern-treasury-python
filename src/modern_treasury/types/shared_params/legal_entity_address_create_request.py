@@ -15,20 +15,13 @@ class LegalEntityAddressCreateRequest(TypedDict, total=False):
     line1: Required[Optional[str]]
 
     locality: Required[Optional[str]]
-    """Locality or City.
-
-    Use the full city name rather than an abbreviation (e.g. San Francisco).
-    """
+    """Locality or City."""
 
     postal_code: Required[Optional[str]]
     """The postal code of the address."""
 
     region: Required[Optional[str]]
-    """Region or State.
-
-    This field is free-form; for US states, we recommend a two-letter code (e.g.
-    CA). Full state names are also accepted.
-    """
+    """Region or State."""
 
     address_types: List[
         Literal["business", "business_physical", "business_registered", "mailing", "other", "po_box", "residential"]

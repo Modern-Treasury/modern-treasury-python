@@ -153,20 +153,13 @@ class CounterpartyBillingAddress(TypedDict, total=False):
     line1: Required[str]
 
     locality: Required[str]
-    """Locality or City.
-
-    Use the full city name rather than an abbreviation (e.g. San Francisco).
-    """
+    """Locality or City."""
 
     postal_code: Required[str]
     """The postal code of the address."""
 
     region: Required[str]
-    """Region or State.
-
-    This field is free-form; for US states, we recommend a two-letter code (e.g.
-    CA). Full state names are also accepted.
-    """
+    """Region or State."""
 
     line2: str
 
@@ -180,20 +173,13 @@ class CounterpartyShippingAddress(TypedDict, total=False):
     line1: Required[str]
 
     locality: Required[str]
-    """Locality or City.
-
-    Use the full city name rather than an abbreviation (e.g. San Francisco).
-    """
+    """Locality or City."""
 
     postal_code: Required[str]
     """The postal code of the address."""
 
     region: Required[str]
-    """Region or State.
-
-    This field is free-form; for US states, we recommend a two-letter code (e.g.
-    CA). Full state names are also accepted.
-    """
+    """Region or State."""
 
     line2: str
 
@@ -254,19 +240,12 @@ class InvoicerAddress(TypedDict, total=False):
     line1: Required[str]
 
     locality: Required[str]
-    """Locality or City.
-
-    Use the full city name rather than an abbreviation (e.g. San Francisco).
-    """
+    """Locality or City."""
 
     postal_code: Required[str]
     """The postal code of the address."""
 
     region: Required[str]
-    """Region or State.
-
-    This field is free-form; for US states, we recommend a two-letter code (e.g.
-    CA). Full state names are also accepted.
-    """
+    """Region or State."""
 
     line2: str
