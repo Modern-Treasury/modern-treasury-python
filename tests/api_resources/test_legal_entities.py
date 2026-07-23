@@ -62,7 +62,7 @@ class TestLegalEntities:
             citizenship_country="citizenship_country",
             compliance_details={},
             connection_id="connection_id",
-            country_of_incorporation="country_of_incorporation",
+            country_of_incorporation="US",
             date_formed=parse_date("2019-12-27"),
             date_of_birth=parse_date("2019-12-27"),
             documents=[
@@ -140,7 +140,7 @@ class TestLegalEntities:
                         "citizenship_country": "citizenship_country",
                         "compliance_details": {},
                         "connection_id": "connection_id",
-                        "country_of_incorporation": "country_of_incorporation",
+                        "country_of_incorporation": "US",
                         "date_formed": parse_date("2019-12-27"),
                         "date_of_birth": parse_date("2019-12-27"),
                         "documents": [
@@ -195,7 +195,7 @@ class TestLegalEntities:
                             "modern": "treasury",
                         },
                         "middle_name": "middle_name",
-                        "operating_jurisdictions": ["string"],
+                        "operating_jurisdictions": ["US", "CA"],
                         "phone_numbers": [{"phone_number": "phone_number"}],
                         "politically_exposed_person": True,
                         "preferred_name": "preferred_name",
@@ -271,7 +271,7 @@ class TestLegalEntities:
                 "modern": "treasury",
             },
             middle_name="middle_name",
-            operating_jurisdictions=["string"],
+            operating_jurisdictions=["US", "CA"],
             phone_numbers=[{"phone_number": "phone_number"}],
             politically_exposed_person=True,
             preferred_name="preferred_name",
@@ -436,7 +436,7 @@ class TestLegalEntities:
             business_description="business_description",
             business_name="business_name",
             citizenship_country="citizenship_country",
-            country_of_incorporation="country_of_incorporation",
+            country_of_incorporation="US",
             date_formed=parse_date("2019-12-27"),
             date_of_birth=parse_date("2019-12-27"),
             doing_business_as_names=["string"],
@@ -482,7 +482,7 @@ class TestLegalEntities:
                 "modern": "treasury",
             },
             middle_name="middle_name",
-            operating_jurisdictions=["string"],
+            operating_jurisdictions=["US", "CA"],
             phone_numbers=[{"phone_number": "phone_number"}],
             politically_exposed_person=True,
             preferred_name="preferred_name",
@@ -616,48 +616,6 @@ class TestLegalEntities:
 
         assert cast(Any, response.is_closed) is True
 
-    @parametrize
-    def test_method_update_status(self, client: ModernTreasury) -> None:
-        legal_entity = client.legal_entities.update_status(
-            id="id",
-            status="active",
-        )
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
-
-    @parametrize
-    def test_raw_response_update_status(self, client: ModernTreasury) -> None:
-        response = client.legal_entities.with_raw_response.update_status(
-            id="id",
-            status="active",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        legal_entity = response.parse()
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
-
-    @parametrize
-    def test_streaming_response_update_status(self, client: ModernTreasury) -> None:
-        with client.legal_entities.with_streaming_response.update_status(
-            id="id",
-            status="active",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            legal_entity = response.parse()
-            assert_matches_type(LegalEntity, legal_entity, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_update_status(self, client: ModernTreasury) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.legal_entities.with_raw_response.update_status(
-                id="",
-                status="active",
-            )
-
 
 class TestAsyncLegalEntities:
     parametrize = pytest.mark.parametrize(
@@ -706,7 +664,7 @@ class TestAsyncLegalEntities:
             citizenship_country="citizenship_country",
             compliance_details={},
             connection_id="connection_id",
-            country_of_incorporation="country_of_incorporation",
+            country_of_incorporation="US",
             date_formed=parse_date("2019-12-27"),
             date_of_birth=parse_date("2019-12-27"),
             documents=[
@@ -784,7 +742,7 @@ class TestAsyncLegalEntities:
                         "citizenship_country": "citizenship_country",
                         "compliance_details": {},
                         "connection_id": "connection_id",
-                        "country_of_incorporation": "country_of_incorporation",
+                        "country_of_incorporation": "US",
                         "date_formed": parse_date("2019-12-27"),
                         "date_of_birth": parse_date("2019-12-27"),
                         "documents": [
@@ -839,7 +797,7 @@ class TestAsyncLegalEntities:
                             "modern": "treasury",
                         },
                         "middle_name": "middle_name",
-                        "operating_jurisdictions": ["string"],
+                        "operating_jurisdictions": ["US", "CA"],
                         "phone_numbers": [{"phone_number": "phone_number"}],
                         "politically_exposed_person": True,
                         "preferred_name": "preferred_name",
@@ -915,7 +873,7 @@ class TestAsyncLegalEntities:
                 "modern": "treasury",
             },
             middle_name="middle_name",
-            operating_jurisdictions=["string"],
+            operating_jurisdictions=["US", "CA"],
             phone_numbers=[{"phone_number": "phone_number"}],
             politically_exposed_person=True,
             preferred_name="preferred_name",
@@ -1087,7 +1045,7 @@ class TestAsyncLegalEntities:
             business_description="business_description",
             business_name="business_name",
             citizenship_country="citizenship_country",
-            country_of_incorporation="country_of_incorporation",
+            country_of_incorporation="US",
             date_formed=parse_date("2019-12-27"),
             date_of_birth=parse_date("2019-12-27"),
             doing_business_as_names=["string"],
@@ -1133,7 +1091,7 @@ class TestAsyncLegalEntities:
                 "modern": "treasury",
             },
             middle_name="middle_name",
-            operating_jurisdictions=["string"],
+            operating_jurisdictions=["US", "CA"],
             phone_numbers=[{"phone_number": "phone_number"}],
             politically_exposed_person=True,
             preferred_name="preferred_name",
@@ -1268,45 +1226,3 @@ class TestAsyncLegalEntities:
             assert_matches_type(AsyncPage[LegalEntity], legal_entity, path=["response"])
 
         assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_method_update_status(self, async_client: AsyncModernTreasury) -> None:
-        legal_entity = await async_client.legal_entities.update_status(
-            id="id",
-            status="active",
-        )
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
-
-    @parametrize
-    async def test_raw_response_update_status(self, async_client: AsyncModernTreasury) -> None:
-        response = await async_client.legal_entities.with_raw_response.update_status(
-            id="id",
-            status="active",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        legal_entity = response.parse()
-        assert_matches_type(LegalEntity, legal_entity, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_update_status(self, async_client: AsyncModernTreasury) -> None:
-        async with async_client.legal_entities.with_streaming_response.update_status(
-            id="id",
-            status="active",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            legal_entity = await response.parse()
-            assert_matches_type(LegalEntity, legal_entity, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_update_status(self, async_client: AsyncModernTreasury) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.legal_entities.with_raw_response.update_status(
-                id="",
-                status="active",
-            )

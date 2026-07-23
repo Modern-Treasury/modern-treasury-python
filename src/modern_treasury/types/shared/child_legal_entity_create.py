@@ -56,6 +56,11 @@ class PhoneNumber(BaseModel):
     """A list of phone numbers in E.164 format."""
 
     phone_number: Optional[str] = None
+    """A phone number in E.164 format.
+
+    This format is strictly validated: include a leading + and country code,
+    followed by digits only (no spaces or dashes), e.g. +12025551234.
+    """
 
 
 PhoneNumbers = PhoneNumber
@@ -127,8 +132,8 @@ class ChildLegalEntityCreate(BaseModel):
 
     country_of_incorporation: Optional[str] = None
     """
-    The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
-    alpha-3 formats.
+    The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
+    code (e.g. US).
     """
 
     date_formed: Optional[date] = None
@@ -194,8 +199,8 @@ class ChildLegalEntityCreate(BaseModel):
 
     operating_jurisdictions: Optional[List[str]] = None
     """
-    A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
-    codes).
+    A list of countries where the business operates, as ISO 3166-1 alpha-2 country
+    codes (e.g. ["US", "CA"]).
     """
 
     phone_numbers: Optional[List[PhoneNumber]] = None
