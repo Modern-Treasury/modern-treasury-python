@@ -2,7 +2,7 @@
   "packages": {
     ".": {}
   },
-  "$schema": "https://raw.githubusercontent.com/stainless-api/release-please/main/schemas/config.json",
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
   "include-v-in-tag": true,
   "include-component-in-tag": false,
   "versioning": "prerelease",
@@ -63,7 +63,10 @@
     "samridh90",
     "wzhu20",
     "bullfight",
-    "ankitk-mt"
+    "ankitk-mt",
+    "cnrmrphy",
+    "jake-carnavalla",
+    "ebarendt"
   ],
   "release-type": "python",
   "extra-files": [
