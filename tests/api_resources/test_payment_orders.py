@@ -198,7 +198,7 @@ class TestPaymentOrders:
             ultimate_originating_party_name="ultimate_originating_party_name",
             ultimate_receiving_party_identifier="ultimate_receiving_party_identifier",
             ultimate_receiving_party_name="ultimate_receiving_party_name",
-            vendor_attributes={},
+            vendor_attributes={"foo": "bar"},
         )
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
@@ -643,7 +643,7 @@ class TestPaymentOrders:
             ultimate_originating_party_name="ultimate_originating_party_name",
             ultimate_receiving_party_identifier="ultimate_receiving_party_identifier",
             ultimate_receiving_party_name="ultimate_receiving_party_name",
-            vendor_attributes={},
+            vendor_attributes={"foo": "bar"},
         )
         assert_matches_type(AsyncResponse, payment_order, path=["response"])
 
@@ -859,7 +859,7 @@ class TestAsyncPaymentOrders:
             ultimate_originating_party_name="ultimate_originating_party_name",
             ultimate_receiving_party_identifier="ultimate_receiving_party_identifier",
             ultimate_receiving_party_name="ultimate_receiving_party_name",
-            vendor_attributes={},
+            vendor_attributes={"foo": "bar"},
         )
         assert_matches_type(PaymentOrder, payment_order, path=["response"])
 
@@ -1304,7 +1304,7 @@ class TestAsyncPaymentOrders:
             ultimate_originating_party_name="ultimate_originating_party_name",
             ultimate_receiving_party_identifier="ultimate_receiving_party_identifier",
             ultimate_receiving_party_name="ultimate_receiving_party_name",
-            vendor_attributes={},
+            vendor_attributes={"foo": "bar"},
         )
         assert_matches_type(AsyncResponse, payment_order, path=["response"])
 
