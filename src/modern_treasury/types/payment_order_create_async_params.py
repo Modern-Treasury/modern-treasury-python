@@ -257,7 +257,7 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
     ultimate_receiving_party_name: Optional[str]
     """Name of the ultimate funds recipient."""
 
-    vendor_attributes: object
+    vendor_attributes: Dict[str, object]
     """Additional vendor specific fields for this payment.
 
     Data must be represented as key-value pairs.
