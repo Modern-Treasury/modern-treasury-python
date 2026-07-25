@@ -112,7 +112,7 @@ class PaymentOrders(SyncAPIResource):
         ultimate_originating_party_name: Optional[str] | Omit = omit,
         ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
         ultimate_receiving_party_name: Optional[str] | Omit = omit,
-        vendor_attributes: object | Omit = omit,
+        vendor_attributes: Dict[str, object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -808,7 +808,7 @@ class PaymentOrders(SyncAPIResource):
         ultimate_originating_party_name: Optional[str] | Omit = omit,
         ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
         ultimate_receiving_party_name: Optional[str] | Omit = omit,
-        vendor_attributes: object | Omit = omit,
+        vendor_attributes: Dict[str, object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1088,7 +1088,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         ultimate_originating_party_name: Optional[str] | Omit = omit,
         ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
         ultimate_receiving_party_name: Optional[str] | Omit = omit,
-        vendor_attributes: object | Omit = omit,
+        vendor_attributes: Dict[str, object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1784,7 +1784,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         ultimate_originating_party_name: Optional[str] | Omit = omit,
         ultimate_receiving_party_identifier: Optional[str] | Omit = omit,
         ultimate_receiving_party_name: Optional[str] | Omit = omit,
-        vendor_attributes: object | Omit = omit,
+        vendor_attributes: Dict[str, object] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
