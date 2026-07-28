@@ -29,5 +29,6 @@ class DocumentCreateParams(TypedDict, total=False):
         "legal_entity",
         "organization",
         "payment_order",
+        "return",
         "transaction",
     ]
