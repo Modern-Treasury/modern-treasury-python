@@ -45,14 +45,15 @@ class Document(BaseModel):
             "legal_entity",
             "organization",
             "payment_order",
+            "return",
             "transaction",
         ]
     ] = None
     """The type of the associated object.
 
     Currently can be one of `payment_order`, `transaction`, `expected_payment`,
-    `counterparty`, `organization`, `case`, `internal_account`, `decision`, or
-    `external_account`.
+    `return`, `legal_entity`, `counterparty`, `organization`, `case`,
+    `internal_account`, `decision`, or `external_account`.
     """
 
     file: File
