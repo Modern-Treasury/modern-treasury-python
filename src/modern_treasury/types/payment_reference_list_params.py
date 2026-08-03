@@ -22,7 +22,7 @@ class PaymentReferenceListParams(TypedDict, total=False):
     Must be accompanied by the referenceable_type or will return an error.
     """
 
-    referenceable_type: Literal["payment_order", "return", "reversal"]
+    referenceable_type: Literal["payment_order", "return", "reversal", "incoming_payment_detail", "transaction"]
     """One of the referenceable types.
 
     This must be accompanied by the id of the referenceable or will return an error.

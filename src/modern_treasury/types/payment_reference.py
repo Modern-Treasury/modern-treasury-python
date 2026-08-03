@@ -123,7 +123,7 @@ class PaymentReference(BaseModel):
     Must be accompanied by the referenceable_type or will return an error.
     """
 
-    referenceable_type: Literal["payment_order", "reversal", "return"]
+    referenceable_type: Literal["payment_order", "reversal", "return", "incoming_payment_detail", "transaction"]
     """One of the referenceable types.
 
     This must be accompanied by the id of the referenceable or will return an error.
