@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.79.1 (2026-08-03)
+
+Full Changelog: [v1.79.0...v1.79.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.79.0...v1.79.1)
+
+### Chores
+
+* regenerate SDKs from 0371cfa2f8d48d2b06f62453e50d5b6eb64dccf3 ([583af60](https://github.com/Modern-Treasury/modern-treasury-python/commit/583af602099e8fcc5abc26eb3987b7251bcc7ad7))
+
 ## [1.79.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.78.0...v1.79.0) (2026-07-24)
 
 
