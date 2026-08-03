@@ -93,6 +93,7 @@ class PaymentOrders(SyncAPIResource):
         line_items: Iterable[payment_order_create_params.LineItem] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         nsf_protected: bool | Omit = omit,
+        originating_party_address: Optional[payment_order_create_params.OriginatingPartyAddress] | Omit = omit,
         originating_party_name: Optional[str] | Omit = omit,
         priority: Literal["high", "normal"] | Omit = omit,
         process_after: Union[str, datetime, None] | Omit = omit,
@@ -191,6 +192,9 @@ class PaymentOrders(SyncAPIResource):
 
           nsf_protected: A boolean to determine if NSF Protection is enabled for this payment order. Note
               that this setting must also be turned on in your organization settings page.
+
+          originating_party_address: If present, this address will override the default originating party address
+              used on the payment order. This works across all payment types.
 
           originating_party_name: If present, this will replace your default company name on receiver's bank
               statement. This field can only be used for ACH payments currently. For ACH, only
@@ -293,6 +297,7 @@ class PaymentOrders(SyncAPIResource):
                 "line_items": line_items,
                 "metadata": metadata,
                 "nsf_protected": nsf_protected,
+                "originating_party_address": originating_party_address,
                 "originating_party_name": originating_party_name,
                 "priority": priority,
                 "process_after": process_after,
@@ -391,6 +396,7 @@ class PaymentOrders(SyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         nsf_protected: bool | Omit = omit,
         originating_account_id: str | Omit = omit,
+        originating_party_address: Optional[payment_order_update_params.OriginatingPartyAddress] | Omit = omit,
         originating_party_name: Optional[str] | Omit = omit,
         priority: Literal["high", "normal"] | Omit = omit,
         process_after: Union[str, datetime, None] | Omit = omit,
@@ -487,6 +493,9 @@ class PaymentOrders(SyncAPIResource):
               that this setting must also be turned on in your organization settings page.
 
           originating_account_id: The ID of one of your organization's internal accounts.
+
+          originating_party_address: If present, this address will override the default originating party address
+              used on the payment order. This works across all payment types.
 
           originating_party_name: If present, this will replace your default company name on receiver's bank
               statement. This field can only be used for ACH payments currently. For ACH, only
@@ -594,6 +603,7 @@ class PaymentOrders(SyncAPIResource):
                     "metadata": metadata,
                     "nsf_protected": nsf_protected,
                     "originating_account_id": originating_account_id,
+                    "originating_party_address": originating_party_address,
                     "originating_party_name": originating_party_name,
                     "priority": priority,
                     "process_after": process_after,
@@ -789,6 +799,7 @@ class PaymentOrders(SyncAPIResource):
         line_items: Iterable[payment_order_create_async_params.LineItem] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         nsf_protected: bool | Omit = omit,
+        originating_party_address: Optional[payment_order_create_async_params.OriginatingPartyAddress] | Omit = omit,
         originating_party_name: Optional[str] | Omit = omit,
         priority: Literal["high", "normal"] | Omit = omit,
         process_after: Union[str, datetime, None] | Omit = omit,
@@ -884,6 +895,9 @@ class PaymentOrders(SyncAPIResource):
 
           nsf_protected: A boolean to determine if NSF Protection is enabled for this payment order. Note
               that this setting must also be turned on in your organization settings page.
+
+          originating_party_address: If present, this address will override the default originating party address
+              used on the payment order. This works across all payment types.
 
           originating_party_name: If present, this will replace your default company name on receiver's bank
               statement. This field can only be used for ACH payments currently. For ACH, only
@@ -987,6 +1001,7 @@ class PaymentOrders(SyncAPIResource):
                     "line_items": line_items,
                     "metadata": metadata,
                     "nsf_protected": nsf_protected,
+                    "originating_party_address": originating_party_address,
                     "originating_party_name": originating_party_name,
                     "priority": priority,
                     "process_after": process_after,
@@ -1069,6 +1084,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         line_items: Iterable[payment_order_create_params.LineItem] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         nsf_protected: bool | Omit = omit,
+        originating_party_address: Optional[payment_order_create_params.OriginatingPartyAddress] | Omit = omit,
         originating_party_name: Optional[str] | Omit = omit,
         priority: Literal["high", "normal"] | Omit = omit,
         process_after: Union[str, datetime, None] | Omit = omit,
@@ -1167,6 +1183,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
 
           nsf_protected: A boolean to determine if NSF Protection is enabled for this payment order. Note
               that this setting must also be turned on in your organization settings page.
+
+          originating_party_address: If present, this address will override the default originating party address
+              used on the payment order. This works across all payment types.
 
           originating_party_name: If present, this will replace your default company name on receiver's bank
               statement. This field can only be used for ACH payments currently. For ACH, only
@@ -1269,6 +1288,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
                 "line_items": line_items,
                 "metadata": metadata,
                 "nsf_protected": nsf_protected,
+                "originating_party_address": originating_party_address,
                 "originating_party_name": originating_party_name,
                 "priority": priority,
                 "process_after": process_after,
@@ -1367,6 +1387,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         nsf_protected: bool | Omit = omit,
         originating_account_id: str | Omit = omit,
+        originating_party_address: Optional[payment_order_update_params.OriginatingPartyAddress] | Omit = omit,
         originating_party_name: Optional[str] | Omit = omit,
         priority: Literal["high", "normal"] | Omit = omit,
         process_after: Union[str, datetime, None] | Omit = omit,
@@ -1463,6 +1484,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
               that this setting must also be turned on in your organization settings page.
 
           originating_account_id: The ID of one of your organization's internal accounts.
+
+          originating_party_address: If present, this address will override the default originating party address
+              used on the payment order. This works across all payment types.
 
           originating_party_name: If present, this will replace your default company name on receiver's bank
               statement. This field can only be used for ACH payments currently. For ACH, only
@@ -1570,6 +1594,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
                     "metadata": metadata,
                     "nsf_protected": nsf_protected,
                     "originating_account_id": originating_account_id,
+                    "originating_party_address": originating_party_address,
                     "originating_party_name": originating_party_name,
                     "priority": priority,
                     "process_after": process_after,
@@ -1765,6 +1790,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         line_items: Iterable[payment_order_create_async_params.LineItem] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         nsf_protected: bool | Omit = omit,
+        originating_party_address: Optional[payment_order_create_async_params.OriginatingPartyAddress] | Omit = omit,
         originating_party_name: Optional[str] | Omit = omit,
         priority: Literal["high", "normal"] | Omit = omit,
         process_after: Union[str, datetime, None] | Omit = omit,
@@ -1860,6 +1886,9 @@ class AsyncPaymentOrders(AsyncAPIResource):
 
           nsf_protected: A boolean to determine if NSF Protection is enabled for this payment order. Note
               that this setting must also be turned on in your organization settings page.
+
+          originating_party_address: If present, this address will override the default originating party address
+              used on the payment order. This works across all payment types.
 
           originating_party_name: If present, this will replace your default company name on receiver's bank
               statement. This field can only be used for ACH payments currently. For ACH, only
@@ -1963,6 +1992,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
                     "line_items": line_items,
                     "metadata": metadata,
                     "nsf_protected": nsf_protected,
+                    "originating_party_address": originating_party_address,
                     "originating_party_name": originating_party_name,
                     "priority": priority,
                     "process_after": process_after,
