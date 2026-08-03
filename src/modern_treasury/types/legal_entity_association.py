@@ -33,10 +33,7 @@ class LegalEntityAssociation(BaseModel):
     """The child entity's ownership percentage iff they are a beneficial owner."""
 
     parent_legal_entity_id: str
-    """The ID of the parent legal entity.
-
-    This must be a business or joint legal entity.
-    """
+    """The ID of the parent legal entity. This must be a business legal entity."""
 
     relationship_types: List[Literal["authorized_signer", "beneficial_owner", "control_person"]]
 

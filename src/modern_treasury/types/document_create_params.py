@@ -19,15 +19,15 @@ class DocumentCreateParams(TypedDict, total=False):
     """The unique identifier for the associated object."""
 
     documentable_type: Literal[
-        "connections",
-        "counterparties",
-        "expected_payments",
-        "external_accounts",
-        "identifications",
-        "incoming_payment_details",
-        "internal_accounts",
-        "legal_entities",
-        "organizations",
-        "payment_orders",
-        "transactions",
+        "connection",
+        "counterparty",
+        "expected_payment",
+        "external_account",
+        "identification",
+        "incoming_payment_detail",
+        "internal_account",
+        "legal_entity",
+        "organization",
+        "payment_order",
+        "transaction",
     ]

@@ -10,6 +10,8 @@ __all__ = ["LedgerEntryCreateRequest"]
 
 
 class LedgerEntryCreateRequest(BaseModel):
+    """At least one of "amount" or "amount_string" is required."""
+
     direction: TransactionDirection
     """One of `credit`, `debit`.
 

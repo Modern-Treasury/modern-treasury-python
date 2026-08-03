@@ -216,15 +216,11 @@ class Holds(SyncAPIResource):
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
 
-          status: Translation missing: en.openapi.descriptions.payment_order.query_params.status
+          status: Only return holds for a specific status.
 
-          target_id:
-              Translation missing:
-              en.openapi.descriptions.payment_order.query_params.target_id
+          target_id: Only return holds for a specific target ID.
 
-          target_type:
-              Translation missing:
-              en.openapi.descriptions.payment_order.query_params.target_type
+          target_type: Only return holds for a specific target type.
 
           extra_headers: Send extra headers
 
@@ -450,15 +446,11 @@ class AsyncHolds(AsyncAPIResource):
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
 
-          status: Translation missing: en.openapi.descriptions.payment_order.query_params.status
+          status: Only return holds for a specific status.
 
-          target_id:
-              Translation missing:
-              en.openapi.descriptions.payment_order.query_params.target_id
+          target_id: Only return holds for a specific target ID.
 
-          target_type:
-              Translation missing:
-              en.openapi.descriptions.payment_order.query_params.target_type
+          target_type: Only return holds for a specific target type.
 
           extra_headers: Send extra headers
 

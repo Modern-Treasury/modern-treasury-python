@@ -39,6 +39,8 @@ class LedgerTransactionCreatePartialPostParams(TypedDict, total=False):
 
 
 class PostedLedgerEntry(TypedDict, total=False):
+    """At least one of "amount" or "amount_string" is required."""
+
     direction: Required[Literal["credit", "debit"]]
     """One of `credit`, `debit`.
 

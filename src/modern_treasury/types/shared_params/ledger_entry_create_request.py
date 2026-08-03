@@ -13,6 +13,8 @@ __all__ = ["LedgerEntryCreateRequest"]
 
 
 class LedgerEntryCreateRequest(TypedDict, total=False):
+    """At least one of "amount" or "amount_string" is required."""
+
     direction: Required[TransactionDirection]
     """One of `credit`, `debit`.
 

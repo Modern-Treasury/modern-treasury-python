@@ -103,8 +103,6 @@ class IncomingPaymentDetail(BaseModel):
             "dk_interbank_clearing_code",
             "gb_sort_code",
             "hk_interbank_clearing_code",
-            "hu_interbank_clearing_code",
-            "id_sknbi_code",
             "il_bank_code",
             "in_ifsc",
             "jp_zengin_code",
@@ -149,20 +147,15 @@ class IncomingPaymentDetail(BaseModel):
         "book",
         "check",
         "eft",
-        "interac",
         "neft",
         "nz_becs",
         "rtp",
         "sepa",
-        "signet",
         "stablecoin",
         "wire",
         "zengin",
     ]
-    """
-    One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or
-    `wire`.
-    """
+    """One of: `ach`, `book`, `check`, `eft`, `rtp`, `sepa`, or `wire`."""
 
     updated_at: datetime
 

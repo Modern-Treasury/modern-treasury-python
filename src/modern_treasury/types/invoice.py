@@ -134,7 +134,7 @@ class Invoice(BaseModel):
     """
 
     issued_at: Optional[datetime] = None
-    """Translation missing: en.openapi.descriptions.invoice.schema.issued_at"""
+    """The time at which the invoice was issued."""
 
     ledger_account_settlement_id: Optional[str] = None
     """The ledger account settlement object linked to the invoice."""
@@ -173,7 +173,7 @@ class Invoice(BaseModel):
     """The ID of the internal account the invoice should be paid to."""
 
     paid_at: Optional[datetime] = None
-    """Translation missing: en.openapi.descriptions.invoice.schema.paid_at"""
+    """The time at which the invoice was paid."""
 
     payment_effective_date: Optional[date] = None
     """Date transactions are to be posted to the participants' account.
@@ -239,7 +239,7 @@ class Invoice(BaseModel):
     """The ID of the virtual account the invoice should be paid to."""
 
     voided_at: Optional[datetime] = None
-    """Translation missing: en.openapi.descriptions.invoice.schema.voided_at"""
+    """The time at which the invoice was voided."""
 
 
 from .payment_order import PaymentOrder

@@ -30,7 +30,6 @@ class TestBalanceReports:
             balance_report_type="intraday",
             balances=[
                 {
-                    "amount": 0,
                     "balance_type": "closing_available",
                     "vendor_code": "vendor_code",
                     "vendor_code_type": "vendor_code_type",
@@ -48,7 +47,6 @@ class TestBalanceReports:
             balance_report_type="intraday",
             balances=[
                 {
-                    "amount": 0,
                     "balance_type": "closing_available",
                     "vendor_code": "vendor_code",
                     "vendor_code_type": "vendor_code_type",
@@ -70,7 +68,6 @@ class TestBalanceReports:
             balance_report_type="intraday",
             balances=[
                 {
-                    "amount": 0,
                     "balance_type": "closing_available",
                     "vendor_code": "vendor_code",
                     "vendor_code_type": "vendor_code_type",
@@ -95,7 +92,6 @@ class TestBalanceReports:
                 balance_report_type="intraday",
                 balances=[
                     {
-                        "amount": 0,
                         "balance_type": "closing_available",
                         "vendor_code": "vendor_code",
                         "vendor_code_type": "vendor_code_type",
@@ -257,7 +253,6 @@ class TestAsyncBalanceReports:
             balance_report_type="intraday",
             balances=[
                 {
-                    "amount": 0,
                     "balance_type": "closing_available",
                     "vendor_code": "vendor_code",
                     "vendor_code_type": "vendor_code_type",
@@ -275,7 +270,6 @@ class TestAsyncBalanceReports:
             balance_report_type="intraday",
             balances=[
                 {
-                    "amount": 0,
                     "balance_type": "closing_available",
                     "vendor_code": "vendor_code",
                     "vendor_code_type": "vendor_code_type",
@@ -297,7 +291,6 @@ class TestAsyncBalanceReports:
             balance_report_type="intraday",
             balances=[
                 {
-                    "amount": 0,
                     "balance_type": "closing_available",
                     "vendor_code": "vendor_code",
                     "vendor_code_type": "vendor_code_type",
@@ -322,7 +315,6 @@ class TestAsyncBalanceReports:
                 balance_report_type="intraday",
                 balances=[
                     {
-                        "amount": 0,
                         "balance_type": "closing_available",
                         "vendor_code": "vendor_code",
                         "vendor_code_type": "vendor_code_type",

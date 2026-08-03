@@ -15,7 +15,7 @@ class ThirdPartyVerification(TypedDict, total=False):
     outcome: Required[Literal["passed", "failed"]]
     """The outcome of the verification. One of `passed` or `failed`."""
 
-    vendor: Required[Literal["persona", "middesk", "alloy", "sumsub", "veriff"]]
+    vendor: Required[Literal["persona", "middesk", "alloy", "idology", "socure", "sumsub", "veriff"]]
     """The vendor that performed the verification, e.g. `persona`."""
 
     vendor_verification_id: Required[str]

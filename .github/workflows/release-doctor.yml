@@ -18,5 +18,4 @@ jobs:
         run: |
           bash ./bin/check-release-environment
         env:
-          RELEASE_PLEASE_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN }}
           PYPI_TOKEN: ${{ secrets.MODERN_TREASURY_PYPI_TOKEN || secrets.PYPI_TOKEN }}

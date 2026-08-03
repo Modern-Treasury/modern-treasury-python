@@ -24,7 +24,6 @@ class TestTransactions:
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
         transaction = client.transactions.create(
-            amount=0,
             as_of_date=parse_date("2019-12-27"),
             direction="direction",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -36,12 +35,13 @@ class TestTransactions:
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         transaction = client.transactions.create(
-            amount=0,
             as_of_date=parse_date("2019-12-27"),
             direction="direction",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             vendor_code="vendor_code",
             vendor_code_type="vendor_code_type",
+            amount=0,
+            amount_string="amount_string",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -57,7 +57,6 @@ class TestTransactions:
     @parametrize
     def test_raw_response_create(self, client: ModernTreasury) -> None:
         response = client.transactions.with_raw_response.create(
-            amount=0,
             as_of_date=parse_date("2019-12-27"),
             direction="direction",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -73,7 +72,6 @@ class TestTransactions:
     @parametrize
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
         with client.transactions.with_streaming_response.create(
-            amount=0,
             as_of_date=parse_date("2019-12-27"),
             direction="direction",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -264,7 +262,6 @@ class TestAsyncTransactions:
     @parametrize
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
         transaction = await async_client.transactions.create(
-            amount=0,
             as_of_date=parse_date("2019-12-27"),
             direction="direction",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -276,12 +273,13 @@ class TestAsyncTransactions:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         transaction = await async_client.transactions.create(
-            amount=0,
             as_of_date=parse_date("2019-12-27"),
             direction="direction",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             vendor_code="vendor_code",
             vendor_code_type="vendor_code_type",
+            amount=0,
+            amount_string="amount_string",
             metadata={
                 "key": "value",
                 "foo": "bar",
@@ -297,7 +295,6 @@ class TestAsyncTransactions:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.transactions.with_raw_response.create(
-            amount=0,
             as_of_date=parse_date("2019-12-27"),
             direction="direction",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -313,7 +310,6 @@ class TestAsyncTransactions:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.transactions.with_streaming_response.create(
-            amount=0,
             as_of_date=parse_date("2019-12-27"),
             direction="direction",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",

@@ -13,17 +13,11 @@ __all__ = ["InternalAccountCreateParams", "AccountCapabilities", "AccountCapabil
 
 
 class InternalAccountCreateParams(TypedDict, total=False):
-    connection_id: Required[str]
-    """The identifier of the financial institution the account belongs to."""
-
-    currency: Required[Literal["USD", "CAD", "USDC", "USDG", "USDT", "PYUSD"]]
+    currency: Required[Literal["USD", "CAD", "USDC", "USDT", "PYUSD", "USDG"]]
     """The currency of the internal account. Supports fiat and stablecoin currencies."""
 
     name: Required[str]
     """The nickname of the account."""
-
-    party_name: Required[str]
-    """The legal name of the entity which owns the account."""
 
     account_capabilities: Iterable[AccountCapability]
     """
@@ -49,6 +43,13 @@ class InternalAccountCreateParams(TypedDict, total=False):
     """
     The account type, used to provision the appropriate account at the financial
     institution.
+    """
+
+    connection_id: str
+    """The identifier of the financial institution the account belongs to.
+
+    If not provided, defaults to the default connection, or the sole connection if
+    only one exists.
     """
 
     counterparty_id: str
@@ -81,6 +82,9 @@ class InternalAccountCreateParams(TypedDict, total=False):
     party_address: PartyAddress
     """The address associated with the owner or null."""
 
+    party_name: Optional[str]
+    """The legal name of the entity which owns the account."""
+
     vendor_attributes: Dict[str, str]
     """
     A hash of vendor specific attributes that will be used when creating the account
@@ -88,7 +92,11 @@ class InternalAccountCreateParams(TypedDict, total=False):
     """
 
 
-class AccountCapability(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class AccountCapability(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     id: Required[str]
 
     created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
@@ -128,24 +136,17 @@ class AccountCapability(TypedDict, total=False, extra_items=object):  # type: ig
             "dk_nets",
             "eft",
             "gb_fps",
-            "hu_ics",
-            "interac",
             "masav",
             "mx_ccen",
             "neft",
             "nics",
             "nz_becs",
             "pl_elixir",
-            "provxchange",
-            "ro_sent",
             "rtp",
             "se_bankgirot",
-            "sen",
             "sepa",
             "sg_giro",
             "sic",
-            "signet",
-            "sknbi",
             "stablecoin",
             "wire",
             "zengin",

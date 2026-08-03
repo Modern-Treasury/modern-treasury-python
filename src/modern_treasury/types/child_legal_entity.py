@@ -23,13 +23,16 @@ __all__ = [
     "PhoneNumber",
     "Regulators",
     "Regulator",
+    "TermsOfUse",
 ]
 
 
 class Address(BaseModel):
     id: str
 
-    address_types: List[Literal["business", "business_registered", "mailing", "other", "po_box", "residential"]]
+    address_types: List[
+        Literal["business", "business_physical", "business_registered", "mailing", "other", "po_box", "residential"]
+    ]
     """The types of this address."""
 
     country: Optional[str] = None
@@ -58,7 +61,10 @@ class Address(BaseModel):
     """The postal code of the address."""
 
     primary: Optional[bool] = None
-    """Whether this address is the primary address for the legal entity."""
+    """Whether this address is the primary address for the legal entity.
+
+    Optional; when omitted it is inferred from the address types.
+    """
 
     region: Optional[str] = None
     """Region or State."""
@@ -128,6 +134,7 @@ class Identification(BaseModel):
         "gb_nino",
         "gb_utr",
         "gb_vat",
+        "generic_international",
         "gr_vat",
         "hn_id",
         "hn_rtn",
@@ -157,6 +164,7 @@ class Identification(BaseModel):
         "mx_curp",
         "mx_ine",
         "mx_rfc",
+        "national_id",
         "nl_bsn",
         "nl_btw",
         "nl_rsin",
@@ -250,6 +258,19 @@ Please use Regulator instead.
 """
 
 
+class TermsOfUse(BaseModel):
+    """Acceptance of terms of use by the legal entity."""
+
+    accepted_at: Optional[datetime] = None
+    """The ISO 8601 timestamp indicating when the terms of use were accepted."""
+
+    ip_address: Optional[str] = None
+    """The IP address from which the terms of use were accepted.
+
+    Supports both IPv4 and IPv6 formats.
+    """
+
+
 class ChildLegalEntity(BaseModel):
     id: str
 
@@ -316,7 +337,7 @@ class ChildLegalEntity(BaseModel):
     legal_entity_associations: Optional[List["LegalEntityAssociation"]] = None
     """The legal entity associations and its child legal entities."""
 
-    legal_entity_type: Literal["business", "individual", "joint"]
+    legal_entity_type: Literal["business", "individual"]
     """The type of legal entity."""
 
     legal_structure: Optional[
@@ -381,6 +402,9 @@ class ChildLegalEntity(BaseModel):
 
     suffix: Optional[str] = None
     """An individual's suffix."""
+
+    terms_of_use: Optional[TermsOfUse] = None
+    """Acceptance of terms of use by the legal entity."""
 
     third_party_verification: Optional[ThirdPartyVerification] = None
     """Deprecated. Use `third_party_verifications` instead."""

@@ -31,7 +31,7 @@ class TestDocuments:
             file=b"Example data",
             document_type="document_type",
             documentable_id="documentable_id",
-            documentable_type="connections",
+            documentable_type="connection",
         )
         assert_matches_type(Document, document, path=["response"])
 
@@ -107,7 +107,7 @@ class TestDocuments:
         document = client.documents.list(
             after_cursor="after_cursor",
             documentable_id="documentable_id",
-            documentable_type="connections",
+            documentable_type="connection",
             per_page=0,
         )
         assert_matches_type(SyncPage[Document], document, path=["response"])
@@ -151,7 +151,7 @@ class TestAsyncDocuments:
             file=b"Example data",
             document_type="document_type",
             documentable_id="documentable_id",
-            documentable_type="connections",
+            documentable_type="connection",
         )
         assert_matches_type(Document, document, path=["response"])
 
@@ -227,7 +227,7 @@ class TestAsyncDocuments:
         document = await async_client.documents.list(
             after_cursor="after_cursor",
             documentable_id="documentable_id",
-            documentable_type="connections",
+            documentable_type="connection",
             per_page=0,
         )
         assert_matches_type(AsyncPage[Document], document, path=["response"])

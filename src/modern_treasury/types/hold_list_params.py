@@ -21,16 +21,10 @@ class HoldListParams(TypedDict, total=False):
     per_page: int
 
     status: Optional[Literal["active", "resolved"]]
-    """Translation missing: en.openapi.descriptions.payment_order.query_params.status"""
+    """Only return holds for a specific status."""
 
     target_id: Optional[str]
-    """
-    Translation missing:
-    en.openapi.descriptions.payment_order.query_params.target_id
-    """
+    """Only return holds for a specific target ID."""
 
     target_type: Optional[Literal["payment_order"]]
-    """
-    Translation missing:
-    en.openapi.descriptions.payment_order.query_params.target_type
-    """
+    """Only return holds for a specific target type."""

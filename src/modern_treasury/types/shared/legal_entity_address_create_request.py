@@ -24,11 +24,16 @@ class LegalEntityAddressCreateRequest(BaseModel):
     """Region or State."""
 
     address_types: Optional[
-        List[Literal["business", "business_registered", "mailing", "other", "po_box", "residential"]]
+        List[
+            Literal["business", "business_physical", "business_registered", "mailing", "other", "po_box", "residential"]
+        ]
     ] = None
     """The types of this address."""
 
     line2: Optional[str] = None
 
     primary: Optional[bool] = None
-    """Whether this address is the primary address for the legal entity."""
+    """Whether this address is the primary address for the legal entity.
+
+    Optional; when omitted it is inferred from the address types.
+    """
