@@ -109,9 +109,8 @@ class LegalEntities(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LegalEntity:
-        """Create a legal entity.
-
-        All country fields use ISO 3166-1 alpha-2 (e.g. US).
+        """
+        create legal_entity
 
         Args:
           legal_entity_type: The type of legal entity.
@@ -130,8 +129,8 @@ class LegalEntities(SyncAPIResource):
               in a value of null to prevent the connection from being associated with the
               legal entity.
 
-          country_of_incorporation: The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
-              code (e.g. US).
+          country_of_incorporation: The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
+              alpha-3 formats.
 
           date_formed: A business's formation date (YYYY-MM-DD).
 
@@ -167,8 +166,8 @@ class LegalEntities(SyncAPIResource):
 
           middle_name: An individual's middle name.
 
-          operating_jurisdictions: A list of countries where the business operates, as ISO 3166-1 alpha-2 country
-              codes (e.g. ["US", "CA"]).
+          operating_jurisdictions: A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
+              codes).
 
           politically_exposed_person: Whether the individual is a politically exposed person.
 
@@ -362,8 +361,8 @@ class LegalEntities(SyncAPIResource):
 
           citizenship_country: The country of citizenship for an individual.
 
-          country_of_incorporation: The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
-              code (e.g. US).
+          country_of_incorporation: The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
+              alpha-3 formats.
 
           date_formed: A business's formation date (YYYY-MM-DD).
 
@@ -394,8 +393,8 @@ class LegalEntities(SyncAPIResource):
 
           middle_name: An individual's middle name.
 
-          operating_jurisdictions: A list of countries where the business operates, as ISO 3166-1 alpha-2 country
-              codes (e.g. ["US", "CA"]).
+          operating_jurisdictions: A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
+              codes).
 
           politically_exposed_person: Whether the individual is a politically exposed person.
 
@@ -625,9 +624,8 @@ class AsyncLegalEntities(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> LegalEntity:
-        """Create a legal entity.
-
-        All country fields use ISO 3166-1 alpha-2 (e.g. US).
+        """
+        create legal_entity
 
         Args:
           legal_entity_type: The type of legal entity.
@@ -646,8 +644,8 @@ class AsyncLegalEntities(AsyncAPIResource):
               in a value of null to prevent the connection from being associated with the
               legal entity.
 
-          country_of_incorporation: The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
-              code (e.g. US).
+          country_of_incorporation: The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
+              alpha-3 formats.
 
           date_formed: A business's formation date (YYYY-MM-DD).
 
@@ -683,8 +681,8 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           middle_name: An individual's middle name.
 
-          operating_jurisdictions: A list of countries where the business operates, as ISO 3166-1 alpha-2 country
-              codes (e.g. ["US", "CA"]).
+          operating_jurisdictions: A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
+              codes).
 
           politically_exposed_person: Whether the individual is a politically exposed person.
 
@@ -878,8 +876,8 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           citizenship_country: The country of citizenship for an individual.
 
-          country_of_incorporation: The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
-              code (e.g. US).
+          country_of_incorporation: The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
+              alpha-3 formats.
 
           date_formed: A business's formation date (YYYY-MM-DD).
 
@@ -910,8 +908,8 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           middle_name: An individual's middle name.
 
-          operating_jurisdictions: A list of countries where the business operates, as ISO 3166-1 alpha-2 country
-              codes (e.g. ["US", "CA"]).
+          operating_jurisdictions: A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
+              codes).
 
           politically_exposed_person: Whether the individual is a politically exposed person.
 

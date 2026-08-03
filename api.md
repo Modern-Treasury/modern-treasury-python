@@ -515,13 +515,6 @@ Methods:
 
 - <code title="get /api/validations/routing_numbers">client.validations.<a href="./src/modern_treasury/resources/validations.py">validate_routing_number</a>(\*\*<a href="src/modern_treasury/types/validation_validate_routing_number_params.py">params</a>) -> <a href="./src/modern_treasury/types/routing_number_lookup_request.py">RoutingNumberLookupRequest</a></code>
 
-# Webhooks
-
-Methods:
-
-- <code>client.webhooks.<a href="./src/modern_treasury/resources/webhooks.py">get_signature</a>(\*args) -> str</code>
-- <code>client.webhooks.<a href="./src/modern_treasury/resources/webhooks.py">validate_signature</a>(\*args) -> bool</code>
-
 # VirtualAccounts
 
 Types:

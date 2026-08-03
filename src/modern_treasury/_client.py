@@ -48,7 +48,6 @@ if TYPE_CHECKING:
         ledgers,
         returns,
         invoices,
-        webhooks,
         documents,
         line_items,
         connections,
@@ -240,12 +239,6 @@ class ModernTreasury(SyncAPIClient):
         from .resources.events import Events
 
         return Events(self)
-
-    @cached_property
-    def webhooks(self) -> webhooks.Webhooks:
-        from .resources.webhooks import Webhooks
-
-        return Webhooks(self)
 
     @cached_property
     def expected_payments(self) -> ExpectedPayments:
@@ -693,12 +686,6 @@ class AsyncModernTreasury(AsyncAPIClient):
         from .resources.events import AsyncEvents
 
         return AsyncEvents(self)
-
-    @cached_property
-    def webhooks(self) -> webhooks.AsyncWebhooks:
-        from .resources.webhooks import AsyncWebhooks
-
-        return AsyncWebhooks(self)
 
     @cached_property
     def expected_payments(self) -> AsyncExpectedPayments:

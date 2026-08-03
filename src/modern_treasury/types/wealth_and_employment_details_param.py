@@ -28,11 +28,7 @@ class WealthAndEmploymentDetailsParam(TypedDict, total=False):
     """The name of the employer."""
 
     employer_state: Required[Optional[str]]
-    """The state in which the employer is located.
-
-    This field is free-form text; for US states, we recommend a two-letter
-    abbreviation (e.g. CA).
-    """
+    """The state in which the employer is located."""
 
     employment_status: Required[Optional[Literal["employed", "retired", "self_employed", "student", "unemployed"]]]
     """The employment status of the individual."""

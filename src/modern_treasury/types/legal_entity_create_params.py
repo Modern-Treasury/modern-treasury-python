@@ -58,8 +58,8 @@ class LegalEntityCreateParams(TypedDict, total=False):
 
     country_of_incorporation: Optional[str]
     """
-    The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
-    code (e.g. US).
+    The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
+    alpha-3 formats.
     """
 
     date_formed: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
@@ -122,8 +122,8 @@ class LegalEntityCreateParams(TypedDict, total=False):
 
     operating_jurisdictions: SequenceNotStr[str]
     """
-    A list of countries where the business operates, as ISO 3166-1 alpha-2 country
-    codes (e.g. ["US", "CA"]).
+    A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
+    codes).
     """
 
     phone_numbers: Iterable[PhoneNumber]
@@ -202,11 +202,6 @@ class PhoneNumber(TypedDict, total=False):
     """A list of phone numbers in E.164 format."""
 
     phone_number: str
-    """A phone number in E.164 format.
-
-    This format is strictly validated: include a leading + and country code,
-    followed by digits only (no spaces or dashes), e.g. +12025551234.
-    """
 
 
 PhoneNumbers = PhoneNumber

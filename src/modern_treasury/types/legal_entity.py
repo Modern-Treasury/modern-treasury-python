@@ -53,10 +53,7 @@ class Address(BaseModel):
     """
 
     locality: Optional[str] = None
-    """Locality or City.
-
-    Use the full city name rather than an abbreviation (e.g. San Francisco).
-    """
+    """Locality or City."""
 
     object: str
 
@@ -70,11 +67,7 @@ class Address(BaseModel):
     """
 
     region: Optional[str] = None
-    """Region or State.
-
-    This field is free-form; for US states, we recommend a two-letter code (e.g.
-    CA). Full state names are also accepted.
-    """
+    """Region or State."""
 
     updated_at: datetime
 
@@ -143,8 +136,6 @@ class Identification(BaseModel):
         "gb_vat",
         "generic_international",
         "gr_vat",
-        "hk_brn",
-        "hk_hkid",
         "hn_id",
         "hn_rtn",
         "hr_oib",
@@ -237,11 +228,6 @@ class PhoneNumber(BaseModel):
     """A list of phone numbers in E.164 format."""
 
     phone_number: Optional[str] = None
-    """A phone number in E.164 format.
-
-    This format is strictly validated: include a leading + and country code,
-    followed by digits only (no spaces or dashes), e.g. +12025551234.
-    """
 
 
 PhoneNumbers = PhoneNumber
@@ -306,8 +292,8 @@ class LegalEntity(BaseModel):
 
     country_of_incorporation: Optional[str] = None
     """
-    The country where the business is incorporated, as an ISO 3166-1 alpha-2 country
-    code (e.g. US).
+    The country code where the business is incorporated in the ISO 3166-1 alpha-2 or
+    alpha-3 formats.
     """
 
     created_at: datetime
@@ -378,8 +364,8 @@ class LegalEntity(BaseModel):
 
     operating_jurisdictions: List[str]
     """
-    A list of countries where the business operates, as ISO 3166-1 alpha-2 country
-    codes (e.g. ["US", "CA"]).
+    A list of countries where the business operates (ISO 3166-1 alpha-2 or alpha-3
+    codes).
     """
 
     phone_numbers: List[PhoneNumber]
