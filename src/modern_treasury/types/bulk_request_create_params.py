@@ -29,6 +29,8 @@ __all__ = [
     "ResourcePaymentOrderAsyncCreateRequestAccounting",
     "ResourcesPaymentOrderAsyncCreateRequestLineItems",
     "ResourcePaymentOrderAsyncCreateRequestLineItem",
+    "ResourcesPaymentOrderAsyncCreateRequestOriginatingPartyAddress",
+    "ResourcePaymentOrderAsyncCreateRequestOriginatingPartyAddress",
     "ResourcesPaymentOrderAsyncCreateRequestReceivingAccount",
     "ResourcePaymentOrderAsyncCreateRequestReceivingAccount",
     "ResourcesPaymentOrderAsyncCreateRequestReceivingAccountAccountDetails",
@@ -51,6 +53,8 @@ __all__ = [
     "ResourcePaymentOrderUpdateRequestWithIDAccounting",
     "ResourcesPaymentOrderUpdateRequestWithIDLineItems",
     "ResourcePaymentOrderUpdateRequestWithIDLineItem",
+    "ResourcesPaymentOrderUpdateRequestWithIDOriginatingPartyAddress",
+    "ResourcePaymentOrderUpdateRequestWithIDOriginatingPartyAddress",
     "ResourcesPaymentOrderUpdateRequestWithIDReceivingAccount",
     "ResourcePaymentOrderUpdateRequestWithIDReceivingAccount",
     "ResourcesPaymentOrderUpdateRequestWithIDReceivingAccountAccountDetails",
@@ -150,6 +154,44 @@ ResourcesPaymentOrderAsyncCreateRequestLineItems = ResourcePaymentOrderAsyncCrea
 """This type is deprecated and will be removed in a future release.
 
 Please use ResourcePaymentOrderAsyncCreateRequestLineItem instead.
+"""
+
+
+class ResourcePaymentOrderAsyncCreateRequestOriginatingPartyAddress(TypedDict, total=False):
+    """
+    If present, this address will override the default originating party address used on the payment order. This works across all payment types.
+    """
+
+    country: Optional[str]
+    """Country code conforms to [ISO 3166-1 alpha-2]"""
+
+    line1: Optional[str]
+
+    line2: Optional[str]
+
+    locality: Optional[str]
+    """Locality or City.
+
+    Use the full city name rather than an abbreviation (e.g. San Francisco).
+    """
+
+    postal_code: Optional[str]
+    """The postal code of the address."""
+
+    region: Optional[str]
+    """Region or State.
+
+    This field is free-form; for US states, we recommend a two-letter code (e.g.
+    CA). Full state names are also accepted.
+    """
+
+
+ResourcesPaymentOrderAsyncCreateRequestOriginatingPartyAddress = (
+    ResourcePaymentOrderAsyncCreateRequestOriginatingPartyAddress
+)
+"""This type is deprecated and will be removed in a future release.
+
+Please use ResourcePaymentOrderAsyncCreateRequestOriginatingPartyAddress instead.
 """
 
 
@@ -471,6 +513,12 @@ class ResourcePaymentOrderAsyncCreateRequest(TypedDict, total=False):
 
     Note that this setting must also be turned on in your organization settings
     page.
+    """
+
+    originating_party_address: Optional[ResourcePaymentOrderAsyncCreateRequestOriginatingPartyAddress]
+    """
+    If present, this address will override the default originating party address
+    used on the payment order. This works across all payment types.
     """
 
     originating_party_name: Optional[str]
@@ -917,6 +965,44 @@ Please use ResourcePaymentOrderUpdateRequestWithIDLineItem instead.
 """
 
 
+class ResourcePaymentOrderUpdateRequestWithIDOriginatingPartyAddress(TypedDict, total=False):
+    """
+    If present, this address will override the default originating party address used on the payment order. This works across all payment types.
+    """
+
+    country: Optional[str]
+    """Country code conforms to [ISO 3166-1 alpha-2]"""
+
+    line1: Optional[str]
+
+    line2: Optional[str]
+
+    locality: Optional[str]
+    """Locality or City.
+
+    Use the full city name rather than an abbreviation (e.g. San Francisco).
+    """
+
+    postal_code: Optional[str]
+    """The postal code of the address."""
+
+    region: Optional[str]
+    """Region or State.
+
+    This field is free-form; for US states, we recommend a two-letter code (e.g.
+    CA). Full state names are also accepted.
+    """
+
+
+ResourcesPaymentOrderUpdateRequestWithIDOriginatingPartyAddress = (
+    ResourcePaymentOrderUpdateRequestWithIDOriginatingPartyAddress
+)
+"""This type is deprecated and will be removed in a future release.
+
+Please use ResourcePaymentOrderUpdateRequestWithIDOriginatingPartyAddress instead.
+"""
+
+
 class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountAccountDetail(TypedDict, total=False):
     account_number: Required[str]
 
@@ -1183,6 +1269,12 @@ class ResourcePaymentOrderUpdateRequestWithID(TypedDict, total=False):
 
     originating_account_id: str
     """The ID of one of your organization's internal accounts."""
+
+    originating_party_address: Optional[ResourcePaymentOrderUpdateRequestWithIDOriginatingPartyAddress]
+    """
+    If present, this address will override the default originating party address
+    used on the payment order. This works across all payment types.
+    """
 
     originating_party_name: Optional[str]
     """
