@@ -24,6 +24,7 @@ __all__ = [
     "Document",
     "LineItems",
     "LineItem",
+    "OriginatingPartyAddress",
     "ReceivingAccount",
     "ReceivingAccountAccountDetails",
     "ReceivingAccountAccountDetail",
@@ -158,6 +159,12 @@ class PaymentOrderCreateParams(TypedDict, total=False):
 
     Note that this setting must also be turned on in your organization settings
     page.
+    """
+
+    originating_party_address: Optional[OriginatingPartyAddress]
+    """
+    If present, this address will override the default originating party address
+    used on the payment order. This works across all payment types.
     """
 
     originating_party_name: Optional[str]
@@ -311,6 +318,7 @@ class Document(TypedDict, total=False):
         "legal_entity",
         "organization",
         "payment_order",
+        "return",
         "transaction",
     ]
 
@@ -351,6 +359,35 @@ LineItems = LineItem
 
 Please use LineItem instead.
 """
+
+
+class OriginatingPartyAddress(TypedDict, total=False):
+    """
+    If present, this address will override the default originating party address used on the payment order. This works across all payment types.
+    """
+
+    country: Optional[str]
+    """Country code conforms to [ISO 3166-1 alpha-2]"""
+
+    line1: Optional[str]
+
+    line2: Optional[str]
+
+    locality: Optional[str]
+    """Locality or City.
+
+    Use the full city name rather than an abbreviation (e.g. San Francisco).
+    """
+
+    postal_code: Optional[str]
+    """The postal code of the address."""
+
+    region: Optional[str]
+    """Region or State.
+
+    This field is free-form; for US states, we recommend a two-letter code (e.g.
+    CA). Full state names are also accepted.
+    """
 
 
 class ReceivingAccountAccountDetail(TypedDict, total=False):

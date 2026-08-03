@@ -59,6 +59,7 @@ class Documents(SyncAPIResource):
             "legal_entity",
             "organization",
             "payment_order",
+            "return",
             "transaction",
         ]
         | Omit = omit,
@@ -165,6 +166,7 @@ class Documents(SyncAPIResource):
             "legal_entity",
             "organization",
             "payment_order",
+            "return",
             "transaction",
         ]
         | Omit = omit,
@@ -183,8 +185,8 @@ class Documents(SyncAPIResource):
           documentable_id: The unique identifier for the associated object.
 
           documentable_type: The type of the associated object. Currently can be one of `payment_order`,
-              `transaction`, `expected_payment`, `counterparty`, `organization`, `case`,
-              `internal_account`, `decision`, or `external_account`.
+              `transaction`, `expected_payment`, `return`, `legal_entity`, `counterparty`,
+              `organization`, `case`, `internal_account`, `decision`, or `external_account`.
 
           extra_headers: Send extra headers
 
@@ -253,6 +255,7 @@ class AsyncDocuments(AsyncAPIResource):
             "legal_entity",
             "organization",
             "payment_order",
+            "return",
             "transaction",
         ]
         | Omit = omit,
@@ -359,6 +362,7 @@ class AsyncDocuments(AsyncAPIResource):
             "legal_entity",
             "organization",
             "payment_order",
+            "return",
             "transaction",
         ]
         | Omit = omit,
@@ -377,8 +381,8 @@ class AsyncDocuments(AsyncAPIResource):
           documentable_id: The unique identifier for the associated object.
 
           documentable_type: The type of the associated object. Currently can be one of `payment_order`,
-              `transaction`, `expected_payment`, `counterparty`, `organization`, `case`,
-              `internal_account`, `decision`, or `external_account`.
+              `transaction`, `expected_payment`, `return`, `legal_entity`, `counterparty`,
+              `organization`, `case`, `internal_account`, `decision`, or `external_account`.
 
           extra_headers: Send extra headers
 
