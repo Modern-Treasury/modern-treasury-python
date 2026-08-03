@@ -82,7 +82,8 @@ class PaymentReferences(SyncAPIResource):
         per_page: int | Omit = omit,
         reference_number: str | Omit = omit,
         referenceable_id: str | Omit = omit,
-        referenceable_type: Literal["payment_order", "return", "reversal"] | Omit = omit,
+        referenceable_type: Literal["payment_order", "return", "reversal", "incoming_payment_detail", "transaction"]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -221,7 +222,8 @@ class AsyncPaymentReferences(AsyncAPIResource):
         per_page: int | Omit = omit,
         reference_number: str | Omit = omit,
         referenceable_id: str | Omit = omit,
-        referenceable_type: Literal["payment_order", "return", "reversal"] | Omit = omit,
+        referenceable_type: Literal["payment_order", "return", "reversal", "incoming_payment_detail", "transaction"]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
