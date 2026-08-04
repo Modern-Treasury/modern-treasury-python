@@ -235,6 +235,7 @@ class InternalAccounts(SyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         name: str | Omit = omit,
         parent_account_id: str | Omit = omit,
+        status: Literal["pending_closure"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -262,6 +263,9 @@ class InternalAccounts(SyncAPIResource):
 
           parent_account_id: The parent internal account for this account.
 
+          status: Requests closure of the internal account. The resulting status may be `closed`
+              for vendors that close synchronously.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -285,6 +289,7 @@ class InternalAccounts(SyncAPIResource):
                     "metadata": metadata,
                     "name": name,
                     "parent_account_id": parent_account_id,
+                    "status": status,
                 },
                 internal_account_update_params.InternalAccountUpdateParams,
             ),
@@ -698,6 +703,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         name: str | Omit = omit,
         parent_account_id: str | Omit = omit,
+        status: Literal["pending_closure"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -725,6 +731,9 @@ class AsyncInternalAccounts(AsyncAPIResource):
 
           parent_account_id: The parent internal account for this account.
 
+          status: Requests closure of the internal account. The resulting status may be `closed`
+              for vendors that close synchronously.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -748,6 +757,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                     "metadata": metadata,
                     "name": name,
                     "parent_account_id": parent_account_id,
+                    "status": status,
                 },
                 internal_account_update_params.InternalAccountUpdateParams,
             ),
