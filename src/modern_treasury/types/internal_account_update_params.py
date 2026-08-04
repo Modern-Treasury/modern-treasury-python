@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Optional
-from typing_extensions import TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["InternalAccountUpdateParams"]
 
@@ -32,3 +32,9 @@ class InternalAccountUpdateParams(TypedDict, total=False):
 
     parent_account_id: str
     """The parent internal account for this account."""
+
+    status: Literal["pending_closure"]
+    """Requests closure of the internal account.
+
+    The resulting status may be `closed` for vendors that close synchronously.
+    """
