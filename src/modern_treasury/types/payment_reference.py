@@ -114,6 +114,7 @@ class PaymentReference(BaseModel):
         "western_alliance_payment_id",
         "western_alliance_transaction_id",
         "western_alliance_wire_confirmation_number",
+        "wise_transfer_id",
     ]
     """The type of reference number."""
 
