@@ -93,7 +93,7 @@ class InternalAccounts(SyncAPIResource):
         party_address: internal_account_create_params.PartyAddress | Omit = omit,
         party_name: Optional[str] | Omit = omit,
         requested_account_number_types: List[
-            Literal["ethereum_address", "solana_address", "polygon_address", "base_address"]
+            Literal["base_address", "ethereum_address", "polygon_address", "solana_address"]
         ]
         | Omit = omit,
         vendor_attributes: Dict[str, str] | Omit = omit,
@@ -561,7 +561,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         party_address: internal_account_create_params.PartyAddress | Omit = omit,
         party_name: Optional[str] | Omit = omit,
         requested_account_number_types: List[
-            Literal["ethereum_address", "solana_address", "polygon_address", "base_address"]
+            Literal["base_address", "ethereum_address", "polygon_address", "solana_address"]
         ]
         | Omit = omit,
         vendor_attributes: Dict[str, str] | Omit = omit,
