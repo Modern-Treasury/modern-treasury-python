@@ -86,7 +86,7 @@ class InternalAccountCreateParams(TypedDict, total=False):
     """The legal name of the entity which owns the account."""
 
     requested_account_number_types: List[
-        Literal["ethereum_address", "solana_address", "polygon_address", "base_address"]
+        Literal["base_address", "ethereum_address", "polygon_address", "solana_address"]
     ]
     """An array of account number types requested for provisioning."""
 
