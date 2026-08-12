@@ -52,7 +52,6 @@ class BulkRequests(SyncAPIResource):
             "expected_payment",
             "transaction",
             "transaction_line_item",
-            "entity_link",
         ],
         resources: Iterable[bulk_request_create_params.Resource],
         metadata: Dict[str, str] | Omit = omit,
@@ -156,7 +155,6 @@ class BulkRequests(SyncAPIResource):
             "expected_payment",
             "transaction",
             "transaction_line_item",
-            "entity_link",
         ]
         | Omit = omit,
         status: Literal["pending", "processing", "completed"] | Omit = omit,
@@ -244,7 +242,6 @@ class AsyncBulkRequests(AsyncAPIResource):
             "expected_payment",
             "transaction",
             "transaction_line_item",
-            "entity_link",
         ],
         resources: Iterable[bulk_request_create_params.Resource],
         metadata: Dict[str, str] | Omit = omit,
@@ -348,7 +345,6 @@ class AsyncBulkRequests(AsyncAPIResource):
             "expected_payment",
             "transaction",
             "transaction_line_item",
-            "entity_link",
         ]
         | Omit = omit,
         status: Literal["pending", "processing", "completed"] | Omit = omit,

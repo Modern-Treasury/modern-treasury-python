@@ -84,7 +84,6 @@ class BulkRequestCreateParams(TypedDict, total=False):
             "expected_payment",
             "transaction",
             "transaction_line_item",
-            "entity_link",
         ]
     ]
     """One of payment_order, expected_payment, or ledger_transaction."""
