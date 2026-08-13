@@ -85,7 +85,6 @@ class BulkResults(SyncAPIResource):
             "ledger_transaction",
             "expected_payment",
             "transaction",
-            "entity_link",
             "transaction_line_item",
             "bulk_error",
         ]
@@ -215,7 +214,6 @@ class AsyncBulkResults(AsyncAPIResource):
             "ledger_transaction",
             "expected_payment",
             "transaction",
-            "entity_link",
             "transaction_line_item",
             "bulk_error",
         ]
