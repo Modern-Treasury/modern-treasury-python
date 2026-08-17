@@ -22,6 +22,8 @@ class ExternalAccount(BaseModel):
     account_type: ExternalAccountType
     """Can be `checking`, `savings` or `other`."""
 
+    card_id: Optional[str] = None
+
     contact_details: List[ContactDetail]
 
     counterparty_id: Optional[str] = None
