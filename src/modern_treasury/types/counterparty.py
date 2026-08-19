@@ -22,6 +22,8 @@ class Account(BaseModel):
     account_type: Optional[ExternalAccountType] = None
     """Can be `checking`, `savings` or `other`."""
 
+    card_id: Optional[str] = None
+
     contact_details: Optional[List[ContactDetail]] = None
 
     created_at: Optional[datetime] = None
