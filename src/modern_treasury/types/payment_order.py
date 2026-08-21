@@ -365,6 +365,8 @@ class PaymentOrder(BaseModel):
     originating_account_id: str
     """The ID of one of your organization's internal accounts."""
 
+    originating_account_type: Literal["internal_account", "virtual_account"]
+
     originating_party_address: Optional[OriginatingPartyAddress] = None
     """
     If present, this address will override the default originating party address
