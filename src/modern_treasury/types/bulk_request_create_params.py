@@ -523,9 +523,10 @@ class ResourcePaymentOrderAsyncCreateRequest(TypedDict, total=False):
     originating_party_name: Optional[str]
     """
     If present, this will replace your default company name on receiver's bank
-    statement. This field can only be used for ACH payments currently. For ACH, only
-    the first 16 characters of this string will be used. Any additional characters
-    will be truncated.
+    statement. For ACH, only the first 16 characters of this string will be used.
+    This must be a name the account holder legally operates under, such as a DBA. Do
+    not use it to originate on behalf of another person or business, including an
+    end customer.
     """
 
     priority: Literal["high", "normal"]
@@ -1278,9 +1279,10 @@ class ResourcePaymentOrderUpdateRequestWithID(TypedDict, total=False):
     originating_party_name: Optional[str]
     """
     If present, this will replace your default company name on receiver's bank
-    statement. This field can only be used for ACH payments currently. For ACH, only
-    the first 16 characters of this string will be used. Any additional characters
-    will be truncated.
+    statement. For ACH, only the first 16 characters of this string will be used.
+    This must be a name the account holder legally operates under, such as a DBA. Do
+    not use it to originate on behalf of another person or business, including an
+    end customer.
     """
 
     priority: Literal["high", "normal"]
