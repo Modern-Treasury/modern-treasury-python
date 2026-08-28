@@ -54,6 +54,7 @@ class VirtualAccounts(SyncAPIResource):
         ledger_account: LedgerAccountCreateRequest | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         routing_details: Iterable[virtual_account_create_params.RoutingDetail] | Omit = omit,
+        virtual_account_setting_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -93,6 +94,8 @@ class VirtualAccounts(SyncAPIResource):
 
           routing_details: An array of routing detail objects.
 
+          virtual_account_setting_id: The ID of the virtual account setting used to allocate this virtual account.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -117,6 +120,7 @@ class VirtualAccounts(SyncAPIResource):
                     "ledger_account": ledger_account,
                     "metadata": metadata,
                     "routing_details": routing_details,
+                    "virtual_account_setting_id": virtual_account_setting_id,
                 },
                 virtual_account_create_params.VirtualAccountCreateParams,
             ),
@@ -345,6 +349,7 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         ledger_account: LedgerAccountCreateRequest | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         routing_details: Iterable[virtual_account_create_params.RoutingDetail] | Omit = omit,
+        virtual_account_setting_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -384,6 +389,8 @@ class AsyncVirtualAccounts(AsyncAPIResource):
 
           routing_details: An array of routing detail objects.
 
+          virtual_account_setting_id: The ID of the virtual account setting used to allocate this virtual account.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -408,6 +415,7 @@ class AsyncVirtualAccounts(AsyncAPIResource):
                     "ledger_account": ledger_account,
                     "metadata": metadata,
                     "routing_details": routing_details,
+                    "virtual_account_setting_id": virtual_account_setting_id,
                 },
                 virtual_account_create_params.VirtualAccountCreateParams,
             ),
