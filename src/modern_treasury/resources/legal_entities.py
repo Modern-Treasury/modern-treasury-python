@@ -60,6 +60,7 @@ class LegalEntities(SyncAPIResource):
         addresses: Iterable[LegalEntityAddressCreateRequest] | Omit = omit,
         bank_settings: Optional[BankSettingsParam] | Omit = omit,
         business_description: Optional[str] | Omit = omit,
+        business_designation: Optional[Literal["exempt_financial_institution", "non_operating_business"]] | Omit = omit,
         business_name: Optional[str] | Omit = omit,
         citizenship_country: Optional[str] | Omit = omit,
         compliance_details: Optional[object] | Omit = omit,
@@ -119,6 +120,8 @@ class LegalEntities(SyncAPIResource):
           addresses: A list of addresses for the entity.
 
           business_description: A description of the business.
+
+          business_designation: Legal designation associated with the business.
 
           business_name: The business's legal business name.
 
@@ -214,6 +217,7 @@ class LegalEntities(SyncAPIResource):
                     "addresses": addresses,
                     "bank_settings": bank_settings,
                     "business_description": business_description,
+                    "business_designation": business_designation,
                     "business_name": business_name,
                     "citizenship_country": citizenship_country,
                     "compliance_details": compliance_details,
@@ -305,6 +309,7 @@ class LegalEntities(SyncAPIResource):
         addresses: Iterable[LegalEntityAddressCreateRequest] | Omit = omit,
         bank_settings: Optional[BankSettingsParam] | Omit = omit,
         business_description: Optional[str] | Omit = omit,
+        business_designation: Optional[Literal["exempt_financial_institution", "non_operating_business"]] | Omit = omit,
         business_name: Optional[str] | Omit = omit,
         citizenship_country: Optional[str] | Omit = omit,
         country_of_incorporation: Optional[str] | Omit = omit,
@@ -357,6 +362,8 @@ class LegalEntities(SyncAPIResource):
           addresses: A list of addresses for the entity.
 
           business_description: A description of the business.
+
+          business_designation: Legal designation associated with the business.
 
           business_name: The business's legal business name.
 
@@ -442,6 +449,7 @@ class LegalEntities(SyncAPIResource):
                     "addresses": addresses,
                     "bank_settings": bank_settings,
                     "business_description": business_description,
+                    "business_designation": business_designation,
                     "business_name": business_name,
                     "citizenship_country": citizenship_country,
                     "country_of_incorporation": country_of_incorporation,
@@ -576,6 +584,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         addresses: Iterable[LegalEntityAddressCreateRequest] | Omit = omit,
         bank_settings: Optional[BankSettingsParam] | Omit = omit,
         business_description: Optional[str] | Omit = omit,
+        business_designation: Optional[Literal["exempt_financial_institution", "non_operating_business"]] | Omit = omit,
         business_name: Optional[str] | Omit = omit,
         citizenship_country: Optional[str] | Omit = omit,
         compliance_details: Optional[object] | Omit = omit,
@@ -635,6 +644,8 @@ class AsyncLegalEntities(AsyncAPIResource):
           addresses: A list of addresses for the entity.
 
           business_description: A description of the business.
+
+          business_designation: Legal designation associated with the business.
 
           business_name: The business's legal business name.
 
@@ -730,6 +741,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "addresses": addresses,
                     "bank_settings": bank_settings,
                     "business_description": business_description,
+                    "business_designation": business_designation,
                     "business_name": business_name,
                     "citizenship_country": citizenship_country,
                     "compliance_details": compliance_details,
@@ -821,6 +833,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         addresses: Iterable[LegalEntityAddressCreateRequest] | Omit = omit,
         bank_settings: Optional[BankSettingsParam] | Omit = omit,
         business_description: Optional[str] | Omit = omit,
+        business_designation: Optional[Literal["exempt_financial_institution", "non_operating_business"]] | Omit = omit,
         business_name: Optional[str] | Omit = omit,
         citizenship_country: Optional[str] | Omit = omit,
         country_of_incorporation: Optional[str] | Omit = omit,
@@ -873,6 +886,8 @@ class AsyncLegalEntities(AsyncAPIResource):
           addresses: A list of addresses for the entity.
 
           business_description: A description of the business.
+
+          business_designation: Legal designation associated with the business.
 
           business_name: The business's legal business name.
 
@@ -958,6 +973,7 @@ class AsyncLegalEntities(AsyncAPIResource):
                     "addresses": addresses,
                     "bank_settings": bank_settings,
                     "business_description": business_description,
+                    "business_designation": business_designation,
                     "business_name": business_name,
                     "citizenship_country": citizenship_country,
                     "country_of_incorporation": country_of_incorporation,
