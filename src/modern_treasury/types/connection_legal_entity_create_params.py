@@ -130,6 +130,9 @@ class LegalEntity(TypedDict, total=False):
     business_description: Optional[str]
     """A description of the business."""
 
+    business_designation: Optional[Literal["exempt_financial_institution", "non_operating_business"]]
+    """Legal designation associated with the business."""
+
     business_name: Optional[str]
     """The business's legal business name."""
 

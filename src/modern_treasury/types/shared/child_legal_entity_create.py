@@ -113,6 +113,9 @@ class ChildLegalEntityCreate(BaseModel):
     business_description: Optional[str] = None
     """A description of the business."""
 
+    business_designation: Optional[Literal["exempt_financial_institution", "non_operating_business"]] = None
+    """Legal designation associated with the business."""
+
     business_name: Optional[str] = None
     """The business's legal business name."""
 
