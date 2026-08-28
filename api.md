@@ -630,6 +630,7 @@ Methods:
 - <code title="get /api/legal_entities/{id}">client.legal_entities.<a href="./src/modern_treasury/resources/legal_entities.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/legal_entity.py">LegalEntity</a></code>
 - <code title="patch /api/legal_entities/{id}">client.legal_entities.<a href="./src/modern_treasury/resources/legal_entities.py">update</a>(id, \*\*<a href="src/modern_treasury/types/legal_entity_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/legal_entity.py">LegalEntity</a></code>
 - <code title="get /api/legal_entities">client.legal_entities.<a href="./src/modern_treasury/resources/legal_entities.py">list</a>(\*\*<a href="src/modern_treasury/types/legal_entity_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/legal_entity.py">SyncPage[LegalEntity]</a></code>
+- <code title="patch /api/simulations/legal_entities/{id}/update_status">client.legal_entities.<a href="./src/modern_treasury/resources/legal_entities.py">update_status</a>(id, \*\*<a href="src/modern_treasury/types/legal_entity_update_status_params.py">params</a>) -> <a href="./src/modern_treasury/types/legal_entity.py">LegalEntity</a></code>
 
 # LegalEntityAssociations
 
@@ -638,6 +639,11 @@ Types:
 ```python
 from modern_treasury.types import ChildLegalEntity, LegalEntityAssociation
 ```
+
+Methods:
+
+- <code title="post /api/legal_entity_associations">client.legal_entity_associations.<a href="./src/modern_treasury/resources/legal_entity_associations.py">create</a>(\*\*<a href="src/modern_treasury/types/legal_entity_association_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/legal_entity_association.py">LegalEntityAssociation</a></code>
+- <code title="delete /api/legal_entity_associations/{id}">client.legal_entity_associations.<a href="./src/modern_treasury/resources/legal_entity_associations.py">delete</a>(id) -> <a href="./src/modern_treasury/types/legal_entity_association.py">LegalEntityAssociation</a></code>
 
 # PaymentActions
 
@@ -666,6 +672,13 @@ Methods:
 - <code title="get /api/journal_entries/{id}">client.journal_entries.<a href="./src/modern_treasury/resources/journal_entries.py">retrieve</a>(id) -> None</code>
 - <code title="get /api/journal_entries">client.journal_entries.<a href="./src/modern_treasury/resources/journal_entries.py">list</a>(\*\*<a href="src/modern_treasury/types/journal_entry_list_params.py">params</a>) -> None</code>
 
+# JournalSources
+
+Methods:
+
+- <code title="get /api/journal_sources/{id}">client.journal_sources.<a href="./src/modern_treasury/resources/journal_sources.py">retrieve</a>(id) -> None</code>
+- <code title="get /api/journal_sources">client.journal_sources.<a href="./src/modern_treasury/resources/journal_sources.py">list</a>(\*\*<a href="src/modern_treasury/types/journal_source_list_params.py">params</a>) -> None</code>
+
 # JournalReports
 
 Methods:
@@ -693,3 +706,29 @@ Methods:
 - <code title="get /api/holds/{id}">client.holds.<a href="./src/modern_treasury/resources/holds.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/hold_retrieve_response.py">HoldRetrieveResponse</a></code>
 - <code title="patch /api/holds/{id}">client.holds.<a href="./src/modern_treasury/resources/holds.py">update</a>(id, \*\*<a href="src/modern_treasury/types/hold_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/hold_update_response.py">HoldUpdateResponse</a></code>
 - <code title="get /api/holds">client.holds.<a href="./src/modern_treasury/resources/holds.py">list</a>(\*\*<a href="src/modern_treasury/types/hold_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/hold_list_response.py">SyncPage[HoldListResponse]</a></code>
+
+# Cases
+
+Types:
+
+```python
+from modern_treasury.types import Case
+```
+
+Methods:
+
+- <code title="get /api/cases/{id}">client.cases.<a href="./src/modern_treasury/resources/cases.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/case.py">Case</a></code>
+- <code title="get /api/cases">client.cases.<a href="./src/modern_treasury/resources/cases.py">list</a>(\*\*<a href="src/modern_treasury/types/case_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/case.py">SyncPage[Case]</a></code>
+
+# VirtualAccountSettings
+
+Types:
+
+```python
+from modern_treasury.types import VirtualAccountSetting
+```
+
+Methods:
+
+- <code title="post /api/virtual_account_settings">client.virtual_account_settings.<a href="./src/modern_treasury/resources/virtual_account_settings.py">create</a>(\*\*<a href="src/modern_treasury/types/virtual_account_setting_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/virtual_account_setting.py">VirtualAccountSetting</a></code>
+- <code title="get /api/virtual_account_settings">client.virtual_account_settings.<a href="./src/modern_treasury/resources/virtual_account_settings.py">list</a>(\*\*<a href="src/modern_treasury/types/virtual_account_setting_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/virtual_account_setting.py">SyncPage[VirtualAccountSetting]</a></code>
