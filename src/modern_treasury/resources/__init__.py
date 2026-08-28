@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .cases import (
+    Cases,
+    AsyncCases,
+    CasesWithRawResponse,
+    AsyncCasesWithRawResponse,
+    CasesWithStreamingResponse,
+    AsyncCasesWithStreamingResponse,
+)
 from .holds import (
     Holds,
     AsyncHolds,
@@ -161,6 +169,14 @@ from .journal_reports import (
     JournalReportsWithStreamingResponse,
     AsyncJournalReportsWithStreamingResponse,
 )
+from .journal_sources import (
+    JournalSources,
+    AsyncJournalSources,
+    JournalSourcesWithRawResponse,
+    AsyncJournalSourcesWithRawResponse,
+    JournalSourcesWithStreamingResponse,
+    AsyncJournalSourcesWithStreamingResponse,
+)
 from .ledger_accounts import (
     LedgerAccounts,
     AsyncLedgerAccounts,
@@ -257,6 +273,14 @@ from .incoming_payment_details import (
     IncomingPaymentDetailsWithStreamingResponse,
     AsyncIncomingPaymentDetailsWithStreamingResponse,
 )
+from .virtual_account_settings import (
+    VirtualAccountSettings,
+    AsyncVirtualAccountSettings,
+    VirtualAccountSettingsWithRawResponse,
+    AsyncVirtualAccountSettingsWithRawResponse,
+    VirtualAccountSettingsWithStreamingResponse,
+    AsyncVirtualAccountSettingsWithStreamingResponse,
+)
 from .connection_legal_entities import (
     ConnectionLegalEntities,
     AsyncConnectionLegalEntities,
@@ -280,6 +304,14 @@ from .ledger_account_statements import (
     AsyncLedgerAccountStatementsWithRawResponse,
     LedgerAccountStatementsWithStreamingResponse,
     AsyncLedgerAccountStatementsWithStreamingResponse,
+)
+from .legal_entity_associations import (
+    LegalEntityAssociations,
+    AsyncLegalEntityAssociations,
+    LegalEntityAssociationsWithRawResponse,
+    AsyncLegalEntityAssociationsWithRawResponse,
+    LegalEntityAssociationsWithStreamingResponse,
+    AsyncLegalEntityAssociationsWithStreamingResponse,
 )
 from .ledger_account_settlements import (
     LedgerAccountSettlements,
@@ -499,6 +531,12 @@ __all__ = [
     "AsyncLegalEntitiesWithRawResponse",
     "LegalEntitiesWithStreamingResponse",
     "AsyncLegalEntitiesWithStreamingResponse",
+    "LegalEntityAssociations",
+    "AsyncLegalEntityAssociations",
+    "LegalEntityAssociationsWithRawResponse",
+    "AsyncLegalEntityAssociationsWithRawResponse",
+    "LegalEntityAssociationsWithStreamingResponse",
+    "AsyncLegalEntityAssociationsWithStreamingResponse",
     "PaymentActions",
     "AsyncPaymentActions",
     "PaymentActionsWithRawResponse",
@@ -511,6 +549,12 @@ __all__ = [
     "AsyncJournalEntriesWithRawResponse",
     "JournalEntriesWithStreamingResponse",
     "AsyncJournalEntriesWithStreamingResponse",
+    "JournalSources",
+    "AsyncJournalSources",
+    "JournalSourcesWithRawResponse",
+    "AsyncJournalSourcesWithRawResponse",
+    "JournalSourcesWithStreamingResponse",
+    "AsyncJournalSourcesWithStreamingResponse",
     "JournalReports",
     "AsyncJournalReports",
     "JournalReportsWithRawResponse",
@@ -523,4 +567,16 @@ __all__ = [
     "AsyncHoldsWithRawResponse",
     "HoldsWithStreamingResponse",
     "AsyncHoldsWithStreamingResponse",
+    "Cases",
+    "AsyncCases",
+    "CasesWithRawResponse",
+    "AsyncCasesWithRawResponse",
+    "CasesWithStreamingResponse",
+    "AsyncCasesWithStreamingResponse",
+    "VirtualAccountSettings",
+    "AsyncVirtualAccountSettings",
+    "VirtualAccountSettingsWithRawResponse",
+    "AsyncVirtualAccountSettingsWithRawResponse",
+    "VirtualAccountSettingsWithStreamingResponse",
+    "AsyncVirtualAccountSettingsWithStreamingResponse",
 ]
