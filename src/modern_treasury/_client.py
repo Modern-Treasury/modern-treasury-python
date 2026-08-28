@@ -43,6 +43,7 @@ from .types.ping_response import PingResponse
 
 if TYPE_CHECKING:
     from .resources import (
+        cases,
         holds,
         events,
         ledgers,
@@ -63,6 +64,7 @@ if TYPE_CHECKING:
         account_details,
         journal_entries,
         journal_reports,
+        journal_sources,
         ledger_accounts,
         payment_actions,
         routing_details,
@@ -75,12 +77,15 @@ if TYPE_CHECKING:
         foreign_exchange_quotes,
         account_collection_flows,
         incoming_payment_details,
+        virtual_account_settings,
         connection_legal_entities,
         ledger_account_categories,
         ledger_account_statements,
+        legal_entity_associations,
         ledger_account_settlements,
         ledger_account_balance_monitors,
     )
+    from .resources.cases import Cases, AsyncCases
     from .resources.holds import Holds, AsyncHolds
     from .resources.events import Events, AsyncEvents
     from .resources.ledgers import Ledgers, AsyncLedgers
@@ -98,6 +103,7 @@ if TYPE_CHECKING:
     from .resources.account_details import AccountDetails, AsyncAccountDetails
     from .resources.journal_entries import JournalEntries, AsyncJournalEntries
     from .resources.journal_reports import JournalReports, AsyncJournalReports
+    from .resources.journal_sources import JournalSources, AsyncJournalSources
     from .resources.ledger_accounts import LedgerAccounts, AsyncLedgerAccounts
     from .resources.payment_actions import PaymentActions, AsyncPaymentActions
     from .resources.routing_details import RoutingDetails, AsyncRoutingDetails
@@ -109,9 +115,11 @@ if TYPE_CHECKING:
     from .resources.foreign_exchange_quotes import ForeignExchangeQuotes, AsyncForeignExchangeQuotes
     from .resources.account_collection_flows import AccountCollectionFlows, AsyncAccountCollectionFlows
     from .resources.incoming_payment_details import IncomingPaymentDetails, AsyncIncomingPaymentDetails
+    from .resources.virtual_account_settings import VirtualAccountSettings, AsyncVirtualAccountSettings
     from .resources.connection_legal_entities import ConnectionLegalEntities, AsyncConnectionLegalEntities
     from .resources.ledger_account_categories import LedgerAccountCategories, AsyncLedgerAccountCategories
     from .resources.ledger_account_statements import LedgerAccountStatements, AsyncLedgerAccountStatements
+    from .resources.legal_entity_associations import LegalEntityAssociations, AsyncLegalEntityAssociations
     from .resources.transactions.transactions import Transactions, AsyncTransactions
     from .resources.payment_orders.payment_orders import PaymentOrders, AsyncPaymentOrders
     from .resources.ledger_account_balance_monitors import (
@@ -421,6 +429,12 @@ class ModernTreasury(SyncAPIClient):
         return LegalEntities(self)
 
     @cached_property
+    def legal_entity_associations(self) -> LegalEntityAssociations:
+        from .resources.legal_entity_associations import LegalEntityAssociations
+
+        return LegalEntityAssociations(self)
+
+    @cached_property
     def payment_actions(self) -> PaymentActions:
         from .resources.payment_actions import PaymentActions
 
@@ -433,6 +447,12 @@ class ModernTreasury(SyncAPIClient):
         return JournalEntries(self)
 
     @cached_property
+    def journal_sources(self) -> JournalSources:
+        from .resources.journal_sources import JournalSources
+
+        return JournalSources(self)
+
+    @cached_property
     def journal_reports(self) -> JournalReports:
         from .resources.journal_reports import JournalReports
 
@@ -443,6 +463,18 @@ class ModernTreasury(SyncAPIClient):
         from .resources.holds import Holds
 
         return Holds(self)
+
+    @cached_property
+    def cases(self) -> Cases:
+        from .resources.cases import Cases
+
+        return Cases(self)
+
+    @cached_property
+    def virtual_account_settings(self) -> VirtualAccountSettings:
+        from .resources.virtual_account_settings import VirtualAccountSettings
+
+        return VirtualAccountSettings(self)
 
     @cached_property
     def with_raw_response(self) -> ModernTreasuryWithRawResponse:
@@ -868,6 +900,12 @@ class AsyncModernTreasury(AsyncAPIClient):
         return AsyncLegalEntities(self)
 
     @cached_property
+    def legal_entity_associations(self) -> AsyncLegalEntityAssociations:
+        from .resources.legal_entity_associations import AsyncLegalEntityAssociations
+
+        return AsyncLegalEntityAssociations(self)
+
+    @cached_property
     def payment_actions(self) -> AsyncPaymentActions:
         from .resources.payment_actions import AsyncPaymentActions
 
@@ -880,6 +918,12 @@ class AsyncModernTreasury(AsyncAPIClient):
         return AsyncJournalEntries(self)
 
     @cached_property
+    def journal_sources(self) -> AsyncJournalSources:
+        from .resources.journal_sources import AsyncJournalSources
+
+        return AsyncJournalSources(self)
+
+    @cached_property
     def journal_reports(self) -> AsyncJournalReports:
         from .resources.journal_reports import AsyncJournalReports
 
@@ -890,6 +934,18 @@ class AsyncModernTreasury(AsyncAPIClient):
         from .resources.holds import AsyncHolds
 
         return AsyncHolds(self)
+
+    @cached_property
+    def cases(self) -> AsyncCases:
+        from .resources.cases import AsyncCases
+
+        return AsyncCases(self)
+
+    @cached_property
+    def virtual_account_settings(self) -> AsyncVirtualAccountSettings:
+        from .resources.virtual_account_settings import AsyncVirtualAccountSettings
+
+        return AsyncVirtualAccountSettings(self)
 
     @cached_property
     def with_raw_response(self) -> AsyncModernTreasuryWithRawResponse:
@@ -1242,6 +1298,12 @@ class ModernTreasuryWithRawResponse:
         return LegalEntitiesWithRawResponse(self._client.legal_entities)
 
     @cached_property
+    def legal_entity_associations(self) -> legal_entity_associations.LegalEntityAssociationsWithRawResponse:
+        from .resources.legal_entity_associations import LegalEntityAssociationsWithRawResponse
+
+        return LegalEntityAssociationsWithRawResponse(self._client.legal_entity_associations)
+
+    @cached_property
     def payment_actions(self) -> payment_actions.PaymentActionsWithRawResponse:
         from .resources.payment_actions import PaymentActionsWithRawResponse
 
@@ -1254,6 +1316,12 @@ class ModernTreasuryWithRawResponse:
         return JournalEntriesWithRawResponse(self._client.journal_entries)
 
     @cached_property
+    def journal_sources(self) -> journal_sources.JournalSourcesWithRawResponse:
+        from .resources.journal_sources import JournalSourcesWithRawResponse
+
+        return JournalSourcesWithRawResponse(self._client.journal_sources)
+
+    @cached_property
     def journal_reports(self) -> journal_reports.JournalReportsWithRawResponse:
         from .resources.journal_reports import JournalReportsWithRawResponse
 
@@ -1264,6 +1332,18 @@ class ModernTreasuryWithRawResponse:
         from .resources.holds import HoldsWithRawResponse
 
         return HoldsWithRawResponse(self._client.holds)
+
+    @cached_property
+    def cases(self) -> cases.CasesWithRawResponse:
+        from .resources.cases import CasesWithRawResponse
+
+        return CasesWithRawResponse(self._client.cases)
+
+    @cached_property
+    def virtual_account_settings(self) -> virtual_account_settings.VirtualAccountSettingsWithRawResponse:
+        from .resources.virtual_account_settings import VirtualAccountSettingsWithRawResponse
+
+        return VirtualAccountSettingsWithRawResponse(self._client.virtual_account_settings)
 
 
 class AsyncModernTreasuryWithRawResponse:
@@ -1477,6 +1557,12 @@ class AsyncModernTreasuryWithRawResponse:
         return AsyncLegalEntitiesWithRawResponse(self._client.legal_entities)
 
     @cached_property
+    def legal_entity_associations(self) -> legal_entity_associations.AsyncLegalEntityAssociationsWithRawResponse:
+        from .resources.legal_entity_associations import AsyncLegalEntityAssociationsWithRawResponse
+
+        return AsyncLegalEntityAssociationsWithRawResponse(self._client.legal_entity_associations)
+
+    @cached_property
     def payment_actions(self) -> payment_actions.AsyncPaymentActionsWithRawResponse:
         from .resources.payment_actions import AsyncPaymentActionsWithRawResponse
 
@@ -1489,6 +1575,12 @@ class AsyncModernTreasuryWithRawResponse:
         return AsyncJournalEntriesWithRawResponse(self._client.journal_entries)
 
     @cached_property
+    def journal_sources(self) -> journal_sources.AsyncJournalSourcesWithRawResponse:
+        from .resources.journal_sources import AsyncJournalSourcesWithRawResponse
+
+        return AsyncJournalSourcesWithRawResponse(self._client.journal_sources)
+
+    @cached_property
     def journal_reports(self) -> journal_reports.AsyncJournalReportsWithRawResponse:
         from .resources.journal_reports import AsyncJournalReportsWithRawResponse
 
@@ -1499,6 +1591,18 @@ class AsyncModernTreasuryWithRawResponse:
         from .resources.holds import AsyncHoldsWithRawResponse
 
         return AsyncHoldsWithRawResponse(self._client.holds)
+
+    @cached_property
+    def cases(self) -> cases.AsyncCasesWithRawResponse:
+        from .resources.cases import AsyncCasesWithRawResponse
+
+        return AsyncCasesWithRawResponse(self._client.cases)
+
+    @cached_property
+    def virtual_account_settings(self) -> virtual_account_settings.AsyncVirtualAccountSettingsWithRawResponse:
+        from .resources.virtual_account_settings import AsyncVirtualAccountSettingsWithRawResponse
+
+        return AsyncVirtualAccountSettingsWithRawResponse(self._client.virtual_account_settings)
 
 
 class ModernTreasuryWithStreamedResponse:
@@ -1712,6 +1816,12 @@ class ModernTreasuryWithStreamedResponse:
         return LegalEntitiesWithStreamingResponse(self._client.legal_entities)
 
     @cached_property
+    def legal_entity_associations(self) -> legal_entity_associations.LegalEntityAssociationsWithStreamingResponse:
+        from .resources.legal_entity_associations import LegalEntityAssociationsWithStreamingResponse
+
+        return LegalEntityAssociationsWithStreamingResponse(self._client.legal_entity_associations)
+
+    @cached_property
     def payment_actions(self) -> payment_actions.PaymentActionsWithStreamingResponse:
         from .resources.payment_actions import PaymentActionsWithStreamingResponse
 
@@ -1724,6 +1834,12 @@ class ModernTreasuryWithStreamedResponse:
         return JournalEntriesWithStreamingResponse(self._client.journal_entries)
 
     @cached_property
+    def journal_sources(self) -> journal_sources.JournalSourcesWithStreamingResponse:
+        from .resources.journal_sources import JournalSourcesWithStreamingResponse
+
+        return JournalSourcesWithStreamingResponse(self._client.journal_sources)
+
+    @cached_property
     def journal_reports(self) -> journal_reports.JournalReportsWithStreamingResponse:
         from .resources.journal_reports import JournalReportsWithStreamingResponse
 
@@ -1734,6 +1850,18 @@ class ModernTreasuryWithStreamedResponse:
         from .resources.holds import HoldsWithStreamingResponse
 
         return HoldsWithStreamingResponse(self._client.holds)
+
+    @cached_property
+    def cases(self) -> cases.CasesWithStreamingResponse:
+        from .resources.cases import CasesWithStreamingResponse
+
+        return CasesWithStreamingResponse(self._client.cases)
+
+    @cached_property
+    def virtual_account_settings(self) -> virtual_account_settings.VirtualAccountSettingsWithStreamingResponse:
+        from .resources.virtual_account_settings import VirtualAccountSettingsWithStreamingResponse
+
+        return VirtualAccountSettingsWithStreamingResponse(self._client.virtual_account_settings)
 
 
 class AsyncModernTreasuryWithStreamedResponse:
@@ -1949,6 +2077,12 @@ class AsyncModernTreasuryWithStreamedResponse:
         return AsyncLegalEntitiesWithStreamingResponse(self._client.legal_entities)
 
     @cached_property
+    def legal_entity_associations(self) -> legal_entity_associations.AsyncLegalEntityAssociationsWithStreamingResponse:
+        from .resources.legal_entity_associations import AsyncLegalEntityAssociationsWithStreamingResponse
+
+        return AsyncLegalEntityAssociationsWithStreamingResponse(self._client.legal_entity_associations)
+
+    @cached_property
     def payment_actions(self) -> payment_actions.AsyncPaymentActionsWithStreamingResponse:
         from .resources.payment_actions import AsyncPaymentActionsWithStreamingResponse
 
@@ -1961,6 +2095,12 @@ class AsyncModernTreasuryWithStreamedResponse:
         return AsyncJournalEntriesWithStreamingResponse(self._client.journal_entries)
 
     @cached_property
+    def journal_sources(self) -> journal_sources.AsyncJournalSourcesWithStreamingResponse:
+        from .resources.journal_sources import AsyncJournalSourcesWithStreamingResponse
+
+        return AsyncJournalSourcesWithStreamingResponse(self._client.journal_sources)
+
+    @cached_property
     def journal_reports(self) -> journal_reports.AsyncJournalReportsWithStreamingResponse:
         from .resources.journal_reports import AsyncJournalReportsWithStreamingResponse
 
@@ -1971,6 +2111,18 @@ class AsyncModernTreasuryWithStreamedResponse:
         from .resources.holds import AsyncHoldsWithStreamingResponse
 
         return AsyncHoldsWithStreamingResponse(self._client.holds)
+
+    @cached_property
+    def cases(self) -> cases.AsyncCasesWithStreamingResponse:
+        from .resources.cases import AsyncCasesWithStreamingResponse
+
+        return AsyncCasesWithStreamingResponse(self._client.cases)
+
+    @cached_property
+    def virtual_account_settings(self) -> virtual_account_settings.AsyncVirtualAccountSettingsWithStreamingResponse:
+        from .resources.virtual_account_settings import AsyncVirtualAccountSettingsWithStreamingResponse
+
+        return AsyncVirtualAccountSettingsWithStreamingResponse(self._client.virtual_account_settings)
 
 
 Client = ModernTreasury
