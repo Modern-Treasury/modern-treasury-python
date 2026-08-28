@@ -13,6 +13,7 @@ from . import (
     legal_entity_association,
 )
 from .. import _compat
+from .case import Case as Case
 from .event import Event as Event
 from .ledger import Ledger as Ledger
 from .shared import (
@@ -55,6 +56,7 @@ from .account_detail import AccountDetail as AccountDetail
 from .ledger_account import LedgerAccount as LedgerAccount
 from .routing_detail import RoutingDetail as RoutingDetail
 from .virtual_account import VirtualAccount as VirtualAccount
+from .case_list_params import CaseListParams as CaseListParams
 from .expected_payment import ExpectedPayment as ExpectedPayment
 from .external_account import ExternalAccount as ExternalAccount
 from .hold_list_params import HoldListParams as HoldListParams
@@ -95,6 +97,7 @@ from .incoming_payment_detail import IncomingPaymentDetail as IncomingPaymentDet
 from .ledger_account_category import LedgerAccountCategory as LedgerAccountCategory
 from .line_item_update_params import LineItemUpdateParams as LineItemUpdateParams
 from .transaction_list_params import TransactionListParams as TransactionListParams
+from .virtual_account_setting import VirtualAccountSetting as VirtualAccountSetting
 from .bulk_request_list_params import BulkRequestListParams as BulkRequestListParams
 from .counterparty_list_params import CounterpartyListParams as CounterpartyListParams
 from .ledger_entry_list_params import LedgerEntryListParams as LedgerEntryListParams
@@ -164,6 +167,7 @@ from .contact_detail_create_request_param import ContactDetailCreateRequestParam
 from .counterparty_collect_account_params import CounterpartyCollectAccountParams as CounterpartyCollectAccountParams
 from .incoming_payment_detail_list_params import IncomingPaymentDetailListParams as IncomingPaymentDetailListParams
 from .ledger_account_category_list_params import LedgerAccountCategoryListParams as LedgerAccountCategoryListParams
+from .virtual_account_setting_list_params import VirtualAccountSettingListParams as VirtualAccountSettingListParams
 from .wealth_and_employment_details_param import WealthAndEmploymentDetailsParam as WealthAndEmploymentDetailsParam
 from .foreign_exchange_quote_create_params import ForeignExchangeQuoteCreateParams as ForeignExchangeQuoteCreateParams
 from .account_collection_flow_create_params import (
@@ -193,8 +197,14 @@ from .ledger_account_category_update_params import (
 from .ledger_account_settlement_list_params import (
     LedgerAccountSettlementListParams as LedgerAccountSettlementListParams,
 )
+from .virtual_account_setting_create_params import (
+    VirtualAccountSettingCreateParams as VirtualAccountSettingCreateParams,
+)
 from .ledger_account_statement_create_params import (
     LedgerAccountStatementCreateParams as LedgerAccountStatementCreateParams,
+)
+from .legal_entity_association_create_params import (
+    LegalEntityAssociationCreateParams as LegalEntityAssociationCreateParams,
 )
 from .ledger_account_category_retrieve_params import (
     LedgerAccountCategoryRetrieveParams as LedgerAccountCategoryRetrieveParams,
