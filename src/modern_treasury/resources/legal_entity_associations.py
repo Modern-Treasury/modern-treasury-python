@@ -16,6 +16,7 @@ from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from .._base_client import make_request_options
 from ..types.legal_entity_association import LegalEntityAssociation
+from ..types.shared_params.child_legal_entity_create import ChildLegalEntityCreate
 
 __all__ = ["LegalEntityAssociations", "AsyncLegalEntityAssociations"]
 
@@ -43,9 +44,10 @@ class LegalEntityAssociations(SyncAPIResource):
     def create(
         self,
         *,
-        child_legal_entity_id: str,
         parent_legal_entity_id: str,
         relationship_types: List[Literal["authorized_signer", "beneficial_owner", "control_person"]],
+        child_legal_entity: ChildLegalEntityCreate | Omit = omit,
+        child_legal_entity_id: str | Omit = omit,
         ownership_percentage: Optional[int] | Omit = omit,
         title: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -60,9 +62,11 @@ class LegalEntityAssociations(SyncAPIResource):
         Add an associated legal entity to a business legal entity.
 
         Args:
-          child_legal_entity_id: The ID of the child legal entity.
-
           parent_legal_entity_id: The ID of the parent legal entity. This must be a business legal entity.
+
+          child_legal_entity: The child legal entity.
+
+          child_legal_entity_id: The ID of the child legal entity.
 
           ownership_percentage: The child entity's ownership percentage iff they are a beneficial owner.
 
@@ -82,9 +86,10 @@ class LegalEntityAssociations(SyncAPIResource):
             "/api/legal_entity_associations",
             body=maybe_transform(
                 {
-                    "child_legal_entity_id": child_legal_entity_id,
                     "parent_legal_entity_id": parent_legal_entity_id,
                     "relationship_types": relationship_types,
+                    "child_legal_entity": child_legal_entity,
+                    "child_legal_entity_id": child_legal_entity_id,
                     "ownership_percentage": ownership_percentage,
                     "title": title,
                 },
@@ -164,9 +169,10 @@ class AsyncLegalEntityAssociations(AsyncAPIResource):
     async def create(
         self,
         *,
-        child_legal_entity_id: str,
         parent_legal_entity_id: str,
         relationship_types: List[Literal["authorized_signer", "beneficial_owner", "control_person"]],
+        child_legal_entity: ChildLegalEntityCreate | Omit = omit,
+        child_legal_entity_id: str | Omit = omit,
         ownership_percentage: Optional[int] | Omit = omit,
         title: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -181,9 +187,11 @@ class AsyncLegalEntityAssociations(AsyncAPIResource):
         Add an associated legal entity to a business legal entity.
 
         Args:
-          child_legal_entity_id: The ID of the child legal entity.
-
           parent_legal_entity_id: The ID of the parent legal entity. This must be a business legal entity.
+
+          child_legal_entity: The child legal entity.
+
+          child_legal_entity_id: The ID of the child legal entity.
 
           ownership_percentage: The child entity's ownership percentage iff they are a beneficial owner.
 
@@ -203,9 +211,10 @@ class AsyncLegalEntityAssociations(AsyncAPIResource):
             "/api/legal_entity_associations",
             body=await async_maybe_transform(
                 {
-                    "child_legal_entity_id": child_legal_entity_id,
                     "parent_legal_entity_id": parent_legal_entity_id,
                     "relationship_types": relationship_types,
+                    "child_legal_entity": child_legal_entity,
+                    "child_legal_entity_id": child_legal_entity_id,
                     "ownership_percentage": ownership_percentage,
                     "title": title,
                 },
