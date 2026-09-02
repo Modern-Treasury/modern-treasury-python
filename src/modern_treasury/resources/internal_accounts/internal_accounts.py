@@ -32,6 +32,7 @@ from .balance_reports import (
 from ...types.shared.currency import Currency
 from ...types.internal_account import InternalAccount
 from ...types.shared.transaction_direction import TransactionDirection
+from ...types.shared_params.address_request import AddressRequest
 from ...types.internal_account_update_account_capability_response import InternalAccountUpdateAccountCapabilityResponse
 
 __all__ = ["InternalAccounts", "AsyncInternalAccounts"]
@@ -235,6 +236,7 @@ class InternalAccounts(SyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         name: str | Omit = omit,
         parent_account_id: str | Omit = omit,
+        party_address: AddressRequest | Omit = omit,
         status: Literal["pending_closure"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -263,6 +265,11 @@ class InternalAccounts(SyncAPIResource):
 
           parent_account_id: The parent internal account for this account.
 
+          party_address: The address associated with the owner of the internal account. Updating this
+              value does not guarantee that the new address matches the address on record with
+              the account's bank; you are responsible for verifying that the address is
+              accurate.
+
           status: Requests closure of the internal account. The resulting status may be `closed`
               for vendors that close synchronously.
 
@@ -289,6 +296,7 @@ class InternalAccounts(SyncAPIResource):
                     "metadata": metadata,
                     "name": name,
                     "parent_account_id": parent_account_id,
+                    "party_address": party_address,
                     "status": status,
                 },
                 internal_account_update_params.InternalAccountUpdateParams,
@@ -703,6 +711,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         name: str | Omit = omit,
         parent_account_id: str | Omit = omit,
+        party_address: AddressRequest | Omit = omit,
         status: Literal["pending_closure"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -731,6 +740,11 @@ class AsyncInternalAccounts(AsyncAPIResource):
 
           parent_account_id: The parent internal account for this account.
 
+          party_address: The address associated with the owner of the internal account. Updating this
+              value does not guarantee that the new address matches the address on record with
+              the account's bank; you are responsible for verifying that the address is
+              accurate.
+
           status: Requests closure of the internal account. The resulting status may be `closed`
               for vendors that close synchronously.
 
@@ -757,6 +771,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                     "metadata": metadata,
                     "name": name,
                     "parent_account_id": parent_account_id,
+                    "party_address": party_address,
                     "status": status,
                 },
                 internal_account_update_params.InternalAccountUpdateParams,
