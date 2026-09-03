@@ -47,6 +47,9 @@ class VirtualAccountCreateParams(TypedDict, total=False):
     IPDs.
     """
 
+    ledger_account_id: str
+    """The ledger account that you'd like to link to the virtual account."""
+
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.
 
