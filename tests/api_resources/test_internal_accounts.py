@@ -156,6 +156,14 @@ class TestInternalAccounts:
             metadata={"foo": "string"},
             name="name",
             parent_account_id="parent_account_id",
+            party_address={
+                "country": "country",
+                "line1": "line1",
+                "line2": "line2",
+                "locality": "locality",
+                "postal_code": "postal_code",
+                "region": "region",
+            },
             status="pending_closure",
         )
         assert_matches_type(InternalAccount, internal_account, path=["response"])
@@ -463,6 +471,14 @@ class TestAsyncInternalAccounts:
             metadata={"foo": "string"},
             name="name",
             parent_account_id="parent_account_id",
+            party_address={
+                "country": "country",
+                "line1": "line1",
+                "line2": "line2",
+                "locality": "locality",
+                "postal_code": "postal_code",
+                "region": "region",
+            },
             status="pending_closure",
         )
         assert_matches_type(InternalAccount, internal_account, path=["response"])
