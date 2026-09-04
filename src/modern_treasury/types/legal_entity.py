@@ -1,7 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from __future__ import annotations
-
 from typing import Dict, List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
@@ -9,6 +7,7 @@ from typing_extensions import Literal
 from .._models import BaseModel
 from .document import Document
 from .bank_settings import BankSettings
+from .legal_entity_association import LegalEntityAssociation
 from .wealth_and_employment_details import WealthAndEmploymentDetails
 from .shared.third_party_verification import ThirdPartyVerification
 from .shared.legal_entity_industry_classification import LegalEntityIndustryClassification
@@ -436,8 +435,5 @@ class LegalEntity(BaseModel):
     website: Optional[str] = None
     """The entity's primary website URL."""
 
-    legal_entity_associations: Optional[List["LegalEntityAssociation"]] = None
+    legal_entity_associations: Optional[List[LegalEntityAssociation]] = None
     """The legal entity associations and its child legal entities."""
-
-
-from .legal_entity_association import LegalEntityAssociation
