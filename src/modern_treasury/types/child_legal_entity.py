@@ -351,9 +351,6 @@ class ChildLegalEntity(BaseModel):
     last_name: Optional[str] = None
     """An individual's last name."""
 
-    legal_entity_associations: Optional[List["LegalEntityAssociation"]] = None
-    """The legal entity associations and its child legal entities."""
-
     legal_entity_type: Literal["business", "individual"]
     """The type of legal entity."""
 
@@ -438,6 +435,9 @@ class ChildLegalEntity(BaseModel):
 
     website: Optional[str] = None
     """The entity's primary website URL."""
+
+    legal_entity_associations: Optional[List["LegalEntityAssociation"]] = None
+    """The legal entity associations and its child legal entities."""
 
 
 from .legal_entity_association import LegalEntityAssociation
