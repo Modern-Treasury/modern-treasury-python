@@ -1,7 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from __future__ import annotations
-
 from typing import Dict, List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
@@ -435,9 +433,3 @@ class ChildLegalEntity(BaseModel):
 
     website: Optional[str] = None
     """The entity's primary website URL."""
-
-    legal_entity_associations: Optional[List["LegalEntityAssociation"]] = None
-    """The legal entity associations and its child legal entities."""
-
-
-from .legal_entity_association import LegalEntityAssociation
