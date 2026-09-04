@@ -82,11 +82,11 @@ class AccountDetail(TypedDict, total=False):
         "polygon_address",
         "sg_number",
         "solana_address",
-        "wallet_address",
     ]
-    """One of `iban`, `clabe`, `wallet_address`, or `other`.
+    """The type of the account number.
 
-    Use `other` if the bank account number is in a generic format.
+    For wallet addresses, use the chain-specific type (e.g. `ethereum_address`). Use
+    `other` if the account number is in a generic format.
     """
 
 
