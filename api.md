@@ -725,3 +725,17 @@ Methods:
 
 - <code title="post /api/virtual_account_settings">client.virtual_account_settings.<a href="./src/modern_treasury/resources/virtual_account_settings.py">create</a>(\*\*<a href="src/modern_treasury/types/virtual_account_setting_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/virtual_account_setting.py">VirtualAccountSetting</a></code>
 - <code title="get /api/virtual_account_settings">client.virtual_account_settings.<a href="./src/modern_treasury/resources/virtual_account_settings.py">list</a>(\*\*<a href="src/modern_treasury/types/virtual_account_setting_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/virtual_account_setting.py">SyncPage[VirtualAccountSetting]</a></code>
+
+# Identifications
+
+Types:
+
+```python
+from modern_treasury.types import Identification
+```
+
+Methods:
+
+- <code title="post /api/identifications">client.identifications.<a href="./src/modern_treasury/resources/identifications.py">create</a>(\*\*<a href="src/modern_treasury/types/identification_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/identification.py">Identification</a></code>
+- <code title="get /api/identifications/{id}">client.identifications.<a href="./src/modern_treasury/resources/identifications.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/identification.py">Identification</a></code>
+- <code title="patch /api/identifications/{id}">client.identifications.<a href="./src/modern_treasury/resources/identifications.py">update</a>(id, \*\*<a href="src/modern_treasury/types/identification_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/identification.py">Identification</a></code>
