@@ -9,6 +9,7 @@ from typing_extensions import Literal
 from .._models import BaseModel
 from .document import Document
 from .bank_settings import BankSettings
+from .identification import Identification
 from .wealth_and_employment_details import WealthAndEmploymentDetails
 from .shared.third_party_verification import ThirdPartyVerification
 from .shared.legal_entity_industry_classification import LegalEntityIndustryClassification
@@ -17,8 +18,6 @@ __all__ = [
     "ChildLegalEntity",
     "Addresses",
     "Address",
-    "Identifications",
-    "Identification",
     "PhoneNumbers",
     "PhoneNumber",
     "Regulators",
@@ -83,153 +82,6 @@ Addresses = Address
 """This type is deprecated and will be removed in a future release.
 
 Please use Address instead.
-"""
-
-
-class Identification(BaseModel):
-    id: str
-
-    created_at: datetime
-
-    discarded_at: Optional[datetime] = None
-
-    documents: List[Document]
-
-    expiration_date: Optional[date] = None
-    """
-    The date when the Identification is no longer considered valid by the issuing
-    authority.
-    """
-
-    id_type: Literal[
-        "ar_cuil",
-        "ar_cuit",
-        "at_atin",
-        "at_vat",
-        "au_abn",
-        "au_tfn",
-        "be_ent",
-        "be_nrn",
-        "br_cnpj",
-        "br_cpf",
-        "ca_bn",
-        "ca_sin",
-        "ch_ahv",
-        "ch_uid",
-        "cl_run",
-        "cl_rut",
-        "co_cedulas",
-        "co_nit",
-        "cy_tin",
-        "cz_ico",
-        "cz_rc",
-        "de_stid",
-        "de_stnr",
-        "de_vat",
-        "dk_cpr",
-        "dk_cvr",
-        "drivers_license",
-        "ee_ik",
-        "ee_rk",
-        "es_nie",
-        "es_nif",
-        "fi_hetu",
-        "fi_ytj",
-        "fr_nif",
-        "fr_siren",
-        "fr_vat",
-        "gb_nino",
-        "gb_utr",
-        "gb_vat",
-        "generic_international",
-        "gr_vat",
-        "hk_brn",
-        "hk_hkid",
-        "hn_id",
-        "hn_rtn",
-        "hr_oib",
-        "hu_adj",
-        "hu_anum",
-        "ie_pps",
-        "ie_trn",
-        "in_lei",
-        "is_knt",
-        "it_cf",
-        "it_piva",
-        "jp_hb",
-        "jp_mn",
-        "kr_brn",
-        "kr_crn",
-        "kr_rrn",
-        "li_peid",
-        "lt_ak",
-        "lt_jak",
-        "lu_mtc",
-        "lu_vat",
-        "lv_pk",
-        "lv_rn",
-        "mt_tin",
-        "mt_vat",
-        "mx_curp",
-        "mx_ine",
-        "mx_rfc",
-        "national_id",
-        "nl_bsn",
-        "nl_btw",
-        "nl_rsin",
-        "no_fdn",
-        "no_mva",
-        "no_orgnr",
-        "nz_ird",
-        "passport",
-        "pl_nip",
-        "pl_pesel",
-        "pt_nif",
-        "ro_cnp",
-        "ro_cui",
-        "sa_tin",
-        "sa_vat",
-        "se_orgnr",
-        "se_pnmr",
-        "sg_fin",
-        "sg_nric",
-        "sg_uen",
-        "si_dav",
-        "si_tin",
-        "sk_ico",
-        "sk_rc",
-        "us_ein",
-        "us_itin",
-        "us_ssn",
-        "uy_rut",
-        "vn_tin",
-    ]
-    """The type of ID number."""
-
-    issuing_country: Optional[str] = None
-    """
-    The ISO 3166-1 alpha-2 country code of the country that issued the
-    identification
-    """
-
-    issuing_region: Optional[str] = None
-    """The region in which the identifcation was issued."""
-
-    live_mode: bool
-    """
-    This field will be true if this object exists in the live environment or false
-    if it exists in the test environment.
-    """
-
-    object: str
-
-    updated_at: datetime
-
-
-Identifications = Identification
-"""This type is deprecated and will be removed in a future release.
-
-Please use Identification instead.
 """
 
 

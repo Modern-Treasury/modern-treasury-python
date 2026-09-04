@@ -152,6 +152,14 @@ from .account_details import (
     AccountDetailsWithStreamingResponse,
     AsyncAccountDetailsWithStreamingResponse,
 )
+from .identifications import (
+    Identifications,
+    AsyncIdentifications,
+    IdentificationsWithRawResponse,
+    AsyncIdentificationsWithRawResponse,
+    IdentificationsWithStreamingResponse,
+    AsyncIdentificationsWithStreamingResponse,
+)
 from .journal_entries import (
     JournalEntries,
     AsyncJournalEntries,
@@ -576,4 +584,10 @@ __all__ = [
     "AsyncVirtualAccountSettingsWithRawResponse",
     "VirtualAccountSettingsWithStreamingResponse",
     "AsyncVirtualAccountSettingsWithStreamingResponse",
+    "Identifications",
+    "AsyncIdentifications",
+    "IdentificationsWithRawResponse",
+    "AsyncIdentificationsWithRawResponse",
+    "IdentificationsWithStreamingResponse",
+    "AsyncIdentificationsWithStreamingResponse",
 ]
