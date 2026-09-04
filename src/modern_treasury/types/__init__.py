@@ -2,7 +2,16 @@
 
 from __future__ import annotations
 
-from . import shared, invoice, bulk_result, payment_order, return_object
+from . import (
+    shared,
+    invoice,
+    bulk_result,
+    legal_entity,
+    payment_order,
+    return_object,
+    child_legal_entity,
+    legal_entity_association,
+)
 from .. import _compat
 from .case import Case as Case
 from .event import Event as Event
@@ -254,6 +263,9 @@ if _compat.PYDANTIC_V1:
     payment_order.PaymentOrder.update_forward_refs()  # type: ignore
     return_object.ReturnObject.update_forward_refs()  # type: ignore
     bulk_result.BulkResult.update_forward_refs()  # type: ignore
+    legal_entity.LegalEntity.update_forward_refs()  # type: ignore
+    child_legal_entity.ChildLegalEntity.update_forward_refs()  # type: ignore
+    legal_entity_association.LegalEntityAssociation.update_forward_refs()  # type: ignore
     shared.child_legal_entity_create.ChildLegalEntityCreate.update_forward_refs()  # type: ignore
     shared.legal_entity_association_inline_create.LegalEntityAssociationInlineCreate.update_forward_refs()  # type: ignore
 else:
@@ -261,6 +273,9 @@ else:
     payment_order.PaymentOrder.model_rebuild(_parent_namespace_depth=0)
     return_object.ReturnObject.model_rebuild(_parent_namespace_depth=0)
     bulk_result.BulkResult.model_rebuild(_parent_namespace_depth=0)
+    legal_entity.LegalEntity.model_rebuild(_parent_namespace_depth=0)
+    child_legal_entity.ChildLegalEntity.model_rebuild(_parent_namespace_depth=0)
+    legal_entity_association.LegalEntityAssociation.model_rebuild(_parent_namespace_depth=0)
     shared.child_legal_entity_create.ChildLegalEntityCreate.model_rebuild(_parent_namespace_depth=0)
     shared.legal_entity_association_inline_create.LegalEntityAssociationInlineCreate.model_rebuild(
         _parent_namespace_depth=0
