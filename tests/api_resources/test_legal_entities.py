@@ -618,7 +618,6 @@ class TestLegalEntities:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="prism cannot generate the recursive legal_entity_association schema")
     @parametrize
     def test_method_update_status(self, client: ModernTreasury) -> None:
         legal_entity = client.legal_entities.update_status(
@@ -627,7 +626,6 @@ class TestLegalEntities:
         )
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @pytest.mark.skip(reason="prism cannot generate the recursive legal_entity_association schema")
     @parametrize
     def test_raw_response_update_status(self, client: ModernTreasury) -> None:
         response = client.legal_entities.with_raw_response.update_status(
@@ -640,7 +638,6 @@ class TestLegalEntities:
         legal_entity = response.parse()
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @pytest.mark.skip(reason="prism cannot generate the recursive legal_entity_association schema")
     @parametrize
     def test_streaming_response_update_status(self, client: ModernTreasury) -> None:
         with client.legal_entities.with_streaming_response.update_status(
@@ -655,7 +652,6 @@ class TestLegalEntities:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="prism cannot generate the recursive legal_entity_association schema")
     @parametrize
     def test_path_params_update_status(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -1267,7 +1263,6 @@ class TestAsyncLegalEntities:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="prism cannot generate the recursive legal_entity_association schema")
     @parametrize
     async def test_method_update_status(self, async_client: AsyncModernTreasury) -> None:
         legal_entity = await async_client.legal_entities.update_status(
@@ -1276,7 +1271,6 @@ class TestAsyncLegalEntities:
         )
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @pytest.mark.skip(reason="prism cannot generate the recursive legal_entity_association schema")
     @parametrize
     async def test_raw_response_update_status(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.legal_entities.with_raw_response.update_status(
@@ -1289,7 +1283,6 @@ class TestAsyncLegalEntities:
         legal_entity = response.parse()
         assert_matches_type(LegalEntity, legal_entity, path=["response"])
 
-    @pytest.mark.skip(reason="prism cannot generate the recursive legal_entity_association schema")
     @parametrize
     async def test_streaming_response_update_status(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.legal_entities.with_streaming_response.update_status(
@@ -1304,7 +1297,6 @@ class TestAsyncLegalEntities:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="prism cannot generate the recursive legal_entity_association schema")
     @parametrize
     async def test_path_params_update_status(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
