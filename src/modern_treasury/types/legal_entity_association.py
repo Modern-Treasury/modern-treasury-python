@@ -1,11 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from __future__ import annotations
+
 from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .child_legal_entity import ChildLegalEntity
 
 __all__ = ["LegalEntityAssociation"]
 
@@ -13,7 +14,7 @@ __all__ = ["LegalEntityAssociation"]
 class LegalEntityAssociation(BaseModel):
     id: str
 
-    child_legal_entity: ChildLegalEntity
+    child_legal_entity: "ChildLegalEntity"
     """The child legal entity."""
 
     created_at: datetime
@@ -40,3 +41,6 @@ class LegalEntityAssociation(BaseModel):
     """The job title of the child entity at the parent entity."""
 
     updated_at: datetime
+
+
+from .child_legal_entity import ChildLegalEntity
