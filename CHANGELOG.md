@@ -1,5 +1,28 @@
 # Changelog
 
+## [1.80.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.79.1...v1.80.0) (2026-09-04)
+
+
+### Features
+
+* regenerate SDKs from 44e4a18bd45d4fcf76033c7c359c4acbb025555d ([2c21165](https://github.com/Modern-Treasury/modern-treasury-python/commit/2c211658c7f44cb2e019969bb44120f53a3c58fd))
+* regenerate SDKs from 45e585b7365249e23236da77ab0c6a6bbfcc1980 ([e792beb](https://github.com/Modern-Treasury/modern-treasury-python/commit/e792beb29c029afea59a998a20a8b8d523db00f0))
+
+
+### Chores
+
+* regenerate SDKs from 1846300751004ea366c6b50e9cc73ef332853cc7 ([23a630f](https://github.com/Modern-Treasury/modern-treasury-python/commit/23a630fa99f15d0e80bdce1134afde88272768a3))
+* regenerate SDKs from 1ba62719665dfac3a01da68fa4d0f68fe50b8574 ([200f105](https://github.com/Modern-Treasury/modern-treasury-python/commit/200f105e16c35cead53475ecc55635df2d4f17f0))
+* regenerate SDKs from 343d886c636954e7e0870418b38898fc39de2698 ([73e1e79](https://github.com/Modern-Treasury/modern-treasury-python/commit/73e1e79fbca086c441debf68c70074ef4b55261d))
+* regenerate SDKs from 403d503f89767311f19edef8867e77005af78284 ([b99612c](https://github.com/Modern-Treasury/modern-treasury-python/commit/b99612c46530562e9db5403390699d1ab6a71468))
+* regenerate SDKs from 44366b0feb4a67c557ab18243a5a4e62fc526b46 ([9d8de80](https://github.com/Modern-Treasury/modern-treasury-python/commit/9d8de80bc99d97118d62d88dc83af0fa986b650e))
+* regenerate SDKs from 5b92822da54c5ed47a5ec70624eae07754e34457 ([d12f9b1](https://github.com/Modern-Treasury/modern-treasury-python/commit/d12f9b1f3b6763016e5478b8e36e9a587685f2c5))
+* regenerate SDKs from 6311974b7bd8e5b7a6f1b521219406ed778993d3 ([8da5f32](https://github.com/Modern-Treasury/modern-treasury-python/commit/8da5f3200a38d61444a730d351c55f6eca117697))
+* regenerate SDKs from 648842f54e4bd55a71ffbacf5c3f8bbc47cb77df ([01f6655](https://github.com/Modern-Treasury/modern-treasury-python/commit/01f6655df3e2e2657e1c59acfe83c7bd1f620510))
+* regenerate SDKs from 76bfe6ef7bf238af0c68f1ff514b7c6d29042662 ([4cf134c](https://github.com/Modern-Treasury/modern-treasury-python/commit/4cf134ce313d1b1c798886767f844d1dcca0e208))
+* regenerate SDKs from b51aa69627e6aafc44c4609a7574b9068a894b7c ([72e4f48](https://github.com/Modern-Treasury/modern-treasury-python/commit/72e4f487c5dcb09084237cbf2982a701a4f4eb61))
+* regenerate SDKs from d52e6f7cb7821cecbe9ad9e02712f9b8c190d80d ([83c8f7e](https://github.com/Modern-Treasury/modern-treasury-python/commit/83c8f7e612bf755093d8adb0908edcce754322f6))
+
 ## [1.79.1](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.79.0...v1.79.1) (2026-08-04)
 
 
