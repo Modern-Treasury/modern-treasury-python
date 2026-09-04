@@ -63,6 +63,7 @@ if TYPE_CHECKING:
         legal_entities,
         payment_orders,
         account_details,
+        identifications,
         journal_entries,
         journal_reports,
         journal_sources,
@@ -102,6 +103,7 @@ if TYPE_CHECKING:
     from .resources.ledger_entries import LedgerEntries, AsyncLedgerEntries
     from .resources.legal_entities import LegalEntities, AsyncLegalEntities
     from .resources.account_details import AccountDetails, AsyncAccountDetails
+    from .resources.identifications import Identifications, AsyncIdentifications
     from .resources.journal_entries import JournalEntries, AsyncJournalEntries
     from .resources.journal_reports import JournalReports, AsyncJournalReports
     from .resources.journal_sources import JournalSources, AsyncJournalSources
@@ -482,6 +484,12 @@ class ModernTreasury(SyncAPIClient):
         from .resources.virtual_account_settings import VirtualAccountSettings
 
         return VirtualAccountSettings(self)
+
+    @cached_property
+    def identifications(self) -> Identifications:
+        from .resources.identifications import Identifications
+
+        return Identifications(self)
 
     @cached_property
     def with_raw_response(self) -> ModernTreasuryWithRawResponse:
@@ -961,6 +969,12 @@ class AsyncModernTreasury(AsyncAPIClient):
         return AsyncVirtualAccountSettings(self)
 
     @cached_property
+    def identifications(self) -> AsyncIdentifications:
+        from .resources.identifications import AsyncIdentifications
+
+        return AsyncIdentifications(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncModernTreasuryWithRawResponse:
         return AsyncModernTreasuryWithRawResponse(self)
 
@@ -1358,6 +1372,12 @@ class ModernTreasuryWithRawResponse:
 
         return VirtualAccountSettingsWithRawResponse(self._client.virtual_account_settings)
 
+    @cached_property
+    def identifications(self) -> identifications.IdentificationsWithRawResponse:
+        from .resources.identifications import IdentificationsWithRawResponse
+
+        return IdentificationsWithRawResponse(self._client.identifications)
+
 
 class AsyncModernTreasuryWithRawResponse:
     _client: AsyncModernTreasury
@@ -1617,6 +1637,12 @@ class AsyncModernTreasuryWithRawResponse:
 
         return AsyncVirtualAccountSettingsWithRawResponse(self._client.virtual_account_settings)
 
+    @cached_property
+    def identifications(self) -> identifications.AsyncIdentificationsWithRawResponse:
+        from .resources.identifications import AsyncIdentificationsWithRawResponse
+
+        return AsyncIdentificationsWithRawResponse(self._client.identifications)
+
 
 class ModernTreasuryWithStreamedResponse:
     _client: ModernTreasury
@@ -1875,6 +1901,12 @@ class ModernTreasuryWithStreamedResponse:
         from .resources.virtual_account_settings import VirtualAccountSettingsWithStreamingResponse
 
         return VirtualAccountSettingsWithStreamingResponse(self._client.virtual_account_settings)
+
+    @cached_property
+    def identifications(self) -> identifications.IdentificationsWithStreamingResponse:
+        from .resources.identifications import IdentificationsWithStreamingResponse
+
+        return IdentificationsWithStreamingResponse(self._client.identifications)
 
 
 class AsyncModernTreasuryWithStreamedResponse:
@@ -2136,6 +2168,12 @@ class AsyncModernTreasuryWithStreamedResponse:
         from .resources.virtual_account_settings import AsyncVirtualAccountSettingsWithStreamingResponse
 
         return AsyncVirtualAccountSettingsWithStreamingResponse(self._client.virtual_account_settings)
+
+    @cached_property
+    def identifications(self) -> identifications.AsyncIdentificationsWithStreamingResponse:
+        from .resources.identifications import AsyncIdentificationsWithStreamingResponse
+
+        return AsyncIdentificationsWithStreamingResponse(self._client.identifications)
 
 
 Client = ModernTreasury

@@ -53,6 +53,7 @@ from .payment_order import PaymentOrder as PaymentOrder
 from .ping_response import PingResponse as PingResponse
 from .return_object import ReturnObject as ReturnObject
 from .account_detail import AccountDetail as AccountDetail
+from .identification import Identification as Identification
 from .ledger_account import LedgerAccount as LedgerAccount
 from .routing_detail import RoutingDetail as RoutingDetail
 from .virtual_account import VirtualAccount as VirtualAccount
@@ -130,6 +131,8 @@ from .virtual_account_list_params import VirtualAccountListParams as VirtualAcco
 from .account_detail_create_params import AccountDetailCreateParams as AccountDetailCreateParams
 from .expected_payment_list_params import ExpectedPaymentListParams as ExpectedPaymentListParams
 from .external_account_list_params import ExternalAccountListParams as ExternalAccountListParams
+from .identification_create_params import IdentificationCreateParams as IdentificationCreateParams
+from .identification_update_params import IdentificationUpdateParams as IdentificationUpdateParams
 from .internal_account_list_params import InternalAccountListParams as InternalAccountListParams
 from .journal_report_update_params import JournalReportUpdateParams as JournalReportUpdateParams
 from .ledger_account_create_params import LedgerAccountCreateParams as LedgerAccountCreateParams
