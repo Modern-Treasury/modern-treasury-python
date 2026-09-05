@@ -212,7 +212,6 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccountAccountDetail(TypedD
         "polygon_address",
         "sg_number",
         "solana_address",
-        "wallet_address",
     ]
 
 
@@ -1020,7 +1019,6 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountAccountDetail(Typed
         "polygon_address",
         "sg_number",
         "solana_address",
-        "wallet_address",
     ]
 
 
