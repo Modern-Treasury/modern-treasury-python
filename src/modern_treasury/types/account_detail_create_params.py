@@ -28,9 +28,8 @@ class AccountDetailCreateParams(TypedDict, total=False):
         "polygon_address",
         "sg_number",
         "solana_address",
-        "wallet_address",
     ]
-    """One of `iban`, `clabe`, `wallet_address`, or `other`.
+    """One of `iban`, `clabe`, or `other`.
 
     Use `other` if the bank account number is in a generic format.
     """
