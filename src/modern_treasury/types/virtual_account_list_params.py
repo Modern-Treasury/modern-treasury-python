@@ -13,6 +13,9 @@ class VirtualAccountListParams(TypedDict, total=False):
 
     counterparty_id: str
 
+    external_id: str
+    """Only return virtual accounts with this external ID."""
+
     internal_account_id: str
 
     metadata: Dict[str, str]
