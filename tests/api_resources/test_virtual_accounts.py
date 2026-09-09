@@ -43,6 +43,7 @@ class TestVirtualAccounts:
             credit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             debit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             description="description",
+            external_id="external_id",
             ledger_account={
                 "currency": "currency",
                 "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -196,6 +197,7 @@ class TestVirtualAccounts:
         virtual_account = client.virtual_accounts.list(
             after_cursor="after_cursor",
             counterparty_id="counterparty_id",
+            external_id="external_id",
             internal_account_id="internal_account_id",
             metadata={"foo": "string"},
             per_page=0,
@@ -289,6 +291,7 @@ class TestAsyncVirtualAccounts:
             credit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             debit_ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             description="description",
+            external_id="external_id",
             ledger_account={
                 "currency": "currency",
                 "ledger_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -442,6 +445,7 @@ class TestAsyncVirtualAccounts:
         virtual_account = await async_client.virtual_accounts.list(
             after_cursor="after_cursor",
             counterparty_id="counterparty_id",
+            external_id="external_id",
             internal_account_id="internal_account_id",
             metadata={"foo": "string"},
             per_page=0,

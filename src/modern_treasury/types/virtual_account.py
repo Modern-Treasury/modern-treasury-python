@@ -40,6 +40,9 @@ class VirtualAccount(BaseModel):
 
     discarded_at: Optional[datetime] = None
 
+    external_id: Optional[str] = None
+    """A user-defined identifier for the virtual account."""
+
     internal_account_id: str
     """The ID of the internal account that the virtual account is in."""
 

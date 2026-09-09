@@ -51,6 +51,7 @@ class VirtualAccounts(SyncAPIResource):
         credit_ledger_account_id: str | Omit = omit,
         debit_ledger_account_id: str | Omit = omit,
         description: str | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         ledger_account: LedgerAccountCreateRequest | Omit = omit,
         ledger_account_id: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
@@ -86,6 +87,8 @@ class VirtualAccounts(SyncAPIResource):
 
           description: An optional description for internal use.
 
+          external_id: A user-defined identifier for the virtual account.
+
           ledger_account: Specifies a ledger account object that will be created with the virtual account.
               The resulting ledger account is linked to the virtual account for auto-ledgering
               IPDs.
@@ -120,6 +123,7 @@ class VirtualAccounts(SyncAPIResource):
                     "credit_ledger_account_id": credit_ledger_account_id,
                     "debit_ledger_account_id": debit_ledger_account_id,
                     "description": description,
+                    "external_id": external_id,
                     "ledger_account": ledger_account,
                     "ledger_account_id": ledger_account_id,
                     "metadata": metadata,
@@ -231,6 +235,7 @@ class VirtualAccounts(SyncAPIResource):
         *,
         after_cursor: Optional[str] | Omit = omit,
         counterparty_id: str | Omit = omit,
+        external_id: str | Omit = omit,
         internal_account_id: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         per_page: int | Omit = omit,
@@ -245,6 +250,8 @@ class VirtualAccounts(SyncAPIResource):
         Get a list of virtual accounts.
 
         Args:
+          external_id: Only return virtual accounts with this external ID.
+
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
@@ -269,6 +276,7 @@ class VirtualAccounts(SyncAPIResource):
                     {
                         "after_cursor": after_cursor,
                         "counterparty_id": counterparty_id,
+                        "external_id": external_id,
                         "internal_account_id": internal_account_id,
                         "metadata": metadata,
                         "per_page": per_page,
@@ -350,6 +358,7 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         credit_ledger_account_id: str | Omit = omit,
         debit_ledger_account_id: str | Omit = omit,
         description: str | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         ledger_account: LedgerAccountCreateRequest | Omit = omit,
         ledger_account_id: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
@@ -385,6 +394,8 @@ class AsyncVirtualAccounts(AsyncAPIResource):
 
           description: An optional description for internal use.
 
+          external_id: A user-defined identifier for the virtual account.
+
           ledger_account: Specifies a ledger account object that will be created with the virtual account.
               The resulting ledger account is linked to the virtual account for auto-ledgering
               IPDs.
@@ -419,6 +430,7 @@ class AsyncVirtualAccounts(AsyncAPIResource):
                     "credit_ledger_account_id": credit_ledger_account_id,
                     "debit_ledger_account_id": debit_ledger_account_id,
                     "description": description,
+                    "external_id": external_id,
                     "ledger_account": ledger_account,
                     "ledger_account_id": ledger_account_id,
                     "metadata": metadata,
@@ -530,6 +542,7 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         *,
         after_cursor: Optional[str] | Omit = omit,
         counterparty_id: str | Omit = omit,
+        external_id: str | Omit = omit,
         internal_account_id: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         per_page: int | Omit = omit,
@@ -544,6 +557,8 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         Get a list of virtual accounts.
 
         Args:
+          external_id: Only return virtual accounts with this external ID.
+
           metadata: For example, if you want to query for records with metadata key `Type` and value
               `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query
               parameters.
@@ -568,6 +583,7 @@ class AsyncVirtualAccounts(AsyncAPIResource):
                     {
                         "after_cursor": after_cursor,
                         "counterparty_id": counterparty_id,
+                        "external_id": external_id,
                         "internal_account_id": internal_account_id,
                         "metadata": metadata,
                         "per_page": per_page,
