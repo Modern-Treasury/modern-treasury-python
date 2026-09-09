@@ -40,6 +40,9 @@ class VirtualAccountCreateParams(TypedDict, total=False):
     description: str
     """An optional description for internal use."""
 
+    external_id: Optional[str]
+    """A user-defined identifier for the virtual account."""
+
     ledger_account: LedgerAccountCreateRequest
     """Specifies a ledger account object that will be created with the virtual account.
 
