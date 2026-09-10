@@ -109,7 +109,7 @@ class LegalEntityUpdateParams(TypedDict, total=False):
     """An individual's prefix."""
 
     primary_social_media_sites: SequenceNotStr[str]
-    """A list of primary social media URLs for the business."""
+    """A list of the entity's primary social media URLs."""
 
     regulators: Optional[Iterable[Regulator]]
     """Array of regulatory bodies overseeing this institution."""

@@ -180,7 +180,7 @@ class LegalEntities(SyncAPIResource):
 
           prefix: An individual's prefix.
 
-          primary_social_media_sites: A list of primary social media URLs for the business.
+          primary_social_media_sites: A list of the entity's primary social media URLs.
 
           regulators: Array of regulatory bodies overseeing this institution.
 
@@ -411,7 +411,7 @@ class LegalEntities(SyncAPIResource):
 
           prefix: An individual's prefix.
 
-          primary_social_media_sites: A list of primary social media URLs for the business.
+          primary_social_media_sites: A list of the entity's primary social media URLs.
 
           regulators: Array of regulatory bodies overseeing this institution.
 
@@ -749,7 +749,7 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           prefix: An individual's prefix.
 
-          primary_social_media_sites: A list of primary social media URLs for the business.
+          primary_social_media_sites: A list of the entity's primary social media URLs.
 
           regulators: Array of regulatory bodies overseeing this institution.
 
@@ -980,7 +980,7 @@ class AsyncLegalEntities(AsyncAPIResource):
 
           prefix: An individual's prefix.
 
-          primary_social_media_sites: A list of primary social media URLs for the business.
+          primary_social_media_sites: A list of the entity's primary social media URLs.
 
           regulators: Array of regulatory bodies overseeing this institution.
 
