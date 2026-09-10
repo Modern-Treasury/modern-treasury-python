@@ -218,7 +218,7 @@ class ChildLegalEntityCreate(BaseModel):
     """An individual's prefix."""
 
     primary_social_media_sites: Optional[List[str]] = None
-    """A list of primary social media URLs for the business."""
+    """A list of the entity's primary social media URLs."""
 
     regulators: Optional[List[Regulator]] = None
     """Array of regulatory bodies overseeing this institution."""
