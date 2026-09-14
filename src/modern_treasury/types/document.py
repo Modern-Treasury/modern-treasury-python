@@ -38,12 +38,10 @@ class Document(BaseModel):
             "connection",
             "counterparty",
             "expected_payment",
-            "external_account",
             "identification",
             "incoming_payment_detail",
             "internal_account",
             "legal_entity",
-            "organization",
             "payment_order",
             "return",
             "transaction",
@@ -51,9 +49,9 @@ class Document(BaseModel):
     ] = None
     """The type of the associated object.
 
-    Currently can be one of `payment_order`, `transaction`, `expected_payment`,
-    `return`, `legal_entity`, `counterparty`, `organization`, `case`,
-    `internal_account`, `decision`, or `external_account`.
+    Currently can be one of `connection`, `counterparty`, `expected_payment`,
+    `identification`, `incoming_payment_detail`, `internal_account`, `legal_entity`,
+    `payment_order`, `return`, or `transaction`.
     """
 
     file: File
