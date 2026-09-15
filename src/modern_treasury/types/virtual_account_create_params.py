@@ -71,6 +71,7 @@ class AccountDetail(TypedDict, total=False):
     """The account number for the bank account."""
 
     account_number_type: Literal[
+        "arbitrum_address",
         "au_number",
         "base_address",
         "card_token",
