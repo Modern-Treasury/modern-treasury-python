@@ -49,6 +49,7 @@ class AccountDetails(SyncAPIResource):
         accounts_type: Literal["external_accounts"],
         account_number: str,
         account_number_type: Literal[
+            "arbitrum_address",
             "au_number",
             "base_address",
             "card_token",
@@ -293,6 +294,7 @@ class AsyncAccountDetails(AsyncAPIResource):
         accounts_type: Literal["external_accounts"],
         account_number: str,
         account_number_type: Literal[
+            "arbitrum_address",
             "au_number",
             "base_address",
             "card_token",

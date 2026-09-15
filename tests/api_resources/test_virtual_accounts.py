@@ -36,7 +36,7 @@ class TestVirtualAccounts:
             account_details=[
                 {
                     "account_number": "account_number",
-                    "account_number_type": "au_number",
+                    "account_number_type": "arbitrum_address",
                 }
             ],
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -284,7 +284,7 @@ class TestAsyncVirtualAccounts:
             account_details=[
                 {
                     "account_number": "account_number",
-                    "account_number_type": "au_number",
+                    "account_number_type": "arbitrum_address",
                 }
             ],
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",

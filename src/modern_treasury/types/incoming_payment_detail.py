@@ -70,6 +70,7 @@ class IncomingPaymentDetail(BaseModel):
 
     originating_account_number_type: Optional[
         Literal[
+            "arbitrum_address",
             "au_number",
             "base_address",
             "card_token",

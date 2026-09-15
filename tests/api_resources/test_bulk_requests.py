@@ -131,7 +131,7 @@ class TestBulkRequests:
                         "account_details": [
                             {
                                 "account_number": "account_number",
-                                "account_number_type": "au_number",
+                                "account_number_type": "arbitrum_address",
                             }
                         ],
                         "account_type": "base_wallet",
@@ -453,7 +453,7 @@ class TestAsyncBulkRequests:
                         "account_details": [
                             {
                                 "account_number": "account_number",
-                                "account_number_type": "au_number",
+                                "account_number_type": "arbitrum_address",
                             }
                         ],
                         "account_type": "base_wallet",

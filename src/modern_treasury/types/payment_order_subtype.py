@@ -17,6 +17,7 @@ PaymentOrderSubtype: TypeAlias = Optional[
         "PPD",
         "TEL",
         "WEB",
+        "arbitrum",
         "au_becs",
         "bacs",
         "base",
