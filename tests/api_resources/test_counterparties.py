@@ -39,7 +39,7 @@ class TestCounterparties:
                     "account_details": [
                         {
                             "account_number": "account_number",
-                            "account_number_type": "au_number",
+                            "account_number_type": "arbitrum_address",
                         }
                     ],
                     "account_type": "base_wallet",
@@ -682,7 +682,7 @@ class TestAsyncCounterparties:
                     "account_details": [
                         {
                             "account_number": "account_number",
-                            "account_number_type": "au_number",
+                            "account_number_type": "arbitrum_address",
                         }
                     ],
                     "account_type": "base_wallet",
