@@ -96,6 +96,7 @@ class AccountAccountDetail(TypedDict, total=False):
     account_number: Required[str]
 
     account_number_type: Literal[
+        "arbitrum_address",
         "au_number",
         "base_address",
         "card_token",
