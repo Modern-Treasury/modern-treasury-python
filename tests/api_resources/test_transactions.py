@@ -43,8 +43,8 @@ class TestTransactions:
             amount=0,
             amount_string="amount_string",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             posted=True,
@@ -281,8 +281,8 @@ class TestAsyncTransactions:
             amount=0,
             amount_string="amount_string",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             posted=True,
