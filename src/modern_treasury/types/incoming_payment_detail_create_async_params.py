@@ -8,6 +8,7 @@ from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 from .shared.currency import Currency
+from .shared.transaction_direction import TransactionDirection
 
 __all__ = ["IncomingPaymentDetailCreateAsyncParams"]
 
@@ -34,7 +35,7 @@ class IncomingPaymentDetailCreateAsyncParams(TypedDict, total=False):
     description: Optional[str]
     """Defaults to a random description."""
 
-    direction: Literal["credit", "debit"]
+    direction: TransactionDirection
     """One of `credit`, `debit`."""
 
     internal_account_id: str

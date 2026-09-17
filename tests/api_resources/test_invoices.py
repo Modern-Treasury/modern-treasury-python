@@ -75,8 +75,8 @@ class TestInvoices:
                     "description": "description",
                     "direction": "direction",
                     "metadata": {
-                        "key": "value",
                         "foo": "bar",
+                        "key": "value",
                         "modern": "treasury",
                     },
                     "quantity": 0,
@@ -93,8 +93,8 @@ class TestInvoices:
             },
             invoicer_name="invoicer_name",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             notification_email_addresses=["string"],
@@ -227,8 +227,8 @@ class TestInvoices:
                     "description": "description",
                     "direction": "direction",
                     "metadata": {
-                        "key": "value",
                         "foo": "bar",
+                        "key": "value",
                         "modern": "treasury",
                     },
                     "quantity": 0,
@@ -245,8 +245,8 @@ class TestInvoices:
             },
             invoicer_name="invoicer_name",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             notification_email_addresses=["string"],
@@ -447,8 +447,8 @@ class TestAsyncInvoices:
                     "description": "description",
                     "direction": "direction",
                     "metadata": {
-                        "key": "value",
                         "foo": "bar",
+                        "key": "value",
                         "modern": "treasury",
                     },
                     "quantity": 0,
@@ -465,8 +465,8 @@ class TestAsyncInvoices:
             },
             invoicer_name="invoicer_name",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             notification_email_addresses=["string"],
@@ -599,8 +599,8 @@ class TestAsyncInvoices:
                     "description": "description",
                     "direction": "direction",
                     "metadata": {
-                        "key": "value",
                         "foo": "bar",
+                        "key": "value",
                         "modern": "treasury",
                     },
                     "quantity": 0,
@@ -617,8 +617,8 @@ class TestAsyncInvoices:
             },
             invoicer_name="invoicer_name",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             notification_email_addresses=["string"],

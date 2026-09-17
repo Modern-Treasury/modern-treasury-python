@@ -38,8 +38,8 @@ class TestLedgerAccountSettlements:
             description="description",
             effective_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             skip_settlement_ledger_transaction=True,
@@ -124,8 +124,8 @@ class TestLedgerAccountSettlements:
             id="id",
             description="description",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             skip_settlement_ledger_transaction=True,
@@ -228,8 +228,8 @@ class TestAsyncLedgerAccountSettlements:
             description="description",
             effective_at_upper_bound=parse_datetime("2019-12-27T18:11:19.117Z"),
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             skip_settlement_ledger_transaction=True,
@@ -314,8 +314,8 @@ class TestAsyncLedgerAccountSettlements:
             id="id",
             description="description",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             skip_settlement_ledger_transaction=True,
