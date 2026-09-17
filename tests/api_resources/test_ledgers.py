@@ -32,8 +32,8 @@ class TestLedgers:
             name="name",
             description="description",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
         )
@@ -114,8 +114,8 @@ class TestLedgers:
             id="id",
             description="description",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             name="name",
@@ -246,8 +246,8 @@ class TestAsyncLedgers:
             name="name",
             description="description",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
         )
@@ -328,8 +328,8 @@ class TestAsyncLedgers:
             id="id",
             description="description",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             name="name",
