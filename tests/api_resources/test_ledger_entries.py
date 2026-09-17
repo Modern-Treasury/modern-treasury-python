@@ -79,8 +79,8 @@ class TestLedgerEntries:
         ledger_entry = client.ledger_entries.update(
             id="id",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
         )
@@ -242,8 +242,8 @@ class TestAsyncLedgerEntries:
         ledger_entry = await async_client.ledger_entries.update(
             id="id",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
         )

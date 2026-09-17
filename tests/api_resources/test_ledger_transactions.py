@@ -46,8 +46,8 @@ class TestLedgerTransactions:
                     "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "lock_version": 0,
                     "metadata": {
-                        "key": "value",
                         "foo": "bar",
+                        "key": "value",
                         "modern": "treasury",
                     },
                     "pending_balance_amount": {"foo": 0},
@@ -62,8 +62,8 @@ class TestLedgerTransactions:
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledgerable_type="expected_payment",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             status="archived",
@@ -166,8 +166,8 @@ class TestLedgerTransactions:
                     "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "lock_version": 0,
                     "metadata": {
-                        "key": "value",
                         "foo": "bar",
+                        "key": "value",
                         "modern": "treasury",
                     },
                     "pending_balance_amount": {"foo": 0},
@@ -178,8 +178,8 @@ class TestLedgerTransactions:
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledgerable_type="expected_payment",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             status="archived",
@@ -303,8 +303,8 @@ class TestLedgerTransactions:
                     "available_balance_amount": {"foo": 0},
                     "lock_version": 0,
                     "metadata": {
-                        "key": "value",
                         "foo": "bar",
+                        "key": "value",
                         "modern": "treasury",
                     },
                     "pending_balance_amount": {"foo": 0},
@@ -315,8 +315,8 @@ class TestLedgerTransactions:
             description="description",
             effective_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
         )
@@ -388,8 +388,8 @@ class TestLedgerTransactions:
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledgerable_type="expected_payment",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             status="archived",
@@ -458,8 +458,8 @@ class TestAsyncLedgerTransactions:
                     "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "lock_version": 0,
                     "metadata": {
-                        "key": "value",
                         "foo": "bar",
+                        "key": "value",
                         "modern": "treasury",
                     },
                     "pending_balance_amount": {"foo": 0},
@@ -474,8 +474,8 @@ class TestAsyncLedgerTransactions:
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledgerable_type="expected_payment",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             status="archived",
@@ -578,8 +578,8 @@ class TestAsyncLedgerTransactions:
                     "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "lock_version": 0,
                     "metadata": {
-                        "key": "value",
                         "foo": "bar",
+                        "key": "value",
                         "modern": "treasury",
                     },
                     "pending_balance_amount": {"foo": 0},
@@ -590,8 +590,8 @@ class TestAsyncLedgerTransactions:
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledgerable_type="expected_payment",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             status="archived",
@@ -715,8 +715,8 @@ class TestAsyncLedgerTransactions:
                     "available_balance_amount": {"foo": 0},
                     "lock_version": 0,
                     "metadata": {
-                        "key": "value",
                         "foo": "bar",
+                        "key": "value",
                         "modern": "treasury",
                     },
                     "pending_balance_amount": {"foo": 0},
@@ -727,8 +727,8 @@ class TestAsyncLedgerTransactions:
             description="description",
             effective_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
         )
@@ -800,8 +800,8 @@ class TestAsyncLedgerTransactions:
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             ledgerable_type="expected_payment",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             status="archived",
