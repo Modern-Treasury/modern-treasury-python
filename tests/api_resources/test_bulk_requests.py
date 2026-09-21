@@ -74,8 +74,8 @@ class TestBulkRequests:
                                 "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                                 "lock_version": 0,
                                 "metadata": {
-                                    "key": "value",
                                     "foo": "bar",
+                                    "key": "value",
                                     "modern": "treasury",
                                 },
                                 "pending_balance_amount": {"foo": 0},
@@ -90,8 +90,8 @@ class TestBulkRequests:
                         "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "ledgerable_type": "expected_payment",
                         "metadata": {
-                            "key": "value",
                             "foo": "bar",
+                            "key": "value",
                             "modern": "treasury",
                         },
                         "status": "archived",
@@ -103,15 +103,15 @@ class TestBulkRequests:
                             "accounting_category_id": "accounting_category_id",
                             "description": "description",
                             "metadata": {
-                                "key": "value",
                                 "foo": "bar",
+                                "key": "value",
                                 "modern": "treasury",
                             },
                         }
                     ],
                     "metadata": {
-                        "key": "value",
                         "foo": "bar",
+                        "key": "value",
                         "modern": "treasury",
                     },
                     "nsf_protected": True,
@@ -124,6 +124,7 @@ class TestBulkRequests:
                         "region": "region",
                     },
                     "originating_party_name": "originating_party_name",
+                    "originating_secondary_party_name": "originating_secondary_party_name",
                     "priority": "high",
                     "process_after": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "purpose": "purpose",
@@ -154,14 +155,14 @@ class TestBulkRequests:
                             "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                             "ledgerable_type": "counterparty",
                             "metadata": {
-                                "key": "value",
                                 "foo": "bar",
+                                "key": "value",
                                 "modern": "treasury",
                             },
                         },
                         "metadata": {
-                            "key": "value",
                             "foo": "bar",
+                            "key": "value",
                             "modern": "treasury",
                         },
                         "name": "name",
@@ -209,8 +210,8 @@ class TestBulkRequests:
                 }
             ],
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
         )
@@ -396,8 +397,8 @@ class TestAsyncBulkRequests:
                                 "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                                 "lock_version": 0,
                                 "metadata": {
-                                    "key": "value",
                                     "foo": "bar",
+                                    "key": "value",
                                     "modern": "treasury",
                                 },
                                 "pending_balance_amount": {"foo": 0},
@@ -412,8 +413,8 @@ class TestAsyncBulkRequests:
                         "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "ledgerable_type": "expected_payment",
                         "metadata": {
-                            "key": "value",
                             "foo": "bar",
+                            "key": "value",
                             "modern": "treasury",
                         },
                         "status": "archived",
@@ -425,15 +426,15 @@ class TestAsyncBulkRequests:
                             "accounting_category_id": "accounting_category_id",
                             "description": "description",
                             "metadata": {
-                                "key": "value",
                                 "foo": "bar",
+                                "key": "value",
                                 "modern": "treasury",
                             },
                         }
                     ],
                     "metadata": {
-                        "key": "value",
                         "foo": "bar",
+                        "key": "value",
                         "modern": "treasury",
                     },
                     "nsf_protected": True,
@@ -446,6 +447,7 @@ class TestAsyncBulkRequests:
                         "region": "region",
                     },
                     "originating_party_name": "originating_party_name",
+                    "originating_secondary_party_name": "originating_secondary_party_name",
                     "priority": "high",
                     "process_after": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "purpose": "purpose",
@@ -476,14 +478,14 @@ class TestAsyncBulkRequests:
                             "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                             "ledgerable_type": "counterparty",
                             "metadata": {
-                                "key": "value",
                                 "foo": "bar",
+                                "key": "value",
                                 "modern": "treasury",
                             },
                         },
                         "metadata": {
-                            "key": "value",
                             "foo": "bar",
+                            "key": "value",
                             "modern": "treasury",
                         },
                         "name": "name",
@@ -531,8 +533,8 @@ class TestAsyncBulkRequests:
                 }
             ],
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
         )

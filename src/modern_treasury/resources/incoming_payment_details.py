@@ -234,7 +234,7 @@ class IncomingPaymentDetails(SyncAPIResource):
         currency: Optional[Currency] | Omit = omit,
         data: Optional[object] | Omit = omit,
         description: Optional[str] | Omit = omit,
-        direction: Literal["credit", "debit"] | Omit = omit,
+        direction: TransactionDirection | Omit = omit,
         internal_account_id: str | Omit = omit,
         subtype: Optional[str] | Omit = omit,
         type: Literal[
@@ -534,7 +534,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         currency: Optional[Currency] | Omit = omit,
         data: Optional[object] | Omit = omit,
         description: Optional[str] | Omit = omit,
-        direction: Literal["credit", "debit"] | Omit = omit,
+        direction: TransactionDirection | Omit = omit,
         internal_account_id: str | Omit = omit,
         subtype: Optional[str] | Omit = omit,
         type: Literal[
