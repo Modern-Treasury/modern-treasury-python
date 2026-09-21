@@ -191,8 +191,8 @@ class TestLegalEntities:
                         "legal_structure": "corporation",
                         "listed_exchange": "listed_exchange",
                         "metadata": {
-                            "key": "value",
                             "foo": "bar",
+                            "key": "value",
                             "modern": "treasury",
                         },
                         "middle_name": "middle_name",
@@ -267,8 +267,8 @@ class TestLegalEntities:
             legal_structure="corporation",
             listed_exchange="listed_exchange",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             middle_name="middle_name",
@@ -479,8 +479,8 @@ class TestLegalEntities:
             legal_structure="corporation",
             listed_exchange="listed_exchange",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             middle_name="middle_name",
@@ -836,8 +836,8 @@ class TestAsyncLegalEntities:
                         "legal_structure": "corporation",
                         "listed_exchange": "listed_exchange",
                         "metadata": {
-                            "key": "value",
                             "foo": "bar",
+                            "key": "value",
                             "modern": "treasury",
                         },
                         "middle_name": "middle_name",
@@ -912,8 +912,8 @@ class TestAsyncLegalEntities:
             legal_structure="corporation",
             listed_exchange="listed_exchange",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             middle_name="middle_name",
@@ -1124,8 +1124,8 @@ class TestAsyncLegalEntities:
             legal_structure="corporation",
             listed_exchange="listed_exchange",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
             middle_name="middle_name",

@@ -43,8 +43,8 @@ class TestReversals:
                         "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                         "lock_version": 0,
                         "metadata": {
-                            "key": "value",
                             "foo": "bar",
+                            "key": "value",
                             "modern": "treasury",
                         },
                         "pending_balance_amount": {"foo": 0},
@@ -59,15 +59,15 @@ class TestReversals:
                 "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "ledgerable_type": "expected_payment",
                 "metadata": {
-                    "key": "value",
                     "foo": "bar",
+                    "key": "value",
                     "modern": "treasury",
                 },
                 "status": "archived",
             },
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
         )
@@ -232,8 +232,8 @@ class TestAsyncReversals:
                         "effective_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                         "lock_version": 0,
                         "metadata": {
-                            "key": "value",
                             "foo": "bar",
+                            "key": "value",
                             "modern": "treasury",
                         },
                         "pending_balance_amount": {"foo": 0},
@@ -248,15 +248,15 @@ class TestAsyncReversals:
                 "ledgerable_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "ledgerable_type": "expected_payment",
                 "metadata": {
-                    "key": "value",
                     "foo": "bar",
+                    "key": "value",
                     "modern": "treasury",
                 },
                 "status": "archived",
             },
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
         )

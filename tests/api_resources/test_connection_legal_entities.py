@@ -192,8 +192,8 @@ class TestConnectionLegalEntities:
                             "legal_structure": "corporation",
                             "listed_exchange": "listed_exchange",
                             "metadata": {
-                                "key": "value",
                                 "foo": "bar",
+                                "key": "value",
                                 "modern": "treasury",
                             },
                             "middle_name": "middle_name",
@@ -269,8 +269,8 @@ class TestConnectionLegalEntities:
                 "legal_structure": "corporation",
                 "listed_exchange": "listed_exchange",
                 "metadata": {
-                    "key": "value",
                     "foo": "bar",
+                    "key": "value",
                     "modern": "treasury",
                 },
                 "middle_name": "middle_name",
@@ -662,8 +662,8 @@ class TestAsyncConnectionLegalEntities:
                             "legal_structure": "corporation",
                             "listed_exchange": "listed_exchange",
                             "metadata": {
-                                "key": "value",
                                 "foo": "bar",
+                                "key": "value",
                                 "modern": "treasury",
                             },
                             "middle_name": "middle_name",
@@ -739,8 +739,8 @@ class TestAsyncConnectionLegalEntities:
                 "legal_structure": "corporation",
                 "listed_exchange": "listed_exchange",
                 "metadata": {
-                    "key": "value",
                     "foo": "bar",
+                    "key": "value",
                     "modern": "treasury",
                 },
                 "middle_name": "middle_name",
