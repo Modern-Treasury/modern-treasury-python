@@ -95,6 +95,7 @@ class PaymentOrders(SyncAPIResource):
         nsf_protected: bool | Omit = omit,
         originating_party_address: Optional[payment_order_create_params.OriginatingPartyAddress] | Omit = omit,
         originating_party_name: Optional[str] | Omit = omit,
+        originating_secondary_party_name: Optional[str] | Omit = omit,
         priority: Literal["high", "normal"] | Omit = omit,
         process_after: Union[str, datetime, None] | Omit = omit,
         purpose: Optional[str] | Omit = omit,
@@ -201,6 +202,10 @@ class PaymentOrders(SyncAPIResource):
               the first 16 characters of this string will be used. Any additional characters
               will be truncated.
 
+          originating_secondary_party_name: Secondary name for the legal entity making the payment. Can be used for e.g.
+              check signatures where the originating party wishes to retain their company's
+              display name but use an employee's name for the signature.
+
           priority: Either `normal` or `high`. For ACH and EFT payments, `high` represents a
               same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
               an overnight check rather than standard mail.
@@ -299,6 +304,7 @@ class PaymentOrders(SyncAPIResource):
                 "nsf_protected": nsf_protected,
                 "originating_party_address": originating_party_address,
                 "originating_party_name": originating_party_name,
+                "originating_secondary_party_name": originating_secondary_party_name,
                 "priority": priority,
                 "process_after": process_after,
                 "purpose": purpose,
@@ -398,6 +404,7 @@ class PaymentOrders(SyncAPIResource):
         originating_account_id: str | Omit = omit,
         originating_party_address: Optional[payment_order_update_params.OriginatingPartyAddress] | Omit = omit,
         originating_party_name: Optional[str] | Omit = omit,
+        originating_secondary_party_name: Optional[str] | Omit = omit,
         priority: Literal["high", "normal"] | Omit = omit,
         process_after: Union[str, datetime, None] | Omit = omit,
         purpose: Optional[str] | Omit = omit,
@@ -502,6 +509,10 @@ class PaymentOrders(SyncAPIResource):
               the first 16 characters of this string will be used. Any additional characters
               will be truncated.
 
+          originating_secondary_party_name: Secondary name for the legal entity making the payment. Can be used for e.g.
+              check signatures where the originating party wishes to retain their company's
+              display name but use an employee's name for the signature.
+
           priority: Either `normal` or `high`. For ACH and EFT payments, `high` represents a
               same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
               an overnight check rather than standard mail.
@@ -605,6 +616,7 @@ class PaymentOrders(SyncAPIResource):
                     "originating_account_id": originating_account_id,
                     "originating_party_address": originating_party_address,
                     "originating_party_name": originating_party_name,
+                    "originating_secondary_party_name": originating_secondary_party_name,
                     "priority": priority,
                     "process_after": process_after,
                     "purpose": purpose,
@@ -801,6 +813,7 @@ class PaymentOrders(SyncAPIResource):
         nsf_protected: bool | Omit = omit,
         originating_party_address: Optional[payment_order_create_async_params.OriginatingPartyAddress] | Omit = omit,
         originating_party_name: Optional[str] | Omit = omit,
+        originating_secondary_party_name: Optional[str] | Omit = omit,
         priority: Literal["high", "normal"] | Omit = omit,
         process_after: Union[str, datetime, None] | Omit = omit,
         purpose: Optional[str] | Omit = omit,
@@ -904,6 +917,10 @@ class PaymentOrders(SyncAPIResource):
               the first 16 characters of this string will be used. Any additional characters
               will be truncated.
 
+          originating_secondary_party_name: Secondary name for the legal entity making the payment. Can be used for e.g.
+              check signatures where the originating party wishes to retain their company's
+              display name but use an employee's name for the signature.
+
           priority: Either `normal` or `high`. For ACH and EFT payments, `high` represents a
               same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
               an overnight check rather than standard mail.
@@ -1003,6 +1020,7 @@ class PaymentOrders(SyncAPIResource):
                     "nsf_protected": nsf_protected,
                     "originating_party_address": originating_party_address,
                     "originating_party_name": originating_party_name,
+                    "originating_secondary_party_name": originating_secondary_party_name,
                     "priority": priority,
                     "process_after": process_after,
                     "purpose": purpose,
@@ -1086,6 +1104,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         nsf_protected: bool | Omit = omit,
         originating_party_address: Optional[payment_order_create_params.OriginatingPartyAddress] | Omit = omit,
         originating_party_name: Optional[str] | Omit = omit,
+        originating_secondary_party_name: Optional[str] | Omit = omit,
         priority: Literal["high", "normal"] | Omit = omit,
         process_after: Union[str, datetime, None] | Omit = omit,
         purpose: Optional[str] | Omit = omit,
@@ -1192,6 +1211,10 @@ class AsyncPaymentOrders(AsyncAPIResource):
               the first 16 characters of this string will be used. Any additional characters
               will be truncated.
 
+          originating_secondary_party_name: Secondary name for the legal entity making the payment. Can be used for e.g.
+              check signatures where the originating party wishes to retain their company's
+              display name but use an employee's name for the signature.
+
           priority: Either `normal` or `high`. For ACH and EFT payments, `high` represents a
               same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
               an overnight check rather than standard mail.
@@ -1290,6 +1313,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
                 "nsf_protected": nsf_protected,
                 "originating_party_address": originating_party_address,
                 "originating_party_name": originating_party_name,
+                "originating_secondary_party_name": originating_secondary_party_name,
                 "priority": priority,
                 "process_after": process_after,
                 "purpose": purpose,
@@ -1389,6 +1413,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         originating_account_id: str | Omit = omit,
         originating_party_address: Optional[payment_order_update_params.OriginatingPartyAddress] | Omit = omit,
         originating_party_name: Optional[str] | Omit = omit,
+        originating_secondary_party_name: Optional[str] | Omit = omit,
         priority: Literal["high", "normal"] | Omit = omit,
         process_after: Union[str, datetime, None] | Omit = omit,
         purpose: Optional[str] | Omit = omit,
@@ -1493,6 +1518,10 @@ class AsyncPaymentOrders(AsyncAPIResource):
               the first 16 characters of this string will be used. Any additional characters
               will be truncated.
 
+          originating_secondary_party_name: Secondary name for the legal entity making the payment. Can be used for e.g.
+              check signatures where the originating party wishes to retain their company's
+              display name but use an employee's name for the signature.
+
           priority: Either `normal` or `high`. For ACH and EFT payments, `high` represents a
               same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
               an overnight check rather than standard mail.
@@ -1596,6 +1625,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
                     "originating_account_id": originating_account_id,
                     "originating_party_address": originating_party_address,
                     "originating_party_name": originating_party_name,
+                    "originating_secondary_party_name": originating_secondary_party_name,
                     "priority": priority,
                     "process_after": process_after,
                     "purpose": purpose,
@@ -1792,6 +1822,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         nsf_protected: bool | Omit = omit,
         originating_party_address: Optional[payment_order_create_async_params.OriginatingPartyAddress] | Omit = omit,
         originating_party_name: Optional[str] | Omit = omit,
+        originating_secondary_party_name: Optional[str] | Omit = omit,
         priority: Literal["high", "normal"] | Omit = omit,
         process_after: Union[str, datetime, None] | Omit = omit,
         purpose: Optional[str] | Omit = omit,
@@ -1895,6 +1926,10 @@ class AsyncPaymentOrders(AsyncAPIResource):
               the first 16 characters of this string will be used. Any additional characters
               will be truncated.
 
+          originating_secondary_party_name: Secondary name for the legal entity making the payment. Can be used for e.g.
+              check signatures where the originating party wishes to retain their company's
+              display name but use an employee's name for the signature.
+
           priority: Either `normal` or `high`. For ACH and EFT payments, `high` represents a
               same-day ACH or EFT transfer, respectively. For check payments, `high` can mean
               an overnight check rather than standard mail.
@@ -1994,6 +2029,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
                     "nsf_protected": nsf_protected,
                     "originating_party_address": originating_party_address,
                     "originating_party_name": originating_party_name,
+                    "originating_secondary_party_name": originating_secondary_party_name,
                     "priority": priority,
                     "process_after": process_after,
                     "purpose": purpose,
