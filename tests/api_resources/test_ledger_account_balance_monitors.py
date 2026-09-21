@@ -43,8 +43,8 @@ class TestLedgerAccountBalanceMonitors:
             ledger_account_id="ledger_account_id",
             description="description",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
         )
@@ -135,8 +135,8 @@ class TestLedgerAccountBalanceMonitors:
             id="id",
             description="description",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
         )
@@ -278,8 +278,8 @@ class TestAsyncLedgerAccountBalanceMonitors:
             ledger_account_id="ledger_account_id",
             description="description",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
         )
@@ -370,8 +370,8 @@ class TestAsyncLedgerAccountBalanceMonitors:
             id="id",
             description="description",
             metadata={
-                "key": "value",
                 "foo": "bar",
+                "key": "value",
                 "modern": "treasury",
             },
         )

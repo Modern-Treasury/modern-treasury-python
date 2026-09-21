@@ -144,6 +144,14 @@ class PaymentOrderUpdateParams(TypedDict, total=False):
     will be truncated.
     """
 
+    originating_secondary_party_name: Optional[str]
+    """Secondary name for the legal entity making the payment.
+
+    Can be used for e.g. check signatures where the originating party wishes to
+    retain their company's display name but use an employee's name for the
+    signature.
+    """
+
     priority: Literal["high", "normal"]
     """Either `normal` or `high`.
 
