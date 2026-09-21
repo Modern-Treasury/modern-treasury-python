@@ -22,7 +22,7 @@ class ThirdPartyVerification(TypedDict, total=False):
     """The identification of the third party verification in `vendor`'s system."""
 
     verification_category: Required[
-        Literal["legal_name", "date_of_birth", "address", "government_id_number", "adverse_media"]
+        Literal["legal_name", "date_of_birth", "address", "government_id_number", "tax_id", "adverse_media"]
     ]
     """The category of verification performed."""
 
