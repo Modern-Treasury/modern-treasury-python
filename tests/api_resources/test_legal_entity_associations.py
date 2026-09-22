@@ -37,10 +37,10 @@ class TestLegalEntityAssociations:
                         "country": "country",
                         "line1": "line1",
                         "locality": "locality",
-                        "postal_code": "postal_code",
                         "region": "region",
                         "address_types": ["business"],
                         "line2": "line2",
+                        "postal_code": "postal_code",
                         "primary": True,
                     }
                 ],
@@ -282,10 +282,10 @@ class TestAsyncLegalEntityAssociations:
                         "country": "country",
                         "line1": "line1",
                         "locality": "locality",
-                        "postal_code": "postal_code",
                         "region": "region",
                         "address_types": ["business"],
                         "line2": "line2",
+                        "postal_code": "postal_code",
                         "primary": True,
                     }
                 ],
