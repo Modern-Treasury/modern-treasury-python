@@ -20,9 +20,6 @@ class LegalEntityAddressCreateRequest(BaseModel):
     Use the full city name rather than an abbreviation (e.g. San Francisco).
     """
 
-    postal_code: Optional[str] = None
-    """The postal code of the address."""
-
     region: Optional[str] = None
     """Region or State.
 
@@ -38,6 +35,9 @@ class LegalEntityAddressCreateRequest(BaseModel):
     """The types of this address."""
 
     line2: Optional[str] = None
+
+    postal_code: Optional[str] = None
+    """The postal code of the address."""
 
     primary: Optional[bool] = None
     """Whether this address is the primary address for the legal entity.
