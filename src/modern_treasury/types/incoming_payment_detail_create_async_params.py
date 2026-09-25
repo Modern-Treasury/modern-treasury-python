@@ -24,7 +24,7 @@ class IncomingPaymentDetailCreateAsyncParams(TypedDict, total=False):
     """Defaults to today."""
 
     currency: Optional[Currency]
-    """Defaults to the currency of the originating account."""
+    """Three-letter ISO currency code."""
 
     data: Optional[object]
     """
