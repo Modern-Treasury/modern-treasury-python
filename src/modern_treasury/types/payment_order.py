@@ -7,18 +7,21 @@ from typing import Dict, List, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, TypeAlias
 
+from .shared import foreign_exchange_rate
 from .._models import BaseModel
 from .shared.currency import Currency
 from .virtual_account import VirtualAccount
 from .internal_account import InternalAccount
 from .payment_order_type import PaymentOrderType
 from .payment_order_subtype import PaymentOrderSubtype
-from .shared.foreign_exchange_rate import ForeignExchangeRate
 
 __all__ = [
     "PaymentOrder",
     "Accounting",
     "CurrentHold",
+    "CurrentHoldHold",
+    "CurrentReturn",
+    "ForeignExchangeRate",
     "OriginatingPartyAddress",
     "ReferenceNumbers",
     "ReferenceNumber",
@@ -43,11 +46,7 @@ class Accounting(BaseModel):
     """
 
 
-class CurrentHold(BaseModel):
-    """
-    If the payment order's status is `held`, this will include the hold object's data.
-    """
-
+class CurrentHoldHold(BaseModel):
     id: str
 
     created_at: datetime
@@ -83,6 +82,13 @@ class CurrentHold(BaseModel):
 
     resolved_at: Optional[datetime] = None
     """When the hold was resolved"""
+
+
+CurrentHold: TypeAlias = Union[CurrentHoldHold, Optional[builtins.object]]
+
+CurrentReturn: TypeAlias = Union["ReturnObject", Optional[builtins.object]]
+
+ForeignExchangeRate: TypeAlias = Union[foreign_exchange_rate.ForeignExchangeRate, Optional[builtins.object]]
 
 
 class OriginatingPartyAddress(BaseModel):
@@ -285,13 +291,13 @@ class PaymentOrder(BaseModel):
     currency: Currency
     """Defaults to the currency of the originating account."""
 
-    current_hold: Optional[CurrentHold] = None
+    current_hold: CurrentHold
     """
     If the payment order's status is `held`, this will include the hold object's
     data.
     """
 
-    current_return: Optional["ReturnObject"] = None
+    current_return: CurrentReturn
     """
     If the payment order's status is `returned`, this will include the return
     object's data.
@@ -335,7 +341,7 @@ class PaymentOrder(BaseModel):
     currency matches the originating account currency.
     """
 
-    foreign_exchange_rate: Optional[ForeignExchangeRate] = None
+    foreign_exchange_rate: ForeignExchangeRate
     """Associated serialized foreign exchange rate information."""
 
     ledger_transaction_id: Optional[str] = None

@@ -2,20 +2,20 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Union, Optional
 from datetime import date, datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
+from . import third_party_verification as _third_party_verification
+from .. import bank_settings, wealth_and_employment_details
 from ..._models import BaseModel
-from ..bank_settings import BankSettings
-from .third_party_verification import ThirdPartyVerification
 from .identification_create_request import IdentificationCreateRequest
-from ..wealth_and_employment_details import WealthAndEmploymentDetails
 from .legal_entity_address_create_request import LegalEntityAddressCreateRequest
 from .legal_entity_industry_classification import LegalEntityIndustryClassification
 
 __all__ = [
     "ChildLegalEntityCreate",
+    "BankSettings",
     "Documents",
     "Document",
     "PhoneNumbers",
@@ -23,7 +23,11 @@ __all__ = [
     "Regulators",
     "Regulator",
     "TermsOfUse",
+    "ThirdPartyVerification",
+    "WealthAndEmploymentDetails",
 ]
+
+BankSettings: TypeAlias = Union[bank_settings.BankSettings, Optional[object]]
 
 
 class Document(BaseModel):
@@ -102,6 +106,13 @@ class TermsOfUse(BaseModel):
 
     Supports both IPv4 and IPv6 formats.
     """
+
+
+ThirdPartyVerification: TypeAlias = Union[_third_party_verification.ThirdPartyVerification, Optional[object]]
+
+WealthAndEmploymentDetails: TypeAlias = Union[
+    wealth_and_employment_details.WealthAndEmploymentDetails, Optional[object]
+]
 
 
 class ChildLegalEntityCreate(BaseModel):
@@ -238,7 +249,7 @@ class ChildLegalEntityCreate(BaseModel):
     third_party_verification: Optional[ThirdPartyVerification] = None
     """Deprecated. Use `third_party_verifications` instead."""
 
-    third_party_verifications: Optional[List[ThirdPartyVerification]] = None
+    third_party_verifications: Optional[List[_third_party_verification.ThirdPartyVerification]] = None
     """A list of third-party verifications run by external vendors."""
 
     ticker_symbol: Optional[str] = None

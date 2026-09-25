@@ -1,14 +1,28 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Union, Optional
 from datetime import date, datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 from ..shared.ledger_balances import LedgerBalances
 from ..shared.transaction_direction import TransactionDirection
 
-__all__ = ["LedgerTransactionVersion", "LedgerEntries", "LedgerEntry"]
+__all__ = [
+    "LedgerTransactionVersion",
+    "LedgerEntries",
+    "LedgerEntry",
+    "LedgerEntriesResultingLedgerAccountBalances",
+    "LedgerEntryResultingLedgerAccountBalances",
+]
+
+LedgerEntryResultingLedgerAccountBalances: TypeAlias = Union[LedgerBalances, Optional[object]]
+
+LedgerEntriesResultingLedgerAccountBalances = LedgerEntryResultingLedgerAccountBalances
+"""This type is deprecated and will be removed in a future release.
+
+Please use LedgerEntryResultingLedgerAccountBalances instead.
+"""
 
 
 class LedgerEntry(BaseModel):
@@ -77,7 +91,7 @@ class LedgerEntry(BaseModel):
 
     object: str
 
-    resulting_ledger_account_balances: Optional[LedgerBalances] = None
+    resulting_ledger_account_balances: LedgerEntryResultingLedgerAccountBalances
     """
     The pending, posted, and available balances for this ledger entry's ledger
     account. The posted balance is the sum of all posted entries on the account. The

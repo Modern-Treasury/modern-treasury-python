@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Dict, Union, Iterable, Optional
 from datetime import date, datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
@@ -29,6 +29,7 @@ __all__ = [
     "AccountsRoutingDetails",
     "AccountRoutingDetail",
     "LegalEntity",
+    "LegalEntityBankSettings",
     "LegalEntityDocuments",
     "LegalEntityDocument",
     "LegalEntityPhoneNumbers",
@@ -36,6 +37,8 @@ __all__ = [
     "LegalEntityRegulators",
     "LegalEntityRegulator",
     "LegalEntityTermsOfUse",
+    "LegalEntityThirdPartyVerification",
+    "LegalEntityWealthAndEmploymentDetails",
 ]
 
 
@@ -246,6 +249,8 @@ Accounts = Account
 Please use Account instead.
 """
 
+LegalEntityBankSettings: TypeAlias = Union[BankSettingsParam, Optional[object]]
+
 
 class LegalEntityDocument(TypedDict, total=False):
     document_type: Required[
@@ -327,6 +332,11 @@ class LegalEntityTermsOfUse(TypedDict, total=False):
     """
 
 
+LegalEntityThirdPartyVerification: TypeAlias = Union[ThirdPartyVerification, Optional[object]]
+
+LegalEntityWealthAndEmploymentDetails: TypeAlias = Union[WealthAndEmploymentDetailsParam, Optional[object]]
+
+
 class LegalEntity(TypedDict, total=False):
     legal_entity_type: Required[Literal["business", "individual"]]
     """The type of legal entity."""
@@ -334,7 +344,7 @@ class LegalEntity(TypedDict, total=False):
     addresses: Iterable[LegalEntityAddressCreateRequest]
     """A list of addresses for the entity."""
 
-    bank_settings: Optional[BankSettingsParam]
+    bank_settings: LegalEntityBankSettings
 
     business_description: Optional[str]
     """A description of the business."""
@@ -458,7 +468,7 @@ class LegalEntity(TypedDict, total=False):
     terms_of_use: Optional[LegalEntityTermsOfUse]
     """Acceptance of terms of use by the legal entity."""
 
-    third_party_verification: Optional[ThirdPartyVerification]
+    third_party_verification: LegalEntityThirdPartyVerification
     """Deprecated. Use `third_party_verifications` instead."""
 
     third_party_verifications: Iterable[ThirdPartyVerification]
@@ -467,7 +477,7 @@ class LegalEntity(TypedDict, total=False):
     ticker_symbol: Optional[str]
     """Stock ticker symbol for publicly traded companies."""
 
-    wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam]
+    wealth_and_employment_details: LegalEntityWealthAndEmploymentDetails
 
     website: Optional[str]
     """The entity's primary website URL."""
