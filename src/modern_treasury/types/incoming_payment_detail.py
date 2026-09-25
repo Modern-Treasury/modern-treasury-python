@@ -1,16 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Dict, Union, Optional
 from datetime import date, datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
+from . import virtual_account
 from .._models import BaseModel
 from .shared.address import Address
 from .shared.currency import Currency
-from .virtual_account import VirtualAccount
 from .shared.transaction_direction import TransactionDirection
 
-__all__ = ["IncomingPaymentDetail"]
+__all__ = ["IncomingPaymentDetail", "VirtualAccount", "OriginatingPartyAddress"]
+
+VirtualAccount: TypeAlias = Union[virtual_account.VirtualAccount, Optional[object]]
+
+OriginatingPartyAddress: TypeAlias = Union[Optional[Address], Optional[object]]
 
 
 class IncomingPaymentDetail(BaseModel):
@@ -162,7 +166,7 @@ class IncomingPaymentDetail(BaseModel):
     vendor_id: Optional[str] = None
     """The identifier of the vendor bank."""
 
-    virtual_account: Optional[VirtualAccount] = None
+    virtual_account: VirtualAccount
     """
     If the incoming payment detail is in a virtual account, the serialized virtual
     account object.
@@ -177,7 +181,7 @@ class IncomingPaymentDetail(BaseModel):
     originating_account_number: Optional[str] = None
     """The account number of the originating account for the incoming payment detail."""
 
-    originating_party_address: Optional[Address] = None
+    originating_party_address: Optional[OriginatingPartyAddress] = None
     """
     The address of the originating party for the incoming payment detail, or `null`.
     """

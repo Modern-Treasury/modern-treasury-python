@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Dict, Union, Optional
 from datetime import date, datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
+from .shared import foreign_exchange_rate
 from .._models import BaseModel
 from .shared.currency import Currency
-from .shared.foreign_exchange_rate import ForeignExchangeRate
 
-__all__ = ["Transaction"]
+__all__ = ["Transaction", "ForeignExchangeRate"]
+
+ForeignExchangeRate: TypeAlias = Union[foreign_exchange_rate.ForeignExchangeRate, Optional[object]]
 
 
 class Transaction(BaseModel):
@@ -58,7 +60,7 @@ class Transaction(BaseModel):
 
     discarded_at: Optional[datetime] = None
 
-    foreign_exchange_rate: Optional[ForeignExchangeRate] = None
+    foreign_exchange_rate: ForeignExchangeRate
     """Associated serialized foreign exchange rate information."""
 
     internal_account_id: str

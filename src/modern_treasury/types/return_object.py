@@ -3,14 +3,15 @@
 from __future__ import annotations
 
 import builtins
-from typing import List, Optional
+from typing import TYPE_CHECKING, List, Union, Optional
 from datetime import date, datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias, TypeAliasType
 
+from .._compat import PYDANTIC_V1
 from .._models import BaseModel
 from .shared.currency import Currency
 
-__all__ = ["ReturnObject", "Corrections", "ReferenceNumbers", "ReferenceNumber"]
+__all__ = ["ReturnObject", "Corrections", "CurrentReturn", "ReferenceNumbers", "ReferenceNumber"]
 
 
 class Corrections(BaseModel):
@@ -54,6 +55,12 @@ class Corrections(BaseModel):
     The updated account type code that should replace the one originally used on the
     outgoing payment.
     """
+
+
+if TYPE_CHECKING or not PYDANTIC_V1:
+    CurrentReturn = TypeAliasType("CurrentReturn", Union["ReturnObject", Optional[object]])
+else:
+    CurrentReturn: TypeAlias = Union["ReturnObject", Optional[object]]
 
 
 class ReferenceNumber(BaseModel):
@@ -295,7 +302,7 @@ class ReturnObject(BaseModel):
     currency: Currency
     """Currency that this transaction is denominated in."""
 
-    current_return: Optional["ReturnObject"] = None
+    current_return: CurrentReturn
     """
     If the return's status is `returned`, this will include the return object's data
     that is returning this return.

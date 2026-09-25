@@ -4,25 +4,35 @@ from __future__ import annotations
 
 from typing import Dict, Union, Iterable, Optional
 from datetime import date, datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
+from .shared_params import third_party_verification as _third_party_verification
 from .bank_settings_param import BankSettingsParam
 from .wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
-from .shared_params.third_party_verification import ThirdPartyVerification
 from .shared_params.identification_create_request import IdentificationCreateRequest
 from .shared_params.legal_entity_address_create_request import LegalEntityAddressCreateRequest
 from .shared_params.legal_entity_industry_classification import LegalEntityIndustryClassification
 
-__all__ = ["LegalEntityUpdateParams", "PhoneNumbers", "PhoneNumber", "Regulators", "Regulator", "TermsOfUse"]
+__all__ = [
+    "LegalEntityUpdateParams",
+    "BankSettings",
+    "PhoneNumbers",
+    "PhoneNumber",
+    "Regulators",
+    "Regulator",
+    "TermsOfUse",
+    "ThirdPartyVerification",
+    "WealthAndEmploymentDetails",
+]
 
 
 class LegalEntityUpdateParams(TypedDict, total=False):
     addresses: Iterable[LegalEntityAddressCreateRequest]
     """A list of addresses for the entity."""
 
-    bank_settings: Optional[BankSettingsParam]
+    bank_settings: BankSettings
 
     business_description: Optional[str]
     """A description of the business."""
@@ -126,19 +136,22 @@ class LegalEntityUpdateParams(TypedDict, total=False):
     terms_of_use: Optional[TermsOfUse]
     """Acceptance of terms of use by the legal entity."""
 
-    third_party_verification: Optional[ThirdPartyVerification]
+    third_party_verification: ThirdPartyVerification
     """Deprecated. Use `third_party_verifications` instead."""
 
-    third_party_verifications: Iterable[ThirdPartyVerification]
+    third_party_verifications: Iterable[_third_party_verification.ThirdPartyVerification]
     """A list of third-party verifications run by external vendors."""
 
     ticker_symbol: Optional[str]
     """Stock ticker symbol for publicly traded companies."""
 
-    wealth_and_employment_details: Optional[WealthAndEmploymentDetailsParam]
+    wealth_and_employment_details: WealthAndEmploymentDetails
 
     website: Optional[str]
     """The entity's primary website URL."""
+
+
+BankSettings: TypeAlias = Union[BankSettingsParam, Optional[object]]
 
 
 class PhoneNumber(TypedDict, total=False):
@@ -191,3 +204,8 @@ class TermsOfUse(TypedDict, total=False):
 
     Supports both IPv4 and IPv6 formats.
     """
+
+
+ThirdPartyVerification: TypeAlias = Union[_third_party_verification.ThirdPartyVerification, Optional[object]]
+
+WealthAndEmploymentDetails: TypeAlias = Union[WealthAndEmploymentDetailsParam, Optional[object]]

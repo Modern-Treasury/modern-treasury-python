@@ -2,27 +2,30 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+import builtins
+from typing import Dict, List, Union, Optional
 from datetime import date, datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
+from . import bank_settings, wealth_and_employment_details
+from .shared import third_party_verification as _third_party_verification
 from .._models import BaseModel
 from .document import Document
-from .bank_settings import BankSettings
 from .identification import Identification
-from .wealth_and_employment_details import WealthAndEmploymentDetails
-from .shared.third_party_verification import ThirdPartyVerification
 from .shared.legal_entity_industry_classification import LegalEntityIndustryClassification
 
 __all__ = [
     "LegalEntity",
     "Addresses",
     "Address",
+    "BankSettings",
     "PhoneNumbers",
     "PhoneNumber",
     "Regulators",
     "Regulator",
     "TermsOfUse",
+    "ThirdPartyVerification",
+    "WealthAndEmploymentDetails",
 ]
 
 
@@ -84,6 +87,8 @@ Addresses = Address
 Please use Address instead.
 """
 
+BankSettings: TypeAlias = Union[bank_settings.BankSettings, Optional[builtins.object]]
+
 
 class PhoneNumber(BaseModel):
     """A list of phone numbers in E.164 format."""
@@ -137,13 +142,20 @@ class TermsOfUse(BaseModel):
     """
 
 
+ThirdPartyVerification: TypeAlias = Union[_third_party_verification.ThirdPartyVerification, Optional[object]]
+
+WealthAndEmploymentDetails: TypeAlias = Union[
+    wealth_and_employment_details.WealthAndEmploymentDetails, Optional[object]
+]
+
+
 class LegalEntity(BaseModel):
     id: str
 
     addresses: List[Address]
     """A list of addresses for the entity."""
 
-    bank_settings: Optional[BankSettings] = None
+    bank_settings: BankSettings
 
     business_description: Optional[str] = None
     """A description of the business."""
@@ -272,10 +284,10 @@ class LegalEntity(BaseModel):
     terms_of_use: Optional[TermsOfUse] = None
     """Acceptance of terms of use by the legal entity."""
 
-    third_party_verification: Optional[ThirdPartyVerification] = None
+    third_party_verification: ThirdPartyVerification
     """Deprecated. Use `third_party_verifications` instead."""
 
-    third_party_verifications: List[ThirdPartyVerification]
+    third_party_verifications: List[_third_party_verification.ThirdPartyVerification]
     """A list of third-party verifications run by external vendors."""
 
     ticker_symbol: Optional[str] = None
@@ -283,7 +295,7 @@ class LegalEntity(BaseModel):
 
     updated_at: datetime
 
-    wealth_and_employment_details: Optional[WealthAndEmploymentDetails] = None
+    wealth_and_employment_details: WealthAndEmploymentDetails
 
     website: Optional[str] = None
     """The entity's primary website URL."""
