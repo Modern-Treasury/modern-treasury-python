@@ -271,7 +271,7 @@ class IncomingPaymentDetails(SyncAPIResource):
 
           as_of_date: Defaults to today.
 
-          currency: Defaults to the currency of the originating account.
+          currency: Three-letter ISO currency code.
 
           data: An object passed through to the simulated IPD that could reflect what a vendor
               would pass.
@@ -571,7 +571,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
 
           as_of_date: Defaults to today.
 
-          currency: Defaults to the currency of the originating account.
+          currency: Three-letter ISO currency code.
 
           data: An object passed through to the simulated IPD that could reflect what a vendor
               would pass.
