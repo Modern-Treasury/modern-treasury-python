@@ -104,11 +104,11 @@ class TestCounterparties:
                         "country": "country",
                         "line1": "line1",
                         "locality": "locality",
-                        "region": "region",
                         "address_types": ["business"],
                         "line2": "line2",
                         "postal_code": "postal_code",
                         "primary": True,
+                        "region": "region",
                     }
                 ],
                 "bank_settings": {
@@ -183,11 +183,11 @@ class TestCounterparties:
                                     "country": "country",
                                     "line1": "line1",
                                     "locality": "locality",
-                                    "region": "region",
                                     "address_types": ["business"],
                                     "line2": "line2",
                                     "postal_code": "postal_code",
                                     "primary": True,
+                                    "region": "region",
                                 }
                             ],
                             "bank_settings": {
@@ -747,11 +747,11 @@ class TestAsyncCounterparties:
                         "country": "country",
                         "line1": "line1",
                         "locality": "locality",
-                        "region": "region",
                         "address_types": ["business"],
                         "line2": "line2",
                         "postal_code": "postal_code",
                         "primary": True,
+                        "region": "region",
                     }
                 ],
                 "bank_settings": {
@@ -826,11 +826,11 @@ class TestAsyncCounterparties:
                                     "country": "country",
                                     "line1": "line1",
                                     "locality": "locality",
-                                    "region": "region",
                                     "address_types": ["business"],
                                     "line2": "line2",
                                     "postal_code": "postal_code",
                                     "primary": True,
+                                    "region": "region",
                                 }
                             ],
                             "bank_settings": {
