@@ -20,13 +20,6 @@ class LegalEntityAddressCreateRequest(BaseModel):
     Use the full city name rather than an abbreviation (e.g. San Francisco).
     """
 
-    region: Optional[str] = None
-    """Region or State.
-
-    This field is free-form; for US states, we recommend a two-letter code (e.g.
-    CA). Full state names are also accepted.
-    """
-
     address_types: Optional[
         List[
             Literal["business", "business_physical", "business_registered", "mailing", "other", "po_box", "residential"]
@@ -43,4 +36,11 @@ class LegalEntityAddressCreateRequest(BaseModel):
     """Whether this address is the primary address for the legal entity.
 
     Optional; when omitted it is inferred from the address types.
+    """
+
+    region: Optional[str] = None
+    """Region or State.
+
+    This field is free-form; for US states, we recommend a two-letter code (e.g.
+    CA). Full state names are also accepted.
     """
