@@ -22,7 +22,7 @@ class TestIdentifications:
     def test_method_create(self, client: ModernTreasury) -> None:
         identification = client.identifications.create(
             id_number="id_number",
-            id_type="ar_cuil",
+            id_type="ad_nrt",
             legal_entity_id="legal_entity_id",
         )
         assert_matches_type(Identification, identification, path=["response"])
@@ -31,7 +31,7 @@ class TestIdentifications:
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         identification = client.identifications.create(
             id_number="id_number",
-            id_type="ar_cuil",
+            id_type="ad_nrt",
             legal_entity_id="legal_entity_id",
             documents=[
                 {
@@ -50,7 +50,7 @@ class TestIdentifications:
     def test_raw_response_create(self, client: ModernTreasury) -> None:
         response = client.identifications.with_raw_response.create(
             id_number="id_number",
-            id_type="ar_cuil",
+            id_type="ad_nrt",
             legal_entity_id="legal_entity_id",
         )
 
@@ -63,7 +63,7 @@ class TestIdentifications:
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
         with client.identifications.with_streaming_response.create(
             id_number="id_number",
-            id_type="ar_cuil",
+            id_type="ad_nrt",
             legal_entity_id="legal_entity_id",
         ) as response:
             assert not response.is_closed
@@ -125,7 +125,7 @@ class TestIdentifications:
             id="id",
             expiration_date=parse_date("2019-12-27"),
             id_number="id_number",
-            id_type="ar_cuil",
+            id_type="ad_nrt",
             issuing_country="issuing_country",
             issuing_region="issuing_region",
         )
@@ -172,7 +172,7 @@ class TestAsyncIdentifications:
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
         identification = await async_client.identifications.create(
             id_number="id_number",
-            id_type="ar_cuil",
+            id_type="ad_nrt",
             legal_entity_id="legal_entity_id",
         )
         assert_matches_type(Identification, identification, path=["response"])
@@ -181,7 +181,7 @@ class TestAsyncIdentifications:
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         identification = await async_client.identifications.create(
             id_number="id_number",
-            id_type="ar_cuil",
+            id_type="ad_nrt",
             legal_entity_id="legal_entity_id",
             documents=[
                 {
@@ -200,7 +200,7 @@ class TestAsyncIdentifications:
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.identifications.with_raw_response.create(
             id_number="id_number",
-            id_type="ar_cuil",
+            id_type="ad_nrt",
             legal_entity_id="legal_entity_id",
         )
 
@@ -213,7 +213,7 @@ class TestAsyncIdentifications:
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.identifications.with_streaming_response.create(
             id_number="id_number",
-            id_type="ar_cuil",
+            id_type="ad_nrt",
             legal_entity_id="legal_entity_id",
         ) as response:
             assert not response.is_closed
@@ -275,7 +275,7 @@ class TestAsyncIdentifications:
             id="id",
             expiration_date=parse_date("2019-12-27"),
             id_number="id_number",
-            id_type="ar_cuil",
+            id_type="ad_nrt",
             issuing_country="issuing_country",
             issuing_region="issuing_region",
         )
