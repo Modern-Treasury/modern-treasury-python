@@ -49,7 +49,7 @@ class Balance(BaseModel):
     created_at: datetime
 
     currency: Currency
-    """Three-letter ISO currency code."""
+    """The currency of the balance."""
 
     live_mode: bool
     """

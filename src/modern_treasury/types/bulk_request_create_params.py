@@ -444,7 +444,7 @@ class ResourcePaymentOrderAsyncCreateRequest(TypedDict, total=False):
     """
 
     currency: Currency
-    """Three-letter ISO currency code."""
+    """Defaults to the currency of the originating account."""
 
     description: Optional[str]
     """An optional description for internal use."""
@@ -725,7 +725,7 @@ class ResourceExpectedPaymentCreateRequest(TypedDict, total=False):
     """The ID of the counterparty you expect for this payment."""
 
     currency: Optional[Currency]
-    """Three-letter ISO currency code."""
+    """Must conform to ISO 4217. Defaults to the currency of the internal account."""
 
     date_lower_bound: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
     """The earliest date the payment may come in. Format: yyyy-mm-dd"""
@@ -1211,7 +1211,7 @@ class ResourcePaymentOrderUpdateRequestWithID(TypedDict, total=False):
     """Required when receiving_account_id is passed the ID of an external account."""
 
     currency: Currency
-    """Three-letter ISO currency code."""
+    """Defaults to the currency of the originating account."""
 
     description: Optional[str]
     """An optional description for internal use."""
@@ -1481,7 +1481,7 @@ class ResourceExpectedPaymentUpdateRequestWithID(TypedDict, total=False):
     """The ID of the counterparty you expect for this payment."""
 
     currency: Optional[Currency]
-    """Three-letter ISO currency code."""
+    """Must conform to ISO 4217. Defaults to the currency of the internal account."""
 
     date_lower_bound: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
     """The earliest date the payment may come in. Format: yyyy-mm-dd"""

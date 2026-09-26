@@ -283,7 +283,7 @@ class PaymentOrder(BaseModel):
     created_at: datetime
 
     currency: Currency
-    """Three-letter ISO currency code."""
+    """Defaults to the currency of the originating account."""
 
     current_hold: Optional[CurrentHold] = None
     """

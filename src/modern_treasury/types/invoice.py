@@ -125,7 +125,7 @@ class Invoice(BaseModel):
     created_at: datetime
 
     currency: Currency
-    """Three-letter ISO currency code."""
+    """Currency that the invoice is denominated in. Defaults to `USD` if not provided."""
 
     description: str
     """An optional free-form description of the invoice."""
