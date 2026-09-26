@@ -64,7 +64,7 @@ class PaymentOrderUpdateParams(TypedDict, total=False):
     """Required when receiving_account_id is passed the ID of an external account."""
 
     currency: Currency
-    """Defaults to the currency of the originating account."""
+    """Three-letter ISO currency code."""
 
     description: Optional[str]
     """An optional description for internal use."""

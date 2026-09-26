@@ -293,7 +293,7 @@ class ReturnObject(BaseModel):
     created_at: datetime
 
     currency: Currency
-    """Currency that this transaction is denominated in."""
+    """Three-letter ISO currency code."""
 
     current_return: Optional["ReturnObject"] = None
     """

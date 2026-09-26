@@ -38,7 +38,7 @@ class ReconciliationRule(BaseModel):
     """The ID of the counterparty you expect for this payment"""
 
     currency: Optional[Currency] = None
-    """Must conform to ISO 4217. Defaults to the currency of the internal account"""
+    """Three-letter ISO currency code."""
 
     custom_identifiers: Optional[Dict[str, str]] = None
     """A hash of custom identifiers for this payment"""

@@ -45,7 +45,7 @@ class Transaction(BaseModel):
     created_at: datetime
 
     currency: Currency
-    """Currency that this transaction is denominated in."""
+    """Three-letter ISO currency code."""
 
     custom_identifiers: Dict[str, str]
     """
