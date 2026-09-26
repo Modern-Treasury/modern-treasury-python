@@ -450,7 +450,7 @@ class ExternalAccounts(SyncAPIResource):
 
           payment_type: Can be `ach`, `eft`, or `rtp`.
 
-          currency: Defaults to the currency of the originating account.
+          currency: Three-letter ISO currency code.
 
           fallback_type: A payment type to fallback to if the original type is not valid for the
               receiving account. Currently, this only supports falling back from RTP to ACH
@@ -915,7 +915,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
 
           payment_type: Can be `ach`, `eft`, or `rtp`.
 
-          currency: Defaults to the currency of the originating account.
+          currency: Three-letter ISO currency code.
 
           fallback_type: A payment type to fallback to if the original type is not valid for the
               receiving account. Currently, this only supports falling back from RTP to ACH

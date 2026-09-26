@@ -111,7 +111,7 @@ class ExpectedPayments(SyncAPIResource):
 
           counterparty_id: The ID of the counterparty you expect for this payment.
 
-          currency: Must conform to ISO 4217. Defaults to the currency of the internal account.
+          currency: Three-letter ISO currency code.
 
           date_lower_bound: The earliest date the payment may come in. Format: yyyy-mm-dd
 
@@ -298,7 +298,7 @@ class ExpectedPayments(SyncAPIResource):
 
           counterparty_id: The ID of the counterparty you expect for this payment.
 
-          currency: Must conform to ISO 4217. Defaults to the currency of the internal account.
+          currency: Three-letter ISO currency code.
 
           date_lower_bound: The earliest date the payment may come in. Format: yyyy-mm-dd
 
@@ -621,7 +621,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
 
           counterparty_id: The ID of the counterparty you expect for this payment.
 
-          currency: Must conform to ISO 4217. Defaults to the currency of the internal account.
+          currency: Three-letter ISO currency code.
 
           date_lower_bound: The earliest date the payment may come in. Format: yyyy-mm-dd
 
@@ -808,7 +808,7 @@ class AsyncExpectedPayments(AsyncAPIResource):
 
           counterparty_id: The ID of the counterparty you expect for this payment.
 
-          currency: Must conform to ISO 4217. Defaults to the currency of the internal account.
+          currency: Three-letter ISO currency code.
 
           date_lower_bound: The earliest date the payment may come in. Format: yyyy-mm-dd
 

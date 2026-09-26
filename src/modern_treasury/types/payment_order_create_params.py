@@ -84,7 +84,7 @@ class PaymentOrderCreateParams(TypedDict, total=False):
     """
 
     currency: Currency
-    """Defaults to the currency of the originating account."""
+    """Three-letter ISO currency code."""
 
     description: Optional[str]
     """An optional description for internal use."""
