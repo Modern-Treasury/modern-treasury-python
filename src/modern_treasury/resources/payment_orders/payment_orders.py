@@ -150,7 +150,7 @@ class PaymentOrders(SyncAPIResource):
               https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the
               differences between the options.
 
-          currency: Three-letter ISO currency code.
+          currency: Defaults to the currency of the originating account.
 
           description: An optional description for internal use.
 
@@ -463,7 +463,7 @@ class PaymentOrders(SyncAPIResource):
 
           counterparty_id: Required when receiving_account_id is passed the ID of an external account.
 
-          currency: Three-letter ISO currency code.
+          currency: Defaults to the currency of the originating account.
 
           description: An optional description for internal use.
 
@@ -868,7 +868,7 @@ class PaymentOrders(SyncAPIResource):
               https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the
               differences between the options.
 
-          currency: Three-letter ISO currency code.
+          currency: Defaults to the currency of the originating account.
 
           description: An optional description for internal use.
 
@@ -1159,7 +1159,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
               https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the
               differences between the options.
 
-          currency: Three-letter ISO currency code.
+          currency: Defaults to the currency of the originating account.
 
           description: An optional description for internal use.
 
@@ -1472,7 +1472,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
 
           counterparty_id: Required when receiving_account_id is passed the ID of an external account.
 
-          currency: Three-letter ISO currency code.
+          currency: Defaults to the currency of the originating account.
 
           description: An optional description for internal use.
 
@@ -1877,7 +1877,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
               https://docs.moderntreasury.com/payments/docs/charge-bearer to understand the
               differences between the options.
 
-          currency: Three-letter ISO currency code.
+          currency: Defaults to the currency of the originating account.
 
           description: An optional description for internal use.
 

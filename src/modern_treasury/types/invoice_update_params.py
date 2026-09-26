@@ -36,7 +36,7 @@ class InvoiceUpdateParams(TypedDict, total=False):
     """The counterparty's shipping address where physical goods should be delivered."""
 
     currency: Currency
-    """Three-letter ISO currency code."""
+    """Currency that the invoice is denominated in. Defaults to `USD` if not provided."""
 
     description: str
     """A free-form description of the invoice."""

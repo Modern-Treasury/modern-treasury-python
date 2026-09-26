@@ -28,7 +28,7 @@ class IncomingPaymentDetail(BaseModel):
     created_at: datetime
 
     currency: Currency
-    """Three-letter ISO currency code."""
+    """The currency of the incoming payment detail."""
 
     data: Dict[str, object]
     """The raw data from the payment pre-notification file that we get from the bank."""

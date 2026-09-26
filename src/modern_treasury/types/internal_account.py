@@ -145,7 +145,7 @@ class InternalAccount(BaseModel):
     created_at: datetime
 
     currency: Currency
-    """Three-letter ISO currency code."""
+    """The currency of the account."""
 
     debitable: Optional[bool] = None
     """Whether this account can receive ACH debits.

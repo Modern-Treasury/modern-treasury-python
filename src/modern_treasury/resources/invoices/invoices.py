@@ -112,7 +112,7 @@ class Invoices(SyncAPIResource):
 
           counterparty_shipping_address: The counterparty's shipping address where physical goods should be delivered.
 
-          currency: Three-letter ISO currency code.
+          currency: Currency that the invoice is denominated in. Defaults to `USD` if not provided.
 
           description: A free-form description of the invoice.
 
@@ -297,7 +297,7 @@ class Invoices(SyncAPIResource):
 
           counterparty_shipping_address: The counterparty's shipping address where physical goods should be delivered.
 
-          currency: Three-letter ISO currency code.
+          currency: Currency that the invoice is denominated in. Defaults to `USD` if not provided.
 
           description: A free-form description of the invoice.
 
@@ -616,7 +616,7 @@ class AsyncInvoices(AsyncAPIResource):
 
           counterparty_shipping_address: The counterparty's shipping address where physical goods should be delivered.
 
-          currency: Three-letter ISO currency code.
+          currency: Currency that the invoice is denominated in. Defaults to `USD` if not provided.
 
           description: A free-form description of the invoice.
 
@@ -801,7 +801,7 @@ class AsyncInvoices(AsyncAPIResource):
 
           counterparty_shipping_address: The counterparty's shipping address where physical goods should be delivered.
 
-          currency: Three-letter ISO currency code.
+          currency: Currency that the invoice is denominated in. Defaults to `USD` if not provided.
 
           description: A free-form description of the invoice.
 

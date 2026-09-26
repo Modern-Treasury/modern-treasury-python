@@ -14,7 +14,7 @@ class ForeignExchangeRate(BaseModel):
     """
 
     base_currency: Currency
-    """Three-letter ISO currency code."""
+    """Currency to convert, often called the "sell" currency."""
 
     exponent: int
     """The exponent component of the rate.
@@ -32,7 +32,7 @@ class ForeignExchangeRate(BaseModel):
     """
 
     target_currency: Currency
-    """Three-letter ISO currency code."""
+    """Currency to convert the `base_currency` to, often called the "buy" currency."""
 
     value: int
     """The whole number component of the rate.

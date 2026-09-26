@@ -48,7 +48,7 @@ class ExternalAccountVerifyParams(TypedDict, total=False):
     """Can be `ach`, `eft`, or `rtp`."""
 
     currency: Currency
-    """Three-letter ISO currency code."""
+    """Defaults to the currency of the originating account."""
 
     fallback_type: Literal["ach"]
     """

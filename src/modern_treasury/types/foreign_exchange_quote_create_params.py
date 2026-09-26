@@ -17,7 +17,7 @@ class ForeignExchangeQuoteCreateParams(TypedDict, total=False):
     """The ID for the `InternalAccount` this quote is associated with."""
 
     target_currency: Required[Currency]
-    """Three-letter ISO currency code."""
+    """Currency to convert the `base_currency` to, often called the "buy" currency."""
 
     base_amount: int
     """
@@ -26,7 +26,7 @@ class ForeignExchangeQuoteCreateParams(TypedDict, total=False):
     """
 
     base_currency: Currency
-    """Three-letter ISO currency code."""
+    """Currency to convert, often called the "sell" currency."""
 
     effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The timestamp until when the quoted rate is valid."""

@@ -65,12 +65,12 @@ class ForeignExchangeQuotes(SyncAPIResource):
         Args:
           internal_account_id: The ID for the `InternalAccount` this quote is associated with.
 
-          target_currency: Three-letter ISO currency code.
+          target_currency: Currency to convert the `base_currency` to, often called the "buy" currency.
 
           base_amount: Amount in the lowest denomination of the `base_currency` to convert, often
               called the "sell" amount.
 
-          base_currency: Three-letter ISO currency code.
+          base_currency: Currency to convert, often called the "sell" currency.
 
           effective_at: The timestamp until when the quoted rate is valid.
 
@@ -260,12 +260,12 @@ class AsyncForeignExchangeQuotes(AsyncAPIResource):
         Args:
           internal_account_id: The ID for the `InternalAccount` this quote is associated with.
 
-          target_currency: Three-letter ISO currency code.
+          target_currency: Currency to convert the `base_currency` to, often called the "buy" currency.
 
           base_amount: Amount in the lowest denomination of the `base_currency` to convert, often
               called the "sell" amount.
 
-          base_currency: Three-letter ISO currency code.
+          base_currency: Currency to convert, often called the "sell" currency.
 
           effective_at: The timestamp until when the quoted rate is valid.
 
