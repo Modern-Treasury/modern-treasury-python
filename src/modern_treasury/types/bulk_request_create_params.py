@@ -200,6 +200,7 @@ class ResourcePaymentOrderAsyncCreateRequestReceivingAccountAccountDetail(TypedD
     account_number_type: Literal[
         "arbitrum_address",
         "au_number",
+        "avalanche_address",
         "base_address",
         "card_token",
         "clabe",
@@ -1016,6 +1017,7 @@ class ResourcePaymentOrderUpdateRequestWithIDReceivingAccountAccountDetail(Typed
     account_number_type: Literal[
         "arbitrum_address",
         "au_number",
+        "avalanche_address",
         "base_address",
         "card_token",
         "clabe",

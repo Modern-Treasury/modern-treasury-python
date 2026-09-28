@@ -19,6 +19,7 @@ PaymentOrderSubtype: TypeAlias = Optional[
         "WEB",
         "arbitrum",
         "au_becs",
+        "avalanche",
         "bacs",
         "base",
         "chats",
