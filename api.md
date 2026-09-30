@@ -348,7 +348,7 @@ from modern_treasury.types import LedgerEntry
 
 Methods:
 
-- <code title="get /api/ledger_entries/{id}">client.ledger_entries.<a href="./src/modern_treasury/resources/ledger_entries.py">retrieve</a>(id, \*\*<a href="src/modern_treasury/types/ledger_entry_retrieve_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_entry.py">LedgerEntry</a></code>
+- <code title="get /api/ledger_entries/{id}">client.ledger_entries.<a href="./src/modern_treasury/resources/ledger_entries.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/ledger_entry.py">LedgerEntry</a></code>
 - <code title="patch /api/ledger_entries/{id}">client.ledger_entries.<a href="./src/modern_treasury/resources/ledger_entries.py">update</a>(id, \*\*<a href="src/modern_treasury/types/ledger_entry_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_entry.py">LedgerEntry</a></code>
 - <code title="get /api/ledger_entries">client.ledger_entries.<a href="./src/modern_treasury/resources/ledger_entries.py">list</a>(\*\*<a href="src/modern_treasury/types/ledger_entry_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/ledger_entry.py">SyncPage[LedgerEntry]</a></code>
 

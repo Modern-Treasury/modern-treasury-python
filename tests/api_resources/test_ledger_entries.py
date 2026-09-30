@@ -9,9 +9,7 @@ import pytest
 
 from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
-from modern_treasury.types import (
-    LedgerEntry,
-)
+from modern_treasury.types import LedgerEntry
 from modern_treasury._utils import parse_date, parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
 
@@ -24,22 +22,14 @@ class TestLedgerEntries:
     @parametrize
     def test_method_retrieve(self, client: ModernTreasury) -> None:
         ledger_entry = client.ledger_entries.retrieve(
-            id="id",
-        )
-        assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
-
-    @parametrize
-    def test_method_retrieve_with_all_params(self, client: ModernTreasury) -> None:
-        ledger_entry = client.ledger_entries.retrieve(
-            id="id",
-            show_balances=True,
+            "id",
         )
         assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: ModernTreasury) -> None:
         response = client.ledger_entries.with_raw_response.retrieve(
-            id="id",
+            "id",
         )
 
         assert response.is_closed is True
@@ -50,7 +40,7 @@ class TestLedgerEntries:
     @parametrize
     def test_streaming_response_retrieve(self, client: ModernTreasury) -> None:
         with client.ledger_entries.with_streaming_response.retrieve(
-            id="id",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -64,7 +54,7 @@ class TestLedgerEntries:
     def test_path_params_retrieve(self, client: ModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.ledger_entries.with_raw_response.retrieve(
-                id="",
+                "",
             )
 
     @parametrize
@@ -151,7 +141,6 @@ class TestLedgerEntries:
                 "effective_at": "asc",
             },
             per_page=0,
-            show_balances=True,
             show_deleted=True,
             status="pending",
             updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
@@ -187,22 +176,14 @@ class TestAsyncLedgerEntries:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncModernTreasury) -> None:
         ledger_entry = await async_client.ledger_entries.retrieve(
-            id="id",
-        )
-        assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
-
-    @parametrize
-    async def test_method_retrieve_with_all_params(self, async_client: AsyncModernTreasury) -> None:
-        ledger_entry = await async_client.ledger_entries.retrieve(
-            id="id",
-            show_balances=True,
+            "id",
         )
         assert_matches_type(LedgerEntry, ledger_entry, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         response = await async_client.ledger_entries.with_raw_response.retrieve(
-            id="id",
+            "id",
         )
 
         assert response.is_closed is True
@@ -213,7 +194,7 @@ class TestAsyncLedgerEntries:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncModernTreasury) -> None:
         async with async_client.ledger_entries.with_streaming_response.retrieve(
-            id="id",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -227,7 +208,7 @@ class TestAsyncLedgerEntries:
     async def test_path_params_retrieve(self, async_client: AsyncModernTreasury) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.ledger_entries.with_raw_response.retrieve(
-                id="",
+                "",
             )
 
     @parametrize
@@ -314,7 +295,6 @@ class TestAsyncLedgerEntries:
                 "effective_at": "asc",
             },
             per_page=0,
-            show_balances=True,
             show_deleted=True,
             status="pending",
             updated_at={"foo": parse_datetime("2019-12-27T18:11:19.117Z")},
