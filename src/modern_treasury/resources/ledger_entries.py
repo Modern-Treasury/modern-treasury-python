@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from .. import _legacy_response
-from ..types import ledger_entry_list_params, ledger_entry_update_params, ledger_entry_retrieve_params
+from ..types import ledger_entry_list_params, ledger_entry_update_params
 from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -47,7 +47,6 @@ class LedgerEntries(SyncAPIResource):
         self,
         id: str,
         *,
-        show_balances: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -59,9 +58,6 @@ class LedgerEntries(SyncAPIResource):
         Get details on a single ledger entry.
 
         Args:
-          show_balances: If true, response will include the balances attached to the ledger entry. If
-              there is no balance available, null will be returned instead.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -75,13 +71,7 @@ class LedgerEntries(SyncAPIResource):
         return self._get(
             path_template("/api/ledger_entries/{id}", id=id),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {"show_balances": show_balances}, ledger_entry_retrieve_params.LedgerEntryRetrieveParams
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=LedgerEntry,
         )
@@ -151,7 +141,6 @@ class LedgerEntries(SyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         order_by: ledger_entry_list_params.OrderBy | Omit = omit,
         per_page: int | Omit = omit,
-        show_balances: bool | Omit = omit,
         show_deleted: bool | Omit = omit,
         status: Literal["pending", "posted", "archived"] | Omit = omit,
         updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
@@ -202,9 +191,6 @@ class LedgerEntries(SyncAPIResource):
               to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`. Ordering
               by only one field at a time is supported.
 
-          show_balances: If true, response will include the balances attached to the ledger entry. If
-              there is no balance available, null will be returned instead.
-
           show_deleted: If true, response will include ledger entries that were deleted. When you update
               a ledger transaction to specify a new set of entries, the previous entries are
               deleted.
@@ -252,7 +238,6 @@ class LedgerEntries(SyncAPIResource):
                         "metadata": metadata,
                         "order_by": order_by,
                         "per_page": per_page,
-                        "show_balances": show_balances,
                         "show_deleted": show_deleted,
                         "status": status,
                         "updated_at": updated_at,
@@ -288,7 +273,6 @@ class AsyncLedgerEntries(AsyncAPIResource):
         self,
         id: str,
         *,
-        show_balances: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -300,9 +284,6 @@ class AsyncLedgerEntries(AsyncAPIResource):
         Get details on a single ledger entry.
 
         Args:
-          show_balances: If true, response will include the balances attached to the ledger entry. If
-              there is no balance available, null will be returned instead.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -316,13 +297,7 @@ class AsyncLedgerEntries(AsyncAPIResource):
         return await self._get(
             path_template("/api/ledger_entries/{id}", id=id),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"show_balances": show_balances}, ledger_entry_retrieve_params.LedgerEntryRetrieveParams
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=LedgerEntry,
         )
@@ -394,7 +369,6 @@ class AsyncLedgerEntries(AsyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         order_by: ledger_entry_list_params.OrderBy | Omit = omit,
         per_page: int | Omit = omit,
-        show_balances: bool | Omit = omit,
         show_deleted: bool | Omit = omit,
         status: Literal["pending", "posted", "archived"] | Omit = omit,
         updated_at: Dict[str, Union[str, datetime]] | Omit = omit,
@@ -445,9 +419,6 @@ class AsyncLedgerEntries(AsyncAPIResource):
               to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`. Ordering
               by only one field at a time is supported.
 
-          show_balances: If true, response will include the balances attached to the ledger entry. If
-              there is no balance available, null will be returned instead.
-
           show_deleted: If true, response will include ledger entries that were deleted. When you update
               a ledger transaction to specify a new set of entries, the previous entries are
               deleted.
@@ -495,7 +466,6 @@ class AsyncLedgerEntries(AsyncAPIResource):
                         "metadata": metadata,
                         "order_by": order_by,
                         "per_page": per_page,
-                        "show_balances": show_balances,
                         "show_deleted": show_deleted,
                         "status": status,
                         "updated_at": updated_at,

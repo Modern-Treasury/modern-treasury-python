@@ -93,12 +93,6 @@ class LedgerEntryListParams(TypedDict, total=False):
 
     per_page: int
 
-    show_balances: bool
-    """If true, response will include the balances attached to the ledger entry.
-
-    If there is no balance available, null will be returned instead.
-    """
-
     show_deleted: bool
     """If true, response will include ledger entries that were deleted.
 
