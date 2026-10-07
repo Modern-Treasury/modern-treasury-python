@@ -354,6 +354,7 @@ class TestCounterparties:
                 ],
                 "risk_rating": "low",
                 "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "status": "draft",
                 "suffix": "suffix",
                 "terms_of_use": {
                     "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -997,6 +998,7 @@ class TestAsyncCounterparties:
                 ],
                 "risk_rating": "low",
                 "service_provider_legal_entity_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                "status": "draft",
                 "suffix": "suffix",
                 "terms_of_use": {
                     "accepted_at": parse_datetime("2019-12-27T18:11:19.117Z"),

@@ -152,6 +152,13 @@ class LegalEntityCreateParams(TypedDict, total=False):
     service_provider_legal_entity_id: Optional[str]
     """The UUID of the parent legal entity in the service provider tree."""
 
+    status: Literal["draft"]
+    """Set to draft to create the legal entity as a draft.
+
+    Omit to create it as pending. Inline child legal entities take the parent's
+    status.
+    """
+
     suffix: Optional[str]
     """An individual's suffix."""
 
