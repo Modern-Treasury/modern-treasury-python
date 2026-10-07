@@ -120,6 +120,13 @@ class LegalEntityUpdateParams(TypedDict, total=False):
     service_provider_legal_entity_id: Optional[str]
     """The UUID of the parent legal entity in the service provider tree."""
 
+    status: Literal["pending"]
+    """Set to pending to submit a draft legal entity for processing.
+
+    Only valid while the legal entity is draft, and must be the only attribute in
+    the request. Draft child legal entities are submitted with it.
+    """
+
     suffix: Optional[str]
     """An individual's suffix."""
 
