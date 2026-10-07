@@ -260,10 +260,10 @@ class LegalEntity(BaseModel):
     service_provider_legal_entity_id: Optional[str] = None
     """The UUID of the parent legal entity in the service provider tree."""
 
-    status: Optional[Literal["active", "denied", "pending", "suspended"]] = None
+    status: Optional[Literal["active", "denied", "draft", "pending", "suspended"]] = None
     """The activation status of the legal entity.
 
-    One of pending, active, suspended, or denied.
+    One of draft, pending, active, suspended, or denied.
     """
 
     suffix: Optional[str] = None
