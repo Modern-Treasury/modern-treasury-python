@@ -43,7 +43,7 @@ class TestLedgerAccounts:
             external_id="external_id",
             ledger_account_category_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            ledgerable_type="counterparty",
+            ledgerable_type="external_account",
             metadata={
                 "foo": "bar",
                 "key": "value",
@@ -326,7 +326,7 @@ class TestAsyncLedgerAccounts:
             external_id="external_id",
             ledger_account_category_ids=["182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"],
             ledgerable_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            ledgerable_type="counterparty",
+            ledgerable_type="external_account",
             metadata={
                 "foo": "bar",
                 "key": "value",
