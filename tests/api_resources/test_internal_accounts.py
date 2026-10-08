@@ -16,6 +16,8 @@ from modern_treasury.types import (
 from modern_treasury._utils import parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -242,16 +244,19 @@ class TestInternalAccounts:
 
     @parametrize
     def test_method_request_closure(self, client: ModernTreasury) -> None:
-        internal_account = client.internal_accounts.request_closure(
-            "id",
-        )
+        with pytest.warns(DeprecationWarning):
+            internal_account = client.internal_accounts.request_closure(
+                "id",
+            )
+
         assert_matches_type(InternalAccount, internal_account, path=["response"])
 
     @parametrize
     def test_raw_response_request_closure(self, client: ModernTreasury) -> None:
-        response = client.internal_accounts.with_raw_response.request_closure(
-            "id",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.internal_accounts.with_raw_response.request_closure(
+                "id",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -260,23 +265,25 @@ class TestInternalAccounts:
 
     @parametrize
     def test_streaming_response_request_closure(self, client: ModernTreasury) -> None:
-        with client.internal_accounts.with_streaming_response.request_closure(
-            "id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.internal_accounts.with_streaming_response.request_closure(
+                "id",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            internal_account = response.parse()
-            assert_matches_type(InternalAccount, internal_account, path=["response"])
+                internal_account = response.parse()
+                assert_matches_type(InternalAccount, internal_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_request_closure(self, client: ModernTreasury) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.internal_accounts.with_raw_response.request_closure(
-                "",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+                client.internal_accounts.with_raw_response.request_closure(
+                    "",
+                )
 
     @parametrize
     def test_method_update_account_capability(self, client: ModernTreasury) -> None:
@@ -557,16 +564,19 @@ class TestAsyncInternalAccounts:
 
     @parametrize
     async def test_method_request_closure(self, async_client: AsyncModernTreasury) -> None:
-        internal_account = await async_client.internal_accounts.request_closure(
-            "id",
-        )
+        with pytest.warns(DeprecationWarning):
+            internal_account = await async_client.internal_accounts.request_closure(
+                "id",
+            )
+
         assert_matches_type(InternalAccount, internal_account, path=["response"])
 
     @parametrize
     async def test_raw_response_request_closure(self, async_client: AsyncModernTreasury) -> None:
-        response = await async_client.internal_accounts.with_raw_response.request_closure(
-            "id",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.internal_accounts.with_raw_response.request_closure(
+                "id",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -575,23 +585,25 @@ class TestAsyncInternalAccounts:
 
     @parametrize
     async def test_streaming_response_request_closure(self, async_client: AsyncModernTreasury) -> None:
-        async with async_client.internal_accounts.with_streaming_response.request_closure(
-            "id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.internal_accounts.with_streaming_response.request_closure(
+                "id",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            internal_account = await response.parse()
-            assert_matches_type(InternalAccount, internal_account, path=["response"])
+                internal_account = await response.parse()
+                assert_matches_type(InternalAccount, internal_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_request_closure(self, async_client: AsyncModernTreasury) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.internal_accounts.with_raw_response.request_closure(
-                "",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+                await async_client.internal_accounts.with_raw_response.request_closure(
+                    "",
+                )
 
     @parametrize
     async def test_method_update_account_capability(self, async_client: AsyncModernTreasury) -> None:
