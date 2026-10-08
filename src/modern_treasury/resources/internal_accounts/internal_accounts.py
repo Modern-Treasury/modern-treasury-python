@@ -105,6 +105,7 @@ class InternalAccounts(SyncAPIResource):
             ]
         ]
         | Omit = omit,
+        title: Optional[str] | Omit = omit,
         vendor_attributes: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -155,6 +156,10 @@ class InternalAccounts(SyncAPIResource):
 
           requested_account_number_types: An array of account number types requested for provisioning.
 
+          title: The account title at the financial institution, used in place of the party name.
+              Only applicable to accounts created under supported connections. Please reach
+              out to your customer success manager to enable this capability for your program.
+
           vendor_attributes: A hash of vendor specific attributes that will be used when creating the account
               at the vendor specified by the given connection.
 
@@ -186,6 +191,7 @@ class InternalAccounts(SyncAPIResource):
                     "party_address": party_address,
                     "party_name": party_name,
                     "requested_account_number_types": requested_account_number_types,
+                    "title": title,
                     "vendor_attributes": vendor_attributes,
                 },
                 internal_account_create_params.InternalAccountCreateParams,
@@ -590,6 +596,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
             ]
         ]
         | Omit = omit,
+        title: Optional[str] | Omit = omit,
         vendor_attributes: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -640,6 +647,10 @@ class AsyncInternalAccounts(AsyncAPIResource):
 
           requested_account_number_types: An array of account number types requested for provisioning.
 
+          title: The account title at the financial institution, used in place of the party name.
+              Only applicable to accounts created under supported connections. Please reach
+              out to your customer success manager to enable this capability for your program.
+
           vendor_attributes: A hash of vendor specific attributes that will be used when creating the account
               at the vendor specified by the given connection.
 
@@ -671,6 +682,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                     "party_address": party_address,
                     "party_name": party_name,
                     "requested_account_number_types": requested_account_number_types,
+                    "title": title,
                     "vendor_attributes": vendor_attributes,
                 },
                 internal_account_create_params.InternalAccountCreateParams,
