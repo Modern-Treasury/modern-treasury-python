@@ -100,8 +100,9 @@ class InternalAccountCreateParams(TypedDict, total=False):
     title: Optional[str]
     """The account title at the financial institution, used in place of the party name.
 
-    Only applicable to accounts created under supported connections. Please reach
-    out to your customer success manager to enable this capability for your program.
+    Defaults to the party name if not set. Only applicable to accounts created under
+    supported connections. Please reach out to your customer success manager to
+    enable this capability for your program.
     """
 
     vendor_attributes: Dict[str, str]
