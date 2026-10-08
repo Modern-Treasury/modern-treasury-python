@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Dict, List, Iterable, Optional
 from typing_extensions import Literal
 
@@ -422,6 +423,7 @@ class InternalAccounts(SyncAPIResource):
             model=InternalAccount,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def request_closure(
         self,
         id: str,
@@ -434,8 +436,10 @@ class InternalAccounts(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> InternalAccount:
-        """
-        request closure of internal account
+        """This endpoint has been deprecated.
+
+        Request closure with PATCH
+        /api/internal_accounts/{id} and status: "pending_closure".
 
         Args:
           extra_headers: Send extra headers
@@ -904,6 +908,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
             model=InternalAccount,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def request_closure(
         self,
         id: str,
@@ -916,8 +921,10 @@ class AsyncInternalAccounts(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
     ) -> InternalAccount:
-        """
-        request closure of internal account
+        """This endpoint has been deprecated.
+
+        Request closure with PATCH
+        /api/internal_accounts/{id} and status: "pending_closure".
 
         Args:
           extra_headers: Send extra headers
@@ -1018,8 +1025,10 @@ class InternalAccountsWithRawResponse:
         self.list = _legacy_response.to_raw_response_wrapper(
             internal_accounts.list,
         )
-        self.request_closure = _legacy_response.to_raw_response_wrapper(
-            internal_accounts.request_closure,
+        self.request_closure = (  # pyright: ignore[reportDeprecated]
+            _legacy_response.to_raw_response_wrapper(
+                internal_accounts.request_closure,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.update_account_capability = _legacy_response.to_raw_response_wrapper(
             internal_accounts.update_account_capability,
@@ -1046,8 +1055,10 @@ class AsyncInternalAccountsWithRawResponse:
         self.list = _legacy_response.async_to_raw_response_wrapper(
             internal_accounts.list,
         )
-        self.request_closure = _legacy_response.async_to_raw_response_wrapper(
-            internal_accounts.request_closure,
+        self.request_closure = (  # pyright: ignore[reportDeprecated]
+            _legacy_response.async_to_raw_response_wrapper(
+                internal_accounts.request_closure,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.update_account_capability = _legacy_response.async_to_raw_response_wrapper(
             internal_accounts.update_account_capability,
@@ -1074,8 +1085,10 @@ class InternalAccountsWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             internal_accounts.list,
         )
-        self.request_closure = to_streamed_response_wrapper(
-            internal_accounts.request_closure,
+        self.request_closure = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                internal_accounts.request_closure,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.update_account_capability = to_streamed_response_wrapper(
             internal_accounts.update_account_capability,
@@ -1102,8 +1115,10 @@ class AsyncInternalAccountsWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             internal_accounts.list,
         )
-        self.request_closure = async_to_streamed_response_wrapper(
-            internal_accounts.request_closure,
+        self.request_closure = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                internal_accounts.request_closure,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.update_account_capability = async_to_streamed_response_wrapper(
             internal_accounts.update_account_capability,
