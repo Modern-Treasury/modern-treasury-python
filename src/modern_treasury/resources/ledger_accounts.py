@@ -60,8 +60,7 @@ class LedgerAccounts(SyncAPIResource):
         external_id: Optional[str] | Omit = omit,
         ledger_account_category_ids: SequenceNotStr[str] | Omit = omit,
         ledgerable_id: str | Omit = omit,
-        ledgerable_type: Literal["counterparty", "external_account", "internal_account", "virtual_account"]
-        | Omit = omit,
+        ledgerable_type: Literal["external_account", "internal_account", "virtual_account"] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -426,8 +425,7 @@ class AsyncLedgerAccounts(AsyncAPIResource):
         external_id: Optional[str] | Omit = omit,
         ledger_account_category_ids: SequenceNotStr[str] | Omit = omit,
         ledgerable_id: str | Omit = omit,
-        ledgerable_type: Literal["counterparty", "external_account", "internal_account", "virtual_account"]
-        | Omit = omit,
+        ledgerable_type: Literal["external_account", "internal_account", "virtual_account"] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
