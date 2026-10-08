@@ -68,6 +68,7 @@ class TestInternalAccounts:
             },
             party_name="party_name",
             requested_account_number_types=["arbitrum_address"],
+            title="title",
             vendor_attributes={
                 "foo": "bar",
                 "key": "value",
@@ -388,6 +389,7 @@ class TestAsyncInternalAccounts:
             },
             party_name="party_name",
             requested_account_number_types=["arbitrum_address"],
+            title="title",
             vendor_attributes={
                 "foo": "bar",
                 "key": "value",
