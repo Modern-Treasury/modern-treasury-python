@@ -43,7 +43,7 @@ class LedgerAccountCreateRequest(BaseModel):
     populated here, otherwise null.
     """
 
-    ledgerable_type: Optional[Literal["counterparty", "external_account", "internal_account", "virtual_account"]] = None
+    ledgerable_type: Optional[Literal["external_account", "internal_account", "virtual_account"]] = None
     """
     If the ledger account links to another object in Modern Treasury, the type will
     be populated here, otherwise null. The value is one of internal_account or
