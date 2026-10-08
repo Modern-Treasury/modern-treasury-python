@@ -148,6 +148,7 @@ class Transaction(BaseModel):
             "jpmc",
             "modern_treasury",
             "mx",
+            "one_money",
             "paxos",
             "paypal",
             "pnc",
