@@ -203,10 +203,11 @@ class InternalAccount(BaseModel):
     status: Optional[Literal["active", "closed", "pending_activation", "pending_closure", "suspended"]] = None
     """The internal account status."""
 
-    title: Optional[str] = None
-    """The account title at the financial institution, used in place of the party name.
+    title: str
+    """The account title at the financial institution.
 
-    Only applicable to accounts created under supported connections.
+    Defaults to the party name unless a custom title was set on creation. Custom
+    titles are only applicable to accounts created under supported connections.
     """
 
     updated_at: datetime
