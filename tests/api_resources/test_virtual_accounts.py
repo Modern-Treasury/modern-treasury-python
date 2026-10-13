@@ -63,6 +63,14 @@ class TestVirtualAccounts:
             },
             ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
+            party_address={
+                "country": "country",
+                "line1": "line1",
+                "line2": "line2",
+                "locality": "locality",
+                "postal_code": "postal_code",
+                "region": "region",
+            },
             routing_details=[
                 {
                     "routing_number": "routing_number",
@@ -153,6 +161,14 @@ class TestVirtualAccounts:
             ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
             name="name",
+            party_address={
+                "country": "country",
+                "line1": "line1",
+                "line2": "line2",
+                "locality": "locality",
+                "postal_code": "postal_code",
+                "region": "region",
+            },
         )
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 
@@ -311,6 +327,14 @@ class TestAsyncVirtualAccounts:
             },
             ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
+            party_address={
+                "country": "country",
+                "line1": "line1",
+                "line2": "line2",
+                "locality": "locality",
+                "postal_code": "postal_code",
+                "region": "region",
+            },
             routing_details=[
                 {
                     "routing_number": "routing_number",
@@ -401,6 +425,14 @@ class TestAsyncVirtualAccounts:
             ledger_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
             name="name",
+            party_address={
+                "country": "country",
+                "line1": "line1",
+                "line2": "line2",
+                "locality": "locality",
+                "postal_code": "postal_code",
+                "region": "region",
+            },
         )
         assert_matches_type(VirtualAccount, virtual_account, path=["response"])
 

@@ -6,6 +6,7 @@ from datetime import datetime
 from .._models import BaseModel
 from .account_detail import AccountDetail
 from .routing_detail import RoutingDetail
+from .shared.address import Address
 
 __all__ = ["VirtualAccount"]
 
@@ -68,6 +69,9 @@ class VirtualAccount(BaseModel):
     """The name of the virtual account."""
 
     object: str
+
+    party_address: Optional[Address] = None
+    """The address of the owner of the virtual account, or null."""
 
     routing_details: List[RoutingDetail]
     """An array of routing detail objects.
