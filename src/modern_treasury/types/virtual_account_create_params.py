@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Dict, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from .shared_params.address_request import AddressRequest
 from .shared_params.ledger_account_create_request import LedgerAccountCreateRequest
 
 __all__ = ["VirtualAccountCreateParams", "AccountDetails", "AccountDetail", "RoutingDetails", "RoutingDetail"]
@@ -57,6 +58,12 @@ class VirtualAccountCreateParams(TypedDict, total=False):
     """Additional data represented as key-value pairs.
 
     Both the key and value must be strings.
+    """
+
+    party_address: AddressRequest
+    """The address of the owner of the virtual account.
+
+    When absent, the internal account's party address is used.
     """
 
     routing_details: Iterable[RoutingDetail]
