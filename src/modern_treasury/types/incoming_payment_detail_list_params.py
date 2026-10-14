@@ -39,7 +39,7 @@ class IncomingPaymentDetailListParams(TypedDict, total=False):
 
     per_page: int
 
-    status: Literal["completed", "pending", "returned"]
+    status: Literal["completed", "failed", "pending", "returned"]
     """The current status of the incoming payment order.
 
     One of `pending`, `completed`, or `returned`.

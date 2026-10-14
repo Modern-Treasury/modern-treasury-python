@@ -36,6 +36,9 @@ class IncomingPaymentDetail(BaseModel):
     direction: TransactionDirection
     """One of `credit` or `debit`."""
 
+    failure_reason: Optional[str] = None
+    """The reason the incoming payment detail failed, or `null`."""
+
     internal_account_id: str
     """The ID of the Internal Account for the incoming payment detail.
 
@@ -122,10 +125,10 @@ class IncomingPaymentDetail(BaseModel):
     reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"]
     """One of `unreconciled`, `tentatively_reconciled` or `reconciled`."""
 
-    status: Literal["completed", "pending", "returned"]
+    status: Literal["completed", "failed", "pending", "returned"]
     """The current status of the incoming payment order.
 
-    One of `pending`, `completed`, or `returned`.
+    One of `pending`, `completed`, `returned`, or `failed`.
     """
 
     subtype: Optional[str] = None
