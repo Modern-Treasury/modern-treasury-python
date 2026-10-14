@@ -137,7 +137,7 @@ class IncomingPaymentDetails(SyncAPIResource):
         direction: TransactionDirection | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         per_page: int | Omit = omit,
-        status: Literal["completed", "pending", "returned"] | Omit = omit,
+        status: Literal["completed", "failed", "pending", "returned"] | Omit = omit,
         subtype: str | Omit = omit,
         type: Literal[
             "ach",
@@ -437,7 +437,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         direction: TransactionDirection | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         per_page: int | Omit = omit,
-        status: Literal["completed", "pending", "returned"] | Omit = omit,
+        status: Literal["completed", "failed", "pending", "returned"] | Omit = omit,
         subtype: str | Omit = omit,
         type: Literal[
             "ach",
