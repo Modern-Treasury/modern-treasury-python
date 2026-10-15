@@ -137,7 +137,7 @@ class IncomingPaymentDetails(SyncAPIResource):
         direction: TransactionDirection | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         per_page: int | Omit = omit,
-        status: Literal["completed", "failed", "pending", "returned"] | Omit = omit,
+        status: Literal["completed", "failed", "held", "pending", "returned"] | Omit = omit,
         subtype: str | Omit = omit,
         type: Literal[
             "ach",
@@ -180,7 +180,7 @@ class IncomingPaymentDetails(SyncAPIResource):
               parameters.
 
           status: The current status of the incoming payment order. One of `pending`, `completed`,
-              or `returned`.
+              `returned`, `failed`, or `held`.
 
           subtype: An additional layer of classification for the type of incoming payment detail.
               For example, a `type` of `stablecoin` may have a `subtype` of `ethereum` or
@@ -437,7 +437,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         direction: TransactionDirection | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         per_page: int | Omit = omit,
-        status: Literal["completed", "failed", "pending", "returned"] | Omit = omit,
+        status: Literal["completed", "failed", "held", "pending", "returned"] | Omit = omit,
         subtype: str | Omit = omit,
         type: Literal[
             "ach",
@@ -480,7 +480,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
               parameters.
 
           status: The current status of the incoming payment order. One of `pending`, `completed`,
-              or `returned`.
+              `returned`, `failed`, or `held`.
 
           subtype: An additional layer of classification for the type of incoming payment detail.
               For example, a `type` of `stablecoin` may have a `subtype` of `ethereum` or
