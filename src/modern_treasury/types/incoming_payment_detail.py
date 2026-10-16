@@ -125,10 +125,10 @@ class IncomingPaymentDetail(BaseModel):
     reconciliation_status: Literal["unreconciled", "tentatively_reconciled", "reconciled"]
     """One of `unreconciled`, `tentatively_reconciled` or `reconciled`."""
 
-    status: Literal["completed", "failed", "pending", "returned"]
+    status: Literal["completed", "failed", "held", "pending", "returned"]
     """The current status of the incoming payment order.
 
-    One of `pending`, `completed`, `returned`, or `failed`.
+    One of `pending`, `completed`, `returned`, `failed`, or `held`.
     """
 
     subtype: Optional[str] = None
