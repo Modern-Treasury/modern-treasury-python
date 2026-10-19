@@ -38,7 +38,7 @@ class TestExternalAccounts:
                     "account_number_type": "arbitrum_address",
                 }
             ],
-            account_type="base_wallet",
+            account_type="cash",
             contact_details=[
                 {
                     "contact_identifier": "contact_identifier",
@@ -164,7 +164,7 @@ class TestExternalAccounts:
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         external_account = client.external_accounts.update(
             id="id",
-            account_type="base_wallet",
+            account_type="cash",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
             name="name",
@@ -414,7 +414,7 @@ class TestAsyncExternalAccounts:
                     "account_number_type": "arbitrum_address",
                 }
             ],
-            account_type="base_wallet",
+            account_type="cash",
             contact_details=[
                 {
                     "contact_identifier": "contact_identifier",
@@ -540,7 +540,7 @@ class TestAsyncExternalAccounts:
     async def test_method_update_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         external_account = await async_client.external_accounts.update(
             id="id",
-            account_type="base_wallet",
+            account_type="cash",
             counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             metadata={"foo": "string"},
             name="name",
