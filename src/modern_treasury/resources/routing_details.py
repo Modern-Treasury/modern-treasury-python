@@ -68,6 +68,7 @@ class RoutingDetails(SyncAPIResource):
             "se_bankgiro_clearing_code",
             "sg_interbank_clearing_code",
             "swift",
+            "vasp",
             "za_national_clearing_code",
         ],
         payment_type: Optional[
@@ -351,6 +352,7 @@ class AsyncRoutingDetails(AsyncAPIResource):
             "se_bankgiro_clearing_code",
             "sg_interbank_clearing_code",
             "swift",
+            "vasp",
             "za_national_clearing_code",
         ],
         payment_type: Optional[
