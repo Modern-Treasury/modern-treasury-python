@@ -42,7 +42,7 @@ class TestCounterparties:
                             "account_number_type": "arbitrum_address",
                         }
                     ],
-                    "account_type": "base_wallet",
+                    "account_type": "cash",
                     "contact_details": [
                         {
                             "contact_identifier": "contact_identifier",
@@ -686,7 +686,7 @@ class TestAsyncCounterparties:
                             "account_number_type": "arbitrum_address",
                         }
                     ],
-                    "account_type": "base_wallet",
+                    "account_type": "cash",
                     "contact_details": [
                         {
                             "contact_identifier": "contact_identifier",
