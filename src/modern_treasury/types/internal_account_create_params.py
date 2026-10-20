@@ -25,21 +25,7 @@ class InternalAccountCreateParams(TypedDict, total=False):
     internal account and any relevant information for them.
     """
 
-    account_type: Literal[
-        "base_wallet",
-        "cash",
-        "checking",
-        "crypto_wallet",
-        "ethereum_wallet",
-        "general_ledger",
-        "loan",
-        "non_resident",
-        "other",
-        "overdraft",
-        "polygon_wallet",
-        "savings",
-        "solana_wallet",
-    ]
+    account_type: Literal["cash", "checking", "general_ledger", "loan", "non_resident", "other", "overdraft", "savings"]
     """
     The account type, used to provision the appropriate account at the financial
     institution.

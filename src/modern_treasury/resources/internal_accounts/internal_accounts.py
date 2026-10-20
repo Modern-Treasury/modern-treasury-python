@@ -70,19 +70,7 @@ class InternalAccounts(SyncAPIResource):
         name: str,
         account_capabilities: Iterable[internal_account_create_params.AccountCapability] | Omit = omit,
         account_type: Literal[
-            "base_wallet",
-            "cash",
-            "checking",
-            "crypto_wallet",
-            "ethereum_wallet",
-            "general_ledger",
-            "loan",
-            "non_resident",
-            "other",
-            "overdraft",
-            "polygon_wallet",
-            "savings",
-            "solana_wallet",
+            "cash", "checking", "general_ledger", "loan", "non_resident", "other", "overdraft", "savings"
         ]
         | Omit = omit,
         connection_id: str | Omit = omit,
@@ -562,19 +550,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         name: str,
         account_capabilities: Iterable[internal_account_create_params.AccountCapability] | Omit = omit,
         account_type: Literal[
-            "base_wallet",
-            "cash",
-            "checking",
-            "crypto_wallet",
-            "ethereum_wallet",
-            "general_ledger",
-            "loan",
-            "non_resident",
-            "other",
-            "overdraft",
-            "polygon_wallet",
-            "savings",
-            "solana_wallet",
+            "cash", "checking", "general_ledger", "loan", "non_resident", "other", "overdraft", "savings"
         ]
         | Omit = omit,
         connection_id: str | Omit = omit,

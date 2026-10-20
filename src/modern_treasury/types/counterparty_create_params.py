@@ -146,6 +146,7 @@ class AccountRoutingDetail(TypedDict, total=False):
             "se_bankgiro_clearing_code",
             "sg_interbank_clearing_code",
             "swift",
+            "vasp",
             "za_national_clearing_code",
         ]
     ]
