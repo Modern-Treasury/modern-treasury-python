@@ -136,7 +136,7 @@ class TestPaymentOrders:
                         "account_number_type": "arbitrum_address",
                     }
                 ],
-                "account_type": "base_wallet",
+                "account_type": "cash",
                 "contact_details": [
                     {
                         "contact_identifier": "contact_identifier",
@@ -349,7 +349,7 @@ class TestPaymentOrders:
                         "account_number_type": "arbitrum_address",
                     }
                 ],
-                "account_type": "base_wallet",
+                "account_type": "cash",
                 "contact_details": [
                     {
                         "contact_identifier": "contact_identifier",
@@ -599,7 +599,7 @@ class TestPaymentOrders:
                         "account_number_type": "arbitrum_address",
                     }
                 ],
-                "account_type": "base_wallet",
+                "account_type": "cash",
                 "contact_details": [
                     {
                         "contact_identifier": "contact_identifier",
@@ -824,7 +824,7 @@ class TestAsyncPaymentOrders:
                         "account_number_type": "arbitrum_address",
                     }
                 ],
-                "account_type": "base_wallet",
+                "account_type": "cash",
                 "contact_details": [
                     {
                         "contact_identifier": "contact_identifier",
@@ -1037,7 +1037,7 @@ class TestAsyncPaymentOrders:
                         "account_number_type": "arbitrum_address",
                     }
                 ],
-                "account_type": "base_wallet",
+                "account_type": "cash",
                 "contact_details": [
                     {
                         "contact_identifier": "contact_identifier",
@@ -1287,7 +1287,7 @@ class TestAsyncPaymentOrders:
                         "account_number_type": "arbitrum_address",
                     }
                 ],
-                "account_type": "base_wallet",
+                "account_type": "cash",
                 "contact_details": [
                     {
                         "contact_identifier": "contact_identifier",
