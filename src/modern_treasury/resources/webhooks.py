@@ -19,7 +19,7 @@ __all__ = ["Webhooks", "AsyncWebhooks"]
 class Webhooks(SyncAPIResource):
     def get_signature(
         self,
-        payload: str,
+        payload: str | bytes,
         *,
         key: str | None = None,
     ) -> str:
@@ -47,14 +47,14 @@ class Webhooks(SyncAPIResource):
 
         mac = hmac.new(
             key.encode("utf-8"),
-            msg=payload.encode("utf-8"),
+            msg=payload.encode("utf-8") if isinstance(payload, str) else payload,
             digestmod=sha256,
         )
         return mac.hexdigest()
 
     def validate_signature(
         self,
-        payload: str,
+        payload: str | bytes,
         headers: HeadersLike,
         *,
         key: str | None = None,
@@ -69,7 +69,7 @@ class Webhooks(SyncAPIResource):
 class AsyncWebhooks(AsyncAPIResource):
     def get_signature(
         self,
-        payload: str,
+        payload: str | bytes,
         *,
         key: str | None = None,
     ) -> str:
@@ -97,14 +97,14 @@ class AsyncWebhooks(AsyncAPIResource):
 
         mac = hmac.new(
             key.encode("utf-8"),
-            msg=payload.encode("utf-8"),
+            msg=payload.encode("utf-8") if isinstance(payload, str) else payload,
             digestmod=sha256,
         )
         return mac.hexdigest()
 
     def validate_signature(
         self,
-        payload: str,
+        payload: str | bytes,
         headers: HeadersLike,
         *,
         key: str | None = None,
