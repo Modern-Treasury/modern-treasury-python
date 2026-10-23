@@ -71,6 +71,12 @@ class InternalAccountCreateParams(TypedDict, total=False):
     party_name: Optional[str]
     """The legal name of the entity which owns the account."""
 
+    party_type: Optional[Literal["individual", "business"]]
+    """Either individual or business.
+
+    Inherits from associated LegalEntity legal_entity_type, if one exists.
+    """
+
     requested_account_number_types: List[
         Literal[
             "arbitrum_address",
