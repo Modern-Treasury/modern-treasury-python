@@ -43,6 +43,12 @@ class InternalAccountUpdateParams(TypedDict, total=False):
     address is accurate.
     """
 
+    party_type: Optional[Literal["individual", "business"]]
+    """Either individual or business.
+
+    Inherits from associated LegalEntity legal_entity_type, if one exists.
+    """
+
     status: Literal["pending_closure"]
     """Requests closure of the internal account.
 
