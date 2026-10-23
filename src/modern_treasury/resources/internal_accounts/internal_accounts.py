@@ -82,6 +82,7 @@ class InternalAccounts(SyncAPIResource):
         parent_account_id: str | Omit = omit,
         party_address: internal_account_create_params.PartyAddress | Omit = omit,
         party_name: Optional[str] | Omit = omit,
+        party_type: Optional[Literal["individual", "business"]] | Omit = omit,
         requested_account_number_types: List[
             Literal[
                 "arbitrum_address",
@@ -142,6 +143,9 @@ class InternalAccounts(SyncAPIResource):
 
           party_name: The legal name of the entity which owns the account.
 
+          party_type: Either individual or business. Inherits from associated LegalEntity
+              legal_entity_type, if one exists.
+
           requested_account_number_types: An array of account number types requested for provisioning.
 
           title: The account title at the financial institution, used in place of the party name.
@@ -179,6 +183,7 @@ class InternalAccounts(SyncAPIResource):
                     "parent_account_id": parent_account_id,
                     "party_address": party_address,
                     "party_name": party_name,
+                    "party_type": party_type,
                     "requested_account_number_types": requested_account_number_types,
                     "title": title,
                     "vendor_attributes": vendor_attributes,
@@ -240,6 +245,7 @@ class InternalAccounts(SyncAPIResource):
         name: str | Omit = omit,
         parent_account_id: str | Omit = omit,
         party_address: AddressRequest | Omit = omit,
+        party_type: Optional[Literal["individual", "business"]] | Omit = omit,
         status: Literal["pending_closure"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -273,6 +279,9 @@ class InternalAccounts(SyncAPIResource):
               the account's bank; you are responsible for verifying that the address is
               accurate.
 
+          party_type: Either individual or business. Inherits from associated LegalEntity
+              legal_entity_type, if one exists.
+
           status: Requests closure of the internal account. The resulting status may be `closed`
               for vendors that close synchronously.
 
@@ -300,6 +309,7 @@ class InternalAccounts(SyncAPIResource):
                     "name": name,
                     "parent_account_id": parent_account_id,
                     "party_address": party_address,
+                    "party_type": party_type,
                     "status": status,
                 },
                 internal_account_update_params.InternalAccountUpdateParams,
@@ -562,6 +572,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         parent_account_id: str | Omit = omit,
         party_address: internal_account_create_params.PartyAddress | Omit = omit,
         party_name: Optional[str] | Omit = omit,
+        party_type: Optional[Literal["individual", "business"]] | Omit = omit,
         requested_account_number_types: List[
             Literal[
                 "arbitrum_address",
@@ -622,6 +633,9 @@ class AsyncInternalAccounts(AsyncAPIResource):
 
           party_name: The legal name of the entity which owns the account.
 
+          party_type: Either individual or business. Inherits from associated LegalEntity
+              legal_entity_type, if one exists.
+
           requested_account_number_types: An array of account number types requested for provisioning.
 
           title: The account title at the financial institution, used in place of the party name.
@@ -659,6 +673,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                     "parent_account_id": parent_account_id,
                     "party_address": party_address,
                     "party_name": party_name,
+                    "party_type": party_type,
                     "requested_account_number_types": requested_account_number_types,
                     "title": title,
                     "vendor_attributes": vendor_attributes,
@@ -720,6 +735,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         name: str | Omit = omit,
         parent_account_id: str | Omit = omit,
         party_address: AddressRequest | Omit = omit,
+        party_type: Optional[Literal["individual", "business"]] | Omit = omit,
         status: Literal["pending_closure"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -753,6 +769,9 @@ class AsyncInternalAccounts(AsyncAPIResource):
               the account's bank; you are responsible for verifying that the address is
               accurate.
 
+          party_type: Either individual or business. Inherits from associated LegalEntity
+              legal_entity_type, if one exists.
+
           status: Requests closure of the internal account. The resulting status may be `closed`
               for vendors that close synchronously.
 
@@ -780,6 +799,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                     "name": name,
                     "parent_account_id": parent_account_id,
                     "party_address": party_address,
+                    "party_type": party_type,
                     "status": status,
                 },
                 internal_account_update_params.InternalAccountUpdateParams,

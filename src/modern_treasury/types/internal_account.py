@@ -181,7 +181,10 @@ class InternalAccount(BaseModel):
     """The legal name of the entity which owns the account."""
 
     party_type: Optional[Literal["business", "individual"]] = None
-    """Either individual or business."""
+    """Either individual or business.
+
+    Inherits from associated LegalEntity legal_entity_type, if one exists.
+    """
 
     routing_details: List[RoutingDetail]
     """An array of routing detail objects."""

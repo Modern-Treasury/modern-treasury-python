@@ -67,6 +67,7 @@ class TestInternalAccounts:
                 "line2": "line2",
             },
             party_name="party_name",
+            party_type="individual",
             requested_account_number_types=["arbitrum_address"],
             title="title",
             vendor_attributes={
@@ -167,6 +168,7 @@ class TestInternalAccounts:
                 "postal_code": "postal_code",
                 "region": "region",
             },
+            party_type="individual",
             status="pending_closure",
         )
         assert_matches_type(InternalAccount, internal_account, path=["response"])
@@ -388,6 +390,7 @@ class TestAsyncInternalAccounts:
                 "line2": "line2",
             },
             party_name="party_name",
+            party_type="individual",
             requested_account_number_types=["arbitrum_address"],
             title="title",
             vendor_attributes={
@@ -488,6 +491,7 @@ class TestAsyncInternalAccounts:
                 "postal_code": "postal_code",
                 "region": "region",
             },
+            party_type="individual",
             status="pending_closure",
         )
         assert_matches_type(InternalAccount, internal_account, path=["response"])
