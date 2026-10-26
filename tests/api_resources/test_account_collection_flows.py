@@ -14,6 +14,8 @@ from modern_treasury.types import (
 )
 from modern_treasury.pagination import SyncPage, AsyncPage
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -22,27 +24,32 @@ class TestAccountCollectionFlows:
 
     @parametrize
     def test_method_create(self, client: ModernTreasury) -> None:
-        account_collection_flow = client.account_collection_flows.create(
-            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            payment_types=["string"],
-        )
+        with pytest.warns(DeprecationWarning):
+            account_collection_flow = client.account_collection_flows.create(
+                counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                payment_types=["string"],
+            )
+
         assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
-        account_collection_flow = client.account_collection_flows.create(
-            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            payment_types=["string"],
-            receiving_countries=["USA"],
-        )
+        with pytest.warns(DeprecationWarning):
+            account_collection_flow = client.account_collection_flows.create(
+                counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                payment_types=["string"],
+                receiving_countries=["USA"],
+            )
+
         assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: ModernTreasury) -> None:
-        response = client.account_collection_flows.with_raw_response.create(
-            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            payment_types=["string"],
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.account_collection_flows.with_raw_response.create(
+                counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                payment_types=["string"],
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -51,15 +58,16 @@ class TestAccountCollectionFlows:
 
     @parametrize
     def test_streaming_response_create(self, client: ModernTreasury) -> None:
-        with client.account_collection_flows.with_streaming_response.create(
-            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            payment_types=["string"],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.account_collection_flows.with_streaming_response.create(
+                counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                payment_types=["string"],
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            account_collection_flow = response.parse()
-            assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
+                account_collection_flow = response.parse()
+                assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -188,27 +196,32 @@ class TestAsyncAccountCollectionFlows:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncModernTreasury) -> None:
-        account_collection_flow = await async_client.account_collection_flows.create(
-            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            payment_types=["string"],
-        )
+        with pytest.warns(DeprecationWarning):
+            account_collection_flow = await async_client.account_collection_flows.create(
+                counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                payment_types=["string"],
+            )
+
         assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
-        account_collection_flow = await async_client.account_collection_flows.create(
-            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            payment_types=["string"],
-            receiving_countries=["USA"],
-        )
+        with pytest.warns(DeprecationWarning):
+            account_collection_flow = await async_client.account_collection_flows.create(
+                counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                payment_types=["string"],
+                receiving_countries=["USA"],
+            )
+
         assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncModernTreasury) -> None:
-        response = await async_client.account_collection_flows.with_raw_response.create(
-            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            payment_types=["string"],
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.account_collection_flows.with_raw_response.create(
+                counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                payment_types=["string"],
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -217,15 +230,16 @@ class TestAsyncAccountCollectionFlows:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncModernTreasury) -> None:
-        async with async_client.account_collection_flows.with_streaming_response.create(
-            counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            payment_types=["string"],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.account_collection_flows.with_streaming_response.create(
+                counterparty_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                payment_types=["string"],
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            account_collection_flow = await response.parse()
-            assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
+                account_collection_flow = await response.parse()
+                assert_matches_type(AccountCollectionFlow, account_collection_flow, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
