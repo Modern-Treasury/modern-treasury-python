@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Union, Optional
 from datetime import date
 from typing_extensions import Literal
@@ -42,6 +43,7 @@ class PaymentFlows(SyncAPIResource):
         """
         return PaymentFlowsWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         *,
@@ -269,6 +271,7 @@ class AsyncPaymentFlows(AsyncAPIResource):
         """
         return AsyncPaymentFlowsWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         *,
@@ -480,8 +483,10 @@ class PaymentFlowsWithRawResponse:
     def __init__(self, payment_flows: PaymentFlows) -> None:
         self._payment_flows = payment_flows
 
-        self.create = _legacy_response.to_raw_response_wrapper(
-            payment_flows.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            _legacy_response.to_raw_response_wrapper(
+                payment_flows.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve = _legacy_response.to_raw_response_wrapper(
             payment_flows.retrieve,
@@ -498,8 +503,10 @@ class AsyncPaymentFlowsWithRawResponse:
     def __init__(self, payment_flows: AsyncPaymentFlows) -> None:
         self._payment_flows = payment_flows
 
-        self.create = _legacy_response.async_to_raw_response_wrapper(
-            payment_flows.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            _legacy_response.async_to_raw_response_wrapper(
+                payment_flows.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             payment_flows.retrieve,
@@ -516,8 +523,10 @@ class PaymentFlowsWithStreamingResponse:
     def __init__(self, payment_flows: PaymentFlows) -> None:
         self._payment_flows = payment_flows
 
-        self.create = to_streamed_response_wrapper(
-            payment_flows.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                payment_flows.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve = to_streamed_response_wrapper(
             payment_flows.retrieve,
@@ -534,8 +543,10 @@ class AsyncPaymentFlowsWithStreamingResponse:
     def __init__(self, payment_flows: AsyncPaymentFlows) -> None:
         self._payment_flows = payment_flows
 
-        self.create = async_to_streamed_response_wrapper(
-            payment_flows.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                payment_flows.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve = async_to_streamed_response_wrapper(
             payment_flows.retrieve,
