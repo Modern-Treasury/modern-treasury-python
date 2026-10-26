@@ -31,8 +31,12 @@ class Balance(BaseModel):
     balance_type: Literal[
         "closing_available",
         "closing_ledger",
+        "closing_pending_inflows",
+        "closing_pending_outflows",
         "current_available",
         "current_ledger",
+        "current_pending_inflows",
+        "current_pending_outflows",
         "opening_available",
         "opening_available_next_business_day",
         "opening_ledger",
@@ -43,7 +47,9 @@ class Balance(BaseModel):
 
     One of `opening_ledger`, `closing_ledger`, `current_ledger`,
     `opening_available`, `opening_available_next_business_day`, `closing_available`,
-    `current_available`, 'previously_closed_book', or `other`.
+    `closing_pending_inflows`, `closing_pending_outflows`, `current_available`,
+    'previously_closed_book', `current_pending_inflows`, `current_pending_outflows`,
+    or `other`.
     """
 
     created_at: datetime
