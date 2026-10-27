@@ -32,9 +32,10 @@ from .balance_reports import (
 )
 from ...types.shared.currency import Currency
 from ...types.internal_account import InternalAccount
+from ...types.account_capability import AccountCapability
+from ...types.account_capability_param import AccountCapabilityParam
 from ...types.shared.transaction_direction import TransactionDirection
 from ...types.shared_params.address_request import AddressRequest
-from ...types.internal_account_update_account_capability_response import InternalAccountUpdateAccountCapabilityResponse
 
 __all__ = ["InternalAccounts", "AsyncInternalAccounts"]
 
@@ -68,7 +69,7 @@ class InternalAccounts(SyncAPIResource):
         *,
         currency: Literal["USD", "CAD", "USDC", "USDT", "PYUSD", "USDG"],
         name: str,
-        account_capabilities: Iterable[internal_account_create_params.AccountCapability] | Omit = omit,
+        account_capabilities: Iterable[AccountCapabilityParam] | Omit = omit,
         account_type: Literal[
             "cash", "checking", "general_ledger", "loan", "non_resident", "other", "overdraft", "savings"
         ]
@@ -491,7 +492,7 @@ class InternalAccounts(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> InternalAccountUpdateAccountCapabilityResponse:
+    ) -> AccountCapability:
         """
         update account_capability
 
@@ -532,7 +533,7 @@ class InternalAccounts(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=InternalAccountUpdateAccountCapabilityResponse,
+            cast_to=AccountCapability,
         )
 
 
@@ -565,7 +566,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         *,
         currency: Literal["USD", "CAD", "USDC", "USDT", "PYUSD", "USDG"],
         name: str,
-        account_capabilities: Iterable[internal_account_create_params.AccountCapability] | Omit = omit,
+        account_capabilities: Iterable[AccountCapabilityParam] | Omit = omit,
         account_type: Literal[
             "cash", "checking", "general_ledger", "loan", "non_resident", "other", "overdraft", "savings"
         ]
@@ -988,7 +989,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> InternalAccountUpdateAccountCapabilityResponse:
+    ) -> AccountCapability:
         """
         update account_capability
 
@@ -1029,7 +1030,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=InternalAccountUpdateAccountCapabilityResponse,
+            cast_to=AccountCapability,
         )
 
 
