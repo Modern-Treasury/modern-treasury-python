@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import List, Optional
 from typing_extensions import Literal
 
@@ -45,6 +46,7 @@ class AccountCollectionFlows(SyncAPIResource):
         """
         return AccountCollectionFlowsWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         *,
@@ -270,6 +272,7 @@ class AsyncAccountCollectionFlows(AsyncAPIResource):
         """
         return AsyncAccountCollectionFlowsWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         *,
@@ -479,8 +482,10 @@ class AccountCollectionFlowsWithRawResponse:
     def __init__(self, account_collection_flows: AccountCollectionFlows) -> None:
         self._account_collection_flows = account_collection_flows
 
-        self.create = _legacy_response.to_raw_response_wrapper(
-            account_collection_flows.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            _legacy_response.to_raw_response_wrapper(
+                account_collection_flows.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve = _legacy_response.to_raw_response_wrapper(
             account_collection_flows.retrieve,
@@ -497,8 +502,10 @@ class AsyncAccountCollectionFlowsWithRawResponse:
     def __init__(self, account_collection_flows: AsyncAccountCollectionFlows) -> None:
         self._account_collection_flows = account_collection_flows
 
-        self.create = _legacy_response.async_to_raw_response_wrapper(
-            account_collection_flows.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            _legacy_response.async_to_raw_response_wrapper(
+                account_collection_flows.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve = _legacy_response.async_to_raw_response_wrapper(
             account_collection_flows.retrieve,
@@ -515,8 +522,10 @@ class AccountCollectionFlowsWithStreamingResponse:
     def __init__(self, account_collection_flows: AccountCollectionFlows) -> None:
         self._account_collection_flows = account_collection_flows
 
-        self.create = to_streamed_response_wrapper(
-            account_collection_flows.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                account_collection_flows.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve = to_streamed_response_wrapper(
             account_collection_flows.retrieve,
@@ -533,8 +542,10 @@ class AsyncAccountCollectionFlowsWithStreamingResponse:
     def __init__(self, account_collection_flows: AsyncAccountCollectionFlows) -> None:
         self._account_collection_flows = account_collection_flows
 
-        self.create = async_to_streamed_response_wrapper(
-            account_collection_flows.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                account_collection_flows.create,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.retrieve = async_to_streamed_response_wrapper(
             account_collection_flows.retrieve,
