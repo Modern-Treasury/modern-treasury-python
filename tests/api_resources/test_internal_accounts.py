@@ -51,6 +51,7 @@ class TestInternalAccounts:
                 }
             ],
             account_type="checking",
+            allowed_ach_debit_company_ids=["string"],
             connection_id="connection_id",
             counterparty_id="counterparty_id",
             debitable=True,
@@ -374,6 +375,7 @@ class TestAsyncInternalAccounts:
                 }
             ],
             account_type="checking",
+            allowed_ach_debit_company_ids=["string"],
             connection_id="connection_id",
             counterparty_id="counterparty_id",
             debitable=True,
