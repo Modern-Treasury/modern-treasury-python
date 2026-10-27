@@ -148,12 +148,15 @@ class TestIncomingPaymentDetails:
 
     @parametrize
     def test_method_create_async(self, client: ModernTreasury) -> None:
-        incoming_payment_detail = client.incoming_payment_details.create_async()
+        incoming_payment_detail = client.incoming_payment_details.create_async(
+            type="ach",
+        )
         assert_matches_type(IncomingPaymentDetail, incoming_payment_detail, path=["response"])
 
     @parametrize
     def test_method_create_async_with_all_params(self, client: ModernTreasury) -> None:
         incoming_payment_detail = client.incoming_payment_details.create_async(
+            type="ach",
             amount=0,
             as_of_date=parse_date("2019-12-27"),
             currency="AED",
@@ -162,14 +165,15 @@ class TestIncomingPaymentDetails:
             direction="credit",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             subtype="subtype",
-            type="ach",
             virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(IncomingPaymentDetail, incoming_payment_detail, path=["response"])
 
     @parametrize
     def test_raw_response_create_async(self, client: ModernTreasury) -> None:
-        response = client.incoming_payment_details.with_raw_response.create_async()
+        response = client.incoming_payment_details.with_raw_response.create_async(
+            type="ach",
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -178,7 +182,9 @@ class TestIncomingPaymentDetails:
 
     @parametrize
     def test_streaming_response_create_async(self, client: ModernTreasury) -> None:
-        with client.incoming_payment_details.with_streaming_response.create_async() as response:
+        with client.incoming_payment_details.with_streaming_response.create_async(
+            type="ach",
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -320,12 +326,15 @@ class TestAsyncIncomingPaymentDetails:
 
     @parametrize
     async def test_method_create_async(self, async_client: AsyncModernTreasury) -> None:
-        incoming_payment_detail = await async_client.incoming_payment_details.create_async()
+        incoming_payment_detail = await async_client.incoming_payment_details.create_async(
+            type="ach",
+        )
         assert_matches_type(IncomingPaymentDetail, incoming_payment_detail, path=["response"])
 
     @parametrize
     async def test_method_create_async_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         incoming_payment_detail = await async_client.incoming_payment_details.create_async(
+            type="ach",
             amount=0,
             as_of_date=parse_date("2019-12-27"),
             currency="AED",
@@ -334,14 +343,15 @@ class TestAsyncIncomingPaymentDetails:
             direction="credit",
             internal_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             subtype="subtype",
-            type="ach",
             virtual_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
         assert_matches_type(IncomingPaymentDetail, incoming_payment_detail, path=["response"])
 
     @parametrize
     async def test_raw_response_create_async(self, async_client: AsyncModernTreasury) -> None:
-        response = await async_client.incoming_payment_details.with_raw_response.create_async()
+        response = await async_client.incoming_payment_details.with_raw_response.create_async(
+            type="ach",
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -350,7 +360,9 @@ class TestAsyncIncomingPaymentDetails:
 
     @parametrize
     async def test_streaming_response_create_async(self, async_client: AsyncModernTreasury) -> None:
-        async with async_client.incoming_payment_details.with_streaming_response.create_async() as response:
+        async with async_client.incoming_payment_details.with_streaming_response.create_async(
+            type="ach",
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

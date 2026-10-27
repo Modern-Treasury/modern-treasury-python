@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Union, Optional
 from datetime import date
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 from .shared.currency import Currency
@@ -14,6 +14,25 @@ __all__ = ["IncomingPaymentDetailCreateAsyncParams"]
 
 
 class IncomingPaymentDetailCreateAsyncParams(TypedDict, total=False):
+    type: Required[
+        Literal[
+            "ach",
+            "au_becs",
+            "bacs",
+            "book",
+            "check",
+            "eft",
+            "neft",
+            "nz_becs",
+            "rtp",
+            "sepa",
+            "stablecoin",
+            "wire",
+            "zengin",
+        ]
+    ]
+    """One of `ach`, `wire`, `check`."""
+
     amount: int
     """Value in specified currency's smallest unit.
 
@@ -29,7 +48,9 @@ class IncomingPaymentDetailCreateAsyncParams(TypedDict, total=False):
     data: Optional[object]
     """
     An object passed through to the simulated IPD that could reflect what a vendor
-    would pass.
+    would pass. For `type: check` with `subtype: lockbox` (sandbox Modern Treasury
+    payment accounts only), `data` must include `payor_name`, otherwise the request
+    returns 422.
     """
 
     description: Optional[str]
@@ -44,25 +65,9 @@ class IncomingPaymentDetailCreateAsyncParams(TypedDict, total=False):
     subtype: Optional[str]
     """
     An additional layer of classification for the type of incoming payment detail,
-    e.g. `ethereum` for a `stablecoin` type.
+    e.g. `ethereum` for a `stablecoin` type. For `type: check`, `subtype: lockbox`
+    simulates a lockbox check deposit.
     """
-
-    type: Literal[
-        "ach",
-        "au_becs",
-        "bacs",
-        "book",
-        "check",
-        "eft",
-        "neft",
-        "nz_becs",
-        "rtp",
-        "sepa",
-        "stablecoin",
-        "wire",
-        "zengin",
-    ]
-    """One of `ach`, `wire`, `check`."""
 
     virtual_account_id: Optional[str]
     """
