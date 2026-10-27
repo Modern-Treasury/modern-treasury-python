@@ -15,7 +15,7 @@ from ...types import (
     internal_account_update_params,
     internal_account_update_account_capability_params,
 )
-from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -73,6 +73,7 @@ class InternalAccounts(SyncAPIResource):
             "cash", "checking", "general_ledger", "loan", "non_resident", "other", "overdraft", "savings"
         ]
         | Omit = omit,
+        allowed_ach_debit_company_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         connection_id: str | Omit = omit,
         counterparty_id: str | Omit = omit,
         debitable: Optional[bool] | Omit = omit,
@@ -118,6 +119,11 @@ class InternalAccounts(SyncAPIResource):
 
           account_type: The account type, used to provision the appropriate account at the financial
               institution.
+
+          allowed_ach_debit_company_ids: The ACH Company IDs allowed to debit this account. `null` allows every company.
+              An empty array allows none. Debits from any other company are returned with code
+              R10. Only applicable to debitable accounts under a Modern Treasury PSP
+              connection.
 
           connection_id: The identifier of the financial institution the account belongs to. If not
               provided, defaults to the default connection, or the sole connection if only one
@@ -174,6 +180,7 @@ class InternalAccounts(SyncAPIResource):
                     "name": name,
                     "account_capabilities": account_capabilities,
                     "account_type": account_type,
+                    "allowed_ach_debit_company_ids": allowed_ach_debit_company_ids,
                     "connection_id": connection_id,
                     "counterparty_id": counterparty_id,
                     "debitable": debitable,
@@ -563,6 +570,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
             "cash", "checking", "general_ledger", "loan", "non_resident", "other", "overdraft", "savings"
         ]
         | Omit = omit,
+        allowed_ach_debit_company_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         connection_id: str | Omit = omit,
         counterparty_id: str | Omit = omit,
         debitable: Optional[bool] | Omit = omit,
@@ -608,6 +616,11 @@ class AsyncInternalAccounts(AsyncAPIResource):
 
           account_type: The account type, used to provision the appropriate account at the financial
               institution.
+
+          allowed_ach_debit_company_ids: The ACH Company IDs allowed to debit this account. `null` allows every company.
+              An empty array allows none. Debits from any other company are returned with code
+              R10. Only applicable to debitable accounts under a Modern Treasury PSP
+              connection.
 
           connection_id: The identifier of the financial institution the account belongs to. If not
               provided, defaults to the default connection, or the sole connection if only one
@@ -664,6 +677,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
                     "name": name,
                     "account_capabilities": account_capabilities,
                     "account_type": account_type,
+                    "allowed_ach_debit_company_ids": allowed_ach_debit_company_ids,
                     "connection_id": connection_id,
                     "counterparty_id": counterparty_id,
                     "debitable": debitable,
