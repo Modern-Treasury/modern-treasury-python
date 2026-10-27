@@ -208,6 +208,14 @@ from .routing_details import (
     RoutingDetailsWithStreamingResponse,
     AsyncRoutingDetailsWithStreamingResponse,
 )
+from .embeddable_flows import (
+    EmbeddableFlows,
+    AsyncEmbeddableFlows,
+    EmbeddableFlowsWithRawResponse,
+    AsyncEmbeddableFlowsWithRawResponse,
+    EmbeddableFlowsWithStreamingResponse,
+    AsyncEmbeddableFlowsWithStreamingResponse,
+)
 from .virtual_accounts import (
     VirtualAccounts,
     AsyncVirtualAccounts,
@@ -590,4 +598,10 @@ __all__ = [
     "AsyncIdentificationsWithRawResponse",
     "IdentificationsWithStreamingResponse",
     "AsyncIdentificationsWithStreamingResponse",
+    "EmbeddableFlows",
+    "AsyncEmbeddableFlows",
+    "EmbeddableFlowsWithRawResponse",
+    "AsyncEmbeddableFlowsWithRawResponse",
+    "EmbeddableFlowsWithStreamingResponse",
+    "AsyncEmbeddableFlowsWithStreamingResponse",
 ]
