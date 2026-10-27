@@ -2,15 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
-from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing import Dict, List, Iterable, Optional
+from typing_extensions import Literal, Required, TypedDict
 
 from .._types import SequenceNotStr
-from .._utils import PropertyInfo
-from .shared.transaction_direction import TransactionDirection
+from .account_capability_param import AccountCapabilityParam
 
-__all__ = ["InternalAccountCreateParams", "AccountCapabilities", "AccountCapability", "PartyAddress"]
+__all__ = ["InternalAccountCreateParams", "PartyAddress"]
 
 
 class InternalAccountCreateParams(TypedDict, total=False):
@@ -20,7 +18,7 @@ class InternalAccountCreateParams(TypedDict, total=False):
     name: Required[str]
     """The nickname of the account."""
 
-    account_capabilities: Iterable[AccountCapability]
+    account_capabilities: Iterable[AccountCapabilityParam]
     """
     An array of AccountCapability objects that list the originating abilities of the
     internal account and any relevant information for them.
@@ -111,81 +109,6 @@ class InternalAccountCreateParams(TypedDict, total=False):
     A hash of vendor specific attributes that will be used when creating the account
     at the vendor specified by the given connection.
     """
-
-
-class AccountCapability(  # type: ignore[call-arg]
-    TypedDict,
-    total=False,
-    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
-):
-    id: Required[str]
-
-    created_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
-
-    direction: Required[TransactionDirection]
-    """One of `debit` or `credit`.
-
-    Indicates the direction of money movement this capability is responsible for.
-    """
-
-    discarded_at: Required[Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]]
-
-    identifier: Required[Optional[str]]
-    """
-    A unique reference assigned by your bank for tracking and recognizing payment
-    files. It is important this is formatted exactly how the bank assigned it.
-    """
-
-    live_mode: Required[bool]
-    """
-    This field will be true if this object exists in the live environment or false
-    if it exists in the test environment.
-    """
-
-    object: Required[str]
-
-    payment_type: Required[
-        Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "card",
-            "chats",
-            "check",
-            "cross_border",
-            "dk_nets",
-            "eft",
-            "gb_fps",
-            "masav",
-            "mx_ccen",
-            "neft",
-            "nics",
-            "nz_becs",
-            "pl_elixir",
-            "rtp",
-            "se_bankgirot",
-            "sepa",
-            "sg_giro",
-            "sic",
-            "stablecoin",
-            "wire",
-            "zengin",
-        ]
-    ]
-    """
-    Indicates the the type of payment this capability is responsible for
-    originating.
-    """
-
-    updated_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
-
-
-AccountCapabilities = AccountCapability
-"""This type is deprecated and will be removed in a future release.
-
-Please use AccountCapability instead.
-"""
 
 
 class PartyAddress(TypedDict, total=False):
