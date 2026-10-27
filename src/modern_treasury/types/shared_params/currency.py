@@ -128,6 +128,7 @@ Currency: TypeAlias = Literal[
     "NZD",
     "OMR",
     "OP",
+    "OUSD",
     "PAB",
     "PEN",
     "PGK",
