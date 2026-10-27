@@ -739,3 +739,18 @@ Methods:
 - <code title="post /api/identifications">client.identifications.<a href="./src/modern_treasury/resources/identifications.py">create</a>(\*\*<a href="src/modern_treasury/types/identification_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/identification.py">Identification</a></code>
 - <code title="get /api/identifications/{id}">client.identifications.<a href="./src/modern_treasury/resources/identifications.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/identification.py">Identification</a></code>
 - <code title="patch /api/identifications/{id}">client.identifications.<a href="./src/modern_treasury/resources/identifications.py">update</a>(id, \*\*<a href="src/modern_treasury/types/identification_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/identification.py">Identification</a></code>
+
+# EmbeddableFlows
+
+Types:
+
+```python
+from modern_treasury.types import EmbeddableFlow
+```
+
+Methods:
+
+- <code title="post /api/embeddable_flows">client.embeddable_flows.<a href="./src/modern_treasury/resources/embeddable_flows.py">create</a>(\*\*<a href="src/modern_treasury/types/embeddable_flow_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/embeddable_flow.py">EmbeddableFlow</a></code>
+- <code title="get /api/embeddable_flows/{id}">client.embeddable_flows.<a href="./src/modern_treasury/resources/embeddable_flows.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/embeddable_flow.py">EmbeddableFlow</a></code>
+- <code title="patch /api/embeddable_flows/{id}">client.embeddable_flows.<a href="./src/modern_treasury/resources/embeddable_flows.py">update</a>(id, \*\*<a href="src/modern_treasury/types/embeddable_flow_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/embeddable_flow.py">EmbeddableFlow</a></code>
+- <code title="get /api/embeddable_flows">client.embeddable_flows.<a href="./src/modern_treasury/resources/embeddable_flows.py">list</a>(\*\*<a href="src/modern_treasury/types/embeddable_flow_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/embeddable_flow.py">SyncPage[EmbeddableFlow]</a></code>
