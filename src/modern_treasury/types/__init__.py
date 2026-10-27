@@ -56,6 +56,7 @@ from .account_detail import AccountDetail as AccountDetail
 from .identification import Identification as Identification
 from .ledger_account import LedgerAccount as LedgerAccount
 from .routing_detail import RoutingDetail as RoutingDetail
+from .embeddable_flow import EmbeddableFlow as EmbeddableFlow
 from .virtual_account import VirtualAccount as VirtualAccount
 from .case_list_params import CaseListParams as CaseListParams
 from .expected_payment import ExpectedPayment as ExpectedPayment
@@ -125,6 +126,7 @@ from .payment_action_list_params import PaymentActionListParams as PaymentAction
 from .payment_flow_create_params import PaymentFlowCreateParams as PaymentFlowCreateParams
 from .payment_flow_update_params import PaymentFlowUpdateParams as PaymentFlowUpdateParams
 from .routing_detail_list_params import RoutingDetailListParams as RoutingDetailListParams
+from .embeddable_flow_list_params import EmbeddableFlowListParams as EmbeddableFlowListParams
 from .payment_order_create_params import PaymentOrderCreateParams as PaymentOrderCreateParams
 from .payment_order_update_params import PaymentOrderUpdateParams as PaymentOrderUpdateParams
 from .virtual_account_list_params import VirtualAccountListParams as VirtualAccountListParams
@@ -142,6 +144,8 @@ from .payment_action_create_params import PaymentActionCreateParams as PaymentAc
 from .payment_action_list_response import PaymentActionListResponse as PaymentActionListResponse
 from .payment_action_update_params import PaymentActionUpdateParams as PaymentActionUpdateParams
 from .routing_detail_create_params import RoutingDetailCreateParams as RoutingDetailCreateParams
+from .embeddable_flow_create_params import EmbeddableFlowCreateParams as EmbeddableFlowCreateParams
+from .embeddable_flow_update_params import EmbeddableFlowUpdateParams as EmbeddableFlowUpdateParams
 from .payment_reference_list_params import PaymentReferenceListParams as PaymentReferenceListParams
 from .routing_number_lookup_request import RoutingNumberLookupRequest as RoutingNumberLookupRequest
 from .virtual_account_create_params import VirtualAccountCreateParams as VirtualAccountCreateParams
