@@ -10,10 +10,10 @@ from pydantic import Field as FieldInfo
 from .._models import BaseModel
 from .shared.transaction_direction import TransactionDirection
 
-__all__ = ["InternalAccountUpdateAccountCapabilityResponse"]
+__all__ = ["AccountCapability"]
 
 
-class InternalAccountUpdateAccountCapabilityResponse(BaseModel):
+class AccountCapability(BaseModel):
     id: str
 
     created_at: datetime
