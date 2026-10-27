@@ -6,6 +6,7 @@ from typing import Dict, List, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 from .shared.transaction_direction import TransactionDirection
 
@@ -29,6 +30,14 @@ class InternalAccountCreateParams(TypedDict, total=False):
     """
     The account type, used to provision the appropriate account at the financial
     institution.
+    """
+
+    allowed_ach_debit_company_ids: Optional[SequenceNotStr[str]]
+    """The ACH Company IDs allowed to debit this account.
+
+    `null` allows every company. An empty array allows none. Debits from any other
+    company are returned with code R10. Only applicable to debitable accounts under
+    a Modern Treasury PSP connection.
     """
 
     connection_id: str
