@@ -2,16 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Mapping, Optional, cast
+from typing import Optional
 from typing_extensions import Literal
 
 import httpx
 
 from .. import _legacy_response
 from ..types import document_list_params, document_create_params
-from .._files import deepcopy_with_paths
 from .._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
-from .._utils import extract_files, path_template, maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
@@ -87,24 +86,21 @@ class Documents(SyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
-        body = deepcopy_with_paths(
-            {
-                "file": file,
-                "document_type": document_type,
-                "documentable_id": documentable_id,
-                "documentable_type": documentable_type,
-            },
-            [["file"]],
-        )
-        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             "/api/documents",
-            body=maybe_transform(body, document_create_params.DocumentCreateParams),
-            files=files,
+            body=maybe_transform(
+                {
+                    "file": file,
+                    "document_type": document_type,
+                    "documentable_id": documentable_id,
+                    "documentable_type": documentable_type,
+                },
+                document_create_params.DocumentCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -279,24 +275,21 @@ class AsyncDocuments(AsyncAPIResource):
 
           idempotency_key: Specify a custom idempotency key for this request
         """
-        body = deepcopy_with_paths(
-            {
-                "file": file,
-                "document_type": document_type,
-                "documentable_id": documentable_id,
-                "documentable_type": documentable_type,
-            },
-            [["file"]],
-        )
-        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             "/api/documents",
-            body=await async_maybe_transform(body, document_create_params.DocumentCreateParams),
-            files=files,
+            body=await async_maybe_transform(
+                {
+                    "file": file,
+                    "document_type": document_type,
+                    "documentable_id": documentable_id,
+                    "documentable_type": documentable_type,
+                },
+                document_create_params.DocumentCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -70,6 +70,7 @@ if TYPE_CHECKING:
         ledger_accounts,
         payment_actions,
         routing_details,
+        embeddable_flows,
         virtual_accounts,
         expected_payments,
         external_accounts,
@@ -110,6 +111,7 @@ if TYPE_CHECKING:
     from .resources.ledger_accounts import LedgerAccounts, AsyncLedgerAccounts
     from .resources.payment_actions import PaymentActions, AsyncPaymentActions
     from .resources.routing_details import RoutingDetails, AsyncRoutingDetails
+    from .resources.embeddable_flows import EmbeddableFlows, AsyncEmbeddableFlows
     from .resources.virtual_accounts import VirtualAccounts, AsyncVirtualAccounts
     from .resources.expected_payments import ExpectedPayments, AsyncExpectedPayments
     from .resources.external_accounts import ExternalAccounts, AsyncExternalAccounts
@@ -490,6 +492,12 @@ class ModernTreasury(SyncAPIClient):
         from .resources.identifications import Identifications
 
         return Identifications(self)
+
+    @cached_property
+    def embeddable_flows(self) -> EmbeddableFlows:
+        from .resources.embeddable_flows import EmbeddableFlows
+
+        return EmbeddableFlows(self)
 
     @cached_property
     def with_raw_response(self) -> ModernTreasuryWithRawResponse:
@@ -975,6 +983,12 @@ class AsyncModernTreasury(AsyncAPIClient):
         return AsyncIdentifications(self)
 
     @cached_property
+    def embeddable_flows(self) -> AsyncEmbeddableFlows:
+        from .resources.embeddable_flows import AsyncEmbeddableFlows
+
+        return AsyncEmbeddableFlows(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncModernTreasuryWithRawResponse:
         return AsyncModernTreasuryWithRawResponse(self)
 
@@ -1378,6 +1392,12 @@ class ModernTreasuryWithRawResponse:
 
         return IdentificationsWithRawResponse(self._client.identifications)
 
+    @cached_property
+    def embeddable_flows(self) -> embeddable_flows.EmbeddableFlowsWithRawResponse:
+        from .resources.embeddable_flows import EmbeddableFlowsWithRawResponse
+
+        return EmbeddableFlowsWithRawResponse(self._client.embeddable_flows)
+
 
 class AsyncModernTreasuryWithRawResponse:
     _client: AsyncModernTreasury
@@ -1643,6 +1663,12 @@ class AsyncModernTreasuryWithRawResponse:
 
         return AsyncIdentificationsWithRawResponse(self._client.identifications)
 
+    @cached_property
+    def embeddable_flows(self) -> embeddable_flows.AsyncEmbeddableFlowsWithRawResponse:
+        from .resources.embeddable_flows import AsyncEmbeddableFlowsWithRawResponse
+
+        return AsyncEmbeddableFlowsWithRawResponse(self._client.embeddable_flows)
+
 
 class ModernTreasuryWithStreamedResponse:
     _client: ModernTreasury
@@ -1907,6 +1933,12 @@ class ModernTreasuryWithStreamedResponse:
         from .resources.identifications import IdentificationsWithStreamingResponse
 
         return IdentificationsWithStreamingResponse(self._client.identifications)
+
+    @cached_property
+    def embeddable_flows(self) -> embeddable_flows.EmbeddableFlowsWithStreamingResponse:
+        from .resources.embeddable_flows import EmbeddableFlowsWithStreamingResponse
+
+        return EmbeddableFlowsWithStreamingResponse(self._client.embeddable_flows)
 
 
 class AsyncModernTreasuryWithStreamedResponse:
@@ -2174,6 +2206,12 @@ class AsyncModernTreasuryWithStreamedResponse:
         from .resources.identifications import AsyncIdentificationsWithStreamingResponse
 
         return AsyncIdentificationsWithStreamingResponse(self._client.identifications)
+
+    @cached_property
+    def embeddable_flows(self) -> embeddable_flows.AsyncEmbeddableFlowsWithStreamingResponse:
+        from .resources.embeddable_flows import AsyncEmbeddableFlowsWithStreamingResponse
+
+        return AsyncEmbeddableFlowsWithStreamingResponse(self._client.embeddable_flows)
 
 
 Client = ModernTreasury

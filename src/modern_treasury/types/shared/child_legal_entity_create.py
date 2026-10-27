@@ -8,22 +8,14 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 from ..bank_settings import BankSettings
+from ..legal_entity_regulator import LegalEntityRegulator
 from .third_party_verification import ThirdPartyVerification
 from .identification_create_request import IdentificationCreateRequest
 from ..wealth_and_employment_details import WealthAndEmploymentDetails
 from .legal_entity_address_create_request import LegalEntityAddressCreateRequest
 from .legal_entity_industry_classification import LegalEntityIndustryClassification
 
-__all__ = [
-    "ChildLegalEntityCreate",
-    "Documents",
-    "Document",
-    "PhoneNumbers",
-    "PhoneNumber",
-    "Regulators",
-    "Regulator",
-    "TermsOfUse",
-]
+__all__ = ["ChildLegalEntityCreate", "Documents", "Document", "PhoneNumbers", "PhoneNumber", "TermsOfUse"]
 
 
 class Document(BaseModel):
@@ -67,27 +59,6 @@ PhoneNumbers = PhoneNumber
 """This type is deprecated and will be removed in a future release.
 
 Please use PhoneNumber instead.
-"""
-
-
-class Regulator(BaseModel):
-    jurisdiction: str
-    """
-    The country code where the regulator operates in the ISO 3166-1 alpha-2 format
-    (e.g., "US", "CA", "GB").
-    """
-
-    name: str
-    """Full name of the regulatory body."""
-
-    registration_number: str
-    """Registration or identification number with the regulator."""
-
-
-Regulators = Regulator
-"""This type is deprecated and will be removed in a future release.
-
-Please use Regulator instead.
 """
 
 
@@ -220,7 +191,7 @@ class ChildLegalEntityCreate(BaseModel):
     primary_social_media_sites: Optional[List[str]] = None
     """A list of the entity's primary social media URLs."""
 
-    regulators: Optional[List[Regulator]] = None
+    regulators: Optional[List[LegalEntityRegulator]] = None
     """Array of regulatory bodies overseeing this institution."""
 
     risk_rating: Optional[Literal["low", "medium", "high"]] = None

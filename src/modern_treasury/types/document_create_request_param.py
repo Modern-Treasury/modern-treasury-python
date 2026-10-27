@@ -1,0 +1,32 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing_extensions import Literal, Required, TypedDict
+
+from .._types import FileTypes
+
+__all__ = ["DocumentCreateRequestParam"]
+
+
+class DocumentCreateRequestParam(TypedDict, total=False):
+    file: Required[FileTypes]
+
+    document_type: str
+    """A category given to the document, can be `null`."""
+
+    documentable_id: str
+    """The unique identifier for the associated object."""
+
+    documentable_type: Literal[
+        "connection",
+        "counterparty",
+        "expected_payment",
+        "identification",
+        "incoming_payment_detail",
+        "internal_account",
+        "legal_entity",
+        "payment_order",
+        "return",
+        "transaction",
+    ]

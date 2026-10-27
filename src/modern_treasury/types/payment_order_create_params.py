@@ -6,12 +6,14 @@ from typing import Dict, Union, Iterable, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from .._types import FileTypes
 from .._utils import PropertyInfo
 from .shared.currency import Currency
+from .accounting_param import AccountingParam
 from .payment_order_type import PaymentOrderType
 from .external_account_type import ExternalAccountType
 from .payment_order_subtype import PaymentOrderSubtype
+from .line_item_request_param import LineItemRequestParam
+from .document_create_request_param import DocumentCreateRequestParam
 from .shared_params.address_request import AddressRequest
 from .contact_detail_create_request_param import ContactDetailCreateRequestParam
 from .shared_params.ledger_account_create_request import LedgerAccountCreateRequest
@@ -19,11 +21,6 @@ from .shared_params.ledger_transaction_create_request import LedgerTransactionCr
 
 __all__ = [
     "PaymentOrderCreateParams",
-    "Accounting",
-    "Documents",
-    "Document",
-    "LineItems",
-    "LineItem",
     "OriginatingPartyAddress",
     "ReceivingAccount",
     "ReceivingAccountAccountDetails",
@@ -60,7 +57,7 @@ class PaymentOrderCreateParams(TypedDict, total=False):
     `bacs`, `au_becs`, `neft`, `nics`, `nz_national_clearing_code`, `sic`, `zengin`.
     """
 
-    accounting: Accounting
+    accounting: AccountingParam
 
     accounting_category_id: Optional[str]
     """The ID of one of your accounting categories.
@@ -89,7 +86,7 @@ class PaymentOrderCreateParams(TypedDict, total=False):
     description: Optional[str]
     """An optional description for internal use."""
 
-    documents: Iterable[Document]
+    documents: Iterable[DocumentCreateRequestParam]
     """An array of documents to be attached to the payment order.
 
     Note that if you attach documents, the request's content type must be
@@ -145,7 +142,7 @@ class PaymentOrderCreateParams(TypedDict, total=False):
     the payment order automatically.
     """
 
-    line_items: Iterable[LineItem]
+    line_items: Iterable[LineItemRequestParam]
     """An array of line items that must sum up to the amount of the payment order."""
 
     metadata: Dict[str, str]
@@ -287,84 +284,6 @@ class PaymentOrderCreateParams(TypedDict, total=False):
 
     Data must be represented as key-value pairs.
     """
-
-
-class Accounting(TypedDict, total=False):
-    account_id: Optional[str]
-    """The ID of one of your accounting categories.
-
-    Note that these will only be accessible if your accounting system has been
-    connected.
-    """
-
-    class_id: Optional[str]
-    """The ID of one of the class objects in your accounting system.
-
-    Class objects track segments of your business independent of client or project.
-    Note that these will only be accessible if your accounting system has been
-    connected.
-    """
-
-
-class Document(TypedDict, total=False):
-    file: Required[FileTypes]
-
-    document_type: str
-    """A category given to the document, can be `null`."""
-
-    documentable_id: str
-    """The unique identifier for the associated object."""
-
-    documentable_type: Literal[
-        "connection",
-        "counterparty",
-        "expected_payment",
-        "identification",
-        "incoming_payment_detail",
-        "internal_account",
-        "legal_entity",
-        "payment_order",
-        "return",
-        "transaction",
-    ]
-
-
-Documents = Document
-"""This type is deprecated and will be removed in a future release.
-
-Please use Document instead.
-"""
-
-
-class LineItem(TypedDict, total=False):
-    amount: Required[int]
-    """Value in specified currency's smallest unit.
-
-    e.g. $10 would be represented as 1000.
-    """
-
-    accounting_category_id: Optional[str]
-    """The ID of one of your accounting categories.
-
-    Note that these will only be accessible if your accounting system has been
-    connected.
-    """
-
-    description: Optional[str]
-    """A free-form description of the line item."""
-
-    metadata: Dict[str, str]
-    """Additional data represented as key-value pairs.
-
-    Both the key and value must be strings.
-    """
-
-
-LineItems = LineItem
-"""This type is deprecated and will be removed in a future release.
-
-Please use LineItem instead.
-"""
 
 
 class OriginatingPartyAddress(TypedDict, total=False):
