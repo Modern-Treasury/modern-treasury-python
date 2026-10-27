@@ -229,14 +229,6 @@ class IncomingPaymentDetails(SyncAPIResource):
     def create_async(
         self,
         *,
-        amount: int | Omit = omit,
-        as_of_date: Union[str, date, None] | Omit = omit,
-        currency: Optional[Currency] | Omit = omit,
-        data: Optional[object] | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        direction: TransactionDirection | Omit = omit,
-        internal_account_id: str | Omit = omit,
-        subtype: Optional[str] | Omit = omit,
         type: Literal[
             "ach",
             "au_becs",
@@ -251,8 +243,15 @@ class IncomingPaymentDetails(SyncAPIResource):
             "stablecoin",
             "wire",
             "zengin",
-        ]
-        | Omit = omit,
+        ],
+        amount: int | Omit = omit,
+        as_of_date: Union[str, date, None] | Omit = omit,
+        currency: Optional[Currency] | Omit = omit,
+        data: Optional[object] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        direction: TransactionDirection | Omit = omit,
+        internal_account_id: str | Omit = omit,
+        subtype: Optional[str] | Omit = omit,
         virtual_account_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -266,6 +265,8 @@ class IncomingPaymentDetails(SyncAPIResource):
         Simulate Incoming Payment Detail
 
         Args:
+          type: One of `ach`, `wire`, `check`.
+
           amount: Value in specified currency's smallest unit. e.g. $10 would be represented
               as 1000.
 
@@ -274,7 +275,9 @@ class IncomingPaymentDetails(SyncAPIResource):
           currency: Defaults to the currency of the originating account.
 
           data: An object passed through to the simulated IPD that could reflect what a vendor
-              would pass.
+              would pass. For `type: check` with `subtype: lockbox` (sandbox Modern Treasury
+              payment accounts only), `data` must include `payor_name`, otherwise the request
+              returns 422.
 
           description: Defaults to a random description.
 
@@ -283,9 +286,8 @@ class IncomingPaymentDetails(SyncAPIResource):
           internal_account_id: The ID of one of your internal accounts.
 
           subtype: An additional layer of classification for the type of incoming payment detail,
-              e.g. `ethereum` for a `stablecoin` type.
-
-          type: One of `ach`, `wire`, `check`.
+              e.g. `ethereum` for a `stablecoin` type. For `type: check`, `subtype: lockbox`
+              simulates a lockbox check deposit.
 
           virtual_account_id: An optional parameter to associate the incoming payment detail to a virtual
               account.
@@ -304,6 +306,7 @@ class IncomingPaymentDetails(SyncAPIResource):
             "/api/simulations/incoming_payment_details/create_async",
             body=maybe_transform(
                 {
+                    "type": type,
                     "amount": amount,
                     "as_of_date": as_of_date,
                     "currency": currency,
@@ -312,7 +315,6 @@ class IncomingPaymentDetails(SyncAPIResource):
                     "direction": direction,
                     "internal_account_id": internal_account_id,
                     "subtype": subtype,
-                    "type": type,
                     "virtual_account_id": virtual_account_id,
                 },
                 incoming_payment_detail_create_async_params.IncomingPaymentDetailCreateAsyncParams,
@@ -529,14 +531,6 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
     async def create_async(
         self,
         *,
-        amount: int | Omit = omit,
-        as_of_date: Union[str, date, None] | Omit = omit,
-        currency: Optional[Currency] | Omit = omit,
-        data: Optional[object] | Omit = omit,
-        description: Optional[str] | Omit = omit,
-        direction: TransactionDirection | Omit = omit,
-        internal_account_id: str | Omit = omit,
-        subtype: Optional[str] | Omit = omit,
         type: Literal[
             "ach",
             "au_becs",
@@ -551,8 +545,15 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
             "stablecoin",
             "wire",
             "zengin",
-        ]
-        | Omit = omit,
+        ],
+        amount: int | Omit = omit,
+        as_of_date: Union[str, date, None] | Omit = omit,
+        currency: Optional[Currency] | Omit = omit,
+        data: Optional[object] | Omit = omit,
+        description: Optional[str] | Omit = omit,
+        direction: TransactionDirection | Omit = omit,
+        internal_account_id: str | Omit = omit,
+        subtype: Optional[str] | Omit = omit,
         virtual_account_id: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -566,6 +567,8 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
         Simulate Incoming Payment Detail
 
         Args:
+          type: One of `ach`, `wire`, `check`.
+
           amount: Value in specified currency's smallest unit. e.g. $10 would be represented
               as 1000.
 
@@ -574,7 +577,9 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
           currency: Defaults to the currency of the originating account.
 
           data: An object passed through to the simulated IPD that could reflect what a vendor
-              would pass.
+              would pass. For `type: check` with `subtype: lockbox` (sandbox Modern Treasury
+              payment accounts only), `data` must include `payor_name`, otherwise the request
+              returns 422.
 
           description: Defaults to a random description.
 
@@ -583,9 +588,8 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
           internal_account_id: The ID of one of your internal accounts.
 
           subtype: An additional layer of classification for the type of incoming payment detail,
-              e.g. `ethereum` for a `stablecoin` type.
-
-          type: One of `ach`, `wire`, `check`.
+              e.g. `ethereum` for a `stablecoin` type. For `type: check`, `subtype: lockbox`
+              simulates a lockbox check deposit.
 
           virtual_account_id: An optional parameter to associate the incoming payment detail to a virtual
               account.
@@ -604,6 +608,7 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
             "/api/simulations/incoming_payment_details/create_async",
             body=await async_maybe_transform(
                 {
+                    "type": type,
                     "amount": amount,
                     "as_of_date": as_of_date,
                     "currency": currency,
@@ -612,7 +617,6 @@ class AsyncIncomingPaymentDetails(AsyncAPIResource):
                     "direction": direction,
                     "internal_account_id": internal_account_id,
                     "subtype": subtype,
-                    "type": type,
                     "virtual_account_id": virtual_account_id,
                 },
                 incoming_payment_detail_create_async_params.IncomingPaymentDetailCreateAsyncParams,
