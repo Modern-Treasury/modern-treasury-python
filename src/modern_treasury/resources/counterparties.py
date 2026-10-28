@@ -24,6 +24,7 @@ from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.counterparty import Counterparty
 from ..types.shared.transaction_direction import TransactionDirection
+from ..types.legal_entity_create_request_param import LegalEntityCreateRequestParam
 from ..types.counterparty_collect_account_response import CounterpartyCollectAccountResponse
 
 __all__ = ["Counterparties", "AsyncCounterparties"]
@@ -58,7 +59,7 @@ class Counterparties(SyncAPIResource):
         email: Optional[str] | Omit = omit,
         external_id: Optional[str] | Omit = omit,
         ledger_type: Literal["customer", "vendor"] | Omit = omit,
-        legal_entity: counterparty_create_params.LegalEntity | Omit = omit,
+        legal_entity: LegalEntityCreateRequestParam | Omit = omit,
         legal_entity_id: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         send_remittance_advice: bool | Omit = omit,
@@ -495,7 +496,7 @@ class AsyncCounterparties(AsyncAPIResource):
         email: Optional[str] | Omit = omit,
         external_id: Optional[str] | Omit = omit,
         ledger_type: Literal["customer", "vendor"] | Omit = omit,
-        legal_entity: counterparty_create_params.LegalEntity | Omit = omit,
+        legal_entity: LegalEntityCreateRequestParam | Omit = omit,
         legal_entity_id: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         send_remittance_advice: bool | Omit = omit,

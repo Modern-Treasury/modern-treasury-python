@@ -35,9 +35,11 @@ from ...pagination import SyncPage, AsyncPage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.payment_order import PaymentOrder
 from ...types.shared.currency import Currency
+from ...types.accounting_param import AccountingParam
 from ...types.payment_order_type import PaymentOrderType
 from ...types.payment_order_subtype import PaymentOrderSubtype
 from ...types.shared.async_response import AsyncResponse
+from ...types.line_item_request_param import LineItemRequestParam
 from ...types.shared.transaction_direction import TransactionDirection
 from ...types.shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
@@ -75,7 +77,7 @@ class PaymentOrders(SyncAPIResource):
         direction: Literal["credit", "debit"],
         originating_account_id: str,
         type: PaymentOrderType,
-        accounting: payment_order_create_params.Accounting | Omit = omit,
+        accounting: AccountingParam | Omit = omit,
         accounting_category_id: Optional[str] | Omit = omit,
         accounting_ledger_class_id: Optional[str] | Omit = omit,
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | Omit = omit,
@@ -90,7 +92,7 @@ class PaymentOrders(SyncAPIResource):
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
         ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
         ledger_transaction_id: str | Omit = omit,
-        line_items: Iterable[payment_order_create_params.LineItem] | Omit = omit,
+        line_items: Iterable[LineItemRequestParam] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         nsf_protected: bool | Omit = omit,
         originating_party_address: Optional[payment_order_create_params.OriginatingPartyAddress] | Omit = omit,
@@ -383,7 +385,7 @@ class PaymentOrders(SyncAPIResource):
         self,
         id: str,
         *,
-        accounting: payment_order_update_params.Accounting | Omit = omit,
+        accounting: AccountingParam | Omit = omit,
         accounting_category_id: Optional[str] | Omit = omit,
         accounting_ledger_class_id: Optional[str] | Omit = omit,
         amount: int | Omit = omit,
@@ -398,7 +400,7 @@ class PaymentOrders(SyncAPIResource):
         fallback_type: Literal["ach"] | Omit = omit,
         foreign_exchange_contract: Optional[str] | Omit = omit,
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
-        line_items: Iterable[payment_order_update_params.LineItem] | Omit = omit,
+        line_items: Iterable[LineItemRequestParam] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         nsf_protected: bool | Omit = omit,
         originating_account_id: str | Omit = omit,
@@ -794,7 +796,7 @@ class PaymentOrders(SyncAPIResource):
         direction: Literal["credit", "debit"],
         originating_account_id: str,
         type: PaymentOrderType,
-        accounting: payment_order_create_async_params.Accounting | Omit = omit,
+        accounting: AccountingParam | Omit = omit,
         accounting_category_id: Optional[str] | Omit = omit,
         accounting_ledger_class_id: Optional[str] | Omit = omit,
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | Omit = omit,
@@ -808,7 +810,7 @@ class PaymentOrders(SyncAPIResource):
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
         ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
         ledger_transaction_id: str | Omit = omit,
-        line_items: Iterable[payment_order_create_async_params.LineItem] | Omit = omit,
+        line_items: Iterable[LineItemRequestParam] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         nsf_protected: bool | Omit = omit,
         originating_party_address: Optional[payment_order_create_async_params.OriginatingPartyAddress] | Omit = omit,
@@ -1084,7 +1086,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         direction: Literal["credit", "debit"],
         originating_account_id: str,
         type: PaymentOrderType,
-        accounting: payment_order_create_params.Accounting | Omit = omit,
+        accounting: AccountingParam | Omit = omit,
         accounting_category_id: Optional[str] | Omit = omit,
         accounting_ledger_class_id: Optional[str] | Omit = omit,
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | Omit = omit,
@@ -1099,7 +1101,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
         ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
         ledger_transaction_id: str | Omit = omit,
-        line_items: Iterable[payment_order_create_params.LineItem] | Omit = omit,
+        line_items: Iterable[LineItemRequestParam] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         nsf_protected: bool | Omit = omit,
         originating_party_address: Optional[payment_order_create_params.OriginatingPartyAddress] | Omit = omit,
@@ -1392,7 +1394,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         self,
         id: str,
         *,
-        accounting: payment_order_update_params.Accounting | Omit = omit,
+        accounting: AccountingParam | Omit = omit,
         accounting_category_id: Optional[str] | Omit = omit,
         accounting_ledger_class_id: Optional[str] | Omit = omit,
         amount: int | Omit = omit,
@@ -1407,7 +1409,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         fallback_type: Literal["ach"] | Omit = omit,
         foreign_exchange_contract: Optional[str] | Omit = omit,
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
-        line_items: Iterable[payment_order_update_params.LineItem] | Omit = omit,
+        line_items: Iterable[LineItemRequestParam] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         nsf_protected: bool | Omit = omit,
         originating_account_id: str | Omit = omit,
@@ -1803,7 +1805,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         direction: Literal["credit", "debit"],
         originating_account_id: str,
         type: PaymentOrderType,
-        accounting: payment_order_create_async_params.Accounting | Omit = omit,
+        accounting: AccountingParam | Omit = omit,
         accounting_category_id: Optional[str] | Omit = omit,
         accounting_ledger_class_id: Optional[str] | Omit = omit,
         charge_bearer: Optional[Literal["shared", "sender", "receiver"]] | Omit = omit,
@@ -1817,7 +1819,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         foreign_exchange_indicator: Optional[Literal["fixed_to_variable", "variable_to_fixed"]] | Omit = omit,
         ledger_transaction: LedgerTransactionCreateRequest | Omit = omit,
         ledger_transaction_id: str | Omit = omit,
-        line_items: Iterable[payment_order_create_async_params.LineItem] | Omit = omit,
+        line_items: Iterable[LineItemRequestParam] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         nsf_protected: bool | Omit = omit,
         originating_party_address: Optional[payment_order_create_async_params.OriginatingPartyAddress] | Omit = omit,
