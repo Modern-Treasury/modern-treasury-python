@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 from typing import Dict, Iterable, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
 from .shared_params.address_request import AddressRequest
+from .account_detail_create_request_param import AccountDetailCreateRequestParam
+from .routing_detail_create_request_param import RoutingDetailCreateRequestParam
 from .shared_params.ledger_account_create_request import LedgerAccountCreateRequest
 
-__all__ = ["VirtualAccountCreateParams", "AccountDetails", "AccountDetail", "RoutingDetails", "RoutingDetail"]
+__all__ = ["VirtualAccountCreateParams"]
 
 
 class VirtualAccountCreateParams(TypedDict, total=False):
@@ -18,7 +20,7 @@ class VirtualAccountCreateParams(TypedDict, total=False):
     name: Required[str]
     """The name of the virtual account."""
 
-    account_details: Iterable[AccountDetail]
+    account_details: Iterable[AccountDetailCreateRequestParam]
     """An array of account detail objects."""
 
     counterparty_id: str
@@ -66,121 +68,8 @@ class VirtualAccountCreateParams(TypedDict, total=False):
     When absent, the internal account's party address is used.
     """
 
-    routing_details: Iterable[RoutingDetail]
+    routing_details: Iterable[RoutingDetailCreateRequestParam]
     """An array of routing detail objects."""
 
     virtual_account_setting_id: str
     """The ID of the virtual account setting used to allocate this virtual account."""
-
-
-class AccountDetail(TypedDict, total=False):
-    account_number: Required[str]
-    """The account number for the bank account."""
-
-    account_number_type: Literal[
-        "arbitrum_address",
-        "au_number",
-        "avalanche_address",
-        "base_address",
-        "card_token",
-        "clabe",
-        "ethereum_address",
-        "hk_number",
-        "iban",
-        "id_number",
-        "nz_number",
-        "other",
-        "pan",
-        "polygon_address",
-        "sg_number",
-        "solana_address",
-    ]
-    """The type of the account number.
-
-    For wallet addresses, use the chain-specific type (e.g. `ethereum_address`). Use
-    `other` if the account number is in a generic format.
-    """
-
-
-AccountDetails = AccountDetail
-"""This type is deprecated and will be removed in a future release.
-
-Please use AccountDetail instead.
-"""
-
-
-class RoutingDetail(TypedDict, total=False):
-    routing_number: Required[str]
-    """The routing number of the bank."""
-
-    routing_number_type: Required[
-        Literal[
-            "aba",
-            "au_bsb",
-            "br_codigo",
-            "ca_cpa",
-            "chips",
-            "cnaps",
-            "dk_interbank_clearing_code",
-            "gb_sort_code",
-            "hk_interbank_clearing_code",
-            "il_bank_code",
-            "in_ifsc",
-            "jp_zengin_code",
-            "mx_bank_identifier",
-            "my_branch_code",
-            "nz_national_clearing_code",
-            "pl_national_clearing_code",
-            "se_bankgiro_clearing_code",
-            "sg_interbank_clearing_code",
-            "swift",
-            "vasp",
-            "za_national_clearing_code",
-        ]
-    ]
-    """The type of routing number.
-
-    See https://docs.moderntreasury.com/platform/reference/routing-detail-object for
-    more details.
-    """
-
-    payment_type: Optional[
-        Literal[
-            "ach",
-            "au_becs",
-            "bacs",
-            "book",
-            "card",
-            "chats",
-            "check",
-            "cross_border",
-            "dk_nets",
-            "eft",
-            "gb_fps",
-            "masav",
-            "mx_ccen",
-            "neft",
-            "nics",
-            "nz_becs",
-            "pl_elixir",
-            "rtp",
-            "se_bankgirot",
-            "sepa",
-            "sg_giro",
-            "sic",
-            "stablecoin",
-            "wire",
-            "zengin",
-        ]
-    ]
-    """
-    If the routing detail is to be used for a specific payment type this field will
-    be populated, otherwise null.
-    """
-
-
-RoutingDetails = RoutingDetail
-"""This type is deprecated and will be removed in a future release.
-
-Please use RoutingDetail instead.
-"""
