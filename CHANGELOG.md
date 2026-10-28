@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.82.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.81.0...v1.82.0) (2026-10-28)
+
+
+### Features
+
+* regenerate SDKs from 00ee43382af7d759adf81e7e949b9512f7ad53a0 ([2ba4a13](https://github.com/Modern-Treasury/modern-treasury-python/commit/2ba4a13a182ea100d937b7c44f59d77add7365c1))
+* regenerate SDKs from 85ab09de9cff74a0701287a9e115f3365a3a52e4 ([4d193a4](https://github.com/Modern-Treasury/modern-treasury-python/commit/4d193a461deb647731de51a07c50ea115cada0bf))
+* regenerate SDKs from 8de7b91cff561c06fda4e07c3a917c93a30e1539 ([fae198e](https://github.com/Modern-Treasury/modern-treasury-python/commit/fae198ee8485ffd7ac97187c0e09802f18f659f5))
+
 ## [1.81.0](https://github.com/Modern-Treasury/modern-treasury-python/compare/v1.80.0...v1.81.0) (2026-10-27)
 
 
