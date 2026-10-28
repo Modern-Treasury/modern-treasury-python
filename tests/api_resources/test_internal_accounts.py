@@ -154,6 +154,7 @@ class TestInternalAccounts:
     def test_method_update_with_all_params(self, client: ModernTreasury) -> None:
         internal_account = client.internal_accounts.update(
             id="id",
+            allowed_ach_debit_company_ids=["x"],
             contra_ledger_account_id="contra_ledger_account_id",
             counterparty_id="counterparty_id",
             external_id="external_id",
@@ -478,6 +479,7 @@ class TestAsyncInternalAccounts:
     async def test_method_update_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         internal_account = await async_client.internal_accounts.update(
             id="id",
+            allowed_ach_debit_company_ids=["x"],
             contra_ledger_account_id="contra_ledger_account_id",
             counterparty_id="counterparty_id",
             external_id="external_id",

@@ -201,7 +201,7 @@ class PaymentActions(SyncAPIResource):
         per_page: int | Omit = omit,
         status: Literal["pending", "processable", "processing", "sent", "acknowledged", "failed", "cancelled"]
         | Omit = omit,
-        type: Literal["stop", "issue"] | Omit = omit,
+        type: Literal["void", "stop", "issue"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -446,7 +446,7 @@ class AsyncPaymentActions(AsyncAPIResource):
         per_page: int | Omit = omit,
         status: Literal["pending", "processable", "processing", "sent", "acknowledged", "failed", "cancelled"]
         | Omit = omit,
-        type: Literal["stop", "issue"] | Omit = omit,
+        type: Literal["void", "stop", "issue"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
