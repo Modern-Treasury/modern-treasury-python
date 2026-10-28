@@ -244,6 +244,7 @@ class InternalAccounts(SyncAPIResource):
         self,
         id: str,
         *,
+        allowed_ach_debit_company_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         contra_ledger_account_id: str | Omit = omit,
         counterparty_id: str | Omit = omit,
         external_id: Optional[str] | Omit = omit,
@@ -266,6 +267,11 @@ class InternalAccounts(SyncAPIResource):
         update internal account
 
         Args:
+          allowed_ach_debit_company_ids: The ACH Company IDs allowed to debit this account. `null` allows every company.
+              An empty array allows none. Debits from any other company are returned with code
+              R10. Only applicable to debitable accounts under a Modern Treasury PSP
+              connection.
+
           contra_ledger_account_id: The Contra Ledger Account associated to this account.
 
           counterparty_id: The Counterparty associated to this account.
@@ -308,6 +314,7 @@ class InternalAccounts(SyncAPIResource):
             path_template("/api/internal_accounts/{id}", id=id),
             body=maybe_transform(
                 {
+                    "allowed_ach_debit_company_ids": allowed_ach_debit_company_ids,
                     "contra_ledger_account_id": contra_ledger_account_id,
                     "counterparty_id": counterparty_id,
                     "external_id": external_id,
@@ -741,6 +748,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         self,
         id: str,
         *,
+        allowed_ach_debit_company_ids: Optional[SequenceNotStr[str]] | Omit = omit,
         contra_ledger_account_id: str | Omit = omit,
         counterparty_id: str | Omit = omit,
         external_id: Optional[str] | Omit = omit,
@@ -763,6 +771,11 @@ class AsyncInternalAccounts(AsyncAPIResource):
         update internal account
 
         Args:
+          allowed_ach_debit_company_ids: The ACH Company IDs allowed to debit this account. `null` allows every company.
+              An empty array allows none. Debits from any other company are returned with code
+              R10. Only applicable to debitable accounts under a Modern Treasury PSP
+              connection.
+
           contra_ledger_account_id: The Contra Ledger Account associated to this account.
 
           counterparty_id: The Counterparty associated to this account.
@@ -805,6 +818,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
             path_template("/api/internal_accounts/{id}", id=id),
             body=await async_maybe_transform(
                 {
+                    "allowed_ach_debit_company_ids": allowed_ach_debit_company_ids,
                     "contra_ledger_account_id": contra_ledger_account_id,
                     "counterparty_id": counterparty_id,
                     "external_id": external_id,
