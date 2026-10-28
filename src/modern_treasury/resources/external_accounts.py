@@ -190,7 +190,7 @@ class ExternalAccounts(SyncAPIResource):
         counterparty_id: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         name: Optional[str] | Omit = omit,
-        party_address: AddressRequest | Omit = omit,
+        party_address: Optional[AddressRequest] | Omit = omit,
         party_name: str | Omit = omit,
         party_type: Optional[Literal["business", "individual"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -655,7 +655,7 @@ class AsyncExternalAccounts(AsyncAPIResource):
         counterparty_id: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         name: Optional[str] | Omit = omit,
-        party_address: AddressRequest | Omit = omit,
+        party_address: Optional[AddressRequest] | Omit = omit,
         party_name: str | Omit = omit,
         party_type: Optional[Literal["business", "individual"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

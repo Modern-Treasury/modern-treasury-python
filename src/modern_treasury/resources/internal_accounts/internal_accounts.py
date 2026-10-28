@@ -252,7 +252,7 @@ class InternalAccounts(SyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         name: str | Omit = omit,
         parent_account_id: str | Omit = omit,
-        party_address: AddressRequest | Omit = omit,
+        party_address: Optional[AddressRequest] | Omit = omit,
         party_type: Optional[Literal["individual", "business"]] | Omit = omit,
         status: Literal["pending_closure"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -756,7 +756,7 @@ class AsyncInternalAccounts(AsyncAPIResource):
         metadata: Dict[str, str] | Omit = omit,
         name: str | Omit = omit,
         parent_account_id: str | Omit = omit,
-        party_address: AddressRequest | Omit = omit,
+        party_address: Optional[AddressRequest] | Omit = omit,
         party_type: Optional[Literal["individual", "business"]] | Omit = omit,
         status: Literal["pending_closure"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

@@ -93,6 +93,14 @@ class PaymentOrderCreateAsyncParams(TypedDict, total=False):
     is a bank holiday or weekend. Format: yyyy-mm-dd.
     """
 
+    end_to_end_id: Optional[str]
+    """A unique identifier passed through to the receiving bank.
+
+    Only supported for `ach` (maximum 15 characters) and `wire` (maximum 35
+    characters). If not provided, Modern Treasury generates one. Some banks may
+    truncate this value or use their own identifier instead.
+    """
+
     expires_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """RFP payments require an expires_at. This value must be past the effective_date."""
 
