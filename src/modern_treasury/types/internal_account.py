@@ -112,7 +112,18 @@ class InternalAccount(BaseModel):
     """An array of account detail objects."""
 
     account_type: Optional[
-        Literal["cash", "checking", "general_ledger", "loan", "non_resident", "other", "overdraft", "savings"]
+        Literal[
+            "cash",
+            "checking",
+            "general_ledger",
+            "hosted_wallet",
+            "loan",
+            "non_resident",
+            "other",
+            "overdraft",
+            "savings",
+            "self_hosted_wallet",
+        ]
     ] = None
     """Can be checking, savings or other."""
 
