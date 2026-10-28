@@ -1,0 +1,36 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing_extensions import Literal, Required, TypedDict
+
+__all__ = ["AccountDetailCreateRequestParam"]
+
+
+class AccountDetailCreateRequestParam(TypedDict, total=False):
+    account_number: Required[str]
+    """The account number for the bank account."""
+
+    account_number_type: Literal[
+        "arbitrum_address",
+        "au_number",
+        "avalanche_address",
+        "base_address",
+        "card_token",
+        "clabe",
+        "ethereum_address",
+        "hk_number",
+        "iban",
+        "id_number",
+        "nz_number",
+        "other",
+        "pan",
+        "polygon_address",
+        "sg_number",
+        "solana_address",
+    ]
+    """The type of the account number.
+
+    For wallet addresses, use the chain-specific type (e.g. `ethereum_address`). Use
+    `other` if the account number is in a generic format.
+    """
