@@ -17,6 +17,8 @@ from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.virtual_account import VirtualAccount
 from ..types.shared_params.address_request import AddressRequest
+from ..types.account_detail_create_request_param import AccountDetailCreateRequestParam
+from ..types.routing_detail_create_request_param import RoutingDetailCreateRequestParam
 from ..types.shared_params.ledger_account_create_request import LedgerAccountCreateRequest
 
 __all__ = ["VirtualAccounts", "AsyncVirtualAccounts"]
@@ -47,7 +49,7 @@ class VirtualAccounts(SyncAPIResource):
         *,
         internal_account_id: str,
         name: str,
-        account_details: Iterable[virtual_account_create_params.AccountDetail] | Omit = omit,
+        account_details: Iterable[AccountDetailCreateRequestParam] | Omit = omit,
         counterparty_id: str | Omit = omit,
         credit_ledger_account_id: str | Omit = omit,
         debit_ledger_account_id: str | Omit = omit,
@@ -57,7 +59,7 @@ class VirtualAccounts(SyncAPIResource):
         ledger_account_id: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         party_address: AddressRequest | Omit = omit,
-        routing_details: Iterable[virtual_account_create_params.RoutingDetail] | Omit = omit,
+        routing_details: Iterable[RoutingDetailCreateRequestParam] | Omit = omit,
         virtual_account_setting_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -365,7 +367,7 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         *,
         internal_account_id: str,
         name: str,
-        account_details: Iterable[virtual_account_create_params.AccountDetail] | Omit = omit,
+        account_details: Iterable[AccountDetailCreateRequestParam] | Omit = omit,
         counterparty_id: str | Omit = omit,
         credit_ledger_account_id: str | Omit = omit,
         debit_ledger_account_id: str | Omit = omit,
@@ -375,7 +377,7 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         ledger_account_id: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         party_address: AddressRequest | Omit = omit,
-        routing_details: Iterable[virtual_account_create_params.RoutingDetail] | Omit = omit,
+        routing_details: Iterable[RoutingDetailCreateRequestParam] | Omit = omit,
         virtual_account_setting_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
