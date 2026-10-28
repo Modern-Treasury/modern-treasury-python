@@ -11,7 +11,7 @@ from tests.utils import assert_matches_type
 from modern_treasury import ModernTreasury, AsyncModernTreasury
 from modern_treasury.types import (
     InternalAccount,
-    InternalAccountUpdateAccountCapabilityResponse,
+    AccountCapability,
 )
 from modern_treasury._utils import parse_datetime
 from modern_treasury.pagination import SyncPage, AsyncPage
@@ -296,7 +296,7 @@ class TestInternalAccounts:
             internal_account_id="internal_account_id",
             identifier="identifier",
         )
-        assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=["response"])
+        assert_matches_type(AccountCapability, internal_account, path=["response"])
 
     @parametrize
     def test_raw_response_update_account_capability(self, client: ModernTreasury) -> None:
@@ -309,7 +309,7 @@ class TestInternalAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         internal_account = response.parse()
-        assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=["response"])
+        assert_matches_type(AccountCapability, internal_account, path=["response"])
 
     @parametrize
     def test_streaming_response_update_account_capability(self, client: ModernTreasury) -> None:
@@ -322,7 +322,7 @@ class TestInternalAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             internal_account = response.parse()
-            assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=["response"])
+            assert_matches_type(AccountCapability, internal_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -620,7 +620,7 @@ class TestAsyncInternalAccounts:
             internal_account_id="internal_account_id",
             identifier="identifier",
         )
-        assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=["response"])
+        assert_matches_type(AccountCapability, internal_account, path=["response"])
 
     @parametrize
     async def test_raw_response_update_account_capability(self, async_client: AsyncModernTreasury) -> None:
@@ -633,7 +633,7 @@ class TestAsyncInternalAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         internal_account = response.parse()
-        assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=["response"])
+        assert_matches_type(AccountCapability, internal_account, path=["response"])
 
     @parametrize
     async def test_streaming_response_update_account_capability(self, async_client: AsyncModernTreasury) -> None:
@@ -646,7 +646,7 @@ class TestAsyncInternalAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             internal_account = await response.parse()
-            assert_matches_type(InternalAccountUpdateAccountCapabilityResponse, internal_account, path=["response"])
+            assert_matches_type(AccountCapability, internal_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
