@@ -44,7 +44,7 @@ class InternalAccountUpdateParams(TypedDict, total=False):
     parent_account_id: str
     """The parent internal account for this account."""
 
-    party_address: AddressRequest
+    party_address: Optional[AddressRequest]
     """The address associated with the owner of the internal account.
 
     Updating this value does not guarantee that the new address matches the address
