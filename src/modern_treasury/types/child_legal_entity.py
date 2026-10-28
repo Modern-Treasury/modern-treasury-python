@@ -10,20 +10,12 @@ from .._models import BaseModel
 from .document import Document
 from .bank_settings import BankSettings
 from .identification import Identification
+from .legal_entity_regulator import LegalEntityRegulator
 from .wealth_and_employment_details import WealthAndEmploymentDetails
 from .shared.third_party_verification import ThirdPartyVerification
 from .shared.legal_entity_industry_classification import LegalEntityIndustryClassification
 
-__all__ = [
-    "ChildLegalEntity",
-    "Addresses",
-    "Address",
-    "PhoneNumbers",
-    "PhoneNumber",
-    "Regulators",
-    "Regulator",
-    "TermsOfUse",
-]
+__all__ = ["ChildLegalEntity", "Addresses", "Address", "PhoneNumbers", "PhoneNumber", "TermsOfUse"]
 
 
 class Address(BaseModel):
@@ -100,27 +92,6 @@ PhoneNumbers = PhoneNumber
 """This type is deprecated and will be removed in a future release.
 
 Please use PhoneNumber instead.
-"""
-
-
-class Regulator(BaseModel):
-    jurisdiction: str
-    """
-    The country code where the regulator operates in the ISO 3166-1 alpha-2 format
-    (e.g., "US", "CA", "GB").
-    """
-
-    name: str
-    """Full name of the regulatory body."""
-
-    registration_number: str
-    """Registration or identification number with the regulator."""
-
-
-Regulators = Regulator
-"""This type is deprecated and will be removed in a future release.
-
-Please use Regulator instead.
 """
 
 
@@ -254,7 +225,7 @@ class ChildLegalEntity(BaseModel):
     primary_social_media_sites: List[str]
     """A list of the entity's primary social media URLs."""
 
-    regulators: Optional[List[Regulator]] = None
+    regulators: Optional[List[LegalEntityRegulator]] = None
     """Array of regulatory bodies overseeing this institution."""
 
     risk_rating: Optional[Literal["low", "medium", "high"]] = None

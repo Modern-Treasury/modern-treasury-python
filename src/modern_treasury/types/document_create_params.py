@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 from .._types import FileTypes
 
@@ -10,8 +10,6 @@ __all__ = ["DocumentCreateParams"]
 
 
 class DocumentCreateParams(TypedDict, total=False):
-    file: Required[FileTypes]
-
     document_type: str
     """A category given to the document, can be `null`."""
 
@@ -30,3 +28,5 @@ class DocumentCreateParams(TypedDict, total=False):
         "return",
         "transaction",
     ]
+
+    file: FileTypes

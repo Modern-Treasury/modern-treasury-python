@@ -6,3 +6,6 @@ from .invoice_line_item import InvoiceLineItem as InvoiceLineItem
 from .line_item_list_params import LineItemListParams as LineItemListParams
 from .line_item_create_params import LineItemCreateParams as LineItemCreateParams
 from .line_item_update_params import LineItemUpdateParams as LineItemUpdateParams
+from .invoice_line_item_create_request_param import (
+    InvoiceLineItemCreateRequestParam as InvoiceLineItemCreateRequestParam,
+)

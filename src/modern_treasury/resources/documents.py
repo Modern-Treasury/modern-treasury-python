@@ -45,7 +45,6 @@ class Documents(SyncAPIResource):
     def create(
         self,
         *,
-        file: FileTypes,
         document_type: str | Omit = omit,
         documentable_id: str | Omit = omit,
         documentable_type: Literal[
@@ -61,6 +60,7 @@ class Documents(SyncAPIResource):
             "transaction",
         ]
         | Omit = omit,
+        file: FileTypes | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -89,10 +89,10 @@ class Documents(SyncAPIResource):
         """
         body = deepcopy_with_paths(
             {
-                "file": file,
                 "document_type": document_type,
                 "documentable_id": documentable_id,
                 "documentable_type": documentable_type,
+                "file": file,
             },
             [["file"]],
         )
@@ -237,7 +237,6 @@ class AsyncDocuments(AsyncAPIResource):
     async def create(
         self,
         *,
-        file: FileTypes,
         document_type: str | Omit = omit,
         documentable_id: str | Omit = omit,
         documentable_type: Literal[
@@ -253,6 +252,7 @@ class AsyncDocuments(AsyncAPIResource):
             "transaction",
         ]
         | Omit = omit,
+        file: FileTypes | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -281,10 +281,10 @@ class AsyncDocuments(AsyncAPIResource):
         """
         body = deepcopy_with_paths(
             {
-                "file": file,
                 "document_type": document_type,
                 "documentable_id": documentable_id,
                 "documentable_type": documentable_type,
+                "file": file,
             },
             [["file"]],
         )
