@@ -4,15 +4,16 @@ from __future__ import annotations
 
 from typing import Dict, Union, Iterable, Optional
 from datetime import date
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 from .shared.currency import Currency
 from .expected_payment_type import ExpectedPaymentType
+from .line_item_request_param import LineItemRequestParam
 from .reconciliation_rule_param import ReconciliationRuleParam
 from .shared_params.ledger_transaction_create_request import LedgerTransactionCreateRequest
 
-__all__ = ["ExpectedPaymentCreateParams", "LineItems", "LineItem"]
+__all__ = ["ExpectedPaymentCreateParams"]
 
 
 class ExpectedPaymentCreateParams(TypedDict, total=False):
@@ -99,7 +100,7 @@ class ExpectedPaymentCreateParams(TypedDict, total=False):
     transaction tracks the expected payment automatically.
     """
 
-    line_items: Iterable[LineItem]
+    line_items: Iterable[LineItemRequestParam]
 
     metadata: Dict[str, str]
     """Additional data represented as key-value pairs.
@@ -133,34 +134,3 @@ class ExpectedPaymentCreateParams(TypedDict, total=False):
 
     type: Optional[ExpectedPaymentType]
     """One of: ach, au_becs, bacs, book, check, eft, rtp, sepa, wire."""
-
-
-class LineItem(TypedDict, total=False):
-    amount: Required[int]
-    """Value in specified currency's smallest unit.
-
-    e.g. $10 would be represented as 1000.
-    """
-
-    accounting_category_id: Optional[str]
-    """The ID of one of your accounting categories.
-
-    Note that these will only be accessible if your accounting system has been
-    connected.
-    """
-
-    description: Optional[str]
-    """A free-form description of the line item."""
-
-    metadata: Dict[str, str]
-    """Additional data represented as key-value pairs.
-
-    Both the key and value must be strings.
-    """
-
-
-LineItems = LineItem
-"""This type is deprecated and will be removed in a future release.
-
-Please use LineItem instead.
-"""
