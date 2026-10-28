@@ -10,21 +10,13 @@ from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 from .bank_settings_param import BankSettingsParam
 from .wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
+from .shared_params.legal_entity_regulator import LegalEntityRegulator
 from .shared_params.third_party_verification import ThirdPartyVerification
 from .shared_params.identification_create_request import IdentificationCreateRequest
 from .shared_params.legal_entity_address_create_request import LegalEntityAddressCreateRequest
 from .shared_params.legal_entity_industry_classification import LegalEntityIndustryClassification
 
-__all__ = [
-    "LegalEntityCreateParams",
-    "Documents",
-    "Document",
-    "PhoneNumbers",
-    "PhoneNumber",
-    "Regulators",
-    "Regulator",
-    "TermsOfUse",
-]
+__all__ = ["LegalEntityCreateParams", "Documents", "Document", "PhoneNumbers", "PhoneNumber", "TermsOfUse"]
 
 
 class LegalEntityCreateParams(TypedDict, total=False):
@@ -143,7 +135,7 @@ class LegalEntityCreateParams(TypedDict, total=False):
     primary_social_media_sites: SequenceNotStr[str]
     """A list of the entity's primary social media URLs."""
 
-    regulators: Optional[Iterable[Regulator]]
+    regulators: Optional[Iterable[LegalEntityRegulator]]
     """Array of regulatory bodies overseeing this institution."""
 
     risk_rating: Optional[Literal["low", "medium", "high"]]
@@ -223,27 +215,6 @@ PhoneNumbers = PhoneNumber
 """This type is deprecated and will be removed in a future release.
 
 Please use PhoneNumber instead.
-"""
-
-
-class Regulator(TypedDict, total=False):
-    jurisdiction: Required[str]
-    """
-    The country code where the regulator operates in the ISO 3166-1 alpha-2 format
-    (e.g., "US", "CA", "GB").
-    """
-
-    name: Required[str]
-    """Full name of the regulatory body."""
-
-    registration_number: Required[str]
-    """Registration or identification number with the regulator."""
-
-
-Regulators = Regulator
-"""This type is deprecated and will be removed in a future release.
-
-Please use Regulator instead.
 """
 
 
