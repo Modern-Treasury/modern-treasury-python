@@ -5,12 +5,21 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import Literal, TypedDict
 
+from .._types import SequenceNotStr
 from .shared_params.address_request import AddressRequest
 
 __all__ = ["InternalAccountUpdateParams"]
 
 
 class InternalAccountUpdateParams(TypedDict, total=False):
+    allowed_ach_debit_company_ids: Optional[SequenceNotStr[str]]
+    """The ACH Company IDs allowed to debit this account.
+
+    `null` allows every company. An empty array allows none. Debits from any other
+    company are returned with code R10. Only applicable to debitable accounts under
+    a Modern Treasury PSP connection.
+    """
+
     contra_ledger_account_id: str
     """The Contra Ledger Account associated to this account."""
 
