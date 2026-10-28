@@ -189,7 +189,7 @@ class VirtualAccounts(SyncAPIResource):
         ledger_account_id: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         name: Optional[str] | Omit = omit,
-        party_address: AddressRequest | Omit = omit,
+        party_address: Optional[AddressRequest] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -205,8 +205,8 @@ class VirtualAccounts(SyncAPIResource):
           ledger_account_id: The ledger account that you'd like to link to the virtual account.
 
           party_address: The address of the owner of the virtual account. Omit to leave it unchanged;
-              pass all fields blank to clear it, after which the internal account's party
-              address is used.
+              pass `null` to clear it, after which the internal account's party address is
+              used.
 
           extra_headers: Send extra headers
 
@@ -507,7 +507,7 @@ class AsyncVirtualAccounts(AsyncAPIResource):
         ledger_account_id: str | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
         name: Optional[str] | Omit = omit,
-        party_address: AddressRequest | Omit = omit,
+        party_address: Optional[AddressRequest] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -523,8 +523,8 @@ class AsyncVirtualAccounts(AsyncAPIResource):
           ledger_account_id: The ledger account that you'd like to link to the virtual account.
 
           party_address: The address of the owner of the virtual account. Omit to leave it unchanged;
-              pass all fields blank to clear it, after which the internal account's party
-              address is used.
+              pass `null` to clear it, after which the internal account's party address is
+              used.
 
           extra_headers: Send extra headers
 
