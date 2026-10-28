@@ -7,7 +7,9 @@ from typing import Dict, List, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, TypeAlias
 
+from .hold import Hold
 from .._models import BaseModel
+from .accounting import Accounting
 from .shared.currency import Currency
 from .virtual_account import VirtualAccount
 from .internal_account import InternalAccount
@@ -17,72 +19,11 @@ from .shared.foreign_exchange_rate import ForeignExchangeRate
 
 __all__ = [
     "PaymentOrder",
-    "Accounting",
-    "CurrentHold",
     "OriginatingPartyAddress",
     "ReferenceNumbers",
     "ReferenceNumber",
     "UltimateOriginatingAccount",
 ]
-
-
-class Accounting(BaseModel):
-    account_id: Optional[str] = None
-    """The ID of one of your accounting categories.
-
-    Note that these will only be accessible if your accounting system has been
-    connected.
-    """
-
-    class_id: Optional[str] = None
-    """The ID of one of the class objects in your accounting system.
-
-    Class objects track segments of your business independent of client or project.
-    Note that these will only be accessible if your accounting system has been
-    connected.
-    """
-
-
-class CurrentHold(BaseModel):
-    """
-    If the payment order's status is `held`, this will include the hold object's data.
-    """
-
-    id: str
-
-    created_at: datetime
-
-    object: Literal["hold"]
-    """The type of object"""
-
-    status: Literal["active", "resolved"]
-    """The status of the hold"""
-
-    target_id: str
-    """The ID of the target being held"""
-
-    target_type: Literal["payment_order"]
-    """The type of target being held"""
-
-    updated_at: datetime
-
-    live_mode: Optional[bool] = None
-    """
-    This field will be true if this object exists in the live environment or false
-    if it exists in the test environment.
-    """
-
-    metadata: Optional[Dict[str, str]] = None
-    """Additional metadata for the hold"""
-
-    reason: Optional[str] = None
-    """The reason for the hold"""
-
-    resolution: Optional[str] = None
-    """The resolution of the hold"""
-
-    resolved_at: Optional[datetime] = None
-    """When the hold was resolved"""
 
 
 class OriginatingPartyAddress(BaseModel):
@@ -285,7 +226,7 @@ class PaymentOrder(BaseModel):
     currency: Currency
     """Defaults to the currency of the originating account."""
 
-    current_hold: Optional[CurrentHold] = None
+    current_hold: Optional[Hold] = None
     """
     If the payment order's status is `held`, this will include the hold object's
     data.

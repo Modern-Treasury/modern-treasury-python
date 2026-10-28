@@ -24,6 +24,7 @@ from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.legal_entity import LegalEntity
 from ..types.bank_settings_param import BankSettingsParam
+from ..types.legal_entity_regulator_param import LegalEntityRegulatorParam
 from ..types.wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
 from ..types.shared_params.third_party_verification import ThirdPartyVerification
 from ..types.shared_params.identification_create_request import IdentificationCreateRequest
@@ -93,7 +94,7 @@ class LegalEntities(SyncAPIResource):
         preferred_name: Optional[str] | Omit = omit,
         prefix: Optional[str] | Omit = omit,
         primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
-        regulators: Optional[Iterable[legal_entity_create_params.Regulator]] | Omit = omit,
+        regulators: Optional[Iterable[LegalEntityRegulatorParam]] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         status: Literal["draft"] | Omit = omit,
@@ -343,7 +344,7 @@ class LegalEntities(SyncAPIResource):
         preferred_name: Optional[str] | Omit = omit,
         prefix: Optional[str] | Omit = omit,
         primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
-        regulators: Optional[Iterable[legal_entity_update_params.Regulator]] | Omit = omit,
+        regulators: Optional[Iterable[LegalEntityRegulatorParam]] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         status: Literal["pending"] | Omit = omit,
@@ -673,7 +674,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         preferred_name: Optional[str] | Omit = omit,
         prefix: Optional[str] | Omit = omit,
         primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
-        regulators: Optional[Iterable[legal_entity_create_params.Regulator]] | Omit = omit,
+        regulators: Optional[Iterable[LegalEntityRegulatorParam]] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         status: Literal["draft"] | Omit = omit,
@@ -923,7 +924,7 @@ class AsyncLegalEntities(AsyncAPIResource):
         preferred_name: Optional[str] | Omit = omit,
         prefix: Optional[str] | Omit = omit,
         primary_social_media_sites: SequenceNotStr[str] | Omit = omit,
-        regulators: Optional[Iterable[legal_entity_update_params.Regulator]] | Omit = omit,
+        regulators: Optional[Iterable[LegalEntityRegulatorParam]] | Omit = omit,
         risk_rating: Optional[Literal["low", "medium", "high"]] | Omit = omit,
         service_provider_legal_entity_id: Optional[str] | Omit = omit,
         status: Literal["pending"] | Omit = omit,

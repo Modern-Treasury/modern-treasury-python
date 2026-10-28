@@ -9,6 +9,7 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 from .bank_settings_param import BankSettingsParam
+from .legal_entity_regulator_param import LegalEntityRegulatorParam
 from .wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
 from .shared_params.third_party_verification import ThirdPartyVerification
 from .shared_params.identification_create_request import IdentificationCreateRequest
@@ -22,8 +23,6 @@ __all__ = [
     "LegalEntityDocument",
     "LegalEntityPhoneNumbers",
     "LegalEntityPhoneNumber",
-    "LegalEntityRegulators",
-    "LegalEntityRegulator",
     "LegalEntityTermsOfUse",
 ]
 
@@ -82,27 +81,6 @@ LegalEntityPhoneNumbers = LegalEntityPhoneNumber
 """This type is deprecated and will be removed in a future release.
 
 Please use LegalEntityPhoneNumber instead.
-"""
-
-
-class LegalEntityRegulator(TypedDict, total=False):
-    jurisdiction: Required[str]
-    """
-    The country code where the regulator operates in the ISO 3166-1 alpha-2 format
-    (e.g., "US", "CA", "GB").
-    """
-
-    name: Required[str]
-    """Full name of the regulatory body."""
-
-    registration_number: Required[str]
-    """Registration or identification number with the regulator."""
-
-
-LegalEntityRegulators = LegalEntityRegulator
-"""This type is deprecated and will be removed in a future release.
-
-Please use LegalEntityRegulator instead.
 """
 
 
@@ -237,7 +215,7 @@ class LegalEntity(TypedDict, total=False):
     primary_social_media_sites: SequenceNotStr[str]
     """A list of the entity's primary social media URLs."""
 
-    regulators: Optional[Iterable[LegalEntityRegulator]]
+    regulators: Optional[Iterable[LegalEntityRegulatorParam]]
     """Array of regulatory bodies overseeing this institution."""
 
     risk_rating: Optional[Literal["low", "medium", "high"]]
