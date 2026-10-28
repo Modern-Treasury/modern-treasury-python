@@ -16,10 +16,7 @@ from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import to_streamed_response_wrapper, async_to_streamed_response_wrapper
 from ..pagination import SyncPage, AsyncPage
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.payment_action_list_response import PaymentActionListResponse
-from ..types.payment_action_create_response import PaymentActionCreateResponse
-from ..types.payment_action_update_response import PaymentActionUpdateResponse
-from ..types.payment_action_retrieve_response import PaymentActionRetrieveResponse
+from ..types.payment_action import PaymentAction
 
 __all__ = ["PaymentActions", "AsyncPaymentActions"]
 
@@ -59,7 +56,7 @@ class PaymentActions(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> PaymentActionCreateResponse:
+    ) -> PaymentAction:
         """Create a payment action.
 
         Args:
@@ -106,7 +103,7 @@ class PaymentActions(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=PaymentActionCreateResponse,
+            cast_to=PaymentAction,
         )
 
     def retrieve(
@@ -119,7 +116,7 @@ class PaymentActions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PaymentActionRetrieveResponse:
+    ) -> PaymentAction:
         """
         Get details on a single payment action.
 
@@ -139,7 +136,7 @@ class PaymentActions(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PaymentActionRetrieveResponse,
+            cast_to=PaymentAction,
         )
 
     def update(
@@ -154,7 +151,7 @@ class PaymentActions(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> PaymentActionUpdateResponse:
+    ) -> PaymentAction:
         """Update a single payment action.
 
         Args:
@@ -186,7 +183,7 @@ class PaymentActions(SyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=PaymentActionUpdateResponse,
+            cast_to=PaymentAction,
         )
 
     def list(
@@ -208,7 +205,7 @@ class PaymentActions(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[PaymentActionListResponse]:
+    ) -> SyncPage[PaymentAction]:
         """
         Get a list of all payment actions.
 
@@ -242,7 +239,7 @@ class PaymentActions(SyncAPIResource):
         """
         return self._get_api_list(
             "/api/payment_actions",
-            page=SyncPage[PaymentActionListResponse],
+            page=SyncPage[PaymentAction],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -263,7 +260,7 @@ class PaymentActions(SyncAPIResource):
                     payment_action_list_params.PaymentActionListParams,
                 ),
             ),
-            model=PaymentActionListResponse,
+            model=PaymentAction,
         )
 
 
@@ -302,7 +299,7 @@ class AsyncPaymentActions(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> PaymentActionCreateResponse:
+    ) -> PaymentAction:
         """Create a payment action.
 
         Args:
@@ -349,7 +346,7 @@ class AsyncPaymentActions(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=PaymentActionCreateResponse,
+            cast_to=PaymentAction,
         )
 
     async def retrieve(
@@ -362,7 +359,7 @@ class AsyncPaymentActions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PaymentActionRetrieveResponse:
+    ) -> PaymentAction:
         """
         Get details on a single payment action.
 
@@ -382,7 +379,7 @@ class AsyncPaymentActions(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PaymentActionRetrieveResponse,
+            cast_to=PaymentAction,
         )
 
     async def update(
@@ -397,7 +394,7 @@ class AsyncPaymentActions(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
         idempotency_key: str | None = None,
-    ) -> PaymentActionUpdateResponse:
+    ) -> PaymentAction:
         """Update a single payment action.
 
         Args:
@@ -431,7 +428,7 @@ class AsyncPaymentActions(AsyncAPIResource):
                 timeout=timeout,
                 idempotency_key=idempotency_key,
             ),
-            cast_to=PaymentActionUpdateResponse,
+            cast_to=PaymentAction,
         )
 
     def list(
@@ -453,7 +450,7 @@ class AsyncPaymentActions(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[PaymentActionListResponse, AsyncPage[PaymentActionListResponse]]:
+    ) -> AsyncPaginator[PaymentAction, AsyncPage[PaymentAction]]:
         """
         Get a list of all payment actions.
 
@@ -487,7 +484,7 @@ class AsyncPaymentActions(AsyncAPIResource):
         """
         return self._get_api_list(
             "/api/payment_actions",
-            page=AsyncPage[PaymentActionListResponse],
+            page=AsyncPage[PaymentAction],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -508,7 +505,7 @@ class AsyncPaymentActions(AsyncAPIResource):
                     payment_action_list_params.PaymentActionListParams,
                 ),
             ),
-            model=PaymentActionListResponse,
+            model=PaymentAction,
         )
 
 
