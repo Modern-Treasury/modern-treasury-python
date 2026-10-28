@@ -83,6 +83,7 @@ class PaymentOrders(SyncAPIResource):
         description: Optional[str] | Omit = omit,
         documents: Iterable[payment_order_create_params.Document] | Omit = omit,
         effective_date: Union[str, date] | Omit = omit,
+        end_to_end_id: Optional[str] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
         external_id: Optional[str] | Omit = omit,
         fallback_type: Literal["ach"] | Omit = omit,
@@ -160,6 +161,11 @@ class PaymentOrders(SyncAPIResource):
           effective_date: Date transactions are to be posted to the participants' account. Defaults to the
               current business day or the next business day if the current day is a bank
               holiday or weekend. Format: yyyy-mm-dd.
+
+          end_to_end_id: A unique identifier passed through to the receiving bank. Only supported for
+              `ach` (maximum 15 characters) and `wire` (maximum 35 characters). If not
+              provided, Modern Treasury generates one. Some banks may truncate this value or
+              use their own identifier instead.
 
           expires_at: RFP payments require an expires_at. This value must be past the effective_date.
 
@@ -292,6 +298,7 @@ class PaymentOrders(SyncAPIResource):
                 "description": description,
                 "documents": documents,
                 "effective_date": effective_date,
+                "end_to_end_id": end_to_end_id,
                 "expires_at": expires_at,
                 "external_id": external_id,
                 "fallback_type": fallback_type,
@@ -393,6 +400,7 @@ class PaymentOrders(SyncAPIResource):
         description: Optional[str] | Omit = omit,
         direction: Literal["credit", "debit"] | Omit = omit,
         effective_date: Union[str, date] | Omit = omit,
+        end_to_end_id: Optional[str] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
         external_id: Optional[str] | Omit = omit,
         fallback_type: Literal["ach"] | Omit = omit,
@@ -475,6 +483,11 @@ class PaymentOrders(SyncAPIResource):
           effective_date: Date transactions are to be posted to the participants' account. Defaults to the
               current business day or the next business day if the current day is a bank
               holiday or weekend. Format: yyyy-mm-dd.
+
+          end_to_end_id: A unique identifier passed through to the receiving bank. Only supported for
+              `ach` (maximum 15 characters) and `wire` (maximum 35 characters). If not
+              provided, Modern Treasury generates one. Some banks may truncate this value or
+              use their own identifier instead.
 
           expires_at: RFP payments require an expires_at. This value must be past the effective_date.
 
@@ -605,6 +618,7 @@ class PaymentOrders(SyncAPIResource):
                     "description": description,
                     "direction": direction,
                     "effective_date": effective_date,
+                    "end_to_end_id": end_to_end_id,
                     "expires_at": expires_at,
                     "external_id": external_id,
                     "fallback_type": fallback_type,
@@ -801,6 +815,7 @@ class PaymentOrders(SyncAPIResource):
         currency: Currency | Omit = omit,
         description: Optional[str] | Omit = omit,
         effective_date: Union[str, date] | Omit = omit,
+        end_to_end_id: Optional[str] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
         external_id: Optional[str] | Omit = omit,
         fallback_type: Literal["ach"] | Omit = omit,
@@ -875,6 +890,11 @@ class PaymentOrders(SyncAPIResource):
           effective_date: Date transactions are to be posted to the participants' account. Defaults to the
               current business day or the next business day if the current day is a bank
               holiday or weekend. Format: yyyy-mm-dd.
+
+          end_to_end_id: A unique identifier passed through to the receiving bank. Only supported for
+              `ach` (maximum 15 characters) and `wire` (maximum 35 characters). If not
+              provided, Modern Treasury generates one. Some banks may truncate this value or
+              use their own identifier instead.
 
           expires_at: RFP payments require an expires_at. This value must be past the effective_date.
 
@@ -1008,6 +1028,7 @@ class PaymentOrders(SyncAPIResource):
                     "currency": currency,
                     "description": description,
                     "effective_date": effective_date,
+                    "end_to_end_id": end_to_end_id,
                     "expires_at": expires_at,
                     "external_id": external_id,
                     "fallback_type": fallback_type,
@@ -1092,6 +1113,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         description: Optional[str] | Omit = omit,
         documents: Iterable[payment_order_create_params.Document] | Omit = omit,
         effective_date: Union[str, date] | Omit = omit,
+        end_to_end_id: Optional[str] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
         external_id: Optional[str] | Omit = omit,
         fallback_type: Literal["ach"] | Omit = omit,
@@ -1169,6 +1191,11 @@ class AsyncPaymentOrders(AsyncAPIResource):
           effective_date: Date transactions are to be posted to the participants' account. Defaults to the
               current business day or the next business day if the current day is a bank
               holiday or weekend. Format: yyyy-mm-dd.
+
+          end_to_end_id: A unique identifier passed through to the receiving bank. Only supported for
+              `ach` (maximum 15 characters) and `wire` (maximum 35 characters). If not
+              provided, Modern Treasury generates one. Some banks may truncate this value or
+              use their own identifier instead.
 
           expires_at: RFP payments require an expires_at. This value must be past the effective_date.
 
@@ -1301,6 +1328,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
                 "description": description,
                 "documents": documents,
                 "effective_date": effective_date,
+                "end_to_end_id": end_to_end_id,
                 "expires_at": expires_at,
                 "external_id": external_id,
                 "fallback_type": fallback_type,
@@ -1402,6 +1430,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         description: Optional[str] | Omit = omit,
         direction: Literal["credit", "debit"] | Omit = omit,
         effective_date: Union[str, date] | Omit = omit,
+        end_to_end_id: Optional[str] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
         external_id: Optional[str] | Omit = omit,
         fallback_type: Literal["ach"] | Omit = omit,
@@ -1484,6 +1513,11 @@ class AsyncPaymentOrders(AsyncAPIResource):
           effective_date: Date transactions are to be posted to the participants' account. Defaults to the
               current business day or the next business day if the current day is a bank
               holiday or weekend. Format: yyyy-mm-dd.
+
+          end_to_end_id: A unique identifier passed through to the receiving bank. Only supported for
+              `ach` (maximum 15 characters) and `wire` (maximum 35 characters). If not
+              provided, Modern Treasury generates one. Some banks may truncate this value or
+              use their own identifier instead.
 
           expires_at: RFP payments require an expires_at. This value must be past the effective_date.
 
@@ -1614,6 +1648,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
                     "description": description,
                     "direction": direction,
                     "effective_date": effective_date,
+                    "end_to_end_id": end_to_end_id,
                     "expires_at": expires_at,
                     "external_id": external_id,
                     "fallback_type": fallback_type,
@@ -1810,6 +1845,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
         currency: Currency | Omit = omit,
         description: Optional[str] | Omit = omit,
         effective_date: Union[str, date] | Omit = omit,
+        end_to_end_id: Optional[str] | Omit = omit,
         expires_at: Union[str, datetime, None] | Omit = omit,
         external_id: Optional[str] | Omit = omit,
         fallback_type: Literal["ach"] | Omit = omit,
@@ -1884,6 +1920,11 @@ class AsyncPaymentOrders(AsyncAPIResource):
           effective_date: Date transactions are to be posted to the participants' account. Defaults to the
               current business day or the next business day if the current day is a bank
               holiday or weekend. Format: yyyy-mm-dd.
+
+          end_to_end_id: A unique identifier passed through to the receiving bank. Only supported for
+              `ach` (maximum 15 characters) and `wire` (maximum 35 characters). If not
+              provided, Modern Treasury generates one. Some banks may truncate this value or
+              use their own identifier instead.
 
           expires_at: RFP payments require an expires_at. This value must be past the effective_date.
 
@@ -2017,6 +2058,7 @@ class AsyncPaymentOrders(AsyncAPIResource):
                     "currency": currency,
                     "description": description,
                     "effective_date": effective_date,
+                    "end_to_end_id": end_to_end_id,
                     "expires_at": expires_at,
                     "external_id": external_id,
                     "fallback_type": fallback_type,

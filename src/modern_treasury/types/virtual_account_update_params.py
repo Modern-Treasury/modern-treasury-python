@@ -20,9 +20,9 @@ class VirtualAccountUpdateParams(TypedDict, total=False):
 
     name: Optional[str]
 
-    party_address: AddressRequest
+    party_address: Optional[AddressRequest]
     """The address of the owner of the virtual account.
 
-    Omit to leave it unchanged; pass all fields blank to clear it, after which the
-    internal account's party address is used.
+    Omit to leave it unchanged; pass `null` to clear it, after which the internal
+    account's party address is used.
     """
