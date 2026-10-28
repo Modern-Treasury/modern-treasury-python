@@ -10,6 +10,7 @@ from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 from .bank_settings_param import BankSettingsParam
 from .wealth_and_employment_details_param import WealthAndEmploymentDetailsParam
+from .shared_params.legal_entity_regulator import LegalEntityRegulator
 from .shared_params.third_party_verification import ThirdPartyVerification
 from .shared_params.identification_create_request import IdentificationCreateRequest
 from .shared_params.legal_entity_address_create_request import LegalEntityAddressCreateRequest
@@ -22,8 +23,6 @@ __all__ = [
     "LegalEntityDocument",
     "LegalEntityPhoneNumbers",
     "LegalEntityPhoneNumber",
-    "LegalEntityRegulators",
-    "LegalEntityRegulator",
     "LegalEntityTermsOfUse",
 ]
 
@@ -82,27 +81,6 @@ LegalEntityPhoneNumbers = LegalEntityPhoneNumber
 """This type is deprecated and will be removed in a future release.
 
 Please use LegalEntityPhoneNumber instead.
-"""
-
-
-class LegalEntityRegulator(TypedDict, total=False):
-    jurisdiction: Required[str]
-    """
-    The country code where the regulator operates in the ISO 3166-1 alpha-2 format
-    (e.g., "US", "CA", "GB").
-    """
-
-    name: Required[str]
-    """Full name of the regulatory body."""
-
-    registration_number: Required[str]
-    """Registration or identification number with the regulator."""
-
-
-LegalEntityRegulators = LegalEntityRegulator
-"""This type is deprecated and will be removed in a future release.
-
-Please use LegalEntityRegulator instead.
 """
 
 
