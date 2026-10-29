@@ -29,7 +29,7 @@ class ExternalAccountUpdateParams(TypedDict, total=False):
     This is only for internal usage and won't affect any payments
     """
 
-    party_address: AddressRequest
+    party_address: Optional[AddressRequest]
 
     party_name: str
     """
