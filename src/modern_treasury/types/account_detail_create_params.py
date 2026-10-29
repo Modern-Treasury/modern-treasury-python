@@ -26,7 +26,6 @@ class AccountDetailCreateParams(TypedDict, total=False):
         "id_number",
         "nz_number",
         "other",
-        "pan",
         "polygon_address",
         "sg_number",
         "solana_address",
