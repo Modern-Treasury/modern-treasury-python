@@ -36,7 +36,6 @@ class CounterpartyCollectAccountParams(TypedDict, total=False):
             "ibanNumber",
             "clabeNumber",
             "walletAddress",
-            "panNumber",
             "routingNumber",
             "abaWireRoutingNumber",
             "swiftCode",
