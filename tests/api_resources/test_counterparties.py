@@ -33,7 +33,6 @@ class TestCounterparties:
     def test_method_create_with_all_params(self, client: ModernTreasury) -> None:
         counterparty = client.counterparties.create(
             name="name",
-            accounting={"type": "customer"},
             accounts=[
                 {
                     "account_details": [
@@ -96,7 +95,6 @@ class TestCounterparties:
             ],
             email="dev@stainless.com",
             external_id="external_id",
-            ledger_type="customer",
             legal_entity={
                 "legal_entity_type": "business",
                 "addresses": [
@@ -677,7 +675,6 @@ class TestAsyncCounterparties:
     async def test_method_create_with_all_params(self, async_client: AsyncModernTreasury) -> None:
         counterparty = await async_client.counterparties.create(
             name="name",
-            accounting={"type": "customer"},
             accounts=[
                 {
                     "account_details": [
@@ -740,7 +737,6 @@ class TestAsyncCounterparties:
             ],
             email="dev@stainless.com",
             external_id="external_id",
-            ledger_type="customer",
             legal_entity={
                 "legal_entity_type": "business",
                 "addresses": [
