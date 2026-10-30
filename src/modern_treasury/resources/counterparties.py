@@ -53,11 +53,9 @@ class Counterparties(SyncAPIResource):
         self,
         *,
         name: Optional[str],
-        accounting: counterparty_create_params.Accounting | Omit = omit,
         accounts: Iterable[counterparty_create_params.Account] | Omit = omit,
         email: Optional[str] | Omit = omit,
         external_id: Optional[str] | Omit = omit,
-        ledger_type: Literal["customer", "vendor"] | Omit = omit,
         legal_entity: counterparty_create_params.LegalEntity | Omit = omit,
         legal_entity_id: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
@@ -83,9 +81,6 @@ class Counterparties(SyncAPIResource):
           email: The counterparty's email.
 
           external_id: An optional user-defined 180 character unique identifier.
-
-          ledger_type: An optional type to auto-sync the counterparty to your ledger. Either `customer`
-              or `vendor`.
 
           legal_entity_id: The id of the legal entity.
 
@@ -114,11 +109,9 @@ class Counterparties(SyncAPIResource):
             body=maybe_transform(
                 {
                     "name": name,
-                    "accounting": accounting,
                     "accounts": accounts,
                     "email": email,
                     "external_id": external_id,
-                    "ledger_type": ledger_type,
                     "legal_entity": legal_entity,
                     "legal_entity_id": legal_entity_id,
                     "metadata": metadata,
@@ -489,11 +482,9 @@ class AsyncCounterparties(AsyncAPIResource):
         self,
         *,
         name: Optional[str],
-        accounting: counterparty_create_params.Accounting | Omit = omit,
         accounts: Iterable[counterparty_create_params.Account] | Omit = omit,
         email: Optional[str] | Omit = omit,
         external_id: Optional[str] | Omit = omit,
-        ledger_type: Literal["customer", "vendor"] | Omit = omit,
         legal_entity: counterparty_create_params.LegalEntity | Omit = omit,
         legal_entity_id: Optional[str] | Omit = omit,
         metadata: Dict[str, str] | Omit = omit,
@@ -519,9 +510,6 @@ class AsyncCounterparties(AsyncAPIResource):
           email: The counterparty's email.
 
           external_id: An optional user-defined 180 character unique identifier.
-
-          ledger_type: An optional type to auto-sync the counterparty to your ledger. Either `customer`
-              or `vendor`.
 
           legal_entity_id: The id of the legal entity.
 
@@ -550,11 +538,9 @@ class AsyncCounterparties(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "name": name,
-                    "accounting": accounting,
                     "accounts": accounts,
                     "email": email,
                     "external_id": external_id,
-                    "ledger_type": ledger_type,
                     "legal_entity": legal_entity,
                     "legal_entity_id": legal_entity_id,
                     "metadata": metadata,

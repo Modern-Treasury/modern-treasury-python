@@ -21,7 +21,6 @@ from .shared_params.legal_entity_industry_classification import LegalEntityIndus
 
 __all__ = [
     "CounterpartyCreateParams",
-    "Accounting",
     "Accounts",
     "Account",
     "AccountsAccountDetails",
@@ -43,8 +42,6 @@ class CounterpartyCreateParams(TypedDict, total=False):
     name: Required[Optional[str]]
     """A human friendly name for this counterparty."""
 
-    accounting: Accounting
-
     accounts: Iterable[Account]
     """The accounts for this counterparty."""
 
@@ -53,12 +50,6 @@ class CounterpartyCreateParams(TypedDict, total=False):
 
     external_id: Optional[str]
     """An optional user-defined 180 character unique identifier."""
-
-    ledger_type: Literal["customer", "vendor"]
-    """An optional type to auto-sync the counterparty to your ledger.
-
-    Either `customer` or `vendor`.
-    """
 
     legal_entity: LegalEntity
 
@@ -82,14 +73,6 @@ class CounterpartyCreateParams(TypedDict, total=False):
 
     verification_status: str
     """The verification status of the counterparty."""
-
-
-class Accounting(TypedDict, total=False):
-    type: Literal["customer", "vendor"]
-    """An optional type to auto-sync the counterparty to your ledger.
-
-    Either `customer` or `vendor`.
-    """
 
 
 class AccountAccountDetail(TypedDict, total=False):
