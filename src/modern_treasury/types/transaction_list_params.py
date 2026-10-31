@@ -53,8 +53,6 @@ class TransactionListParams(TypedDict, total=False):
     posted: bool
     """Either `true` or `false`."""
 
-    transactable_type: str
-
     vendor_id: str
     """
     Filters for transactions including the queried vendor id (an identifier given to
