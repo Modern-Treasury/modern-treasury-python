@@ -189,7 +189,6 @@ class TestTransactions:
             payment_type="payment_type",
             per_page=0,
             posted=True,
-            transactable_type="transactable_type",
             vendor_id="vendor_id",
             virtual_account_id="virtual_account_id",
         )
@@ -427,7 +426,6 @@ class TestAsyncTransactions:
             payment_type="payment_type",
             per_page=0,
             posted=True,
-            transactable_type="transactable_type",
             vendor_id="vendor_id",
             virtual_account_id="virtual_account_id",
         )
