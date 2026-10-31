@@ -275,7 +275,6 @@ class Transactions(SyncAPIResource):
         payment_type: str | Omit = omit,
         per_page: int | Omit = omit,
         posted: bool | Omit = omit,
-        transactable_type: str | Omit = omit,
         vendor_id: str | Omit = omit,
         virtual_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -338,7 +337,6 @@ class Transactions(SyncAPIResource):
                         "payment_type": payment_type,
                         "per_page": per_page,
                         "posted": posted,
-                        "transactable_type": transactable_type,
                         "vendor_id": vendor_id,
                         "virtual_account_id": virtual_account_id,
                     },
@@ -635,7 +633,6 @@ class AsyncTransactions(AsyncAPIResource):
         payment_type: str | Omit = omit,
         per_page: int | Omit = omit,
         posted: bool | Omit = omit,
-        transactable_type: str | Omit = omit,
         vendor_id: str | Omit = omit,
         virtual_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -698,7 +695,6 @@ class AsyncTransactions(AsyncAPIResource):
                         "payment_type": payment_type,
                         "per_page": per_page,
                         "posted": posted,
-                        "transactable_type": transactable_type,
                         "vendor_id": vendor_id,
                         "virtual_account_id": virtual_account_id,
                     },
