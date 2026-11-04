@@ -17,7 +17,7 @@ class AccountCollectionFlow(BaseModel):
     counterparty.
     """
 
-    payment_types: List[Literal["ach", "wire"]]
+    payment_types: List[Literal["ach", "wire", "check", "card"]]
 
     id: Optional[str] = None
 
