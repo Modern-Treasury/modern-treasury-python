@@ -2,7 +2,7 @@
 
 import builtins
 from typing import TYPE_CHECKING, Dict, List, Optional
-from datetime import datetime
+from datetime import date, datetime
 from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
@@ -15,7 +15,7 @@ from .shared.address import Address
 from .shared.currency import Currency
 from .shared.transaction_direction import TransactionDirection
 
-__all__ = ["InternalAccount", "AccountCapabilities", "AccountCapability"]
+__all__ = ["InternalAccount", "AccountCapabilities", "AccountCapability", "LatestBalances", "LatestBalance"]
 
 
 class AccountCapability(BaseModel):
@@ -96,6 +96,85 @@ AccountCapabilities = AccountCapability
 """This type is deprecated and will be removed in a future release.
 
 Please use AccountCapability instead.
+"""
+
+
+class LatestBalance(BaseModel):
+    id: str
+
+    amount: int
+    """The balance amount."""
+
+    amount_string: str
+    """
+    The amount of the balance as a string, preserving full precision for values that
+    may exceed safe integer limits in some languages.
+    """
+
+    as_of_date: Optional[date] = None
+    """The date on which the balance became true for the account."""
+
+    as_of_time: Optional[str] = None
+    """The time on which the balance became true for the account."""
+
+    balance_type: Literal[
+        "closing_available",
+        "closing_ledger",
+        "closing_pending_inflows",
+        "closing_pending_outflows",
+        "current_available",
+        "current_ledger",
+        "current_pending_inflows",
+        "current_pending_outflows",
+        "opening_available",
+        "opening_available_next_business_day",
+        "opening_ledger",
+        "other",
+        "previously_closed_book",
+    ]
+    """The specific type of balance reported.
+
+    One of `opening_ledger`, `closing_ledger`, `current_ledger`,
+    `opening_available`, `opening_available_next_business_day`, `closing_available`,
+    `closing_pending_inflows`, `closing_pending_outflows`, `current_available`,
+    'previously_closed_book', `current_pending_inflows`, `current_pending_outflows`,
+    or `other`.
+    """
+
+    created_at: datetime
+
+    currency: Currency
+    """The currency of the balance."""
+
+    live_mode: bool
+    """
+    This field will be true if this object exists in the live environment or false
+    if it exists in the test environment.
+    """
+
+    object: str
+
+    updated_at: datetime
+
+    value_date: Optional[date] = None
+    """The date on which the balance becomes available."""
+
+    vendor_code: str
+    """The code used by the bank when reporting this specific balance."""
+
+    vendor_code_type: Optional[str] = None
+    """The type of `vendor_code` being reported.
+
+    Can be one of `bai2`, `bankprov`, `bnk_dev`, `cleartouch`, `currencycloud`,
+    `cross_river`, `dwolla`, `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`,
+    `silvergate`, `swift`, or `us_bank`.
+    """
+
+
+LatestBalances = LatestBalance
+"""This type is deprecated and will be removed in a future release.
+
+Please use LatestBalance instead.
 """
 
 
@@ -222,3 +301,6 @@ class InternalAccount(BaseModel):
 
     vendor_id: Optional[str] = None
     """The vendor ID associated with this account."""
+
+    latest_balances: Optional[List[LatestBalance]] = None
+    """An array of `Balance` objects from the account's latest balance report."""
