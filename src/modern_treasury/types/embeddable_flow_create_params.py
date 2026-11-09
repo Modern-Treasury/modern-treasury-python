@@ -14,7 +14,7 @@ __all__ = [
     "Options",
     "OptionsAccountCollectionFlowCreateRequest",
     "OptionsPaymentFlowCreateRequest",
-    "OptionsType",
+    "OptionsUnionMember2",
 ]
 
 
@@ -92,8 +92,16 @@ class OptionsPaymentFlowCreateRequest(TypedDict, total=False):
     """
 
 
-class OptionsType(TypedDict, total=False):
+class OptionsUnionMember2(TypedDict, total=False):
     type: Required[Literal["individual"]]
 
+    return_url: str
+    """The URL you want your customer redirected to upon completing the flow.
 
-Options: TypeAlias = Union[OptionsAccountCollectionFlowCreateRequest, OptionsPaymentFlowCreateRequest, OptionsType]
+    This must be a valid HTTPS URL if set.
+    """
+
+
+Options: TypeAlias = Union[
+    OptionsAccountCollectionFlowCreateRequest, OptionsPaymentFlowCreateRequest, OptionsUnionMember2
+]
