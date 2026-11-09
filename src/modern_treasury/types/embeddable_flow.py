@@ -15,6 +15,8 @@ class OptionsUnionMember0(BaseModel):
 
     type: Literal["individual"]
 
+    return_url: Optional[str] = None
+
 
 class OptionsUnionMember1(BaseModel):
     counterparty_id: Optional[str] = None
@@ -63,6 +65,13 @@ class EmbeddableFlow(BaseModel):
     created_at: datetime
 
     expires_at: datetime
+
+    hosted_url: Optional[str] = None
+    """The Modern Treasury hosted URL for completing the flow.
+
+    Only present for legal_entity_onboarding flows. Each response mints a fresh link
+    that expires after 7 days.
+    """
 
     live_mode: bool
     """
