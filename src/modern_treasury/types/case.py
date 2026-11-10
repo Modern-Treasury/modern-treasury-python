@@ -16,6 +16,7 @@ class RequestedAction(BaseModel):
         "onboarding_articles_of_incorporation_failure",
         "onboarding_business_registry_verification_failure",
         "onboarding_database_failure",
+        "onboarding_government_id_failure",
         "onboarding_proof_of_address_failure",
         "onboarding_ssn_check_failure",
         "onboarding_tin_check_failure",
@@ -24,9 +25,9 @@ class RequestedAction(BaseModel):
 
     created_at: datetime
 
-    field: Optional[Literal["articles_of_incorporation", "ein_letter", "legal_entity_details", "proof_of_address"]] = (
-        None
-    )
+    field: Optional[
+        Literal["articles_of_incorporation", "ein_letter", "government_id", "legal_entity_details", "proof_of_address"]
+    ] = None
     """The field that needs to be corrected or provided, if any."""
 
     instructions: Optional[str] = None
@@ -60,6 +61,7 @@ class ResolvedAction(BaseModel):
         "onboarding_articles_of_incorporation_failure",
         "onboarding_business_registry_verification_failure",
         "onboarding_database_failure",
+        "onboarding_government_id_failure",
         "onboarding_proof_of_address_failure",
         "onboarding_ssn_check_failure",
         "onboarding_tin_check_failure",
@@ -68,9 +70,9 @@ class ResolvedAction(BaseModel):
 
     created_at: datetime
 
-    field: Optional[Literal["articles_of_incorporation", "ein_letter", "legal_entity_details", "proof_of_address"]] = (
-        None
-    )
+    field: Optional[
+        Literal["articles_of_incorporation", "ein_letter", "government_id", "legal_entity_details", "proof_of_address"]
+    ] = None
     """The field that needs to be corrected or provided, if any."""
 
     instructions: Optional[str] = None
