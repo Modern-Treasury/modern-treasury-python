@@ -51,8 +51,8 @@ class TransactionLineItem(BaseModel):
     transaction’s reconciliation.
     """
 
-    reconciliation_group_id: Optional[str] = None
-    """The ID of the reconciliation group this line item belongs to, otherwise `null`."""
+    reconciliation_group_id: str
+    """The ID of the reconciliation group this line item belongs to."""
 
     transactable_id: Optional[str] = None
     """
