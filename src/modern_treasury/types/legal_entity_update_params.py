@@ -75,7 +75,7 @@ class LegalEntityUpdateParams(TypedDict, total=False):
     """An individual's last name."""
 
     legal_structure: Optional[
-        Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
+        Literal["corporation", "government_entity", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
     ]
     """The business's legal structure."""
 

@@ -11,6 +11,7 @@ __all__ = ["IdentificationCreateRequest", "Documents", "Document"]
 
 class Document(BaseModel):
     document_type: Literal[
+        "agent_authorization_letter",
         "articles_of_incorporation",
         "certificate_of_good_standing",
         "ein_letter",

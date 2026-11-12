@@ -274,6 +274,7 @@ class IdentificationCreateParams(TypedDict, total=False):
 class Document(TypedDict, total=False):
     document_type: Required[
         Literal[
+            "agent_authorization_letter",
             "articles_of_incorporation",
             "certificate_of_good_standing",
             "ein_letter",
