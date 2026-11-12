@@ -81,7 +81,16 @@ class LegalEntities(SyncAPIResource):
         last_name: Optional[str] | Omit = omit,
         legal_entity_associations: Optional[Iterable[LegalEntityAssociationInlineCreate]] | Omit = omit,
         legal_structure: Optional[
-            Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
+            Literal[
+                "corporation",
+                "estate",
+                "government_entity",
+                "llc",
+                "non_profit",
+                "partnership",
+                "sole_proprietorship",
+                "trust",
+            ]
         ]
         | Omit = omit,
         listed_exchange: Optional[str] | Omit = omit,
@@ -331,7 +340,16 @@ class LegalEntities(SyncAPIResource):
         intended_use: Optional[str] | Omit = omit,
         last_name: Optional[str] | Omit = omit,
         legal_structure: Optional[
-            Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
+            Literal[
+                "corporation",
+                "estate",
+                "government_entity",
+                "llc",
+                "non_profit",
+                "partnership",
+                "sole_proprietorship",
+                "trust",
+            ]
         ]
         | Omit = omit,
         listed_exchange: Optional[str] | Omit = omit,
@@ -661,7 +679,16 @@ class AsyncLegalEntities(AsyncAPIResource):
         last_name: Optional[str] | Omit = omit,
         legal_entity_associations: Optional[Iterable[LegalEntityAssociationInlineCreate]] | Omit = omit,
         legal_structure: Optional[
-            Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
+            Literal[
+                "corporation",
+                "estate",
+                "government_entity",
+                "llc",
+                "non_profit",
+                "partnership",
+                "sole_proprietorship",
+                "trust",
+            ]
         ]
         | Omit = omit,
         listed_exchange: Optional[str] | Omit = omit,
@@ -911,7 +938,16 @@ class AsyncLegalEntities(AsyncAPIResource):
         intended_use: Optional[str] | Omit = omit,
         last_name: Optional[str] | Omit = omit,
         legal_structure: Optional[
-            Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
+            Literal[
+                "corporation",
+                "estate",
+                "government_entity",
+                "llc",
+                "non_profit",
+                "partnership",
+                "sole_proprietorship",
+                "trust",
+            ]
         ]
         | Omit = omit,
         listed_exchange: Optional[str] | Omit = omit,

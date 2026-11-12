@@ -11,12 +11,14 @@ __all__ = ["IdentificationCreateRequest", "Documents", "Document"]
 
 class Document(BaseModel):
     document_type: Literal[
+        "agent_authorization_letter",
         "articles_of_incorporation",
         "certificate_of_good_standing",
         "ein_letter",
         "generic",
         "identification_back",
         "identification_front",
+        "letter_of_administration",
         "proof_of_address",
     ]
     """A category given to the document, can be `null`."""

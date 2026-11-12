@@ -35,7 +35,7 @@ class TestIdentifications:
             legal_entity_id="legal_entity_id",
             documents=[
                 {
-                    "document_type": "articles_of_incorporation",
+                    "document_type": "agent_authorization_letter",
                     "file_data": "file_data",
                     "filename": "filename",
                 }
@@ -185,7 +185,7 @@ class TestAsyncIdentifications:
             legal_entity_id="legal_entity_id",
             documents=[
                 {
-                    "document_type": "articles_of_incorporation",
+                    "document_type": "agent_authorization_letter",
                     "file_data": "file_data",
                     "filename": "filename",
                 }
