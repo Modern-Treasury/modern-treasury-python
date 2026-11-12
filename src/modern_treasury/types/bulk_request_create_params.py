@@ -77,14 +77,7 @@ class BulkRequestCreateParams(TypedDict, total=False):
     """One of create, or update."""
 
     resource_type: Required[
-        Literal[
-            "payment_order",
-            "ledger_account",
-            "ledger_transaction",
-            "expected_payment",
-            "transaction",
-            "transaction_line_item",
-        ]
+        Literal["payment_order", "ledger_account", "ledger_transaction", "expected_payment", "transaction"]
     ]
     """One of payment_order, expected_payment, or ledger_transaction."""
 
