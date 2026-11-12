@@ -46,12 +46,7 @@ class BulkRequests(SyncAPIResource):
         *,
         action_type: Literal["create", "update", "delete"],
         resource_type: Literal[
-            "payment_order",
-            "ledger_account",
-            "ledger_transaction",
-            "expected_payment",
-            "transaction",
-            "transaction_line_item",
+            "payment_order", "ledger_account", "ledger_transaction", "expected_payment", "transaction"
         ],
         resources: Iterable[bulk_request_create_params.Resource],
         metadata: Dict[str, str] | Omit = omit,
@@ -236,12 +231,7 @@ class AsyncBulkRequests(AsyncAPIResource):
         *,
         action_type: Literal["create", "update", "delete"],
         resource_type: Literal[
-            "payment_order",
-            "ledger_account",
-            "ledger_transaction",
-            "expected_payment",
-            "transaction",
-            "transaction_line_item",
+            "payment_order", "ledger_account", "ledger_transaction", "expected_payment", "transaction"
         ],
         resources: Iterable[bulk_request_create_params.Resource],
         metadata: Dict[str, str] | Omit = omit,
