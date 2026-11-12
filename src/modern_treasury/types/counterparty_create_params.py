@@ -234,6 +234,7 @@ Please use Account instead.
 class LegalEntityDocument(TypedDict, total=False):
     document_type: Required[
         Literal[
+            "agent_authorization_letter",
             "articles_of_incorporation",
             "certificate_of_good_standing",
             "ein_letter",
@@ -391,7 +392,7 @@ class LegalEntity(TypedDict, total=False):
     """The legal entity associations and its child legal entities."""
 
     legal_structure: Optional[
-        Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
+        Literal["corporation", "government_entity", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
     ]
     """The business's legal structure."""
 

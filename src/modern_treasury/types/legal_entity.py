@@ -207,7 +207,7 @@ class LegalEntity(BaseModel):
     """The type of legal entity."""
 
     legal_structure: Optional[
-        Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
+        Literal["corporation", "government_entity", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
     ] = None
     """The business's legal structure."""
 

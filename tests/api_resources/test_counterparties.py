@@ -132,7 +132,7 @@ class TestCounterparties:
                 "date_of_birth": parse_date("2019-12-27"),
                 "documents": [
                     {
-                        "document_type": "articles_of_incorporation",
+                        "document_type": "agent_authorization_letter",
                         "file_data": "file_data",
                         "filename": "filename",
                     }
@@ -148,7 +148,7 @@ class TestCounterparties:
                         "id_type": "ad_nrt",
                         "documents": [
                             {
-                                "document_type": "articles_of_incorporation",
+                                "document_type": "agent_authorization_letter",
                                 "file_data": "file_data",
                                 "filename": "filename",
                             }
@@ -211,7 +211,7 @@ class TestCounterparties:
                             "date_of_birth": parse_date("2019-12-27"),
                             "documents": [
                                 {
-                                    "document_type": "articles_of_incorporation",
+                                    "document_type": "agent_authorization_letter",
                                     "file_data": "file_data",
                                     "filename": "filename",
                                 }
@@ -227,7 +227,7 @@ class TestCounterparties:
                                     "id_type": "ad_nrt",
                                     "documents": [
                                         {
-                                            "document_type": "articles_of_incorporation",
+                                            "document_type": "agent_authorization_letter",
                                             "file_data": "file_data",
                                             "filename": "filename",
                                         }
@@ -774,7 +774,7 @@ class TestAsyncCounterparties:
                 "date_of_birth": parse_date("2019-12-27"),
                 "documents": [
                     {
-                        "document_type": "articles_of_incorporation",
+                        "document_type": "agent_authorization_letter",
                         "file_data": "file_data",
                         "filename": "filename",
                     }
@@ -790,7 +790,7 @@ class TestAsyncCounterparties:
                         "id_type": "ad_nrt",
                         "documents": [
                             {
-                                "document_type": "articles_of_incorporation",
+                                "document_type": "agent_authorization_letter",
                                 "file_data": "file_data",
                                 "filename": "filename",
                             }
@@ -853,7 +853,7 @@ class TestAsyncCounterparties:
                             "date_of_birth": parse_date("2019-12-27"),
                             "documents": [
                                 {
-                                    "document_type": "articles_of_incorporation",
+                                    "document_type": "agent_authorization_letter",
                                     "file_data": "file_data",
                                     "filename": "filename",
                                 }
@@ -869,7 +869,7 @@ class TestAsyncCounterparties:
                                     "id_type": "ad_nrt",
                                     "documents": [
                                         {
-                                            "document_type": "articles_of_incorporation",
+                                            "document_type": "agent_authorization_letter",
                                             "file_data": "file_data",
                                             "filename": "filename",
                                         }
