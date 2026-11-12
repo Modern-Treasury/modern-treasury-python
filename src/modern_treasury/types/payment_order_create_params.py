@@ -511,6 +511,8 @@ class ReceivingAccount(TypedDict, total=False):
 
     contact_details: Iterable[ContactDetailCreateRequestParam]
 
+    counterparty_id: Optional[str]
+
     external_id: Optional[str]
     """An optional user-defined 180 character unique identifier."""
 

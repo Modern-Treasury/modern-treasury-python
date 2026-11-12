@@ -144,6 +144,7 @@ class TestPaymentOrders:
                         "contact_identifier_type": "email",
                     }
                 ],
+                "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "external_id": "external_id",
                 "ledger_account": {
                     "currency": "currency",
@@ -835,6 +836,7 @@ class TestAsyncPaymentOrders:
                         "contact_identifier_type": "email",
                     }
                 ],
+                "counterparty_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 "external_id": "external_id",
                 "ledger_account": {
                     "currency": "currency",
