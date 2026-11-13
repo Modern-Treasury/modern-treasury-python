@@ -13,7 +13,6 @@ class RequestedAction(BaseModel):
     id: str
 
     category: Literal[
-        "onboarding_articles_of_incorporation_failure",
         "onboarding_business_registry_verification_failure",
         "onboarding_database_failure",
         "onboarding_government_id_failure",
@@ -58,7 +57,6 @@ class ResolvedAction(BaseModel):
     id: str
 
     category: Literal[
-        "onboarding_articles_of_incorporation_failure",
         "onboarding_business_registry_verification_failure",
         "onboarding_database_failure",
         "onboarding_government_id_failure",
