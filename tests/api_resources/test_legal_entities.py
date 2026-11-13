@@ -68,7 +68,7 @@ class TestLegalEntities:
             date_of_birth=parse_date("2019-12-27"),
             documents=[
                 {
-                    "document_type": "articles_of_incorporation",
+                    "document_type": "agent_authorization_letter",
                     "file_data": "file_data",
                     "filename": "filename",
                 }
@@ -84,7 +84,7 @@ class TestLegalEntities:
                     "id_type": "ad_nrt",
                     "documents": [
                         {
-                            "document_type": "articles_of_incorporation",
+                            "document_type": "agent_authorization_letter",
                             "file_data": "file_data",
                             "filename": "filename",
                         }
@@ -147,7 +147,7 @@ class TestLegalEntities:
                         "date_of_birth": parse_date("2019-12-27"),
                         "documents": [
                             {
-                                "document_type": "articles_of_incorporation",
+                                "document_type": "agent_authorization_letter",
                                 "file_data": "file_data",
                                 "filename": "filename",
                             }
@@ -163,7 +163,7 @@ class TestLegalEntities:
                                 "id_type": "ad_nrt",
                                 "documents": [
                                     {
-                                        "document_type": "articles_of_incorporation",
+                                        "document_type": "agent_authorization_letter",
                                         "file_data": "file_data",
                                         "filename": "filename",
                                     }
@@ -454,7 +454,7 @@ class TestLegalEntities:
                     "id_type": "ad_nrt",
                     "documents": [
                         {
-                            "document_type": "articles_of_incorporation",
+                            "document_type": "agent_authorization_letter",
                             "file_data": "file_data",
                             "filename": "filename",
                         }
@@ -717,7 +717,7 @@ class TestAsyncLegalEntities:
             date_of_birth=parse_date("2019-12-27"),
             documents=[
                 {
-                    "document_type": "articles_of_incorporation",
+                    "document_type": "agent_authorization_letter",
                     "file_data": "file_data",
                     "filename": "filename",
                 }
@@ -733,7 +733,7 @@ class TestAsyncLegalEntities:
                     "id_type": "ad_nrt",
                     "documents": [
                         {
-                            "document_type": "articles_of_incorporation",
+                            "document_type": "agent_authorization_letter",
                             "file_data": "file_data",
                             "filename": "filename",
                         }
@@ -796,7 +796,7 @@ class TestAsyncLegalEntities:
                         "date_of_birth": parse_date("2019-12-27"),
                         "documents": [
                             {
-                                "document_type": "articles_of_incorporation",
+                                "document_type": "agent_authorization_letter",
                                 "file_data": "file_data",
                                 "filename": "filename",
                             }
@@ -812,7 +812,7 @@ class TestAsyncLegalEntities:
                                 "id_type": "ad_nrt",
                                 "documents": [
                                     {
-                                        "document_type": "articles_of_incorporation",
+                                        "document_type": "agent_authorization_letter",
                                         "file_data": "file_data",
                                         "filename": "filename",
                                     }
@@ -1110,7 +1110,7 @@ class TestAsyncLegalEntities:
                     "id_type": "ad_nrt",
                     "documents": [
                         {
-                            "document_type": "articles_of_incorporation",
+                            "document_type": "agent_authorization_letter",
                             "file_data": "file_data",
                             "filename": "filename",
                         }

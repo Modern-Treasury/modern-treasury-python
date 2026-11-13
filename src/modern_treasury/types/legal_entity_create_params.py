@@ -107,7 +107,16 @@ class LegalEntityCreateParams(TypedDict, total=False):
     """The legal entity associations and its child legal entities."""
 
     legal_structure: Optional[
-        Literal["corporation", "llc", "non_profit", "partnership", "sole_proprietorship", "trust"]
+        Literal[
+            "corporation",
+            "estate",
+            "government_entity",
+            "llc",
+            "non_profit",
+            "partnership",
+            "sole_proprietorship",
+            "trust",
+        ]
     ]
     """The business's legal structure."""
 
@@ -183,12 +192,14 @@ class LegalEntityCreateParams(TypedDict, total=False):
 class Document(TypedDict, total=False):
     document_type: Required[
         Literal[
+            "agent_authorization_letter",
             "articles_of_incorporation",
             "certificate_of_good_standing",
             "ein_letter",
             "generic",
             "identification_back",
             "identification_front",
+            "letter_of_administration",
             "proof_of_address",
         ]
     ]

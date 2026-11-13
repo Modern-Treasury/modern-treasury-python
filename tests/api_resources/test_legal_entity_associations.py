@@ -67,7 +67,7 @@ class TestLegalEntityAssociations:
                 "date_of_birth": parse_date("2019-12-27"),
                 "documents": [
                     {
-                        "document_type": "articles_of_incorporation",
+                        "document_type": "agent_authorization_letter",
                         "file_data": "file_data",
                         "filename": "filename",
                     }
@@ -83,7 +83,7 @@ class TestLegalEntityAssociations:
                         "id_type": "ad_nrt",
                         "documents": [
                             {
-                                "document_type": "articles_of_incorporation",
+                                "document_type": "agent_authorization_letter",
                                 "file_data": "file_data",
                                 "filename": "filename",
                             }
@@ -312,7 +312,7 @@ class TestAsyncLegalEntityAssociations:
                 "date_of_birth": parse_date("2019-12-27"),
                 "documents": [
                     {
-                        "document_type": "articles_of_incorporation",
+                        "document_type": "agent_authorization_letter",
                         "file_data": "file_data",
                         "filename": "filename",
                     }
@@ -328,7 +328,7 @@ class TestAsyncLegalEntityAssociations:
                         "id_type": "ad_nrt",
                         "documents": [
                             {
-                                "document_type": "articles_of_incorporation",
+                                "document_type": "agent_authorization_letter",
                                 "file_data": "file_data",
                                 "filename": "filename",
                             }
