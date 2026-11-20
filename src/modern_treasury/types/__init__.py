@@ -61,14 +61,10 @@ from .virtual_account import VirtualAccount as VirtualAccount
 from .case_list_params import CaseListParams as CaseListParams
 from .expected_payment import ExpectedPayment as ExpectedPayment
 from .external_account import ExternalAccount as ExternalAccount
-from .hold_list_params import HoldListParams as HoldListParams
 from .internal_account import InternalAccount as InternalAccount
 from .event_list_params import EventListParams as EventListParams
 from .payment_reference import PaymentReference as PaymentReference
 from .child_legal_entity import ChildLegalEntity as ChildLegalEntity
-from .hold_create_params import HoldCreateParams as HoldCreateParams
-from .hold_list_response import HoldListResponse as HoldListResponse
-from .hold_update_params import HoldUpdateParams as HoldUpdateParams
 from .ledger_list_params import LedgerListParams as LedgerListParams
 from .ledger_transaction import LedgerTransaction as LedgerTransaction
 from .payment_order_type import PaymentOrderType as PaymentOrderType
@@ -77,8 +73,6 @@ from .bank_settings_param import BankSettingsParam as BankSettingsParam
 from .invoice_list_params import InvoiceListParams as InvoiceListParams
 from .reconciliation_rule import ReconciliationRule as ReconciliationRule
 from .document_list_params import DocumentListParams as DocumentListParams
-from .hold_create_response import HoldCreateResponse as HoldCreateResponse
-from .hold_update_response import HoldUpdateResponse as HoldUpdateResponse
 from .ledger_create_params import LedgerCreateParams as LedgerCreateParams
 from .ledger_update_params import LedgerUpdateParams as LedgerUpdateParams
 from .return_create_params import ReturnCreateParams as ReturnCreateParams
@@ -91,7 +85,6 @@ from .payment_order_subtype import PaymentOrderSubtype as PaymentOrderSubtype
 from .connection_list_params import ConnectionListParams as ConnectionListParams
 from .document_create_params import DocumentCreateParams as DocumentCreateParams
 from .foreign_exchange_quote import ForeignExchangeQuote as ForeignExchangeQuote
-from .hold_retrieve_response import HoldRetrieveResponse as HoldRetrieveResponse
 from .account_collection_flow import AccountCollectionFlow as AccountCollectionFlow
 from .bulk_result_list_params import BulkResultListParams as BulkResultListParams
 from .connection_legal_entity import ConnectionLegalEntity as ConnectionLegalEntity
