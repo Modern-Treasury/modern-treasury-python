@@ -686,26 +686,6 @@ Methods:
 - <code title="patch /api/journal_reports/{id}">client.journal_reports.<a href="./src/modern_treasury/resources/journal_reports.py">update</a>(id, \*\*<a href="src/modern_treasury/types/journal_report_update_params.py">params</a>) -> None</code>
 - <code title="get /api/journal_reports">client.journal_reports.<a href="./src/modern_treasury/resources/journal_reports.py">list</a>(\*\*<a href="src/modern_treasury/types/journal_report_list_params.py">params</a>) -> None</code>
 
-# Holds
-
-Types:
-
-```python
-from modern_treasury.types import (
-    HoldCreateResponse,
-    HoldRetrieveResponse,
-    HoldUpdateResponse,
-    HoldListResponse,
-)
-```
-
-Methods:
-
-- <code title="post /api/holds">client.holds.<a href="./src/modern_treasury/resources/holds.py">create</a>(\*\*<a href="src/modern_treasury/types/hold_create_params.py">params</a>) -> <a href="./src/modern_treasury/types/hold_create_response.py">HoldCreateResponse</a></code>
-- <code title="get /api/holds/{id}">client.holds.<a href="./src/modern_treasury/resources/holds.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/hold_retrieve_response.py">HoldRetrieveResponse</a></code>
-- <code title="patch /api/holds/{id}">client.holds.<a href="./src/modern_treasury/resources/holds.py">update</a>(id, \*\*<a href="src/modern_treasury/types/hold_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/hold_update_response.py">HoldUpdateResponse</a></code>
-- <code title="get /api/holds">client.holds.<a href="./src/modern_treasury/resources/holds.py">list</a>(\*\*<a href="src/modern_treasury/types/hold_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/hold_list_response.py">SyncPage[HoldListResponse]</a></code>
-
 # Cases
 
 Types:
