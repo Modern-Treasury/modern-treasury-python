@@ -44,7 +44,6 @@ from .types.ping_response import PingResponse
 if TYPE_CHECKING:
     from .resources import (
         cases,
-        holds,
         events,
         ledgers,
         returns,
@@ -89,7 +88,6 @@ if TYPE_CHECKING:
         ledger_account_balance_monitors,
     )
     from .resources.cases import Cases, AsyncCases
-    from .resources.holds import Holds, AsyncHolds
     from .resources.events import Events, AsyncEvents
     from .resources.ledgers import Ledgers, AsyncLedgers
     from .resources.returns import Returns, AsyncReturns
@@ -468,12 +466,6 @@ class ModernTreasury(SyncAPIClient):
         from .resources.journal_reports import JournalReports
 
         return JournalReports(self)
-
-    @cached_property
-    def holds(self) -> Holds:
-        from .resources.holds import Holds
-
-        return Holds(self)
 
     @cached_property
     def cases(self) -> Cases:
@@ -959,12 +951,6 @@ class AsyncModernTreasury(AsyncAPIClient):
         return AsyncJournalReports(self)
 
     @cached_property
-    def holds(self) -> AsyncHolds:
-        from .resources.holds import AsyncHolds
-
-        return AsyncHolds(self)
-
-    @cached_property
     def cases(self) -> AsyncCases:
         from .resources.cases import AsyncCases
 
@@ -1369,12 +1355,6 @@ class ModernTreasuryWithRawResponse:
         return JournalReportsWithRawResponse(self._client.journal_reports)
 
     @cached_property
-    def holds(self) -> holds.HoldsWithRawResponse:
-        from .resources.holds import HoldsWithRawResponse
-
-        return HoldsWithRawResponse(self._client.holds)
-
-    @cached_property
     def cases(self) -> cases.CasesWithRawResponse:
         from .resources.cases import CasesWithRawResponse
 
@@ -1638,12 +1618,6 @@ class AsyncModernTreasuryWithRawResponse:
         from .resources.journal_reports import AsyncJournalReportsWithRawResponse
 
         return AsyncJournalReportsWithRawResponse(self._client.journal_reports)
-
-    @cached_property
-    def holds(self) -> holds.AsyncHoldsWithRawResponse:
-        from .resources.holds import AsyncHoldsWithRawResponse
-
-        return AsyncHoldsWithRawResponse(self._client.holds)
 
     @cached_property
     def cases(self) -> cases.AsyncCasesWithRawResponse:
@@ -1911,12 +1885,6 @@ class ModernTreasuryWithStreamedResponse:
         return JournalReportsWithStreamingResponse(self._client.journal_reports)
 
     @cached_property
-    def holds(self) -> holds.HoldsWithStreamingResponse:
-        from .resources.holds import HoldsWithStreamingResponse
-
-        return HoldsWithStreamingResponse(self._client.holds)
-
-    @cached_property
     def cases(self) -> cases.CasesWithStreamingResponse:
         from .resources.cases import CasesWithStreamingResponse
 
@@ -2182,12 +2150,6 @@ class AsyncModernTreasuryWithStreamedResponse:
         from .resources.journal_reports import AsyncJournalReportsWithStreamingResponse
 
         return AsyncJournalReportsWithStreamingResponse(self._client.journal_reports)
-
-    @cached_property
-    def holds(self) -> holds.AsyncHoldsWithStreamingResponse:
-        from .resources.holds import AsyncHoldsWithStreamingResponse
-
-        return AsyncHoldsWithStreamingResponse(self._client.holds)
 
     @cached_property
     def cases(self) -> cases.AsyncCasesWithStreamingResponse:
