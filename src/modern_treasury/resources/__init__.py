@@ -8,14 +8,6 @@ from .cases import (
     CasesWithStreamingResponse,
     AsyncCasesWithStreamingResponse,
 )
-from .holds import (
-    Holds,
-    AsyncHolds,
-    HoldsWithRawResponse,
-    AsyncHoldsWithRawResponse,
-    HoldsWithStreamingResponse,
-    AsyncHoldsWithStreamingResponse,
-)
 from .events import (
     Events,
     AsyncEvents,
@@ -574,12 +566,6 @@ __all__ = [
     "AsyncJournalReportsWithRawResponse",
     "JournalReportsWithStreamingResponse",
     "AsyncJournalReportsWithStreamingResponse",
-    "Holds",
-    "AsyncHolds",
-    "HoldsWithRawResponse",
-    "AsyncHoldsWithRawResponse",
-    "HoldsWithStreamingResponse",
-    "AsyncHoldsWithStreamingResponse",
     "Cases",
     "AsyncCases",
     "CasesWithRawResponse",
