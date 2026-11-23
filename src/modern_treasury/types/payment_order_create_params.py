@@ -191,6 +191,8 @@ class PaymentOrderCreateParams(TypedDict, total=False):
     signature.
     """
 
+    payment_request_id: str
+
     priority: Literal["high", "normal"]
     """Either `normal` or `high`.
 

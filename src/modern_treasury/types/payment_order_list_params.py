@@ -42,6 +42,8 @@ class PaymentOrderListParams(TypedDict, total=False):
 
     originating_account_id: str
 
+    payment_request_id: str
+
     per_page: int
 
     priority: Literal["high", "normal"]

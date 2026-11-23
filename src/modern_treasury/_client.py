@@ -69,6 +69,7 @@ if TYPE_CHECKING:
         payment_actions,
         routing_details,
         embeddable_flows,
+        payment_requests,
         virtual_accounts,
         expected_payments,
         external_accounts,
@@ -109,6 +110,7 @@ if TYPE_CHECKING:
     from .resources.payment_actions import PaymentActions, AsyncPaymentActions
     from .resources.routing_details import RoutingDetails, AsyncRoutingDetails
     from .resources.embeddable_flows import EmbeddableFlows, AsyncEmbeddableFlows
+    from .resources.payment_requests import PaymentRequests, AsyncPaymentRequests
     from .resources.virtual_accounts import VirtualAccounts, AsyncVirtualAccounts
     from .resources.expected_payments import ExpectedPayments, AsyncExpectedPayments
     from .resources.external_accounts import ExternalAccounts, AsyncExternalAccounts
@@ -369,6 +371,12 @@ class ModernTreasury(SyncAPIClient):
         from .resources.payment_references import PaymentReferences
 
         return PaymentReferences(self)
+
+    @cached_property
+    def payment_requests(self) -> PaymentRequests:
+        from .resources.payment_requests import PaymentRequests
+
+        return PaymentRequests(self)
 
     @cached_property
     def returns(self) -> Returns:
@@ -848,6 +856,12 @@ class AsyncModernTreasury(AsyncAPIClient):
         return AsyncPaymentReferences(self)
 
     @cached_property
+    def payment_requests(self) -> AsyncPaymentRequests:
+        from .resources.payment_requests import AsyncPaymentRequests
+
+        return AsyncPaymentRequests(self)
+
+    @cached_property
     def returns(self) -> AsyncReturns:
         from .resources.returns import AsyncReturns
 
@@ -1252,6 +1266,12 @@ class ModernTreasuryWithRawResponse:
         return PaymentReferencesWithRawResponse(self._client.payment_references)
 
     @cached_property
+    def payment_requests(self) -> payment_requests.PaymentRequestsWithRawResponse:
+        from .resources.payment_requests import PaymentRequestsWithRawResponse
+
+        return PaymentRequestsWithRawResponse(self._client.payment_requests)
+
+    @cached_property
     def returns(self) -> returns.ReturnsWithRawResponse:
         from .resources.returns import ReturnsWithRawResponse
 
@@ -1515,6 +1535,12 @@ class AsyncModernTreasuryWithRawResponse:
         from .resources.payment_references import AsyncPaymentReferencesWithRawResponse
 
         return AsyncPaymentReferencesWithRawResponse(self._client.payment_references)
+
+    @cached_property
+    def payment_requests(self) -> payment_requests.AsyncPaymentRequestsWithRawResponse:
+        from .resources.payment_requests import AsyncPaymentRequestsWithRawResponse
+
+        return AsyncPaymentRequestsWithRawResponse(self._client.payment_requests)
 
     @cached_property
     def returns(self) -> returns.AsyncReturnsWithRawResponse:
@@ -1782,6 +1808,12 @@ class ModernTreasuryWithStreamedResponse:
         return PaymentReferencesWithStreamingResponse(self._client.payment_references)
 
     @cached_property
+    def payment_requests(self) -> payment_requests.PaymentRequestsWithStreamingResponse:
+        from .resources.payment_requests import PaymentRequestsWithStreamingResponse
+
+        return PaymentRequestsWithStreamingResponse(self._client.payment_requests)
+
+    @cached_property
     def returns(self) -> returns.ReturnsWithStreamingResponse:
         from .resources.returns import ReturnsWithStreamingResponse
 
@@ -2045,6 +2077,12 @@ class AsyncModernTreasuryWithStreamedResponse:
         from .resources.payment_references import AsyncPaymentReferencesWithStreamingResponse
 
         return AsyncPaymentReferencesWithStreamingResponse(self._client.payment_references)
+
+    @cached_property
+    def payment_requests(self) -> payment_requests.AsyncPaymentRequestsWithStreamingResponse:
+        from .resources.payment_requests import AsyncPaymentRequestsWithStreamingResponse
+
+        return AsyncPaymentRequestsWithStreamingResponse(self._client.payment_requests)
 
     @cached_property
     def returns(self) -> returns.AsyncReturnsWithStreamingResponse:

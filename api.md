@@ -457,6 +457,22 @@ Methods:
 - <code title="get /api/payment_references/{id}">client.payment_references.<a href="./src/modern_treasury/resources/payment_references.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/payment_reference.py">PaymentReference</a></code>
 - <code title="get /api/payment_references">client.payment_references.<a href="./src/modern_treasury/resources/payment_references.py">list</a>(\*\*<a href="src/modern_treasury/types/payment_reference_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/payment_reference.py">SyncPage[PaymentReference]</a></code>
 
+# PaymentRequests
+
+Types:
+
+```python
+from modern_treasury.types import PaymentRequest
+```
+
+Methods:
+
+- <code title="get /api/payment_requests/{id}">client.payment_requests.<a href="./src/modern_treasury/resources/payment_requests.py">retrieve</a>(id) -> <a href="./src/modern_treasury/types/payment_request.py">PaymentRequest</a></code>
+- <code title="patch /api/payment_requests/{id}">client.payment_requests.<a href="./src/modern_treasury/resources/payment_requests.py">update</a>(id, \*\*<a href="src/modern_treasury/types/payment_request_update_params.py">params</a>) -> <a href="./src/modern_treasury/types/payment_request.py">PaymentRequest</a></code>
+- <code title="get /api/payment_requests">client.payment_requests.<a href="./src/modern_treasury/resources/payment_requests.py">list</a>(\*\*<a href="src/modern_treasury/types/payment_request_list_params.py">params</a>) -> <a href="./src/modern_treasury/types/payment_request.py">SyncPage[PaymentRequest]</a></code>
+- <code title="patch /api/simulations/payment_requests/{id}">client.payment_requests.<a href="./src/modern_treasury/resources/payment_requests.py">cancel_simulation</a>(id, \*\*<a href="src/modern_treasury/types/payment_request_cancel_simulation_params.py">params</a>) -> <a href="./src/modern_treasury/types/payment_request.py">PaymentRequest</a></code>
+- <code title="post /api/simulations/payment_requests">client.payment_requests.<a href="./src/modern_treasury/resources/payment_requests.py">simulate</a>(\*\*<a href="src/modern_treasury/types/payment_request_simulate_params.py">params</a>) -> <a href="./src/modern_treasury/types/payment_request.py">PaymentRequest</a></code>
+
 # Returns
 
 Types:
