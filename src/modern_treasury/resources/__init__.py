@@ -209,6 +209,14 @@ from .embeddable_flows import (
     EmbeddableFlowsWithStreamingResponse,
     AsyncEmbeddableFlowsWithStreamingResponse,
 )
+from .payment_requests import (
+    PaymentRequests,
+    AsyncPaymentRequests,
+    PaymentRequestsWithRawResponse,
+    AsyncPaymentRequestsWithRawResponse,
+    PaymentRequestsWithStreamingResponse,
+    AsyncPaymentRequestsWithStreamingResponse,
+)
 from .virtual_accounts import (
     VirtualAccounts,
     AsyncVirtualAccounts,
@@ -477,6 +485,12 @@ __all__ = [
     "AsyncPaymentReferencesWithRawResponse",
     "PaymentReferencesWithStreamingResponse",
     "AsyncPaymentReferencesWithStreamingResponse",
+    "PaymentRequests",
+    "AsyncPaymentRequests",
+    "PaymentRequestsWithRawResponse",
+    "AsyncPaymentRequestsWithRawResponse",
+    "PaymentRequestsWithStreamingResponse",
+    "AsyncPaymentRequestsWithStreamingResponse",
     "Returns",
     "AsyncReturns",
     "ReturnsWithRawResponse",

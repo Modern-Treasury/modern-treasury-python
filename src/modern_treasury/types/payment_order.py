@@ -395,6 +395,8 @@ class PaymentOrder(BaseModel):
     signature.
     """
 
+    payment_request_id: Optional[str] = None
+
     priority: Literal["high", "normal"]
     """Either `normal` or `high`.
 
